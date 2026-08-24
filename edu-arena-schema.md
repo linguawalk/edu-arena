@@ -1,74 +1,99 @@
-# edu-arena 콘텐츠 스키마 설계 (초안)
+# edu-arena 콘텐츠 스키마 설계 (개정 — 12개 과정, 학력 수준 3단계)
 
-lingua-arena / code-arena와 일관된 구조를 유지하면서, 교양 콘텐츠 특성에 맞게 조정한 초안입니다.
-
-## 1. 카테고리 트리 구조
+## 1. 과정 구조
 
 ```json
 {
-  "axis": "humanities_social",       // humanities_social | stem | general_knowledge
-  "category": "korean_history",       // 세부 카테고리 slug
-  "category_label": "한국사",
-  "region_or_field": "korea",         // 지역(인문사회) 또는 세부분야(STEM)
-  "level": "basic"                    // basic | advanced | expert
+  "axis": "humanities_social",   // humanities_social | stem
+  "subject": "history",           // 과정 slug
+  "subject_label": "역사",
+  "level": 1                      // 1: 고졸 수준 | 2: 대학 1년 수료 | 3: 대학 2년 수료
 }
 ```
 
-- **인문사회(humanities_social)**: 수능 사탐 8과목 + 역사 5지역 트랙을 `category`로 나열
-- **STEM(stem)**: 과학탐구 5영역 + 수학 영역을 `category`로 나열
-- **교양상식(general_knowledge)**: 시사 / 문화·생활 / 세계상식 / 과학상식 등 느슨한 서브카테고리
+- 인문사회 6개(역사/지리/일반사회/정치와 법/경제/문화) + STEM 6개(수학/물리/화학/생물/지구과학/공학) = 12개 과정
+- 언어는 lingua-arena, 프로그래밍은 code-arena에서 다루므로 edu-arena는 제외
+- 향후 신설 과목도 동일 구조(3단계) 적용, 수요 기반으로 개설
 
 ## 2. 문항(Question) 스키마
 
 ```json
 {
-  "id": "kh-basic-0001",
+  "id": "history-l1-0001",
   "axis": "humanities_social",
-  "category": "korean_history",
-  "level": "basic",
+  "subject": "history",
+  "level": 1,
   "type": "multiple_choice",
-  "question": "고려를 건국한 인물은 누구인가?",
-  "options": ["왕건", "궁예", "견훤", "이성계"],
-  "answer": "왕건",
-  "explanation": "왕건은 918년 고려를 건국하고 후삼국을 통일했다.",
-  "tags": ["고려", "건국"],
+  "question": "...",
+  "options": ["...", "...", "...", "..."],
+  "answer": "...",
+  "explanation": "...",
+  "tags": ["..."],
   "source_ref": null
 }
 ```
 
 - `type`은 `multiple_choice`로 통일
-- `level`은 3단계(basic / advanced / expert)
-- `tags`는 검색/연관문항 추천용, 필수 아님
+- `level`: 1(고졸)/2(대학 1년 수료)/3(대학 2년 수료)
 
-## 3. 최소 문항 수 기준
+## 3. 목표 문항 수 기준
 
-| 레벨 | 카테고리당 문항 수 |
+| 항목 | 기준 |
 |---|---|
-| basic | 25 이상 |
-| advanced | 25 이상 |
-| expert | 25 이상 |
+| 과정×레벨당 문항 수 | 500문항 |
+| 과정×레벨당 요약 해설 | A4 10p |
+| 초기 제작 범위 | 12개 과정 × 1단계만 |
+| 초기 문항 규모 | 500 × 12 = **6,000문항** |
+| 초기 해설 규모 | 10p × 12 = **120p** |
 
-레벨별 최소 25문항 기준으로, 카테고리 하나가 이 최소치를 채울 소재가 없으면 상위 카테고리로 통합. (3단계 기준 카테고리당 총 75문항 이상)
+- 2·3단계 확장은 참가자 반응(수요)을 보고 결정
 
-## 4. 파일 구성 (예시)
+## 4. 설명(학습자료) 콘텐츠 구조
+
+```json
+{
+  "subject": "history",
+  "level": 1,
+  "unit_title": "...",
+  "content_md": "## ...\n\n...",
+  "estimated_pages": 2
+}
+```
+
+- 여러 소단원(unit)으로 나눠 관리, 레벨당 합산 10p 목표
+- 파일: `study/{subject}_l{level}.md` — 문항 파일 `data/{subject}_l{level}.json`과 짝을 이룸
+
+## 5. 인증(측정 전용) 트랙 — 별도 제작 없음
+
+- 응시 시 해당 과정×레벨 500문항 풀에서 50문항 무작위 추출
+- 통과 기준(예: 70% 이상) 충족 시 배지/인증 발급
+- 별도 데이터 제작 불필요
+
+## 6. 파일 구성 (예시)
 
 ```
 /data
   /humanities_social
-    korean_history.json
-    world_history_asia_oceania.json
+    history_l1.json
+    geography_l1.json
     ...
   /stem
-    physics.json
+    mathematics_l1.json
+    engineering_l1.json
     ...
-  /general_knowledge
-    current_affairs.json
+/study
+  /humanities_social
+    history_l1.md
     ...
-/CATEGORIES.md   ← 전체 카테고리 트리 문서
+/CATEGORIES.md
 ```
 
 ## 확정된 사항
 
-- 레벨: 3단계 (basic / advanced / expert)
-- 최소 문항 수: 레벨당 25문항 이상
-- 문제 유형: 객관식(multiple_choice) 단일 유형으로 통일
+- 과정: 12개 (인문사회 6 + STEM 6), 언어·프로그래밍 제외
+- 레벨: 3단계 (고졸 / 대학 1년 수료 / 대학 2년 수료) — 전 과정 공통 기준
+- 목표 문항 수: 과정×레벨당 500문항, 초기엔 1단계만 제작
+- 요약 해설: 과정×레벨당 10p
+- 문제 유형: 객관식(multiple_choice) 단일 유형
+- 인증: 별도 제작 없이 500문항 풀에서 무작위 추출
+- 신규 과목: 수요(신청자 수) 기반으로 추가 개설
