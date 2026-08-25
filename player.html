@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>edu-arena · 퀴즈</title>
+<style>
+  :root {
+    --ink: #1c1a17;
+    --paper: #f7f4ee;
+    --line: #d8d2c4;
+    --accent: #7a5c3e;
+    --good: #2f5d50;
+    --bad: #a13d33;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Pretendard", "Noto Sans KR", -apple-system, sans-serif;
+    line-height: 1.6;
+  }
+  .topbar {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar a { color: var(--accent); text-decoration: none; font-size: 14px; }
+  .progress { font-size: 13px; color: #8a8378; }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  .tag {
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .question {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option {
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .option:hover { border-color: var(--accent); }
+  .option.correct { border-color: var(--good); background: #eaf3ef; }
+  .option.wrong { border-color: var(--bad); background: #f7eae8; }
+  .explanation {
+    margin-top: 20px;
+    padding: 16px 18px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-size: 14px;
+    display: none;
+  }
+  .explanation.show { display: block; }
+  .next-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: var(--accent);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    display: none;
+  }
+  .next-btn.show { display: inline-block; }
+  .result {
+    text-align: center;
+    padding: 48px 0;
+  }
+  .result .score { font-size: 40px; font-weight: 700; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html">← edu-arena</a>
+  <div class="progress" id="progress"></div>
+</div>
+<main id="app">불러오는 중...</main>
+
+<script>
+const params = new URLSearchParams(location.search);
+const subject = params.get("subject") || "history";
+const level = params.get("level") || "1";
+const dataPath = `data/humanities_social/${subject}_l${level}.json`;
+
+let questions = [];
+let idx = 0;
+let score = 0;
+
+async function init() {
+  try {
+    const res = await fetch(dataPath);
+    questions = await res.json();
+    // 셔플 후 앞에서 10문항만 미리보기용으로 사용 (전체를 풀고 싶으면 slice 제거)
+    questions = questions.sort(() => Math.random() - 0.5);
+    render();
+  } catch (e) {
+    document.getElementById("app").innerHTML = `<p>데이터를 불러오지 못했습니다: ${dataPath}</p>`;
+  }
+}
+
+function render() {
+  const app = document.getElementById("app");
+  if (idx >= questions.length) {
+    app.innerHTML = `
+      <div class="result">
+        <div class="score">${score} / ${questions.length}</div>
+        <p>수고하셨습니다.</p>
+        <button class="next-btn show" onclick="location.reload()">다시 풀기</button>
+      </div>`;
+    document.getElementById("progress").textContent = "완료";
+    return;
+  }
+  const q = questions[idx];
+  document.getElementById("progress").textContent = `${idx + 1} / ${questions.length}`;
+  app.innerHTML = `
+    <div class="tag">${q.subject} · ${q.tags ? q.tags.join(", ") : ""}</div>
+    <div class="question">${q.question}</div>
+    <div class="options">
+      ${q.options.map(opt => `<div class="option" data-opt="${opt}">${opt}</div>`).join("")}
+    </div>
+    <div class="explanation" id="explanation">${q.explanation}</div>
+    <button class="next-btn" id="nextBtn">다음 문제</button>
+  `;
+  document.querySelectorAll(".option").forEach(el => {
+    el.addEventListener("click", () => selectOption(el, q));
+  });
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    idx++;
+    render();
+  });
+}
+
+function selectOption(el, q) {
+  const opts = document.querySelectorAll(".option");
+  opts.forEach(o => o.style.pointerEvents = "none");
+  const chosen = el.getAttribute("data-opt");
+  if (chosen === q.answer) {
+    el.classList.add("correct");
+    score++;
+  } else {
+    el.classList.add("wrong");
+    opts.forEach(o => {
+      if (o.getAttribute("data-opt") === q.answer) o.classList.add("correct");
+    });
+  }
+  document.getElementById("explanation").classList.add("show");
+  document.getElementById("nextBtn").classList.add("show");
+}
+
+init();
+</script>
+</body>
+</html>
