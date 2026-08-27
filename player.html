@@ -99,7 +99,9 @@
 const params = new URLSearchParams(location.search);
 const subject = params.get("subject") || "history";
 const level = params.get("level") || "1";
-const dataPath = `data/humanities_social/${subject}_l${level}.json`;
+const humanitiesSubjects = ["history", "geography", "society_general", "politics_law", "economics", "culture"];
+const axisFolder = humanitiesSubjects.includes(subject) ? "humanities_social" : "stem";
+const dataPath = `data/${axisFolder}/${subject}_l${level}.json`;
 
 let questions = [];
 let idx = 0;
