@@ -25,8 +25,8 @@
   bar.className = "ea-bar";
   bar.innerHTML =
     '<div class="ea-in"><a href="' + home + '">edu-arena</a>' +
-    (key ? '<span class="ea-sep">›</span><a href="' + home + '?s=' + key + '">' + SECTIONS[key] + "</a>" : "") +
+    (key ? '<span class="ea-sep">›</span><a href="' + home + key + '/browse.html">' + SECTIONS[key] + "</a>" : "") +
     (/\/olympiad\//.test(location.pathname) ? '<span class="ea-sep">›</span><span>심화</span>' : "") +
-    '<a class="ea-all" href="' + home + '#courses">전체 코스</a></div>';
+    '<a class="ea-all" href="' + home + '#subjects">전체 과목</a></div>';
   document.body.insertBefore(bar, document.body.firstChild);
 })();

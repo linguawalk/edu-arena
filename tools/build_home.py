@@ -71,27 +71,19 @@ def build():
         hero = f.read()
 
     total = 0
-    chips = ['<a class="chip" href="./" data-s="all" aria-current="true">전체</a>']
     blocks = []
     for gid, gname in GROUPS:
-        subs = [s for s in SUBJECTS if s[2] == gid]
-        parts = [f'<div class="gtitle">{gname}</div>']
-        for folder, name, group, desc, links in subs:
-            courses = load_courses(folder)
-            total += len(courses)
-            chips.append(f'<a class="chip {group}" href="?s={folder}" data-s="{folder}">{e(name)}</a>')
-            link_html = "".join(f'<a href="{folder}/{h}">{e(t)}</a>' for t, h in links)
-            parts.append(
-                f'<section class="subject" id="{folder}" data-s="{folder}" aria-labelledby="h-{folder}">'
-                f'<div class="shead"><h3 id="h-{folder}">{e(name)}</h3><span class="cnt">{len(courses)}개 코스</span>'
-                f'<p>{e(desc)}</p><nav class="slinks" aria-label="{e(name)} 바로가기">{link_html}</nav></div>'
-                f'<div class="courses">{"".join(card(c, group) for c in courses)}</div></section>')
-        blocks.append("\n".join(parts))
+        cards = []
+        for folder, name, group, desc, links in [x for x in SUBJECTS if x[2] == gid]:
+            n = len(load_courses(folder))
+            total += n
+            cards.append(
+                f'<a class="card {group}" href="{folder}/browse.html"><span class="tag">{folder}</span>'
+                f'<h3>{e(name)}</h3><p>{e(desc)}</p><span class="go">{n}개 코스 →</span></a>')
+        blocks.append(f'<section class="group" aria-labelledby="g-{gid}"><div class="group-head">'
+                      f'<h2 id="g-{gid}">{gname}</h2></div><div class="grid">{"".join(cards)}</div></section>')
 
-    page = TEMPLATE.replace("{{HERO}}", hero) \
-        .replace("{{CHIPS}}", "".join(chips)) \
-        .replace("{{BLOCKS}}", "\n".join(blocks)) \
-        .replace("{{TOTAL}}", str(total))
+    page = TEMPLATE.replace("{{HERO}}", hero).replace("{{BLOCKS}}", "\n".join(blocks)).replace("{{TOTAL}}", str(total))
     with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
         f.write(page)
     print(f"index.html: {len(SUBJECTS)}과목, {total}개 코스")
@@ -112,7 +104,6 @@ TEMPLATE = """<!DOCTYPE html>
   --hum:#7A4B1E;--hum-soft:#F6ECE1;--stem:#1D3FA8;--stem-soft:#E7ECFA;
   --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
 *{box-sizing:border-box}
-html{scroll-padding-top:72px}
 html,body{margin:0;word-break:keep-all;overflow-wrap:anywhere;background:var(--paper);color:var(--ink);font-family:var(--font)}
 body{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 :focus-visible{outline:3px solid var(--blue);outline-offset:3px}
@@ -132,33 +123,18 @@ header nav a:hover{background:var(--blue-soft);color:var(--blue)}
 @media (prefers-reduced-motion:reduce){.step,#me{animation:none;opacity:1}#route{animation:none;stroke-dashoffset:0}}
 h1{font-size:clamp(36px,5.5vw,60px);line-height:1.15;letter-spacing:-.035em;margin:0 0 20px;font-weight:700}
 .lede{font-size:19px;line-height:1.75;color:var(--ink-soft);margin:0}
-.catalog{border-top:2px solid var(--ink);padding:26px 0 24px}
-.catalog>h2{font-size:24px;margin:0 0 6px;letter-spacing:-.02em}
-.catalog>p{margin:0 0 18px;color:var(--ink-soft);font-size:16px}
-.chips{position:sticky;top:0;z-index:5;background:var(--paper);display:flex;gap:8px;overflow-x:auto;padding:10px 0 12px;margin:0 0 6px;border-bottom:1px solid var(--grid);scrollbar-width:none}
-.chips::-webkit-scrollbar{display:none}
-.chip{flex:none;font-size:15px;text-decoration:none;color:var(--ink);padding:8px 14px;border-radius:999px;border:1px solid var(--grid-strong);background:#fff;white-space:nowrap}
-.chip:hover{border-color:var(--blue)}
-.chip[aria-current]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
-.gtitle{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--ink-soft);margin:26px 0 0}
-.subject{padding:18px 0 22px;border-bottom:1px solid var(--grid)}
-.shead{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:14px}
-.shead h3{font-size:22px;margin:0;letter-spacing:-.02em}
-.shead .cnt{font-size:14px;color:var(--ink-soft)}
-.shead p{flex-basis:100%;margin:2px 0 0;font-size:15px;color:var(--ink-soft)}
-.slinks{flex-basis:100%;display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:6px}
-.slinks a{font-size:15px;font-weight:700;color:var(--blue);text-decoration:none}
-.slinks a:hover{text-decoration:underline}
-.slinks a::after{content:" →"}
-.courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-.course{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--grid);border-left:4px solid var(--c);border-radius:10px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
-a.course:hover{border-color:var(--c);box-shadow:0 2px 10px rgba(23,32,51,.06)}
-.course h4{font-size:17px;margin:0;letter-spacing:-.01em}
-.course p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.course.off{opacity:.55}
-.course .soon{font-size:13px;color:var(--ink-soft)}
-.hum{--c:var(--hum)}
-.stem{--c:var(--stem)}
+.group{border-top:2px solid var(--ink);padding:26px 0 40px}
+.group-head{margin-bottom:18px}
+.group-head h2{font-size:22px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--grid);border-radius:14px;padding:20px 20px 18px;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--c);transform:translateY(-2px)}
+.card .tag{align-self:flex-start;font-size:13px;font-weight:700;color:var(--c);background:var(--cs);border-radius:6px;padding:4px 8px}
+.card h3{font-size:20px;margin:2px 0 0;letter-spacing:-.02em}
+.card p{margin:0;font-size:15px;line-height:1.65;color:var(--ink-soft)}
+.card .go{margin-top:auto;padding-top:6px;font-size:15px;font-weight:700;color:var(--c)}
+.hum{--c:var(--hum);--cs:var(--hum-soft)}
+.stem{--c:var(--stem);--cs:var(--stem-soft)}
 .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;border-top:2px solid var(--ink);padding:26px 0 40px;margin-top:24px}
 .levels h2{font-size:18px;margin:0 0 6px}
 .levels p{margin:0;font-size:15px;line-height:1.7;color:var(--ink-soft)}
@@ -172,19 +148,15 @@ a.course:hover{border-color:var(--c);box-shadow:0 2px 10px rgba(23,32,51,.06)}
 </style>
 </head>
 <body>
-<header><div class="wrap"><a class="logo" href="./"><span>edu-arena</span></a><nav><a href="#courses">코스</a><a href="#levels">레벨</a></nav></div></header>
+<header><div class="wrap"><a class="logo" href="./"><span>edu-arena</span></a><nav><a href="#subjects">과목</a><a href="#levels">레벨</a></nav></div></header>
 <main class="wrap">
 {{HERO}}
 
-  <section class="catalog" id="courses" aria-labelledby="courses-h">
-    <h2 id="courses-h">전체 코스</h2>
-    <p>{{TOTAL}}개 코스를 과목별로 모았습니다. 코스를 고르면 바로 첫 챕터부터 시작할 수 있습니다.</p>
-    <nav class="chips" aria-label="과목 선택">{{CHIPS}}</nav>
+  <div id="subjects"></div>
 {{BLOCKS}}
-  </section>
 
   <section class="levels" id="levels" aria-label="레벨 구성">
-    <div><h2>레벨1 · 고교 수준</h2><p>위의 코스들입니다. 설명과 문제가 번갈아 나오는 레슨으로 배우고, 기초가 불안하면 진입 진단으로 시작 위치를 찾으세요.</p></div>
+    <div><h2>레벨1 · 고교 수준</h2><p>설명과 문제가 번갈아 나오는 레슨으로 배웁니다. 기초가 불안하면 진입 진단으로 시작 위치를 찾으세요.</p></div>
     <div><h2>레벨2 · 전문대 수준</h2><p>응용과 해외 비교를 다루는 독학 가이드로 스스로 공부합니다. 과목마다 "레벨2·3 가이드"에서 시작하세요.</p></div>
     <div><h2>레벨3 · 대학 수준</h2><p>전공 수준의 심화 주제를 트랙별 독학 가이드로 안내합니다. 과목마다 올림피아드·경시를 준비하는 심화 과정도 있습니다.</p></div>
   </section>
@@ -195,26 +167,6 @@ a.course:hover{border-color:var(--c);box-shadow:0 2px 10px rgba(23,32,51,.06)}
     <a href="https://mind-arena.org/">mind-arena</a><span>퍼즐과 보드게임</span>
   </section>
 </main>
-<script>
-(function () {
-  var chips = document.querySelectorAll(".chip"), subs = document.querySelectorAll(".subject"), titles = document.querySelectorAll(".gtitle");
-  function show(s, push) {
-    if (!document.getElementById(s)) s = "all";
-    chips.forEach(function (c) { if (c.dataset.s === s) c.setAttribute("aria-current", "true"); else c.removeAttribute("aria-current"); });
-    subs.forEach(function (x) { x.hidden = s !== "all" && x.dataset.s !== s; });
-    titles.forEach(function (t) { t.hidden = s !== "all"; });
-    if (push) history.replaceState(null, "", s === "all" ? location.pathname : "?s=" + s);
-  }
-  chips.forEach(function (c) {
-    c.addEventListener("click", function (ev) {
-      ev.preventDefault(); show(c.dataset.s, true);
-      document.getElementById("courses").scrollIntoView({ behavior: "smooth" });
-    });
-  });
-  var q = new URLSearchParams(location.search).get("s");
-  if (q) { show(q, false); document.getElementById("courses").scrollIntoView(); }
-})();
-</script>
 </body>
 </html>
 """
