@@ -1,7 +1,7 @@
 /* edu-arena 공통 상단 바: 각 과목 섹션에서 edu-arena 메인으로 돌아가는 링크 */
 (function () {
   var SECTIONS = {
-    socio: "사회와 역사", biz: "경제와 경영", lit: "국어와 문학",
+    socio: "사회와 역사", biz: "경제와 경영", lit: "언어와 문학",
     math: "수학", sci: "과학", tech: "공학", code: "코딩", 
   };
   // 레슨·진단 화면은 몰입형이라 상단 바를 넣지 않음

@@ -18,7 +18,7 @@ SUBJECTS = [
      [("레벨2·3 가이드", "guide.html"), ("심화 · 인문·사회 경시", "olympiad/browse.html")]),
     ("biz", "경제와 경영", "hum", "고교 경제부터 회계, 세무, 마케팅, 무역까지",
      [("레벨2·3 가이드", "guide.html"), ("심화 · 경제 올림피아드", "olympiad/browse.html")]),
-    ("lit", "국어와 문학", "hum", "국어, 한자, 영어, 국문학, 세계문학",
+    ("lit", "언어와 문학", "hum", "국어, 한자, 영어, 국문학, 세계문학",
      [("레벨2·3 가이드", "guide.html"), ("심화 · 언어학 올림피아드", "olympiad/browse.html")]),
     ("math", "수학", "stem", "중학 핵심부터 고등 수학까지",
      [("진입 진단", "placement.html"), ("레벨2·3 가이드", "guide.html"), ("심화 · 수학 올림피아드", "olympiad/browse.html")]),
@@ -95,7 +95,7 @@ TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>edu-arena · 풀면서 배우는 모든 과목</title>
-<meta name="description" content="읽기 전에 먼저 풀어 보는 15분 레슨. 사회와 역사, 경제와 경영, 국어와 문학, 수학, 과학, 공학, 코딩까지 {{TOTAL}}개 코스를 한곳에서. 과목별 올림피아드 심화 과정 포함.">
+<meta name="description" content="읽기 전에 먼저 풀어 보는 15분 레슨. 사회와 역사, 경제와 경영, 언어와 문학, 수학, 과학, 공학, 코딩까지 {{TOTAL}}개 코스를 한곳에서. 과목별 올림피아드 심화 과정 포함.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
