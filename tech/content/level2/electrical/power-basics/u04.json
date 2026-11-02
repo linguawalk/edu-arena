@@ -1,0 +1,107 @@
+{
+ "no": 4,
+ "title": "송전 특성",
+ "hours": 6,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "단거리·중거리 선로의 등가 회로로 송전단 전압과 전압 강하를 계산할 수 있다.",
+  "페란티 현상과 송전 용량을 설명할 수 있다.",
+  "4단자 정수(ABCD)로 선로를 표현할 수 있다."
+ ],
+ "checklist": [
+  "단거리 선로(R, X만): 전압 강하 e = √3I(R cos θ + X sin θ)",
+  "전압 강하율 = (V_s − V_r)/V_r, 전압 변동률",
+  "중거리 선로: T형·π형 등가 회로",
+  "장거리 선로: 분포 정수 회로, 특성 임피던스 Z₀ = √(L/C)",
+  "4단자 정수 V_s = AV_r + BI_r, AD − BC = 1",
+  "페란티 현상: 무부하·경부하 때 수전단 전압 상승",
+  "송전 전력 P = (V_sV_r/X) sin δ"
+ ],
+ "advice": [
+  "송전 특성 계산은 회로이론 8~10단원의 페이저 계산을 선로에 적용한 것입니다. 단거리 선로의 전압 강하 근사식 √3I(R cos θ + X sin θ)는 시험과 실무에서 가장 많이 쓰이므로, 페이저도에서 어떻게 나오는지 한 번 그려 보세요.",
+  "송전 전력 P = (V_sV_r/X) sin δ는 전기기기 10단원의 동기기 출력 식과 모양이 같습니다. 두 식이 같은 이유를 생각해 보면 레벨3 전력계통의 안정도 개념으로 자연스럽게 이어집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Glover · Overbye · Sarma, Power System Analysis and Design (장 제목으로 표기)",
+   "part": "Transmission Lines: Steady-State Operation 장"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Grainger · Stevenson, Power System Analysis (번역본 『전력계통공학』)",
+   "part": "Current and Voltage Relations on a Transmission Line 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "회로이론 13단원 자기 결합 회로와 2포트 회로망",
+   "url": "guide.html?lv=2&t=electrical&s=circuit-theory&u=13",
+   "part": "ABCD 파라미터 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "3상 단거리 선로에서 선전류 100 A, 선로 저항 2 Ω, 리액턴스 4 Ω, 부하 역률 0.8(지상)일 때 전압 강하는 약 몇 V일까요?",
+   "answer": "693",
+   "answer_format": "integer",
+   "tolerance": 1,
+   "explanation": "e = √3 × 100 × (2 × 0.8 + 4 × 0.6) = √3 × 400 ≈ 693 V",
+   "hint": "e = √3I(R cos θ + X sin θ)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "송전단 전압 6900 V, 수전단 전압 6600 V일 때 전압 강하율은 약 몇 %일까요?",
+   "answer": "4.55",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "explanation": "(6900 − 6600)/6600 ≈ 4.55%",
+   "hint": "분모는 수전단 전압입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "무부하나 경부하일 때 선로의 정전용량 때문에 수전단 전압이 {{1}} 전압보다 높아지는 현상을 페란티 현상이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "송전단"
+     ]
+    }
+   ],
+   "explanation": "앞선 충전 전류가 선로 인덕턴스에 흘러 전압이 올라갑니다.\n분로 리액터로 억제합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "송·수전단 전압이 모두 154 kV, 선로 리액턴스 100 Ω, 상차각 30°일 때 송전 전력은 약 몇 MW일까요?",
+   "answer": "118.6",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "P = V_sV_r sin δ/X = 154000² × 0.5/100 ≈ 118.6 × 10⁶ W",
+   "hint": "P = V_sV_r sin δ/X입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electrical",
+ "subject": "power-basics",
+ "id": "l2-electrical-power-basics-u04"
+}

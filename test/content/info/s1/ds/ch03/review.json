@@ -1,0 +1,169 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "ds",
+  "work": "풀이",
+  "chapter": {
+    "id": "info-s1-ds-ch03",
+    "no": 3,
+    "title": "우선순위 큐"
+  },
+  "review": {
+    "id": "info-s1-ds-ch03-review",
+    "title": "우선순위 큐 복습",
+    "minutes": 15
+  },
+  "questions": [
+    {
+      "type": "question",
+      "id": "r1",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "힙 배열에서 6번 노드의 왼쪽 자식은 몇 번 노드인가요?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2i입니다.",
+      "explanation": "1번 칸부터 쓰는 힙 배열에서 i번 노드의 왼쪽 자식은 2i, 오른쪽 자식은 2i + 1입니다.\n2 × 6입니다.\n= 12번입니다.",
+      "source_lesson": "info-s1-ds-ch03-l01"
+    },
+    {
+      "type": "question",
+      "id": "r2",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "힙 배열에서 9번 노드의 부모는 몇 번 노드인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "9 / 2를 내림합니다.",
+      "explanation": "1번 칸부터 쓰는 힙 배열에서 i번 노드의 부모는 i/2를 내림한 번호입니다.\n9/2 = 4.5를 내림합니다.\n= 4번입니다.",
+      "source_lesson": "info-s1-ds-ch03-l01"
+    },
+    {
+      "type": "question",
+      "id": "r3",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "노드 20개인 힙의 높이는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2⁴ = 16 ≤ 20 < 32입니다.",
+      "explanation": "완전 이진 트리는 층마다 노드가 두 배씩 늘어나므로 노드 n개의 높이는 ⌊log₂ n⌋입니다.\n2⁴ = 16 ≤ 20 < 32입니다.\n그래서 높이는 4입니다.",
+      "source_lesson": "info-s1-ds-ch03-l01"
+    },
+    {
+      "type": "question",
+      "id": "r4",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "[8, 6, 7, 2, 5]인 최대 힙에 아래 코드로 9를 넣을 때 swap은 몇 번 일어나나요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "6번 칸 → 3번 칸 → 1번 칸입니다.",
+      "explanation": "새 원소는 맨 끝에 붙인 뒤 부모보다 크면 자리를 바꾸며 올라갑니다.\n9는 6번 칸에서 부모 7과, 3번 칸에서 부모 8과 바꿔 루트에 닿습니다.\n그래서 2번입니다.",
+      "code": "void push(int x) {\n    h[++n] = x;                        // 맨 끝에 붙이고\n    int i = n;\n    while (i > 1 && h[i / 2] < h[i]) { // 부모보다 크면 올린다\n        swap(h[i / 2], h[i]);\n        i /= 2;\n    }\n}",
+      "source_lesson": "info-s1-ds-ch03-l02"
+    },
+    {
+      "type": "question",
+      "id": "r5",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "배열 [10, 9, 8, 7, 11]이 최대 힙이면 1, 아니면 2를 쓰세요.",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5번 노드와 그 부모를 보세요.",
+      "explanation": "최대 힙이려면 2번부터 n번까지 모든 노드가 부모 이하여야 합니다.\n5번 노드 11의 부모는 2번 노드 9입니다.\n11 > 9이므로 최대 힙이 아니고 답은 2입니다.",
+      "source_lesson": "info-s1-ds-ch03-l01"
+    },
+    {
+      "type": "question",
+      "id": "r6",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "a = [3, 4, 5]일 때 아래 코드가 끝난 뒤 total은?",
+      "answer": "19",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "7과 12를 더합니다.",
+      "explanation": "매번 가장 작은 두 묶음을 합치고 그 크기의 합을 비용으로 더합니다.\n3 + 4 = 7, 5 + 7 = 12입니다.\n총비용은 7 + 12 = 19입니다.",
+      "code": "// 카드 묶음을 둘씩 합치는 비용(두 묶음 크기의 합)의 총합을 최소로\npriority_queue<long long, vector<long long>, greater<long long>> pq;  // 최소 힙\nfor (int i = 0; i < n; i++) pq.push(a[i]);\nlong long total = 0;\nwhile (pq.size() > 1) {\n    long long x = pq.top(); pq.pop();\n    long long y = pq.top(); pq.pop();\n    total += x + y;\n    pq.push(x + y);\n}",
+      "source_lesson": "info-s1-ds-ch03-l03"
+    },
+    {
+      "type": "question",
+      "id": "r7",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "priority_queue<int>에 4, 9, 2를 넣고 pop을 한 번 하면 top은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "9가 나갑니다.",
+      "explanation": "C++의 priority_queue<int>는 최대 힙이라 pop하면 가장 큰 값이 나갑니다.\n9가 나가고 4, 2가 남습니다.\n그중 가장 큰 4가 top입니다.",
+      "source_lesson": "info-s1-ds-ch03-l03"
+    },
+    {
+      "type": "question",
+      "id": "r8",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "2, 8, 4를 차례로 아래 add로 넣은 뒤 median()은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "정렬하면 [2, 4, 8]입니다.",
+      "explanation": "lo의 top은 지금까지 들어온 수의 중앙값입니다.\n세 수를 정렬하면 [2, 4, 8]입니다.\n가운데 값은 4입니다.",
+      "code": "priority_queue<int> lo;                               // 작은 절반 (최대 힙)\npriority_queue<int, vector<int>, greater<int>> hi;    // 큰 절반 (최소 힙)\nvoid add(int x) {\n    if (lo.empty() || x <= lo.top()) lo.push(x); else hi.push(x);\n    if (lo.size() > hi.size() + 1) { hi.push(lo.top()); lo.pop(); }\n    if (hi.size() > lo.size())     { lo.push(hi.top()); hi.pop(); }\n}\nint median() { return lo.top(); }   // 짝수 개이면 가운데 둘 중 작은 값",
+      "source_lesson": "info-s1-ds-ch03-l04"
+    },
+    {
+      "type": "question",
+      "id": "r9",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "회의 [1, 3], [2, 4], [3, 5]에 필요한 회의실은 최소 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3에 끝난 방을 이어 쓸 수 있습니다.",
+      "explanation": "시작 시각 순으로 보며 가장 일찍 끝나는 회의실이 비어 있으면 이어 씁니다.\n[1, 3], [2, 4]에 2개가 필요하고, [3, 5]는 3에 끝난 방을 이어 씁니다.\n그래서 2개입니다.",
+      "source_lesson": "info-s1-ds-ch03-l03"
+    },
+    {
+      "type": "question",
+      "id": "r10",
+      "stage": "review",
+      "qtype": "proof",
+      "prompt": "배열로 만든 최대 힙에서 새 원소를 넣는 과정을 설명하세요.",
+      "model_answer": [
+        "새 원소를 배열의 맨 끝, 즉 완전 이진 트리의 다음 빈칸에 붙인다.",
+        "그 원소가 부모(i/2번 칸)보다 크면 부모와 자리를 바꾸고 한 층 올라간다.",
+        "루트에 닿거나 부모가 크거나 같아지면 멈춘다. 그러면 모든 부모가 자식 이상인 성질이 유지된다.",
+        "바꾸는 횟수는 많아야 높이 ⌊log₂ n⌋이므로 O(log n)이다."
+      ],
+      "criteria": [
+        {
+          "text": "맨 끝에 붙임을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "부모와 비교하며 올리는 과정을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "멈추는 조건과 복잡도를 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "붙이는 위치와 올라가는 규칙을 설명하세요.",
+      "source_lesson": "info-s1-ds-ch03-l02"
+    }
+  ]
+}

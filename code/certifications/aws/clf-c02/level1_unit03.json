@@ -1,0 +1,99 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "clf-c02",
+  "level": 1,
+  "unit": 3,
+  "unit_title": "글로벌 인프라: 리전·AZ·엣지 로케이션",
+  "rule_summary_ko": "AWS 리전(Region)은 최소 3개의 물리적으로 분리된 가용 영역(AZ)으로 구성되며, 각 AZ는 독립적인 전력·냉각·네트워크를 갖춰 한 AZ에 장애가 생겨도 다른 AZ가 서비스를 유지할 수 있습니다. 엣지 로케이션(Edge Location)은 CloudFront(CDN), Route 53(DNS), Global Accelerator 같은 서비스가 콘텐츠를 사용자와 가까운 곳에서 제공해 지연시간을 줄이는 데 사용하는 전 세계 거점입니다.",
+  "examples": [
+    { "code": "서울 리전 장애 대응", "note_ko": "서울 리전 안의 여러 AZ에 걸쳐 서비스를 배포하면, 한 AZ의 정전 등 장애가 발생해도 다른 AZ가 트래픽을 이어받아 서비스가 중단되지 않음" }
+  ],
+  "questions": [
+    {
+      "id": "aws_clf_l1_u3_q001",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "AWS 리전(Region)은 최소 몇 개의 물리적으로 분리된 가용 영역(AZ)으로 구성됩니까? (숫자만 입력)",
+      "expected_answers": ["3"],
+      "explanation_ko": "모든 AWS 리전은 최소 3개의 격리된 가용 영역으로 구성되어 고가용성을 지원합니다.",
+      "concept_tags": ["region", "availability_zone"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "aws_clf_l1_u3_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "같은 리전 안의 서로 다른 가용 영역(AZ)에 대한 설명으로 옳은 것은?",
+      "options": [
+        "모든 AZ는 전력·냉각·네트워크를 서로 공유한다",
+        "각 AZ는 독립적인 전력·냉각·네트워크를 갖춰, 한 AZ의 장애가 다른 AZ에 영향을 주지 않도록 물리적으로 분리되어 있다",
+        "AZ는 항상 같은 건물 안에 위치한다",
+        "한 리전에는 AZ가 정확히 하나만 존재한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "AZ의 물리적 독립성이 고가용성 아키텍처의 핵심 전제입니다.",
+      "concept_tags": ["availability_zone", "high_availability"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_clf_l1_u3_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "콘텐츠를 전 세계 사용자와 가까운 위치에서 캐싱해 지연시간을 줄여주는 AWS의 콘텐츠 전송 네트워크(CDN) 서비스 이름은 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["CloudFront"],
+      "explanation_ko": "Amazon CloudFront는 엣지 로케이션을 활용하는 AWS의 CDN 서비스입니다.",
+      "concept_tags": ["cloudfront", "edge_location"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_clf_l1_u3_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "엣지 로케이션(Edge Location)의 주된 목적은?",
+      "options": [
+        "가장 저렴한 컴퓨팅 자원을 제공하는 것",
+        "콘텐츠를 최종 사용자와 물리적으로 가까운 곳에서 제공해 지연시간을 줄이는 것",
+        "데이터베이스를 영구적으로 저장하는 것",
+        "가상 사설 네트워크(VPN)를 구성하는 것"
+      ],
+      "answer": 1,
+      "explanation_ko": "엣지 로케이션은 CloudFront 등 콘텐츠 전송 서비스가 사용자와 가까운 곳에서 응답하도록 돕는 전 세계 거점입니다.",
+      "concept_tags": ["edge_location"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "aws_clf_l1_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "한 회사가 서울 리전의 단일 AZ에만 애플리케이션을 배포했습니다. 그 AZ에 정전이 발생하면 어떤 일이 일어날 가능성이 큽니까?",
+      "options": [
+        "다른 리전이 자동으로 서비스를 대신 제공해서 아무 영향이 없다",
+        "단일 AZ에만 의존했으므로 해당 애플리케이션이 중단될 가능성이 크다",
+        "AWS가 자동으로 전 세계 모든 AZ에 자동 복제해주므로 문제없다",
+        "정전은 AZ에 영향을 줄 수 없는 사건이다"
+      ],
+      "answer": 1,
+      "explanation_ko": "고가용성을 확보하려면 여러 AZ에 걸쳐 배포(Multi-AZ)해야 하며, 단일 AZ 의존은 장애에 취약합니다.",
+      "concept_tags": ["availability_zone", "high_availability", "single_point_of_failure"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_clf_l1_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "리전(Region), 가용 영역(AZ), 엣지 로케이션(Edge Location)의 관계를 가장 정확히 설명한 것은?",
+      "options": [
+        "셋은 완전히 동일한 개념으로 서로 바꿔 사용할 수 있다",
+        "리전은 여러 AZ로 구성되며, 엣지 로케이션은 리전·AZ와 별개로 전 세계에 더 넓게 퍼져 있어 콘텐츠를 사용자 가까이에서 전달하는 역할을 한다",
+        "엣지 로케이션은 AZ보다 크고, AZ는 리전보다 크다",
+        "리전은 하나의 건물이고, AZ는 그 건물 안의 한 층이다"
+      ],
+      "answer": 1,
+      "explanation_ko": "리전>AZ의 계층 구조와, 이와 별개로 더 넓게 분포된 엣지 로케이션이라는 세 번째 개념이 함께 AWS 글로벌 인프라를 구성합니다.",
+      "concept_tags": ["region", "availability_zone", "edge_location"],
+      "difficulty": "challenge"
+    }
+  ]
+}

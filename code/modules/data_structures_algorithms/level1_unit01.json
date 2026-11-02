@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 1,
+  "unit": 1,
+  "unit_title": "Big-O 표기법",
+  "questions": [
+    {
+      "id": "dsa_l1_u01_q001",
+      "type": "predict_output",
+      "code": "def print_first(items):\n    print(items[0])\n\nprint_first([1, 2, 3, 4, 5])\nprint_first([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])",
+      "prompt_en": "Both calls print instantly regardless of list size. What Big-O complexity does print_first have?",
+      "prompt_ko": "두 호출 모두 리스트 크기와 상관없이 즉시 실행됩니다. print_first의 Big-O 복잡도는 무엇일까요?",
+      "options": ["O(1)", "O(n)", "O(n^2)", "O(log n)"],
+      "answer": 0,
+      "explanation_en": "Accessing items[0] takes the same amount of work no matter how large the list is — this constant-time behavior is O(1).",
+      "explanation_ko": "items[0] 접근은 리스트가 아무리 커도 똑같은 작업량이 듭니다 — 이런 상수 시간 동작이 O(1)입니다.",
+      "concept_tags": ["big_o", "constant_time"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l1_u01_q002",
+      "type": "predict_output",
+      "code": "def print_all(items):\n    for item in items:\n        print(item)\n\nprint_all([1, 2, 3])",
+      "prompt_en": "If the list had 10 items instead of 3, print would run 10 times instead of 3. What Big-O complexity does print_all have?",
+      "prompt_ko": "리스트가 3개가 아니라 10개였다면, print는 3번이 아니라 10번 실행됩니다. print_all의 Big-O 복잡도는 무엇일까요?",
+      "options": ["O(1)", "O(n)", "O(n^2)", "O(log n)"],
+      "answer": 1,
+      "explanation_en": "The work grows directly in proportion to the list's size (n) — one loop iteration per element is the definition of O(n), linear time.",
+      "explanation_ko": "작업량이 리스트 크기(n)에 정비례해서 늘어납니다 — 요소 하나당 반복문 한 번이 O(n), 즉 선형 시간의 정의입니다.",
+      "concept_tags": ["big_o", "linear_time"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l1_u01_q003",
+      "type": "predict_output",
+      "code": "def print_pairs(items):\n    for a in items:\n        for b in items:\n            print(a, b)\n\nprint_pairs([1, 2, 3])",
+      "prompt_en": "This prints 9 pairs for a 3-item list. What Big-O complexity does print_pairs have?",
+      "prompt_ko": "3개짜리 리스트에 대해 9개의 쌍을 출력합니다. print_pairs의 Big-O 복잡도는 무엇일까요?",
+      "options": ["O(1)", "O(n)", "O(n^2)", "O(log n)"],
+      "answer": 2,
+      "explanation_en": "A loop nested inside another loop, both running n times, does n*n = n^2 total work — this is O(n^2), quadratic time.",
+      "explanation_ko": "반복문 안에 또 다른 반복문이 있고 둘 다 n번 실행되면, 전체 작업량은 n*n = n^2입니다 — 이것이 O(n^2), 즉 이차 시간입니다.",
+      "concept_tags": ["big_o", "quadratic_time"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l1_u01_q004",
+      "type": "fill_blank",
+      "code": "def binary_search(items, target):\n    low, high = 0, len(items) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:\n            return mid\n        elif items[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1\n# 매 단계마다 검색 범위가 절반으로 줄어듦",
+      "prompt_en": "Fill in the blank with the Big-O complexity of this search, given that it halves the search range each step.",
+      "prompt_ko": "매 단계마다 검색 범위가 절반으로 줄어드는 이 탐색의 Big-O 복잡도를 빈칸에 채우세요.",
+      "options": ["O(log n)", "O(n)", "O(1)", "O(n^2)"],
+      "answer": 0,
+      "explanation_en": "Halving the problem size at each step is the hallmark of O(log n), logarithmic time — for 1000 items, this needs only about 10 steps instead of 1000.",
+      "explanation_ko": "매 단계마다 문제 크기를 절반으로 줄이는 것이 O(log n)(로그 시간)의 특징입니다 — 1000개 항목이라면 1000번이 아니라 약 10번만에 끝납니다.",
+      "concept_tags": ["big_o", "logarithmic_time"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l1_u01_q005",
+      "type": "error_finding",
+      "code": "def has_duplicate(items):\n    for i in range(len(items)):\n        for j in range(len(items)):\n            if i != j and items[i] == items[j]:\n                return True\n    return False\n\n# 개발자가 'O(n)이라 빠를 것'이라 주장함",
+      "prompt_en": "What's wrong with the developer's claim that this function is O(n)?",
+      "prompt_ko": "이 함수가 O(n)이라는 개발자의 주장은 어떤 문제가 있을까요?",
+      "options": [
+        "함수 자체에 문법 오류가 있음",
+        "중첩된 두 개의 반복문이 모두 리스트 전체를 도는 구조라 실제로는 O(n^2)이며, 리스트가 커질수록 개발자의 예상보다 훨씬 느려짐",
+        "return True 위치가 잘못됨",
+        "실제로 O(n)이 맞음, 문제 없음"
+      ],
+      "answer": 1,
+      "explanation_en": "Two nested loops that both iterate over the full list mean n*n operations in the worst case, making this O(n^2), not O(n) — a common miscalculation that causes real performance problems as data grows.",
+      "explanation_ko": "리스트 전체를 도는 반복문 두 개가 중첩되어 있으면 최악의 경우 n*n번의 연산이 필요해서, 이는 O(n)이 아니라 O(n^2)입니다 — 데이터가 커질수록 실제 성능 문제를 일으키는 흔한 오판입니다.",
+      "concept_tags": ["big_o", "quadratic_time"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l1_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each Big-O notation to its description.",
+      "prompt_ko": "각 Big-O 표기법과 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "O(1)", "definition": "입력 크기와 상관없이 항상 일정한 시간 — 예: 배열 인덱스 접근" },
+        { "term": "O(n)", "definition": "입력 크기에 정비례하는 시간 — 예: 리스트 전체 순회" },
+        { "term": "O(n^2)", "definition": "입력 크기의 제곱에 비례하는 시간 — 예: 중첩 반복문" },
+        { "term": "O(log n)", "definition": "매 단계마다 문제를 절반으로 줄이는 시간 — 예: 이진 탐색" }
+      ],
+      "explanation_en": "Big-O notation describes how an algorithm's running time or memory use grows as input size increases, ignoring constant factors — it's about the shape of growth, not exact speed.",
+      "explanation_ko": "Big-O 표기법은 상수 배수를 무시하고, 입력 크기가 커질수록 알고리즘의 실행 시간이나 메모리 사용량이 어떻게 늘어나는지를 나타냅니다 — 정확한 속도가 아니라 증가하는 형태에 관한 것입니다.",
+      "concept_tags": ["big_o", "constant_time", "linear_time", "quadratic_time", "logarithmic_time"],
+      "difficulty": "practice"
+    }
+  ]
+}

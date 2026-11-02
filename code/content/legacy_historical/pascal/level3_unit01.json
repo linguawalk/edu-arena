@@ -1,0 +1,96 @@
+{
+  "language": "pascal",
+  "category": "legacy_historical",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "포인터",
+  "questions": [
+    {
+      "id": "pascal_l3_u01_q001",
+      "type": "predict_output",
+      "code": "var\n  p: ^Integer;\n  x: Integer;\nbegin\n  x := 10;\n  p := @x;\n  writeln(p^);\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "@x", "p", "오류"],
+      "answer": 0,
+      "explanation_en": "@x takes the address of x, storing it in pointer p; p^ dereferences the pointer to get the value it points to, 10.",
+      "explanation_ko": "@x는 x의 주소를 가져와 포인터 p에 저장합니다. p^은 포인터를 역참조해서 가리키는 값인 10을 가져옵니다.",
+      "concept_tags": ["pointer", "address_operator", "dereference"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l3_u01_q002",
+      "type": "predict_output",
+      "code": "var\n  p: ^Integer;\n  x: Integer;\nbegin\n  x := 10;\n  p := @x;\n  p^ := 20;\n  writeln(x);\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "20", "오류", "0"],
+      "answer": 1,
+      "explanation_en": "p^ := 20 assigns through the pointer, directly modifying the value at the address it points to; since p points to x, x becomes 20.",
+      "explanation_ko": "p^ := 20은 포인터를 통해 대입해서, 가리키는 주소의 값을 직접 수정합니다. p가 x를 가리키므로 x는 20이 됩니다.",
+      "concept_tags": ["pointer", "dereference"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l3_u01_q003",
+      "type": "fill_blank",
+      "code": "var\n  x: Integer;\n  p: ^Integer;\nbegin\n  x := 5;\n  p := ____x;\n  writeln(p^);\nend.",
+      "prompt_en": "Fill in the blank with the operator that gets a variable's address.",
+      "prompt_ko": "변수의 주소를 가져오는 연산자를 빈칸에 채우세요.",
+      "options": ["@", "&", "*", "^"],
+      "answer": 0,
+      "explanation_en": "@ is Pascal's address-of operator (similar to C's &), producing a pointer to the given variable.",
+      "explanation_ko": "@는 Pascal의 주소 연산자입니다(C의 &와 비슷). 주어진 변수를 가리키는 포인터를 만듭니다.",
+      "concept_tags": ["address_operator"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l3_u01_q004",
+      "type": "predict_output",
+      "code": "var\n  p: ^Integer;\nbegin\n  New(p);\n  p^ := 42;\n  writeln(p^);\n  Dispose(p);\nend.",
+      "prompt_en": "What is printed? (New/Dispose manage dynamically allocated memory.)",
+      "prompt_ko": "출력 결과는? (New/Dispose는 동적으로 할당된 메모리를 관리합니다.)",
+      "options": ["42", "오류", "New", "0"],
+      "answer": 0,
+      "explanation_en": "New(p) allocates new memory and points p at it; p^ := 42 stores a value there, which is then read back and printed: 42.",
+      "explanation_ko": "New(p)는 새 메모리를 할당하고 p가 이를 가리키게 합니다. p^ := 42는 그곳에 값을 저장하고, 이를 다시 읽어 42가 출력됩니다.",
+      "concept_tags": ["new_dispose"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l3_u01_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "^Integer (포인터 타입)", "definition": "Integer 값을 가리키는 포인터의 타입 선언" },
+        { "term": "@ (주소 연산자)", "definition": "변수의 메모리 주소를 가져옴 — C의 &와 대응" },
+        { "term": "p^ (역참조)", "definition": "포인터가 가리키는 실제 값에 접근 — C의 *p와 대응" },
+        { "term": "New / Dispose", "definition": "동적으로 메모리를 할당하고 해제하는 명령 — C의 malloc/free에 대응" }
+      ],
+      "explanation_en": "Pascal's pointer syntax (^, @) maps directly to C's (*, &), and New/Dispose to malloc/free — the concepts covered in C's pointer unit apply here with different symbols.",
+      "explanation_ko": "Pascal의 포인터 문법(^, @)은 C의 문법(*, &)에 직접 대응하며, New/Dispose는 malloc/free에 대응합니다 — C의 포인터 유닛에서 다룬 개념들이 다른 기호로 여기서도 적용됩니다.",
+      "concept_tags": ["pointer", "address_operator", "dereference", "new_dispose"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l3_u01_q006",
+      "type": "error_finding",
+      "code": "var\n  p: ^Integer;\nbegin\n  writeln(p^);\nend.",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "p 선언 문법 오류",
+        "p가 New나 @로 초기화되지 않은 채(어디를 가리키는지 정해지지 않은 상태로) 역참조되어, 정의되지 않은 동작이나 실행 시점 오류로 이어질 수 있음",
+        "writeln 사용법 오류",
+        "문제 없음, 0이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "An uninitialized pointer doesn't point anywhere meaningful; dereferencing it with p^ before assigning it (via New or @) leads to undefined behavior or a crash, the same danger as C's uninitialized pointers.",
+      "explanation_ko": "초기화되지 않은 포인터는 의미 있는 어떤 곳도 가리키지 않습니다. (New나 @로) 대입하기 전에 p^로 역참조하면 정의되지 않은 동작이나 충돌로 이어집니다. C의 초기화되지 않은 포인터와 같은 위험입니다.",
+      "concept_tags": ["pointer", "uninitialized_pointer"],
+      "difficulty": "challenge"
+    }
+  ]
+}

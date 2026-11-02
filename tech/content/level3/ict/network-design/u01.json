@@ -1,0 +1,87 @@
+{
+ "no": 1,
+ "title": "설계 절차와 요구 분석",
+ "hours": 5,
+ "after": [],
+ "objectives": [
+  "하향식 망 설계 절차를 단계별로 설명할 수 있다.",
+  "업무·기술 요구를 정량 목표(가용도, 지연, 용량)로 바꿀 수 있다.",
+  "트래픽 증가율로 미래 용량을 예측할 수 있다."
+ ],
+ "checklist": [
+  "하향식 설계: 요구 분석 → 논리 설계 → 물리 설계 → 시험·최적화·문서화",
+  "업무 목표와 제약(예산, 일정, 인력)",
+  "기술 목표: 가용도, 성능(지연·처리량), 확장성, 보안, 관리성",
+  "현행 망 분석과 트래픽 측정",
+  "트래픽 예측: 미래 = 현재 × (1 + 증가율)^년수",
+  "사용자 수 × 사용자당 최번시 트래픽 × 동시 사용률",
+  "설계서·시험 계획·운영 문서"
+ ],
+ "advice": [
+  "설계 실패의 대부분은 기술이 아니라 요구를 잘못 이해한 데서 옵니다. '빠르고 안정적인 망'이라는 말을 '최번시 지연 50 ms 이하, 연간 가용도 99.99%, 3년 뒤 사용자 2배'처럼 숫자로 바꾸는 연습이 이 단원의 핵심입니다. 트래픽 예측은 복리 계산이라서 증가율이 조금만 달라도 몇 년 뒤 용량이 크게 달라진다는 점을 직접 계산해 확인하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cisco Press",
+   "title": "Oppenheimer, Top-Down Network Design (장 제목으로 표기)",
+   "part": "Analyzing Business Goals and Constraints, Analyzing Technical Goals and Tradeoffs, Characterizing Network Traffic 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "통신망 8단원 망 품질과 신뢰성",
+   "url": "guide.html?lv=2&t=ict&s=comm-networks&u=8"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "현재 최번시 트래픽 400 Mbps가 해마다 30%씩 늘면 3년 뒤에는 약 몇 Mbps일까요?",
+   "answer": "879",
+   "answer_format": "integer",
+   "tolerance": 1,
+   "explanation": "400 × 1.3³ = 400 × 2.197 ≈ 879 Mbps",
+   "hint": "현재 × (1 + 증가율)^년수입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "사용자 200명, 사용자당 최번시 2 Mbps, 동시 사용률 25%이면 필요한 최번시 용량은 몇 Mbps일까요?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "200 × 2 × 0.25 = 100 Mbps",
+   "hint": "세 값을 곱하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "업무 요구에서 출발해 논리 설계, 물리 설계 순서로 내려가는 설계 방법을 {{1}} 설계라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "하향식",
+      "탑다운",
+      "top-down"
+     ]
+    }
+   ],
+   "explanation": "장비부터 고르는 상향식 설계보다 요구 누락이 적습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "network-design",
+ "id": "l3-ict-network-design-u01"
+}

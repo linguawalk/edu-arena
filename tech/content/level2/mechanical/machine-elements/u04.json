@@ -1,0 +1,101 @@
+{
+ "no": 4,
+ "title": "축",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "전달 동력과 회전수로 축에 걸리는 토크를 계산할 수 있다.",
+  "비틀림 강도로 축 지름을 정할 수 있다.",
+  "굽힘과 비틀림을 함께 받는 축과 위험 속도를 설명할 수 있다."
+ ],
+ "checklist": [
+  "T[N·m] = 9549 × P[kW]/n[rpm]",
+  "비틀림만 받는 축: d = ∛(16T/(πτ_a))",
+  "굽힘 + 비틀림: 상당 비틀림 모멘트 √(M² + T²)",
+  "비틀림각(강성) 제한",
+  "위험 속도(공진), 사용 속도와 떨어뜨리기",
+  "축의 단차와 응력 집중",
+  "축 이음(커플링)"
+ ],
+ "advice": [
+  "축 설계는 재료역학 4단원(비틀림)과 9단원(조합 하중)을 그대로 쓰는 첫 실전 문제입니다. 동력과 회전수에서 토크를 구하고, 허용 전단 응력으로 지름을 정한 뒤, 표준 지름 가운데 그보다 큰 값을 고르는 순서를 몇 번 연습하세요.",
+  "같은 동력이라도 회전수가 낮으면 토크가 커져 축이 굵어집니다. 감속기 뒤쪽 축이 앞쪽보다 굵은 이유를 이 관계로 설명할 수 있으면 됩니다. 위험 속도는 레벨3 동역학·진동에서 자세히 다룹니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Budynas · Nisbett, Shigley's Mechanical Engineering Design (번역본 『기계설계』, 장 제목으로 표기)",
+   "part": "Shafts and Shaft Components 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "재료역학 4단원 비틀림",
+   "url": "guide.html?lv=2&t=mechanical&s=mechanics-of-materials&u=4"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "허용 전단 응력 40 MPa로 500 N·m를 전달하는 중실축의 최소 지름은 약 몇 mm일까요? (소수 첫째 자리까지)",
+   "answer": "39.9",
+   "answer_format": "decimal",
+   "tolerance": 0.2,
+   "explanation": "d = ∛(16 × 500 000/(π × 40)) = ∛63 662 ≈ 39.9 mm",
+   "hint": "∛(16T/(πτ_a))입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "15 kW를 1500 rpm으로 전달하는 축의 토크는 약 몇 N·m일까요?",
+   "answer": "95.5",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "T = 9549 × 15/1500 ≈ 95.5 N·m",
+   "hint": "9549P/n입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "축의 회전수가 고유 진동수와 같아져 진동이 크게 커지는 회전 속도를 {{1}} 속도라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "위험",
+      "임계"
+     ]
+    }
+   ],
+   "explanation": "사용 속도를 위험 속도에서 충분히 떨어뜨려 설계합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "같은 동력에서 회전수를 절반으로 줄이면 축의 토크는 몇 배가 될까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "T = P/ω이므로 회전수가 절반이면 토크는 2배입니다.",
+   "hint": "토크는 회전수에 반비례합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "mechanical",
+ "subject": "machine-elements",
+ "id": "l2-mechanical-machine-elements-u04"
+}

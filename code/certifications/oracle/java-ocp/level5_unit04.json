@@ -1,0 +1,96 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "java-ocp-17",
+  "level": 5,
+  "unit": 4,
+  "unit_title": "커스텀 예외와 예외 체이닝",
+  "rule_summary_ko": "직접 만든 예외 클래스는 Exception(체크 예외로 만들고 싶을 때)이나 RuntimeException(언체크 예외로 만들고 싶을 때)을 상속해서 정의합니다. 예외 체이닝(exception chaining)은 한 예외를 잡아서 다른 예외로 감싸 다시 던질 때, 원래 예외를 'cause(원인)'로 함께 포함시키는 기법으로, 생성자에 원인 예외를 전달하면 getCause()로 나중에 원본을 추적할 수 있습니다.",
+  "examples": [
+    { "code": "class InsufficientFundsException extends Exception {\n    InsufficientFundsException(String msg) { super(msg); }\n}", "note_ko": "Exception을 상속했으므로 체크 예외 — 호출부에서 반드시 처리해야 함" },
+    { "code": "catch (NumberFormatException e) {\n    throw new RuntimeException(\"래핑됨\", e);\n}", "note_ko": "새 예외에 원본을 cause로 담아 다시 던짐 — 나중에 getCause()로 원본 원인 추적 가능" }
+  ],
+  "questions": [
+    {
+      "id": "java_ocp_l5_u4_q001",
+      "type": "concept_matching_item",
+      "code": "class InsufficientFundsException extends Exception {\n    InsufficientFundsException(String msg) { super(msg); }\n}\nstatic void withdraw() throws InsufficientFundsException { ... }",
+      "prompt_ko": "InsufficientFundsException은 체크 예외입니까, 언체크 예외입니까?",
+      "options": [
+        "체크 예외 — Exception을 상속했고 RuntimeException 계열이 아니다",
+        "언체크 예외 — 모든 커스텀 예외는 언체크다",
+        "둘 다 아니다",
+        "상속받은 클래스에 따라 매번 다르다"
+      ],
+      "answer": 0,
+      "explanation_ko": "RuntimeException이 아닌 Exception을 직접 상속했으므로 체크 예외이며, 호출부에서 처리가 강제됩니다.",
+      "concept_tags": ["custom_exception", "checked_exception"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l5_u4_q002",
+      "type": "concept_matching_item",
+      "code": "try {\n    throw new NumberFormatException(\"원인\");\n} catch (NumberFormatException e) {\n    throw new RuntimeException(\"래핑됨\", e);\n}\n// 바깥에서: catch(RuntimeException e) { e.getCause().getMessage() }",
+      "prompt_ko": "e.getCause().getMessage()의 결과는?",
+      "options": ["\"래핑됨\"", "\"원인\"", "null", "컴파일 오류"],
+      "answer": 1,
+      "explanation_ko": "RuntimeException 생성자의 두 번째 인자로 전달한 원본 NumberFormatException이 cause로 저장되며, getCause()로 그 원본을 꺼낼 수 있습니다.",
+      "concept_tags": ["exception_chaining", "getcause"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_ocp_l5_u4_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "새로운 예외를 던지면서 원래 예외를 원인으로 함께 포함시키는 것을 무엇이라 합니까? (한글로 입력, 예: 예외 OO)",
+      "expected_answers": ["예외 체이닝", "예외체이닝"],
+      "explanation_ko": "예외 체이닝(exception chaining)은 여러 계층을 거치며 예외가 다시 던져질 때, 원래 원인을 잃어버리지 않게 해줍니다.",
+      "concept_tags": ["exception_chaining"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l5_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "언체크 커스텀 예외를 만들고 싶을 때 상속해야 할 클래스는?",
+      "options": ["Exception", "RuntimeException", "Throwable", "Error"],
+      "answer": 1,
+      "explanation_ko": "RuntimeException을 상속하면 언체크 예외가 되어, 호출부에서 강제로 처리하지 않아도 컴파일됩니다.",
+      "concept_tags": ["custom_exception", "unchecked_exception"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l5_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "예외 체이닝 없이(cause를 전달하지 않고) 그냥 새 예외로 다시 던지면 생기는 문제는?",
+      "options": [
+        "아무 문제도 없다",
+        "원래 예외가 왜, 어디서 발생했는지에 대한 정보(원본 스택 트레이스 등)가 사라져, 문제를 디버깅하기 어려워질 수 있다",
+        "프로그램이 즉시 종료된다",
+        "컴파일 오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "원인을 포함하지 않고 새 예외만 던지면, 근본 원인을 추적하기 위한 정보가 사라져 디버깅이 어려워집니다.",
+      "concept_tags": ["exception_chaining", "debugging"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_ocp_l5_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "커스텀 예외 클래스를 설계할 때 일반적으로 권장되는 생성자 형태는?",
+      "options": [
+        "생성자를 아예 정의하지 않는다",
+        "부모 클래스(Exception 또는 RuntimeException)의 생성자를 호출해서 메시지(및 필요하면 cause)를 전달하는 생성자를 함께 제공한다",
+        "생성자에서 항상 System.exit()을 호출한다",
+        "생성자는 반드시 매개변수가 없어야 한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "super(message)나 super(message, cause)를 호출하는 생성자를 제공하면, 표준 예외처럼 메시지·원인을 일관되게 다룰 수 있습니다.",
+      "concept_tags": ["custom_exception", "constructor_design"],
+      "difficulty": "practice"
+    }
+  ]
+}

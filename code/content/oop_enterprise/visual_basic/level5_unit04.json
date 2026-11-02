@@ -1,0 +1,101 @@
+{
+  "language": "visual_basic",
+  "category": "oop_enterprise",
+  "level": 5,
+  "unit": 4,
+  "unit_title": "인터페이스와 MustInherit",
+  "questions": [
+    {
+      "id": "visual_basic_l5_u04_q001",
+      "type": "predict_output",
+      "code": "Interface ISummary\n    Function Summarize() As String\nEnd Interface\n\nClass Article\n    Implements ISummary\n    Public Title As String\n    Public Function Summarize() As String Implements ISummary.Summarize\n        Return \"기사: \" & Title\n    End Function\nEnd Class\n\nDim art As New Article()\nart.Title = \"VB 소개\"\nConsole.WriteLine(art.Summarize())",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["기사: VB 소개", "ISummary", "오류", "VB 소개"],
+      "answer": 0,
+      "explanation_en": "Article implements ISummary, providing the Summarize method's actual logic; calling art.Summarize() runs that implementation.",
+      "explanation_ko": "Article은 ISummary를 구현해서 Summarize 메서드의 실제 로직을 제공합니다. art.Summarize()를 호출하면 그 구현이 실행됩니다.",
+      "concept_tags": ["interface"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l5_u04_q002",
+      "type": "fill_blank",
+      "code": "____ ISummary\n    Function Summarize() As String\nEnd Interface\n// 구현 없이, '이 기능이 있어야 한다'는 계약만 정의해야 함",
+      "prompt_en": "Fill in the blank with the keyword that defines an interface.",
+      "prompt_ko": "인터페이스를 정의하는 키워드를 빈칸에 채우세요.",
+      "options": ["Interface", "Class", "Contract", "MustInherit"],
+      "answer": 0,
+      "explanation_en": "Interface defines a contract of method signatures without implementation, which implementing classes must fulfill.",
+      "explanation_ko": "Interface는 구현 없이 메서드 시그니처의 계약만 정의하며, 이를 구현하는 클래스가 반드시 채워야 합니다.",
+      "concept_tags": ["interface"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l5_u04_q003",
+      "type": "error_finding",
+      "code": "Interface ISummary\n    Function Summarize() As String\nEnd Interface\n\nClass Article\n    Implements ISummary\n    Public Title As String\nEnd Class",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "Implements 문법 오류",
+        "ISummary가 요구하는 Summarize 메서드를 Article이 구현하지 않아서 컴파일 오류가 발생함",
+        "Interface 선언 문법 오류",
+        "문제 없음, 기본 구현이 자동 생성됨"
+      ],
+      "answer": 1,
+      "explanation_en": "A class that declares Implements for an interface must provide every method the interface requires; missing Summarize causes a compile error.",
+      "explanation_ko": "Implements로 인터페이스를 선언한 클래스는 그 인터페이스가 요구하는 모든 메서드를 제공해야 합니다. Summarize가 빠지면 컴파일 오류가 발생합니다.",
+      "concept_tags": ["interface"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "visual_basic_l5_u04_q004",
+      "type": "predict_output",
+      "code": "MustInherit Class Shape\n    Public MustOverride Function Area() As Double\nEnd Class\n\nClass Circle\n    Inherits Shape\n    Public Radius As Double\n    Public Sub New(r As Double)\n        Radius = r\n    End Sub\n    Public Overrides Function Area() As Double\n        Return 3.14 * Radius * Radius\n    End Function\nEnd Class\n\nDim s As Shape = New Circle(2)\nConsole.WriteLine(s.Area())",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "12.56", "오류", "2"],
+      "answer": 1,
+      "explanation_en": "MustOverride marks Area as requiring implementation in derived classes; Circle provides it, and calling through a Shape reference dispatches to Circle's version: 3.14*2*2=12.56.",
+      "explanation_ko": "MustOverride는 Area가 자식 클래스에서 반드시 구현되어야 함을 나타냅니다. Circle이 이를 구현했고, Shape 참조를 통해 호출해도 Circle의 버전으로 디스패치되어 3.14*2*2=12.56이 됩니다.",
+      "concept_tags": ["mustinherit", "mustoverride"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l5_u04_q005",
+      "type": "error_finding",
+      "code": "MustInherit Class Shape\n    Public MustOverride Function Area() As Double\nEnd Class\n\nDim s As New Shape()",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "Shape 클래스 선언 문법 오류",
+        "MustInherit 클래스는 직접 객체를 만들 수 없는 추상 클래스라서, New Shape()는 컴파일 오류가 발생함",
+        "MustOverride 함수 정의 오류",
+        "문제 없음, s 객체가 정상적으로 만들어짐"
+      ],
+      "answer": 1,
+      "explanation_en": "MustInherit marks a class as abstract, meaning it cannot be instantiated directly — only concrete derived classes that implement all MustOverride members can be, just like C++'s abstract classes with pure virtual functions.",
+      "explanation_ko": "MustInherit는 클래스를 추상 클래스로 표시해서, 직접 객체를 만들 수 없게 만듭니다. 모든 MustOverride 멤버를 구현한 구체적인 자식 클래스만 객체로 만들 수 있습니다. 순수 가상 함수를 가진 C++의 추상 클래스와 같은 개념입니다.",
+      "concept_tags": ["mustinherit", "mustoverride"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "visual_basic_l5_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "Interface", "definition": "구현 없이 메서드 계약만 정의하는 타입" },
+        { "term": "Implements", "definition": "클래스가 인터페이스의 계약을 실제로 구현함을 선언" },
+        { "term": "MustInherit", "definition": "직접 객체를 만들 수 없는 추상 클래스를 표시" },
+        { "term": "MustOverride", "definition": "자식 클래스가 반드시 구현해야 하는, 몸체 없는 메서드" }
+      ],
+      "explanation_en": "Interface corresponds to C++'s abstract class with only pure virtual functions, while MustInherit/MustOverride correspond directly to C++'s abstract class syntax — VB simply offers both patterns explicitly.",
+      "explanation_ko": "Interface는 순수 가상 함수만 가진 C++의 추상 클래스에 대응하고, MustInherit/MustOverride는 C++의 추상 클래스 문법에 직접 대응합니다. VB는 이 두 패턴을 모두 명시적으로 제공할 뿐입니다.",
+      "concept_tags": ["interface", "mustinherit", "mustoverride"],
+      "difficulty": "practice"
+    }
+  ]
+}

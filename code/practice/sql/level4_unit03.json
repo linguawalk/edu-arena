@@ -1,0 +1,29 @@
+{
+  "language": "sql",
+  "piston_language": "sqlite3",
+  "piston_version": "*",
+  "mode": "sql",
+  "level": 4,
+  "unit": 3,
+  "unit_title": "다중 조인과 셀프 조인",
+  "exercises": [
+    {
+      "id": "sql_l4_u3_ex1",
+      "title_ko": "세 테이블 조인",
+      "prompt_ko": "students, courses, enrollments 세 테이블을 조인해서, 학생 이름과 수강 과목명을 이름·과목명 순으로 조회하는 쿼리를 작성하세요.",
+      "setup_sql": "CREATE TABLE students (id INTEGER, name TEXT);\nINSERT INTO students VALUES (1, 'Kim');\nINSERT INTO students VALUES (2, 'Lee');\nCREATE TABLE courses (id INTEGER, title TEXT);\nINSERT INTO courses VALUES (1, 'Math');\nINSERT INTO courses VALUES (2, 'Science');\nCREATE TABLE enrollments (student_id INTEGER, course_id INTEGER);\nINSERT INTO enrollments VALUES (1, 1);\nINSERT INTO enrollments VALUES (1, 2);\nINSERT INTO enrollments VALUES (2, 1);\n",
+      "starter_code": "-- 여기에 쿼리를 작성하세요\n",
+      "expected_stdout": "Kim|Math\nKim|Science\nLee|Math\n",
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_l4_u3_ex2",
+      "title_ko": "셀프 조인으로 상사 찾기",
+      "prompt_ko": "emps 테이블(id, name, manager_id)을 자기 자신과 조인(셀프 조인)해서, 각 직원과 그 상사의 이름을 직원 이름순으로 조회하는 쿼리를 작성하세요.",
+      "setup_sql": "CREATE TABLE emps (id INTEGER, name TEXT, manager_id INTEGER);\nINSERT INTO emps VALUES (1, 'Kim', NULL);\nINSERT INTO emps VALUES (2, 'Lee', 1);\nINSERT INTO emps VALUES (3, 'Park', 1);\n",
+      "starter_code": "-- 여기에 쿼리를 작성하세요\n",
+      "expected_stdout": "Lee|Kim\nPark|Kim\n",
+      "difficulty": "challenge"
+    }
+  ]
+}

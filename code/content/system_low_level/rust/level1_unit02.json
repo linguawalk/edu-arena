@@ -1,0 +1,96 @@
+{
+  "language": "rust",
+  "category": "system_low_level",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "자료형과 함수",
+  "questions": [
+    {
+      "id": "rust_l1_u02_q001",
+      "type": "predict_output",
+      "code": "fn add(a: i32, b: i32) -> i32 {\n    a + b\n}\n\nfn main() {\n    println!(\"{}\", add(3, 4));\n}",
+      "prompt_en": "What is printed? (Note: no semicolon after a + b.)",
+      "prompt_ko": "출력 결과는? (a + b 뒤에 세미콜론이 없는 점에 주의하세요.)",
+      "options": ["7", "34", "오류: return이 없음", "0"],
+      "answer": 0,
+      "explanation_en": "In Rust, the last expression in a function without a semicolon is implicitly returned; a + b becomes the return value, 7.",
+      "explanation_ko": "Rust에서는 함수의 마지막 식에 세미콜론이 없으면 암묵적으로 반환됩니다. a + b가 그대로 반환값이 되어 7이 됩니다.",
+      "concept_tags": ["function", "implicit_return"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l1_u02_q002",
+      "type": "error_finding",
+      "code": "fn add(a: i32, b: i32) -> i32 {\n    a + b;\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "매개변수 선언 문법 오류",
+        "a + b 뒤에 세미콜론을 붙여서 그 식이 '문(statement)'이 되어 값을 반환하지 않게 됨 — 반환형 i32와 맞지 않아 컴파일 오류",
+        "함수 이름이 잘못됨",
+        "문제 없음, 정상적으로 7을 반환함"
+      ],
+      "answer": 1,
+      "explanation_en": "Adding a semicolon turns the expression into a statement, which evaluates to () (unit type) instead of returning a value; this mismatches the declared i32 return type and fails to compile.",
+      "explanation_ko": "세미콜론을 붙이면 그 식이 문(statement)이 되어 값 대신 ()(유닛 타입)으로 평가됩니다. 이는 선언된 i32 반환형과 맞지 않아 컴파일에 실패합니다.",
+      "concept_tags": ["function", "implicit_return", "semicolon"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l1_u02_q003",
+      "type": "predict_output",
+      "code": "let a: i32 = 7;\nlet b: i32 = 2;\nprintln!(\"{}\", a / b);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3.5", "3", "4", "오류"],
+      "answer": 1,
+      "explanation_en": "Like C, dividing two integer types (i32) truncates the decimal part; 7 / 2 is 3.",
+      "explanation_ko": "C와 마찬가지로, 정수형(i32)끼리의 나눗셈은 소수점을 버립니다. 7 / 2는 3입니다.",
+      "concept_tags": ["data_type", "integer_division"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l1_u02_q004",
+      "type": "fill_blank",
+      "code": "let name: ____ = \"Kim\".to_string();\nprintln!(\"{}\", name.len());",
+      "prompt_en": "Fill in the blank with the type of an owned, growable string in Rust.",
+      "prompt_ko": "Rust에서 소유권을 가진, 크기가 늘어날 수 있는 문자열 타입을 빈칸에 채우세요.",
+      "options": ["String", "str", "char", "&str"],
+      "answer": 0,
+      "explanation_en": "String is Rust's owned, heap-allocated, growable string type, distinct from the borrowed string slice type &str.",
+      "explanation_ko": "String은 Rust의 소유권을 가진, 힙에 할당되어 크기가 늘어날 수 있는 문자열 타입입니다. 빌려온 문자열 슬라이스 타입인 &str과는 구분됩니다.",
+      "concept_tags": ["data_type", "string_type"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l1_u02_q005",
+      "type": "predict_output",
+      "code": "let flag: bool = true;\nlet ch: char = 'A';\nprintln!(\"{} {}\", flag, ch);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["true A", "1 65", "true 65", "bool char"],
+      "answer": 0,
+      "explanation_en": "Unlike C++'s cout (which prints bool as 1/0), Rust's println! displays bool as the words true/false, and char as the character itself.",
+      "explanation_ko": "bool을 1/0으로 출력하는 C++의 cout과 달리, Rust의 println!은 bool을 true/false라는 단어로, char는 문자 그대로 출력합니다.",
+      "concept_tags": ["data_type", "bool", "char"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l1_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "i32", "definition": "32비트 부호 있는 정수 자료형" },
+        { "term": "f64", "definition": "64비트 배정밀도 실수 자료형" },
+        { "term": "암묵적 반환", "definition": "세미콜론 없는 마지막 식이 자동으로 함수의 반환값이 되는 규칙" },
+        { "term": "String vs &str", "definition": "소유권을 가진 문자열(String)과 빌려온 문자열 조각(&str)의 구분" }
+      ],
+      "explanation_en": "Rust's type names encode their size explicitly (i32, f64), and its implicit-return convention is a distinctive syntax choice compared to C-family languages.",
+      "explanation_ko": "Rust의 타입 이름은 크기를 명시적으로 담고 있으며(i32, f64), 암묵적 반환 관례는 C 계열 언어와 구분되는 독특한 문법적 특징입니다.",
+      "concept_tags": ["data_type", "implicit_return", "string_type"],
+      "difficulty": "practice"
+    }
+  ]
+}

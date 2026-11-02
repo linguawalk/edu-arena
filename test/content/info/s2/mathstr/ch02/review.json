@@ -1,0 +1,170 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "mathstr",
+  "work": "풀이",
+  "chapter": {
+    "id": "info-s2-mathstr-ch02",
+    "no": 2,
+    "title": "KMP"
+  },
+  "review": {
+    "id": "info-s2-mathstr-ch02-review",
+    "title": "KMP 복습",
+    "minutes": 15
+  },
+  "questions": [
+    {
+      "type": "question",
+      "id": "r1",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "t = \"AAAB\", p = \"AB\"에 아래 코드를 실행하면 문자 비교(cmp)는 모두 몇 번인가요?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "시작 위치는 0~2입니다.",
+      "explanation": "위치 0과 1에서는 A가 맞고 둘째 글자 A ≠ B라 2번씩 비교합니다.\n위치 2에서는 \"AB\"가 모두 맞아 2번 비교합니다.\n2 + 2 + 2 = 6번입니다.",
+      "code": "int cmp = 0;                                    // 문자 비교 횟수\nfor (int i = 0; i + m <= n; i++) {              // 시작 위치 i마다\n    int j = 0;\n    while (j < m) {\n        cmp++;\n        if (t[i + j] != p[j]) break;            // 다르면 이 위치는 실패\n        j++;\n    }\n    if (j == m) found(i);\n}",
+      "source_lesson": "info-s2-mathstr-ch02-l01"
+    },
+    {
+      "type": "question",
+      "id": "r2",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "t = \"AAAAA\"에서 p = \"AA\"가 나타나는 위치는 몇 개인가요? (겹쳐도 셈)",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "시작 위치 0~3을 확인하세요.",
+      "explanation": "t는 모두 A이므로 길이 2인 어느 부분 문자열도 \"AA\"입니다.\n시작 위치는 0, 1, 2, 3입니다.\n그래서 4개입니다.",
+      "source_lesson": "info-s2-mathstr-ch02-l01"
+    },
+    {
+      "type": "question",
+      "id": "r3",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "p = \"ABAB\"의 pi[3]은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "\"ABAB\"의 가장 긴 경계는?",
+      "explanation": "\"ABAB\"의 접두사 \"AB\"와 접미사 \"AB\"가 같습니다.\n길이 3인 \"ABA\"와 \"BAB\"는 다릅니다.\n그래서 pi[3] = 2입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}",
+      "source_lesson": "info-s2-mathstr-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r4",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "p = \"AABAAAB\"의 pi 값을 모두 더하면?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "pi = 0, 1, 0, 1, 2, 2, 3입니다.",
+      "explanation": "앞에서 구한 대로 pi = 0, 1, 0, 1, 2, 2, 3입니다.\n이 값들을 모두 더합니다.\n0 + 1 + 0 + 1 + 2 + 2 + 3 = 9입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}",
+      "source_lesson": "info-s2-mathstr-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r5",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "\"AABAA\"의 경계(자기 자신 제외)는 모두 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "가장 긴 경계 \"AA\"의 경계를 이어 보세요.",
+      "explanation": "\"AABAA\"의 가장 긴 경계는 \"AA\"이고, 그 경계 \"A\"도 경계입니다.\n\"A\"의 경계는 없습니다.\n그래서 \"AA\", \"A\"의 2개입니다.",
+      "source_lesson": "info-s2-mathstr-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r6",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "t = \"ABABCABAB\", p = \"ABAB\"에 아래 코드를 실행할 때 찾는 위치의 시작 첨자를 모두 더하면?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "시작 위치는 0과 5입니다.",
+      "explanation": "KMP는 패턴이 나타나는 모든 위치를 빠짐없이 찾습니다.\n\"ABAB\"는 시작 위치 0과 5에 나타납니다.\n0 + 5 = 5입니다.",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}",
+      "source_lesson": "info-s2-mathstr-ch02-l03"
+    },
+    {
+      "type": "question",
+      "id": "r7",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "t = \"AAAAAB\", p = \"AAB\"에 아래 코드를 실행하면 found는 몇 번 호출되나요?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "\"AAB\"는 t의 끝에만 있습니다.",
+      "explanation": "t에서 B는 마지막 글자 하나뿐이므로 \"AAB\"는 위치 3에서만 나타납니다.\nKMP는 그 위치를 정확히 한 번 찾습니다.\n그래서 found는 1번입니다.",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}",
+      "source_lesson": "info-s2-mathstr-ch02-l03"
+    },
+    {
+      "type": "question",
+      "id": "r8",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "\"XYZXYZXYZXYZ\"(pi[11] = 9)는 길이 3인 문자열을 몇 번 반복한 것인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "주기는 12 − 9입니다.",
+      "explanation": "가장 짧은 주기는 m − pi[m − 1] = 12 − 9 = 3입니다.\n12가 3으로 나누어떨어지므로 \"XYZ\"를 반복한 문자열입니다.\n12/3 = 4번입니다.",
+      "source_lesson": "info-s2-mathstr-ch02-l04"
+    },
+    {
+      "type": "question",
+      "id": "r9",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "길이 10인 문자열의 pi[9]가 4이면 가장 짧은 주기는?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "m − pi[m − 1]입니다.",
+      "explanation": "가장 짧은 주기는 m − pi[m − 1]입니다.\nm = 10, pi[9] = 4입니다.\n10 − 4 = 6이고, 10이 6으로 나누어떨어지지 않아 반복 문자열은 아닙니다.",
+      "source_lesson": "info-s2-mathstr-ch02-l04"
+    },
+    {
+      "type": "question",
+      "id": "r10",
+      "stage": "review",
+      "qtype": "proof",
+      "prompt": "KMP와 단순한 문자열 찾기의 차이를, 실패했을 때 무엇을 하는지와 시간 복잡도로 설명하세요.",
+      "model_answer": [
+        "단순한 방법은 실패하면 시작 위치를 한 칸 옮기고 패턴을 처음부터 다시 비교한다. 이미 확인한 텍스트를 다시 읽으므로 최악 O(nm)이다.",
+        "KMP는 실패하면 텍스트 위치는 그대로 두고 j를 pi[j − 1]로 줄여, 이미 맞춰진 경계만큼은 다시 비교하지 않는다.",
+        "j가 줄어드는 총량은 늘어난 총량 n 이하라 매칭이 O(n)이고, 실패 함수가 O(m)이라 전체 O(n + m)이다."
+      ],
+      "criteria": [
+        {
+          "text": "단순한 방법의 동작과 복잡도를 설명했다",
+          "points": 2
+        },
+        {
+          "text": "KMP가 실패할 때 하는 일을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "KMP의 복잡도를 밝혔다",
+          "points": 2
+        }
+      ],
+      "hint": "실패한 순간 두 방법이 각각 무엇을 하는지 비교하세요.",
+      "source_lesson": "info-s2-mathstr-ch02-l03"
+    }
+  ]
+}

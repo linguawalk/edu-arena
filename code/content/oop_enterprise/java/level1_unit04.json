@@ -1,0 +1,96 @@
+{
+  "language": "java",
+  "category": "oop_enterprise",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "형변환",
+  "questions": [
+    {
+      "id": "java_l1_u04_q001",
+      "type": "predict_output",
+      "code": "double d = 3.9;\nint i = (int) d;\nSystem.out.println(i);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["4", "3", "3.9", "오류"],
+      "answer": 1,
+      "explanation_en": "Java's explicit (int) cast truncates the decimal part entirely, just like C#'s (int) cast; 3.9 becomes 3.",
+      "explanation_ko": "Java의 명시적 (int) 캐스팅은 소수점을 완전히 버립니다. C#의 (int) 캐스팅과 같습니다. 3.9는 3이 됩니다.",
+      "concept_tags": ["explicit_cast", "truncation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l1_u04_q002",
+      "type": "predict_output",
+      "code": "int a = 10;\ndouble b = a;\nSystem.out.println(b);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "10.0", "오류", "0"],
+      "answer": 1,
+      "explanation_en": "Converting int to double is a safe implicit conversion (widening); Java's println prints the double as 10.0, including the decimal point.",
+      "explanation_ko": "int에서 double로의 변환은 안전한 암묵적 변환(확장)입니다. Java의 println은 double 값을 소수점을 포함해 10.0으로 출력합니다.",
+      "concept_tags": ["implicit_cast", "widening"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l1_u04_q003",
+      "type": "error_finding",
+      "code": "double d = 3.9;\nint i = d;",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "d 선언 문법 오류",
+        "double을 int로 바꾸면 정밀도를 잃을 수 있어서, 명시적 (int) 캐스팅 없이는 컴파일 오류가 발생함",
+        "i 선언 문법 오류",
+        "문제 없음, 자동으로 4로 반올림됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Converting double to int can lose data, so Java requires an explicit cast for this narrowing conversion; without (int), the compiler rejects it, the same rule as C#.",
+      "explanation_ko": "double을 int로 바꾸면 데이터를 잃을 수 있어서, Java는 이 축소 변환에 명시적 캐스팅을 요구합니다. (int) 없이는 컴파일러가 이를 거부합니다. C#과 같은 규칙입니다.",
+      "concept_tags": ["explicit_cast", "narrowing"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l1_u04_q004",
+      "type": "predict_output",
+      "code": "int x = 300;\nbyte b = (byte) x;\nSystem.out.println(b);",
+      "prompt_en": "What is printed? (byte can only hold -128 to 127.)",
+      "prompt_ko": "출력 결과는? (byte는 -128~127만 담을 수 있습니다.)",
+      "options": ["300", "255", "44", "오류"],
+      "answer": 2,
+      "explanation_en": "Casting 300 to byte overflows the type's range; the value wraps around using modulo 256, giving 300 % 256 = 44, the same overflow behavior as C#.",
+      "explanation_ko": "300을 byte로 캐스팅하면 타입의 범위를 초과합니다. 값은 256으로 나눈 나머지를 사용해 감싸지며, 300 % 256 = 44가 됩니다. C#과 같은 오버플로우 동작입니다.",
+      "concept_tags": ["explicit_cast", "overflow"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l1_u04_q005",
+      "type": "fill_blank",
+      "code": "String s = \"42\";\nint n = ____.parseInt(s);\nSystem.out.println(n);",
+      "prompt_en": "Fill in the blank with the wrapper class that provides string-to-number parsing methods.",
+      "prompt_ko": "문자열을 숫자로 파싱하는 메서드를 제공하는 래퍼 클래스를 빈칸에 채우세요.",
+      "options": ["Integer", "Convert", "Number", "String"],
+      "answer": 0,
+      "explanation_en": "Integer.parseInt() converts a String to an int; each primitive type has a corresponding wrapper class with similar parsing methods.",
+      "explanation_ko": "Integer.parseInt()는 String을 int로 변환합니다. 각 기본 타입에는 비슷한 파싱 메서드를 가진 대응 래퍼 클래스가 있습니다.",
+      "concept_tags": ["parseint"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l1_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "(int) 캐스팅", "definition": "소수점을 버리는 명시적 축소 변환" },
+        { "term": "확장 변환 (widening)", "definition": "int에서 double로처럼, 데이터 손실 없이 자동으로 이루어지는 변환" },
+        { "term": "축소 변환 (narrowing)", "definition": "double에서 int로처럼, 데이터를 잃을 수 있어 명시적 캐스팅이 필요한 변환" },
+        { "term": "Integer.parseInt", "definition": "문자열을 정수로 변환하는 래퍼 클래스 메서드" }
+      ],
+      "explanation_en": "Java's widening/narrowing conversion rules and terminology are nearly identical to C#'s implicit/explicit conversion system.",
+      "explanation_ko": "Java의 확장/축소 변환 규칙과 용어는 C#의 암묵적/명시적 변환 체계와 거의 동일합니다.",
+      "concept_tags": ["explicit_cast", "implicit_cast", "widening", "narrowing"],
+      "difficulty": "practice"
+    }
+  ]
+}

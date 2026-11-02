@@ -1,0 +1,123 @@
+{
+ "no": 3,
+ "title": "논리식 간소화",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "진리표에서 최소항의 합으로 논리식을 세울 수 있다.",
+  "카르노 맵으로 2~4변수 논리식을 최소의 곱의 합으로 간소화할 수 있다.",
+  "무관 조건(don't care)을 간소화에 활용할 수 있다."
+ ],
+ "checklist": [
+  "진리표 → 최소항 표기 F = Σm(…)",
+  "카르노 맵: 그레이 코드 순서로 칸을 배치",
+  "묶음은 1, 2, 4, 8칸(2의 거듭제곱), 가장자리는 이어진 것으로 봄",
+  "묶음이 클수록 변수가 줄어듦",
+  "필수 주항(essential prime implicant)",
+  "무관 조건 d: 묶음을 키우는 데만 활용",
+  "합의 곱(POS)은 0을 묶어서 구함"
+ ],
+ "advice": [
+  "카르노 맵은 손으로 하는 간소화의 거의 유일한 도구이고, 시험에서도 매번 나옵니다. 요령은 '가능한 큰 묶음으로, 가능한 적은 수의 묶음으로 모든 1을 덮는다' 한 가지입니다. 칸의 배치가 2진수 순서가 아니라 그레이 코드 순서(00, 01, 11, 10)라는 점, 맵의 양 끝이 이어져 있다는 점에서 실수가 가장 많이 나오니 처음 몇 번은 칸마다 최소항 번호를 적어 두고 시작하세요.",
+  "무관 조건은 1로 보아도 0으로 보아도 되는 칸이라서 묶음을 키우는 데 유리할 때만 씁니다. BCD 입력처럼 쓰이지 않는 조합이 있는 회로에서 무관 조건을 잘 쓰면 게이트 수가 크게 줄어드는 것을 직접 비교해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Mano · Ciletti, Digital Design (장 제목으로 표기)",
+   "part": "Gate-Level Minimization 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Harris · Harris, Digital Design and Computer Architecture (장 제목으로 표기)",
+   "part": "Combinational Logic Design 장의 카르노 맵 절"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "logic synthesis 관련 강의"
+  },
+  {
+   "kind": "book",
+   "provider": "All About Circuits (무료 온라인 교재)",
+   "title": "Lessons in Electric Circuits, Volume IV — Digital",
+   "url": "https://www.allaboutcircuits.com/textbook/digital/",
+   "lang": "영어",
+   "part": "Karnaugh Mapping 장"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "3변수 카르노 맵의 칸은 모두 몇 개일까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "변수 n개면 2ⁿ칸입니다.\n2³ = 8칸입니다.",
+   "hint": "2ⁿ입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "F(A, B) = Σm(1, 3)을 간소화하면 F = {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "B"
+     ]
+    }
+   ],
+   "explanation": "m1 = A′B, m3 = AB\n묶으면 A가 사라져 B만 남습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "F(A, B, C) = Σm(0, 2, 4, 6)을 최소의 곱의 합으로 간소화하면 남는 변수(리터럴)는 몇 개일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "네 최소항은 모두 C = 0인 칸입니다.\n4칸 묶음 하나로 F = C′가 되어 리터럴은 1개입니다.",
+   "hint": "네 최소항의 공통점을 찾으세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "출력이 0이든 1이든 상관없는 입력 조합을 {{1}} 조건이라고 하며, 간소화에 유리하게 쓸 수 있습니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "무관",
+      "don't care",
+      "돈케어",
+      "무정의"
+     ]
+    }
+   ],
+   "explanation": "BCD에서 쓰이지 않는 1010~1111 같은 조합이 대표적입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "digital-circuits",
+ "id": "l2-electronics-digital-circuits-u03"
+}

@@ -1,0 +1,96 @@
+{
+  "language": "rust",
+  "category": "system_low_level",
+  "level": 4,
+  "unit": 1,
+  "unit_title": "구조체와 메서드",
+  "questions": [
+    {
+      "id": "rust_l4_u01_q001",
+      "type": "predict_output",
+      "code": "struct Rectangle {\n    width: u32,\n    height: u32,\n}\n\nimpl Rectangle {\n    fn area(&self) -> u32 {\n        self.width * self.height\n    }\n}\n\nlet rect = Rectangle { width: 3, height: 4 };\nprintln!(\"{}\", rect.area());",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["7", "12", "34", "오류"],
+      "answer": 1,
+      "explanation_en": "impl blocks define methods for a struct; area() uses &self to read the instance's own fields, computing 3 * 4 = 12.",
+      "explanation_ko": "impl 블록은 구조체의 메서드를 정의합니다. area()는 &self로 인스턴스 자신의 필드를 읽어 3 * 4 = 12를 계산합니다.",
+      "concept_tags": ["struct", "impl", "method"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l4_u01_q002",
+      "type": "fill_blank",
+      "code": "impl Rectangle {\n    fn area(____self) -> u32 {\n        self.width * self.height\n    }\n}",
+      "prompt_en": "Fill in the blank so area() can read the instance's fields without taking ownership.",
+      "prompt_ko": "area()가 소유권을 가져가지 않고 인스턴스의 필드를 읽을 수 있도록 빈칸을 채우세요.",
+      "options": ["&", "&mut ", "", "*"],
+      "answer": 0,
+      "explanation_en": "&self borrows the instance immutably, letting the method read fields without consuming (taking ownership of) the struct.",
+      "explanation_ko": "&self는 인스턴스를 불변으로 빌려서, 구조체를 소비(소유권을 가져감)하지 않고도 필드를 읽을 수 있게 해줍니다.",
+      "concept_tags": ["struct", "method", "self"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l4_u01_q003",
+      "type": "predict_output",
+      "code": "struct Rectangle {\n    width: u32,\n    height: u32,\n}\n\nimpl Rectangle {\n    fn new(width: u32, height: u32) -> Rectangle {\n        Rectangle { width, height }\n    }\n}\n\nlet rect = Rectangle::new(3, 4);\nprintln!(\"{}\", rect.width);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "4", "Rectangle", "오류"],
+      "answer": 0,
+      "explanation_en": "new is an associated function (no self) that acts as a constructor; called as Rectangle::new(3, 4), it sets width to 3.",
+      "explanation_ko": "new는 self가 없는 연관 함수로, 생성자 역할을 합니다. Rectangle::new(3, 4)로 호출하면 width는 3이 됩니다.",
+      "concept_tags": ["struct", "associated_function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l4_u01_q004",
+      "type": "error_finding",
+      "code": "struct Rectangle {\n    width: u32,\n    height: u32,\n}\n\nimpl Rectangle {\n    fn double_width(&self) {\n        self.width = self.width * 2;\n    }\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "메서드 이름이 잘못됨",
+        "&self는 불변 빌림인데 self.width를 수정하려 해서, 값을 바꾸려면 &mut self가 필요하다는 컴파일 오류가 발생함",
+        "구조체 선언 문법 오류",
+        "문제 없음, 정상적으로 width가 두 배가 됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Just like reference parameters covered earlier, &self only grants read access; modifying a field requires declaring the method with &mut self instead.",
+      "explanation_ko": "앞서 배운 참조 매개변수와 마찬가지로, &self는 읽기 권한만 부여합니다. 필드를 수정하려면 메서드를 &mut self로 선언해야 합니다.",
+      "concept_tags": ["struct", "method", "mutable_reference"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l4_u01_q005",
+      "type": "predict_output",
+      "code": "struct Rectangle {\n    width: u32,\n    height: u32,\n}\n\nimpl Rectangle {\n    fn double_width(&mut self) {\n        self.width = self.width * 2;\n    }\n}\n\nlet mut rect = Rectangle { width: 3, height: 4 };\nrect.double_width();\nprintln!(\"{}\", rect.width);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "6", "4", "오류"],
+      "answer": 1,
+      "explanation_en": "With &mut self, double_width can modify the instance directly; width becomes 3 * 2 = 6.",
+      "explanation_ko": "&mut self 덕분에 double_width는 인스턴스를 직접 수정할 수 있습니다. width는 3 * 2 = 6이 됩니다.",
+      "concept_tags": ["struct", "method", "mutable_reference"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l4_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "impl 블록", "definition": "특정 구조체에 대한 메서드들을 모아 정의하는 블록" },
+        { "term": "&self", "definition": "인스턴스를 불변으로 빌려서 필드를 읽기만 하는 메서드 매개변수" },
+        { "term": "&mut self", "definition": "인스턴스를 가변으로 빌려서 필드를 수정할 수 있는 메서드 매개변수" },
+        { "term": "연관 함수 (associated function)", "definition": "self 없이 impl 블록 안에 정의되는, Type::함수명()으로 호출하는 함수 (주로 생성자)" }
+      ],
+      "explanation_en": "Rust separates data (struct fields) from behavior (impl methods), similar to C++ classes, but with the same borrowing rules from Level 2 applying to self.",
+      "explanation_ko": "Rust는 데이터(구조체 필드)와 동작(impl 메서드)을 분리합니다. C++의 클래스와 비슷하지만, self에도 Level 2에서 배운 빌림 규칙이 그대로 적용됩니다.",
+      "concept_tags": ["struct", "impl", "method", "self"],
+      "difficulty": "practice"
+    }
+  ]
+}

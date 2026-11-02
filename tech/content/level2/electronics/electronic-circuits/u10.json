@@ -1,0 +1,110 @@
+{
+ "no": 10,
+ "title": "궤환과 발진기",
+ "hours": 5,
+ "after": [
+  8,
+  9
+ ],
+ "objectives": [
+  "부궤환이 이득·대역폭·입출력 저항·왜곡에 주는 효과를 계산할 수 있다.",
+  "궤환 증폭기의 안정도와 위상 여유를 설명할 수 있다.",
+  "바크하우젠 조건으로 RC·LC 발진기의 동작을 설명하고 발진 주파수를 계산할 수 있다."
+ ],
+ "checklist": [
+  "궤환 이득 A_f = A/(1 + Aβ), 루프 이득 Aβ",
+  "부궤환의 효과: 이득 감소·안정, 대역폭 (1 + Aβ)배 증가, 왜곡 감소",
+  "네 가지 궤환 형태(직렬·병렬 조합)와 입출력 저항 변화",
+  "궤환 증폭기의 안정도와 위상 여유(제어공학과 같은 개념)",
+  "바크하우젠 조건: 루프 이득 |Aβ| = 1, 위상 0°(360°)",
+  "윈 브리지 발진기 f = 1/(2πRC), 위상 편이 발진기",
+  "LC 발진기(콜피츠, 하틀리)와 수정 발진기"
+ ],
+ "advice": [
+  "부궤환은 '이득을 일부 포기하는 대신 정밀함을 얻는' 거래입니다. A_f = A/(1 + Aβ)에서 Aβ가 매우 크면 이득이 1/β가 되어 트랜지스터의 특성과 거의 무관해지고, 저항 두 개의 비로 정해진다는 점이 핵심입니다. 9단원의 연산 증폭기 회로가 정확한 이유가 바로 이것이니 두 단원을 연결해서 보세요.",
+  "발진기는 반대로 궤환 신호가 입력을 대신해 스스로 신호를 만들어 내는 회로입니다. 증폭기가 원치 않게 발진하는 것도, 발진기가 원하는 주파수에서 발진하는 것도 같은 루프 이득 조건에서 나온다는 점을 이해하면, 레벨3 제어공학의 안정도 판별과 자연스럽게 이어집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Sedra · Smith, Microelectronic Circuits (번역본 『마이크로 전자회로』, 장 제목으로 표기)",
+   "part": "Feedback, Oscillators 장(Signal Generators and Waveform-Shaping Circuits)"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Razavi, Fundamentals of Microelectronics (장 제목으로 표기)",
+   "part": "Feedback, Oscillators 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.002 Circuits and Electronics (Anant Agarwal, 2007년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+   "lang": "영어",
+   "part": "feedback, oscillator 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "개루프 이득 1000, 궤환율 0.01인 부궤환 증폭기의 폐루프 이득은 약 얼마일까요?",
+   "answer": "90.9",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "A_f = 1000/(1 + 1000 × 0.01) = 1000/11 ≈ 90.9",
+   "hint": "A_f = A/(1 + Aβ)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "R = 10 kΩ, C = 10 nF인 윈 브리지 발진기의 발진 주파수는 약 몇 Hz일까요?",
+   "answer": "1592",
+   "answer_format": "integer",
+   "tolerance": 2,
+   "explanation": "f = 1/(2πRC) = 1/(2π × 10⁴ × 10⁻⁸) ≈ 1592 Hz",
+   "hint": "f = 1/(2πRC)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "개루프 대역폭 10 kHz인 증폭기에 1 + Aβ = 11인 부궤환을 걸면 대역폭은 몇 kHz가 될까요?",
+   "answer": "110",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "대역폭은 (1 + Aβ)배로 넓어집니다: 10 × 11 = 110 kHz",
+   "hint": "이득이 줄어든 만큼 대역폭이 넓어집니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "발진이 지속되려면 루프 이득의 크기가 1이고 위상이 0°(360°)여야 한다는 조건을 {{1}} 조건이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "바크하우젠",
+      "바크하우젠의"
+     ]
+    }
+   ],
+   "explanation": "실제 발진기는 시작할 때 루프 이득을 1보다 조금 크게 하고, 진폭이 커지면 1로 줄어들게 만듭니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "electronic-circuits",
+ "id": "l2-electronics-electronic-circuits-u10"
+}

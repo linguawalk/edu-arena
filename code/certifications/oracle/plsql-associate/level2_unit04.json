@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "REF CURSOR",
+  "rule_summary_ko": "REF CURSOR(커서 변수)는 특정 쿼리에 고정되지 않고, 프로시저 사이에 전달하거나 외부 애플리케이션에 결과 집합을 반환할 수 있는 포인터입니다. RETURN 절을 명시한 강한 타입(strong) REF CURSOR는 지정된 구조와 일치하는 쿼리만 열 수 있어 컴파일 시점에 타입 검사가 되고, RETURN 절이 없는 약한 타입(weak) REF CURSOR는 어떤 쿼리와도 연결할 수 있어 더 유연합니다. SYS_REFCURSOR는 오라클이 미리 정의해둔 약한 타입 REF CURSOR로, 직접 타입을 선언할 필요가 없습니다.",
+  "examples": [
+    { "code": "TYPE emp_cur_t IS REF CURSOR RETURN employees%ROWTYPE; -- 강한 타입", "note_ko": "employees%ROWTYPE과 정확히 일치하는 쿼리로만 OPEN 가능 — 컴파일 시점에 검증됨" },
+    { "code": "v_cursor SYS_REFCURSOR; -- 약한 타입\nOPEN v_cursor FOR SELECT * FROM departments;", "note_ko": "SYS_REFCURSOR는 어떤 SELECT 문으로도 열 수 있어 유연함" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l2_u4_q001",
+      "type": "concept_matching_item",
+      "code": "TYPE emp_cur_t IS REF CURSOR RETURN employees%ROWTYPE;\nv_cur emp_cur_t;\nOPEN v_cur FOR SELECT department_id, department_name FROM departments; -- 구조가 다름",
+      "prompt_ko": "강한 타입 REF CURSOR를 선언된 구조(employees%ROWTYPE)와 다른 쿼리로 열려고 하면?",
+      "options": [
+        "정상적으로 열린다",
+        "컴파일 오류 발생 — 강한 타입 REF CURSOR는 선언된 RETURN 구조와 일치하는 쿼리만 열 수 있다",
+        "런타임에만 예외가 발생한다",
+        "자동으로 구조가 변환되어 열린다"
+      ],
+      "answer": 1,
+      "explanation_ko": "강한 타입은 컴파일러가 쿼리 결과와 선언된 RETURN 타입이 일치하는지 미리 검사해줍니다.",
+      "concept_tags": ["strong_ref_cursor"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l2_u4_q002",
+      "type": "concept_matching_item",
+      "code": "v_cur SYS_REFCURSOR;\nOPEN v_cur FOR SELECT * FROM departments;\n-- 나중에\nOPEN v_cur FOR SELECT * FROM employees; -- 완전히 다른 쿼리",
+      "prompt_ko": "SYS_REFCURSOR(약한 타입)로 전혀 다른 구조의 쿼리를 여는 것이 가능합니까?",
+      "options": [
+        "불가능하다 — 약한 타입도 처음 연 쿼리 구조에 고정된다",
+        "가능하다 — 약한 타입 REF CURSOR(SYS_REFCURSOR 포함)는 특정 구조에 얽매이지 않아 어떤 SELECT 문으로도 열 수 있다",
+        "컴파일 오류가 발생한다",
+        "departments의 구조가 employees에 맞춰 변환된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "약한 타입은 RETURN 절이 없어 어떤 쿼리 구조와도 자유롭게 연결될 수 있습니다.",
+      "concept_tags": ["weak_ref_cursor", "sys_refcursor"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l2_u4_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "오라클이 미리 정의해둔, 별도의 TYPE 선언 없이 바로 사용할 수 있는 약한 타입 REF CURSOR는 무엇입니까? (영문으로 정확히 입력)",
+      "expected_answers": ["SYS_REFCURSOR"],
+      "explanation_ko": "SYS_REFCURSOR는 대부분의 경우 직접 REF CURSOR 타입을 새로 정의할 필요 없이 바로 쓸 수 있는 편리한 내장 타입입니다.",
+      "concept_tags": ["sys_refcursor"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l2_u4_q004",
+      "type": "concept_matching_item",
+      "code": "CREATE FUNCTION get_employees(p_dept_id NUMBER) RETURN SYS_REFCURSOR IS\n    v_cur SYS_REFCURSOR;\nBEGIN\n    OPEN v_cur FOR SELECT * FROM employees WHERE department_id = p_dept_id;\n    RETURN v_cur;\nEND;",
+      "prompt_ko": "이 함수처럼 REF CURSOR를 반환하는 방식이 유용한 대표적인 상황은?",
+      "options": [
+        "PL/SQL 프로시저·함수의 결과(여러 행의 결과 집합)를 Java, .NET 같은 외부 애플리케이션이나 다른 프로시저에 전달해야 할 때",
+        "테이블을 삭제할 때",
+        "단일 값 하나만 반환하면 되는 상황",
+        "REF CURSOR는 실제로는 아무 실용적 용도가 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "REF CURSOR는 결과 집합 자체를 '전달 가능한 값'으로 만들어줘서, 프로시저·언어 경계를 넘어 데이터를 주고받을 때 널리 쓰입니다.",
+      "concept_tags": ["ref_cursor_use_case"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l2_u4_q005",
+      "type": "concept_matching_item",
+      "code": "v_cur SYS_REFCURSOR;\nOPEN v_cur FOR SELECT * FROM departments;\n-- CLOSE 없이 바로\nOPEN v_cur FOR SELECT * FROM employees;",
+      "prompt_ko": "일반 명시적 커서와 달리, 커서 변수(REF CURSOR)를 CLOSE 없이 다시 OPEN하면?",
+      "options": [
+        "오류가 발생한다(명시적 커서와 동일한 규칙 적용)",
+        "정상적으로 재오픈되며, 이전 쿼리(departments)는 사라지고 새 쿼리(employees)로 대체된다",
+        "두 쿼리 결과가 합쳐진다",
+        "v_cur가 NULL이 된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "커서 변수는 명시적 커서와 달리, CLOSE하지 않고도 다른 쿼리로 재오픈할 수 있습니다(이전 쿼리는 유실됨).",
+      "concept_tags": ["ref_cursor_reopen"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l2_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "강한 타입과 약한 타입 REF CURSOR 중, 일반적으로 실무에서 더 널리 쓰이는 것은?",
+      "options": [
+        "강한 타입 — 항상 더 안전해서 실무 표준이다",
+        "약한 타입(주로 SYS_REFCURSOR) — 유연성이 커서 다양한 쿼리에 재사용하기 좋아 실무에서 더 흔히 사용된다",
+        "강한 타입과 약한 타입 사용 빈도는 항상 정확히 같다",
+        "실무에서는 REF CURSOR 자체를 거의 쓰지 않는다"
+      ],
+      "answer": 1,
+      "explanation_ko": "SYS_REFCURSOR(약한 타입)의 유연성이 실무에서 큰 이점이라, 직접 강한 타입을 정의하는 경우는 상대적으로 드뭅니다.",
+      "concept_tags": ["ref_cursor_practical_usage"],
+      "difficulty": "practice"
+    }
+  ]
+}

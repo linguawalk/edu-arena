@@ -1,0 +1,308 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s1",
+  "track": "phy-kin",
+  "work": "풀이",
+  "track_title": "운동과 물리 수학",
+  "chapter": {
+    "id": "sci-s1-phy-kin-ch04",
+    "no": 4,
+    "title": "벡터와 포물선 운동"
+  },
+  "lesson": {
+    "id": "sci-s1-phy-kin-ch04-l03",
+    "no": 3,
+    "title": "비스듬히 던진 운동",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "역학",
+      "운동학"
+    ],
+    "competition": "KPhO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "처음 속도를 성분으로 나누기",
+      "body": [
+        "지면에서 v₀의 속력으로 수평과 θ의 각으로 던지면 처음 속도는 (v₀ cos θ, v₀ sin θ)입니다. 수평 성분은 끝까지 일정하고, 연직 성분은 v₀ sin θ − gt로 줄어듭니다.",
+        "최고점에서는 연직 속도가 0이고, 수평 속도 v₀ cos θ만 남습니다. 최고점에서 속력이 0이 되는 것이 아닙니다.",
+        "그림은 v₀ = 25 m/s, θ = 37°인 경우입니다. 처음 속도는 (20, 15) m/s이고, 1.5 s에 최고점(11.25 m)에, 3 s에 60 m 떨어진 곳에 닿습니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 65,
+          "ymin": 0,
+          "ymax": 15,
+          "xstep": 10,
+          "ystep": 5,
+          "xlabel": "x(m)",
+          "ylabel": "y(m)",
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                0,
+                0.75,
+                -0.0125
+              ],
+              "from": 0,
+              "to": 60
+            }
+          ],
+          "alt": "25 m/s, 37°로 던진 공의 궤적. 최고 높이 11.25 m, 도달 거리 60 m",
+          "points": [
+            [
+              30,
+              11.25,
+              "최고점"
+            ],
+            [
+              60,
+              0,
+              "R"
+            ]
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "20 m/s로 수평에서 30° 위로 던진 공이 최고점에 도달하는 데 걸리는 시간은 몇 s인가요?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "vᵧ = v₀ sin θ − gt = 0입니다.",
+      "explanation": "처음 연직 속도는 20 × sin 30° = 10 m/s입니다.\n10 − 10t = 0에서 t = 1 s입니다.\n땅에 다시 닿는 시각은 그 두 배인 2 s입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "비스듬히 던진 물체가 최고점에 있을 때 속도의 연직 성분은 {{1}}입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "0",
+            "영"
+          ]
+        }
+      ],
+      "hint": "최고점은 올라가다 내려오기 시작하는 순간입니다.",
+      "explanation": "최고점에서 높이가 최대이므로 연직 속도는 0입니다.\n하지만 수평 속도 v₀ cos θ는 그대로 남아 있습니다.\n그래서 최고점에서도 속력은 0이 아닙니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "비행 시간, 최고 높이, 도달 거리",
+      "body": [
+        "연직 운동에서 비행 시간 T = 2v₀ sin θ/g, 최고 높이 H = (v₀ sin θ)²/(2g)입니다. 최고 높이는 연직 성분만으로 정해집니다.",
+        "도달 거리는 수평 속도 × 비행 시간 = v₀ cos θ × 2v₀ sin θ/g = v₀² sin 2θ/g입니다(2 sin θ cos θ = sin 2θ).",
+        "공식을 외우기보다 '성분으로 나누고 → 연직에서 시간 → 수평에 대입'하는 순서로 매번 다시 얻는 것이 안전합니다. 출발점과 도착점의 높이가 다르면 공식을 쓸 수 없기 때문입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "25 m/s로 수평에서 37° 위로 던진 공의 비행 시간, 최고 높이, 도달 거리를 구하세요. (sin 37° = 0.6)",
+      "steps": [
+        "처음 속도 성분은 vₓ = 25 × 0.8 = 20 m/s, vᵧ = 25 × 0.6 = 15 m/s입니다.",
+        "비행 시간 T = 2 × 15/10 = 3 s입니다.",
+        "최고 높이 H = 15²/20 = 11.25 m입니다.",
+        "도달 거리 R = 20 × 3 = 60 m입니다."
+      ],
+      "answer": "3 s, 11.25 m, 60 m"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "50 m/s로 수평에서 37° 위로 던진 공의 최고 높이는 몇 m인가요? (sin 37° = 0.6)",
+      "answer": "45",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "H = (v₀ sin θ)²/(2g)입니다.",
+      "explanation": "연직 성분은 50 × 0.6 = 30 m/s입니다.\nH = 30²/20 = 900/20입니다.\n= 45 m입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 문제의 공의 수평 도달 거리는 몇 m인가요? (cos 37° = 0.8)",
+      "answer": "240",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "수평 속도 × 비행 시간입니다.",
+      "explanation": "비행 시간은 2 × 30/10 = 6 s이고, 수평 속도는 50 × 0.8 = 40 m/s입니다.\n도달 거리 = 40 × 6입니다.\n= 240 m입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "가장 멀리 던지는 각",
+      "body": [
+        "R = v₀² sin 2θ/g는 sin 2θ = 1, 곧 θ = 45°일 때 최대이고, 최대 도달 거리는 v₀²/g입니다.",
+        "sin 2θ = sin(180° − 2θ)이므로 θ와 90° − θ로 던지면 도달 거리가 같습니다. 30°와 60°, 37°와 53°가 짝입니다. 높이 던질수록 오래 날지만 수평 속도가 작아서 거리는 같아집니다.",
+        "실제로는 공기 저항 때문에 최적의 각이 45°보다 조금 작습니다. 경시 문제에서는 특별한 말이 없으면 공기 저항을 무시합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "30 m/s로 던질 수 있을 때 수평 도달 거리의 최댓값은 몇 m인가요?",
+      "answer": "90",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "45°에서 R = v₀²/g입니다.",
+      "explanation": "θ = 45°이면 sin 2θ = 1입니다.\nR = v₀²/g = 900/10입니다.\n= 90 m이고, 다른 각으로 던지면 이보다 짧습니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 속력으로 30°로 던졌을 때와 도달 거리가 같아지는 다른 각은 몇 도인가요?",
+      "answer": "60",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "θ와 90° − θ는 도달 거리가 같습니다.",
+      "explanation": "R ∝ sin 2θ이고 sin 60° = sin 120°입니다.\n2θ = 120°이면 θ = 60°입니다.\n곧 90° − 30° = 60°로 던져도 같은 거리에 떨어집니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "최고점에서의 속력",
+      "body": [
+        "최고점에서는 연직 속도가 0이므로 속력은 수평 성분 v₀ cos θ와 같습니다. 이것이 비행 중 가장 작은 속력입니다.",
+        "에너지 보존으로도 확인할 수 있습니다. (1/2)mv₀² = (1/2)m(v₀ cos θ)² + mgH이므로 H = v₀² sin² θ/(2g)로 앞의 결과와 같습니다.",
+        "같은 높이를 지날 때 올라갈 때와 내려올 때의 속력은 같고, 연직 성분의 방향만 반대입니다. 이 대칭성은 계산을 반으로 줄여 줍니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "25 m/s로 수평에서 37° 위로 던진 공의 최고점에서의 속력은 몇 m/s인가요? (cos 37° = 0.8)",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "최고점에서는 수평 성분만 남습니다.",
+      "explanation": "최고점에서 연직 속도는 0입니다.\n남는 것은 수평 성분 25 × 0.8입니다.\n= 20 m/s이고, 이것이 비행 중 가장 작은 속력입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "처음 속도를 (v₀ cos θ, v₀ sin θ)로 나누면 수평은 등속도, 연직은 처음 속도 v₀ sin θ인 연직 투사입니다.",
+        "T = 2v₀ sin θ/g, H = (v₀ sin θ)²/(2g), R = v₀² sin 2θ/g입니다. 출발과 도착의 높이가 같을 때만 쓸 수 있습니다.",
+        "도달 거리는 45°에서 최대 v₀²/g이고, θ와 90° − θ는 같은 거리에 떨어집니다. 최고점의 속력은 v₀ cos θ입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "수평 성분과 연직 성분이 모두 10 m/s가 되도록 45°로 던진 공의 수평 도달 거리는 몇 m인가요?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "비행 시간 T = 2vᵧ/g입니다.",
+      "explanation": "비행 시간은 2 × 10/10 = 2 s입니다.\n도달 거리 = 10 × 2입니다.\n= 20 m이고, v₀²/g = 200/10과 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "앞 문제의 공의 최고 높이는 몇 m인가요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "H = vᵧ²/(2g)입니다.",
+      "explanation": "최고 높이는 연직 성분만으로 정해집니다.\nH = 10²/20입니다.\n= 5 m이고, 도달 거리의 1/4입니다(45°일 때 항상 성립)."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "지면에서 속력 v₀, 각 θ로 던진 물체가 같은 높이의 지면에 떨어질 때 도달 거리가 v₀² sin 2θ/g임을 보이세요.",
+      "model_answer": [
+        "연직: y = v₀ sin θ t − (1/2)gt²이고, y = 0인 t ≠ 0은 T = 2v₀ sin θ/g이다.",
+        "수평: x = v₀ cos θ t이다.",
+        "R = v₀ cos θ × 2v₀ sin θ/g = 2v₀² sin θ cos θ/g이다.",
+        "2 sin θ cos θ = sin 2θ이므로 R = v₀² sin 2θ/g이다."
+      ],
+      "criteria": [
+        {
+          "text": "연직 운동에서 비행 시간을 구했다",
+          "points": 2
+        },
+        {
+          "text": "수평 운동에 대입했다",
+          "points": 2
+        },
+        {
+          "text": "배각 공식으로 정리했다",
+          "points": 2
+        }
+      ],
+      "hint": "연직 운동에서 비행 시간을 먼저 구하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "같은 속력으로 던질 때 도달 거리가 θ = 45°에서 최대이고, θ와 90° − θ의 도달 거리가 같음을 보이세요.",
+      "model_answer": [
+        "R = v₀² sin 2θ/g이고 0° < θ < 90°이다.",
+        "sin 2θ ≤ 1이고 등호는 2θ = 90°, 곧 θ = 45°일 때이므로 R의 최댓값은 v₀²/g이다.",
+        "90° − θ로 던지면 R' = v₀² sin(180° − 2θ)/g이다.",
+        "sin(180° − 2θ) = sin 2θ이므로 R' = R이다."
+      ],
+      "criteria": [
+        {
+          "text": "도달 거리 공식에서 시작했다",
+          "points": 1
+        },
+        {
+          "text": "sin 2θ ≤ 1로 45°에서 최대임을 보였다",
+          "points": 3
+        },
+        {
+          "text": "sin(180° − 2θ) = sin 2θ로 같음을 보였다",
+          "points": 2
+        }
+      ],
+      "hint": "sin 2θ의 성질을 쓰세요."
+    }
+  ]
+}

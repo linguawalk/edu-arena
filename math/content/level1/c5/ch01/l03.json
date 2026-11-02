@@ -1,0 +1,328 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch01",
+    "no": 1,
+    "title": "여러 가지 순열"
+  },
+  "lesson": {
+    "id": "c5-ch01-l03",
+    "no": 3,
+    "title": "같은 것이 있는 순열",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "이산조합"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "같은 것이 있는 순열",
+      "body": [
+        "n개 중 같은 것이 각각 p개, q개, r개 있으면 늘어놓는 방법은 n!/(p! q! r!)입니다.",
+        "왜 나눌까요? 같은 것들도 모두 다르다고 보고 n!가지로 늘어놓으면, 같은 것 p개끼리 자리를 바꾼 p!가지가 실제로는 모두 같은 배열입니다. 그래서 중복된 만큼 p!, q!, r!로 나눕니다. 예를 들어 a₁a₂b와 a₂a₁b는 이름표를 떼면 같은 aab입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "a, a, b, b, b를 일렬로 늘어놓는 방법은?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "5개 중 a가 2개, b가 3개\n5!/(2! 3!) = 120/12\n= 10\n원리: 같은 것끼리 자리를 바꿔도 같은 배열이므로 나눔"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "SUCCESS의 일곱 글자를 일렬로 늘어놓는 방법은?",
+      "answer": "420",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "S 3개, C 2개, U 1개, E 1개\n7!/(3! 2!) = 5040/12\n= 420\n원리: 같은 글자끼리 자리를 바꿔도 같은 배열이므로 3!과 2!로 나눕니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "순서가 정해진 것",
+      "body": [
+        "몇 개의 순서가 정해져 있으면 그것들을 같은 것으로 보고 늘어놓은 뒤 정해진 순서대로 채웁니다.",
+        "A, B, C가 이 순서로 와야 한다면, A, B, C 자리에 일단 같은 기호 X를 놓고 X, X, X, D, E를 늘어놓은 뒤 X 자리를 왼쪽부터 A, B, C로 채우면 됩니다. 그래서 순서가 정해진 것들은 같은 것으로 보고 5!/3!로 셉니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "MISSISSIPPI의 11글자를 일렬로 늘어놓는 방법의 수를 식으로 나타내세요.",
+      "steps": [
+        "M 1개, I 4개, S 4개, P 2개",
+        "11!/(1! 4! 4! 2!)",
+        "= 39916800/(24 × 24 × 2)",
+        "= 34650"
+      ],
+      "answer": "34650"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "A, B, C, D, E를 일렬로 늘어놓을 때 A, B, C가 이 순서대로 오는 방법은?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "A, B, C를 같은 문자 X로 보고 X, X, X, D, E를 늘어놓기: 5!/3! = 20\nX 자리를 왼쪽부터 A, B, C로 채움(1가지)\n20"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1부터 5까지 일렬로 늘어놓을 때 1, 2, 3이 이 순서대로 오는 방법은?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "1, 2, 3을 같은 것으로 보면 5!/3!\n= 120/6\n= 20 (앞 문제와 같은 구조)\n원리: 순서가 정해진 것은 같은 것으로 보고 늘어놓습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "최단 경로",
+      "body": [
+        "격자에서 오른쪽 m칸, 위쪽 n칸 가는 최단 경로는 →와 ↑를 늘어놓는 (m + n)!/(m! n!)가지입니다.",
+        "어떤 점을 반드시 지나면 그 점까지와 그 뒤를 곱합니다.",
+        "최단 경로는 → m개와 ↑ n개를 어떤 순서로 가느냐로 결정됩니다. 그래서 같은 것이 있는 순열 (m + n)!/(m!n!) = (m+n)Cm입니다. 반드시 지나야 하는 점이 있으면 곱의 법칙으로 '그 점까지 × 그 점부터'를 계산합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "오른쪽 3칸, 위쪽 2칸 가는 최단 경로 중 출발점에서 오른쪽 1칸, 위쪽 1칸인 점을 지나지 않는 것은?",
+      "steps": [
+        "전체: 5!/(3!2!) = 10",
+        "그 점까지: 2!/(1!1!) = 2, 그 점부터 (오른쪽 2, 위 1): 3!/(2!1!) = 3",
+        "지나는 경로 2 × 3 = 6",
+        "지나지 않는 경로 10 − 6 = 4"
+      ],
+      "answer": "4가지"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "오른쪽으로 4칸, 위쪽으로 3칸 가는 최단 경로는 몇 가지일까요?",
+      "answer": "35",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "→ 4개, ↑ 3개를 늘어놓는 방법\n7!/(4! 3!)\n= 35\n원리: 최단 경로는 →와 ↑를 늘어놓는 같은 것이 있는 순열입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "그중 출발점에서 오른쪽 2칸, 위쪽 1칸인 점을 지나는 경로는 몇 가지일까요?",
+      "answer": "18",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "출발점 → 그 점(→2, ↑1): 3!/(2!1!) = 3\n그 점 → 도착점(→2, ↑2): 4!/(2!2!) = 6\n3 × 6 = 18"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "그 점을 지나지 않는 경로는 몇 가지일까요?",
+      "answer": "17",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "전체 35에서 그 점을 지나는 18을 뺌\n35 − 18\n= 17\n원리: '지나지 않는' 경우는 여사건으로 세는 것이 쉽습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "같은 숫자로 수 만들기",
+      "body": [
+        "같은 숫자가 있으면 같은 것이 있는 순열로 세고, 짝수 같은 조건은 끝자리를 먼저 정합니다.",
+        "같은 숫자가 있을 때 짝수·홀수 조건은 끝자리를 먼저 정한 뒤, 남은 숫자들로 같은 것이 있는 순열을 다시 계산합니다. 끝자리에 어떤 숫자를 쓰느냐에 따라 남은 숫자의 구성이 달라지므로 경우를 나눕니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "1, 1, 2, 2, 3을 모두 써서 만드는 다섯 자리 수는 몇 개일까요?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "같은 숫자의 개수를 세세요.",
+      "explanation": "1이 2개, 2가 2개, 3이 1개\n5!/(2! 2!) = 120/4\n= 30\n원리: 같은 숫자끼리 자리를 바꿔도 같은 수이므로 2!, 2!로 나눕니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "그중 짝수는 몇 개일까요?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "끝자리를 먼저 정하세요.",
+      "explanation": "짝수이려면 끝자리가 2\n남은 1, 1, 2, 3을 앞의 네 자리에: 4!/2! = 12\n짝수 12개\n주의: 끝자리에 쓴 2를 빼고 남은 숫자로 다시 계산합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "조건이 있는 문자 배열",
+      "body": [
+        "특정 문자의 위치를 정하거나, 이웃하지 않게 하려면 나머지를 먼저 늘어놓고 사이에 끼워 넣습니다.",
+        "이웃하지 않게 하려면 '끼워 넣기'가 기본입니다. 나머지를 먼저 늘어놓고 그 사이와 양 끝의 빈칸 중에서 원하는 개수만큼 고릅니다. 같은 문자는 순서가 없으므로 자리만 고르면 되어 조합(C)을 씁니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "a, a, a, b, c, d를 일렬로 늘어놓을 때 a끼리 이웃하지 않는 방법은?",
+      "steps": [
+        "b, c, d를 먼저 늘어놓음: 3! = 6",
+        "사이와 양 끝의 빈칸 4곳 중 a를 놓을 3곳 선택: ₄C₃ = 4",
+        "a는 모두 같으므로 순서 없음",
+        "6 × 4 = 24"
+      ],
+      "answer": "24"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "BANANA를 늘어놓을 때 B가 맨 앞에 오는 방법은?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "B를 고정하고 나머지를 늘어놓으세요.",
+      "explanation": "B를 맨 앞에 고정\n남은 A, N, A, N, A: 5!/(3! 2!) = 10\n10가지\n원리: 조건이 있는 자리를 먼저 채우고 나머지를 같은 것이 있는 순열로 셉니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "BANANA를 늘어놓을 때 A끼리 이웃하지 않는 방법은?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "A를 뺀 나머지를 먼저 늘어놓으세요.",
+      "explanation": "B, N, N을 먼저 늘어놓음: 3!/2! = 3\n빈칸 4곳 중 A 3개를 놓을 곳 ₄C₃ = 4\n3 × 4 = 12"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "1, 1, 1, 2, 2를 일렬로 늘어놓는 방법은?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "같은 것이 있는 순열입니다.",
+      "explanation": "1이 3개, 2가 2개\n5!/(3! 2!) = 120/12\n= 10\n원리: 같은 것끼리 자리를 바꿔도 같은 배열이므로 나눕니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "동전 5개를 차례로 던져 앞면 3번, 뒷면 2번이 나오는 순서는 몇 가지일까요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "H와 T를 늘어놓는 방법입니다.",
+      "explanation": "앞면(H) 3개, 뒷면(T) 2개의 순서\n5!/(3! 2!)\n= 10\n원리: 앞면이 나오는 3번의 시점을 고르는 것과 같습니다(₅C₃ = 10)."
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "5칸짜리 계단을 한 번에 1칸 또는 2칸씩 오르는 방법은?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2칸 걸음이 몇 번인지로 나누세요.",
+      "explanation": "2칸 걸음의 수로 나눔: 0번(1칸 × 5) 1가지, 1번(1칸 3, 2칸 1) 4!/3! = 4가지, 2번(1칸 1, 2칸 2) 3!/2! = 3가지\n합 1 + 4 + 3\n= 8"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "오른쪽으로 3칸, 위쪽으로 3칸 가는 최단 경로는 몇 가지일까요?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "같은 것이 있는 순열입니다.",
+      "explanation": "→ 3개, ↑ 3개를 늘어놓기\n6!/(3! 3!) = 720/36\n= 20\n원리: 최단 경로는 →와 ↑를 늘어놓는 방법의 수입니다(₆C₃ = 20)."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "같은 것이 있으면 n!을 p!q!로 나누는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "같은 것",
+            "바꿔도"
+          ],
+          [
+            "중복",
+            "여러 번 세"
+          ],
+          [
+            "나누"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "같은 것끼리 자리를 바꿔도 배열은 달라지지 않는데, n!은 그것들을 다른 것으로 보고 센 값입니다. 같은 것 p개의 배열 p!가지와 q개의 배열 q!가지를 중복해서 셌으므로 나눠 줍니다."
+    }
+  ]
+}

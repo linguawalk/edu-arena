@@ -1,0 +1,116 @@
+{
+ "no": 6,
+ "title": "인덱스와 B+ 트리",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "인덱스가 조회를 빠르게 하는 원리와 비용(공간, 쓰기 속도)을 설명할 수 있다.",
+  "B+ 트리의 구조와 높이를 계산할 수 있다.",
+  "클러스터드·비클러스터드 인덱스와 해시 인덱스를 비교할 수 있다."
+ ],
+ "checklist": [
+  "디스크 블록과 입출력 비용이 지배적",
+  "인덱스 = 키 → 레코드 위치",
+  "B+ 트리: 균형 트리, 리프끼리 연결(범위 검색에 유리)",
+  "높이 ≈ log_팬아웃(레코드 수)",
+  "클러스터드 인덱스(데이터가 키 순서로 저장), 비클러스터드",
+  "해시 인덱스: 같음 검색에 강하고 범위 검색에 약함",
+  "선택도와 인덱스를 쓰지 않는 경우, 복합 인덱스"
+ ],
+ "advice": [
+  "인덱스는 책 뒤의 찾아보기와 같습니다. 핵심은 '디스크 블록을 몇 번 읽는가'로 비용을 세는 것이고, B+ 트리는 한 블록에 수백 개의 키를 담아 높이를 3~4로 유지하기 때문에 수백만 건에서도 몇 번만 읽으면 됩니다. 팬아웃과 레코드 수로 높이를 직접 계산해 보세요.",
+  "인덱스는 조회를 빠르게 하지만 삽입·수정할 때마다 함께 고쳐야 하고 공간도 차지합니다. 자주 조회하는 조건에만 인덱스를 거는 설계 판단, 그리고 조건에 걸리는 행이 너무 많으면 차라리 전체를 읽는 것이 빠르다는 점까지 이해하면 실무에 바로 쓸 수 있습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Silberschatz · Korth · Sudarshan",
+   "title": "Database System Concepts (교재 사이트, 장 제목으로 표기)",
+   "url": "https://www.db-book.com/",
+   "lang": "영어",
+   "part": "Indexing 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "CMU 15-445 (공개 강의)",
+   "title": "Intro to Database Systems — 강의 노트·영상",
+   "url": "https://15445.courses.cs.cmu.edu/",
+   "lang": "영어",
+   "part": "Tree Indexes, Hash Tables 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "운영체제 8단원 파일 시스템",
+   "url": "guide.html?lv=2&t=computer&s=operating-systems&u=8"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "팬아웃 100인 B+ 트리로 레코드 100만 개를 색인하면 트리 높이는 대략 몇일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "100³ = 10⁶이므로 높이 약 3입니다.",
+   "hint": "log₁₀₀ 10⁶입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 인덱스로 레코드 하나를 찾을 때 읽는 블록은 몇 개일까요? (인덱스 3단계 + 데이터 블록 1개)",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "인덱스 3번 + 데이터 1번 = 4번\n전체 검색(예: 1만 블록)과 비교하면 매우 적습니다.",
+   "hint": "높이 + 1입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "테이블의 데이터 자체를 인덱스 키 순서대로 정렬해 저장하는 인덱스를 {{1}} 인덱스라고 하며, 테이블당 하나만 만들 수 있습니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "클러스터드",
+      "클러스터",
+      "군집"
+     ]
+    }
+   ],
+   "explanation": "다른 인덱스는 데이터 위치를 가리키는 비클러스터드 인덱스입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "같음(=) 조건 검색에는 빠르지만 범위 검색에는 쓸 수 없는 인덱스는 {{1}} 인덱스입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "해시"
+     ]
+    }
+   ],
+   "explanation": "B+ 트리는 리프가 정렬·연결되어 범위 검색에도 강합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "databases",
+ "id": "l2-computer-databases-u06"
+}

@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 4,
+  "unit": 2,
+  "unit_title": "튜플과 불변성",
+  "questions": [
+    {
+      "id": "python_l4_u02_q001",
+      "type": "predict_output",
+      "code": "t = (1, 2, 3)\nprint(t[0])",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1", "(1, 2, 3)", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "Tuples support indexing just like lists; t[0] refers to the first element, 1.",
+      "explanation_ko": "튜플도 리스트처럼 인덱싱을 지원합니다. t[0]은 첫 번째 요소인 1을 가리킵니다.",
+      "concept_tags": ["tuple"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l4_u02_q002",
+      "type": "error_finding",
+      "code": "t = (1, 2, 3)\nt[0] = 100",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "t 선언 문법 오류",
+        "튜플은 불변(immutable)이라 요소를 수정할 수 없어서, TypeError가 발생함",
+        "인덱스 0이 잘못됨",
+        "문제 없음, t[0]이 100이 됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike lists, tuples are immutable once created; attempting to assign to an index raises TypeError.",
+      "explanation_ko": "리스트와 달리 튜플은 한 번 만들어지면 불변입니다. 인덱스에 대입을 시도하면 TypeError가 발생합니다.",
+      "concept_tags": ["tuple", "immutability"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l4_u02_q003",
+      "type": "predict_output",
+      "code": "t = (1, 2, 3)\na, b, c = t\nprint(a, b, c)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1 2 3", "(1, 2, 3)", "오류", "a b c"],
+      "answer": 0,
+      "explanation_en": "Tuple unpacking assigns each element to a corresponding variable in a single line: a=1, b=2, c=3.",
+      "explanation_ko": "튜플 언패킹은 각 요소를 대응하는 변수에 한 줄로 대입합니다: a=1, b=2, c=3.",
+      "concept_tags": ["tuple_unpacking"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l4_u02_q004",
+      "type": "predict_output",
+      "code": "def min_max(nums):\n    return min(nums), max(nums)\n\nlow, high = min_max([5, 2, 8, 1])\nprint(low, high)",
+      "prompt_en": "What is printed? (This uses a tuple to simulate returning multiple values.)",
+      "prompt_ko": "출력 결과는? (튜플로 여러 값을 반환하는 것을 흉내냅니다.)",
+      "options": ["1 8", "8 1", "5 2", "오류"],
+      "answer": 0,
+      "explanation_en": "Returning min(nums), max(nums) implicitly creates a tuple (1, 8); unpacking it into low, high assigns 1 and 8 respectively.",
+      "explanation_ko": "min(nums), max(nums)를 반환하면 암묵적으로 튜플 (1, 8)이 만들어집니다. 이를 low, high로 언패킹하면 각각 1과 8이 대입됩니다.",
+      "concept_tags": ["tuple_unpacking", "multiple_return"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l4_u02_q005",
+      "type": "fill_blank",
+      "code": "a = 1\nb = 2\na, b = ____\nprint(a, b)\n# a와 b의 값을 서로 교환해야 함 (a=2, b=1)",
+      "prompt_en": "Fill in the blank to swap a and b using tuple unpacking, without a temp variable.",
+      "prompt_ko": "임시 변수 없이 튜플 언패킹으로 a와 b를 교환하려면 빈칸에 무엇이 들어가야 할까요?",
+      "options": ["b, a", "a, b", "(a), (b)", "swap(a, b)"],
+      "answer": 0,
+      "explanation_en": "a, b = b, a builds a tuple (b, a) on the right and unpacks it into a, b in one step, swapping them without any temp variable — a pattern unique to languages with tuple unpacking.",
+      "explanation_ko": "a, b = b, a는 오른쪽에서 튜플 (b, a)를 만들고 이를 a, b로 한 번에 언패킹해서, 임시 변수 없이 교환합니다 — 튜플 언패킹이 있는 언어만의 패턴입니다.",
+      "concept_tags": ["tuple_unpacking"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l4_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "튜플", "definition": "한 번 만들어지면 값을 바꿀 수 없는 순서 있는 컬렉션" },
+        { "term": "불변성 (immutability)", "definition": "생성 후 내용을 변경할 수 없는 성질 — 리스트와의 핵심 차이" },
+        { "term": "튜플 언패킹", "definition": "튜플의 각 요소를 여러 변수에 한 줄로 대입하는 문법" },
+        { "term": "다중 반환값", "definition": "함수가 여러 값을 튜플로 묶어 반환하고, 호출한 쪽에서 언패킹해 받는 패턴" }
+      ],
+      "explanation_en": "Tuple unpacking makes multiple-return-value patterns and variable swapping trivially concise in Python, tasks that require out parameters or wrapper objects in most of the other languages covered.",
+      "explanation_ko": "튜플 언패킹 덕분에 Python에서는 다중 반환값 패턴과 변수 교환이 매우 간결해집니다. 지금까지 다룬 대부분의 다른 언어에서는 out 매개변수나 래퍼 객체가 필요한 작업입니다.",
+      "concept_tags": ["tuple", "immutability", "tuple_unpacking"],
+      "difficulty": "practice"
+    }
+  ]
+}

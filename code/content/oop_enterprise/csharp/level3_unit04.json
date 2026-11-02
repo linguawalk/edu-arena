@@ -1,0 +1,96 @@
+{
+  "language": "csharp",
+  "category": "oop_enterprise",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "static과 변수 범위",
+  "questions": [
+    {
+      "id": "csharp_l3_u04_q001",
+      "type": "predict_output",
+      "code": "class Counter\n{\n    public static int Count = 0;\n    public static void Increment()\n    {\n        Count++;\n    }\n}\n\nCounter.Increment();\nCounter.Increment();\nCounter.Increment();\nConsole.WriteLine(Counter.Count);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1", "3", "0", "오류"],
+      "answer": 1,
+      "explanation_en": "static fields belong to the class itself, shared across all calls; three Increment() calls result in Count being 3.",
+      "explanation_ko": "static 필드는 클래스 자체에 속해서 모든 호출에서 공유됩니다. Increment()를 세 번 호출하면 Count는 3이 됩니다.",
+      "concept_tags": ["static"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l3_u04_q002",
+      "type": "fill_blank",
+      "code": "class Counter\n{\n    public ____ int Count = 0;\n}\n// Count가 인스턴스마다 따로가 아니라 클래스 전체에서 공유되어야 함",
+      "prompt_en": "Fill in the blank so Count is shared across the class rather than per-instance.",
+      "prompt_ko": "Count가 인스턴스마다 따로가 아니라 클래스 전체에서 공유되도록 빈칸을 채우세요.",
+      "options": ["static", "const", "readonly", "shared"],
+      "answer": 0,
+      "explanation_en": "static marks a field as belonging to the class itself rather than to individual objects, so all instances (and the class name directly) share the same value.",
+      "explanation_ko": "static은 필드가 개별 객체가 아니라 클래스 자체에 속하도록 표시합니다. 그래서 모든 인스턴스(그리고 클래스 이름 자체)가 같은 값을 공유합니다.",
+      "concept_tags": ["static"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l3_u04_q003",
+      "type": "predict_output",
+      "code": "void Counter()\n{\n    int count = 0;\n    count++;\n    Console.Write(count);\n}\n\nCounter();\nCounter();\nCounter();",
+      "prompt_en": "What is printed? (Note: count is a regular local variable here, not static.)",
+      "prompt_ko": "출력 결과는? (count는 static이 아닌 일반 지역 변수인 점에 주의하세요.)",
+      "options": ["123", "111", "333", "오류"],
+      "answer": 1,
+      "explanation_en": "Without static, count is a fresh local variable created and reset each call, becoming 1 every time before printing.",
+      "explanation_ko": "static이 없으면 count는 호출될 때마다 새로 생성되어 초기화됩니다. 매번 1이 된 뒤 출력됩니다.",
+      "concept_tags": ["variable_scope"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l3_u04_q004",
+      "type": "error_finding",
+      "code": "void PrintX()\n{\n    Console.WriteLine(x);\n}\n\nint x = 5;\nPrintX();",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "PrintX 정의 문법 오류",
+        "x는 지역 변수라 PrintX 함수 안에서는 보이지 않아서, 이름을 찾을 수 없다는 컴파일 오류가 발생함",
+        "x 선언 위치 오류",
+        "문제 없음, x가 5로 정상 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "A local variable is only visible within its own scope; PrintX cannot see x declared outside it, causing a compile error, similar to the scoping rules seen in VB.",
+      "explanation_ko": "지역 변수는 자신의 스코프 안에서만 보입니다. PrintX는 바깥에서 선언된 x를 볼 수 없어 컴파일 오류가 발생합니다. VB에서 봤던 스코프 규칙과 비슷합니다.",
+      "concept_tags": ["variable_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l3_u04_q005",
+      "type": "predict_output",
+      "code": "class BankAccount\n{\n    public static int TotalAccounts = 0;\n\n    public BankAccount()\n    {\n        TotalAccounts++;\n    }\n}\n\nnew BankAccount();\nnew BankAccount();\nnew BankAccount();\nConsole.WriteLine(BankAccount.TotalAccounts);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "1", "3", "오류"],
+      "answer": 2,
+      "explanation_en": "TotalAccounts is a static field incremented in the constructor; creating 3 objects runs the constructor 3 times, so TotalAccounts becomes 3.",
+      "explanation_ko": "TotalAccounts는 생성자에서 증가하는 static 필드입니다. 객체 3개를 만들면 생성자가 3번 실행되어 TotalAccounts는 3이 됩니다.",
+      "concept_tags": ["static"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l3_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "지역 변수", "definition": "선언된 메서드 안에서만 유효하고, 호출이 끝나면 사라지는 변수" },
+        { "term": "static 필드", "definition": "클래스 자체에 속해 모든 인스턴스가 공유하는 변수" },
+        { "term": "static 메서드", "definition": "객체 생성 없이 클래스 이름으로 바로 호출하는 메서드" },
+        { "term": "C의 static 지역변수와의 차이", "definition": "C#의 static은 클래스 수준 공유를 뜻하며, C의 함수 내부 static 변수와는 쓰임이 다름" }
+      ],
+      "explanation_en": "C#'s static keyword serves a class-wide sharing role, distinct from C's static local variable (which persists across calls to one function) — worth noting even though both use the same word.",
+      "explanation_ko": "C#의 static 키워드는 클래스 전체 공유 역할을 하며, 한 함수 호출 사이에 값을 유지하는 C의 static 지역변수와는 쓰임이 다릅니다. 같은 단어를 쓰지만 구분해서 이해할 필요가 있습니다.",
+      "concept_tags": ["static", "variable_scope"],
+      "difficulty": "practice"
+    }
+  ]
+}

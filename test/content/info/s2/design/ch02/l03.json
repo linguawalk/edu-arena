@@ -1,0 +1,272 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "design",
+  "work": "풀이",
+  "track_title": "알고리즘 설계",
+  "chapter": {
+    "id": "info-s2-design-ch02",
+    "no": 2,
+    "title": "DP 최적화"
+  },
+  "lesson": {
+    "id": "info-s2-design-ch02-l03",
+    "no": 3,
+    "title": "LIS를 O(n log n)에",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "알고리즘 설계",
+      "DP 최적화"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "끝값을 기억하기",
+      "body": [
+        "S1에서는 가장 긴 증가하는 부분 수열(LIS)을 dp[i] = (a[i]로 끝나는 LIS의 길이)로 O(n²)에 구했습니다. n이 10⁵이면 너무 느립니다.",
+        "대신 길이마다 '그 길이의 증가 부분 수열이 가질 수 있는 가장 작은 끝값'을 tails에 기록합니다. 끝값이 작을수록 뒤에 더 많은 수를 붙일 수 있기 때문입니다.",
+        "새 수 x가 오면 tails에서 x 이상인 첫 칸을 x로 바꾸고, 그런 칸이 없으면 맨 뒤에 붙입니다. tails는 늘 증가 순서이므로 이분 탐색으로 위치를 찾아 전체 O(n log n)입니다."
+      ],
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "a = {10, 9, 2, 5, 3, 7, 101, 18}의 LIS 길이는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2, 3, 7, 18이 한 예입니다.",
+      "explanation": "아래 코드를 따라가면 tails는 마지막에 {2, 3, 7, 18}이 됩니다.\nLIS의 길이는 tails의 크기입니다.\n그래서 4입니다.",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "같은 a = {10, 9, 2, 5, 3, 7, 101, 18}로 코드를 실행한 뒤 tails[2]의 값은?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "길이 3인 증가 부분 수열의 가장 작은 끝값입니다.",
+      "explanation": "tails는 10 → 9 → 2 → {2, 5} → {2, 3} → {2, 3, 7} → {2, 3, 7, 101} → {2, 3, 7, 18}로 바뀝니다.\ntails[2]는 길이 3인 증가 부분 수열의 가장 작은 끝값입니다.\n그래서 7입니다.",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "tails는 늘 증가한다",
+      "body": [
+        "길이 L + 1인 증가 부분 수열의 끝값은 그 앞 원소보다 크고, 그 앞 원소까지가 길이 L인 증가 부분 수열입니다. 그래서 tails[L] > tails[L − 1]이 늘 성립합니다.",
+        "x로 tails[L]을 바꾸는 경우는 tails[L − 1] < x ≤ tails[L]일 때뿐이므로, 바꾼 뒤에도 증가 순서가 유지됩니다.",
+        "tails의 크기는 '지금까지 본 수에서 만들 수 있는 가장 긴 증가 부분 수열의 길이'와 같습니다. 그래서 마지막 크기가 답입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "a = {3, 1, 4, 1, 5, 9, 2, 6}에서 tails의 변화를 따라가세요.",
+      "steps": [
+        "3 → {3}, 1 → {1}, 4 → {1, 4}, 1 → {1, 4}(1 이상인 첫 칸 1을 1로)입니다.",
+        "5 → {1, 4, 5}, 9 → {1, 4, 5, 9}, 2 → {1, 2, 5, 9}입니다.",
+        "6 → {1, 2, 5, 6}이므로 LIS의 길이는 4입니다."
+      ],
+      "answer": "4",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = {3, 1, 4, 1, 5, 9, 2, 6}에서 tails의 크기가 늘어난 횟수는(맨 처음 원소를 넣을 때 포함)?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "맨 뒤에 붙인 횟수입니다.",
+      "explanation": "tails의 크기는 x를 맨 뒤에 붙일 때만 1 늘어납니다.\n3, 4, 5, 9를 넣을 때 맨 뒤에 붙었습니다.\n그래서 4번이고, 이는 LIS의 길이와 같습니다.",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = {5, 4, 3, 2, 1}의 LIS 길이는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "수가 계속 작아집니다.",
+      "explanation": "새 수가 매번 tails[0]보다 작아 tails[0]을 바꾸기만 합니다.\ntails는 끝까지 크기 1입니다.\n그래서 LIS의 길이는 1입니다.",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = {4, 2, 8, 6, 10, 5}로 코드를 실행한 뒤 tails[1]의 값은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "마지막 5가 어느 칸을 바꾸나요?",
+      "explanation": "tails는 {4} → {2} → {2, 8} → {2, 6} → {2, 6, 10} → {2, 5, 10}으로 바뀝니다.\n마지막 5는 5 이상인 첫 칸 tails[1] = 6을 바꿉니다.\n그래서 tails[1] = 5입니다.",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "바로 앞 문제에서 마지막 tails = {2, 5, 10}에 대한 설명으로 알맞은 것은? ① 이것이 실제 LIS이다 ② 길이는 LIS와 같지만 이 원소들이 실제 증가 부분 수열을 이루지는 않는다 ③ 길이도 LIS와 다르다 ④ 항상 마지막 원소를 포함한다",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "a에서 5는 10보다 뒤에 있습니다.",
+      "explanation": "a에서 5는 10보다 뒤에 나오므로 2, 5, 10은 a의 부분 수열이 아닙니다.\n그러나 크기 3은 LIS(예: 2, 6, 10)의 길이와 같습니다.\n답은 2입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "같은 값을 허용하면",
+      "body": [
+        "증가 대신 '감소하지 않는'(같은 값 허용) 부분 수열을 구하려면 lower_bound 대신 upper_bound(x보다 큰 첫 위치)를 씁니다. 같은 값을 만나면 그 뒤에 붙일 수 있게 하기 위해서입니다.",
+        "예를 들어 {2, 2, 2, 1, 3}에서 엄격히 증가하는 LIS는 2(예: 2, 3)이지만, 감소하지 않는 부분 수열은 2, 2, 2, 3으로 4입니다.",
+        "실제 수열을 복원하려면 각 원소가 tails의 몇 번째에 들어갔는지와 바로 앞 원소의 번호를 함께 저장해 거꾸로 따라갑니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = {2, 2, 2, 1, 3}에서 엄격히 증가하는 LIS의 길이는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "같은 값은 증가가 아닙니다.",
+      "explanation": "같은 값끼리는 엄격히 증가하지 않으므로 2를 여러 번 쓸 수 없습니다.\n2, 3이나 1, 3처럼 길이 2가 가장 깁니다.\n그래서 2입니다.",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = {2, 2, 2, 1, 3}에서 감소하지 않는 가장 긴 부분 수열의 길이는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "같은 값을 이어 쓸 수 있습니다.",
+      "explanation": "같은 값을 허용하면 2, 2, 2를 이어 쓸 수 있습니다.\n그 뒤에 3을 붙이면 2, 2, 2, 3입니다.\n그래서 4입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "tails[L]에 길이 L + 1인 증가 부분 수열의 가장 작은 끝값을 기록하면, tails는 늘 증가하므로 이분 탐색으로 갱신할 수 있습니다.",
+        "x 이상인 첫 칸을 x로 바꾸고, 없으면 맨 뒤에 붙입니다. LIS의 길이는 tails의 크기이고 전체 O(n log n)입니다.",
+        "tails 자체는 실제 LIS가 아닐 수 있으며, 같은 값을 허용할 때는 upper_bound를 씁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a = {0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15}의 LIS 길이는?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "0, 2, 6, 9, 11, 15가 한 예입니다.",
+      "explanation": "코드를 따라가면 tails는 마지막에 {0, 1, 3, 7, 11, 15}가 됩니다.\nLIS의 예로 0, 2, 6, 9, 11, 15가 있습니다.\n그래서 길이는 6입니다.",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a = {1, 3, 2, 4, 3, 5}의 LIS 길이는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1, 2, 3, 5가 한 예입니다.",
+      "explanation": "tails는 {1} → {1, 3} → {1, 2} → {1, 2, 4} → {1, 2, 3} → {1, 2, 3, 5}로 바뀝니다.\n크기가 4입니다.\n그래서 LIS의 길이는 4입니다.",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "tails가 언제나 엄격히 증가하는 순서임을 증명하세요.",
+      "model_answer": [
+        "tails[L]은 길이 L + 1인 증가 부분 수열의 가장 작은 끝값이다. 그런 수열에서 마지막 원소를 빼면 길이 L인 증가 부분 수열이고 그 끝값은 마지막 원소보다 작다.",
+        "그래서 tails[L − 1] ≤ (그 끝값) < tails[L]이다.",
+        "코드로 보면, x로 tails[L]을 바꾸는 것은 L이 x 이상인 첫 칸일 때뿐이라 tails[L − 1] < x ≤ tails[L]이고, 바꾼 뒤에도 tails[L − 1] < x < … 순서가 유지된다(L + 1번 칸은 tails[L] 이상).",
+        "맨 뒤에 붙이는 경우는 x가 모든 칸보다 크므로 역시 증가 순서다."
+      ],
+      "criteria": [
+        {
+          "text": "정의로 tails[L − 1] < tails[L]을 보였다",
+          "points": 3
+        },
+        {
+          "text": "갱신 뒤에도 순서가 유지됨을 보였다",
+          "points": 3
+        }
+      ],
+      "hint": "길이 L + 1인 수열에서 마지막 원소를 빼 보세요.",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "tails의 최종 크기가 LIS의 길이와 같음을 설명하세요.",
+      "model_answer": [
+        "불변식: 앞의 원소들을 처리한 뒤 tails의 크기 = 지금까지의 원소로 만들 수 있는 가장 긴 증가 부분 수열의 길이, tails[L] = 길이 L + 1인 것의 가장 작은 끝값.",
+        "새 원소 x는 끝값이 x보다 작은 가장 긴 수열(길이 = x 미만인 칸의 수)에 붙어 그보다 1 긴 수열을 만든다. 그 길이의 칸이 x 이상인 첫 칸이며, 그 칸의 값은 x보다 작을 수 없으므로 x로 바꾸면 정의가 유지된다.",
+        "x 미만인 칸이 tails 전체라면 더 긴 수열이 생기므로 맨 뒤에 붙인다.",
+        "그래서 불변식이 유지되고, 끝났을 때 tails의 크기가 LIS의 길이다."
+      ],
+      "criteria": [
+        {
+          "text": "불변식을 세웠다",
+          "points": 2
+        },
+        {
+          "text": "x를 처리할 때 정의가 유지됨을 보였다",
+          "points": 3
+        },
+        {
+          "text": "결론을 썼다",
+          "points": 1
+        }
+      ],
+      "hint": "x를 붙일 수 있는 가장 긴 수열을 생각하세요.",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()"
+    }
+  ]
+}

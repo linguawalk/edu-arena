@@ -1,0 +1,116 @@
+{
+ "no": 3,
+ "title": "SQL 개요",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "DDL·DML·DCL을 구분하고 대표 명령을 쓸 수 있다.",
+  "SELECT의 처리 순서(FROM–WHERE–GROUP BY–HAVING–SELECT–ORDER BY)를 설명할 수 있다.",
+  "조인 종류와 NULL 처리 규칙에 따라 결과 행 수를 예측할 수 있다."
+ ],
+ "checklist": [
+  "DDL(CREATE, ALTER, DROP), DML(SELECT, INSERT, UPDATE, DELETE), DCL(GRANT, REVOKE)",
+  "SELECT의 논리적 처리 순서",
+  "집계 함수와 GROUP BY, HAVING(그룹 조건)",
+  "내부 조인, 외부 조인(LEFT·RIGHT·FULL)",
+  "하위 질의와 EXISTS",
+  "NULL과 3값 논리, COUNT(*)와 COUNT(열)의 차이",
+  "뷰와 권한 관리"
+ ],
+ "advice": [
+  "이 단원은 SQL 문법을 외우는 곳이 아니라, SQL이 '무엇을 원하는지 선언하는 언어'라는 점과 결과를 예측하는 규칙을 익히는 곳입니다. 작은 표 두 개를 종이에 그리고 내부 조인과 LEFT 조인의 결과 행을 직접 써 보면 조인이 확실해집니다.",
+  "SQL 문장을 직접 작성하고 실행해 보는 연습은 code-arena의 SQL 실습에서 하세요. 이 과목에서는 문장을 쓴 뒤 'DBMS가 이것을 어떤 순서로 처리하는가'를 묻는 습관이 중요하고, 이것이 7단원 질의 최적화로 이어집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Silberschatz · Korth · Sudarshan",
+   "title": "Database System Concepts (교재 사이트, 장 제목으로 표기)",
+   "url": "https://www.db-book.com/",
+   "lang": "영어",
+   "part": "Introduction to SQL, Intermediate SQL 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "CMU 15-445 (공개 강의)",
+   "title": "Intro to Database Systems — 강의 노트·영상",
+   "url": "https://15445.courses.cs.cmu.edu/",
+   "lang": "영어",
+   "part": "Modern SQL 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "code-arena (실습)",
+   "title": "SQL 코드 작성 실습",
+   "url": "https://code-arena.org/",
+   "lang": "한국어",
+   "part": "실습(코드 작성) → SQL"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "10행짜리 테이블에서 email 열에 NULL이 2개 있으면 COUNT(email)의 결과는 얼마일까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "COUNT(열)은 NULL을 세지 않으므로 8입니다.\nCOUNT(*)는 10입니다.",
+   "hint": "NULL은 세지 않습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "GROUP BY로 묶은 그룹에 조건을 거는 절은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "HAVING"
+     ]
+    }
+   ],
+   "explanation": "WHERE는 그룹으로 묶기 전의 행에 조건을 겁니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "CREATE, ALTER, DROP처럼 데이터 구조를 정의하는 SQL 명령의 분류를 영문 약어로 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "DDL"
+     ]
+    }
+   ],
+   "explanation": "Data Definition Language의 줄임말입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "직원 5명 가운데 4명만 부서 테이블과 일치하는 부서 번호를 가집니다. 직원 LEFT JOIN 부서의 결과는 몇 행일까요? (부서 번호는 부서 테이블에서 유일)",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "LEFT 조인은 왼쪽 테이블의 모든 행을 남기므로 5행입니다.\n일치하지 않는 1명은 부서 열이 NULL입니다.",
+   "hint": "왼쪽 테이블 행은 모두 남습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "databases",
+ "id": "l2-computer-databases-u03"
+}

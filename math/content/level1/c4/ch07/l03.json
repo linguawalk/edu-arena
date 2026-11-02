@@ -1,0 +1,392 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch07",
+    "no": 7,
+    "title": "미분법의 활용"
+  },
+  "lesson": {
+    "id": "c4-ch07-l03",
+    "no": 3,
+    "title": "함수의 그래프 그리기",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "그래프를 그리는 순서",
+      "body": [
+        "정의역 → f′로 증가·감소와 극값 → f″로 볼록과 변곡점 → 절편과 점근선 순서로 조사합니다.",
+        "그래프 그리기는 탐정 수사와 비슷합니다. 정의역으로 그릴 범위를 정하고, f′으로 오르내림과 극값의 위치를, f″으로 휘어진 방향을, 절편과 점근선으로 그래프가 지나가거나 다가가는 선을 알아냅니다. 이 정보를 모아 표로 정리하면 계산기 없이도 그래프의 모양을 그릴 수 있습니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": -3,
+          "xmax": 3,
+          "ymin": -3,
+          "ymax": 3,
+          "xstep": 1,
+          "ystep": 1,
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                0,
+                -3,
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "y = x³ − 3x의 극값은 모두 몇 개일까요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y′ = 3x² − 3 = 3(x − 1)(x + 1)\nx = −1에서 극대, x = 1에서 극소 (부호가 모두 바뀜)\n극값 2개"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "y = xeˣ가 극값을 갖는 x는?",
+      "answer": "-1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y′ = eˣ + xeˣ = (1 + x)eˣ = 0\neˣ > 0이므로 x = −1\n확인: x = −1의 양쪽에서 − → +로 극소"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "점근선이 있는 그래프",
+      "body": [
+        "y = x + 1/x은 x = 0이 점근선이고, x > 0에서 x = 1일 때 극솟값을 가집니다.",
+        "분수 꼴이 있으면 분모가 0이 되는 곳에 세로 점근선이 생깁니다. y = x + 1/x에서 x가 커지면 1/x → 0이라 그래프가 직선 y = x에 가까워지는데, 이런 비스듬한 점근선도 있습니다. 극값은 f′(x) = 1 − 1/x² = 0에서 찾습니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": -5,
+          "xmax": 5,
+          "ymin": -5,
+          "ymax": 5,
+          "xstep": 1,
+          "ystep": 1,
+          "curves": [
+            {
+              "kind": "rational",
+              "k": 1,
+              "p": 0,
+              "q": 0
+            },
+            {
+              "kind": "poly",
+              "coef": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "y = x²e⁻ˣ의 그래프의 개형을 조사하세요.",
+      "steps": [
+        "y′ = (2x − x²)e⁻ˣ = x(2 − x)e⁻ˣ: x = 0에서 극소 0, x = 2에서 극대 4/e²",
+        "x → ∞이면 x²e⁻ˣ → 0 (지수가 더 빨리 커짐), 점근선 y = 0",
+        "x → −∞이면 한없이 커짐",
+        "항상 y ≥ 0"
+      ],
+      "answer": "x = 0 극소 0, x = 2 극대 4/e²"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x > 0에서 y = x + 1/x의 극솟값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y′ = 1 − 1/x² = 0에서 x = 1 (x > 0)\nx = 1에서 − → +로 극소\n극솟값 1 + 1 = 2"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "y = x + 1/x의 그래프에서 y축과 평행한 점근선은 x = ?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x = 0에서 분모가 0이라 정의되지 않고, x → 0이면 1/x이 한없이 커지거나 작아집니다.\n세로 점근선 x = 0\n원리: 분모가 0이 되는 곳에 세로 점근선"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "방정식의 실근의 개수",
+      "body": [
+        "f(x) = k의 실근의 개수는 y = f(x)의 그래프와 직선 y = k의 교점의 개수입니다.",
+        "방정식을 직접 풀지 않고 실근의 개수만 알고 싶을 때 그래프가 강력합니다. f(x) = k로 바꿔 놓으면, 직선 y = k를 위아래로 움직이면서 그래프와 몇 번 만나는지 셉니다. 극댓값과 극솟값이 개수가 바뀌는 경계가 됩니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "x³ − 3x² − 9x = k가 서로 다른 세 실근을 갖는 k의 범위를 구하세요.",
+      "steps": [
+        "f(x) = x³ − 3x² − 9x, f′(x) = 3(x − 3)(x + 1)",
+        "극댓값 f(−1) = 5, 극솟값 f(3) = −27",
+        "직선 y = k가 세 점에서 만나려면 극솟값과 극댓값 사이",
+        "−27 < k < 5"
+      ],
+      "answer": "−27 < k < 5"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x³ − 3x = k가 서로 다른 세 실근을 갖는 정수 k는 몇 개일까요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "f(x) = x³ − 3x의 극댓값 f(−1) = 2, 극솟값 f(1) = −2\n세 점에서 만나려면 −2 < k < 2\n정수 −1, 0, 1로 3개"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x³ − 3x − 2 = 0의 서로 다른 실근은 몇 개일까요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x³ − 3x = 2에서 k = 2는 극댓값과 같음\n직선 y = 2가 극대점에서 접하고 한 번 더 만남\n서로 다른 실근 2개 (x = −1 중근, x = 2)"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "부등식의 증명",
+      "body": [
+        "f(x) ≥ 0을 보이려면 f(x)의 최솟값이 0 이상임을 보입니다.",
+        "부등식 f(x) ≥ g(x)를 보이려면 h(x) = f(x) − g(x)로 놓고 h의 최솟값이 0 이상임을 보이면 됩니다. 최솟값은 미분으로 극값을 찾아 구합니다. eˣ ≥ x + 1은 y = eˣ의 그래프가 x = 0에서의 접선 y = x + 1보다 항상 위에 있다는 뜻입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "x > 0에서 ln x ≤ x − 1임을 보이세요.",
+      "steps": [
+        "h(x) = x − 1 − ln x로 놓습니다.",
+        "h′(x) = 1 − 1/x = 0에서 x = 1, x < 1에서 h′ < 0, x > 1에서 h′ > 0",
+        "최솟값 h(1) = 0",
+        "h(x) ≥ 0이므로 ln x ≤ x − 1 (등호는 x = 1)"
+      ],
+      "answer": "최솟값이 0이므로 성립"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "모든 실수 x에 대해 eˣ ≥ x + 1입니다. 등호가 성립하는 x는?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "h(x) = eˣ − x − 1의 최솟값을 구하세요.",
+      "explanation": "h(x) = eˣ − x − 1, h′(x) = eˣ − 1 = 0에서 x = 0\nx = 0에서 최솟값 h(0) = 0\n등호가 성립하는 x = 0\n원리: 두 함수의 차의 최솟값이 0 이상이면 부등식이 성립합니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "x > 0에서 x − ln x의 최솟값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "미분해서 극값을 찾으세요.",
+      "explanation": "f′(x) = 1 − 1/x = 0에서 x = 1\nx = 1에서 − → +로 최소\n최솟값 1 − 0 = 1\n원리: 극값이 하나뿐이고 극소이면 그것이 최솟값입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "x > 0에서 x ln x의 최솟값은 −1/{{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "e"
+          ]
+        }
+      ],
+      "hint": "곱의 미분으로 f′을 구하세요.",
+      "explanation": "f′(x) = ln x + 1 = 0에서 x = 1/e\n최솟값 (1/e) × ln (1/e) = −1/e\n빈칸은 e"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "극값의 개수와 위치, 볼록한 방향, 점근선이 그래프 모양을 결정합니다.",
+        "그래프 문제는 결국 f′과 f″의 부호표를 만드는 일로 모입니다. 표를 한 번 정확히 만들어 두면 극값, 최대·최소, 실근의 개수, 부등식의 성립 여부를 모두 그 표에서 읽을 수 있습니다. 표를 만들 때는 f′과 f″이 0이 되는 점을 모두 한 줄에 늘어놓습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x⁴ − 2x²의 극값은 모두 몇 개일까요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "y′ = 0의 해를 모두 찾으세요.",
+      "explanation": "y′ = 4x³ − 4x = 4x(x − 1)(x + 1)\nx = −1, 0, 1에서 모두 부호가 바뀜\n극값 3개 (극소, 극대, 극소)"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x²e⁻ˣ가 극댓값을 갖는 x는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "곱의 미분을 쓰세요.",
+      "explanation": "y′ = 2xe⁻ˣ − x²e⁻ˣ = x(2 − x)e⁻ˣ\nx = 2에서 + → −로 극대\n극대가 되는 x = 2"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "y = ln x / x가 극댓값을 갖는 x = {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "e"
+          ]
+        }
+      ],
+      "hint": "몫의 미분을 쓰세요.",
+      "explanation": "y′ = (1 − ln x)/x² = 0에서 ln x = 1\nx = e에서 + → −로 극대\n빈칸은 e (극댓값 1/e)"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "x³ − 3x + k = 0이 실근을 하나만 가지려면 양수 k가 어떤 값보다 커야 합니다. 그 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "그래프와 직선 y = −k를 생각하세요.",
+      "explanation": "x³ − 3x = −k로 바꾸면 f(x) = x³ − 3x와 y = −k의 교점\n실근이 하나이려면 −k < −2 (극솟값보다 아래), 즉 k > 2\n그 값은 2"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "0 < x < 2π에서 y = x − 2 sin x가 극솟값을 갖는 x = π/{{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "3"
+          ]
+        }
+      ],
+      "hint": "y′ = 0의 해 중 y″ > 0인 것을 찾으세요.",
+      "explanation": "y′ = 1 − 2 cos x = 0에서 cos x = 1/2, x = π/3 또는 5π/3\ny″ = 2 sin x이고 x = π/3에서 양수이므로 극소\n빈칸은 3"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = eˣ − x의 최솟값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "미분해서 극값을 찾으세요.",
+      "explanation": "y′ = eˣ − 1 = 0에서 x = 0\nx = 0에서 − → +로 최소\n최솟값 e⁰ − 0 = 1\n원리: 극값이 하나뿐이고 극소이면 그것이 최솟값입니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "방정식의 실근의 개수를 그래프의 교점으로 셀 수 있는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "교점"
+          ],
+          [
+            "x좌표",
+            "근"
+          ],
+          [
+            "y = k",
+            "직선"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "f(x) = k를 만족하는 x는 곡선 y = f(x)와 직선 y = k가 만나는 점의 x좌표입니다. 그래서 두 그래프의 교점의 개수가 곧 실근의 개수입니다."
+    }
+  ]
+}

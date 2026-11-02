@@ -1,0 +1,107 @@
+{
+ "no": 6,
+ "title": "광 링크 설계",
+ "hours": 5,
+ "after": [
+  3,
+  5
+ ],
+ "objectives": [
+  "광 파워 버짓으로 수신 전력과 마진을 계산할 수 있다.",
+  "손실 한계와 분산 한계로 최대 전송 거리를 구할 수 있다.",
+  "접속·커넥터 손실과 시스템 마진을 설계에 반영할 수 있다."
+ ],
+ "checklist": [
+  "파워 버짓: 송신 전력 − (광섬유 손실 + 접속 손실 + 커넥터 손실) − 시스템 마진 ≥ 수신 감도",
+  "융착 접속 손실(약 0.1 dB 이하), 커넥터 손실(약 0.3~0.5 dB)",
+  "손실 한계 거리 = 허용 손실/손실 계수",
+  "분산 한계(비트율이 높을수록 짧아짐)",
+  "OTDR로 손실·고장 위치 측정",
+  "라이즈 타임 버짓",
+  "설계 여유: 노화, 수리 접속"
+ ],
+ "advice": [
+  "광 링크 설계는 무선의 링크 버짓과 같은 가계부 계산입니다. 다만 무선처럼 거리의 제곱으로 약해지지 않고 km당 일정한 dB로 약해지므로, 최대 거리를 한 번의 나눗셈으로 구할 수 있습니다. 실제 설계에서는 수리 때 추가될 접속점과 부품 노화를 생각해 시스템 마진을 꼭 남겨 둔다는 점을 기억하세요.",
+  "손실 한계와 분산 한계 가운데 작은 쪽이 실제 최대 거리입니다. 저속에서는 손실이, 고속(수십 Gbps 이상)에서는 분산이 먼저 한계가 되는 경향을 3단원의 계산과 함께 확인해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Keiser, Optical Fiber Communications (장 제목으로 표기)",
+   "part": "Digital Links 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Agrawal, Fiber-Optic Communication Systems (장 제목으로 표기)",
+   "part": "Lightwave Systems 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "무선통신 5단원 링크 버짓",
+   "url": "guide.html?lv=2&t=ict&s=wireless&u=5"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "광섬유 40 km(0.25 dB/km), 커넥터 2개(각 0.5 dB), 융착 접속 4곳(각 0.1 dB)의 전체 손실은 몇 dB일까요?",
+   "answer": "11.4",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "10 + 1 + 0.4 = 11.4 dB",
+   "hint": "각 손실을 모두 더하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 링크에 송신 전력 0 dBm을 넣으면 수신 전력은 몇 dBm일까요?",
+   "answer": "-11.4",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "0 − 11.4 = −11.4 dBm",
+   "hint": "송신 전력 − 전체 손실입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "송신 0 dBm, 수신 감도 −28 dBm, 시스템 마진 3 dB, 커넥터 손실 합 1 dB, 광섬유 손실 0.25 dB/km일 때 손실로 정해지는 최대 거리는 몇 km일까요?",
+   "answer": "96",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "광섬유에 쓸 수 있는 손실 = 28 − 3 − 1 = 24 dB\n24/0.25 = 96 km",
+   "hint": "허용 손실을 손실 계수로 나누세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "광 펄스를 보내고 되돌아오는 산란광을 분석해 광섬유의 손실 분포와 고장 위치를 찾는 측정기를 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "OTDR"
+     ]
+    }
+   ],
+   "explanation": "Optical Time-Domain Reflectometer의 줄임말입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "ict",
+ "subject": "optical-comm",
+ "id": "l2-ict-optical-comm-u06"
+}

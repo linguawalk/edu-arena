@@ -1,0 +1,96 @@
+{
+  "language": "fortran",
+  "category": "legacy_historical",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "정밀도와 내장 함수",
+  "questions": [
+    {
+      "id": "fortran_l3_u04_q001",
+      "type": "predict_output",
+      "code": "print *, sqrt(16.0)\nprint *, abs(-5)\nprint *, max(3, 7)\nprint *, min(3, 7)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["4.0 5 7 3", "4 5 3 7", "16 -5 7 3", "오류"],
+      "answer": 0,
+      "explanation_en": "sqrt(16.0)=4.0, abs(-5)=5, max(3,7)=7, min(3,7)=3 — Fortran's intrinsic (built-in) math functions cover the same basics found in every other language.",
+      "explanation_ko": "sqrt(16.0)=4.0, abs(-5)=5, max(3,7)=7, min(3,7)=3입니다 — Fortran의 내장 수학 함수는 다른 모든 언어에서 볼 수 있는 것과 같은 기본 기능을 다룹니다.",
+      "concept_tags": ["intrinsic_function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "fortran_l3_u04_q002",
+      "type": "predict_output",
+      "code": "real :: x\ndouble precision :: y\nx = 1.0 / 3.0\ny = 1.0d0 / 3.0d0\nprint *, x\nprint *, y",
+      "prompt_en": "What is printed? (Note: different precision levels give different amounts of detail.)",
+      "prompt_ko": "출력 결과는? (다른 정밀도 수준은 다른 양의 세부 정보를 준다는 점에 주의하세요.)",
+      "options": [
+        "짧은 자릿수 (real), 훨씬 긴 자릿수 (double precision)",
+        "둘 다 정확히 같은 자릿수",
+        "오류",
+        "정수 0, 정수 0"
+      ],
+      "answer": 0,
+      "explanation_en": "real gives single precision (~7 significant digits, 0.333333343...), while double precision gives roughly double that (0.33333333333333331...); the 1.0d0 suffix marks a double-precision literal.",
+      "explanation_ko": "real은 단정밀도(약 7자리 유효숫자, 0.333333343...)를 주고, double precision은 대략 그 두 배(0.33333333333333331...)를 줍니다. 1.0d0 접미사는 배정밀도 리터럴을 나타냅니다.",
+      "concept_tags": ["real_type", "double_precision"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "fortran_l3_u04_q003",
+      "type": "fill_blank",
+      "code": "____ precision :: preciseValue\npreciseValue = 1.0d0 / 3.0d0",
+      "prompt_en": "Fill in the blank with the keyword for a higher-precision floating-point type.",
+      "prompt_ko": "더 높은 정밀도의 부동소수점 타입 키워드를 빈칸에 채우세요.",
+      "options": ["double", "long", "extended", "big"],
+      "answer": 0,
+      "explanation_en": "double precision declares a type with roughly twice the significant digits of real, used when scientific calculations need more accuracy.",
+      "explanation_ko": "double precision은 real보다 대략 두 배의 유효숫자를 가진 타입을 선언하며, 과학 계산에서 더 높은 정확도가 필요할 때 사용합니다.",
+      "concept_tags": ["double_precision"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "fortran_l3_u04_q004",
+      "type": "predict_output",
+      "code": "integer :: a, b\na = 17\nb = 5\nprint *, mod(a, b)\nprint *, a / b",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["2 3", "3 2", "0 3", "오류"],
+      "answer": 0,
+      "explanation_en": "mod(17, 5) computes the remainder, 2; a / b performs integer division, giving 3.",
+      "explanation_ko": "mod(17, 5)는 나머지인 2를 계산합니다. a / b는 정수 나눗셈을 수행해서 3이 됩니다.",
+      "concept_tags": ["mod_function", "integer_division"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "fortran_l3_u04_q005",
+      "type": "predict_output",
+      "code": "integer :: nums(5)\nnums = (/5, 2, 8, 1, 9/)\nprint *, maxval(nums)\nprint *, minval(nums)",
+      "prompt_en": "What is printed? (Array-wide intrinsic functions.)",
+      "prompt_ko": "출력 결과는? (배열 전체에 대한 내장 함수입니다.)",
+      "options": ["9 1", "1 9", "5 2", "오류"],
+      "answer": 0,
+      "explanation_en": "maxval() and minval() find the largest and smallest values in an entire array at once, without needing an explicit loop: 9 and 1.",
+      "explanation_ko": "maxval()과 minval()은 명시적인 반복문 없이도 배열 전체에서 가장 크고 작은 값을 한 번에 찾습니다: 9와 1.",
+      "concept_tags": ["intrinsic_function", "maxval_function", "minval_function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "fortran_l3_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "real / double precision", "definition": "각각 단정밀도와 배정밀도 부동소수점 타입" },
+        { "term": "sqrt / abs / max / min", "definition": "다른 모든 언어에서도 익숙한 기본 수학 내장 함수" },
+        { "term": "maxval / minval / sum", "definition": "배열 전체에 대해 명시적 반복문 없이 동작하는 내장 함수" },
+        { "term": "d0 접미사", "definition": "배정밀도 실수 리터럴을 나타내는 표기 (예: 1.0d0)" }
+      ],
+      "explanation_en": "Fortran's rich set of array-wide intrinsic functions (maxval, minval, sum, product) reflects its scientific-computing heritage, letting common numerical operations be expressed without explicit loops decades before array methods appeared in mainstream languages.",
+      "explanation_ko": "배열 전체에 동작하는 Fortran의 풍부한 내장 함수 집합(maxval, minval, sum, product)은 과학 계산이라는 유산을 반영하며, 주류 언어에 배열 메서드가 등장하기 수십 년 전부터 명시적 반복문 없이 흔한 수치 연산을 표현할 수 있게 했습니다.",
+      "concept_tags": ["intrinsic_function", "real_type", "double_precision"],
+      "difficulty": "practice"
+    }
+  ]
+}

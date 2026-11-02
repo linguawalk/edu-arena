@@ -1,0 +1,101 @@
+{
+ "no": 7,
+ "title": "주파수·전압 제어와 경제 급전",
+ "hours": 6,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "조속기 속도 조정률로 주파수 변화에 따른 발전기 출력 변화를 계산할 수 있다.",
+  "부하 주파수 제어(AGC)와 전압·무효전력 제어 설비를 설명할 수 있다.",
+  "등증분비용 법칙으로 경제 급전을 계산할 수 있다."
+ ],
+ "checklist": [
+  "유효전력–주파수, 무효전력–전압의 결합",
+  "속도 조정률(드룹) R: (Δf/f_n) = −R(ΔP/P_n)",
+  "1차 제어(조속기), 2차 제어(AGC, 지역 제어 오차), 3차 제어(재급전)",
+  "전압 제어: 발전기 여자, 변압기 탭(OLTC), 조상 설비",
+  "조상 설비: 전력용 콘덴서, 분로 리액터, 동기 조상기, SVC, STATCOM",
+  "경제 급전: 증분 비용 dC/dP가 모든 발전기에서 같을 때(λ) 총비용 최소",
+  "송전 손실과 페널티 계수"
+ ],
+ "advice": [
+  "주파수는 계통 전체의 발전과 소비가 맞는지 보여 주는 단 하나의 숫자이고, 전압은 지역마다 다른 국소적인 값입니다. 그래서 주파수는 모든 발전기가 드룹으로 나누어 맡고(1차), 중앙에서 AGC로 원래 값에 되돌리며(2차), 전압은 그 지역의 무효전력 설비로 맞춥니다. 드룹 계산은 비율로 풀면 되니 단위만 조심하고, 경제 급전은 '증분 비용이 같아질 때까지 싼 발전기의 출력을 올린다'는 직관과 등증분비용 식을 연결해 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Glover · Overbye · Sarma, Power System Analysis and Design (장 제목으로 표기)",
+   "part": "Power System Controls 장"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Kundur, Power System Stability and Control (장 제목으로 표기)",
+   "part": "Control of Active Power and Reactive Power 장"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Grainger · Stevenson, Power System Analysis (번역본 『전력계통공학』)",
+   "part": "경제 운전 관련 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.061 Introduction to Electric Power Systems (2011년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-061-introduction-to-electric-power-systems-spring-2011/",
+   "lang": "영어",
+   "part": "frequency control, dispatch 관련 강의 노트"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "정격 500 MW, 속도 조정률 5%인 발전기가 있습니다. 60 Hz 계통 주파수가 0.3 Hz 내려가면 출력은 몇 MW 늘어날까요?",
+   "answer": "50",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "Δf/f = 0.3/60 = 0.005\nΔP = (0.005/0.05) × 500 = 50 MW",
+   "hint": "(Δf/f_n)/R × P_n입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "증분 비용이 IC₁ = 10 + 0.02P₁, IC₂ = 8 + 0.04P₂ [원/kWh 단위 생략]인 두 발전기로 총 500 MW를 경제 급전하면 P₁은 몇 MW일까요? (손실 무시)",
+   "answer": "300",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "10 + 0.02P₁ = 8 + 0.04(500 − P₁)\n0.06P₁ = 18이므로 P₁ = 300 MW, P₂ = 200 MW",
+   "hint": "두 증분 비용을 같게 놓으세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "무효전력의 흐름은 주로 계통의 {{1}}과 밀접하게 관련되어 지역마다 조상 설비로 조정합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "전압"
+     ]
+    }
+   ],
+   "explanation": "유효전력은 주파수, 무효전력은 전압과 결합되어 있습니다.\n그래서 전압은 그 지역에서 무효전력으로 맞춥니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "power-systems",
+ "id": "l3-electrical-power-systems-u07"
+}

@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 6,
+  "unit": 4,
+  "unit_title": "유니온 (union)",
+  "questions": [
+    {
+      "id": "c_l6_u04_q001",
+      "type": "predict_output",
+      "code": "union Data {\n    int i;\n    float f;\n    char str[4];\n};\n\nprintf(\"%d\", sizeof(union Data));",
+      "prompt_en": "What is printed? (Assume int and float are each 4 bytes.)",
+      "prompt_ko": "출력 결과는? (int와 float는 각각 4바이트라고 가정)",
+      "options": ["12", "4", "8", "0"],
+      "answer": 1,
+      "explanation_en": "A union allocates only enough space for its largest member, and all members share that same memory; since all three members here are 4 bytes, the union is 4 bytes total.",
+      "explanation_ko": "유니온은 가장 큰 멤버 하나만큼의 공간만 할당하고, 모든 멤버가 그 메모리를 공유합니다. 여기서는 세 멤버 모두 4바이트이므로 유니온 전체 크기도 4바이트입니다.",
+      "concept_tags": ["union"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l6_u04_q002",
+      "type": "predict_output",
+      "code": "union Data {\n    int i;\n    float f;\n};\n\nunion Data data;\ndata.i = 10;\ndata.f = 3.14;\nprintf(\"%d\", data.i);",
+      "prompt_en": "What happens when reading data.i after data.f was assigned last?",
+      "prompt_ko": "data.f를 마지막에 대입한 뒤 data.i를 읽으면 어떻게 될까요?",
+      "options": ["10 (여전히 이전 값 유지)", "0", "float 3.14의 비트 패턴을 int로 재해석한, 10과 무관한 값", "컴파일 오류"],
+      "answer": 2,
+      "explanation_en": "Because union members share the same memory, assigning data.f overwrites the bytes that data.i previously held; reading data.i afterward reinterprets the float's bit pattern as an int, producing an unrelated value.",
+      "explanation_ko": "유니온의 멤버들은 같은 메모리를 공유하기 때문에, data.f에 값을 대입하면 이전에 data.i가 갖고 있던 바이트가 덮어써집니다. 이후 data.i를 읽으면 float의 비트 패턴을 int로 재해석한, 10과는 무관한 값이 나옵니다.",
+      "concept_tags": ["union", "memory_sharing"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l6_u04_q003",
+      "type": "fill_blank",
+      "code": "____ Shape {\n    int radius;   // 원용\n    int side;     // 정사각형용\n};\n// 한 번에 하나의 값만 필요하므로 메모리를 아끼고 싶음",
+      "prompt_en": "Fill in the blank with the keyword that lets these members share memory instead of each having separate space.",
+      "prompt_ko": "이 멤버들이 각자 별도 공간을 갖는 대신 메모리를 공유하도록 빈칸에 들어갈 키워드는?",
+      "options": ["union", "struct", "enum", "typedef"],
+      "answer": 0,
+      "explanation_en": "Unlike struct, which allocates separate space for every member, union overlaps them in shared memory — ideal when only one value is needed at a time.",
+      "explanation_ko": "모든 멤버에 별도 공간을 할당하는 struct와 달리, union은 멤버들을 같은 메모리에 겹쳐 배치합니다. 한 번에 하나의 값만 필요할 때 적합합니다.",
+      "concept_tags": ["union", "struct"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l6_u04_q004",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "union", "definition": "모든 멤버가 같은 메모리 공간을 공유하는 자료형" },
+        { "term": "struct와의 차이", "definition": "struct는 멤버마다 별도 공간을, union은 하나의 공유 공간을 사용" },
+        { "term": "유니온 크기", "definition": "가장 큰 멤버의 크기로 결정됨" },
+        { "term": "메모리 덮어쓰기", "definition": "한 멤버에 값을 쓰면 다른 멤버의 값이 같이 바뀌어 버리는 현상" }
+      ],
+      "explanation_en": "Unions trade type safety for memory efficiency, so the programmer must track which member is currently valid — a responsibility struct doesn't require.",
+      "explanation_ko": "유니온은 타입 안전성을 희생하는 대신 메모리 효율을 얻습니다. 그래서 프로그래머가 현재 어떤 멤버가 유효한지 직접 추적해야 하며, 이는 struct에서는 필요 없는 책임입니다.",
+      "concept_tags": ["union", "struct", "memory_sharing"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l6_u04_q005",
+      "type": "error_finding",
+      "code": "union Value {\n    int i;\n    float f;\n};\n\nunion Value v;\nv.i = 42;\nprintf(\"%f\", v.f);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "union 선언 문법 오류",
+        "i에 값을 저장한 뒤 f로 읽어서, 42의 정수 비트 패턴을 float로 잘못 해석해 의미 없는 값을 얻음",
+        "printf 형식 지정자 오류",
+        "문제 없음, 42.0이 정상적으로 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Since i and f share the same memory, writing an int and reading it back as a float reinterprets the same bit pattern under a different type, producing a nonsensical value rather than a proper conversion.",
+      "explanation_ko": "i와 f는 같은 메모리를 공유하므로, int로 저장한 값을 float로 읽으면 같은 비트 패턴을 다른 자료형으로 잘못 해석하게 됩니다. 이는 올바른 형변환이 아니라 의미 없는 값을 만들어내는 실수입니다.",
+      "concept_tags": ["union", "memory_sharing", "type_reinterpretation"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l6_u04_q006",
+      "type": "predict_output",
+      "code": "struct Point {\n    int x;\n    int y;\n};\n\nprintf(\"%d\", sizeof(struct Point));",
+      "prompt_en": "What is printed for a struct with the same two int members, for comparison with the union example above? (Assume int is 4 bytes.)",
+      "prompt_ko": "위 유니온 예제와 비교하기 위해, 같은 int 멤버 2개를 가진 struct의 크기는 얼마일까요? (int는 4바이트라고 가정)",
+      "options": ["4", "8", "2", "0"],
+      "answer": 1,
+      "explanation_en": "Unlike union, struct allocates separate space for each member, so two 4-byte ints total 8 bytes — double the union's size for the same members.",
+      "explanation_ko": "union과 달리 struct는 각 멤버에 별도 공간을 할당합니다. 4바이트 int 2개면 총 8바이트로, 같은 멤버를 가진 union의 크기(4바이트)보다 두 배입니다.",
+      "concept_tags": ["union", "struct"],
+      "difficulty": "practice"
+    }
+  ]
+}

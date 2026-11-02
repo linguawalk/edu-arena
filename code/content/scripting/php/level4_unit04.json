@@ -1,0 +1,96 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 4,
+  "unit": 4,
+  "unit_title": "Null 관련 연산자",
+  "questions": [
+    {
+      "id": "php_l4_u04_q001",
+      "type": "predict_output",
+      "code": "$data = [\"name\" => \"Kim\"];\necho $data[\"age\"] ?? \"없음\";",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["없음", "오류", "null", "0"],
+      "answer": 0,
+      "explanation_en": "?? (null coalescing) returns the right side when the left side is null or undefined; since \"age\" doesn't exist, it safely produces 없음 without a warning.",
+      "explanation_ko": "??(null 병합)은 왼쪽이 null이거나 정의되지 않았을 때 오른쪽을 반환합니다. \"age\"가 없으므로 경고 없이 안전하게 없음을 만들어냅니다.",
+      "concept_tags": ["null_coalescing"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l4_u04_q002",
+      "type": "predict_output",
+      "code": "$data = [\"name\" => \"Kim\"];\n$data[\"age\"] ??= 20;\necho $data[\"age\"];",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["20", "null", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "??= assigns the right-hand value only if the left side is currently null or unset; since \"age\" doesn't exist, it's set to 20.",
+      "explanation_ko": "??=는 왼쪽이 현재 null이거나 설정되지 않았을 때만 오른쪽 값을 대입합니다. \"age\"가 없으므로 20으로 설정됩니다.",
+      "concept_tags": ["null_coalescing_assignment"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l4_u04_q003",
+      "type": "predict_output",
+      "code": "class Address {\n    public string $city = \"서울\";\n}\nclass Person {\n    public ?Address $address = null;\n}\n\n$p = new Person();\necho $p->address?->city ?? \"주소 없음\";",
+      "prompt_en": "What is printed? (Note the ?-> nullsafe operator.)",
+      "prompt_ko": "출력 결과는? (?-> nullsafe 연산자에 주의하세요.)",
+      "options": ["서울", "주소 없음", "오류", "null"],
+      "answer": 1,
+      "explanation_en": "?-> safely accesses a property only if the object isn't null, short-circuiting to null otherwise instead of throwing; since address is null, ?->city evaluates to null, and ?? falls back to 주소 없음.",
+      "explanation_ko": "?->는 객체가 null이 아닐 때만 안전하게 속성에 접근하고, null이면 예외 없이 그냥 null로 처리합니다. address가 null이므로 ?->city는 null이 되고, ??가 주소 없음으로 대체합니다.",
+      "concept_tags": ["nullsafe_operator"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l4_u04_q004",
+      "type": "error_finding",
+      "code": "class Address {\n    public string $city = \"서울\";\n}\nclass Person {\n    public ?Address $address = null;\n}\n\n$p = new Person();\necho $p->address->city;",
+      "prompt_en": "What problem does this code have? (Note: no ?-> or ?? used here.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (?-> 나 ??가 쓰이지 않은 점에 주의하세요.)",
+      "options": [
+        "Address 클래스 정의 오류",
+        "address가 null인데 nullsafe 연산자 없이 그냥 ->로 접근해서, 'null에서 속성을 읽으려는 시도'라는 경고(Warning)가 발생하고 결과는 빈 값이 됨",
+        "Person 클래스 정의 오류",
+        "문제 없음, \"서울\"이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Without the nullsafe operator, accessing a property on a null value directly triggers a Warning ('Attempt to read property on null') rather than crashing the script; the expression evaluates to null, printing nothing — still a bug worth catching, just not fatal.",
+      "explanation_ko": "nullsafe 연산자 없이 null 값에 직접 속성 접근을 시도하면 스크립트가 중단되는 대신 경고('null에서 속성을 읽으려는 시도')가 발생합니다. 식은 null로 평가되어 아무것도 출력되지 않습니다 — 치명적이진 않지만 여전히 잡아내야 할 버그입니다.",
+      "concept_tags": ["nullsafe_operator"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l4_u04_q005",
+      "type": "fill_blank",
+      "code": "$username = $input ____ \"익명\";\n// $input이 null이면 \"익명\"을 사용해야 함",
+      "prompt_en": "Fill in the blank with the operator that provides a fallback value only when the left side is null.",
+      "prompt_ko": "왼쪽이 null일 때만 대체값을 제공하는 연산자를 빈칸에 채우세요.",
+      "options": ["??", "||", "or", "and"],
+      "answer": 0,
+      "explanation_en": "?? checks specifically for null (or unset), unlike || which treats any falsy value (0, \"\", false) as needing a fallback.",
+      "explanation_ko": "??는 구체적으로 null(또는 미설정)을 확인합니다. 0, \"\", false 같은 모든 falsy 값을 대체 대상으로 취급하는 ||와는 다릅니다.",
+      "concept_tags": ["null_coalescing"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l4_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "?? (null 병합)", "definition": "왼쪽이 null이면 오른쪽 기본값을 사용" },
+        { "term": "??= (null 병합 대입)", "definition": "왼쪽이 null일 때만 오른쪽 값을 대입" },
+        { "term": "?-> (nullsafe 연산자)", "definition": "객체가 null이 아닐 때만 안전하게 속성/메서드에 접근" },
+        { "term": "null 관련 연산자들의 목적", "definition": "번거로운 null 검사 조건문 없이도 null을 우아하게 처리하기 위함" }
+      ],
+      "explanation_en": "PHP's null-handling operators (??, ??=, ?->) closely mirror C#'s ??, ??=, and ?. — both languages converged on nearly identical syntax to solve the same null-safety problem.",
+      "explanation_ko": "PHP의 null 처리 연산자(??, ??=, ?->)는 C#의 ??, ??=, ?.와 매우 비슷합니다 — 두 언어 모두 같은 null 안전성 문제를 해결하기 위해 거의 동일한 문법으로 수렴했습니다.",
+      "concept_tags": ["null_coalescing", "null_coalescing_assignment", "nullsafe_operator"],
+      "difficulty": "practice"
+    }
+  ]
+}

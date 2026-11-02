@@ -1,0 +1,118 @@
+{
+ "no": 8,
+ "title": "주파수 응답",
+ "hours": 5,
+ "after": [
+  6
+ ],
+ "objectives": [
+  "결합·바이패스 커패시터가 정하는 하한 차단 주파수를 계산할 수 있다.",
+  "트랜지스터 내부 커패시턴스와 밀러 효과가 상한 차단 주파수를 정하는 원리를 설명할 수 있다.",
+  "이득–대역폭 곱의 의미를 설명하고 계산에 쓸 수 있다."
+ ],
+ "checklist": [
+  "중간 대역 이득, 하한·상한 차단 주파수(−3 dB), 대역폭",
+  "결합 커패시터의 고역 통과: f_L = 1/(2πRC)",
+  "트랜지스터 내부 커패시턴스(C_π, C_μ / C_gs, C_gd)",
+  "밀러 효과: 입력 쪽 등가 커패시턴스 C(1 + |A|)",
+  "개방 회로 시정수법으로 상한 차단 주파수 추정",
+  "이득–대역폭 곱(GBW)은 거의 일정",
+  "보드 선도로 증폭기 주파수 특성 그리기"
+ ],
+ "advice": [
+  "주파수 응답 단원은 회로이론 11단원의 RC 필터를 증폭기에 적용한 것입니다. 낮은 주파수에서는 바깥의 큰 커패시터(결합·바이패스)가, 높은 주파수에서는 트랜지스터 안의 작은 커패시터가 이득을 떨어뜨린다는 큰 그림을 먼저 잡으세요. 각 커패시터마다 '그 커패시터가 보는 저항'을 찾아 시정수를 구하는 것이 계산의 전부입니다.",
+  "밀러 효과는 이득이 클수록 입력과 출력 사이의 작은 커패시터가 입력 쪽에서 크게 보이는 현상으로, 공통 이미터·공통 소스 증폭기의 대역폭을 제한하는 주범입니다. 이를 피하려고 공통 베이스·공통 게이트를 겹쳐 쌓는 캐스코드 구조를 쓴다는 점까지 연결해 두면 레벨3 집적회로가 쉬워집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Sedra · Smith, Microelectronic Circuits (번역본 『마이크로 전자회로』, 장 제목으로 표기)",
+   "part": "Frequency Response 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Razavi, Fundamentals of Microelectronics (장 제목으로 표기)",
+   "part": "Frequency Response 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.012 Microelectronic Devices and Circuits (2009년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/",
+   "lang": "영어",
+   "part": "high-frequency model, OCTC 관련 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "회로이론 11단원 주파수 응답, 공진, 필터",
+   "url": "guide.html?lv=2&t=electrical&s=circuit-theory&u=11",
+   "part": "레벨2 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "결합 커패시터 10 μF와 그 커패시터가 보는 저항 1.6 kΩ이 만드는 하한 차단 주파수는 약 몇 Hz일까요?",
+   "answer": "9.9",
+   "answer_format": "decimal",
+   "tolerance": 0.2,
+   "explanation": "f_L = 1/(2π × 1600 × 10⁻⁵) ≈ 9.95 Hz",
+   "hint": "f_L = 1/(2πRC)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "게이트–드레인 커패시턴스 2 pF인 공통 소스 증폭기의 전압 이득이 −49이면 밀러 효과로 입력 쪽에서 보이는 등가 커패시턴스는 몇 pF일까요?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "C_M = C_gd(1 + |A|) = 2 × 50 = 100 pF",
+   "hint": "C(1 + |A|)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "이득–대역폭 곱이 1 MHz인 연산 증폭기로 이득 100배의 증폭기를 만들면 대역폭은 몇 kHz일까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "대역폭 = GBW/이득 = 1 MHz/100 = 10 kHz",
+   "hint": "GBW = 이득 × 대역폭입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "증폭기의 상한 차단 주파수는 주로 트랜지스터 내부의 작은 {{1}}이 정합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "커패시턴스",
+      "정전용량",
+      "커패시터",
+      "용량"
+     ]
+    }
+   ],
+   "explanation": "결합·바이패스 커패시터는 하한 차단 주파수를 정합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "electronic-circuits",
+ "id": "l2-electronics-electronic-circuits-u08"
+}

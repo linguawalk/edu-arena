@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "design",
+  "work": "풀이",
+  "chapter": {
+    "id": "info-s2-design-ch01",
+    "no": 1,
+    "title": "분할 정복"
+  },
+  "review": {
+    "id": "info-s2-design-ch01-review",
+    "title": "분할 정복 복습",
+    "minutes": 15
+  },
+  "questions": [
+    {
+      "type": "question",
+      "id": "r1",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "T(1) = 0, T(n) = 2T(n/2) + n일 때 T(32)는?",
+      "answer": "160",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n log₂ n입니다.",
+      "explanation": "층마다 일의 합이 n으로 같아 T(n) = n log₂ n입니다.\nn = 32 = 2⁵입니다.\n32 × 5 = 160입니다.",
+      "source_lesson": "info-s2-design-ch01-l01"
+    },
+    {
+      "type": "question",
+      "id": "r2",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "T(n) = 9T(n/3) + O(n)의 해를 O(nᵏ)로 나타낼 때 k는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "a = 9, bᵈ = 3입니다.",
+      "explanation": "a = 9 > bᵈ = 3¹이므로 맨 아래 층이 좌우합니다.\n해는 O(n^(log₃ 9))입니다.\nlog₃ 9 = 2이므로 k = 2입니다.",
+      "source_lesson": "info-s2-design-ch01-l01"
+    },
+    {
+      "type": "question",
+      "id": "r3",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "{2, 6}과 {1, 3, 4}를 아래 코드로 합칠 때 inv에 더해지는 값의 합은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1, 3, 4를 꺼낼 때마다 왼쪽에 남은 개수를 더하세요.",
+      "explanation": "1을 꺼낼 때 왼쪽에 2, 6이 남아 2를 더하고, 2를 꺼낸 뒤 3과 4를 꺼낼 때는 6이 남아 1씩 더합니다.\n그 뒤 6은 비교 없이 붙습니다.\n2 + 1 + 1 = 4입니다.",
+      "code": "// 정렬된 a[l..m-1]과 a[m..r-1]을 합치며 역순 쌍을 센다\nlong long merge(int l, int m, int r) {\n    long long inv = 0; int i = l, j = m, k = 0;\n    while (i < m && j < r) {\n        if (a[i] <= a[j]) tmp[k++] = a[i++];   // 비교 한 번\n        else {\n            tmp[k++] = a[j++];\n            inv += m - i;              // 왼쪽에 남은 원소는 모두 a[j]보다 크다\n        }\n    }\n    while (i < m) tmp[k++] = a[i++];\n    while (j < r) tmp[k++] = a[j++];\n    for (int t = 0; t < k; t++) a[l + t] = tmp[t];\n    return inv;\n}",
+      "source_lesson": "info-s2-design-ch01-l02"
+    },
+    {
+      "type": "question",
+      "id": "r4",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "{4, 3, 1, 2}의 역순 쌍은 모두 몇 개인가요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "원소마다 뒤에 있는 더 작은 원소를 세세요.",
+      "explanation": "뒤에 있는 더 작은 원소의 수는 4: 3개, 3: 2개, 1: 0개, 2: 0개입니다.\n이 값들을 모두 더합니다.\n3 + 2 = 5개입니다.",
+      "source_lesson": "info-s2-design-ch01-l02"
+    },
+    {
+      "type": "question",
+      "id": "r5",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "pw(3, 10, 100)이 돌려주는 값은?",
+      "answer": "49",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3⁵ = 243입니다.",
+      "explanation": "3⁵ = 243이므로 3⁵ mod 100 = 43입니다.\n3¹⁰ mod 100 = 43² mod 100이고 43² = 1849입니다.\n1849 mod 100 = 49입니다.",
+      "code": "long long pw(long long x, long long n, long long m) {   // xⁿ mod m\n    if (n == 0) return 1 % m;\n    long long h = pw(x, n / 2, m);\n    if (n % 2 == 0) return h * h % m;                    // 곱셈 한 번\n    return h * h % m * x % m;                            // 곱셈 두 번\n}",
+      "source_lesson": "info-s2-design-ch01-l03"
+    },
+    {
+      "type": "question",
+      "id": "r6",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "M = [[1, 1], [1, 0]]일 때 M⁸의 왼쪽 위 원소는?",
+      "answer": "34",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "Mⁿ의 왼쪽 위 원소는 F(n + 1)입니다.",
+      "explanation": "Mⁿ = [[F(n + 1), F(n)], [F(n), F(n − 1)]]입니다.\nn = 8이면 왼쪽 위 원소는 F(9)입니다.\nF(9) = 34입니다.",
+      "source_lesson": "info-s2-design-ch01-l03"
+    },
+    {
+      "type": "question",
+      "id": "r7",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "pw(x, 16, m)을 실행하면 곱셈은 모두 몇 번 일어나나요?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n은 16, 8, 4, 2, 1, 0으로 바뀝니다.",
+      "explanation": "n = 16, 8, 4, 2는 짝수라 1번씩, n = 1은 홀수라 2번이고 n = 0에서는 곱하지 않습니다.\n모두 더합니다.\n1 + 1 + 1 + 1 + 2 = 6번입니다.",
+      "code": "long long pw(long long x, long long n, long long m) {   // xⁿ mod m\n    if (n == 0) return 1 % m;\n    long long h = pw(x, n / 2, m);\n    if (n % 2 == 0) return h * h % m;                    // 곱셈 한 번\n    return h * h % m * x % m;                            // 곱셈 두 번\n}",
+      "source_lesson": "info-s2-design-ch01-l03"
+    },
+    {
+      "type": "question",
+      "id": "r8",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "점 (0, 0), (2, 5), (4, 2), (6, 6), (7, 1), (9, 4)에서 가장 가까운 두 점 사이 거리의 제곱은?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "양쪽 반과 세로선에 걸친 쌍을 모두 확인하세요.",
+      "explanation": "왼쪽 반 (0, 0), (2, 5), (4, 2)에서는 (2, 5)-(4, 2)의 13, 오른쪽 반 (6, 6), (7, 1), (9, 4)에서도 13이 가장 작아 d = √13입니다.\n띠에 걸친 쌍 가운데 (4, 2)-(7, 1)의 거리 제곱이 3² + 1² = 10으로 13보다 작습니다.\n그래서 답은 10입니다.",
+      "source_lesson": "info-s2-design-ch01-l04"
+    },
+    {
+      "type": "question",
+      "id": "r9",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "가장 가까운 두 점 알고리즘에서 d = 4이면 띠의 폭(세로선 양쪽을 합친 x 범위의 길이)은?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "세로선에서 양쪽으로 d만큼입니다.",
+      "explanation": "띠는 세로선에서 x 거리가 d 미만인 영역입니다.\n세로선 왼쪽으로 4, 오른쪽으로 4만큼 펼쳐집니다.\n그래서 폭은 4 + 4 = 8입니다.",
+      "source_lesson": "info-s2-design-ch01-l04"
+    },
+    {
+      "type": "question",
+      "id": "r10",
+      "stage": "review",
+      "qtype": "proof",
+      "prompt": "마스터 정리 T(n) = aT(n/b) + O(nᵈ)에서 a와 bᵈ의 크기에 따라 해가 달라지는 이유를 재귀 트리로 설명하세요.",
+      "model_answer": [
+        "깊이 k 층에는 크기 n/bᵏ인 문제가 aᵏ개 있으므로 층의 일은 aᵏ(n/bᵏ)ᵈ = nᵈ(a/bᵈ)ᵏ이다.",
+        "a < bᵈ이면 층의 일이 등비로 줄어 맨 위 층 nᵈ가 좌우하므로 O(nᵈ)이다.",
+        "a = bᵈ이면 층마다 nᵈ로 같고 층이 log_b n개라 O(nᵈ log n)이다.",
+        "a > bᵈ이면 층의 일이 등비로 늘어 맨 아래 층 a^(log_b n) = n^(log_b a)가 좌우하므로 O(n^(log_b a))이다."
+      ],
+      "criteria": [
+        {
+          "text": "깊이 k 층의 일을 식으로 썼다",
+          "points": 2
+        },
+        {
+          "text": "세 경우를 각각 설명했다",
+          "points": 4
+        }
+      ],
+      "hint": "깊이 k 층의 일을 먼저 구하세요.",
+      "source_lesson": "info-s2-design-ch01-l01"
+    }
+  ]
+}

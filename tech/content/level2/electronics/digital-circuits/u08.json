@@ -1,0 +1,104 @@
+{
+ "no": 8,
+ "title": "레지스터와 카운터",
+ "hours": 5,
+ "after": [
+  7
+ ],
+ "objectives": [
+  "시프트 레지스터의 종류와 직렬·병렬 변환을 설명할 수 있다.",
+  "비동기·동기 카운터를 설계하고 모듈러스를 정할 수 있다.",
+  "링·존슨 카운터의 상태 수를 구할 수 있다."
+ ],
+ "checklist": [
+  "레지스터: 병렬 적재, 시프트 레지스터(SISO, SIPO, PISO, PIPO)",
+  "비동기(리플) 카운터: 각 단이 앞 단 출력으로 클럭, 단마다 주파수 1/2",
+  "동기 카운터: 모든 플립플롭이 같은 클럭",
+  "모듈러스 N 카운터: 필요한 플립플롭 ⌈log₂ N⌉, 리셋으로 N에서 0으로",
+  "업/다운 카운터",
+  "링 카운터(n비트 → n상태), 존슨 카운터(n비트 → 2n상태)",
+  "주파수 분주기"
+ ],
+ "advice": [
+  "카운터는 7단원 순차 회로 설계의 가장 대표적인 응용입니다. 동기식 mod-N 카운터를 상태도부터 직접 설계해 보면, 순차 회로 설계 절차를 처음부터 끝까지 한 번 더 연습할 수 있습니다. 비동기 카운터는 간단하지만 각 단의 지연이 쌓여 잠깐 잘못된 값이 나타나는 문제가 있다는 점과 함께 비교하세요.",
+  "링 카운터와 존슨 카운터는 디코딩이 쉬운 대신 같은 비트 수로 셀 수 있는 상태가 적습니다. n비트 2진 카운터 2ⁿ, 존슨 2n, 링 n이라는 관계를 표로 정리해 두면 시험 문제에 바로 답할 수 있습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Mano · Ciletti, Digital Design (장 제목으로 표기)",
+   "part": "Registers and Counters 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Harris · Harris, Digital Design and Computer Architecture (장 제목으로 표기)",
+   "part": "Digital Building Blocks 장의 카운터·시프트 레지스터 절"
+  },
+  {
+   "kind": "book",
+   "provider": "All About Circuits (무료 온라인 교재)",
+   "title": "Lessons in Electric Circuits, Volume IV — Digital",
+   "url": "https://www.allaboutcircuits.com/textbook/digital/",
+   "lang": "영어",
+   "part": "Counters, Shift Registers 장"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "0부터 9까지 세고 다시 0으로 돌아가는 mod-10 카운터에는 플립플롭이 최소 몇 개 필요할까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2³ = 8 < 10 ≤ 2⁴ = 16이므로 4개입니다.",
+   "hint": "⌈log₂ 10⌉입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "4비트 링 카운터의 상태 수는 몇 개일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "1 하나가 4개 플립플롭을 차례로 돌므로 4상태입니다.",
+   "hint": "n비트 링은 n상태입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "4비트 존슨 카운터의 상태 수는 몇 개일까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "존슨 카운터는 n비트로 2n상태를 셉니다: 2 × 4 = 8",
+   "hint": "2n입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "1 MHz 클럭을 넣은 4비트 비동기 2진 카운터의 최상위 비트 출력 주파수는 몇 kHz일까요?",
+   "answer": "62.5",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "단마다 주파수가 1/2이 되므로 1 MHz/2⁴ = 62.5 kHz",
+   "hint": "2를 네 번 나눕니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "digital-circuits",
+ "id": "l2-electronics-digital-circuits-u08"
+}

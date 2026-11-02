@@ -1,0 +1,97 @@
+{
+ "no": 8,
+ "title": "응용과 설계: 전원, 재생에너지, 전기차, 방열",
+ "hours": 5,
+ "after": [
+  4,
+  5,
+  6
+ ],
+ "objectives": [
+  "SMPS·UPS·태양광 인버터·ESS PCS·전기차 전력 변환 장치의 구성을 설명할 수 있다.",
+  "변환기 효율과 손실로부터 방열 설계(접합 온도)를 계산할 수 있다.",
+  "최대 전력점 추종(MPPT)과 전자파 간섭(EMI) 대책을 설명할 수 있다."
+ ],
+ "checklist": [
+  "스위칭 전원(SMPS)과 UPS의 구성",
+  "태양광 인버터: DC–DC(MPPT) + 계통 연계 인버터",
+  "ESS 전력 변환 장치(PCS): 양방향 인버터",
+  "전기차: 구동 인버터, 온보드 충전기(OBC), 저전압 DC–DC, 급속 충전기",
+  "효율 η = P_out/P_in, 손실 = P_in − P_out",
+  "접합 온도 T_j = T_a + P_loss × R_θ(j–a)",
+  "EMI 대책: 레이아웃, 필터, 차폐, 스위칭 속도 조절"
+ ],
+ "advice": [
+  "마지막 단원은 앞 단원의 블록들이 실제 제품에서 어떻게 조합되는지 보는 곳입니다. 태양광 인버터는 DC–DC 컨버터(4단원)와 계통 연계 인버터(5단원)의 결합이고, 전기차는 인버터(5단원)와 전동기 구동(7단원), 충전기의 PFC(6단원)를 모두 씁니다. 설계에서는 효율 1%가 곧 발열이라는 점을 손실과 접합 온도 계산으로 직접 확인해 보면, 왜 SiC·GaN 소자(1단원)가 빠르게 퍼지고 있는지 납득할 수 있습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Mohan · Undeland · Robbins, Power Electronics: Converters, Applications, and Design (장 제목으로 표기)",
+   "part": "Switching dc Power Supplies, Power Conditioners and UPS, Heat Sinks 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Springer",
+   "title": "Erickson · Maksimović, Fundamentals of Power Electronics (장 제목으로 표기)",
+   "part": "응용 관련 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.334 Power Electronics (2007년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-334-power-electronics-spring-2007/",
+   "lang": "영어",
+   "part": "application examples 강의 노트"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "입력 500 W, 출력 475 W인 컨버터의 효율은 몇 %일까요?",
+   "answer": "95",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "η = 475/500 = 0.95 = 95%\n손실 25 W는 모두 열이 됩니다.",
+   "hint": "출력 ÷ 입력입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "주위 온도 40 °C, 소자 손실 50 W, 접합–주위 열저항 1.2 °C/W일 때 접합 온도는 몇 °C일까요?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "T_j = 40 + 50 × 1.2 = 100 °C",
+   "hint": "T_j = T_a + P × R_θ입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "일사량과 온도가 바뀌어도 태양광 모듈에서 가장 큰 전력을 뽑도록 동작점을 찾아가는 기능을 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "MPPT"
+     ]
+    }
+   ],
+   "explanation": "MPPT는 Maximum Power Point Tracking(최대 전력점 추종)입니다.\nDC–DC 컨버터의 듀티비를 조절해 구현합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "power-electronics",
+ "id": "l3-electrical-power-electronics-u08"
+}

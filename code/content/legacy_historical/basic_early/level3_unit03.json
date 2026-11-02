@@ -1,0 +1,96 @@
+{
+  "language": "basic_early",
+  "category": "legacy_historical",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "파일 입출력",
+  "questions": [
+    {
+      "id": "basic_early_l3_u03_q001",
+      "type": "predict_output",
+      "code": "10 OPEN \"O\", #1, \"DATA.TXT\"\n20 PRINT #1, 42\n30 CLOSE #1\n40 OPEN \"I\", #1, \"DATA.TXT\"\n50 INPUT #1, N\n60 PRINT N\n70 CLOSE #1\n80 END",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["42", "오류", "N", "빈 화면"],
+      "answer": 0,
+      "explanation_en": "OPEN \"O\" opens a file for output, PRINT #1 writes to it, and after closing and reopening with \"I\" (input), INPUT #1 reads the value back: 42.",
+      "explanation_ko": "OPEN \"O\"는 출력용으로 파일을 엽니다. PRINT #1은 여기에 씁니다. 닫고 \"I\"(입력)로 다시 열면, INPUT #1이 값을 다시 읽어옵니다: 42.",
+      "concept_tags": ["file_io"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "basic_early_l3_u03_q002",
+      "type": "fill_blank",
+      "code": "10 ____ \"O\", #1, \"OUTPUT.TXT\"\n20 PRINT #1, \"HELLO\"\n30 CLOSE #1",
+      "prompt_en": "Fill in the blank with the statement that opens a file for reading or writing.",
+      "prompt_ko": "파일을 읽거나 쓰기 위해 여는 문을 빈칸에 채우세요.",
+      "options": ["OPEN", "FILE", "ACCESS", "LOAD"],
+      "answer": 0,
+      "explanation_en": "OPEN establishes a connection to a file, specifying the mode (\"O\" for output, \"I\" for input) and assigning it a file number (#1).",
+      "explanation_ko": "OPEN은 파일과의 연결을 설정하며, 모드(\"O\"는 출력, \"I\"는 입력)를 지정하고 파일 번호(#1)를 부여합니다.",
+      "concept_tags": ["file_io", "open_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "basic_early_l3_u03_q003",
+      "type": "error_finding",
+      "code": "10 OPEN \"O\", #1, \"DATA.TXT\"\n20 PRINT #1, \"HELLO\"\n30 END",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "OPEN 문법 오류",
+        "파일을 다 쓴 뒤 CLOSE로 닫지 않아서, 데이터가 완전히 저장되지 않거나 파일이 잠긴 채로 남을 수 있음",
+        "PRINT #1 사용법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Every OPEN should be paired with a CLOSE once done; skipping it risks unflushed data or a file left in an inconsistent state, the same resource-management concern seen in modern languages' file handling.",
+      "explanation_ko": "모든 OPEN은 작업이 끝나면 CLOSE와 짝을 이뤄야 합니다. 이를 빠뜨리면 데이터가 완전히 기록되지 않거나 파일이 일관성 없는 상태로 남을 위험이 있습니다. 현대 언어의 파일 처리에서도 똑같이 신경 쓰는 자원 관리 문제입니다.",
+      "concept_tags": ["file_io", "close_statement"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "basic_early_l3_u03_q004",
+      "type": "predict_output",
+      "code": "10 OPEN \"O\", #1, \"NAME.TXT\"\n20 WRITE #1, \"KIM\"\n30 CLOSE #1\n40 OPEN \"I\", #1, \"NAME.TXT\"\n50 INPUT #1, A$\n60 PRINT A$\n70 CLOSE #1\n80 END",
+      "prompt_en": "What is printed? (Note: WRITE #, not PRINT #, is used to save the string.)",
+      "prompt_ko": "출력 결과는? (문자열 저장에 PRINT #가 아니라 WRITE #가 쓰인 점에 주의하세요.)",
+      "options": ["KIM", "오류", "\"KIM\"", "빈 문자열"],
+      "answer": 0,
+      "explanation_en": "WRITE # automatically adds quotation marks around string values when saving them, which makes them safely re-readable with INPUT # later; the round trip correctly restores KIM.",
+      "explanation_ko": "WRITE #는 문자열 값을 저장할 때 자동으로 따옴표를 붙여서, 나중에 INPUT #로 안전하게 다시 읽을 수 있게 합니다. 저장했다 다시 읽는 과정에서 KIM이 올바르게 복원됩니다.",
+      "concept_tags": ["file_io", "write_statement"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "basic_early_l3_u03_q005",
+      "type": "fill_blank",
+      "code": "10 OPEN \"O\", #1, \"OUT.TXT\"\n20 PRINT #1, \"DATA\"\n30 ____ #1",
+      "prompt_en": "Fill in the blank with the statement that finishes working with a file.",
+      "prompt_ko": "파일 작업을 마무리하는 문을 빈칸에 채우세요.",
+      "options": ["CLOSE", "END", "EXIT", "STOP"],
+      "answer": 0,
+      "explanation_en": "CLOSE releases the file, flushing any buffered writes and freeing the file number for reuse.",
+      "explanation_ko": "CLOSE는 파일을 해제하며, 버퍼에 있던 쓰기 내용을 반영하고 파일 번호를 재사용할 수 있게 합니다.",
+      "concept_tags": ["file_io", "close_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "basic_early_l3_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "OPEN \"O\" / \"I\"", "definition": "파일을 출력용 또는 입력용으로 여는 모드" },
+        { "term": "PRINT # / WRITE #", "definition": "파일에 값을 쓰는 두 가지 방법 — WRITE #는 문자열에 따옴표를 자동으로 붙임" },
+        { "term": "INPUT #", "definition": "파일에서 값을 읽어 변수에 저장" },
+        { "term": "CLOSE", "definition": "파일 작업을 마치고 자원을 해제" }
+      ],
+      "explanation_en": "These file I/O primitives — open, read/write, close — are the direct ancestors of file handling in every modern language covered in this curriculum, from C's fopen/fclose to Python's with open(...).",
+      "explanation_ko": "이 파일 입출력 기본 요소들(열기, 읽기/쓰기, 닫기)은 C의 fopen/fclose부터 Python의 with open(...)까지, 이 커리큘럼에서 다룬 모든 현대 언어의 파일 처리의 직접적인 조상입니다.",
+      "concept_tags": ["file_io", "open_statement", "close_statement", "write_statement"],
+      "difficulty": "practice"
+    }
+  ]
+}

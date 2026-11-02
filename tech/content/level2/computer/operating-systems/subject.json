@@ -1,0 +1,191 @@
+{
+ "level": 2,
+ "track": "computer",
+ "id": "operating-systems",
+ "title": "운영체제",
+ "tagline": "하드웨어를 나눠 쓰게 하는 소프트웨어 — 프로세스와 스레드, 스케줄링, 동기화와 교착 상태, 메모리와 가상 메모리, 파일 시스템, 가상화",
+ "overview": [
+  "운영체제는 CPU, 메모리, 저장 장치를 여러 프로그램이 안전하고 공평하게 나눠 쓰도록 관리하는 소프트웨어입니다. 레벨1 컴퓨터 챕터 6에서 운영체제의 역할을 둘러보았다면, 여기서는 각 기능을 구현하는 알고리즘(스케줄링, 동기화, 페이지 교체, 디스크 스케줄링)을 직접 계산해 보고 그 장단점을 비교합니다.",
+  "과목은 운영체제 구조와 시스템 호출 → 프로세스와 스레드 → CPU 스케줄링 → 동기화 → 교착 상태 → 메모리 관리 → 가상 메모리와 페이지 교체 → 파일 시스템 → 입출력과 디스크 스케줄링 → 가상화와 컨테이너 → 리눅스로 보는 운영체제 순서입니다. 컴퓨터 구조의 가상 메모리·입출력 단원과 짝을 이룹니다.",
+  "정보처리기사 필기의 운영체제 문제가 여기서 나오며, 레벨3 시스템 프로그래밍과 분산시스템·클라우드의 바탕입니다. 리눅스 명령어와 셸 실습은 code-arena Linux 모듈에서 하세요."
+ ],
+ "level_note": "레벨 2 (응용, 전문대졸·산업기사 수준). 목차 검증 기준: 정보처리산업기사·정보처리기사 필기 과목 구성과 Silberschatz 교재와 OSTEP(무료 교재). 최신 출제 기준은 큐넷(Q-Net) 공고로 확인하세요. 코드 작성 실습은 code-arena를 링크합니다.",
+ "prereq": {
+  "text": "레벨1 컴퓨터 챕터 6(운영체제의 역할)과 레벨2 컴퓨터 구조의 3~4단원(명령어, 프로시저 호출), 7~9단원(캐시, 가상 메모리, 입출력)이 선수입니다.",
+  "links": [
+   {
+    "title": "레벨1 · 컴퓨터 챕터 6 운영체제의 역할",
+    "href": "browse.html?c=c4#ch06"
+   },
+   {
+    "title": "레벨2 컴퓨터 구조 · 8단원 가상 메모리와 TLB",
+    "href": "guide.html?lv=2&t=computer&s=computer-architecture&u=8"
+   },
+   {
+    "title": "레벨2 컴퓨터 구조 · 9단원 입출력과 버스",
+    "href": "guide.html?lv=2&t=computer&s=computer-architecture&u=9"
+   },
+   {
+    "title": "code-arena · Linux 모듈",
+    "href": "https://code-arena.org/browse.html?type=module&key=linux"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "p1",
+    "qtype": "numeric",
+    "prompt": "타임 슬라이스 10 ms면 1초에 문맥 교환이 최대 몇 번 일어날까요?",
+    "answer": "100",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "1000/10 = 100번 (레벨1 컴퓨터 챕터 6)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p2",
+    "qtype": "numeric",
+    "prompt": "32비트 가상 주소, 4 KB 페이지에서 페이지 번호는 몇 비트일까요?",
+    "answer": "20",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "32 − 12 = 20비트 (컴퓨터 구조 8단원)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p3",
+    "qtype": "fill_blank",
+    "prompt": "응용 프로그램이 커널에 서비스를 부탁하는 창구를 {{1}} 호출이라고 합니다.",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "시스템"
+      ]
+     }
+    ],
+    "explanation": "레벨1 컴퓨터 챕터 6에서 다룬 개념입니다.",
+    "stage": "prereq"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "레벨3 · 시스템 프로그래밍",
+   "note": "fork·시그널·스레드를 C로 직접 다루기"
+  },
+  {
+   "title": "레벨3 · 분산시스템·클라우드",
+   "note": "여러 컴퓨터에 걸친 동기화와 가상화"
+  },
+  {
+   "title": "레벨2 · 컴퓨터 네트워크",
+   "note": "운영체제 안의 네트워크 스택"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "units": [
+  {
+   "no": 1,
+   "title": "운영체제 구조와 시스템 호출",
+   "hours": 4,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "프로세스와 스레드",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "CPU 스케줄링",
+   "hours": 5,
+   "after": [
+    2
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "동기화",
+   "hours": 6,
+   "after": [
+    2
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "교착 상태",
+   "hours": 4,
+   "after": [
+    4
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "메모리 관리",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "가상 메모리와 페이지 교체",
+   "hours": 6,
+   "after": [
+    6
+   ],
+   "file": "u07.json"
+  },
+  {
+   "no": 8,
+   "title": "파일 시스템",
+   "hours": 5,
+   "after": [
+    6
+   ],
+   "file": "u08.json"
+  },
+  {
+   "no": 9,
+   "title": "입출력과 디스크 스케줄링",
+   "hours": 4,
+   "after": [
+    8
+   ],
+   "file": "u09.json"
+  },
+  {
+   "no": 10,
+   "title": "가상화와 컨테이너",
+   "hours": 4,
+   "after": [
+    7
+   ],
+   "file": "u10.json"
+  },
+  {
+   "no": 11,
+   "title": "리눅스로 보는 운영체제",
+   "hours": 4,
+   "after": [
+    2,
+    8
+   ],
+   "file": "u11.json"
+  }
+ ],
+ "total_hours": 52
+}

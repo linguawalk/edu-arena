@@ -1,0 +1,96 @@
+{
+  "language": "visual_basic",
+  "category": "oop_enterprise",
+  "level": 4,
+  "unit": 3,
+  "unit_title": "Dictionary(Of TKey, TValue)",
+  "questions": [
+    {
+      "id": "visual_basic_l4_u03_q001",
+      "type": "predict_output",
+      "code": "Dim ages As New Dictionary(Of String, Integer)\nages(\"Kim\") = 25\nages(\"Lee\") = 30\nConsole.WriteLine(ages(\"Kim\"))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["25", "30", "Kim", "오류"],
+      "answer": 0,
+      "explanation_en": "Dictionary stores key-value pairs; ages(\"Kim\") accesses the value associated with the key \"Kim\", which is 25.",
+      "explanation_ko": "Dictionary는 키-값 쌍을 저장합니다. ages(\"Kim\")은 \"Kim\"이라는 키에 연결된 값을 가져오며, 25입니다.",
+      "concept_tags": ["dictionary"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l4_u03_q002",
+      "type": "predict_output",
+      "code": "Dim ages As New Dictionary(Of String, Integer)\nages(\"Kim\") = 25\nIf ages.ContainsKey(\"Park\") Then\n    Console.WriteLine(\"있음\")\nElse\n    Console.WriteLine(\"없음\")\nEnd If",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["있음", "없음", "오류", "Park"],
+      "answer": 1,
+      "explanation_en": "ContainsKey checks whether a key exists without risking an error; since \"Park\" was never added, it returns False, printing 없음.",
+      "explanation_ko": "ContainsKey는 오류 위험 없이 키가 존재하는지 확인합니다. \"Park\"은 추가된 적이 없으므로 False를 반환해 없음이 출력됩니다.",
+      "concept_tags": ["dictionary", "containskey"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l4_u03_q003",
+      "type": "error_finding",
+      "code": "Dim ages As New Dictionary(Of String, Integer)\nages(\"Kim\") = 25\nConsole.WriteLine(ages(\"Park\"))",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "Dictionary 선언 문법 오류",
+        "\"Park\"이라는 키가 존재하지 않는데 바로 접근하려 해서, 실행 시점에 KeyNotFoundException이 발생함",
+        "ages(\"Kim\") = 25 대입 문법 오류",
+        "문제 없음, 0이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Accessing a nonexistent key directly (without first checking ContainsKey) throws a KeyNotFoundException at runtime, crashing the program if not handled.",
+      "explanation_ko": "존재하지 않는 키에 (ContainsKey로 먼저 확인하지 않고) 직접 접근하면 실행 시점에 KeyNotFoundException이 발생합니다. 처리하지 않으면 프로그램이 비정상 종료됩니다.",
+      "concept_tags": ["dictionary", "keynotfoundexception"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "visual_basic_l4_u03_q004",
+      "type": "fill_blank",
+      "code": "Dim scores As New Dictionary(Of String, Integer)\nscores(\"Kim\") = 90\n\nFor Each ____ In scores\n    Console.WriteLine(pair.Key & \": \" & pair.Value)\nNext",
+      "prompt_en": "Fill in the blank with a reasonable loop variable declaration for iterating key-value pairs.",
+      "prompt_ko": "키-값 쌍을 순회하기 위한 반복 변수 선언을 빈칸에 채우세요.",
+      "options": ["pair", "key, value", "KeyValuePair", "item As String"],
+      "answer": 0,
+      "explanation_en": "Iterating a Dictionary with For Each yields KeyValuePair objects; pair is a reasonable variable name that matches how it's used below (pair.Key, pair.Value).",
+      "explanation_ko": "For Each로 Dictionary를 순회하면 KeyValuePair 객체가 나옵니다. pair는 아래에서 쓰이는 방식(pair.Key, pair.Value)과 일치하는 적절한 변수명입니다.",
+      "concept_tags": ["dictionary", "for_each"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l4_u03_q005",
+      "type": "predict_output",
+      "code": "Dim ages As New Dictionary(Of String, Integer)\nages(\"Kim\") = 25\nages(\"Kim\") = 26\nConsole.WriteLine(ages(\"Kim\"))\nConsole.WriteLine(ages.Count)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["25 2", "26 1", "25 1", "26 2"],
+      "answer": 1,
+      "explanation_en": "Assigning to an existing key with () updates its value rather than creating a duplicate entry; Kim's value becomes 26, and Count stays 1.",
+      "explanation_ko": "()로 이미 존재하는 키에 값을 대입하면 중복 항목을 만드는 게 아니라 기존 값을 갱신합니다. Kim의 값은 26이 되고, Count는 그대로 1입니다.",
+      "concept_tags": ["dictionary"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l4_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "Dictionary(Of TKey, TValue)", "definition": "키와 값을 짝지어 저장하는 컬렉션" },
+        { "term": "ContainsKey", "definition": "예외 없이 안전하게 키의 존재 여부를 확인하는 메서드" },
+        { "term": "KeyNotFoundException", "definition": "존재하지 않는 키에 직접 접근할 때 발생하는 실행 시점 오류" },
+        { "term": "KeyValuePair", "definition": "For Each로 Dictionary를 순회할 때 얻는, 키와 값을 함께 담은 객체" }
+      ],
+      "explanation_en": "Dictionary corresponds to what other languages call a hash map or associative array — Rust doesn't have a direct equivalent covered yet, but Python and JavaScript both rely heavily on this pattern.",
+      "explanation_ko": "Dictionary는 다른 언어에서 해시맵(hash map)이나 연관 배열이라고 부르는 것에 대응합니다. 아직 다룬 Rust에는 직접적인 대응물이 없었지만, Python과 JavaScript 모두 이 패턴을 널리 사용합니다.",
+      "concept_tags": ["dictionary", "containskey"],
+      "difficulty": "practice"
+    }
+  ]
+}

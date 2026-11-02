@@ -1,0 +1,358 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c2",
+    "title": "함수와 그래프"
+  },
+  "chapter": {
+    "id": "c2-ch06",
+    "no": 6,
+    "title": "함수로 모델링하기"
+  },
+  "lesson": {
+    "id": "c2-ch06-l04",
+    "no": 4,
+    "title": "모델링 종합",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "상황에 맞는 함수 고르기",
+      "body": [
+        "일정하게 늘면 일차함수, 곱이 일정하면 반비례, 넓이처럼 두 길이를 곱하면 이차함수를 먼저 떠올립니다.",
+        "현상을 보고 '무엇이 일정한가'를 먼저 찾습니다. 변화량이 일정하면 일차, 곱이 일정하면 반비례, 비율이 일정하면 지수, 두 일차량의 곱이면 이차함수를 떠올립니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "한 변이 x인 정사각형의 넓이를 y라 할 때 x = 7이면 y는?",
+      "answer": "49",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "정사각형의 넓이 y = x² (이차함수 모델)\nx = 7이면 7²\n= 49"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "150km를 x시간에 갈 때 속력 y = 150/x입니다. x = 3이면 y는?",
+      "answer": "50",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "속력 = 거리 ÷ 시간이므로 y = 150/x (반비례 모델)\nx = 3이면 150 ÷ 3\n= 50"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "두 모델 비교",
+      "body": [
+        "두 함수가 같아지는 점을 구하면, 어느 쪽이 유리한지 바뀌는 지점을 알 수 있습니다.",
+        "두 요금제 그래프는 교점에서 만납니다. 요금은 그래프가 더 아래에 있을수록 쌉니다. 교점의 왼쪽과 오른쪽에서 어느 그래프가 아래에 있는지 보면 사용량에 따라 유리한 요금제를 알 수 있고, 교점에서 유리한 쪽이 바뀝니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 100,
+          "ymin": 0,
+          "ymax": 40000,
+          "xstep": 10,
+          "ystep": 5000,
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                20000
+              ]
+            },
+            {
+              "kind": "poly",
+              "coef": [
+                5000,
+                300
+              ]
+            }
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "A 요금제는 월 30,000원, B 요금제는 기본 12,000원에 1GB당 2,000원입니다. 몇 GB 미만이면 B가 유리할까요?",
+      "steps": [
+        "B 요금: 2000x + 12000",
+        "A = B: 2000x + 12000 = 30000에서 x = 9",
+        "9GB 미만이면 B가 더 쌉니다."
+      ],
+      "answer": "9GB 미만"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "요금제 A는 월 20,000원, 요금제 B는 기본 5,000원에 1분당 300원입니다. 두 요금이 같아지는 통화 시간은 몇 분일까요?",
+      "answer": "50",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "B 요금: 300x + 5000\n300x + 5000 = 20000\n300x = 15000, x = 50분"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "100분을 쓴다면 두 요금의 차이는 몇 원일까요?",
+      "answer": "15000",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "100분이면 B 요금 = 300 × 100 + 5000 = 35000원\nA 요금 20000원과의 차이\n35000 − 20000 = 15000원"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "최적화",
+      "body": [
+        "구하는 양을 이차함수로 나타내면 꼭짓점에서 최대나 최소를 찾을 수 있습니다.",
+        "최적화 문제의 순서: 변수를 정하고 → 구하는 양을 이차함수로 나타내고 → 변수의 범위를 확인하고 → 꼭짓점이 범위 안에 있는지 보고 최대·최소를 구합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "둘레가 30인 직사각형의 넓이의 최댓값을 구하세요.",
+      "steps": [
+        "가로 x이면 세로 15 − x (0 < x < 15)",
+        "넓이 x(15 − x) = −(x − 7.5)² + 56.25",
+        "x = 7.5일 때 최댓값 56.25 (정사각형)"
+      ],
+      "answer": "56.25"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "둘레가 24인 직사각형의 넓이의 최댓값은?",
+      "answer": "36",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "가로 x이면 세로 12 − x (0 < x < 12)\n넓이 x(12 − x) = −(x − 6)² + 36\n최댓값 36 (정사각형일 때)"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "합이 8인 두 양수의 곱의 최댓값은?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "두 수를 x, 8 − x라 하면 곱 x(8 − x) = −(x − 4)² + 16\nx = 4일 때 최대\n16"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "어떤 양이 y = −t² + 6t + 7로 변할 때 y의 최댓값은?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y = −(t² − 6t) + 7 = −(t − 3)² + 9 + 7\n= −(t − 3)² + 16\nt = 3일 때 최댓값 16"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "거꾸로 풀기",
+      "body": [
+        "결과를 알고 원래 값을 구할 때는 역함수를 생각합니다.",
+        "결과에서 원인을 찾는 것은 역함수를 쓰는 것과 같습니다. F = 1.8C + 32를 C에 대해 풀면 C = (F − 32)/1.8이 되어, 화씨온도를 섭씨로 바꾸는 함수가 됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "화씨온도 F = 1.8C + 32에서 F = 95일 때 섭씨온도 C는?",
+      "answer": "35",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "C에 대해 푸세요.",
+      "explanation": "화씨온도 F = 95를 식에 넣고 C에 대해 풉니다(역함수 계산).\n95 = 1.8C + 32, 1.8C = 63\nC = 35"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "시속 60km로 210km를 가는 데 걸리는 시간은 몇 시간일까요?",
+      "answer": "3.5",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "시간 = 거리 ÷ 속력",
+      "explanation": "거리 = 속력 × 시간을 시간에 대해 풀면 시간 = 거리 ÷ 속력\n210 ÷ 60\n= 3.5시간"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "넓이가 50인 정사각형의 한 변은 {{1}}√2",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "5"
+          ]
+        }
+      ],
+      "hint": "넓이 = 한 변²입니다.",
+      "explanation": "한 변을 x라 하면 x² = 50 (x > 0)\nx = √50 = √(25 × 2)\n= 5√2"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "단계가 이어지는 모델",
+      "body": [
+        "여러 단계를 거치는 변환은 합성함수로 나타낼 수 있습니다. 순서가 바뀌면 결과도 달라질 수 있습니다.",
+        "합성함수로 나타낼 때는 먼저 적용되는 함수가 안쪽에 들어갑니다. '20% 이익을 붙인 뒤 할인'과 '할인한 뒤 20% 이익'은 결과가 다르므로 순서를 문장에서 정확히 읽어야 합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "물건값에 10%의 부가세를 붙인 뒤 2,000원 쿠폰을 쓰는 경우와, 쿠폰을 먼저 쓰고 부가세를 붙이는 경우의 차이는(원래 20,000원)?",
+      "steps": [
+        "부가세 먼저: 20000 × 1.1 − 2000 = 20000",
+        "쿠폰 먼저: (20000 − 2000) × 1.1 = 19800",
+        "차이 200원 (순서에 따라 결과가 다름)"
+      ],
+      "answer": "200원"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "원가 x원에 20% 이익을 붙인 뒤 1,000원을 할인합니다. 원가가 10,000원이면 판매가는?",
+      "answer": "11000",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "단계를 순서대로 적용하세요.",
+      "explanation": "판매가 f(x) = 1.2x − 1000 (이익을 붙인 뒤 할인)\nx = 10000이면 12000 − 1000\n= 11000원"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "1달러에 1,300원일 때 26,000원을 달러로 바꾸고 수수료 2달러를 내면 몇 달러가 남을까요?",
+      "answer": "18",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "환전 후 수수료를 빼세요.",
+      "explanation": "26000원 ÷ 1300 = 20달러\n수수료 2달러를 빼면 20 − 2\n= 18달러"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = x + 5, g(x) = 2x일 때 g(f(3))의 값은?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f를 먼저 적용하세요.",
+      "explanation": "안쪽부터: f(3) = 3 + 5 = 8\ng(8) = 2 × 8\n= 16"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "약 100mg이 4시간마다 절반으로 줄어듭니다. 12시간 후에는 몇 mg일까요?",
+      "answer": "12.5",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "몇 번 절반이 되는지 세세요.",
+      "explanation": "4시간마다 절반: 12시간이면 3번 절반이 됩니다.\n100 × (1/2)³ = 100/8\n= 12.5mg"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "공의 높이가 h = −5t² + 20t(m)일 때 공이 땅에 떨어지는 것은 몇 초 후일까요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "h = 0으로 놓고 푸세요.",
+      "explanation": "땅에 떨어지면 h = 0: −5t² + 20t = 0\n−5t(t − 4) = 0에서 t = 0 또는 4\n던진 뒤이므로 t = 4초"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "같은 현상이라도 구간에 따라 다른 함수 모델이 필요한 예를 들어 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "구간",
+            "범위"
+          ],
+          [
+            "다른"
+          ],
+          [
+            "요금",
+            "기본",
+            "처음",
+            "나중"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "예를 들어 택시 요금은 처음 일정 거리까지는 기본요금으로 일정하다가 그 뒤로는 거리에 따라 늘어납니다. 이처럼 구간마다 변화 방식이 달라서 구간별로 다른 함수 모델을 써야 합니다."
+    }
+  ]
+}

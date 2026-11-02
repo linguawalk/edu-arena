@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 4,
+  "unit": 3,
+  "unit_title": "딕셔너리 심화",
+  "questions": [
+    {
+      "id": "python_l4_u03_q001",
+      "type": "predict_output",
+      "code": "ages = {\"Kim\": 25, \"Lee\": 30}\nprint(ages[\"Kim\"])",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["25", "30", "Kim", "오류"],
+      "answer": 0,
+      "explanation_en": "Dictionaries store key-value pairs; ages[\"Kim\"] accesses the value associated with \"Kim\", 25.",
+      "explanation_ko": "딕셔너리는 키-값 쌍을 저장합니다. ages[\"Kim\"]은 \"Kim\"에 연결된 값인 25를 가져옵니다.",
+      "concept_tags": ["dictionary"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l4_u03_q002",
+      "type": "error_finding",
+      "code": "ages = {\"Kim\": 25}\nprint(ages[\"Park\"])",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "ages 선언 문법 오류",
+        "\"Park\"이라는 키가 존재하지 않는데 []로 직접 접근해서, 실행 시점에 KeyError가 발생함",
+        "print 사용법 오류",
+        "문제 없음, None이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Accessing a nonexistent key with [] raises KeyError at runtime, similar to Java's HashMap.get() returning null but with the opposite behavior — Python raises instead of returning a sentinel.",
+      "explanation_ko": "존재하지 않는 키에 []로 접근하면 실행 시점에 KeyError가 발생합니다. Java의 HashMap.get()이 null을 반환하는 것과 반대로, Python은 예외를 던집니다.",
+      "concept_tags": ["dictionary", "keyerror"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l4_u03_q003",
+      "type": "predict_output",
+      "code": "ages = {\"Kim\": 25}\nprint(ages.get(\"Park\"))",
+      "prompt_en": "What is printed? (Compare with the [] access above.)",
+      "prompt_ko": "출력 결과는? (위의 [] 접근과 비교해보세요.)",
+      "options": ["오류", "None", "0", "Park"],
+      "answer": 1,
+      "explanation_en": "Unlike [], .get() returns None for a missing key instead of raising an exception — the safe alternative when a key might not exist.",
+      "explanation_ko": "[]와 달리 .get()은 없는 키에 대해 예외 대신 None을 반환합니다. 키가 없을 수도 있을 때 사용하는 안전한 대안입니다.",
+      "concept_tags": ["dictionary", "get_method"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l4_u03_q004",
+      "type": "predict_output",
+      "code": "ages = {\"Kim\": 25}\nprint(ages.get(\"Park\", 0))",
+      "prompt_en": "What is printed? (Note the second argument to .get().)",
+      "prompt_ko": "출력 결과는? (.get()의 두 번째 인자에 주의하세요.)",
+      "options": ["오류", "None", "0", "Park"],
+      "answer": 2,
+      "explanation_en": "The second argument to .get() specifies a custom default value to return instead of None when the key is missing.",
+      "explanation_ko": ".get()의 두 번째 인자는 키가 없을 때 None 대신 반환할 사용자 지정 기본값을 지정합니다.",
+      "concept_tags": ["dictionary", "get_method"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l4_u03_q005",
+      "type": "predict_output",
+      "code": "scores = {\"Kim\": 90, \"Lee\": 85}\nfor name, score in scores.items():\n    print(f\"{name}: {score}\")",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["Kim: 90\\nLee: 85", "Kim\\nLee", "90\\n85", "오류"],
+      "answer": 0,
+      "explanation_en": ".items() yields (key, value) pairs, which the for loop unpacks directly into name and score for each entry.",
+      "explanation_ko": ".items()는 (키, 값) 쌍을 만들어내며, for문이 이를 각 항목마다 name과 score로 직접 언패킹합니다.",
+      "concept_tags": ["dictionary", "items_method"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l4_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "dict[key]", "definition": "키에 직접 접근 — 없는 키면 KeyError 발생" },
+        { "term": ".get(key)", "definition": "안전하게 접근 — 없는 키면 None(또는 지정한 기본값) 반환" },
+        { "term": ".items()", "definition": "(키, 값) 쌍을 순회할 수 있게 만들어주는 메서드" },
+        { "term": "KeyError", "definition": "존재하지 않는 키에 []로 접근할 때 발생하는 예외" }
+      ],
+      "explanation_en": "Python's dict raises KeyError for missing key access via [], the opposite default behavior from Java's HashMap (which returns null) — .get() bridges the gap by offering null-like safety when needed.",
+      "explanation_ko": "Python의 dict는 []로 없는 키에 접근하면 KeyError를 던져서, null을 반환하는 Java의 HashMap과 기본 동작이 반대입니다. .get()이 필요할 때 null 같은 안전성을 제공하며 그 간극을 메웁니다.",
+      "concept_tags": ["dictionary", "keyerror", "get_method", "items_method"],
+      "difficulty": "practice"
+    }
+  ]
+}

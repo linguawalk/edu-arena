@@ -1,0 +1,96 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "함수 심화 (타입 힌트)",
+  "questions": [
+    {
+      "id": "php_l3_u01_q001",
+      "type": "predict_output",
+      "code": "function add(int $a, int $b): int {\n    return $a + $b;\n}\necho add(3, 4);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["7", "34", "add", "오류"],
+      "answer": 0,
+      "explanation_en": "int $a, int $b are type hints, and : int declares the return type; add(3, 4) returns 7.",
+      "explanation_ko": "int $a, int $b는 타입 힌트이고, : int는 반환 타입을 선언합니다. add(3, 4)는 7을 반환합니다.",
+      "concept_tags": ["type_hint"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l3_u01_q002",
+      "type": "predict_output",
+      "code": "function add(int $a, int $b): int {\n    return $a + $b;\n}\necho add(\"3\", \"4\");",
+      "prompt_en": "What is printed? (Compare with Python's type hints, which are never enforced.)",
+      "prompt_ko": "출력 결과는? (전혀 강제되지 않는 Python의 타입 힌트와 비교해보세요.)",
+      "options": ["7", "34", "오류", "3.04"],
+      "answer": 0,
+      "explanation_en": "Unlike Python's purely decorative type hints, PHP actually enforces them — but by default it coerces compatible types; \"3\" and \"4\" are numeric strings, so they're converted to int automatically, giving 7.",
+      "explanation_ko": "순전히 장식적인 Python의 타입 힌트와 달리, PHP는 실제로 이를 강제합니다 — 다만 기본적으로 호환 가능한 타입은 자동 변환합니다. \"3\"과 \"4\"는 숫자 형태의 문자열이라 자동으로 int로 변환되어 7이 됩니다.",
+      "concept_tags": ["type_hint", "type_coercion"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l3_u01_q003",
+      "type": "error_finding",
+      "code": "function add(int $a, int $b): int {\n    return $a + $b;\n}\necho add(\"abc\", 4);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "add 함수 정의 오류",
+        "\"abc\"는 숫자로 전혀 변환할 수 없는 문자열이라, 타입 힌트를 만족시킬 수 없어 TypeError가 발생함",
+        "echo 사용법 오류",
+        "문제 없음, 4가 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "While numeric strings like \"3\" can be coerced to int, a non-numeric string like \"abc\" cannot; PHP throws a TypeError since the type hint's contract can't be satisfied.",
+      "explanation_ko": "\"3\" 같은 숫자 형태의 문자열은 int로 변환될 수 있지만, \"abc\" 같은 비숫자 문자열은 변환될 수 없습니다. 타입 힌트의 계약을 만족시킬 수 없어 TypeError가 발생합니다.",
+      "concept_tags": ["type_hint", "typeerror"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l3_u01_q004",
+      "type": "fill_blank",
+      "code": "function greet(string $name)____ string {\n    return \"안녕, \" . $name;\n}\necho greet(\"Kim\");",
+      "prompt_en": "Fill in the blank with the syntax that declares a function's return type.",
+      "prompt_ko": "함수의 반환 타입을 선언하는 문법을 빈칸에 채우세요.",
+      "options": [": ", "->", "=>", "as "],
+      "answer": 0,
+      "explanation_en": "A colon after the parameter list declares the function's return type, similar to Python's -> syntax but with a different symbol.",
+      "explanation_ko": "매개변수 목록 뒤의 콜론은 함수의 반환 타입을 선언합니다. Python의 -> 문법과 비슷하지만 다른 기호를 씁니다.",
+      "concept_tags": ["type_hint", "return_type"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l3_u01_q005",
+      "type": "predict_output",
+      "code": "function greet(?string $name = null): string {\n    return $name === null ? \"익명\" : \"안녕, \" . $name;\n}\necho greet();",
+      "prompt_en": "What is printed? (Note the ? before string, marking a nullable type.)",
+      "prompt_ko": "출력 결과는? (string 앞의 ?는 nullable 타입을 나타냅니다.)",
+      "options": ["익명", "안녕, ", "오류", "안녕, null"],
+      "answer": 0,
+      "explanation_en": "?string allows the parameter to be either a string or null; calling greet() with no argument uses the default null, so the ternary returns 익명.",
+      "explanation_ko": "?string은 매개변수가 string이나 null 둘 다 될 수 있게 합니다. 인자 없이 greet()를 호출하면 기본값인 null이 쓰여서 삼항 연산자가 익명을 반환합니다.",
+      "concept_tags": ["nullable_type"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l3_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "타입 힌트 (int $a)", "definition": "매개변수의 타입을 선언 — Python과 달리 실제로 강제됨" },
+        { "term": ": int (반환 타입)", "definition": "함수가 반환할 값의 타입을 선언" },
+        { "term": "타입 강제 변환", "definition": "숫자 형태의 문자열처럼 호환 가능한 타입은 자동으로 변환됨" },
+        { "term": "?type (nullable)", "definition": "해당 타입이거나 null일 수 있음을 나타내는 표기" }
+      ],
+      "explanation_en": "PHP's type system occupies a middle ground: stricter than Python's decorative hints, but more forgiving than Java or C#'s exact type matching, thanks to its default coercion behavior.",
+      "explanation_ko": "PHP의 타입 시스템은 중간 지점에 있습니다. Python의 장식적인 힌트보다는 엄격하지만, 기본 강제 변환 동작 덕분에 Java나 C#의 정확한 타입 일치보다는 관대합니다.",
+      "concept_tags": ["type_hint", "type_coercion", "return_type"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+ "no": 2,
+ "title": "다이오드 회로",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "다이오드 모델(이상, 정전압 강하, 소신호)을 골라 회로를 해석할 수 있다.",
+  "정류·클리퍼·클램퍼 회로의 출력 파형을 그릴 수 있다.",
+  "제너 다이오드 전압 안정 회로의 전류를 계산할 수 있다."
+ ],
+ "checklist": [
+  "이상 다이오드 모델과 정전압 강하 모델(Si 약 0.7 V)",
+  "소신호 저항 r_d = nV_T/I_D",
+  "반파·전파 정류와 평활(레벨1과 전력전자에서 이어짐)",
+  "클리퍼(리미터): 일정 전압 이상을 잘라냄",
+  "클램퍼: 파형 모양은 그대로 두고 직류 레벨을 옮김",
+  "제너 다이오드 레귤레이터: 공급 전류 = 제너 전류 + 부하 전류",
+  "LED와 포토다이오드"
+ ],
+ "advice": [
+  "다이오드 회로 해석의 핵심은 '먼저 켜졌는지 꺼졌는지 가정하고, 계산 뒤 가정이 맞는지 확인한다'는 절차입니다. 이 절차는 BJT와 MOSFET의 동작 영역을 판단할 때도 똑같이 쓰이니, 여기서 몸에 익혀 두세요. 대부분의 문제는 정전압 강하 모델(0.7 V)로 충분하고, 지수 식은 정밀한 계산이나 소신호 해석에만 씁니다.",
+  "제너 레귤레이터 문제는 키르히호프 전류 법칙 하나로 풀립니다. 직렬 저항을 흐르는 전류가 제너와 부하로 나뉜다는 그림을 그리고, 부하 전류가 커질 때 제너 전류가 0 아래로 내려가면 안정화가 깨진다는 한계 조건을 함께 확인하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Sedra · Smith, Microelectronic Circuits (번역본 『마이크로 전자회로』, 장 제목으로 표기)",
+   "part": "Diodes 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Razavi, Fundamentals of Microelectronics (장 제목으로 표기)",
+   "part": "Diode Models and Circuits 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.002 Circuits and Electronics (Anant Agarwal, 2007년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+   "lang": "영어",
+   "part": "nonlinear analysis, diode 관련 강의"
+  },
+  {
+   "kind": "book",
+   "provider": "All About Circuits (무료 온라인 교재)",
+   "title": "Lessons in Electric Circuits, Volume III — Semiconductors",
+   "url": "https://www.allaboutcircuits.com/textbook/semiconductors/",
+   "lang": "영어",
+   "part": "Diodes and Rectifiers 장"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "5 V 전원, 1 kΩ 저항, 실리콘 다이오드가 직렬로 연결되어 순방향 바이어스되었습니다. 정전압 강하 모델(0.7 V)로 전류는 몇 mA일까요?",
+   "answer": "4.3",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "I = (5 − 0.7)/1 kΩ = 4.3 mA",
+   "hint": "다이오드 전압을 빼고 옴의 법칙을 쓰세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "직류 전류 1 mA가 흐르는 다이오드의 소신호 저항 r_d는 약 몇 Ω일까요? (n = 1, V_T = 26 mV)",
+   "answer": "26",
+   "answer_format": "integer",
+   "tolerance": 1,
+   "explanation": "r_d = V_T/I_D = 26 mV/1 mA = 26 Ω",
+   "hint": "r_d = V_T/I_D입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "12 V 전원, 직렬 저항 690 Ω, 5.1 V 제너 다이오드에 1 kΩ 부하가 병렬로 연결되어 있습니다. 제너 전류는 몇 mA일까요?",
+   "answer": "4.9",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "explanation": "직렬 저항 전류 = (12 − 5.1)/690 = 10 mA, 부하 전류 = 5.1/1000 = 5.1 mA\n제너 전류 = 10 − 5.1 = 4.9 mA",
+   "hint": "직렬 저항 전류에서 부하 전류를 빼세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "파형의 모양은 그대로 두고 직류 레벨만 위나 아래로 옮기는 다이오드 회로를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "클램퍼",
+      "클램프",
+      "직류 재생 회로"
+     ]
+    }
+   ],
+   "explanation": "커패시터가 충전된 전압만큼 파형 전체가 이동합니다.\n일정 전압 이상을 잘라내는 클리퍼와 구별하세요.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "electronic-circuits",
+ "id": "l2-electronics-electronic-circuits-u02"
+}

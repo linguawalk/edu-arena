@@ -1,0 +1,117 @@
+{
+ "no": 6,
+ "title": "MOSFET 증폭기",
+ "hours": 5,
+ "after": [
+  4,
+  5
+ ],
+ "objectives": [
+  "MOSFET 소신호 모델에서 g_m과 r_o를 계산할 수 있다.",
+  "공통 소스·공통 드레인·공통 게이트 증폭기의 특성을 비교할 수 있다.",
+  "능동 부하가 이득을 키우는 원리를 설명할 수 있다."
+ ],
+ "checklist": [
+  "g_m = 2I_D/V_ov = √(2k_nI_D)",
+  "출력 저항 r_o = 1/(λI_D)",
+  "공통 소스(CS): A_v ≈ −g_m(R_D ∥ r_o)",
+  "공통 드레인(소스 팔로워): 이득 ≈ 1, 버퍼",
+  "공통 게이트(CG): 낮은 입력 저항, 비반전",
+  "소스 저항에 의한 축퇴: A_v ≈ −R_D/(1/g_m + R_S)",
+  "능동 부하(전류원 부하)와 고유 이득 g_mr_o"
+ ],
+ "advice": [
+  "MOSFET 증폭기는 BJT 증폭기와 해석 절차가 같고, g_m의 식만 다릅니다. BJT에서는 g_m이 전류에 비례하지만 MOSFET에서는 √I_D에 비례해 같은 전류에서 g_m이 더 작다는 점이 두 소자의 중요한 차이입니다. 4단원의 표 옆에 MOSFET 세 증폭기를 나란히 적어 비교해 보세요.",
+  "집적회로 안에서는 큰 저항을 만들기 어려워 드레인 저항 대신 트랜지스터 전류원을 부하로 쓰는데, 이때 이득은 g_mr_o까지 커집니다. 이 '고유 이득' 개념은 레벨3 집적회로의 아날로그 설계로 그대로 이어지니 의미를 잡아 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Sedra · Smith, Microelectronic Circuits (번역본 『마이크로 전자회로』, 장 제목으로 표기)",
+   "part": "MOSFET 증폭기 관련 장(Transistor Amplifiers)"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Razavi, Fundamentals of Microelectronics (장 제목으로 표기)",
+   "part": "CMOS Amplifiers 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.012 Microelectronic Devices and Circuits (2009년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/",
+   "lang": "영어",
+   "part": "Lecture 13 이후 증폭기 단원"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.002 Circuits and Electronics (Anant Agarwal, 2007년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+   "lang": "영어",
+   "part": "MOSFET amplifier 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "드레인 전류 1 mA, 과구동 전압 0.2 V인 MOSFET의 g_m은 몇 mS일까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "g_m = 2I_D/V_ov = 2 × 1 mA/0.2 V = 10 mS",
+   "hint": "g_m = 2I_D/V_ov입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 MOSFET로 만든 공통 소스 증폭기의 드레인 저항이 5 kΩ이면 전압 이득은 얼마일까요? (r_o 무시)",
+   "answer": "-50",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "A_v ≈ −g_mR_D = −0.01 × 5000 = −50",
+   "hint": "A_v ≈ −g_mR_D입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "λ = 0.02 V⁻¹, I_D = 1 mA인 MOSFET의 출력 저항 r_o는 몇 kΩ일까요?",
+   "answer": "50",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "r_o = 1/(λI_D) = 1/(0.02 × 10⁻³) = 50 kΩ",
+   "hint": "r_o = 1/(λI_D)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "입력과 출력이 같은 위상이고 입력 저항이 작아 고주파 증폭에 유리한 MOSFET 증폭기는 공통 {{1}} 증폭기입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "게이트"
+     ]
+    }
+   ],
+   "explanation": "공통 게이트는 소스로 입력을 넣고 드레인에서 출력을 얻습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "electronic-circuits",
+ "id": "l2-electronics-electronic-circuits-u06"
+}

@@ -1,0 +1,91 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "변수 스코프와 static",
+  "questions": [
+    {
+      "id": "c_l3_u02_q001",
+      "type": "predict_output",
+      "code": "int x = 10;\n\nvoid foo() {\n    int x = 20;\n    printf(\"%d\", x);\n}\n\nint main() {\n    foo();\n    printf(\"%d\", x);\n    return 0;\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["2010", "1010", "2020", "1020"],
+      "answer": 0,
+      "explanation_en": "The local x inside foo shadows the global x; foo prints its own local x (20), while main's printf refers to the global x (10).",
+      "explanation_ko": "foo 안의 지역 변수 x가 전역 변수 x를 가립니다(shadowing). foo는 자신의 지역 x인 20을 출력하고, main의 printf는 전역 x인 10을 가리킵니다.",
+      "concept_tags": ["variable_scope", "global_variable", "shadowing"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l3_u02_q002",
+      "type": "predict_output",
+      "code": "void counter() {\n    static int count = 0;\n    count++;\n    printf(\"%d\", count);\n}\n\ncounter();\ncounter();\ncounter();",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["111", "123", "000", "오류"],
+      "answer": 1,
+      "explanation_en": "A static local variable is initialized only once and retains its value between function calls, so count keeps incrementing: 1, 2, 3.",
+      "explanation_ko": "static 지역 변수는 처음 한 번만 초기화되고, 함수 호출이 끝나도 값이 유지됩니다. 그래서 count는 호출될 때마다 1, 2, 3으로 계속 증가합니다.",
+      "concept_tags": ["static_variable"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l3_u02_q003",
+      "type": "predict_output",
+      "code": "void counter2() {\n    int count = 0;\n    count++;\n    printf(\"%d\", count);\n}\n\ncounter2();\ncounter2();\ncounter2();",
+      "prompt_en": "What is printed? (Compare with the static version above.)",
+      "prompt_ko": "출력 결과는? (위의 static 버전과 비교해보세요.)",
+      "options": ["123", "111", "000", "오류"],
+      "answer": 1,
+      "explanation_en": "Without static, count is a fresh local variable each call, reset to 0 every time; it becomes 1 each time before printing.",
+      "explanation_ko": "static이 없으면 count는 호출될 때마다 새로 생성되어 0으로 초기화됩니다. 매번 1이 된 뒤 출력되므로 111이 됩니다.",
+      "concept_tags": ["static_variable", "variable_scope"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l3_u02_q004",
+      "type": "fill_blank",
+      "code": "void counter() {\n    ____ int count = 0;\n    count++;\n    printf(\"%d\", count);\n}\n// 호출할 때마다 값이 유지되어야 함",
+      "prompt_en": "Fill in the blank so count retains its value between calls.",
+      "prompt_ko": "호출 사이에 count 값이 유지되도록 빈칸을 채우세요.",
+      "options": ["static", "const", "extern", "global"],
+      "answer": 0,
+      "explanation_en": "The static keyword makes a local variable persist across function calls instead of being recreated each time.",
+      "explanation_ko": "static 키워드는 지역 변수가 매번 새로 생성되는 대신 함수 호출 사이에도 값을 유지하게 만듭니다.",
+      "concept_tags": ["static_variable"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l3_u02_q005",
+      "type": "predict_output",
+      "code": "int total = 0;\n\nvoid add(int n) {\n    total += n;\n}\n\nint main() {\n    add(5);\n    add(3);\n    printf(\"%d\", total);\n    return 0;\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "3", "8", "0"],
+      "answer": 2,
+      "explanation_en": "total is a global variable, so both calls to add modify the same shared value: 0 + 5 + 3 = 8.",
+      "explanation_ko": "total은 전역 변수이므로 add를 호출할 때마다 같은 값을 공유하며 수정합니다. 0 + 5 + 3 = 8이 됩니다.",
+      "concept_tags": ["global_variable"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l3_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "지역 변수", "definition": "함수 안에서 선언되어 그 함수가 끝나면 사라지는 변수" },
+        { "term": "전역 변수", "definition": "함수 밖에서 선언되어 프로그램 전체에서 접근 가능한 변수" },
+        { "term": "static 지역 변수", "definition": "지역 변수처럼 함수 안에서만 접근 가능하지만, 값은 호출 사이에도 유지되는 변수" },
+        { "term": "섀도잉 (shadowing)", "definition": "지역 변수가 같은 이름의 전역 변수를 가려서 지역 변수가 우선 적용되는 현상" }
+      ],
+      "explanation_en": "Choosing the right kind of variable scope is essential once programs grow beyond a single function, and mixing them up is a common source of confusion.",
+      "explanation_ko": "프로그램이 함수 하나를 넘어서 커지기 시작하면 적절한 변수 스코프를 선택하는 것이 중요해지며, 이를 혼동하는 것은 흔한 실수의 원인입니다.",
+      "concept_tags": ["variable_scope", "global_variable", "static_variable", "shadowing"],
+      "difficulty": "practice"
+    }
+  ]
+}

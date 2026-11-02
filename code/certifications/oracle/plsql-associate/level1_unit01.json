@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 1,
+  "unit": 1,
+  "unit_title": "PL/SQL 블록 구조와 변수",
+  "rule_summary_ko": "PL/SQL 블록은 DECLARE(선언부, 선택), BEGIN(실행부, 필수), EXCEPTION(예외처리부, 선택), END(필수)로 구성됩니다. 실행부만 있으면 블록이 성립합니다. 값 대입에는 =가 아니라 :=를 사용합니다. %TYPE은 특정 컬럼이나 변수와 동일한 데이터 타입으로 변수를 선언하고, %ROWTYPE은 테이블의 모든 컬럼에 대응하는 레코드 변수를 선언합니다.",
+  "examples": [
+    { "code": "DECLARE\n    emp_id NUMBER := 100;\nBEGIN\n    emp_id := emp_id + 1;\nEND;", "note_ko": "대입은 :=를 사용(= 아님). DECLARE는 선택 사항이라 없어도 되지만, 있으면 BEGIN 앞에 와야 함" },
+    { "code": "v_salary employees.salary%TYPE;\nv_emp_row employees%ROWTYPE;", "note_ko": "v_salary는 employees.salary 컬럼과 같은 타입, v_emp_row는 employees 테이블의 모든 컬럼을 담는 레코드" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l1_u1_q001",
+      "type": "concept_matching_item",
+      "code": "BEGIN\n    DBMS_OUTPUT.PUT_LINE('Hello');\nEND;",
+      "prompt_ko": "DECLARE 절 없이 BEGIN...END만 있는 이 블록은 유효합니까?",
+      "options": [
+        "유효하지 않다 — 모든 PL/SQL 블록은 DECLARE로 시작해야 한다",
+        "유효하다 — PL/SQL 블록에서 실행부(BEGIN...END)만 필수이고, 선언부(DECLARE)는 선택 사항이다",
+        "유효하지 않다 — EXCEPTION 절이 반드시 있어야 한다",
+        "DECLARE가 없으면 END도 생략해야 한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "DECLARE와 EXCEPTION은 선택 사항이며, BEGIN...END로 이뤄진 실행부만 있어도 완전한 블록입니다.",
+      "concept_tags": ["block_structure"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l1_u1_q002",
+      "type": "concept_matching_item",
+      "code": "DECLARE\n    emp_id NUMBER := 100;\nBEGIN\n    emp_id = 200; -- 이 줄\nEND;",
+      "prompt_ko": "실행부의 emp_id = 200; 문장은 어떻게 됩니까?",
+      "options": [
+        "정상적으로 emp_id에 200이 대입된다",
+        "컴파일 오류 발생 — PL/SQL에서 변수에 값을 대입할 때는 =가 아니라 :=를 사용해야 한다",
+        "emp_id와 200이 같은지 비교만 하고 대입은 안 된다",
+        "런타임 예외가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "PL/SQL의 대입 연산자는 :=이며, =는 비교 연산자로 별도 취급됩니다.",
+      "concept_tags": ["assignment_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l1_u1_q003",
+      "type": "concept_matching_item",
+      "code": "DECLARE\n    v_salary employees.salary%TYPE;\nBEGIN\n    SELECT salary INTO v_salary FROM employees WHERE employee_id = 100;\nEND;",
+      "prompt_ko": "employees.salary%TYPE으로 변수를 선언하는 것의 이점은?",
+      "options": [
+        "employees 테이블 전체를 변수에 복사한다",
+        "salary 컬럼과 정확히 같은 데이터 타입으로 변수를 선언해서, 나중에 컬럼의 타입이 바뀌어도 코드를 수정할 필요가 없어진다",
+        "%TYPE은 변수를 항상 NUMBER 타입으로 고정시킨다",
+        "%TYPE을 사용하면 SELECT INTO가 필요 없어진다"
+      ],
+      "answer": 1,
+      "explanation_ko": "%TYPE은 참조하는 컬럼(또는 변수)의 타입을 그대로 가져와, 스키마 변경에 유연하게 대응할 수 있게 해줍니다.",
+      "concept_tags": ["percent_type"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l1_u1_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "테이블의 모든 컬럼에 대응하는 필드를 가진 레코드 변수를 선언할 때 사용하는 속성은 무엇입니까? (기호 포함, 예: %XXXXXXX)",
+      "expected_answers": ["%ROWTYPE"],
+      "explanation_ko": "%ROWTYPE은 테이블(또는 커서)의 모든 컬럼 구조를 그대로 가진 레코드 변수를 선언합니다.",
+      "concept_tags": ["percent_rowtype"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l1_u1_q005",
+      "type": "concept_matching_item",
+      "code": "DECLARE\n    a NUMBER := b + 1; -- b는 이후 줄에서 선언됨\n    b NUMBER := 10;\nBEGIN\n    NULL;\nEND;",
+      "prompt_ko": "이 코드처럼 아직 선언되지 않은 변수(b)를 미리 참조하면?",
+      "options": [
+        "정상적으로 컴파일된다(순서와 무관하게 처리됨)",
+        "컴파일 오류 발생 — PL/SQL은 전방 참조(forward reference)를 허용하지 않아, 사용하기 전에 반드시 먼저 선언해야 한다",
+        "b는 자동으로 NULL로 처리되어 정상 실행된다",
+        "런타임에서만 오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "PL/SQL은 선언 순서를 엄격히 지켜야 하며, 아직 선언되지 않은 항목을 앞에서 참조할 수 없습니다.",
+      "concept_tags": ["forward_reference"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l1_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "PL/SQL 블록의 EXCEPTION 절이 하는 역할은?",
+      "options": [
+        "변수를 선언하는 곳이다",
+        "실행부에서 예외가 발생했을 때 이를 처리(포착)하는 코드를 작성하는 곳이다",
+        "테이블을 생성하는 곳이다",
+        "블록의 이름을 지정하는 곳이다"
+      ],
+      "answer": 1,
+      "explanation_ko": "EXCEPTION 절은 실행부(BEGIN...END 사이)에서 발생한 오류를 잡아 처리할 수 있게 해줍니다.",
+      "concept_tags": ["exception_section"],
+      "difficulty": "intro"
+    }
+  ]
+}

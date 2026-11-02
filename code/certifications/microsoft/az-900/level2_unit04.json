@@ -1,0 +1,98 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "microsoft",
+  "exam": "az-900",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "스토리지: Blob 계층과 중복성 옵션",
+  "rule_summary_ko": "Azure Blob Storage는 접근 빈도에 따라 Hot(자주 접근, 저장비용 높음·검색비용 낮음), Cool, Cold, Archive(거의 접근 안 함, 저장비용 가장 낮음·검색에 시간 소요) 네 가지 계층을 제공합니다. Archive 계층은 오프라인 상태라 데이터를 다시 쓰려면 몇 시간의 재수화(rehydration) 과정이 필요합니다. 중복성(redundancy) 옵션은 LRS(한 데이터센터 내 3개 복사본, 가장 저렴), ZRS(같은 리전의 여러 가용 영역에 복제, 데이터센터 장애 대비), GRS(주 리전+수백 마일 떨어진 보조 리전에 비동기 복제, 리전 재해 대비) 순으로 보호 범위와 비용이 커집니다.",
+  "examples": [
+    { "code": "7년간 보관해야 하는 규제 준수 로그(거의 조회 안 함)", "note_ko": "Archive 계층이 적합 — 저장 비용은 최소화하되 검색에 시간이 걸려도 무방한 데이터" },
+    { "code": "단일 데이터센터 장애뿐 아니라 리전 전체 재해까지 대비해야 하는 중요 데이터", "note_ko": "GRS(또는 RA-GRS) — 지리적으로 떨어진 보조 리전에도 복제되어 리전 단위 재해에도 대응 가능" }
+  ],
+  "questions": [
+    {
+      "id": "az900_l2_u4_q001",
+      "type": "concept_matching_item",
+      "code": "7년간 법적으로 보관해야 하지만 거의 조회하지 않고, 조회해도 몇 시간 걸려도 상관없는 규제 준수 로그",
+      "prompt_ko": "이 데이터에 가장 적합한 Blob 계층은?",
+      "options": [
+        "Hot", "Cool", "Archive — 저장 비용이 가장 낮은 대신 검색에 시간(재수화)이 걸림", "이런 데이터는 Blob Storage에 저장할 수 없다"
+      ],
+      "answer": 2,
+      "explanation_ko": "Archive는 장기 보관·희소 접근 데이터에 최적화된, 가장 저렴한 오프라인 계층입니다.",
+      "concept_tags": ["archive_tier"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "az900_l2_u4_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Archive 계층에 있는 blob의 데이터를 다시 읽으려면 어떻게 해야 합니까?",
+      "options": [
+        "즉시 읽을 수 있다(다른 계층과 동일)",
+        "재수화(rehydration) 과정을 거쳐 Hot·Cool·Cold 계층으로 옮긴 뒤에 읽을 수 있으며, 여기에는 시간이 걸린다",
+        "Archive 계층의 데이터는 영구히 읽을 수 없다",
+        "재수화 없이 삭제해야만 한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "Archive는 오프라인 계층이라, 접근하려면 먼저 재수화라는 절차가 필요하고 시간이 소요됩니다.",
+      "concept_tags": ["rehydration"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "az900_l2_u4_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "한 데이터센터 안에 데이터를 3개 복사본으로 저장하는, 가장 저렴하지만 데이터센터 전체 장애에는 취약한 중복성 옵션은 무엇입니까? (영문 약자로 입력)",
+      "expected_answers": ["LRS"],
+      "explanation_ko": "LRS(Locally Redundant Storage)는 가장 기본적이고 저렴한 중복성 옵션입니다.",
+      "concept_tags": ["lrs"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "az900_l2_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "같은 리전 안에서 데이터센터 하나가 통째로 장애가 나도 데이터를 보호하고 싶을 때 적합한 중복성 옵션은?",
+      "options": [
+        "LRS(한 데이터센터에만 저장돼 있어 그 데이터센터가 망가지면 데이터도 위험)",
+        "ZRS — 같은 리전의 여러 가용 영역(서로 다른 데이터센터)에 걸쳐 복제한다",
+        "중복성 옵션은 데이터센터 장애를 막을 수 없다",
+        "Hot 계층을 선택하면 자동으로 해결된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "ZRS는 가용 영역(서로 다른 물리적 위치) 단위로 복제해서 데이터센터 장애에 대한 내성을 제공합니다.",
+      "concept_tags": ["zrs"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "az900_l2_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "리전 전체에 영향을 미치는 대규모 재해(지진 등)까지 대비해서, 수백 마일 떨어진 보조 리전에도 데이터를 복제하고 싶을 때 적합한 옵션은?",
+      "options": [
+        "LRS", "ZRS", "GRS — 주 리전뿐 아니라 지리적으로 떨어진 보조 리전에도 비동기 복제한다", "이런 보호는 Azure에서 제공하지 않는다"
+      ],
+      "answer": 2,
+      "explanation_ko": "GRS(Geo-Redundant Storage)는 리전 단위의 재해까지 대비할 수 있는 더 넓은 범위의 중복성을 제공합니다.",
+      "concept_tags": ["grs"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "az900_l2_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "LRS, ZRS, GRS를 보호 범위가 좁은 것부터 넓은 순서로 올바르게 나열한 것은?",
+      "options": [
+        "LRS(한 데이터센터) < ZRS(같은 리전의 여러 영역) < GRS(다른 리전까지)",
+        "GRS < ZRS < LRS", "ZRS < LRS < GRS", "셋의 보호 범위는 모두 동일하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "LRS→ZRS→GRS 순으로 보호 범위(및 일반적으로 비용)가 커집니다.",
+      "concept_tags": ["redundancy_comparison"],
+      "difficulty": "challenge"
+    }
+  ]
+}

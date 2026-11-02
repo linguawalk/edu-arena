@@ -1,0 +1,96 @@
+{
+  "language": "fortran",
+  "category": "legacy_historical",
+  "level": 1,
+  "unit": 1,
+  "unit_title": "변수와 자료형",
+  "questions": [
+    {
+      "id": "fortran_l1_u01_q001",
+      "type": "predict_output",
+      "code": "integer :: x, y\nx = 7\ny = 2\nprint *, x / y",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3.5", "3", "4", "오류"],
+      "answer": 1,
+      "explanation_en": "Dividing two integers performs integer division, discarding the remainder: 7 / 2 is 3, just like in C.",
+      "explanation_ko": "정수 두 개를 나누면 정수 나눗셈이 수행되어 나머지를 버립니다. 7 / 2는 3입니다. C와 같습니다.",
+      "concept_tags": ["integer_division"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "fortran_l1_u01_q002",
+      "type": "error_finding",
+      "code": "integer :: x, y\nreal :: z\nx = 7\ny = 2\nz = x / y\nprint *, z",
+      "prompt_en": "If the programmer expected z to be 3.5, what actually happens? (z is declared as real.)",
+      "prompt_ko": "프로그래머가 z가 3.5가 될 거라 기대했다면, 실제로는 어떻게 될까요? (z는 real로 선언됨)",
+      "options": [
+        "3.5가 정상적으로 출력됨",
+        "x / y가 z의 타입(real)과 무관하게 정수 나눗셈으로 먼저 계산되어 3이 되고, 그 3만 실수로 변환되어 3.0이 출력됨",
+        "컴파일 오류가 발생함",
+        "0.0이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "The type of x / y is determined by the operand types (both integer), not by the type of the variable being assigned to; the division happens as integer division (giving 3) BEFORE being converted to real for storage in z, resulting in 3.0, not 3.5.",
+      "explanation_ko": "x / y의 타입은 대입받는 변수의 타입이 아니라 피연산자의 타입(둘 다 integer)으로 결정됩니다. 나눗셈은 정수 나눗셈으로 먼저 계산되어(3이 됨) z에 저장하기 위해 실수로 변환되므로, 3.5가 아니라 3.0이 됩니다.",
+      "concept_tags": ["integer_division", "type_conversion"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "fortran_l1_u01_q003",
+      "type": "predict_output",
+      "code": "integer :: x, y\nreal :: z\nx = 7\ny = 2\nz = real(x) / real(y)\nprint *, z",
+      "prompt_en": "What is printed? (Compare with the previous example — real() is used here.)",
+      "prompt_ko": "출력 결과는? (이전 예제와 비교해보세요 — 여기서는 real()이 쓰였습니다.)",
+      "options": ["3.0", "3.5", "3", "오류"],
+      "answer": 1,
+      "explanation_en": "real(x) and real(y) explicitly convert both operands to real BEFORE the division happens, so true floating-point division occurs: 3.5.",
+      "explanation_ko": "real(x)와 real(y)는 나눗셈이 일어나기 전에 두 피연산자를 명시적으로 real로 변환합니다. 그래서 진짜 부동소수점 나눗셈이 일어나 3.5가 됩니다.",
+      "concept_tags": ["type_conversion", "real_function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "fortran_l1_u01_q004",
+      "type": "fill_blank",
+      "code": "____ :: age\nage = 25\nprint *, age",
+      "prompt_en": "Fill in the blank with the type keyword for a whole number.",
+      "prompt_ko": "정수를 위한 타입 키워드를 빈칸에 채우세요.",
+      "options": ["integer", "int", "whole", "num"],
+      "answer": 0,
+      "explanation_en": "integer declares a whole-number variable in Fortran, spelled out in full rather than abbreviated.",
+      "explanation_ko": "integer는 Fortran에서 정수 변수를 선언합니다. 축약하지 않고 온전한 단어로 씁니다.",
+      "concept_tags": ["integer_type"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "fortran_l1_u01_q005",
+      "type": "predict_output",
+      "code": "integer :: a\na = 5\nprint *, a",
+      "prompt_en": "What is printed? (Note the leading space before the number.)",
+      "prompt_ko": "출력 결과는? (숫자 앞의 공백에 주의하세요.)",
+      "options": ["5", " 5", "a", "오류"],
+      "answer": 1,
+      "explanation_en": "print * with list-directed output reserves a leading space (traditionally for the sign) before numeric values; integers print with a leading space even when positive.",
+      "explanation_ko": "print *의 목록 기반 출력은 숫자 값 앞에 (전통적으로 부호를 위한) 공백을 하나 남겨둡니다. 정수는 양수여도 앞에 공백이 붙어 출력됩니다.",
+      "concept_tags": ["print_statement"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "fortran_l1_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "integer", "definition": "정수를 저장하는 자료형" },
+        { "term": "real", "definition": "소수점을 포함한 실수를 저장하는 자료형" },
+        { "term": "연산 전 타입 결정", "definition": "나눗셈 등의 연산 타입은 대입받는 변수가 아니라 피연산자로 결정됨" },
+        { "term": "real() 함수", "definition": "정수를 명시적으로 실수로 변환하는 함수 — 정수 나눗셈 함정을 피하는 방법" }
+      ],
+      "explanation_en": "This integer-division-before-conversion gotcha is one of Fortran's most famous pitfalls, tripping up scientific programmers for decades — always convert operands explicitly before mixed arithmetic when precision matters.",
+      "explanation_ko": "변환 전 정수 나눗셈이 먼저 일어나는 이 함정은 Fortran에서 가장 유명한 실수 중 하나로, 수십 년간 과학 계산 프로그래머들을 넘어뜨려 왔습니다. 정밀도가 중요할 때는 혼합 연산 전에 항상 피연산자를 명시적으로 변환해야 합니다.",
+      "concept_tags": ["integer_division", "type_conversion", "real_function"],
+      "difficulty": "practice"
+    }
+  ]
+}

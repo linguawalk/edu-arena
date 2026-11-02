@@ -1,0 +1,93 @@
+{
+ "no": 5,
+ "title": "학습·배포 인프라와 MLOps",
+ "hours": 5,
+ "after": [
+  3,
+  4
+ ],
+ "objectives": [
+  "학습에 필요한 GPU 메모리와 분산 학습 방식을 설명할 수 있다.",
+  "모델 배포·모니터링·재학습의 MLOps 흐름을 설명할 수 있다.",
+  "모델 드리프트와 버전 관리의 필요성을 설명할 수 있다."
+ ],
+ "checklist": [
+  "학습 메모리: 가중치 + 기울기 + 최적화기 상태(혼합 정밀도 Adam이면 매개변수당 약 16바이트)",
+  "데이터 병렬, 모델(텐서·파이프라인) 병렬",
+  "학습 클러스터와 고속 연결망",
+  "배포: 배치 추론, 실시간 API, 엣지",
+  "MLOps: 데이터·모델 버전 관리, 자동화 파이프라인, 모니터링",
+  "모델 드리프트와 재학습",
+  "비용·탄소 관리"
+ ],
+ "advice": [
+  "모델을 만드는 것보다 운영하는 것이 더 어렵다는 것이 실무 AI의 교훈입니다. 데이터가 바뀌면 성능이 조용히 떨어지므로(드리프트) 감시하고 다시 학습하는 체계가 필요하고, 이것이 소프트웨어공학의 DevOps를 AI에 적용한 MLOps입니다. 학습 메모리 어림식으로 70억 매개변수 모델 학습에 GPU 몇 장이 필요한지 계산해 보고, 서빙 인프라는 컴퓨터 트랙 분산시스템·클라우드 8단원과 함께 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "소프트웨어공학 9단원 애자일과 DevOps (컴퓨터 트랙)",
+   "url": "guide.html?lv=2&t=computer&s=software-engineering&u=9"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "분산시스템·클라우드 8단원 AI·LLM 서빙 인프라 (컴퓨터 트랙)",
+   "url": "guide.html?lv=3&t=computer&s=distributed-systems&u=8"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "매개변수 70억 개 모델을 혼합 정밀도 Adam으로 학습할 때 매개변수당 약 16바이트가 필요하면 약 몇 GB일까요? (활성값 제외)",
+   "answer": "112",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "7 × 10⁹ × 16 B = 112 × 10⁹ B = 112 GB",
+   "hint": "매개변수 수 × 16바이트입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "데이터·모델 버전 관리, 자동 학습·배포, 성능 모니터링을 묶어 AI를 지속적으로 운영하는 방법론을 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "MLOps"
+     ]
+    }
+   ],
+   "explanation": "소프트웨어공학의 DevOps를 머신러닝에 적용한 것입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "운영 중 입력 데이터의 분포가 학습 때와 달라져 모델 성능이 떨어지는 현상을 모델 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "드리프트",
+      "표류"
+     ]
+    }
+   ],
+   "explanation": "모니터링으로 감지하고 재학습으로 대응합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "ai-engineering",
+ "id": "l3-convergence-ai-engineering-u05"
+}

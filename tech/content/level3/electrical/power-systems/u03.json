@@ -1,0 +1,100 @@
+{
+ "no": 3,
+ "title": "조류 계산",
+ "hours": 7,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "어드미턴스 행렬(Y_bus)을 구성할 수 있다.",
+  "버스의 종류(슬랙·PV·PQ)와 각각의 지정값·미지값을 구분할 수 있다.",
+  "뉴턴–랩슨법과 직류 조류 계산의 원리를 설명하고 간단한 계통에 적용할 수 있다."
+ ],
+ "checklist": [
+  "Y_bus: 대각 원소 = 버스에 연결된 어드미턴스의 합, 비대각 원소 = −(두 버스 사이 어드미턴스)",
+  "전력 방정식 S_i = V_i Σ (Y_ik V_k)*는 비선형",
+  "슬랙 버스(V, δ 지정), PV 버스(P, |V| 지정, 발전기), PQ 버스(P, Q 지정, 부하)",
+  "가우스–자이델법: 간단하지만 수렴이 느림",
+  "뉴턴–랩슨법: 야코비안으로 선형화, 빠른 수렴",
+  "직류 조류 계산: P_ij ≈ (δ_i − δ_j)/x_ij (저항 무시, 전압 1 pu)",
+  "조류 계산 결과의 활용: 선로 과부하, 전압 위반, 손실"
+ ],
+ "advice": [
+  "조류 계산은 손으로 큰 계통을 푸는 과목이 아니라, 컴퓨터가 무엇을 푸는지 이해하는 과목입니다. 2~3버스 계통의 Y_bus를 직접 만들고 뉴턴–랩슨을 한두 번만 손으로 반복해 보면, 나머지는 같은 절차의 반복이라는 것을 알게 됩니다. 실무에서 가장 많이 쓰는 직류 조류 계산은 상차각만으로 유효전력 흐름을 구하는 선형 근사이니, 2단원의 P = (V_sV_r/X) sin δ에서 sin δ ≈ δ로 놓은 것과 같다는 점을 연결해 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Glover · Overbye · Sarma, Power System Analysis and Design (장 제목으로 표기)",
+   "part": "Power Flows 장"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Grainger · Stevenson, Power System Analysis (번역본 『전력계통공학』)",
+   "part": "조류 계산(Power-Flow Solutions) 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.061 Introduction to Electric Power Systems (2011년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-061-introduction-to-electric-power-systems-spring-2011/",
+   "lang": "영어",
+   "part": "load flow 강의 노트"
+  },
+  {
+   "title": "math-arena 레벨3 · 수치해석 (뉴턴법)",
+   "href": "https://math-arena.org/guide.html?lv=3&t=applied&s=numerical"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "두 버스가 임피던스 j0.1 pu인 선로 하나로만 연결되어 있습니다. Y_bus의 비대각 원소 Y₁₂ = jB에서 B는 얼마일까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "선로 어드미턴스 y = 1/(j0.1) = −j10\nY₁₂ = −y = j10이므로 B = 10입니다.",
+   "hint": "비대각 원소는 선로 어드미턴스에 −를 붙인 값입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "발전기가 연결되어 유효전력과 전압 {{1}}를 지정하는 버스를 PV 버스라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "크기",
+      "크기값"
+     ]
+    }
+   ],
+   "explanation": "PV 버스의 미지값은 무효전력과 위상각입니다.\n부하 버스는 P와 Q를 지정하는 PQ 버스입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "직류 조류 계산에서 δ₁ = 0, δ₂ = −0.1 rad, 선로 리액턴스 0.05 pu, 기준 용량 100 MVA이면 버스 1 → 2 조류는 몇 MW일까요?",
+   "answer": "200",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "P₁₂ = (δ₁ − δ₂)/x = 0.1/0.05 = 2 pu = 200 MW",
+   "hint": "P_ij = (δ_i − δ_j)/x_ij입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "power-systems",
+ "id": "l3-electrical-power-systems-u03"
+}

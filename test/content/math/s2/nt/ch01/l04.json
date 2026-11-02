@@ -1,0 +1,264 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s2",
+  "track": "nt",
+  "work": "증명",
+  "track_title": "정수론",
+  "chapter": {
+    "id": "math-s2-nt-ch01",
+    "no": 1,
+    "title": "위수와 원시근"
+  },
+  "lesson": {
+    "id": "math-s2-nt-ch01-l04",
+    "no": 4,
+    "title": "위수의 응용",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "정수론",
+      "위수"
+    ],
+    "competition": "KMO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "2ᵖ − 1의 소인수",
+      "body": [
+        "p가 소수이고 소수 q가 2ᵖ − 1을 나누면 2ᵖ ≡ 1 (mod q)이므로 ord_q(2)는 p의 약수입니다. 1은 아니므로 ord_q(2) = p이고, ord_q(2) | q − 1이므로 q ≡ 1 (mod p)입니다.",
+        "2¹¹ − 1 = 2047 = 23 × 89에서 23 = 2 × 11 + 1, 89 = 8 × 11 + 1로 모두 11k + 1 꼴입니다.",
+        "q가 홀수이므로 q ≡ 1 (mod 2p)까지 말할 수 있습니다. 2²³ − 1 = 47 × 178481에서 47 = 2 × 23 + 1입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "2047 = 2¹¹ − 1의 가장 작은 소인수를 11로 나눈 나머지는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "가장 작은 소인수는 23입니다.",
+      "explanation": "2¹¹ − 1의 소인수 q는 ord_q(2) = 11이라 q ≡ 1 (mod 11)입니다.\n2047 = 23 × 89이고 가장 작은 소인수는 23입니다.\n23 = 2 × 11 + 1이므로 나머지는 1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "소수 q가 2ᵖ − 1 (p는 소수)을 나누면 ord_q(2) = p이므로 q ≡ {{1}} (mod p)입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "1"
+          ]
+        }
+      ],
+      "hint": "ord_q(2)는 q − 1을 나눕니다.",
+      "explanation": "ord_q(2) = p이고 위수는 q − 1의 약수입니다.\n그래서 p | q − 1입니다.\n곧 q ≡ 1 (mod p)입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "페르마 수의 소인수",
+      "body": [
+        "페르마 수 Fₙ = 2^(2ⁿ) + 1의 소인수 q에서는 2^(2ⁿ) ≡ −1이라 2^(2ⁿ⁺¹) ≡ 1입니다. 그래서 ord_q(2) = 2ⁿ⁺¹이고 q ≡ 1 (mod 2ⁿ⁺¹)입니다.",
+        "F₅ = 2³² + 1의 소인수는 64k + 1 꼴이어야 합니다(실은 128k + 1 꼴까지 증명됨). 오일러는 이것으로 후보를 줄여 641 = 5 × 128 + 1을 찾았습니다.",
+        "위수는 '어떤 꼴의 소수만 소인수가 될 수 있는가'를 알려 주어 소인수 찾기를 크게 줄입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "F₅ = 2³² + 1의 소인수 q가 q ≡ 1 (mod 64)임을 보이세요.",
+      "steps": [
+        "q | 2³² + 1이면 2³² ≡ −1 (mod q)입니다.",
+        "제곱하면 2⁶⁴ ≡ 1이므로 ord_q(2) | 64입니다.",
+        "ord_q(2)가 32의 약수이면 2³² ≡ 1이 되어 −1과 모순이므로 ord_q(2) = 64입니다.",
+        "ord_q(2) | q − 1이므로 64 | q − 1, 곧 q ≡ 1 (mod 64)입니다."
+      ],
+      "answer": "q ≡ 1 (mod 64)"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "641을 64로 나눈 나머지는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "641 = 64 × 10 + 1입니다.",
+      "explanation": "F₅의 소인수는 64k + 1 꼴이어야 합니다.\n641 = 64 × 10 + 1입니다.\n그래서 나머지는 1이고, 641은 실제로 F₅의 소인수입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "2²³ − 1 = 47 × 178481에서 47을 46으로 나눈 나머지는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "q ≡ 1 (mod 2p)입니다.",
+      "explanation": "2ᵖ − 1의 소인수 q는 q ≡ 1 (mod 2p)입니다.\np = 23이면 2p = 46입니다.\n47 = 46 + 1이므로 나머지는 1입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "위수와 거듭제곱 합의 나누어떨어짐",
+      "body": [
+        "'n | 2ⁿ − 1인 자연수 n은 1뿐이다'는 위수로 증명됩니다. n > 1이면 n의 가장 작은 소인수 p를 잡습니다. 2ⁿ ≡ 1 (mod p)라 ordₚ(2) | n이고, ordₚ(2) | p − 1입니다.",
+        "ordₚ(2)는 n과 p − 1을 모두 나누는데, p − 1보다 작은 수는 n의 소인수가 될 수 없으므로(p가 가장 작은 소인수) gcd(n, p − 1) = 1입니다. 그래서 ordₚ(2) = 1, 곧 2 ≡ 1 (mod p)라 모순입니다.",
+        "'가장 작은 소인수를 잡고 위수를 쓴다'는 것은 올림피아드에서 자주 쓰이는 기법입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1 ≤ n ≤ 100에서 n | 2ⁿ − 1인 자연수 n은 몇 개인가요?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n = 1뿐입니다.",
+      "explanation": "n > 1이면 가장 작은 소인수 p에서 ordₚ(2)가 n과 p − 1을 모두 나눕니다.\ngcd(n, p − 1) = 1이라 ordₚ(2) = 1이 되어 모순입니다.\n그래서 n = 1 하나뿐입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "2¹³ − 1 = 8191은 소수입니다. 2¹³ − 1의 소인수는 13k + 1 꼴이어야 합니다. 8191을 13으로 나눈 나머지는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "8191 = 13 × 630 + 1입니다.",
+      "explanation": "2ᵖ − 1의 소인수 q는 q ≡ 1 (mod p)입니다.\n8191 자신이 소수이므로 8191 ≡ 1 (mod 13)이어야 합니다.\n13 × 630 = 8190이므로 나머지는 1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "F₅ = 2³² + 1의 소인수는 128k + 1 꼴입니다. 641 = 128k + 1일 때 k는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "640 ÷ 128입니다.",
+      "explanation": "F₅의 소인수는 2⁶⁴ ≡ 1에서 64k + 1 꼴이고, 더 정밀하게는 128k + 1 꼴입니다.\n641 − 1 = 640 = 128 × 5입니다.\n그래서 k = 5이며, 오일러는 이런 후보를 차례로 시험해 641을 찾았습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "소수 p에 대해 2ᵖ − 1의 소인수 q는 ord_q(2) = p라 q ≡ 1 (mod 2p)입니다(2047 = 23 × 89).",
+        "페르마 수 2^(2ⁿ) + 1의 소인수 q는 ord_q(2) = 2ⁿ⁺¹이라 q ≡ 1 (mod 2ⁿ⁺¹)입니다(641 ≡ 1 mod 64).",
+        "가장 작은 소인수 p를 잡고 위수가 n과 p − 1을 동시에 나눔을 쓰는 기법으로 n | 2ⁿ − 1 ⇒ n = 1 같은 문제를 풉니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "2⁷ − 1 = 127은 소수입니다. 127을 14로 나눈 나머지는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "q ≡ 1 (mod 2p)입니다.",
+      "explanation": "2ᵖ − 1의 소인수 q는 q ≡ 1 (mod 2p)입니다.\np = 7이면 2p = 14입니다.\n127 = 14 × 9 + 1이므로 나머지는 1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "2^(2⁴) + 1 = 65537의 소인수는 몇으로 나눈 나머지가 1이어야 하나요? (2ⁿ⁺¹)",
+      "answer": "32",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n = 4입니다.",
+      "explanation": "페르마 수 2^(2ⁿ) + 1의 소인수 q는 ord_q(2) = 2ⁿ⁺¹이라 q ≡ 1 (mod 2ⁿ⁺¹)입니다.\nn = 4이면 2⁵ = 32입니다.\n실제로 65537 = 32 × 2048 + 1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "p가 소수이고 소수 q가 2ᵖ − 1을 나누면 q ≡ 1 (mod 2p)임을 증명하세요.",
+      "model_answer": [
+        "q | 2ᵖ − 1이므로 2ᵖ ≡ 1 (mod q)이고 ord_q(2) | p이다.",
+        "p는 소수이므로 ord_q(2)는 1 또는 p인데, 1이면 2 ≡ 1 (mod q)이라 q = 1이 되어 모순이다. 그래서 ord_q(2) = p이다.",
+        "페르마 소정리로 2^(q−1) ≡ 1이므로 p | q − 1이다.",
+        "q는 홀수(2ᵖ − 1이 홀수)이므로 q − 1은 짝수이고, p가 홀수 소수이면 2p | q − 1, 곧 q ≡ 1 (mod 2p)이다."
+      ],
+      "criteria": [
+        {
+          "text": "ord_q(2) | p를 밝혔다",
+          "points": 1
+        },
+        {
+          "text": "ord_q(2) = p를 보였다",
+          "points": 2
+        },
+        {
+          "text": "p | q − 1을 보였다",
+          "points": 2
+        },
+        {
+          "text": "홀짝으로 2p까지 결론지었다",
+          "points": 1
+        }
+      ],
+      "hint": "위수부터 구하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "n | 2ⁿ − 1인 자연수 n은 1뿐임을 증명하세요.",
+      "model_answer": [
+        "n > 1이라 가정하고 n의 가장 작은 소인수를 p라 한다. n이 홀수(2ⁿ − 1이 홀수)이므로 p ≥ 3이다.",
+        "2ⁿ ≡ 1 (mod p)이므로 d = ordₚ(2)는 n을 나누고, 페르마 소정리로 p − 1도 나눈다.",
+        "d > 1이면 d의 소인수는 n의 소인수인데 d ≤ p − 1 < p이므로 p가 가장 작다는 데 모순이다. 그래서 d = 1이다.",
+        "d = 1이면 2 ≡ 1 (mod p)라 p | 1이 되어 모순이다. 따라서 n = 1뿐이다."
+      ],
+      "criteria": [
+        {
+          "text": "가장 작은 소인수를 잡았다",
+          "points": 1
+        },
+        {
+          "text": "위수가 n과 p − 1을 나눔을 보였다",
+          "points": 2
+        },
+        {
+          "text": "d = 1을 이끌었다",
+          "points": 2
+        },
+        {
+          "text": "모순으로 결론지었다",
+          "points": 1
+        }
+      ],
+      "hint": "가장 작은 소인수를 잡으세요."
+    }
+  ]
+}

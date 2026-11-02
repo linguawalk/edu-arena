@@ -1,0 +1,96 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 1,
+  "unit": 1,
+  "unit_title": "변수와 자료형",
+  "questions": [
+    {
+      "id": "javascript_l1_u01_q001",
+      "type": "predict_output",
+      "code": "let x = 7;\nlet y = 2;\nconsole.log(x / y);",
+      "prompt_en": "What is printed? (Note: JavaScript has only one number type.)",
+      "prompt_ko": "출력 결과는? (JavaScript는 숫자 타입이 하나뿐인 점에 주의하세요.)",
+      "options": ["3", "3.5", "3.0", "오류"],
+      "answer": 1,
+      "explanation_en": "JavaScript has no separate int/float types — all numbers are the same 'number' type, so / always performs true division: 3.5.",
+      "explanation_ko": "JavaScript에는 별도의 int/float 타입이 없습니다 — 모든 숫자는 같은 'number' 타입이라, /는 항상 실수 나눗셈을 수행합니다: 3.5.",
+      "concept_tags": ["number_type"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l1_u01_q002",
+      "type": "predict_output",
+      "code": "console.log(typeof null);",
+      "prompt_en": "What is printed? (This is one of JavaScript's most famous quirks.)",
+      "prompt_ko": "출력 결과는? (JavaScript의 가장 유명한 특이 동작 중 하나입니다.)",
+      "options": ["null", "undefined", "object", "오류"],
+      "answer": 2,
+      "explanation_en": "typeof null returns \"object\", a long-standing bug in JavaScript kept for backward compatibility since fixing it would break existing code across the web.",
+      "explanation_ko": "typeof null은 \"object\"를 반환합니다. 이는 JavaScript의 오래된 버그로, 고치면 웹 전체의 기존 코드가 깨질 수 있어 하위 호환성을 위해 그대로 남아있습니다.",
+      "concept_tags": ["typeof", "null_quirk"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l1_u01_q003",
+      "type": "fill_blank",
+      "code": "____ age = 25;\nconsole.log(age);",
+      "prompt_en": "Fill in the blank with the modern keyword for declaring a reassignable variable.",
+      "prompt_ko": "재할당 가능한 변수를 선언하는 최신 키워드를 빈칸에 채우세요.",
+      "options": ["let", "var", "const", "int"],
+      "answer": 0,
+      "explanation_en": "let declares a block-scoped, reassignable variable, the modern replacement for var in most code.",
+      "explanation_ko": "let은 블록 스코프를 갖는 재할당 가능한 변수를 선언합니다. 대부분의 코드에서 var를 대체하는 최신 방식입니다.",
+      "concept_tags": ["let"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l1_u01_q004",
+      "type": "error_finding",
+      "code": "const x = 5;\nx = 10;",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "x 선언 문법 오류",
+        "const로 선언된 변수는 재할당할 수 없어서, x = 10에서 TypeError가 발생함",
+        "10을 대입하는 문법 오류",
+        "문제 없음, x는 10이 됨"
+      ],
+      "answer": 1,
+      "explanation_en": "const creates a binding that cannot be reassigned; attempting x = 10 throws a TypeError at runtime.",
+      "explanation_ko": "const는 재할당할 수 없는 바인딩을 만듭니다. x = 10을 시도하면 실행 시점에 TypeError가 발생합니다.",
+      "concept_tags": ["const"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l1_u01_q005",
+      "type": "predict_output",
+      "code": "const arr = [1, 2, 3];\narr.push(4);\nconsole.log(arr);",
+      "prompt_en": "What is printed? (Note: arr is declared with const.)",
+      "prompt_ko": "출력 결과는? (arr가 const로 선언된 점에 주의하세요.)",
+      "options": ["오류: const는 수정 불가", "[1, 2, 3]", "[1, 2, 3, 4]", "[4]"],
+      "answer": 2,
+      "explanation_en": "const only prevents reassigning the variable itself (arr = something else); it doesn't freeze the array's contents, so push() still works, giving [1, 2, 3, 4].",
+      "explanation_ko": "const는 변수 자체의 재할당(arr = 다른 것)만 막을 뿐, 배열의 내용을 동결하지는 않습니다. 그래서 push()는 여전히 동작해 [1, 2, 3, 4]가 됩니다.",
+      "concept_tags": ["const", "mutability"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l1_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "let", "definition": "재할당 가능한, 블록 스코프 변수를 선언하는 최신 키워드" },
+        { "term": "const", "definition": "재할당은 불가능하지만, 객체/배열의 내용은 여전히 바꿀 수 있는 변수" },
+        { "term": "number", "definition": "정수와 실수를 구분하지 않는 JavaScript의 유일한 숫자 타입" },
+        { "term": "typeof null === \"object\"", "definition": "역사적인 이유로 남아있는, JavaScript의 유명한 typeof 특이 동작" }
+      ],
+      "explanation_en": "const's 'reassignment-blocked but mutation-allowed' behavior is a subtlety worth internalizing early, since it differs from what 'constant' implies in languages like C++.",
+      "explanation_ko": "const의 '재할당은 막지만 변경은 허용'하는 동작은 C++ 같은 언어에서 'constant'가 암시하는 것과 다르므로, 일찍 이해해둘 만한 미묘한 부분입니다.",
+      "concept_tags": ["let", "const", "number_type"],
+      "difficulty": "practice"
+    }
+  ]
+}

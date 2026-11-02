@@ -1,0 +1,255 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "mathstr",
+  "work": "풀이",
+  "track_title": "수학·문자열",
+  "chapter": {
+    "id": "info-s2-mathstr-ch01",
+    "no": 1,
+    "title": "조합론"
+  },
+  "lesson": {
+    "id": "info-s2-mathstr-ch01-l02",
+    "no": 2,
+    "title": "나머지로 구하는 이항계수",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "수학·문자열",
+      "조합론"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "나눗셈 대신 역원을 곱하기",
+      "body": [
+        "n이 10⁶이면 파스칼의 삼각형은 10¹²칸이라 쓸 수 없습니다. 대신 C(n, r) = n! / (r!(n − r)!)을 MOD로 나눈 나머지로 직접 계산합니다.",
+        "나머지 연산에서는 나눗셈을 그대로 할 수 없습니다. MOD가 소수 p이고 a가 p의 배수가 아니면, a × b ≡ 1 (mod p)인 b(역원)가 있어 'a로 나누기'를 'b 곱하기'로 바꿉니다. 페르마의 소정리 aᵖ⁻¹ ≡ 1에서 b = aᵖ⁻² mod p입니다.",
+        "팩토리얼과 그 역원을 미리 O(n)에 구해 두면, C(n, r) 하나를 O(1)에 답합니다."
+      ],
+      "code": "const long long MOD = 1000000007;          // 소수\nlong long fact[MAXN], inv[MAXN];\nfact[0] = 1;\nfor (int i = 1; i <= N; i++) fact[i] = fact[i-1] * i % MOD;\ninv[N] = pw(fact[N], MOD - 2);             // 페르마의 소정리로 역원\nfor (int i = N; i >= 1; i--) inv[i-1] = inv[i] * i % MOD;\n// C(n, r) = fact[n] * inv[r] % MOD * inv[n-r] % MOD"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "7로 나눈 나머지에서 3의 역원(3 × b ≡ 1 (mod 7)인 0 이상 6 이하의 b)은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3 × 5 = 15입니다.",
+      "explanation": "3 × b를 7로 나눈 나머지가 1이 되는 b를 찾습니다.\n3 × 5 = 15 = 2 × 7 + 1입니다.\n그래서 역원은 5입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "페르마의 소정리로 구한 3⁷⁻² mod 7의 값은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3⁵ = 243입니다.",
+      "explanation": "역원은 aᵖ⁻² mod p이므로 3⁵ mod 7을 구합니다.\n3⁵ = 243 = 34 × 7 + 5입니다.\n그래서 5로, 직접 찾은 역원과 같습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "역팩토리얼을 거꾸로 채우기",
+      "body": [
+        "inv[i]를 (i!)의 역원이라 합시다. inv[N]만 거듭제곱으로 한 번 구하면, 1/(i − 1)! = i × 1/i!이므로 inv[i − 1] = inv[i] × i로 나머지를 거꾸로 채울 수 있습니다.",
+        "그래서 fact와 inv를 모두 O(N)에 구하고, 거듭제곱은 한 번만(O(log MOD)) 합니다. 질의마다 거듭제곱을 하면 O(log MOD)씩 더 듭니다.",
+        "C(n, r) = fact[n] × inv[r] × inv[n − r]이고, 곱할 때마다 % MOD를 해 넘침을 막습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "p = 7일 때 C(10, 3) mod 7을 구하세요.",
+      "steps": [
+        "C(10, 3) = 120입니다.",
+        "120 = 17 × 7 + 1입니다.",
+        "그래서 C(10, 3) mod 7 = 1입니다."
+      ],
+      "answer": "1"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "13으로 나눈 나머지에서 4의 역원(0 이상 12 이하)은?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "4 × 10 = 40입니다.",
+      "explanation": "4 × b를 13으로 나눈 나머지가 1이 되는 b를 찾습니다.\n4 × 10 = 40 = 3 × 13 + 1입니다.\n그래서 역원은 10입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "C(12, 5) mod 13의 값은?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "C(12, 5) = 792입니다.",
+      "explanation": "n이 작으면 이항계수를 그대로 계산한 뒤 나머지를 구해도 되고, C(12, 5) = 792입니다.\n792 = 60 × 13 + 12입니다.\n그래서 나머지는 12입니다."
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "아래 코드에서 N = 10⁶일 때 pw(거듭제곱 함수)는 모두 몇 번 호출되나요? (바깥에서 부르는 횟수)",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "inv[N]에만 씁니다.",
+      "explanation": "역원은 inv[N] 하나만 거듭제곱으로 구합니다.\n나머지 inv[i − 1]은 inv[i] × i로 곱셈 한 번씩 채웁니다.\n그래서 pw는 1번 호출됩니다.",
+      "code": "const long long MOD = 1000000007;          // 소수\nlong long fact[MAXN], inv[MAXN];\nfact[0] = 1;\nfor (int i = 1; i <= N; i++) fact[i] = fact[i-1] * i % MOD;\ninv[N] = pw(fact[N], MOD - 2);             // 페르마의 소정리로 역원\nfor (int i = N; i >= 1; i--) inv[i-1] = inv[i] * i % MOD;\n// C(n, r) = fact[n] * inv[r] % MOD * inv[n-r] % MOD"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "MOD가 소수여야 하는 이유",
+      "body": [
+        "페르마의 소정리와 역원은 MOD가 소수일 때 1부터 MOD − 1까지 모든 수에 대해 성립합니다. 그래서 대회에서는 10⁹ + 7이나 998244353 같은 소수를 MOD로 씁니다.",
+        "n ≥ MOD이면 n!이 MOD의 배수라 0이 되어 이 방법이 깨집니다. 이때는 루카스 정리처럼 다른 방법이 필요합니다.",
+        "MOD가 소수가 아니면 역원이 없는 수가 생깁니다. 예를 들어 10으로 나눈 나머지에서 2의 역원은 없습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "10으로 나눈 나머지에서 2 × b ≡ 1 (mod 10)인 b(0 이상 9 이하)는 몇 개인가요?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2 × b는 언제나 짝수입니다.",
+      "explanation": "2 × b는 짝수이고, 짝수를 10으로 나눈 나머지도 짝수입니다.\n그래서 나머지가 1이 될 수 없습니다.\n그런 b는 0개로, 2는 10에 대한 역원이 없습니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "C(n, r) mod p를 팩토리얼로 구할 때 n이 p 이상이면 생기는 문제로 알맞은 것은? ① 계산이 느려진다 ② 음수가 나온다 ③ n!이 p의 배수라 0이 된다 ④ 아무 문제가 없다",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n!에 p가 곱해져 있나요?",
+      "explanation": "n ≥ p이면 n! = 1 × 2 × … × p × …에 p가 들어 있어 n! mod p = 0입니다.\n그래서 분모의 역원 계산도 깨져 이 방법을 그대로 쓸 수 없습니다.\n답은 3입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "MOD가 소수 p이면 p의 배수가 아닌 a의 역원은 aᵖ⁻² mod p입니다(페르마의 소정리). 나눗셈은 역원 곱하기로 바꿉니다.",
+        "fact를 앞에서부터, inv를 inv[N] 하나를 구한 뒤 뒤에서부터 채우면 O(N)에 준비하고 C(n, r)을 O(1)에 답합니다.",
+        "MOD가 소수가 아니거나 n이 MOD 이상이면 이 방법을 그대로 쓸 수 없습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "11로 나눈 나머지에서 5의 역원(0 이상 10 이하)은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5 × 9 = 45입니다.",
+      "explanation": "5 × b를 11로 나눈 나머지가 1이 되는 b를 찾습니다.\n5 × 9 = 45 = 4 × 11 + 1입니다.\n그래서 역원은 9입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "C(8, 4) mod 11의 값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "C(8, 4) = 70입니다.",
+      "explanation": "n이 작으면 이항계수를 그대로 계산한 뒤 나머지를 구해도 되고, C(8, 4) = 70입니다.\n70 = 6 × 11 + 4입니다.\n그래서 나머지는 4입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "p가 소수이고 a가 p의 배수가 아니면 aᵖ⁻² mod p가 a의 역원임을, 페르마의 소정리(aᵖ⁻¹ ≡ 1 (mod p))로 설명하세요.",
+      "model_answer": [
+        "페르마의 소정리에 의해 aᵖ⁻¹ ≡ 1 (mod p)이다.",
+        "aᵖ⁻¹ = a × aᵖ⁻²이므로 a × aᵖ⁻² ≡ 1 (mod p)이다.",
+        "역원의 정의가 a × b ≡ 1인 b이므로 b = aᵖ⁻² mod p가 역원이다.",
+        "빠른 거듭제곱으로 O(log p)에 계산한다."
+      ],
+      "criteria": [
+        {
+          "text": "페르마의 소정리를 썼다",
+          "points": 2
+        },
+        {
+          "text": "aᵖ⁻¹을 a × aᵖ⁻²로 나눴다",
+          "points": 2
+        },
+        {
+          "text": "역원의 정의와 연결했다",
+          "points": 2
+        }
+      ],
+      "hint": "aᵖ⁻¹을 a와 나머지로 나눠 보세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "inv[i − 1] = inv[i] × i (mod p)로 역팩토리얼을 거꾸로 채울 수 있는 이유를 설명하세요. (inv[i]는 i!의 역원)",
+      "model_answer": [
+        "i! = (i − 1)! × i이다.",
+        "양변의 역원을 생각하면 1/(i − 1)! = i × 1/i!이다(mod p에서 1/x는 x의 역원).",
+        "그래서 (i − 1)!의 역원은 i! 의 역원에 i를 곱한 값, 즉 inv[i] × i다.",
+        "inv[N]을 한 번 구하면 i = N, N − 1, …, 1 순서로 모두 채울 수 있다."
+      ],
+      "criteria": [
+        {
+          "text": "i! = (i − 1)! × i를 썼다",
+          "points": 2
+        },
+        {
+          "text": "역원 사이의 관계를 이끌었다",
+          "points": 3
+        },
+        {
+          "text": "거꾸로 채우는 순서를 밝혔다",
+          "points": 1
+        }
+      ],
+      "hint": "i!과 (i − 1)!의 관계에서 출발하세요.",
+      "code": "const long long MOD = 1000000007;          // 소수\nlong long fact[MAXN], inv[MAXN];\nfact[0] = 1;\nfor (int i = 1; i <= N; i++) fact[i] = fact[i-1] * i % MOD;\ninv[N] = pw(fact[N], MOD - 2);             // 페르마의 소정리로 역원\nfor (int i = N; i >= 1; i--) inv[i-1] = inv[i] * i % MOD;\n// C(n, r) = fact[n] * inv[r] % MOD * inv[n-r] % MOD"
+    }
+  ]
+}

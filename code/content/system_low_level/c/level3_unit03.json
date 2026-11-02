@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "함수 선언과 정의",
+  "questions": [
+    {
+      "id": "c_l3_u03_q001",
+      "type": "error_finding",
+      "code": "int main() {\n    printf(\"%d\", add(3, 4));\n    return 0;\n}\n\nint add(int a, int b) {\n    return a + b;\n}",
+      "prompt_en": "What potential problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 잠재적 문제가 있을까요?",
+      "options": [
+        "add 함수의 반환값 계산이 틀렸다",
+        "add가 정의되기 전인 main에서 먼저 호출되어, 컴파일러가 add의 존재를 미리 알지 못해 경고(구현에 따라 오류)가 발생할 수 있음",
+        "printf 형식 지정자가 틀렸다",
+        "문제 없음, 아무 경고도 없이 완벽하게 컴파일됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Since add is called in main before its definition appears, the compiler doesn't yet know its signature; many compilers only warn (implicit declaration), but this can be treated as an error under stricter settings.",
+      "explanation_ko": "add가 정의되기 전에 main에서 먼저 호출되기 때문에, 컴파일러는 그 시점에 add의 원형(반환형, 매개변수)을 알지 못합니다. 많은 컴파일러는 경고만 내지만(암시적 선언), 엄격한 설정에서는 오류로 처리될 수 있습니다. 함수 프로토타입을 미리 선언해두면 이 문제를 근본적으로 피할 수 있습니다.",
+      "concept_tags": ["function_prototype", "declaration_vs_definition"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l3_u03_q002",
+      "type": "fill_blank",
+      "code": "____;  // 함수 프로토타입\n\nint main() {\n    printf(\"%d\", add(3, 4));\n    return 0;\n}\n\nint add(int a, int b) {\n    return a + b;\n}",
+      "prompt_en": "Fill in the blank with a function prototype for add that matches its later definition.",
+      "prompt_ko": "이후 정의와 일치하는 add 함수의 프로토타입을 빈칸에 채우세요.",
+      "options": ["int add(int a, int b)", "void add()", "add(int, int)", "int add;"],
+      "answer": 0,
+      "explanation_en": "A function prototype declares the return type, name, and parameter types, letting the compiler check calls to the function before its full definition appears.",
+      "explanation_ko": "함수 프로토타입은 반환형, 이름, 매개변수 자료형을 미리 선언해서, 실제 정의가 나오기 전이라도 컴파일러가 함수 호출을 검사할 수 있게 해줍니다.",
+      "concept_tags": ["function_prototype"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l3_u03_q003",
+      "type": "predict_output",
+      "code": "int add(int a, int b);\n\nint main() {\n    printf(\"%d\", add(3, 4));\n    return 0;\n}\n\nint add(int a, int b) {\n    return a + b;\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["7", "34", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "With the prototype declared first, the compiler knows add's signature when main calls it, and the program runs cleanly, printing 7.",
+      "explanation_ko": "프로토타입이 먼저 선언되어 있어 컴파일러는 main이 add를 호출하는 시점에 이미 그 원형을 알고 있습니다. 프로그램은 문제없이 실행되어 7이 출력됩니다.",
+      "concept_tags": ["function_prototype"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l3_u03_q004",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "함수 선언 (프로토타입)", "definition": "함수의 이름·반환형·매개변수 자료형만 미리 알려주는 것" },
+        { "term": "함수 정의", "definition": "함수가 실제로 무엇을 하는지 본문(구현)을 작성하는 것" },
+        { "term": "헤더 파일 (.h)", "definition": "여러 소스 파일에서 공유할 함수 프로토타입을 모아두는 파일" },
+        { "term": "다중 파일 컴파일", "definition": "여러 .c 파일을 나누어 작성하고 헤더로 서로 연결해 하나의 프로그램으로 컴파일하는 방식" }
+      ],
+      "explanation_en": "Separating declaration from definition is what makes it possible to split a C program across multiple files, each including a shared header.",
+      "explanation_ko": "선언과 정의를 분리하는 것이 바로 C 프로그램을 여러 파일로 나누어 작성하고, 공유 헤더로 서로 연결할 수 있게 해주는 원리입니다.",
+      "concept_tags": ["function_prototype", "declaration_vs_definition", "header_file"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l3_u03_q005",
+      "type": "predict_output",
+      "code": "int square(int n) {\n    return n * n;\n}\n\nint main() {\n    printf(\"%d\", square(5));\n    return 0;\n}",
+      "prompt_en": "What is printed? (Note: square is fully defined before main uses it.)",
+      "prompt_ko": "출력 결과는? (square가 main보다 먼저 완전히 정의된 점에 주의하세요.)",
+      "options": ["25", "5", "10", "오류"],
+      "answer": 0,
+      "explanation_en": "When a function is fully defined before it is called, no separate prototype is needed; the compiler already knows its signature. square(5) returns 25.",
+      "explanation_ko": "함수가 호출되기 전에 완전히 정의되어 있으면 별도의 프로토타입이 필요 없습니다. 컴파일러가 이미 그 원형을 알고 있기 때문입니다. square(5)는 25를 반환합니다.",
+      "concept_tags": ["function_prototype", "declaration_vs_definition"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l3_u03_q006",
+      "type": "fill_blank",
+      "code": "// math_utils.h\nint add(int a, int b);\nint subtract(int a, int b);\n\n// main.c\n#include ____\n\nint main() {\n    printf(\"%d\", add(3, 4));\n    return 0;\n}",
+      "prompt_en": "Fill in the blank to include the local header file math_utils.h.",
+      "prompt_ko": "로컬 헤더 파일 math_utils.h를 포함하려면 빈칸에 무엇이 들어가야 할까요?",
+      "options": ["\"math_utils.h\"", "<math_utils.h>", "math_utils.h", "'math_utils.h'"],
+      "answer": 0,
+      "explanation_en": "Double quotes are used to include local project headers, while angle brackets are reserved for standard library headers like <stdio.h>.",
+      "explanation_ko": "큰따옴표는 프로젝트 내 로컬 헤더 파일을 포함할 때 사용하고, 꺾쇠 괄호(< >)는 <stdio.h>처럼 표준 라이브러리 헤더에 사용합니다.",
+      "concept_tags": ["header_file"],
+      "difficulty": "practice"
+    }
+  ]
+}

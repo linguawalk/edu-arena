@@ -1,0 +1,106 @@
+{
+ "no": 7,
+ "title": "잡음과 잡음 지수",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "열잡음 전력을 계산할 수 있다.",
+  "잡음 지수와 잡음 온도를 설명하고 변환할 수 있다.",
+  "다단 수신기의 전체 잡음 지수를 프리스 공식으로 계산할 수 있다."
+ ],
+ "checklist": [
+  "열잡음 전력 N = kTB, 실온(290 K)에서 −174 dBm/Hz",
+  "백색 잡음과 가우시안 잡음(AWGN)",
+  "신호 대 잡음비 SNR",
+  "잡음 지수 F = SNR_in/SNR_out, NF = 10 log₁₀F",
+  "잡음 온도 T_e = (F − 1)T₀",
+  "프리스 공식 F = F₁ + (F₂ − 1)/G₁ + …",
+  "첫 단에 저잡음 증폭기(LNA)를 두는 이유"
+ ],
+ "advice": [
+  "모든 통신 시스템의 성능은 결국 '신호가 잡음보다 얼마나 큰가'로 정해집니다. 열잡음 −174 dBm/Hz에 10 log₁₀(대역폭)을 더하면 잡음 전력이 나온다는 계산을 몸에 익혀 두면, 수신기 감도와 링크 버짓을 바로 계산할 수 있습니다.",
+  "프리스 공식은 '첫 단의 잡음 지수가 전체를 거의 결정하고, 뒷단의 잡음은 앞단 이득으로 나누어져 작아진다'는 것을 보여 줍니다. 그래서 안테나 바로 뒤에 잡음이 적고 이득이 큰 LNA를 둡니다. 숫자 예로 첫 단을 바꿔 가며 전체 잡음 지수가 어떻게 변하는지 확인해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Haykin, Communication Systems (번역본 『통신 시스템』, 장 제목으로 표기)",
+   "part": "Noise in Communication Systems 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Lathi · Ding, Modern Digital and Analog Communication Systems (장 제목으로 표기)",
+   "part": "Random Processes and Spectral Analysis 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Pozar, Microwave Engineering (장 제목으로 표기)",
+   "part": "Noise and Nonlinear Distortion 장"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "실온에서 대역폭 1 MHz 수신기의 열잡음 전력은 몇 dBm일까요?",
+   "answer": "-114",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "−174 + 10 log₁₀10⁶ = −174 + 60 = −114 dBm",
+   "hint": "−174 dBm/Hz + 10 log₁₀B입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "첫 단 F₁ = 2, 이득 G₁ = 10, 둘째 단 F₂ = 4인 2단 수신기의 전체 잡음 지수 F는 얼마일까요? (선형 값)",
+   "answer": "2.3",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "F = 2 + (4 − 1)/10 = 2.3",
+   "hint": "F₁ + (F₂ − 1)/G₁입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "위 전체 잡음 지수를 dB로 나타내면 약 몇 dB일까요?",
+   "answer": "3.62",
+   "answer_format": "decimal",
+   "tolerance": 0.02,
+   "explanation": "10 log₁₀2.3 ≈ 3.62 dB",
+   "hint": "10 log₁₀F입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "수신기의 전체 잡음 지수를 낮추려고 안테나 바로 뒤에 두는 증폭기를 저잡음 증폭기, 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "LNA"
+     ]
+    }
+   ],
+   "explanation": "프리스 공식에서 첫 단의 잡음 지수가 전체를 거의 결정하기 때문입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "ict",
+ "subject": "comm-theory",
+ "id": "l2-ict-comm-theory-u07"
+}

@@ -1,0 +1,96 @@
+{
+  "language": "cpp",
+  "category": "system_low_level",
+  "level": 1,
+  "unit": 3,
+  "unit_title": "string 클래스",
+  "questions": [
+    {
+      "id": "cpp_l1_u03_q001",
+      "type": "predict_output",
+      "code": "#include <string>\nusing namespace std;\n\nstring s1 = \"Hello, \";\nstring s2 = \"World!\";\nstring s3 = s1 + s2;\ncout << s3;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["Hello, World!", "s1s2", "오류", "Hello, "],
+      "answer": 0,
+      "explanation_en": "Unlike C's char arrays, C++'s string class supports + directly for concatenation, joining the two strings.",
+      "explanation_ko": "C의 char 배열과 달리, C++의 string 클래스는 +를 문자열 이어붙이기에 직접 사용할 수 있습니다. 두 문자열이 합쳐집니다.",
+      "concept_tags": ["string_class", "concatenation"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l1_u03_q002",
+      "type": "predict_output",
+      "code": "#include <string>\nusing namespace std;\n\nstring name = \"Kim\";\ncout << name.length();",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["Kim", "3", "4", "오류"],
+      "answer": 1,
+      "explanation_en": "The length() member function returns the number of characters in the string; \"Kim\" has 3 characters.",
+      "explanation_ko": "length() 멤버 함수는 문자열의 문자 개수를 반환합니다. \"Kim\"은 3글자입니다.",
+      "concept_tags": ["string_class", "member_function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l1_u03_q003",
+      "type": "fill_blank",
+      "code": "#include <string>\nusing namespace std;\n\nstring greeting = \"Hello\";\ncout << greeting.____(0);\n// 첫 번째 문자를 출력해야 함",
+      "prompt_en": "Fill in the blank with the member function that accesses a character at a given index.",
+      "prompt_ko": "특정 인덱스의 문자에 접근하는 멤버 함수를 빈칸에 채우세요.",
+      "options": ["at", "get", "index", "find"],
+      "answer": 0,
+      "explanation_en": "The at() member function returns the character at a given index, similar to using [] but with bounds checking.",
+      "explanation_ko": "at() 멤버 함수는 지정한 인덱스의 문자를 반환합니다. []를 쓰는 것과 비슷하지만 범위 검사를 해준다는 차이가 있습니다.",
+      "concept_tags": ["string_class", "member_function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l1_u03_q004",
+      "type": "predict_output",
+      "code": "#include <string>\nusing namespace std;\n\nstring s = \"programming\";\nint pos = s.find(\"gram\");\ncout << pos;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "gram", "-1", "0"],
+      "answer": 0,
+      "explanation_en": "find() returns the starting index of the first match; \"gram\" begins at index 3 in \"programming\" (p-r-o are indices 0,1,2).",
+      "explanation_ko": "find()는 처음 일치하는 부분의 시작 인덱스를 반환합니다. \"programming\"에서 \"gram\"은 인덱스 3부터 시작합니다(p-r-o가 0,1,2).",
+      "concept_tags": ["string_class", "member_function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l1_u03_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "string 클래스", "definition": "C의 char 배열을 대체하는, 크기 관리가 자동화된 C++ 문자열 타입" },
+        { "term": "+ (연결)", "definition": "두 문자열을 이어붙이는 연산자" },
+        { "term": "length()", "definition": "문자열의 문자 개수를 반환하는 멤버 함수" },
+        { "term": "find()", "definition": "부분 문자열이 처음 나타나는 위치를 찾는 멤버 함수" }
+      ],
+      "explanation_en": "The string class removes the need to manually manage null terminators and buffer sizes, one of C++'s key improvements over raw char arrays.",
+      "explanation_ko": "string 클래스는 null 문자나 버퍼 크기를 직접 관리할 필요를 없애주며, 이는 C의 원시 char 배열 대비 C++의 핵심 개선점 중 하나입니다.",
+      "concept_tags": ["string_class"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l1_u03_q006",
+      "type": "error_finding",
+      "code": "#include <string>\nusing namespace std;\n\nstring s = \"Hi\";\ns[10] = 'X';\ncout << s;",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "string 선언 문법 오류",
+        "s는 문자 2개만 담고 있는데 인덱스 10에 접근해 범위를 벗어남 — []는 at()과 달리 자동으로 오류를 잡아주지 않음",
+        "cout으로 string을 출력할 수 없음",
+        "문제 없음, 자동으로 문자열이 늘어남"
+      ],
+      "answer": 1,
+      "explanation_en": "s only has 2 characters (indices 0-1); accessing index 10 with [] goes out of bounds, and unlike at(), the [] operator doesn't check this automatically, leading to undefined behavior.",
+      "explanation_ko": "s는 문자 2개(인덱스 0~1)만 갖고 있는데 인덱스 10에 접근해 범위를 벗어납니다. at()과 달리 [] 연산자는 이를 자동으로 검사해주지 않아 예측할 수 없는 동작으로 이어집니다.",
+      "concept_tags": ["string_class", "out_of_bounds"],
+      "difficulty": "challenge"
+    }
+  ]
+}

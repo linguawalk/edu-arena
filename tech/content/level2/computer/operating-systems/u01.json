@@ -1,0 +1,116 @@
+{
+ "no": 1,
+ "title": "운영체제 구조와 시스템 호출",
+ "hours": 4,
+ "after": [],
+ "objectives": [
+  "운영체제의 역할과 커널 모드·사용자 모드를 설명할 수 있다.",
+  "시스템 호출·인터럽트·트랩의 흐름을 설명할 수 있다.",
+  "모놀리식·마이크로커널·하이브리드 구조를 비교할 수 있다."
+ ],
+ "checklist": [
+  "자원 관리자이자 추상화 제공자로서의 운영체제",
+  "이중 모드(커널·사용자)와 특권 명령",
+  "시스템 호출, 인터럽트(외부), 트랩·예외(내부)",
+  "시스템 호출 비용과 모드 전환",
+  "모놀리식(리눅스), 마이크로커널, 하이브리드",
+  "부팅과 커널 초기화",
+  "POSIX 인터페이스"
+ ],
+ "advice": [
+  "이 단원은 레벨1 컴퓨터 챕터 6을 한 단계 깊게 보는 곳입니다. 응용 프로그램이 read()를 부르면 트랩으로 커널 모드에 들어가 커널 코드가 실행되고 다시 돌아오는 흐름을, 컴퓨터 구조의 예외 처리와 연결해 그림으로 그려 보세요.",
+  "커널 구조의 차이는 '기능을 커널 안에 넣을 것인가, 밖의 프로세스로 뺄 것인가'의 맞바꿈입니다. 안에 넣으면 빠르고, 밖으로 빼면 하나가 죽어도 전체가 살아남습니다. 리눅스와 몇몇 마이크로커널 운영체제가 각각 어느 쪽을 택했는지 찾아보면 이해가 깊어집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Arpaci-Dusseau (무료 공개 교재)",
+   "title": "Operating Systems: Three Easy Pieces",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "lang": "영어",
+   "part": "Introduction, Limited Direct Execution 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Silberschatz · Galvin · Gagne, Operating System Concepts (번역본 『운영체제』, 장 제목으로 표기)",
+   "part": "Introduction, Operating-System Structures 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 6 운영체제의 역할",
+   "url": "browse.html?c=c4#ch06",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "응용 프로그램이 파일 읽기 같은 커널 서비스를 요청하는 정해진 창구를 {{1}} 호출이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "시스템"
+     ]
+    }
+   ],
+   "explanation": "시스템 호출은 트랩 명령어로 커널 모드에 들어갑니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "파일 시스템·장치 드라이버 같은 기능을 커널 밖의 사용자 프로세스로 빼고 커널은 최소한만 남긴 구조를 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "마이크로커널",
+      "마이크로 커널"
+     ]
+    }
+   ],
+   "explanation": "안정성은 좋지만 프로세스 사이 통신 비용이 듭니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "모드 전환 한 번에 1 μs가 들고 1초에 10만 번 시스템 호출을 하면 CPU 시간의 몇 %를 모드 전환에 쓸까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "10⁵ × 1 μs = 0.1 s\n1초 가운데 10%입니다.",
+   "hint": "횟수 × 비용 ÷ 1초입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "프로그램 안의 명령어(시스템 호출, 0으로 나누기 등)가 일으키는 동기적 예외를 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "트랩"
+     ]
+    }
+   ],
+   "explanation": "외부 장치가 일으키는 비동기 신호는 인터럽트입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "operating-systems",
+ "id": "l2-computer-operating-systems-u01"
+}

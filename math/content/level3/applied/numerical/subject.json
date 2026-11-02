@@ -1,0 +1,205 @@
+{
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "level": 3,
+ "track": "applied",
+ "id": "numerical",
+ "title": "수치해석",
+ "tagline": "컴퓨터로 수학 문제를 푸는 방법, 오차·수렴·안정성의 이론과 함께",
+ "overview": [
+  "실제 공학·과학 문제의 방정식은 대부분 손으로 풀 수 없습니다. 수치해석은 이런 문제를 컴퓨터로 근사해서 푸는 알고리즘을 설계하고, 그 근사가 얼마나 정확한지(오차), 반복하면 참값에 가까워지는지(수렴), 작은 오차가 커지지 않는지(안정성)를 수학적으로 분석하는 과목입니다.",
+  "방정식의 근 찾기, 보간과 근사, 수치 미분과 적분, 연립일차방정식의 직접법과 반복법, 고유값 계산, 상미분방정식과 편미분방정식의 수치해를 다룹니다. 모든 단원에서 '알고리즘 → 오차 분석 → 실제로 코드로 실행해 확인'의 흐름을 반복합니다. 파이썬(NumPy)이나 MATLAB으로 직접 구현해 보는 것을 강하게 권합니다.",
+  "공학·물리·금융·데이터 과학의 계산 기초이며, 과학 계산과 기계학습 알고리즘을 이해하는 바탕입니다. 이 가이드는 표준 교재 Burden–Faires를 따르고, 한양대·국민대 KOCW 강의를 함께 권합니다."
+ ],
+ "level_note": "레벨 3 (학부 고학년 수준, 1~2학기 분량). 목차 검증 기준: Burden–Faires, Atkinson 등 수치해석 교재와 공학 계열 수치해석 과목의 목차.",
+ "prereq": {
+  "text": "레벨2 대학 미적분학(테일러 정리), 선형대수(LU 분해, 고유값), 상미분방정식이 필요합니다. 9단원은 레벨3 편미분방정식 입문을 알면 좋습니다. 프로그래밍 기초(반복문, 배열)가 있으면 훨씬 효과적으로 공부할 수 있습니다.",
+  "links": [
+   {
+    "title": "레벨2 대학 미적분학 · 단원 2 테일러 급수",
+    "href": "guide.html?lv=2&t=analysis&s=calculus&u=2"
+   },
+   {
+    "title": "레벨2 선형대수 · 단원 2 가우스 소거법과 LU",
+    "href": "guide.html?lv=2&t=algebra&s=linear-algebra&u=2"
+   },
+   {
+    "title": "레벨2 선형대수 · 단원 9 고유값",
+    "href": "guide.html?lv=2&t=algebra&s=linear-algebra&u=9"
+   },
+   {
+    "title": "레벨2 상미분방정식 · 단원 1 미분방정식의 기하학",
+    "href": "guide.html?lv=2&t=analysis&s=ode&u=1"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "q1",
+    "qtype": "fill_blank",
+    "prompt": "eˣ의 2차 테일러 다항식은 1 + x + x²/{{1}}",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "2"
+      ]
+     }
+    ],
+    "explanation": "대학 미적분학 단원 2"
+   },
+   {
+    "type": "question",
+    "id": "q2",
+    "qtype": "numeric",
+    "prompt": "A = [[2, 1], [6, 5]]의 LU 분해에서 승수 l₂₁은?",
+    "answer": "3",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "6/2 = 3 (선형대수 단원 2)"
+   },
+   {
+    "type": "question",
+    "id": "q3",
+    "qtype": "fill_blank",
+    "prompt": "[[4, 1], [2, 3]]의 고유값은 큰 값 {{1}}, 작은 값 {{2}}",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "5"
+      ]
+     },
+     {
+      "id": 2,
+      "answers": [
+       "2"
+      ]
+     }
+    ],
+    "explanation": "λ² − 7λ + 10 = 0 (선형대수 단원 9)"
+   },
+   {
+    "type": "question",
+    "id": "q4",
+    "qtype": "numeric",
+    "prompt": "y′ = y, y(0) = 1의 정확한 해에서 y(1)을 소수 둘째 자리까지 쓰면?",
+    "answer": "2.72",
+    "answer_format": "decimal",
+    "tolerance": 0,
+    "explanation": "e ≈ 2.718"
+   },
+   {
+    "type": "question",
+    "id": "q5",
+    "qtype": "numeric",
+    "prompt": "f(x) = x² − 2는 [1, 2]에서 부호가 바뀔까요? (그렇다 1, 아니다 0)",
+    "answer": "1",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "f(1) = −1 < 0, f(2) = 2 > 0 → 중간값 정리로 근 존재"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "레벨3 · 최적화",
+   "note": "수치 최적화 알고리즘"
+  },
+  {
+   "title": "대학원 · 수치선형대수, 과학계산",
+   "note": "대규모 행렬 계산과 유한요소법"
+  },
+  {
+   "title": "code-arena · 파이썬 과학계산",
+   "note": "NumPy, SciPy로 알고리즘 구현"
+  },
+  {
+   "title": "tech-arena · 전산역학, 전산유체역학",
+   "note": "수치해석의 공학 응용"
+  }
+ ],
+ "units": [
+  {
+   "no": 1,
+   "title": "오차와 부동소수점 산술",
+   "hours": 4,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "비선형 방정식의 근",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "보간과 다항식 근사",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "수치 미분과 수치 적분",
+   "hours": 5,
+   "after": [
+    3
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "연립일차방정식의 직접법",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "반복법과 희소 행렬",
+   "hours": 5,
+   "after": [
+    5
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "고유값의 수치 계산",
+   "hours": 5,
+   "after": [
+    5
+   ],
+   "file": "u07.json"
+  },
+  {
+   "no": 8,
+   "title": "상미분방정식의 수치해",
+   "hours": 6,
+   "after": [
+    4
+   ],
+   "file": "u08.json"
+  },
+  {
+   "no": 9,
+   "title": "편미분방정식의 수치해 입문",
+   "hours": 6,
+   "after": [
+    6,
+    8
+   ],
+   "file": "u09.json"
+  }
+ ],
+ "total_hours": 46
+}

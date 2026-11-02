@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "mathstr",
+  "work": "풀이",
+  "chapter": {
+    "id": "info-s2-mathstr-ch03",
+    "no": 3,
+    "title": "해싱"
+  },
+  "review": {
+    "id": "info-s2-mathstr-ch03-review",
+    "title": "해싱 복습",
+    "minutes": 15
+  },
+  "questions": [
+    {
+      "type": "question",
+      "id": "r1",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "B = 31, M = 10⁹ + 7일 때 \"ca\"의 해시는?",
+      "answer": "94",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3 × 31 + 1입니다.",
+      "explanation": "다항식 해시는 앞 글자에 B를 곱한 뒤 다음 글자 값을 더하며, 글자 값은 c = 3, a = 1입니다.\n3 × 31 + 1을 계산합니다.\n= 94입니다.",
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …",
+      "source_lesson": "info-s2-mathstr-ch03-l01"
+    },
+    {
+      "type": "question",
+      "id": "r2",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "B = 10, M = 100일 때 \"abc\"의 해시는?",
+      "answer": "23",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "123을 100으로 나눈 나머지입니다.",
+      "explanation": "B = 10이면 \"abc\"는 1, 2, 3을 이어 읽어 123입니다.\n123을 100으로 나눈 나머지를 구합니다.\n그래서 23이고, \"bc\"의 해시와 충돌합니다.",
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …",
+      "source_lesson": "info-s2-mathstr-ch03-l01"
+    },
+    {
+      "type": "question",
+      "id": "r3",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "s = \"abcab\", B = 10일 때 H[3]은?",
+      "answer": "123",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "s[0..2] = \"abc\"입니다.",
+      "explanation": "접두사 해시 H[i]는 앞 i글자의 해시이므로 H[3]은 앞 세 글자 \"abc\"의 해시입니다.\n글자 값 1, 2, 3을 이어 읽습니다.\n그래서 123입니다.",
+      "code": "// H[i] = s[0..i-1]의 해시, P[i] = Bⁱ mod M\nH[0] = 0; P[0] = 1;\nfor (int i = 0; i < n; i++) {\n    H[i + 1] = (H[i] * B + (s[i] - 'a' + 1)) % M;\n    P[i + 1] = P[i] * B % M;\n}\n// s[l..r-1]의 해시\nlong long get(int l, int r) {\n    return ((H[r] - H[l] * P[r - l]) % M + M) % M;\n}",
+      "source_lesson": "info-s2-mathstr-ch03-l02"
+    },
+    {
+      "type": "question",
+      "id": "r4",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "s = \"abcab\", B = 10일 때 get(3, 5)는?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "H[5] − H[3] × 10²입니다.",
+      "explanation": "get(3, 5) = H[5] − H[3] × B²입니다.\nH[5] = 12312, H[3] = 123입니다.\n12312 − 12300 = 12입니다.",
+      "code": "// H[i] = s[0..i-1]의 해시, P[i] = Bⁱ mod M\nH[0] = 0; P[0] = 1;\nfor (int i = 0; i < n; i++) {\n    H[i + 1] = (H[i] * B + (s[i] - 'a' + 1)) % M;\n    P[i + 1] = P[i] * B % M;\n}\n// s[l..r-1]의 해시\nlong long get(int l, int r) {\n    return ((H[r] - H[l] * P[r - l]) % M + M) % M;\n}",
+      "source_lesson": "info-s2-mathstr-ch03-l02"
+    },
+    {
+      "type": "question",
+      "id": "r5",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "길이 2인 창의 해시가 23(\"bc\")일 때 한 칸 밀어 새 글자 d가 들어오면 해시는? (B = 10)",
+      "answer": "34",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(23 − 2 × 10) × 10 + 4입니다.",
+      "explanation": "맨 앞 글자 b(2)의 기여 2 × 10을 빼면 3입니다.\nB를 곱해 30이 되고 새 글자 d(4)를 더합니다.\n그래서 34입니다.",
+      "code": "// 길이 k인 창을 한 칸씩 밀며 해시를 갱신 (라빈-카프)\n// 맨 앞 글자 out을 빼고, 한 자리 올린 뒤, 새 글자 in을 더한다\nh = ((h - out * P[k - 1]) % M + M) % M;\nh = (h * B + in) % M;",
+      "source_lesson": "info-s2-mathstr-ch03-l02"
+    },
+    {
+      "type": "question",
+      "id": "r6",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "문자열 100개를 M = 10⁴인 해시로 바꿀 때 충돌하는 쌍의 기댓값은 약 얼마인가요? (k(k − 1)/(2M), 소수 둘째 자리에서 반올림)",
+      "answer": "0.5",
+      "answer_format": "decimal",
+      "tolerance": 0.05,
+      "hint": "100 × 99/2를 10⁴으로 나누세요.",
+      "explanation": "쌍의 수는 100 × 99/2 = 4950개입니다.\n쌍마다 충돌 확률은 1/10⁴입니다.\n기댓값은 0.495 ≈ 0.5쌍입니다.",
+      "source_lesson": "info-s2-mathstr-ch03-l03"
+    },
+    {
+      "type": "question",
+      "id": "r7",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "B = 10, M = 101일 때 \"abd\"의 해시는?",
+      "answer": "23",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "124를 101로 나눈 나머지입니다.",
+      "explanation": "B = 10이면 \"abd\"는 1, 2, 4를 이어 읽어 124입니다.\n124 = 101 + 23입니다.\n그래서 23입니다.",
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …",
+      "source_lesson": "info-s2-mathstr-ch03-l03"
+    },
+    {
+      "type": "question",
+      "id": "r8",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "\"mississippi\"의 길이 2인 부분 문자열 가운데 서로 다른 것은 몇 개인가요?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "mi, is, ss, si, ip, pp, pi를 확인하세요.",
+      "explanation": "길이 2인 창은 mi, is, ss, si, is, ss, si, ip, pp, pi입니다.\n중복을 빼면 mi, is, ss, si, ip, pp, pi입니다.\n그래서 7개입니다.",
+      "source_lesson": "info-s2-mathstr-ch03-l04"
+    },
+    {
+      "type": "question",
+      "id": "r9",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "\"abcabc\"의 가장 긴 반복 부분 문자열의 길이는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "\"abc\"가 두 번 나타납니다.",
+      "explanation": "\"abc\"는 위치 0과 3에 두 번 나타납니다.\n길이 4인 \"abca\", \"bcab\", \"cabc\"는 모두 한 번씩만 나타납니다.\n그래서 답은 3입니다.",
+      "source_lesson": "info-s2-mathstr-ch03-l04"
+    },
+    {
+      "type": "question",
+      "id": "r10",
+      "stage": "review",
+      "qtype": "proof",
+      "prompt": "구간 해시를 이용해 두 부분 문자열이 같은지 O(1)에 판정하는 방법을 설명하세요.",
+      "model_answer": [
+        "H[i] = s[0..i − 1]의 해시와 P[i] = Bⁱ mod M을 O(n)에 미리 구한다.",
+        "s[l..r − 1]의 해시는 (H[r] − H[l]·P[r − l]) mod M으로 O(1)에 구한다.",
+        "두 구간의 길이가 다르면 다르다고 답하고, 같으면 두 구간 해시를 비교한다.",
+        "해시가 다르면 확실히 다르고, 같으면 (충돌 확률 약 1/M을 빼고) 같다고 본다."
+      ],
+      "criteria": [
+        {
+          "text": "H와 P의 준비를 설명했다",
+          "points": 2
+        },
+        {
+          "text": "구간 해시 식을 썼다",
+          "points": 2
+        },
+        {
+          "text": "판정과 충돌 가능성을 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "준비 단계와 질의 단계를 나누세요.",
+      "source_lesson": "info-s2-mathstr-ch03-l02"
+    }
+  ]
+}

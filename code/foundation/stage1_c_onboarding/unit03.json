@@ -1,0 +1,100 @@
+{
+  "stage": "stage1_c_onboarding",
+  "stage_title": "C 언어 (온보딩)",
+  "unit": 3,
+  "unit_title": "조건문",
+  "questions": [
+    {
+      "id": "foundation_stage1_u03_q001",
+      "type": "predict_output",
+      "code": "int score = 85;\nif (score >= 90) {\n    printf(\"A\");\n} else if (score >= 80) {\n    printf(\"B\");\n} else {\n    printf(\"C\");\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["A", "B", "C", "아무것도 출력되지 않는다"],
+      "answer": 1,
+      "explanation_en": "score is 85, which fails the first condition (>= 90) but satisfies the second (>= 80), so B is printed.",
+      "explanation_ko": "score는 85이므로 첫 번째 조건(90 이상)은 거짓이지만 두 번째 조건(80 이상)은 참입니다. 따라서 B가 출력됩니다.",
+      "concept_tags": ["condition", "if_else"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "foundation_stage1_u03_q002",
+      "type": "predict_output",
+      "code": "int x = 5;\nif (x = 10) {\n    printf(\"참\");\n} else {\n    printf(\"거짓\");\n}",
+      "prompt_en": "What is printed? (Note the single = inside the condition.)",
+      "prompt_ko": "출력 결과는? (조건식 안의 =가 하나임에 주의하세요.)",
+      "options": ["참", "거짓", "오류로 실행되지 않는다", "5"],
+      "answer": 0,
+      "explanation_en": "A single = is assignment, not comparison; x = 10 assigns 10 to x and the expression evaluates to 10, which is treated as true.",
+      "explanation_ko": "=는 비교가 아니라 대입 연산자입니다. x = 10은 x에 10을 대입하고, 그 결과값인 10이 조건식에서 참으로 취급됩니다. 비교 연산자 ==와 혼동하는 대표적인 실수입니다.",
+      "concept_tags": ["condition", "assignment_vs_comparison"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "foundation_stage1_u03_q003",
+      "type": "error_finding",
+      "code": "int age = 20;\nif (age >= 18)\n    printf(\"성인\");\nelse;\n    printf(\"미성년자\");",
+      "prompt_en": "Which line contains the error, and what does it cause?",
+      "prompt_ko": "오류가 있는 줄은 어디이며, 어떤 문제를 일으킬까요?",
+      "options": [
+        "1번째 줄 - age 선언 오류",
+        "4번째 줄 - else 뒤 세미콜론으로 인해 printf(\"미성년자\")가 조건과 무관하게 항상 실행됨",
+        "2번째 줄 - if 조건식 오류",
+        "오류 없음"
+      ],
+      "answer": 1,
+      "explanation_en": "The semicolon right after else creates an empty statement, so the else branch is already 'finished'; the following printf then runs unconditionally every time.",
+      "explanation_ko": "else 바로 뒤의 세미콜론이 빈 문장(아무것도 안 하는 문장)을 만들어버려서, else 블록이 이미 '끝난' 상태가 됩니다. 그 결과 이어지는 printf(\"미성년자\")는 조건과 무관하게 항상 실행됩니다.",
+      "concept_tags": ["condition", "syntax", "semicolon"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "foundation_stage1_u03_q004",
+      "type": "fill_blank",
+      "code": "int day = 3;\nswitch (day) {\n    case 1:\n        printf(\"월요일\");\n        break;\n    case 2:\n        printf(\"화요일\");\n        break;\n    ____:\n        printf(\"수요일\");\n        break;\n}",
+      "prompt_en": "Fill in the blank to handle the case where day is 3.",
+      "prompt_ko": "day가 3일 때를 처리하려면 빈칸에 무엇이 들어가야 할까요?",
+      "options": ["case 3", "if 3", "day 3", "default"],
+      "answer": 0,
+      "explanation_en": "Each branch of a switch statement is introduced with case followed by the specific value being matched.",
+      "explanation_ko": "switch문의 각 분기는 case 뒤에 비교할 값을 붙여서 작성합니다. day가 3일 때를 처리하려면 case 3:이 필요합니다.",
+      "concept_tags": ["condition", "switch"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "foundation_stage1_u03_q005",
+      "type": "concept_quiz",
+      "code": null,
+      "prompt_en": "When is switch generally preferred over if/else if chains?",
+      "prompt_ko": "switch문이 if/else if 체인보다 선호되는 경우는 언제일까요?",
+      "options": [
+        "조건이 범위(예: 0~10)를 비교할 때",
+        "하나의 변수를 여러 개의 정해진 값과 비교할 때",
+        "조건이 하나도 없을 때",
+        "실수(float) 값을 비교할 때"
+      ],
+      "answer": 1,
+      "explanation_en": "switch is well-suited when a single variable is compared against several fixed, discrete values, making the branching easier to read.",
+      "explanation_ko": "switch문은 하나의 변수를 여러 개의 정해진 값과 비교할 때 코드를 더 읽기 쉽게 만들어줍니다. 반면 범위 비교나 복잡한 조건에는 if/else if가 더 적합합니다.",
+      "concept_tags": ["condition", "switch"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "foundation_stage1_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "if", "definition": "조건이 참일 때 실행할 블록을 정의" },
+        { "term": "else if", "definition": "앞의 조건이 거짓일 때 추가로 검사할 조건" },
+        { "term": "else", "definition": "앞의 모든 조건이 거짓일 때 실행되는 블록" },
+        { "term": "switch / case", "definition": "하나의 변수를 여러 정해진 값과 비교해 분기" }
+      ],
+      "explanation_en": "These four constructs cover the main ways C programs branch based on conditions.",
+      "explanation_ko": "이 네 가지 구문은 C 프로그램이 조건에 따라 분기하는 주요 방법을 모두 다룹니다.",
+      "concept_tags": ["condition", "if_else", "switch"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 5,
+  "unit": 2,
+  "unit_title": "함수 포인터",
+  "questions": [
+    {
+      "id": "c_l5_u02_q001",
+      "type": "predict_output",
+      "code": "int add(int a, int b) {\n    return a + b;\n}\n\nint (*operation)(int, int);\noperation = add;\nprintf(\"%d\", operation(3, 4));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["7", "34", "add", "오류"],
+      "answer": 0,
+      "explanation_en": "operation now points to the add function; calling operation(3, 4) is equivalent to calling add(3, 4), which returns 7.",
+      "explanation_ko": "operation은 이제 add 함수를 가리킵니다. operation(3, 4)를 호출하는 것은 add(3, 4)를 호출하는 것과 같아서 7을 반환합니다.",
+      "concept_tags": ["function_pointer"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l5_u02_q002",
+      "type": "fill_blank",
+      "code": "int add(int a, int b) { return a + b; }\n\nint (____operation)(int, int);\noperation = add;",
+      "prompt_en": "Fill in the blank to declare operation as a pointer to a function taking two ints and returning an int.",
+      "prompt_ko": "operation이 int 2개를 받아 int를 반환하는 함수를 가리키는 포인터가 되도록 빈칸을 채우세요.",
+      "options": ["*", "**", "&", "func"],
+      "answer": 0,
+      "explanation_en": "A function pointer is declared with a single asterisk inside parentheses around the name: return_type (*name)(parameter_types).",
+      "explanation_ko": "함수 포인터는 이름을 괄호로 감싸고 그 안에 별표 하나를 붙여 선언합니다: 반환형 (*이름)(매개변수형).",
+      "concept_tags": ["function_pointer"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l5_u02_q003",
+      "type": "predict_output",
+      "code": "int add(int a, int b) { return a + b; }\nint subtract(int a, int b) { return a - b; }\n\nint (*ops[2])(int, int) = {add, subtract};\nprintf(\"%d\", ops[0](5, 2));\nprintf(\"%d\", ops[1](5, 2));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["73", "37", "52", "77"],
+      "answer": 0,
+      "explanation_en": "An array of function pointers lets you select behavior by index; ops[0] calls add(5,2)=7, and ops[1] calls subtract(5,2)=3.",
+      "explanation_ko": "함수 포인터 배열을 쓰면 인덱스로 동작을 선택할 수 있습니다. ops[0]은 add(5,2)=7을, ops[1]은 subtract(5,2)=3을 호출합니다.",
+      "concept_tags": ["function_pointer", "array"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l5_u02_q004",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "함수 포인터", "definition": "함수의 메모리 주소를 저장하는 포인터" },
+        { "term": "함수 포인터 배열", "definition": "여러 함수를 인덱스로 선택해 호출할 수 있게 모아둔 배열" },
+        { "term": "콜백 함수", "definition": "다른 함수에 함수 포인터로 전달되어, 필요한 시점에 대신 호출되는 함수" },
+        { "term": "시그니처 일치", "definition": "함수 포인터의 반환형·매개변수형이 실제 함수와 정확히 일치해야 하는 요구사항" }
+      ],
+      "explanation_en": "Function pointers are the mechanism C uses to achieve behavior similar to passing functions as values, foundational to callback-based designs.",
+      "explanation_ko": "함수 포인터는 C가 함수를 값처럼 전달하는 것과 비슷한 동작을 구현하는 방법이며, 콜백 기반 설계의 기초가 됩니다.",
+      "concept_tags": ["function_pointer"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l5_u02_q005",
+      "type": "error_finding",
+      "code": "int add(int a, int b) { return a + b; }\nfloat divide(int a, int b) { return (float)a / b; }\n\nint (*operation)(int, int);\noperation = divide;",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "add 함수 정의 오류",
+        "operation은 int를 반환하는 함수를 가리키도록 선언됐는데, float를 반환하는 divide를 대입해 시그니처가 일치하지 않음",
+        "divide 함수의 매개변수 개수가 틀림",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "operation's declared type expects a function returning int, but divide returns float; assigning it mismatches the function pointer's signature, which compilers typically flag as a type error or warning.",
+      "explanation_ko": "operation은 int를 반환하는 함수를 가리키도록 선언됐지만, divide는 float를 반환합니다. 반환형이 일치하지 않는 함수를 대입하면 함수 포인터의 시그니처가 어긋나며, 대부분의 컴파일러가 타입 오류나 경고로 이를 잡아냅니다.",
+      "concept_tags": ["function_pointer", "type_mismatch"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l5_u02_q006",
+      "type": "predict_output",
+      "code": "int square(int n) { return n * n; }\n\nint applyTwice(int (*f)(int), int x) {\n    return f(f(x));\n}\n\nprintf(\"%d\", applyTwice(square, 2));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["4", "16", "8", "2"],
+      "answer": 1,
+      "explanation_en": "applyTwice calls f(f(x)); f(2) is square(2)=4, then f(4) is square(4)=16, so the result is 16.",
+      "explanation_ko": "applyTwice는 f(f(x))를 호출합니다. f(2)는 square(2)=4이고, 이어서 f(4)는 square(4)=16이므로 결과는 16입니다.",
+      "concept_tags": ["function_pointer"],
+      "difficulty": "challenge"
+    }
+  ]
+}

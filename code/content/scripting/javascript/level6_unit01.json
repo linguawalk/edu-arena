@@ -1,0 +1,91 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 6,
+  "unit": 1,
+  "unit_title": "예외처리",
+  "questions": [
+    {
+      "id": "javascript_l6_u01_q001",
+      "type": "predict_output",
+      "code": "console.log(10 / 0);",
+      "prompt_en": "What is printed? (Compare with every other language in this curriculum, where this throws an exception.)",
+      "prompt_ko": "출력 결과는? (이 커리큘럼의 다른 모든 언어에서는 예외가 발생했던 것과 비교해보세요.)",
+      "options": ["오류", "Infinity", "NaN", "0"],
+      "answer": 1,
+      "explanation_en": "Since JavaScript has only one number type (following IEEE 754 floating point), 10 / 0 doesn't throw at all — it simply produces Infinity, unlike every other language covered so far.",
+      "explanation_ko": "JavaScript는 숫자 타입이 하나뿐이라서(IEEE 754 부동소수점을 따름), 10 / 0은 아예 예외를 던지지 않습니다 — 그냥 Infinity를 만들어냅니다. 지금까지 다룬 다른 모든 언어와 다릅니다.",
+      "concept_tags": ["infinity", "no_exception"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l6_u01_q002",
+      "type": "predict_output",
+      "code": "console.log(0 / 0);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "Infinity", "NaN", "오류"],
+      "answer": 2,
+      "explanation_en": "0 divided by 0 is mathematically undefined, and JavaScript represents this as NaN rather than throwing.",
+      "explanation_ko": "0을 0으로 나누는 것은 수학적으로 정의되지 않으며, JavaScript는 예외를 던지는 대신 이를 NaN으로 표현합니다.",
+      "concept_tags": ["nan"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l6_u01_q003",
+      "type": "predict_output",
+      "code": "try {\n    JSON.parse(\"{invalid}\");\n} catch (e) {\n    console.log(e.constructor.name);\n}",
+      "prompt_en": "What is printed? (Not every operation in JS is exception-free — this one does throw.)",
+      "prompt_ko": "출력 결과는? (JS의 모든 연산이 예외 없는 것은 아닙니다 — 이건 실제로 예외를 던집니다.)",
+      "options": ["TypeError", "SyntaxError", "ParseError", "아무것도 출력되지 않음"],
+      "answer": 1,
+      "explanation_en": "Unlike arithmetic, malformed JSON text does throw — JSON.parse throws a SyntaxError when the input isn't valid JSON.",
+      "explanation_ko": "산술 연산과 달리, 형식이 잘못된 JSON 텍스트는 실제로 예외를 던집니다 — JSON.parse는 입력이 유효한 JSON이 아니면 SyntaxError를 던집니다.",
+      "concept_tags": ["try_catch", "syntaxerror"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l6_u01_q004",
+      "type": "predict_output",
+      "code": "try {\n    throw new Error(\"문제 발생\");\n} catch (e) {\n    console.log(e.message);\n} finally {\n    console.log(\"항상 실행됨\");\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["문제 발생\\n항상 실행됨", "항상 실행됨", "오류", "Error: 문제 발생"],
+      "answer": 0,
+      "explanation_en": "throw new Error(...) raises an exception with a message; catch handles it and prints e.message, then finally always runs afterward.",
+      "explanation_ko": "throw new Error(...)는 메시지와 함께 예외를 발생시킵니다. catch가 이를 처리해 e.message를 출력하고, 이어서 finally가 항상 실행됩니다.",
+      "concept_tags": ["throw", "try_catch_finally"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l6_u01_q005",
+      "type": "fill_blank",
+      "code": "function checkAge(age) {\n    if (age < 0) {\n        ____ new Error(\"나이는 음수일 수 없습니다\");\n    }\n    return age;\n}",
+      "prompt_en": "Fill in the blank with the keyword that explicitly triggers an exception.",
+      "prompt_ko": "예외를 명시적으로 발생시키는 키워드를 빈칸에 채우세요.",
+      "options": ["throw", "raise", "except", "error"],
+      "answer": 0,
+      "explanation_en": "JavaScript uses throw (like Java, C#, C++, VB) to explicitly trigger an exception, unlike Python's raise.",
+      "explanation_ko": "JavaScript는 Python의 raise와 달리 (Java, C#, C++, VB처럼) throw를 사용해 예외를 명시적으로 발생시킵니다.",
+      "concept_tags": ["throw"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l6_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "try / catch / finally", "definition": "예외가 발생할 수 있는 블록, 처리기, 항상 실행되는 블록" },
+        { "term": "10 / 0 === Infinity", "definition": "정수/실수 구분이 없는 JS 특유의 산술 예외 없음 규칙" },
+        { "term": "throw new Error(...)", "definition": "메시지를 가진 예외 객체를 명시적으로 발생시키는 방법" },
+        { "term": "JSON.parse의 SyntaxError", "definition": "산술과 달리, 잘못된 JSON 파싱은 실제로 예외를 던진다는 예외적인 사례" }
+      ],
+      "explanation_en": "JavaScript's arithmetic operations never throw (relying on Infinity/NaN instead), but many other operations — JSON parsing, accessing properties on null/undefined, calling non-functions — do throw regular exceptions, so try/catch remains essential.",
+      "explanation_ko": "JavaScript의 산술 연산은 절대 예외를 던지지 않지만(Infinity/NaN에 의존), JSON 파싱, null/undefined의 속성 접근, 함수가 아닌 것을 호출하는 등 다른 많은 연산은 일반적인 예외를 던지므로 try/catch는 여전히 필수적입니다.",
+      "concept_tags": ["infinity", "throw", "try_catch_finally"],
+      "difficulty": "practice"
+    }
+  ]
+}

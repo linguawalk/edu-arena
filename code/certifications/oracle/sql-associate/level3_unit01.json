@@ -1,0 +1,101 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "sql-associate-1z0-071",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "DML과 트랜잭션 제어",
+  "rule_summary_ko": "INSERT·UPDATE·DELETE 같은 DML(데이터 조작어) 작업은 COMMIT으로 확정하기 전까지는 임시 상태입니다. COMMIT은 지금까지의 변경을 영구적으로 저장하고, ROLLBACK은 마지막 COMMIT 이후의 모든 변경을 취소합니다. SAVEPOINT는 트랜잭션 중간에 지점을 표시해두고, ROLLBACK TO 저장점으로 그 지점 이후의 변경만 선택적으로 취소할 수 있게 해줍니다.",
+  "examples": [
+    { "code": "UPDATE accounts SET balance = balance - 200 WHERE id = 1;\nROLLBACK;", "note_ko": "COMMIT하기 전에 ROLLBACK하면, 변경 사항이 전부 취소되어 원래 값(1000)으로 되돌아감" },
+    { "code": "UPDATE t SET val=2; SAVEPOINT sp1; UPDATE t SET val=3; ROLLBACK TO sp1;", "note_ko": "sp1 이후의 변경(val=3)만 취소되고, sp1 이전 변경(val=2)은 그대로 유지됨" }
+  ],
+  "questions": [
+    {
+      "id": "sql_oracle_l3_u1_q001",
+      "type": "concept_matching_item",
+      "code": "UPDATE accounts SET balance = balance - 200 WHERE id = 1;\n-- COMMIT 하지 않은 상태에서\nROLLBACK;",
+      "prompt_ko": "ROLLBACK을 실행하면 balance는 어떻게 됩니까?",
+      "options": [
+        "변경된 값(-200 적용)이 그대로 유지된다",
+        "마지막 COMMIT 시점의 원래 값으로 되돌아간다 — ROLLBACK은 아직 커밋되지 않은 변경을 전부 취소한다",
+        "balance가 0이 된다",
+        "오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "COMMIT되지 않은 DML은 언제든 ROLLBACK으로 취소해 이전 상태로 되돌릴 수 있습니다.",
+      "concept_tags": ["rollback"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l3_u1_q002",
+      "type": "concept_matching_item",
+      "code": "UPDATE t SET val = 2;\nSAVEPOINT sp1;\nUPDATE t SET val = 3;\nROLLBACK TO sp1;",
+      "prompt_ko": "ROLLBACK TO sp1 실행 후 val의 값은?",
+      "options": [
+        "1(트랜잭션 시작 전 원래 값)",
+        "2 — sp1 시점까지의 변경(val=2)은 유지되고, 그 이후 변경(val=3)만 취소된다",
+        "3(가장 최근 값 그대로 유지)",
+        "오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "SAVEPOINT를 사용하면 트랜잭션 전체가 아니라 특정 지점 이후의 변경만 선택적으로 취소할 수 있습니다.",
+      "concept_tags": ["savepoint"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l3_u1_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "지금까지의 트랜잭션 변경 사항을 영구적으로 데이터베이스에 반영하는 명령어는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["COMMIT"],
+      "explanation_ko": "COMMIT을 실행하면 그 시점까지의 변경이 영구히 저장되며, 이후로는 ROLLBACK으로 되돌릴 수 없습니다.",
+      "concept_tags": ["commit"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l3_u1_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "다음 중 DML(데이터 조작어)에 해당하는 명령어는?",
+      "options": [
+        "CREATE TABLE",
+        "INSERT, UPDATE, DELETE",
+        "GRANT, REVOKE",
+        "DROP TABLE"
+      ],
+      "answer": 1,
+      "explanation_ko": "INSERT, UPDATE, DELETE는 데이터를 조작(추가·수정·삭제)하는 DML입니다. CREATE/DROP은 DDL, GRANT/REVOKE는 DCL입니다.",
+      "concept_tags": ["dml"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l3_u1_q005",
+      "type": "concept_matching_item",
+      "code": "DELETE FROM employees;\n-- WHERE 절 없음",
+      "prompt_ko": "WHERE 절 없이 DELETE FROM employees;를 실행하면?",
+      "options": [
+        "아무 일도 일어나지 않는다(조건이 없으면 실행이 거부됨)",
+        "테이블의 모든 행이 삭제된다 — WHERE가 없으면 조건 없이 전체 행에 적용된다",
+        "테이블 구조 자체가 삭제된다(DROP TABLE과 동일)",
+        "오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "WHERE 절이 없는 DELETE는 테이블의 모든 행을 삭제합니다(단, 테이블 구조 자체는 남아있음 — DROP TABLE과는 다름).",
+      "concept_tags": ["delete_without_where"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l3_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "CREATE TABLE, DROP TABLE, ALTER TABLE 같은 명령어를 통틀어 무엇이라 합니까?",
+      "options": ["DML(데이터 조작어)", "DDL(데이터 정의어)", "DCL(데이터 제어어)", "TCL(트랜잭션 제어어)"],
+      "answer": 1,
+      "explanation_ko": "DDL(Data Definition Language)은 테이블 등 데이터베이스 객체의 구조를 정의·변경·삭제하는 명령어입니다.",
+      "concept_tags": ["ddl"],
+      "difficulty": "intro"
+    }
+  ]
+}

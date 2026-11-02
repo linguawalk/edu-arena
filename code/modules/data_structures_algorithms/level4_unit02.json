@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 4,
+  "unit": 2,
+  "unit_title": "이진 트리",
+  "questions": [
+    {
+      "id": "dsa_l4_u02_q001",
+      "type": "predict_output",
+      "code": "class TreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\nroot = TreeNode(5)\nroot.left = TreeNode(3)\nroot.right = TreeNode(8)\nprint(root.value)\nprint(root.left.value)\nprint(root.right.value)",
+      "prompt_en": "What is printed? (A binary tree node has at most two children: left and right.)",
+      "prompt_ko": "출력 결과는? (이진 트리 노드는 최대 두 개의 자식(left, right)을 가집니다.)",
+      "options": ["5\\n3\\n8", "5\\n8\\n3", "3\\n5\\n8", "오류"],
+      "answer": 0,
+      "explanation_en": "root.value is 5, root.left.value reads the left child (3), and root.right.value reads the right child (8).",
+      "explanation_ko": "root.value는 5입니다. root.left.value는 왼쪽 자식(3)을 읽고, root.right.value는 오른쪽 자식(8)을 읽습니다.",
+      "concept_tags": ["binary_tree", "tree_node"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l4_u02_q002",
+      "type": "predict_output",
+      "code": "class TreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef inorder(node, result):\n    if node is None:\n        return\n    inorder(node.left, result)\n    result.append(node.value)\n    inorder(node.right, result)\n\nroot = TreeNode(5)\nroot.left = TreeNode(3)\nroot.right = TreeNode(8)\nroot.left.left = TreeNode(1)\nroot.left.right = TreeNode(4)\n\nresult = []\ninorder(root, result)\nprint(result)",
+      "prompt_en": "What is printed? (In-order traversal: left subtree, then node, then right subtree.)",
+      "prompt_ko": "출력 결과는? (중위 순회: 왼쪽 서브트리, 노드 자신, 오른쪽 서브트리 순서.)",
+      "options": ["[1, 3, 4, 5, 8]", "[5, 3, 8, 1, 4]", "[1, 4, 3, 8, 5]", "오류"],
+      "answer": 0,
+      "explanation_en": "Visiting left-node-right recursively at every level produces the values in ascending sorted order for this tree: [1, 3, 4, 5, 8] — a special property of in-order traversal on binary search trees.",
+      "explanation_ko": "모든 레벨에서 왼쪽-노드-오른쪽 순으로 재귀 방문하면 이 트리에서는 값이 오름차순으로 정렬되어 나옵니다: [1, 3, 4, 5, 8] — 이진 탐색 트리에서 중위 순회의 특별한 성질입니다.",
+      "concept_tags": ["binary_tree", "inorder_traversal"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l4_u02_q003",
+      "type": "predict_output",
+      "code": "class TreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef preorder(node, result):\n    if node is None:\n        return\n    result.append(node.value)\n    preorder(node.left, result)\n    preorder(node.right, result)\n\nroot = TreeNode(5)\nroot.left = TreeNode(3)\nroot.right = TreeNode(8)\n\nresult = []\npreorder(root, result)\nprint(result)",
+      "prompt_en": "What is printed? (Pre-order traversal: node first, then left, then right.)",
+      "prompt_ko": "출력 결과는? (전위 순회: 노드 자신을 먼저, 그다음 왼쪽, 오른쪽.)",
+      "options": ["[5, 3, 8]", "[3, 5, 8]", "[3, 8, 5]", "오류"],
+      "answer": 0,
+      "explanation_en": "Visiting the node itself before its children produces the root first: [5, 3, 8].",
+      "explanation_ko": "자식보다 노드 자신을 먼저 방문하면 루트가 먼저 나옵니다: [5, 3, 8].",
+      "concept_tags": ["binary_tree", "preorder_traversal"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l4_u02_q004",
+      "type": "fill_blank",
+      "code": "def inorder(node, result):\n    if node is None:\n        return\n    inorder(node.____, result)\n    result.append(node.value)\n    inorder(node.right, result)\n# 왼쪽 서브트리를 먼저 방문해야 함",
+      "prompt_en": "Fill in the blank with the attribute traversed first in an in-order walk.",
+      "prompt_ko": "중위 순회에서 가장 먼저 방문하는 속성을 빈칸에 채우세요.",
+      "options": ["left", "right", "value", "parent"],
+      "answer": 0,
+      "explanation_en": "In-order traversal visits the left subtree first, then the current node, then the right subtree — the sequence that gives sorted order for a binary search tree.",
+      "explanation_ko": "중위 순회는 왼쪽 서브트리를 먼저 방문한 뒤, 현재 노드, 그다음 오른쪽 서브트리를 방문합니다 — 이진 탐색 트리에서 정렬된 순서를 만들어내는 순서입니다.",
+      "concept_tags": ["binary_tree", "inorder_traversal"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l4_u02_q005",
+      "type": "error_finding",
+      "code": "class TreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef inorder(node, result):\n    inorder(node.left, result)\n    result.append(node.value)\n    inorder(node.right, result)\n\nroot = TreeNode(5)\nresult = []\ninorder(root, result)",
+      "prompt_en": "What problem does this code have? (Note: the base case 'if node is None: return' was removed.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? ('if node is None: return' 기저 조건이 빠진 점에 주의하세요.)",
+      "options": [
+        "TreeNode 클래스 정의 오류",
+        "재귀를 멈추는 기저 조건이 없어서, root.left가 None인데 그 None에 .left를 접근하려다 AttributeError가 발생함",
+        "result.append 문법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Without checking for None first, the function tries to call inorder(node.left, ...) on a node that is itself None (since root.left was never set); accessing .left on None raises AttributeError — the base case exists specifically to stop recursion at empty branches.",
+      "explanation_ko": "먼저 None을 확인하지 않으면, 함수는 그 자체가 None인 노드(root.left가 설정된 적이 없으므로)에 대해 inorder(node.left, ...)를 호출하려 합니다. None에 .left로 접근하면 AttributeError가 발생합니다 — 기저 조건은 바로 이렇게 빈 가지에서 재귀를 멈추기 위해 존재합니다.",
+      "concept_tags": ["binary_tree", "base_case", "attributeerror"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l4_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "각 용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "TreeNode", "definition": "값과 왼쪽/오른쪽 자식에 대한 참조를 담는 트리의 기본 단위" },
+        { "term": "전위 순회 (preorder)", "definition": "노드 → 왼쪽 → 오른쪽 순서로 방문" },
+        { "term": "중위 순회 (inorder)", "definition": "왼쪽 → 노드 → 오른쪽 순서로 방문 — BST에서는 정렬된 순서가 됨" },
+        { "term": "후위 순회 (postorder)", "definition": "왼쪽 → 오른쪽 → 노드 순서로 방문" }
+      ],
+      "explanation_en": "Tree traversal is essentially the same recursive pattern as the linked list traversal covered in Level 1, just with two 'next' pointers (left and right) instead of one, requiring recursion or an explicit stack instead of a simple loop.",
+      "explanation_ko": "트리 순회는 본질적으로 Level 1에서 다룬 연결 리스트 순회와 같은 재귀 패턴이지만, 'next' 포인터가 하나가 아니라 둘(left, right)이라서 단순한 반복문이 아니라 재귀나 명시적인 스택이 필요합니다.",
+      "concept_tags": ["binary_tree", "tree_node", "inorder_traversal", "preorder_traversal"],
+      "difficulty": "practice"
+    }
+  ]
+}

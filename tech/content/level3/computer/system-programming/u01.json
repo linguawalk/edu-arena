@@ -1,0 +1,99 @@
+{
+ "no": 1,
+ "title": "C와 메모리 모델",
+ "hours": 6,
+ "after": [],
+ "objectives": [
+  "포인터·배열·구조체가 메모리에 놓이는 방식을 설명할 수 있다.",
+  "정렬과 구조체 패딩으로 구조체 크기를 계산할 수 있다.",
+  "정의되지 않은 동작과 동적 메모리 관리의 위험을 설명할 수 있다."
+ ],
+ "checklist": [
+  "포인터 산술과 배열",
+  "sizeof, 정렬(alignment)과 구조체 패딩",
+  "스택·힙·정적 영역",
+  "malloc/free, 메모리 누수, 이중 해제, 해제 후 사용",
+  "정의되지 않은 동작(UB)",
+  "정수 오버플로와 부호 변환",
+  "C 표준과 컴파일러 경고 옵션"
+ ],
+ "advice": [
+  "시스템 프로그래밍의 거의 모든 버그와 보안 취약점은 메모리를 잘못 다루는 데서 나옵니다. 구조체 하나를 정의하고 각 멤버의 주소를 출력해 패딩이 어디에 생기는지 직접 확인해 보세요. 컴파일러 경고를 모두 켜고 주소 검사 도구(AddressSanitizer 등)로 실행하는 습관을 처음부터 들이면 이후 단원이 훨씬 수월합니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Bryant · O'Hallaron, Computer Systems: A Programmer's Perspective (번역본 『컴퓨터 시스템』, 장 제목으로 표기)",
+   "part": "Representing and Manipulating Information, Machine-Level Representation 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "CMU 15-213 (공개 강의 자료)",
+   "title": "Introduction to Computer Systems",
+   "url": "https://www.cs.cmu.edu/~213/",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "code-arena (실습)",
+   "title": "C 언어 트랙",
+   "url": "https://code-arena.org/browse.html?type=language&track=track_a&lang=c",
+   "lang": "한국어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "char 하나와 int(4바이트, 4바이트 정렬) 하나를 이 순서로 담은 구조체의 크기는 일반적인 시스템에서 몇 바이트일까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "char 1바이트 뒤에 정렬을 위한 패딩 3바이트, int 4바이트로 8바이트입니다.",
+   "hint": "int는 4의 배수 주소에 놓입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "C 표준이 결과를 정하지 않아 컴파일러가 무엇이든 할 수 있는 동작(예: 배열 범위 밖 접근)을 정의되지 않은 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "동작",
+      "행동"
+     ]
+    }
+   ],
+   "explanation": "최적화 과정에서 예상하지 못한 결과를 낳아 보안 취약점이 되기도 합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "malloc으로 얻은 메모리를 free하지 않아 프로그램이 오래 돌수록 사용 메모리가 늘어나는 문제를 메모리 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "누수",
+      "릭"
+     ]
+    }
+   ],
+   "explanation": "Valgrind 같은 도구로 찾습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "system-programming",
+ "id": "l3-computer-system-programming-u01"
+}

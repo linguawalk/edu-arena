@@ -1,0 +1,187 @@
+{
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "level": 3,
+ "track": "applied",
+ "id": "modeling",
+ "title": "수리모델링",
+ "tagline": "현실을 수학으로 옮기는 기술, 차원 분석·동역학계·분기·카오스·시뮬레이션",
+ "overview": [
+  "수리모델링은 현실의 현상을 수학적 모형으로 옮기고, 그 모형을 분석해 현상을 이해하거나 예측하는 과정입니다. 다른 수학 과목이 '주어진 식을 푸는 법'을 가르친다면, 이 과목은 '어떤 식을 세울 것인가'와 '그 식이 현실을 얼마나 잘 설명하는가'를 다룹니다. 가정을 세우고, 단순화하고, 결과를 검증하고, 모형을 고치는 순환이 핵심입니다.",
+  "과목은 차원 분석과 비례 관계로 시작해 이산 동역학계(차분방정식, 로지스틱 사상), 연속 모형(인구, 생태, 감염병 SIR 모형), 비선형 동역학의 분기 이론, 카오스(로렌츠 계), 확률 모형과 몬테카를로 시뮬레이션, 데이터 기반 모형과 모형 평가로 이어집니다. 앞선 거의 모든 트랙(미적분, 미분방정식, 선형대수, 확률, 최적화, 수치해석)의 도구를 실제 문제에 한데 모아 쓰는 종합 과목입니다.",
+  "이 가이드는 Giordano의 모델링 교재와 Strogatz의 비선형 동역학 교재를 중심으로 하며, Strogatz 교수의 코넬 대학 강의 25강이 무료로 공개되어 있습니다. 컴퓨터로 모형을 직접 시뮬레이션해 보는 것이 이 과목 공부의 절반입니다."
+ ],
+ "level_note": "레벨 3 (학부 고학년 수준, 1학기 분량). 목차 검증 기준: Giordano, Strogatz 등 수리모델링·비선형 동역학 교재와 수학과 수학적 모델링 과목의 구성.",
+ "prereq": {
+  "text": "레벨2 상미분방정식(특히 자율방정식, 연립 방정식, 비선형 방정식과 안정성)이 가장 중요한 선수 과목입니다. 레벨2 확률과 통계, 선형대수, 레벨3 수치해석을 알면 7~8단원과 시뮬레이션 실습이 수월합니다.",
+  "links": [
+   {
+    "title": "레벨2 상미분방정식 · 단원 3 자율방정식",
+    "href": "guide.html?lv=2&t=analysis&s=ode&u=3"
+   },
+   {
+    "title": "레벨2 상미분방정식 · 단원 11 비선형 방정식과 안정성",
+    "href": "guide.html?lv=2&t=analysis&s=ode&u=11"
+   },
+   {
+    "title": "레벨2 확률과 통계 · 단원 10 극한정리",
+    "href": "guide.html?lv=2&t=probability&s=statistics&u=10"
+   },
+   {
+    "title": "레벨3 수치해석 · 단원 8 상미분방정식의 수치해",
+    "href": "guide.html?lv=3&t=applied&s=numerical&u=8"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "q1",
+    "qtype": "numeric",
+    "prompt": "로지스틱 방정식 y′ = y(1 − y/10)의 안정 평형점은?",
+    "answer": "10",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "상미분방정식 단원 3"
+   },
+   {
+    "type": "question",
+    "id": "q2",
+    "qtype": "numeric",
+    "prompt": "x′ = y, y′ = −x − y의 원점은 안정할까요? (그렇다 1, 아니다 0)",
+    "answer": "1",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "고유값의 실수부 −1/2 < 0 (상미분방정식 단원 11)"
+   },
+   {
+    "type": "question",
+    "id": "q3",
+    "qtype": "fill_blank",
+    "prompt": "y′ = 0.03y의 해에서 양이 두 배가 되는 시간은 ln 2 / {{1}}",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "0.03",
+       "3/100"
+      ]
+     }
+    ],
+    "explanation": "지수 성장의 배가 시간"
+   },
+   {
+    "type": "question",
+    "id": "q4",
+    "qtype": "numeric",
+    "prompt": "공정한 주사위 눈의 기댓값은?",
+    "answer": "3.5",
+    "answer_format": "decimal",
+    "tolerance": 0,
+    "explanation": "(1 + 2 + … + 6)/6"
+   },
+   {
+    "type": "question",
+    "id": "q5",
+    "qtype": "numeric",
+    "prompt": "y′ = y에 h = 1로 오일러법을 한 번 적용하면 y(0) = 1에서 y(1) ≈ ?",
+    "answer": "2",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "1 + 1 × 1 = 2 (수치해석 단원 8)"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "대학원 · 동역학계, 수리생물학",
+   "note": "분기 이론, 패턴 형성, 반응–확산 방정식"
+  },
+  {
+   "title": "sci-arena · 생태학·역학",
+   "note": "개체군과 감염병 모형의 실제"
+  },
+  {
+   "title": "tech-arena · 시스템 공학",
+   "note": "시뮬레이션과 제어"
+  },
+  {
+   "title": "code-arena · 과학 계산",
+   "note": "모형의 시뮬레이션 구현"
+  }
+ ],
+ "units": [
+  {
+   "no": 1,
+   "title": "모델링의 과정과 차원 분석",
+   "hours": 5,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "비례 관계, 기하적 닮음, 축척 법칙",
+   "hours": 4,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "이산 동역학계와 로지스틱 사상",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "연속 모형: 개체군, 생태계, 감염병",
+   "hours": 6,
+   "after": [
+    1
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "비선형 동역학과 분기",
+   "hours": 5,
+   "after": [
+    3,
+    4
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "카오스와 이상한 끌개",
+   "hours": 5,
+   "after": [
+    5
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "확률 모형과 몬테카를로 시뮬레이션",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u07.json"
+  },
+  {
+   "no": 8,
+   "title": "데이터 기반 모형과 모형 평가",
+   "hours": 5,
+   "after": [
+    2,
+    7
+   ],
+   "file": "u08.json"
+  }
+ ],
+ "total_hours": 40
+}

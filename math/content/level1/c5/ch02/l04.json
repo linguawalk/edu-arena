@@ -1,0 +1,327 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch02",
+    "no": 2,
+    "title": "중복조합과 이항정리"
+  },
+  "lesson": {
+    "id": "c5-ch02-l04",
+    "no": 4,
+    "title": "조합의 활용",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "이산조합"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "묶음으로 나누기",
+      "body": [
+        "서로 다른 것을 몇 묶음으로 나눌 때, 크기가 같은 묶음이 k개 있으면 k!로 나눕니다. 묶음끼리 순서가 없기 때문입니다.",
+        "왜 k!로 나눌까요? 6개를 2개씩 나눌 때, 첫 묶음 ₆C₂, 둘째 묶음 ₄C₂, 셋째 묶음 ₂C₂로 차례로 고르면 '첫째, 둘째, 셋째' 묶음이라는 순서가 생깁니다. 그런데 크기가 같은 묶음끼리는 이름이 없으므로 순서를 바꾼 3!가지가 모두 같은 나눔입니다. 크기가 모두 다르면 순서가 저절로 구별되어 나누지 않습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "서로 다른 8개를 3개, 3개, 2개의 세 묶음으로 나누는 방법을 구하세요.",
+      "steps": [
+        "차례로 뽑기: ₈C₃ × ₅C₃ × ₂C₂ = 56 × 10 × 1 = 560",
+        "크기가 같은 3개짜리 묶음 2개는 순서가 없음",
+        "560 ÷ 2! = 280",
+        "주의: 크기가 다른 2개짜리 묶음과는 구별됨"
+      ],
+      "answer": "280"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "서로 다른 6개를 2개씩 세 묶음으로 나누는 방법은?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "차례로 뽑으면 ₆C₂ × ₄C₂ × ₂C₂ = 15 × 6 × 1 = 90\n크기가 같은 묶음 3개는 순서가 없으므로 3!로 나눔\n90 ÷ 6 = 15"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "서로 다른 6개를 3개, 2개, 1개의 세 묶음으로 나누는 방법은?",
+      "answer": "60",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "₆C₃ × ₃C₂ × ₁C₁ = 20 × 3 × 1\n= 60\n원리: 묶음의 크기가 모두 달라 나누지 않음\n원리: 크기가 다른 묶음은 저절로 구별되므로 나누지 않습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "나눠 주기",
+      "body": [
+        "묶음으로 나눈 뒤 서로 다른 사람에게 나눠 주면 묶음의 수의 계승을 곱합니다.",
+        "묶음으로 나눈 것과 사람에게 나눠 주는 것은 다릅니다. 사람은 서로 다르므로 묶음을 누구에게 줄지 정하는 방법 3!을 곱해야 합니다. 결국 '2권씩 3명에게'는 k!로 나눴다가 다시 3!을 곱해 ₆C₂ × ₄C₂ × ₂C₂가 됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "서로 다른 책 6권을 3명에게 2권씩 나눠 주는 방법은?",
+      "answer": "90",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "2권씩 세 묶음으로 나누기 15가지\n세 묶음을 3명에게 나눠 주기 3! = 6\n15 × 6 = 90\n원리: 묶음을 서로 다른 사람에게 나눠 주면 묶음 수의 계승을 곱합니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "서로 다른 책 5권을 2명에게 한 권 이상씩 나눠 주는 방법은?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "책마다 받을 사람 2가지: 2⁵ = 32\n한 사람이 모두 받는 경우 2가지를 뺌\n32 − 2 = 30\n원리: 서로 다른 물건을 사람에게 나눠 주면 중복순열입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "자연수의 분할",
+      "body": [
+        "자연수를 순서 없이 자연수들의 합으로 나타내는 것을 분할이라고 합니다. 큰 수부터 차례로 나열해 빠짐없이 셉니다.",
+        "분할은 순서를 무시하므로 7 = 5 + 1 + 1과 7 = 1 + 5 + 1을 같은 것으로 봅니다. 빠뜨리거나 중복해 세지 않으려면 항상 큰 수부터 내림차순으로 쓰고, 가장 큰 부분이 큰 경우부터 차례로 나열합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "8을 3개의 자연수의 합으로 나타내는 방법(순서 무시)을 모두 구하세요.",
+      "steps": [
+        "가장 큰 부분 6: 6 + 1 + 1",
+        "5: 5 + 2 + 1 / 4: 4 + 3 + 1, 4 + 2 + 2",
+        "3: 3 + 3 + 2",
+        "모두 5가지"
+      ],
+      "answer": "5가지"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "7을 3개의 자연수의 합으로 나타내는 방법은? (순서 무시)",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "큰 수부터 나열: 5 + 1 + 1, 4 + 2 + 1, 3 + 3 + 1, 3 + 2 + 2\n모두 4가지\n원리: 내림차순으로 써서 중복을 피합니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "6을 자연수들의 합으로 나타내는 방법은 모두 몇 가지일까요? (6 자신 포함, 순서 무시)",
+      "answer": "11",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "부분의 개수별: 1개 1, 2개 3(5+1, 4+2, 3+3), 3개 3(4+1+1, 3+2+1, 2+2+2), 4개 2(3+1+1+1, 2+2+1+1), 5개 1, 6개 1\n1 + 3 + 3 + 2 + 1 + 1\n= 11"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "조건이 있는 함수의 개수",
+      "body": [
+        "f(1) < f(2) < f(3)이면 치역의 원소를 고르기만 하면 되므로 조합, f(1) ≤ f(2) ≤ f(3)이면 중복조합입니다.",
+        "f(1) < f(2) < f(3)이면 함숫값 세 개가 모두 다르고 크기순으로 배정되므로, 공역에서 3개를 고르기만 하면 함수가 하나로 정해집니다(조합). 등호를 허락하면 같은 값을 여러 번 고를 수 있으므로 중복조합이 됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "X = {1, 2, 3}에서 Y = {1, 2, 3, 4, 5}로의 함수 중 f(1) < f(2) < f(3)인 것은 몇 개일까요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "치역을 고르기만 하면 됩니다.",
+      "explanation": "함숫값 3개가 모두 다르고 크기순으로 배정\n공역 5개 중 3개를 고르면 하나로 정해짐: ₅C₃\n= 10\n원리: 함숫값이 크기순이면 치역만 정하면 됩니다(조합)."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 X, Y에서 f(1) ≤ f(2) ≤ f(3)인 함수는 몇 개일까요?",
+      "answer": "35",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "중복조합입니다.",
+      "explanation": "같은 값을 허락하므로 5종류에서 중복을 허락해 3개 고르기\n₅H₃ = ₇C₃\n= 35\n원리: 등호를 허락하면 같은 값을 여러 번 고를 수 있어 중복조합입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "공과 상자의 네 가지 경우",
+      "body": [
+        "공이 서로 다른지, 상자가 서로 다른지에 따라 순열·조합·중복조합·분할 중 알맞은 방법이 달라집니다.",
+        "공과 상자 문제는 네 가지로 정리됩니다. 공과 상자가 모두 다르면 중복순열(빈 상자 없으면 포함배제), 공은 같고 상자가 다르면 중복조합, 공이 다르고 상자가 같으면 묶음 나누기, 둘 다 같으면 자연수의 분할입니다. 무엇이 구별되는지를 먼저 판단하는 것이 핵심입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "똑같은 공 6개를 서로 다른 상자 3개에 넣을 때 빈 상자가 없는 경우와, 서로 다른 공 6개일 때를 비교하세요.",
+      "steps": [
+        "똑같은 공: 1개씩 먼저 넣고 남은 3개 → ₃H₃ = 10",
+        "서로 다른 공: 3⁶ − 3 × 2⁶ + 3 = 729 − 192 + 3 = 540",
+        "공이 구별되면 경우의 수가 훨씬 많아집니다.",
+        "원리: 무엇이 구별되는지로 방법이 달라짐"
+      ],
+      "answer": "10 / 540"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "8명을 4명씩 두 조로 나누는 방법은?",
+      "answer": "35",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "같은 크기의 조는 순서가 없습니다.",
+      "explanation": "₈C₄ × ₄C₄ = 70\n크기가 같은 두 조는 순서가 없으므로 2!로 나눔\n70 ÷ 2 = 35\n원리: 이름 없는 같은 크기의 조는 순서를 바꿔도 같은 나눔입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "서로 다른 공 4개를 똑같은 상자 2개에 빈 상자 없이 넣는 방법은?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "묶음의 크기로 경우를 나누세요.",
+      "explanation": "공이 다르고 상자가 같으므로 묶음 나누기\n3개 + 1개: ₄C₃ = 4, 2개 + 2개: ₄C₂ ÷ 2! = 3\n4 + 3 = 7"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "똑같은 공 4개를 서로 다른 상자 3개에 빈 상자 없이 넣는 방법은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1개씩 먼저 넣으세요.",
+      "explanation": "공은 같고 상자가 다르므로 중복조합\n1개씩 먼저 넣고 남은 1개를 3상자 중 하나에: ₃H₁ = 3\n3가지\n확인: (2, 1, 1), (1, 2, 1), (1, 1, 2)"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "똑같은 공 5개를 똑같은 상자 3개에 빈 상자 없이 넣는 방법은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5를 3개의 자연수로 나누세요.",
+      "explanation": "공과 상자가 모두 같으므로 자연수의 분할\n5를 3개로: 3 + 1 + 1, 2 + 2 + 1\n2가지\n원리: 공도 상자도 구별되지 않으면 개수의 분할만 셉니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "서로 다른 공 5개를 서로 다른 상자 3개에 빈 상자 없이 넣는 방법은?",
+      "answer": "150",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "전체에서 빈 상자가 있는 경우를 빼세요.",
+      "explanation": "공과 상자가 모두 다름: 3⁵ = 243\n포함배제로 빈 상자가 있는 경우를 뺌: 243 − 3 × 2⁵ + 3 × 1\n= 150"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "X = {1, 2, 3, 4}에서 Y = {1, 2, 3}으로의 함수 중 f(1) ≤ f(2) ≤ f(3) ≤ f(4)인 것은 몇 개일까요?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "중복조합입니다.",
+      "explanation": "함숫값 4개를 공역 3개에서 중복을 허락해 고르고 크기순으로 배정\n₃H₄ = ₆C₄\n= 15\n원리: 등호를 허락하는 크기순 함수는 중복조합"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "10명 중 대표 1명, 부대표 1명, 위원 2명을 뽑는 방법은?",
+      "answer": "2520",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "직책이 있는 자리와 없는 자리를 구별하세요.",
+      "explanation": "대표: 10가지, 부대표: 9가지(순서가 있는 직책)\n위원 2명은 남은 8명 중 순서 없이: ₈C₂ = 28\n10 × 9 × 28 = 2520"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "서로 다른 6개를 2개씩 세 묶음으로 나눌 때 3!로 나누는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "순서"
+          ],
+          [
+            "같은 크기",
+            "묶음"
+          ],
+          [
+            "중복",
+            "여러 번 세"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "₆C₂ × ₄C₂ × ₂C₂는 첫째, 둘째, 셋째 묶음을 구분해 센 값입니다. 크기가 같은 세 묶음은 순서를 바꿔도 같은 나눔이므로 3!번씩 중복해서 센 셈이라 3!로 나눕니다."
+    }
+  ]
+}

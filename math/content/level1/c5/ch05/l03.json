@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch05",
+    "no": 5,
+    "title": "이산확률분포"
+  },
+  "lesson": {
+    "id": "c5-ch05-l03",
+    "no": 3,
+    "title": "이항분포",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "확률통계"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "이항분포",
+      "body": [
+        "성공 확률이 p인 독립시행을 n번 할 때 성공 횟수 X의 분포를 이항분포 B(n, p)라고 합니다.",
+        "P(X = r) = nCr pʳ(1 − p)ⁿ⁻ʳ",
+        "이항분포는 앞 챕터에서 배운 독립시행의 확률을 확률분포로 정리한 것입니다. '성공'과 '실패' 두 가지(二項)만 있는 시행을 같은 조건에서 서로 영향 없이 n번 반복할 때, 성공 횟수 X가 이항분포를 따릅니다. 동전 던지기, 불량품 검사, 자유투 성공 횟수 등이 대표적인 예입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "X ~ B(4, 1/2)일 때 P(X = 2)는? (기약분수로)",
+      "answer": "3/8",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "P(X = 2) = ₄C₂(1/2)²(1/2)²\n= 6/16\n= 3/8\n원리: 이항분포의 확률은 독립시행의 확률과 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "X ~ B(3, 1/3)일 때 P(X = 0)은? (기약분수로)",
+      "answer": "8/27",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "P(X = 0) = ₃C₀(1/3)⁰(2/3)³\n= 8/27\n원리: 세 번 모두 실패할 확률\n확인: 여사건인 '적어도 한 번 성공'의 확률은 19/27"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "평균과 분산",
+      "body": [
+        "X ~ B(n, p)이면 E(X) = np, V(X) = np(1 − p)입니다.",
+        "왜 np일까요? 한 번의 시행에서 성공 횟수(0 또는 1)의 평균은 p이고 분산은 p(1 − p)입니다. n번의 시행은 서로 독립이라 평균도 분산도 n번 더해지므로 np, np(1 − p)가 됩니다. 성공 확률 0.3으로 100번 하면 평균 30번 성공한다는 직관과도 맞습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "자유투 성공률이 80%인 선수가 25번 던질 때 성공 횟수의 평균과 표준편차를 구하세요.",
+      "steps": [
+        "X ~ B(25, 0.8)",
+        "E(X) = 25 × 0.8 = 20",
+        "V(X) = 25 × 0.8 × 0.2 = 4",
+        "σ(X) = 2"
+      ],
+      "answer": "평균 20, 표준편차 2"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "X ~ B(100, 0.3)일 때 E(X)는?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "E(X) = np\n= 100 × 0.3\n= 30\n원리: 성공 확률 × 시행 횟수\n확인: 성공 확률 30%로 100번이면 평균 30번 성공"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 X의 분산은?",
+      "answer": "21",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "V(X) = np(1 − p)\n= 100 × 0.3 × 0.7\n= 21\n원리: 이항분포의 분산은 시행 횟수 × 성공 확률 × 실패 확률"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "X ~ B(100, 1/2)일 때 σ(X)는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "V(X) = 100 × 1/2 × 1/2 = 25\nσ(X) = √25\n= 5\n원리: 이항분포의 분산 np(1 − p)의 제곱근이 표준편차"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "평균과 분산으로 n, p 찾기",
+      "body": [
+        "np와 np(1 − p)를 알면 나눠서 1 − p를 먼저 구합니다.",
+        "np와 np(1 − p)가 주어지면 둘을 나누어 np(1 − p)/np = 1 − p를 먼저 구합니다. 그러면 p가 나오고, np에 넣어 n을 구합니다. n은 자연수여야 하므로 계산 결과를 확인하고, p가 0과 1 사이인지도 확인합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "이항분포에서 E(X) = 12, V(X) = 3일 때 n과 p를 구하세요.",
+      "steps": [
+        "np = 12, np(1 − p) = 3",
+        "나누면 1 − p = 1/4, p = 3/4",
+        "n = 12 ÷ (3/4) = 16",
+        "확인: 16 × 3/4 × 1/4 = 3"
+      ],
+      "answer": "n = 16, p = 3/4"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "이항분포에서 E(X) = 6, V(X) = 4.2일 때 n은?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "np(1 − p)/np = 4.2/6에서 1 − p = 0.7, p = 0.3\nnp = 6이므로 n = 6/0.3\n= 20"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 분포에서 p는?",
+      "answer": "0.3",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": null,
+      "explanation": "앞에서 1 − p = 0.7\np = 0.3\n확인: 20 × 0.3 × 0.7 = 4.2\n원리: 분산을 평균으로 나누면 실패 확률 1 − p가 나옵니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "생활 속 이항분포",
+      "body": [
+        "반복해서 같은 확률로 일어나는 일의 횟수는 이항분포로 봅니다.",
+        "이항분포인지 판단하는 세 가지 질문: 시행 횟수 n이 정해져 있는가? 매번 성공 확률 p가 같은가? 시행끼리 서로 영향이 없는가? 공을 꺼내고 다시 넣지 않으면 매번 확률이 바뀌므로 엄밀하게는 이항분포가 아닙니다. 다만 전체가 아주 크면 거의 같다고 보고 이항분포로 계산하기도 합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "주사위를 60번 던질 때 1의 눈이 나오는 횟수의 기댓값은?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n = 60, p = 1/6",
+      "explanation": "X ~ B(60, 1/6)\nE(X) = 60 × 1/6\n= 10\n원리: 이항분포의 평균은 시행 횟수 × 성공 확률입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 경우 분산은? (기약분수로)",
+      "answer": "25/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "np(1 − p)",
+      "explanation": "V(X) = np(1 − p) = 60 × 1/6 × 5/6\n= 50/6\n= 25/3\n원리: 이항분포의 분산은 np(1 − p)"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "불량률이 0.05인 제품 200개 중 불량품 수의 기댓값은?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "np",
+      "explanation": "X ~ B(200, 0.05)\nE(X) = 200 × 0.05\n= 10개\n원리: 불량품 수는 n = 200, p = 0.05인 이항분포를 따릅니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "n번, 확률 p, 서로 독립이라는 세 조건이 맞으면 이항분포입니다.",
+        "이항분포의 확률 계산에는 nCr이 들어가 번거롭지만, 평균과 분산은 np와 np(1 − p)로 바로 구할 수 있습니다. n이 크면 다음 챕터에서 배울 정규분포로 근사해 확률을 계산합니다. 그때도 평균 np와 분산 np(1 − p)가 핵심 재료가 됩니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "X ~ B(6, 1/3)일 때 P(X ≤ 1)과 E(X²)을 구하세요.",
+      "steps": [
+        "P(X = 0) = (2/3)⁶ = 64/729, P(X = 1) = 6(1/3)(2/3)⁵ = 192/729",
+        "P(X ≤ 1) = 256/729",
+        "E(X) = 2, V(X) = 6 × 1/3 × 2/3 = 4/3",
+        "E(X²) = 4/3 + 4 = 16/3"
+      ],
+      "answer": "256/729, 16/3"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "X ~ B(n, 1/2)이고 V(X) = 5일 때 n은?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "V(X) = np(1 − p)",
+      "explanation": "V(X) = n × 1/2 × 1/2 = n/4 = 5\nn = 20\n원리: 분산 공식을 n에 대해 풉니다.\n확인: 20 × 1/2 × 1/2 = 5"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "X ~ B(10, 0.2)일 때 E(X²)은?",
+      "answer": "5.6",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "분산 공식을 거꾸로 쓰세요.",
+      "explanation": "E(X) = 10 × 0.2 = 2, V(X) = 10 × 0.2 × 0.8 = 1.6\nE(X²) = V(X) + {E(X)}² = 1.6 + 4\n= 5.6"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "동전을 100번 던질 때 앞면이 나오는 횟수의 표준편차는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "분산부터 구하세요.",
+      "explanation": "X ~ B(100, 1/2): V(X) = 100 × 1/2 × 1/2 = 25\nσ(X) = 5\n원리: 표준편차는 분산의 양의 제곱근\n확인: 앞면의 횟수는 평균 50에서 대략 ±5 정도 흩어집니다."
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "X ~ B(5, 1/2)일 때 P(X ≥ 4)는? (기약분수로)",
+      "answer": "3/16",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "X = 4와 5를 더하세요.",
+      "explanation": "P(X = 4) = ₅C₄/32 = 5/32, P(X = 5) = 1/32\n합 6/32\n= 3/16\n원리: '이상'은 각 값의 확률을 더합니다."
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "X ~ B(10, 0.5)일 때 E(2X + 1)은?",
+      "answer": "11",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "E(aX + b) = aE(X) + b",
+      "explanation": "E(X) = 10 × 0.5 = 5\nE(2X + 1) = 2 × 5 + 1\n= 11\n원리: 이항분포의 평균 np를 먼저 구한 뒤 aX + b의 평균 공식을 씁니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "어떤 상황의 확률변수가 이항분포를 따르기 위한 조건을 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "독립"
+          ],
+          [
+            "같은 확률",
+            "확률이 같",
+            "p"
+          ],
+          [
+            "n번",
+            "횟수"
+          ]
+        ],
+        "min_groups_matched": 3
+      },
+      "model_answer": "같은 시행을 정해진 n번 반복하고, 각 시행이 서로 독립이며, 매번 성공 확률 p가 같아야 합니다. 이때 성공 횟수가 이항분포 B(n, p)를 따릅니다."
+    }
+  ]
+}

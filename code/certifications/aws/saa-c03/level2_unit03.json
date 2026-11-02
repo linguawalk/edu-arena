@@ -1,0 +1,111 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "saa-c03",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "Auto Scaling과 헬스체크",
+  "rule_summary_ko": "Auto Scaling 그룹의 기본 헬스체크는 EC2 상태검사(하드웨어·인프라 수준)만 확인하며, 애플리케이션 자체의 오류(예: 웹서버가 500 오류를 반환하는 상황)는 감지하지 못합니다. ELB 헬스체크를 명시적으로 활성화하면, 로드밸런서가 실제로 애플리케이션에 HTTP 요청을 보내 응답을 확인하므로 애플리케이션 수준의 장애까지 감지할 수 있게 됩니다(EC2 상태검사나 ELB 헬스체크 둘 중 하나라도 실패하면 비정상으로 간주). 헬스체크 유예 기간(grace period)은 새로 시작된 인스턴스가 부팅·초기화되는 동안에는 헬스체크 실패로 성급하게 종료되지 않도록 대기하는 시간입니다.",
+  "examples": [
+    { "code": "인스턴스는 정상 작동 중이지만, 웹 애플리케이션이 데이터베이스 연결 실패로 500 오류를 반환하는 상황(EC2 하드웨어 자체는 멀쩡함)", "note_ko": "기본(EC2) 헬스체크만으로는 이 문제를 감지하지 못함 — ELB 헬스체크를 활성화해야 실제 애플리케이션 응답을 확인해서 문제를 감지할 수 있음" }
+  ],
+  "questions": [
+    {
+      "id": "aws_saa_l2_u3_q001",
+      "type": "concept_matching_item",
+      "code": "인스턴스의 하드웨어는 정상이지만, 애플리케이션이 데이터베이스 연결 실패로 계속 HTTP 500 오류를 반환하고 있음(EC2 헬스체크만 활성화된 상태)",
+      "prompt_ko": "이 상황을 Auto Scaling 그룹의 기본(EC2) 헬스체크가 감지할 수 있습니까?",
+      "options": [
+        "아니다 — EC2 상태검사는 인프라(하드웨어) 수준만 확인해서, 애플리케이션 자체의 오류는 감지하지 못한다",
+        "그렇다. EC2 헬스체크는 애플리케이션 응답 내용까지 자동으로 확인한다",
+        "EC2 헬스체크는 애플리케이션 문제만 감지하고 하드웨어 문제는 감지하지 못한다(설명이 반대)",
+        "이런 상황은 어떤 헬스체크로도 감지할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "인프라는 멀쩡한데 애플리케이션만 죽은 상황을 감지하려면 별도로 ELB 헬스체크가 필요합니다.",
+      "concept_tags": ["ec2_health_check_limitation"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l2_u3_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "ELB 헬스체크를 활성화하면 Auto Scaling 그룹이 인스턴스를 비정상으로 판단하는 기준은?",
+      "options": [
+        "EC2 상태검사 또는 ELB 헬스체크 중 하나라도 실패하면 비정상으로 간주한다",
+        "EC2 상태검사와 ELB 헬스체크가 모두 실패해야만 비정상으로 간주한다(설명이 다름)",
+        "ELB 헬스체크를 활성화하면 EC2 상태검사는 완전히 무시된다",
+        "ELB 헬스체크는 인스턴스 상태 판단과 무관하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "둘 중 어느 하나라도 실패하면 비정상으로 처리되는 'OR' 조건입니다.",
+      "concept_tags": ["elb_health_check_or_condition"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l2_u3_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Auto Scaling 그룹이 인스턴스를 비정상으로 판단하면 취하는 조치는?",
+      "options": [
+        "그 인스턴스를 종료하고, 목표 용량(desired capacity)을 유지하기 위해 새로운 대체 인스턴스를 자동으로 시작한다",
+        "비정상 인스턴스를 그대로 계속 서비스에 사용한다",
+        "전체 Auto Scaling 그룹을 삭제한다",
+        "관리자에게 이메일만 보내고 아무 조치도 취하지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "자동 교체를 통해 항상 정해진 수의 정상 인스턴스를 유지하는 것이 Auto Scaling의 핵심 가치입니다.",
+      "concept_tags": ["asg_unhealthy_replacement"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l2_u3_q004",
+      "type": "concept_matching_item",
+      "code": "새로 시작된 인스턴스가 아직 부팅·초기화(애플리케이션 시작 등) 중이라, 일시적으로 헬스체크에 응답하지 못하는 상태",
+      "prompt_ko": "헬스체크 유예 기간(grace period)이 이런 상황에서 하는 역할은?",
+      "options": [
+        "이 기간 동안에는 헬스체크 실패로 인한 종료를 유예해서, 정상적으로 부팅 중인 인스턴스가 성급하게 비정상으로 판단되어 종료되는 것을 방지한다",
+        "유예 기간은 헬스체크 자체를 완전히 비활성화하는 기능이다",
+        "유예 기간은 인스턴스를 항상 즉시 종료시킨다",
+        "유예 기간은 Auto Scaling과 무관한 개념이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "초기화에 시간이 걸리는 애플리케이션에서 오탐(false positive)으로 인한 불필요한 종료를 막아줍니다.",
+      "concept_tags": ["health_check_grace_period"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l2_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Spot 인스턴스가 중단(interrupt)되어 예기치 않게 종료된 경우, Auto Scaling 그룹은 어떻게 대응합니까?",
+      "options": [
+        "목표 용량을 유지하기 위해 자동으로 새로운 대체 인스턴스를 시작한다",
+        "그 용량 손실을 그대로 방치하고 아무 조치도 취하지 않는다",
+        "전체 그룹의 모든 인스턴스를 함께 종료한다",
+        "Spot 인스턴스 중단은 Auto Scaling과 무관한 별개의 프로세스로 처리된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "예기치 않은 종료(중단·수동 종료 등)도 Auto Scaling이 감지해서 목표 용량을 유지하려고 시도합니다.",
+      "concept_tags": ["asg_maintains_desired_capacity"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l2_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "EC2 헬스체크만 사용할지, ELB 헬스체크까지 함께 사용할지 결정할 때 고려해야 할 트레이드오프는?",
+      "options": [
+        "ELB 헬스체크는 애플리케이션 수준 장애까지 세밀하게 감지하지만, 공유 의존성(예: 데이터베이스) 장애 시 모든 인스턴스가 동시에 비정상 판정을 받아 대량으로 교체되는 위험도 함께 커질 수 있다",
+        "ELB 헬스체크는 EC2 헬스체크보다 항상 모든 면에서 우월해서 트레이드오프가 전혀 없다",
+        "EC2 헬스체크만으로 애플리케이션 수준 장애까지 완벽하게 감지할 수 있다",
+        "헬스체크 유형 선택은 아무런 실질적 영향이 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "더 세밀한 감지는 더 큰 민감도를 의미해서, 공유 장애 시 대량 교체(mass replacement) 같은 부작용도 함께 고려해야 합니다.",
+      "concept_tags": ["health_check_tradeoff"],
+      "difficulty": "challenge"
+    }
+  ]
+}

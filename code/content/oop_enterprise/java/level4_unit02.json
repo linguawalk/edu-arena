@@ -1,0 +1,96 @@
+{
+  "language": "java",
+  "category": "oop_enterprise",
+  "level": 4,
+  "unit": 2,
+  "unit_title": "ArrayList",
+  "questions": [
+    {
+      "id": "java_l4_u02_q001",
+      "type": "predict_output",
+      "code": "ArrayList<String> names = new ArrayList<>();\nnames.add(\"Kim\");\nnames.add(\"Lee\");\nnames.add(\"Park\");\nSystem.out.println(names.size());",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["2", "3", "4", "오류"],
+      "answer": 1,
+      "explanation_en": "ArrayList automatically grows as elements are added; three add() calls result in size() being 3.",
+      "explanation_ko": "ArrayList는 요소가 추가될 때마다 자동으로 커집니다. add()를 세 번 호출했으므로 size()는 3입니다.",
+      "concept_tags": ["arraylist"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l4_u02_q002",
+      "type": "fill_blank",
+      "code": "ArrayList<String> names = new ArrayList<>();\nnames.add(\"Kim\");\nnames.add(\"Lee\");\nSystem.out.println(names.____(0));\n// 인덱스로 요소에 접근해야 함",
+      "prompt_en": "Fill in the blank with the method used to access an element by index.",
+      "prompt_ko": "인덱스로 요소에 접근하는 메서드를 빈칸에 채우세요.",
+      "options": ["get", "at", "item", "elementAt"],
+      "answer": 0,
+      "explanation_en": "ArrayList uses get(index) rather than [] indexing, unlike a plain array or C#'s List<T>[i].",
+      "explanation_ko": "ArrayList는 일반 배열이나 C#의 List<T>[i]와 달리 []가 아닌 get(인덱스)를 사용합니다.",
+      "concept_tags": ["arraylist"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l4_u02_q003",
+      "type": "predict_output",
+      "code": "ArrayList<String> names = new ArrayList<>();\nnames.add(\"Kim\");\nnames.add(\"Lee\");\nnames.remove(\"Kim\");\nSystem.out.println(names.size());\nSystem.out.println(names.get(0));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["2 Kim", "1 Lee", "1 Kim", "2 Lee"],
+      "answer": 1,
+      "explanation_en": "remove(\"Kim\") deletes that element and shifts the rest forward; size() becomes 1, and the remaining element, Lee, becomes get(0).",
+      "explanation_ko": "remove(\"Kim\")은 그 요소를 삭제하고 나머지를 앞으로 당깁니다. size()는 1이 되고, 남은 요소인 Lee가 get(0)이 됩니다.",
+      "concept_tags": ["arraylist"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l4_u02_q004",
+      "type": "error_finding",
+      "code": "ArrayList<int> nums = new ArrayList<>();\nnums.add(5);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "add 메서드 사용법 오류",
+        "제네릭 타입 매개변수에는 기본형(int)을 직접 쓸 수 없어서 컴파일 오류가 발생함 — Integer 같은 래퍼 클래스를 써야 함",
+        "ArrayList 선언 자체가 잘못됨",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Java generics don't accept primitive types directly; ArrayList<int> must instead be ArrayList<Integer>, using the wrapper class.",
+      "explanation_ko": "Java 제네릭은 기본형을 직접 받을 수 없습니다. ArrayList<int> 대신 래퍼 클래스를 사용한 ArrayList<Integer>여야 합니다.",
+      "concept_tags": ["arraylist", "generic", "wrapper_class"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l4_u02_q005",
+      "type": "predict_output",
+      "code": "import java.util.Collections;\n\nArrayList<Integer> nums = new ArrayList<>();\nnums.add(5);\nnums.add(2);\nnums.add(8);\nnums.add(1);\nCollections.sort(nums);\nSystem.out.println(nums.get(0));\nSystem.out.println(nums.get(3));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5 1", "1 8", "1 5", "5 8"],
+      "answer": 1,
+      "explanation_en": "Collections.sort() arranges the elements in ascending order (1, 2, 5, 8); the smallest, 1, becomes index 0, and the largest, 8, becomes index 3.",
+      "explanation_ko": "Collections.sort()는 요소를 오름차순으로 정렬합니다(1, 2, 5, 8). 가장 작은 값 1이 인덱스 0, 가장 큰 값 8이 인덱스 3이 됩니다.",
+      "concept_tags": ["arraylist", "sort"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l4_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "ArrayList<T>", "definition": "크기가 자동으로 늘어나는 제네릭 컬렉션" },
+        { "term": "add / remove", "definition": "요소를 추가하거나 삭제하는 메서드" },
+        { "term": "get(index)", "definition": "인덱스로 요소에 접근하는 메서드 — []가 아님" },
+        { "term": "래퍼 클래스 (Integer 등)", "definition": "제네릭과 함께 쓰기 위해 기본형을 감싸는 객체 타입" }
+      ],
+      "explanation_en": "ArrayList corresponds to C#'s List<T> and VB's List(Of T), but requires get()/set() method calls instead of [] indexing, and can't hold primitives directly.",
+      "explanation_ko": "ArrayList는 C#의 List<T>, VB의 List(Of T)에 대응하지만, []가 아닌 get()/set() 메서드 호출이 필요하고 기본형을 직접 담을 수 없습니다.",
+      "concept_tags": ["arraylist", "generic", "wrapper_class"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 4,
+  "unit": 2,
+  "unit_title": "스택 구현",
+  "questions": [
+    {
+      "id": "c_l4_u02_q001",
+      "type": "predict_output",
+      "code": "int stack[5];\nint top = -1;\nstack[++top] = 10;\nstack[++top] = 20;\nstack[++top] = 30;\nprintf(\"%d\", stack[top--]);\nprintf(\"%d\", stack[top--]);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1020", "3020", "1030", "3010"],
+      "answer": 1,
+      "explanation_en": "A stack follows LIFO (Last In, First Out); the last value pushed (30) is popped first, then 20 — the order 10, 20, 30 comes back as 30, 20.",
+      "explanation_ko": "스택은 LIFO(Last In, First Out) 방식입니다. 마지막에 넣은 값(30)이 가장 먼저 나오고, 그다음 20이 나옵니다. 10, 20, 30 순서로 넣었지만 30, 20 순서로 꺼내집니다.",
+      "concept_tags": ["stack", "lifo"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l4_u02_q002",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "스택 (Stack)", "definition": "가장 나중에 넣은 것이 가장 먼저 나오는 자료구조 (LIFO)" },
+        { "term": "push", "definition": "스택의 맨 위에 새 값을 추가하는 연산" },
+        { "term": "pop", "definition": "스택의 맨 위 값을 꺼내서 제거하는 연산" },
+        { "term": "top", "definition": "스택에서 가장 최근에 추가된 값의 위치를 가리키는 인덱스" }
+      ],
+      "explanation_en": "Stacks are used for undo operations, function call tracking, and expression evaluation, all of which rely on 'most recent first' behavior.",
+      "explanation_ko": "스택은 실행 취소(undo), 함수 호출 추적, 수식 계산 등 '가장 최근 것부터 처리'하는 동작이 필요한 곳에 쓰입니다.",
+      "concept_tags": ["stack", "lifo", "push", "pop"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l4_u02_q003",
+      "type": "fill_blank",
+      "code": "int stack[5];\nint top = -1;\n\nvoid push(int value) {\n    stack[____top] = value;\n}",
+      "prompt_en": "Fill in the blank so push correctly increments top before storing the value.",
+      "prompt_ko": "push가 값을 저장하기 전에 top을 올바르게 증가시키도록 빈칸을 채우세요.",
+      "options": ["++", "--", "+1", ""],
+      "answer": 0,
+      "explanation_en": "Pre-incrementing top before indexing ensures the new value is stored at the next empty slot, one position above the current top.",
+      "explanation_ko": "인덱싱하기 전에 top을 전위 증가시키면, 새 값이 현재 top보다 한 칸 위인 다음 빈 자리에 저장됩니다.",
+      "concept_tags": ["stack", "push"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l4_u02_q004",
+      "type": "error_finding",
+      "code": "int stack[3];\nint top = -1;\nstack[++top] = 10;\nstack[++top] = 20;\nstack[++top] = 30;\nstack[++top] = 40;",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "push 순서가 잘못됨",
+        "stack 배열 크기가 3인데 4개의 값을 넣으려 해서, 마지막 push가 배열 범위를 벗어나는 오버플로우를 일으킴",
+        "top 초기값이 잘못됨",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "The array can only hold indices 0-2 (3 slots), but a fourth push attempts to write to stack[3], which is out of bounds — a classic stack overflow in a fixed-size array implementation.",
+      "explanation_ko": "배열은 인덱스 0~2(3칸)까지만 담을 수 있는데, 네 번째 push가 stack[3]에 쓰려고 시도해 범위를 벗어납니다. 고정 크기 배열로 스택을 구현할 때 흔히 발생하는 오버플로우입니다.",
+      "concept_tags": ["stack", "array", "out_of_bounds"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l4_u02_q005",
+      "type": "predict_output",
+      "code": "int stack[5];\nint top = -1;\nstack[++top] = 5;\nprintf(\"%d\", top);",
+      "prompt_en": "What is printed after pushing a single value onto an empty stack?",
+      "prompt_ko": "빈 스택에 값을 하나 push한 뒤 출력 결과는?",
+      "options": ["-1", "0", "1", "5"],
+      "answer": 1,
+      "explanation_en": "top starts at -1 (empty), and ++top increments it to 0 before storing the value, so top is now 0.",
+      "explanation_ko": "top은 -1(빈 상태)에서 시작하고, ++top이 값을 저장하기 전에 0으로 증가시킵니다. 따라서 top은 0이 됩니다.",
+      "concept_tags": ["stack", "push"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l4_u02_q006",
+      "type": "fill_blank",
+      "code": "int isEmpty(int top) {\n    return top == ____;\n}",
+      "prompt_en": "Fill in the blank with the value that indicates an empty stack.",
+      "prompt_ko": "스택이 비어있음을 나타내는 값을 빈칸에 채우세요.",
+      "options": ["-1", "0", "5", "NULL"],
+      "answer": 0,
+      "explanation_en": "By convention, top is initialized to -1 to represent an empty stack, since valid indices start at 0.",
+      "explanation_ko": "관례적으로 top은 -1로 초기화되어 빈 스택을 나타냅니다. 유효한 인덱스는 0부터 시작하기 때문입니다.",
+      "concept_tags": ["stack"],
+      "difficulty": "intro"
+    }
+  ]
+}

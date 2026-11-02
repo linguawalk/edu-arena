@@ -1,0 +1,96 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 6,
+  "unit": 4,
+  "unit_title": "JSON과 spread 연산자",
+  "questions": [
+    {
+      "id": "javascript_l6_u04_q001",
+      "type": "predict_output",
+      "code": "const obj = { name: \"Kim\", age: 25 };\nconst json = JSON.stringify(obj);\nconsole.log(json);\nconsole.log(typeof json);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": [
+        "{ name: 'Kim', age: 25 } / object",
+        "{\"name\":\"Kim\",\"age\":25} / string",
+        "오류",
+        "[object Object] / string"
+      ],
+      "answer": 1,
+      "explanation_en": "JSON.stringify converts an object to its JSON text representation; the result is always a string, with double-quoted keys and values.",
+      "explanation_ko": "JSON.stringify는 객체를 JSON 텍스트 표현으로 변환합니다. 결과는 항상 문자열이며, 키와 값 모두 큰따옴표로 감싸집니다.",
+      "concept_tags": ["json_stringify"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l6_u04_q002",
+      "type": "predict_output",
+      "code": "const json = '{\"name\":\"Kim\",\"age\":25}';\nconst obj = JSON.parse(json);\nconsole.log(obj.name);\nconsole.log(typeof obj);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["Kim / object", "Kim / string", "오류", "undefined / object"],
+      "answer": 0,
+      "explanation_en": "JSON.parse converts JSON text back into a real JavaScript object; obj.name accesses the parsed property normally.",
+      "explanation_ko": "JSON.parse는 JSON 텍스트를 다시 실제 JavaScript 객체로 변환합니다. obj.name은 파싱된 속성에 정상적으로 접근합니다.",
+      "concept_tags": ["json_parse"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l6_u04_q003",
+      "type": "predict_output",
+      "code": "const arr1 = [1, 2, 3];\nconst arr2 = [...arr1, 4, 5];\nconsole.log(arr2);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["[1, 2, 3]", "[1, 2, 3, 4, 5]", "[[1, 2, 3], 4, 5]", "오류"],
+      "answer": 1,
+      "explanation_en": "The spread operator ... expands arr1's elements individually into the new array literal, followed by 4 and 5: [1, 2, 3, 4, 5].",
+      "explanation_ko": "스프레드 연산자 ...는 arr1의 요소를 개별적으로 새 배열 리터럴에 펼쳐 넣고, 이어서 4와 5를 넣습니다: [1, 2, 3, 4, 5].",
+      "concept_tags": ["spread_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l6_u04_q004",
+      "type": "predict_output",
+      "code": "const obj1 = { a: 1, b: 2 };\nconst obj2 = { ...obj1, b: 100, c: 3 };\nconsole.log(obj2);",
+      "prompt_en": "What is printed? (Note: b appears in both the spread and explicitly after.)",
+      "prompt_ko": "출력 결과는? (b가 스프레드된 것과 이후 명시적으로 쓴 것 양쪽에 나타나는 점에 주의하세요.)",
+      "options": ["{ a: 1, b: 2, c: 3 }", "{ a: 1, b: 100, c: 3 }", "오류", "{ a: 1, b: 2, b: 100, c: 3 }"],
+      "answer": 1,
+      "explanation_en": "Spreading obj1 first copies a: 1, b: 2, but properties listed afterward override earlier ones; b: 100 overwrites the spread b: 2, giving { a: 1, b: 100, c: 3 }.",
+      "explanation_ko": "obj1을 펼치면 먼저 a: 1, b: 2가 복사되지만, 이후에 나열된 속성이 앞의 것을 덮어씁니다. b: 100이 펼쳐진 b: 2를 덮어써서 { a: 1, b: 100, c: 3 }이 됩니다.",
+      "concept_tags": ["spread_operator"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l6_u04_q005",
+      "type": "fill_blank",
+      "code": "const original = { name: \"Kim\", age: 25 };\nconst copy = { ____original };\ncopy.age = 30;\nconsole.log(original.age);\n// 얕은 복사이므로 original.age는 그대로 25여야 함",
+      "prompt_en": "Fill in the blank with the syntax that creates a shallow copy of the object.",
+      "prompt_ko": "객체의 얕은 복사본을 만드는 문법을 빈칸에 채우세요.",
+      "options": ["...", "*", "&", "clone"],
+      "answer": 0,
+      "explanation_en": "Spreading an object into a new object literal ({ ...original }) creates a shallow copy; modifying the copy's properties doesn't affect the original.",
+      "explanation_ko": "객체를 새 객체 리터럴에 펼치는 것({ ...original })은 얕은 복사본을 만듭니다. 복사본의 속성을 바꿔도 원본에는 영향이 없습니다.",
+      "concept_tags": ["spread_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l6_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "JSON.stringify", "definition": "객체를 JSON 텍스트(문자열)로 변환" },
+        { "term": "JSON.parse", "definition": "JSON 텍스트를 실제 객체로 변환" },
+        { "term": "스프레드 연산자 (...)", "definition": "배열이나 객체의 요소를 개별적으로 펼쳐 넣는 문법" },
+        { "term": "얕은 복사", "definition": "스프레드가 만드는 복사본 — 최상위 속성만 복사되고 중첩 객체는 참조 공유" }
+      ],
+      "explanation_en": "JSON serialization is how JavaScript objects are commonly exchanged with APIs and stored in files, while the spread operator has become the idiomatic way to copy and merge arrays/objects in modern JavaScript.",
+      "explanation_ko": "JSON 직렬화는 JavaScript 객체가 API와 흔히 주고받거나 파일에 저장되는 방식이며, 스프레드 연산자는 최신 JavaScript에서 배열/객체를 복사하고 병합하는 관용적인 방법이 됐습니다.",
+      "concept_tags": ["json_stringify", "json_parse", "spread_operator"],
+      "difficulty": "practice"
+    }
+  ]
+}

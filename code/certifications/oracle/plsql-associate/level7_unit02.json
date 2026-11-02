@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 7,
+  "unit": 2,
+  "unit_title": "EXECUTE IMMEDIATE와 바인드 변수",
+  "rule_summary_ko": "동적 SQL 문에 자리표시자(placeholder)가 있으면, USING 절로 값을 전달(입력 바인드)하고 INTO 절로 결과를 받습니다(단일 행 SELECT의 출력 바인드). 여러 행을 반환하는 SELECT는 BULK COLLECT INTO로 컬렉션에 담아야 합니다. 바인드 변수는 오직 '값'만 전달할 수 있고, 테이블 이름·컬럼 이름 같은 스키마 객체 이름은 바인드로 전달할 수 없습니다(반드시 문자열 연결로 조합해야 함).",
+  "examples": [
+    { "code": "EXECUTE IMMEDIATE 'SELECT salary FROM employees WHERE employee_id = :id'\nINTO v_salary USING p_emp_id;", "note_ko": ":id 자리에 p_emp_id 값이 바인딩되고, 결과(단일 행)는 v_salary로 받음" },
+    { "code": "EXECUTE IMMEDIATE 'SELECT * FROM ' || :table_name; -- 오류: 테이블 이름은 바인드 변수로 불가", "note_ko": "스키마 객체 이름(테이블명 등)은 바인드 변수가 아니라 문자열 연결(||)로 조합해야 함" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l7_u2_q001",
+      "type": "concept_matching_item",
+      "code": "EXECUTE IMMEDIATE 'SELECT salary FROM employees WHERE employee_id = :id'\nINTO v_salary USING p_emp_id;",
+      "prompt_ko": "이 코드에서 USING 절과 INTO 절의 역할은?",
+      "options": [
+        "USING은 결과를 받고, INTO는 값을 전달한다(설명이 반대로 되어 있음)",
+        "USING은 :id 자리에 전달할 입력 값(p_emp_id)을 지정하고, INTO는 쿼리 결과(단일 행)를 받을 변수(v_salary)를 지정한다",
+        "USING과 INTO는 완전히 동일한 역할을 한다",
+        "USING과 INTO는 DDL 문에서만 사용된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "USING은 SQL 안으로 값을 넣는 입력, INTO는 SQL에서 값을 꺼내는 출력이라는 반대 방향의 역할을 합니다.",
+      "concept_tags": ["using_into_clause"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l7_u2_q002",
+      "type": "concept_matching_item",
+      "code": "v_table VARCHAR2(30) := 'employees';\nEXECUTE IMMEDIATE 'SELECT COUNT(*) FROM :tbl' INTO v_count USING v_table; -- 테이블 이름을 바인드로 전달 시도",
+      "prompt_ko": "테이블 이름을 :tbl처럼 바인드 변수로 전달하려고 하면?",
+      "options": [
+        "정상적으로 작동한다",
+        "오류가 발생한다 — 바인드 변수는 값(리터럴 같은 데이터)만 전달할 수 있고, 테이블·컬럼 같은 스키마 객체 이름은 바인드로 전달할 수 없다",
+        "테이블 이름이 자동으로 'employees'로 대체된다",
+        "v_count가 항상 0이 된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "스키마 객체 이름은 문자열 연결(||)로 SQL 문 자체에 포함시켜야 하며, 바인드 변수 자리에는 넣을 수 없습니다.",
+      "concept_tags": ["bind_variable_no_schema_names"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l7_u2_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "동적 SELECT 문이 여러 행을 반환할 수 있을 때, 그 결과를 받는 올바른 방법은?",
+      "options": [
+        "일반 INTO 절을 그대로 사용한다",
+        "BULK COLLECT INTO를 사용해서 컬렉션(예: 중첩 테이블)에 여러 행을 한 번에 담는다",
+        "결과를 받을 방법이 없다",
+        "USING 절로 결과를 받는다"
+      ],
+      "answer": 1,
+      "explanation_ko": "일반 INTO는 정확히 한 행만 받을 수 있어, 여러 행에는 BULK COLLECT INTO가 필요합니다.",
+      "concept_tags": ["bulk_collect_into"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l7_u2_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "동적 SQL에서 바인드 변수(:id 같은 자리표시자)를 사용하는 것이, 사용자 입력값을 문자열 연결(||)로 직접 SQL에 이어붙이는 것보다 나은 이유는?",
+      "options": [
+        "바인드 변수는 값과 SQL 구조를 분리해서, SQL 인젝션 공격을 방지하고 파싱을 재사용해 성능도 향상시킬 수 있다",
+        "바인드 변수는 항상 더 느리다",
+        "바인드 변수는 문자열만 전달할 수 있다",
+        "차이가 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "바인드 변수는 보안(인젝션 방지)과 성능(SQL 재사용) 두 측면 모두에서 권장되는 방식입니다.",
+      "concept_tags": ["bind_variable_benefits"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l7_u2_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "여러 행을 반환하는 동적 SELECT의 결과를 컬렉션에 한 번에 담을 때 사용하는 절은 무엇입니까? (영문 세 단어로 입력, 예: XXXX XXXXXX XXXX)",
+      "expected_answers": ["BULK COLLECT INTO"],
+      "explanation_ko": "BULK COLLECT INTO는 여러 행을 한 번에 컬렉션으로 가져오는 절입니다.",
+      "concept_tags": ["bulk_collect_into"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l7_u2_q006",
+      "type": "concept_matching_item",
+      "code": "EXECUTE IMMEDIATE 'UPDATE employees SET salary = :new_sal WHERE employee_id = :id'\nUSING p_new_salary, p_emp_id;",
+      "prompt_ko": "UPDATE 같은 DML 문(SELECT 아님)에서 여러 바인드 변수의 값은 어디에 지정합니까?",
+      "options": [
+        "INTO 절에 순서대로 나열한다",
+        "USING 절에, SQL 문 안의 자리표시자 등장 순서와 같은 순서로 값을 나열한다",
+        "BULK COLLECT INTO 절에 나열한다",
+        "DML 문에는 바인드 변수를 사용할 수 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "SELECT가 아닌 DML은 RETURNING INTO가 없다면 모든 바인드 변수를 USING 절에 순서대로 지정합니다.",
+      "concept_tags": ["dml_using_clause_order"],
+      "difficulty": "challenge"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 5,
+  "unit": 1,
+  "unit_title": "Class 기초",
+  "questions": [
+    {
+      "id": "javascript_l5_u01_q001",
+      "type": "predict_output",
+      "code": "class Dog {\n    constructor(name) {\n        this.name = name;\n    }\n    bark() {\n        console.log(this.name + \": 멍멍!\");\n    }\n}\n\nconst d = new Dog(\"바둑이\");\nd.bark();",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이: 멍멍!", "Dog: 멍멍!", "오류", "name: 멍멍!"],
+      "answer": 0,
+      "explanation_en": "constructor runs automatically when new Dog(\"바둑이\") creates an object, setting this.name; d.bark() then uses that value.",
+      "explanation_ko": "constructor는 new Dog(\"바둑이\")가 객체를 만들 때 자동으로 실행되어 this.name을 설정합니다. d.bark()는 이후 그 값을 사용합니다.",
+      "concept_tags": ["class", "constructor"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l5_u01_q002",
+      "type": "predict_output",
+      "code": "class Dog {\n    constructor(name) {\n        this.name = name;\n    }\n}\n\nconsole.log(typeof Dog);",
+      "prompt_en": "What is printed? (This reveals what class really is under the hood.)",
+      "prompt_ko": "출력 결과는? (class가 내부적으로 무엇인지 드러냅니다.)",
+      "options": ["class", "object", "function", "오류"],
+      "answer": 2,
+      "explanation_en": "JavaScript's class syntax is syntax sugar over its underlying prototype-based system; a class is actually just a special kind of function, so typeof Dog is \"function\".",
+      "explanation_ko": "JavaScript의 class 문법은 내부의 프로토타입 기반 시스템 위에 얹은 문법 설탕입니다. class는 사실 특별한 종류의 함수일 뿐이라, typeof Dog는 \"function\"입니다.",
+      "concept_tags": ["class", "prototype"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l5_u01_q003",
+      "type": "predict_output",
+      "code": "class Dog {\n    constructor(name) {\n        this.name = name;\n    }\n}\n\nconst d1 = new Dog(\"바둑이\");\nd1.name = \"뽀삐\";\nconst d2 = new Dog(\"초코\");\nconsole.log(d1.name, d2.name);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이 초코", "뽀삐 초코", "뽀삐 뽀삐", "오류"],
+      "answer": 1,
+      "explanation_en": "d1 and d2 are independent instances with their own name properties; changing d1.name doesn't affect d2, which keeps 초코.",
+      "explanation_ko": "d1과 d2는 각자 name 속성을 가진 독립적인 인스턴스입니다. d1.name을 바꿔도 d2에는 영향이 없어 초코를 그대로 유지합니다.",
+      "concept_tags": ["class", "object"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l5_u01_q004",
+      "type": "error_finding",
+      "code": "class Dog {\n    constructor(name) {\n        this.name = name;\n    }\n}\n\nconst d = Dog(\"바둑이\");",
+      "prompt_en": "What problem does this code have? (Note: new is missing.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (new가 빠진 점에 주의하세요.)",
+      "options": [
+        "Dog 클래스 정의 오류",
+        "class는 new 없이 함수처럼 호출할 수 없어서, TypeError가 발생함",
+        "name 매개변수 이름이 잘못됨",
+        "문제 없음, 정상적으로 객체가 만들어짐"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike regular functions, ES6 classes must always be called with new; calling Dog(\"바둑이\") without it throws a TypeError.",
+      "explanation_ko": "일반 함수와 달리 ES6 class는 반드시 new와 함께 호출해야 합니다. new 없이 Dog(\"바둑이\")를 호출하면 TypeError가 발생합니다.",
+      "concept_tags": ["class", "new_keyword"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l5_u01_q005",
+      "type": "predict_output",
+      "code": "class Rectangle {\n    constructor(width, height) {\n        this.width = width;\n        this.height = height;\n    }\n    area() {\n        return this.width * this.height;\n    }\n}\n\nconst r = new Rectangle(4, 5);\nconsole.log(r.area());",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["9", "20", "45", "오류"],
+      "answer": 1,
+      "explanation_en": "area() uses this.width and this.height to compute 4 * 5 = 20.",
+      "explanation_ko": "area()는 this.width와 this.height를 사용해 4 * 5 = 20을 계산합니다.",
+      "concept_tags": ["class", "method"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l5_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "class", "definition": "프로토타입 기반 시스템 위에 얹은 문법 설탕 — 사실은 특별한 함수" },
+        { "term": "constructor", "definition": "객체가 생성될 때 자동으로 호출되는 특별한 메서드" },
+        { "term": "new 필수", "definition": "class는 반드시 new와 함께 호출해야 하며, 그냥 함수처럼 부를 수 없음" },
+        { "term": "인스턴스의 독립성", "definition": "각 객체는 서로 독립적인 자신만의 속성 값을 가짐" }
+      ],
+      "explanation_en": "JavaScript's class keyword (added in ES6/2015) makes prototype-based inheritance look and feel like classical OOP languages, but the underlying mechanism remains fundamentally different.",
+      "explanation_ko": "JavaScript의 class 키워드(ES6/2015에 추가)는 프로토타입 기반 상속을 고전적인 객체지향 언어처럼 보이고 느껴지게 만들지만, 내부 메커니즘은 근본적으로 다릅니다.",
+      "concept_tags": ["class", "constructor", "prototype"],
+      "difficulty": "practice"
+    }
+  ]
+}

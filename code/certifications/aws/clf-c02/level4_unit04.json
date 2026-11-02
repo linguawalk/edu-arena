@@ -1,0 +1,95 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "clf-c02",
+  "level": 4,
+  "unit": 4,
+  "unit_title": "조직 계정 관리: Organizations·통합 결제",
+  "rule_summary_ko": "AWS Organizations는 여러 AWS 계정을 중앙에서 관리할 수 있게 해주는 서비스로, 관리 계정(management account)이 모든 구성원 계정의 요금을 대신 청구받습니다(통합 결제, Consolidated Billing). 통합 결제의 핵심 이점은 여러 계정의 사용량을 합산해서 볼륨 할인·예약 인스턴스·Savings Plans 혜택을 공유할 수 있다는 것이며, 이 기능 자체는 추가 비용 없이 제공됩니다.",
+  "examples": [
+    { "code": "3개 부서 계정이 각각 S3 데이터를 2TB, 5TB, 7TB 전송", "note_ko": "개별 계정이면 각자 볼륨 할인 구간에 못 미치지만, 통합 결제로 합산(14TB)하면 더 높은 할인 구간에 도달해 전체적으로 더 저렴해짐" }
+  ],
+  "questions": [
+    {
+      "id": "aws_clf_l4_u4_q001",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "여러 AWS 계정을 중앙에서 관리할 수 있게 해주는 AWS 서비스는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["Organizations", "AWS Organizations"],
+      "explanation_ko": "AWS Organizations는 여러 계정을 그룹화해서 중앙에서 관리·정책 적용을 할 수 있게 해줍니다.",
+      "concept_tags": ["aws_organizations"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "aws_clf_l4_u4_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "AWS Organizations에서 모든 구성원 계정의 요금을 대신 청구받는 계정을 무엇이라 합니까?",
+      "options": ["게스트 계정", "관리 계정(Management Account)", "루트 사용자 전용 계정", "익명 계정"],
+      "answer": 1,
+      "explanation_ko": "관리 계정(과거 'payer 계정'이라 불림)이 모든 구성원 계정의 요금을 통합해서 청구받습니다.",
+      "concept_tags": ["management_account"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "aws_clf_l4_u4_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "회사의 세 부서 계정이 각각 S3로 2TB, 5TB, 7TB의 데이터를 전송했습니다(볼륨 할인 구간은 10TB 초과 시 적용). 개별 계정으로는 각각 10TB에 못 미쳐 할인을 받지 못하지만, 통합 결제를 사용하면 어떻게 됩니까?",
+      "options": [
+        "통합 결제를 사용해도 할인에는 아무 영향이 없다",
+        "세 계정의 사용량이 합산(14TB)되어 10TB 초과 구간의 볼륨 할인을 받을 수 있고, 그 할인이 각 계정의 사용량에 비례해 배분된다",
+        "가장 사용량이 적은 계정만 할인을 받는다",
+        "통합 결제를 사용하면 오히려 각 계정이 더 비싼 요금을 낸다"
+      ],
+      "answer": 1,
+      "explanation_ko": "통합 결제의 핵심 이점 중 하나가 바로 이 볼륨 할인 공유입니다 — 개별로는 못 미치는 임계값도 합산하면 넘을 수 있습니다.",
+      "concept_tags": ["consolidated_billing", "volume_discount"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_clf_l4_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "AWS 통합 결제(Consolidated Billing)를 사용하는 데 드는 추가 비용은 얼마입니까?",
+      "options": ["사용 계정 수에 비례한 월 구독료", "추가 비용 없음(No extra fee)", "매 청구서 발행 시 건당 수수료", "매출액의 일정 비율"],
+      "answer": 1,
+      "explanation_ko": "통합 결제 기능 자체는 추가 비용 없이 제공되는 AWS Organizations의 기본 혜택입니다.",
+      "concept_tags": ["consolidated_billing"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_clf_l4_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "통합 결제를 사용하는 조직에서, 구성원 계정도 각자 자신의 사용량과 비용 명세를 확인할 수 있습니까?",
+      "options": [
+        "아니다. 오직 관리 계정만 모든 비용 정보를 볼 수 있고 구성원 계정은 전혀 확인할 수 없다",
+        "그렇다. 구성원 계정도 자신의 사용량과 비용에 대한 상세 내역을 확인할 수 있으며, 청구서 자체는 관리 계정으로 통합된다",
+        "구성원 계정은 다른 구성원 계정의 비용까지 모두 볼 수 있다",
+        "비용 정보는 어느 계정에서도 확인할 수 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "각 구성원 계정은 자신의 사용량·비용 내역을 확인할 수 있고, 실제 요금 청구와 지불만 관리 계정으로 통합됩니다.",
+      "concept_tags": ["consolidated_billing", "member_account"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_clf_l4_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "수십 개의 AWS 계정을 운영하는 대기업이 AWS Organizations와 통합 결제를 도입하는 근본적인 이유로 가장 적절한 것은?",
+      "options": [
+        "여러 계정을 중앙에서 관리하고, 사용량을 합산해 볼륨 할인 등 비용 혜택을 극대화하며, 청구를 하나로 단순화하기 위해",
+        "AWS Organizations는 계정 수를 줄이는 기능이라서",
+        "통합 결제를 사용하면 모든 서비스가 무료로 전환되기 때문에",
+        "규제상 반드시 통합 결제를 사용해야 하기 때문에"
+      ],
+      "answer": 0,
+      "explanation_ko": "중앙 관리·비용 최적화·청구 단순화가 AWS Organizations와 통합 결제 도입의 핵심 동기입니다.",
+      "concept_tags": ["aws_organizations", "consolidated_billing", "synthesis"],
+      "difficulty": "challenge"
+    }
+  ]
+}

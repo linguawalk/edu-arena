@@ -1,0 +1,91 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-1-101",
+  "level": 1,
+  "unit": 3,
+  "unit_title": "부팅 프로세스와 systemd",
+  "rule_summary_ko": "현대 Linux 배포판은 부팅 완료 후 systemd가 시스템을 관리하며, 예전의 실행 레벨(runlevel) 개념은 systemd의 타겟(target)에 대응됩니다: runlevel 0=poweroff.target, 1=rescue.target(단일 사용자 모드), 3·2·4=multi-user.target(텍스트 다중 사용자), 5=graphical.target(그래픽 모드), 6=reboot.target. systemctl get-default로 현재 기본 타겟을 확인할 수 있고, default.target은 실제로 이 타겟들 중 하나를 가리키는 심볼릭 링크입니다.",
+  "examples": [
+    { "code": "systemctl get-default", "note_ko": "결과: graphical.target — 부팅 시 그래픽 환경으로 진입하도록 설정됨(예전 runlevel 5에 해당)" },
+    { "code": "readlink /lib/systemd/system/runlevel1.target", "note_ko": "결과: rescue.target — 예전 runlevel 1(단일 사용자/복구 모드)이 rescue.target에 매핑됨" }
+  ],
+  "questions": [
+    {
+      "id": "lpic1_l1_u3_q001",
+      "type": "concept_matching_item",
+      "code": "systemctl get-default\n결과: graphical.target",
+      "prompt_ko": "이 결과가 의미하는 것은, 예전 SysV init의 어느 runlevel에 해당합니까?",
+      "options": ["runlevel 1(단일 사용자)", "runlevel 3(텍스트 다중 사용자)", "runlevel 5 — 그래픽 다중 사용자 모드", "runlevel 6(재부팅)"],
+      "answer": 2,
+      "explanation_ko": "graphical.target은 그래픽 로그인 화면까지 부팅하는 예전 runlevel 5에 대응됩니다.",
+      "concept_tags": ["graphical_target"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l1_u3_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "예전 SysV init의 runlevel 1(단일 사용자 모드)에 대응하는 systemd 타겟은?",
+      "options": ["multi-user.target", "graphical.target", "rescue.target — 최소한의 서비스만 실행하는 복구/단일 사용자 모드", "poweroff.target"],
+      "answer": 2,
+      "explanation_ko": "rescue.target은 문제 해결을 위한 최소 환경을 제공하는, runlevel 1에 대응하는 타겟입니다.",
+      "concept_tags": ["rescue_target"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l1_u3_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "예전 SysV init의 runlevel 3(텍스트 기반 다중 사용자 모드)에 대응하는 systemd 타겟은?",
+      "options": ["rescue.target", "multi-user.target — 그래픽 없이 네트워크·다중 사용자 서비스가 실행되는 모드", "graphical.target", "reboot.target"],
+      "answer": 1,
+      "explanation_ko": "서버 환경에서 흔히 사용되는, 그래픽 없이 텍스트 기반으로 운영되는 모드입니다.",
+      "concept_tags": ["multi_user_target"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l1_u3_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "현재 시스템의 기본(default) 부팅 타겟을 확인하는 systemctl 명령어는 무엇입니까? (영문 두 단어로 입력)",
+      "expected_answers": ["get-default"],
+      "explanation_ko": "systemctl get-default는 현재 설정된 기본 타겟을 보여줍니다.",
+      "concept_tags": ["systemctl_get_default"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic1_l1_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "systemd가 예전 SysV init 방식과 비교해 갖는 부팅상의 이점은?",
+      "options": [
+        "서비스 간 의존성을 파악해서 독립적인 서비스들을 병렬로 시작할 수 있어, 순차적으로만 시작하던 SysV init보다 부팅 속도가 빨라질 수 있다",
+        "systemd는 항상 SysV init보다 부팅 속도가 느리다",
+        "systemd는 서비스 의존성 개념 자체가 없다",
+        "systemd와 SysV init은 부팅 방식이 완전히 동일하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "병렬 시작 능력이 systemd 도입의 핵심 동기 중 하나였습니다.",
+      "concept_tags": ["systemd_parallel_boot"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic1_l1_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "runlevel 0과 runlevel 6은 각각 어떤 systemd 타겟에 대응합니까?",
+      "options": [
+        "0=poweroff.target(시스템 종료), 6=reboot.target(재시작)",
+        "0=reboot.target, 6=poweroff.target(설명이 반대)",
+        "0과 6 모두 graphical.target에 대응한다",
+        "0과 6은 systemd에서 사용되지 않는 runlevel이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "0(종료)과 6(재시작)은 시스템의 전원 상태를 제어하는 특수한 타겟에 매핑됩니다.",
+      "concept_tags": ["poweroff_reboot_target"],
+      "difficulty": "practice"
+    }
+  ]
+}

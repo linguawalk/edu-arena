@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch01",
+    "no": 1,
+    "title": "함수의 극한"
+  },
+  "lesson": {
+    "id": "c4-ch01-l03",
+    "no": 3,
+    "title": "함수의 연속",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "연속",
+      "body": [
+        "함수 f(x)가 x = a에서 연속이려면 ① f(a)가 정의되고 ② 극한이 존재하며 ③ 그 극한이 f(a)와 같아야 합니다.",
+        "그래프로는 x = a에서 끊어지지 않는다는 뜻입니다.",
+        "왜 세 조건이 모두 필요할까요? ①이 없으면 그 점에 값이 없어 구멍이 생기고, ②가 없으면 양쪽이 서로 다른 높이로 향해 점프가 생기며, ③이 없으면 극한과 함숫값이 달라 한 점만 튀어나온 그래프가 됩니다. 세 조건이 모두 맞아야 연필을 떼지 않고 그릴 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "f(x) = x²은 x = 1에서 연속일까요?  (그렇다 1, 아니다 0)",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x²은 다항함수라 모든 실수에서 연속입니다.\n확인: f(1) = 1이고 lim(x→1) x² = 1로 같습니다.\n연속 → 1\n원리: 함숫값, 극한, 두 값의 일치를 확인했습니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "f(x) = 1/x는 x = 0에서 연속일까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x = 0에서 분모가 0이라 f(0)이 정의되지 않습니다.\n연속의 첫 번째 조건(함숫값의 존재)을 만족하지 못합니다.\n불연속 → 0\n원리: 분모가 0인 곳은 불연속입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "범위마다 식이 다른 함수",
+      "body": [
+        "경계에서 좌극한, 우극한, 함숫값이 모두 같아야 연속입니다.",
+        "경계에서의 연속 조건은 '왼쪽 식으로 계산한 값 = 오른쪽 식으로 계산한 값 = 함숫값'입니다. 대부분 경계에서 두 식의 값을 같게 놓는 방정식 하나가 나오고, 이를 풀어 모르는 계수를 구합니다. 경계에서 등호가 어느 쪽 식에 붙어 있는지로 함숫값을 계산하는 식을 고릅니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "f(x) = ax + 1 (x < 2), x² − a (x ≥ 2)가 x = 2에서 연속일 때 a를 구하세요.",
+      "steps": [
+        "좌극한: 2a + 1",
+        "우극한 = 함숫값: 4 − a",
+        "연속이려면 2a + 1 = 4 − a",
+        "3a = 3, a = 1"
+      ],
+      "answer": "a = 1"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = x + a (x < 1), 2x (x ≥ 1)가 x = 1에서 연속일 때 a의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "좌극한: 1 + a, 우극한 = 함숫값: 2 × 1 = 2\n연속이려면 1 + a = 2\na = 1\n원리: 경계에서 두 식의 값을 같게 놓습니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = (x² − 1)/(x − 1) (x ≠ 1), k (x = 1)가 연속일 때 k의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x ≠ 1에서 (x + 1)(x − 1)/(x − 1) = x + 1이므로 극한은 2\n연속이려면 f(1) = k가 극한과 같아야 합니다.\nk = 2\n원리: 구멍을 극한값으로 메웁니다."
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = ax² (x ≤ 2), x + 2 (x > 2)가 연속일 때 a의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x = 2에서 왼쪽 식 = 함숫값: 4a, 오른쪽 식의 극한: 2 + 2 = 4\n연속이려면 4a = 4\na = 1\n확인: 두 식 모두 x = 2에서 4"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "연속함수의 성질",
+      "body": [
+        "연속함수끼리 더하고 빼고 곱한 함수, 분모가 0이 아닌 곳에서 나눈 함수는 연속입니다.",
+        "다항함수는 모든 실수에서 연속입니다.",
+        "연속함수의 성질은 극한의 성질에서 바로 나옵니다. 두 함수의 극한이 각각 함숫값과 같으면, 합이나 곱의 극한도 합이나 곱의 함숫값과 같습니다. 그래서 유리함수는 분모가 0이 되는 점에서만 불연속입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "f(x) = (x + 2)/(x² − x − 6)이 불연속인 점을 모두 구하세요.",
+      "steps": [
+        "유리함수는 분모가 0인 곳에서만 불연속",
+        "x² − x − 6 = (x − 3)(x + 2) = 0",
+        "x = 3, x = −2",
+        "주의: x = −2에서 약분되어도 함숫값이 없으므로 불연속"
+      ],
+      "answer": "x = −2, 3"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = 1/(x² − 4)가 불연속인 점은 몇 개일까요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "유리함수는 분모가 0인 곳에서만 불연속입니다.\nx² − 4 = 0에서 x = 2, x = −2\n불연속인 점 2개\n원리: 그 외의 모든 점에서는 연속입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = 1/(x² + 1)이 불연속인 점은 몇 개일까요?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "분모 x² + 1은 항상 1 이상이라 0이 되는 곳이 없습니다.\n모든 실수에서 연속\n불연속인 점 0개\n원리: 분모가 0이 되지 않으면 유리함수는 어디서나 연속"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "최대·최소 정리",
+      "body": [
+        "닫힌구간 [a, b]에서 연속인 함수는 그 구간에서 반드시 최댓값과 최솟값을 가집니다.",
+        "왜 '닫힌구간'이 중요할까요? 열린구간 (0, 1)에서 f(x) = x는 1에 한없이 가까워지지만 1이 되지는 않아 최댓값이 없습니다. 끝점을 포함하고 끊기지 않아야 가장 높은 점과 가장 낮은 점이 반드시 존재합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "[0, 3]에서 f(x) = x² − 2x + 3의 최댓값과 최솟값을 구하세요.",
+      "steps": [
+        "닫힌구간에서 연속이므로 최댓값, 최솟값이 존재",
+        "f(x) = (x − 1)² + 2, 꼭짓점 x = 1은 구간 안",
+        "f(1) = 2, f(0) = 3, f(3) = 6",
+        "최댓값 6, 최솟값 2"
+      ],
+      "answer": "최댓값 6, 최솟값 2"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "닫힌구간에서 연속인 함수는 반드시 최댓값을 가질까요?  (그렇다 1, 아니다 0)",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "최대·최소 정리를 떠올리세요.",
+      "explanation": "최대·최소 정리: 닫힌구간에서 연속인 함수는 최댓값과 최솟값을 모두 가집니다.\n그렇다 → 1\n주의: 열린구간이거나 끊긴 곳이 있으면 성립하지 않을 수 있습니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "구간 [−1, 2]에서 f(x) = x²의 최댓값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "양 끝과 꼭짓점을 비교하세요.",
+      "explanation": "x²은 [−1, 2]에서 연속이므로 최댓값이 있습니다.\n양 끝과 꼭짓점을 비교: f(−1) = 1, f(0) = 0, f(2) = 4\n최댓값 4"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 구간에서 최솟값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "꼭짓점이 구간 안에 있나요?",
+      "explanation": "꼭짓점 x = 0이 구간 [−1, 2] 안에 있습니다.\nf(0) = 0이 가장 작습니다.\n최솟값 0\n원리: 이차함수는 꼭짓점과 양 끝만 비교하면 됩니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "끊어질 수 있는 곳은 분모가 0인 곳, 식이 바뀌는 경계입니다. 그곳만 확인하면 됩니다.",
+        "연속성을 확인하는 요령은 '의심스러운 곳만 본다'입니다. 다항함수, 지수함수처럼 원래 연속인 함수들로 이루어진 식은 분모가 0이 되는 곳과 식이 바뀌는 경계에서만 끊어질 수 있습니다. 절댓값 |x − a|는 연속이지만 x = a에서 뾰족해질 뿐입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = |x|는 x = 0에서 연속일까요?  (그렇다 1, 아니다 0)",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "좌극한, 우극한, 함숫값을 비교하세요.",
+      "explanation": "좌극한: x < 0에서 −x → 0, 우극한: x > 0에서 x → 0\n함숫값 |0| = 0\n세 값이 모두 같으므로 연속 → 1 (뾰족하지만 끊기지는 않음)"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = (x² + ax + b)/(x − 2) (x ≠ 2), 3 (x = 2)이 연속일 때 a + b의 값은?",
+      "answer": "-3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "분자도 0으로 가야 합니다.",
+      "explanation": "x = 2에서 분모 → 0인데 연속이면 극한이 3으로 존재하므로 분자 → 0: 4 + 2a + b = 0\n분자 = (x − 2)(x + a + 2)이고 약분 후 극한 a + 4 = 3에서 a = −1, b = −2\na + b = −3"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = x² − 1 (x < 0), x + k (x ≥ 0)가 연속일 때 k의 값은?",
+      "answer": "-1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = 0에서 두 식을 비교하세요.",
+      "explanation": "좌극한: 0 − 1 = −1, 우극한 = 함숫값: 0 + k = k\n연속이려면 k = −1\n원리: 경계 x = 0에서 두 식의 값을 같게 놓습니다."
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "연속함수 f, g에서 f(1) = 2, g(1) = 3일 때 lim(x→1) f(x)g(x)의 값은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "연속함수의 곱도 연속입니다.",
+      "explanation": "f, g가 연속이면 곱 fg도 연속입니다.\n따라서 극한은 함숫값의 곱 f(1)g(1) = 2 × 3\n= 6\n원리: 연속이면 극한값 = 함숫값입니다."
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³ − x + 1이 불연속인 점은 몇 개일까요?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "다항함수를 떠올리세요.",
+      "explanation": "x³ − x + 1은 다항함수입니다.\n다항함수는 모든 실수에서 연속이므로\n불연속인 점 0개\n원리: 다항함수는 분모도 경계도 없어 끊어질 곳이 없습니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "함수가 x = a에서 연속이기 위한 세 조건을 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "정의",
+            "f(a)"
+          ],
+          [
+            "극한",
+            "존재"
+          ],
+          [
+            "같"
+          ]
+        ],
+        "min_groups_matched": 3
+      },
+      "model_answer": "x = a에서 함숫값 f(a)가 정의되어 있고, x → a일 때의 극한이 존재하며, 그 극한값이 f(a)와 같아야 합니다."
+    }
+  ]
+}

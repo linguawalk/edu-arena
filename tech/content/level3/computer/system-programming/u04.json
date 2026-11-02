@@ -1,0 +1,92 @@
+{
+ "no": 4,
+ "title": "시그널",
+ "hours": 4,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "시그널의 발생·전달·처리 과정을 설명할 수 있다.",
+  "시그널 처리기를 설치할 때의 주의점(비동기 안전)을 설명할 수 있다.",
+  "SIGINT·SIGTERM·SIGKILL·SIGCHLD 등의 쓰임을 구분할 수 있다."
+ ],
+ "checklist": [
+  "시그널: 프로세스에 보내는 비동기 알림",
+  "기본 동작: 종료, 무시, 코어 덤프, 정지",
+  "처리기 설치(sigaction)",
+  "가로챌 수 없는 시그널: SIGKILL, SIGSTOP",
+  "비동기 시그널 안전 함수만 처리기에서 호출",
+  "SIGCHLD로 좀비 거두기",
+  "시그널 마스크와 경쟁 조건"
+ ],
+ "advice": [
+  "시그널은 프로그램 흐름 어디에서나 끼어들 수 있어서 동기화 버그의 온상입니다. 처리기에서는 플래그만 세우고 실제 일은 메인 흐름에서 한다는 원칙, 그리고 printf 같은 함수도 처리기 안에서는 위험하다는 점을 기억하세요. Ctrl+C(SIGINT)를 가로채 정리 작업을 하고 끝나는 프로그램을 만들어 보면 원리가 손에 익습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Bryant · O'Hallaron, Computer Systems: A Programmer's Perspective (번역본 『컴퓨터 시스템』, 장 제목으로 표기)",
+   "part": "Exceptional Control Flow 장의 시그널 절"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "운영체제 11단원 리눅스로 보는 운영체제",
+   "url": "guide.html?lv=2&t=computer&s=operating-systems&u=11"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "터미널에서 Ctrl+C를 누르면 보내지는 SIGINT의 번호는 얼마일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "SIGINT는 2번입니다(SIGTERM 15, SIGKILL 9).",
+   "hint": "kill −2입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "특정 시그널이 왔을 때 실행되도록 등록하는 함수를 시그널 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "처리기",
+      "핸들러"
+     ]
+    }
+   ],
+   "explanation": "처리기에서는 비동기 시그널 안전 함수만 써야 합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "자식 프로세스가 끝났을 때 부모에게 보내지는 시그널은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "SIGCHLD"
+     ]
+    }
+   ],
+   "explanation": "이 시그널의 처리기에서 waitpid로 자식을 거두면 좀비를 막을 수 있습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "system-programming",
+ "id": "l3-computer-system-programming-u04"
+}

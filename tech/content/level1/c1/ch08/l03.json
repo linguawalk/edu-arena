@@ -1,0 +1,331 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c1",
+  "title": "전기전자"
+ },
+ "chapter": {
+  "id": "c1-ch08",
+  "no": 8,
+  "title": "센서와 액추에이터"
+ },
+ "lesson": {
+  "id": "c1-ch08-l03",
+  "no": 3,
+  "title": "측정값 계산과 보정",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "전기전자"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "신호를 물리량으로",
+   "body": [
+    "센서가 보내는 것은 전압, 시간, 펄스 수 같은 신호입니다. 이를 cm, °C, rpm 같은 실제 물리량으로 바꾸는 계산이 프로그램 안에 들어갑니다.",
+    "초음파 거리 센서는 소리를 쏘고 반사되어 돌아오기까지의 시간을 알려 줍니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "numeric",
+   "prompt": "초음파가 쏜 뒤 0.01초 만에 되돌아왔습니다. 음속이 340 m/s라면 물체까지 거리는 몇 m일까요?",
+   "answer": "1.7",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": "소리는 물체까지 갔다가 돌아옵니다.",
+   "explanation": "소리가 간 거리는 340 × 0.01 = 3.4 m입니다.\n왕복이므로 물체까지는 절반인 1.7 m입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "초음파 거리 계산",
+   "body": [
+    "거리 = 음속 × 왕복 시간 ÷ 2입니다. 소리가 물체까지 갔다가 돌아오므로 2로 나눕니다.",
+    "음속은 온도에 따라 달라집니다. 공기 중에서 대략 331 + 0.6 × 온도(°C) m/s이므로, 정밀하게 재려면 온도 센서로 보정합니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "초음파가 2 ms 만에 되돌아왔습니다. 음속 340 m/s일 때 거리는?",
+   "steps": [
+    "2 ms = 0.002 s입니다.",
+    "거리 = 340 × 0.002 ÷ 2 = 0.34 m입니다.",
+    "0.34 m = 34 cm입니다."
+   ],
+   "answer": "34 cm"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "초음파 거리 계산에서 2로 나누는 이유는 소리가 {{1}}하기 때문입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "왕복"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "측정한 시간은 물체까지 갔다가 돌아온 시간입니다.\n물체까지의 거리는 그 절반입니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "초음파가 5 ms 만에 되돌아왔습니다. 음속 340 m/s일 때 거리는 몇 cm일까요?",
+   "answer": "85",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "거리 = 340 × 0.005 ÷ 2 = 0.85 m입니다.\n0.85 m = 85 cm입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "음속 340 m/s에서 1.02 m 떨어진 물체의 초음파 왕복 시간은 몇 ms일까요?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "왕복 거리는 2.04 m입니다.\n2.04 ÷ 340 = 0.006 s = 6 ms입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "음속을 331 + 0.6 × 온도로 계산하면 20 °C에서 음속은 몇 m/s일까요?",
+   "answer": "343",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "331 + 0.6 × 20 = 331 + 12 = 343 m/s입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "선형 변환과 두 점 보정",
+   "body": [
+    "많은 센서는 출력이 물리량에 비례해 직선으로 변합니다. 이때 물리량 = 기울기 × 출력 + 절편으로 바꿀 수 있습니다.",
+    "기울기와 절편은 참값을 아는 두 기준점에서 센서 출력을 재어 구합니다. 예를 들어 0 °C 얼음물에서 0.5 V, 100 °C 끓는 물에서 1.5 V가 나오면 1 V 변화가 100 °C에 해당합니다. 이렇게 기준값으로 센서를 맞추는 일을 보정(교정)이라고 합니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "0 °C에서 0.5 V, 100 °C에서 1.5 V인 온도 센서가 1.0 V를 내면 몇 °C일까요?",
+   "steps": [
+    "1 V 변화가 100 °C이므로 1 V당 100 °C입니다.",
+    "1.0 V는 0 °C 기준 0.5 V보다 0.5 V 높습니다.",
+    "0.5 × 100 = 50 °C입니다."
+   ],
+   "answer": "50 °C"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "참값을 아는 기준을 이용해 센서 출력을 맞추는 일을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "보정",
+      "교정",
+      "캘리브레이션"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "보정(교정, 캘리브레이션)으로 센서마다 다른 오차를 바로잡습니다.\n두 기준점을 쓰면 기울기와 절편을 모두 구할 수 있습니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 예제의 센서가 0.8 V를 내면 몇 °C일까요?",
+   "answer": "30",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "0.8 − 0.5 = 0.3 V입니다.\n0.3 × 100 = 30 °C입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "0 °C에서 0 V이고 1 °C마다 10 mV씩 오르는 온도 센서가 0.25 V를 냅니다. 몇 °C일까요?",
+   "answer": "25",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "0.25 V = 250 mV입니다.\n250 ÷ 10 = 25 °C입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "0 kPa에서 0.5 V, 200 kPa에서 4.5 V인 압력 센서가 2.5 V를 냅니다. 몇 kPa일까요?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "4 V 변화가 200 kPa이므로 1 V당 50 kPa입니다.\n2.5 − 0.5 = 2 V이므로 2 × 50 = 100 kPa입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "엔코더와 잡음",
+   "body": [
+    "엔코더는 회전하는 축에 붙어 한 바퀴에 정해진 수의 펄스를 냅니다. 펄스 수를 세면 회전량을, 1초 동안의 펄스 수로 회전 속도를 알 수 있습니다.",
+    "센서 신호에는 잡음이 섞여 값이 조금씩 흔들립니다. 여러 번 잰 값을 평균하면 흔들림을 줄일 수 있습니다.",
+    "정리: 초음파 = 음속 × 시간 ÷ 2, 직선형 센서 = 기울기 × 출력 + 절편(두 점 보정), 엔코더 = 펄스 수 ÷ 한 바퀴 펄스 수"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "numeric",
+   "prompt": "한 바퀴에 100펄스를 내는 엔코더가 1초에 500펄스를 냈습니다. 축은 몇 rpm으로 돌까요?",
+   "answer": "300",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1초에 500 ÷ 100 = 5바퀴입니다.\n5 × 60 = 300 rpm입니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "둘레 0.2 m인 바퀴에 한 바퀴 20펄스 엔코더를 달았습니다. 1초에 100펄스가 나오면 속도는?",
+   "steps": [
+    "1초에 100 ÷ 20 = 5바퀴입니다.",
+    "5 × 0.2 = 1 m를 가므로 속도는 1 m/s입니다."
+   ],
+   "answer": "1 m/s"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "둘레 0.5 m인 바퀴에 한 바퀴 50펄스 엔코더를 달았습니다. 1초에 200펄스가 나오면 속도는 몇 m/s일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "펄스 수를 바퀴 수로 바꾼 뒤 둘레를 곱하세요.",
+   "explanation": "1초에 200 ÷ 50 = 4바퀴입니다.\n4 × 0.5 = 2 m/s입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "한 바퀴 360펄스 엔코더에서 90펄스가 나왔습니다. 축은 몇 도 돌았을까요?",
+   "answer": "90",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "펄스 하나가 몇 도인지 먼저 구하세요.",
+   "explanation": "펄스 하나가 360 ÷ 360 = 1°입니다.\n90펄스면 90°입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "1 °C마다 10 mV씩 오르는 온도 센서(0 °C에서 0 V)가 0.37 V를 냅니다. 몇 °C일까요?",
+   "answer": "37",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "V를 mV로 바꾸세요.",
+   "explanation": "0.37 V = 370 mV입니다.\n370 ÷ 10 = 37 °C입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "같은 온도를 10번 재었더니 21, 23, 22, 22, 21, 23, 22, 22, 21, 23 °C가 나왔습니다. 평균은 몇 °C일까요?",
+   "answer": "22",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "모두 더해 10으로 나누세요.",
+   "explanation": "합은 220입니다.\n220 ÷ 10 = 22 °C로, 흔들림이 줄어든 값을 얻습니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "초음파가 3 ms 만에 되돌아왔습니다. 음속 340 m/s일 때 거리는 몇 cm일까요?",
+   "answer": "51",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "왕복 시간이므로 2로 나누세요.",
+   "explanation": "거리 = 340 × 0.003 ÷ 2 = 0.51 m입니다.\n0.51 m = 51 cm입니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "두 점 보정으로 센서를 정확하게 만드는 방법을 설명해 보세요.",
+   "hint": "기준점, 직선, 오차라는 말을 써 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "두",
+      "2",
+      "기준"
+     ],
+     [
+      "기울기",
+      "직선",
+      "비례"
+     ],
+     [
+      "정확",
+      "오차",
+      "맞추",
+      "바로잡"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "참값을 아는 두 기준(예: 0 °C와 100 °C)에서 센서 출력을 잽니다. 두 점을 잇는 직선의 기울기와 절편을 구해 출력을 물리량으로 바꾸면, 센서마다 다른 오차를 바로잡아 정확하게 잴 수 있습니다."
+  }
+ ]
+}

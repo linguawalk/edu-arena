@@ -1,0 +1,106 @@
+{
+ "no": 4,
+ "title": "메모리 병목과 HBM",
+ "hours": 4,
+ "after": [
+  2,
+  3
+ ],
+ "objectives": [
+  "연산 성능보다 메모리 대역폭이 성능을 제한하는 경우를 설명할 수 있다.",
+  "연산 강도와 루프라인 모델로 달성 가능한 성능을 계산할 수 있다.",
+  "HBM과 온칩 메모리의 역할을 설명할 수 있다."
+ ],
+ "checklist": [
+  "메모리 벽: 연산은 빨라졌지만 메모리 속도는 덜 빨라짐",
+  "연산 강도 = 연산량(FLOP) ÷ 데이터 이동량(바이트)",
+  "루프라인: 달성 성능 = min(최대 연산, 대역폭 × 연산 강도)",
+  "데이터 재사용과 온칩 SRAM",
+  "고대역폭 메모리(HBM): 적층 DRAM + 넓은 버스",
+  "LLM 추론은 대개 메모리 대역폭이 병목",
+  "데이터 이동이 전력의 큰 몫"
+ ],
+ "advice": [
+  "AI 칩에서 가장 비싼 일은 계산이 아니라 데이터를 메모리에서 연산기까지 옮기는 일인 경우가 많습니다. 루프라인 모델에 대역폭과 연산 강도를 넣어 보면, 연산기를 아무리 늘려도 데이터를 가져오는 속도가 따라오지 못하면 성능이 오르지 않는다는 것을 알 수 있습니다. 그래서 DRAM을 쌓아 칩 바로 옆에 붙인 HBM이 AI 반도체의 핵심 부품이 되었습니다.",
+  "레벨1 컴퓨터 챕터 5의 메모리 계층(레지스터 → 캐시 → 메모리)이 AI 칩에서는 온칩 SRAM → HBM → 저장 장치로 그대로 나타납니다. 데이터를 한 번 가져와 여러 번 쓰는(재사용) 설계가 레벨3 AI 반도체의 중심 주제입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan & Claypool",
+   "title": "Sze 외, Efficient Processing of Deep Neural Networks (장 제목으로 표기)",
+   "part": "Key Metrics and Design Objectives, Kernel Computation 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "컴퓨터 구조 7단원 캐시 (컴퓨터 트랙)",
+   "url": "guide.html?lv=2&t=computer&s=computer-architecture&u=7"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "메모리 대역폭 1 TB/s인 칩에서 연산 강도 10 FLOP/B인 작업은 대역폭 기준으로 최대 몇 TFLOPS까지 낼 수 있을까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "1 TB/s × 10 FLOP/B = 10 TFLOPS",
+   "hint": "대역폭 × 연산 강도입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "같은 칩의 최대 연산 성능이 100 TFLOPS라면 위 작업이 최대 성능의 몇 %를 쓸 수 있을까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "10/100 = 10%(메모리 병목)",
+   "hint": "달성 성능 ÷ 최대 성능입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "DRAM 칩을 수직으로 쌓고 넓은 버스로 연결해 대역폭을 크게 높인 메모리를 영문 약어로 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "HBM"
+     ]
+    }
+   ],
+   "explanation": "AI 가속기 바로 옆에 패키징합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "처리기 속도는 빨라졌지만 메모리가 데이터를 그만큼 빨리 공급하지 못해 성능이 막히는 현상을 메모리 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "벽",
+      "병목"
+     ]
+    }
+   ],
+   "explanation": "Memory Wall이라고 부릅니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "convergence",
+ "subject": "ai-chip-intro",
+ "id": "l2-convergence-ai-chip-intro-u04"
+}

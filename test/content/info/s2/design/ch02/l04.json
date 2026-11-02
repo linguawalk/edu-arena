@@ -1,0 +1,272 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "design",
+  "work": "풀이",
+  "track_title": "알고리즘 설계",
+  "chapter": {
+    "id": "info-s2-design-ch02",
+    "no": 2,
+    "title": "DP 최적화"
+  },
+  "lesson": {
+    "id": "info-s2-design-ch02-l04",
+    "no": 4,
+    "title": "비트마스크 DP",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "알고리즘 설계",
+      "DP 최적화"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "집합을 정수 하나로",
+      "body": [
+        "원소가 n개(0번~n − 1번)인 집합의 부분집합은 n자리 이진수 하나로 나타낼 수 있습니다. i번 원소가 들어 있으면 i번째 비트를 1로 둡니다. 예를 들어 {0, 2, 3}은 1101₂ = 13입니다.",
+        "mask & (1 << i)가 0이 아니면 i가 들어 있고, mask | (1 << i)는 i를 넣은 집합입니다. 정수 연산 한 번이라 빠릅니다.",
+        "'지금까지 무엇을 썼는가'가 상태에 들어가야 하는 DP에서, 그 집합을 마스크로 나타내는 것을 비트마스크 DP라 합니다. n이 20 정도 이하일 때 씁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "집합 {0, 2, 3}을 마스크로 나타낸 정수는?",
+      "answer": "13",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2⁰ + 2² + 2³입니다.",
+      "explanation": "i번 원소가 있으면 i번째 비트가 1이므로 마스크는 2⁰ + 2² + 2³입니다.\n1 + 4 + 8을 더합니다.\n= 13입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "마스크 13(= 1101₂)이 나타내는 집합의 원소는 몇 개인가요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1인 비트를 세세요.",
+      "explanation": "마스크가 나타내는 집합의 원소 수는 이진수에서 1인 비트의 수와 같고, 13을 이진수로 쓰면 1101₂입니다.\n1인 비트는 0번, 2번, 3번 자리입니다.\n그래서 원소는 3개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "mask & (1 << i)가 0이 아니면 i번 원소는 mask가 나타내는 집합에 {{1}}되어 있습니다.",
+      "blanks": [
+        {
+          "answers": [
+            "포함"
+          ]
+        }
+      ],
+      "hint": "들어 있다는 뜻의 말입니다.",
+      "explanation": "1 << i는 i번째 비트만 1인 수입니다.\nmask와 비트 AND를 하면 mask의 i번째 비트만 남습니다.\n그 값이 0이 아니면 i번 원소가 집합에 포함되어 있습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "외판원 문제",
+      "body": [
+        "도시 n개를 모두 한 번씩 방문하고 출발점으로 돌아오는 가장 짧은 경로를 찾는 문제를 외판원 문제라 합니다. 순서를 모두 따지면 (n − 1)!가지입니다.",
+        "dp[mask][v]를 '0번에서 출발해 mask의 도시들을 방문하고 지금 v에 있을 때의 최소 비용'으로 두면, 어떤 순서로 방문했는지는 필요 없고 어떤 도시들을 방문했는지와 지금 위치만 알면 됩니다.",
+        "상태는 2ⁿ × n개, 상태마다 다음 도시 n개를 보므로 O(2ⁿ n²)입니다. n = 16이면 약 1.7 × 10⁷으로 충분히 빠릅니다."
+      ],
+      "code": "// dp[mask][v]: 0번 도시에서 출발해 mask의 도시들을 한 번씩 방문하고 v에 있을 때 최소 비용\n// (mask는 방문한 도시의 집합, 0번과 v를 포함)\ndp[1][0] = 0;\nfor (int mask = 1; mask < (1 << n); mask++)\n    for (int v = 0; v < n; v++) {\n        if (dp[mask][v] == INF) continue;\n        for (int u = 0; u < n; u++)\n            if (!(mask & (1 << u)))                     // u를 아직 방문하지 않았으면\n                dp[mask | (1 << u)][u] = min(dp[mask | (1 << u)][u], dp[mask][v] + d[v][u]);\n    }\n// 답: 모든 v에 대해 dp[(1<<n)-1][v] + d[v][0]의 최솟값"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "도시 4개일 때 dp[mask][v]의 상태(마스크와 도시의 조합)는 모두 몇 개인가요?",
+      "answer": "64",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2⁴ × 4입니다.",
+      "explanation": "방문한 도시의 집합을 나타내는 마스크는 2⁴ = 16가지, 현재 도시 v는 4가지입니다.\n두 수를 곱합니다.\n16 × 4 = 64개입니다.",
+      "code": "// dp[mask][v]: 0번 도시에서 출발해 mask의 도시들을 한 번씩 방문하고 v에 있을 때 최소 비용\n// (mask는 방문한 도시의 집합, 0번과 v를 포함)\ndp[1][0] = 0;\nfor (int mask = 1; mask < (1 << n); mask++)\n    for (int v = 0; v < n; v++) {\n        if (dp[mask][v] == INF) continue;\n        for (int u = 0; u < n; u++)\n            if (!(mask & (1 << u)))                     // u를 아직 방문하지 않았으면\n                dp[mask | (1 << u)][u] = min(dp[mask | (1 << u)][u], dp[mask][v] + d[v][u]);\n    }\n// 답: 모든 v에 대해 dp[(1<<n)-1][v] + d[v][0]의 최솟값"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "일꾼 3명, 일 3개의 비용이 cost = [[9, 2, 7], [6, 4, 3], [5, 8, 1]]일 때(cost[일꾼][일]) 최소 비용을 구하세요.",
+      "steps": [
+        "dp[mask]는 앞의 일꾼 popcount(mask)명에게 mask의 일을 맡긴 최소 비용이므로, 일꾼 0에게 일 1을 맡기면 dp[010₂] = 2입니다.",
+        "이어서 일꾼 1에게 일 0을 맡기면 dp[011₂] = 2 + 6 = 8, 일꾼 2에게 일 2를 맡기면 dp[111₂] = 8 + 1 = 9입니다.",
+        "다른 맡기는 방법은 모두 9보다 크므로 최소 비용은 9입니다."
+      ],
+      "answer": "9",
+      "code": "// 일꾼 n명에게 일 n개를 하나씩 맡길 때 비용 합의 최솟값\n// dp[mask]: 앞의 일꾼 popcount(mask)명에게 mask의 일들을 맡긴 최소 비용\ndp[0] = 0;\nfor (int mask = 0; mask < (1 << n); mask++) {\n    int w = __builtin_popcount(mask);                   // 다음에 맡길 일꾼 번호\n    for (int j = 0; j < n; j++)\n        if (!(mask & (1 << j)))\n            dp[mask | (1 << j)] = min(dp[mask | (1 << j)], dp[mask] + cost[w][j]);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "도시 4개의 거리 d = [[0, 10, 15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]]일 때 외판원 문제의 최소 비용은?",
+      "answer": "80",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "0 → 1 → 3 → 2 → 0을 계산해 보세요.",
+      "explanation": "0번에서 출발하는 방문 순서는 (n − 1)! = 6가지이고, 거꾸로 도는 것은 비용이 같아 3가지만 보면 됩니다.\n0 → 1 → 2 → 3 → 0은 10 + 35 + 30 + 20 = 95, 0 → 1 → 3 → 2 → 0은 10 + 25 + 30 + 15 = 80, 0 → 2 → 1 → 3 → 0은 15 + 35 + 25 + 20 = 95입니다.\n그래서 최소 비용은 80입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "외판원 비트마스크 DP의 시간 복잡도는? ① O(n!) ② O(n³) ③ O(2ⁿ n²) ④ O(2ⁿ)",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "상태 수 × 상태마다 보는 다음 도시 수입니다.",
+      "explanation": "상태는 마스크 2ⁿ가지와 현재 도시 n가지를 곱한 2ⁿ × n개이고, 상태마다 다음 도시 n개를 봅니다.\n그래서 O(2ⁿ n²)입니다.\n답은 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 20일 때 마스크는 모두 몇 가지인가요?",
+      "answer": "1048576",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2²⁰입니다.",
+      "explanation": "원소 20개인 집합의 부분집합은 2²⁰개입니다.\n2¹⁰ = 1024이므로 2²⁰ = 1024²입니다.\n= 1048576가지입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "순서보다 집합",
+      "body": [
+        "비트마스크 DP가 빠른 이유는 '어떤 순서로 왔는가' 대신 '무엇을 이미 썼는가'만 기억하기 때문입니다. 같은 집합을 다른 순서로 지나온 경우들이 상태 하나로 합쳐집니다.",
+        "n = 10이면 순서는 10! = 3628800가지지만 마스크는 2¹⁰ = 1024가지입니다. n이 클수록 차이가 매우 커집니다.",
+        "그래도 2ⁿ은 지수이므로 n이 20 정도를 넘으면 쓸 수 없습니다. 문제의 n 제한이 작으면 비트마스크 DP를 떠올려 봅니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 10일 때 원소 2개짜리 부분집합을 나타내는 마스크는 몇 가지인가요?",
+      "answer": "45",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "10개 중 2개를 고르는 경우의 수입니다.",
+      "explanation": "1인 비트가 정확히 2개인 마스크는 원소 10개 중 2개를 고르는 경우와 같습니다.\n그 수는 10 × 9/2입니다.\n= 45가지입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "부분집합을 이진수 마스크로 나타내면 넣기, 확인하기가 비트 연산 한 번입니다.",
+        "외판원 문제는 dp[mask][v]로 O(2ⁿ n²), 일 배정 문제는 dp[mask]로 O(2ⁿ n)에 풉니다. 순서 대신 집합만 기억해 상태를 합치기 때문입니다.",
+        "n이 20 정도 이하일 때 쓸 수 있는 방법입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "일꾼 4명, 일 4개의 비용이 cost = [[4, 1, 3, 6], [2, 0, 5, 3], [3, 2, 2, 4], [7, 5, 6, 1]]일 때(cost[일꾼][일]) 최소 비용은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "일꾼 1에게 일 1을 맡기면 비용 0입니다.",
+      "explanation": "일꾼 0 → 일 1(1), 일꾼 1 → 일 0(2), 일꾼 2 → 일 2(2), 일꾼 3 → 일 3(1)이면 1 + 2 + 2 + 1 = 6입니다.\n일꾼 1에게 일 1(0)을 주면 일꾼 0은 일 0(4)이나 일 2(3)를 맡아야 해 합이 6보다 작아지지 않습니다.\n24가지를 모두 보아도 최소는 6입니다.",
+      "code": "// 일꾼 n명에게 일 n개를 하나씩 맡길 때 비용 합의 최솟값\n// dp[mask]: 앞의 일꾼 popcount(mask)명에게 mask의 일들을 맡긴 최소 비용\ndp[0] = 0;\nfor (int mask = 0; mask < (1 << n); mask++) {\n    int w = __builtin_popcount(mask);                   // 다음에 맡길 일꾼 번호\n    for (int j = 0; j < n; j++)\n        if (!(mask & (1 << j)))\n            dp[mask | (1 << j)] = min(dp[mask | (1 << j)], dp[mask] + cost[w][j]);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "원소가 5개일 때 원소 3개짜리 부분집합을 나타내는 마스크는 몇 가지인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5개 중 3개를 고르는 경우입니다.",
+      "explanation": "1인 비트가 정확히 3개인 마스크는 5개 중 3개를 고르는 경우와 같습니다.\n그 수는 5 × 4 × 3/(3 × 2 × 1)입니다.\n= 10가지입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "외판원 DP에서 상태를 dp[mask][v]로 두어도 되는 이유, 즉 방문 순서를 기억하지 않아도 되는 이유를 설명하세요.",
+      "model_answer": [
+        "앞으로 남은 경로의 최소 비용은 아직 방문하지 않은 도시들(mask의 여집합)과 지금 위치 v에만 달려 있다.",
+        "그래서 같은 (mask, v)에 이른 여러 경로 가운데 지금까지의 비용이 가장 작은 것만 남기면 된다.",
+        "dp[mask][v]는 그 최솟값이고, u를 하나 더 방문하는 전이로 dp[mask ∪ {u}][u]를 갱신한다.",
+        "모든 도시를 방문한 상태에서 0번으로 돌아오는 비용을 더한 최솟값이 답이다."
+      ],
+      "criteria": [
+        {
+          "text": "남은 비용이 (mask, v)에만 달림을 밝혔다",
+          "points": 3
+        },
+        {
+          "text": "최솟값만 남기면 됨을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "전이와 답을 설명했다",
+          "points": 1
+        }
+      ],
+      "hint": "앞으로 남은 경로가 무엇에 달려 있나요?",
+      "code": "// dp[mask][v]: 0번 도시에서 출발해 mask의 도시들을 한 번씩 방문하고 v에 있을 때 최소 비용\n// (mask는 방문한 도시의 집합, 0번과 v를 포함)\ndp[1][0] = 0;\nfor (int mask = 1; mask < (1 << n); mask++)\n    for (int v = 0; v < n; v++) {\n        if (dp[mask][v] == INF) continue;\n        for (int u = 0; u < n; u++)\n            if (!(mask & (1 << u)))                     // u를 아직 방문하지 않았으면\n                dp[mask | (1 << u)][u] = min(dp[mask | (1 << u)][u], dp[mask][v] + d[v][u]);\n    }\n// 답: 모든 v에 대해 dp[(1<<n)-1][v] + d[v][0]의 최솟값"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "n = 10일 때 모든 방문 순서를 따지는 방법과 비트마스크 DP의 연산 횟수를 어림해 비교하세요.",
+      "model_answer": [
+        "0번에서 출발하는 방문 순서는 (n − 1)! = 9! = 362880가지이고, 각각 경로 비용을 계산하는 데 n번 정도 든다. 약 3.6 × 10⁶번이다.",
+        "비트마스크 DP는 상태 2¹⁰ × 10 = 10240개, 상태마다 10번이라 약 10⁵번이다.",
+        "n = 10에서도 수십 배 차이가 나고, n = 16이면 15!은 10¹² 이상이지만 2¹⁶ × 16²은 약 1.7 × 10⁷이라 차이가 훨씬 커진다."
+      ],
+      "criteria": [
+        {
+          "text": "순서를 모두 따지는 횟수를 어림했다",
+          "points": 2
+        },
+        {
+          "text": "비트마스크 DP의 횟수를 어림했다",
+          "points": 2
+        },
+        {
+          "text": "n이 커질 때의 차이를 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "(n − 1)!과 2ⁿ n²을 각각 계산하세요."
+    }
+  ]
+}

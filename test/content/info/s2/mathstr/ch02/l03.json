@@ -1,0 +1,264 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "mathstr",
+  "work": "풀이",
+  "track_title": "수학·문자열",
+  "chapter": {
+    "id": "info-s2-mathstr-ch02",
+    "no": 2,
+    "title": "KMP"
+  },
+  "lesson": {
+    "id": "info-s2-mathstr-ch02-l03",
+    "no": 3,
+    "title": "KMP 매칭",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "수학·문자열",
+      "KMP"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "텍스트는 뒤로 가지 않는다",
+      "body": [
+        "KMP 매칭은 텍스트 t를 왼쪽부터 한 번만 훑습니다. j는 '지금 t의 끝과 맞춰진 패턴의 접두사 길이'입니다. t[i] = p[j]이면 j를 1 늘리고, 다르면 j = pi[j − 1]로 줄여 다시 비교합니다.",
+        "j가 m에 이르면(코드에서는 j = m − 1에서 맞을 때) 패턴을 찾은 것이고, 겹치는 다음 결과도 찾기 위해 j를 pi[m − 1]로 둡니다.",
+        "i는 뒤로 가지 않고, j가 줄어드는 횟수는 j가 늘어난 횟수 이하이므로 매칭은 O(n)입니다. 실패 함수 O(m)과 합쳐 O(n + m)입니다."
+      ],
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "t = \"ABABABA\", p = \"ABA\"(pi = 0, 0, 1)에 아래 코드를 실행하면 found는 몇 번 호출되나요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "찾은 뒤 j = pi[2] = 1로 이어갑니다.",
+      "explanation": "i = 2에서 처음 찾고 j = pi[2] = 1이 되어 \"A\"가 맞춰진 상태로 이어갑니다.\n같은 방식으로 i = 4, i = 6에서 다시 찾습니다.\n그래서 found는 3번 호출됩니다.",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "t = \"AAAAAB\", p = \"AAB\"(pi = 0, 1, 0)에 아래 코드를 실행하면 back(j를 줄인 횟수)은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "i = 2, 3, 4에서 B 대신 A가 옵니다.",
+      "explanation": "i = 2부터 j = 2 상태에서 t[i] = A ≠ p[2] = B라 j = pi[1] = 1로 한 번 줄이고, 그다음 A = p[1]로 j = 2가 됩니다.\n이런 일이 i = 2, 3, 4에서 한 번씩 일어나고, i = 5에서 B가 맞아 찾습니다.\n그래서 back = 3입니다.",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "왜 맞는가",
+      "body": [
+        "불변식: i번째 글자를 처리한 뒤 j는 't[0..i]의 접미사이면서 p의 접두사인 것' 가운데 가장 긴 것의 길이입니다(단, m 미만으로 유지).",
+        "t[i]가 들어올 때, 새 접미사이면서 접두사인 것은 이전의 그런 것 뒤에 t[i]를 붙인 것뿐입니다. 이전 것들은 길이 j의 경계 사슬 j, pi[j − 1], …로 모두 나열되므로, 긴 것부터 t[i]가 맞는지 확인하는 코드가 가장 긴 것을 찾습니다.",
+        "그래서 j가 m이 되는 순간이 정확히 패턴이 끝나는 위치이고, 빠뜨리는 위치가 없습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "t = \"ABCABCABD\", p = \"ABCABD\"(pi = 0, 0, 0, 1, 2, 0)에서 KMP를 따라가세요.",
+      "steps": [
+        "i = 0~4에서 \"ABCAB\"가 맞아 j = 5가 됩니다.",
+        "i = 5에서 t[5] = C ≠ p[5] = D라 j = pi[4] = 2로 줄이고, t[5] = C = p[2]라 j = 3이 됩니다.",
+        "i = 6~8에서 A, B, D가 맞아 j가 m에 이르러 시작 위치 8 − 6 + 1 = 3에서 찾습니다."
+      ],
+      "answer": "위치 3",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "t = \"ABCABCABD\", p = \"ABCABD\"에 아래 코드를 실행하면 back은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "i = 5에서만 실패합니다.",
+      "explanation": "i = 5에서 j = 5일 때 C ≠ D라 j = pi[4] = 2로 한 번 줄입니다.\n그 뒤로는 모든 글자가 맞아 줄이는 일이 없습니다.\n그래서 back = 1입니다.",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "t = \"AAAAAAAAAB\", p = \"AAAAB\"(pi = 0, 1, 2, 3, 0)에 아래 코드를 실행하면 back은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "j = 4 상태에서 A가 올 때마다 줄입니다.",
+      "explanation": "i = 4부터 j = 4 상태에서 t[i] = A ≠ B라 j = pi[3] = 3으로 한 번 줄이고 A가 맞아 다시 j = 4가 됩니다.\n이런 일이 i = 4~8의 다섯 번 일어나고, i = 9에서 B가 맞아 찾습니다.\n그래서 back = 5입니다.",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "t = \"AABAACAABAA\", p = \"AABA\"(pi = 0, 1, 0, 1)에 아래 코드를 실행할 때 찾는 위치의 시작 첨자를 모두 더하면?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "단순한 방법과 같은 위치를 찾습니다.",
+      "explanation": "KMP는 빠짐없이 모든 위치를 찾으므로 단순한 방법과 결과가 같습니다.\n시작 위치는 0과 6입니다.\n0 + 6 = 6입니다.",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "시간 복잡도",
+      "body": [
+        "i는 0부터 n − 1까지 한 번씩 늘어나고, i마다 j는 많아야 1 늘어납니다. while 문은 돌 때마다 j를 적어도 1 줄이므로, 전체 back은 n 이하입니다.",
+        "그래서 매칭 단계의 비교는 O(n)이고, 실패 함수를 구하는 O(m)과 합쳐 O(n + m)입니다. 단순한 방법의 최악 O(nm)과 크게 다릅니다.",
+        "텍스트를 한 번만 앞으로 읽으므로, 텍스트가 매우 길어 한 글자씩 들어오는 상황에서도 쓸 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "KMP 매칭 단계에서 back(j를 줄인 횟수)의 상한으로 알맞은 것은? ① m ② nm ③ n ④ n²",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "j가 늘어난 총량을 생각하세요.",
+      "explanation": "i마다 j는 많아야 1 늘어나므로 j가 늘어난 총량은 n 이하입니다.\nj를 줄일 때마다 적어도 1 줄어들고 j는 음수가 되지 않으므로 back도 n 이하입니다.\n답은 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "t = \"ABABCABAB\", p = \"ABAB\"(pi = 0, 0, 1, 2)에 아래 코드를 실행하면 back은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "i = 4에서 C를 만납니다.",
+      "explanation": "i = 0~3에서 찾은 뒤 j = pi[3] = 2가 되고, i = 4에서 C ≠ p[2] = A라 j = pi[1] = 0으로 한 번 줄입니다.\nj = 0이면 while 문이 멈추고, 그 뒤로는 다시 줄이는 일이 없습니다.\n그래서 back = 1입니다.",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "KMP 매칭은 텍스트를 한 번 훑으며, 맞으면 j를 늘리고 다르면 j = pi[j − 1]로 줄입니다. 찾은 뒤에는 j = pi[m − 1]로 두어 겹치는 결과도 찾습니다.",
+        "j는 't[0..i]의 접미사이면서 p의 접두사인 가장 긴 것'의 길이라는 불변식으로 정당성이 보장됩니다.",
+        "j가 줄어드는 횟수는 늘어난 횟수 이하라 매칭은 O(n), 전체 O(n + m)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "t = \"ABABABA\", p = \"ABA\"에 아래 코드를 실행하면 back은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "찾은 뒤 j = pi[2] = 1로 두는 것은 back에 세지 않습니다.",
+      "explanation": "찾을 때마다 j = pi[2] = 1로 두고, 다음 글자 B가 p[1] = B와 맞아 계속 이어집니다.\nwhile 문으로 j를 줄이는 일은 한 번도 없습니다.\n그래서 back = 0입니다.",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "t = \"AABAACAABAA\", p = \"AABA\"(pi = 0, 1, 0, 1)에 아래 코드를 실행하면 back은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "i = 4에서 찾은 뒤와 i = 5에서 C를 만날 때를 보세요.",
+      "explanation": "i = 3에서 찾고 j = pi[3] = 1, i = 4에서 A가 맞아 j = 2, i = 5에서 C ≠ p[2] = B라 j = pi[1] = 1로, 다시 C ≠ p[1] = A라 j = pi[0] = 0으로 두 번 줄입니다.\n그 뒤 i = 6~9에서 다시 찾고 i = 10은 A가 맞을 뿐이라 더 줄이지 않습니다.\n그래서 back = 2입니다.",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "KMP 매칭 단계가 O(n)임을 증명하세요.",
+      "model_answer": [
+        "바깥 반복은 n번이고, 반복마다 if 문으로 j가 많아야 1 늘어난다(찾은 경우 j = pi[j]는 j를 늘리지 않는다).",
+        "while 문은 돌 때마다 j = pi[j − 1] < j로 j를 적어도 1 줄인다.",
+        "j는 0 이상이므로 줄어든 총량은 늘어난 총량 n 이하이고, 따라서 while 문은 전체에서 n번 이하로 돈다.",
+        "그래서 매칭 단계 전체는 O(n)이다."
+      ],
+      "criteria": [
+        {
+          "text": "j가 늘어나는 양을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "while 한 번에 j가 줄어듦을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "분할 상환으로 O(n)을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "j의 증가량과 감소량을 비교하세요.",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "KMP가 패턴이 나타나는 위치를 빠뜨리지 않는 이유를 불변식으로 설명하세요.",
+      "model_answer": [
+        "불변식: 글자 t[i]를 처리한 뒤 j는 t[0..i]의 접미사이면서 p의 접두사인 것 가운데 가장 긴 것의 길이다.",
+        "t[0..i]의 그런 접미사는 t[0..i − 1]의 그런 것 뒤에 t[i]를 붙인 것뿐이고, t[0..i − 1]의 그런 것들은 길이 j, pi[j − 1], pi[pi[j − 1] − 1], …로 모두 나열된다.",
+        "코드는 이 길이들을 긴 것부터 보며 다음 글자가 t[i]와 맞는 첫 길이에 1을 더하므로 불변식이 유지된다.",
+        "패턴이 t[i]에서 끝나면 t[0..i]의 접미사 중 p 전체가 있으므로 j가 m에 이르러 반드시 찾는다."
+      ],
+      "criteria": [
+        {
+          "text": "불변식을 세웠다",
+          "points": 2
+        },
+        {
+          "text": "후보가 경계 사슬로 모두 나열됨을 보였다",
+          "points": 2
+        },
+        {
+          "text": "유지와 빠뜨리지 않음을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "j가 무엇을 나타내는지 정하세요.",
+      "code": "int back = 0;                                   // j를 줄인 횟수\nfor (int i = 0, j = 0; i < n; i++) {\n    while (j > 0 && t[i] != p[j]) { j = pi[j - 1]; back++; }\n    if (t[i] == p[j]) {\n        if (j == m - 1) { found(i - m + 1); j = pi[j]; }   // 찾았으면 경계로\n        else j++;\n    }\n}"
+    }
+  ]
+}

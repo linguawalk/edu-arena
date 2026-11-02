@@ -1,0 +1,91 @@
+{
+  "language": "fortran",
+  "category": "legacy_historical",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "고정 길이 문자열",
+  "questions": [
+    {
+      "id": "fortran_l1_u04_q001",
+      "type": "predict_output",
+      "code": "character(len=10) :: name\nname = 'Kim'\nprint *, len(name)",
+      "prompt_en": "What is printed? (Note: 'Kim' is only 3 characters.)",
+      "prompt_ko": "출력 결과는? ('Kim'은 3글자뿐인 점에 주의하세요.)",
+      "options": ["3", "10", "13", "오류"],
+      "answer": 1,
+      "explanation_en": "character(len=10) declares a FIXED-length string of exactly 10 characters; len() returns this declared length, 10, regardless of how much of it holds meaningful text.",
+      "explanation_ko": "character(len=10)은 정확히 10글자인 고정 길이 문자열을 선언합니다. len()은 실제 의미 있는 텍스트가 얼마나 들어있든 상관없이 선언된 길이인 10을 반환합니다.",
+      "concept_tags": ["fixed_length_string", "len_function"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "fortran_l1_u04_q002",
+      "type": "predict_output",
+      "code": "character(len=10) :: name\nname = 'Kim'\nprint *, len_trim(name)",
+      "prompt_en": "What is printed? (Compare with len() from the previous question.)",
+      "prompt_ko": "출력 결과는? (이전 문제의 len()과 비교해보세요.)",
+      "options": ["3", "10", "13", "오류"],
+      "answer": 0,
+      "explanation_en": "len_trim() ignores trailing spaces (the padding added to fill the fixed length) and returns the length of the meaningful content: 3, for Kim.",
+      "explanation_ko": "len_trim()은 후행 공백(고정 길이를 채우기 위해 추가된 패딩)을 무시하고, 의미 있는 내용의 길이를 반환합니다: Kim의 경우 3입니다.",
+      "concept_tags": ["fixed_length_string", "len_trim_function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "fortran_l1_u04_q003",
+      "type": "fill_blank",
+      "code": "character(____) :: title\ntitle = 'Doctor'",
+      "prompt_en": "Fill in the blank with the syntax that declares a string of exactly 20 characters.",
+      "prompt_ko": "정확히 20글자인 문자열을 선언하는 문법을 빈칸에 채우세요.",
+      "options": ["len=20", "20", "size=20", "[20]"],
+      "answer": 0,
+      "explanation_en": "len=20 inside the parentheses specifies the fixed length of a character variable; Fortran strings don't grow or shrink at runtime like Python's or JavaScript's.",
+      "explanation_ko": "괄호 안의 len=20은 character 변수의 고정 길이를 지정합니다. Fortran 문자열은 Python이나 JavaScript처럼 실행 중에 늘어나거나 줄어들지 않습니다.",
+      "concept_tags": ["fixed_length_string"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "fortran_l1_u04_q004",
+      "type": "predict_output",
+      "code": "character(len=5) :: code\ncode = 'HELLOWORLD'\nprint *, code",
+      "prompt_en": "What is printed? (Note: the assigned text is longer than the declared length.)",
+      "prompt_ko": "출력 결과는? (대입하는 텍스트가 선언된 길이보다 긴 점에 주의하세요.)",
+      "options": ["HELLO", "HELLOWORLD", "오류", "WORLD"],
+      "answer": 0,
+      "explanation_en": "Assigning a longer string to a fixed-length character variable silently truncates it to fit; only the first 5 characters, HELLO, are kept.",
+      "explanation_ko": "고정 길이 character 변수에 더 긴 문자열을 대입하면 조용히 맞춰서 잘립니다. 처음 5글자인 HELLO만 남습니다.",
+      "concept_tags": ["fixed_length_string", "truncation"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "fortran_l1_u04_q005",
+      "type": "predict_output",
+      "code": "character(len=10) :: a, b\na = 'Kim'\nb = 'Lee'\nprint *, trim(a) // ' ' // trim(b)",
+      "prompt_en": "What is printed? (// concatenates strings, and trim removes trailing padding first.)",
+      "prompt_ko": "출력 결과는? (//는 문자열을 연결하고, trim은 먼저 후행 패딩을 제거합니다.)",
+      "options": ["Kim Lee", "Kim       Lee       ", "오류", "KimLee"],
+      "answer": 0,
+      "explanation_en": "trim() strips the trailing spaces from each fixed-length string before // concatenates them with a single space in between, producing a clean Kim Lee.",
+      "explanation_ko": "trim()은 //로 연결하기 전에 각 고정 길이 문자열의 후행 공백을 제거해서, 그 사이에 공백 하나를 두고 깔끔한 Kim Lee를 만듭니다.",
+      "concept_tags": ["fixed_length_string", "trim_function", "concatenation_operator"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "fortran_l1_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "character(len=N)", "definition": "정확히 N글자인 고정 길이 문자열을 선언" },
+        { "term": "len()", "definition": "선언된 전체 길이를 반환 — 후행 공백 포함" },
+        { "term": "len_trim() / trim()", "definition": "후행 공백을 무시하거나 제거해서 의미 있는 내용만 다룸" },
+        { "term": "// (연결 연산자)", "definition": "두 문자열을 이어붙이는 연산자 — +가 아님" }
+      ],
+      "explanation_en": "Fortran's fixed-length, space-padded strings reflect its origins in an era of fixed-width punch cards and memory-constrained systems, a design very different from the dynamic strings in every modern language covered in this curriculum.",
+      "explanation_ko": "고정 길이에 공백으로 채우는 Fortran의 문자열은, 고정폭 펀치 카드와 메모리 제약이 있던 시스템 시대의 기원을 반영하며, 이 커리큘럼에서 다룬 모든 현대 언어의 동적 문자열과는 매우 다른 설계입니다.",
+      "concept_tags": ["fixed_length_string", "len_function", "len_trim_function"],
+      "difficulty": "practice"
+    }
+  ]
+}

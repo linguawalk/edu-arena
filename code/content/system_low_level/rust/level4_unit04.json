@@ -1,0 +1,96 @@
+{
+  "language": "rust",
+  "category": "system_low_level",
+  "level": 4,
+  "unit": 4,
+  "unit_title": "라이프타임 기초",
+  "questions": [
+    {
+      "id": "rust_l4_u04_q001",
+      "type": "predict_output",
+      "code": "fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {\n    if x.len() > y.len() {\n        x\n    } else {\n        y\n    }\n}\n\nlet s1 = String::from(\"long string is long\");\nlet s2 = String::from(\"short\");\nlet result = longest(s1.as_str(), s2.as_str());\nprintln!(\"{}\", result);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["long string is long", "short", "오류", "s1"],
+      "answer": 0,
+      "explanation_en": "longest returns whichever string is longer; s1's length (20) exceeds s2's (5), so it returns and prints s1's content.",
+      "explanation_ko": "longest는 더 긴 문자열을 반환합니다. s1의 길이(20)가 s2의 길이(5)보다 크므로 s1의 내용을 반환해 출력합니다.",
+      "concept_tags": ["lifetime"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l4_u04_q002",
+      "type": "error_finding",
+      "code": "fn longest(x: &str, y: &str) -> &str {\n    if x.len() > y.len() {\n        x\n    } else {\n        y\n    }\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "if/else 문법 오류",
+        "반환값이 x에서 왔는지 y에서 왔는지 컴파일러가 알 수 없어서, 라이프타임 명시자가 없다는 컴파일 오류가 발생함",
+        "매개변수 이름이 잘못됨",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Since the function might return either x or y, the compiler can't determine how long the returned reference stays valid without an explicit lifetime annotation; this triggers error E0106.",
+      "explanation_ko": "함수가 x나 y 중 무엇을 반환할지 알 수 없기 때문에, 명시적인 라이프타임 표기 없이는 컴파일러가 반환된 참조가 얼마나 오래 유효한지 판단할 수 없습니다. 이는 E0106 오류로 이어집니다.",
+      "concept_tags": ["lifetime"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l4_u04_q003",
+      "type": "fill_blank",
+      "code": "fn longest<____>(x: &'a str, y: &'a str) -> &'a str {\n    if x.len() > y.len() { x } else { y }\n}",
+      "prompt_en": "Fill in the blank with the lifetime parameter declaration.",
+      "prompt_ko": "라이프타임 매개변수 선언을 빈칸에 채우세요.",
+      "options": ["'a", "T", "&a", "lifetime"],
+      "answer": 0,
+      "explanation_en": "Lifetime parameters are declared inside angle brackets with an apostrophe, similar in position to type parameters like <T>.",
+      "explanation_ko": "라이프타임 매개변수는 꺾쇠 괄호 안에 작은따옴표를 붙여 선언하며, 타입 매개변수 <T>와 비슷한 위치에 옵니다.",
+      "concept_tags": ["lifetime"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l4_u04_q004",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "라이프타임", "definition": "참조가 유효하게 유지되는 범위를 나타내는 개념" },
+        { "term": "'a", "definition": "라이프타임을 이름 붙여 함수 시그니처에 명시하는 표기법" },
+        { "term": "라이프타임 명시가 필요한 경우", "definition": "반환값이 여러 참조 매개변수 중 무엇에서 왔는지 컴파일러가 스스로 알 수 없을 때" },
+        { "term": "댕글링 참조 방지", "definition": "라이프타임 검사가 궁극적으로 막으려는, 이미 해제된 메모리를 가리키는 참조 문제" }
+      ],
+      "explanation_en": "Lifetimes are Rust's way of extending the borrow-checking ideas from Level 2 to function signatures, ensuring returned references never outlive the data they point to.",
+      "explanation_ko": "라이프타임은 Level 2에서 배운 빌림 검사 개념을 함수 시그니처까지 확장한 것으로, 반환된 참조가 가리키는 데이터보다 더 오래 살아남지 않도록 보장합니다.",
+      "concept_tags": ["lifetime"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l4_u04_q005",
+      "type": "predict_output",
+      "code": "fn first_char<'a>(s: &'a str) -> &'a str {\n    &s[0..1]\n}\n\nlet text = String::from(\"Rust\");\nlet c = first_char(&text);\nprintln!(\"{}\", c);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["R", "Rust", "오류", "r"],
+      "answer": 0,
+      "explanation_en": "The lifetime 'a ties the returned slice's validity to the input string's; first_char returns a slice of the first character, R.",
+      "explanation_ko": "라이프타임 'a는 반환된 슬라이스의 유효성을 입력 문자열의 유효성과 묶어줍니다. first_char는 첫 글자인 R의 슬라이스를 반환합니다.",
+      "concept_tags": ["lifetime", "slice"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l4_u04_q006",
+      "type": "predict_output",
+      "code": "fn main() {\n    let result;\n    let s1 = String::from(\"hello\");\n    {\n        let s2 = String::from(\"world\");\n        result = longest(s1.as_str(), s2.as_str());\n        println!(\"{}\", result);\n    }\n}\n\nfn longest<'a>(x: &'a str, y: &'a str) -> &'a str {\n    if x.len() > y.len() { x } else { y }\n}",
+      "prompt_en": "What is printed? (Note: \"hello\" and \"world\" have the same length.)",
+      "prompt_ko": "출력 결과는? (\"hello\"와 \"world\"의 길이가 같은 점에 주의하세요.)",
+      "options": ["hello", "world", "오류", "빈 문자열"],
+      "answer": 1,
+      "explanation_en": "\"hello\" and \"world\" both have length 5, so x.len() > y.len() is false and the else branch runs, returning y — s2's content, \"world\".",
+      "explanation_ko": "\"hello\"와 \"world\"는 둘 다 길이가 5로 같습니다. 따라서 x.len() > y.len()은 거짓이 되어 else 분기가 실행되고, y(s2의 내용인 \"world\")가 반환됩니다.",
+      "concept_tags": ["lifetime"],
+      "difficulty": "challenge"
+    }
+  ]
+}

@@ -1,0 +1,379 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch04",
+  "no": 4,
+  "title": "명령어 실행 사이클"
+ },
+ "lesson": {
+  "id": "c4-ch04-l01",
+  "no": 1,
+  "title": "인출, 해독, 실행",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "CPU는 같은 일을 되풀이한다",
+   "body": [
+    "CPU가 하는 일은 단순합니다. 메모리에서 명령어 하나를 가져오고(인출), 무슨 뜻인지 알아내고(해독), 그대로 실행합니다. 그리고 다음 명령어로 넘어가 이 일을 끝없이 되풀이합니다. 이를 명령어 사이클이라고 합니다.",
+    "1초에 수십억 번 이 사이클을 돌아서, 단순한 명령어들이 모여 복잡한 프로그램이 됩니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "ordering",
+   "prompt": "명령어 사이클의 단계를 차례대로 배열하세요.",
+   "items": [
+    {
+     "id": "a",
+     "text": "실행"
+    },
+    {
+     "id": "b",
+     "text": "인출"
+    },
+    {
+     "id": "c",
+     "text": "해독"
+    }
+   ],
+   "answer_order": [
+    "b",
+    "c",
+    "a"
+   ],
+   "hint": null,
+   "explanation": "명령어를 가져오고(인출), 뜻을 알아내고(해독), 수행합니다(실행).\n그다음 다시 인출로 돌아갑니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "인출 단계",
+   "body": [
+    "프로그램 카운터(PC)에는 다음에 실행할 명령어의 주소가 들어 있습니다. 인출 단계에서 CPU는 PC의 주소를 주소 버스에 싣고, 메모리에서 명령어를 데이터 버스로 받아 명령어 레지스터(IR)에 넣습니다.",
+    "그리고 PC를 다음 명령어의 주소로 늘립니다. 명령어 하나가 4바이트이고 메모리가 바이트 단위 주소라면 PC는 4씩 늘어납니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "명령어가 4바이트이고 PC = 100입니다. 명령어 하나를 인출한 뒤 PC는?",
+   "steps": [
+    "PC = 100에서 명령어를 가져옵니다.",
+    "다음 명령어는 4바이트 뒤에 있습니다.",
+    "PC = 104가 됩니다."
+   ],
+   "answer": "104"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "인출한 명령어를 담아 두는 레지스터를 명령어 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "레지스터"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "명령어 레지스터(IR)의 내용을 제어장치가 해독합니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "명령어가 2바이트이고 PC = 50입니다. 명령어 하나를 인출한 뒤 PC는 얼마일까요?",
+   "answer": "52",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "명령어 길이만큼 늘어납니다.\n50 + 2 = 52입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "명령어가 4바이트이고 PC = 200입니다. 명령어 세 개를 차례로 실행한 뒤(점프 없음) PC는 얼마일까요?",
+   "answer": "212",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "명령어마다 4씩 늘어납니다.\n200 + 4 × 3 = 212입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "인출 단계에서 CPU는 {{1}}의 값을 주소 버스에 싣습니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "PC",
+      "프로그램 카운터"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "PC가 다음 명령어의 주소를 가리킵니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "해독과 실행",
+   "body": [
+    "해독 단계에서 제어장치는 IR의 연산 코드를 보고 어떤 명령어인지 알아내고, 필요한 레지스터를 읽을 준비를 합니다.",
+    "실행 단계에서는 명령어에 따라 ALU가 계산하거나, 메모리에서 값을 읽어 오거나(불러오기), 메모리에 값을 쓰거나(저장), PC를 바꿔 다른 곳으로 건너뜁니다(분기). 계산 결과를 레지스터에 쓰는 단계를 따로 나누어 쓰기(write back)라고 부르기도 합니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "'ADD A, B' 명령어는 각 단계에서 무엇을 할까요?",
+   "steps": [
+    "인출: PC가 가리키는 곳에서 명령어를 가져와 IR에 넣고 PC를 늘립니다.",
+    "해독: 덧셈 명령어이며 A와 B를 쓴다는 것을 알아냅니다.",
+    "실행: ALU가 A + B를 계산해 A에 씁니다."
+   ],
+   "answer": "인출 → 해독 → 실행"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "명령어의 연산 코드를 보고 무엇을 할지 알아내는 단계를 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "해독",
+      "디코딩"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "해독은 제어장치가 맡으며, 결과에 따라 제어 신호를 보냅니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "ALU가 실제로 계산하는 단계는 {{1}} 단계입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "실행"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "실행 단계에서 명령어의 동작을 수행합니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "메모리에서 다음 명령어를 가져오는 단계는 {{1}} 단계입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "인출"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "인출은 영어로 fetch라고 합니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "실행 단계에서 PC를 바꿔 다른 곳으로 건너뛰는 명령어를 {{1}} 명령어라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "분기"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "분기 명령어로 반복과 조건 처리를 만듭니다(레슨 3)."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "한 명령어, 여러 클럭",
+   "body": [
+    "단순한 CPU에서는 인출, 해독, 실행이 각각 한 클럭 이상 걸려 명령어 하나에 여러 클럭이 듭니다. 메모리에서 값을 읽는 명령어는 메모리가 느려 더 오래 걸립니다. 레슨 4의 파이프라인은 이 단계들을 겹쳐서 속도를 높입니다.",
+    "정리: 명령어 사이클 = 인출(PC → 메모리 → IR, PC 증가) → 해독(제어장치) → 실행(ALU, 불러오기·저장, 분기) → 되풀이"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "명령어 인출 뒤 PC는 {{1}} 명령어의 주소를 가리키게 됩니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "다음"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "그래서 분기가 없으면 명령어가 차례대로 실행됩니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "명령어가 4바이트인 CPU에서 PC = 0x10입니다. 명령어 두 개를 실행하면 PC는(점프 없음)?",
+   "steps": [
+    "0x10 = 16입니다.",
+    "16 + 4 × 2 = 24입니다.",
+    "24 = 0x18입니다."
+   ],
+   "answer": "0x18"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "명령어가 4바이트이고 PC = 0x20입니다. 명령어 하나를 인출한 뒤 PC는 0x{{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "24"
+     ]
+    }
+   ],
+   "hint": "16진수로 4를 더하세요.",
+   "explanation": "0x20 = 32이고 4를 더하면 36 = 0x24입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "명령어가 4바이트인 프로그램이 주소 1000에서 시작합니다. 10번째 명령어의 주소는 얼마일까요?",
+   "answer": "1036",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "10번째는 첫째에서 9개 뒤입니다.",
+   "explanation": "첫째가 1000이고 하나마다 4씩 늘어납니다.\n1000 + 4 × 9 = 1036입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "인출 2클럭, 해독 1클럭, 실행 2클럭인 CPU에서 명령어 100개는 몇 클럭 걸릴까요? (겹침 없음)",
+   "answer": "500",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "명령어 하나의 클럭부터 구하세요.",
+   "explanation": "명령어 하나에 5클럭입니다.\n100 × 5 = 500클럭입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 CPU의 클럭이 1 GHz이면 명령어 100개는 몇 ns 걸릴까요?",
+   "answer": "500",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "클럭 수 × 주기입니다.",
+   "explanation": "1 GHz의 주기는 1 ns입니다.\n500클럭 × 1 ns = 500 ns입니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "명령어 사이클 가운데 메모리를 반드시 한 번 이상 쓰는 단계는 {{1}} 단계입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "인출"
+     ]
+    }
+   ],
+   "hint": "명령어를 가져오는 단계입니다.",
+   "explanation": "명령어는 메모리에 있으므로 인출할 때 메모리를 읽습니다.\n실행 단계는 명령어에 따라 다릅니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "분기 명령어가 없으면 PC가 어떻게 변하고, 그 결과 프로그램이 어떻게 실행되는지 설명해 보세요.",
+   "hint": "인출 뒤 PC가 어떻게 되는지 생각하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "PC"
+     ],
+     [
+      "늘",
+      "증가",
+      "다음"
+     ],
+     [
+      "차례",
+      "순서",
+      "순차"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "인출할 때마다 PC는 명령어 길이만큼 늘어나 다음 명령어를 가리킵니다. 분기 명령어가 없으면 PC가 계속 늘기만 하므로 명령어가 메모리에 놓인 순서대로 차례차례 실행됩니다."
+  }
+ ]
+}

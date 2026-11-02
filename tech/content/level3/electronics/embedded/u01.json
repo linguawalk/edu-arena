@@ -1,0 +1,111 @@
+{
+ "no": 1,
+ "title": "마이크로컨트롤러의 구조",
+ "hours": 5,
+ "after": [],
+ "objectives": [
+  "마이크로컨트롤러(MCU)와 마이크로프로세서(MPU)의 차이를 설명할 수 있다.",
+  "MCU의 메모리 맵과 레지스터로 주변장치를 다루는 방식을 설명할 수 있다.",
+  "부팅 과정(리셋 벡터, 시작 코드)을 설명할 수 있다."
+ ],
+ "checklist": [
+  "MCU: CPU + 플래시 + SRAM + 주변장치를 한 칩에",
+  "대표 코어: ARM Cortex-M, RISC-V, AVR",
+  "메모리 맵 입출력: 주변장치 레지스터를 주소로 읽고 씀",
+  "플래시(프로그램, 비휘발성)와 SRAM(변수, 휘발성)",
+  "레지스터 비트 조작: 설정(OR), 해제(AND NOT), 반전(XOR)",
+  "리셋 벡터와 시작 코드, 클럭 설정",
+  "하버드 구조와 폰 노이만 구조"
+ ],
+ "advice": [
+  "임베디드 프로그래밍의 첫 관문은 '주변장치를 켜고 끄는 것도 결국 정해진 주소의 레지스터에 비트를 쓰는 일'이라는 사실을 받아들이는 것입니다. 쓰는 칩의 데이터시트(레퍼런스 매뉴얼)에서 메모리 맵 그림과 GPIO 레지스터 표를 직접 찾아보고, 레벨1 컴퓨터 챕터 3의 비트 연산(AND·OR·XOR)으로 특정 비트만 바꾸는 코드를 적어 보세요. 이 습관이 이후 모든 단원의 바탕입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Lee · Seshia (무료 공개 교재)",
+   "title": "Introduction to Embedded Systems: A Cyber-Physical Systems Approach, 2nd ed.",
+   "url": "https://ptolemy.berkeley.edu/books/leeseshia/",
+   "lang": "영어",
+   "part": "Embedded Processors, Memory Architectures 장"
+  },
+  {
+   "kind": "book",
+   "provider": "자가 출판",
+   "title": "Valvano, Embedded Systems: Introduction to ARM Cortex-M Microcontrollers (장 제목으로 표기)",
+   "part": "Introduction to Microcontrollers 관련 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 3 CPU 구조",
+   "url": "browse.html?c=c4#ch03",
+   "part": "레벨1 복습"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "processor architecture 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "32비트 주소를 쓰는 MCU가 가리킬 수 있는 주소 공간은 몇 GB일까요? (1 GB = 2³⁰ B)",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2³²/2³⁰ = 4 GB\n실제 메모리와 주변장치는 이 공간의 일부에 배치됩니다.",
+   "hint": "2³²바이트입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "주변장치 레지스터를 메모리 주소로 읽고 쓰는 방식을 메모리 {{1}} 입출력이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "맵",
+      "매핑",
+      "맵드",
+      "사상"
+     ]
+    }
+   ],
+   "explanation": "그래서 C 언어의 포인터로 주변장치를 직접 다룰 수 있습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "MCU에서 전원이 꺼져도 남아 있어야 하는 프로그램 코드는 주로 내부 {{1}} 메모리에 저장합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "플래시",
+      "flash",
+      "Flash"
+     ]
+    }
+   ],
+   "explanation": "변수처럼 실행 중에 바뀌는 데이터는 SRAM에 둡니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electronics",
+ "subject": "embedded",
+ "id": "l3-electronics-embedded-u01"
+}

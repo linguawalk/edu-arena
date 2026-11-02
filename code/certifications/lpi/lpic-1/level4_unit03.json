@@ -1,0 +1,88 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-1-102",
+  "level": 4,
+  "unit": 3,
+  "unit_title": "네트워크 서비스와 잘 알려진 포트",
+  "rule_summary_ko": "/etc/services 파일은 서비스 이름과 포트 번호·프로토콜(TCP/UDP)의 매핑을 담고 있습니다. 대표적인 잘 알려진 포트: FTP=21, SSH=22, Telnet=23, SMTP=25, DNS(domain)=53(TCP·UDP 둘 다), HTTP=80, HTTPS=443. DNS는 짧은 질의·응답에는 UDP를, 영역 전송(zone transfer)처럼 큰 데이터를 안정적으로 옮겨야 할 때는 TCP를 사용합니다.",
+  "examples": [
+    { "code": "grep ssh /etc/services\nssh   22/tcp", "note_ko": "SSH 서비스는 22번 포트, TCP 프로토콜을 사용함" },
+    { "code": "grep domain /etc/services\ndomain 53/tcp\ndomain 53/udp", "note_ko": "DNS(domain)는 53번 포트를 TCP와 UDP 둘 다로 사용함" }
+  ],
+  "questions": [
+    {
+      "id": "lpic1_l4_u3_q001",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "SSH가 기본적으로 사용하는 포트 번호는? (숫자만 입력)",
+      "expected_answers": ["22"],
+      "explanation_ko": "SSH(Secure Shell)는 포트 22를 기본으로 사용합니다.",
+      "concept_tags": ["ssh_port"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic1_l4_u3_q002",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "HTTP(암호화되지 않은 웹)가 기본적으로 사용하는 포트 번호는? (숫자만 입력)",
+      "expected_answers": ["80"],
+      "explanation_ko": "HTTP는 포트 80, HTTPS(암호화)는 포트 443을 사용합니다.",
+      "concept_tags": ["http_port"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic1_l4_u3_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "HTTPS(TLS/SSL로 암호화된 웹)가 기본적으로 사용하는 포트 번호는? (숫자만 입력)",
+      "expected_answers": ["443"],
+      "explanation_ko": "HTTPS는 암호화된 HTTP 통신에 포트 443을 사용합니다.",
+      "concept_tags": ["https_port"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic1_l4_u3_q004",
+      "type": "concept_matching_item",
+      "code": "grep domain /etc/services\ndomain  53/tcp\ndomain  53/udp",
+      "prompt_ko": "DNS(domain)가 TCP와 UDP를 모두 사용하는 이유는?",
+      "options": [
+        "일반적인 짧은 이름 조회에는 빠른 UDP를 사용하고, 영역 전송(zone transfer)처럼 크고 신뢰성이 중요한 데이터 전송에는 TCP를 사용한다",
+        "DNS는 실제로 UDP만 사용하고 TCP는 사용하지 않는다",
+        "DNS는 실제로 TCP만 사용하고 UDP는 사용하지 않는다",
+        "TCP와 UDP 둘 다 사용하는 것은 오류이며 실제로는 있을 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "DNS는 상황(질의 크기, 신뢰성 요구)에 따라 두 프로토콜을 유연하게 활용합니다.",
+      "concept_tags": ["dns_tcp_udp"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic1_l4_u3_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "FTP(파일 전송 프로토콜)의 제어 연결이 기본적으로 사용하는 포트 번호는? (숫자만 입력)",
+      "expected_answers": ["21"],
+      "explanation_ko": "FTP는 제어 연결에 포트 21을 사용합니다(실제 데이터 전송은 별도 포트를 씀).",
+      "concept_tags": ["ftp_port"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l4_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "'잘 알려진 포트(well-known port)'라는 개념이 존재하는 이유는?",
+      "options": [
+        "특정 서비스가 관례적으로 항상 같은 포트를 사용하도록 표준화해서, 클라이언트가 서버의 어느 포트로 접속해야 할지 미리 알 수 있게 하기 위해",
+        "포트 번호는 서비스마다 매번 무작위로 바뀌어야 한다",
+        "잘 알려진 포트는 보안을 위해 존재가 비밀로 유지된다",
+        "포트 번호는 실질적인 의미 없이 임의로 정해진 것이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "표준화된 포트 번호 덕분에 클라이언트-서버 간 통신 규약이 예측 가능해집니다.",
+      "concept_tags": ["well_known_ports_purpose"],
+      "difficulty": "practice"
+    }
+  ]
+}

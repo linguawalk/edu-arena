@@ -1,0 +1,122 @@
+{
+ "no": 9,
+ "title": "동시성 제어와 회복",
+ "hours": 5,
+ "after": [
+  8
+ ],
+ "objectives": [
+  "2단계 잠금(2PL)과 다중 버전 동시성 제어(MVCC)의 원리를 설명할 수 있다.",
+  "고립성 수준과 이상 현상(오손 읽기, 반복 불가능 읽기, 팬텀)을 연결할 수 있다.",
+  "로그 기반 회복(WAL, REDO·UNDO, 체크포인트)을 설명할 수 있다."
+ ],
+ "checklist": [
+  "잠금: 공유 잠금(읽기), 배타 잠금(쓰기)",
+  "2단계 잠금: 확장 단계 → 축소 단계, 직렬 가능성 보장",
+  "교착 상태 탐지(운영체제 5단원)",
+  "MVCC: 읽기가 쓰기를 막지 않음",
+  "고립성 수준 4가지와 이상 현상",
+  "로그 선행 기록(WAL), REDO와 UNDO",
+  "체크포인트와 장애 회복"
+ ],
+ "advice": [
+  "동시성 제어는 운영체제의 잠금을 데이터베이스 규모로 키운 것입니다. 2단계 잠금은 '잠금을 하나라도 풀기 시작하면 더 이상 새로 잡지 않는다'는 규칙 하나로 직렬 가능성을 보장한다는 점이 놀랍습니다. 고립성 수준 표(READ UNCOMMITTED ~ SERIALIZABLE)를 이상 현상과 함께 직접 채워 보세요.",
+  "회복은 '변경하기 전에 로그부터 디스크에 쓴다(WAL)'는 원칙 하나에서 출발합니다. 커밋된 트랜잭션은 로그로 다시 하고(REDO), 커밋되지 않은 것은 되돌린다(UNDO)는 그림을 운영체제 8단원의 저널링과 비교해 보면 같은 아이디어라는 것을 알 수 있습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Silberschatz · Korth · Sudarshan",
+   "title": "Database System Concepts (교재 사이트, 장 제목으로 표기)",
+   "url": "https://www.db-book.com/",
+   "lang": "영어",
+   "part": "Concurrency Control, Recovery System 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "CMU 15-445 (공개 강의)",
+   "title": "Intro to Database Systems — 강의 노트·영상",
+   "url": "https://15445.courses.cs.cmu.edu/",
+   "lang": "영어",
+   "part": "Two-Phase Locking, MVCC, Logging, Recovery 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "운영체제 5단원 교착 상태",
+   "url": "guide.html?lv=2&t=computer&s=operating-systems&u=5"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "SQL 표준이 정의하는 트랜잭션 고립성 수준은 몇 가지일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, SERIALIZABLE의 4가지입니다.",
+   "hint": "가장 약한 것부터 가장 강한 것까지입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "잠금을 얻기만 하는 단계와 풀기만 하는 단계로 나누어 직렬 가능성을 보장하는 규약을 {{1}} 잠금이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "2단계",
+      "이단계",
+      "2PL"
+     ]
+    }
+   ],
+   "explanation": "잠금을 하나라도 풀기 시작하면 새 잠금을 얻을 수 없습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "커밋되지 않은 다른 트랜잭션의 변경을 읽는 이상 현상을 {{1}} 읽기라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "오손",
+      "더티",
+      "dirty"
+     ]
+    }
+   ],
+   "explanation": "READ UNCOMMITTED 수준에서만 생깁니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "데이터를 디스크에 반영하기 전에 그 변경 내용을 로그에 먼저 기록하는 원칙을 영문 약어로 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "WAL"
+     ]
+    }
+   ],
+   "explanation": "Write-Ahead Logging의 줄임말입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "databases",
+ "id": "l2-computer-databases-u09"
+}

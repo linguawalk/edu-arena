@@ -1,0 +1,118 @@
+{
+ "no": 3,
+ "title": "BJT의 동작과 바이어스",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "BJT의 구조와 동작 영역(차단·활성·포화)을 구분할 수 있다.",
+  "전류 이득 β와 α의 관계를 쓸 수 있다.",
+  "전압 분배 바이어스 회로의 동작점(Q점)을 계산할 수 있다."
+ ],
+ "checklist": [
+  "npn·pnp 구조와 이미터·베이스·컬렉터",
+  "활성 영역: BE 순방향, BC 역방향 → 증폭",
+  "I_C = βI_B, I_E = I_C + I_B, α = β/(β + 1)",
+  "V_BE ≈ 0.7 V(활성 영역)",
+  "포화: BE·BC 모두 순방향, V_CE(sat) ≈ 0.2 V",
+  "고정 바이어스, 전압 분배 바이어스, 이미터 저항에 의한 안정화",
+  "부하선과 동작점(Q점)"
+ ],
+ "advice": [
+  "BJT 바이어스는 '베이스 전압을 정하면 이미터 전압이 0.7 V 아래로 따라가고, 이미터 저항이 전류를 정한다'는 흐름으로 풀면 대부분 끝납니다. 전압 분배 바이어스가 실무에서 표준인 이유는 β가 소자마다, 온도마다 크게 달라도 이미터 저항 덕분에 동작점이 거의 변하지 않기 때문입니다. 같은 회로를 β = 100과 β = 200으로 각각 계산해 동작점이 얼마나 바뀌는지 직접 비교해 보세요.",
+  "동작 영역 판단은 다이오드와 같은 방식입니다. 활성 영역이라고 가정하고 계산한 뒤 V_CE가 0.2 V보다 큰지 확인하고, 아니면 포화로 다시 계산합니다. 증폭기는 활성 영역, 레벨1의 스위치 회로는 포화와 차단을 쓴다는 대비를 기억하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Sedra · Smith, Microelectronic Circuits (번역본 『마이크로 전자회로』, 장 제목으로 표기)",
+   "part": "Bipolar Junction Transistors (BJTs) 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Razavi, Fundamentals of Microelectronics (장 제목으로 표기)",
+   "part": "Physics of Bipolar Transistors, Bipolar Amplifiers 장의 바이어스 절"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.012 Microelectronic Devices and Circuits (2009년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/",
+   "lang": "영어",
+   "part": "Lecture 7 (BJT)"
+  },
+  {
+   "kind": "book",
+   "provider": "All About Circuits (무료 온라인 교재)",
+   "title": "Lessons in Electric Circuits, Volume III — Semiconductors",
+   "url": "https://www.allaboutcircuits.com/textbook/semiconductors/",
+   "lang": "영어",
+   "part": "Bipolar Junction Transistors 장"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "β = 100인 BJT가 활성 영역에서 베이스 전류 20 μA로 동작하면 컬렉터 전류는 몇 mA일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "I_C = βI_B = 100 × 20 μA = 2 mA",
+   "hint": "I_C = βI_B입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "β = 100일 때 α는 약 얼마일까요?",
+   "answer": "0.99",
+   "answer_format": "decimal",
+   "tolerance": 0.005,
+   "explanation": "α = β/(β + 1) = 100/101 ≈ 0.990",
+   "hint": "α = β/(β + 1)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "V_CC = 12 V, R₁ = 40 kΩ, R₂ = 10 kΩ인 전압 분배 바이어스에서 이미터 저항이 1 kΩ이면 컬렉터 전류는 약 몇 mA일까요? (베이스 전류 무시, V_BE = 0.7 V)",
+   "answer": "1.7",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "explanation": "V_B = 12 × 10/50 = 2.4 V, V_E = 1.7 V\nI_C ≈ I_E = 1.7 V/1 kΩ = 1.7 mA",
+   "hint": "베이스 전압 → 이미터 전압 → 이미터 전류 순서입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "BJT를 증폭기로 쓰려면 {{1}} 영역에서 동작시켜야 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "활성",
+      "능동",
+      "선형"
+     ]
+    }
+   ],
+   "explanation": "활성 영역에서만 컬렉터 전류가 베이스 전류에 비례합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "electronic-circuits",
+ "id": "l2-electronics-electronic-circuits-u03"
+}

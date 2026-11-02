@@ -1,0 +1,96 @@
+{
+  "language": "java",
+  "category": "oop_enterprise",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "static과 변수 범위",
+  "questions": [
+    {
+      "id": "java_l3_u04_q001",
+      "type": "predict_output",
+      "code": "class Counter {\n    static int count = 0;\n    static void increment() {\n        count++;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Counter.increment();\n        Counter.increment();\n        Counter.increment();\n        System.out.println(Counter.count);\n    }\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1", "3", "0", "오류"],
+      "answer": 1,
+      "explanation_en": "static fields belong to the class itself, shared across all calls; three increment() calls result in count being 3.",
+      "explanation_ko": "static 필드는 클래스 자체에 속해서 모든 호출에서 공유됩니다. increment()를 세 번 호출하면 count는 3이 됩니다.",
+      "concept_tags": ["static"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l3_u04_q002",
+      "type": "fill_blank",
+      "code": "class Counter {\n    public ____ int count = 0;\n}\n// count가 인스턴스마다 따로가 아니라 클래스 전체에서 공유되어야 함",
+      "prompt_en": "Fill in the blank so count is shared across the class rather than per-instance.",
+      "prompt_ko": "count가 인스턴스마다 따로가 아니라 클래스 전체에서 공유되도록 빈칸을 채우세요.",
+      "options": ["static", "final", "const", "shared"],
+      "answer": 0,
+      "explanation_en": "static marks a field as belonging to the class itself rather than individual objects, so all instances share the same value.",
+      "explanation_ko": "static은 필드가 개별 객체가 아니라 클래스 자체에 속하도록 표시합니다. 그래서 모든 인스턴스가 같은 값을 공유합니다.",
+      "concept_tags": ["static"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l3_u04_q003",
+      "type": "predict_output",
+      "code": "static void counter() {\n    int local = 0;\n    local++;\n    System.out.print(local);\n}\n\npublic static void main(String[] args) {\n    counter();\n    counter();\n    counter();\n}",
+      "prompt_en": "What is printed? (Note: local is a regular local variable here, not static.)",
+      "prompt_ko": "출력 결과는? (local은 static이 아닌 일반 지역 변수인 점에 주의하세요.)",
+      "options": ["123", "111", "333", "오류"],
+      "answer": 1,
+      "explanation_en": "Without static, local is a fresh local variable created and reset each call, becoming 1 every time before printing.",
+      "explanation_ko": "static이 없으면 local은 호출될 때마다 새로 생성되어 초기화됩니다. 매번 1이 된 뒤 출력됩니다.",
+      "concept_tags": ["variable_scope"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l3_u04_q004",
+      "type": "predict_output",
+      "code": "class BankAccount {\n    static int total = 0;\n    BankAccount() {\n        total++;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        new BankAccount();\n        new BankAccount();\n        new BankAccount();\n        System.out.println(BankAccount.total);\n    }\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "1", "3", "오류"],
+      "answer": 2,
+      "explanation_en": "total is a static field incremented in the constructor; creating 3 objects runs the constructor 3 times, so total becomes 3.",
+      "explanation_ko": "total은 생성자에서 증가하는 static 필드입니다. 객체 3개를 만들면 생성자가 3번 실행되어 total은 3이 됩니다.",
+      "concept_tags": ["static"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l3_u04_q005",
+      "type": "error_finding",
+      "code": "class Main {\n    static void printX() {\n        System.out.println(x);\n    }\n\n    public static void main(String[] args) {\n        int x = 5;\n        printX();\n    }\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "printX 정의 문법 오류",
+        "x는 main 안에서 선언된 지역 변수라 printX 메서드 안에서는 보이지 않아서, 이름을 찾을 수 없다는 컴파일 오류가 발생함",
+        "x 선언 위치 오류",
+        "문제 없음, x가 5로 정상 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "A local variable is only visible within its own scope; printX cannot see x declared inside main, causing a compile error, the same scoping rule as C# and VB.",
+      "explanation_ko": "지역 변수는 자신의 스코프 안에서만 보입니다. printX는 main 안에서 선언된 x를 볼 수 없어 컴파일 오류가 발생합니다. C#, VB와 같은 스코프 규칙입니다.",
+      "concept_tags": ["variable_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l3_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "지역 변수", "definition": "선언된 메서드 안에서만 유효하고, 호출이 끝나면 사라지는 변수" },
+        { "term": "static 필드", "definition": "클래스 자체에 속해 모든 인스턴스가 공유하는 변수" },
+        { "term": "static 메서드", "definition": "객체 생성 없이 클래스 이름으로 바로 호출하는 메서드" },
+        { "term": "C#과의 유사성", "definition": "Java의 static은 C#의 static과 거의 동일한 클래스 수준 공유 역할을 함" }
+      ],
+      "explanation_en": "static in Java and C# serve the identical purpose (class-wide sharing), unlike C's static local variable, which has a different, function-scoped meaning.",
+      "explanation_ko": "Java와 C#의 static은 동일한 목적(클래스 전체 공유)을 수행합니다. 함수 스코프의 다른 의미를 가진 C의 static 지역변수와는 다릅니다.",
+      "concept_tags": ["static", "variable_scope"],
+      "difficulty": "practice"
+    }
+  ]
+}

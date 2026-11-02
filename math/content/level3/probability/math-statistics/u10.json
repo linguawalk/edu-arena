@@ -1,0 +1,121 @@
+{
+ "no": 10,
+ "title": "선형모형과 베이즈 추론",
+ "hours": 5,
+ "after": [
+  5,
+  6
+ ],
+ "objectives": [
+  "정규 선형모형에서 최소제곱 추정량의 성질을 설명할 수 있다.",
+  "사전분포와 가능도로 사후분포를 구할 수 있다.",
+  "켤레사전분포를 이용해 베이즈 추정을 계산할 수 있다."
+ ],
+ "checklist": [
+  "선형모형 Y = Xβ + ε, 최소제곱 β̂ = (XᵀX)⁻¹XᵀY",
+  "가우스–마르코프 정리 (최량 선형 불편 추정량)",
+  "정규오차 하에서 β̂의 분포와 t·F 검정",
+  "베이즈 정리: 사후 ∝ 가능도 × 사전",
+  "켤레사전분포 (베타–이항, 감마–포아송, 정규–정규)",
+  "사후평균, 신용구간, 빈도주의와의 비교"
+ ],
+ "advice": [
+  "선형모형은 레벨2 선형대수의 최소제곱과 레벨2 통계의 회귀를 수리통계의 언어로 완성하는 곳입니다. (XᵀX)⁻¹XᵀY가 정규방정식의 해라는 것을 기억하면 새로운 공식은 거의 없습니다.",
+  "베이즈 추론은 모수 자체를 확률변수로 보는 다른 관점입니다. 켤레사전분포를 쓰면 사후분포 계산이 모수 업데이트(예: 베타(a, b) → 베타(a + 성공, b + 실패))로 간단해져서 개념을 익히기 좋습니다. 기계학습의 베이즈 방법으로 가는 입구이니 빈도주의 추론과의 해석 차이를 정리해 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Hogg · McKean · Craig, Introduction to Mathematical Statistics (8판)",
+   "part": "9장 Inferences About Normal Linear Models, 11장 Bayesian Statistics"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "18.650 Statistics for Applications (Philippe Rigollet, 2016년 가을)",
+   "url": "https://ocw.mit.edu/courses/18-650-statistics-for-applications-fall-2016/",
+   "lang": "영어",
+   "part": "선형회귀, 베이즈 통계 강의"
+  },
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Casella · Berger, Statistical Inference (2판, 심화)",
+   "part": "7.2.3절 Bayes Estimators"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "사전분포 베타(2, 3)에서 10번 중 5번 성공을 관측하면 사후분포는 베타(7, {{1}})",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "8"
+     ]
+    }
+   ],
+   "explanation": "베타(a + 성공, b + 실패) = 베타(2 + 5, 3 + 5)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "위 사후분포의 평균은 {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "7/15"
+     ]
+    }
+   ],
+   "explanation": "a/(a + b) = 7/15",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "포아송 모수의 켤레사전분포는 {{1}}분포",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "감마"
+     ]
+    }
+   ],
+   "explanation": "감마 사전 × 포아송 가능도 = 감마 사후",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "사전 감마(2, 1)(형상 2, 비율 1), 포아송 자료 n = 4개의 합이 10이면 사후 감마(12, 5)의 평균은 {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "12/5",
+      "2.4"
+     ]
+    }
+   ],
+   "explanation": "형상 2 + 10 = 12, 비율 1 + 4 = 5\n평균 12/5",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "probability",
+ "subject": "math-statistics",
+ "id": "l3-probability-math-statistics-u10"
+}

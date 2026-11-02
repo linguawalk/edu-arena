@@ -1,0 +1,91 @@
+{
+  "language": "pascal",
+  "category": "legacy_historical",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "반복문",
+  "questions": [
+    {
+      "id": "pascal_l1_u04_q001",
+      "type": "predict_output",
+      "code": "var\n  i, sum: Integer;\nbegin\n  sum := 0;\n  for i := 1 to 5 do\n    sum := sum + i;\n  writeln(sum);\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "15", "5", "오류"],
+      "answer": 1,
+      "explanation_en": "The loop adds 1 through 5 to sum: 1+2+3+4+5=15.",
+      "explanation_ko": "반복문이 1부터 5까지를 sum에 더합니다: 1+2+3+4+5=15.",
+      "concept_tags": ["for_to_do"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l1_u04_q002",
+      "type": "predict_output",
+      "code": "var\n  i: Integer;\nbegin\n  for i := 5 downto 1 do\n    write(i);\nend.",
+      "prompt_en": "What is printed? (Note: downto instead of to.)",
+      "prompt_ko": "출력 결과는? (to가 아니라 downto인 점에 주의하세요.)",
+      "options": ["12345", "54321", "오류", "5"],
+      "answer": 1,
+      "explanation_en": "downto counts backward from the start value to the end value; the loop prints 5, 4, 3, 2, 1.",
+      "explanation_ko": "downto는 시작값부터 끝값까지 거꾸로 셉니다. 반복문은 5, 4, 3, 2, 1을 출력합니다.",
+      "concept_tags": ["for_downto"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l1_u04_q003",
+      "type": "predict_output",
+      "code": "var\n  i: Integer;\nbegin\n  i := 0;\n  while i < 3 do\n  begin\n    write(i);\n    i := i + 1;\n  end;\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["012", "123", "0123", "무한 반복"],
+      "answer": 0,
+      "explanation_en": "while checks the condition before each iteration, printing 0, 1, 2 and stopping once i reaches 3.",
+      "explanation_ko": "while은 매 반복 전에 조건을 검사합니다. 0, 1, 2를 출력하고 i가 3이 되면 멈춥니다.",
+      "concept_tags": ["while_do"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l1_u04_q004",
+      "type": "predict_output",
+      "code": "var\n  i: Integer;\nbegin\n  i := 0;\n  repeat\n    write(i);\n    i := i + 1;\n  until i >= 3;\nend.",
+      "prompt_en": "What is printed? (Note: until, not while — the loop runs while the condition is false.)",
+      "prompt_ko": "출력 결과는? (while이 아니라 until인 점에 주의하세요 — 조건이 거짓인 동안 반복합니다.)",
+      "options": ["012", "123", "0123", "오류"],
+      "answer": 0,
+      "explanation_en": "repeat...until runs the body first and stops once the condition becomes true (the opposite framing of while); it prints 0, 1, 2, then stops when i >= 3 is finally true.",
+      "explanation_ko": "repeat...until은 본문을 먼저 실행하고 조건이 참이 되면 멈춥니다(while과 반대 방향). 0, 1, 2를 출력한 뒤, i >= 3이 마침내 참이 되면 멈춥니다.",
+      "concept_tags": ["repeat_until"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l1_u04_q005",
+      "type": "fill_blank",
+      "code": "var\n  i: Integer;\nbegin\n  i := 5;\n  repeat\n    write(i);\n    i := i + 1;\n  ____ i >= 3;\nend.",
+      "prompt_en": "Fill in the blank with the keyword that ends a repeat loop with its stopping condition.",
+      "prompt_ko": "repeat 반복문을 멈추는 조건과 함께 끝맺는 키워드를 빈칸에 채우세요.",
+      "options": ["until", "while", "end", "loop"],
+      "answer": 0,
+      "explanation_en": "until specifies the condition that, once true, stops the repeat loop — always running the body at least once, like do-while in C-family languages.",
+      "explanation_ko": "until은 참이 되면 repeat 반복문을 멈추는 조건을 지정합니다. C 계열 언어의 do-while처럼 본문을 최소 한 번은 실행합니다.",
+      "concept_tags": ["repeat_until"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l1_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "for ... to ... do", "definition": "시작값부터 끝값까지 오름차순으로 세는 반복문" },
+        { "term": "for ... downto ... do", "definition": "시작값부터 끝값까지 내림차순으로 세는 반복문" },
+        { "term": "while ... do", "definition": "조건을 먼저 검사한 뒤 참이면 실행 — 조건이 거짓이면 한 번도 실행 안 될 수 있음" },
+        { "term": "repeat ... until", "definition": "본문을 먼저 실행한 뒤 조건을 검사 — 최소 한 번은 실행됨, 조건이 참이 되면 멈춤" }
+      ],
+      "explanation_en": "repeat...until's 'stop when true' logic (opposite of while's 'continue when true') is a distinctive Pascal design choice that can trip up programmers moving from C-family do-while loops.",
+      "explanation_ko": "repeat...until의 '참이 되면 멈춤' 로직(while의 '참이면 계속'과 반대)은 C 계열의 do-while 반복문에서 넘어온 프로그래머를 헷갈리게 할 수 있는 Pascal만의 설계 특징입니다.",
+      "concept_tags": ["for_to_do", "for_downto", "while_do", "repeat_until"],
+      "difficulty": "practice"
+    }
+  ]
+}

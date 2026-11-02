@@ -1,0 +1,96 @@
+{
+  "language": "cpp",
+  "category": "system_low_level",
+  "level": 4,
+  "unit": 2,
+  "unit_title": "반복자와 range-based for",
+  "questions": [
+    {
+      "id": "cpp_l4_u02_q001",
+      "type": "predict_output",
+      "code": "vector<int> v = {10, 20, 30};\nint sum = 0;\nfor (int x : v) {\n    sum += x;\n}\ncout << sum;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["60", "30", "0", "오류"],
+      "answer": 0,
+      "explanation_en": "range-based for automatically visits every element of v without needing an index, summing to 10+20+30=60.",
+      "explanation_ko": "range-based for는 인덱스 없이도 v의 모든 요소를 자동으로 순회합니다. 10+20+30=60이 됩니다.",
+      "concept_tags": ["range_based_for"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l4_u02_q002",
+      "type": "fill_blank",
+      "code": "vector<string> names = {\"Kim\", \"Lee\", \"Park\"};\nfor (string ____ : names) {\n    cout << name;\n}",
+      "prompt_en": "Fill in the blank with the loop variable name to complete the range-based for.",
+      "prompt_ko": "range-based for를 완성하도록 반복 변수 이름을 빈칸에 채우세요.",
+      "options": ["name", "names", "n", "string"],
+      "answer": 0,
+      "explanation_en": "The loop variable declared before the colon takes on each element's value in turn; it must match what's used inside the loop body (name).",
+      "explanation_ko": "콜론 앞에 선언한 반복 변수는 매번 각 요소의 값을 가집니다. 반복문 본문에서 쓰는 이름(name)과 일치해야 합니다.",
+      "concept_tags": ["range_based_for"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l4_u02_q003",
+      "type": "predict_output",
+      "code": "vector<int> v = {10, 20, 30};\nvector<int>::iterator it = v.begin();\ncout << *it;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "0", "v.begin()", "오류"],
+      "answer": 0,
+      "explanation_en": "begin() returns an iterator pointing to the first element; dereferencing it with * gives that element's value, 10.",
+      "explanation_ko": "begin()은 첫 번째 요소를 가리키는 반복자를 반환합니다. *로 역참조하면 그 요소의 값인 10을 얻습니다.",
+      "concept_tags": ["iterator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l4_u02_q004",
+      "type": "predict_output",
+      "code": "vector<int> v = {10, 20, 30};\nfor (vector<int>::iterator it = v.begin(); it != v.end(); it++) {\n    cout << *it;\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["102030", "10 20 30", "v.end()", "오류"],
+      "answer": 0,
+      "explanation_en": "Manually iterating from begin() to end() with an iterator visits every element in order, just like range-based for does internally.",
+      "explanation_ko": "begin()부터 end()까지 반복자로 수동 순회하면 모든 요소를 순서대로 방문합니다. range-based for가 내부적으로 하는 일과 동일합니다.",
+      "concept_tags": ["iterator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l4_u02_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "반복자 (iterator)", "definition": "컨테이너의 요소를 가리키며 순차적으로 이동할 수 있는 객체" },
+        { "term": "begin()", "definition": "컨테이너의 첫 번째 요소를 가리키는 반복자를 반환" },
+        { "term": "end()", "definition": "마지막 요소 바로 다음, 즉 '끝'을 가리키는 반복자를 반환" },
+        { "term": "range-based for", "definition": "반복자를 직접 다루지 않고도 모든 요소를 순회할 수 있게 해주는 간결한 문법" }
+      ],
+      "explanation_en": "range-based for is essentially a shorthand for the begin()-to-end() iterator loop, hiding the details while keeping the same behavior.",
+      "explanation_ko": "range-based for는 사실상 begin()부터 end()까지의 반복자 순회를 축약한 문법으로, 세부 사항을 감추면서도 동일하게 동작합니다.",
+      "concept_tags": ["iterator", "range_based_for"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l4_u02_q006",
+      "type": "error_finding",
+      "code": "vector<int> v = {1, 2, 3};\nfor (int x : v) {\n    x = x * 2;\n}\ncout << v[0];",
+      "prompt_en": "If the programmer expected v[0] to become 2 (doubled), what actually goes wrong?",
+      "prompt_ko": "프로그래머가 v[0]이 2(두 배)가 될 것이라 기대했다면, 실제로는 무엇이 잘못됐을까요?",
+      "options": [
+        "range-based for 문법 오류",
+        "x는 각 요소의 복사본이라 x를 바꿔도 원본 벡터 v는 그대로 남아, v[0]은 여전히 1이 출력됨",
+        "곱셈 연산자 오류",
+        "문제 없음, v[0]은 2로 정상 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "By default, range-based for gives a copy of each element; modifying x doesn't affect v. To modify the original, a reference (int &x) is needed.",
+      "explanation_ko": "기본적으로 range-based for는 각 요소의 복사본을 제공합니다. x를 바꿔도 v에는 영향이 없습니다. 원본을 수정하려면 참조자(int &x)가 필요합니다.",
+      "concept_tags": ["range_based_for", "reference"],
+      "difficulty": "challenge"
+    }
+  ]
+}

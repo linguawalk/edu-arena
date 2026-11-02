@@ -1,0 +1,91 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "퀵 정렬",
+  "questions": [
+    {
+      "id": "dsa_l3_u04_q001",
+      "type": "predict_output",
+      "code": "def quick_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quick_sort(left) + middle + quick_sort(right)\n\nprint(quick_sort([5, 2, 8, 1, 9]))",
+      "prompt_en": "What is printed? (Quick sort partitions around a pivot, then sorts each side.)",
+      "prompt_ko": "출력 결과는? (퀵 정렬은 pivot을 기준으로 나눈 뒤, 각 쪽을 정렬합니다.)",
+      "options": ["[1, 2, 5, 8, 9]", "[9, 8, 5, 2, 1]", "[5, 2, 8, 1, 9]", "오류"],
+      "answer": 0,
+      "explanation_en": "Elements smaller than the pivot go left, larger go right, and each side is recursively sorted the same way, producing a fully sorted array: [1, 2, 5, 8, 9].",
+      "explanation_ko": "pivot보다 작은 요소는 왼쪽으로, 큰 요소는 오른쪽으로 가고, 각 쪽은 같은 방식으로 재귀적으로 정렬되어 완전히 정렬된 배열이 됩니다: [1, 2, 5, 8, 9].",
+      "concept_tags": ["quick_sort"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l3_u04_q002",
+      "type": "predict_output",
+      "code": "arr = [5, 2, 8, 1, 9]\npivot = arr[len(arr) // 2]\nprint(pivot)",
+      "prompt_en": "What is printed? (The pivot is chosen from the middle index.)",
+      "prompt_ko": "출력 결과는? (pivot은 중간 인덱스에서 선택됩니다.)",
+      "options": ["8", "5", "9", "2"],
+      "answer": 0,
+      "explanation_en": "len(arr) // 2 is 2 for a 5-element array; arr[2] is 8, the value used to partition the rest of the elements.",
+      "explanation_ko": "5개짜리 배열에서 len(arr) // 2는 2입니다. arr[2]는 8이며, 나머지 요소를 나누는 데 쓰이는 값입니다.",
+      "concept_tags": ["quick_sort", "pivot"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l3_u04_q003",
+      "type": "predict_output",
+      "code": "arr = [5, 2, 8, 1, 9]\npivot = arr[len(arr) // 2]\nleft = [x for x in arr if x < pivot]\nright = [x for x in arr if x > pivot]\nprint(left)\nprint(right)",
+      "prompt_en": "What is printed? (Partitioning around pivot=8.)",
+      "prompt_ko": "출력 결과는? (pivot=8을 기준으로 분할합니다.)",
+      "options": ["[5, 2, 1]\\n[9]", "[9]\\n[5, 2, 1]", "[5, 2, 1, 9]\\n[]", "오류"],
+      "answer": 0,
+      "explanation_en": "With pivot=8, values less than 8 (5, 2, 1) go into left in their original relative order, and values greater than 8 (just 9) go into right.",
+      "explanation_ko": "pivot이 8일 때, 8보다 작은 값(5, 2, 1)은 원래의 상대적 순서대로 left에 들어가고, 8보다 큰 값(9뿐)은 right에 들어갑니다.",
+      "concept_tags": ["quick_sort", "partition"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l3_u04_q004",
+      "type": "fill_blank",
+      "code": "def quick_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quick_sort(left) + ____ + quick_sort(right)",
+      "prompt_en": "Fill in the blank with the variable holding all elements equal to the pivot.",
+      "prompt_ko": "pivot과 같은 값을 가진 모든 요소를 담은 변수를 빈칸에 채우세요.",
+      "options": ["middle", "left", "right", "pivot"],
+      "answer": 0,
+      "explanation_en": "middle holds every element equal to the pivot (handling duplicates correctly); it sits between the recursively sorted left and right halves in the final concatenation.",
+      "explanation_ko": "middle은 pivot과 같은 모든 요소를 담습니다(중복값을 올바르게 처리). 최종 이어붙이기에서 재귀적으로 정렬된 왼쪽과 오른쪽 절반 사이에 놓입니다.",
+      "concept_tags": ["quick_sort", "partition"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l3_u04_q005",
+      "type": "predict_output",
+      "code": "def quick_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quick_sort(left) + middle + quick_sort(right)\n\nprint(quick_sort([3, 3, 3, 1, 2]))",
+      "prompt_en": "What is printed? (Note the duplicate values.)",
+      "prompt_ko": "출력 결과는? (중복된 값에 주의하세요.)",
+      "options": ["[1, 2, 3, 3, 3]", "[3, 3, 3, 1, 2]", "오류", "[1, 2, 3]"],
+      "answer": 0,
+      "explanation_en": "The middle list correctly collects all three 3's together (handling duplicates without losing any), placed between the sorted smaller (1, 2) and larger (none) elements: [1, 2, 3, 3, 3].",
+      "explanation_ko": "middle 리스트는 3이 세 개 모두를 올바르게 모아서(중복을 잃지 않고 처리) 정렬된 더 작은 요소(1, 2)와 더 큰 요소(없음) 사이에 놓습니다: [1, 2, 3, 3, 3].",
+      "concept_tags": ["quick_sort", "duplicate_handling"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l3_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "각 용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "pivot", "definition": "배열을 나누는 기준이 되는 값" },
+        { "term": "partition", "definition": "pivot보다 작은/같은/큰 그룹으로 요소를 나누는 과정" },
+        { "term": "평균 O(n log n)", "definition": "pivot이 배열을 대체로 균형 있게 나눌 때의 복잡도" },
+        { "term": "최악 O(n^2)", "definition": "pivot이 항상 최솟값이나 최댓값이라 한쪽으로 전혀 나뉘지 않을 때" }
+      ],
+      "explanation_en": "Quick sort's worst case (O(n²)) happens with poor pivot choices on already-sorted or specially crafted data — this is why real-world implementations often use randomized or median-based pivot selection instead of a fixed position.",
+      "explanation_ko": "퀵 정렬의 최악의 경우(O(n²))는 이미 정렬됐거나 특별히 조작된 데이터에서 pivot을 잘못 선택했을 때 발생합니다 — 이것이 실무 구현이 고정된 위치 대신 무작위 또는 중앙값 기반 pivot 선택을 자주 쓰는 이유입니다.",
+      "concept_tags": ["quick_sort", "pivot", "partition"],
+      "difficulty": "practice"
+    }
+  ]
+}

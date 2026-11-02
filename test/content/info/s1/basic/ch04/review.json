@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "basic",
+  "work": "풀이",
+  "chapter": {
+    "id": "info-s1-basic-ch04",
+    "no": 4,
+    "title": "완전 탐색"
+  },
+  "review": {
+    "id": "info-s1-basic-ch04-review",
+    "title": "완전 탐색 복습",
+    "minutes": 15
+  },
+  "questions": [
+    {
+      "type": "question",
+      "id": "r1",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "n = 12일 때 아래 코드가 끝난 뒤 cnt의 값은?",
+      "answer": "66",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "C(12, 2)입니다.",
+      "explanation": "j를 i + 1부터 돌리면 서로 다른 두 원소의 쌍을 중복 없이 한 번씩 셉니다.\n쌍의 수는 C(n, 2) = n(n − 1)/2이므로 12 × 11/2입니다.\n= 66입니다.",
+      "code": "int cnt = 0;\nfor (int i = 0; i < n; i++)\n    for (int j = i + 1; j < n; j++)\n        cnt++;                     // 쌍 (i, j)",
+      "source_lesson": "info-s1-basic-ch04-l01"
+    },
+    {
+      "type": "question",
+      "id": "r2",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "카드 [2, 4, 6, 8]에서 3장을 골라 합이 15 이하이면서 가장 큰 값은?",
+      "answer": "14",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "네 가지 조합을 모두 확인하세요.",
+      "explanation": "모든 3장 조합의 합 중 M 이하인 것의 최댓값을 구합니다.\n합은 12, 14, 16, 18입니다.\n15 이하에서 가장 큰 값은 14입니다.",
+      "source_lesson": "info-s1-basic-ch04-l01"
+    },
+    {
+      "type": "question",
+      "id": "r3",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "3 × 3 체스판에 퀸 3개를 서로 공격하지 않게 놓는 방법은 몇 가지인가요?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "가운데 행을 생각해 보세요.",
+      "explanation": "N-Queen 문제의 해는 백트래킹으로 모두 찾습니다.\n3 × 3에서는 두 번째 행의 퀸이 어디에 있어도 첫째나 셋째 행의 퀸과 대각선 또는 열이 겹칩니다.\n그래서 해가 없어 0가지입니다.",
+      "source_lesson": "info-s1-basic-ch04-l02"
+    },
+    {
+      "type": "question",
+      "id": "r4",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "6!의 값은?",
+      "answer": "720",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "6 × 5!입니다.",
+      "explanation": "n!은 1부터 n까지의 정수를 모두 곱한 값으로 n개를 일렬로 세우는 방법의 수입니다.\n6! = 6 × 120입니다.\n= 720입니다.",
+      "source_lesson": "info-s1-basic-ch04-l02"
+    },
+    {
+      "type": "question",
+      "id": "r5",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "7을 이진수로 나타냈을 때 1인 비트는 몇 개인가요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "7 = 111(2)입니다.",
+      "explanation": "비트마스크에서 고른 원소의 개수는 1인 비트의 개수입니다.\n7 = 4 + 2 + 1 = 111(2)입니다.\n1이 3개이므로 3입니다.",
+      "source_lesson": "info-s1-basic-ch04-l03"
+    },
+    {
+      "type": "question",
+      "id": "r6",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "a = [1, 2, 3], S = 3일 때 아래 코드가 끝난 뒤 cnt의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "{3}, {1, 2}입니다.",
+      "explanation": "mask를 0부터 2ⁿ − 1까지 돌리면 모든 부분집합을 한 번씩 확인합니다.\n합이 3인 부분집합은 {3}과 {1, 2}입니다.\n그래서 cnt = 2입니다.",
+      "code": "int cnt = 0;\nfor (int mask = 0; mask < (1 << n); mask++) {\n    int s = 0;\n    for (int i = 0; i < n; i++)\n        if (mask & (1 << i)) s += a[i];   // i번째 비트가 1이면 고름\n    if (s == S) cnt++;\n}",
+      "source_lesson": "info-s1-basic-ch04-l03"
+    },
+    {
+      "type": "question",
+      "id": "r7",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "C(7, 3)의 값은?",
+      "answer": "35",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "7 × 6 × 5/6입니다.",
+      "explanation": "서로 다른 n개에서 순서 없이 k개를 고르는 경우의 수는 C(n, k) = n!/(k!(n − k)!)입니다.\nC(7, 3) = 7 × 6 × 5/6입니다.\n= 35입니다.",
+      "source_lesson": "info-s1-basic-ch04-l04"
+    },
+    {
+      "type": "question",
+      "id": "r8",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "오른쪽으로 3번, 아래로 2번 움직이는 격자 경로의 수는?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "C(5, 3)입니다.",
+      "explanation": "오른쪽 a번, 아래 b번 움직이는 경로의 수는 전체 이동 중 오른쪽 자리를 고르는 C(a + b, a)입니다.\nC(5, 3) = 5 × 4 × 3/6입니다.\n= 10가지입니다.",
+      "source_lesson": "info-s1-basic-ch04-l04"
+    },
+    {
+      "type": "question",
+      "id": "r9",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "원소 10개인 집합의 부분집합(공집합 포함)은 몇 개인가요?",
+      "answer": "1024",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2¹⁰입니다.",
+      "explanation": "원소마다 고르거나 고르지 않는 두 가지 선택이 있으므로 부분집합은 2ⁿ개입니다.\n2¹⁰입니다.\n= 1024개입니다.",
+      "source_lesson": "info-s1-basic-ch04-l03"
+    },
+    {
+      "type": "question",
+      "id": "r10",
+      "stage": "review",
+      "qtype": "proof",
+      "prompt": "1부터 n까지의 수로 만든 순열을 모두 출력하는 재귀 함수가 어떻게 동작하는지 설명하세요.",
+      "model_answer": [
+        "go(d)는 앞의 d자리를 이미 정한 상태에서 나머지 자리를 채운다.",
+        "d == n이면 순열이 완성되었으므로 출력하고 돌아간다.",
+        "아니면 아직 쓰지 않은 수 v를 차례로 d번째 자리에 놓고 used[v]를 표시한 뒤 go(d + 1)을 부른다.",
+        "돌아오면 used[v]를 되돌려 다음 수를 놓아 보며, 이렇게 해서 n!개의 순열을 모두 만든다."
+      ],
+      "criteria": [
+        {
+          "text": "go(d)의 의미를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "종료 조건과 재귀 호출을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "되돌리기와 전체 개수를 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "한 자리를 정하고 나머지를 맡기는 구조를 설명하세요.",
+      "source_lesson": "info-s1-basic-ch04-l02"
+    }
+  ]
+}

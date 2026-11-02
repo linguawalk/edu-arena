@@ -1,0 +1,124 @@
+{
+ "no": 6,
+ "title": "볼록집합과 볼록함수",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "볼록집합과 볼록함수를 정의하고 판정할 수 있다.",
+  "헤세 행렬로 볼록성을 판정할 수 있다.",
+  "볼록 문제에서 국소 최적이 대역 최적임을 증명할 수 있다."
+ ],
+ "checklist": [
+  "볼록집합: 두 점을 잇는 선분이 집합 안에",
+  "예: 반공간, 다면체, 공, 양의 준정부호 행렬 전체",
+  "볼록함수: f(θx + (1 − θ)y) ≤ θf(x) + (1 − θ)f(y)",
+  "1차 조건 f(y) ≥ f(x) + ∇f(x)ᵀ(y − x)",
+  "2차 조건: 헤세 행렬이 양의 준정부호",
+  "볼록성을 보존하는 연산 (합, 최댓값, 아핀 합성)",
+  "볼록 문제: 국소 최적 = 대역 최적"
+ ],
+ "advice": [
+  "'최적화의 큰 경계는 선형과 비선형 사이가 아니라 볼록과 비볼록 사이에 있다'는 것이 Boyd 교재의 핵심 메시지입니다. 볼록 문제는 국소 최적이 곧 대역 최적이라 효율적으로 풀 수 있지만, 비볼록 문제는 일반적으로 매우 어렵습니다.",
+  "헤세 행렬의 양의 준정부호 판정은 레벨2 선형대수 10단원과 같은 계산입니다. 어떤 함수가 볼록인지 판정하는 연습(정의, 1차 조건, 2차 조건, 보존 연산의 네 가지 방법)을 충분히 해 두세요. 실제 문제를 볼록 문제로 바꾸는 능력이 이 분야의 핵심 기술입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cambridge University Press (저자 무료 PDF)",
+   "title": "Boyd · Vandenberghe, Convex Optimization",
+   "url": "https://web.stanford.edu/~boyd/cvxbook/",
+   "lang": "영어",
+   "part": "2장 Convex sets, 3장 Convex functions"
+  },
+  {
+   "kind": "lecture",
+   "provider": "Stanford Engineering Everywhere",
+   "title": "EE364A Convex Optimization I (Stephen Boyd)",
+   "url": "https://see.stanford.edu/Course/EE364A",
+   "lang": "영어",
+   "part": "2강 Convex sets, 3~4강 Convex functions"
+  },
+  {
+   "kind": "lecture",
+   "provider": "KOCW",
+   "title": "수치최적화 (연세대학교 정윤모, 볼록 최적화 중심, 대학원 수준)",
+   "url": "http://www.kocw.net/home/cview.do?mty=p&kemId=433277",
+   "lang": "영어 강의",
+   "part": "볼록 이론"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "f(x) = x³은 ℝ 전체에서 볼록함수일까요? (그렇다 1, 아니다 0)",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "f″(x) = 6x가 x < 0에서 음수",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "헤세 행렬이 [[2, 1], [1, 2]]인 이차함수는 볼록일까요? (그렇다 1, 아니다 0)",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "고유값 3, 1 > 0 (양의 정부호)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "두 볼록함수의 최댓값 max(f, g)는 볼록일까요? (그렇다 1, 아니다 0)",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "볼록성을 보존하는 연산 (에피그래프의 교집합)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "볼록 최적화 문제에서 국소 최적해가 대역 최적해인 이유를 설명해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "국소"
+     ],
+     [
+      "더 좋은",
+      "더 작은",
+      "다른 점"
+     ],
+     [
+      "선분",
+      "잇",
+      "볼록"
+     ],
+     [
+      "모순",
+      "가까이"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "국소 최적해 x보다 더 좋은 가능해 y가 있다면, 볼록성에 의해 x와 y를 잇는 선분 위의 점들도 가능해이고 목적값이 x보다 좋으므로 x에 한없이 가까운 곳에 더 좋은 점이 생겨 국소 최적이라는 가정에 모순입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "applied",
+ "subject": "optimization",
+ "id": "l3-applied-optimization-u06"
+}

@@ -1,0 +1,88 @@
+{
+ "no": 5,
+ "title": "배터리 팩과 BMS",
+ "hours": 5,
+ "after": [
+  4
+ ],
+ "objectives": [
+  "셀의 직렬·병렬 연결로 팩 전압·용량·에너지를 계산할 수 있다.",
+  "BMS의 기능(측정, SOC·SOH 추정, 셀 밸런싱, 보호)을 설명할 수 있다.",
+  "모듈·팩 구조와 셀 투 팩(CTP) 흐름을 설명할 수 있다."
+ ],
+ "checklist": [
+  "직렬(전압 증가)과 병렬(용량 증가): 예 96s3p",
+  "팩 에너지 = 팩 전압 × 팩 용량",
+  "셀 → 모듈 → 팩, 셀 투 팩(CTP)",
+  "BMS: 전압·전류·온도 측정",
+  "SOC(충전 상태)·SOH(건강 상태) 추정",
+  "셀 밸런싱(수동·능동)",
+  "보호: 과충전·과방전·과전류·과열 차단"
+ ],
+ "advice": [
+  "전기차 배터리 팩은 수천 개의 셀을 직렬·병렬로 묶은 시스템이고, 가장 약한 셀이 팩 전체 성능을 제한합니다. 그래서 셀마다 상태를 감시하고 균형을 맞추는 BMS가 '배터리의 두뇌' 역할을 합니다. 96s3p 같은 구성 표기로 팩 전압과 에너지를 계산해 보고, SOC를 정확히 추정하는 일이 왜 어려운지(전압과 SOC의 관계가 평평한 구간) 생각해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "CRC Press",
+   "title": "Ehsani 외, Modern Electric, Hybrid Electric, and Fuel Cell Vehicles (장 제목으로 표기)",
+   "part": "Energy Storages 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "전력전자 4단원 DC–DC 컨버터 (전기 트랙)",
+   "url": "guide.html?lv=3&t=electrical&s=power-electronics&u=4"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "공칭 3.7 V 셀 96개를 직렬로 연결한 팩의 공칭 전압은 몇 V일까요? (소수 첫째 자리까지)",
+   "answer": "355.2",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "3.7 × 96 = 355.2 V",
+   "hint": "직렬은 전압이 더해집니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "50 Ah 셀을 3개씩 병렬로 묶은 96s3p 팩의 에너지는 약 몇 kWh일까요? (소수 첫째 자리까지)",
+   "answer": "53.3",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "355.2 V × 150 Ah ≈ 53 280 Wh ≈ 53.3 kWh",
+   "hint": "팩 전압 × (셀 용량 × 병렬 수)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "직렬로 연결된 셀들의 충전 상태 차이를 줄여 주는 BMS 기능을 셀 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "밸런싱",
+      "균등화"
+     ]
+    }
+   ],
+   "explanation": "수동(저항으로 소모) 방식과 능동(에너지 이동) 방식이 있습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "battery",
+ "id": "l3-convergence-battery-u05"
+}

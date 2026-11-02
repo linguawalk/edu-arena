@@ -1,0 +1,123 @@
+{
+ "no": 5,
+ "title": "MOSFET의 동작과 바이어스",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "MOSFET의 구조와 채널 형성 원리를 설명할 수 있다.",
+  "차단·트라이오드·포화 영역을 구분하고 드레인 전류를 계산할 수 있다.",
+  "MOSFET 바이어스 회로의 동작점을 구할 수 있다."
+ ],
+ "checklist": [
+  "증가형 nMOS·pMOS 구조, 게이트 산화막",
+  "문턱 전압 V_t, 과구동 전압 V_ov = V_GS − V_t",
+  "차단: V_GS < V_t",
+  "트라이오드: V_DS < V_ov, I_D = k_n(V_ov − V_DS/2)V_DS",
+  "포화: V_DS ≥ V_ov, I_D = ½k_n V_ov² (k_n = μ_nC_ox W/L)",
+  "채널 길이 변조(λ)와 바디 효과",
+  "게이트 전류가 거의 0 → 입력 저항이 매우 큼"
+ ],
+ "advice": [
+  "MOSFET은 오늘날 집적회로의 거의 전부를 이루는 소자라서, BJT보다 더 자주 마주치게 됩니다. 계산의 출발점은 V_ov = V_GS − V_t이며, 포화 영역의 제곱 법칙 I_D = ½k_nV_ov²과 포화 조건 V_DS ≥ V_ov 두 개를 확실히 쓰면 대부분의 문제가 풀립니다. BJT와 마찬가지로 영역을 가정하고 계산한 뒤 조건을 확인하는 절차를 그대로 쓰세요.",
+  "MOSFET의 '포화'는 BJT의 포화와 이름은 같지만 뜻이 정반대입니다. MOSFET에서는 전류가 V_DS에 거의 상관없이 일정해지는 영역(증폭에 쓰는 영역)이고, BJT에서는 완전히 켜진 스위치 상태입니다. 이 차이를 처음부터 분명히 해 두면 혼동이 없습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Sedra · Smith, Microelectronic Circuits (번역본 『마이크로 전자회로』, 장 제목으로 표기)",
+   "part": "MOS Field-Effect Transistors (MOSFETs) 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Razavi, Fundamentals of Microelectronics (장 제목으로 표기)",
+   "part": "Physics of MOS Transistors 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.012 Microelectronic Devices and Circuits (2009년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/",
+   "lang": "영어",
+   "part": "MOSFET 관련 강의(lecture 8~11)"
+  },
+  {
+   "kind": "book",
+   "provider": "All About Circuits (무료 온라인 교재)",
+   "title": "Lessons in Electric Circuits, Volume III — Semiconductors",
+   "url": "https://www.allaboutcircuits.com/textbook/semiconductors/",
+   "lang": "영어",
+   "part": "Insulated-gate Field-effect Transistors 장"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "k_n = 2 mA/V², V_t = 1 V인 nMOS를 V_GS = 3 V로 포화 영역에서 동작시키면 드레인 전류는 몇 mA일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "V_ov = 2 V\nI_D = ½ × 2 × 2² = 4 mA",
+   "hint": "I_D = ½k_nV_ov²입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 트랜지스터가 포화 영역에 있으려면 V_DS는 최소 몇 V 이상이어야 할까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "포화 조건 V_DS ≥ V_ov = V_GS − V_t = 2 V",
+   "hint": "V_DS ≥ V_GS − V_t입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "nMOS에서 V_GS가 문턱 전압보다 작으면 채널이 생기지 않아 {{1}} 상태가 됩니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "차단",
+      "오프",
+      "꺼진"
+     ]
+    }
+   ],
+   "explanation": "채널이 없으므로 드레인 전류가 거의 0입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "MOSFET의 게이트는 산화막으로 절연되어 있어 직류 {{1}}가 거의 흐르지 않습니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "전류",
+      "게이트 전류"
+     ]
+    }
+   ],
+   "explanation": "그래서 입력 저항이 매우 크고, 바이어스 저항을 큰 값으로 쓸 수 있습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "electronic-circuits",
+ "id": "l2-electronics-electronic-circuits-u05"
+}

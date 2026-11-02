@@ -1,0 +1,103 @@
+{
+ "no": 2,
+ "title": "기저대역 전송과 ISI, 등화",
+ "hours": 6,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "나이퀴스트 무ISI 조건과 최소 대역폭을 설명할 수 있다.",
+  "상승 코사인 필터의 대역폭을 계산할 수 있다.",
+  "눈 패턴을 해석하고 선형·결정 궤환 등화기의 원리를 설명할 수 있다."
+ ],
+ "checklist": [
+  "심볼 간 간섭(ISI)의 원인: 대역 제한, 다중 경로",
+  "나이퀴스트 조건: 이상적 최소 대역폭 R_s/2",
+  "상승 코사인 필터 대역폭 B = R_s(1 + α)/2, 롤오프 α",
+  "송신·수신 루트 상승 코사인 분할",
+  "눈 패턴: 눈이 크게 열릴수록 판정 여유가 큼",
+  "등화기: 제로 포싱, MMSE, 결정 궤환(DFE)",
+  "적응 등화(LMS)"
+ ],
+ "advice": [
+  "ISI는 '빨리 보내려고 펄스를 촘촘히 놓았더니 앞뒤 펄스가 번져 섞이는' 문제입니다. 나이퀴스트는 판정 순간마다 다른 펄스가 정확히 0이 되도록 펄스 모양을 고르면 섞여도 문제가 없다는 것을 보였고, 그 실용적인 답이 상승 코사인 필터입니다. 롤오프 α를 0에서 1까지 바꾸며 대역폭과 펄스 꼬리가 어떻게 바뀌는지 시뮬레이션해 보고, 실제 오실로스코프의 눈 패턴과 연결해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Proakis · Salehi, Digital Communications (장 제목으로 표기)",
+   "part": "Digital Communication Through Band-Limited Channels, Adaptive Equalization 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Haykin, Communication Systems (번역본 『통신 시스템』, 장 제목으로 표기)",
+   "part": "Signaling over Band-Limited Channels 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.450 Principles of Digital Communications I (2006년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-450-principles-of-digital-communications-i-fall-2006/",
+   "lang": "영어",
+   "part": "Nyquist criterion 관련 강의"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.02 Introduction to EECS II: Digital Communication Systems (2012년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/",
+   "lang": "영어",
+   "part": "ISI, eye diagram 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "심볼율 2 Msymbol/s를 ISI 없이 보내는 데 필요한 이론적 최소 대역폭은 몇 MHz일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "B_min = R_s/2 = 1 MHz",
+   "hint": "나이퀴스트 최소 대역폭입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "심볼율 1 Msymbol/s, 롤오프 0.25인 상승 코사인 필터의 대역폭은 몇 kHz일까요?",
+   "answer": "625",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "B = R_s(1 + α)/2 = 10⁶ × 1.25/2 = 625 kHz",
+   "hint": "R_s(1 + α)/2입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "채널이 일으킨 ISI를 수신 쪽에서 되돌려 없애는 필터를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "등화기"
+     ]
+    }
+   ],
+   "explanation": "채널이 시간에 따라 변하면 적응 등화기를 씁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "digital-comm",
+ "id": "l3-ict-digital-comm-u02"
+}

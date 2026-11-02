@@ -1,0 +1,111 @@
+{
+ "no": 6,
+ "title": "파이프라인과 해저드",
+ "hours": 6,
+ "after": [
+  5
+ ],
+ "objectives": [
+  "5단계 파이프라인의 동작과 이상적인 속도 향상을 계산할 수 있다.",
+  "구조·데이터·제어 해저드를 구분하고 대책을 설명할 수 있다.",
+  "포워딩과 스톨, 분기 예측이 CPI에 주는 영향을 계산할 수 있다."
+ ],
+ "checklist": [
+  "5단계: IF–ID–EX–MEM–WB",
+  "파이프라인 클럭 = 가장 느린 단계, 이상적 CPI = 1",
+  "구조 해저드, 데이터 해저드, 제어 해저드",
+  "포워딩(바이패스)과 적재–사용 해저드의 1클럭 스톨",
+  "분기 예측과 예측 실패 비용",
+  "실제 CPI = 1 + 스톨 사이클/명령어",
+  "슈퍼스칼라와 비순차 실행(개념)"
+ ],
+ "advice": [
+  "파이프라인은 레벨1 컴퓨터 챕터 4에서 개념을 보았고, 여기서는 '왜 이상적인 속도가 나오지 않는가'를 다룹니다. 앞 명령어의 결과를 뒤 명령어가 바로 쓰는 코드를 몇 줄 적고, 파이프라인 도표(클럭 × 단계 표)에 직접 채워 보면 포워딩이 어디서 값을 가로채 주는지, 왜 적재 직후 사용만은 한 클럭 쉬어야 하는지 보입니다.",
+  "스톨이 CPI를 얼마나 늘리는지 '명령어당 평균 스톨 사이클'로 계산하는 습관을 들이세요. 분기 예측 정확도, 적재–사용 비율 같은 숫자가 결국 CPI 하나로 모인다는 점이 1단원 성능 식과 이어집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Patterson · Hennessy, Computer Organization and Design RISC-V Edition (번역본 『컴퓨터 구조 및 설계』, 장 제목으로 표기)",
+   "part": "The Processor 장(pipelining, hazards)"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "pipelined processors 관련 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 4 명령어 실행 사이클",
+   "url": "browse.html?c=c4#ch04",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "단계별 지연이 200, 100, 200, 200, 100 ps인 5단계 파이프라인의 클럭 주기는 몇 ps일까요? (레지스터 오버헤드 무시)",
+   "answer": "200",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "파이프라인 클럭은 가장 느린 단계에 맞춥니다: 200 ps",
+   "hint": "가장 느린 단계입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 파이프라인으로 명령어 10억 개를 실행하면 대략 몇 초 걸릴까요? (스톨 없음, 채우는 시간 무시)",
+   "answer": "0.2",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "10⁹ × 200 ps = 0.2 s\n단일 사이클(0.8 s)보다 4배 빠릅니다.",
+   "hint": "명령어 수 × 클럭입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "명령어의 20%가 적재이고 그 절반 바로 뒤에 결과를 쓰는 명령어가 와서 1클럭씩 스톨합니다. 다른 스톨이 없으면 CPI는 얼마일까요?",
+   "answer": "1.1",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "스톨 = 0.2 × 0.5 × 1 = 0.1\nCPI = 1 + 0.1 = 1.1",
+   "hint": "1 + 명령어당 스톨입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "앞 명령어의 결과를 레지스터에 쓰기 전에 다음 명령어로 바로 전달해 데이터 해저드를 줄이는 기법을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "포워딩",
+      "바이패싱",
+      "바이패스"
+     ]
+    }
+   ],
+   "explanation": "적재–사용 해저드는 포워딩으로도 한 클럭 스톨이 남습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "computer-architecture",
+ "id": "l2-computer-computer-architecture-u06"
+}

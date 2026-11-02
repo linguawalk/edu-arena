@@ -1,0 +1,358 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s1",
+  "track": "phy-kin",
+  "work": "풀이",
+  "track_title": "운동과 물리 수학",
+  "chapter": {
+    "id": "sci-s1-phy-kin-ch01",
+    "no": 1,
+    "title": "차원 분석과 어림"
+  },
+  "lesson": {
+    "id": "sci-s1-phy-kin-ch01-l02",
+    "no": 2,
+    "title": "차원 분석으로 식 찾기",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "역학"
+    ],
+    "competition": "KPhO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "진자의 주기를 차원으로 구하기",
+      "body": [
+        "진자의 주기 T가 줄의 길이 L, 추의 질량 m, 중력가속도 g에만 의존한다고 합시다. T = C L^a m^b g^c로 놓고 양변의 차원을 맞춥니다.",
+        "[T] = T¹이고 우변은 L^a M^b (LT⁻²)^c = L^(a + c) M^b T^(−2c)입니다. 지수를 비교하면 L: a + c = 0, M: b = 0, T: −2c = 1이므로 c = −1/2, a = 1/2, b = 0입니다.",
+        "따라서 T = C√(L/g)입니다. 미분방정식을 풀지 않고도 주기가 질량과 무관하고 길이의 제곱근에 비례한다는 것을 알아냈습니다. 상수 C(실제로는 2π)는 차원 분석으로 정할 수 없습니다."
+      ],
+      "figure": {
+        "widget": "geo",
+        "config": {
+          "elements": [
+            {
+              "t": "seg",
+              "a": [
+                -1.2,
+                0
+              ],
+              "b": [
+                1.2,
+                0
+              ]
+            },
+            {
+              "t": "seg",
+              "a": [
+                0,
+                0
+              ],
+              "b": [
+                0,
+                -3.6
+              ],
+              "dash": true
+            },
+            {
+              "t": "seg",
+              "a": [
+                0,
+                0
+              ],
+              "b": [
+                1.6,
+                -3.2
+              ],
+              "hl": true
+            },
+            {
+              "t": "circle",
+              "c": [
+                1.6,
+                -3.2
+              ],
+              "r": 0.22
+            },
+            {
+              "t": "arc",
+              "p": [
+                0,
+                0
+              ],
+              "a": [
+                0,
+                -3.6
+              ],
+              "b": [
+                1.6,
+                -3.2
+              ],
+              "r": 34,
+              "label": "θ"
+            },
+            {
+              "t": "text",
+              "p": [
+                1.15,
+                -1.4
+              ],
+              "s": "L"
+            },
+            {
+              "t": "vec",
+              "a": [
+                1.6,
+                -3.45
+              ],
+              "b": [
+                1.6,
+                -4.6
+              ],
+              "label": "mg"
+            },
+            {
+              "t": "pt",
+              "p": [
+                0,
+                0
+              ],
+              "hide": true
+            }
+          ],
+          "alt": "길이 L인 줄에 매달린 질량 m의 진자",
+          "maxh": 200
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "진자의 길이를 4배로 하면 주기는 몇 배가 되나요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "T ∝ √L입니다.",
+      "explanation": "차원 분석에서 T = C√(L/g)입니다.\n길이가 4배이면 √4 = 2입니다.\n따라서 주기는 2배가 됩니다. 질량은 식에 없으므로 추를 바꿔도 주기는 그대로입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "차원 분석으로 정할 수 없는 것은 식 앞에 붙는 {{1}} 상수입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "무차원"
+          ]
+        }
+      ],
+      "hint": "2π 같은 수는 차원이 없습니다.",
+      "explanation": "차원 분석은 각 물리량의 지수만 정합니다.\n2π, 1/2 같은 숫자는 차원이 없어서 지수 비교에 나타나지 않습니다.\n그래서 무차원 상수는 실험이나 정확한 풀이로 정해야 합니다."
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "줄을 따라 가는 파동의 속력 v가 장력 F와 줄의 선밀도 μ(단위 길이당 질량)에만 의존할 때 식의 꼴을 구하세요.",
+      "steps": [
+        "v = C F^a μ^b로 놓습니다. [F] = MLT⁻², [μ] = ML⁻¹입니다.",
+        "우변의 차원은 M^(a + b) L^(a − b) T^(−2a)이고 좌변은 LT⁻¹입니다.",
+        "M: a + b = 0, L: a − b = 1, T: −2a = −1이므로 a = 1/2, b = −1/2입니다.",
+        "따라서 v = C√(F/μ)입니다."
+      ],
+      "answer": "v = C√(F/μ)"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "줄의 장력을 9배로 하면 파동의 속력은 몇 배가 되나요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "v ∝ √F입니다.",
+      "explanation": "v = C√(F/μ)이므로 v는 √F에 비례합니다.\n장력이 9배이면 √9 = 3입니다.\n따라서 속력은 3배가 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "높이 h에서 자유낙하하는 시간을 t = C h^a g^b로 쓸 때 b를 분수로 쓰세요.",
+      "answer": "-1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "[g] = LT⁻²이고 좌변은 T입니다.",
+      "explanation": "우변의 차원은 L^(a + b) T^(−2b)입니다.\nT: −2b = 1이므로 b = −1/2이고, L: a + b = 0이므로 a = 1/2입니다.\n따라서 t = C√(h/g)이고 b = −1/2입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "무차원 조합이 남는 경우",
+      "body": [
+        "변수 중 같은 차원이 둘 이상 있으면 차원 분석만으로 식이 정해지지 않습니다. 예를 들어 진자가 진폭 θ₀(무차원)에도 의존하면 T = √(L/g) × f(θ₀)이고, 함수 f는 알 수 없습니다.",
+        "일반적으로 물리량이 n개이고 기본 차원이 k개이면 서로 독립인 무차원 조합이 n − k개 생깁니다(버킹엄 π 정리). 식은 '무차원 조합 하나 = 나머지 무차원 조합들의 함수' 꼴이 됩니다.",
+        "그래서 차원 분석은 변수가 적을 때 강력합니다. 경시 문제에서는 '어떤 양에만 의존한다'는 조건이 주어지는지 먼저 확인하세요."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "어떤 현상이 물리량 5개로 기술되고 기본 차원이 M, L, T 3개일 때 독립인 무차원 조합은 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n − k개입니다.",
+      "explanation": "버킹엄 π 정리에 의해 무차원 조합의 수는 n − k입니다.\n5 − 3입니다.\n= 2개이고, 식은 π₁ = f(π₂) 꼴이 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "원운동의 구심가속도를 a = C v^p r^q로 쓸 때 p는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "[a] = LT⁻², [v] = LT⁻¹, [r] = L입니다.",
+      "explanation": "우변의 차원은 L^(p + q) T^(−p)입니다.\nT: −p = −2이므로 p = 2이고, L: p + q = 1이므로 q = −1입니다.\n따라서 a = Cv²/r이고 p = 2입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "폭발의 반지름",
+      "body": [
+        "핵폭발 사진만 보고 폭발 에너지를 어림한 테일러의 계산이 유명합니다. 불덩이의 반지름 R이 에너지 E, 시간 t, 공기 밀도 ρ에만 의존한다고 놓습니다.",
+        "R = C E^a t^b ρ^c에서 [E] = ML²T⁻², [ρ] = ML⁻³입니다. M: a + c = 0, L: 2a − 3c = 1, T: −2a + b = 0을 풀면 a = 1/5, b = 2/5, c = −1/5입니다.",
+        "따라서 R = C(Et²/ρ)^(1/5)입니다. 사진에서 R과 t를 읽으면 E를 구할 수 있습니다. 이처럼 차원 분석은 실제 연구에서도 첫 어림으로 쓰입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 설명에서 R ∝ E^a t^b ρ^c일 때 b를 분수로 쓰세요.",
+      "answer": "2/5",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "M, L, T 세 식을 세우세요.",
+      "explanation": "M: a + c = 0, L: 2a − 3c = 1, T: −2a + b = 0입니다.\nc = −a를 넣으면 5a = 1이므로 a = 1/5입니다.\nb = 2a = 2/5입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "구하는 양을 '상수 × 변수들의 거듭제곱'으로 놓고 M, L, T의 지수를 비교하면 연립일차방정식이 됩니다.",
+        "차원 분석은 무차원 상수(2π 등)를 정하지 못합니다. 같은 차원의 변수가 여럿이면 무차원 조합의 함수가 남습니다.",
+        "결과로 얻는 비례 관계(T ∝ √L, v ∝ √F 등)만으로도 '몇 배가 되는가' 문제는 바로 풀 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "행성의 공전 주기 T가 궤도 반지름 r, 중력 상수 G, 태양 질량 M에만 의존할 때, r을 4배로 하면 T는 몇 배가 되나요?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "[G] = M⁻¹L³T⁻²입니다. T ∝ r^a를 구하세요.",
+      "explanation": "T = C r^a G^b M^c에서 T: −2b = 1이므로 b = −1/2, M: −b + c = 0이므로 c = −1/2, L: a + 3b = 0이므로 a = 3/2입니다.\nT ∝ r^(3/2)이므로 4^(3/2)입니다.\n= 8배이고, 케플러 제3법칙과 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "물방울의 진동수 f가 표면장력 σ(차원 MT⁻²), 밀도 ρ, 반지름 r에만 의존할 때 f ∝ σ^a ρ^b r^c입니다. c를 분수로 쓰세요.",
+      "answer": "-3/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "[f] = T⁻¹입니다.",
+      "explanation": "T: −2a = −1이므로 a = 1/2, M: a + b = 0이므로 b = −1/2입니다.\nL: −3b + c = 0이므로 c = 3b = −3/2입니다.\n따라서 f ∝ √(σ/(ρr³))입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "진자의 주기 T가 길이 L, 질량 m, 중력가속도 g에만 의존한다고 할 때 T = C√(L/g)임을 차원 분석으로 보이세요.",
+      "model_answer": [
+        "T = C L^a m^b g^c로 놓는다. (C는 무차원 상수)",
+        "우변의 차원은 L^a M^b (LT⁻²)^c = L^(a + c) M^b T^(−2c)이고 좌변은 T이다.",
+        "지수를 비교하면 a + c = 0, b = 0, −2c = 1이다.",
+        "c = −1/2, a = 1/2, b = 0이므로 T = C√(L/g)이다."
+      ],
+      "criteria": [
+        {
+          "text": "거듭제곱 꼴로 놓았다",
+          "points": 1
+        },
+        {
+          "text": "양변의 차원을 썼다",
+          "points": 2
+        },
+        {
+          "text": "지수 방정식을 세웠다",
+          "points": 2
+        },
+        {
+          "text": "풀어서 결론을 얻었다",
+          "points": 1
+        }
+      ],
+      "hint": "각 물리량의 차원을 [L], [M], [T]로 쓰고 지수를 비교하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "줄을 따라 가는 파동의 속력 v가 장력 F와 선밀도 μ에만 의존할 때 v = C√(F/μ)임을 보이세요.",
+      "model_answer": [
+        "v = C F^a μ^b로 놓는다. [F] = MLT⁻², [μ] = ML⁻¹이다.",
+        "우변의 차원은 M^(a + b) L^(a − b) T^(−2a)이고 좌변은 LT⁻¹이다.",
+        "M: a + b = 0, L: a − b = 1, T: −2a = −1이다.",
+        "a = 1/2, b = −1/2이므로 v = C√(F/μ)이다."
+      ],
+      "criteria": [
+        {
+          "text": "F와 μ의 차원을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "지수 방정식을 세웠다",
+          "points": 2
+        },
+        {
+          "text": "풀어서 결론을 얻었다",
+          "points": 2
+        }
+      ],
+      "hint": "선밀도는 질량 ÷ 길이입니다."
+    }
+  ]
+}

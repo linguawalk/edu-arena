@@ -1,0 +1,96 @@
+{
+  "language": "rust",
+  "category": "system_low_level",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "match 패턴 매칭 심화",
+  "questions": [
+    {
+      "id": "rust_l3_u02_q001",
+      "type": "predict_output",
+      "code": "let x = 5;\nlet result = match x {\n    1..=3 => \"작음\",\n    4..=6 => \"중간\",\n    _ => \"큼\",\n};\nprintln!(\"{}\", result);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["작음", "중간", "큼", "5"],
+      "answer": 1,
+      "explanation_en": "match can compare against inclusive ranges; 5 falls within 4..=6, so 중간 is selected.",
+      "explanation_ko": "match는 포함 범위와 비교할 수 있습니다. 5는 4..=6 범위에 속하므로 중간이 선택됩니다.",
+      "concept_tags": ["match", "match_range"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l3_u02_q002",
+      "type": "fill_blank",
+      "code": "let x = 10;\nlet result = match x {\n    1..=5 => \"작음\",\n    ____ => \"기타\",\n};\nprintln!(\"{}\", result);",
+      "prompt_en": "Fill in the blank with the pattern that matches any value not covered by earlier arms.",
+      "prompt_ko": "앞선 분기에서 다루지 않은 모든 값을 처리하는 패턴을 빈칸에 채우세요.",
+      "options": ["_", "*", "any", "else"],
+      "answer": 0,
+      "explanation_en": "The underscore _ is a catch-all pattern that matches anything, commonly used as the final arm to satisfy match's exhaustiveness requirement.",
+      "explanation_ko": "밑줄 _는 모든 값에 매칭되는 포괄 패턴으로, match의 완전성 요구를 만족시키기 위해 보통 마지막 분기로 사용됩니다.",
+      "concept_tags": ["match"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l3_u02_q003",
+      "type": "predict_output",
+      "code": "let pair = (0, -2);\nmatch pair {\n    (0, y) => println!(\"x는 0, y는 {}\", y),\n    (x, 0) => println!(\"y는 0, x는 {}\", x),\n    _ => println!(\"둘 다 0이 아님\"),\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["x는 0, y는 -2", "y는 0, x는 0", "둘 다 0이 아님", "오류"],
+      "answer": 0,
+      "explanation_en": "match can destructure tuples directly; pair's first element is 0, matching the first arm's pattern (0, y), which binds y to -2.",
+      "explanation_ko": "match는 튜플을 직접 분해할 수 있습니다. pair의 첫 요소가 0이므로 첫 번째 분기 패턴 (0, y)와 일치해, y가 -2에 바인딩됩니다.",
+      "concept_tags": ["match", "destructuring"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l3_u02_q004",
+      "type": "predict_output",
+      "code": "let num = Some(4);\nmatch num {\n    Some(x) if x % 2 == 0 => println!(\"짝수: {}\", x),\n    Some(x) => println!(\"홀수: {}\", x),\n    None => println!(\"없음\"),\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["짝수: 4", "홀수: 4", "없음", "오류"],
+      "answer": 0,
+      "explanation_en": "The if x % 2 == 0 part is a match guard, an extra condition attached to a pattern; since 4 is even, the first arm matches.",
+      "explanation_ko": "if x % 2 == 0 부분은 패턴에 추가 조건을 붙이는 매치 가드입니다. 4는 짝수이므로 첫 번째 분기가 선택됩니다.",
+      "concept_tags": ["match", "match_guard"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l3_u02_q005",
+      "type": "error_finding",
+      "code": "let x = 5;\nlet result = match x {\n    1..=5 => \"작음\",\n    6..=10 => \"중간\",\n};\nprintln!(\"{}\", result);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "범위 문법 오류",
+        "1..=5와 6..=10 두 범위 바깥의 값(예: 0이나 11)을 처리할 분기가 없어서, 완전성 검사에 걸려 컴파일 오류가 발생함",
+        "match 자체가 지원되지 않음",
+        "문제 없음, 5는 첫 분기에 매칭되어 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Even though x happens to be 5 (which matches), the compiler checks all possible i32 values, not just the ones actually used; without a catch-all _, values outside both ranges are unhandled.",
+      "explanation_ko": "지금 x가 마침 5(매칭됨)라 해도, 컴파일러는 실제 사용된 값이 아니라 i32가 가질 수 있는 모든 값을 기준으로 검사합니다. 포괄 패턴 _가 없으면 두 범위 밖의 값은 처리되지 않은 채로 남습니다.",
+      "concept_tags": ["match", "exhaustiveness"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l3_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "범위 패턴 (1..=5)", "definition": "값이 특정 범위 안에 속하는지로 매칭하는 패턴" },
+        { "term": "_ (포괄 패턴)", "definition": "다른 어떤 분기에도 매칭되지 않은 값을 모두 처리하는 패턴" },
+        { "term": "구조 분해", "definition": "튜플이나 열거형의 내부 값을 패턴으로 직접 꺼내는 것" },
+        { "term": "매치 가드", "definition": "패턴에 if 조건을 추가로 붙여 더 세밀하게 매칭하는 기능" }
+      ],
+      "explanation_en": "match's pattern matching goes well beyond simple equality checks, combining ranges, destructuring, and guards into a single powerful control-flow tool.",
+      "explanation_ko": "match의 패턴 매칭은 단순한 동등 비교를 훨씬 넘어서, 범위·구조 분해·가드를 하나의 강력한 제어 흐름 도구로 결합합니다.",
+      "concept_tags": ["match", "match_range", "match_guard", "destructuring"],
+      "difficulty": "practice"
+    }
+  ]
+}

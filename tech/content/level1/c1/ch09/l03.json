@@ -1,0 +1,365 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c1",
+  "title": "전기전자"
+ },
+ "chapter": {
+  "id": "c1-ch09",
+  "no": 9,
+  "title": "논리 게이트와 조합회로"
+ },
+ "lesson": {
+  "id": "c1-ch09-l03",
+  "no": 3,
+  "title": "조합 논리 설계",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "전기전자"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "원하는 동작을 회로로",
+   "body": [
+    "조합 논리회로는 지금 들어온 입력만으로 출력이 정해지는 회로입니다. 설계는 원하는 동작을 말로 정리하고, 진리표로 옮기고, 논리식을 세운 뒤, 게이트로 그리는 순서로 합니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "ordering",
+   "prompt": "조합 논리회로를 설계하는 순서입니다. 차례대로 배열하세요.",
+   "items": [
+    {
+     "id": "a",
+     "text": "논리식을 세운다"
+    },
+    {
+     "id": "b",
+     "text": "원하는 동작을 말로 정리한다"
+    },
+    {
+     "id": "c",
+     "text": "게이트로 회로를 그린다"
+    },
+    {
+     "id": "d",
+     "text": "진리표를 만든다"
+    }
+   ],
+   "answer_order": [
+    "b",
+    "d",
+    "a",
+    "c"
+   ],
+   "hint": "모든 경우를 표로 정리하는 단계가 식보다 먼저입니다.",
+   "explanation": "말로 정리한 동작을 진리표로 빠짐없이 옮깁니다.\n진리표에서 논리식을 세우고, 식대로 게이트를 연결합니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "논리식",
+   "body": [
+    "논리식에서 AND는 곱처럼 A·B로, OR는 합처럼 A + B로, NOT은 A'(또는 A 위에 막대)로 씁니다.",
+    "계산 순서는 보통 수식처럼 NOT, AND, OR 순입니다. Y = A·B + C는 'A와 B가 모두 1이거나, C가 1이면 Y는 1'이라는 뜻입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "Y = A·B + C에서 A = 1, B = 0, C = 1이면 Y는?",
+   "steps": [
+    "A·B = 1·0 = 0입니다.",
+    "Y = 0 + 1 = 1입니다."
+   ],
+   "answer": "1"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "논리식에서 A·B는 {{1}} 연산을 뜻합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "AND"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "·는 AND, +는 OR, '는 NOT을 나타냅니다.\nA·B는 A와 B가 모두 1일 때 1입니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "Y = A + B·C에서 A = 0, B = 1, C = 1이면 Y는 얼마일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "B·C = 1입니다.\nY = 0 + 1 = 1입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "Y = (A + B)·C에서 A = 1, B = 0, C = 0이면 Y는 얼마일까요?",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "A + B = 1입니다.\nY = 1·0 = 0입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "Y = A'·B에서 A = 0, B = 1이면 Y는 얼마일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "A' = 1입니다.\nY = 1·1 = 1입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "진리표에서 식 세우기",
+   "body": [
+    "진리표에서 출력이 1인 행을 찾아, 각 행의 입력 조합을 AND로 쓴 뒤 모두 OR로 묶습니다. 이를 곱의 합이라고 합니다. 입력이 0인 변수는 NOT을 붙입니다.",
+    "예를 들어 입력 3개 가운데 두 개 이상이 1이면 1을 내는 다수결 회로는 Y = A·B + B·C + C·A로 간단히 쓸 수 있습니다. 두 입력이 1인 경우 가운데 어느 쪽이든 걸리면 1이 됩니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "다수결 회로 Y = A·B + B·C + C·A에 1, 0, 1을 넣으면?",
+   "steps": [
+    "A·B = 0, B·C = 0입니다.",
+    "C·A = 1·1 = 1입니다.",
+    "Y = 0 + 0 + 1 = 1입니다."
+   ],
+   "answer": "1"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "출력이 1인 행의 AND 항들을 OR로 묶은 식을 {{1}}의 합이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "곱"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "AND 항(곱)들을 OR(합)로 묶으므로 곱의 합입니다.\n진리표에서 식을 세우는 가장 기본적인 방법입니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "다수결 회로에 0, 1, 0을 넣으면 출력은 얼마일까요?",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1이 하나뿐이므로 두 개 이상이 1이라는 조건을 채우지 못합니다.\n출력은 0입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "입력 3개 다수결 회로의 진리표 8행 가운데 출력이 1인 행은 몇 개일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1이 두 개인 조합 3가지(110, 101, 011)와 세 개인 조합 1가지(111)입니다.\n모두 4행입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "드모르간 법칙에 따르면 (A·B)' = A' {{1}} B'입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "+"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "AND 전체를 뒤집으면 각각을 뒤집은 OR가 됩니다.\n(A·B)' = A' + B'입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "간단하게 만들기",
+   "body": [
+    "드모르간 법칙은 (A·B)' = A' + B', (A + B)' = A'·B'입니다. 전체에 붙은 NOT을 안으로 넣으면 AND와 OR가 서로 바뀝니다.",
+    "논리식을 법칙으로 간단히 만들면 게이트 수가 줄어 회로가 작고 빠르고 싸집니다. 오늘날에는 이런 간소화를 설계 소프트웨어가 대신해 주지만, 원리를 알아야 결과를 확인할 수 있습니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "드모르간 법칙에 따르면 (A + B)' = A' {{1}} B'입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "·",
+      "AND",
+      "*"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "OR 전체를 뒤집으면 각각을 뒤집은 AND가 됩니다.\n(A + B)' = A'·B'입니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "세탁기 모터는 문이 닫히고(D), 물이 차 있고(W), 시작 버튼이 눌렸을(S) 때만 돕니다. 논리식은?",
+   "steps": [
+    "세 조건이 모두 1이어야 합니다.",
+    "모두 1일 때만 1인 것은 AND입니다.",
+    "Y = D·W·S입니다."
+   ],
+   "answer": "Y = D·W·S"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 예제에서 D = 1, W = 1, S = 0이면 모터 출력 Y는 얼마일까요?",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "AND는 하나라도 0이면 0입니다.",
+   "explanation": "Y = 1·1·0 = 0입니다.\n시작 버튼을 누르지 않았으므로 모터는 돌지 않습니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "문이 열려 있거나(A) 안전벨트를 매지 않았으면(B) 경고음을 울리는 식은 Y = A {{1}} B입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "+"
+     ]
+    }
+   ],
+   "hint": "'또는'은 어떤 연산일까요?",
+   "explanation": "둘 가운데 하나라도 참이면 울려야 하므로 OR입니다.\nY = A + B입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "Y = A·B' + A'·B에서 A = 1, B = 1이면 Y는 얼마일까요?",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "B'와 A'부터 구하세요.",
+   "explanation": "A·B' = 1·0 = 0, A'·B = 0·1 = 0입니다.\nY = 0입니다. 이 식은 XOR와 같습니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "다수결 회로 Y = A·B + B·C + C·A를 만들려면 2입력 AND 게이트가 몇 개 필요할까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "식의 AND 항 개수를 세세요.",
+   "explanation": "AND 항이 A·B, B·C, C·A 세 개입니다.\n2입력 AND 게이트 3개와 이를 묶을 OR 게이트가 필요합니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "Y = (A·B)'에서 A = 1, B = 0이면 Y는 얼마일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "괄호 안을 먼저 계산하세요.",
+   "explanation": "A·B = 0입니다.\n뒤집으면 Y = 1입니다. 드모르간으로 A' + B' = 0 + 1 = 1과 같습니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "논리회로를 설계할 때 논리식보다 진리표를 먼저 만드는 이유를 설명해 보세요.",
+   "hint": "진리표에는 어떤 것들이 빠짐없이 들어가는지 생각해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "진리표"
+     ],
+     [
+      "모든",
+      "모두",
+      "경우",
+      "조합"
+     ],
+     [
+      "빠짐",
+      "빠뜨리",
+      "확인",
+      "정확",
+      "실수"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "진리표는 입력의 모든 조합과 그때의 출력을 빠짐없이 적은 표입니다. 먼저 진리표를 만들면 원하는 동작을 모든 경우에 대해 확인할 수 있어, 식을 세울 때 경우를 빠뜨리는 실수를 막을 수 있습니다."
+  }
+ ]
+}

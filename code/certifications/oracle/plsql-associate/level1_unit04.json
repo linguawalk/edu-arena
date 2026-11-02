@@ -1,0 +1,103 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "복합 데이터 타입: 레코드와 연관 배열",
+  "rule_summary_ko": "연관 배열(associative array, 예전 이름 index-by table)은 PLS_INTEGER나 VARCHAR2를 키로 사용하는 키-값 컬렉션으로, 키가 연속적이지 않아도(희소 인덱스) 되고 크기를 미리 정할 필요가 없습니다. 문법은 TYPE 타입명 IS TABLE OF 요소타입 INDEX BY 키타입;입니다. 레코드(RECORD)는 서로 다른 타입의 필드를 하나로 묶은 사용자 정의 복합 타입으로, %ROWTYPE도 레코드의 한 형태입니다.",
+  "examples": [
+    { "code": "TYPE emp_salary_t IS TABLE OF NUMBER INDEX BY PLS_INTEGER;\nv_sal emp_salary_t;\nv_sal(101) := 50000;\nv_sal(205) := 60000; -- 101과 205 사이 인덱스가 없어도 됨(희소)", "note_ko": "연관 배열은 인덱스가 연속적이지 않아도 되며, 미리 크기를 선언할 필요가 없음" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l1_u4_q001",
+      "type": "concept_matching_item",
+      "code": "TYPE emp_salary_t IS TABLE OF NUMBER INDEX BY PLS_INTEGER;\nv_sal emp_salary_t;\nv_sal(101) := 50000;\nv_sal(500) := 60000;",
+      "prompt_ko": "인덱스 101과 500 사이의 값들을 채우지 않고 건너뛴 이 코드는 유효합니까?",
+      "options": [
+        "유효하지 않다 — 연관 배열은 인덱스가 반드시 연속적이어야 한다",
+        "유효하다 — 연관 배열은 희소(sparse) 인덱스를 지원해서, 중간 인덱스를 채우지 않고 건너뛰어도 문제없다",
+        "컴파일 오류가 발생한다",
+        "500번 인덱스에 접근하면 자동으로 0이 채워진다"
+      ],
+      "answer": 1,
+      "explanation_ko": "연관 배열은 배열처럼 연속된 메모리가 필요 없어, 원하는 인덱스만 골라서 사용할 수 있습니다.",
+      "concept_tags": ["associative_array", "sparse_index"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l1_u4_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "연관 배열을 선언할 때 키(인덱스)로 사용할 수 있는 데이터 타입은?",
+      "options": [
+        "DATE 타입만 가능하다",
+        "PLS_INTEGER(정수) 또는 VARCHAR2(문자열)", "BOOLEAN만 가능하다", "연관 배열은 키 타입을 지정할 필요가 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "연관 배열의 키는 PLS_INTEGER 또는 VARCHAR2(문자열) 타입만 가능합니다.",
+      "concept_tags": ["associative_array_key_type"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l1_u4_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "연관 배열의 예전(구) 명칭은 무엇입니까? (영문으로 입력, 하이픈 포함 두 단어 조합)",
+      "expected_answers": ["index-by table", "index by table"],
+      "explanation_ko": "연관 배열은 예전에 'index-by table' 또는 'PL/SQL table'이라 불렸습니다.",
+      "concept_tags": ["associative_array_old_name"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l1_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "연관 배열에 대한 설명으로 옳지 않은 것은?",
+      "options": [
+        "키-값 쌍으로 데이터를 저장한다",
+        "선언 시 크기를 미리 지정할 필요가 없다",
+        "SQL의 INSERT·UPDATE·DELETE 같은 DML 문으로 직접 조작할 수 있다",
+        "PL/SQL 블록 안에서만 사용되는 메모리 상의 구조다(디스크에 저장되지 않음)"
+      ],
+      "answer": 2,
+      "explanation_ko": "연관 배열은 메모리 상의 PL/SQL 구조라서 DML로 직접 조작할 수 없으며, PL/SQL 코드로 값을 대입·조회해야 합니다.",
+      "concept_tags": ["associative_array_limitations"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l1_u4_q005",
+      "type": "concept_matching_item",
+      "code": "DECLARE\n    TYPE emp_rec_t IS RECORD (\n        emp_name VARCHAR2(50),\n        salary NUMBER\n    );\n    v_emp emp_rec_t;\nBEGIN\n    v_emp.emp_name := 'Kim';\n    v_emp.salary := 5000;\nEND;",
+      "prompt_ko": "RECORD 타입에 대한 설명으로 옳은 것은?",
+      "options": [
+        "레코드는 서로 다른 데이터 타입의 필드들을 하나의 논리적 단위로 묶은 사용자 정의 복합 타입이다",
+        "레코드는 오직 한 가지 데이터 타입의 값만 저장할 수 있다",
+        "레코드는 여러 행을 저장하는 컬렉션이다",
+        "레코드는 테이블과 완전히 동일한 개념이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "레코드는 이름과 급여처럼 서로 다른 타입의 관련 데이터를 하나의 변수로 묶어서 다루게 해줍니다.",
+      "concept_tags": ["record_type"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l1_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "%ROWTYPE으로 선언한 변수와, 사용자 정의 RECORD 타입의 관계는?",
+      "options": [
+        "%ROWTYPE으로 선언된 변수도 레코드의 한 형태이며, 다만 필드가 테이블(또는 커서)의 컬럼 구조를 그대로 따른다는 점이 다르다",
+        "%ROWTYPE과 RECORD는 완전히 무관한 별개의 개념이다",
+        "%ROWTYPE은 연관 배열의 한 종류다",
+        "%ROWTYPE으로는 필드에 개별 접근할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "%ROWTYPE도 레코드의 일종이며, 직접 필드를 정의하는 대신 테이블·커서의 구조를 그대로 가져온다는 점이 사용자 정의 RECORD와의 차이입니다.",
+      "concept_tags": ["rowtype_vs_record"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "cisco",
+  "exam": "ccna-200-301",
+  "level": 4,
+  "unit": 2,
+  "unit_title": "DHCP와 DNS",
+  "rule_summary_ko": "DHCP는 DORA(Discover→Offer→Request→Acknowledge)라는 4단계 브로드캐스트 교환 과정으로 클라이언트에게 IP 주소·서브넷 마스크·기본 게이트웨이·DNS 서버 정보를 자동으로 할당합니다(UDP 67/68 포트 사용). DNS(Domain Name System)는 사람이 기억하기 쉬운 도메인 이름(예: www.example.com)을 실제 통신에 필요한 IP 주소로 변환해주는 시스템입니다.",
+  "examples": [
+    { "code": "노트북이 새 네트워크에 연결됨", "note_ko": "Discover(요청 방송) → Offer(서버가 IP 제안) → Request(클라이언트가 수락 요청) → Acknowledge(서버가 최종 확인)의 4단계를 거쳐 IP를 자동 할당받음" }
+  ],
+  "questions": [
+    {
+      "id": "ccna_l4_u2_q001",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "DHCP가 클라이언트에게 IP 주소를 할당하는 4단계 과정의 이름(각 단계 앞글자를 딴 약어)은 무엇입니까? (영문 4글자로 입력)",
+      "expected_answers": ["DORA"],
+      "explanation_ko": "Discover, Offer, Request, Acknowledge의 앞글자를 딴 DORA입니다.",
+      "concept_tags": ["dhcp_dora"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "ccna_l4_u2_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "DHCP DORA 과정의 올바른 순서는?",
+      "options": [
+        "Discover(클라이언트가 서버를 찾음) → Offer(서버가 IP를 제안) → Request(클라이언트가 수락 요청) → Acknowledge(서버가 최종 확인)",
+        "Offer → Discover → Acknowledge → Request",
+        "Request → Discover → Offer → Acknowledge",
+        "DORA에는 정해진 순서가 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "이 4단계는 항상 이 순서로 진행됩니다.",
+      "concept_tags": ["dora_order"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l4_u2_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "DHCP DORA 메시지(특히 Discover)는 일반적으로 어떤 방식으로 전송됩니까?",
+      "options": [
+        "브로드캐스트 — 클라이언트는 아직 어느 서버가 있는지 몰라서, 네트워크 전체에 요청을 뿌린다",
+        "유니캐스트 — 처음부터 특정 서버로만 전송된다",
+        "DHCP는 메시지를 전혀 전송하지 않는다",
+        "항상 이메일로 전송된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "클라이언트는 처음에 DHCP 서버의 위치를 모르므로 브로드캐스트로 요청을 보냅니다.",
+      "concept_tags": ["dhcp_broadcast"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l4_u2_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "DNS(Domain Name System)의 핵심 역할은?",
+      "options": [
+        "사람이 기억하기 쉬운 도메인 이름을 실제 통신에 필요한 IP 주소로 변환한다",
+        "IP 주소를 자동으로 할당한다(DHCP와 혼동)",
+        "이메일을 암호화한다",
+        "웹 페이지의 디자인을 렌더링한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "DNS 덕분에 사용자는 숫자로 된 IP 주소를 외우지 않고도 도메인 이름으로 웹사이트에 접속할 수 있습니다.",
+      "concept_tags": ["dns_purpose"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "ccna_l4_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "DHCP 서버가 클라이언트의 IP 요청을 받아들일 수 없을 때(예: 요청한 IP가 이미 사용 중) 보내는 메시지는?",
+      "options": ["DHCPACK(수락 확인)", "DHCPNAK(거부 응답) — 클라이언트는 이를 받으면 DORA 과정을 처음부터 다시 시작해야 한다", "DHCPOFFER를 다시 보낸다", "아무 응답도 보내지 않는다"],
+      "answer": 1,
+      "explanation_ko": "DHCPNAK를 받으면 클라이언트는 새로운 Discover 메시지부터 다시 시작해야 합니다.",
+      "concept_tags": ["dhcpnak"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l4_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "DHCP 임대(lease) 시간이 의미하는 것은?",
+      "options": [
+        "클라이언트가 할당받은 IP 주소를 갱신 없이 계속 사용할 수 있는 기간으로, 이 기간이 지나면 갱신하거나 IP를 반납해야 한다",
+        "DHCP 서버가 켜져 있는 시간을 의미한다",
+        "임대 시간은 항상 무제한이다",
+        "임대 시간은 DNS 조회와 관련된 개념이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "임대 시간이 만료되면 클라이언트는 갱신(주로 유니캐스트)하거나 새로운 DORA 과정을 거쳐야 합니다.",
+      "concept_tags": ["dhcp_lease"],
+      "difficulty": "practice"
+    }
+  ]
+}

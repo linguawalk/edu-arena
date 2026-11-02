@@ -1,0 +1,91 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "while과 break/continue/else",
+  "questions": [
+    {
+      "id": "python_l2_u03_q001",
+      "type": "predict_output",
+      "code": "i = 0\nwhile i < 3:\n    print(i, end=\"\")\n    i += 1",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["012", "123", "0123", "무한 반복"],
+      "answer": 0,
+      "explanation_en": "while checks the condition before each iteration, printing 0, 1, 2 and stopping once i reaches 3. Note Python has no i++, only i += 1.",
+      "explanation_ko": "while은 매 반복 전에 조건을 검사합니다. 0, 1, 2를 출력하고 i가 3이 되면 멈춥니다. Python에는 i++이 없고 i += 1만 있는 점에 유의하세요.",
+      "concept_tags": ["while_loop"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l2_u03_q002",
+      "type": "predict_output",
+      "code": "for i in range(1, 11):\n    if i == 5:\n        break\n    print(i, end=\"\")",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1234", "12345", "12345678910", "5"],
+      "answer": 0,
+      "explanation_en": "break immediately terminates the loop once i reaches 5, so only 1, 2, 3, 4 are printed.",
+      "explanation_ko": "break는 i가 5가 되는 순간 반복문을 즉시 종료시킵니다. 따라서 1, 2, 3, 4까지만 출력됩니다.",
+      "concept_tags": ["break"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l2_u03_q003",
+      "type": "predict_output",
+      "code": "for i in range(5):\n    if i == 10:\n        break\n    print(i, end=\"\")\nelse:\n    print(\" - 정상 종료\")",
+      "prompt_en": "What is printed? (Python's for loops can have an else clause — unique among the languages covered so far.)",
+      "prompt_ko": "출력 결과는? (Python의 for문은 else절을 가질 수 있습니다 — 지금까지 다룬 언어 중 유일합니다.)",
+      "options": ["01234", "01234 - 정상 종료", "10", "오류"],
+      "answer": 1,
+      "explanation_en": "A for loop's else clause runs only if the loop completes without hitting break; since i never equals 10, the loop finishes normally and 정상 종료 is printed.",
+      "explanation_ko": "for문의 else절은 break를 만나지 않고 반복문이 끝까지 완료됐을 때만 실행됩니다. i가 10이 되는 일이 없으므로 반복문이 정상적으로 끝나 정상 종료가 출력됩니다.",
+      "concept_tags": ["for_else"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l2_u03_q004",
+      "type": "predict_output",
+      "code": "for i in range(5):\n    if i == 3:\n        break\n    print(i, end=\"\")\nelse:\n    print(\" - 정상 종료\")\nprint(\" - 끝\")",
+      "prompt_en": "What is printed? (Compare with the previous example — this time break is actually hit.)",
+      "prompt_ko": "출력 결과는? (이전 예제와 비교해보세요 — 이번엔 실제로 break가 실행됩니다.)",
+      "options": ["012 - 정상 종료 - 끝", "012 - 끝", "0123 - 끝", "오류"],
+      "answer": 1,
+      "explanation_en": "Since break executes when i reaches 3, the loop's else clause is skipped entirely; only 끝 is printed afterward.",
+      "explanation_ko": "i가 3이 되면 break가 실행되므로, 반복문의 else절은 완전히 건너뜁니다. 이후 끝만 출력됩니다.",
+      "concept_tags": ["for_else", "break"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l2_u03_q005",
+      "type": "predict_output",
+      "code": "for i in range(1, 6):\n    if i == 3:\n        continue\n    print(i, end=\"\")",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1245", "12345", "12", "45"],
+      "answer": 0,
+      "explanation_en": "continue skips just the rest of the current iteration when i is 3, but the loop keeps going: 1, 2, 4, 5.",
+      "explanation_ko": "continue는 i가 3일 때 그 회차의 나머지만 건너뛰고, 반복문은 계속 진행됩니다: 1, 2, 4, 5.",
+      "concept_tags": ["continue"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l2_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "while", "definition": "조건을 먼저 검사한 뒤 참이면 실행하는 반복문" },
+        { "term": "break", "definition": "반복문을 즉시 완전히 종료시키는 키워드" },
+        { "term": "continue", "definition": "현재 회차의 나머지만 건너뛰고 반복은 계속하는 키워드" },
+        { "term": "for/while의 else절", "definition": "break 없이 반복문이 정상적으로 끝났을 때만 실행되는, Python 고유의 구문" }
+      ],
+      "explanation_en": "The for/while-else construct is a genuinely unique Python feature not found in C, C++, Rust, VB, C#, or Java — useful for search-and-not-found patterns.",
+      "explanation_ko": "for/while-else 구문은 C, C++, Rust, VB, C#, Java 어디에도 없는 진짜 Python 고유의 기능입니다 — '찾다가 못 찾았을 때' 패턴에 유용합니다.",
+      "concept_tags": ["while_loop", "break", "continue", "for_else"],
+      "difficulty": "practice"
+    }
+  ]
+}

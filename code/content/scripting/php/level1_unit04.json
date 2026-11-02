@@ -1,0 +1,96 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "함수와 기본값 매개변수",
+  "questions": [
+    {
+      "id": "php_l1_u04_q001",
+      "type": "predict_output",
+      "code": "function add($a, $b) {\n    return $a + $b;\n}\necho add(3, 4);",
+      "prompt_en": "What is printed? (Note: parameters also need the $ sigil.)",
+      "prompt_ko": "출력 결과는? (매개변수에도 $ 기호가 필요한 점에 주의하세요.)",
+      "options": ["7", "34", "add", "오류"],
+      "answer": 0,
+      "explanation_en": "add(3, 4) returns $a + $b, which is 7; note that even function parameters require the $ prefix, unlike most other languages.",
+      "explanation_ko": "add(3, 4)는 $a + $b의 결과인 7을 반환합니다. 다른 대부분의 언어와 달리 함수 매개변수에도 $ 접두사가 필요한 점에 유의하세요.",
+      "concept_tags": ["function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l1_u04_q002",
+      "type": "fill_blank",
+      "code": "____ greet($name) {\n    echo \"안녕, $name\";\n}",
+      "prompt_en": "Fill in the blank with the keyword that defines a function.",
+      "prompt_ko": "함수를 정의하는 키워드를 빈칸에 채우세요.",
+      "options": ["function", "def", "func", "fn"],
+      "answer": 0,
+      "explanation_en": "function introduces a function definition in PHP, the same keyword used in JavaScript.",
+      "explanation_ko": "function은 PHP에서 함수 정의를 시작하며, JavaScript에서 쓰는 것과 같은 키워드입니다.",
+      "concept_tags": ["function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l1_u04_q003",
+      "type": "predict_output",
+      "code": "function greet($name, $greeting = \"안녕\") {\n    echo \"$greeting, $name\";\n}\ngreet(\"Kim\");",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["안녕, Kim", "오류: greeting이 없음", "Kim", ", Kim"],
+      "answer": 0,
+      "explanation_en": "greeting has a default value, so omitting it in the call still works, using 안녕.",
+      "explanation_ko": "greeting에는 기본값이 있으므로 호출 시 생략해도 안녕을 사용합니다.",
+      "concept_tags": ["default_parameter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l1_u04_q004",
+      "type": "predict_output",
+      "code": "function sumAll(...$nums) {\n    return array_sum($nums);\n}\necho sumAll(1, 2, 3);\necho \"\\n\";\necho sumAll(1, 2, 3, 4, 5);",
+      "prompt_en": "What is printed? (The ... syntax collects variable arguments.)",
+      "prompt_ko": "출력 결과는? (... 문법은 가변 인자를 모읍니다.)",
+      "options": ["6\\n15", "3\\n5", "오류", "6\\n5"],
+      "answer": 0,
+      "explanation_en": "...$nums collects any number of arguments into an array, similar to JavaScript's rest parameters; array_sum sums them: sumAll(1,2,3)=6, sumAll(1,2,3,4,5)=15.",
+      "explanation_ko": "...$nums는 몇 개든 인자를 배열로 모읍니다. JavaScript의 나머지 매개변수와 비슷합니다. array_sum이 이를 합산합니다: sumAll(1,2,3)=6, sumAll(1,2,3,4,5)=15.",
+      "concept_tags": ["variadic_function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l1_u04_q005",
+      "type": "error_finding",
+      "code": "function greet($name) {\n    echo \"안녕, \" . $name;\n}\ngreet();",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "greet 함수 정의 오류",
+        "$name에 기본값이 없는데 인자 없이 호출해서, 필수 인자가 빠졌다는 오류(ArgumentCountError)가 발생함",
+        "echo 사용법 오류",
+        "문제 없음, 빈 문자열이 사용됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Without a default value, $name is a required parameter; calling greet() with no arguments throws an ArgumentCountError, since PHP won't silently substitute an empty value.",
+      "explanation_ko": "기본값이 없으면 $name은 필수 매개변수입니다. 인자 없이 greet()를 호출하면 ArgumentCountError가 발생합니다. PHP는 조용히 빈 값을 대신 넣어주지 않습니다.",
+      "concept_tags": ["function", "argumentcounterror"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l1_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "function", "definition": "함수를 정의하는 키워드" },
+        { "term": "$ 매개변수", "definition": "함수 매개변수도 변수이므로 $가 필요함" },
+        { "term": "기본값 매개변수", "definition": "생략 시 자동으로 적용되는 값" },
+        { "term": "...$args (가변 인자)", "definition": "몇 개든 인자를 배열로 모으는 문법" }
+      ],
+      "explanation_en": "PHP's function syntax closely resembles JavaScript's, but the consistent $ requirement on every variable (including parameters) is a signature PHP trait worth remembering.",
+      "explanation_ko": "PHP의 함수 문법은 JavaScript와 매우 비슷하지만, 모든 변수(매개변수 포함)에 일관되게 $가 필요하다는 것은 기억해둘 만한 PHP의 특징적인 특성입니다.",
+      "concept_tags": ["function", "default_parameter", "variadic_function"],
+      "difficulty": "practice"
+    }
+  ]
+}

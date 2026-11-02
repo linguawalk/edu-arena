@@ -1,0 +1,96 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "java-ocp-17",
+  "level": 4,
+  "unit": 2,
+  "unit_title": "스트림 기초",
+  "rule_summary_ko": "스트림의 연산은 중간 연산(intermediate, 예: filter, map)과 최종 연산(terminal, 예: collect, count, forEach)으로 나뉩니다. 중간 연산은 지연(lazy) 평가되어, 최종 연산이 호출되기 전까지는 실제로 실행되지 않습니다. 스트림은 한 번 소비(최종 연산 호출)되면 재사용할 수 없으며, 다시 사용하려 하면 IllegalStateException이 발생합니다.",
+  "examples": [
+    { "code": "nums.stream().filter(n -> n%2==0).map(n -> n*n).collect(Collectors.toList());", "note_ko": "짝수만 걸러서(filter) 제곱한(map) 뒤 리스트로 모음(collect) — [2,4,6]→[4,16,36]" },
+    { "code": "Stream<Integer> s = nums.stream();\ns.count();\ns.count();", "note_ko": "두 번째 count() 호출 시 IllegalStateException 발생 — 스트림은 한 번만 소비 가능" }
+  ],
+  "questions": [
+    {
+      "id": "java_ocp_l4_u2_q001",
+      "type": "concept_matching_item",
+      "code": "List<Integer> nums = List.of(1, 2, 3, 4, 5, 6);\nList<Integer> result = nums.stream()\n    .filter(n -> n % 2 == 0)\n    .map(n -> n * n)\n    .collect(Collectors.toList());\nSystem.out.println(result);",
+      "prompt_ko": "출력 결과는?",
+      "options": ["[1, 4, 9, 16, 25, 36]", "[4, 16, 36]", "[2, 4, 6]", "[1, 9, 25]"],
+      "answer": 1,
+      "explanation_ko": "먼저 짝수(2,4,6)만 걸러내고(filter), 각각을 제곱(map)하면 4,16,36이 됩니다.",
+      "concept_tags": ["stream_filter_map"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l4_u2_q002",
+      "type": "concept_matching_item",
+      "code": "Stream<Integer> s = nums.stream();\ns.count();\ns.count();",
+      "prompt_ko": "두 번째 s.count() 호출은 어떻게 됩니까?",
+      "options": [
+        "정상적으로 다시 개수를 센다",
+        "IllegalStateException 발생 — 스트림은 한 번 소비되면 재사용할 수 없다",
+        "0을 반환한다",
+        "컴파일 오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "스트림은 일회용이라, 최종 연산이 한 번 호출되면 그 스트림 객체는 다시 사용할 수 없습니다.",
+      "concept_tags": ["stream_reuse"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_ocp_l4_u2_q003",
+      "type": "concept_matching_item",
+      "code": "List<Integer> evalOrder = new ArrayList<>();\nnums.stream()\n    .filter(n -> { evalOrder.add(n); return n > 3; });\n// 최종 연산 없음\nSystem.out.println(evalOrder.isEmpty());",
+      "prompt_ko": "출력 결과는?",
+      "options": [
+        "false — filter가 스트림 생성 즉시 실행되어 evalOrder에 값이 채워진다",
+        "true — 최종 연산이 없으면 중간 연산(filter)은 실제로 실행되지 않는다(지연 평가)",
+        "컴파일 오류",
+        "런타임 예외"
+      ],
+      "answer": 1,
+      "explanation_ko": "중간 연산은 최종 연산이 호출되기 전까지 지연(lazy)되어, 이 코드에서는 filter의 람다가 한 번도 실행되지 않습니다.",
+      "concept_tags": ["lazy_evaluation"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_ocp_l4_u2_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "filter()와 map()은 중간 연산과 최종 연산 중 어디에 속합니까?",
+      "options": ["최종 연산(terminal)", "중간 연산(intermediate)", "둘 다 아니다", "상황에 따라 다르다"],
+      "answer": 1,
+      "explanation_ko": "filter·map처럼 스트림을 반환해서 체이닝을 이어갈 수 있는 연산이 중간 연산입니다.",
+      "concept_tags": ["intermediate_operation"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l4_u2_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "스트림의 결과를 collect(), count(), forEach()처럼 실제로 결과를 만들어내며 스트림을 소비하는 연산을 무엇이라 합니까? (한글로 입력)",
+      "expected_answers": ["최종 연산", "종단 연산"],
+      "explanation_ko": "최종 연산(terminal operation)이 호출되어야 비로소 스트림의 모든 중간 연산들이 실제로 실행됩니다.",
+      "concept_tags": ["terminal_operation"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l4_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "스트림 연산이 중간 연산과 최종 연산으로 나뉘고, 지연 평가된다는 설계가 주는 이점은?",
+      "options": [
+        "코드를 항상 더 길게 작성해야 한다는 단점만 있다",
+        "불필요한 중간 결과를 미리 계산하지 않고, 최종 연산이 필요로 하는 만큼만 효율적으로 처리할 수 있다",
+        "지연 평가는 성능에 아무 영향을 주지 않는다",
+        "지연 평가 때문에 스트림은 항상 컬렉션보다 느리다"
+      ],
+      "answer": 1,
+      "explanation_ko": "지연 평가 덕분에, 예를 들어 findFirst()처럼 일부 결과만 필요한 경우 전체 데이터를 다 처리하지 않고 필요한 만큼만 계산할 수 있습니다.",
+      "concept_tags": ["lazy_evaluation", "efficiency"],
+      "difficulty": "challenge"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+ "level": 3,
+ "track": "electrical",
+ "id": "power-systems",
+ "title": "전력계통",
+ "tagline": "계통 전체를 하나의 회로로 — 조류 계산, 불평형 고장, 보호 계전, 안정도, 주파수·전압 제어",
+ "overview": [
+  "전력계통은 수백 대의 발전기와 수천 km의 송전선, 수많은 부하가 하나로 묶여 같은 주파수로 도는 거대한 회로입니다. 레벨2 전력공학 기초가 선로 하나, 고장 지점 하나를 계산했다면, 이 과목은 계통 전체를 단위법으로 모델링해 어디로 얼마의 전력이 흐르는지(조류 계산), 불평형 고장 때 무슨 일이 생기는지(대칭좌표법), 어떻게 고장 구간만 골라 떼어 내는지(보호), 고장 뒤에도 발전기들이 함께 돌 수 있는지(안정도)를 다룹니다.",
+  "과목은 단위법과 계통 모델 → 송전선로와 전력 전송 → 조류 계산 → 대칭좌표법과 불평형 고장 → 계통 보호 → 안정도 → 주파수·전압 제어와 경제 급전 → HVDC·FACTS와 재생에너지 시대의 계통 운영 순서로 구성됩니다. 앞의 세 단원이 '정상 상태', 가운데 두 단원이 '고장', 뒤의 세 단원이 '동적 거동과 운영'에 해당합니다.",
+  "전기기사 필기 '전력공학'의 고난도 부분(고장 계산, 안정도, 보호 계전, 조상 설비)이 모두 여기에 있습니다. 한전·전력거래소·발전사의 계통 운영과 계획, 신재생 연계 설계의 바탕이며, 융합 과정 신재생·스마트그리드와 차세대 원자력으로 이어집니다."
+ ],
+ "level_note": "레벨 3 (심화, 대졸·기사 수준). 목차 검증 기준: 전기기사 필기 '전력공학' 과목 구성과 Glover·Overbye·Sarma, Grainger·Stevenson, Kundur 교재 목차. 레벨3은 단원당 자가점검 3문항, 학습 조언 1문단의 가벼운 형식입니다.",
+ "prereq": {
+  "text": "레벨2 전력공학 기초 전체(특히 송전 특성, %임피던스와 고장 계산), 회로이론의 페이저와 3상 회로, 전기기기의 동기발전기가 선수입니다. 조류 계산은 연립 비선형 방정식을 반복법으로 푸므로 math-arena 선형대수와 수치해석을 함께 보면 좋습니다.",
+  "links": [
+   {
+    "title": "레벨2 전력공학 기초 · 4단원 송전 특성",
+    "href": "guide.html?lv=2&t=electrical&s=power-basics&u=4"
+   },
+   {
+    "title": "레벨2 전력공학 기초 · 5단원 %임피던스와 고장 계산",
+    "href": "guide.html?lv=2&t=electrical&s=power-basics&u=5"
+   },
+   {
+    "title": "레벨2 회로이론 · 10단원 3상 회로",
+    "href": "guide.html?lv=2&t=electrical&s=circuit-theory&u=10"
+   },
+   {
+    "title": "레벨2 전기기기 · 9단원 동기발전기",
+    "href": "guide.html?lv=2&t=electrical&s=electric-machines&u=9"
+   },
+   {
+    "title": "math-arena 레벨2 · 선형대수",
+    "href": "https://math-arena.org/guide.html?lv=2&t=algebra&s=linear-algebra"
+   },
+   {
+    "title": "math-arena 레벨3 · 수치해석 (뉴턴법)",
+    "href": "https://math-arena.org/guide.html?lv=3&t=applied&s=numerical"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "p1",
+    "qtype": "numeric",
+    "prompt": "10 MVA, %Z = 5%인 변압기 2차 측의 3상 단락 용량은 몇 MVA일까요?",
+    "answer": "200",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "P_s = (100/%Z) × P_n = 20 × 10 = 200 MVA (전력공학 기초 5단원)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p2",
+    "qtype": "numeric",
+    "prompt": "송·수전단 전압이 모두 1 pu, 리액턴스 0.5 pu, 상차각 30°일 때 송전 전력은 몇 pu일까요?",
+    "answer": "1",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "P = V_sV_r sin δ/X = 1 × 1 × 0.5/0.5 = 1 pu (전력공학 기초 4단원)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p3",
+    "qtype": "fill_blank",
+    "prompt": "평형 3상 회로에서 선간전압은 상전압의 {{1}}배입니다(Y 결선).",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "√3",
+       "1.73",
+       "루트3",
+       "루트 3"
+      ]
+     }
+    ],
+    "explanation": "선간전압이 상전압보다 30° 앞서고 크기는 √3배입니다 (회로이론 10단원).",
+    "stage": "prereq"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "레벨3 · 전력전자",
+   "note": "HVDC 변환기, STATCOM, 재생에너지 인버터의 내부"
+  },
+  {
+   "title": "레벨3 · 제어공학",
+   "note": "조속기·여자기 제어 루프와 안정도 해석의 수학"
+  },
+  {
+   "title": "융합 · 신재생·스마트그리드",
+   "note": "재생에너지 연계, ESS, 마이크로그리드"
+  },
+  {
+   "title": "융합 · 차세대 원자력",
+   "note": "대형 기저 전원과 SMR의 계통 역할"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "units": [
+  {
+   "no": 1,
+   "title": "단위법과 계통 모델링",
+   "hours": 6,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "송전선로와 전력 전송",
+   "hours": 6,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "조류 계산",
+   "hours": 7,
+   "after": [
+    2
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "대칭좌표법과 불평형 고장",
+   "hours": 7,
+   "after": [
+    1
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "계통 보호",
+   "hours": 6,
+   "after": [
+    4
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "안정도",
+   "hours": 7,
+   "after": [
+    2
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "주파수·전압 제어와 경제 급전",
+   "hours": 6,
+   "after": [
+    3
+   ],
+   "file": "u07.json"
+  },
+  {
+   "no": 8,
+   "title": "HVDC·FACTS와 재생에너지 시대의 계통 운영",
+   "hours": 5,
+   "after": [
+    6,
+    7
+   ],
+   "file": "u08.json",
+   "review": true
+  }
+ ],
+ "total_hours": 50
+}

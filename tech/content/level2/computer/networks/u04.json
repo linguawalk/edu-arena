@@ -1,0 +1,101 @@
+{
+ "no": 4,
+ "title": "TCP 흐름 제어와 혼잡 제어",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "수신 윈도로 흐름 제어를 하는 원리와 윈도 제한 처리량을 계산할 수 있다.",
+  "슬로 스타트, 혼잡 회피(AIMD), 빠른 회복의 혼잡 윈도 변화를 계산할 수 있다.",
+  "공정성과 최신 혼잡 제어(CUBIC, BBR)의 방향을 설명할 수 있다."
+ ],
+ "checklist": [
+  "흐름 제어: 수신 윈도(rwnd)",
+  "윈도 제한 처리량 ≈ 윈도 크기 ÷ RTT",
+  "혼잡 제어: 혼잡 윈도(cwnd)",
+  "슬로 스타트: RTT마다 cwnd 2배",
+  "혼잡 회피: RTT마다 1 MSS씩 증가(AI), 손실 시 절반(MD)",
+  "빠른 재전송과 빠른 회복",
+  "TCP 공정성, CUBIC·BBR"
+ ],
+ "advice": [
+  "흐름 제어와 혼잡 제어는 이름이 비슷하지만 막는 대상이 다릅니다. 흐름 제어는 '받는 쪽이 넘치지 않게', 혼잡 제어는 '네트워크가 넘치지 않게' 속도를 조절합니다. 실제 보내는 양은 두 윈도 가운데 작은 쪽이라는 점을 기억하세요.",
+  "혼잡 윈도의 변화를 RTT마다 표로 적어 톱니 모양 그래프를 그려 보면 AIMD가 손으로 익혀집니다. 1단원의 대역폭–지연 곱과 연결해, 윈도가 그보다 작으면 선로를 다 쓰지 못한다는 점도 확인하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Kurose · Ross, Computer Networking: A Top-Down Approach (번역본 『컴퓨터 네트워킹 하향식 접근』, 장 제목으로 표기)",
+   "part": "Transport Layer 장의 congestion control 절"
+  },
+  {
+   "kind": "web",
+   "provider": "IETF",
+   "title": "RFC 5681 TCP Congestion Control",
+   "url": "https://www.rfc-editor.org/rfc/rfc5681",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "수신 윈도 64 KB(65 536 B), RTT 100 ms일 때 윈도로 제한되는 최대 처리량은 약 몇 Mbps일까요? (1 Mbps = 10⁶ bps)",
+   "answer": "5.24",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "65 536 × 8/0.1 ≈ 5 242 880 bps ≈ 5.24 Mbps",
+   "hint": "윈도 ÷ RTT입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "cwnd = 1 MSS로 슬로 스타트를 시작하면 4 RTT 뒤 cwnd는 몇 MSS일까요? (손실 없음, 임계값에 닿지 않음)",
+   "answer": "16",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "RTT마다 2배: 1 → 2 → 4 → 8 → 16",
+   "hint": "RTT마다 2배입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "혼잡 회피 중 cwnd가 20 MSS일 때 중복 ACK 3개로 손실을 감지하면(빠른 회복) cwnd는 대략 몇 MSS로 줄어들까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "곱셈 감소로 절반이 되어 약 10 MSS입니다.",
+   "hint": "절반으로 줄입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "손실이 없으면 RTT마다 조금씩 늘리고 손실이 나면 절반으로 줄이는 TCP의 혼잡 제어 원칙을 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "AIMD"
+     ]
+    }
+   ],
+   "explanation": "Additive Increase, Multiplicative Decrease의 줄임말입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "networks",
+ "id": "l2-computer-networks-u04"
+}

@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "형변환",
+  "questions": [
+    {
+      "id": "python_l1_u04_q001",
+      "type": "predict_output",
+      "code": "x = int(3.9)\nprint(x)",
+      "prompt_en": "What is printed? (Compare with VB's CInt, which would round this.)",
+      "prompt_ko": "출력 결과는? (이를 반올림하는 VB의 CInt와 비교해보세요.)",
+      "options": ["4", "3", "3.9", "오류"],
+      "answer": 1,
+      "explanation_en": "int() truncates the decimal part entirely, just like C/Java/C#'s explicit cast; 3.9 becomes 3.",
+      "explanation_ko": "int()는 소수점을 완전히 버립니다. C/Java/C#의 명시적 캐스팅과 같습니다. 3.9는 3이 됩니다.",
+      "concept_tags": ["int_function", "truncation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l1_u04_q002",
+      "type": "predict_output",
+      "code": "s = \"42\"\nn = int(s)\nprint(n + 8)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["428", "50", "\"428\"", "오류"],
+      "answer": 1,
+      "explanation_en": "int(s) converts the string \"42\" to the integer 42; adding 8 then performs numeric addition, giving 50.",
+      "explanation_ko": "int(s)는 문자열 \"42\"를 정수 42로 변환합니다. 이후 8을 더하면 숫자 덧셈이 수행되어 50이 됩니다.",
+      "concept_tags": ["int_function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l1_u04_q003",
+      "type": "error_finding",
+      "code": "s = \"abc\"\nn = int(s)",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "int() 사용법 자체가 잘못됨",
+        "\"abc\"는 유효한 숫자 형태가 아니라서, int()가 이를 변환하려다 ValueError를 발생시킴",
+        "s 선언 문법 오류",
+        "문제 없음, n은 0으로 설정됨"
+      ],
+      "answer": 1,
+      "explanation_en": "int() raises a ValueError at runtime when the string doesn't represent a valid integer, rather than silently returning 0 or failing at compile time.",
+      "explanation_ko": "int()는 문자열이 유효한 정수 형태가 아니면 실행 시점에 ValueError를 발생시킵니다. 조용히 0을 반환하거나 컴파일 시점에 실패하는 게 아닙니다.",
+      "concept_tags": ["int_function", "value_error"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l1_u04_q004",
+      "type": "predict_output",
+      "code": "x = 5\ny = str(x)\nprint(type(y))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["<class 'int'>", "<class 'str'>", "5", "오류"],
+      "answer": 1,
+      "explanation_en": "str() converts a value to its string representation; y's actual type becomes str.",
+      "explanation_ko": "str()은 값을 문자열 표현으로 변환합니다. y의 실제 타입은 str이 됩니다.",
+      "concept_tags": ["str_function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l1_u04_q005",
+      "type": "fill_blank",
+      "code": "s = \"3.14\"\npi = ____(s)\nprint(pi + 1)\n# 4.14가 출력되어야 함",
+      "prompt_en": "Fill in the blank with the function that converts a string to a floating-point number.",
+      "prompt_ko": "문자열을 실수로 변환하는 함수를 빈칸에 채우세요.",
+      "options": ["float", "int", "double", "real"],
+      "answer": 0,
+      "explanation_en": "float() converts a string representing a decimal number into a float, unlike int() which would fail on \"3.14\".",
+      "explanation_ko": "float()는 소수를 나타내는 문자열을 float로 변환합니다. int()는 \"3.14\"에서는 실패합니다.",
+      "concept_tags": ["float_function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l1_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "int()", "definition": "값을 정수로 변환 — 실수는 소수점을 버림(truncate)" },
+        { "term": "float()", "definition": "값을 실수로 변환" },
+        { "term": "str()", "definition": "값을 문자열로 변환" },
+        { "term": "ValueError", "definition": "형변환할 수 없는 값을 변환하려 할 때 실행 시점에 발생하는 예외" }
+      ],
+      "explanation_en": "Python's conversion functions (int(), float(), str()) are simple function calls rather than special cast syntax like (int) in C-family languages, and failures surface as runtime exceptions rather than compile errors.",
+      "explanation_ko": "Python의 변환 함수(int(), float(), str())는 C 계열 언어의 (int) 같은 특별한 캐스팅 문법이 아니라 단순한 함수 호출입니다. 실패는 컴파일 오류가 아니라 실행 시점 예외로 나타납니다.",
+      "concept_tags": ["int_function", "float_function", "str_function", "value_error"],
+      "difficulty": "practice"
+    }
+  ]
+}

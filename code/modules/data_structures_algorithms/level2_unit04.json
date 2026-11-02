@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "큐 활용 (BFS)",
+  "questions": [
+    {
+      "id": "dsa_l2_u04_q001",
+      "type": "predict_output",
+      "code": "from collections import deque\n\ngraph = {\n    'A': ['B', 'C'],\n    'B': ['D'],\n    'C': ['D'],\n    'D': []\n}\n\ndef bfs(start):\n    visited = [start]\n    queue = deque([start])\n    while queue:\n        node = queue.popleft()\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                visited.append(neighbor)\n                queue.append(neighbor)\n    return visited\n\nprint(bfs('A'))",
+      "prompt_en": "What is printed? (BFS uses a queue to visit nodes level by level.)",
+      "prompt_ko": "출력 결과는? (BFS는 큐를 사용해 노드를 레벨 단위로 방문합니다.)",
+      "options": ["['A', 'B', 'C', 'D']", "['A', 'B', 'D', 'C']", "['A', 'C', 'B', 'D']", "오류"],
+      "answer": 0,
+      "explanation_en": "BFS visits A's neighbors (B, C) before going deeper; D is reached through both B and C but only added once, giving the level-by-level order A, B, C, D.",
+      "explanation_ko": "BFS는 더 깊이 가기 전에 A의 이웃(B, C)을 먼저 방문합니다. D는 B와 C를 통해 도달하지만 한 번만 추가되어, 레벨 단위 순서인 A, B, C, D가 됩니다.",
+      "concept_tags": ["queue", "bfs"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l2_u04_q002",
+      "type": "fill_blank",
+      "code": "def bfs(start):\n    visited = [start]\n    queue = deque([start])\n    while queue:\n        node = queue.____()\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                visited.append(neighbor)\n                queue.append(neighbor)\n    return visited\n# 큐이므로 앞쪽에서 꺼내야 함",
+      "prompt_en": "Fill in the blank with the deque method that removes from the front, matching BFS's queue-based order.",
+      "prompt_ko": "BFS의 큐 기반 순서에 맞게 앞쪽에서 제거하는 deque 메서드를 빈칸에 채우세요.",
+      "options": ["popleft", "pop", "remove", "shift"],
+      "answer": 0,
+      "explanation_en": "popleft() removes from the front, matching FIFO order — this is what makes BFS explore level by level; using pop() (from the end) instead would turn this into DFS.",
+      "explanation_ko": "popleft()는 앞쪽에서 제거해서 FIFO 순서를 맞춥니다 — 이것이 BFS가 레벨 단위로 탐색하게 만드는 요소입니다. 대신 pop()(끝에서 제거)을 쓰면 DFS가 됩니다.",
+      "concept_tags": ["queue", "bfs"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l2_u04_q003",
+      "type": "error_finding",
+      "code": "def bfs(start):\n    visited = [start]\n    queue = deque([start])\n    while queue:\n        node = queue.pop()\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                visited.append(neighbor)\n                queue.append(neighbor)\n    return visited\n\n# 개발자가 이걸 'BFS'라고 부름",
+      "prompt_en": "What problem does calling this 'BFS' have? (Note: pop() instead of popleft().)",
+      "prompt_ko": "이걸 'BFS'라고 부르는 것은 어떤 문제가 있을까요? (popleft() 대신 pop()인 점에 주의하세요.)",
+      "options": [
+        "코드 자체에 문법 오류가 있음",
+        "queue.pop()은 뒤에서 제거해서 스택처럼(LIFO) 동작하기 때문에, 이 알고리즘은 사실 BFS가 아니라 DFS(깊이 우선 탐색)임",
+        "graph 딕셔너리 정의 오류",
+        "문제 없음, 여전히 BFS가 맞음"
+      ],
+      "answer": 1,
+      "explanation_en": "pop() removes from the end (LIFO), which makes this traverse depth-first — exploring one branch fully before backtracking — the algorithm's identity depends entirely on which end you remove from, not on the graph or the variable names.",
+      "explanation_ko": "pop()은 끝에서 제거해서(LIFO) 이 순회는 깊이 우선이 됩니다 — 한 가지를 끝까지 탐색한 뒤 되돌아갑니다. 알고리즘의 정체성은 그래프나 변수 이름이 아니라 전적으로 어느 쪽 끝에서 제거하는지에 달려 있습니다.",
+      "concept_tags": ["queue", "bfs", "dfs"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l2_u04_q004",
+      "type": "predict_output",
+      "code": "from collections import deque\n\ngraph = {\n    'A': ['B', 'C'],\n    'B': ['D'],\n    'C': ['D'],\n    'D': []\n}\n\ndef count_reachable(start):\n    visited = [start]\n    queue = deque([start])\n    while queue:\n        node = queue.popleft()\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                visited.append(neighbor)\n                queue.append(neighbor)\n    return len(visited)\n\nprint(count_reachable('B'))",
+      "prompt_en": "What is printed? (Counting how many nodes are reachable from B.)",
+      "prompt_ko": "출력 결과는? (B에서 도달 가능한 노드 개수를 셉니다.)",
+      "options": ["2", "4", "1", "오류"],
+      "answer": 0,
+      "explanation_en": "Starting from B, BFS reaches D (B's only neighbor), and D has no further neighbors; only B and D are visited, giving a count of 2.",
+      "explanation_ko": "B에서 시작하면 BFS는 D(B의 유일한 이웃)에 도달하고, D는 더 이상 이웃이 없습니다. B와 D만 방문되어 개수는 2입니다.",
+      "concept_tags": ["queue", "bfs"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l2_u04_q005",
+      "type": "predict_output",
+      "code": "from collections import deque\n\ngraph = {\n    'A': ['B', 'C'],\n    'B': ['D'],\n    'C': ['D'],\n    'D': []\n}\n\ndef bfs_order(start):\n    visited = [start]\n    queue = deque([start])\n    order = []\n    while queue:\n        node = queue.popleft()\n        order.append(node)\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                visited.append(neighbor)\n                queue.append(neighbor)\n    return order\n\nprint(bfs_order('A'))",
+      "prompt_en": "What is printed? (This tracks the order nodes are actually processed, not just discovered.)",
+      "prompt_ko": "출력 결과는? (발견된 순서가 아니라 실제로 처리된 순서를 추적합니다.)",
+      "options": ["['A', 'B', 'C', 'D']", "['A', 'C', 'B', 'D']", "['D', 'C', 'B', 'A']", "오류"],
+      "answer": 0,
+      "explanation_en": "Nodes are dequeued and processed in the same level-by-level order they were discovered: A first, then B and C (A's neighbors), then D last.",
+      "explanation_ko": "노드는 발견된 것과 같은 레벨 단위 순서로 dequeue되어 처리됩니다: A가 먼저, 그다음 B와 C(A의 이웃), 마지막으로 D입니다.",
+      "concept_tags": ["queue", "bfs"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l2_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "각 용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "BFS (너비 우선 탐색)", "definition": "큐(FIFO)를 사용 — 가까운 노드부터 레벨 단위로 탐색" },
+        { "term": "DFS (깊이 우선 탐색)", "definition": "스택(LIFO)을 사용 — 한 방향을 끝까지 탐색한 뒤 되돌아감" },
+        { "term": "visited 목록", "definition": "이미 방문한 노드를 다시 방문하지 않도록 추적" },
+        { "term": "BFS의 활용", "definition": "최단 경로 찾기, 소셜 네트워크의 '친구의 친구' 탐색 등" }
+      ],
+      "explanation_en": "BFS and DFS use the exact same code structure — only the data structure (queue vs stack) differs, illustrating how choosing between FIFO and LIFO fundamentally changes an algorithm's behavior.",
+      "explanation_ko": "BFS와 DFS는 정확히 같은 코드 구조를 사용합니다 — 오직 자료구조(큐 대 스택)만 다릅니다. FIFO와 LIFO 중 어느 것을 선택하는지가 알고리즘의 동작을 근본적으로 바꾼다는 것을 보여줍니다.",
+      "concept_tags": ["queue", "bfs", "dfs"],
+      "difficulty": "practice"
+    }
+  ]
+}

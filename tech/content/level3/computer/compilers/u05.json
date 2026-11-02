@@ -1,0 +1,100 @@
+{
+ "no": 5,
+ "title": "중간 표현",
+ "hours": 4,
+ "after": [
+  4
+ ],
+ "objectives": [
+  "추상 구문 트리·3주소 코드·SSA 같은 중간 표현을 설명할 수 있다.",
+  "간단한 식을 3주소 코드로 바꿀 수 있다.",
+  "중간 표현이 이식성과 최적화에 주는 이점을 설명할 수 있다."
+ ],
+ "checklist": [
+  "추상 구문 트리(AST)",
+  "3주소 코드: 명령어마다 연산 하나, 임시 변수",
+  "제어 흐름 그래프와 기본 블록",
+  "정적 단일 대입(SSA) 형식",
+  "바이트코드(자바, 파이썬)와 LLVM IR",
+  "중간 표현과 다중 언어·다중 기계 지원",
+  "AI 모델의 계산 그래프 표현(개념)"
+ ],
+ "advice": [
+  "중간 표현은 고급 언어와 기계어 사이의 '공용어'입니다. a = b * c + d 같은 식을 임시 변수를 써서 한 줄에 연산 하나씩으로 풀어 쓰는 연습을 해 보면, 컴퓨터 구조 3단원의 어셈블리와 얼마나 가까운지 보입니다. 파이썬의 dis 모듈로 함수의 바이트코드를 직접 출력해 보는 것도 좋은 실험입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Aho · Lam · Sethi · Ullman, Compilers: Principles, Techniques, and Tools (일명 드래곤 북, 장 제목으로 표기)",
+   "part": "Intermediate-Code Generation 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Nystrom (무료 공개 교재)",
+   "title": "Crafting Interpreters",
+   "url": "https://craftinginterpreters.com/",
+   "lang": "영어",
+   "part": "Chunks of Bytecode 장"
+  },
+  {
+   "kind": "web",
+   "provider": "LLVM 프로젝트",
+   "title": "LLVM Language Reference (IR)",
+   "url": "https://llvm.org/docs/LangRef.html",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "a = b * c + d 를 연산 하나씩의 3주소 코드로 바꾸면 명령은 몇 줄이 될까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "t1 = b * c, a = t1 + d 의 2줄입니다.",
+   "hint": "연산자 수만큼입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "모든 변수가 정확히 한 번만 대입되도록 이름을 나눈 중간 표현 형식을 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "SSA"
+     ]
+    }
+   ],
+   "explanation": "Static Single Assignment의 줄임말로, 최적화를 쉽게 해 줍니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "구문 분석 결과에서 괄호 같은 불필요한 정보를 빼고 프로그램 구조만 남긴 트리를 추상 {{1}} 트리(AST)라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "구문"
+     ]
+    }
+   ],
+   "explanation": "대부분의 컴파일러와 정적 분석 도구가 AST 위에서 작업합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "compilers",
+ "id": "l3-computer-compilers-u05"
+}

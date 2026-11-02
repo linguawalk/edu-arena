@@ -1,0 +1,91 @@
+{
+  "language": "cobol",
+  "category": "legacy_historical",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "MOVE와 산술 연산",
+  "questions": [
+    {
+      "id": "cobol_l1_u02_q001",
+      "type": "predict_output",
+      "code": "01 A PIC 9(4).\n01 B PIC 9(4).\n01 RESULT PIC 9(4).\n...\nMOVE 3 TO A.\nMOVE 4 TO B.\nADD A B GIVING RESULT.\nDISPLAY RESULT.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0007", "7", "0012", "오류"],
+      "answer": 0,
+      "explanation_en": "ADD A B GIVING RESULT computes A + B and stores it in RESULT; 3+4=7, displayed padded to the PIC 9(4) width as 0007.",
+      "explanation_ko": "ADD A B GIVING RESULT는 A + B를 계산해서 RESULT에 저장합니다. 3+4=7이며, PIC 9(4) 너비에 맞춰 채워져 0007로 출력됩니다.",
+      "concept_tags": ["add_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cobol_l1_u02_q002",
+      "type": "predict_output",
+      "code": "01 A PIC 9(4).\n01 B PIC 9(4).\n01 RESULT PIC 9(4).\n...\nMOVE 3 TO A.\nMOVE 4 TO B.\nCOMPUTE RESULT = A * B.\nDISPLAY RESULT.",
+      "prompt_en": "What is printed? (COMPUTE allows arbitrary arithmetic expressions.)",
+      "prompt_ko": "출력 결과는? (COMPUTE는 임의의 산술 표현식을 허용합니다.)",
+      "options": ["0007", "0012", "12", "오류"],
+      "answer": 1,
+      "explanation_en": "COMPUTE evaluates a full arithmetic expression like modern languages' =, unlike ADD/SUBTRACT which use their own English-like syntax; A * B is 3*4=12, displayed as 0012.",
+      "explanation_ko": "COMPUTE는 현대 언어의 =처럼 완전한 산술 표현식을 계산합니다. 자신만의 영어 같은 문법을 쓰는 ADD/SUBTRACT와 다릅니다. A * B는 3*4=12이며, 0012로 출력됩니다.",
+      "concept_tags": ["compute_statement"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l1_u02_q003",
+      "type": "fill_blank",
+      "code": "01 X PIC 9(4).\n01 Y PIC 9(4).\n...\nMOVE 10 TO X.\nMOVE 3 TO Y.\n____ Y FROM X.\nDISPLAY X.\n// X가 7이 되어야 함 (10 - 3)",
+      "prompt_en": "Fill in the blank with the statement that subtracts Y from X, storing the result back in X.",
+      "prompt_ko": "Y를 X에서 빼서 결과를 다시 X에 저장하는 문장을 빈칸에 채우세요.",
+      "options": ["SUBTRACT", "MINUS", "DECREMENT", "REMOVE"],
+      "answer": 0,
+      "explanation_en": "SUBTRACT Y FROM X subtracts Y from X and stores the result in X itself, reading naturally as an English sentence.",
+      "explanation_ko": "SUBTRACT Y FROM X는 Y를 X에서 빼서 결과를 X 자신에 저장합니다. 자연스러운 영어 문장처럼 읽힙니다.",
+      "concept_tags": ["subtract_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cobol_l1_u02_q004",
+      "type": "predict_output",
+      "code": "01 TOTAL PIC 9(4).\n...\nMOVE 5 TO TOTAL.\nADD 3 TO TOTAL.\nDISPLAY TOTAL.",
+      "prompt_en": "What is printed? (Note: no GIVING clause — the result accumulates into TOTAL itself.)",
+      "prompt_ko": "출력 결과는? (GIVING절이 없는 점에 주의하세요 — 결과가 TOTAL 자신에 누적됩니다.)",
+      "options": ["0003", "0005", "0008", "오류"],
+      "answer": 2,
+      "explanation_en": "Without GIVING, ADD 3 TO TOTAL adds 3 directly onto TOTAL's existing value; 5+3=8, displayed as 0008.",
+      "explanation_ko": "GIVING이 없으면 ADD 3 TO TOTAL은 TOTAL의 기존 값에 3을 직접 더합니다. 5+3=8이며, 0008로 출력됩니다.",
+      "concept_tags": ["add_statement"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l1_u02_q005",
+      "type": "predict_output",
+      "code": "01 A PIC 9(4).\n01 B PIC 9(4).\n...\nMOVE 7 TO A.\nMOVE 2 TO B.\nCOMPUTE A = A / B.\nDISPLAY A.",
+      "prompt_en": "What is printed? (A and B are both integer PIC 9 fields.)",
+      "prompt_ko": "출력 결과는? (A와 B 모두 정수 PIC 9 필드입니다.)",
+      "options": ["0003", "0004", "3.5", "오류"],
+      "answer": 0,
+      "explanation_en": "Dividing two integer PIC 9 fields truncates the result to a whole number, discarding the decimal part; 7/2 becomes 3, displayed as 0003.",
+      "explanation_ko": "정수 PIC 9 필드 두 개를 나누면 결과가 정수로 잘려서 소수 부분이 버려집니다. 7/2는 3이 되어 0003으로 출력됩니다.",
+      "concept_tags": ["compute_statement", "integer_division"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cobol_l1_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "MOVE ... TO ...", "definition": "값을 변수에 대입" },
+        { "term": "ADD / SUBTRACT", "definition": "영어 문장처럼 읽히는 산술 문장 — GIVING으로 결과를 다른 변수에 저장 가능" },
+        { "term": "COMPUTE", "definition": "현대 언어의 =처럼, 완전한 산술 표현식을 계산" },
+        { "term": "정수 필드 나눗셈", "definition": "정수 PIC 9 필드끼리 나누면 소수 부분이 버려짐" }
+      ],
+      "explanation_en": "COBOL's English-like arithmetic statements (ADD, SUBTRACT) reflect its design goal of being readable by non-programmers like business managers, while COMPUTE offers a more familiar expression syntax for complex formulas.",
+      "explanation_ko": "COBOL의 영어 같은 산술 문장(ADD, SUBTRACT)은 경영진 같은 비프로그래머도 읽을 수 있게 하려는 설계 목표를 반영하며, COMPUTE는 복잡한 공식을 위해 더 익숙한 표현식 문법을 제공합니다.",
+      "concept_tags": ["move_statement", "add_statement", "compute_statement"],
+      "difficulty": "practice"
+    }
+  ]
+}

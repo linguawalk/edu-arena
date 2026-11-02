@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 1,
+  "unit": 3,
+  "unit_title": "입출력 심화",
+  "questions": [
+    {
+      "id": "c_l1_u03_q001",
+      "type": "predict_output",
+      "code": "int age;\nscanf(\"%d\", &age);\n// 사용자가 25를 입력했다고 가정\nprintf(\"%d\", age);",
+      "prompt_en": "What is printed if the user enters 25?",
+      "prompt_ko": "사용자가 25를 입력하면 출력 결과는?",
+      "options": ["25", "&age", "0", "오류"],
+      "answer": 0,
+      "explanation_en": "scanf reads the entered value and stores it at the address of age; printf then displays the stored value, 25.",
+      "explanation_ko": "scanf는 입력받은 값을 age의 주소에 저장합니다. printf는 저장된 값인 25를 출력합니다.",
+      "concept_tags": ["scanf", "input"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l1_u03_q002",
+      "type": "error_finding",
+      "code": "int score;\nscanf(\"%d\", score);\nprintf(\"%d\", score);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "score 선언 문법 오류",
+        "scanf는 저장할 위치(주소)가 필요한데 &score가 아닌 score(값)를 전달해 오류나 예측 불가능한 동작을 일으킴",
+        "printf 형식 지정자 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "scanf needs the memory address to write into, so it requires &score; passing score alone gives it a garbage value to treat as an address.",
+      "explanation_ko": "scanf는 값을 저장할 메모리 주소가 필요하므로 &score를 전달해야 합니다. score만 전달하면 scanf는 score에 담긴 쓰레기 값을 주소로 취급하게 되어 오류나 예측 불가능한 동작으로 이어집니다. C 초보자가 가장 흔히 하는 실수 중 하나입니다.",
+      "concept_tags": ["scanf", "address_of"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l1_u03_q003",
+      "type": "fill_blank",
+      "code": "float price = 19.99;\nprintf(\"%____\", price);",
+      "prompt_en": "Fill in the blank with the correct format specifier for printing a float.",
+      "prompt_ko": "float 값을 출력할 때 쓰는 올바른 형식 지정자를 빈칸에 채우세요.",
+      "options": ["f", "d", "c", "s"],
+      "answer": 0,
+      "explanation_en": "%f is the format specifier for printing floating-point values like float and double.",
+      "explanation_ko": "%f는 float, double 같은 실수 값을 출력할 때 쓰는 형식 지정자입니다.",
+      "concept_tags": ["printf", "format_specifier"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l1_u03_q004",
+      "type": "predict_output",
+      "code": "char grade = 'A';\nprintf(\"%c\", grade);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["A", "65", "'A'", "오류"],
+      "answer": 0,
+      "explanation_en": "%c prints the character itself rather than its underlying numeric (ASCII) value.",
+      "explanation_ko": "%c는 문자의 내부적인 숫자(ASCII) 값이 아니라 문자 자체를 출력합니다.",
+      "concept_tags": ["printf", "format_specifier"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l1_u03_q005",
+      "type": "predict_output",
+      "code": "printf(\"Line1\\n\");\nprintf(\"Line2\");",
+      "prompt_en": "How many lines are shown on screen?",
+      "prompt_ko": "화면에 몇 줄로 표시될까요?",
+      "options": ["1줄", "2줄", "3줄", "오류"],
+      "answer": 1,
+      "explanation_en": "\\n moves the cursor to a new line, so 'Line1' and 'Line2' appear on two separate lines.",
+      "explanation_ko": "\\n은 커서를 다음 줄로 옮기는 개행 문자입니다. 따라서 'Line1'과 'Line2'는 서로 다른 두 줄에 표시됩니다.",
+      "concept_tags": ["printf", "newline"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l1_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "scanf", "definition": "사용자로부터 값을 입력받는 표준 함수" },
+        { "term": "printf", "definition": "값을 화면에 출력하는 표준 함수" },
+        { "term": "형식 지정자 (%d, %f, %c 등)", "definition": "값의 자료형에 맞춰 어떻게 출력·입력할지 지정하는 기호" },
+        { "term": "\\n (개행 문자)", "definition": "커서를 다음 줄로 옮기는 특수 문자" }
+      ],
+      "explanation_en": "These four elements form the vocabulary needed for any C program to communicate with the user through the console.",
+      "explanation_ko": "이 네 가지 요소는 C 프로그램이 콘솔을 통해 사용자와 소통하는 데 필요한 기본 어휘를 이룹니다.",
+      "concept_tags": ["scanf", "printf", "format_specifier"],
+      "difficulty": "practice"
+    }
+  ]
+}

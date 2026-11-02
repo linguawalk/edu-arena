@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 2,
+  "unit": 1,
+  "unit_title": "중첩 반복문",
+  "questions": [
+    {
+      "id": "c_l2_u01_q001",
+      "type": "predict_output",
+      "code": "for (int i = 1; i <= 2; i++) {\n    for (int j = 1; j <= 2; j++) {\n        printf(\"%d\", i * j);\n    }\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1224", "1234", "1122", "12"],
+      "answer": 0,
+      "explanation_en": "For each value of i, the inner loop runs completely: i=1 gives 1*1=1, 1*2=2; i=2 gives 2*1=2, 2*2=4, producing 1224.",
+      "explanation_ko": "바깥 반복문의 i값마다 안쪽 반복문이 처음부터 끝까지 실행됩니다. i=1일 때 1*1=1, 1*2=2, i=2일 때 2*1=2, 2*2=4가 출력되어 1224가 됩니다.",
+      "concept_tags": ["nested_loop"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l2_u01_q002",
+      "type": "predict_output",
+      "code": "int count = 0;\nfor (int i = 0; i < 3; i++) {\n    for (int j = 0; j < 2; j++) {\n        count++;\n    }\n}\nprintf(\"%d\", count);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "2", "5", "6"],
+      "answer": 3,
+      "explanation_en": "The outer loop runs 3 times, and for each of those, the inner loop runs 2 times, so count is incremented 3 * 2 = 6 times.",
+      "explanation_ko": "바깥 반복문이 3번 실행되고, 그때마다 안쪽 반복문이 2번씩 실행되므로 count는 총 3 * 2 = 6번 증가합니다.",
+      "concept_tags": ["nested_loop"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l2_u01_q003",
+      "type": "fill_blank",
+      "code": "for (int i = 1; i <= 3; i++) {\n    for (int j = 1; j <= ____; j++) {\n        printf(\"*\");\n    }\n    printf(\"\\n\");\n}\n// 별을 1개, 2개, 3개씩 늘어나며 삼각형 모양으로 출력해야 함",
+      "prompt_en": "Fill in the blank so stars form a growing triangle (1, then 2, then 3 stars per row).",
+      "prompt_ko": "별이 1개, 2개, 3개씩 늘어나는 삼각형 모양이 되도록 빈칸을 채우세요.",
+      "options": ["i", "3", "j", "1"],
+      "answer": 0,
+      "explanation_en": "Making the inner loop's bound depend on i, the outer loop's current value, is the key technique for shape patterns like triangles.",
+      "explanation_ko": "안쪽 반복문의 한계를 바깥 반복문의 현재 값인 i에 의존하게 만드는 것이 삼각형 같은 도형 패턴을 만드는 핵심 기법입니다.",
+      "concept_tags": ["nested_loop", "pattern"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l2_u01_q004",
+      "type": "error_finding",
+      "code": "int j = 0;\nfor (int i = 0; i < 3; i++) {\n    for (; j < 3; j++) {\n        printf(\"%d\", j);\n    }\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "바깥 반복문의 문법 오류",
+        "j가 바깥 반복문 밖에서 선언되어 매 i마다 초기화되지 않으므로, 안쪽 반복문은 i=0일 때 한 번만 완전히 실행되고 이후에는 실행되지 않음",
+        "printf 형식 지정자 오류",
+        "문제 없음, 의도한 대로 0123 0123 0123이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Because j is declared outside the outer loop, it is not reset for each i; once j reaches 3, the inner loop's condition stays false for all remaining outer iterations.",
+      "explanation_ko": "j가 바깥 반복문 바깥에서 선언되어 있어 i가 바뀔 때마다 초기화되지 않습니다. i=0일 때 j가 0부터 3까지 증가하며 안쪽 반복문이 실행되지만, 이후 i=1, i=2에서는 이미 j가 3이라 안쪽 반복문 조건이 거짓이 되어 아무것도 실행되지 않습니다.",
+      "concept_tags": ["nested_loop", "variable_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l2_u01_q005",
+      "type": "predict_output",
+      "code": "for (int i = 0; i < 2; i++) {\n    for (int i = 0; i < 2; i++) {\n        printf(\"%d\", i);\n    }\n}",
+      "prompt_en": "What is printed? (Note both loops use the variable name i.)",
+      "prompt_ko": "출력 결과는? (두 반복문 모두 변수명 i를 사용한 점에 주의하세요.)",
+      "options": ["0101", "0011", "컴파일 오류", "0202"],
+      "answer": 0,
+      "explanation_en": "Because each i is declared inside its own loop's parentheses, they exist in separate scopes; the inner i shadows the outer one without conflict, printing 0,1 twice.",
+      "explanation_ko": "각 i는 자신이 속한 for문 괄호 안에서 선언되어 서로 다른 스코프를 갖습니다. 안쪽 i가 바깥 i를 가리는(shadow) 형태로 충돌 없이 동작하여, 0과 1이 두 번 반복되어 출력됩니다.",
+      "concept_tags": ["nested_loop", "variable_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l2_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "중첩 반복문", "definition": "반복문 안에 또 다른 반복문이 들어있는 구조" },
+        { "term": "외부 루프", "definition": "중첩 구조에서 바깥쪽에 있는 반복문" },
+        { "term": "내부 루프", "definition": "외부 루프가 한 번 실행될 때마다 처음부터 끝까지 실행되는 안쪽 반복문" },
+        { "term": "변수 스코프", "definition": "변수가 선언된 블록 안에서만 유효한 범위" }
+      ],
+      "explanation_en": "Understanding scope is essential for nested loops, since forgetting where a counter is declared is one of the most common sources of bugs.",
+      "explanation_ko": "스코프를 이해하는 것은 중첩 반복문에서 필수적입니다. 카운터 변수가 어디에 선언되었는지를 놓치는 것이 가장 흔한 버그 원인 중 하나이기 때문입니다.",
+      "concept_tags": ["nested_loop", "variable_scope"],
+      "difficulty": "practice"
+    }
+  ]
+}

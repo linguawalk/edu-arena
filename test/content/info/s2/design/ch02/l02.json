@@ -1,0 +1,265 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "design",
+  "work": "풀이",
+  "track_title": "알고리즘 설계",
+  "chapter": {
+    "id": "info-s2-design-ch02",
+    "no": 2,
+    "title": "DP 최적화"
+  },
+  "lesson": {
+    "id": "info-s2-design-ch02-l02",
+    "no": 2,
+    "title": "누적 합과 덱으로 전이 빠르게",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "알고리즘 설계",
+      "DP 최적화"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "합을 매번 다시 구하지 않기",
+      "body": [
+        "한 번에 1~k칸 오를 때 i칸에 이르는 방법의 수는 dp[i] = dp[i − k] + … + dp[i − 1]입니다. 그대로 더하면 칸마다 k번씩, 모두 O(nk)입니다.",
+        "dp의 누적 합 S[i] = dp[0] + … + dp[i − 1]을 함께 유지하면 dp[i] = S[i] − S[i − k]로 한 번에 구합니다. 전이가 O(1)이 되어 전체 O(n)입니다.",
+        "이처럼 점화식이 연속한 구간의 합이면 누적 합으로, 연속한 구간의 최댓값이면 덱으로 전이를 빠르게 할 수 있습니다."
+      ],
+      "code": "// 한 번에 1~k칸 오를 때 n칸에 이르는 방법의 수\n// S[i] = dp[0] + … + dp[i-1] (누적 합)\ndp[0] = 1; S[0] = 0; S[1] = 1;\nfor (int i = 1; i <= n; i++) {\n    dp[i] = S[i] - S[max(0, i - k)];         // dp[i-k] + … + dp[i-1]\n    S[i + 1] = S[i] + dp[i];\n}"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "k = 3일 때 아래 코드로 구한 dp[5]는?",
+      "answer": "13",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "dp는 1, 1, 2, 4, 7, …입니다.",
+      "explanation": "dp[i]는 앞의 세 값의 합이므로 dp[0] = 1, dp[1] = 1, dp[2] = 2, dp[3] = 4, dp[4] = 7입니다.\ndp[5] = 2 + 4 + 7입니다.\n= 13입니다.",
+      "code": "// 한 번에 1~k칸 오를 때 n칸에 이르는 방법의 수\n// S[i] = dp[0] + … + dp[i-1] (누적 합)\ndp[0] = 1; S[0] = 0; S[1] = 1;\nfor (int i = 1; i <= n; i++) {\n    dp[i] = S[i] - S[max(0, i - k)];         // dp[i-k] + … + dp[i-1]\n    S[i + 1] = S[i] + dp[i];\n}"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "k = 3일 때 아래 코드에서 S[5]의 값은?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "dp[0]부터 dp[4]까지의 합입니다.",
+      "explanation": "S[i]는 dp[0]부터 dp[i − 1]까지의 합입니다.\ndp[0..4]는 1, 1, 2, 4, 7입니다.\n1 + 1 + 2 + 4 + 7 = 15이고, dp[5] = S[5] − S[2] = 15 − 2 = 13입니다.",
+      "code": "// 한 번에 1~k칸 오를 때 n칸에 이르는 방법의 수\n// S[i] = dp[0] + … + dp[i-1] (누적 합)\ndp[0] = 1; S[0] = 0; S[1] = 1;\nfor (int i = 1; i <= n; i++) {\n    dp[i] = S[i] - S[max(0, i - k)];         // dp[i-k] + … + dp[i-1]\n    S[i + 1] = S[i] + dp[i];\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "2차원 표에서도",
+      "body": [
+        "사탕 j개를 아이 i명에게 나눠 주되 한 명당 0~c개만 줄 수 있다고 합시다. 마지막 아이가 t개를 받는다고 보면 dp[i][j] = dp[i − 1][j] + dp[i − 1][j − 1] + … + dp[i − 1][j − c]입니다.",
+        "그대로 계산하면 칸마다 c + 1번 더해 O(kids × tot × c)입니다. 이전 줄의 누적 합 P를 만들면 dp[i][j] = P[j + 1] − P[j − c]로 칸마다 O(1)입니다.",
+        "줄마다 누적 합을 새로 만드는 데 O(tot)이 들므로 전체는 O(kids × tot)입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "아이 2명에게 한 명당 0~2개씩, 사탕 3개를 나눠 주는 방법의 수를 구하세요.",
+      "steps": [
+        "아이 1명일 때 dp[1][j]는 j = 0, 1, 2이면 1, j ≥ 3이면 0입니다.",
+        "dp[2][3] = dp[1][3] + dp[1][2] + dp[1][1] = 0 + 1 + 1입니다.",
+        "그래서 2가지(1 + 2, 2 + 1)입니다."
+      ],
+      "answer": "2",
+      "code": "// 사탕 j개를 아이 i명에게 나눠 주는 방법의 수 (한 명당 0~c개)\n// dp[i][j] = dp[i-1][j] + dp[i-1][j-1] + … + dp[i-1][j-c]\nfor (int i = 1; i <= kids; i++) {\n    P[0] = 0;\n    for (int j = 0; j <= tot; j++) P[j + 1] = P[j] + dp[i - 1][j];   // 이전 줄의 누적 합\n    for (int j = 0; j <= tot; j++) dp[i][j] = P[j + 1] - P[max(0, j - c)];\n}"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "아이 3명에게 한 명당 0~2개씩, 사탕 3개를 나눠 주는 방법의 수는?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "dp[2][j]는 j = 0, 1, 2, 3에서 1, 2, 3, 2입니다.",
+      "explanation": "dp[2][0..3]은 1, 2, 3, 2입니다.\ndp[3][3] = dp[2][3] + dp[2][2] + dp[2][1] = 2 + 3 + 2입니다.\n= 7가지입니다.",
+      "code": "// 사탕 j개를 아이 i명에게 나눠 주는 방법의 수 (한 명당 0~c개)\n// dp[i][j] = dp[i-1][j] + dp[i-1][j-1] + … + dp[i-1][j-c]\nfor (int i = 1; i <= kids; i++) {\n    P[0] = 0;\n    for (int j = 0; j <= tot; j++) P[j + 1] = P[j] + dp[i - 1][j];   // 이전 줄의 누적 합\n    for (int j = 0; j <= tot; j++) dp[i][j] = P[j + 1] - P[max(0, j - c)];\n}"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "아이 4명에게 한 명당 0~3개씩, 사탕 6개를 나눠 주는 방법의 수는?",
+      "answer": "44",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(1 + x + x² + x³)⁴에서 x⁶의 계수와 같습니다.",
+      "explanation": "아이 2명일 때 dp는 j = 0~6에서 1, 2, 3, 4, 3, 2, 1이고, 3명일 때 j = 3~6에서 10, 12, 12, 10입니다(j = 0~2는 1, 3, 6).\ndp[4][6] = dp[3][6] + dp[3][5] + dp[3][4] + dp[3][3] = 10 + 12 + 12 + 10입니다.\n= 44가지입니다.",
+      "code": "// 사탕 j개를 아이 i명에게 나눠 주는 방법의 수 (한 명당 0~c개)\n// dp[i][j] = dp[i-1][j] + dp[i-1][j-1] + … + dp[i-1][j-c]\nfor (int i = 1; i <= kids; i++) {\n    P[0] = 0;\n    for (int j = 0; j <= tot; j++) P[j + 1] = P[j] + dp[i - 1][j];   // 이전 줄의 누적 합\n    for (int j = 0; j <= tot; j++) dp[i][j] = P[j + 1] - P[max(0, j - c)];\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "구간 최댓값은 덱으로",
+      "body": [
+        "0번 칸에서 출발해 한 번에 1~k칸 앞으로 뛰며 밟은 칸 값의 합을 최대로 하려면 dp[i] = max(dp[i − k], …, dp[i − 1]) + a[i]입니다. 그대로 하면 O(nk)입니다.",
+        "구간 [i − k, i − 1]은 i가 커질 때 한 칸씩 밀리는 슬라이딩 윈도입니다. 덱에 dp 값이 감소하는 순서로 번호를 유지하면 맨 앞이 구간 최댓값입니다(S1의 슬라이딩 윈도와 같은 방법).",
+        "번호마다 덱에 한 번 들어가고 한 번 나오므로 전체 O(n)입니다."
+      ],
+      "code": "// 0번 칸에서 출발해 한 번에 1~k칸 앞으로 뛰어 n-1번 칸에 도착할 때, 밟은 칸 값의 합의 최댓값\n// dp[i] = max(dp[i-k], …, dp[i-1]) + a[i]  — 덱으로 구간 최댓값을 유지\ndeque<int> dq; dp[0] = a[0]; dq.push_back(0);\nfor (int i = 1; i < n; i++) {\n    while (dq.front() < i - k) dq.pop_front();           // 범위를 벗어난 칸\n    dp[i] = dp[dq.front()] + a[i];\n    while (!dq.empty() && dp[dq.back()] <= dp[i]) dq.pop_back();\n    dq.push_back(i);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = {3, −5, 2, −1, 4, −2, 1}, k = 2일 때 아래 코드로 구한 dp[6]은?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "음수 칸은 되도록 건너뛰세요.",
+      "explanation": "3에서 출발해 −5를 건너 2, −1을 건너 4, −2를 건너 1을 밟으면 3 + 2 + 4 + 1입니다.\nk = 2라 음수 칸을 하나씩 건너뛸 수 있고, 이보다 큰 합은 없습니다.\n그래서 dp[6] = 10입니다.",
+      "code": "// 0번 칸에서 출발해 한 번에 1~k칸 앞으로 뛰어 n-1번 칸에 도착할 때, 밟은 칸 값의 합의 최댓값\n// dp[i] = max(dp[i-k], …, dp[i-1]) + a[i]  — 덱으로 구간 최댓값을 유지\ndeque<int> dq; dp[0] = a[0]; dq.push_back(0);\nfor (int i = 1; i < n; i++) {\n    while (dq.front() < i - k) dq.pop_front();           // 범위를 벗어난 칸\n    dp[i] = dp[dq.front()] + a[i];\n    while (!dq.empty() && dp[dq.back()] <= dp[i]) dq.pop_back();\n    dq.push_back(i);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "덱을 쓴 dp[i] = max(dp[i − k..i − 1]) + a[i]의 전체 시간 복잡도는? ① O(n) ② O(n log n) ③ O(nk) ④ O(n²)",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "번호마다 덱에 몇 번 들어가고 나오나요?",
+      "explanation": "각 번호는 덱에 한 번 들어가고 많아야 한 번 나옵니다.\n그래서 덱 연산의 총 횟수는 O(n)입니다.\n답은 1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "k = 4일 때 아래 코드로 구한 dp[6]은?",
+      "answer": "29",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "dp는 1, 1, 2, 4, 8, …입니다.",
+      "explanation": "dp[i]는 앞의 네 값의 합이므로 dp[0..5]는 1, 1, 2, 4, 8, 15입니다.\ndp[6] = 2 + 4 + 8 + 15입니다.\n= 29입니다.",
+      "code": "// 한 번에 1~k칸 오를 때 n칸에 이르는 방법의 수\n// S[i] = dp[0] + … + dp[i-1] (누적 합)\ndp[0] = 1; S[0] = 0; S[1] = 1;\nfor (int i = 1; i <= n; i++) {\n    dp[i] = S[i] - S[max(0, i - k)];         // dp[i-k] + … + dp[i-1]\n    S[i + 1] = S[i] + dp[i];\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "점화식이 연속한 구간의 합이면 누적 합을 함께 유지해 전이를 O(1)로 줄입니다. 2차원 표에서는 줄마다 이전 줄의 누적 합을 만듭니다.",
+        "연속한 구간의 최댓값·최솟값이면 단조 덱으로 전이를 분할 상환 O(1)로 줄입니다.",
+        "전이의 구간이 직선 꼴의 최댓값처럼 더 복잡하면 S3의 볼록 껍질 트릭 같은 기법을 씁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "k = 3일 때 아래 코드로 구한 dp[7]은?",
+      "answer": "44",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "dp[5] = 13, dp[6] = 24입니다.",
+      "explanation": "dp는 1, 1, 2, 4, 7, 13, 24로 이어집니다.\ndp[7] = 7 + 13 + 24입니다.\n= 44입니다.",
+      "code": "// 한 번에 1~k칸 오를 때 n칸에 이르는 방법의 수\n// S[i] = dp[0] + … + dp[i-1] (누적 합)\ndp[0] = 1; S[0] = 0; S[1] = 1;\nfor (int i = 1; i <= n; i++) {\n    dp[i] = S[i] - S[max(0, i - k)];         // dp[i-k] + … + dp[i-1]\n    S[i + 1] = S[i] + dp[i];\n}"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "아이 3명에게 한 명당 0~3개씩, 사탕 4개를 나눠 주는 방법의 수는?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "dp[2][j]는 j = 1~4에서 2, 3, 4, 3입니다.",
+      "explanation": "아이 2명일 때 dp[2][0..4]는 1, 2, 3, 4, 3입니다.\ndp[3][4] = dp[2][4] + dp[2][3] + dp[2][2] + dp[2][1] = 3 + 4 + 3 + 2입니다.\n= 12가지입니다.",
+      "code": "// 사탕 j개를 아이 i명에게 나눠 주는 방법의 수 (한 명당 0~c개)\n// dp[i][j] = dp[i-1][j] + dp[i-1][j-1] + … + dp[i-1][j-c]\nfor (int i = 1; i <= kids; i++) {\n    P[0] = 0;\n    for (int j = 0; j <= tot; j++) P[j + 1] = P[j] + dp[i - 1][j];   // 이전 줄의 누적 합\n    for (int j = 0; j <= tot; j++) dp[i][j] = P[j + 1] - P[max(0, j - c)];\n}"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "계단 문제에서 누적 합을 쓰면 전체 시간이 O(n)이 되는 이유와, dp[i] = S[i] − S[i − k]가 맞는 이유를 설명하세요. (i ≥ k)",
+      "model_answer": [
+        "S[i] = dp[0] + … + dp[i − 1]이므로 S[i] − S[i − k] = dp[i − k] + … + dp[i − 1]이다.",
+        "이것이 점화식의 합과 같으므로 dp[i]가 맞게 계산된다.",
+        "dp[i]를 구한 뒤 S[i + 1] = S[i] + dp[i]로 누적 합을 O(1)에 늘린다.",
+        "칸마다 O(1)만 하므로 전체 O(n)이다. 그대로 더하면 O(nk)다."
+      ],
+      "criteria": [
+        {
+          "text": "누적 합의 차가 구간 합임을 보였다",
+          "points": 2
+        },
+        {
+          "text": "누적 합을 O(1)에 갱신함을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "전체 복잡도를 비교했다",
+          "points": 2
+        }
+      ],
+      "hint": "S의 정의에서 출발하세요.",
+      "code": "// 한 번에 1~k칸 오를 때 n칸에 이르는 방법의 수\n// S[i] = dp[0] + … + dp[i-1] (누적 합)\ndp[0] = 1; S[0] = 0; S[1] = 1;\nfor (int i = 1; i <= n; i++) {\n    dp[i] = S[i] - S[max(0, i - k)];         // dp[i-k] + … + dp[i-1]\n    S[i + 1] = S[i] + dp[i];\n}"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "덱 최적화에서 덱 맨 앞이 항상 구간 [i − k, i − 1]의 dp 최댓값을 가리키는 이유를 설명하세요.",
+      "model_answer": [
+        "덱에는 번호가 증가하는 순서로, dp 값은 엄격히 감소하는 순서로 들어 있다(새 번호를 넣기 전에 dp가 그 이하인 뒤쪽 번호를 뺀다).",
+        "뺀 번호 j는 더 뒤에 있고 dp가 같거나 큰 번호가 있으므로, 앞으로 어떤 구간에서도 최댓값이 될 수 없다.",
+        "맨 앞에서는 구간을 벗어난 번호를 뺀다. 그러면 남은 맨 앞 번호가 구간 안에서 dp가 가장 큰 번호다.",
+        "각 번호는 한 번 들어가고 한 번 나오므로 전체 O(n)이다."
+      ],
+      "criteria": [
+        {
+          "text": "덱의 단조성을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "뺀 번호가 다시 필요 없음을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "맨 앞이 최댓값임과 복잡도를 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "덱 안의 dp 값은 어떤 순서인가요?",
+      "code": "// 0번 칸에서 출발해 한 번에 1~k칸 앞으로 뛰어 n-1번 칸에 도착할 때, 밟은 칸 값의 합의 최댓값\n// dp[i] = max(dp[i-k], …, dp[i-1]) + a[i]  — 덱으로 구간 최댓값을 유지\ndeque<int> dq; dp[0] = a[0]; dq.push_back(0);\nfor (int i = 1; i < n; i++) {\n    while (dq.front() < i - k) dq.pop_front();           // 범위를 벗어난 칸\n    dp[i] = dp[dq.front()] + a[i];\n    while (!dq.empty() && dp[dq.back()] <= dp[i]) dq.pop_back();\n    dq.push_back(i);\n}"
+    }
+  ]
+}

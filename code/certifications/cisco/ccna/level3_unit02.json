@@ -1,0 +1,107 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "cisco",
+  "exam": "ccna-200-301",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "정적 경로와 기본 경로",
+  "rule_summary_ko": "기본 경로(default route, 0.0.0.0/0)는 라우팅 테이블에 일치하는 더 구체적인 경로가 없을 때 사용되는 최후의 경로로, 접두사 길이가 0이라 최장 접두사 일치 규칙상 항상 다른 어떤 경로보다도 후순위로 밀립니다. 플로팅 정적 경로(floating static route)는 일부러 기본값보다 높은 관리 거리(AD)를 설정해서, 평소에는 라우팅 테이블에 설치되지 않다가 더 우선하는(낮은 AD) 경로가 사라졌을 때만 백업으로 활성화됩니다.",
+  "examples": [
+    { "code": "ip route 0.0.0.0 0.0.0.0 203.0.113.1", "note_ko": "일치하는 다른 경로가 없는 모든 목적지를 이 다음 홉으로 보내는 기본 경로" },
+    { "code": "OSPF로 배운 기본 경로(AD 110)와, 백업용 정적 기본 경로(일부러 AD 115로 설정)", "note_ko": "평소엔 OSPF 경로가 사용되고, OSPF 경로가 사라지면 그제서야 정적 경로가 라우팅 테이블에 설치되어 백업으로 작동" }
+  ],
+  "questions": [
+    {
+      "id": "ccna_l3_u2_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "기본 경로(0.0.0.0/0)가 사용되는 상황은?",
+      "options": [
+        "라우팅 테이블에 목적지와 일치하는 더 구체적인 경로가 전혀 없을 때, 최후의 수단으로 사용된다",
+        "항상 다른 모든 경로보다 우선적으로 선택된다",
+        "직접 연결된 네트워크보다 항상 우선한다",
+        "기본 경로는 실제로는 아무 역할도 하지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "접두사 길이가 0이라 최장 접두사 일치 규칙상 항상 가장 마지막 순위로 밀립니다.",
+      "concept_tags": ["default_route"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l3_u2_q002",
+      "type": "concept_matching_item",
+      "code": "OSPF로 배운 기본 경로(AD 110)가 정상 작동 중이고, 백업용 정적 기본 경로를 AD 115로 설정해둠",
+      "prompt_ko": "평소(OSPF 경로가 정상일 때)에는 어느 경로가 라우팅 테이블에 설치됩니까?",
+      "options": [
+        "OSPF 경로 — AD가 더 낮아 더 신뢰할 수 있는 것으로 간주됨",
+        "정적 경로 — 항상 정적 경로가 우선함",
+        "둘 다 동시에 설치되어 부하 분산됨",
+        "둘 다 설치되지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "AD가 더 낮은 OSPF 경로가 평소에는 우선 설치되고, 정적 경로는 대기(float) 상태입니다.",
+      "concept_tags": ["floating_static_normal_state"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l3_u2_q003",
+      "type": "concept_matching_item",
+      "code": "위 상황에서 OSPF 경로가 장애로 사라짐",
+      "prompt_ko": "이제 라우팅 테이블은 어떻게 됩니까?",
+      "options": [
+        "AD 115로 설정해둔 정적 경로가 그제서야 라우팅 테이블에 설치되어 백업 역할을 한다",
+        "아무 경로도 남지 않아 모든 트래픽이 드롭된다",
+        "OSPF 경로가 자동으로 복구된다",
+        "정적 경로도 함께 사라진다"
+      ],
+      "answer": 0,
+      "explanation_ko": "이것이 플로팅 정적 경로의 핵심 동작 원리 — 평소엔 숨어있다가 주 경로가 사라지면 활성화됩니다.",
+      "concept_tags": ["floating_static_activation"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l3_u2_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "parameter_note": "",
+      "prompt_ko": "플로팅 정적 경로를 만들 때 관리 거리(AD)를 일부러 어떻게 설정해야 합니까?",
+      "options": [
+        "백업하려는 주 경로(예: OSPF의 110)보다 더 높은 값으로 설정해야 한다",
+        "항상 기본값 1을 그대로 사용해야 한다",
+        "AD를 0으로 설정해야 한다",
+        "AD 설정은 플로팅 정적 경로와 무관하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "주 경로보다 AD를 높게 설정해야, 평소엔 밀려나 있다가 주 경로 장애 시에만 활성화됩니다.",
+      "concept_tags": ["floating_static_ad_config"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l3_u2_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "정적 경로의 기본(별도 설정하지 않았을 때) 관리 거리(AD) 값은 얼마입니까? (숫자만 입력)",
+      "expected_answers": ["1"],
+      "explanation_ko": "정적 경로의 기본 AD는 1로, 직접 연결(0) 다음으로 신뢰도가 높습니다.",
+      "concept_tags": ["static_route_default_ad"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l3_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "플로팅 정적 경로를 사용하는 대표적인 목적은?",
+      "options": [
+        "주 회선(예: 동적 라우팅 프로토콜로 학습한 경로)이 장애가 났을 때를 대비한 백업(대체) 경로를 마련하기 위해",
+        "네트워크 속도를 항상 빠르게 만들기 위해",
+        "VLAN을 구성하기 위해",
+        "IP 주소를 자동으로 할당하기 위해"
+      ],
+      "answer": 0,
+      "explanation_ko": "플로팅 정적 경로는 이중화(redundancy)와 장애 대비를 위한 대표적인 설계 기법입니다.",
+      "concept_tags": ["floating_static_purpose"],
+      "difficulty": "practice"
+    }
+  ]
+}

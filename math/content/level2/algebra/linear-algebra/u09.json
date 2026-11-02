@@ -1,0 +1,119 @@
+{
+ "no": 9,
+ "title": "고유값과 고유벡터, 대각화",
+ "hours": 6,
+ "after": [
+  5,
+  8
+ ],
+ "objectives": [
+  "특성방정식으로 고유값과 고유벡터를 구할 수 있다.",
+  "행렬을 A = XΛX⁻¹로 대각화하고 거듭제곱을 계산할 수 있다.",
+  "대각화가 불가능한 경우를 판별할 수 있다."
+ ],
+ "checklist": [
+  "Ax = λx: 방향이 바뀌지 않는 벡터 x, 배율 λ",
+  "특성방정식 det(A − λI) = 0",
+  "고유값의 합 = 대각합(trace), 고유값의 곱 = det A",
+  "삼각행렬의 고유값 = 대각성분",
+  "대각화 A = XΛX⁻¹ (고유벡터 n개가 일차독립일 때)",
+  "Aᵏ = XΛᵏX⁻¹, 차분방정식 uₖ₊₁ = Auₖ",
+  "고유값이 중복되면 고유벡터가 모자랄 수 있음"
+ ],
+ "advice": [
+  "고유값은 선형대수의 후반부 전체를 이끄는 개념입니다. 행렬을 곱해도 방향이 바뀌지 않는 특별한 벡터를 찾으면, 그 방향에서는 복잡한 행렬이 그냥 수 λ처럼 행동합니다. 행렬의 100제곱처럼 직접 계산할 수 없는 것이 고유값으로는 λ¹⁰⁰으로 바로 계산됩니다.",
+  "계산보다 확인 습관이 중요합니다. 고유값을 구하면 '합 = 대각합, 곱 = 행렬식'으로 바로 검산하세요. 흔한 막힘은 det(A − λI)의 전개에서 부호를 틀리는 것과, 고유값이 중복될 때 무조건 대각화된다고 착각하는 것입니다. [[1, 1], [0, 1]]이 대표적인 반례입니다."
+ ],
+ "resources": [
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "18.06 Linear Algebra (Gilbert Strang, 2010년 봄)",
+   "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+   "lang": "영어",
+   "part": "21강 Eigenvalues and eigenvectors, 22강 Diagonalization and powers of A"
+  },
+  {
+   "kind": "video",
+   "provider": "3Blue1Brown",
+   "title": "Essence of linear algebra",
+   "url": "https://www.3blue1brown.com/topics/linear-algebra",
+   "lang": "영어(한국어 자막 제공)",
+   "part": "14장 고유벡터와 고유값, 15장 고유값을 빠르게 계산하는 방법"
+  },
+  {
+   "kind": "book",
+   "provider": "Wellesley-Cambridge Press",
+   "title": "Gilbert Strang, Introduction to Linear Algebra (5판)",
+   "part": "6.1~6.2절"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "A = [[4, 1], [2, 3]]의 고유값은 큰 값 {{1}}, 작은 값 {{2}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "5"
+     ]
+    },
+    {
+     "id": 2,
+     "answers": [
+      "2"
+     ]
+    }
+   ],
+   "explanation": "det(A − λI) = (4 − λ)(3 − λ) − 2 = λ² − 7λ + 10 = 0\n(λ − 5)(λ − 2) = 0\n확인: 합 7 = 대각합, 곱 10 = det A",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "위의 A에서 λ = 5에 대한 고유벡터는 (1, {{1}})의 배수",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "1"
+     ]
+    }
+   ],
+   "explanation": "A − 5I = [[−1, 1], [2, −2]]\n−x + y = 0에서 y = x\n고유벡터 (1, 1): A(1, 1) = (5, 5) = 5(1, 1)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "3 × 3 행렬의 고유값이 1, 2, 3일 때 det A는?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "행렬식 = 고유값의 곱\n1 × 2 × 3 = 6\n(대각합은 6으로 우연히 같음)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "A = [[1, 1], [0, 1]]은 대각화할 수 있을까요? (그렇다 1, 아니다 0)",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "고유값은 1(중근)\nA − I = [[0, 1], [0, 0]]에서 고유벡터는 (1, 0) 방향 하나뿐\n일차독립인 고유벡터가 2개가 아니므로 대각화 불가",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "algebra",
+ "subject": "linear-algebra",
+ "id": "l2-algebra-linear-algebra-u09"
+}

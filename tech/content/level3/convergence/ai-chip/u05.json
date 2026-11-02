@@ -1,0 +1,84 @@
+{
+ "no": 5,
+ "title": "희소성과 저정밀 연산",
+ "hours": 4,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "가중치 희소성을 하드웨어로 활용하는 방법을 설명할 수 있다.",
+  "정밀도별 연산기 면적·전력의 맞바꿈을 설명할 수 있다."
+ ],
+ "checklist": [
+  "가지치기와 희소 행렬",
+  "구조적 희소성(예: 4개 중 2개 0)과 처리량 2배",
+  "INT8·FP8·INT4 연산기",
+  "곱셈기 면적은 비트 수의 제곱에 가깝게 증가",
+  "정확도 보정(양자화 인지 학습)"
+ ],
+ "advice": [
+  "값이 0인 곱셈은 건너뛰면 되고, 정밀도를 낮추면 연산기가 작아져 같은 면적에 더 많이 넣을 수 있습니다. 4개 가운데 2개를 0으로 맞추는 구조적 희소성이 처리량을 두 배로 늘리는 원리와, 8비트 곱셈기가 32비트보다 훨씬 작은 이유를 정리해 보세요. 다만 이런 최적화는 모델 정확도를 지키는 학습 기법과 함께 써야 하므로 AI 공학 6단원과 연결됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan & Claypool",
+   "title": "Sze 외, Efficient Processing of Deep Neural Networks (장 제목으로 표기)",
+   "part": "Reducing Precision, Exploiting Sparsity 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3 융합",
+   "title": "AI 공학 6단원 엣지 AI와 모델 경량화",
+   "url": "guide.html?lv=3&t=convergence&s=ai-engineering&u=6"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "가중치 4개마다 2개를 0으로 만든 구조적 희소성을 하드웨어가 건너뛰면 이론 처리량은 몇 배가 될까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "실제로 계산할 값이 절반이라 2배입니다.",
+   "hint": "0이 아닌 비율의 역수입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "곱셈기 면적이 비트 수의 제곱에 비례한다고 보면 32비트 대신 8비트 곱셈기는 면적이 몇 분의 1일까요?",
+   "answer": "16",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "(32/8)² = 16 → 1/16",
+   "hint": "비트 비의 제곱입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "양자화로 생기는 오차를 학습 과정에 미리 반영해 정확도 손실을 줄이는 방법을 양자화 {{1}} 학습이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "인지"
+     ]
+    }
+   ],
+   "explanation": "QAT(Quantization-Aware Training)라고 부릅니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "ai-chip",
+ "id": "l3-convergence-ai-chip-u05"
+}

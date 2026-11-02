@@ -1,0 +1,363 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch08",
+    "no": 8,
+    "title": "여러 가지 적분법"
+  },
+  "lesson": {
+    "id": "c4-ch08-l01",
+    "no": 1,
+    "title": "치환적분법",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "치환적분",
+      "body": [
+        "∫ f(g(x))g′(x) dx에서 g(x) = t로 놓으면 g′(x)dx = dt이므로 ∫ f(t) dt가 됩니다. 합성함수 미분을 거꾸로 한 것입니다.",
+        "왜 성립할까요? F′ = f이면 합성함수의 미분법으로 {F(g(x))}′ = f(g(x))g′(x)입니다. 따라서 f(g(x))g′(x)를 적분하면 F(g(x)) + C이고, 이는 ∫ f(t) dt에 t = g(x)를 넣은 것과 같습니다. dt = g′(x)dx는 'x가 조금 변할 때 t가 g′(x)배로 변한다'는 뜻입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "∫ 2x(x² + 1)³ dx = (x² + 1)^{{1}}/4 + C",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "4"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "t = x² + 1로 놓으면 dt = 2x dx\n∫ t³ dt = t⁴/4 + C = (x² + 1)⁴/4 + C\n빈칸은 4\n확인: 미분하면 4(x² + 1)³ × 2x/4 = 2x(x² + 1)³"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "∫ cos 2x dx = (1/{{1}}) sin 2x + C",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "t = 2x로 놓으면 dt = 2 dx, dx = dt/2\n∫ cos t × (1/2) dt = (1/2) sin 2x + C\n빈칸은 2\n확인: 미분하면 (1/2) × 2 cos 2x = cos 2x"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "자주 쓰는 꼴",
+      "body": [
+        "∫ f′(x)/f(x) dx = ln|f(x)| + C,  ∫ e^(ax) dx = (1/a)e^(ax) + C",
+        "∫ f′/f dx = ln|f| + C는 분자가 분모의 도함수일 때 쓰는 공식입니다. 분모를 t로 치환하면 ∫ dt/t = ln|t|가 되기 때문입니다. e^(ax)의 적분에 1/a이 붙는 것은 미분할 때 곱해지는 a를 되돌리기 위해서입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "∫ x²(x³ − 2)⁴ dx를 구하세요.",
+      "steps": [
+        "t = x³ − 2로 놓으면 dt = 3x² dx, x² dx = dt/3",
+        "∫ t⁴ × (1/3) dt = t⁵/15 + C",
+        "t를 되돌리면 (x³ − 2)⁵/15 + C",
+        "확인: 미분하면 5(x³ − 2)⁴ × 3x²/15 = x²(x³ − 2)⁴"
+      ],
+      "answer": "(x³ − 2)⁵/15 + C"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "∫ 2x/(x² + 1) dx = ln(x² + {{1}}) + C",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "1"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "분자 2x가 분모 x² + 1의 도함수: ∫ f′/f dx = ln|f| + C\nln(x² + 1) + C (x² + 1 > 0이라 절댓값 불필요)\n빈칸은 1"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "∫ e^(3x) dx = (1/{{1}})e^(3x) + C",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "3"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "t = 3x로 놓으면 dx = dt/3\n∫ eᵗ (1/3) dt = (1/3)e^(3x) + C\n빈칸은 3 (미분할 때 곱해지는 3을 되돌림)"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "∫₀¹ 2xe^(x²) dx = e − {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "1"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "t = x²: dt = 2x dx, 구간 x: 0 → 1은 t: 0 → 1\n∫₀¹ eᵗ dt = e − 1\n빈칸은 1"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "정적분의 치환",
+      "body": [
+        "치환하면 적분 구간도 t의 범위로 바꿉니다. x = 0 → t = g(0), x = 1 → t = g(1)",
+        "정적분을 치환할 때는 적분 구간도 반드시 t의 값으로 바꿉니다. 구간을 바꿔 두면 마지막에 x로 되돌릴 필요 없이 t의 식에 바로 위끝, 아래끝을 넣으면 됩니다. 구간을 바꾸지 않고 x의 구간을 그대로 쓰는 것이 가장 흔한 실수입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "∫₀¹ x/(x² + 1) dx를 구하세요.",
+      "steps": [
+        "t = x² + 1: dt = 2x dx, x = 0 → t = 1, x = 1 → t = 2",
+        "∫₁² (1/2)(1/t) dt = (1/2)[ln t]₁²",
+        "= (1/2) ln 2",
+        "원리: 구간을 t로 바꾸면 x로 되돌리지 않아도 됩니다."
+      ],
+      "answer": "(1/2) ln 2"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "∫₀¹ (2x + 1)² dx의 값은? (기약분수로)",
+      "answer": "13/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "t = 2x + 1: dx = dt/2, 구간 0 → 1은 1 → 3\n(1/2)∫₁³ t² dt = (1/2)[t³/3]₁³ = (1/2)(26/3)\n= 13/3"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "∫₀^(π/2) sin x cos x dx의 값은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "t = sin x: dt = cos x dx, 구간 0 → π/2는 0 → 1\n∫₀¹ t dt = [t²/2]₀¹\n= 1/2"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "근호와 삼각치환",
+      "body": [
+        "√(1 − x²)은 x = sin θ로 치환하면 cos θ가 되어 적분할 수 있습니다. ∫₀¹ √(1 − x²) dx는 사분원의 넓이입니다.",
+        "√(1 − x²)처럼 근호 안에 1 − x²이 있으면 sin² θ + cos² θ = 1을 이용해 x = sin θ로 놓습니다. 그러면 √(1 − sin² θ) = cos θ가 되어 근호가 사라집니다. 기하학적으로는 원의 일부의 넓이를 구하는 것과 같아 결과에 π가 나타납니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "∫₀¹ √(1 − x²) dx = π/{{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "4"
+          ]
+        }
+      ],
+      "hint": "어떤 도형의 넓이인지 생각하세요.",
+      "explanation": "y = √(1 − x²)은 반지름 1인 원의 위쪽 절반\n0 ≤ x ≤ 1 부분은 사분원: 넓이 π/4\n빈칸은 4 (x = sin θ로 치환해도 같은 결과)"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "∫₁ᵉ (ln x)/x dx의 값은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "t = ln x로 치환하세요.",
+      "explanation": "t = ln x: dt = (1/x) dx, 구간 1 → e는 0 → 1\n∫₀¹ t dt = 1/2\n원리: 1/x이 ln x의 도함수로 곱해져 있음"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "속에 있는 식의 도함수가 곱해져 있는지 찾는 것이 치환의 핵심입니다.",
+        "치환할 식을 고르는 요령: 괄호 안의 식, 지수 부분, 근호 안, 분모처럼 '속에 들어 있는 식'을 t로 놓아 보고, 그 도함수가 곱해져 있는지 확인합니다. 상수배만 다르면 상수를 곱하고 나눠 맞출 수 있습니다. 치환 후 적분 결과는 미분해서 원래 식이 나오는지 확인합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "∫₀^(π/2) sin³ x cos x dx를 구하세요.",
+      "steps": [
+        "t = sin x: dt = cos x dx, x = 0 → t = 0, x = π/2 → t = 1",
+        "∫₀¹ t³ dt",
+        "= [t⁴/4]₀¹ = 1/4",
+        "원리: cos x가 sin x의 도함수로 곱해져 있음"
+      ],
+      "answer": "1/4"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "∫₀¹ 3x²(x³ + 1) dx의 값은? (기약분수로)",
+      "answer": "3/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "t = x³ + 1로 치환하세요.",
+      "explanation": "t = x³ + 1: dt = 3x² dx, 구간 0 → 1은 1 → 2\n∫₁² t dt = [t²/2]₁² = 2 − 1/2\n= 3/2"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "∫₀^π sin x dx의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(−cos x)′ = sin x",
+      "explanation": "원시함수 −cos x\n[−cos x]₀^π = −(−1) − (−1)\n= 2 (사인 그래프의 한 봉우리 넓이)"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "∫₀^(ln 2) eˣ dx의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "e^(ln 2) = 2",
+      "explanation": "원시함수 eˣ\n[eˣ]₀^(ln 2) = e^(ln 2) − e⁰ = 2 − 1\n= 1\n원리: eˣ는 적분해도 eˣ입니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "∫₁ᵉ (1/x) dx의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(ln x)′ = 1/x",
+      "explanation": "원시함수 ln x\n[ln x]₁ᵉ = ln e − ln 1\n= 1 − 0 = 1\n원리: 1/x의 원시함수는 ln x입니다."
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "∫₀¹ x/√(x² + 1) dx = √2 − {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "1"
+          ]
+        }
+      ],
+      "hint": "t = x² + 1로 치환하세요.",
+      "explanation": "t = x² + 1: dt = 2x dx, 구간 0 → 1은 1 → 2\n(1/2)∫₁² t^(−1/2) dt = [√t]₁² = √2 − 1\n빈칸은 1"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "∫₀^(π/2) cos x dx의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(sin x)′ = cos x",
+      "explanation": "원시함수 sin x\n[sin x]₀^(π/2) = 1 − 0\n= 1\n원리: cos x의 원시함수는 sin x입니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "치환적분에서 dx도 dt로 바꿔 써야 하는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "dt"
+          ],
+          [
+            "g′(x)",
+            "도함수",
+            "미분"
+          ],
+          [
+            "곱",
+            "관계"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "t = g(x)로 바꾸면 x가 조금 변할 때 t는 g′(x)배만큼 변합니다. 그래서 dt = g′(x)dx라는 관계로 dx를 바꿔야 적분하는 변수가 t로 일관되게 됩니다."
+    }
+  ]
+}

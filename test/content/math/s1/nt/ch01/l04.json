@@ -1,0 +1,295 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s1",
+  "track": "nt",
+  "work": "증명",
+  "track_title": "정수론",
+  "chapter": {
+    "id": "math-s1-nt-ch01",
+    "no": 1,
+    "title": "약수·배수와 최대공약수"
+  },
+  "lesson": {
+    "id": "math-s1-nt-ch01-l04",
+    "no": 4,
+    "title": "최소공배수와 약수의 개수",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정수론"
+    ],
+    "competition": "KMO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "최대공약수와 최소공배수",
+      "body": [
+        "두 자연수 a, b에 대해 gcd(a, b) × lcm(a, b) = ab입니다. 소인수분해로 보면, gcd는 각 소수의 지수 중 작은 쪽을, lcm은 큰 쪽을 가집니다.",
+        "작은 쪽과 큰 쪽을 더하면 원래 두 지수의 합이 되므로 곱이 ab가 됩니다. 12 = 2² × 3, 18 = 2 × 3²이면 gcd = 2 × 3 = 6, lcm = 2² × 3² = 36이고 6 × 36 = 12 × 18입니다.",
+        "이 관계를 쓰면 gcd와 lcm 중 하나와 두 수 중 하나만 알아도 나머지를 구할 수 있습니다. 또 gcd(a, b) = g이면 a = gm, b = gn (m, n은 서로소)로 쓸 수 있어서, lcm = gmn이 됩니다. 이 표현은 조건을 만족하는 두 수를 찾는 문제에서 기본입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "lcm(12, 18)의 값은?",
+      "answer": "36",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "12 × 18 ÷ gcd(12, 18)을 계산하세요.",
+      "explanation": "gcd(12, 18) = 6이고, gcd × lcm = 두 수의 곱입니다.\nlcm = 12 × 18 ÷ 6 = 216 ÷ 6입니다.\n= 36입니다. 소인수분해로도 2² × 3² = 36입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "두 수의 최대공약수가 6, 최소공배수가 72이고 한 수가 18일 때 다른 수는?",
+      "answer": "24",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 수의 곱은 6 × 72입니다.",
+      "explanation": "gcd × lcm = 6 × 72 = 432가 두 수의 곱입니다.\n다른 수는 432 ÷ 18 = 24입니다.\n확인: gcd(18, 24) = 6, lcm(18, 24) = 72입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "약수의 개수와 약수의 합",
+      "body": [
+        "n = p^a × q^b × ⋯로 소인수분해되면 약수의 개수는 τ(n) = (a + 1)(b + 1)⋯입니다. 약수는 각 소수의 지수를 0부터 최대까지 하나씩 고른 것이기 때문입니다.",
+        "약수의 합은 σ(n) = (1 + p + ⋯ + p^a)(1 + q + ⋯ + q^b)⋯입니다. 이 곱을 전개하면 모든 약수가 한 번씩 나옵니다.",
+        "예를 들어 12 = 2² × 3이면 τ(12) = 3 × 2 = 6이고, σ(12) = (1 + 2 + 4)(1 + 3) = 28입니다. 실제로 12의 약수 1, 2, 3, 4, 6, 12를 더하면 28입니다. 소인수분해 하나로 약수에 관한 대부분의 질문에 답할 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "360의 약수의 개수를 구하세요.",
+      "steps": [
+        "360 = 2³ × 3² × 5입니다.",
+        "2의 지수는 0~3의 4가지, 3의 지수는 0~2의 3가지, 5의 지수는 0~1의 2가지입니다.",
+        "약수의 개수는 4 × 3 × 2입니다.",
+        "따라서 τ(360) = 24입니다."
+      ],
+      "answer": "24"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "720의 약수의 개수는?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "720 = 2⁴ × 3² × 5입니다.",
+      "explanation": "720 = 2⁴ × 3² × 5이므로 지수는 4, 2, 1입니다.\n약수의 개수는 (4 + 1)(2 + 1)(1 + 1) = 5 × 3 × 2입니다.\n= 30입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "12의 약수를 모두 더한 값은?",
+      "answer": "28",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "σ(12) = (1 + 2 + 4)(1 + 3)입니다.",
+      "explanation": "12 = 2² × 3이므로 σ(12) = (1 + 2 + 4)(1 + 3) = 7 × 4입니다.\n= 28입니다.\n직접 더해도 1 + 2 + 3 + 4 + 6 + 12 = 28입니다."
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "약수가 정확히 3개인 자연수는 소수의 {{1}}입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "제곱",
+            "제곱수"
+          ]
+        }
+      ],
+      "hint": "(a + 1)(b + 1)⋯ = 3이 되려면 어떤 지수가 필요할까요?",
+      "explanation": "τ(n) = 3이고 3은 소수이므로 지수가 하나뿐이고 그 지수는 2입니다.\n따라서 n = p²입니다.\n예: 4, 9, 25의 약수는 각각 1, p, p²의 3개입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "약수의 개수가 홀수인 수",
+      "body": [
+        "n의 약수 d는 n/d와 짝을 이룹니다. d ≠ n/d이면 짝이 둘씩 묶이므로 약수의 개수는 짝수가 됩니다.",
+        "d = n/d, 곧 d² = n인 약수가 있을 때만 짝이 하나 남습니다. 그래서 약수의 개수가 홀수인 수는 정확히 제곱수입니다.",
+        "소인수분해로 보아도 같습니다. (a + 1)(b + 1)⋯이 홀수이려면 모든 지수 a, b, …가 짝수여야 하고, 그것이 곧 제곱수입니다. 같은 결과를 두 가지 방법으로 증명할 수 있다는 점을 기억해 두세요. 짝짓기는 세기 문제에서 자주 쓰는 강력한 아이디어입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1부터 100까지의 자연수 중 약수의 개수가 홀수인 수는 몇 개인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "약수의 개수가 홀수인 수는 제곱수입니다.",
+      "explanation": "약수의 개수가 홀수인 수는 제곱수뿐입니다.\n1부터 100까지의 제곱수는 1², 2², …, 10²입니다.\n따라서 10개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "약수가 정확히 6개인 가장 작은 자연수는?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "6 = 6 또는 3 × 2입니다. p⁵과 p²q 중 작은 것을 찾으세요.",
+      "explanation": "τ(n) = 6이면 n = p⁵ 또는 n = p²q입니다.\np⁵의 최솟값은 2⁵ = 32이고, p²q의 최솟값은 2² × 3 = 12입니다.\n따라서 가장 작은 수는 12입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "약수의 곱",
+      "body": [
+        "n의 약수를 모두 곱하면 n^(τ(n)/2)입니다. 약수를 d와 n/d로 짝지으면 각 짝의 곱이 n이고, 짝이 τ(n)/2개이기 때문입니다.",
+        "12의 약수는 (1, 12), (2, 6), (3, 4)의 세 짝이므로 곱은 12³ = 1728입니다.",
+        "제곱수일 때는 짝이 남지 않는 √n이 하나 있지만, 공식은 그대로 맞습니다. 예를 들어 9의 약수 1, 3, 9의 곱은 27 = 9^(3/2)입니다. 이처럼 짝짓기는 개수뿐 아니라 곱을 구할 때도 씁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "12의 모든 약수의 곱은?",
+      "answer": "1728",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "약수의 곱은 12^(τ(12)/2)입니다.",
+      "explanation": "τ(12) = 6이므로 약수의 곱은 12^(6/2) = 12³입니다.\n12³ = 1728입니다.\n직접 계산해도 1 × 2 × 3 × 4 × 6 × 12 = 1728입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "gcd(a, b) × lcm(a, b) = ab이고, gcd(a, b) = g이면 a = gm, b = gn (m, n 서로소), lcm = gmn입니다.",
+        "n = p^a q^b ⋯이면 약수의 개수는 (a + 1)(b + 1)⋯, 약수의 합은 (1 + ⋯ + p^a)(1 + ⋯ + q^b)⋯, 약수의 곱은 n^(τ(n)/2)입니다.",
+        "약수는 d와 n/d로 짝지을 수 있고, 약수의 개수가 홀수인 수는 제곱수뿐입니다. 약수 문제는 소인수분해부터 하는 습관을 들이세요."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "두 자연수 a < b의 최대공약수가 4, 최소공배수가 48일 때 a + b의 최솟값은?",
+      "answer": "28",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "a = 4m, b = 4n (m, n 서로소, m < n)이면 mn = 12입니다.",
+      "explanation": "a = 4m, b = 4n이고 m, n은 서로소이며 lcm = 4mn = 48이므로 mn = 12입니다.\n서로소인 쌍은 (1, 12)와 (3, 4)이고, a + b는 각각 52, 28입니다.\n따라서 최솟값은 28입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "2⁵ × 3⁴의 약수 중 제곱수는 몇 개인가요?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "제곱수인 약수는 지수가 모두 짝수입니다.",
+      "explanation": "2의 지수는 0, 2, 4의 3가지, 3의 지수는 0, 2, 4의 3가지입니다.\n제곱수인 약수는 3 × 3 = 9개입니다.\n예: 1, 4, 16, 9, 36, 144, 81, 324, 1296입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "약수가 정확히 10개인 가장 작은 자연수는?",
+      "answer": "48",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "10 = 10 또는 5 × 2입니다. p⁹와 p⁴q를 비교하세요.",
+      "explanation": "τ(n) = 10이면 n = p⁹ 또는 n = p⁴q입니다.\np⁹의 최솟값은 512이고, p⁴q의 최솟값은 2⁴ × 3 = 48입니다.\n따라서 가장 작은 수는 48입니다."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "자연수 a, b에 대해 gcd(a, b) × lcm(a, b) = ab임을 소인수분해로 증명하세요.",
+      "model_answer": [
+        "a와 b를 같은 소수들로 a = ∏ p^(αₚ), b = ∏ p^(βₚ)라 쓴다. (어떤 소수가 한쪽에 없으면 지수를 0으로 둔다)",
+        "gcd(a, b) = ∏ p^(min(αₚ, βₚ)), lcm(a, b) = ∏ p^(max(αₚ, βₚ))이다.",
+        "각 소수 p에 대해 min(αₚ, βₚ) + max(αₚ, βₚ) = αₚ + βₚ이다.",
+        "따라서 gcd(a, b) × lcm(a, b) = ∏ p^(αₚ + βₚ) = ab이다."
+      ],
+      "criteria": [
+        {
+          "text": "a, b를 같은 소수들의 거듭제곱으로 나타냈다",
+          "points": 1
+        },
+        {
+          "text": "gcd와 lcm의 지수가 min, max임을 썼다",
+          "points": 2
+        },
+        {
+          "text": "min + max = 두 지수의 합임을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "곱이 ab라고 결론지었다",
+          "points": 1
+        }
+      ],
+      "hint": "각 소수의 지수에서 작은 것과 큰 것을 더하면 무엇이 될까요?"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "자연수 n의 약수의 개수가 홀수이면 n은 제곱수임을 증명하세요.",
+      "model_answer": [
+        "n의 약수 d에 대해 n/d도 n의 약수이므로, 약수를 d와 n/d로 짝지을 수 있다.",
+        "d ≠ n/d인 약수는 서로 다른 둘씩 짝을 이루므로, 이런 약수의 개수는 짝수이다.",
+        "약수의 개수가 홀수이면 d = n/d인 약수 d가 있어야 하고, 이때 d² = n이다.",
+        "따라서 n은 제곱수이다."
+      ],
+      "criteria": [
+        {
+          "text": "약수를 d와 n/d로 짝지었다",
+          "points": 2
+        },
+        {
+          "text": "d ≠ n/d인 약수의 개수가 짝수임을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "홀수이면 d = n/d인 약수가 있어 n = d²이라고 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "약수 d와 n/d를 짝지어 보세요. 짝이 남는 경우는 언제일까요?"
+    }
+  ]
+}

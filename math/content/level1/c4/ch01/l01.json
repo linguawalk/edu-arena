@@ -1,0 +1,441 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch01",
+    "no": 1,
+    "title": "함수의 극한"
+  },
+  "lesson": {
+    "id": "c4-ch01-l01",
+    "no": 1,
+    "title": "극한의 뜻",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "한없이 가까워지는 값",
+      "body": [
+        "x가 a에 한없이 가까워질 때 f(x)가 일정한 값 L에 한없이 가까워지면 lim(x→a) f(x) = L로 씁니다.",
+        "x = a에서의 값이 아니라, a 근처에서 어디로 향하는지를 봅니다.",
+        "왜 'x = a에서의 값'이 아니라 '근처'를 볼까요? (x² − 1)/(x − 1)은 x = 1에서 분모가 0이라 값이 없지만, x = 0.9, 0.99, 0.999, …를 넣으면 1.9, 1.99, 1.999, …로 2에 한없이 가까워집니다. 극한은 이렇게 값이 없는 곳에서도 '어디로 향하는지'를 말해 주는 도구이고, 미분의 출발점이 됩니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": -5,
+          "xmax": 5,
+          "ymin": -5,
+          "ymax": 5,
+          "xstep": 1,
+          "ystep": 1,
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                1,
+                1
+              ]
+            }
+          ],
+          "points": [
+            [
+              1,
+              2,
+              "구멍 (1, 2)"
+            ]
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "lim(x→2) (x + 3)의 값은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x + 3은 다항함수라 그래프가 끊기지 않습니다.\nx가 2에 가까워지면 x + 3은 2 + 3에 가까워지므로\n= 5\n원리: 다항함수의 극한은 x = a를 넣은 값과 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "lim(x→1) (x² − 1)/(x − 1)의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x = 1을 넣으면 0/0이라 바로 구할 수 없습니다.\nx ≠ 1에서 (x + 1)(x − 1)/(x − 1) = x + 1로 약분\nlim(x→1) (x + 1) = 2\n확인: x = 0.99이면 1.99로 2에 가까워집니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "좌극한과 우극한",
+      "body": [
+        "x가 a보다 작은 쪽에서 가까워지면 좌극한 lim(x→a−), 큰 쪽에서 가까워지면 우극한 lim(x→a+)입니다.",
+        "좌극한과 우극한이 같을 때만 극한이 존재합니다.",
+        "왼쪽과 오른쪽에서 다가갈 때 서로 다른 높이로 향하면, 한 값에 '한없이 가까워진다'고 말할 수 없습니다. 그래서 극한이 존재하려면 두 방향의 극한이 모두 있고 같아야 합니다. 식이 경계에서 바뀌는 함수나 절댓값이 있는 함수는 항상 양쪽을 따로 확인합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "f(x) = x² − 1 (x < 2), 2x − 1 (x ≥ 2)에서 lim(x→2) f(x)를 조사하세요.",
+      "steps": [
+        "좌극한: x < 2의 식에 2를 넣으면 4 − 1 = 3",
+        "우극한: x ≥ 2의 식에 2를 넣으면 4 − 1 = 3",
+        "좌극한 = 우극한 = 3이므로 극한이 존재",
+        "lim(x→2) f(x) = 3"
+      ],
+      "answer": "3"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = x + 1 (x < 0), x² (x ≥ 0)일 때 lim(x→0−) f(x)의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x가 0보다 작은 쪽에서 다가가므로 x < 0의 식 x + 1을 씁니다.\nx → 0−이면 x + 1 → 0 + 1\n= 1\n원리: 좌극한은 왼쪽 식으로 계산합니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 f에서 lim(x→0+) f(x)의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x가 0보다 큰 쪽에서 다가가므로 x ≥ 0의 식 x²을 씁니다.\nx → 0+이면 x² → 0\n= 0\n원리: 우극한은 오른쪽 식으로 계산합니다."
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 f에서 lim(x→0) f(x)가 존재할까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "좌극한은 1, 우극한은 0으로 서로 다릅니다.\n두 방향에서 향하는 높이가 달라 한 값으로 정할 수 없습니다.\n극한은 존재하지 않으므로 0\n원리: 좌극한 = 우극한일 때만 극한이 존재"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "무한대와 관련된 극한",
+      "body": [
+        "x → 0일 때 1/x²처럼 한없이 커지면 극한은 ∞(양의 무한대로 발산)입니다.",
+        "x → ∞일 때 1/x처럼 0에 가까워지는 경우도 있습니다.",
+        "∞는 수가 아니라 '한없이 커진다'는 상태를 나타내는 기호입니다. 그래서 lim = ∞는 극한값이 존재하는 것이 아니라 발산한다는 뜻입니다. 반대로 x → ∞일 때는 x가 한없이 커질 때 함숫값이 어디로 향하는지를 봅니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "lim(x→0+) 1/x와 lim(x→0−) 1/x를 조사하세요.",
+      "steps": [
+        "x가 0보다 큰 쪽에서 다가가면 1/x는 한없이 커짐: +∞",
+        "x가 0보다 작은 쪽에서 다가가면 1/x는 한없이 작아짐: −∞",
+        "두 방향이 다르므로 lim(x→0) 1/x는 존재하지 않음",
+        "비교: 1/x²은 양쪽 모두 +∞"
+      ],
+      "answer": "+∞, −∞ (극한 없음)"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "lim(x→0) 1/x² = {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "∞",
+            "무한대"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "x가 0에 가까워지면 x²은 0에 가까운 양수입니다.\n1을 아주 작은 양수로 나누면 한없이 커집니다.\n양의 무한대로 발산: ∞\n주의: ∞는 극한값이 아니라 발산을 나타냅니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "lim(x→∞) 1/x의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x가 한없이 커지면 1을 아주 큰 수로 나누는 셈입니다.\n1/x는 0에 한없이 가까워집니다(0이 되지는 않음).\n극한값 0\n확인: x = 1000이면 0.001"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "lim(x→∞) (2x + 1)/x의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "(2x + 1)/x = 2 + 1/x로 나눕니다.\nx → ∞이면 1/x → 0\n극한값 2 + 0 = 2\n원리: 분모, 분자를 x로 나누면 극한이 보입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "그래프에서 극한 읽기",
+      "body": [
+        "그래프가 끊어진 곳에서는 왼쪽에서 오는 높이와 오른쪽에서 오는 높이를 따로 읽습니다.",
+        "그래프에서 극한을 읽을 때는 x = a의 바로 왼쪽 부분 그래프가 향하는 높이, 바로 오른쪽 부분이 향하는 높이를 따로 봅니다. 빈 점(○)은 그 높이로 향하지만 그 점의 값은 아니라는 뜻이고, 채운 점(●)이 실제 함숫값입니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": -5,
+          "xmax": 5,
+          "ymin": -5,
+          "ymax": 5,
+          "xstep": 1,
+          "ystep": 1,
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                1,
+                1
+              ],
+              "to": 1
+            },
+            {
+              "kind": "poly",
+              "coef": [
+                4,
+                -1
+              ],
+              "from": 1
+            }
+          ],
+          "points": [
+            [
+              1,
+              3,
+              "(1, 3)"
+            ]
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "그림의 함수에서 lim(x→1−) f(x)의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = 1의 왼쪽 부분을 따라가세요.",
+      "explanation": "그림에서 x = 1의 왼쪽 부분 그래프를 따라가면 높이 2로 향합니다.\n좌극한 = 2\n원리: 왼쪽 부분 그래프가 향하는 높이를 읽습니다.\n주의: 그 끝이 빈 점이어도 좌극한은 2입니다.",
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": -5,
+          "xmax": 5,
+          "ymin": -5,
+          "ymax": 5,
+          "xstep": 1,
+          "ystep": 1,
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                1,
+                1
+              ],
+              "to": 1
+            },
+            {
+              "kind": "poly",
+              "coef": [
+                4,
+                -1
+              ],
+              "from": 1
+            }
+          ],
+          "points": [
+            [
+              1,
+              3,
+              "(1, 3)"
+            ]
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 함수에서 lim(x→1+) f(x)의 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = 1의 오른쪽 부분을 따라가세요.",
+      "explanation": "x = 1의 오른쪽 부분 그래프를 따라가면 높이 3으로 향합니다.\n우극한 = 3\n원리: 좌극한 2와 달라 lim(x→1) f(x)는 존재하지 않습니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 함수에서 f(1)의 값은? (점 (1, 3)이 그래프 위의 점)",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "채워진 점의 높이를 읽으세요.",
+      "explanation": "함숫값 f(1)은 x = 1에 실제로 찍힌 점(●)의 높이입니다.\n점 (1, 3)이 그래프 위에 있으므로 f(1) = 3\n원리: 극한은 근처의 행동, 함숫값은 그 점의 값입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "극한값과 함숫값",
+      "body": [
+        "극한값은 a 근처의 행동이고, 함숫값은 a에서의 값입니다. 둘은 다를 수도 있고, 함숫값이 없어도 극한은 있을 수 있습니다.",
+        "극한값과 함숫값이 다르면 그래프에 '구멍'이나 '점프'가 있다는 뜻입니다. 둘이 같은 경우가 다음 레슨에서 배울 연속입니다. 0/0 꼴처럼 함숫값이 없어도 약분하면 극한을 구할 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "f(x) = (x² − 5x + 6)/(x − 2)에서 f(2)와 lim(x→2) f(x)를 비교하세요.",
+      "steps": [
+        "x = 2에서 분모가 0이라 f(2)는 정의되지 않음",
+        "x ≠ 2에서 약분: (x − 2)(x − 3)/(x − 2) = x − 3",
+        "lim(x→2) (x − 3) = −1",
+        "함숫값은 없어도 극한은 −1로 존재"
+      ],
+      "answer": "f(2)는 없음, 극한은 −1"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "lim(x→2) (x² − 4)/(x − 2)의 값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "분자를 인수분해하세요.",
+      "explanation": "x = 2를 넣으면 0/0이므로 인수분해합니다.\n(x + 2)(x − 2)/(x − 2) = x + 2 (x ≠ 2)\nlim(x→2) (x + 2) = 4\n원리: 0/0 꼴은 공통인수를 약분합니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "lim(x→−1) (x³ + 1)/(x + 1)의 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x³ + 1을 인수분해하세요.",
+      "explanation": "a³ + b³ = (a + b)(a² − ab + b²)로 분자를 인수분해합니다.\n(x + 1)(x² − x + 1)/(x + 1) = x² − x + 1\nx → −1이면 1 + 1 + 1 = 3"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "lim(x→3) |x − 3|/(x − 3)이 존재할까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x > 3과 x < 3으로 나눠 보세요.",
+      "explanation": "x > 3이면 |x − 3| = x − 3이라 값은 1, x < 3이면 −(x − 3)이라 값은 −1\n우극한 1, 좌극한 −1로 서로 다릅니다.\n극한은 존재하지 않으므로 0\n원리: 절댓값은 부호가 바뀌는 곳에서 양쪽을 따로 봅니다."
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "lim(x→∞) 1/(x + 1)의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "분모가 한없이 커집니다.",
+      "explanation": "x가 한없이 커지면 분모 x + 1도 한없이 커집니다.\n1을 한없이 큰 수로 나누면 0에 가까워집니다.\n극한값 0\n확인: x = 999이면 0.001"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "lim(x→1) (x² − 1)/(x − 1) = 2인데 x = 1에서 함숫값은 없습니다. 극한값과 함숫값의 차이를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "가까워",
+            "근처"
+          ],
+          [
+            "x = 1에서",
+            "그 점에서",
+            "정의되지"
+          ],
+          [
+            "다를",
+            "달라",
+            "없어도"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "극한값은 x가 1에 한없이 가까워질 때 함숫값이 향하는 값이고, 함숫값은 x = 1에서의 실제 값입니다. 이 함수는 x = 1에서 정의되지 않지만 1 근처에서는 2에 가까워지므로 극한값은 있습니다."
+    }
+  ]
+}

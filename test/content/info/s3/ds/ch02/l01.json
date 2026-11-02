@@ -1,0 +1,311 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s3",
+  "track": "ds",
+  "work": "풀이",
+  "track_title": "자료구조",
+  "chapter": {
+    "id": "info-s3-ds-ch02",
+    "no": 2,
+    "title": "영속 자료구조"
+  },
+  "lesson": {
+    "id": "info-s3-ds-ch02-l01",
+    "no": 1,
+    "title": "영속 자료구조 학습 가이드",
+    "minutes": 110,
+    "kind": "guide"
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "자료구조",
+      "영속 자료구조"
+    ],
+    "competition": "KOI",
+    "stage": "s3"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "이 가이드에서 다룰 도구",
+      "body": [
+        "영속(persistent) 자료구조는 갱신할 때마다 새 버전을 만들면서 옛 버전도 그대로 남겨 두는 자료구조입니다. 모든 버전을 그대로 복사하면 O(n)씩 들지만, 바뀌는 부분만 새로 만들고 나머지는 옛 버전과 공유하면(경로 복사) 갱신 하나에 O(log n)의 새 노드만 필요합니다.",
+        "대회에서 가장 많이 쓰이는 것은 영속 세그먼트 트리로, '배열의 구간 [l, r]에서 k번째로 작은 수', '구간에서 x 이하인 수의 개수' 같은 질의를 온라인으로 O(log n)에 답합니다.",
+        "선수 지식: S2 '자료구조'의 세그먼트 트리, 이 트랙의 '지연 전파'."
+      ]
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "경로 복사",
+      "body": [
+        "세그먼트 트리에서 한 점을 갱신하면 루트에서 그 잎까지의 경로 위 노드만 바뀝니다. 그래서 그 경로의 노드만 새로 만들고, 경로에서 벗어난 자식은 옛 버전의 노드를 그대로 가리키게 합니다. 새 루트가 새 버전의 입구가 됩니다.",
+        "값의 범위가 [1, V]인 '값 세그먼트 트리'(각 잎이 그 값의 개수를 셈)를 만들고, root[i] = a[1..i]의 값을 모두 넣은 버전이라 하면, 구간 [l, r]의 값 분포는 root[r]과 root[l − 1]의 차로 얻습니다(개수의 뺄셈).",
+        "k번째로 작은 값은 두 버전을 동시에 내려가며 왼쪽 자식의 개수 차가 k 이상이면 왼쪽으로, 아니면 k를 줄여 오른쪽으로 갑니다. 값의 범위가 크면 좌표 압축으로 V ≤ n으로 줄입니다."
+      ],
+      "code": "struct Node { int l, r, cnt; } t[MAXNODES];    // 왼쪽·오른쪽 자식 번호, 이 구간에 든 값의 개수\nint tot = 0;                                    // 노드 0은 '빈 트리'(자기 자신을 가리킴)\nint add(int prev, int s, int e, int pos) {      // prev 버전에 값 pos를 하나 더한 새 버전의 루트\n    int cur = ++tot; t[cur] = t[prev]; t[cur].cnt++;\n    if (s == e) return cur;\n    int m = (s + e) / 2;\n    if (pos <= m) t[cur].l = add(t[prev].l, s, m, pos);\n    else          t[cur].r = add(t[prev].r, m + 1, e, pos);\n    return cur;                                  // 바뀌지 않은 쪽 자식은 prev와 공유한다\n}\n// root[i] = a[1..i]의 값을 모두 넣은 버전\nint kth(int u, int v, int s, int e, int k) {    // a[l..r]에서 k번째로 작은 값: u = root[r], v = root[l-1]\n    if (s == e) return s;\n    int m = (s + e) / 2, leftCnt = t[t[u].l].cnt - t[t[v].l].cnt;\n    if (k <= leftCnt) return kth(t[u].l, t[v].l, s, m, k);\n    return kth(t[u].r, t[v].r, m + 1, e, k - leftCnt);\n}"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "배열 [5, 1, 4, 2, 3, 6, 2](1번부터)의 구간 [2, 6]에서 3번째로 작은 값을 구하세요.",
+      "steps": [
+        "구간 [2, 6]의 원소는 1, 4, 2, 3, 6입니다.",
+        "정렬하면 1, 2, 3, 4, 6이므로 3번째는 3입니다.",
+        "영속 트리에서는 root[6]과 root[1]의 개수 차로 이 분포를 얻어, 정렬 없이 O(log V)에 3을 찾습니다."
+      ],
+      "answer": "3"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "값의 범위가 [1, 2¹⁷]인 영속 세그먼트 트리에서 값을 하나 더할 때 새로 만드는 노드는 몇 개인가요?",
+      "answer": "18",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "루트에서 잎까지의 경로 위 노드 수입니다.",
+      "explanation": "깊이가 17이므로 루트에서 잎까지의 경로에는 노드가 17 + 1 = 18개 있습니다.\n갱신은 이 경로의 노드만 새로 만듭니다.\n그래서 18개입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "메모리와 다른 영속 구조",
+      "body": [
+        "n번 갱신하면 노드는 약 n × (log V + 1)개입니다. n = 2 × 10⁵, V = 2 × 10⁵이면 약 2 × 10⁵ × 19 ≈ 3.8 × 10⁶개이고, 노드마다 정수 3개(12바이트)면 약 46 MB입니다. 메모리 제한을 미리 계산해 정적 배열로 잡으세요.",
+        "영속 배열은 영속 세그먼트 트리의 잎을 배열 원소로 쓰면 되고, 읽기·쓰기가 O(log n)입니다. 영속 스택은 '값과 아래 노드를 가리키는 노드'로 만들면 push, pop이 O(1)이고 옛 버전이 자연히 남습니다.",
+        "지연 전파와 영속을 함께 쓰려면 push할 때 자식을 새로 복사해야 해 노드가 더 많이 필요합니다. 질의만 있는 경우에는 표시를 내려보내지 않고 누적해 계산하는 방법(표시 영속화)으로 복사를 줄일 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "n = 2 × 10⁵개 원소를 넣는 영속 세그먼트 트리(값 범위 2 × 10⁵, 깊이 18)의 메모리를 어림하세요(노드마다 int 3개).",
+      "steps": [
+        "갱신마다 노드 18 + 1 = 19개가 생기므로 모두 2 × 10⁵ × 19 = 3.8 × 10⁶개입니다.",
+        "노드 하나가 12바이트이므로 3.8 × 10⁶ × 12 ≈ 4.6 × 10⁷바이트입니다.",
+        "약 46 MB이므로 메모리 제한이 256 MB이면 충분하고, 64 MB이면 아슬아슬하므로 배열 크기를 정확히 잡아야 합니다."
+      ],
+      "answer": "약 46 MB"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 10⁵번 갱신하는 영속 세그먼트 트리(깊이 17)의 새 노드는 최대 몇 × 10⁵개인가요?",
+      "answer": "18",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "갱신마다 18개입니다.",
+      "explanation": "갱신 한 번에 경로 위 노드 18개를 새로 만듭니다.\n10⁵번 갱신하면 18 × 10⁵개입니다.\n그래서 18 × 10⁵개(초기 노드 제외)입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "구현 점검 순서",
+      "body": [
+        "영속 세그먼트 트리를 처음 짤 때는 ① 0번 노드를 빈 트리로 두고 자식도 0을 가리키게 했는가 ② add가 prev를 복사한 새 노드를 만들고 한쪽 자식만 재귀로 바꾸는가 ③ root[0] = 0으로 시작하는가 ④ 질의에서 두(또는 네) 버전을 함께 내려가는가를 점검합니다.",
+        "그다음 작은 배열에서 무작위 구간 k번째 질의를 정렬로 구한 답과 비교합니다.",
+        "마지막으로 노드 배열의 크기와 좌표 압축을 확인합니다. 값이 같은 원소가 여럿이면 압축 번호도 같아야 개수가 맞습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "[문제 1] 경로 복사로 만든 새 버전이 옛 버전을 바꾸지 않으면서도 새 버전의 세그먼트 트리로서 올바름을 증명하세요.",
+      "model_answer": [
+        "add는 새 노드 cur를 만들어 prev의 내용을 복사한 뒤 cur의 값과 한쪽 자식만 바꾼다. prev와 그 아래 노드는 한 번도 쓰지 않으므로(읽기만 함) 옛 버전의 모든 노드는 그대로다.",
+        "새 버전에서 경로 위 노드는 새로 만든 노드이고, 그 cnt는 prev의 cnt + 1이며 pos를 포함하는 자식은 재귀적으로 만든 새 노드다.",
+        "경로 밖의 자식은 prev의 자식과 같은 노드를 가리키는데, 그 구간에는 pos가 없으므로 옛 값이 새 버전에서도 정확하다.",
+        "따라서 새 버전의 모든 노드가 'a[1..i]의 값 분포'를 정확히 나타내고, 옛 버전은 변하지 않는다(구간에 대한 귀납법)."
+      ],
+      "criteria": [
+        {
+          "text": "옛 노드를 쓰지 않음을 보였다",
+          "points": 2
+        },
+        {
+          "text": "경로 위 노드의 정확성을 보였다",
+          "points": 2
+        },
+        {
+          "text": "공유한 자식이 정확함을 보였다",
+          "points": 2
+        },
+        {
+          "text": "귀납적으로 결론지었다",
+          "points": 1
+        }
+      ],
+      "hint": "새 노드만 고치고 옛 노드는 읽기만 합니다.",
+      "code": "struct Node { int l, r, cnt; } t[MAXNODES];    // 왼쪽·오른쪽 자식 번호, 이 구간에 든 값의 개수\nint tot = 0;                                    // 노드 0은 '빈 트리'(자기 자신을 가리킴)\nint add(int prev, int s, int e, int pos) {      // prev 버전에 값 pos를 하나 더한 새 버전의 루트\n    int cur = ++tot; t[cur] = t[prev]; t[cur].cnt++;\n    if (s == e) return cur;\n    int m = (s + e) / 2;\n    if (pos <= m) t[cur].l = add(t[prev].l, s, m, pos);\n    else          t[cur].r = add(t[prev].r, m + 1, e, pos);\n    return cur;                                  // 바뀌지 않은 쪽 자식은 prev와 공유한다\n}\n// root[i] = a[1..i]의 값을 모두 넣은 버전\nint kth(int u, int v, int s, int e, int k) {    // a[l..r]에서 k번째로 작은 값: u = root[r], v = root[l-1]\n    if (s == e) return s;\n    int m = (s + e) / 2, leftCnt = t[t[u].l].cnt - t[t[v].l].cnt;\n    if (k <= leftCnt) return kth(t[u].l, t[v].l, s, m, k);\n    return kth(t[u].r, t[v].r, m + 1, e, k - leftCnt);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "[문제 2] root[r]과 root[l − 1]을 함께 내려가는 kth 함수가 a[l..r]에서 k번째로 작은 값을 O(log V)에 구함을 증명하세요.",
+      "model_answer": [
+        "값 구간 [s, e]의 노드에서 t[u].cnt − t[v].cnt는 a[1..r]에서 [s, e]에 든 값의 개수에서 a[1..l − 1]의 개수를 뺀 것, 곧 a[l..r]에서 [s, e]에 든 값의 개수다.",
+        "왼쪽 자식([s, m])의 개수 차를 leftCnt라 하면, k ≤ leftCnt이면 k번째로 작은 값은 [s, m]에 있으므로 왼쪽으로 간다.",
+        "아니면 [s, m]에 leftCnt개가 있으므로 [m + 1, e]에서 (k − leftCnt)번째로 작은 값을 찾으면 된다. 잎에 닿으면 그 값이 답이다.",
+        "한 단계에 한 번만 내려가므로 O(깊이) = O(log V)이다."
+      ],
+      "criteria": [
+        {
+          "text": "개수 차의 의미를 밝혔다",
+          "points": 3
+        },
+        {
+          "text": "왼쪽·오른쪽으로 가는 기준을 정당화했다",
+          "points": 2
+        },
+        {
+          "text": "잎에서의 답을 밝혔다",
+          "points": 1
+        },
+        {
+          "text": "복잡도를 밝혔다",
+          "points": 1
+        }
+      ],
+      "hint": "두 버전의 개수 차가 구간의 분포입니다.",
+      "code": "struct Node { int l, r, cnt; } t[MAXNODES];    // 왼쪽·오른쪽 자식 번호, 이 구간에 든 값의 개수\nint tot = 0;                                    // 노드 0은 '빈 트리'(자기 자신을 가리킴)\nint add(int prev, int s, int e, int pos) {      // prev 버전에 값 pos를 하나 더한 새 버전의 루트\n    int cur = ++tot; t[cur] = t[prev]; t[cur].cnt++;\n    if (s == e) return cur;\n    int m = (s + e) / 2;\n    if (pos <= m) t[cur].l = add(t[prev].l, s, m, pos);\n    else          t[cur].r = add(t[prev].r, m + 1, e, pos);\n    return cur;                                  // 바뀌지 않은 쪽 자식은 prev와 공유한다\n}\n// root[i] = a[1..i]의 값을 모두 넣은 버전\nint kth(int u, int v, int s, int e, int k) {    // a[l..r]에서 k번째로 작은 값: u = root[r], v = root[l-1]\n    if (s == e) return s;\n    int m = (s + e) / 2, leftCnt = t[t[u].l].cnt - t[t[v].l].cnt;\n    if (k <= leftCnt) return kth(t[u].l, t[v].l, s, m, k);\n    return kth(t[u].r, t[v].r, m + 1, e, k - leftCnt);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "[문제 3] 같은 문제(구간 k번째 수)를 영속 세그먼트 트리 없이 푸는 방법 두 가지를 쓰고, 영속 세그먼트 트리와 장단점을 비교하세요.",
+      "model_answer": [
+        "방법 1(병합 정렬 트리): 세그먼트 트리의 각 노드에 그 구간의 정렬된 배열을 저장하고, 답을 이분 탐색한다. '값 x 이하의 개수'를 O(log² n)에 세고 x를 이분 탐색하면 O(log³ n)이다. 메모리 O(n log n).",
+        "방법 2(오프라인 병렬 이분 탐색 또는 모 알고리즘): 질의를 모두 먼저 읽어 한꺼번에 처리한다. 모 알고리즘은 O((n + q)√n log n) 정도이다.",
+        "영속 세그먼트 트리는 질의마다 O(log n)으로 빠르고 온라인(질의가 앞의 답에 따라 정해져도 가능)이지만 메모리가 많이 들고 구현이 길다.",
+        "따라서 질의가 온라인이고 시간 제한이 빡빡하면 영속 세그먼트 트리, 메모리가 빡빡하거나 오프라인이 가능하면 다른 방법을 고른다."
+      ],
+      "criteria": [
+        {
+          "text": "병합 정렬 트리를 설명했다",
+          "points": 2
+        },
+        {
+          "text": "오프라인 방법을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "영속 트리의 장단점을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "선택 기준을 정리했다",
+          "points": 1
+        }
+      ],
+      "hint": "온라인과 오프라인의 차이를 생각하세요."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "[문제 4] 명령 '값 x를 넣기', '마지막 값 빼기', 'k번째 명령 직후의 상태로 되돌아가기'를 지원하는 영속 스택을 설계하고 각 연산의 시간을 쓰세요.",
+      "model_answer": [
+        "노드 = (값, 아래 노드 번호, 크기)로 두고, 버전 i의 스택은 맨 위 노드 번호 top[i]로 나타낸다. 빈 스택은 0번 노드다.",
+        "넣기: 새 노드 (x, top[i − 1], 크기 + 1)를 만들고 top[i]로 둔다. O(1)이다.",
+        "빼기: top[i] = (top[i − 1]의 아래 노드)로 둔다. 노드를 지우지 않으므로 옛 버전이 그대로 남는다. O(1)이다.",
+        "되돌아가기: top[i] = top[k]로 둔다. O(1)이다. 노드는 넣기마다 하나씩만 늘어나므로 메모리는 O(명령 수)다."
+      ],
+      "criteria": [
+        {
+          "text": "노드와 버전 표현을 설계했다",
+          "points": 2
+        },
+        {
+          "text": "넣기·빼기를 O(1)로 설계했다",
+          "points": 2
+        },
+        {
+          "text": "되돌아가기를 O(1)로 설계했다",
+          "points": 2
+        },
+        {
+          "text": "메모리를 밝혔다",
+          "points": 1
+        }
+      ],
+      "hint": "스택은 연결 리스트로 만들면 저절로 영속입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "[문제 5] 트리(n ≤ 10⁵, 정점마다 값)에서 '정점 u와 v를 잇는 경로 위의 값 가운데 k번째로 작은 값'을 영속 세그먼트 트리로 구하는 방법을 쓰세요.",
+      "model_answer": [
+        "루트에서 각 정점 x까지의 경로 위 값을 모두 넣은 버전 root[x]를 만든다. root[x]는 부모의 버전 root[parent(x)]에 x의 값을 하나 더해 만든다(DFS 순서로).",
+        "경로 u–v의 값 분포는 root[u] + root[v] − root[w] − root[parent(w)]이다. 여기서 w는 u와 v의 최소 공통 조상이고, w는 두 번 빠지므로 한 번만 다시 더하는 셈이 된다.",
+        "kth를 네 버전으로 확장해 왼쪽 자식의 개수를 cnt[u] + cnt[v] − cnt[w] − cnt[parent(w)]로 계산하며 내려간다.",
+        "최소 공통 조상은 이진 올리기로 O(log n)에 구하므로 질의마다 O(log n), 전처리 O(n log n) 시간과 메모리다."
+      ],
+      "criteria": [
+        {
+          "text": "루트로부터의 경로 버전을 정의했다",
+          "points": 2
+        },
+        {
+          "text": "포함-배제로 경로 분포를 나타냈다",
+          "points": 3
+        },
+        {
+          "text": "네 버전을 함께 내려가는 방법을 썼다",
+          "points": 1
+        },
+        {
+          "text": "LCA와 복잡도를 밝혔다",
+          "points": 1
+        }
+      ],
+      "hint": "구간 [l, r]의 '앞부분 빼기'를 트리 경로로 바꾸세요."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "apply",
+      "title": "자기 점검과 흔한 실수",
+      "body": [
+        "노드 배열 크기를 (갱신 수) × (깊이 + 1)보다 작게 잡아 넘치는 실수가 가장 흔합니다. 문제를 풀기 전에 메모리를 계산하세요.",
+        "0번 노드를 '빈 트리'로 두고 그 자식도 0을 가리키게 하면 경계 처리가 간단해집니다. 이것을 하지 않으면 빈 버전에서 자식을 따라갈 때 잘못된 메모리를 읽습니다.",
+        "값의 범위가 크면 좌표 압축을 잊지 마세요. 압축한 번호를 다시 원래 값으로 바꿔 출력해야 합니다."
+      ]
+    },
+    {
+      "type": "explain",
+      "id": "s6",
+      "stage": "apply",
+      "title": "독학 순서와 참고 자료",
+      "body": [
+        "추천 순서: ① 코드를 직접 짜서 예제 확인 ② 문제 1·2로 원리 ③ 문제 4로 단순한 영속 구조 ④ 문제 3·5로 응용을 연습합니다.",
+        "연습 문제 유형: 구간 k번째 수, 구간에서 x 이하인 수의 개수, 트리 경로의 k번째 수, 버전 되돌리기가 있는 유니온 파인드(경로 압축 없이 영속 배열로). 온라인 채점 사이트에서 'persistent segment tree' 태그로 찾을 수 있습니다.",
+        "참고 자료: cp-algorithms의 'Persistent Segment Tree' 글, 『Competitive Programmer's Handbook』, Driscoll 외 「Making Data Structures Persistent」(원 논문, 영문)."
+      ]
+    }
+  ]
+}

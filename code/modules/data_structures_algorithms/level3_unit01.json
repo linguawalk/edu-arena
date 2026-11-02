@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "버블 정렬과 선택 정렬",
+  "questions": [
+    {
+      "id": "dsa_l3_u01_q001",
+      "type": "predict_output",
+      "code": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr\n\nprint(bubble_sort([5, 2, 8, 1, 9]))",
+      "prompt_en": "What is printed? (Bubble sort repeatedly swaps adjacent out-of-order pairs.)",
+      "prompt_ko": "출력 결과는? (버블 정렬은 순서가 뒤바뀐 인접한 쌍을 반복적으로 교환합니다.)",
+      "options": ["[1, 2, 5, 8, 9]", "[9, 8, 5, 2, 1]", "[5, 2, 8, 1, 9]", "오류"],
+      "answer": 0,
+      "explanation_en": "Bubble sort compares each adjacent pair and swaps if out of order, repeating passes until fully sorted: [1, 2, 5, 8, 9].",
+      "explanation_ko": "버블 정렬은 인접한 쌍을 비교해서 순서가 틀리면 교환하며, 완전히 정렬될 때까지 반복합니다: [1, 2, 5, 8, 9].",
+      "concept_tags": ["bubble_sort"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l3_u01_q002",
+      "type": "predict_output",
+      "code": "def bubble_pass(arr):\n    n = len(arr)\n    for j in range(n - 1):\n        if arr[j] > arr[j + 1]:\n            arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr\n\nprint(bubble_pass([5, 2, 8, 1, 9]))",
+      "prompt_en": "What is printed? (Only ONE pass through the array — not fully sorted yet.)",
+      "prompt_ko": "출력 결과는? (배열을 딱 한 번만 훑습니다 — 아직 완전히 정렬되지 않습니다.)",
+      "options": ["[2, 5, 1, 8, 9]", "[1, 2, 5, 8, 9]", "[2, 8, 1, 5, 9]", "오류"],
+      "answer": 0,
+      "explanation_en": "One pass swaps 5&2 (giving 2,5), leaves 5&8 alone, swaps 8&1 (giving 1,8), leaves 8&9 alone: [2, 5, 1, 8, 9] — the largest value (9) tends to 'bubble' toward the end each pass, but full sorting needs multiple passes.",
+      "explanation_ko": "한 번의 패스는 5와 2를 교환하고(2,5가 됨), 5와 8은 그대로 두고, 8과 1을 교환하고(1,8이 됨), 8과 9는 그대로 둡니다: [2, 5, 1, 8, 9] — 가장 큰 값(9)은 각 패스마다 끝으로 '거품처럼 떠오르는' 경향이 있지만, 완전한 정렬에는 여러 번의 패스가 필요합니다.",
+      "concept_tags": ["bubble_sort"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l3_u01_q003",
+      "type": "predict_output",
+      "code": "def selection_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        min_idx = i\n        for j in range(i + 1, n):\n            if arr[j] < arr[min_idx]:\n                min_idx = j\n        arr[i], arr[min_idx] = arr[min_idx], arr[i]\n    return arr\n\nprint(selection_sort([5, 2, 8, 1, 9]))",
+      "prompt_en": "What is printed? (Selection sort repeatedly finds the minimum and places it at the front.)",
+      "prompt_ko": "출력 결과는? (선택 정렬은 최솟값을 반복적으로 찾아 앞쪽에 배치합니다.)",
+      "options": ["[1, 2, 5, 8, 9]", "[9, 8, 5, 2, 1]", "[5, 2, 8, 1, 9]", "오류"],
+      "answer": 0,
+      "explanation_en": "Each outer iteration finds the smallest remaining element and swaps it into place at the front of the unsorted portion, building up a sorted array: [1, 2, 5, 8, 9].",
+      "explanation_ko": "각 바깥 반복에서 남은 요소 중 가장 작은 것을 찾아, 정렬되지 않은 부분의 맨 앞으로 교환합니다. 이렇게 정렬된 배열을 쌓아갑니다: [1, 2, 5, 8, 9].",
+      "concept_tags": ["selection_sort"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l3_u01_q004",
+      "type": "fill_blank",
+      "code": "def selection_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        min_idx = i\n        for j in range(i + 1, n):\n            if arr[j] < arr[min_idx]:\n                ____ = j\n        arr[i], arr[min_idx] = arr[min_idx], arr[i]\n    return arr",
+      "prompt_en": "Fill in the blank with the variable that tracks the index of the smallest value found so far.",
+      "prompt_ko": "지금까지 찾은 가장 작은 값의 인덱스를 추적하는 변수를 빈칸에 채우세요.",
+      "options": ["min_idx", "i", "j", "n"],
+      "answer": 0,
+      "explanation_en": "min_idx is updated whenever a smaller value is found, tracking where the current minimum lives so it can be swapped into place after the inner loop finishes.",
+      "explanation_ko": "min_idx는 더 작은 값을 찾을 때마다 갱신되어, 현재 최솟값이 어디 있는지 추적합니다. 안쪽 반복문이 끝난 뒤 이를 제자리로 교환할 수 있습니다.",
+      "concept_tags": ["selection_sort"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l3_u01_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "각 용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "버블 정렬", "definition": "인접한 쌍을 반복 비교·교환 — 큰 값이 서서히 끝으로 이동" },
+        { "term": "선택 정렬", "definition": "매번 남은 요소 중 최솟값을 찾아 앞으로 배치" },
+        { "term": "둘 다 O(n^2)인 이유", "definition": "바깥 반복(n번) 안에 또 다른 반복(최대 n번)이 중첩됨" },
+        { "term": "실무에서 거의 안 쓰이는 이유", "definition": "구현은 간단하지만, 데이터가 커지면 병합/퀵 정렬보다 훨씬 느림" }
+      ],
+      "explanation_en": "Bubble and selection sort are usually taught first because they're intuitive, but their O(n²) complexity makes them impractical for large datasets — the next units introduce the O(n log n) algorithms actually used in practice.",
+      "explanation_ko": "버블 정렬과 선택 정렬은 직관적이라 보통 가장 먼저 배우지만, O(n²) 복잡도 때문에 큰 데이터셋에는 비현실적입니다 — 다음 유닛들에서는 실제로 쓰이는 O(n log n) 알고리즘을 다룹니다.",
+      "concept_tags": ["bubble_sort", "selection_sort"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l3_u01_q006",
+      "type": "error_finding",
+      "code": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(n):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr\n\nprint(bubble_sort([5, 2, 8, 1, 9]))",
+      "prompt_en": "What problem does this code have? (Note: the inner loop uses range(n) instead of range(n - i - 1).)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (안쪽 반복문이 range(n - i - 1)이 아니라 range(n)인 점에 주의하세요.)",
+      "options": [
+        "swap 문법 오류",
+        "j가 n-1까지 갈 수 있어 arr[j + 1]이 배열 범위를 벗어나는 인덱스(arr[n])에 접근하게 되어 IndexError가 발생함",
+        "bubble_sort 함수 이름이 잘못됨",
+        "문제 없음, 정상적으로 정렬됨"
+      ],
+      "answer": 1,
+      "explanation_en": "range(n) lets j reach n-1, making arr[j+1] try to access arr[n] — one past the last valid index; the correct range(n - i - 1) prevents this and also skips the already-sorted tail for efficiency.",
+      "explanation_ko": "range(n)은 j가 n-1까지 갈 수 있게 해서, arr[j+1]이 arr[n](마지막 유효 인덱스보다 하나 지난 곳)에 접근하려 합니다. 올바른 range(n - i - 1)은 이를 방지하고, 효율을 위해 이미 정렬된 뒷부분도 건너뜁니다.",
+      "concept_tags": ["bubble_sort", "indexerror"],
+      "difficulty": "challenge"
+    }
+  ]
+}

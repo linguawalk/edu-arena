@@ -1,0 +1,96 @@
+{
+ "no": 4,
+ "title": "피드백 제어와 PID 튜닝",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "P·PI·PID 동작이 공정 응답에 주는 효과를 설명할 수 있다.",
+  "반응 곡선법(지글러–니콜스, 코헨–쿤)으로 PID 초기값을 정할 수 있다.",
+  "적분 와인드업과 실제 운전 문제를 설명할 수 있다."
+ ],
+ "checklist": [
+  "P 동작과 정상 상태 오프셋",
+  "PI: 오프셋 제거, PID: 미분으로 빠른 응답(잡음 주의)",
+  "반응 곡선 지글러–니콜스(PI): K_c = 0.9τ/(Kθ), T_i = 3.33θ",
+  "반응 곡선 지글러–니콜스(PID): K_c = 1.2τ/(Kθ), T_i = 2θ, T_d = 0.5θ",
+  "IMC·람다 튜닝(개념)",
+  "적분 와인드업과 방지",
+  "역작동·정작동 설정, 수동–자동 전환"
+ ],
+ "advice": [
+  "화학 공장의 제어 루프 대부분은 PI 제어기이고, 튜닝이 성능을 좌우합니다. 3단원에서 구한 K, τ, θ를 반응 곡선 튜닝식에 넣어 초기값을 정하고, 시뮬레이션에서 응답을 보며 조정하는 과정을 직접 해 보세요. 시간 지연이 클수록 이득을 낮춰야 한다는 결론이 튜닝식에서 바로 보입니다. 제어 밸브가 끝까지 열렸는데 적분이 계속 쌓이는 와인드업은 실제 운전에서 자주 생기는 문제입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Seborg · Edgar · Mellichamp · Doyle, Process Dynamics and Control (번역본 『공정제어』, 장 제목으로 표기)",
+   "part": "Feedback Controllers, PID Controller Design, Tuning, and Troubleshooting 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3 (전기 트랙)",
+   "title": "제어공학 7단원 보상기와 PID 제어",
+   "url": "guide.html?lv=3&t=electrical&s=control&u=7"
+  },
+  {
+   "kind": "video",
+   "provider": "LearnChemE (콜로라도 대학교, 무료)",
+   "title": "화학공학 짧은 강의 영상과 시뮬레이션",
+   "url": "https://learncheme.com/",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "K = 2, τ = 10분, θ = 2분인 공정에 반응 곡선 지글러–니콜스 PID 규칙(K_c = 1.2τ/(Kθ))을 쓰면 제어기 이득은 얼마일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "K_c = 1.2 × 10/(2 × 2) = 3",
+   "hint": "1.2τ/(Kθ)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "같은 규칙에서 적분 시간 T_i = 2θ는 몇 분일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "T_i = 2 × 2 = 4 min",
+   "hint": "2θ입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "제어 밸브가 한계에 걸려 있는데도 적분 항이 계속 커져, 나중에 큰 오버슈트를 일으키는 현상을 적분 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "와인드업",
+      "와인드 업",
+      "누적"
+     ]
+    }
+   ],
+   "explanation": "제어기에 와인드업 방지 기능을 켜서 막습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "chemical",
+ "subject": "process-control",
+ "id": "l3-chemical-process-control-u04"
+}

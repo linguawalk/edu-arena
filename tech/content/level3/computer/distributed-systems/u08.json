@@ -1,0 +1,106 @@
+{
+ "no": 8,
+ "title": "AI·LLM 서빙 인프라",
+ "hours": 5,
+ "after": [
+  6,
+  7
+ ],
+ "objectives": [
+  "대규모 언어 모델(LLM)을 서비스하는 데 필요한 자원(GPU 메모리, 연산)을 어림할 수 있다.",
+  "양자화·배칭·KV 캐시가 추론 비용과 지연에 주는 효과를 설명할 수 있다.",
+  "LLM 응용의 시스템 구조(API 게이트웨이, RAG 검색, 캐시, 관측)를 설명할 수 있다."
+ ],
+ "checklist": [
+  "모델 가중치 메모리 ≈ 매개변수 수 × 매개변수당 바이트(FP16 2바이트)",
+  "양자화(8비트·4비트)로 메모리와 비용 절감, 정확도와의 맞바꿈",
+  "KV 캐시: 이미 처리한 토큰의 중간 결과 저장, 문맥이 길수록 커짐",
+  "지연 지표: 첫 토큰까지 시간(TTFT), 초당 토큰 수",
+  "배칭과 연속 배칭으로 GPU 활용률 향상",
+  "응용 구조: 게이트웨이, 속도 제한, 검색 증강 생성(RAG), 응답 캐시, 로그·평가",
+  "비용: 토큰 단위 과금, 자체 호스팅과 API 이용의 비교"
+ ],
+ "advice": [
+  "LLM 서비스도 결국 이 과목에서 배운 분산 시스템입니다. 다만 가장 비싼 자원이 CPU가 아니라 GPU 메모리와 대역폭이라는 점이 다릅니다. 매개변수 수 × 바이트 수로 모델이 GPU 몇 장에 들어가는지 어림하고, 양자화와 배칭이 그 숫자를 어떻게 바꾸는지 계산해 보세요. 이 분야는 모델·하드웨어·서빙 소프트웨어가 몇 달 단위로 바뀌므로 숫자보다 원리를 잡고, 구체적인 도구와 성능 수치는 최신 자료로 확인하세요. 모델의 원리와 학습은 융합 AI 공학, API를 호출하는 코드 작성은 code-arena가 맡습니다."
+ ],
+ "resources": [
+  {
+   "kind": "web",
+   "provider": "vLLM 프로젝트",
+   "title": "vLLM 문서 (PagedAttention, 연속 배칭)",
+   "url": "https://docs.vllm.ai/",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "Hugging Face",
+   "title": "Text Generation Inference 문서",
+   "url": "https://huggingface.co/docs/text-generation-inference/",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "운영체제 10단원 가상화와 컨테이너",
+   "url": "guide.html?lv=2&t=computer&s=operating-systems&u=10"
+  },
+  {
+   "kind": "web",
+   "provider": "Kubernetes 공식 문서 (한국어판 있음)",
+   "title": "쿠버네티스 문서",
+   "url": "https://kubernetes.io/ko/docs/",
+   "lang": "한국어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "매개변수 70억 개(7B)인 모델을 FP16(매개변수당 2바이트)으로 올리면 가중치만으로 약 몇 GB가 필요할까요? (1 GB = 10⁹ B)",
+   "answer": "14",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "7 × 10⁹ × 2 B = 14 × 10⁹ B = 14 GB\nKV 캐시와 실행 공간은 따로 더 듭니다.",
+   "hint": "매개변수 수 × 2바이트입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "같은 모델을 4비트(매개변수당 0.5바이트)로 양자화하면 가중치는 약 몇 GB가 될까요?",
+   "answer": "3.5",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "7 × 10⁹ × 0.5 B = 3.5 GB",
+   "hint": "매개변수 수 × 0.5바이트입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "첫 토큰까지 0.5초가 걸리고 이후 초당 50토큰을 생성하는 서비스가 500토큰 답변을 끝내는 데 약 몇 초 걸릴까요?",
+   "answer": "10.5",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "0.5 + 500/50 = 0.5 + 10 = 10.5초",
+   "hint": "TTFT + 토큰 수 ÷ 속도입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "review": {
+  "basis": "LLM 서빙 소프트웨어(vLLM 등) 문서와 주요 GPU·모델 공개 자료",
+  "checked": "2026-10",
+  "next": "2027-04",
+  "watch": "양자화·서빙 기법, GPU 세대별 메모리, 주요 오픈 모델 크기와 라이선스",
+  "standards": []
+ },
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "distributed-systems",
+ "id": "l3-computer-distributed-systems-u08"
+}

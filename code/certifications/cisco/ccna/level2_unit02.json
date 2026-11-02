@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "cisco",
+  "exam": "ccna-200-301",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "트렁킹과 802.1Q",
+  "rule_summary_ko": "액세스 포트(access port)는 하나의 VLAN에만 속하며, 연결된 PC 등 종단 장치는 태그 없는(untagged) 프레임만 주고받습니다. 트렁크 포트(trunk port)는 802.1Q 표준으로 프레임에 4바이트 VLAN 태그를 삽입해서, 하나의 물리 링크로 여러 VLAN의 트래픽을 동시에 실어 나릅니다. 네이티브 VLAN(기본값 VLAN 1)만은 예외적으로 트렁크에서 태그 없이 전송되며, 트렁크 양쪽 끝의 네이티브 VLAN 설정이 일치하지 않으면 네이티브 VLAN 불일치 오류와 함께 트래픽이 엉뚱한 VLAN으로 전달되는 문제가 생깁니다.",
+  "examples": [
+    { "code": "PC ↔ 스위치(액세스 포트, VLAN 10)", "note_ko": "PC는 태그가 뭔지 전혀 모른 채, 그냥 일반 이더넷 프레임만 주고받음" },
+    { "code": "스위치 ↔ 스위치(트렁크 포트)", "note_ko": "여러 VLAN(10, 20, 30 등)의 트래픽이 802.1Q 태그로 구분되어 한 케이블로 함께 전달됨" }
+  ],
+  "questions": [
+    {
+      "id": "ccna_l2_u2_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "액세스 포트(access port)와 트렁크 포트(trunk port)의 근본적인 차이는?",
+      "options": [
+        "액세스 포트는 하나의 VLAN만 처리하며 태그 없는 프레임을 주고받고, 트렁크 포트는 여러 VLAN의 트래픽을 802.1Q 태그로 구분해서 하나의 링크로 함께 전달한다",
+        "액세스 포트가 여러 VLAN을, 트렁크 포트가 하나의 VLAN만 처리한다(설명이 반대)",
+        "둘은 완전히 동일한 기능을 한다",
+        "액세스 포트는 스위치 간 연결에만 사용된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "일반적으로 액세스 포트는 종단 장치(PC 등)에, 트렁크 포트는 스위치·라우터 간 연결에 사용됩니다.",
+      "concept_tags": ["access_vs_trunk"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l2_u2_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "802.1Q 트렁크에서 네이티브 VLAN(native VLAN)의 특별한 점은?",
+      "options": [
+        "네이티브 VLAN의 트래픽만 예외적으로 태그 없이(untagged) 트렁크를 통과하고, 나머지 VLAN들은 모두 태그가 붙는다",
+        "네이티브 VLAN도 다른 VLAN과 동일하게 반드시 태그가 붙는다",
+        "네이티브 VLAN은 트렁크에서 아예 전송될 수 없다",
+        "네이티브 VLAN 개념은 802.1Q와 무관하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "네이티브 VLAN은 802.1Q를 모르는 구형 장치와의 하위 호환성을 위한 예외 처리입니다.",
+      "concept_tags": ["native_vlan"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l2_u2_q003",
+      "type": "concept_matching_item",
+      "code": "트렁크 링크의 한쪽 스위치는 네이티브 VLAN을 1로, 다른 쪽 스위치는 네이티브 VLAN을 10으로 설정함",
+      "prompt_ko": "이런 네이티브 VLAN 불일치가 발생하면?",
+      "options": [
+        "아무 문제 없이 정상적으로 통신된다",
+        "태그 없는 트래픽이 양쪽에서 서로 다른 VLAN으로 잘못 처리되어, 연결 문제와 보안 문제가 발생할 수 있다(스위치가 경고 메시지를 표시함)",
+        "트렁크 링크 자체가 완전히 차단된다",
+        "네이티브 VLAN 설정은 양쪽이 달라도 항상 무방하다"
+      ],
+      "answer": 1,
+      "explanation_ko": "네이티브 VLAN은 트렁크 양쪽에서 반드시 일치해야 하며, 불일치 시 트래픽이 엉뚱한 브로드캐스트 도메인으로 흘러들어갈 수 있습니다.",
+      "concept_tags": ["native_vlan_mismatch"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l2_u2_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "VLAN 트렁킹을 위한 IEEE 표준 태깅 방식의 이름은 무엇입니까? (예: 802.1X)",
+      "expected_answers": ["802.1Q"],
+      "explanation_ko": "802.1Q는 이전의 Cisco 독자 규격인 ISL을 대체한 업계 표준입니다.",
+      "concept_tags": ["dot1q_standard"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "ccna_l2_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "PC가 802.1Q 태그가 붙은 프레임을 직접 이해하고 처리해야 합니까?",
+      "options": [
+        "그렇다. 모든 PC는 802.1Q 태그를 이해해야만 네트워크를 사용할 수 있다",
+        "아니다. PC는 일반적으로 액세스 포트에 연결되어 태그 없는 프레임만 주고받으므로, 태그 처리는 신경 쓸 필요가 없다",
+        "PC는 반드시 트렁크 포트에만 연결되어야 한다",
+        "802.1Q 태그는 PC에서 직접 삽입한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "VLAN 태깅은 스위치 간 처리이며, 액세스 포트에 연결된 종단 장치는 이를 알 필요가 없습니다.",
+      "concept_tags": ["end_device_tagging"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l2_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "트렁크 링크를 사용해서 여러 VLAN의 트래픽을 하나의 물리 케이블로 전달하는 것의 이점은?",
+      "options": [
+        "VLAN마다 별도의 물리 케이블을 배선할 필요 없이, 하나의 링크로 여러 VLAN을 효율적으로 연결할 수 있다",
+        "트렁크는 오직 하나의 VLAN만 지원하는 특수한 액세스 포트다",
+        "트렁크를 사용하면 VLAN 개념 자체가 필요 없어진다",
+        "트렁크는 물리적 배선 절감과는 무관한 개념이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "트렁킹 덕분에 스위치 간에 VLAN마다 별도의 케이블을 놓을 필요가 없어집니다.",
+      "concept_tags": ["trunk_benefits"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 1,
+  "unit": 3,
+  "unit_title": "제어 구조: LOOP·WHILE·FOR",
+  "rule_summary_ko": "기본 LOOP는 EXIT나 EXIT WHEN으로 직접 종료 조건을 지정해야 하며, 최소 한 번은 실행됩니다. WHILE 루프는 매 반복 전에 조건을 검사해서, 처음부터 조건이 거짓이면 한 번도 실행되지 않을 수 있습니다. 숫자 FOR 루프의 카운터 변수는 암묵적으로 선언되어(DECLARE에 선언할 필요 없음) 루프 안에서 읽기 전용이며, REVERSE를 붙여도 범위는 항상 '작은값..큰값' 순서로 적어야 합니다(REVERSE가 방향만 뒤집음).",
+  "examples": [
+    { "code": "FOR i IN REVERSE 1..5 LOOP\n    DBMS_OUTPUT.PUT_LINE(i);\nEND LOOP;", "note_ko": "5,4,3,2,1 순서로 출력 — REVERSE를 써도 1..5(작은값..큰값) 순서로 범위를 적어야 함(5..1이 아님)" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l1_u3_q001",
+      "type": "concept_matching_item",
+      "code": "FOR i IN 1..5 LOOP\n    i := i + 1; -- 이 줄\nEND LOOP;",
+      "prompt_ko": "루프 안에서 카운터 변수 i에 직접 값을 대입하려고 하면?",
+      "options": [
+        "정상적으로 대입되어 i가 2씩 증가하게 된다",
+        "컴파일 오류 발생 — FOR 루프의 카운터 변수는 루프 안에서 읽기 전용이라 값을 대입할 수 없다",
+        "런타임 예외가 발생한다",
+        "i의 값이 무시되고 무한 루프에 빠진다"
+      ],
+      "answer": 1,
+      "explanation_ko": "FOR 루프 카운터는 암묵적으로 선언되며 읽기 전용이라, 대입을 시도하면 컴파일 오류가 납니다.",
+      "concept_tags": ["for_loop_counter_readonly"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l1_u3_q002",
+      "type": "concept_matching_item",
+      "code": "FOR i IN REVERSE 1..5 LOOP\n    DBMS_OUTPUT.PUT_LINE(i);\nEND LOOP;",
+      "prompt_ko": "출력 순서는?",
+      "options": [
+        "1,2,3,4,5", "5,4,3,2,1 — REVERSE는 방향만 뒤집을 뿐, 범위는 여전히 작은값..큰값 순서로 적는다", "컴파일 오류(5..1로 적어야 함)", "1과 5만 출력됨"
+      ],
+      "answer": 1,
+      "explanation_ko": "REVERSE 1..5는 '1부터 5까지의 범위를 거꾸로'라는 뜻이라, 5,4,3,2,1 순서로 출력됩니다.",
+      "concept_tags": ["for_loop_reverse"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l1_u3_q003",
+      "type": "concept_matching_item",
+      "code": "v_x NUMBER := 10;\nWHILE v_x < 5 LOOP\n    DBMS_OUTPUT.PUT_LINE(v_x);\n    v_x := v_x + 1;\nEND LOOP;",
+      "prompt_ko": "이 WHILE 루프는 몇 번 실행됩니까?",
+      "options": [
+        "1번", "0번 — WHILE은 매 반복 전에 조건을 검사하는데, 처음부터 v_x(10)가 조건(<5)을 만족하지 않아 한 번도 실행되지 않는다", "무한 반복된다", "정확히 5번"
+      ],
+      "answer": 1,
+      "explanation_ko": "WHILE 루프는 조건을 먼저 검사하므로, 시작부터 조건이 거짓이면 루프 본문이 전혀 실행되지 않을 수 있습니다.",
+      "concept_tags": ["while_loop"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l1_u3_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "기본 LOOP(무한 반복 형태) 안에서 특정 조건이 되면 루프를 즉시 빠져나가게 하는 문장은 무엇입니까? (영문 두 단어로 입력, 예: XXXX WHEN)",
+      "expected_answers": ["EXIT WHEN"],
+      "explanation_ko": "EXIT WHEN 조건; 은 조건이 참이 되면 즉시 루프를 종료시킵니다.",
+      "concept_tags": ["exit_when"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l1_u3_q005",
+      "type": "concept_matching_item",
+      "code": "DECLARE\n    i NUMBER;\nBEGIN\n    FOR i IN 1..3 LOOP\n        NULL;\n    END LOOP;\nEND;",
+      "prompt_ko": "DECLARE에서 이미 변수 i를 선언했는데, FOR 루프에서도 i라는 이름을 카운터로 사용했습니다. 어떻게 됩니까?",
+      "options": [
+        "컴파일 오류가 발생한다(이름 중복 금지)",
+        "FOR 루프 안에서는 루프가 암묵적으로 선언한 지역 i가 바깥의 DECLARE i를 가려서(숨겨서), 루프 안에서는 새 i를 사용하게 된다",
+        "DECLARE의 i와 루프의 i가 항상 같은 값을 공유한다",
+        "루프가 실행되지 않는다"
+      ],
+      "answer": 1,
+      "explanation_ko": "FOR 루프 카운터는 새로운 지역 변수로 암묵적으로 선언되어, 같은 이름의 바깥 변수를 가립니다(이런 이름 중복은 혼란을 줄 수 있어 피하는 것이 권장됩니다).",
+      "concept_tags": ["for_loop_variable_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l1_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "반복 횟수를 미리 알고 있을 때와, 반복을 멈출 조건은 알지만 정확한 횟수는 모를 때 각각 적합한 루프는?",
+      "options": [
+        "횟수를 알 때는 FOR 루프가, 조건 기반일 때는 WHILE(또는 기본 LOOP+EXIT WHEN)이 자연스럽다",
+        "모든 경우에 FOR 루프만 사용해야 한다",
+        "모든 경우에 WHILE 루프만 사용해야 한다",
+        "루프 종류는 결과에 아무 영향이 없어 아무거나 써도 무방하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "정해진 횟수 반복에는 FOR가 간결하고, 조건에 따라 멈추는 경우에는 WHILE이나 EXIT WHEN이 더 자연스럽습니다.",
+      "concept_tags": ["loop_selection"],
+      "difficulty": "practice"
+    }
+  ]
+}

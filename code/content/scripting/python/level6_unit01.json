@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 6,
+  "unit": 1,
+  "unit_title": "파일 입출력",
+  "questions": [
+    {
+      "id": "python_l6_u01_q001",
+      "type": "predict_output",
+      "code": "with open(\"test.txt\", \"w\") as f:\n    f.write(\"42\")\n\nwith open(\"test.txt\", \"r\") as f:\n    content = f.read()\nprint(content)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["42", "test.txt", "오류", "빈 문자열"],
+      "answer": 0,
+      "explanation_en": "with open(...) as f writes and reads the file; content ends up holding the written text, 42.",
+      "explanation_ko": "with open(...) as f는 파일을 쓰고 읽습니다. content는 결국 쓰여진 텍스트인 42를 담게 됩니다.",
+      "concept_tags": ["file_io", "with_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l6_u01_q002",
+      "type": "fill_blank",
+      "code": "____ open(\"data.txt\", \"r\") as f:\n    content = f.read()\n# 블록이 끝나면 파일이 자동으로 닫혀야 함",
+      "prompt_en": "Fill in the blank with the keyword that ensures the file is automatically closed when the block ends.",
+      "prompt_ko": "블록이 끝나면 파일이 자동으로 닫히도록 보장하는 키워드를 빈칸에 채우세요.",
+      "options": ["with", "using", "try", "auto"],
+      "answer": 0,
+      "explanation_en": "with creates a context manager that automatically closes the file when the block exits, even if an exception occurs — the Python equivalent of C#'s using or Java's try-with-resources.",
+      "explanation_ko": "with는 블록을 벗어날 때(예외가 발생해도) 자동으로 파일을 닫는 컨텍스트 매니저를 만듭니다. C#의 using이나 Java의 try-with-resources에 대응하는 Python의 방식입니다.",
+      "concept_tags": ["with_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l6_u01_q003",
+      "type": "predict_output",
+      "code": "import os\nprint(os.path.exists(\"nonexistent.txt\"))",
+      "prompt_en": "What is printed, assuming the file doesn't exist?",
+      "prompt_ko": "파일이 존재하지 않는다고 가정할 때 출력 결과는?",
+      "options": ["True", "False", "오류", "None"],
+      "answer": 1,
+      "explanation_en": "os.path.exists safely checks for a file's presence without raising an exception, returning False here.",
+      "explanation_ko": "os.path.exists는 예외를 던지지 않고 안전하게 파일 존재 여부를 확인합니다. 여기서는 False를 반환합니다.",
+      "concept_tags": ["file_io", "path_exists"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l6_u01_q004",
+      "type": "error_finding",
+      "code": "f = open(\"missing_file.txt\", \"r\")\ncontent = f.read()",
+      "prompt_en": "What problem does this code have if missing_file.txt doesn't exist?",
+      "prompt_ko": "missing_file.txt가 존재하지 않을 경우 이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "open 사용법 자체가 잘못됨",
+        "존재 여부를 확인하지 않고 바로 열려고 해서, 실행 시점에 FileNotFoundError가 발생함",
+        "content 선언 문법 오류",
+        "문제 없음, 빈 문자열이 반환됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Without checking os.path.exists first, opening a nonexistent file raises FileNotFoundError at runtime, similar to the pattern seen in other languages.",
+      "explanation_ko": "먼저 os.path.exists로 확인하지 않고 존재하지 않는 파일을 열려고 하면 실행 시점에 FileNotFoundError가 발생합니다. 다른 언어에서 봤던 패턴과 비슷합니다.",
+      "concept_tags": ["file_io", "filenotfounderror"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l6_u01_q005",
+      "type": "predict_output",
+      "code": "with open(\"log.txt\", \"w\") as f:\n    f.write(\"기록 1\\n\")\n    f.write(\"기록 2\\n\")\n\nwith open(\"log.txt\", \"r\") as f:\n    lines = f.readlines()\nprint(len(lines))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1", "2", "0", "오류"],
+      "answer": 1,
+      "explanation_en": "readlines() returns a list where each element is one line of the file; two \\n-separated writes produce a list of 2 lines.",
+      "explanation_ko": "readlines()는 파일의 각 줄을 요소로 하는 리스트를 반환합니다. \\n으로 구분된 두 번의 쓰기가 2줄짜리 리스트를 만듭니다.",
+      "concept_tags": ["file_io", "readlines"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l6_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "open() / read() / write()", "definition": "파일을 열고 읽거나 쓰는 기본 함수와 메서드" },
+        { "term": "with 문 (컨텍스트 매니저)", "definition": "블록이 끝나면 파일을 자동으로 닫아주는 문법" },
+        { "term": "os.path.exists", "definition": "예외 없이 안전하게 파일 존재 여부를 확인하는 함수" },
+        { "term": "readlines()", "definition": "파일의 각 줄을 리스트의 요소로 반환하는 메서드" }
+      ],
+      "explanation_en": "Python's with statement plays the same automatic-cleanup role as C#'s using and Java's try-with-resources, ensuring files are closed even when exceptions occur mid-operation.",
+      "explanation_ko": "Python의 with 문은 C#의 using, Java의 try-with-resources와 같은 자동 정리 역할을 해서, 작업 중 예외가 발생해도 파일이 닫히도록 보장합니다.",
+      "concept_tags": ["file_io", "with_statement"],
+      "difficulty": "practice"
+    }
+  ]
+}

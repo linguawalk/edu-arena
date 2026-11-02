@@ -1,0 +1,96 @@
+{
+  "language": "cobol",
+  "category": "legacy_historical",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "REDEFINES",
+  "questions": [
+    {
+      "id": "cobol_l3_u02_q001",
+      "type": "predict_output",
+      "code": "01 DATE-FIELD PIC X(8) VALUE \"20260720\".\n01 DATE-PARTS REDEFINES DATE-FIELD.\n    05 YEAR-PART PIC X(4).\n    05 MONTH-PART PIC X(2).\n    05 DAY-PART PIC X(2).\n...\nDISPLAY YEAR-PART.\nDISPLAY MONTH-PART.",
+      "prompt_en": "What is printed? (DATE-PARTS reinterprets the SAME memory as DATE-FIELD.)",
+      "prompt_ko": "출력 결과는? (DATE-PARTS는 DATE-FIELD와 같은 메모리를 재해석합니다.)",
+      "options": ["2026\\n07", "0720\\n2026", "오류", "20260720\\n20260720"],
+      "answer": 0,
+      "explanation_en": "REDEFINES lets DATE-PARTS view the exact same storage as DATE-FIELD, just sliced into named sub-fields; \"20260720\" splits into YEAR-PART=2026, MONTH-PART=07.",
+      "explanation_ko": "REDEFINES는 DATE-PARTS가 DATE-FIELD와 정확히 같은 저장 공간을 이름 붙은 하위 필드로 나눠 보게 합니다. \"20260720\"은 YEAR-PART=2026, MONTH-PART=07로 나뉩니다.",
+      "concept_tags": ["redefines"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l3_u02_q002",
+      "type": "fill_blank",
+      "code": "01 RAW-DATA PIC X(6) VALUE \"ABCDEF\".\n01 SPLIT-DATA ____ RAW-DATA.\n    05 PART1 PIC X(3).\n    05 PART2 PIC X(3).",
+      "prompt_en": "Fill in the blank with the clause that makes SPLIT-DATA share RAW-DATA's memory.",
+      "prompt_ko": "SPLIT-DATA가 RAW-DATA의 메모리를 공유하게 만드는 절을 빈칸에 채우세요.",
+      "options": ["REDEFINES", "SHARES", "OVERLAYS", "ALIAS"],
+      "answer": 0,
+      "explanation_en": "REDEFINES declares that a new data item occupies the exact same memory as a previously defined one, allowing it to be viewed through a different structure.",
+      "explanation_ko": "REDEFINES는 새 데이터 항목이 이전에 정의된 항목과 정확히 같은 메모리를 차지한다고 선언해서, 다른 구조를 통해 볼 수 있게 합니다.",
+      "concept_tags": ["redefines"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cobol_l3_u02_q003",
+      "type": "predict_output",
+      "code": "01 RAW-DATA PIC X(6) VALUE \"ABCDEF\".\n01 SPLIT-DATA REDEFINES RAW-DATA.\n    05 PART1 PIC X(3).\n    05 PART2 PIC X(3).\n...\nMOVE \"XYZ\" TO PART1.\nDISPLAY RAW-DATA.",
+      "prompt_en": "What is printed? (Modifying through the redefined view affects the original.)",
+      "prompt_ko": "출력 결과는? (재정의된 뷰를 통해 수정하면 원본에도 영향을 줍니다.)",
+      "options": ["XYZDEF", "ABCDEF", "오류", "XYZ"],
+      "answer": 0,
+      "explanation_en": "Since PART1 and RAW-DATA's first 3 characters share the exact same memory, modifying PART1 directly changes what RAW-DATA shows; ABCDEF's first 3 letters become XYZ, giving XYZDEF.",
+      "explanation_ko": "PART1과 RAW-DATA의 처음 3글자는 정확히 같은 메모리를 공유하므로, PART1을 수정하면 RAW-DATA가 보여주는 것도 직접 바뀝니다. ABCDEF의 처음 3글자가 XYZ가 되어 XYZDEF가 됩니다.",
+      "concept_tags": ["redefines", "shared_memory"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cobol_l3_u02_q004",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "REDEFINES", "definition": "새 데이터 항목이 다른 항목과 정확히 같은 메모리를 차지하게 함" },
+        { "term": "메모리 공유", "definition": "재정의된 뷰를 통한 수정은 원본에도 그대로 반영됨" },
+        { "term": "C union과의 유사성", "definition": "REDEFINES는 개념적으로 C의 union과 같은 메모리 재해석 기법" },
+        { "term": "용도", "definition": "고정 폭 레코드를 여러 방식으로 해석하거나, 메모리를 절약할 때 흔히 사용" }
+      ],
+      "explanation_en": "REDEFINES has no direct equivalent in most modern high-level languages (which tend to hide memory layout), making it one of the more C-like, low-level features in COBOL's otherwise business-oriented design.",
+      "explanation_ko": "REDEFINES는 대부분의 현대 고급 언어(메모리 레이아웃을 숨기는 경향이 있는)에 직접적인 대응물이 없어서, 비즈니스 지향적인 COBOL 설계에서 C에 더 가까운 저수준 기능 중 하나입니다.",
+      "concept_tags": ["redefines", "shared_memory"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l3_u02_q005",
+      "type": "predict_output",
+      "code": "01 FULL-NUM PIC 9(6) VALUE 123456.\n01 NUM-PARTS REDEFINES FULL-NUM.\n    05 FIRST-THREE PIC 9(3).\n    05 LAST-THREE PIC 9(3).\n...\nDISPLAY FIRST-THREE.\nDISPLAY LAST-THREE.",
+      "prompt_en": "What is printed? (REDEFINES also works with numeric PIC fields.)",
+      "prompt_ko": "출력 결과는? (REDEFINES는 숫자 PIC 필드에도 동작합니다.)",
+      "options": ["123\\n456", "456\\n123", "오류", "123456\\n123456"],
+      "answer": 0,
+      "explanation_en": "NUM-PARTS reinterprets FULL-NUM's 6 digits as two 3-digit fields; 123456 splits into FIRST-THREE=123 and LAST-THREE=456.",
+      "explanation_ko": "NUM-PARTS는 FULL-NUM의 6자리를 두 개의 3자리 필드로 재해석합니다. 123456은 FIRST-THREE=123과 LAST-THREE=456으로 나뉩니다.",
+      "concept_tags": ["redefines"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l3_u02_q006",
+      "type": "error_finding",
+      "code": "01 SMALL-FIELD PIC X(3) VALUE \"AB\".\n01 BIG-VIEW REDEFINES SMALL-FIELD PIC X(10).\n...\nDISPLAY BIG-VIEW.",
+      "prompt_en": "What problem does this code have? (BIG-VIEW is larger than the field it redefines.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (BIG-VIEW가 재정의하는 필드보다 더 큽니다.)",
+      "options": [
+        "REDEFINES 문법 자체가 잘못돼 컴파일이 거부됨",
+        "컴파일은 되지만, BIG-VIEW가 SMALL-FIELD의 3바이트를 넘어서는 부분은 그 뒤의 초기화되지 않은 메모리를 그대로 읽어서, 예측할 수 없는 값이 나올 위험이 있음",
+        "문제 없음, 남는 공간이 자동으로 공백으로 채워짐",
+        "SMALL-FIELD의 값이 지워짐"
+      ],
+      "answer": 1,
+      "explanation_en": "Some COBOL compilers (like GnuCOBOL) compile this without error even though BIG-VIEW (10 bytes) is larger than SMALL-FIELD (3 bytes); the extra 7 bytes simply read whatever uninitialized memory happens to follow SMALL-FIELD, producing unpredictable garbage — a genuine memory-safety hazard similar to reading past the end of an array in C.",
+      "explanation_ko": "일부 COBOL 컴파일러(GnuCOBOL 등)는 BIG-VIEW(10바이트)가 SMALL-FIELD(3바이트)보다 커도 오류 없이 컴파일합니다. 나머지 7바이트는 SMALL-FIELD 뒤에 우연히 있는 초기화되지 않은 메모리를 그대로 읽어서, 예측할 수 없는 쓰레기값이 나옵니다 — C에서 배열 끝을 넘어 읽는 것과 비슷한 진짜 메모리 안전성 위험입니다.",
+      "concept_tags": ["redefines", "uninitialized_memory"],
+      "difficulty": "challenge"
+    }
+  ]
+}

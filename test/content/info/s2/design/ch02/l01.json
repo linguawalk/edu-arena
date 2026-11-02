@@ -1,0 +1,274 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "design",
+  "work": "풀이",
+  "track_title": "알고리즘 설계",
+  "chapter": {
+    "id": "info-s2-design-ch02",
+    "no": 2,
+    "title": "DP 최적화"
+  },
+  "lesson": {
+    "id": "info-s2-design-ch02-l01",
+    "no": 1,
+    "title": "메모리 줄이기",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "알고리즘 설계",
+      "DP 최적화"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "필요한 줄만 남기기",
+      "body": [
+        "0/1 배낭의 DP 표 dp[i][c]는 n × W칸입니다. n = 1000, W = 10⁵이면 칸이 10⁸개라 int로도 약 400MB가 들어 메모리 제한을 넘기 쉽습니다.",
+        "그런데 i번째 줄은 i − 1번째 줄만 보고 계산합니다. 그보다 앞의 줄은 다시 쓰지 않으므로 지워도 됩니다. 이렇게 필요한 줄만 남겨 메모리를 줄이는 것이 첫 번째 DP 최적화입니다.",
+        "두 줄을 번갈아 쓸 수도 있고, 계산 순서를 잘 정하면 1차원 배열 하나로도 됩니다."
+      ],
+      "code": "// dp[i][c]: 앞의 물건 i개로 무게 c 이하에서 얻는 최대 가치\nfor (int i = 1; i <= n; i++)\n    for (int c = 0; c <= W; c++) {\n        dp[i][c] = dp[i - 1][c];\n        if (c >= w[i]) dp[i][c] = max(dp[i][c], dp[i - 1][c - w[i]] + v[i]);\n    }"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "배낭 DP 표를 n × W칸으로 보고 n = 1000, W = 100000이면 int(4바이트) 표는 몇 MB인가요? (1MB = 10⁶바이트)",
+      "answer": "400",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "칸 수 × 4바이트입니다.",
+      "explanation": "칸은 1000 × 100000 = 10⁸개입니다.\n칸마다 4바이트이므로 4 × 10⁸바이트입니다.\n10⁶바이트가 1MB이므로 400MB입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "물건 (2, 3), (3, 4), (4, 5)와 W = 5로 아래 코드를 실행한 뒤 dp[5]의 값은?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "무게 2와 3인 물건을 함께 넣을 수 있습니다.",
+      "explanation": "무게 5 이하로 고를 수 있는 조합 중 (2, 3)과 (3, 4)를 넣으면 무게 5, 가치 7입니다.\n(4, 5) 하나는 가치 5이고, 다른 물건과 함께 넣으면 5를 넘습니다.\n그래서 dp[5] = 7입니다.",
+      "code": "// 1차원 배열 하나로 0/1 배낭 (각 물건은 한 번만)\nfor (int i = 1; i <= n; i++)\n    for (int c = W; c >= w[i]; c--)          // 뒤에서부터\n        dp[c] = max(dp[c], dp[c - w[i]] + v[i]);"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "왜 뒤에서부터 도는가",
+      "body": [
+        "1차원 배열에서 dp[c]를 새로 계산할 때 dp[c − w]는 '물건 i를 아직 고려하지 않은' 이전 줄의 값이어야 합니다.",
+        "c를 큰 쪽부터 줄여 가면 dp[c − w]는 아직 이번 물건으로 바뀌지 않았으므로 이전 줄의 값 그대로입니다. 그래서 물건 i가 한 번만 쓰입니다.",
+        "반대로 앞에서부터 돌면 dp[c − w]가 이미 물건 i로 갱신된 값이라, 같은 물건을 여러 번 넣는 결과가 됩니다. 이것은 개수 제한이 없는 배낭 문제의 답입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "물건 (2, 3) 하나와 W = 4로 앞에서부터 도는 코드를 실행해 보세요.",
+      "steps": [
+        "c = 2에서 dp[2] = dp[0] + 3 = 3이 됩니다.",
+        "c = 4에서 dp[4] = dp[2] + 3인데 dp[2]는 방금 3으로 바뀌었으므로 6이 됩니다.",
+        "같은 물건을 두 번 넣은 셈이라, 0/1 배낭의 답 3과 다른 6이 나옵니다."
+      ],
+      "answer": "6",
+      "code": "// 앞에서부터 돌면? (같은 물건을 여러 번 쓸 수 있게 된다)\nfor (int i = 1; i <= n; i++)\n    for (int c = w[i]; c <= W; c++)          // 앞에서부터\n        dp[c] = max(dp[c], dp[c - w[i]] + v[i]);"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "물건 (2, 3), (3, 4)와 W = 6으로 앞에서부터 도는 코드를 실행하면 dp[6]은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "무게 2인 물건을 세 번 넣을 수 있습니다.",
+      "explanation": "앞에서부터 돌면 같은 물건을 여러 번 쓸 수 있습니다.\n(2, 3)을 세 번 넣으면 무게 6, 가치 9이고, (3, 4)를 두 번 넣으면 8입니다.\n그래서 dp[6] = 9입니다.",
+      "code": "// 앞에서부터 돌면? (같은 물건을 여러 번 쓸 수 있게 된다)\nfor (int i = 1; i <= n; i++)\n    for (int c = w[i]; c <= W; c++)          // 앞에서부터\n        dp[c] = max(dp[c], dp[c - w[i]] + v[i]);"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 물건 (2, 3), (3, 4)와 W = 6으로 뒤에서부터 도는 코드를 실행하면 dp[6]은?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "각 물건은 한 번만 쓸 수 있습니다.",
+      "explanation": "뒤에서부터 돌면 각 물건을 한 번씩만 씁니다.\n두 물건을 모두 넣으면 무게 5, 가치 3 + 4입니다.\n= 7입니다.",
+      "code": "// 1차원 배열 하나로 0/1 배낭 (각 물건은 한 번만)\nfor (int i = 1; i <= n; i++)\n    for (int c = W; c >= w[i]; c--)          // 뒤에서부터\n        dp[c] = max(dp[c], dp[c - w[i]] + v[i]);"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1차원 0/1 배낭에서 c를 큰 쪽부터 도는 이유로 알맞은 것은? ① 계산이 더 빨라서 ② 배열 범위를 벗어나지 않으려고 ③ dp[c − w]가 아직 이번 물건으로 바뀌지 않은 값이어야 해서 ④ 같은 물건을 여러 번 쓰려고",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "앞에서부터 돌면 무엇이 달라지나요?",
+      "explanation": "dp[c]를 계산할 때 쓰는 dp[c − w]는 물건 i를 넣기 전의 값이어야 합니다.\n큰 쪽부터 돌면 작은 칸들은 아직 바뀌지 않았으므로 이것이 보장됩니다.\n답은 3입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "두 줄만 쓰기",
+      "body": [
+        "LCS처럼 dp[i][j]가 dp[i − 1][…]과 dp[i][j − 1]을 모두 보는 경우에는 1차원 하나로 하기 까다로우므로, 이전 줄 prv와 현재 줄 cur 두 개를 번갈아 씁니다.",
+        "한 줄을 다 계산하면 두 배열을 바꿔 현재 줄이 다음의 이전 줄이 됩니다. 메모리는 O(nm)에서 O(m)으로 줄고 시간은 그대로 O(nm)입니다.",
+        "단, 최댓값만 남고 표 전체가 사라지므로 실제 공통 부분 수열을 거꾸로 따라가 복원할 수는 없게 됩니다."
+      ],
+      "code": "// 두 줄만 쓰는 LCS: prv는 a의 앞 i-1글자, cur는 앞 i글자\nfor (int i = 1; i <= n; i++) {\n    for (int j = 1; j <= m; j++)\n        cur[j] = (a[i-1] == b[j-1]) ? prv[j-1] + 1 : max(prv[j], cur[j-1]);\n    swap(prv, cur);\n}\n// 답은 prv[m]"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = \"ABCBDAB\", b = \"BDCABA\"로 아래 코드를 실행하면 LCS의 길이는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "BCBA가 공통 부분 수열입니다.",
+      "explanation": "두 문자열에 공통으로 들어 있는 부분 수열로 BCBA, BDAB 등이 있습니다.\n길이 5인 공통 부분 수열은 없습니다.\n그래서 LCS의 길이는 4입니다.",
+      "code": "// 두 줄만 쓰는 LCS: prv는 a의 앞 i-1글자, cur는 앞 i글자\nfor (int i = 1; i <= n; i++) {\n    for (int j = 1; j <= m; j++)\n        cur[j] = (a[i-1] == b[j-1]) ? prv[j-1] + 1 : max(prv[j], cur[j-1]);\n    swap(prv, cur);\n}\n// 답은 prv[m]"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "한 번에 1칸 또는 2칸 오를 때 10칸에 이르는 방법의 수를, 직전 두 값만 저장하며 구하면?",
+      "answer": "89",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "dp[i] = dp[i − 1] + dp[i − 2]입니다.",
+      "explanation": "dp[i]는 직전 두 값만 쓰므로 변수 두 개로 충분합니다.\ndp[0] = 1, dp[1] = 1부터 2, 3, 5, 8, 13, 21, 34, 55, 89입니다.\n그래서 dp[10] = 89입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "두 줄만 쓰는 LCS의 메모리 사용량은? (두 문자열의 길이 n, m) ① O(1) ② O(nm) ③ O(n²) ④ O(m)",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "길이 m + 1인 배열 두 개입니다.",
+      "explanation": "prv와 cur는 각각 길이 m + 1인 배열이고, 한 줄을 다 계산할 때마다 둘을 바꿔 다시 씁니다.\n줄 수 n과 상관없이 두 개만 씁니다.\n답은 4입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "DP의 i번째 줄이 바로 앞 줄만 본다면 앞 줄들을 지워 메모리를 O(줄 길이)로 줄일 수 있습니다.",
+        "0/1 배낭은 c를 큰 쪽부터 돌면 1차원 배열 하나로 되고, 앞에서부터 돌면 개수 제한 없는 배낭이 됩니다.",
+        "LCS처럼 같은 줄의 왼쪽 값도 보는 경우에는 두 줄을 번갈아 씁니다. 표를 지우면 답의 복원은 어려워집니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "물건 (1, 1), (3, 4), (4, 5), (5, 7)과 W = 7로 아래 코드를 실행한 뒤 dp[7]은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(3, 4)와 (4, 5)를 함께 넣어 보세요.",
+      "explanation": "(3, 4)와 (4, 5)를 넣으면 무게 7, 가치 9입니다.\n(5, 7)과 (1, 1)은 무게 6, 가치 8로 더 작고, 다른 조합도 9를 넘지 못합니다.\n그래서 dp[7] = 9입니다.",
+      "code": "// 1차원 배열 하나로 0/1 배낭 (각 물건은 한 번만)\nfor (int i = 1; i <= n; i++)\n    for (int c = W; c >= w[i]; c--)          // 뒤에서부터\n        dp[c] = max(dp[c], dp[c - w[i]] + v[i]);"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "동전 1, 2, 5원으로 5원을 만드는 방법의 수(순서 무시)를 1차원 배열에서 동전마다 앞에서부터 돌며 dp[s] += dp[s − 동전]으로 구하면?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5, 2+2+1, 2+1+1+1, 1×5입니다.",
+      "explanation": "동전 종류를 바깥 반복으로 두면 같은 조합을 순서만 바꿔 다시 세지 않고, 앞에서부터 돌아 같은 동전을 여러 번 쓸 수 있습니다.\n가능한 조합은 5, 2 + 2 + 1, 2 + 1 + 1 + 1, 1 + 1 + 1 + 1 + 1입니다.\n그래서 4가지입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "1차원 0/1 배낭에서 c를 큰 쪽부터 돌면 각 물건이 한 번만 쓰임을 설명하세요.",
+      "model_answer": [
+        "물건 i를 처리하기 직전 dp는 2차원 표의 i − 1번째 줄과 같다.",
+        "c를 W부터 줄여 가며 dp[c]를 바꾸므로, dp[c]를 계산할 때 더 작은 칸 dp[c − w]는 아직 바뀌지 않았다.",
+        "그래서 dp[c] = max(dp[i−1][c], dp[i−1][c − w] + v)로 2차원 점화식과 똑같이 계산된다.",
+        "따라서 물건 i를 처리한 뒤 dp는 i번째 줄과 같고, 물건 i는 한 번만 들어간다."
+      ],
+      "criteria": [
+        {
+          "text": "처리 전 dp가 이전 줄임을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "dp[c − w]가 아직 바뀌지 않았음을 보였다",
+          "points": 2
+        },
+        {
+          "text": "2차원 점화식과 같음을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "dp[c]를 계산할 때 dp[c − w]는 어떤 값인가요?",
+      "code": "// 1차원 배열 하나로 0/1 배낭 (각 물건은 한 번만)\nfor (int i = 1; i <= n; i++)\n    for (int c = W; c >= w[i]; c--)          // 뒤에서부터\n        dp[c] = max(dp[c], dp[c - w[i]] + v[i]);"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "두 줄만 쓰는 LCS 코드가 2차원 표와 같은 답을 내는 이유와, 잃게 되는 것을 설명하세요.",
+      "model_answer": [
+        "dp[i][j]는 dp[i − 1][j − 1], dp[i − 1][j], dp[i][j − 1]만 쓴다.",
+        "앞의 둘은 이전 줄 prv에, 마지막은 현재 줄 cur의 왼쪽 칸에 있으므로 두 줄만 있으면 계산할 수 있다.",
+        "한 줄을 마치면 prv와 cur를 바꾸므로 다음 줄을 계산할 때 prv가 바로 앞 줄이 된다. 그래서 마지막에 prv[m]이 dp[n][m]이다.",
+        "다만 앞의 줄들이 지워져, 표를 거꾸로 따라가 실제 공통 부분 수열을 복원할 수는 없다."
+      ],
+      "criteria": [
+        {
+          "text": "점화식이 쓰는 칸을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "두 줄로 충분함과 바꾸기를 설명했다",
+          "points": 2
+        },
+        {
+          "text": "복원이 어려워짐을 지적했다",
+          "points": 2
+        }
+      ],
+      "hint": "점화식이 어느 칸을 보는지 정리하세요.",
+      "code": "// 두 줄만 쓰는 LCS: prv는 a의 앞 i-1글자, cur는 앞 i글자\nfor (int i = 1; i <= n; i++) {\n    for (int j = 1; j <= m; j++)\n        cur[j] = (a[i-1] == b[j-1]) ? prv[j-1] + 1 : max(prv[j], cur[j-1]);\n    swap(prv, cur);\n}\n// 답은 prv[m]"
+    }
+  ]
+}

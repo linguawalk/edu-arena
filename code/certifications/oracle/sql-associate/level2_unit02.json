@@ -1,0 +1,105 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "sql-associate-1z0-071",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "JOIN",
+  "rule_summary_ko": "INNER JOIN은 두 테이블에서 조인 조건이 일치하는 행만 반환합니다. LEFT OUTER JOIN은 왼쪽 테이블의 모든 행을 유지하면서, 오른쪽에 매칭이 없으면 NULL로 채웁니다. RIGHT OUTER JOIN은 그 반대입니다. 오라클은 표준 ANSI JOIN 문법 외에, (+) 기호를 사용하는 오라클 전통 OUTER JOIN 문법도 지원합니다(예: WHERE e.dept_id = d.dept_id(+) 는 LEFT JOIN과 동일).",
+  "examples": [
+    { "code": "employees: Kim(dept10), Lee(dept20), Park(dept=NULL)\ndepartments: 10=Sales, 20=IT, 30=HR", "note_ko": "INNER JOIN → Kim/Sales, Lee/IT만(Park·HR 제외) / LEFT JOIN(employees 기준) → Park도 포함(dept_name=NULL) / RIGHT JOIN → HR도 포함(name=NULL)" }
+  ],
+  "questions": [
+    {
+      "id": "sql_oracle_l2_u2_q001",
+      "type": "concept_matching_item",
+      "code": "SELECT e.name, d.dept_name\nFROM employees e JOIN departments d ON e.dept_id = d.dept_id;\n-- Park는 dept_id가 NULL이라 어떤 부서와도 매칭되지 않음",
+      "prompt_ko": "이 INNER JOIN 결과에 Park가 포함됩니까?",
+      "options": [
+        "포함된다 — INNER JOIN은 항상 모든 행을 포함한다",
+        "포함되지 않는다 — INNER JOIN은 조인 조건이 일치하는 행만 반환하는데, Park는 dept_id가 NULL이라 어떤 부서와도 매칭되지 않는다",
+        "포함되지만 dept_name이 NULL로 표시된다",
+        "오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "INNER JOIN은 양쪽 테이블에서 조건이 일치하는 행끼리만 결합하므로, 매칭이 없는 Park는 결과에서 제외됩니다.",
+      "concept_tags": ["inner_join"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l2_u2_q002",
+      "type": "concept_matching_item",
+      "code": "SELECT e.name, d.dept_name\nFROM employees e LEFT JOIN departments d ON e.dept_id = d.dept_id;",
+      "prompt_ko": "이 LEFT JOIN 결과에 Park는 어떻게 나타납니까?",
+      "options": [
+        "결과에서 완전히 제외된다",
+        "Park는 포함되고, 매칭되는 부서가 없으므로 dept_name은 NULL로 표시된다",
+        "오류가 발생한다",
+        "Park의 dept_id가 자동으로 임의의 부서로 채워진다"
+      ],
+      "answer": 1,
+      "explanation_ko": "LEFT JOIN은 왼쪽 테이블(employees)의 모든 행을 보존하며, 매칭이 없으면 오른쪽 컬럼을 NULL로 채웁니다.",
+      "concept_tags": ["left_join"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l2_u2_q003",
+      "type": "concept_matching_item",
+      "code": "SELECT e.name, d.dept_name\nFROM employees e RIGHT JOIN departments d ON e.dept_id = d.dept_id;\n-- HR 부서(dept_id=30)에는 소속 직원이 없음",
+      "prompt_ko": "이 RIGHT JOIN 결과에 HR 부서는 어떻게 나타납니까?",
+      "options": [
+        "HR 부서는 결과에서 제외된다",
+        "HR 부서는 포함되고, 소속 직원이 없으므로 name은 NULL로 표시된다",
+        "오류가 발생한다",
+        "HR 부서에 임의의 직원이 자동으로 배정된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "RIGHT JOIN은 오른쪽 테이블(departments)의 모든 행을 보존합니다.",
+      "concept_tags": ["right_join"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l2_u2_q004",
+      "type": "concept_matching_item",
+      "code": "-- 오라클 전통 문법(ANSI 표준이 아닌 오라클 고유 방식)\nSELECT e.name, d.dept_name\nFROM employees e, departments d\nWHERE e.dept_id = d.dept_id(+);",
+      "prompt_ko": "이 오라클 전통 문법에서 (+) 기호가 붙은 위치(d.dept_id(+))의 의미는?",
+      "options": [
+        "departments 테이블 쪽이 '부족할 수 있는' 쪽이라는 뜻으로, employees를 기준으로 한 LEFT OUTER JOIN과 동일한 결과를 낸다",
+        "departments 테이블의 모든 값에 1을 더한다는 뜻이다",
+        "이 문법은 오라클에서 사용할 수 없다",
+        "(+) 는 INNER JOIN을 의미하는 기호다"
+      ],
+      "answer": 0,
+      "explanation_ko": "(+)가 붙은 쪽이 '데이터가 없을 수 있는(결측 허용)' 쪽이며, 반대쪽 테이블 기준의 OUTER JOIN을 표현하는 오라클 전통 문법입니다.",
+      "concept_tags": ["oracle_outer_join_syntax"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l2_u2_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "같은 테이블을 자기 자신과 조인해서, 예를 들어 '직원-관리자' 관계처럼 계층 구조를 표현하는 조인 방식을 무엇이라 합니까? (한글로 입력, 예: OO 조인)",
+      "expected_answers": ["셀프 조인", "자체 조인", "셀프조인"],
+      "explanation_ko": "셀프 조인(self join)은 같은 테이블에 서로 다른 별칭을 부여해서 자기 자신과 조인하는 방식입니다.",
+      "concept_tags": ["self_join"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l2_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "오라클 전통의 (+) 문법보다 표준 ANSI JOIN 문법(LEFT/RIGHT/INNER JOIN ... ON)을 사용하는 것이 권장되는 이유는?",
+      "options": [
+        "ANSI 문법은 다른 데이터베이스 시스템과의 호환성이 높고, FULL OUTER JOIN 등 (+) 문법으로 표현하기 어려운 경우도 명확하게 표현할 수 있기 때문에",
+        "(+) 문법이 ANSI 문법보다 항상 실행 속도가 빠르기 때문에",
+        "(+) 문법은 최신 오라클 버전에서 완전히 제거되어 사용할 수 없기 때문에",
+        "ANSI 문법은 오라클에서 사용할 수 없는 문법이기 때문에"
+      ],
+      "answer": 0,
+      "explanation_ko": "(+) 문법은 오라클에만 있는 방식이라 다른 DB로 이식하기 어렵고, FULL OUTER JOIN 같은 경우 표현에 제약이 있어 ANSI 표준 문법이 더 권장됩니다.",
+      "concept_tags": ["ansi_join", "best_practice"],
+      "difficulty": "challenge"
+    }
+  ]
+}

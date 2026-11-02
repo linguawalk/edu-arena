@@ -1,0 +1,100 @@
+{
+ "no": 6,
+ "title": "스레드와 동기화",
+ "hours": 6,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "POSIX 스레드를 만들고 합류시키는 흐름을 설명할 수 있다.",
+  "경쟁 조건을 재현하고 뮤텍스·조건 변수로 고칠 수 있다.",
+  "거짓 공유와 잠금 경합이 성능에 주는 영향을 설명할 수 있다."
+ ],
+ "checklist": [
+  "pthread_create, pthread_join",
+  "공유 변수와 경쟁 조건 재현",
+  "뮤텍스, 조건 변수, 읽기–쓰기 잠금",
+  "원자적 연산과 메모리 순서(개념)",
+  "스레드 안전 함수와 재진입",
+  "거짓 공유(false sharing)와 캐시 라인",
+  "스레드 풀"
+ ],
+ "advice": [
+  "레벨2 운영체제 4단원의 동기화 이론을 실제로 깨뜨려 보는 단원입니다. 두 스레드가 잠금 없이 같은 카운터를 백만 번씩 올리게 하고 결과가 매번 다르게 2백만보다 작게 나오는 것을 직접 보세요. 그다음 뮤텍스를 넣어 정확해지는 것과 대신 느려지는 것을 함께 재 보면, 동기화가 공짜가 아니라는 감각이 생깁니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Bryant · O'Hallaron, Computer Systems: A Programmer's Perspective (번역본 『컴퓨터 시스템』, 장 제목으로 표기)",
+   "part": "Concurrent Programming 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Arpaci-Dusseau (무료 공개 교재)",
+   "title": "Operating Systems: Three Easy Pieces",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "lang": "영어",
+   "part": "Concurrency 장들"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "운영체제 4단원 동기화",
+   "url": "guide.html?lv=2&t=computer&s=operating-systems&u=4"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "두 스레드가 잠금 없이 공유 카운터를 각각 100만 번 올릴 때 최종값이 가질 수 있는 가장 큰 값은 얼마일까요?",
+   "answer": "2000000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "경쟁이 전혀 일어나지 않으면 200만이고, 경쟁이 생기면 그보다 작아집니다.",
+   "hint": "모든 증가가 반영된 경우입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "한 번에 한 스레드만 임계 구역에 들어가게 하는 잠금을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "뮤텍스",
+      "mutex"
+     ]
+    }
+   ],
+   "explanation": "pthread_mutex_lock과 unlock으로 씁니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "서로 다른 변수지만 같은 캐시 라인에 있어 여러 코어가 번갈아 고치며 성능이 떨어지는 현상을 거짓 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "공유"
+     ]
+    }
+   ],
+   "explanation": "변수 사이에 캐시 라인 크기만큼 간격을 두어 해결합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "system-programming",
+ "id": "l3-computer-system-programming-u06"
+}

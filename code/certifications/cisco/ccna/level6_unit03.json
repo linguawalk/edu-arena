@@ -1,0 +1,112 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "cisco",
+  "exam": "ccna-200-301",
+  "level": 6,
+  "unit": 3,
+  "unit_title": "JSON 데이터 형식",
+  "rule_summary_ko": "JSON(JavaScript Object Notation)은 키-값 쌍으로 데이터를 표현하는 경량 데이터 형식으로, REST API 응답·요청에 널리 쓰입니다. JSON에서 키와 문자열 값은 반드시 큰따옴표(\")로 감싸야 하며(작은따옴표는 허용되지 않음), 값에는 문자열·숫자·불리언(true/false)·배열([...])·객체({...})·null이 올 수 있습니다. 마지막 항목 뒤에 후행 쉼표(trailing comma)를 붙이면 문법 오류가 됩니다.",
+  "examples": [
+    { "code": "{\"hostname\": \"switch1\", \"ports\": 48, \"active\": true, \"vlans\": [10, 20, 30]}", "note_ko": "문자열(hostname), 숫자(ports), 불리언(active), 배열(vlans)을 모두 포함한 유효한 JSON" },
+    { "code": "{'hostname': 'switch1',}", "note_ko": "작은따옴표 사용과 후행 쉼표 때문에 유효하지 않은 JSON — 파싱 오류 발생" }
+  ],
+  "questions": [
+    {
+      "id": "ccna_l6_u3_q001",
+      "type": "concept_matching_item",
+      "code": "{'hostname': 'switch1'}",
+      "prompt_ko": "이 JSON에 문법적 문제가 있다면 무엇입니까?",
+      "options": [
+        "작은따옴표(')를 사용했다 — JSON은 키와 문자열 값에 반드시 큰따옴표(\")를 사용해야 한다",
+        "이 JSON은 아무 문제가 없다",
+        "콜론(:)을 사용한 것이 문제다",
+        "중괄호({})를 사용한 것이 문제다"
+      ],
+      "answer": 0,
+      "explanation_ko": "JSON 표준은 큰따옴표만 허용하며, 작은따옴표는 파싱 오류를 일으킵니다.",
+      "concept_tags": ["json_quotes"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l6_u3_q002",
+      "type": "concept_matching_item",
+      "code": "{\n  \"hostname\": \"switch1\",\n  \"ports\": 48,\n}",
+      "prompt_ko": "이 JSON에 문법적 문제가 있다면 무엇입니까?",
+      "options": [
+        "마지막 항목(\"ports\": 48) 뒤에 후행 쉼표가 있다 — JSON에서는 마지막 항목 뒤에 쉼표를 붙이면 문법 오류가 된다",
+        "이 JSON은 아무 문제가 없다",
+        "숫자 값(48)에 따옴표가 없는 것이 문제다(숫자는 원래 따옴표 없이 표기)",
+        "줄바꿈을 사용한 것이 문제다"
+      ],
+      "answer": 0,
+      "explanation_ko": "JSON은 후행 쉼표를 허용하지 않아, 이런 실수는 흔한 파싱 오류의 원인입니다.",
+      "concept_tags": ["json_trailing_comma"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l6_u3_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "JSON에서 값으로 사용할 수 없는 것은?",
+      "options": [
+        "문자열, 숫자, 불리언(true/false), 배열, 객체, null",
+        "함수(function)나 코드 실행 로직 — JSON은 순수한 데이터 형식이라 실행 가능한 코드를 담을 수 없다",
+        "숫자는 JSON 값으로 사용할 수 없다(사실이 아님)",
+        "배열은 JSON 값으로 사용할 수 없다(사실이 아님)"
+      ],
+      "answer": 1,
+      "explanation_ko": "JSON은 데이터만을 표현하는 형식이며, 함수나 실행 코드는 포함할 수 없습니다.",
+      "concept_tags": ["json_valid_values"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l6_u3_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "네트워크 자동화에서 JSON이 널리 사용되는 이유는?",
+      "options": [
+        "사람이 읽기 쉬우면서도, 프로그래밍 언어(Python 등)와 REST API에서 기계적으로 파싱하기 쉬운 구조화된 데이터 형식이기 때문에",
+        "JSON은 오직 웹 브라우저에서만 사용할 수 있기 때문에",
+        "JSON은 네트워크 장치가 이해할 수 없는 형식이기 때문에",
+        "JSON은 항상 XML보다 문법이 복잡하기 때문에"
+      ],
+      "answer": 0,
+      "explanation_ko": "가독성과 파싱 용이성의 균형이 JSON이 널리 채택된 이유입니다.",
+      "concept_tags": ["json_popularity"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l6_u3_q005",
+      "type": "concept_matching_item",
+      "code": "{\"vlans\": [10, 20, 30]}",
+      "prompt_ko": "이 JSON에서 대괄호([ ])가 나타내는 것은?",
+      "options": [
+        "배열(array) — 순서가 있는 값들의 목록을 나타낸다",
+        "객체(object) — 키-값 쌍의 집합을 나타낸다(중괄호와 혼동)",
+        "문자열 값을 나타낸다",
+        "대괄호는 JSON에서 아무 의미가 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "대괄호는 배열(리스트)을, 중괄호는 객체를 나타내는 것이 JSON의 기본 문법입니다.",
+      "concept_tags": ["json_array"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "ccna_l6_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "JSON에서 중괄호({ })가 나타내는 것은?",
+      "options": [
+        "순서가 있는 값들의 목록(배열과 혼동)",
+        "객체(object) — 키-값 쌍들의 집합을 나타낸다",
+        "숫자 값을 나타낸다",
+        "중괄호는 JSON에서 사용되지 않는다"
+      ],
+      "answer": 1,
+      "explanation_ko": "중괄호로 감싼 부분이 하나의 객체(키-값 쌍의 모음)를 이룹니다.",
+      "concept_tags": ["json_object"],
+      "difficulty": "intro"
+    }
+  ]
+}

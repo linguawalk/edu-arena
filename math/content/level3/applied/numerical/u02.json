@@ -1,0 +1,112 @@
+{
+ "no": 2,
+ "title": "비선형 방정식의 근",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "이분법, 뉴턴법, 할선법, 고정점 반복을 적용할 수 있다.",
+  "각 방법의 수렴 조건과 수렴 차수를 비교할 수 있다."
+ ],
+ "checklist": [
+  "이분법: 항상 수렴, 선형 수렴 (오차가 매번 절반)",
+  "고정점 반복 x = g(x): |g′| < 1이면 수렴",
+  "뉴턴법 xₙ₊₁ = xₙ − f(xₙ)/f′(xₙ): 이차 수렴",
+  "할선법: 도함수 없이, 수렴 차수 약 1.618",
+  "뉴턴법의 실패 (도함수 0 근처, 나쁜 초기값)",
+  "중근과 수렴 속도 저하",
+  "연립 비선형 방정식의 뉴턴법(야코비 행렬)"
+ ],
+ "advice": [
+  "뉴턴법은 '접선을 따라 x축까지 내려가기'라는 단순한 아이디어로, 좋은 초기값에서는 반복할 때마다 정확한 자릿수가 두 배로 늘어납니다(이차 수렴). √2를 뉴턴법으로 구해 1.5, 1.4167, 1.41421…로 빠르게 수렴하는 것을 직접 확인해 보세요.",
+  "반면 이분법은 느리지만 부호만 바뀌면 반드시 수렴합니다. 실제 소프트웨어는 이 둘을 섞어(안전한 이분법 + 빠른 뉴턴·할선법) 씁니다. 수렴 차수의 증명은 테일러 전개의 좋은 연습입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Burden · Faires · Burden, Numerical Analysis (10판)",
+   "part": "2장 Solutions of Equations in One Variable"
+  },
+  {
+   "kind": "lecture",
+   "provider": "KOCW",
+   "title": "수치해석 (국민대학교, 구간법·개방법·수치 미적분·기계학습)",
+   "url": "http://kocw.net/home/cview.do?mty=p&kemId=1297704",
+   "lang": "한국어",
+   "part": "구간법과 개방법"
+  },
+  {
+   "kind": "lecture",
+   "provider": "KOCW",
+   "title": "수치해석 (한양대학교 박종일, 방정식·최적화·데이터 모델링·미분방정식)",
+   "url": "http://www.kocw.net/home/cview.do?mty=p&kemId=1085613",
+   "lang": "한국어",
+   "part": "비선형 방정식의 해법"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "길이 1인 구간에서 이분법으로 오차를 0.001 이하로 줄이려면 최소 몇 번 반복해야 할까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "1/2ⁿ ≤ 0.001 → 2ⁿ ≥ 1000 → n = 10 (2¹⁰ = 1024)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "f(x) = x² − 2에 x₀ = 1로 뉴턴법을 적용하면 x₁ = {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "3/2",
+      "1.5"
+     ]
+    }
+   ],
+   "explanation": "x₁ = 1 − (1 − 2)/2 = 1.5",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "같은 뉴턴법에서 x₂ = {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "17/12"
+     ]
+    }
+   ],
+   "explanation": "x₂ = 1.5 − (2.25 − 2)/3 = 17/12 ≈ 1.4167",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "단순근 근처에서 뉴턴법의 수렴 차수는?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "이차 수렴: eₙ₊₁ ≈ C eₙ²",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "applied",
+ "subject": "numerical",
+ "id": "l3-applied-numerical-u02"
+}

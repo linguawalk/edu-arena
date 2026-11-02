@@ -1,0 +1,112 @@
+{
+ "no": 6,
+ "title": "데이터 링크와 흐름 제어",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "데이터 링크 계층의 프레이밍·오류 제어·흐름 제어 역할을 설명할 수 있다.",
+  "정지–대기 ARQ의 링크 효율을 계산할 수 있다.",
+  "슬라이딩 윈도의 필요 크기를 계산할 수 있다."
+ ],
+ "checklist": [
+  "프레이밍, 오류 검출(CRC), 흐름 제어, 매체 접근",
+  "정지–대기 ARQ: 효율 = 1/(1 + 2a), a = 전파 지연/전송 지연",
+  "슬라이딩 윈도: 확인 응답 전에 여러 프레임 전송",
+  "링크를 꽉 채우려면 윈도 크기 ≥ 1 + 2a",
+  "Go-Back-N과 선택적 재전송",
+  "HDLC, PPP, 이더넷 프레임",
+  "매체 접근: CSMA/CD, CSMA/CA"
+ ],
+ "advice": [
+  "정지–대기 방식이 비효율적인 이유는 '프레임 하나 보내고 확인 응답이 돌아올 때까지 선이 놀기' 때문입니다. a 값(전파 지연 ÷ 전송 지연)이 크면, 곧 거리가 멀거나 속도가 빠르면 효율이 급격히 떨어집니다. 이를 해결하는 슬라이딩 윈도를 '확인을 기다리지 않고 여러 개를 연달아 보내는 것'으로 이해하고, 필요한 윈도 크기를 계산해 보세요.",
+  "이 원리는 레벨1 컴퓨터 챕터 8의 TCP 재전송과 같고, 위성처럼 지연이 큰 링크에서 특히 중요해집니다. 레벨3 위성통신의 지연 계산과 연결해 보면 좋습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Tanenbaum · Wetherall, Computer Networks (번역본 『컴퓨터 네트워크』, 장 제목으로 표기)",
+   "part": "The Data Link Layer 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Kurose · Ross, Computer Networking: A Top-Down Approach (장 제목으로 표기)",
+   "part": "The Link Layer and LANs 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.02 Introduction to EECS II: Digital Communication Systems (2012년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/",
+   "lang": "영어",
+   "part": "reliable data transport 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "전송 지연 1 ms, 편도 전파 지연 0.5 ms인 링크에서 정지–대기 ARQ의 효율은 얼마일까요?",
+   "answer": "0.5",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "a = 0.5/1 = 0.5\n효율 = 1/(1 + 2 × 0.5) = 0.5",
+   "hint": "1/(1 + 2a)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 링크를 꽉 채워 쓰려면 슬라이딩 윈도 크기는 최소 몇 프레임이어야 할까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "W ≥ 1 + 2a = 1 + 1 = 2",
+   "hint": "1 + 2a입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "수신 측이 처리할 수 있는 속도보다 빨리 보내지 않도록 송신 속도를 조절하는 기능을 {{1}} 제어라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "흐름"
+     ]
+    }
+   ],
+   "explanation": "네트워크 전체의 혼잡을 막는 혼잡 제어와 구별합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "무선 LAN에서 충돌을 미리 피하려고 채널이 비었는지 듣고 기다렸다 보내는 매체 접근 방식을 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "CSMA/CA"
+     ]
+    }
+   ],
+   "explanation": "유선 이더넷의 CSMA/CD와 달리 충돌 회피(Collision Avoidance) 방식입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "ict",
+ "subject": "comm-networks",
+ "id": "l2-ict-comm-networks-u06"
+}

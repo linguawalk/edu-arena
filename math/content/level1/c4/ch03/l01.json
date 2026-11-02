@@ -1,0 +1,369 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch03",
+    "no": 3,
+    "title": "도함수의 활용"
+  },
+  "lesson": {
+    "id": "c4-ch03-l01",
+    "no": 1,
+    "title": "접선의 방정식과 평균값 정리",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "접선의 방정식",
+      "body": [
+        "곡선 y = f(x) 위의 점 (a, f(a))에서의 접선은 y − f(a) = f′(a)(x − a)입니다.",
+        "접선의 방정식은 두 가지 정보로 정해집니다: 지나는 점 (a, f(a))와 기울기 f′(a). 그래서 접선 문제는 '접점을 아는가'가 핵심입니다. 접점이 주어지면 바로 쓰고, 주어지지 않으면 접점을 (t, f(t))로 놓고 조건에서 t를 구합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "y = x³ 위의 점 (1, 1)에서의 접선은 y = 3x − {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "y′ = 3x²이므로 x = 1에서 기울기 3\n접선: y − 1 = 3(x − 1) → y = 3x − 2\n빈칸은 2\n확인: x = 1이면 y = 1로 접점을 지납니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "y = x² − 2x 위의 점 (2, 0)에서의 접선은 y = 2x − {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "4"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "y′ = 2x − 2이므로 x = 2에서 기울기 2\n접선: y − 0 = 2(x − 2) → y = 2x − 4\n빈칸은 4\n원리: 접점 (2, 0)과 기울기 2로 직선을 세웁니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "기울기가 주어진 접선",
+      "body": [
+        "f′(x) = m을 풀어 접점을 먼저 찾습니다.",
+        "기울기가 m인 접선은 곡선 위에서 f′(x) = m을 만족하는 점에서 생깁니다. 이 방정식의 해가 여러 개이면 기울기가 같은 접선도 여러 개입니다. 예를 들어 y = x³에서 기울기 3인 접선은 x = 1과 x = −1에서 두 개 생깁니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "y = x³ − x의 접선 중 기울기가 2인 것을 모두 구하세요.",
+      "steps": [
+        "y′ = 3x² − 1 = 2에서 x² = 1, x = ±1",
+        "x = 1: 접점 (1, 0), 접선 y = 2x − 2",
+        "x = −1: 접점 (−1, 0), 접선 y = 2x + 2",
+        "원리: f′(x) = m의 해마다 접선이 하나씩"
+      ],
+      "answer": "y = 2x − 2, y = 2x + 2"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "y = x²의 접선 중 기울기가 6인 것의 접점의 x좌표는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y′ = 2x = 6\nx = 3\n원리: 기울기가 주어지면 f′(x) = m을 풀어 접점을 찾습니다.\n확인: 접점 (3, 9)"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "그 접선은 y = 6x − {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "9"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "접점 (3, 9), 기울기 6\ny − 9 = 6(x − 3) → y = 6x − 9\n빈칸은 9\n확인: y = x²과 연립하면 (x − 3)² = 0으로 중근"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "곡선 밖의 점에서 그은 접선",
+      "body": [
+        "접점을 (t, f(t))로 놓고 접선이 그 점을 지난다는 조건으로 t를 구합니다.",
+        "곡선 밖의 점 P에서 접선을 그을 때는 접점을 모르기 때문에 (t, f(t))로 놓습니다. 그 점에서의 접선 y − f(t) = f′(t)(x − t)가 P를 지나야 하므로 P의 좌표를 넣으면 t에 대한 방정식이 나옵니다. 그 해의 개수가 그을 수 있는 접선의 개수입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "점 (1, −3)에서 y = x²에 그은 접선의 방정식을 모두 구하세요.",
+      "steps": [
+        "접점 (t, t²), 접선 y = 2tx − t²",
+        "(1, −3)을 지남: −3 = 2t − t² → t² − 2t − 3 = 0",
+        "(t − 3)(t + 1) = 0에서 t = 3 또는 t = −1",
+        "접선: y = 6x − 9, y = −2x − 1"
+      ],
+      "answer": "y = 6x − 9, y = −2x − 1"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "점 (0, −1)에서 y = x²에 그은 접선 중 기울기가 양수인 것의 기울기는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "접점 (t, t²)에서 접선 y = 2tx − t²\n(0, −1)을 지나므로 −1 = −t², t = ±1\n기울기 2t가 양수인 것은 t = 1일 때 2"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "그 접점의 x좌표는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "앞에서 기울기가 양수인 접선은 t = 1일 때\n접점의 x좌표 1\n확인: 접선 y = 2x − 1이 (0, −1)을 지납니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "접선에 수직인 직선",
+      "body": [
+        "접선의 기울기가 m이면 그 점에서 수직인 직선(법선)의 기울기는 −1/m입니다.",
+        "법선은 접점을 지나고 접선에 수직인 직선입니다. 수직인 두 직선의 기울기의 곱이 −1이라는 사실(코스 2)을 그대로 씁니다. 접선의 기울기가 0이면 법선은 세로선 x = a가 됩니다. 법선은 물리에서 빛의 반사 방향을 구할 때도 쓰입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x² 위의 점 (1, 1)에서 접선에 수직인 직선의 기울기는? (기약분수로)",
+      "answer": "-1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "접선의 기울기부터 구하세요.",
+      "explanation": "접선의 기울기: y′(1) = 2\n수직인 직선의 기울기 m은 2 × m = −1에서 m = −1/2\n원리: 수직인 두 직선의 기울기의 곱은 −1"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x³ − 3x의 접선 중 x축과 평행한 것은 몇 개일까요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "y′ = 0을 푸세요.",
+      "explanation": "x축과 평행한 접선은 기울기 0: y′ = 3x² − 3 = 0\nx = ±1로 두 점\n접선 2개 (y = 2와 y = −2)"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "롤의 정리와 평균값 정리",
+      "body": [
+        "f(a) = f(b)이면 f′(c) = 0인 c가 a와 b 사이에 있습니다(롤의 정리).",
+        "(f(b) − f(a))/(b − a) = f′(c)인 c가 a와 b 사이에 있습니다(평균값 정리).",
+        "평균값 정리의 뜻: 구간에서의 평균변화율(두 끝점을 이은 직선의 기울기)과 같은 순간변화율을 갖는 점이 반드시 하나 이상 있다는 것입니다. 자동차로 2시간에 120km를 갔다면 어느 순간에는 정확히 시속 60km였다는 뜻입니다. 단, 구간에서 연속이고 미분가능해야 합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "구간 [1, 4]에서 f(x) = x² − 3x에 대해 평균값 정리를 만족하는 c를 구하세요.",
+      "steps": [
+        "평균변화율: (f(4) − f(1))/(4 − 1) = (4 − (−2))/3 = 2",
+        "f′(c) = 2c − 3 = 2",
+        "c = 5/2",
+        "확인: 5/2는 1과 4 사이"
+      ],
+      "answer": "c = 5/2"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "구간 [−1, 1]에서 f(x) = x²에 대해 롤의 정리를 만족하는 c는?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f′(c) = 0을 푸세요.",
+      "explanation": "f(−1) = f(1) = 1이므로 롤의 정리 적용 가능\nf′(c) = 2c = 0\nc = 0 (−1과 1 사이)\n원리: 양 끝의 높이가 같으면 중간 어딘가에 기울기 0인 점이 있습니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "구간 [0, 2]에서 f(x) = x²에 대해 평균값 정리를 만족하는 c는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "평균변화율을 먼저 구하세요.",
+      "explanation": "평균변화율: (f(2) − f(0))/2 = 4/2 = 2\nf′(c) = 2c = 2\nc = 1 (구간의 가운데)\n원리: 평균변화율과 같은 순간변화율을 갖는 점을 찾습니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "구간 [0, 3]에서 f(x) = x³에 대해 평균값 정리를 만족하는 c = √{{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "3"
+          ]
+        }
+      ],
+      "hint": "평균변화율과 f′(c)를 같게 놓으세요.",
+      "explanation": "평균변화율: (27 − 0)/3 = 9\nf′(c) = 3c² = 9에서 c² = 3\nc = √3 (0과 3 사이)이므로 빈칸은 3"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "diagram",
+      "widget": "coordinate_plane",
+      "config": {
+        "xmin": -1,
+        "xmax": 5,
+        "ymin": -1,
+        "ymax": 6,
+        "xstep": 1,
+        "ystep": 1,
+        "curves": [
+          {
+            "kind": "poly",
+            "coef": [
+              5,
+              -4,
+              1
+            ]
+          }
+        ]
+      },
+      "prompt": "y = x² − 4x + 5에서 접선의 기울기가 0인 점을 표시하세요.",
+      "answer": {
+        "x": 2,
+        "y": 1,
+        "tolerance": 0
+      },
+      "hint": "y′ = 0을 푸세요.",
+      "explanation": "y′ = 2x − 4 = 0에서 x = 2\ny = 4 − 8 + 5 = 1\n점 (2, 1)을 표시합니다(포물선의 꼭짓점)."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x³과 직선 y = 3x + k가 접할 때 양수 k의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "기울기가 3인 접점을 찾으세요.",
+      "explanation": "접선의 기울기 3: 3x² = 3에서 x = ±1\nx = 1이면 접선 y = 3x − 2, x = −1이면 y = 3x + 2\n양수 k = 2"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x² + ax 위의 점 (1, 3)에서의 접선의 기울기가 4일 때 a의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = 1에서의 미분계수를 쓰세요.",
+      "explanation": "y′ = 2x + a이므로 x = 1에서 2 + a = 4\na = 2\n확인: 점 (1, 3)은 1 + 2 = 3으로 곡선 위"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x²과 y = −x² + 2x + k가 한 점에서 접할 때 k의 값은? (기약분수로)",
+      "answer": "-1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "두 식을 같게 놓은 방정식이 중근을 가져야 합니다.",
+      "explanation": "한 점에서 접하려면 x² = −x² + 2x + k가 중근: 2x² − 2x − k = 0\nD/4 = 1 + 2k = 0\nk = −1/2"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "평균값 정리의 뜻을 자동차의 속도로 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "평균 속도",
+            "평균속도"
+          ],
+          [
+            "순간",
+            "어느 순간"
+          ],
+          [
+            "같"
+          ]
+        ],
+        "min_groups_matched": 3
+      },
+      "model_answer": "2시간에 120km를 갔다면 평균 속도는 시속 60km입니다. 평균값 정리에 따르면 그 사이 어느 순간에는 순간 속도가 평균 속도와 같은 시속 60km였던 때가 반드시 있습니다."
+    }
+  ]
+}

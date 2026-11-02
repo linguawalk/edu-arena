@@ -1,0 +1,285 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "mathstr",
+  "work": "풀이",
+  "track_title": "수학·문자열",
+  "chapter": {
+    "id": "info-s1-mathstr-ch01",
+    "no": 1,
+    "title": "소수와 약수"
+  },
+  "lesson": {
+    "id": "info-s1-mathstr-ch01-l03",
+    "no": 3,
+    "title": "소인수분해와 약수의 개수",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "수학·문자열",
+      "소수와 약수"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "소인수분해",
+      "body": [
+        "모든 2 이상의 정수는 소수들의 곱으로 단 한 가지 방법으로 나타낼 수 있습니다(곱하는 순서는 무시). 이것을 소인수분해라 합니다. 360 = 2³ × 3² × 5입니다.",
+        "2부터 차례로 나누어떨어지는 동안 계속 나누면 소인수와 지수를 구할 수 있습니다. 나누는 수 p는 p × p ≤ n까지만 보면 되고, 끝에 남은 수가 1보다 크면 그것도 소수입니다.",
+        "시간은 O(√n)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "360을 소인수분해했을 때 2의 지수는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "360 = 8 × 45입니다.",
+      "explanation": "소인수분해는 2부터 나누어떨어지는 동안 계속 나누어 지수를 셉니다.\n360 → 180 → 90 → 45로 2로 세 번 나누어떨어집니다.\n그래서 2의 지수는 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "정수를 소수들의 곱으로 나타내는 것을 {{1}}라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "소인수분해",
+            "소인수 분해"
+          ]
+        }
+      ],
+      "hint": "소인수로 나눕니다.",
+      "explanation": "2 이상의 정수는 소수들의 곱으로 나타낼 수 있습니다.\n그 방법은 곱하는 순서를 빼면 하나뿐입니다.\n이것을 소인수분해라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "코드로 보기",
+      "body": [
+        "아래 코드는 p를 2부터 늘리며 n이 p로 나누어떨어지는 동안 나누고, 나눈 횟수 e를 지수로 출력합니다. 합성수 p는 이미 그 소인수로 다 나눈 뒤라 나누어떨어지지 않습니다.",
+        "n = 84이면 2로 두 번(84 → 42 → 21), 3으로 한 번(21 → 7) 나누고, p = 3에서 3 × 3 > 7이 되어 반복이 끝난 뒤 남은 7을 출력합니다. 84 = 2² × 3 × 7입니다.",
+        "n이 큰 소수이면 반복이 끝난 뒤 n 자체가 남습니다."
+      ],
+      "code": "// n을 소인수분해해 (소수, 지수)를 출력한다\nfor (int p = 2; p * p <= n; p++) {\n    int e = 0;\n    while (n % p == 0) { n /= p; e++; }\n    if (e > 0) print(p, e);\n}\nif (n > 1) print(n, 1);                 // 남은 수는 소수"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "n = 84일 때 아래 코드의 출력을 구하세요.",
+      "steps": [
+        "p = 2: 84 → 42 → 21, e = 2이므로 (2, 2)를 출력합니다.",
+        "p = 3: 21 → 7, e = 1이므로 (3, 1)을 출력합니다.",
+        "p = 4: 4 × 4 = 16 > 7이므로 반복이 끝납니다.",
+        "n = 7 > 1이므로 (7, 1)을 출력합니다."
+      ],
+      "answer": "(2, 2), (3, 1), (7, 1)",
+      "code": "// n을 소인수분해해 (소수, 지수)를 출력한다\nfor (int p = 2; p * p <= n; p++) {\n    int e = 0;\n    while (n % p == 0) { n /= p; e++; }\n    if (e > 0) print(p, e);\n}\nif (n > 1) print(n, 1);                 // 남은 수는 소수"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 반복이 끝난 뒤 남은 n의 값은?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "84 = 4 × 3 × 7입니다.",
+      "explanation": "2와 3으로 나눌 수 있는 만큼 나누면 84 → 21 → 7이 됩니다.\np = 4에서 4 × 4 > 7이라 반복이 끝납니다.\n남은 n은 7이고, 이것도 소인수입니다.",
+      "code": "// n을 소인수분해해 (소수, 지수)를 출력한다\nfor (int p = 2; p * p <= n; p++) {\n    int e = 0;\n    while (n % p == 0) { n /= p; e++; }\n    if (e > 0) print(p, e);\n}\nif (n > 1) print(n, 1);                 // 남은 수는 소수"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 1001일 때 아래 코드가 출력하는 소인수 중 가장 큰 것은?",
+      "answer": "13",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1001 = 7 × 11 × 13입니다.",
+      "explanation": "2부터 차례로 나누면 1001은 7로 나누어 143, 11로 나누어 13이 됩니다.\np = 12에서 12 × 12 > 13이라 반복이 끝나고 남은 13을 출력합니다.\n가장 큰 소인수는 13입니다.",
+      "code": "// n을 소인수분해해 (소수, 지수)를 출력한다\nfor (int p = 2; p * p <= n; p++) {\n    int e = 0;\n    while (n % p == 0) { n /= p; e++; }\n    if (e > 0) print(p, e);\n}\nif (n > 1) print(n, 1);                 // 남은 수는 소수"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "약수의 개수",
+      "body": [
+        "n = p₁^a₁ × p₂^a₂ × …이면 n의 약수는 각 소수의 지수를 0부터 aᵢ까지 고른 곱이므로, 약수의 개수는 (a₁ + 1)(a₂ + 1)…입니다.",
+        "360 = 2³ × 3² × 5¹의 약수는 (3 + 1)(2 + 1)(1 + 1) = 24개입니다.",
+        "약수의 합은 (1 + p₁ + … + p₁^a₁)(1 + p₂ + … + p₂^a₂)…입니다. 12 = 2² × 3의 약수의 합은 (1 + 2 + 4)(1 + 3) = 28입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "360의 약수는 몇 개인가요?",
+      "answer": "24",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(3 + 1)(2 + 1)(1 + 1)입니다.",
+      "explanation": "n = p₁^a₁ × p₂^a₂ × …이면 약수의 개수는 (a₁ + 1)(a₂ + 1)…입니다.\n360 = 2³ × 3² × 5이므로 4 × 3 × 2입니다.\n= 24개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "12의 약수를 모두 더하면?",
+      "answer": "28",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(1 + 2 + 4)(1 + 3)입니다.",
+      "explanation": "약수의 합은 각 소인수마다 1부터 그 거듭제곱까지 더한 값을 곱한 것입니다.\n12 = 2² × 3이므로 (1 + 2 + 4)(1 + 3) = 7 × 4입니다.\n= 28입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "지수만 보면 되는 질문들",
+      "body": [
+        "어떤 수가 완전제곱수인지는 모든 소인수의 지수가 짝수인지로 알 수 있습니다. 그래서 완전제곱수의 약수 개수는 홀수입니다.",
+        "100 = 2² × 5²는 완전제곱수이고 약수는 (2 + 1)(2 + 1) = 9개입니다.",
+        "n!에 들어 있는 소인수 p의 지수는 ⌊n/p⌋ + ⌊n/p²⌋ + …입니다. 10!에 든 2의 지수는 5 + 2 + 1 = 8입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "100의 약수는 몇 개인가요?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "100 = 2² × 5²입니다.",
+      "explanation": "n = p₁^a₁ × p₂^a₂ × …이면 약수의 개수는 (a₁ + 1)(a₂ + 1)…입니다.\n100 = 2² × 5²이므로 3 × 3입니다.\n= 9개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "10!을 소인수분해했을 때 2의 지수는?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "⌊10/2⌋ + ⌊10/4⌋ + ⌊10/8⌋입니다.",
+      "explanation": "n!에 든 소인수 p의 지수는 p의 배수, p²의 배수, …의 개수를 더한 ⌊n/p⌋ + ⌊n/p²⌋ + …입니다.\n⌊10/2⌋ + ⌊10/4⌋ + ⌊10/8⌋ = 5 + 2 + 1입니다.\n= 8입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "2 이상의 정수는 소수의 곱으로 단 한 가지로 나타내지며, p × p ≤ n까지 나누어 보는 방법으로 O(√n)에 소인수분해합니다. 끝에 남은 1보다 큰 수도 소인수입니다.",
+        "n = p₁^a₁ × p₂^a₂ × …의 약수의 개수는 (a₁ + 1)(a₂ + 1)…, 약수의 합은 (1 + p₁ + … + p₁^a₁)(…)…입니다.",
+        "n!에 든 소인수 p의 지수는 ⌊n/p⌋ + ⌊n/p²⌋ + …입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "72의 약수는 몇 개인가요?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "72 = 2³ × 3²입니다.",
+      "explanation": "n = p₁^a₁ × p₂^a₂ × …이면 약수의 개수는 (a₁ + 1)(a₂ + 1)…입니다.\n72 = 2³ × 3²이므로 4 × 3입니다.\n= 12개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "100!의 끝에 이어지는 0의 개수는? (5의 지수)",
+      "answer": "24",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "⌊100/5⌋ + ⌊100/25⌋입니다.",
+      "explanation": "끝자리 0은 10 = 2 × 5마다 하나씩 생기고, 2는 5보다 많으므로 5의 지수가 0의 개수입니다.\n⌊100/5⌋ + ⌊100/25⌋ = 20 + 4입니다.\n= 24개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "n = p₁^a₁ × p₂^a₂ × … × pₖ^aₖ의 약수의 개수가 (a₁ + 1)(a₂ + 1)…(aₖ + 1)인 이유를 설명하세요.",
+      "model_answer": [
+        "n의 약수 d를 소인수분해하면 n의 소인수만 들어 있고, 각 지수는 n의 지수 이하이다.",
+        "그래서 d = p₁^b₁ × … × pₖ^bₖ(0 ≤ bᵢ ≤ aᵢ)로 쓸 수 있고, 소인수분해가 하나뿐이므로 서로 다른 (b₁, …, bₖ)는 서로 다른 약수를 준다.",
+        "각 bᵢ는 0부터 aᵢ까지 aᵢ + 1가지를 고를 수 있다.",
+        "곱의 법칙으로 약수의 개수는 (a₁ + 1)(a₂ + 1)…(aₖ + 1)이다."
+      ],
+      "criteria": [
+        {
+          "text": "약수의 꼴을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "지수 선택과 약수가 일대일임을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "곱의 법칙으로 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "약수의 각 소인수 지수는 어떤 범위에 있나요?"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "소인수분해 코드에서 p × p ≤ n까지만 나누고, 끝에 n > 1이면 n을 소인수로 출력해도 되는 이유를 설명하세요.",
+      "model_answer": [
+        "반복 중에 n은 이미 찾은 소인수로 나눈 나머지 부분이다.",
+        "반복이 끝났다는 것은 p × p > n인데 지금까지 2부터 p − 1까지의 어떤 수로도 n이 나누어떨어지지 않는다는 뜻이다.",
+        "남은 n이 합성수라면 √n 이하의 약수를 가져야 하는데 그런 약수가 없으므로, n > 1이면 n은 소수이다.",
+        "그래서 남은 n을 소인수로 출력하면 소인수분해가 완성된다."
+      ],
+      "criteria": [
+        {
+          "text": "반복 중 n의 의미를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "√n 이하의 약수가 없음을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "남은 n이 소수임을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "남은 n이 합성수라면 어떤 약수를 가져야 하나요?"
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s2",
+  "track": "phy-exp",
+  "work": "풀이",
+  "track_title": "실험과 오차",
+  "chapter": {
+    "id": "sci-s2-phy-exp-ch02",
+    "no": 2,
+    "title": "그래프 분석과 선형화"
+  },
+  "lesson": {
+    "id": "sci-s2-phy-exp-ch02-l04",
+    "no": 4,
+    "title": "차원 분석과 실험 설계",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "실험",
+      "그래프 분석"
+    ],
+    "competition": "KPhO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "단위로 관계를 짐작하기",
+      "body": [
+        "물리 관계식의 양변은 차원(질량 M, 길이 L, 시간 T)이 같아야 합니다. 이를 이용하면 실험 전에 관계의 꼴을 짐작할 수 있습니다.",
+        "용수철 진자의 주기가 T ∝ m^a k^b라면, k의 차원은 M T⁻²이므로 T¹ = M^(a+b) T^(−2b)입니다. −2b = 1, a + b = 0에서 b = −1/2, a = 1/2로 T ∝ √(m/k)입니다.",
+        "차원 분석은 숫자 인자(2π 같은)는 주지 않으므로, 그것은 실험이나 이론으로 정합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "용수철 진자의 주기를 T ∝ m^a k^b로 둘 때 차원 분석으로 구한 a는? (소수로)",
+      "answer": "0.5",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "k의 차원은 M T⁻²입니다.",
+      "explanation": "차원을 맞추면 T¹ = M^a (M T⁻²)^b = M^(a+b) T^(−2b)입니다.\n−2b = 1에서 b = −1/2이고 a + b = 0에서 a = 1/2입니다.\n그래서 a = 0.5입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "관계식의 양변은 같은 {{1}}을 가져야 하며, 이를 이용해 관계의 꼴을 짐작하는 방법을 차원 분석이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "차원",
+            "단위"
+          ]
+        }
+      ],
+      "hint": "M, L, T의 지수가 같아야 합니다.",
+      "explanation": "물리량의 등식은 단위가 다른 두 양을 같다고 할 수 없습니다.\n그래서 양변의 M, L, T 지수가 같아야 합니다.\n이것이 차원 분석입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "줄의 파동 속력",
+      "body": [
+        "장력 F_T(차원 M L T⁻²)와 선밀도 μ(M L⁻¹)인 줄의 파동 속력이 v ∝ F_T^a μ^b라면 L T⁻¹ = M^(a+b) L^(a−b) T^(−2a)입니다.",
+        "−2a = −1에서 a = 1/2, a + b = 0에서 b = −1/2이므로 v ∝ √(F_T/μ)입니다(실제로 비례 상수는 1).",
+        "그래서 장력을 바꾸며 v를 재고 log v–log F_T를 그리면 기울기 1/2이 나와야 합니다. 차원 분석은 어떤 그래프를 그려야 할지도 알려 줍니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "유체 속에서 움직이는 물체가 받는 끌림힘을 F ∝ ρ^a v^b A^c(ρ 밀도, v 속력, A 단면적)로 둘 때 지수를 구하세요.",
+      "steps": [
+        "차원: M L T⁻² = (M L⁻³)^a (L T⁻¹)^b (L²)^c입니다.",
+        "M: 1 = a, T: −2 = −b이므로 a = 1, b = 2입니다.",
+        "L: 1 = −3a + b + 2c = −3 + 2 + 2c에서 c = 1입니다.",
+        "그래서 F ∝ ρv²A입니다."
+      ],
+      "answer": "a = 1, b = 2, c = 1"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "줄의 파동 속력을 v ∝ F_T^a μ^b로 둘 때 차원 분석으로 구한 a는? (소수로)",
+      "answer": "0.5",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "T의 지수를 맞추세요.",
+      "explanation": "L T⁻¹ = (M L T⁻²)^a (M L⁻¹)^b에서 T의 지수는 −1 = −2a입니다.\n그래서 a = 1/2입니다.\n= 0.5이고 b = −1/2입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "끌림힘 F ∝ ρ^a v^b A^c에서 속력의 지수 b는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "T의 지수를 맞추세요.",
+      "explanation": "F의 차원 M L T⁻²에서 T는 속력 v(L T⁻¹)에서만 나옵니다.\nT의 지수 −2 = −b입니다.\n그래서 b = 2이고 끌림힘은 v²에 비례합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "측정 계획 세우기",
+      "body": [
+        "반응 시간 0.2 s로 약 2 s인 주기를 0.5% 정밀도로 재려면 재는 시간이 0.2/0.005 = 40 s 이상, 곧 20주기 이상이어야 합니다.",
+        "기울기를 구할 때는 독립 변수를 넓은 범위에 걸쳐 고르게 바꿉니다. 같은 범위를 촘촘히 재는 것보다 범위를 넓히는 것이 기울기 불확도를 더 크게 줄입니다.",
+        "한 번에 한 변수만 바꾸고 나머지는 일정하게 유지합니다(통제 변인). 변수를 함께 바꾸면 어떤 변수의 영향인지 알 수 없습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "반응 시간 0.2 s인 초시계로 약 1.5 s인 주기를 0.5% 정밀도로 재려면 최소 몇 주기를 한 번에 재야 하나요?",
+      "answer": "27",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "0.2/(0.005 × 1.5) 이상입니다.",
+      "explanation": "필요한 측정 시간은 0.2/0.005 = 40 s 이상입니다.\n40/1.5 ≈ 26.7입니다.\n그래서 최소 27주기를 재야 합니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "단진자의 주기를 T ∝ L^a g^b로 둘 때 차원 분석으로 구한 a는? (소수로)",
+      "answer": "0.5",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "g의 차원은 L T⁻²입니다.",
+      "explanation": "T¹ = L^a (L T⁻²)^b에서 T의 지수 1 = −2b이므로 b = −1/2입니다.\nL의 지수 0 = a + b에서 a = 1/2입니다.\n그래서 a = 0.5이고 T ∝ √(L/g)입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "기울기 불확도를 절반으로 줄이려면 x − x̄의 퍼짐을 몇 배로 넓혀야 하나요? (같은 점 개수, 같은 흩어짐)",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "σ_b ∝ 1/√Σ(x − x̄)²입니다.",
+      "explanation": "σ_b = σ_y/√Σ(x − x̄)²이고 각 x − x̄가 k배면 √Σ(x − x̄)²은 k배입니다.\nσ_b를 절반으로 하려면 k = 2입니다.\n그래서 퍼짐을 2배로 넓힙니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "차원 분석: 양변의 M, L, T 지수를 맞춰 관계의 꼴(지수)을 구합니다. 숫자 인자는 주지 않습니다.",
+        "차원 분석으로 얻은 지수는 어떤 그래프(로그–로그, 제곱 등)를 그려 확인할지 알려 줍니다.",
+        "실험 설계: 일정한 오차는 긴 시간을 한 번에 재어 줄이고, 독립 변수는 넓은 범위에서 바꾸며, 한 번에 한 변수만 바꿉니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "깊은 물의 파도 속력을 v ∝ g^a λ^b(λ 파장)로 둘 때 차원 분석으로 구한 b는? (소수로)",
+      "answer": "0.5",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "L T⁻¹ = (L T⁻²)^a L^b입니다.",
+      "explanation": "T의 지수 −1 = −2a에서 a = 1/2입니다.\nL의 지수 1 = a + b에서 b = 1/2입니다.\n그래서 b = 0.5이고 v ∝ √(gλ)입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "반응 시간 0.15 s인 사람이 약 2 s인 주기를 0.25% 정밀도로 재려면 최소 몇 주기를 한 번에 재야 하나요?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "0.15/0.0025 = 60 s입니다.",
+      "explanation": "필요한 측정 시간은 0.15/0.0025 = 60 s 이상입니다.\n60/2 = 30입니다.\n그래서 최소 30주기를 재야 합니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "차원 분석으로 용수철 진자의 주기가 √(m/k)에 비례함을 보이고, 차원 분석의 한계를 쓰세요.",
+      "model_answer": [
+        "주기가 질량 m과 용수철 상수 k에만 관계한다고 보고 T ∝ m^a k^b로 둔다.",
+        "k = F/x의 차원은 M T⁻²이므로 T¹ = M^(a+b) T^(−2b)이다.",
+        "−2b = 1, a + b = 0에서 b = −1/2, a = 1/2이므로 T ∝ √(m/k)이다.",
+        "한계: 비례 상수 2π는 알 수 없고, 관계하는 변수를 빠뜨리거나 차원 없는 양(각도 등)이 있으면 꼴을 정할 수 없다."
+      ],
+      "criteria": [
+        {
+          "text": "변수와 꼴을 가정했다",
+          "points": 1
+        },
+        {
+          "text": "k의 차원을 썼다",
+          "points": 1
+        },
+        {
+          "text": "지수를 풀었다",
+          "points": 2
+        },
+        {
+          "text": "한계를 밝혔다",
+          "points": 2
+        }
+      ],
+      "hint": "k의 차원은 M T⁻²입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "단진자 주기와 진자 길이의 관계를 확인하는 실험을 설계하세요(측정 방법, 그래프, 결과 해석 포함).",
+      "model_answer": [
+        "추의 질량과 진폭(작게)은 일정하게 두고 길이 L만 0.2 m에서 1.0 m까지 고르게 5~6가지로 바꾼다.",
+        "각 길이에서 20주기 이상의 시간을 재어 주기 T를 구하고, 여러 번 반복해 평균과 불확도를 낸다.",
+        "T² = (4π²/g)L이므로 T²을 L에 대해 그리고 최소제곱 직선을 맞춘다.",
+        "기울기에서 g = 4π²/기울기와 그 불확도를 구하고, 절편이 0과 다르면 길이 측정의 계통 오차를 점검한다."
+      ],
+      "criteria": [
+        {
+          "text": "통제 변인과 독립 변수를 정했다",
+          "points": 2
+        },
+        {
+          "text": "측정 방법을 제시했다",
+          "points": 1
+        },
+        {
+          "text": "선형화 그래프를 골랐다",
+          "points": 2
+        },
+        {
+          "text": "결과 해석을 제시했다",
+          "points": 1
+        }
+      ],
+      "hint": "한 변수만 바꾸고 T²–L 그래프를 그리세요."
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "saa-c03",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "RDS Multi-AZ와 읽기 복제본",
+  "rule_summary_ko": "RDS Multi-AZ(단일 대기 서버)는 고가용성(HA)이 목적으로, 다른 가용 영역의 대기(standby) 인스턴스로 동기식 복제를 하며, 이 대기 서버는 읽기 트래픽을 처리할 수 없고 오직 장애 조치(failover) 용도로만 존재합니다(장애 시 자동으로 60~120초 내 전환, 엔드포인트는 그대로 유지). 읽기 복제본(Read Replica)은 읽기 확장(read scaling)이 목적으로, 비동기식 복제를 사용하며 복제본은 실제로 읽기 쿼리를 처리할 수 있고, 원본과 다른 리전에도 만들 수 있지만 자동 장애 조치는 없어(수동으로 승격시켜야 함) 약간의 복제 지연(lag)이 발생할 수 있습니다.",
+  "examples": [
+    { "code": "미션 크리티컬 프로덕션 DB — 장애 시 자동으로 전환되고, 대기 서버는 그저 백업 역할만 하면 됨", "note_ko": "Multi-AZ가 적합 — 고가용성·자동 장애 조치가 목적, 대기 서버로 읽기 부하 분산은 하지 않음" },
+    { "code": "쓰기는 적고 읽기(리포트·분석 쿼리)가 압도적으로 많은 워크로드", "note_ko": "읽기 복제본이 적합 — 읽기 트래픽을 원본에서 복제본으로 분산해서 원본의 부하를 줄임" }
+  ],
+  "questions": [
+    {
+      "id": "aws_saa_l2_u4_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "RDS Multi-AZ(단일 대기 서버)의 대기(standby) 인스턴스를 읽기 트래픽 분산에 사용할 수 있습니까?",
+      "options": [
+        "아니다 — Multi-AZ의 대기 서버는 오직 장애 조치를 위한 것이며, 직접 읽기 쿼리를 처리할 수 없다",
+        "그렇다. Multi-AZ 대기 서버는 자유롭게 읽기 쿼리를 처리할 수 있다",
+        "Multi-AZ에는 대기 서버라는 개념 자체가 없다",
+        "대기 서버는 쓰기만 가능하고 읽기는 불가능하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Multi-AZ는 순수하게 고가용성을 위한 기능이며, 읽기 확장은 별도의 읽기 복제본이 담당합니다.",
+      "concept_tags": ["multi_az_standby_not_readable"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l2_u4_q002",
+      "type": "concept_matching_item",
+      "code": "쓰기는 적고 리포트·분석용 읽기 쿼리가 압도적으로 많은 워크로드로, 원본 DB의 부하를 줄이고 싶어함",
+      "prompt_ko": "이 요구사항에 가장 적합한 해결책은?",
+      "options": [
+        "읽기 복제본(Read Replica) — 읽기 쿼리를 복제본으로 분산해서 원본의 부하를 줄임",
+        "Multi-AZ만으로 충분하다(대기 서버는 읽기를 처리할 수 없어 부적합)",
+        "이런 요구사항은 RDS로 해결할 수 없다",
+        "테이블을 더 작은 여러 테이블로 나누는 것이 유일한 해결책이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "읽기 집약적 워크로드의 부하 분산은 읽기 복제본의 대표적인 용도입니다.",
+      "concept_tags": ["read_replica_use_case"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l2_u4_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Multi-AZ와 읽기 복제본의 복제 방식 차이는?",
+      "options": [
+        "Multi-AZ는 동기식 복제(원본이 완료로 처리하기 전에 대기 서버에도 반영 완료), 읽기 복제본은 비동기식 복제(원본에 먼저 쓴 뒤 나중에 복제본에 반영, 약간의 지연 발생)를 사용한다",
+        "둘 다 완전히 동일한 동기식 복제를 사용한다",
+        "Multi-AZ가 비동기식이고 읽기 복제본이 동기식이다(설명이 반대)",
+        "복제 방식은 두 기능 모두에서 선택할 수 없는 고정값이 아니다"
+      ],
+      "answer": 0,
+      "explanation_ko": "이 복제 방식 차이가 각각의 목적(즉각적 일관성 vs 확장성)을 뒷받침합니다.",
+      "concept_tags": ["sync_vs_async_replication"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l2_u4_q004",
+      "type": "concept_matching_item",
+      "code": "원본 DB에 장애가 생겼을 때, 읽기 복제본이 자동으로 그 자리를 대신합니까?",
+      "prompt_ko": "이 질문에 대한 올바른 답은?",
+      "options": [
+        "아니다 — 읽기 복제본은 자동 장애 조치를 제공하지 않으며, 원본을 대신하려면 수동으로 독립 인스턴스로 승격(promote)시켜야 한다",
+        "그렇다. 읽기 복제본은 Multi-AZ처럼 자동으로 장애 조치된다",
+        "읽기 복제본은 원본 장애와 완전히 무관해서 아무 역할도 할 수 없다",
+        "읽기 복제본은 항상 원본과 동시에 장애가 발생한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "자동 장애 조치는 Multi-AZ의 기능이고, 읽기 복제본은 수동 개입이 필요하다는 것이 핵심 차이입니다.",
+      "concept_tags": ["read_replica_manual_promotion"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l2_u4_q005",
+      "type": "concept_matching_item",
+      "code": "고가용성(자동 장애 조치)과 읽기 확장을 동시에 원하는 프로덕션 워크로드",
+      "prompt_ko": "이 요구사항을 만족하는 구성은?",
+      "options": [
+        "Multi-AZ 원본에 읽기 복제본을 추가로 구성 — Multi-AZ가 고가용성을, 읽기 복제본이 읽기 확장을 각각 담당",
+        "Multi-AZ만으로 두 요구사항이 모두 충족된다",
+        "읽기 복제본만으로 두 요구사항이 모두 충족된다",
+        "이 두 요구사항은 동시에 만족할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Multi-AZ와 읽기 복제본은 서로 대체재가 아니라 함께 사용해서 서로 다른 목표를 보완하는 조합입니다.",
+      "concept_tags": ["multi_az_plus_read_replica"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l2_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "재해복구(다른 리전에서의 복구) 목적으로 읽기 복제본을 활용할 수 있는 이유는?",
+      "options": [
+        "읽기 복제본은 원본과 다른 AWS 리전에도 생성할 수 있어서, 원본 리전 전체에 장애가 생겨도 다른 리전의 복제본을 승격시켜 서비스를 이어갈 수 있기 때문에",
+        "읽기 복제본은 항상 원본과 같은 리전에만 만들 수 있다(설명이 틀림)",
+        "읽기 복제본은 재해복구와 전혀 관련이 없다",
+        "Multi-AZ만이 다른 리전 간 복제를 지원한다(설명이 틀림, Multi-AZ는 단일 리전)"
+      ],
+      "answer": 0,
+      "explanation_ko": "리전 간 읽기 복제본은 지리적으로 넓은 범위의 재해에 대비하는 유용한 수단입니다.",
+      "concept_tags": ["cross_region_read_replica_dr"],
+      "difficulty": "practice"
+    }
+  ]
+}

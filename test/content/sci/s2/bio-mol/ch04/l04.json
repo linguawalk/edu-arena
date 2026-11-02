@@ -1,0 +1,253 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s2",
+  "track": "bio-mol",
+  "work": "풀이",
+  "track_title": "분자생물학",
+  "chapter": {
+    "id": "sci-s2-bio-mol-ch04",
+    "no": 4,
+    "title": "생명공학 기법"
+  },
+  "lesson": {
+    "id": "sci-s2-bio-mol-ch04-l04",
+    "no": 4,
+    "title": "유전자 편집과 응용",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "생물",
+      "분자생물학",
+      "생명공학"
+    ],
+    "competition": "KBO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "CRISPR–Cas9",
+      "body": [
+        "CRISPR–Cas9은 세균이 바이러스를 막는 면역 체계에서 온 유전자 편집 도구입니다. 약 20 nt의 가이드 RNA가 표적 DNA 서열을 찾아가고, Cas9 단백질이 그곳의 두 가닥을 자릅니다.",
+        "Cas9은 표적 바로 뒤에 PAM 서열(흔히 5′-NGG-3′, N은 아무 염기)이 있어야 자릅니다. 무작위 서열에서 NGG는 한 가닥 기준 평균 16 bp마다 나타나 표적 고르기가 쉽습니다.",
+        "잘린 DNA를 세포가 고치는 동안 작은 삽입·결실이 생겨 유전자가 망가지거나(넉아웃), 주형 DNA를 함께 넣으면 원하는 서열로 바꿀 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "20 nt 가이드 서열로 만들 수 있는 서로 다른 서열은 4²⁰가지입니다. 4²⁰은 약 1.1 × 10ᵏ입니다. k는?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "4²⁰ = 2⁴⁰입니다.",
+      "explanation": "4²⁰ = 2⁴⁰ = 1099511627776입니다.\n이는 약 1.1 × 10¹²입니다.\n그래서 k = 12입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "PAM 서열 NGG가 무작위 서열의 한 가닥에서 나타날 확률은 1/x입니다. x는?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "N은 아무 염기, G 두 자리만 맞으면 됩니다.",
+      "explanation": "N 자리는 어느 염기든 되므로 확률 1입니다.\nG 두 자리는 각각 1/4이므로 (1/4)² = 1/16입니다.\n그래서 x = 16입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "표적의 특이성",
+      "body": [
+        "사람 유전체는 약 3 × 10⁹ bp이고 두 가닥을 모두 보면 약 6 × 10⁹개의 20 nt 위치가 있습니다. 20 nt가 정확히 일치하는 자리가 우연히 생길 기대 수는 6 × 10⁹/4²⁰ ≈ 0.005로 매우 작습니다.",
+        "하지만 가이드가 한두 염기 다른 자리에도 붙어 자르는 표적 외 효과가 문제입니다. 그래서 가이드 서열은 유전체 전체와 비교해 비슷한 자리가 적은 것을 고릅니다.",
+        "가이드가 짧을수록 우연히 일치하는 자리가 늘어납니다. 12 nt만 맞으면 되는 경우 4¹² ≈ 1.7 × 10⁷ bp마다 한 번꼴이라 사람 유전체에서 수백 군데입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "3 × 10⁹ bp 유전체(두 가닥 고려 6 × 10⁹ 위치)에서 무작위 12 nt 서열이 우연히 일치하는 자리의 기대 수를 구하세요(4¹² = 16777216).",
+      "steps": [
+        "한 위치에서 12 nt가 모두 일치할 확률은 1/4¹²입니다.",
+        "기대 수 = 위치 수 × 확률 = 6 × 10⁹/16777216입니다.",
+        "≈ 358입니다.",
+        "12 nt만으로는 표적을 하나로 정할 수 없습니다."
+      ],
+      "answer": "약 358군데"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "4 × 10⁶ bp 세균 유전체(두 가닥 고려 8 × 10⁶ 위치)에서 무작위 10 nt 서열이 우연히 일치하는 자리의 기대 수는? (4¹⁰ = 1048576, 소수 첫째 자리까지)",
+      "answer": "7.6",
+      "answer_format": "decimal",
+      "tolerance": 0.05,
+      "hint": "8 × 10⁶/4¹⁰입니다.",
+      "explanation": "한 위치에서 10 nt가 모두 일치할 확률은 1/4¹⁰입니다.\n8000000/1048576 ≈ 7.63입니다.\n그래서 약 7.6군데입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "Cas9이 DNA를 자르려면 표적 바로 뒤에 필요한 서열은? ① PAM ② 프로모터 ③ 작동자",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "NGG입니다.",
+      "explanation": "Cas9은 가이드 RNA와 짝을 이룬 서열 바로 뒤에 PAM(흔히 NGG)이 있어야 자릅니다.\nPAM이 없으면 가이드가 맞아도 자르지 않습니다.\n그래서 답은 1입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "생명공학의 응용",
+      "body": [
+        "유전자 변형 생물(GMO): 해충 저항성 Bt 옥수수, 비타민 A 전구체를 만드는 황금쌀처럼 다른 생물의 유전자를 넣은 작물이 있습니다.",
+        "유전자 치료: 결함 유전자를 가진 환자의 세포에 정상 유전자를 넣거나 CRISPR로 고칩니다. 체세포 치료는 자손에게 전해지지 않지만 생식 세포 편집은 다음 세대로 전해져 윤리적 논란이 큽니다.",
+        "진단: PCR로 병원체 유전자를 증폭해 감염을 확인합니다. 실시간 PCR은 형광이 문턱을 넘는 주기(Ct)로 처음 양을 추정합니다. 처음 양이 2배이면 Ct가 1 작습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "실시간 PCR에서 시료 A의 Ct가 25, 시료 B의 Ct가 22입니다. B의 처음 표적 양은 A의 몇 배인가요? (주기마다 2배)",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "Ct 차이 3입니다.",
+      "explanation": "B의 형광이 A보다 3주기 먼저 문턱에 도달했습니다.\n주기마다 2배이므로 처음 양은 2³배 많습니다.\n그래서 8배입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "유전자 편집 결과가 자손에게 전해지는 경우는? ① 피부 세포 편집 ② 수정란 편집 ③ 혈액 세포 편집",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "생식 계열입니다.",
+      "explanation": "수정란을 편집하면 그 개체의 모든 세포, 생식 세포까지 편집됩니다.\n그래서 편집 결과가 다음 세대로 전해집니다.\n체세포 편집은 그렇지 않으므로 답은 2입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "실시간 PCR에서 처음 표적 양이 16배 많은 시료는 Ct가 몇 작나요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2ⁿ = 16입니다.",
+      "explanation": "주기마다 2배이므로 처음 양이 2ⁿ배이면 n주기 먼저 문턱에 도달합니다.\n2⁴ = 16입니다.\n그래서 Ct가 4 작습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "CRISPR–Cas9: 20 nt 가이드 RNA + Cas9, PAM(NGG) 필요. 넉아웃(삽입·결실) 또는 주형으로 교정.",
+        "특이성: 4²⁰ ≈ 1.1 × 10¹²으로 20 nt면 유전체에서 거의 유일. 기대 일치 수 = 위치 수/4ⁿ. 표적 외 효과에 주의.",
+        "응용: GMO, 유전자 치료(체세포 vs 생식 세포), 진단(실시간 PCR, Ct 1 차이 = 2배)."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "실시간 PCR에서 표준 시료(처음 1000개)의 Ct가 20입니다. 환자 시료의 Ct가 23이면 처음 표적은 몇 개인가요? (주기마다 2배)",
+      "answer": "125",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3주기 늦으면 1/8입니다.",
+      "explanation": "환자 시료의 Ct가 표준보다 3 크므로 처음 양이 2³ = 8배 적습니다.\n1000/8입니다.\n= 125개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "3 × 10⁹ bp 유전체(두 가닥 고려 6 × 10⁹ 위치)에서 우연히 일치하는 자리의 기대 수가 1보다 작아지려면 가이드는 적어도 몇 nt여야 하나요? (4¹⁶ ≈ 4.3 × 10⁹, 4¹⁷ ≈ 1.7 × 10¹⁰)",
+      "answer": "17",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "4ⁿ > 6 × 10⁹입니다.",
+      "explanation": "기대 수 6 × 10⁹/4ⁿ < 1이려면 4ⁿ > 6 × 10⁹이어야 합니다.\n4¹⁶ ≈ 4.3 × 10⁹은 부족하고 4¹⁷ ≈ 1.7 × 10¹⁰은 충분합니다.\n그래서 적어도 17 nt입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "CRISPR–Cas9으로 특정 유전자를 넉아웃하는 원리를 쓰세요.",
+      "model_answer": [
+        "표적 유전자의 앞쪽 엑손에서 바로 뒤에 PAM(NGG)이 있는 20 nt 서열을 골라 가이드 RNA를 만든다.",
+        "가이드 RNA가 Cas9을 표적으로 데려가 Cas9이 DNA 두 가닥을 자른다.",
+        "세포가 끊긴 DNA를 이어 붙이는 과정에서 작은 삽입이나 결실이 자주 생긴다.",
+        "3의 배수가 아닌 삽입·결실은 틀 이동을 일으켜 기능 없는 단백질을 만들므로 유전자가 넉아웃된다."
+      ],
+      "criteria": [
+        {
+          "text": "가이드와 PAM을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "절단과 수선을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "틀 이동으로 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "수선 오류와 읽는 틀을 연결하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "체세포 유전자 치료와 생식 세포 유전자 편집의 차이와 그에 따른 윤리적 쟁점을 쓰세요.",
+      "model_answer": [
+        "체세포 유전자 치료는 환자 몸의 일부 세포만 바꾸므로 그 사람에게만 영향을 준다.",
+        "생식 세포나 수정란 편집은 편집된 유전자가 자손에게 전해져 다음 세대 전체에 영향을 준다.",
+        "생식 세포 편집은 표적 외 효과 같은 오류도 대물림되고, 아직 태어나지 않은 사람은 동의할 수 없다.",
+        "그래서 생식 세포 편집은 안전성과 동의 문제로 훨씬 엄격하게 제한되거나 금지되어 있다."
+      ],
+      "criteria": [
+        {
+          "text": "두 방식의 범위를 비교했다",
+          "points": 2
+        },
+        {
+          "text": "대물림을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "윤리적 쟁점을 밝혔다",
+          "points": 2
+        }
+      ],
+      "hint": "누구에게 영향이 가는지 보세요."
+    }
+  ]
+}

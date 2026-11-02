@@ -1,0 +1,101 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "cisco",
+  "exam": "ccna-200-301",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "라우팅 테이블과 관리 거리",
+  "rule_summary_ko": "라우터가 목적지로 패킷을 전달할 경로를 고를 때는 세 단계 규칙이 순서대로 적용됩니다: ①최장 접두사 일치(longest prefix match, 가장 구체적인 서브넷이 항상 최우선, 이 규칙은 절대 뒤집히지 않음) ②관리 거리(administrative distance, AD — 같은 목적지에 대해 서로 다른 라우팅 소스가 제안한 경로 중 더 신뢰할 수 있는(낮은 AD) 쪽 선택) ③메트릭(metric — 같은 프로토콜 안에서 여러 경로가 있을 때 더 나은(낮은) 쪽 선택). 기본 AD값은 직접연결=0, 정적 경로=1, OSPF=110입니다.",
+  "examples": [
+    { "code": "라우팅 테이블에 192.168.1.0/24와 192.168.0.0/16이 모두 있음, 목적지는 192.168.1.10", "note_ko": "둘 다 일치하지만, 더 구체적인(긴 접두사) 192.168.1.0/24가 선택됨 — AD·메트릭과 무관하게 항상 이 규칙이 최우선" },
+    { "code": "같은 목적지(10.0.0.0/24)를 정적 경로(AD=1)와 OSPF(AD=110)가 모두 알고 있음", "note_ko": "정적 경로의 AD가 더 낮아, 정적 경로가 라우팅 테이블에 설치됨" }
+  ],
+  "questions": [
+    {
+      "id": "ccna_l3_u1_q001",
+      "type": "concept_matching_item",
+      "code": "라우팅 테이블에 192.168.1.0/24와 192.168.0.0/16이 모두 있고, 목적지 IP는 192.168.1.10",
+      "prompt_ko": "패킷은 어떤 경로로 전달됩니까?",
+      "options": [
+        "192.168.1.0/24 — 더 구체적인(긴) 접두사가 항상 최우선으로 선택된다(최장 접두사 일치)",
+        "192.168.0.0/16 — 더 넓은 범위의 경로가 우선된다",
+        "AD가 더 낮은 쪽이 우선되므로 둘 다 AD를 비교해야 한다",
+        "두 경로 모두 사용할 수 없어 패킷이 드롭된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "최장 접두사 일치는 AD나 메트릭보다 항상 먼저 적용되는 최우선 규칙입니다.",
+      "concept_tags": ["longest_prefix_match"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l3_u1_q002",
+      "type": "concept_matching_item",
+      "code": "같은 목적지 네트워크(10.0.0.0/24)에 대해, 정적 경로와 OSPF가 각각 다른 경로를 제안함",
+      "prompt_ko": "이때 어느 경로가 라우팅 테이블에 설치됩니까?",
+      "options": [
+        "정적 경로 — 기본 AD가 1로, OSPF(기본 AD 110)보다 낮아 더 신뢰할 수 있는 것으로 간주된다",
+        "OSPF — 항상 정적 경로보다 우선한다",
+        "둘 다 동시에 설치되어 항상 부하 분산된다",
+        "AD값은 이런 상황과 무관하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "동일한 프리픽스 길이일 때, 더 낮은 AD를 가진 소스(정적 경로)가 우선합니다.",
+      "concept_tags": ["administrative_distance"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l3_u1_q003",
+      "type": "fill_blank",
+      "code": null,
+      "parameter_note": "",
+      "prompt_ko": "직접 연결된(directly connected) 인터페이스의 기본 관리 거리(AD) 값은 얼마입니까? (숫자만 입력)",
+      "expected_answers": ["0"],
+      "explanation_ko": "직접 연결된 경로는 가장 신뢰할 수 있는 정보로 간주되어 가장 낮은 AD(0)를 가집니다.",
+      "concept_tags": ["connected_ad"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l3_u1_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "OSPF의 기본 관리 거리(AD) 값은 얼마입니까? (숫자만 입력)",
+      "expected_answers": ["110"],
+      "explanation_ko": "OSPF의 기본 AD는 110으로, 정적 경로(1)보다 신뢰도가 낮게 취급됩니다.",
+      "concept_tags": ["ospf_ad"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l3_u1_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "관리 거리(AD)와 메트릭(metric)의 적용 범위 차이는?",
+      "options": [
+        "AD는 서로 다른 라우팅 소스(프로토콜) 사이에서 비교되고, 메트릭은 같은 프로토콜 안에서 여러 경로가 있을 때 비교된다",
+        "AD와 메트릭은 완전히 동일한 개념이라 구분할 필요가 없다",
+        "메트릭이 서로 다른 프로토콜 사이의 신뢰도를 비교하는 값이다(설명이 반대)",
+        "AD는 같은 프로토콜 안에서만 사용된다(설명이 반대)"
+      ],
+      "answer": 0,
+      "explanation_ko": "AD는 '어느 프로토콜을 믿을 것인가', 메트릭은 '같은 프로토콜 안에서 어느 경로가 더 나은가'를 결정합니다.",
+      "concept_tags": ["ad_vs_metric"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l3_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "라우터가 실제로 패킷을 전달할 때(포워딩 시점), 최종적으로 적용되는 규칙은?",
+      "options": [
+        "이미 라우팅 테이블에 설치된 경로들 중에서, 목적지 IP와 가장 길게 일치하는(가장 구체적인) 경로를 선택해서 전달한다",
+        "매번 AD가 가장 낮은 경로를 무조건 선택한다",
+        "매번 메트릭이 가장 낮은 경로를 무조건 선택한다",
+        "포워딩 시점에는 아무 규칙도 적용되지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "AD·메트릭은 '어떤 경로를 테이블에 설치할지'를 결정하고, 실제 포워딩은 설치된 경로들 중 최장 접두사 일치로 이뤄집니다.",
+      "concept_tags": ["forwarding_decision"],
+      "difficulty": "challenge"
+    }
+  ]
+}

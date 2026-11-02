@@ -1,0 +1,121 @@
+{
+ "no": 8,
+ "title": "개발 도구, 펌웨어 업데이트, 보안",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "교차 컴파일과 디버깅 인터페이스(JTAG·SWD)를 이용한 개발 과정을 설명할 수 있다.",
+  "부트로더와 무선 펌웨어 업데이트(OTA)의 구조를 설명할 수 있다.",
+  "임베디드 기기의 보안 위협과 기본 대책(보안 부트, 서명 검증)을 설명할 수 있다."
+ ],
+ "checklist": [
+  "교차 컴파일: PC에서 대상 MCU용 실행 파일 생성",
+  "디버깅 인터페이스 JTAG·SWD: 중단점, 메모리 보기",
+  "버전 관리와 단위 테스트, 하드웨어 인 더 루프(HIL)",
+  "부트로더와 이중 뱅크 펌웨어 업데이트, 실패 시 복구",
+  "OTA 업데이트와 전자 서명 검증(레벨1 컴퓨터 챕터 9)",
+  "보안 부트, 디버그 포트 잠금, 키 보관(보안 요소)",
+  "기본 비밀번호 금지 등 IoT 보안 기본"
+ ],
+ "advice": [
+  "실제 제품에서 펌웨어는 한 번 출하하고 끝나지 않고, 현장에서 계속 고쳐야 합니다. 그래서 업데이트 도중 전원이 꺼져도 이전 버전으로 돌아갈 수 있는 구조와, 아무 펌웨어나 설치되지 않게 하는 서명 검증이 기본이 되었습니다. 레벨1 컴퓨터 챕터 9의 전자 서명 원리가 여기서 그대로 쓰인다는 점을 연결하고, 디버그 포트를 잠그지 않은 채 출하하면 누구나 펌웨어를 읽어 갈 수 있다는 위험도 기억해 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Lee · Seshia (무료 공개 교재)",
+   "title": "Introduction to Embedded Systems: A Cyber-Physical Systems Approach, 2nd ed.",
+   "url": "https://ptolemy.berkeley.edu/books/leeseshia/",
+   "lang": "영어",
+   "part": "Security and Privacy 장"
+  },
+  {
+   "kind": "book",
+   "provider": "O'Reilly",
+   "title": "White, Making Embedded Systems (번역본 『임베디드 시스템 만들기』)",
+   "part": "Updating the Code, Debugging 관련 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 9 보안 기초",
+   "url": "browse.html?c=c4#ch09",
+   "part": "전자 서명 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "칩 내부의 레지스터와 메모리를 들여다보며 중단점을 거는 표준 디버깅 인터페이스의 하나는 {{1}}입니다. (영문 약어)",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "JTAG",
+      "SWD"
+     ]
+    }
+   ],
+   "explanation": "ARM Cortex-M에서는 핀 수가 적은 SWD도 많이 씁니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "PC에서 다른 종류의 CPU(대상 MCU)용 실행 파일을 만드는 컴파일을 {{1}} 컴파일이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "교차",
+      "크로스",
+      "cross"
+     ]
+    }
+   ],
+   "explanation": "PC의 CPU와 대상 MCU의 명령어 체계가 달라서 필요합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "written",
+   "prompt": "무선(OTA) 펌웨어 업데이트에서 전자 서명 검증이 필요한 이유를 설명하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "서명",
+      "전자 서명"
+     ],
+     [
+      "위조",
+      "가짜",
+      "악성",
+      "변조"
+     ],
+     [
+      "개인키",
+      "공개키",
+      "검증",
+      "확인"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "업데이트 파일이 통신 중에 변조되거나 공격자가 만든 악성 펌웨어가 설치되는 것을 막기 위해서입니다. 제조사가 개인키로 펌웨어에 전자 서명을 하고, 기기는 저장된 공개키로 서명을 검증해 진짜이고 바뀌지 않은 파일만 설치합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electronics",
+ "subject": "embedded",
+ "id": "l3-electronics-embedded-u08"
+}

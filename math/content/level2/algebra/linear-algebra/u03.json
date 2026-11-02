@@ -1,0 +1,139 @@
+{
+ "no": 3,
+ "title": "행렬의 곱셈과 역행렬",
+ "hours": 4,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "행렬의 곱을 성분·열·행·(열 × 행)의 네 가지 방식으로 계산할 수 있다.",
+  "가우스–조르당 소거로 역행렬을 구할 수 있다.",
+  "곱과 전치, 역행렬 사이의 규칙을 설명할 수 있다."
+ ],
+ "checklist": [
+  "곱의 네 관점: 성분(행 · 열), 열(A × B의 각 열), 행, (열 × 행)의 합",
+  "AB ≠ BA (교환법칙 불성립), 결합법칙은 성립",
+  "역행렬: AA⁻¹ = A⁻¹A = I, 피벗이 모두 0이 아니면 존재",
+  "(AB)⁻¹ = B⁻¹A⁻¹ (순서가 뒤집힘)",
+  "가우스–조르당: [A | I] → [I | A⁻¹]",
+  "전치: (AB)ᵀ = BᵀAᵀ, 대칭행렬 Aᵀ = A, AᵀA는 항상 대칭"
+ ],
+ "advice": [
+  "레벨1에서 배운 행렬의 곱은 '행 · 열' 한 가지였습니다. 여기서는 같은 곱을 네 가지로 볼 수 있어야 합니다. 특히 'AB의 각 열은 A에 B의 열을 곱한 것'이라는 열 관점과 'AB = (A의 열 × B의 행)의 합'이라는 관점은 뒤의 특이값 분해까지 계속 쓰입니다.",
+  "역행렬 공식을 외우기보다 '되돌리는 연산'으로 이해하세요. 양말을 신고 신발을 신었다면, 벗을 때는 신발부터 벗습니다. (AB)⁻¹ = B⁻¹A⁻¹의 순서가 뒤집히는 이유가 이것입니다. 실제 계산에서는 역행렬을 직접 구하기보다 LU로 푸는 편이 빠르다는 점도 기억해 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "18.06 Linear Algebra (Gilbert Strang, 2010년 봄)",
+   "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+   "lang": "영어",
+   "part": "3강 Multiplication and inverse matrices, 5강 Transposes, permutations, spaces"
+  },
+  {
+   "kind": "video",
+   "provider": "3Blue1Brown",
+   "title": "Essence of linear algebra",
+   "url": "https://www.3blue1brown.com/topics/linear-algebra",
+   "lang": "영어(한국어 자막 제공)",
+   "part": "4장 합성으로서의 행렬 곱, 7장 역행렬·열공간·영공간"
+  },
+  {
+   "kind": "book",
+   "provider": "Wellesley-Cambridge Press",
+   "title": "Gilbert Strang, Introduction to Linear Algebra (5판)",
+   "part": "2.4~2.5절, 2.7절"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "A = [[2, 1], [5, 3]]일 때 A⁻¹ = [[{{1}}, {{2}}], [{{3}}, {{4}}]]",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "3"
+     ]
+    },
+    {
+     "id": 2,
+     "answers": [
+      "-1",
+      "−1"
+     ]
+    },
+    {
+     "id": 3,
+     "answers": [
+      "-5",
+      "−5"
+     ]
+    },
+    {
+     "id": 4,
+     "answers": [
+      "2"
+     ]
+    }
+   ],
+   "explanation": "det A = 6 − 5 = 1\nA⁻¹ = (1/1)[[3, −1], [−5, 2]]\n확인: A × A⁻¹ = [[6 − 5, −2 + 2], [15 − 15, −5 + 6]] = I",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "A = [[1, 2], [0, 1]], B = [[1, 0], [3, 1]]일 때 (AB)의 (1, 1) 성분 − (BA)의 (1, 1) 성분은?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "AB = [[1 + 6, 2], [3, 1]] = [[7, 2], [3, 1]]\nBA = [[1, 2], [3, 6 + 1]] = [[1, 2], [3, 7]]\n7 − 1 = 6 (AB ≠ BA)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "(AB)⁻¹ = {{1}}⁻¹{{2}}⁻¹",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "B",
+      "b"
+     ]
+    },
+    {
+     "id": 2,
+     "answers": [
+      "A",
+      "a"
+     ]
+    }
+   ],
+   "explanation": "(AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹ = AA⁻¹ = I\n나중에 한 연산을 먼저 되돌려야 하므로 순서가 뒤집힙니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "A가 3 × 2 행렬일 때 AᵀA는 몇 × 몇 행렬일까요? 행의 수를 쓰세요.",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "Aᵀ는 2 × 3, A는 3 × 2\nAᵀA는 (2 × 3)(3 × 2) = 2 × 2\n원리: AᵀA는 항상 정사각 대칭행렬 (최소제곱에서 다시 등장)",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "algebra",
+ "subject": "linear-algebra",
+ "id": "l2-algebra-linear-algebra-u03"
+}

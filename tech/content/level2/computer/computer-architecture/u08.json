@@ -1,0 +1,115 @@
+{
+ "no": 8,
+ "title": "가상 메모리와 TLB",
+ "hours": 5,
+ "after": [
+  7
+ ],
+ "objectives": [
+  "페이지 테이블의 크기와 다단계 페이지 테이블의 필요성을 계산할 수 있다.",
+  "TLB가 주소 변환을 빠르게 하는 원리와 유효 접근 시간을 계산할 수 있다.",
+  "페이지 부재 처리에서 하드웨어와 운영체제의 역할을 구분할 수 있다."
+ ],
+ "checklist": [
+  "가상 주소 = 가상 페이지 번호 + 오프셋(레벨1 컴퓨터 챕터 5)",
+  "페이지 테이블 항목(PTE): 프레임 번호, 유효·권한 비트",
+  "단일 페이지 테이블 크기 = 페이지 수 × PTE 크기",
+  "다단계 페이지 테이블",
+  "TLB: 주소 변환 캐시",
+  "유효 접근 시간(TLB 적중·실패)",
+  "페이지 부재 → 예외 → 운영체제 처리(운영체제 과목)"
+ ],
+ "advice": [
+  "가상 메모리는 하드웨어(MMU, TLB)와 운영체제가 함께 만드는 기능이라 두 과목에 걸쳐 나옵니다. 이 과목에서는 '주소 변환을 얼마나 빨리 하느냐'에 집중하고, 페이지 교체 같은 정책은 운영체제 과목에서 다룹니다. 32비트 주소, 4 KB 페이지로 단일 페이지 테이블 크기를 계산해 보면 다단계 테이블이 왜 필요한지 숫자로 보입니다.",
+  "TLB는 페이지 테이블 항목을 위한 작은 캐시입니다. 7단원의 캐시 개념을 그대로 적용하면 되므로, 유효 접근 시간 식을 캐시의 평균 접근 시간 식과 나란히 적어 비교해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Patterson · Hennessy, Computer Organization and Design RISC-V Edition (번역본 『컴퓨터 구조 및 설계』, 장 제목으로 표기)",
+   "part": "Large and Fast 장(virtual memory)"
+  },
+  {
+   "kind": "book",
+   "provider": "Arpaci-Dusseau (무료 공개 교재)",
+   "title": "Operating Systems: Three Easy Pieces",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "lang": "영어",
+   "part": "Paging, TLBs, Advanced Page Tables 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 5 메모리 계층",
+   "url": "browse.html?c=c4#ch05",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "32비트 가상 주소, 4 KB 페이지, PTE 4바이트일 때 단일 페이지 테이블의 크기는 몇 MB일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "페이지 수 2²⁰ × 4 B = 4 MB",
+   "hint": "(2³²/2¹²) × 4입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "TLB 접근 1 ns, 메모리 접근 100 ns, TLB 적중률 98%일 때 유효 접근 시간은 몇 ns일까요? (실패 시 페이지 테이블을 메모리에서 한 번 읽음)",
+   "answer": "103",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "0.98 × (1 + 100) + 0.02 × (1 + 100 + 100) = 98.98 + 4.02 = 103 ns",
+   "hint": "적중과 실패 경우를 가중 평균하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "최근에 쓴 페이지 테이블 항목을 저장해 주소 변환을 빠르게 하는 하드웨어 캐시를 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "TLB"
+     ]
+    }
+   ],
+   "explanation": "Translation Lookaside Buffer의 줄임말입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "찾는 페이지가 메모리에 없을 때 하드웨어는 예외를 일으키고, 실제로 페이지를 가져오는 일은 {{1}}가 처리합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "운영체제",
+      "OS",
+      "커널"
+     ]
+    }
+   ],
+   "explanation": "하드웨어와 소프트웨어가 역할을 나누는 대표적인 예입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "computer-architecture",
+ "id": "l2-computer-computer-architecture-u08"
+}

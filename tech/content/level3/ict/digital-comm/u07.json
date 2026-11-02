@@ -1,0 +1,100 @@
+{
+ "no": 7,
+ "title": "OFDM",
+ "hours": 6,
+ "after": [
+  2,
+  4
+ ],
+ "objectives": [
+  "OFDM의 부반송파 직교성과 IFFT/FFT 구현을 설명할 수 있다.",
+  "부반송파 간격, 심볼 길이, 순환 전치(CP)의 관계를 계산할 수 있다.",
+  "OFDM의 장단점(다중 경로 강인성, PAPR, 주파수 오프셋 민감성)을 설명할 수 있다."
+ ],
+ "checklist": [
+  "넓은 대역을 많은 좁은 부반송파로 나눔 → 부반송파마다 평탄 페이딩",
+  "직교 조건: 부반송파 간격 Δf = 1/T",
+  "IFFT(송신)와 FFT(수신)로 구현",
+  "순환 전치(CP): 지연 확산보다 길게 → ISI 제거, 대신 오버헤드",
+  "부반송파별 간단한 1탭 등화",
+  "단점: 높은 PAPR, 주파수 오프셋에 민감",
+  "OFDMA와 자원 블록, 와이파이·LTE·5G·디지털 방송"
+ ],
+ "advice": [
+  "OFDM은 레벨2에서 본 페이딩과 이 과목 2단원의 ISI 문제를 한 번에 푸는 방법입니다. 빠른 신호 하나를 느린 신호 수백 개로 나누면 각 신호의 심볼이 길어져 지연 확산이 상대적으로 작아지고, 그 위에 순환 전치를 붙이면 ISI가 사라집니다. LTE의 숫자(15 kHz 간격, 약 66.7 μs 심볼, 약 4.7 μs CP)로 오버헤드를 직접 계산해 보면 설계의 맞바꿈이 보입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cambridge University Press",
+   "title": "Goldsmith, Wireless Communications (장 제목으로 표기)",
+   "part": "Multicarrier Modulation 장"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Proakis · Salehi, Digital Communications (장 제목으로 표기)",
+   "part": "Multicarrier and OFDM 관련 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Academic Press",
+   "title": "Dahlman · Parkvall · Sköld, 5G NR: The Next Generation Wireless Access Technology (장 제목으로 표기)",
+   "part": "OFDM Transmission 관련 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "통신이론 기초 9단원 다중화와 다중 접속",
+   "url": "guide.html?lv=2&t=ict&s=comm-theory&u=9"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "부반송파 간격이 15 kHz인 OFDM의 유효 심볼 길이는 약 몇 μs일까요?",
+   "answer": "66.7",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "T = 1/Δf = 1/15 000 ≈ 66.7 μs",
+   "hint": "T = 1/Δf입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "유효 심볼 66.7 μs에 순환 전치 4.7 μs를 붙이면 CP 오버헤드는 약 몇 %일까요?",
+   "answer": "6.6",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "4.7/(66.7 + 4.7) ≈ 0.0658 → 약 6.6%",
+   "hint": "CP ÷ 전체 심볼 길이입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "OFDM 신호의 최대 전력이 평균 전력보다 훨씬 커서 전력 증폭기 효율을 떨어뜨리는 문제를 최대 대 평균 전력비, 영문 약어로 {{1}} 문제라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "PAPR"
+     ]
+    }
+   ],
+   "explanation": "그래서 LTE 상향 링크는 PAPR이 낮은 SC-FDMA를 씁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "digital-comm",
+ "id": "l3-ict-digital-comm-u07"
+}

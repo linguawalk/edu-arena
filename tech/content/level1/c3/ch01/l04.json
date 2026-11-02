@@ -1,0 +1,407 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c3",
+  "title": "화학공학"
+ },
+ "chapter": {
+  "id": "c3-ch01",
+  "no": 1,
+  "title": "공정 흐름도 읽기"
+ },
+ "lesson": {
+  "id": "c3-ch01-l04",
+  "no": 4,
+  "title": "계장과 제어",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "화학공학"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "공정의 눈과 손",
+   "body": [
+    "공정은 유량, 온도, 압력, 액위(액체 높이)를 늘 일정하게 유지해야 합니다. 이를 재는 계기와 조절하는 장치를 통틀어 계장이라고 합니다.",
+    "사람이 밸브를 손으로 돌리는 대신, 센서가 값을 재고 제어기가 판단해 제어 밸브를 자동으로 움직입니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "fill_blank",
+   "prompt": "공정 값을 재는 계기와 이를 조절하는 장치를 통틀어 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "계장"
+     ]
+    }
+   ],
+   "hint": "계기를 장치한다는 뜻입니다.",
+   "explanation": "계장은 공정의 눈(센서)과 손(밸브)입니다.\n제어실에서 이를 모아 감시합니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "계기 태그 읽기",
+   "body": [
+    "계기 태그의 첫 글자는 재는 양입니다. F는 유량, T는 온도, P는 압력, L은 액위입니다. 뒤의 글자는 기능으로, I는 지시(표시), C는 제어, T는 전송기, A는 경보입니다.",
+    "그래서 TI-101은 온도 지시계, FIC-201은 유량 지시 제어기, LAH는 액위 높음 경보(Level Alarm High)입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "PIC-305는 무엇일까요?",
+   "steps": [
+    "P는 압력입니다.",
+    "I는 지시, C는 제어입니다.",
+    "압력을 표시하고 제어하는 계기입니다."
+   ],
+   "answer": "압력 지시 제어기"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "계기 태그에서 첫 글자 F는 {{1}}을 나타냅니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "유량"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "F는 flow의 첫 글자로 유량입니다.\nT는 온도, P는 압력, L은 액위입니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "계기 태그 LI-102의 L은 {{1}}를 나타냅니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "액위",
+      "레벨",
+      "액면"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "L은 level의 첫 글자로 탱크 속 액체의 높이입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "계기 태그 TIC-201은 온도를 표시하고 {{1}}하는 계기입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "제어"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "C는 control, 곧 제어입니다.\nTIC는 온도 지시 제어기입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "계기 태그 PAH는 압력이 {{1}} 때 울리는 경보입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "높을",
+      "높아질",
+      "너무 높을"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "A는 경보, H는 high입니다.\n압력이 설정보다 높아지면 알려 줍니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "제어 루프",
+   "body": [
+    "제어 루프는 센서(측정) → 제어기(비교·판단) → 최종 제어 요소(대개 제어 밸브)로 이루어집니다. 제어기는 측정값을 원하는 값(설정값)과 비교해 차이(오차)를 줄이는 쪽으로 밸브를 움직입니다.",
+    "결과를 재어 다시 입력을 고치는 이 방식을 피드백 제어라고 합니다. 욕조 물 온도를 손으로 재며 수도꼭지를 돌리는 것과 같습니다.",
+    "반응기 온도가 설정값보다 높으면 온도 제어기가 냉각수 밸브를 더 엽니다. 탱크 액위가 높으면 액위 제어기가 배출 밸브를 더 엽니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "반응기 온도 설정값이 80 °C인데 측정값이 85 °C입니다. 냉각수 밸브는 어떻게 움직일까요?",
+   "steps": [
+    "측정값이 설정값보다 5 °C 높습니다.",
+    "온도를 낮추려면 냉각수를 더 흘려야 합니다.",
+    "그래서 냉각수 밸브를 더 엽니다."
+   ],
+   "answer": "더 연다"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "제어기가 목표로 삼는 원하는 값을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "설정값"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "제어기는 측정값과 설정값의 차이를 줄이도록 움직입니다.\n영어로 set point라고 합니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "설정값 150 kPa, 측정값 142 kPa이면 오차(설정값 − 측정값)는 몇 kPa일까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "150 − 142 = 8 kPa입니다.\n압력이 모자라므로 제어기가 압력을 올리는 쪽으로 움직입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "탱크 액위가 설정값보다 높으면 액위 제어기는 배출 밸브를 더 {{1}}.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "연다",
+      "엽니다"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "배출을 늘려야 액위가 내려갑니다.\n그래서 배출 밸브를 더 엽니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "ordering",
+   "prompt": "피드백 제어 루프에서 신호가 흐르는 순서입니다. 차례대로 배열하세요.",
+   "items": [
+    {
+     "id": "a",
+     "text": "제어 밸브가 움직인다"
+    },
+    {
+     "id": "b",
+     "text": "센서가 값을 잰다"
+    },
+    {
+     "id": "c",
+     "text": "공정 값이 바뀐다"
+    },
+    {
+     "id": "d",
+     "text": "제어기가 설정값과 비교한다"
+    }
+   ],
+   "answer_order": [
+    "b",
+    "d",
+    "a",
+    "c"
+   ],
+   "hint": null,
+   "explanation": "재고, 비교하고, 움직이고, 그 결과를 다시 잽니다.\n이 고리가 계속 돕니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "경보와 인터록",
+   "body": [
+    "제어로 값을 맞추지 못해 위험한 범위에 가까워지면 경보가 울려 운전원에게 알립니다. 더 나아가 위험한 값에 이르면 자동으로 원료 공급을 끊거나 장치를 멈추는 인터록(안전 계장)이 작동합니다.",
+    "정리: 계기 태그 첫 글자(F·T·P·L), 뒤 글자(I·C·T·A), 제어 루프(센서 → 제어기 → 제어 밸브), 설정값과 오차, 피드백 제어, 경보와 인터록"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "위험한 값에 이르면 자동으로 원료 공급을 끊거나 장치를 멈추는 안전 장치를 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "인터록"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "인터록은 사람의 판단을 기다리지 않고 자동으로 작동합니다.\n마지막 방어선의 하나입니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "탱크 액위 경보가 LAH 90 %, 인터록이 95 %에서 원료 펌프를 멈추도록 되어 있습니다. 액위가 92 %면 어떻게 될까요?",
+   "steps": [
+    "92 %는 경보 기준 90 %를 넘었습니다.",
+    "인터록 기준 95 %에는 이르지 않았습니다.",
+    "경보만 울리고 운전원이 조치합니다."
+   ],
+   "answer": "경보만 울린다"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "앞 예제에서 액위가 96 %가 되면 {{1}}이 작동해 원료 펌프가 멈춥니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "인터록"
+     ]
+    }
+   ],
+   "hint": "자동으로 멈추게 하는 장치입니다.",
+   "explanation": "96 %는 인터록 기준 95 %를 넘었습니다.\n자동으로 펌프를 멈춰 넘침을 막습니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "용량 200 m³ 탱크의 LAH가 90 %라면 경보가 울리는 부피는 몇 m³일까요?",
+   "answer": "180",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "용량에 비율을 곱하세요.",
+   "explanation": "200 × 0.9 = 180 m³입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "계기 태그 FT-101은 유량을 재서 신호를 보내는 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "전송기"
+     ]
+    }
+   ],
+   "hint": "뒤 글자 T의 뜻입니다.",
+   "explanation": "두 번째 글자 T는 transmitter, 곧 전송기입니다.\n측정값을 제어실로 보냅니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "열교환기 출구 온도가 설정값보다 낮으면 온도 제어기는 가열 증기 밸브를 더 {{1}}.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "연다",
+      "엽니다"
+     ]
+    }
+   ],
+   "hint": "온도를 올리려면 무엇을 늘려야 할까요?",
+   "explanation": "온도를 올리려면 증기를 더 넣어야 합니다.\n그래서 증기 밸브를 더 엽니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "유량 설정값 50 m³/h에서 측정값이 이 값의 90 %입니다. 오차는 몇 m³/h일까요?",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "측정값부터 구하세요.",
+   "explanation": "측정값 = 50 × 0.9 = 45 m³/h입니다.\n오차 = 50 − 45 = 5 m³/h입니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "제어 루프가 있는데도 경보와 인터록을 따로 두는 이유를 설명해 보세요.",
+   "hint": "제어가 실패하는 경우를 생각해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "제어",
+      "고장",
+      "실패",
+      "못"
+     ],
+     [
+      "경보",
+      "알리"
+     ],
+     [
+      "인터록",
+      "자동",
+      "멈추",
+      "차단"
+     ],
+     [
+      "위험",
+      "사고",
+      "안전"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "제어 루프도 센서나 밸브 고장, 큰 외란 때문에 값을 맞추지 못할 수 있습니다. 경보는 이때 운전원에게 알려 조치하게 하고, 인터록은 위험한 값에 이르면 자동으로 장치를 멈춰 사고를 막는 겹겹의 안전장치입니다."
+  }
+ ]
+}

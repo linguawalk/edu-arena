@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 4,
+  "unit": 3,
+  "unit_title": "이진 탐색 트리(BST)",
+  "questions": [
+    {
+      "id": "dsa_l4_u03_q001",
+      "type": "predict_output",
+      "code": "class TreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef insert(root, value):\n    if root is None:\n        return TreeNode(value)\n    if value < root.value:\n        root.left = insert(root.left, value)\n    else:\n        root.right = insert(root.right, value)\n    return root\n\nroot = None\nfor v in [5, 3, 8]:\n    root = insert(root, v)\n\nprint(root.value)\nprint(root.left.value)\nprint(root.right.value)",
+      "prompt_en": "What is printed? (BST insert places smaller values left, larger values right.)",
+      "prompt_ko": "출력 결과는? (BST 삽입은 작은 값은 왼쪽, 큰 값은 오른쪽에 놓습니다.)",
+      "options": ["5\\n3\\n8", "5\\n8\\n3", "3\\n5\\n8", "오류"],
+      "answer": 0,
+      "explanation_en": "5 becomes the root; 3 (< 5) goes left, and 8 (>= 5) goes right, maintaining the BST property: everything left of a node is smaller, everything right is larger or equal.",
+      "explanation_ko": "5가 루트가 됩니다. 3(< 5)은 왼쪽으로, 8(>= 5)은 오른쪽으로 가서, BST 성질을 유지합니다: 노드 왼쪽의 모든 것은 더 작고, 오른쪽의 모든 것은 크거나 같습니다.",
+      "concept_tags": ["bst", "insert_operation"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l4_u03_q002",
+      "type": "predict_output",
+      "code": "class TreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef insert(root, value):\n    if root is None:\n        return TreeNode(value)\n    if value < root.value:\n        root.left = insert(root.left, value)\n    else:\n        root.right = insert(root.right, value)\n    return root\n\ndef search(root, value):\n    if root is None:\n        return False\n    if root.value == value:\n        return True\n    elif value < root.value:\n        return search(root.left, value)\n    else:\n        return search(root.right, value)\n\nroot = None\nfor v in [5, 3, 8, 1, 4]:\n    root = insert(root, v)\n\nprint(search(root, 4))\nprint(search(root, 100))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["True\\nFalse", "False\\nTrue", "True\\nTrue", "오류"],
+      "answer": 0,
+      "explanation_en": "search follows the BST property, going left or right based on comparison; 4 exists in the tree (True), while 100 doesn't (False).",
+      "explanation_ko": "search는 BST 성질을 따라 비교 결과에 따라 왼쪽이나 오른쪽으로 이동합니다. 4는 트리에 존재하고(True), 100은 존재하지 않습니다(False).",
+      "concept_tags": ["bst", "search_operation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l4_u03_q003",
+      "type": "fill_blank",
+      "code": "def search(root, value):\n    if root is None:\n        return False\n    if root.value == value:\n        return True\n    elif value < root.value:\n        return search(root.____, value)\n    else:\n        return search(root.right, value)\n# 찾는 값이 현재 노드보다 작으면 왼쪽으로 가야 함",
+      "prompt_en": "Fill in the blank with the subtree to search when the target is smaller than the current node.",
+      "prompt_ko": "찾는 값이 현재 노드보다 작을 때 탐색해야 할 서브트리를 빈칸에 채우세요.",
+      "options": ["left", "right", "value", "parent"],
+      "answer": 0,
+      "explanation_en": "By the BST property, anything smaller than the current node lives in the left subtree, so search recurses into root.left.",
+      "explanation_ko": "BST 성질에 따라, 현재 노드보다 작은 것은 모두 왼쪽 서브트리에 있으므로, search는 root.left로 재귀합니다.",
+      "concept_tags": ["bst", "search_operation"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l4_u03_q004",
+      "type": "predict_output",
+      "code": "class TreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef insert(root, value):\n    if root is None:\n        return TreeNode(value)\n    if value < root.value:\n        root.left = insert(root.left, value)\n    else:\n        root.right = insert(root.right, value)\n    return root\n\ndef inorder(node, result):\n    if node is None:\n        return\n    inorder(node.left, result)\n    result.append(node.value)\n    inorder(node.right, result)\n\nroot = None\nfor v in [5, 3, 8, 1, 9, 4]:\n    root = insert(root, v)\n\nresult = []\ninorder(root, result)\nprint(result)",
+      "prompt_en": "What is printed? (In-order traversal of a BST always produces sorted order — a powerful property.)",
+      "prompt_ko": "출력 결과는? (BST의 중위 순회는 항상 정렬된 순서를 만듭니다 — 강력한 성질입니다.)",
+      "options": ["[1, 3, 4, 5, 8, 9]", "[5, 3, 8, 1, 9, 4]", "[9, 8, 5, 4, 3, 1]", "오류"],
+      "answer": 0,
+      "explanation_en": "No matter what order values are inserted in, in-order traversal of a BST always yields sorted order — a direct consequence of the left-smaller, right-larger invariant maintained at every node.",
+      "explanation_ko": "값이 어떤 순서로 삽입되든, BST의 중위 순회는 항상 정렬된 순서를 만들어냅니다 — 모든 노드에서 유지되는 '왼쪽은 더 작고, 오른쪽은 더 크다'는 불변 조건의 직접적인 결과입니다.",
+      "concept_tags": ["bst", "inorder_traversal"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l4_u03_q005",
+      "type": "error_finding",
+      "code": "# BST에 [1, 2, 3, 4, 5]를 순서대로 삽입\n# 개발자가 '탐색이 O(log n)일 것'이라 예상함",
+      "prompt_en": "What's wrong with expecting O(log n) search after inserting sorted values in order?",
+      "prompt_ko": "정렬된 값을 순서대로 삽입한 뒤 O(log n) 탐색을 기대하는 것은 어떤 문제가 있을까요?",
+      "options": [
+        "BST 자체가 잘못된 자료구조임",
+        "이미 정렬된 값을 순서대로 삽입하면 트리가 한쪽으로만 계속 뻗어나가는 연결 리스트 모양이 되어, 실제로는 O(n)이 됨 — 균형이 깨진 BST의 대표적인 함정",
+        "삽입 순서는 트리 모양에 영향을 주지 않음",
+        "문제 없음, 항상 O(log n)이 보장됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Inserting 1, 2, 3, 4, 5 in order always goes right (since each new value is larger than everything before it), producing a completely unbalanced tree that's really just a linked list in disguise — search degrades to O(n), the same as the linked list traversal covered earlier.",
+      "explanation_ko": "1, 2, 3, 4, 5를 순서대로 삽입하면 매번 새 값이 이전 모든 것보다 크므로 항상 오른쪽으로만 가서, 사실상 연결 리스트나 다름없는 완전히 불균형한 트리가 만들어집니다 — 탐색은 앞서 다룬 연결 리스트 순회와 마찬가지로 O(n)으로 나빠집니다.",
+      "concept_tags": ["bst", "unbalanced_tree"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l4_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "각 용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "BST 성질", "definition": "모든 노드에서, 왼쪽 서브트리는 더 작고 오른쪽 서브트리는 더 크거나 같음" },
+        { "term": "insert", "definition": "BST 성질을 유지하며 재귀적으로 올바른 위치를 찾아 새 노드를 추가" },
+        { "term": "search", "definition": "비교 결과에 따라 왼쪽/오른쪽으로 이동하며 값을 찾음 — 균형 잡힌 트리에서 O(log n)" },
+        { "term": "불균형 트리의 위험", "definition": "정렬된 순서로 삽입하면 트리가 한쪽으로 치우쳐 O(n)으로 나빠짐" }
+      ],
+      "explanation_en": "A well-balanced BST gives search/insert the same O(log n) speed as binary search, but on already-sorted data — the exact input binary search handles perfectly — a naive BST performs no better than a linked list, motivating self-balancing variants like AVL and red-black trees.",
+      "explanation_ko": "잘 균형 잡힌 BST는 이진 탐색과 같은 O(log n) 속도로 탐색/삽입할 수 있지만, 이미 정렬된 데이터(이진 탐색이 완벽하게 처리하는 바로 그 입력)에서는 순진한 BST가 연결 리스트보다 나을 게 없습니다 — AVL 트리, 레드-블랙 트리 같은 자가 균형 변형이 등장한 이유입니다.",
+      "concept_tags": ["bst", "insert_operation", "search_operation", "unbalanced_tree"],
+      "difficulty": "practice"
+    }
+  ]
+}

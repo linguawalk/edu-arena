@@ -1,0 +1,383 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c1",
+  "title": "전기전자"
+ },
+ "chapter": {
+  "id": "c1-ch08",
+  "no": 8,
+  "title": "센서와 액추에이터"
+ },
+ "lesson": {
+  "id": "c1-ch08-l04",
+  "no": 4,
+  "title": "액추에이터와 제어 루프",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "전기전자"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "판단을 움직임으로",
+   "body": [
+    "센서가 감지하고 제어기가 판단했다면, 이제 무언가를 실제로 움직여야 합니다. 전기 신호를 받아 움직임, 힘, 열, 빛, 소리를 만드는 장치를 액추에이터(구동기)라고 합니다.",
+    "모터, 서보 모터, 솔레노이드, 히터, 스피커가 모두 액추에이터입니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "fill_blank",
+   "prompt": "전기 신호를 받아 실제로 움직임이나 힘을 만드는 장치를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "액추에이터",
+      "구동기"
+     ]
+    }
+   ],
+   "hint": "'작동시키는 것'이라는 뜻의 영어 이름입니다.",
+   "explanation": "액추에이터는 제어기의 명령을 실제 동작으로 바꿉니다.\n센서의 반대 역할이라고 볼 수 있습니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "서보 모터와 솔레노이드",
+   "body": [
+    "서보 모터는 지정한 각도로 움직여 멈추는 모터입니다. 흔한 취미용 서보는 20 ms마다 펄스를 받는데, 펄스 폭이 1 ms면 0°, 1.5 ms면 90°, 2 ms면 180°로 움직입니다(제품마다 조금씩 다릅니다).",
+    "솔레노이드는 코일에 전류를 흘리면 쇠막대가 끌려 들어가는 직선 운동 액추에이터입니다. 도어록의 잠금 막대, 물을 여닫는 전자 밸브에 씁니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "펄스 폭 1 ms가 0°, 2 ms가 180°인 서보에 1.25 ms 펄스를 주면 몇 도일까요?",
+   "steps": [
+    "1 ms 변화가 180°이므로 0.1 ms당 18°입니다.",
+    "1.25 ms는 1 ms보다 0.25 ms 깁니다.",
+    "0.25 × 180 = 45°입니다."
+   ],
+   "answer": "45°"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "펄스 폭 1 ms가 0°, 2 ms가 180°인 서보에 1.5 ms 펄스를 주면 몇 도일까요?",
+   "answer": "90",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1.5 ms는 가운데이므로 180°의 절반입니다.\n90°입니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "같은 서보에 1.75 ms 펄스를 주면 몇 도일까요?",
+   "answer": "135",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1.75 − 1 = 0.75 ms입니다.\n0.75 × 180 = 135°입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "같은 서보를 60°로 움직이려면 펄스 폭은 약 몇 ms여야 할까요? (소수 둘째 자리까지)",
+   "answer": "1.33",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": null,
+   "explanation": "60°는 180°의 1/3입니다.\n1 + 1/3 ≈ 1.33 ms입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "도어록의 잠금 막대처럼 직선으로 밀고 당기는 액추에이터는 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "솔레노이드"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "솔레노이드는 코일의 자기력으로 쇠막대를 끌어당깁니다.\n회전이 아니라 직선 운동을 만듭니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "피드백 제어",
+   "body": [
+    "센서가 결과를 재고, 제어기가 목표와 비교해, 액추에이터를 움직이고, 바뀐 결과를 다시 센서가 재는 고리를 제어 루프라고 합니다. 결과를 되돌려 쓰므로 피드백(폐루프) 제어입니다.",
+    "반대로 결과를 재지 않고 정해진 대로만 움직이는 것을 개루프 제어라고 합니다. 타이머로 정한 시간만큼만 굽는 토스터가 개루프, 온도를 재며 조절하는 에어컨이 폐루프입니다.",
+    "목표와 현재 값의 차이를 오차라고 하며, 제어기는 이 오차를 줄이는 방향으로 액추에이터를 움직입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "목표 24 °C인 에어컨이 27 °C를 재었습니다. 제어 루프는 어떻게 동작할까요?",
+   "steps": [
+    "오차는 27 − 24 = 3 °C입니다.",
+    "제어기가 냉방을 켜 온도를 낮춥니다.",
+    "온도 센서가 계속 재다가 목표에 닿으면 냉방을 줄이거나 끕니다."
+   ],
+   "answer": "냉방을 켜고, 목표에 닿으면 줄인다"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "결과를 다시 재어 제어에 되돌려 쓰는 방식을 {{1}} 제어라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "피드백",
+      "폐루프",
+      "되먹임"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "피드백(되먹임) 제어는 결과를 보고 계속 고칩니다.\n바깥 조건이 바뀌어도 목표를 지킬 수 있습니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "정해진 시간만 굽는 토스터처럼 결과를 재지 않는 제어를 {{1}} 제어라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "개루프",
+      "열린 루프",
+      "오픈 루프"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "개루프 제어는 결과를 확인하지 않고 정해진 대로만 동작합니다.\n빵 두께가 달라도 같은 시간만 굽습니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "목표 온도 24 °C, 현재 온도 27 °C일 때 오차의 크기는 몇 °C일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "오차 = 현재 − 목표 = 27 − 24 = 3 °C입니다.\n제어기는 이 오차를 줄이려 합니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "ordering",
+   "prompt": "피드백 제어 루프가 한 바퀴 도는 순서입니다. 차례대로 배열하세요.",
+   "items": [
+    {
+     "id": "a",
+     "text": "액추에이터가 오차를 줄이는 쪽으로 동작한다"
+    },
+    {
+     "id": "b",
+     "text": "센서가 현재 값을 잰다"
+    },
+    {
+     "id": "c",
+     "text": "현재 값이 변한다"
+    },
+    {
+     "id": "d",
+     "text": "제어기가 목표와 비교해 오차를 구한다"
+    }
+   ],
+   "answer_order": [
+    "b",
+    "d",
+    "a",
+    "c"
+   ],
+   "hint": null,
+   "explanation": "재고, 비교하고, 움직이고, 그 결과가 바뀝니다.\n바뀐 값을 다시 센서가 재며 고리가 계속 돕니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "온오프 제어와 히스테리시스",
+   "body": [
+    "가장 단순한 피드백은 목표보다 낮으면 켜고 높으면 끄는 온오프 제어입니다. 그런데 목표 한 점에서 켜고 끄면 온도가 목표 근처에서 오르내릴 때마다 너무 자주 켜지고 꺼져 기기가 상합니다.",
+    "그래서 켜는 기준과 끄는 기준 사이에 폭을 둡니다. 이를 히스테리시스라고 합니다. 예를 들어 목표 22 °C, 폭 ±1 °C인 난방은 21 °C 이하에서 켜고 23 °C 이상에서 끕니다.",
+    "더 부드럽게 제어하려면 오차에 비례해 출력을 조절하는 비례 제어를 씁니다. 출력 = 비례 상수 × 오차입니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "온오프 제어에서 켜는 기준과 끄는 기준 사이에 두는 폭을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "히스테리시스"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "히스테리시스는 너무 잦은 켜짐과 꺼짐을 막는 폭입니다.\n폭이 클수록 덜 자주 바뀌지만 값이 더 크게 오르내립니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "목표 22 °C, 히스테리시스 ±1 °C인 난방기는 언제 켜지고 꺼질까요?",
+   "steps": [
+    "켜는 기준 = 22 − 1 = 21 °C 이하입니다.",
+    "끄는 기준 = 22 + 1 = 23 °C 이상입니다.",
+    "21~23 °C 사이에서는 지금 상태를 유지합니다."
+   ],
+   "answer": "21 °C 이하에서 켜고 23 °C 이상에서 끈다"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "목표 60 °C, 히스테리시스 ±2 °C인 온수기의 히터는 몇 °C 이하에서 켜질까요?",
+   "answer": "58",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "목표에서 폭을 빼세요.",
+   "explanation": "켜는 기준 = 60 − 2 = 58 °C입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 문제의 히터는 몇 °C 이상에서 꺼질까요?",
+   "answer": "62",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "목표에 폭을 더하세요.",
+   "explanation": "끄는 기준 = 60 + 2 = 62 °C입니다.\n58~62 °C 사이에서 물 온도가 오르내립니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "비례 상수가 1 °C당 20 %인 비례 제어에서 오차가 3 °C이면 출력은 몇 %일까요?",
+   "answer": "60",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "비례 상수에 오차를 곱하세요.",
+   "explanation": "출력 = 20 × 3 = 60 %입니다.\n오차가 클수록 강하게 동작합니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 문제에서 오차가 6 °C가 되면 계산값은 120 %입니다. 출력의 최댓값이 100 %라면 실제 출력은 몇 %일까요?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "액추에이터가 낼 수 있는 최대치를 넘을 수 있을까요?",
+   "explanation": "액추에이터는 100 %보다 세게 동작할 수 없습니다.\n그래서 계산값이 넘쳐도 출력은 100 %에 머뭅니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "히스테리시스가 없으면 목표 근처에서 기기가 너무 {{1}} 켜지고 꺼집니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "자주",
+      "빈번하게",
+      "잦게"
+     ]
+    }
+   ],
+   "hint": "켜는 기준과 끄는 기준이 같다면 어떻게 될지 생각해 보세요.",
+   "explanation": "목표 한 점을 기준으로 하면 조금만 오르내려도 상태가 바뀝니다.\n폭을 두면 켜고 끄는 횟수가 줄어듭니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "피드백 제어가 개루프 제어보다 나은 점을 설명해 보세요.",
+   "hint": "결과를 재는지 재지 않는지로 비교해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "결과",
+      "측정",
+      "재"
+     ],
+     [
+      "목표"
+     ],
+     [
+      "비교",
+      "오차",
+      "차이"
+     ],
+     [
+      "외부",
+      "변화",
+      "정확",
+      "맞",
+      "달라"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "피드백 제어는 결과를 센서로 계속 재어 목표와 비교하고, 그 오차를 줄이도록 동작을 고칩니다. 그래서 바깥 조건이 바뀌거나 예상과 다르게 움직여도 목표에 정확하게 맞출 수 있습니다."
+  }
+ ]
+}

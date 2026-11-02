@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s2",
+  "track": "nt",
+  "work": "증명",
+  "track_title": "정수론",
+  "chapter": {
+    "id": "math-s2-nt-ch03",
+    "no": 3,
+    "title": "이차잉여"
+  },
+  "lesson": {
+    "id": "math-s2-nt-ch03-l01",
+    "no": 1,
+    "title": "이차잉여와 르장드르 기호",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "정수론",
+      "이차잉여"
+    ],
+    "competition": "KMO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "제곱수가 되는 나머지",
+      "body": [
+        "홀수 소수 p와 p로 나누어떨어지지 않는 a에 대해 x² ≡ a (mod p)가 해를 가지면 a를 mod p의 이차잉여, 해가 없으면 이차비잉여라 합니다.",
+        "mod 11에서 1², 2², …, 10²을 구하면 1, 4, 9, 5, 3, 3, 5, 9, 4, 1이므로 이차잉여는 {1, 3, 4, 5, 9}이고 나머지 {2, 6, 7, 8, 10}은 이차비잉여입니다.",
+        "x²과 (p − x)²이 같으므로 이차잉여는 정확히 (p − 1)/2개, 이차비잉여도 (p − 1)/2개입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "mod 23의 이차잉여(1부터 22 가운데)는 몇 개인가요?",
+      "answer": "11",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(p − 1)/2입니다.",
+      "explanation": "x²과 (p − x)²이 같은 나머지이므로 1², …, ((p − 1)/2)²이 서로 다른 이차잉여를 모두 만듭니다.\n그래서 이차잉여는 (p − 1)/2개입니다.\np = 23이면 11개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "x² ≡ a (mod p)가 해를 가지는 a를 mod p의 이차{{1}}라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "잉여"
+          ]
+        }
+      ],
+      "hint": "제곱의 나머지입니다.",
+      "explanation": "제곱수를 p로 나눈 나머지로 나올 수 있는 값이 있습니다.\n이런 값을 '이차(제곱)의 나머지'라는 뜻으로 부릅니다.\n이것을 이차잉여라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "르장드르 기호",
+      "body": [
+        "르장드르 기호 (a/p)는 a가 이차잉여이면 1, 이차비잉여이면 −1, p | a이면 0입니다.",
+        "mod 11에서 (3/11) = 1, (2/11) = −1입니다. x² ≡ a (mod p)의 해의 개수는 1 + (a/p)입니다(이차잉여면 2개, 아니면 0개).",
+        "르장드르 기호는 곱셈적입니다: (ab/p) = (a/p)(b/p). 그래서 (6/13) = (2/13)(3/13)처럼 소수의 기호로 나누어 계산합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "mod 13의 이차잉여를 모두 구하고 (10/13)을 구하세요.",
+      "steps": [
+        "1², 2², …, 6²을 13으로 나눈 나머지는 1, 4, 9, 3, 12, 10입니다.",
+        "그래서 이차잉여는 {1, 3, 4, 9, 10, 12}입니다.",
+        "10은 이 집합에 있습니다(6² = 36 ≡ 10).",
+        "따라서 (10/13) = 1입니다."
+      ],
+      "answer": "1"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "mod 13의 이차잉여 {1, 3, 4, 9, 10, 12}를 모두 더하면?",
+      "answer": "39",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1 + 3 + 4 + 9 + 10 + 12입니다.",
+      "explanation": "mod 13의 이차잉여는 1², …, 6²의 나머지 1, 4, 9, 3, 12, 10입니다.\n모두 더하면 1 + 3 + 4 + 9 + 10 + 12입니다.\n= 39입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x² ≡ 5 (mod 11)의 해(0 ≤ x < 11) 가운데 작은 것은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "4² = 16입니다.",
+      "explanation": "5는 mod 11의 이차잉여이므로 해가 두 개입니다.\n4² = 16 ≡ 5, 7² = 49 ≡ 5 (mod 11)입니다.\n작은 해는 4입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "이차방정식의 합동",
+      "body": [
+        "ax² + bx + c ≡ 0 (mod p) (p ∤ a, p 홀수)는 완전제곱식으로 바꾸어 (2ax + b)² ≡ b² − 4ac (mod p)가 됩니다. 그래서 판별식 D = b² − 4ac가 이차잉여(또는 0)일 때만 해가 있습니다.",
+        "x² − 3x + 1 ≡ 0 (mod 11): D = 9 − 4 = 5이고 5는 mod 11의 이차잉여이므로 해가 2개입니다(x = 5, 9).",
+        "x² + x + 1 ≡ 0 (mod 5): D = −3 ≡ 2이고 2는 mod 5의 이차잉여가 아니므로(1, 4만 이차잉여) 해가 없습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x² − 3x + 1 ≡ 0 (mod 11)의 해(0 ≤ x < 11)는 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "판별식 5는 mod 11의 이차잉여입니다.",
+      "explanation": "판별식은 D = 9 − 4 = 5이고 5는 mod 11의 이차잉여입니다.\n그래서 해가 2개 있습니다.\n실제로 x = 5, 9입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x² + x + 1 ≡ 0 (mod 5)의 해는 몇 개인가요?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "판별식 −3 ≡ 2입니다.",
+      "explanation": "판별식은 D = 1 − 4 = −3 ≡ 2 (mod 5)입니다.\nmod 5의 이차잉여는 1, 4뿐이라 2는 이차비잉여입니다.\n그래서 해는 0개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "르장드르 기호 (2/11)의 값은?",
+      "answer": "-1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2는 mod 11 이차잉여 {1, 3, 4, 5, 9}에 있나요?",
+      "explanation": "mod 11의 이차잉여는 1, 3, 4, 5, 9입니다.\n2는 여기에 없으므로 이차비잉여입니다.\n그래서 (2/11) = −1입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "x² ≡ a (mod p)가 해를 가지면 a는 이차잉여이고, 홀수 소수 p에는 이차잉여와 이차비잉여가 각각 (p − 1)/2개씩 있습니다.",
+        "르장드르 기호 (a/p)는 1, −1, 0이며 곱셈적이고, x² ≡ a의 해는 1 + (a/p)개입니다.",
+        "이차 합동식 ax² + bx + c ≡ 0은 판별식 b² − 4ac가 이차잉여(또는 0)일 때만 해가 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "x² + x + 1 ≡ 0 (mod 7)의 해(0 ≤ x < 7) 가운데 큰 것은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "판별식 −3 ≡ 4 = 2²입니다.",
+      "explanation": "판별식 D = −3 ≡ 4 (mod 7)은 2²이라 이차잉여이므로 해가 두 개입니다.\nx = 2이면 4 + 2 + 1 = 7, x = 4이면 16 + 4 + 1 = 21로 모두 7의 배수입니다.\n큰 해는 4입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "2x² + 3x + 4 ≡ 0 (mod 7)의 해는 몇 개인가요?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "판별식 9 − 32 = −23 ≡ 5입니다.",
+      "explanation": "판별식은 D = 9 − 32 = −23 ≡ 5 (mod 7)입니다.\nmod 7의 이차잉여는 1, 2, 4이므로 5는 이차비잉여입니다.\n그래서 해는 0개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "홀수 소수 p에 대해 이차잉여가 정확히 (p − 1)/2개임을 증명하세요.",
+      "model_answer": [
+        "이차잉여는 1², 2², …, (p − 1)²의 나머지들이다. x² ≡ (p − x)²이므로 1², …, ((p − 1)/2)²만 보면 된다.",
+        "1 ≤ i < j ≤ (p − 1)/2에서 i² ≡ j²이면 p | (j − i)(j + i)인데 0 < j − i, j + i < p이므로 불가능하다.",
+        "그래서 1², …, ((p − 1)/2)²은 서로 다른 (p − 1)/2개의 나머지이다.",
+        "따라서 이차잉여는 정확히 (p − 1)/2개이다."
+      ],
+      "criteria": [
+        {
+          "text": "절반만 보면 됨을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "서로 다름을 보였다",
+          "points": 3
+        },
+        {
+          "text": "결론을 냈다",
+          "points": 1
+        }
+      ],
+      "hint": "x²과 (p − x)²을 비교하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "ax² + bx + c ≡ 0 (mod p) (p는 홀수 소수, p ∤ a)가 해를 가질 필요충분조건이 b² − 4ac가 이차잉여이거나 0 (mod p)임을 설명하세요.",
+      "model_answer": [
+        "p가 홀수이고 p ∤ a이므로 4a는 mod p에서 역원이 있다. 양변에 4a를 곱해도 해는 같다.",
+        "4a²x² + 4abx + 4ac ≡ 0은 (2ax + b)² ≡ b² − 4ac로 바뀐다.",
+        "x에 대한 해가 있으면 y = 2ax + b는 y² ≡ D의 해이고, 거꾸로 y² ≡ D의 해 y가 있으면 x ≡ (y − b)(2a)⁻¹이 해이다.",
+        "그래서 해가 있을 필요충분조건은 y² ≡ D가 해를 가지는 것, 곧 D가 이차잉여이거나 0인 것이다."
+      ],
+      "criteria": [
+        {
+          "text": "4a를 곱할 수 있음을 밝혔다",
+          "points": 1
+        },
+        {
+          "text": "완전제곱식으로 바꾸었다",
+          "points": 2
+        },
+        {
+          "text": "두 방정식의 해의 대응을 보였다",
+          "points": 2
+        },
+        {
+          "text": "결론을 냈다",
+          "points": 1
+        }
+      ],
+      "hint": "4a를 곱해 완전제곱식을 만드세요."
+    }
+  ]
+}

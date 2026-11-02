@@ -1,0 +1,279 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "design",
+  "work": "풀이",
+  "track_title": "알고리즘 설계",
+  "chapter": {
+    "id": "info-s1-design-ch03",
+    "no": 3,
+    "title": "동적 계획법 유형"
+  },
+  "lesson": {
+    "id": "info-s1-design-ch03-l03",
+    "no": 3,
+    "title": "0/1 배낭",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "알고리즘 설계",
+      "동적 계획법 유형"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "담거나 담지 않거나",
+      "body": [
+        "무게 제한 W인 배낭에 물건을 통째로 담거나 담지 않아서 가치의 합을 최대로 하는 문제가 0/1 배낭입니다. 그리디는 틀릴 수 있어 DP로 풉니다.",
+        "d[c]를 '무게 합이 c 이하일 때 가치 합의 최댓값'으로 두고 물건을 하나씩 고려합니다. 물건 (w, v)를 담으면 c − w 이하로 만든 최댓값에 v를 더하므로 d[c] = max(d[c], d[c − w] + v)입니다.",
+        "물건 (6, 13), (4, 8), (3, 6), (5, 12)이고 W = 7이면 (4, 8)과 (3, 6)을 담아 14가 최대입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "W = 7, 물건 (6, 13), (4, 8), (3, 6), (5, 12)일 때 0/1 배낭의 가치 합 최댓값은?",
+      "answer": "14",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(4, 8)과 (3, 6)을 담아 보세요.",
+      "explanation": "무게 7 이하로 담을 수 있는 조합의 가치를 비교합니다.\n(4, 8) + (3, 6)은 무게 7, 가치 14이고, (6, 13)이나 (5, 12)는 다른 물건과 함께 담을 수 없습니다.\n그래서 14입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "물건을 통째로 담거나 담지 않는 배낭 문제를 {{1}} 배낭 문제라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "0/1",
+            "0-1",
+            "01",
+            "0 1"
+          ]
+        }
+      ],
+      "hint": "담으면 1, 안 담으면 0입니다.",
+      "explanation": "물건마다 담는 것을 1, 담지 않는 것을 0으로 나타낼 수 있습니다.\n쪼개서 일부만 담을 수는 없습니다.\n그래서 0/1 배낭 문제라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "코드로 보기",
+      "body": [
+        "아래 코드는 물건마다 c를 W부터 w까지 거꾸로 돌며 d[c]를 고칩니다. 거꾸로 돌기 때문에 d[c − w]는 아직 이번 물건을 반영하지 않은 값이어서, 같은 물건을 두 번 담지 않습니다.",
+        "물건이 n개이면 O(nW)입니다. 메모리는 d 배열 하나 W + 1칸입니다.",
+        "W = 10이면 같은 물건들로 (6, 13) + (4, 8) = 21이 최대입니다."
+      ],
+      "code": "// 0/1 배낭: d[c]는 무게 합이 c 이하일 때 가치 합의 최댓값\nvector<int> d(W + 1, 0);\nfor (auto [w, v] : items)\n    for (int c = W; c >= w; c--)         // 큰 c부터 거꾸로\n        d[c] = max(d[c], d[c - w] + v);\n// 답은 d[W]"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "W = 7, items = (6, 13), (4, 8), (3, 6), (5, 12)일 때 아래 코드가 끝난 뒤 d[7]을 구하세요.",
+      "steps": [
+        "(6, 13)까지: d[6] = d[7] = 13입니다.",
+        "(4, 8)까지: d[4..5] = 8이고 d[6], d[7]은 13입니다.",
+        "(3, 6)까지: d[7] = max(13, d[4] + 6) = 14입니다.",
+        "(5, 12)까지: d[7] = max(14, d[2] + 12) = 14입니다."
+      ],
+      "answer": "14",
+      "code": "// 0/1 배낭: d[c]는 무게 합이 c 이하일 때 가치 합의 최댓값\nvector<int> d(W + 1, 0);\nfor (auto [w, v] : items)\n    for (int c = W; c >= w; c--)         // 큰 c부터 거꾸로\n        d[c] = max(d[c], d[c - w] + v);\n// 답은 d[W]"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 d[7]은?",
+      "answer": "14",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "d[4] + 6입니다.",
+      "explanation": "물건을 하나씩 고려하며 d[c] = max(d[c], d[c − w] + v)로 고칩니다.\n(3, 6)을 고려할 때 d[7] = max(13, d[4] + 6) = 14가 되고 이후에는 바뀌지 않습니다.\n그래서 14입니다.",
+      "code": "// 0/1 배낭: d[c]는 무게 합이 c 이하일 때 가치 합의 최댓값\nvector<int> d(W + 1, 0);\nfor (auto [w, v] : items)\n    for (int c = W; c >= w; c--)         // 큰 c부터 거꾸로\n        d[c] = max(d[c], d[c - w] + v);\n// 답은 d[W]"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "W = 10, items = (6, 13), (4, 8), (3, 6), (5, 12)일 때 아래 코드가 끝난 뒤 d[10]은?",
+      "answer": "21",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(6, 13) + (4, 8)을 확인하세요.",
+      "explanation": "무게 10 이하로 담을 수 있는 조합 중 가치가 가장 큰 것을 표가 찾아 줍니다.\n(6, 13) + (4, 8)은 무게 10, 가치 21이고, (5, 12) + (4, 8)은 20, (5, 12) + (3, 6)은 18입니다.\n그래서 21입니다.",
+      "code": "// 0/1 배낭: d[c]는 무게 합이 c 이하일 때 가치 합의 최댓값\nvector<int> d(W + 1, 0);\nfor (auto [w, v] : items)\n    for (int c = W; c >= w; c--)         // 큰 c부터 거꾸로\n        d[c] = max(d[c], d[c - w] + v);\n// 답은 d[W]"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "왜 거꾸로 도는가",
+      "body": [
+        "c를 작은 것부터 앞으로 돌리면, d[c − w]가 이미 이번 물건을 담은 값으로 바뀌어 있을 수 있어 같은 물건을 여러 번 담게 됩니다.",
+        "예를 들어 물건 (2, 3) 하나뿐이고 W = 6일 때 앞으로 돌리면 d[2] = 3, d[4] = 6, d[6] = 9가 되어 같은 물건을 세 번 담은 셈입니다. 0/1 배낭의 답은 3입니다.",
+        "반대로 같은 물건을 여러 번 담아도 되는 문제(무한 배낭)에서는 일부러 앞으로 돌립니다."
+      ],
+      "code": "// 0/1 배낭: d[c]는 무게 합이 c 이하일 때 가치 합의 최댓값\nvector<int> d(W + 1, 0);\nfor (auto [w, v] : items)\n    for (int c = W; c >= w; c--)         // 큰 c부터 거꾸로\n        d[c] = max(d[c], d[c - w] + v);\n// 답은 d[W]"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "물건 (2, 3) 하나뿐이고 W = 6일 때, 아래 코드에서 c를 거꾸로가 아니라 앞으로(c = w부터 W까지) 돌리면 d[6]은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "d[2], d[4], d[6]이 차례로 바뀝니다.",
+      "explanation": "c를 앞으로 돌리면 d[c − w]가 이번 물건을 이미 담은 값이라 같은 물건을 거듭 담습니다.\nd[2] = 3, d[4] = d[2] + 3 = 6, d[6] = d[4] + 3 = 9가 됩니다.\n그래서 9로, 0/1 배낭의 올바른 답 3과 다릅니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "비용 어림",
+      "body": [
+        "0/1 배낭 DP는 물건 n개 × 무게 W칸이므로 O(nW)입니다. n = 100, W = 10⁵이면 10⁷번으로 충분합니다.",
+        "W가 10⁹처럼 크면 표를 만들 수 없어 다른 방법이 필요합니다. 입력 크기를 보고 W가 표로 감당할 만한지 먼저 확인합니다.",
+        "물건 (1, 1), (3, 4), (4, 5), (5, 7)이고 W = 7이면 (3, 4) + (4, 5) = 9가 최대입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "W = 7, items = (1, 1), (3, 4), (4, 5), (5, 7)일 때 아래 코드가 끝난 뒤 d[7]은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(3, 4) + (4, 5)를 확인하세요.",
+      "explanation": "무게 7 이하로 담을 수 있는 조합 중 가치가 가장 큰 것을 표가 찾아 줍니다.\n(3, 4) + (4, 5)는 무게 7, 가치 9이고, (5, 7) + (1, 1)은 8입니다.\n그래서 9입니다.",
+      "code": "// 0/1 배낭: d[c]는 무게 합이 c 이하일 때 가치 합의 최댓값\nvector<int> d(W + 1, 0);\nfor (auto [w, v] : items)\n    for (int c = W; c >= w; c--)         // 큰 c부터 거꾸로\n        d[c] = max(d[c], d[c - w] + v);\n// 답은 d[W]"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "W = 5, items = (2, 3), (3, 4), (4, 5), (5, 6)일 때 아래 코드가 끝난 뒤 d[5]는?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(2, 3) + (3, 4)를 확인하세요.",
+      "explanation": "무게 5 이하로 담을 수 있는 조합 중 가치가 가장 큰 것을 표가 찾아 줍니다.\n(2, 3) + (3, 4)는 무게 5, 가치 7이고, (5, 6)이나 (4, 5)는 혼자뿐입니다.\n그래서 7입니다.",
+      "code": "// 0/1 배낭: d[c]는 무게 합이 c 이하일 때 가치 합의 최댓값\nvector<int> d(W + 1, 0);\nfor (auto [w, v] : items)\n    for (int c = W; c >= w; c--)         // 큰 c부터 거꾸로\n        d[c] = max(d[c], d[c - w] + v);\n// 답은 d[W]"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "0/1 배낭은 d[c]를 '무게 합 c 이하에서 가치 합의 최댓값'으로 두고, 물건마다 d[c] = max(d[c], d[c − w] + v)로 고칩니다.",
+        "c를 W부터 거꾸로 돌려야 같은 물건을 두 번 담지 않습니다. 앞으로 돌리면 무한 배낭이 됩니다.",
+        "시간 O(nW), 메모리 O(W)이므로 W가 표로 감당할 만한 크기인지 먼저 확인합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "W = 5, items = (3, 5), (4, 6), (2, 3)일 때 아래 코드가 끝난 뒤 d[5]는?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(3, 5) + (2, 3)을 확인하세요.",
+      "explanation": "무게 5 이하로 담을 수 있는 조합 중 가치가 가장 큰 것을 표가 찾아 줍니다.\n(3, 5) + (2, 3)은 무게 5, 가치 8이고, (4, 6)은 다른 물건과 함께 담을 수 없습니다.\n그래서 8입니다.",
+      "code": "// 0/1 배낭: d[c]는 무게 합이 c 이하일 때 가치 합의 최댓값\nvector<int> d(W + 1, 0);\nfor (auto [w, v] : items)\n    for (int c = W; c >= w; c--)         // 큰 c부터 거꾸로\n        d[c] = max(d[c], d[c - w] + v);\n// 답은 d[W]"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "물건 50개, W = 1000일 때 0/1 배낭 DP의 연산을 n × W로 어림하면?",
+      "answer": "50000",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "50 × 1000입니다.",
+      "explanation": "0/1 배낭 DP는 물건마다 무게 W칸을 한 번씩 고치므로 연산은 약 n × W입니다.\n50 × 1000입니다.\n= 50000번입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "0/1 배낭의 점화식 d[c] = max(d[c], d[c − w] + v)가 성립하는 이유를 설명하세요.",
+      "model_answer": [
+        "지금까지 고려한 물건들로 무게 c 이하에서 얻는 최댓값이 d[c]이다.",
+        "새 물건 (w, v)를 고려할 때, 담지 않으면 최댓값은 그대로 d[c]이다.",
+        "담으면 나머지 물건들로 무게 c − w 이하를 채워야 하므로 최댓값은 d[c − w] + v이다.",
+        "두 경우 중 큰 값이 새 물건까지 고려한 d[c]이다."
+      ],
+      "criteria": [
+        {
+          "text": "d[c]의 의미를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "담지 않는 경우와 담는 경우를 나누었다",
+          "points": 2
+        },
+        {
+          "text": "큰 값을 고름을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "새 물건을 담을 때와 담지 않을 때를 나누어 보세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "1차원 배열로 0/1 배낭을 풀 때 c를 큰 값부터 거꾸로 돌려야 하는 이유를 설명하세요.",
+      "model_answer": [
+        "d[c]를 고칠 때 d[c − w]는 '이번 물건을 고려하기 전'의 값이어야 같은 물건을 한 번만 담는다.",
+        "c를 큰 것부터 돌리면 d[c − w](c − w < c)는 아직 이번 반복에서 고쳐지지 않았다.",
+        "c를 작은 것부터 돌리면 d[c − w]가 이미 이번 물건을 담은 값으로 바뀌어 있어, 같은 물건을 거듭 담게 된다.",
+        "그래서 0/1 배낭에서는 거꾸로 돌리고, 여러 번 담아도 되는 문제에서만 앞으로 돌린다."
+      ],
+      "criteria": [
+        {
+          "text": "d[c − w]가 이전 값이어야 함을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "거꾸로 돌 때 이를 보장함을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "앞으로 돌 때의 문제를 지적했다",
+          "points": 2
+        }
+      ],
+      "hint": "d[c − w]는 이번 물건을 반영한 값인가요?"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+ "no": 1,
+ "title": "계층 모델과 네트워크 성능",
+ "hours": 5,
+ "after": [],
+ "objectives": [
+  "인터넷 프로토콜 스택과 계층별 역할을 설명할 수 있다.",
+  "지연(전송·전파·큐·처리)과 처리량을 계산할 수 있다.",
+  "대역폭–지연 곱의 의미를 설명하고 계산할 수 있다."
+ ],
+ "checklist": [
+  "인터넷 프로토콜 스택: 응용–전송–네트워크–링크–물리",
+  "OSI 7계층과의 대응(정보통신 통신망 2단원)",
+  "패킷 교환과 축적 전달",
+  "노드 지연 = 처리 + 큐 + 전송 + 전파",
+  "종단 간 처리량 = 경로 중 가장 느린 링크(병목)",
+  "대역폭–지연 곱: 선로 위에 동시에 떠 있는 데이터 양",
+  "프로토콜, 인터페이스, 서비스의 구분"
+ ],
+ "advice": [
+  "이 과목은 '하향식'으로, 사용자가 직접 만나는 응용 계층에서 시작해 아래로 내려갑니다. 첫 단원에서는 각 계층이 위 계층에 무엇을 약속하는지(예: TCP는 순서대로 빠짐없이, IP는 최선 노력으로) 한 줄씩 적어 두면, 이후 단원이 그 약속을 어떻게 지키는지로 정리됩니다.",
+  "대역폭–지연 곱은 이후 TCP 윈도 크기 계산의 핵심입니다. 지구 반대편까지 1 Gbps로 보낼 때 선로 위에 몇 MB가 떠 있는지 계산해 보면, 왜 큰 윈도가 필요한지 4단원에서 바로 이해됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Kurose · Ross, Computer Networking: A Top-Down Approach (번역본 『컴퓨터 네트워킹 하향식 접근』, 장 제목으로 표기)",
+   "part": "Computer Networks and the Internet 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 7 네트워크 기초",
+   "url": "browse.html?c=c4#ch07",
+   "part": "레벨1 복습"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "정보통신 통신망 2단원 교환 방식",
+   "url": "guide.html?lv=2&t=ict&s=comm-networks&u=2"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "대역폭 100 Mbps, 왕복 시간 50 ms인 경로의 대역폭–지연 곱은 몇 KB일까요? (1 KB = 1000 B)",
+   "answer": "625",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "10⁸ × 0.05 = 5 × 10⁶ 비트 = 625 000 B = 625 KB",
+   "hint": "대역폭 × 시간을 바이트로 바꾸세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "10 Mbps, 100 Mbps, 50 Mbps 링크를 차례로 지나는 경로의 종단 간 최대 처리량은 몇 Mbps일까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "가장 느린 링크(병목)가 처리량을 정하므로 10 Mbps입니다.",
+   "hint": "병목 링크입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "통신하는 양쪽이 주고받는 메시지의 형식과 순서, 동작을 정한 규칙을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "프로토콜"
+     ]
+    }
+   ],
+   "explanation": "HTTP, TCP, IP가 모두 프로토콜입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "인터넷에서 각 계층이 위 계층의 데이터에 자기 헤더를 붙여 내려보내는 과정을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "캡슐화"
+     ]
+    }
+   ],
+   "explanation": "받는 쪽은 아래 계층부터 헤더를 벗깁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "networks",
+ "id": "l2-computer-networks-u01"
+}

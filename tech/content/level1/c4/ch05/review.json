@@ -1,0 +1,182 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch05",
+  "no": 5,
+  "title": "메모리 계층"
+ },
+ "review": {
+  "id": "c4-ch05-review",
+  "title": "메모리 계층 복습",
+  "minutes": 10
+ },
+ "questions": [
+  {
+   "type": "question",
+   "id": "r1",
+   "stage": "review",
+   "qtype": "ordering",
+   "prompt": "메모리 계층을 빠른 것부터 배열하세요.",
+   "items": [
+    {
+     "id": "a",
+     "text": "하드 디스크"
+    },
+    {
+     "id": "b",
+     "text": "L1 캐시"
+    },
+    {
+     "id": "c",
+     "text": "레지스터"
+    },
+    {
+     "id": "d",
+     "text": "DRAM"
+    }
+   ],
+   "answer_order": [
+    "c",
+    "b",
+    "d",
+    "a"
+   ],
+   "hint": "CPU 안에 있는 것이 가장 빠릅니다.",
+   "explanation": "CPU에 가까울수록 빠르고 작습니다.",
+   "source_lesson": "c4-ch05-l01"
+  },
+  {
+   "type": "question",
+   "id": "r2",
+   "stage": "review",
+   "qtype": "numeric",
+   "prompt": "3 GHz CPU가 DRAM을 한 번 읽는 데 60 ns가 걸리면 몇 클럭을 기다릴까요?",
+   "answer": "180",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "ns × 3입니다.",
+   "explanation": "1 ns에 3클럭입니다.\n60 × 3 = 180클럭입니다.",
+   "source_lesson": "c4-ch05-l01"
+  },
+  {
+   "type": "question",
+   "id": "r3",
+   "stage": "review",
+   "qtype": "fill_blank",
+   "prompt": "방금 쓴 데이터의 옆 데이터를 곧 쓰는 경향을 {{1}} 지역성이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "공간"
+     ]
+    }
+   ],
+   "hint": "자리(공간)가 가깝습니다.",
+   "explanation": "배열을 차례로 읽는 것이 대표적인 예입니다.",
+   "source_lesson": "c4-ch05-l02"
+  },
+  {
+   "type": "question",
+   "id": "r4",
+   "stage": "review",
+   "qtype": "numeric",
+   "prompt": "캐시 라인 64바이트에 4바이트 정수는 몇 개 들어갈까요?",
+   "answer": "16",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "64를 원소 크기로 나누세요.",
+   "explanation": "64 ÷ 4 = 16개입니다.\n16개마다 한 번 DRAM에 갑니다.",
+   "source_lesson": "c4-ch05-l02"
+  },
+  {
+   "type": "question",
+   "id": "r5",
+   "stage": "review",
+   "qtype": "numeric",
+   "prompt": "적중률 96 %인 캐시에 5000번 접근하면 실패는 몇 번일까요?",
+   "answer": "200",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "실패율을 곱하세요.",
+   "explanation": "실패율 4 %입니다.\n5000 × 0.04 = 200번입니다.",
+   "source_lesson": "c4-ch05-l02"
+  },
+  {
+   "type": "question",
+   "id": "r6",
+   "stage": "review",
+   "qtype": "numeric",
+   "prompt": "적중 시간 1 ns, 실패율 4 %, 실패 비용 50 ns이면 평균 접근 시간은 몇 ns일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "적중 시간 + 실패율 × 실패 비용입니다.",
+   "explanation": "1 + 0.04 × 50 = 3 ns입니다.",
+   "source_lesson": "c4-ch05-l03"
+  },
+  {
+   "type": "question",
+   "id": "r7",
+   "stage": "review",
+   "qtype": "numeric",
+   "prompt": "L2 적중 10 ns, L2 실패율 20 %, DRAM 100 ns이면 L2 평균 접근 시간은 몇 ns일까요?",
+   "answer": "30",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "같은 식을 L2에 쓰세요.",
+   "explanation": "10 + 0.2 × 100 = 30 ns입니다.\nL1의 실패 비용이 됩니다.",
+   "source_lesson": "c4-ch05-l03"
+  },
+  {
+   "type": "question",
+   "id": "r8",
+   "stage": "review",
+   "qtype": "numeric",
+   "prompt": "페이지 4 KB일 때 2 MB 프로그램은 페이지 몇 개일까요? (1 MB = 1024 KB)",
+   "answer": "512",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "KB로 바꾼 뒤 나누세요.",
+   "explanation": "2048 KB ÷ 4 = 512페이지입니다.",
+   "source_lesson": "c4-ch05-l04"
+  },
+  {
+   "type": "question",
+   "id": "r9",
+   "stage": "review",
+   "qtype": "numeric",
+   "prompt": "페이지 4 KB에서 가상 주소 0x7ABC의 페이지 번호는 몇 번일까요?",
+   "answer": "7",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "아래 12비트를 떼세요.",
+   "explanation": "아래 16진 3자리 ABC가 오프셋입니다.\n페이지 번호는 7입니다.",
+   "source_lesson": "c4-ch05-l04"
+  },
+  {
+   "type": "question",
+   "id": "r10",
+   "stage": "review",
+   "qtype": "fill_blank",
+   "prompt": "찾는 페이지가 DRAM에 없는 것을 페이지 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "부재"
+     ]
+    }
+   ],
+   "hint": "페이지가 없다는 뜻입니다.",
+   "explanation": "보조 기억 장치에서 가져와야 해 매우 느립니다.",
+   "source_lesson": "c4-ch05-l04"
+  }
+ ]
+}

@@ -1,0 +1,106 @@
+{
+ "no": 5,
+ "title": "연립일차방정식의 직접법",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "가우스 소거법과 LU 분해의 연산량을 계산할 수 있다.",
+  "부분 피벗팅이 필요한 이유를 설명할 수 있다.",
+  "조건수로 해의 정확도를 추정할 수 있다."
+ ],
+ "checklist": [
+  "가우스 소거와 후진대입, 연산량 약 2n³/3 (곱셈 약 n³/3)",
+  "LU 분해와 여러 우변 벡터에 대한 재사용",
+  "부분 피벗팅 PA = LU",
+  "대칭 양의 정부호 행렬의 촐레스키 분해",
+  "띠 행렬과 삼중대각 행렬(토머스 알고리즘)",
+  "벡터·행렬 노름과 조건수 κ(A) = ‖A‖‖A⁻¹‖",
+  "상대오차 ≤ κ(A) × 입력의 상대오차"
+ ],
+ "advice": [
+  "레벨2 선형대수에서 손으로 하던 가우스 소거를 컴퓨터가 할 때 생기는 문제를 다룹니다. 피벗이 0이 아니더라도 아주 작으면 반올림 오차가 크게 증폭되므로, 각 열에서 절댓값이 가장 큰 원소를 피벗으로 고르는(부분 피벗팅) 것이 표준입니다.",
+  "조건수는 '입력의 작은 오차가 해에서 몇 배로 커질 수 있는가'를 알려 줍니다. 조건수가 10¹⁰이면 배정밀도(유효숫자 약 16자리)에서 해의 약 6자리만 믿을 수 있습니다. 힐베르트 행렬처럼 조건수가 매우 큰 행렬을 풀어 보면 이 경고가 실감 납니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Burden · Faires · Burden, Numerical Analysis (10판)",
+   "part": "6장 Direct Methods for Solving Linear Systems, 7.5절 Error Bounds"
+  },
+  {
+   "kind": "book",
+   "provider": "SIAM",
+   "title": "Trefethen · Bau, Numerical Linear Algebra (심화)",
+   "part": "Lecture 20~23 (가우스 소거와 피벗팅, 촐레스키)"
+  },
+  {
+   "kind": "lecture",
+   "provider": "KOCW",
+   "title": "수치해석 (한양대학교 박종일, 방정식·최적화·데이터 모델링·미분방정식)",
+   "url": "http://www.kocw.net/home/cview.do?mty=p&kemId=1085613",
+   "lang": "한국어",
+   "part": "선형 방정식의 해법"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "[[0, 1], [1, 1]]을 가우스 소거하려면 행 교환(피벗팅)이 필요할까요? (그렇다 1, 아니다 0)",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "첫 피벗이 0",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "A = [[4, 3], [6, 3]]의 LU 분해에서 승수 l₂₁은 {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "3/2",
+      "1.5"
+     ]
+    }
+   ],
+   "explanation": "6/4 = 3/2",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "대각행렬 diag(2, 0.5)의 조건수(2-노름)는?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2 / 0.5 = 4",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "n = 300인 조밀한 행렬의 가우스 소거 곱셈 횟수를 n³/3으로 어림하면?",
+   "answer": "9000000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "300³/3 = 27,000,000/3 = 9,000,000",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "applied",
+ "subject": "numerical",
+ "id": "l3-applied-numerical-u05"
+}

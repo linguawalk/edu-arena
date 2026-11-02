@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "clf-c02",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "네트워크 보안: Security Group vs NACL",
+  "rule_summary_ko": "보안 그룹(Security Group)은 인스턴스 수준의 방화벽으로, 스테이트풀(stateful)해서 인바운드를 허용하면 그에 대한 아웃바운드 응답 트래픽이 자동으로 허용되며, 허용(Allow) 규칙만 설정할 수 있습니다. 네트워크 ACL(NACL)은 서브넷 수준에서 작동하며, 스테이트리스(stateless)해서 인바운드·아웃바운드를 각각 명시적으로 허용해야 하고, 허용과 거부(Deny) 규칙을 모두 설정할 수 있습니다.",
+  "examples": [
+    { "code": "인바운드 443 포트를 보안 그룹에서 허용", "note_ko": "스테이트풀이라 응답 트래픽은 아웃바운드 규칙 없이도 자동 허용됨" },
+    { "code": "인바운드 443 포트를 NACL에서 허용", "note_ko": "스테이트리스라 응답이 나가려면 아웃바운드 규칙도 별도로 명시적으로 허용해야 함" }
+  ],
+  "questions": [
+    {
+      "id": "aws_clf_l2_u4_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "보안 그룹(Security Group)에서 인바운드 443 포트를 허용했을 때, 별도의 아웃바운드 규칙 없이도 응답 트래픽이 나갈 수 있는 이유는?",
+      "options": [
+        "보안 그룹은 스테이트리스(stateless)라서 모든 트래픽을 무조건 허용하기 때문에",
+        "보안 그룹은 스테이트풀(stateful)이라서, 인바운드를 허용하면 그에 대한 응답(아웃바운드) 트래픽이 자동으로 허용되기 때문에",
+        "보안 그룹은 아웃바운드 트래픽을 아예 다루지 않기 때문에",
+        "443 포트는 예외적으로 항상 자동 허용되는 특수 포트이기 때문에"
+      ],
+      "answer": 1,
+      "explanation_ko": "스테이트풀 특성 덕분에 보안 그룹은 응답 트래픽을 위한 별도 규칙이 필요 없습니다.",
+      "concept_tags": ["security_group", "stateful"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_clf_l2_u4_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "네트워크 ACL(NACL)에서 인바운드 443 포트를 허용했는데, 아웃바운드 규칙을 설정하지 않았습니다. 무슨 일이 일어납니까?",
+      "options": [
+        "NACL도 스테이트풀이므로 응답이 자동으로 나간다",
+        "NACL은 스테이트리스(stateless)라서 인바운드·아웃바운드를 각각 명시적으로 허용해야 하므로, 응답 트래픽이 차단될 수 있다",
+        "NACL은 인바운드 규칙만 존재하고 아웃바운드 개념이 없다",
+        "443 포트는 NACL에서 사용할 수 없는 포트이다"
+      ],
+      "answer": 1,
+      "explanation_ko": "NACL은 스테이트리스라서 양방향 모두 명시적으로 규칙을 설정해야 트래픽이 정상적으로 오갈 수 있습니다.",
+      "concept_tags": ["nacl", "stateless"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_clf_l2_u4_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "보안 그룹과 NACL 중, 서브넷 수준에서 작동하는 것은 무엇입니까? (영문 약자로 입력)",
+      "expected_answers": ["NACL"],
+      "explanation_ko": "보안 그룹은 인스턴스 수준, NACL은 서브넷 수준에서 작동합니다.",
+      "concept_tags": ["nacl", "subnet_level"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "aws_clf_l2_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "특정 IP 주소 대역에서 반복적인 포트 스캔 공격이 발생해서, 그 대역 전체를 명시적으로 '거부(Deny)'하고 싶습니다. 어떤 도구를 사용해야 합니까?",
+      "options": [
+        "보안 그룹 — 허용 규칙만 지원하므로 명시적 거부가 불가능하다",
+        "NACL — 허용뿐 아니라 명시적 거부(Deny) 규칙도 지원한다",
+        "둘 다 거부 규칙을 지원하지 않는다",
+        "IAM 정책으로만 네트워크 트래픽을 거부할 수 있다"
+      ],
+      "answer": 1,
+      "explanation_ko": "보안 그룹은 허용 규칙만 가능하고, 특정 IP를 명시적으로 차단하려면 Deny 규칙을 지원하는 NACL을 사용해야 합니다.",
+      "concept_tags": ["nacl", "deny_rule"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_clf_l2_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "AWS가 권장하는 일반적인 사용 방식으로 가장 적절한 것은?",
+      "options": [
+        "보안 그룹을 기본 방어선으로 사용하고(유연하고 관리가 쉬움), NACL은 특정 IP 차단 등 보조적인 서브넷 수준 방어에 사용한다",
+        "NACL만 사용하고 보안 그룹은 절대 사용하지 않는다",
+        "보안 그룹과 NACL은 동시에 사용할 수 없다",
+        "둘 다 사용하지 않고 IAM 정책만으로 네트워크를 보호한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "보안 그룹이 더 유연하고 관리하기 쉬워 주 방어선으로 권장되며, NACL은 보조적인 서브넷 경계 방어로 함께 사용됩니다.",
+      "concept_tags": ["security_group", "nacl", "best_practice"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_clf_l2_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "보안 그룹과 NACL의 규칙 지원 범위 차이를 가장 정확히 설명한 것은?",
+      "options": [
+        "보안 그룹은 허용 규칙만 지원하고, NACL은 허용·거부 규칙을 모두 지원한다",
+        "보안 그룹은 거부 규칙만 지원하고, NACL은 허용 규칙만 지원한다",
+        "둘 다 허용 규칙만 지원한다",
+        "둘 다 거부 규칙만 지원한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "이는 두 도구의 가장 핵심적인 기능 차이 중 하나입니다.",
+      "concept_tags": ["security_group", "nacl"],
+      "difficulty": "intro"
+    }
+  ]
+}

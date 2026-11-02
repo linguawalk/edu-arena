@@ -1,0 +1,96 @@
+{
+  "language": "java",
+  "category": "oop_enterprise",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "오버로딩과 가변 인자",
+  "questions": [
+    {
+      "id": "java_l3_u03_q001",
+      "type": "predict_output",
+      "code": "static int add(int a, int b) {\n    return a + b;\n}\nstatic double add(double a, double b) {\n    return a + b;\n}\n\npublic static void main(String[] args) {\n    System.out.println(add(3, 4));\n    System.out.println(add(3.5, 2.5));\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["7 6", "7 6.0", "오류: add가 중복 정의됨", "34 3.52.5"],
+      "answer": 1,
+      "explanation_en": "Java allows overloading based on parameter types; the compiler picks the matching version. Note the double version prints 6.0 (with decimal), unlike C#'s 6.",
+      "explanation_ko": "Java는 매개변수 타입에 따른 오버로딩을 허용합니다. 컴파일러는 일치하는 버전을 선택합니다. double 버전은 (C#의 6과 달리) 소수점을 포함해 6.0으로 출력되는 점에 유의하세요.",
+      "concept_tags": ["overloading"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l3_u03_q002",
+      "type": "error_finding",
+      "code": "static void greet(String name, String greeting = \"안녕\") {\n    System.out.println(greeting + \", \" + name);\n}",
+      "prompt_en": "What problem does this code have? (Someone copying C#'s default parameter syntax.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (C#의 기본값 매개변수 문법을 그대로 가져온 경우입니다.)",
+      "options": [
+        "greeting 매개변수 이름이 잘못됨",
+        "Java는 C#, C++, VB와 달리 매개변수 기본값 문법을 아예 지원하지 않아서, = \"안녕\" 자체가 문법 오류가 됨",
+        "String 선언 문법 오류",
+        "문제 없음, 기본값 매개변수가 정상 지원됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Java has no syntax for default parameter values at all, unlike C#, C++, and VB; the closest equivalent is method overloading, providing separate versions with and without the extra parameter.",
+      "explanation_ko": "Java는 C#, C++, VB와 달리 매개변수 기본값 문법이 전혀 없습니다. 가장 가까운 대안은 메서드 오버로딩으로, 추가 매개변수가 있는 버전과 없는 버전을 각각 만드는 것입니다.",
+      "concept_tags": ["default_parameter", "overloading"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l3_u03_q003",
+      "type": "fill_blank",
+      "code": "static void greet(String name) {\n    greet(name, \"안녕\");\n}\nstatic void ____(String name, String greeting) {\n    System.out.println(greeting + \", \" + name);\n}",
+      "prompt_en": "Fill in the blank so the two methods form a valid overload pair achieving default-parameter-like behavior.",
+      "prompt_ko": "두 메서드가 유효한 오버로딩 쌍이 되어 기본값 매개변수와 비슷한 효과를 내도록 빈칸을 채우세요.",
+      "options": ["greet", "greetWith", "greeting", "call"],
+      "answer": 0,
+      "explanation_en": "Reusing the name greet for both versions creates an overload; calling greet(name) with one argument delegates to the two-argument version with a hardcoded default.",
+      "explanation_ko": "두 버전 모두 greet라는 이름을 재사용하면 오버로딩이 됩니다. 인자 하나로 greet(name)을 호출하면 고정된 기본값과 함께 두 인자 버전으로 위임됩니다.",
+      "concept_tags": ["overloading", "default_parameter"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l3_u03_q004",
+      "type": "predict_output",
+      "code": "static int sum(int... nums) {\n    int total = 0;\n    for (int n : nums) {\n        total += n;\n    }\n    return total;\n}\n\npublic static void main(String[] args) {\n    System.out.println(sum(1, 2, 3));\n    System.out.println(sum(1, 2, 3, 4, 5));\n}",
+      "prompt_en": "What is printed? (int... is a varargs parameter, accepting any number of arguments.)",
+      "prompt_ko": "출력 결과는? (int...는 몇 개의 인자든 받을 수 있는 가변 인자 매개변수입니다.)",
+      "options": ["6 15", "3 5", "오류", "6 5"],
+      "answer": 0,
+      "explanation_en": "varargs lets sum accept any number of int arguments, treating them internally as an array; sum(1,2,3)=6 and sum(1,2,3,4,5)=15.",
+      "explanation_ko": "가변 인자는 sum이 몇 개의 int 인자든 받을 수 있게 하며, 내부적으로는 배열로 취급됩니다. sum(1,2,3)=6이고 sum(1,2,3,4,5)=15입니다.",
+      "concept_tags": ["varargs"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l3_u03_q005",
+      "type": "predict_output",
+      "code": "static int sum(int... nums) {\n    int total = 0;\n    for (int n : nums) {\n        total += n;\n    }\n    return total;\n}\n\npublic static void main(String[] args) {\n    System.out.println(sum());\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "오류", "null", "빈 배열"],
+      "answer": 0,
+      "explanation_en": "varargs can be called with zero arguments, treated as an empty array; the loop never runs, so total stays 0.",
+      "explanation_ko": "가변 인자는 인자 없이도 호출할 수 있으며, 빈 배열로 취급됩니다. 반복문이 한 번도 실행되지 않아 total은 0으로 유지됩니다.",
+      "concept_tags": ["varargs"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l3_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "메서드 오버로딩", "definition": "같은 이름, 다른 매개변수로 여러 버전을 정의하는 기능" },
+        { "term": "기본값 매개변수의 부재", "definition": "Java에는 C#/C++/VB의 = 기본값 문법이 없다는 사실" },
+        { "term": "가변 인자 (int... nums)", "definition": "몇 개의 인자든 받아 배열처럼 다루는 매개변수" },
+        { "term": "오버로딩을 통한 대체", "definition": "기본값 대신 매개변수 개수가 다른 오버로드를 겹겹이 만들어 비슷한 효과를 내는 관용구" }
+      ],
+      "explanation_en": "Because Java lacks default parameters, overloading (often with one method delegating to another) is the idiomatic replacement — a pattern worth recognizing when reading Java library code.",
+      "explanation_ko": "Java에는 기본값 매개변수가 없기 때문에, 오버로딩(흔히 한 메서드가 다른 메서드에 위임하는 방식)이 관용적인 대체 방법입니다. Java 라이브러리 코드를 읽을 때 알아둘 만한 패턴입니다.",
+      "concept_tags": ["overloading", "default_parameter", "varargs"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "cisco",
+  "exam": "ccna-200-301",
+  "level": 6,
+  "unit": 4,
+  "unit_title": "구성 관리 도구: Ansible과 Terraform",
+  "rule_summary_ko": "Ansible은 에이전트 없이(agentless) SSH로 대상 장치에 직접 접속해서 설정을 밀어넣는(push) 방식의 구성 관리 도구로, YAML 플레이북에 '어떻게(how)' 할지를 절차적으로 기술합니다. Terraform은 마찬가지로 에이전트가 필요 없지만, '무엇을(what, 최종 원하는 상태)'을 선언형(HCL)으로 기술하면 그 상태에 도달하는 방법은 도구가 알아서 계산해줍니다. 실무에서는 흔히 Terraform으로 인프라 자체를 프로비저닝(생성)한 뒤, Ansible로 그 위에서 실행되는 소프트웨어·설정을 관리하는 방식으로 두 도구를 함께 사용합니다.",
+  "examples": [
+    { "code": "Ansible: SSH로 접속해서 특정 VLAN을 생성하는 명령을 순서대로 실행", "note_ko": "절차적(procedural) — '어떻게' 할지를 단계별로 기술" },
+    { "code": "Terraform: \"이런 서버 3대와 네트워크가 존재해야 한다\"고 선언", "note_ko": "선언적(declarative) — '무엇을' 원하는지만 기술하면 나머지는 도구가 처리" }
+  ],
+  "questions": [
+    {
+      "id": "ccna_l6_u4_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Ansible이 대상 장치에 접속해서 설정을 적용하는 방식은?",
+      "options": [
+        "에이전트 없이(agentless) SSH를 통해 직접 접속해서 설정을 밀어넣는(push) 방식",
+        "각 장치에 별도의 에이전트 소프트웨어를 반드시 설치해야 한다",
+        "장치가 스스로 Ansible 서버에 주기적으로 접속해서 설정을 가져온다(pull 방식과 혼동)",
+        "Ansible은 원격 장치에 전혀 접속하지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "에이전트리스·SSH 기반·푸시 방식이 Ansible의 핵심 특징입니다.",
+      "concept_tags": ["ansible_agentless_push"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l6_u4_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Terraform이 사용하는 '선언적(declarative)' 접근 방식이 의미하는 것은?",
+      "options": [
+        "원하는 최종 상태(무엇을)만 기술하면, 그 상태에 도달하기 위한 구체적인 단계(어떻게)는 도구가 알아서 계산한다",
+        "모든 단계를 순서대로 하나하나 직접 기술해야 한다(절차적 방식과 혼동)",
+        "선언적 방식은 최종 상태를 전혀 정의하지 않는다",
+        "Terraform은 선언적 접근을 지원하지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "\"어떻게\"가 아니라 \"무엇을\"에 집중하는 것이 선언적 접근의 핵심입니다.",
+      "concept_tags": ["terraform_declarative"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l6_u4_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Ansible(절차적)과 Terraform(선언적)의 접근 방식 차이는?",
+      "options": [
+        "Ansible은 '어떻게(how)' 할지를 단계별로 기술하고, Terraform은 '무엇을(what)' 원하는지 최종 상태만 기술한다",
+        "둘 다 완전히 동일한 방식으로 동작한다",
+        "Ansible이 선언적이고 Terraform이 절차적이다(설명이 반대)",
+        "이 둘은 자동화 도구가 아니다"
+      ],
+      "answer": 0,
+      "explanation_ko": "절차적 vs 선언적이 두 도구의 철학적 차이를 가장 잘 나타내는 구분입니다.",
+      "concept_tags": ["procedural_vs_declarative"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l6_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Terraform과 Ansible을 실무에서 함께 사용하는 일반적인 방식은?",
+      "options": [
+        "Terraform으로 서버·네트워크 같은 인프라 자체를 먼저 생성(프로비저닝)한 뒤, Ansible로 그 위에서 실행될 소프트웨어와 설정을 관리한다",
+        "두 도구는 서로 완전히 대체 관계라 함께 사용할 이유가 없다",
+        "Ansible로 인프라를 생성하고 Terraform으로 소프트웨어를 설정한다(역할이 반대)",
+        "이 두 도구는 함께 사용할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "'인프라 생성(Terraform) + 그 위의 설정 관리(Ansible)'가 흔한 조합 패턴입니다.",
+      "concept_tags": ["terraform_ansible_combination"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l6_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Ansible 플레이북을 작성할 때 사용하는 데이터 형식(언어)은?",
+      "options": ["YAML — 사람이 읽기 쉬운 형식으로 작업을 순서대로 기술", "HCL(Terraform과 혼동)", "JSON만 사용 가능", "Ansible은 별도의 언어 없이 자연어로 작성한다"],
+      "answer": 0,
+      "explanation_ko": "YAML의 간결한 문법이 Ansible의 학습 곡선을 낮춰주는 요인 중 하나입니다.",
+      "concept_tags": ["ansible_yaml"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l6_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "parameter_note": "",
+      "prompt_ko": "네트워크 자동화 도구(Ansible, Terraform 등)를 도입하는 근본적인 목적은?",
+      "options": [
+        "반복적인 수작업 설정을 코드로 대체해서, 일관성을 높이고 사람의 실수를 줄이며 대규모 인프라를 효율적으로 관리하기 위해",
+        "이런 도구들은 네트워크 엔지니어의 역할을 완전히 없애기 위해 존재한다",
+        "자동화 도구는 소규모 네트워크에서만 의미가 있다",
+        "이런 도구들은 실질적인 이점 없이 복잡함만 더한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "일관성·속도·확장성이 네트워크 자동화 전반의 공통된 가치 제안입니다.",
+      "concept_tags": ["automation_tools_purpose"],
+      "difficulty": "practice"
+    }
+  ]
+}

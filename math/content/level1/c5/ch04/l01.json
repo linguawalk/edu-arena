@@ -1,0 +1,328 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch04",
+    "no": 4,
+    "title": "조건부확률"
+  },
+  "lesson": {
+    "id": "c5-ch04-l01",
+    "no": 1,
+    "title": "조건부확률",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "확률통계"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "조건부확률",
+      "body": [
+        "사건 A가 일어났을 때 B가 일어날 확률을 P(B|A)로 쓰고 P(B|A) = P(A ∩ B)/P(A)입니다.",
+        "A를 새로운 표본공간으로 보고 그 안에서 B의 비율을 구하는 것과 같습니다.",
+        "왜 P(A)로 나눌까요? 'A가 일어났다'는 정보를 알게 되면 가능한 결과가 A 안으로 좁혀집니다. 이제 A가 새로운 전체가 되고, 그 안에서 B도 일어나는 부분은 A ∩ B입니다. 그래서 전체에 대한 비율이 아니라 A에 대한 비율 P(A ∩ B)/P(A)를 구합니다. 경우의 수로 쓰면 n(A ∩ B)/n(A)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "P(A) = 0.5, P(A ∩ B) = 0.2일 때 P(B|A)는?",
+      "answer": "0.4",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": null,
+      "explanation": "P(B|A) = P(A ∩ B)/P(A)\n= 0.2/0.5\n= 0.4\n원리: A를 새로운 전체로 보고 그 안에서 B의 비율을 구함"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "주사위를 던져 짝수가 나왔을 때, 그 눈이 4 이상일 확률은? (기약분수로)",
+      "answer": "2/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "조건 '짝수': {2, 4, 6}의 3가지가 새로운 전체\n그중 4 이상: {4, 6}의 2가지\nP = 2/3"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "표로 보는 조건부확률",
+      "body": [
+        "어느 반 100명 중 남학생 60명(안경 20명), 여학생 40명(안경 10명)입니다. 조건이 되는 행이나 열만 보면 됩니다.",
+        "표에서 조건부확률을 구할 때는 조건에 해당하는 행이나 열만 보고 나머지는 가립니다. '안경 쓴 학생 중'이면 안경 쓴 30명이 새 전체이고, 그중 여학생 10명의 비율 10/30을 구합니다. 100명 전체를 분모로 쓰는 것이 가장 흔한 실수입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "주사위 두 개를 던져 적어도 한 개가 6일 때, 두 눈의 합이 10 이상일 확률을 구하세요.",
+      "steps": [
+        "조건: 적어도 한 개가 6 → 11가지",
+        "그중 합이 10 이상: (4,6), (6,4), (5,6), (6,5), (6,6) → 5가지",
+        "P = 5/11",
+        "원리: 조건에 해당하는 11가지가 새로운 전체"
+      ],
+      "answer": "5/11"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "안경을 쓴 학생 중 한 명을 고를 때 여학생일 확률은? (기약분수로)",
+      "answer": "1/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "조건 '안경 쓴 학생': 20 + 10 = 30명이 새로운 전체\n그중 여학생 10명\nP = 10/30 = 1/3\n주의: 분모는 100명이 아니라 30명"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "여학생 중 한 명을 고를 때 안경을 썼을 확률은? (기약분수로)",
+      "answer": "1/4",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "조건 '여학생' 40명이 새로운 전체\n그중 안경 쓴 학생 10명\nP = 10/40 = 1/4\n확인: 앞 문제와 분모가 달라 값이 다름"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "꺼낸 공을 넣지 않을 때",
+      "body": [
+        "첫 번째 결과가 주머니 속을 바꾸므로 두 번째 확률은 첫 번째 결과에 따라 달라집니다. 흰 공 3개, 검은 공 2개에서 차례로 꺼냅니다.",
+        "꺼낸 공을 다시 넣지 않으면 두 번째 꺼낼 때 주머니 속 공의 수와 구성이 첫 번째 결과에 따라 달라집니다. 흰 공을 먼저 꺼냈다면 흰 공 2개, 검은 공 2개가 남아 두 번째에 흰 공일 확률은 2/4입니다. 조건부확률은 '바뀐 상황에서의 확률'입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "빨간 공 4개, 파란 공 2개에서 넣지 않고 두 번 꺼낼 때, 첫 번째가 파란 공이면 두 번째가 빨간 공일 확률은?",
+      "steps": [
+        "첫 번째에 파란 공을 꺼내면 남은 공: 빨강 4, 파랑 1",
+        "모두 5개 중 빨강 4개",
+        "P = 4/5",
+        "원리: 첫 번째 결과로 바뀐 주머니에서 계산"
+      ],
+      "answer": "4/5"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "첫 번째가 흰 공일 때 두 번째도 흰 공일 확률은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "첫 번째에 흰 공을 꺼내면 남은 공: 흰 2, 검 2\n두 번째에 흰 공일 확률 2/4\n= 1/2\n원리: 넣지 않고 꺼내면 두 번째 확률은 첫 번째 결과에 따라 달라집니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "첫 번째가 검은 공일 때 두 번째가 흰 공일 확률은? (기약분수로)",
+      "answer": "3/4",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "첫 번째에 검은 공을 꺼내면 남은 공: 흰 3, 검 1\n두 번째에 흰 공일 확률\n= 3/4\n원리: 조건(첫째가 검은 공)이 주머니 속 구성을 바꿉니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "P(A|B)와 P(B|A)",
+      "body": [
+        "두 조건부확률은 분모가 달라 일반적으로 같지 않습니다.",
+        "P(A|B)는 B 중에서 A의 비율, P(B|A)는 A 중에서 B의 비율입니다. 분자 P(A ∩ B)는 같지만 분모가 달라 값이 다릅니다. '비가 오면 길이 젖을 확률'과 '길이 젖었으면 비가 왔을 확률'이 다른 것과 같습니다. 두 조건부확률을 혼동하는 것은 뉴스나 통계 해석에서도 자주 일어나는 실수입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "P(A) = 0.4, P(B) = 0.5, P(A ∩ B) = 0.2일 때 P(A|B)는?",
+      "answer": "0.4",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "분모는 조건인 B의 확률입니다.",
+      "explanation": "P(A|B) = P(A ∩ B)/P(B)\n= 0.2/0.5\n= 0.4\n원리: P(A|B)는 B를 새로운 전체로 보고 그 안에서 A의 비율을 구합니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 조건에서 P(B|A)는?",
+      "answer": "0.5",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "분모는 조건인 A의 확률입니다.",
+      "explanation": "P(B|A) = P(A ∩ B)/P(A)\n= 0.2/0.4\n= 0.5 (P(A|B) = 0.4와 다름)\n주의: 조건이 A인지 B인지에 따라 분모가 달라집니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "'~일 때', '~ 중에서'라는 말이 나오면 그 조건이 새로운 전체가 됩니다.",
+        "문장에서 조건을 찾는 연습이 중요합니다. '~일 때', '~ 중에서', '~라는 것을 알았을 때' 뒤에 오는 내용이 새로운 표본공간입니다. 조건을 표본공간으로 놓고, 그 안의 경우를 직접 세면 공식 없이도 풀 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "자녀가 둘인 가정에서 적어도 한 명이 딸일 때, 둘 다 딸일 확률을 구하세요.",
+      "steps": [
+        "표본공간: (아,아), (아,딸), (딸,아), (딸,딸)",
+        "조건: 적어도 한 명이 딸 → 3가지",
+        "그중 둘 다 딸: 1가지",
+        "P = 1/3 (첫째가 딸이라는 조건이면 1/2로 달라짐)"
+      ],
+      "answer": "1/3"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "동전 두 개를 던져 적어도 하나가 앞면일 때 둘 다 앞면일 확률은? (기약분수로)",
+      "answer": "1/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "조건에 맞는 경우만 새 전체로 보세요.",
+      "explanation": "조건 '적어도 하나 앞면': HH, HT, TH의 3가지\n그중 둘 다 앞면: HH 1가지\nP = 1/3\n원리: 조건에 해당하는 경우만 새로운 전체(표본공간)로 보고 그 안에서 비율을 구합니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "주사위 두 개를 던져 눈의 합이 8일 때 두 눈이 같을 확률은? (기약분수로)",
+      "answer": "1/5",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "합이 8인 순서쌍을 나열하세요.",
+      "explanation": "조건 '합이 8': (2,6), (3,5), (4,4), (5,3), (6,2)의 5가지\n그중 두 눈이 같음: (4,4) 1가지\nP = 1/5"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "자녀가 둘인 가정에서 첫째가 아들일 때 둘 다 아들일 확률은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "첫째가 아들인 경우만 보세요.",
+      "explanation": "조건 '첫째가 아들': (아,아), (아,딸)의 2가지\n그중 둘 다 아들: 1가지\nP = 1/2\n비교: '적어도 한 명이 아들'이라는 조건이면 1/3로 달라집니다."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "1부터 10까지의 카드 중 뽑은 수가 짝수일 때 4의 배수일 확률은? (기약분수로)",
+      "answer": "2/5",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "짝수만 새 전체로 보세요.",
+      "explanation": "조건 '짝수': 2, 4, 6, 8, 10의 5가지\n그중 4의 배수: 4, 8의 2가지\nP = 2/5\n원리: 조건에 해당하는 경우만 새로운 전체(표본공간)로 보고 그 안에서 비율을 구합니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "P(A|B) = 0.3, P(B) = 0.5일 때 P(A ∩ B)는?",
+      "answer": "0.15",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "정의식을 P(A ∩ B)에 대해 푸세요.",
+      "explanation": "조건부확률의 정의를 변형: P(A ∩ B) = P(B) × P(A|B)\n= 0.5 × 0.3\n= 0.15\n확인: 0.15 ÷ 0.5 = 0.3으로 P(A|B)가 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "P(A|B) = 0.3일 때 P(Aᶜ|B)는?",
+      "answer": "0.7",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "조건부확률에도 여사건의 성질이 성립합니다.",
+      "explanation": "B가 일어났을 때 A가 일어나거나 일어나지 않거나 둘 중 하나\nP(A|B) + P(Aᶜ|B) = 1\nP(Aᶜ|B) = 0.7"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "과학을 좋아하는 학생 15명 중 수학도 좋아하는 학생이 12명입니다. 과학을 좋아하는 학생 중 한 명을 고를 때 수학도 좋아할 확률은? (기약분수로)",
+      "answer": "4/5",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "과학을 좋아하는 학생만 보세요.",
+      "explanation": "조건 '과학을 좋아함' 15명이 새로운 전체\n그중 수학도 좋아함 12명\nP = 12/15 = 4/5\n원리: 조건에 해당하는 경우만 새로운 전체(표본공간)로 보고 그 안에서 비율을 구합니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "조건부확률 P(B|A)에서 '표본공간이 줄어든다'는 말의 뜻을 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "A"
+          ],
+          [
+            "새로운",
+            "전체",
+            "표본공간"
+          ],
+          [
+            "비율"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "A가 이미 일어났다는 조건이 붙으면 A에 속하지 않는 결과는 생각할 필요가 없어집니다. 그래서 A를 새로운 전체로 보고, 그 안에서 B가 차지하는 비율 P(A ∩ B)/P(A)를 구하는 것입니다."
+    }
+  ]
+}

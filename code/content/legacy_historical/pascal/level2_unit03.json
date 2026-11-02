@@ -1,0 +1,91 @@
+{
+  "language": "pascal",
+  "category": "legacy_historical",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "var 매개변수",
+  "questions": [
+    {
+      "id": "pascal_l2_u03_q001",
+      "type": "predict_output",
+      "code": "procedure ModifyByValue(x: Integer);\nbegin\n  x := 100;\nend;\n\nvar\n  a: Integer;\nbegin\n  a := 5;\n  ModifyByValue(a);\n  writeln(a);\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "100", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "By default, Pascal passes parameters by value; changing x inside the procedure doesn't affect the original a, which stays 5.",
+      "explanation_ko": "기본적으로 Pascal은 매개변수를 값으로 전달합니다. 프로시저 안에서 x를 바꿔도 원본 a에는 영향이 없어 5로 유지됩니다.",
+      "concept_tags": ["pass_by_value"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l2_u03_q002",
+      "type": "predict_output",
+      "code": "procedure ModifyByRef(var x: Integer);\nbegin\n  x := 100;\nend;\n\nvar\n  b: Integer;\nbegin\n  b := 5;\n  ModifyByRef(b);\n  writeln(b);\nend.",
+      "prompt_en": "What is printed? (Note: var appears before the parameter type.)",
+      "prompt_ko": "출력 결과는? (매개변수 타입 앞에 var가 붙은 점에 주의하세요.)",
+      "options": ["5", "100", "오류", "0"],
+      "answer": 1,
+      "explanation_en": "var before the parameter type passes it by reference; changing x directly modifies b, making it 100.",
+      "explanation_ko": "매개변수 타입 앞의 var는 이를 참조로 전달합니다. x를 바꾸면 b가 직접 수정되어 100이 됩니다.",
+      "concept_tags": ["var_parameter"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l2_u03_q003",
+      "type": "predict_output",
+      "code": "procedure ModifyByRef(var x: Integer);\nbegin\n  x := 100;\nend;\n\nvar\n  b: Integer;\nbegin\n  b := 5;\n  ModifyByRef(b);\n  writeln(b);\nend.",
+      "prompt_en": "What is printed? (Note: the call site has no special keyword.)",
+      "prompt_ko": "출력 결과는? (호출부에 특별한 키워드가 없는 점에 주의하세요.)",
+      "options": ["5", "100", "오류: 호출부에 var가 없음", "0"],
+      "answer": 1,
+      "explanation_en": "Like VB's ByRef, Pascal's var only needs to appear at the procedure definition; calling ModifyByRef(b) works with no special syntax at the call site.",
+      "explanation_ko": "VB의 ByRef처럼 Pascal의 var는 프로시저 정의에만 필요합니다. ModifyByRef(b) 호출은 호출부에 특별한 문법 없이 동작합니다.",
+      "concept_tags": ["var_parameter"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l2_u03_q004",
+      "type": "predict_output",
+      "code": "procedure Swap(var a, b: Integer);\nvar\n  temp: Integer;\nbegin\n  temp := a;\n  a := b;\n  b := temp;\nend;\n\nvar\n  x, y: Integer;\nbegin\n  x := 1;\n  y := 2;\n  Swap(x, y);\n  writeln(x, ' ', y);\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1 2", "2 1", "오류", "0 0"],
+      "answer": 1,
+      "explanation_en": "var a, b applies to both parameters; Swap exchanges the actual values of x and y via reference, giving 2 1.",
+      "explanation_ko": "var a, b는 두 매개변수 모두에 적용됩니다. Swap은 참조를 통해 x와 y의 실제 값을 교환해서 2 1이 됩니다.",
+      "concept_tags": ["var_parameter"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l2_u03_q005",
+      "type": "fill_blank",
+      "code": "procedure AddOne(____ n: Integer);\nbegin\n  n := n + 1;\nend;\n\nvar\n  count: Integer;\nbegin\n  count := 0;\n  AddOne(count);\n  writeln(count);\nend.\n// count가 1이 되어야 함",
+      "prompt_en": "Fill in the blank with the keyword that makes this parameter modify the caller's variable.",
+      "prompt_ko": "이 매개변수가 호출한 쪽의 변수를 수정하게 만드는 키워드를 빈칸에 채우세요.",
+      "options": ["var", "ref", "out", "byref"],
+      "answer": 0,
+      "explanation_en": "var before a parameter declares it as pass-by-reference, allowing the procedure to modify the caller's original variable.",
+      "explanation_ko": "매개변수 앞의 var는 참조 전달로 선언해서, 프로시저가 호출한 쪽의 원본 변수를 수정할 수 있게 합니다.",
+      "concept_tags": ["var_parameter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l2_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "값 매개변수 (기본값)", "definition": "복사본을 전달해, 프로시저 안에서 바꿔도 원본에 영향이 없는 방식" },
+        { "term": "var 매개변수", "definition": "원본 변수의 참조를 전달 — 정의부에만 var가 필요, 호출부는 불필요" },
+        { "term": "Swap 패턴", "definition": "두 변수의 값을 교환하는 흔한 var 매개변수 활용 예" },
+        { "term": "VB ByRef와의 대응", "definition": "Pascal의 var는 VB의 ByRef와 정확히 같은 규칙(정의부만 표시)을 따름" }
+      ],
+      "explanation_en": "Pascal's var parameter (requiring the keyword only at the procedure definition) established the pattern that VB's ByRef, and later PHP's &$param, would follow — a lineage traceable across this entire curriculum.",
+      "explanation_ko": "프로시저 정의에만 키워드가 필요한 Pascal의 var 매개변수는, VB의 ByRef와 이후 PHP의 &$param이 따르게 될 패턴을 확립했습니다 — 이 커리큘럼 전체에서 추적할 수 있는 계보입니다.",
+      "concept_tags": ["pass_by_value", "var_parameter"],
+      "difficulty": "practice"
+    }
+  ]
+}

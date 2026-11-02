@@ -1,0 +1,96 @@
+{
+ "no": 3,
+ "title": "CMOS 인버터와 논리 게이트",
+ "hours": 6,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "CMOS 인버터의 전압 전달 특성과 잡음 여유를 설명할 수 있다.",
+  "CMOS NAND·NOR 게이트를 풀업·풀다운 망으로 구성할 수 있다.",
+  "동적 전력과 정적 전력을 계산하고 저전력 기법을 설명할 수 있다."
+ ],
+ "checklist": [
+  "CMOS 인버터: pMOS 풀업 + nMOS 풀다운, 정적 전류가 거의 없음",
+  "전압 전달 특성(VTC)과 스위칭 임계 전압",
+  "NAND: nMOS 직렬·pMOS 병렬, NOR: nMOS 병렬·pMOS 직렬",
+  "n입력 정적 CMOS 게이트는 트랜지스터 2n개",
+  "동적 전력 P = αCV²f, 단락 전력, 누설(정적) 전력",
+  "지연 ∝ (부하 커패시턴스 × 전압)/전류, 트랜지스터 크기 조정",
+  "저전력 기법: 전압 낮추기, 클럭 게이팅, 파워 게이팅"
+ ],
+ "advice": [
+  "CMOS 게이트는 '풀업 망과 풀다운 망 가운데 언제나 한쪽만 켜진다'는 원칙 하나로 설계됩니다. 그래서 정상 상태에서 전원에서 접지로 흐르는 전류가 거의 없고, 이것이 CMOS가 디지털 IC를 장악한 이유입니다. NAND와 NOR의 트랜지스터 연결을 직접 그려 보고, NAND가 NOR보다 빠른 이유(직렬 pMOS가 느리기 때문)를 설명할 수 있으면 이 단원의 핵심을 잡은 것입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Weste · Harris, CMOS VLSI Design: A Circuits and Systems Perspective (장 제목으로 표기)",
+   "part": "Introduction, DC and Transient Response, Power 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Rabaey · Chandrakasan · Nikolić, Digital Integrated Circuits (장 제목으로 표기)",
+   "part": "The CMOS Inverter, Designing Combinational Logic Gates in CMOS 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "디지털회로 10단원 논리 소자의 전기적 특성과 하드웨어 기술 언어",
+   "url": "guide.html?lv=2&t=electronics&s=digital-circuits&u=10",
+   "part": "레벨2 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "부하 커패시턴스 10 fF인 게이트가 1 V, 1 GHz에서 매 클럭 한 번씩 스위칭(α = 1)하면 동적 전력은 몇 μW일까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "P = αCV²f = 1 × 10⁻¹⁴ × 1 × 10⁹ = 10⁻⁵ W = 10 μW",
+   "hint": "P = αCV²f입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "2입력 정적 CMOS NAND 게이트에는 트랜지스터가 몇 개 필요할까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "nMOS 2개(직렬)와 pMOS 2개(병렬)로 모두 4개입니다.",
+   "hint": "입력마다 nMOS와 pMOS가 하나씩입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "CMOS 인버터는 출력이 0이나 1로 머물러 있을 때 전원에서 접지로 흐르는 전류가 거의 없어 {{1}} 전력이 매우 작습니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "정적",
+      "대기",
+      "정지"
+     ]
+    }
+   ],
+   "explanation": "다만 미세 공정에서는 누설 전류가 커져 정적 전력도 무시할 수 없게 되었습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electronics",
+ "subject": "integrated-circuits",
+ "id": "l3-electronics-integrated-circuits-u03"
+}

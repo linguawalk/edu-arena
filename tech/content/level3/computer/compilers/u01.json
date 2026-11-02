@@ -1,0 +1,97 @@
+{
+ "no": 1,
+ "title": "언어 처리기 개요",
+ "hours": 4,
+ "after": [],
+ "objectives": [
+  "컴파일러·인터프리터·JIT의 차이를 설명할 수 있다.",
+  "컴파일러의 단계(전단부·후단부)를 순서대로 설명할 수 있다.",
+  "언어 구현 방식이 실행 속도와 이식성에 주는 영향을 설명할 수 있다."
+ ],
+ "checklist": [
+  "컴파일러, 인터프리터, 하이브리드(바이트코드 + 가상 머신)",
+  "JIT 컴파일(자바 가상 머신, 자바스크립트 엔진)",
+  "단계: 어휘 분석 → 구문 분석 → 의미 분석 → 중간 코드 → 최적화 → 코드 생성",
+  "전단부(언어에 의존)와 후단부(기계에 의존), 중간 표현의 역할",
+  "심볼 테이블과 오류 처리",
+  "부트스트래핑",
+  "LLVM 같은 컴파일러 기반 구조"
+ ],
+ "advice": [
+  "같은 프로그램이 C에서는 빠르고 Python에서는 느린 이유, Java가 여러 운영체제에서 그대로 도는 이유는 모두 언어 '구현 방식'의 차이에서 나옵니다. code-arena에서 배운 언어들을 컴파일·인터프리트·JIT 가운데 어디에 속하는지 분류해 보세요. 전단부와 후단부를 나누면 언어 m개와 기계 n개를 m × n이 아니라 m + n개의 부품으로 지원할 수 있다는 점이 LLVM 같은 구조의 핵심입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Aho · Lam · Sethi · Ullman, Compilers: Principles, Techniques, and Tools (일명 드래곤 북, 장 제목으로 표기)",
+   "part": "Introduction 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Nystrom (무료 공개 교재)",
+   "title": "Crafting Interpreters",
+   "url": "https://craftinginterpreters.com/",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "Nand2Tetris (무료 공개 과정)",
+   "title": "From Nand to Tetris — 게이트부터 컴퓨터·컴파일러까지",
+   "url": "https://www.nand2tetris.org/",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "어휘 분석, 구문 분석, 의미 분석, 중간 코드 생성, 최적화, 코드 생성으로 나눈 컴파일러 단계는 모두 몇 개일까요?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "여섯 단계이며, 앞 셋이 분석(전단부), 뒤가 합성(후단부)입니다.",
+   "hint": "나열된 단계를 세세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "실행 중에 자주 쓰이는 부분을 그때그때 기계어로 컴파일해 속도를 높이는 방식을 영문 약어로 {{1}} 컴파일이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "JIT"
+     ]
+    }
+   ],
+   "explanation": "Just-In-Time의 줄임말로, 자바 가상 머신과 자바스크립트 엔진이 씁니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "소스 코드를 미리 번역하지 않고 한 문장씩 해석하며 바로 실행하는 언어 처리기를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "인터프리터"
+     ]
+    }
+   ],
+   "explanation": "실행 시작은 빠르지만 반복 실행은 컴파일된 코드보다 느립니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "compilers",
+ "id": "l3-computer-compilers-u01"
+}

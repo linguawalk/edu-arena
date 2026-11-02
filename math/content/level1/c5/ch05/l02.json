@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch05",
+    "no": 5,
+    "title": "이산확률분포"
+  },
+  "lesson": {
+    "id": "c5-ch05-l02",
+    "no": 2,
+    "title": "기댓값과 분산",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "확률통계"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "기댓값",
+      "body": [
+        "확률변수의 기댓값(평균)은 E(X) = Σ xᵢpᵢ입니다. 여러 번 반복했을 때 평균적으로 기대되는 값입니다.",
+        "왜 확률을 곱해 더할까요? 주사위를 600번 던지면 각 눈이 약 100번씩 나오므로 눈의 합은 약 100 × (1 + 2 + … + 6)이고, 평균은 이를 600으로 나눈 (1 + 2 + … + 6)/6입니다. 이는 각 값에 확률 1/6을 곱해 더한 것과 같습니다. 기댓값은 '무한히 많이 반복했을 때의 평균'입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "주사위 한 개의 눈 X의 기댓값은? (기약분수로)",
+      "answer": "7/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "E(X) = (1 + 2 + 3 + 4 + 5 + 6) × 1/6\n= 21/6\n= 7/2\n원리: 각 값 × 확률을 모두 더합니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "동전 두 개를 던질 때 앞면의 개수의 기댓값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "E(X) = 0 × 1/4 + 1 × 1/2 + 2 × 1/4\n= 0 + 1/2 + 1/2\n= 1\n확인: 동전 하나당 앞면 0.5개씩, 두 개면 1개"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "분산과 표준편차",
+      "body": [
+        "V(X) = E(X²) − {E(X)}². 표준편차 σ(X) = √V(X)입니다. 값이 기댓값에서 얼마나 흩어지는지를 나타냅니다.",
+        "분산은 코스 0에서 배운 '편차의 제곱의 평균'과 같은 개념입니다. 정의대로 계산하면 Σ(xᵢ − m)²pᵢ이지만, 전개해 정리하면 E(X²) − {E(X)}²로 간단해집니다. '제곱의 평균 − 평균의 제곱'이라고 기억하면 됩니다. 표준편차는 분산의 제곱근이라 원래 값과 같은 단위를 가집니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "P(X = 1) = 0.5, P(X = 2) = 0.3, P(X = 3) = 0.2일 때 E(X), V(X)를 구하세요.",
+      "steps": [
+        "E(X) = 0.5 + 0.6 + 0.6 = 1.7",
+        "E(X²) = 0.5 + 1.2 + 1.8 = 3.5",
+        "V(X) = 3.5 − 1.7² = 3.5 − 2.89",
+        "= 0.61"
+      ],
+      "answer": "E(X) = 1.7, V(X) = 0.61"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "동전 두 개를 던질 때 앞면의 개수의 분산은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "E(X²) = 0 × 1/4 + 1 × 1/2 + 4 × 1/4 = 3/2\nV(X) = 3/2 − 1²\n= 1/2"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "주사위 한 개의 눈의 분산은? (기약분수로)",
+      "answer": "35/12",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "E(X²) = (1 + 4 + 9 + 16 + 25 + 36)/6 = 91/6\nV(X) = 91/6 − (7/2)² = 91/6 − 49/4\n= 182/12 − 147/12 = 35/12"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "X가 0과 1을 각각 확률 1/2로 가질 때 σ(X)는? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "E(X) = 1/2, E(X²) = 1/2\nV(X) = 1/2 − 1/4 = 1/4\nσ(X) = √(1/4) = 1/2\n원리: 표준편차는 분산의 양의 제곱근입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "aX + b의 평균과 분산",
+      "body": [
+        "E(aX + b) = aE(X) + b,  V(aX + b) = a²V(X),  σ(aX + b) = |a|σ(X)",
+        "더하는 b는 흩어짐에 영향을 주지 않습니다.",
+        "왜 b는 분산에 영향을 주지 않을까요? 모든 값에 b를 더하면 평균도 b만큼 커져 편차(값 − 평균)는 그대로입니다. 반면 a배 하면 편차도 a배가 되어 편차의 제곱인 분산은 a²배가 됩니다. 시험 점수에 모두 10점을 더해도 성적의 흩어짐은 변하지 않는 것과 같습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "E(X) = 5, V(X) = 4일 때 Y = 3X − 2의 평균과 표준편차를 구하세요.",
+      "steps": [
+        "E(Y) = 3 × 5 − 2 = 13",
+        "V(Y) = 3² × 4 = 36",
+        "σ(Y) = 6",
+        "원리: 빼는 2는 흩어짐에 영향을 주지 않음"
+      ],
+      "answer": "평균 13, 표준편차 6"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "E(X) = 3일 때 E(2X + 1)은?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "E(aX + b) = aE(X) + b\n= 2 × 3 + 1\n= 7\n원리: 평균도 같은 방식으로 변환됩니다.\n원리: 모든 값을 2배 하고 1을 더하면 평균도 같은 변환을 따릅니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "V(X) = 4일 때 V(2X + 1)은?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "V(aX + b) = a²V(X)\n= 2² × 4\n= 16 (더하는 1은 영향 없음)\n원리: 곱하는 수는 흩어짐을 제곱으로 키우고, 더하는 수는 영향이 없습니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "σ(X) = 2일 때 σ(−3X + 5)는?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "σ(aX + b) = |a|σ(X)\n= |−3| × 2\n= 6\n주의: 표준편차는 음수가 될 수 없어 절댓값을 씁니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "게임의 기댓값",
+      "body": [
+        "상금의 기댓값에서 참가비를 빼면 한 번 할 때 기대되는 이익입니다.",
+        "기댓값이 음수인 게임은 한 번은 이길 수 있어도 오래 반복할수록 손해가 쌓입니다. 복권이나 도박의 기댓값이 참가비보다 작은 것이 그 예입니다. 기댓값으로 '장기적으로 유리한가'를 판단할 수 있습니다. 이익의 기댓값이 0인 게임을 공정한 게임이라고 합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "동전 두 개를 던져 앞면이 2개이면 1,000원, 1개이면 400원, 0개이면 0원을 받는 게임의 기댓값과 공정한 참가비를 구하세요.",
+      "steps": [
+        "P = 1/4, 1/2, 1/4",
+        "E = 1000 × 1/4 + 400 × 1/2 + 0 = 250 + 200",
+        "= 450원",
+        "참가비가 450원이면 이익의 기댓값이 0"
+      ],
+      "answer": "450원"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "주사위를 던져 6이 나오면 600원, 아니면 0원을 받는 게임에서 상금의 기댓값은 몇 원일까요?",
+      "answer": "100",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "상금에 확률을 곱하세요.",
+      "explanation": "E = 600 × 1/6 + 0 × 5/6\n= 100원\n원리: 상금 × 확률을 모두 더합니다.\n확인: 600번 하면 6이 약 100번 → 6만 원 ÷ 600번 = 100원"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "참가비가 150원이라면 이익의 기댓값은 몇 원일까요?",
+      "answer": "-50",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "참가비를 빼세요.",
+      "explanation": "이익의 기댓값 = 상금의 기댓값 − 참가비\n100 − 150\n= −50원 (반복할수록 손해)\n원리: 기댓값이 음수이면 오래 할수록 손해가 쌓입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "기댓값은 '가중 평균', 분산은 '제곱의 평균 − 평균의 제곱'입니다.",
+        "기댓값과 분산을 구할 때는 확률분포표에 x, p 옆에 xp와 x²p 열을 추가해 한꺼번에 계산하면 편리합니다. 합을 구하면 E(X)와 E(X²)이 바로 나오고, 분산은 E(X²) − {E(X)}²로 구합니다. 분산이 음수로 나오면 계산이 틀린 것입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "P(X = 0) = 0.2, P(X = 1) = 0.3, P(X = 2) = 0.5일 때 E(X)는?",
+      "answer": "1.3",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "Σ xp",
+      "explanation": "E(X) = 0 × 0.2 + 1 × 0.3 + 2 × 0.5\n= 0.3 + 1.0\n= 1.3\n원리: 기댓값은 값에 확률을 곱해 더한 가중 평균입니다."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 분포에서 V(X)는?",
+      "answer": "0.61",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "E(X²) − {E(X)}²",
+      "explanation": "E(X²) = 0 + 0.3 + 4 × 0.5 = 2.3\nV(X) = 2.3 − 1.3² = 2.3 − 1.69\n= 0.61\n원리: 분산은 제곱의 평균에서 평균의 제곱을 뺍니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "E(X) = 2, E(X²) = 5일 때 V(X)는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "제곱의 평균 − 평균의 제곱",
+      "explanation": "V(X) = E(X²) − {E(X)}²\n= 5 − 2²\n= 1\n원리: 분산은 제곱의 평균에서 평균의 제곱을 뺀 것입니다."
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "V(X) = 3이고 V(aX) = 27 (a > 0)일 때 a는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "V(aX) = a²V(X)",
+      "explanation": "V(aX) = a²V(X) = 3a² = 27\na² = 9, a > 0이므로\na = 3\n원리: 확률변수를 a배 하면 분산은 a²배가 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "E(X) = 10, σ(X) = 2일 때 E(X²)은?",
+      "answer": "104",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "분산 공식을 거꾸로 쓰세요.",
+      "explanation": "V(X) = σ² = 4이고 V(X) = E(X²) − {E(X)}²\nE(X²) = 4 + 10²\n= 104\n원리: E(X²) = V(X) + {E(X)}²"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "기댓값이 무엇을 뜻하는지 주사위를 예로 들어 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "평균"
+          ],
+          [
+            "반복",
+            "여러 번",
+            "많이"
+          ],
+          [
+            "3.5",
+            "7/2"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "기댓값은 시행을 아주 많이 반복했을 때 나온 값들의 평균이 가까워지는 값입니다. 주사위를 많이 던지면 눈의 평균이 3.5에 가까워지므로 기댓값은 3.5입니다. 실제로 3.5가 나오지는 않습니다."
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "language": "cobol",
+  "category": "legacy_historical",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "단락과 PERFORM",
+  "questions": [
+    {
+      "id": "cobol_l2_u02_q001",
+      "type": "predict_output",
+      "code": "PROCEDURE DIVISION.\n    DISPLAY \"START\".\n    PERFORM GREET-PARA.\n    DISPLAY \"END\".\n    STOP RUN.\n\nGREET-PARA.\n    DISPLAY \"HELLO FROM PARAGRAPH\".",
+      "prompt_en": "What is printed, and in what order?",
+      "prompt_ko": "출력 결과는, 그리고 순서는?",
+      "options": [
+        "START, HELLO FROM PARAGRAPH, END",
+        "HELLO FROM PARAGRAPH, START, END",
+        "START, END",
+        "오류"
+      ],
+      "answer": 0,
+      "explanation_en": "PERFORM GREET-PARA jumps to that named paragraph, runs it, then returns to continue right after the PERFORM call — similar to calling a subroutine.",
+      "explanation_ko": "PERFORM GREET-PARA는 그 이름 붙은 단락으로 뛰어가 실행한 뒤, PERFORM 호출 바로 다음으로 돌아와 계속됩니다 — 서브루틴을 호출하는 것과 비슷합니다.",
+      "concept_tags": ["paragraph", "perform_paragraph"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l2_u02_q002",
+      "type": "fill_blank",
+      "code": "PROCEDURE DIVISION.\n    ____ SHOW-MESSAGE.\n    STOP RUN.\n\nSHOW-MESSAGE.\n    DISPLAY \"HI\".",
+      "prompt_en": "Fill in the blank with the keyword that invokes a named paragraph.",
+      "prompt_ko": "이름 붙은 단락을 호출하는 키워드를 빈칸에 채우세요.",
+      "options": ["PERFORM", "CALL", "GOTO", "RUN"],
+      "answer": 0,
+      "explanation_en": "PERFORM (when given a paragraph name rather than VARYING/UNTIL/TIMES) invokes that paragraph once and returns, the COBOL analog of calling a subroutine.",
+      "explanation_ko": "PERFORM은 (VARYING/UNTIL/TIMES가 아니라 단락 이름과 함께 쓰이면) 그 단락을 한 번 실행하고 돌아옵니다. 서브루틴 호출에 대응하는 COBOL의 방식입니다.",
+      "concept_tags": ["perform_paragraph"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cobol_l2_u02_q003",
+      "type": "predict_output",
+      "code": "01 X PIC 9(3).\n...\nPROCEDURE DIVISION.\n    MOVE 5 TO X.\n    PERFORM DOUBLE-X.\n    DISPLAY X.\n    STOP RUN.\n\nDOUBLE-X.\n    COMPUTE X = X * 2.",
+      "prompt_en": "What is printed? (Note: paragraphs share variables with the whole program — no local scope.)",
+      "prompt_ko": "출력 결과는? (단락은 프로그램 전체와 변수를 공유합니다 — 지역 스코프 없음.)",
+      "options": ["010", "005", "오류", "000"],
+      "answer": 0,
+      "explanation_en": "Paragraphs have no local variable scope; X inside DOUBLE-X is the same X as in the main flow, so doubling it there affects the value printed afterward: 5*2=10.",
+      "explanation_ko": "단락에는 지역 변수 스코프가 없습니다. DOUBLE-X 안의 X는 메인 흐름의 X와 같아서, 그곳에서 두 배로 만들면 이후 출력되는 값에도 영향을 줍니다: 5*2=10.",
+      "concept_tags": ["paragraph", "no_local_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cobol_l2_u02_q004",
+      "type": "predict_output",
+      "code": "PROCEDURE DIVISION.\n    PERFORM PARA-A.\n    PERFORM PARA-A.\n    STOP RUN.\n\nPARA-A.\n    DISPLAY \"CALLED\".",
+      "prompt_en": "What is printed? (The same paragraph is invoked twice.)",
+      "prompt_ko": "출력 결과는? (같은 단락이 두 번 호출됩니다.)",
+      "options": [
+        "CALLED, CALLED",
+        "CALLED (한 번만)",
+        "오류",
+        "아무것도 출력되지 않음"
+      ],
+      "answer": 0,
+      "explanation_en": "Each PERFORM call runs the paragraph and returns, allowing it to be reused; calling PARA-A twice prints CALLED twice.",
+      "explanation_ko": "각 PERFORM 호출은 단락을 실행하고 돌아와서, 재사용할 수 있게 합니다. PARA-A를 두 번 호출하면 CALLED가 두 번 출력됩니다.",
+      "concept_tags": ["paragraph", "perform_paragraph"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l2_u02_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "단락 (paragraph)", "definition": "이름이 붙은, 코드의 명명된 구역 — 마침표로 끝남" },
+        { "term": "PERFORM 단락이름", "definition": "단락을 서브루틴처럼 호출하고 반환됨" },
+        { "term": "변수 공유 (지역 스코프 없음)", "definition": "단락이 프로그램 전체와 같은 변수를 사용 — 매개변수 없음" },
+        { "term": "BASIC GOSUB과의 유사성", "definition": "매개변수나 지역 스코프가 없는 단락 호출은 BASIC의 GOSUB/RETURN 패턴과 개념적으로 비슷함" }
+      ],
+      "explanation_en": "COBOL's paragraph-based PERFORM shares the same lack of local scope seen in BASIC's GOSUB — both being primitive forms of code reuse that predate the parameterized functions covered in modern languages.",
+      "explanation_ko": "COBOL의 단락 기반 PERFORM은 BASIC의 GOSUB에서 봤던 것과 같은 지역 스코프의 부재를 공유합니다 — 둘 다 현대 언어에서 다룬 매개변수화된 함수보다 앞선 원시적인 코드 재사용 형태입니다.",
+      "concept_tags": ["paragraph", "perform_paragraph", "no_local_scope"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l2_u02_q006",
+      "type": "predict_output",
+      "code": "01 I PIC 9(2).\n...\nPROCEDURE DIVISION.\n    PERFORM SHOW-HI 3 TIMES.\n    STOP RUN.\n\nSHOW-HI.\n    DISPLAY \"HI\".",
+      "prompt_en": "What is printed? (Combining PERFORM with N TIMES and a paragraph name.)",
+      "prompt_ko": "출력 결과는? (PERFORM을 N TIMES와 단락 이름과 결합합니다.)",
+      "options": [
+        "HI, HI, HI (각 줄에)",
+        "HI (한 번만)",
+        "3",
+        "오류"
+      ],
+      "answer": 0,
+      "explanation_en": "PERFORM ParagraphName N TIMES runs the named paragraph repeatedly a fixed number of times, combining paragraph invocation with the counted-loop pattern.",
+      "explanation_ko": "PERFORM 단락이름 N TIMES는 이름 붙은 단락을 정해진 횟수만큼 반복 실행해서, 단락 호출과 카운팅 반복 패턴을 결합합니다.",
+      "concept_tags": ["perform_paragraph", "perform_times"],
+      "difficulty": "practice"
+    }
+  ]
+}

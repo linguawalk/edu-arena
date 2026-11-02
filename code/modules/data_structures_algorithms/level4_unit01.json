@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 4,
+  "unit": 1,
+  "unit_title": "선형 탐색과 이진 탐색",
+  "questions": [
+    {
+      "id": "dsa_l4_u01_q001",
+      "type": "predict_output",
+      "code": "def linear_search(arr, target):\n    for i, val in enumerate(arr):\n        if val == target:\n            return i\n    return -1\n\nprint(linear_search([5, 2, 8, 1, 9], 8))",
+      "prompt_en": "What is printed? (Linear search checks each element in order.)",
+      "prompt_ko": "출력 결과는? (선형 탐색은 각 요소를 순서대로 확인합니다.)",
+      "options": ["2", "8", "-1", "오류"],
+      "answer": 0,
+      "explanation_en": "8 is found at index 2 (checking index 0, then 1, then 2); linear search works on any array, sorted or not, but is O(n) since it may check every element.",
+      "explanation_ko": "8은 인덱스 2에서 찾습니다(인덱스 0, 1, 2 순서로 확인). 선형 탐색은 정렬 여부와 상관없이 어떤 배열에도 동작하지만, 모든 요소를 확인할 수 있어 O(n)입니다.",
+      "concept_tags": ["linear_search"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l4_u01_q002",
+      "type": "predict_output",
+      "code": "def binary_search(arr, target):\n    low, high = 0, len(arr) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1\n\nsorted_arr = [1, 3, 5, 7, 9, 11, 13, 15]\nprint(binary_search(sorted_arr, 13))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["6", "13", "-1", "오류"],
+      "answer": 0,
+      "explanation_en": "Binary search narrows the range in half each step; 13 is found at index 6 after checking the middle, then the upper half, then narrowing further.",
+      "explanation_ko": "이진 탐색은 매 단계마다 범위를 절반으로 줄입니다. 13은 중간을 확인한 뒤 위쪽 절반을 확인하고, 더 좁혀서 인덱스 6에서 찾습니다.",
+      "concept_tags": ["binary_search"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l4_u01_q003",
+      "type": "error_finding",
+      "code": "def binary_search(arr, target):\n    low, high = 0, len(arr) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1\n\nunsorted = [5, 2, 8, 1, 9]\nprint(binary_search(unsorted, 1))",
+      "prompt_en": "What problem does this code have? (1 IS present in the array — at index 3.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (1은 실제로 배열에 있습니다 — 인덱스 3에.)",
+      "options": [
+        "binary_search 함수 정의 오류",
+        "배열이 정렬되어 있지 않은데 이진 탐색을 사용해서, 실제로는 값이 있는데도 -1(못 찾음)을 조용히 반환함 — 예외 없이 잘못된 결과만 나옴",
+        "target 값이 잘못 전달됨",
+        "문제 없음, 3이 정상적으로 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Binary search's logic (comparing against a midpoint to decide which half to search) only works correctly on sorted data; on an unsorted array, it silently gives the WRONG answer (-1, not found) instead of raising any error — a dangerous, hard-to-detect bug.",
+      "explanation_ko": "이진 탐색의 로직(중간값과 비교해서 어느 절반을 탐색할지 결정)은 정렬된 데이터에서만 올바르게 동작합니다. 정렬되지 않은 배열에서는 어떤 오류도 없이 조용히 잘못된 답(-1, 못 찾음)을 냅니다 — 발견하기 어려운 위험한 버그입니다.",
+      "concept_tags": ["binary_search", "requires_sorted"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l4_u01_q004",
+      "type": "fill_blank",
+      "code": "def binary_search(arr, target):\n    low, high = 0, len(arr) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            ____ = mid + 1\n        else:\n            high = mid - 1\n    return -1\n# arr[mid]가 target보다 작으면, 오른쪽 절반을 탐색해야 함",
+      "prompt_en": "Fill in the blank with the variable that should move up when the middle value is too small.",
+      "prompt_ko": "중간값이 너무 작을 때 위로 이동해야 하는 변수를 빈칸에 채우세요.",
+      "options": ["low", "high", "mid", "arr"],
+      "answer": 0,
+      "explanation_en": "If arr[mid] is less than the target, the target must be in the right half, so low moves past mid to narrow the search range there.",
+      "explanation_ko": "arr[mid]가 target보다 작으면 target은 오른쪽 절반에 있어야 하므로, low가 mid를 지나쳐 이동해 그쪽으로 탐색 범위를 좁힙니다.",
+      "concept_tags": ["binary_search"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l4_u01_q005",
+      "type": "predict_output",
+      "code": "def linear_search_count(arr, target):\n    count = 0\n    for val in arr:\n        count += 1\n        if val == target:\n            return count\n    return -1\n\ndef binary_search_count(arr, target):\n    low, high = 0, len(arr) - 1\n    count = 0\n    while low <= high:\n        count += 1\n        mid = (low + high) // 2\n        if arr[mid] == target:\n            return count\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1\n\narr = list(range(1, 65))\nprint(linear_search_count(arr, 64))\nprint(binary_search_count(arr, 64))",
+      "prompt_en": "What is printed? (Comparing steps needed to find the last element in a 64-element array.)",
+      "prompt_ko": "출력 결과는? (64개 배열에서 마지막 요소를 찾는 데 필요한 단계 수를 비교합니다.)",
+      "options": ["64\\n7", "64\\n64", "7\\n64", "7\\n7"],
+      "answer": 0,
+      "explanation_en": "Linear search must check all 64 elements to find the last one (worst case, O(n)). Binary search takes 7 steps here — close to log2(64)=6, since finding an edge element can take one extra step depending on how the range narrows — still dramatically fewer than 64, and the gap widens further as the array grows (O(log n) vs O(n)).",
+      "explanation_ko": "선형 탐색은 마지막 요소를 찾기 위해 64개 요소를 모두 확인해야 합니다(최악의 경우, O(n)). 이진 탐색은 여기서 7단계가 걸립니다 — log2(64)=6에 가깝지만, 범위가 좁혀지는 방식에 따라 가장자리 요소를 찾을 때는 한 단계가 더 걸릴 수 있습니다. 그래도 64보다 훨씬 적으며, 배열이 커질수록 그 차이는 더 벌어집니다(O(log n) 대 O(n)).",
+      "concept_tags": ["linear_search", "binary_search"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l4_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "각 용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "선형 탐색", "definition": "O(n) — 순서와 상관없이 아무 배열에나 사용 가능" },
+        { "term": "이진 탐색", "definition": "O(log n) — 반드시 정렬된 배열이어야 함" },
+        { "term": "정렬 안 된 배열에 이진 탐색", "definition": "오류 없이 조용히 잘못된 결과를 냄 — 위험한 함정" },
+        { "term": "선택 기준", "definition": "데이터가 이미 정렬돼 있고 자주 검색한다면 이진 탐색, 아니면 선형 탐색" }
+      ],
+      "explanation_en": "Binary search's speed advantage comes with a hidden cost: keeping data sorted (either upfront or after every insertion) — the choice between linear and binary search is really a choice about when to pay the sorting cost.",
+      "explanation_ko": "이진 탐색의 속도 이점에는 숨겨진 대가가 있습니다: 데이터를 정렬된 상태로 유지해야 합니다(처음부터든, 매 삽입 후든). 선형 탐색과 이진 탐색 중 선택은 사실 정렬 비용을 언제 치를지에 대한 선택입니다.",
+      "concept_tags": ["linear_search", "binary_search", "requires_sorted"],
+      "difficulty": "practice"
+    }
+  ]
+}

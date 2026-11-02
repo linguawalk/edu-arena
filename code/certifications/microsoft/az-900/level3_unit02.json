@@ -1,0 +1,111 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "microsoft",
+  "exam": "az-900",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "거버넌스 도구: Policy·RBAC·리소스 잠금",
+  "rule_summary_ko": "역할 기반 액세스 제어(RBAC)는 '누가 무엇을 할 수 있는가'(권한)를 제어합니다. Azure Policy는 리소스가 조직의 규칙(허용된 리전, 필수 태그 등)을 준수하는지 평가하고 강제하는 도구로, 권한이 아니라 리소스의 '상태'를 규제합니다. 리소스 잠금(resource lock)은 CanNotDelete(수정은 가능하지만 삭제 불가)와 ReadOnly(수정·삭제 모두 불가, Reader 권한과 유사) 두 종류가 있으며, RBAC 권한과 무관하게 모든 사용자·역할에 적용됩니다 — 소유자(Owner) 권한이 있어도 잠금을 먼저 해제하지 않으면 삭제할 수 없습니다.",
+  "examples": [
+    { "code": "\"허용된 리전은 East US, West Europe뿐\"이라는 규칙을 조직 전체에 강제", "note_ko": "Azure Policy의 역할 — 리소스의 배치·구성이 규칙을 따르는지 평가·강제" },
+    { "code": "프로덕션 데이터베이스에 CanNotDelete 잠금 적용", "note_ko": "Owner 권한을 가진 사용자도 잠금을 먼저 제거하지 않으면 그 데이터베이스를 삭제할 수 없음" }
+  ],
+  "questions": [
+    {
+      "id": "az900_l3_u2_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "RBAC(역할 기반 액세스 제어)의 핵심 역할은?",
+      "options": [
+        "리소스가 조직의 규칙을 준수하는지 평가한다",
+        "누가(사용자·그룹) 어떤 작업(읽기·쓰기·삭제 등)을 수행할 수 있는지 권한을 제어한다",
+        "리소스의 삭제를 물리적으로 막는다",
+        "비용을 계산한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "RBAC는 '누가 무엇을 할 수 있는가'라는 권한 부여에 초점을 둡니다.",
+      "concept_tags": ["rbac"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "az900_l3_u2_q002",
+      "type": "concept_matching_item",
+      "code": "조직이 \"모든 리소스는 East US 또는 West Europe 리전에만 배포되어야 한다\"는 규칙을 강제하고 싶어함",
+      "prompt_ko": "이 요구사항에 적합한 도구는?",
+      "options": [
+        "RBAC — 특정 사용자의 권한을 제한하면 된다",
+        "Azure Policy — 리소스의 배치(리전 등)가 정해진 규칙을 따르는지 평가·강제한다",
+        "리소스 잠금", "Azure Advisor"
+      ],
+      "answer": 1,
+      "explanation_ko": "이런 '리소스 상태에 대한 규칙 강제'는 누가 접근하든 상관없이 적용되어야 하므로 Azure Policy의 영역입니다.",
+      "concept_tags": ["azure_policy"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "az900_l3_u2_q003",
+      "type": "concept_matching_item",
+      "code": "프로덕션 데이터베이스에 CanNotDelete 잠금이 걸려 있고, 이 리소스에 Owner 역할을 가진 관리자가 삭제를 시도함",
+      "prompt_ko": "이 관리자는 데이터베이스를 삭제할 수 있습니까?",
+      "options": [
+        "그렇다. Owner 권한이 있으면 어떤 잠금도 무시하고 삭제할 수 있다",
+        "아니다. 리소스 잠금은 RBAC 권한과 무관하게 모든 사용자에게 적용되므로, Owner라도 먼저 잠금을 해제해야만 삭제할 수 있다",
+        "잠금은 읽기 작업에만 영향을 준다",
+        "CanNotDelete 잠금은 관리자에게는 적용되지 않는다"
+      ],
+      "answer": 1,
+      "explanation_ko": "리소스 잠금은 RBAC 위에 추가되는 별도의 보호 계층이라, 아무리 높은 권한이 있어도 잠금 자체를 먼저 해제해야 합니다.",
+      "concept_tags": ["resource_lock_overrides_rbac"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "az900_l3_u2_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "CanNotDelete 잠금과 ReadOnly 잠금의 차이는?",
+      "options": [
+        "CanNotDelete는 삭제만 막고 수정은 허용하지만, ReadOnly는 수정과 삭제를 모두 막는다(Reader 권한과 유사한 효과)",
+        "둘은 완전히 동일한 효과를 낸다",
+        "ReadOnly는 삭제만 막고 CanNotDelete는 모든 것을 막는다(설명이 반대)",
+        "CanNotDelete는 읽기도 막는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "CanNotDelete가 더 느슨하고(수정 가능), ReadOnly가 더 엄격합니다(수정도 불가).",
+      "concept_tags": ["cannotdelete_vs_readonly"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "az900_l3_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "리소스 그룹 수준에 리소스 잠금을 적용하면, 그 안에 있는 개별 리소스들은 어떻게 됩니까?",
+      "options": [
+        "개별 리소스에는 아무 영향이 없다",
+        "리소스 그룹의 잠금이 그 안의 모든 개별 리소스에도 상속되어 함께 적용된다",
+        "리소스 그룹 자체만 잠기고 내부 리소스는 삭제할 수 있다",
+        "잠금은 리소스 그룹 수준에서는 적용할 수 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "잠금은 상위 스코프(구독·리소스 그룹)에 적용하면 하위의 모든 리소스로 상속됩니다.",
+      "concept_tags": ["lock_inheritance"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "az900_l3_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "RBAC, Azure Policy, 리소스 잠금 세 가지를 함께 사용하는 것이 권장되는 이유는?",
+      "options": [
+        "셋은 완전히 중복되는 기능이라 하나만 쓰면 충분하다",
+        "각각 서로 다른 계층(누가 할 수 있는가/무엇이 준수되어야 하는가/무엇을 절대 못하게 막을 것인가)을 담당하는 심층 방어(defense-in-depth) 전략이기 때문에",
+        "비용을 줄이기 위해서만 사용한다",
+        "셋 중 하나만 사용하는 것이 항상 더 안전하다"
+      ],
+      "answer": 1,
+      "explanation_ko": "권한(RBAC), 준수(Policy), 절대적 보호(Lock)는 서로 보완적인 다층 거버넌스 전략을 이룹니다.",
+      "concept_tags": ["governance_defense_in_depth"],
+      "difficulty": "challenge"
+    }
+  ]
+}

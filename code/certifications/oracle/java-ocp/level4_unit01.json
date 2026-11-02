@@ -1,0 +1,96 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "java-ocp-17",
+  "level": 4,
+  "unit": 1,
+  "unit_title": "람다 표현식 기초",
+  "rule_summary_ko": "자바의 대표적인 내장 함수형 인터페이스입니다: Function&lt;T,R&gt;(입력을 받아 값 반환, apply), Predicate&lt;T&gt;(참/거짓 판단, test), Supplier&lt;T&gt;(입력 없이 값 생성, get), Consumer&lt;T&gt;(입력을 소비만 함, accept), BiFunction&lt;T,U,R&gt;(두 입력을 받아 값 반환). 람다 표현식이 외부의 지역 변수를 참조(캡처)하려면, 그 변수가 final이거나 '사실상 final(effectively final, 선언 후 재할당되지 않음)'이어야 합니다.",
+  "examples": [
+    { "code": "Function<Integer, Integer> square = x -> x * x;\nsquare.apply(5);", "note_ko": "결과 25 — Function은 입력을 받아 값을 반환하는 함수형 인터페이스" },
+    { "code": "int base = 10;\nbase = 20; // 재할당\nFunction<Integer,Integer> f = x -> x + base;", "note_ko": "컴파일 오류 — base가 재할당되어 더 이상 effectively final이 아니라 람다가 캡처할 수 없음" }
+  ],
+  "questions": [
+    {
+      "id": "java_ocp_l4_u1_q001",
+      "type": "concept_matching_item",
+      "code": "Predicate<String> isEmpty = s -> s.isEmpty();\nSystem.out.println(isEmpty.test(\"\"));",
+      "prompt_ko": "출력 결과는?",
+      "options": ["true", "false", "컴파일 오류", "빈 문자열"],
+      "answer": 0,
+      "explanation_ko": "Predicate<T>는 test() 메서드로 조건을 평가해 boolean을 반환합니다. 빈 문자열의 isEmpty()는 true입니다.",
+      "concept_tags": ["predicate"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l4_u1_q002",
+      "type": "concept_matching_item",
+      "code": "int base = 10;\nbase = 20;\nFunction<Integer, Integer> addBase = x -> x + base;",
+      "prompt_ko": "이 코드를 컴파일하면 어떻게 됩니까?",
+      "options": [
+        "정상적으로 컴파일된다",
+        "컴파일 오류 발생 — base가 재할당되어 effectively final이 아니게 되어, 람다가 이를 캡처할 수 없다",
+        "런타임 예외가 발생한다",
+        "addBase가 항상 10을 더하는 것으로 고정된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "람다는 지역 변수를 값으로 캡처하는데, 그 변수가 이후에 바뀔 수 있다면 일관성이 깨질 수 있어 effectively final 제약이 있습니다.",
+      "concept_tags": ["effectively_final"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_ocp_l4_u1_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "입력값 없이 값을 생성해서 반환하는 함수형 인터페이스는 무엇입니까?(get() 메서드를 가짐) (영문으로 입력)",
+      "expected_answers": ["Supplier"],
+      "explanation_ko": "Supplier<T>는 인자 없이 get()을 호출하면 값을 생성해서 반환합니다.",
+      "concept_tags": ["supplier"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l4_u1_q004",
+      "type": "concept_matching_item",
+      "code": "Consumer<String> printer = s -> System.out.println(\"소비: \" + s);\nprinter.accept(\"hello\");",
+      "prompt_ko": "Consumer 함수형 인터페이스의 특징은?",
+      "options": [
+        "입력을 받아 값을 반환한다",
+        "입력을 받아 어떤 동작을 수행할 뿐, 값을 반환하지 않는다",
+        "입력 없이 값을 반환한다",
+        "boolean만 반환한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "Consumer<T>는 accept(T t) 메서드로 값을 받아 처리(소비)만 하고 아무것도 반환하지 않습니다(void).",
+      "concept_tags": ["consumer"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l4_u1_q005",
+      "type": "concept_matching_item",
+      "code": "BiFunction<Integer, Integer, Integer> add = (a, b) -> a + b;\nSystem.out.println(add.apply(3, 4));",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "4", "7", "컴파일 오류"],
+      "answer": 2,
+      "explanation_ko": "BiFunction<T,U,R>은 두 개의 입력을 받아 하나의 결과를 반환합니다. 3+4=7.",
+      "concept_tags": ["bifunction"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l4_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "람다 표현식이 실제로 구현할 수 있는 인터페이스의 조건은?",
+      "options": [
+        "메서드가 몇 개든 상관없다",
+        "추상 메서드가 정확히 하나뿐인 함수형 인터페이스여야 한다",
+        "인터페이스가 아니라 반드시 클래스여야 한다",
+        "static 메서드만 있는 인터페이스여야 한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "람다는 함수형 인터페이스(추상 메서드가 하나뿐인 인터페이스)의 구현체로만 사용될 수 있습니다.",
+      "concept_tags": ["functional_interface"],
+      "difficulty": "practice"
+    }
+  ]
+}

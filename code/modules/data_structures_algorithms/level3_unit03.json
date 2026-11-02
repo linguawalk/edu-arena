@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "병합 정렬",
+  "questions": [
+    {
+      "id": "dsa_l3_u03_q001",
+      "type": "predict_output",
+      "code": "def merge(left, right):\n    result = []\n    i = j = 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result\n\nprint(merge([1, 5], [2, 8]))",
+      "prompt_en": "What is printed? (merge combines two already-sorted lists into one sorted list.)",
+      "prompt_ko": "출력 결과는? (merge는 이미 정렬된 두 리스트를 하나의 정렬된 리스트로 합칩니다.)",
+      "options": ["[1, 2, 5, 8]", "[1, 5, 2, 8]", "[2, 8, 1, 5]", "오류"],
+      "answer": 0,
+      "explanation_en": "Comparing the fronts of both lists one at a time and taking the smaller each round produces a fully sorted merge: 1, then 2, then 5, then 8.",
+      "explanation_ko": "매번 두 리스트의 맨 앞을 비교해서 더 작은 것을 가져가면 완전히 정렬된 병합 결과가 만들어집니다: 1, 그다음 2, 5, 8.",
+      "concept_tags": ["merge_sort", "merge_step"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l3_u03_q002",
+      "type": "predict_output",
+      "code": "def merge_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    mid = len(arr) // 2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])\n    result = []\n    i = j = 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result\n\nprint(merge_sort([5, 2, 8, 1, 9]))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["[1, 2, 5, 8, 9]", "[9, 8, 5, 2, 1]", "[5, 2, 8, 1, 9]", "오류"],
+      "answer": 0,
+      "explanation_en": "merge_sort recursively splits the array in half until pieces of size 1 (already sorted by definition), then merges pairs back together in sorted order: [1, 2, 5, 8, 9].",
+      "explanation_ko": "merge_sort는 배열을 재귀적으로 절반씩 나눠서 크기 1(정의상 이미 정렬됨)이 될 때까지 쪼갠 뒤, 정렬된 순서로 다시 병합합니다: [1, 2, 5, 8, 9].",
+      "concept_tags": ["merge_sort", "divide_and_conquer"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l3_u03_q003",
+      "type": "fill_blank",
+      "code": "def merge_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    mid = len(arr) ____ 2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])\n    ...\n# 배열을 절반으로 나눠야 함",
+      "prompt_en": "Fill in the blank with the operator that splits the array length into two halves.",
+      "prompt_ko": "배열 길이를 절반으로 나누는 연산자를 빈칸에 채우세요.",
+      "options": ["//", "/", "%", "*"],
+      "answer": 0,
+      "explanation_en": "// (integer division) finds the midpoint as a whole number, needed for slicing the array into left and right halves.",
+      "explanation_ko": "//(정수 나눗셈)는 배열을 왼쪽/오른쪽 절반으로 나누는 데 필요한 정수 형태의 중간점을 찾습니다.",
+      "concept_tags": ["merge_sort", "divide_and_conquer"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l3_u03_q004",
+      "type": "predict_output",
+      "code": "def merge_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    mid = len(arr) // 2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])\n    print(left, right)\n    result = []\n    i = j = 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result\n\nmerge_sort([5, 2, 8, 1])",
+      "prompt_en": "What is the FIRST line printed? (This traces the deepest recursive split first.)",
+      "prompt_ko": "가장 먼저 출력되는 줄은 무엇일까요? (가장 깊은 재귀 분할부터 먼저 추적됩니다.)",
+      "options": ["[5] [2]", "[5, 2] [8, 1]", "[8] [1]", "[2] [5]"],
+      "answer": 0,
+      "explanation_en": "Recursion always goes all the way down before any merging happens; the very first call to fully resolve both halves is merge_sort([5]) and merge_sort([2]), whose parent then prints [5] [2] before that parent itself returns and merges further up.",
+      "explanation_ko": "재귀는 병합이 일어나기 전에 항상 끝까지 내려갑니다. 양쪽을 완전히 해결하는 첫 번째 호출은 merge_sort([5])와 merge_sort([2])이며, 그 부모가 [5] [2]를 출력한 뒤 자신도 반환되어 더 위에서 병합됩니다.",
+      "concept_tags": ["merge_sort", "recursion"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l3_u03_q005",
+      "type": "error_finding",
+      "code": "def merge_sort(arr):\n    mid = len(arr) // 2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])\n    ...\n\nmerge_sort([5, 2, 8])",
+      "prompt_en": "What problem does this code have? (Note: the base case len(arr) <= 1 was removed.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (기저 조건인 len(arr) <= 1이 빠진 점에 주의하세요.)",
+      "options": [
+        "mid 계산 문법 오류",
+        "재귀를 멈추는 기저 조건이 없어서, 빈 배열(len 0)에서도 계속 자신을 호출하다가 결국 재귀 깊이 제한을 초과해 RecursionError가 발생함",
+        "슬라이싱 문법 오류",
+        "문제 없음, 정상적으로 정렬됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Without a base case, the recursion never stops shrinking the array — splitting [] gives arr[:0]=[] and arr[0:]=[] forever, calling merge_sort infinitely and eventually raising RecursionError once Python's call stack limit is hit.",
+      "explanation_ko": "기저 조건이 없으면 재귀는 배열을 줄이는 것을 절대 멈추지 않습니다 — []를 나누면 arr[:0]=[]와 arr[0:]=[]가 영원히 반복되어, Python의 호출 스택 한계에 도달할 때까지 merge_sort를 무한히 호출하다 결국 RecursionError가 발생합니다.",
+      "concept_tags": ["merge_sort", "base_case", "recursion"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l3_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "각 용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "분할 정복 (divide and conquer)", "definition": "문제를 작은 조각으로 나누고, 각각 풀고, 결과를 합치는 전략" },
+        { "term": "기저 조건 (base case)", "definition": "재귀가 더 나누지 않고 멈추는 지점 — 크기 1 이하의 배열" },
+        { "term": "merge", "definition": "이미 정렬된 두 리스트를 하나의 정렬된 리스트로 합치는 단계" },
+        { "term": "O(n log n)", "definition": "병합 정렬의 복잡도 — log n번의 분할 단계, 각 단계마다 O(n) 병합" }
+      ],
+      "explanation_en": "Merge sort's O(n log n) guarantee (even in the worst case) makes it far more reliable for large datasets than bubble/selection sort's O(n²), at the cost of needing extra memory for the merge step.",
+      "explanation_ko": "병합 정렬의 O(n log n) 보장(최악의 경우에도)은 버블/선택 정렬의 O(n²)보다 큰 데이터셋에 훨씬 안정적입니다. 대신 병합 단계에 추가 메모리가 필요하다는 대가가 있습니다.",
+      "concept_tags": ["merge_sort", "divide_and_conquer", "base_case", "merge_step"],
+      "difficulty": "practice"
+    }
+  ]
+}

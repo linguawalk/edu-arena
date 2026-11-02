@@ -1,0 +1,96 @@
+{
+  "language": "rust",
+  "category": "system_low_level",
+  "level": 4,
+  "unit": 3,
+  "unit_title": "제네릭과 트레이트 바운드",
+  "questions": [
+    {
+      "id": "rust_l4_u03_q001",
+      "type": "predict_output",
+      "code": "fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {\n    let mut largest = list[0];\n    for &item in list {\n        if item > largest {\n            largest = item;\n        }\n    }\n    largest\n}\n\nlet numbers = vec![34, 50, 25, 100, 65];\nprintln!(\"{}\", largest(&numbers));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["100", "65", "34", "오류"],
+      "answer": 0,
+      "explanation_en": "largest works for any type T that can be compared and copied; scanning the list, 100 is the greatest value.",
+      "explanation_ko": "largest는 비교와 복사가 가능한 어떤 타입 T에도 동작합니다. 리스트를 훑어보면 가장 큰 값은 100입니다.",
+      "concept_tags": ["generic"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l4_u03_q002",
+      "type": "predict_output",
+      "code": "fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {\n    let mut largest = list[0];\n    for &item in list {\n        if item > largest {\n            largest = item;\n        }\n    }\n    largest\n}\n\nlet chars = vec!['y', 'm', 'a', 'q'];\nprintln!(\"{}\", largest(&chars));",
+      "prompt_en": "What is printed? (Note: the same function is reused for a different type.)",
+      "prompt_ko": "출력 결과는? (같은 함수가 다른 타입에 재사용되는 점에 주의하세요.)",
+      "options": ["a", "y", "m", "오류"],
+      "answer": 1,
+      "explanation_en": "The same generic function works for char without modification, since char also implements PartialOrd and Copy; alphabetically, 'y' is the largest.",
+      "explanation_ko": "char도 PartialOrd와 Copy를 구현하고 있어서, 같은 제네릭 함수가 수정 없이도 char에 동작합니다. 사전순으로 가장 큰 값은 'y'입니다.",
+      "concept_tags": ["generic"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l4_u03_q003",
+      "type": "fill_blank",
+      "code": "fn largest<____>(list: &[T]) -> T {\n    let mut largest = list[0];\n    for &item in list {\n        if item > largest {\n            largest = item;\n        }\n    }\n    largest\n}",
+      "prompt_en": "Fill in the blank with the type parameter declaration, requiring comparability and copyability.",
+      "prompt_ko": "비교 가능(PartialOrd)하고 복사 가능(Copy)해야 한다는 요구사항을 담은 타입 매개변수 선언을 빈칸에 채우세요.",
+      "options": ["T: PartialOrd + Copy", "T", "T: Copy", "type T"],
+      "answer": 0,
+      "explanation_en": "Trait bounds (T: PartialOrd + Copy) restrict which types can be used with T, ensuring > comparison and value copying both work inside the function.",
+      "explanation_ko": "트레이트 바운드(T: PartialOrd + Copy)는 T로 쓰일 수 있는 타입을 제한해서, 함수 안에서 > 비교와 값 복사가 모두 가능하도록 보장합니다.",
+      "concept_tags": ["generic", "trait_bound"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l4_u03_q004",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "제네릭 <T>", "definition": "구체적인 타입 대신 나중에 결정될 타입을 매개변수처럼 다루는 기능" },
+        { "term": "트레이트 바운드", "definition": "제네릭 타입 T가 반드시 특정 트레이트를 구현해야 한다는 제약" },
+        { "term": "PartialOrd", "definition": ">, < 같은 비교 연산자를 지원한다는 것을 나타내는 트레이트" },
+        { "term": "C++ 템플릿과의 차이", "definition": "C++ 템플릿은 사용 시점에 오류가 나지만, Rust는 트레이트 바운드로 정의 시점에 요구사항을 명시함" }
+      ],
+      "explanation_en": "Rust's trait bounds are similar to C++'s templates but check requirements upfront in the function signature, catching mismatches earlier than C++'s more implicit approach.",
+      "explanation_ko": "Rust의 트레이트 바운드는 C++의 템플릿과 비슷하지만, 요구사항을 함수 시그니처에서 미리 명시해 검사합니다. C++의 더 암묵적인 방식보다 문제를 더 일찍 잡아낼 수 있습니다.",
+      "concept_tags": ["generic", "trait_bound"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l4_u03_q005",
+      "type": "error_finding",
+      "code": "fn largest<T>(list: &[T]) -> T {\n    let mut largest = list[0];\n    for &item in list {\n        if item > largest {\n            largest = item;\n        }\n    }\n    largest\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "함수 선언 문법 오류",
+        "T에 아무 제약이 없어서, item > largest처럼 비교 연산이 가능하다는 보장이 없어 컴파일 오류가 발생함",
+        "list[0] 접근 문법 오류",
+        "문제 없음, 모든 타입에서 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Without a trait bound, the compiler cannot assume T supports > comparison; not every possible type implements this, so the compiler rejects the code until a bound like PartialOrd is added.",
+      "explanation_ko": "트레이트 바운드가 없으면 컴파일러는 T가 > 비교를 지원한다고 가정할 수 없습니다. 모든 타입이 이를 구현하는 것은 아니므로, PartialOrd 같은 바운드를 추가하기 전까지는 컴파일이 거부됩니다.",
+      "concept_tags": ["generic", "trait_bound"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l4_u03_q006",
+      "type": "predict_output",
+      "code": "fn print_twice<T: std::fmt::Display>(value: T) {\n    println!(\"{}\", value);\n    println!(\"{}\", value);\n}\n\nprint_twice(42);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["42", "42\\n42", "오류", "4242"],
+      "answer": 1,
+      "explanation_en": "The Display trait bound ensures value can be formatted with {}; print_twice prints it on two separate lines, once per println!.",
+      "explanation_ko": "Display 트레이트 바운드는 value가 {}로 포맷될 수 있음을 보장합니다. print_twice는 println!을 두 번 호출해 각각 다른 줄에 출력합니다.",
+      "concept_tags": ["generic", "trait_bound"],
+      "difficulty": "practice"
+    }
+  ]
+}

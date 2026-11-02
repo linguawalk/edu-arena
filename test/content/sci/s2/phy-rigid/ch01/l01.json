@@ -1,0 +1,542 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s2",
+  "track": "phy-rigid",
+  "work": "풀이",
+  "track_title": "강체와 진동",
+  "chapter": {
+    "id": "sci-s2-phy-rigid-ch01",
+    "no": 1,
+    "title": "강체의 회전"
+  },
+  "lesson": {
+    "id": "sci-s2-phy-rigid-ch01-l01",
+    "no": 1,
+    "title": "관성 모멘트",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "강체",
+      "회전"
+    ],
+    "competition": "KPhO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "회전에서의 질량",
+      "body": [
+        "축을 중심으로 각속도 ω로 도는 강체에서 축과 거리 r인 질량 m의 속력은 rω입니다. 운동 에너지를 모두 더하면 ½(Σmr²)ω²이고, 괄호 안의 양을 관성 모멘트 I라 합니다.",
+        "관성 모멘트는 회전에서 질량의 역할을 합니다. 같은 물체라도 축이 어디냐에 따라 값이 달라지며, 질량이 축에서 멀리 있을수록 커집니다.",
+        "그림의 균일한 막대는 중심축에 대해 ML²/12, 끝축에 대해 ML²/3입니다. 끝축 쪽이 4배 큽니다."
+      ],
+      "figure": {
+        "widget": "geo",
+        "config": {
+          "elements": [
+            {
+              "t": "poly",
+              "pts": [
+                [
+                  -3,
+                  -0.15
+                ],
+                [
+                  3,
+                  -0.15
+                ],
+                [
+                  3,
+                  0.15
+                ],
+                [
+                  -3,
+                  0.15
+                ]
+              ],
+              "hl": true
+            },
+            {
+              "t": "seg",
+              "a": [
+                0,
+                -1.6
+              ],
+              "b": [
+                0,
+                1.6
+              ],
+              "dash": true
+            },
+            {
+              "t": "seg",
+              "a": [
+                -3,
+                -1.6
+              ],
+              "b": [
+                -3,
+                1.6
+              ],
+              "dash": true
+            },
+            {
+              "t": "text",
+              "p": [
+                0.9,
+                1.3
+              ],
+              "s": "중심축"
+            },
+            {
+              "t": "text",
+              "p": [
+                -2.1,
+                1.3
+              ],
+              "s": "끝축"
+            },
+            {
+              "t": "seg",
+              "a": [
+                -3,
+                -0.9
+              ],
+              "b": [
+                3,
+                -0.9
+              ]
+            },
+            {
+              "t": "text",
+              "p": [
+                1.5,
+                -1.3
+              ],
+              "s": "L"
+            }
+          ],
+          "alt": "길이 L, 질량 M인 균일한 막대. 중심을 지나는 회전축(I = ML²/12)과 한쪽 끝을 지나는 회전축(I = ML²/3)이 막대에 수직이다.",
+          "maxh": 170
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "질량이 없는 길이 2 m 막대의 양 끝에 1 kg 공이 하나씩 붙어 있습니다. 막대 중심을 지나고 막대에 수직인 축에 대한 관성 모멘트는 몇 kg·m²인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "각 공은 축에서 1 m입니다.",
+      "explanation": "점질량의 관성 모멘트는 I = Σmr²입니다.\n두 공 모두 축에서 1 m이므로 1 × 1² + 1 × 1²입니다.\n= 2 kg·m²입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "평행축 정리: 질량중심을 지나는 축에 대한 관성 모멘트를 I_cm이라 하면, 그와 평행하고 거리 d인 축에 대한 관성 모멘트는 I = I_cm + {{1}}입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "Md²",
+            "Md^2",
+            "md²",
+            "md^2",
+            "Md2"
+          ]
+        }
+      ],
+      "hint": "질량중심이 축 둘레를 도는 몫이 더해집니다.",
+      "explanation": "강체의 운동은 질량중심의 운동과 질량중심 둘레의 회전으로 나뉩니다.\n질량중심이 축에서 d만큼 떨어져 돌면 Md²이 더해집니다.\n그래서 I = I_cm + Md²입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "자주 쓰는 관성 모멘트",
+      "body": [
+        "균일한 막대(중심축) ML²/12, 얇은 고리(중심축) MR², 원판·원기둥(중심축) MR²/2, 속이 찬 구(지름축) 2MR²/5, 얇은 구 껍질 2MR²/3입니다.",
+        "같은 질량과 반지름이면 고리가 가장 크고(질량이 모두 가장자리에) 구가 가장 작습니다. I = Mk²으로 쓸 때 k를 회전반경이라 합니다.",
+        "얇은 판에서는 수직축 정리 I_z = I_x + I_y가 성립합니다. 원판의 지름축 관성 모멘트는 MR²/2의 절반인 MR²/4입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "균일한 막대(질량 M, 길이 L)의 끝축 관성 모멘트를 평행축 정리로 구하세요.",
+      "steps": [
+        "중심축 관성 모멘트는 I_cm = ML²/12입니다.",
+        "끝축은 질량중심에서 d = L/2 떨어져 있습니다.",
+        "I = ML²/12 + M(L/2)² = ML²/12 + 3ML²/12입니다.",
+        "= ML²/3입니다."
+      ],
+      "answer": "ML²/3",
+      "figure": {
+        "widget": "geo",
+        "config": {
+          "elements": [
+            {
+              "t": "poly",
+              "pts": [
+                [
+                  -3,
+                  -0.15
+                ],
+                [
+                  3,
+                  -0.15
+                ],
+                [
+                  3,
+                  0.15
+                ],
+                [
+                  -3,
+                  0.15
+                ]
+              ],
+              "hl": true
+            },
+            {
+              "t": "seg",
+              "a": [
+                0,
+                -1.6
+              ],
+              "b": [
+                0,
+                1.6
+              ],
+              "dash": true
+            },
+            {
+              "t": "seg",
+              "a": [
+                -3,
+                -1.6
+              ],
+              "b": [
+                -3,
+                1.6
+              ],
+              "dash": true
+            },
+            {
+              "t": "text",
+              "p": [
+                0.9,
+                1.3
+              ],
+              "s": "중심축"
+            },
+            {
+              "t": "text",
+              "p": [
+                -2.1,
+                1.3
+              ],
+              "s": "끝축"
+            },
+            {
+              "t": "seg",
+              "a": [
+                -3,
+                -0.9
+              ],
+              "b": [
+                3,
+                -0.9
+              ]
+            },
+            {
+              "t": "text",
+              "p": [
+                1.5,
+                -1.3
+              ],
+              "s": "L"
+            }
+          ],
+          "alt": "길이 L, 질량 M인 균일한 막대. 중심을 지나는 회전축(I = ML²/12)과 한쪽 끝을 지나는 회전축(I = ML²/3)이 막대에 수직이다.",
+          "maxh": 170
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "질량 3 kg, 길이 2 m인 균일한 막대의 끝축 관성 모멘트는 몇 kg·m²인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "ML²/3입니다.",
+      "explanation": "끝축 관성 모멘트는 ML²/3입니다.\n3 × 2²/3 = 12/3입니다.\n= 4 kg·m²로, 중심축의 1 kg·m²보다 4배 큽니다.",
+      "figure": {
+        "widget": "geo",
+        "config": {
+          "elements": [
+            {
+              "t": "poly",
+              "pts": [
+                [
+                  -3,
+                  -0.15
+                ],
+                [
+                  3,
+                  -0.15
+                ],
+                [
+                  3,
+                  0.15
+                ],
+                [
+                  -3,
+                  0.15
+                ]
+              ],
+              "hl": true
+            },
+            {
+              "t": "seg",
+              "a": [
+                0,
+                -1.6
+              ],
+              "b": [
+                0,
+                1.6
+              ],
+              "dash": true
+            },
+            {
+              "t": "seg",
+              "a": [
+                -3,
+                -1.6
+              ],
+              "b": [
+                -3,
+                1.6
+              ],
+              "dash": true
+            },
+            {
+              "t": "text",
+              "p": [
+                0.9,
+                1.3
+              ],
+              "s": "중심축"
+            },
+            {
+              "t": "text",
+              "p": [
+                -2.1,
+                1.3
+              ],
+              "s": "끝축"
+            },
+            {
+              "t": "seg",
+              "a": [
+                -3,
+                -0.9
+              ],
+              "b": [
+                3,
+                -0.9
+              ]
+            },
+            {
+              "t": "text",
+              "p": [
+                1.5,
+                -1.3
+              ],
+              "s": "L"
+            }
+          ],
+          "alt": "길이 L, 질량 M인 균일한 막대. 중심을 지나는 회전축(I = ML²/12)과 한쪽 끝을 지나는 회전축(I = ML²/3)이 막대에 수직이다.",
+          "maxh": 170
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "질량 2 kg, 반지름 1 m인 원판을 가장자리의 한 점을 지나고 중심축에 평행한 축으로 돌릴 때 관성 모멘트는 몇 kg·m²인가요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "MR²/2 + MR²입니다.",
+      "explanation": "중심축 관성 모멘트는 MR²/2 = 1 kg·m²입니다.\n평행축 정리로 d = R = 1 m 떨어진 축에서는 Md² = 2를 더합니다.\n그래서 1 + 2 = 3 kg·m²입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "적분으로 구하기",
+      "body": [
+        "연속체에서는 I = ∫r² dm입니다. 길이 L, 선밀도 λ = M/L인 막대를 중심축으로 돌리면 I = ∫ x² λ dx (−L/2부터 L/2까지) = λL³/12 = ML²/12입니다.",
+        "원판은 반지름 r, 폭 dr인 고리들의 합으로 봅니다. 고리의 질량은 dm = σ·2πr dr(σ = M/πR²)이고 I = ∫ r²σ2πr dr = σπR⁴/2 = MR²/2입니다.",
+        "대칭과 평행축·수직축 정리를 쓰면 적분 없이 많은 관성 모멘트를 얻을 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "질량 12 kg, 길이 2 m인 균일한 막대를 중심에서 0.5 m 떨어진 점을 지나는 수직축으로 돌릴 때 관성 모멘트는 몇 kg·m²인가요?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "ML²/12 + Md²입니다.",
+      "explanation": "중심축 관성 모멘트는 12 × 4/12 = 4 kg·m²입니다.\n평행축 정리로 Md² = 12 × 0.25 = 3을 더합니다.\n그래서 4 + 3 = 7 kg·m²입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "질량 4 kg, 반지름 1 m인 얇은 원판의 지름을 축으로 할 때 관성 모멘트는 몇 kg·m²인가요?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "수직축 정리를 쓰세요.",
+      "explanation": "수직축 정리로 I_z = I_x + I_y이고 대칭이라 I_x = I_y입니다.\nI_z = MR²/2 = 2이므로 지름축은 그 절반입니다.\n= MR²/4 = 1 kg·m²입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "질량 2 kg인 물체의 관성 모멘트가 8 kg·m²일 때 회전반경 k는 몇 m인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "I = Mk²입니다.",
+      "explanation": "회전반경 k는 모든 질량이 축에서 k 떨어져 있다고 볼 때의 거리로, I = Mk²을 만족합니다.\nk² = 8/2 = 4입니다.\n그래서 k = 2 m입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "관성 모멘트 I = Σmr² = ∫r² dm은 회전에서 질량의 역할을 하며 축에 따라 달라집니다.",
+        "막대 ML²/12(중심)·ML²/3(끝), 고리 MR², 원판 MR²/2, 구 2MR²/5, 구 껍질 2MR²/3을 기억합니다.",
+        "평행축 정리 I = I_cm + Md², 얇은 판의 수직축 정리 I_z = I_x + I_y로 다른 축의 값을 구합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "질량 5 kg, 반지름 1 m인 속이 찬 구의 지름축 관성 모멘트는 몇 kg·m²인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2MR²/5입니다.",
+      "explanation": "속이 찬 구의 지름축 관성 모멘트는 2MR²/5로, 같은 질량의 원판(MR²/2)보다 작습니다.\n2 × 5 × 1²/5입니다.\n= 2 kg·m²입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "질량 1 kg, 반지름 0.2 m인 속이 찬 구를 표면에 접하는 축(지름축과 평행)으로 돌릴 때 관성 모멘트는 몇 kg·m²인가요? (소수로)",
+      "answer": "0.056",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "2MR²/5 + MR²입니다.",
+      "explanation": "지름축 관성 모멘트는 2 × 1 × 0.04/5 = 0.016 kg·m²입니다.\n평행축 정리로 MR² = 0.04를 더합니다.\n그래서 0.016 + 0.04 = 0.056 kg·m²입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "길이 L, 질량 M인 균일한 막대의 중심축 관성 모멘트가 ML²/12임을 적분으로 보이세요.",
+      "model_answer": [
+        "막대를 x축 위 −L/2부터 L/2까지 놓고 선밀도를 λ = M/L로 둔다.",
+        "위치 x의 작은 조각 dx의 질량은 dm = λ dx이고 축까지 거리는 |x|이다.",
+        "I = ∫ x² λ dx (−L/2부터 L/2까지) = λ[x³/3] = λ(L³/24 + L³/24) = λL³/12이다.",
+        "λ = M/L를 넣으면 I = ML²/12이다."
+      ],
+      "criteria": [
+        {
+          "text": "좌표와 선밀도를 정했다",
+          "points": 1
+        },
+        {
+          "text": "dm과 거리를 바르게 썼다",
+          "points": 2
+        },
+        {
+          "text": "적분을 계산했다",
+          "points": 2
+        },
+        {
+          "text": "M으로 바꿔 결론지었다",
+          "points": 1
+        }
+      ],
+      "hint": "I = ∫x² dm에서 dm = (M/L)dx입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "평행축 정리 I = I_cm + Md²을 증명하세요(축은 z축 방향, 질량중심은 원점).",
+      "model_answer": [
+        "질량중심을 원점으로 하고 새 축은 (d, 0)을 지나는 z축 평행선이라 한다.",
+        "질량 조각 dm의 위치를 (x, y)라 하면 새 축까지 거리의 제곱은 (x − d)² + y² = x² + y² − 2dx + d²이다.",
+        "적분하면 I = ∫(x² + y²)dm − 2d∫x dm + d²∫dm이다.",
+        "첫 항은 I_cm, 질량중심이 원점이라 ∫x dm = 0, 마지막 항은 Md²이므로 I = I_cm + Md²이다."
+      ],
+      "criteria": [
+        {
+          "text": "좌표를 알맞게 잡았다",
+          "points": 1
+        },
+        {
+          "text": "거리의 제곱을 전개했다",
+          "points": 2
+        },
+        {
+          "text": "세 항으로 나눠 적분했다",
+          "points": 1
+        },
+        {
+          "text": "∫x dm = 0을 써서 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "질량중심이 원점이면 ∫x dm = 0입니다."
+    }
+  ]
+}

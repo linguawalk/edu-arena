@@ -1,0 +1,307 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s1",
+  "track": "phy-kin",
+  "work": "풀이",
+  "track_title": "운동과 물리 수학",
+  "chapter": {
+    "id": "sci-s1-phy-kin-ch02",
+    "no": 2,
+    "title": "미분으로 보는 운동"
+  },
+  "lesson": {
+    "id": "sci-s1-phy-kin-ch02-l04",
+    "no": 4,
+    "title": "극값과 최적화",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "역학",
+      "운동학"
+    ],
+    "competition": "KPhO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "미분이 0인 곳",
+      "body": [
+        "매끄러운 함수가 극댓값이나 극솟값을 가지는 곳에서는 도함수가 0입니다. 공의 높이 h(t)가 최대인 순간 dh/dt = 0, 곧 연직 속도가 0입니다.",
+        "그림의 h = 30t − 5t²에서 dh/dt = 30 − 10t = 0이면 t = 3 s이고, 최고 높이는 h(3) = 90 − 45 = 45 m입니다.",
+        "물리의 많은 '최대·최소' 문제는 (1) 구하려는 양을 하나의 변수로 나타내고, (2) 미분해서 0으로 놓고, (3) 그 값이 정말 최대인지 최소인지 확인하는 세 단계로 풉니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 7,
+          "ymin": -5,
+          "ymax": 50,
+          "xstep": 1,
+          "ystep": 5,
+          "xlabel": "t(s)",
+          "ylabel": "h(m)",
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                0,
+                30,
+                -5
+              ],
+              "from": 0,
+              "to": 6
+            },
+            {
+              "kind": "hline",
+              "y": 45
+            }
+          ],
+          "alt": "연직 위로 던진 공의 높이 h = 30t − 5t²",
+          "points": [
+            [
+              3,
+              45,
+              "최고점"
+            ]
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "높이 h = 30t − 5t²(m)인 공의 최고 높이는 몇 m인가요?",
+      "answer": "45",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "dh/dt = 0인 t를 구하세요.",
+      "explanation": "dh/dt = 30 − 10t = 0에서 t = 3 s입니다.\nh(3) = 90 − 45입니다.\n= 45 m입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "던진 공이 최고점에 있을 때 연직 방향 속도는 {{1}}입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "0",
+            "영"
+          ]
+        }
+      ],
+      "hint": "최고점은 올라가다가 내려오기 시작하는 순간입니다.",
+      "explanation": "최고점에서 높이 h(t)가 최대이므로 dh/dt = 0입니다.\ndh/dt는 연직 방향 속도입니다.\n따라서 최고점에서 연직 속도는 0입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "두 물체 사이의 거리가 가장 짧을 때",
+      "body": [
+        "두 물체의 위치를 시간의 함수로 쓰면 거리 d(t)도 시간의 함수입니다. d가 최소인 순간을 찾으려면 d² = (x₁ − x₂)² + (y₁ − y₂)²을 미분하는 것이 편합니다. d가 최소이면 d²도 최소이기 때문입니다.",
+        "예를 들어 A가 원점에서 동쪽으로 3 m/s, B가 (0, 10)에서 남쪽으로 4 m/s로 움직이면 d² = (3t)² + (10 − 4t)² = 25t² − 80t + 100입니다.",
+        "d²이 t의 이차식이면 미분 대신 완전제곱식으로도 풀 수 있습니다. 두 방법으로 같은 답이 나오는지 확인해 보세요."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "A는 원점에서 동쪽으로 3 m/s, B는 (0, 10 m)에서 남쪽으로 4 m/s로 동시에 출발합니다. 두 물체 사이의 최소 거리를 구하세요.",
+      "steps": [
+        "A = (3t, 0), B = (0, 10 − 4t)이므로 d² = 9t² + (10 − 4t)² = 25t² − 80t + 100입니다.",
+        "d(d²)/dt = 50t − 80 = 0에서 t = 1.6 s입니다.",
+        "d² = 25 × 2.56 − 128 + 100 = 36입니다.",
+        "따라서 최소 거리는 6 m입니다."
+      ],
+      "answer": "6 m"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 두 물체가 가장 가까워지는 시각을 분수로 쓰세요.",
+      "answer": "8/5",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "d²을 미분해 0으로 놓으세요.",
+      "explanation": "d² = 25t² − 80t + 100을 미분하면 50t − 80입니다.\n50t − 80 = 0이면 t = 80/50입니다.\n= 8/5 s(1.6 s)입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "A는 원점에서 동쪽으로 4 m/s, B는 (0, 15 m)에서 남쪽으로 3 m/s로 동시에 출발합니다. 두 물체 사이의 최소 거리는 몇 m인가요?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "d² = 16t² + (15 − 3t)²입니다.",
+      "explanation": "d² = 16t² + (15 − 3t)² = 25t² − 90t + 225이고, 미분하면 50t − 90 = 0에서 t = 1.8 s입니다.\nd² = 25 × 3.24 − 162 + 225 = 81 − 162 + 225입니다.\n= 144이므로 최소 거리는 12 m입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "일률을 최대로 하기",
+      "body": [
+        "자동차의 구동력이 속력에 따라 F = F₀ − kv로 줄어든다고 합시다. 일률(단위 시간당 일)은 P = Fv = F₀v − kv²입니다.",
+        "dP/dv = F₀ − 2kv = 0에서 v = F₀/(2k)이고, 최대 일률은 F₀²/(4k)입니다. 속력이 너무 작으면 v가 작아서, 너무 크면 F가 작아서 일률이 작아집니다.",
+        "이처럼 서로 반대로 움직이는 두 양의 곱은 중간 어딘가에서 최대가 됩니다. 이차식이면 꼭짓점이 바로 최대점입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "구동력이 F = 100 − 10v(N)일 때 일률 P = Fv의 최댓값은 몇 W인가요?",
+      "answer": "250",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "P = 100v − 10v²를 v로 미분하세요.",
+      "explanation": "dP/dv = 100 − 20v = 0에서 v = 5 m/s입니다.\nP = (100 − 50) × 5입니다.\n= 250 W이고, 공식 F₀²/(4k) = 10000/40과 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x = t³ − 3t²(m)인 물체가 0 ≤ t ≤ 3 s 동안 가장 작은 x는 몇 m인가요?",
+      "answer": "-4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "v = 3t² − 6t = 0인 시각과 구간의 양 끝을 비교하세요.",
+      "explanation": "v = 3t(t − 2) = 0에서 t = 0, 2입니다.\nx(0) = 0, x(2) = 8 − 12 = −4, x(3) = 27 − 27 = 0입니다.\n가장 작은 값은 x = −4 m입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "최대인지 최소인지 확인하기",
+      "body": [
+        "도함수가 0인 점은 극대일 수도, 극소일 수도, 둘 다 아닐 수도 있습니다. 이계도함수의 부호로 판정합니다: f'' > 0이면 극소, f'' < 0이면 극대입니다.",
+        "물리적으로 f''는 '가속도'에 해당합니다. 위로 던진 공의 높이는 h'' = −g < 0이므로 h' = 0인 점이 최고점입니다.",
+        "닫힌 구간에서 최댓값·최솟값을 구할 때는 도함수가 0인 점뿐 아니라 구간의 양 끝도 반드시 비교해야 합니다. 앞 문제가 그 예입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(t) = t³ − 12t(t > 0)의 극솟값은?",
+      "answer": "-16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f'(t) = 3t² − 12 = 0인 t를 구하세요.",
+      "explanation": "f'(t) = 3t² − 12 = 0에서 t = 2입니다. f''(2) = 12 > 0이므로 극소입니다.\nf(2) = 8 − 24입니다.\n= −16입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "최대·최소는 도함수가 0인 곳에서 찾습니다. 최고점에서는 연직 속도가 0입니다.",
+        "두 물체 사이의 최소 거리는 d²을 시간의 함수로 쓰고 미분해서 구합니다. d가 최소인 곳에서 d²도 최소이므로 제곱근을 미분할 필요가 없습니다.",
+        "이계도함수의 부호로 극대·극소를 판정하고, 닫힌 구간에서는 양 끝값도 비교합니다. 이차식이면 꼭짓점을 바로 찾아도 됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "높이 h = 2 + 20t − 5t²(m)인 공의 최고 높이는 몇 m인가요?",
+      "answer": "22",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "dh/dt = 20 − 10t입니다.",
+      "explanation": "dh/dt = 20 − 10t = 0에서 t = 2 s입니다.\nh(2) = 2 + 40 − 20입니다.\n= 22 m이고, 던진 높이 2 m에 v₀²/(2g) = 20 m를 더한 값과 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "구동력이 F = 60 − 3v(N)일 때 일률이 최대가 되는 속력은 몇 m/s인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "v = F₀/(2k)입니다.",
+      "explanation": "P = 60v − 3v²를 미분하면 60 − 6v입니다.\n60 − 6v = 0에서 v = 10 m/s입니다.\n이때 일률은 (60 − 30) × 10 = 300 W입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "높이가 h(t) = h₀ + v₀t − (1/2)gt²인 공의 최고 높이가 h₀ + v₀²/(2g)임을 미분으로 보이세요.",
+      "model_answer": [
+        "dh/dt = v₀ − gt이고, 최고점에서 dh/dt = 0이므로 t = v₀/g이다.",
+        "d²h/dt² = −g < 0이므로 이 점은 극대이다.",
+        "h(v₀/g) = h₀ + v₀²/g − (1/2)g(v₀/g)² = h₀ + v₀²/g − v₀²/(2g)이다.",
+        "= h₀ + v₀²/(2g)이다."
+      ],
+      "criteria": [
+        {
+          "text": "도함수를 0으로 놓아 시각을 구했다",
+          "points": 2
+        },
+        {
+          "text": "이계도함수로 극대임을 확인했다",
+          "points": 1
+        },
+        {
+          "text": "대입해 최고 높이를 계산했다",
+          "points": 3
+        }
+      ],
+      "hint": "dh/dt = 0인 시각을 먼저 구하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "구동력이 F = F₀ − kv일 때 일률 P = Fv의 최댓값이 F₀²/(4k)임을 보이세요. (F₀, k > 0)",
+      "model_answer": [
+        "P = F₀v − kv²이다.",
+        "dP/dv = F₀ − 2kv = 0에서 v = F₀/(2k)이고, d²P/dv² = −2k < 0이므로 극대이다.",
+        "P(F₀/(2k)) = F₀²/(2k) − k × F₀²/(4k²) = F₀²/(2k) − F₀²/(4k)이다.",
+        "= F₀²/(4k)이다."
+      ],
+      "criteria": [
+        {
+          "text": "일률을 v의 함수로 썼다",
+          "points": 1
+        },
+        {
+          "text": "미분해 최대가 되는 v를 구하고 극대임을 확인했다",
+          "points": 3
+        },
+        {
+          "text": "최댓값을 계산했다",
+          "points": 2
+        }
+      ],
+      "hint": "P를 v의 이차식으로 쓰세요."
+    }
+  ]
+}

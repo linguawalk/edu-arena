@@ -1,0 +1,96 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "java-ocp-17",
+  "level": 4,
+  "unit": 4,
+  "unit_title": "메서드 참조와 Optional",
+  "rule_summary_ko": "메서드 참조(method reference)는 이미 존재하는 메서드를 람다 대신 간결하게 가리키는 문법으로 4가지 유형이 있습니다: static 메서드(ClassName::staticMethod), 특정 객체의 인스턴스 메서드(object::instanceMethod), 임의 객체의 인스턴스 메서드(ClassName::instanceMethod), 생성자(ClassName::new). Optional&lt;T&gt;는 값이 있을 수도 없을 수도 있는 상황을 명시적으로 표현하는 컨테이너로, null을 직접 다루는 대신 사용합니다. 값이 없는 Optional에 get()을 호출하면 NoSuchElementException이 발생합니다.",
+  "examples": [
+    { "code": "Function<String, Integer> parse = Integer::parseInt;", "note_ko": "static 메서드 참조 — Integer.parseInt(s)를 람다 없이 간결하게 표현" },
+    { "code": "Optional<String> empty = Optional.empty();\nempty.orElse(\"기본값\");", "note_ko": "값이 없으므로 orElse에 지정한 기본값을 반환(안전하게 null 회피)" }
+  ],
+  "questions": [
+    {
+      "id": "java_ocp_l4_u4_q001",
+      "type": "concept_matching_item",
+      "code": "Function<String, Integer> parse = Integer::parseInt;\nSystem.out.println(parse.apply(\"42\"));",
+      "prompt_ko": "출력 결과는?",
+      "options": ["\"42\"(문자열)", "42(정수)", "컴파일 오류", "NumberFormatException"],
+      "answer": 1,
+      "explanation_ko": "Integer::parseInt는 Integer.parseInt(String)라는 static 메서드를 참조하며, \"42\"를 정수 42로 파싱합니다.",
+      "concept_tags": ["method_reference_static"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l4_u4_q002",
+      "type": "concept_matching_item",
+      "code": "Function<String, Integer> lenFunc = String::length;\nSystem.out.println(lenFunc.apply(\"world\"));",
+      "prompt_ko": "String::length가 해당하는 메서드 참조 유형은?",
+      "options": [
+        "static 메서드 참조",
+        "임의 객체의 인스턴스 메서드 참조 — 전달되는 첫 인자(\"world\") 자신에게 length()를 호출한다",
+        "생성자 참조",
+        "특정 객체의 인스턴스 메서드 참조"
+      ],
+      "answer": 1,
+      "explanation_ko": "ClassName::instanceMethod 형태는 '임의 객체의 인스턴스 메서드 참조'로, 나중에 전달되는 첫 번째 인자에 대해 그 메서드가 호출됩니다.",
+      "concept_tags": ["method_reference_unbound"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_ocp_l4_u4_q003",
+      "type": "concept_matching_item",
+      "code": "Supplier<ArrayList<String>> listMaker = ArrayList::new;",
+      "prompt_ko": "ArrayList::new는 어떤 유형의 메서드 참조입니까?",
+      "options": ["static 메서드 참조", "인스턴스 메서드 참조", "생성자 참조(constructor reference)", "필드 참조"],
+      "answer": 2,
+      "explanation_ko": "ClassName::new는 생성자 참조로, 호출될 때마다 새로운 인스턴스를 생성합니다.",
+      "concept_tags": ["method_reference_constructor"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l4_u4_q004",
+      "type": "concept_matching_item",
+      "code": "Optional<String> empty = Optional.empty();\nempty.get();",
+      "prompt_ko": "이 코드를 실행하면 어떻게 됩니까?",
+      "options": [
+        "null이 반환된다",
+        "NoSuchElementException이 발생한다 — 값이 없는 Optional에 get()을 직접 호출하면 안 된다",
+        "빈 문자열이 반환된다",
+        "컴파일 오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "값이 없는 Optional에 get()을 호출하는 것은 안전하지 않은 패턴이며, 대신 orElse()나 isPresent() 확인이 권장됩니다.",
+      "concept_tags": ["optional_get_exception"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l4_u4_q005",
+      "type": "fill_blank",
+      "code": "Optional<String> empty = Optional.empty();\nString result = empty.orElse(\"기본값\");",
+      "prompt_ko": "result의 값은 무엇입니까? (그대로 입력)",
+      "expected_answers": ["기본값"],
+      "explanation_ko": "orElse()는 Optional이 비어있을 때 안전하게 대체값을 제공합니다.",
+      "concept_tags": ["optional_orelse"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l4_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Optional을 사용하는 근본적인 목적은?",
+      "options": [
+        "코드 실행 속도를 항상 빠르게 만들기 위해",
+        "값이 없을 수 있다는 가능성을 타입 시스템에 명시적으로 드러내서, null을 직접 다루다 생기는 NullPointerException을 줄이기 위해",
+        "메모리 사용량을 줄이기 위해",
+        "Optional은 실질적인 이점 없이 문법만 복잡하게 만드는 기능이다"
+      ],
+      "answer": 1,
+      "explanation_ko": "Optional은 '값이 없을 수 있음'을 메서드 시그니처에서부터 드러내, 호출하는 쪽이 이를 명시적으로 처리하도록 유도합니다.",
+      "concept_tags": ["optional_purpose"],
+      "difficulty": "practice"
+    }
+  ]
+}

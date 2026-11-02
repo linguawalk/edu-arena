@@ -1,0 +1,363 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c3",
+    "title": "대수"
+  },
+  "chapter": {
+    "id": "c3-ch03",
+    "no": 3,
+    "title": "지수함수와 로그함수"
+  },
+  "lesson": {
+    "id": "c3-ch03-l04",
+    "no": 4,
+    "title": "지수·로그의 방정식과 부등식",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석",
+      "대수"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "그래프로 해의 개수 보기",
+      "body": [
+        "2ˣ = 4 − x처럼 풀기 어려운 방정식은 y = 2ˣ와 y = 4 − x의 교점 개수로 해의 개수를 알 수 있습니다.",
+        "대수적으로 풀 수 없는 방정식도 그래프로 해의 개수를 알 수 있습니다. 2ˣ = 4 − x에서 y = 2ˣ는 증가, y = 4 − x는 감소하므로 두 그래프는 딱 한 번 만납니다. 증가·감소를 이용하면 교점의 개수를 확실히 판단할 수 있습니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": -3,
+          "xmax": 5,
+          "ymin": -2,
+          "ymax": 6,
+          "xstep": 1,
+          "ystep": 1,
+          "curves": [
+            {
+              "kind": "exp",
+              "a": 1,
+              "b": 2,
+              "p": 0,
+              "q": 0
+            },
+            {
+              "kind": "poly",
+              "coef": [
+                4,
+                -1
+              ]
+            },
+            {
+              "kind": "poly",
+              "coef": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "2ˣ = 4 − x의 실근은 몇 개일까요?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y = 2ˣ는 증가함수, y = 4 − x는 감소함수\n증가하는 그래프와 감소하는 그래프는 많아야 한 번 만나고, 실제로 x = 1과 2 사이에서 만납니다.\n실근 1개\n확인: x = 1이면 2 < 3, x = 2이면 4 > 2"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "2ˣ = x의 실근은 몇 개일까요?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y = 2ˣ의 그래프는 항상 직선 y = x보다 위에 있습니다.\n예: x = 0이면 1 > 0, x = 1이면 2 > 1, x = −1이면 1/2 > −1\n만나지 않으므로 실근 0개"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "치환하는 지수방정식",
+      "body": [
+        "a²ˣ과 aˣ가 함께 있으면 aˣ = t (t > 0)로 치환해 이차방정식으로 풉니다.",
+        "치환의 핵심은 t의 범위입니다. aˣ = t이면 t > 0이므로, 치환한 이차방정식의 근 중 0 이하인 것은 버립니다. 또 치환해서 구한 t마다 x를 하나씩 되돌려 구해야 하므로, 양수 근의 개수가 곧 원래 방정식의 해의 개수입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "4ˣ − 2^(x + 1) − 8 = 0을 푸세요.",
+      "steps": [
+        "2ˣ = t (t > 0): t² − 2t − 8 = 0",
+        "(t − 4)(t + 2) = 0에서 t = 4 (t = −2는 버림)",
+        "2ˣ = 4에서 x = 2",
+        "확인: 16 − 8 − 8 = 0"
+      ],
+      "answer": "x = 2"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "9ˣ − 4 × 3ˣ + 3 = 0의 모든 해의 합은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "3ˣ = t (t > 0): t² − 4t + 3 = (t − 1)(t − 3) = 0\nt = 1이면 x = 0, t = 3이면 x = 1\n모든 해의 합 0 + 1 = 1\n확인: 두 t 모두 양수라 해가 2개"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "4ˣ − 6 × 2ˣ + 8 = 0의 모든 해의 합은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "2ˣ = t (t > 0): t² − 6t + 8 = (t − 2)(t − 4) = 0\nt = 2이면 x = 1, t = 4이면 x = 2\n모든 해의 합 1 + 2 = 3"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "치환하는 로그방정식",
+      "body": [
+        "logₐ x = t로 치환하고, 밑이 다르면 밑변환으로 먼저 맞춥니다.",
+        "밑이 다른 로그가 섞여 있으면 밑변환으로 먼저 맞춥니다. log₄ (x + 2) = (1/2) log₂ (x + 2)처럼 밑을 2로 통일하면 양변을 비교할 수 있습니다. 로그방정식은 마지막에 진수 조건으로 해를 걸러야 합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "log₃ x = log₉ (2x + 3)을 푸세요.",
+      "steps": [
+        "진수 조건: x > 0, 2x + 3 > 0 → x > 0",
+        "log₉ (2x + 3) = (1/2) log₃ (2x + 3)이므로 2 log₃ x = log₃ (2x + 3)",
+        "x² = 2x + 3 → (x − 3)(x + 1) = 0",
+        "x > 0이므로 x = 3"
+      ],
+      "answer": "x = 3"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "(log₃ x)² − log₃ x − 2 = 0의 두 해의 곱은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "log₃ x = t: t² − t − 2 = (t − 2)(t + 1) = 0\nt = 2이면 x = 9, t = −1이면 x = 1/3\n두 해의 곱 9 × 1/3 = 3\n원리: 로그는 음수 값도 가질 수 있으므로 t = −1도 해가 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "log₂ x = log₄ (x + 2)의 해는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "진수 조건: x > 0, x + 2 > 0\nlog₄ (x + 2) = (1/2) log₂ (x + 2)이므로 2 log₂ x = log₂ (x + 2) → x² = x + 2\n(x − 2)(x + 1) = 0, x > 0이므로 x = 2"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "지수·로그부등식",
+      "body": [
+        "밑이 1보다 크면 부등호 방향 그대로, 0과 1 사이이면 반대입니다. 로그는 진수 조건을 함께 풉니다.",
+        "지수·로그부등식은 방정식과 같은 순서로 풀되, 부등호 방향을 정하는 단계가 추가됩니다. 밑을 1보다 큰 수로 바꿔 풀면 방향을 뒤집는 실수를 줄일 수 있습니다. 로그부등식은 진수 조건과의 공통부분이 최종 해입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "log₂ (x − 1) + log₂ (x + 1) ≤ 3을 푸세요.",
+      "steps": [
+        "진수 조건: x − 1 > 0, x + 1 > 0 → x > 1",
+        "log₂ (x² − 1) ≤ log₂ 8, 밑 2 > 1이므로 x² − 1 ≤ 8",
+        "x² ≤ 9 → −3 ≤ x ≤ 3",
+        "진수 조건과 공통부분: 1 < x ≤ 3"
+      ],
+      "answer": "1 < x ≤ 3"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "3^(2x) < 3^(x + 2)의 해가 x < a일 때 a의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "밑이 1보다 큽니다.",
+      "explanation": "밑 3 > 1이므로 지수의 대소가 그대로: 2x < x + 2\nx < 2\na = 2\n확인: x = 1이면 9 < 27"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(1/2)^(x − 1) ≥ 1/8의 해가 x ≤ a일 때 a의 값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "밑이 1보다 작으면 방향이 바뀝니다.",
+      "explanation": "1/8 = (1/2)³이므로 (1/2)^(x − 1) ≥ (1/2)³\n밑 1/2 < 1이므로 방향이 바뀜: x − 1 ≤ 3\nx ≤ 4이므로 a = 4\n주의: 방향을 그대로 두면 x ≥ 4로 틀립니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "log₂ (x − 1) < 2를 만족하는 정수 x는 몇 개일까요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "진수 조건을 함께 쓰세요.",
+      "explanation": "진수 조건: x − 1 > 0 → x > 1\n2 = log₂ 4이고 밑 2 > 1이므로 x − 1 < 4 → x < 5\n1 < x < 5의 정수 2, 3, 4로 3개"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "log_(1/2) (x + 1) > −1을 만족하는 정수 x는 몇 개일까요?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "밑이 1보다 작습니다.",
+      "explanation": "진수 조건: x + 1 > 0 → x > −1\n−1 = log_(1/2) 2이고 밑 1/2 < 1이므로 x + 1 < 2 → x < 1\n−1 < x < 1의 정수는 0 하나"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "종합",
+      "body": [
+        "치환, 밑 맞추기, 진수 조건, 부등호 방향을 차례로 점검합니다.",
+        "종합 문제의 점검 순서: ① 밑을 통일했는가 ② 치환했다면 t의 범위를 지켰는가 ③ 로그라면 진수 조건을 적었는가 ④ 부등식이라면 밑의 크기로 방향을 정했는가. 이 네 가지를 차례로 확인하면 대부분의 실수를 막을 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "4ˣ − 2^(x + 2) < 0의 해가 x < a일 때 a의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2ˣ = t로 치환하세요.",
+      "explanation": "2ˣ = t (t > 0): t² − 4t < 0 → t(t − 4) < 0\n0 < t < 4이므로 2ˣ < 4 = 2²\nx < 2이므로 a = 2"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "log₂ x + log₂ (8 − x) ≥ 4를 만족하는 x는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "진수 조건을 먼저 세우세요.",
+      "explanation": "진수 조건: x > 0, 8 − x > 0 → 0 < x < 8\nlog₂ x(8 − x) ≥ log₂ 16 → x(8 − x) ≥ 16 → (x − 4)² ≤ 0\n완전제곱식이 0 이하이려면 x = 4"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "3ˣ = 5ˣ의 해는?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "양변을 5ˣ로 나누세요.",
+      "explanation": "양변을 5ˣ로 나누면 (3/5)ˣ = 1\n(3/5)⁰ = 1이므로 x = 0\n원리: 밑이 1이 아닌 지수함수는 값 1을 x = 0에서만 가집니다."
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "log₂ x > log₂ 3 + 1의 해가 x > a일 때 a의 값은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1을 log₂ 2로 바꾸세요.",
+      "explanation": "log₂ 3 + 1 = log₂ 3 + log₂ 2 = log₂ 6\n진수 조건 x > 0, 밑 2 > 1이므로 x > 6\na = 6"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "2ˣ < 100을 만족하는 가장 큰 자연수 x는?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2의 거듭제곱을 차례로 계산해 보세요.",
+      "explanation": "2⁶ = 64 < 100, 2⁷ = 128 > 100\n가장 큰 자연수 x = 6\n원리: y = 2ˣ는 증가함수라 x가 6을 넘으면 100을 넘습니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "밑이 1보다 작은 로그부등식에서 부등호 방향이 바뀌는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "감소"
+          ],
+          [
+            "진수",
+            "x"
+          ],
+          [
+            "반대",
+            "바뀌"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "밑이 0과 1 사이인 로그함수는 진수가 커질수록 값이 작아지는 감소함수입니다. 그래서 로그 값이 더 크다는 것은 진수가 더 작다는 뜻이 되어 부등호 방향이 반대가 됩니다."
+    }
+  ]
+}

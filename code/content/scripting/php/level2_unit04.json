@@ -1,0 +1,96 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "match 표현식",
+  "questions": [
+    {
+      "id": "php_l2_u04_q001",
+      "type": "predict_output",
+      "code": "$day = 1;\n$result = match($day) {\n    1 => \"월요일\",\n    2, 3 => \"화요일 또는 수요일\",\n    default => \"기타\",\n};\necho $result;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["월요일", "화요일 또는 수요일", "기타", "오류"],
+      "answer": 0,
+      "explanation_en": "match evaluates directly to a value; day is 1, matching the first arm, producing 월요일.",
+      "explanation_ko": "match는 바로 값으로 평가됩니다. day가 1이므로 첫 번째 분기와 일치해 월요일이 됩니다.",
+      "concept_tags": ["match_expression"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l2_u04_q002",
+      "type": "predict_output",
+      "code": "$x = \"1\";\n$result = match($x) {\n    1 => \"숫자 1\",\n    \"1\" => \"문자열 1\",\n};\necho $result;",
+      "prompt_en": "What is printed? (Compare with switch's loose comparison from the previous unit.)",
+      "prompt_ko": "출력 결과는? (이전 유닛에서 다룬 switch의 느슨한 비교와 비교해보세요.)",
+      "options": ["숫자 1", "문자열 1", "오류", "아무것도 출력되지 않음"],
+      "answer": 1,
+      "explanation_en": "Unlike switch (which uses loose ==), match compares strictly (===); the string \"1\" doesn't match the number 1, but does match the string \"1\" exactly, producing 문자열 1.",
+      "explanation_ko": "느슨한 ==를 쓰는 switch와 달리, match는 엄격하게(===) 비교합니다. 문자열 \"1\"은 숫자 1과 일치하지 않지만, 문자열 \"1\"과는 정확히 일치해 문자열 1이 됩니다.",
+      "concept_tags": ["match_expression", "strict_equality"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l2_u04_q003",
+      "type": "error_finding",
+      "code": "$x = 99;\n$result = match($x) {\n    1 => \"하나\",\n    2 => \"둘\",\n};\necho $result;",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "match 문법 자체가 틀림",
+        "x가 어떤 분기와도 일치하지 않고 default도 없어서, 실행 시점에 UnhandledMatchError가 발생함",
+        "$result 대입 문법 오류",
+        "문제 없음, null이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike switch, which silently does nothing when no case matches, match throws an UnhandledMatchError at runtime if no arm matches and there's no default — a much stricter, safer default.",
+      "explanation_ko": "일치하는 case가 없으면 조용히 아무것도 하지 않는 switch와 달리, match는 일치하는 분기가 없고 default도 없으면 실행 시점에 UnhandledMatchError를 던집니다 — 훨씬 더 엄격하고 안전한 기본 동작입니다.",
+      "concept_tags": ["match_expression", "unhandledmatcherror"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l2_u04_q004",
+      "type": "fill_blank",
+      "code": "$score = 85;\n$grade = match(true) {\n    $score >= 90 => \"A\",\n    $score ____ 80 => \"B\",\n    default => \"C\",\n};\necho $grade;\n// B가 출력되어야 함",
+      "prompt_en": "Fill in the blank with the comparison operator for 'greater than or equal to'.",
+      "prompt_ko": "'크거나 같음'을 나타내는 비교 연산자를 빈칸에 채우세요.",
+      "options": [">=", "=>", ">==", "=="],
+      "answer": 0,
+      "explanation_en": "match(true) with boolean conditions in each arm is a common idiom for range-based matching, similar to a chained if-elseif; >= checks the threshold.",
+      "explanation_ko": "각 분기에 boolean 조건을 쓰는 match(true)는 범위 기반 매칭에 흔히 쓰이는 관용구로, 연쇄된 if-elseif와 비슷합니다. >=는 임계값을 확인합니다.",
+      "concept_tags": ["match_expression"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l2_u04_q005",
+      "type": "predict_output",
+      "code": "$x = 2;\n$result = match($x) {\n    1, 2, 3 => \"1~3\",\n    default => \"기타\",\n};\necho $result;",
+      "prompt_en": "What is printed? (Grouping multiple values in one match arm.)",
+      "prompt_ko": "출력 결과는? (한 match 분기에 여러 값을 묶었습니다.)",
+      "options": ["1~3", "기타", "2", "오류"],
+      "answer": 0,
+      "explanation_en": "1, 2, 3 => \"1~3\" groups three values into a single arm; x is 2, matching this arm, producing 1~3.",
+      "explanation_ko": "1, 2, 3 => \"1~3\"은 세 값을 하나의 분기로 묶습니다. x가 2이므로 이 분기와 일치해 1~3이 됩니다.",
+      "concept_tags": ["match_expression"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l2_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "match", "definition": "PHP 8에 추가된, 바로 값으로 평가되는 현대적인 분기 표현식" },
+        { "term": "엄격 비교 (===)", "definition": "switch의 느슨한 ==와 달리 match가 사용하는 비교 방식" },
+        { "term": "fall-through 없음", "definition": "match는 각 분기가 독립적이라 break가 필요 없고 새어나가지 않음" },
+        { "term": "UnhandledMatchError", "definition": "일치하는 분기가 없고 default도 없을 때 발생하는 예외 — switch의 조용한 무시와 대조" }
+      ],
+      "explanation_en": "match is PHP's answer to switch's long-standing pitfalls (loose comparison, fall-through, silent no-match); it's the modern, recommended choice whenever the switch pattern is needed for simple value matching.",
+      "explanation_ko": "match는 switch의 오래된 함정들(느슨한 비교, fall-through, 조용한 무매칭)에 대한 PHP의 답입니다. 단순한 값 매칭에 switch 패턴이 필요할 때 권장되는 현대적인 선택입니다.",
+      "concept_tags": ["match_expression", "strict_equality", "unhandledmatcherror"],
+      "difficulty": "practice"
+    }
+  ]
+}

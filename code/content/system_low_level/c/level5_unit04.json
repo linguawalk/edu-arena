@@ -1,0 +1,91 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 5,
+  "unit": 4,
+  "unit_title": "구조체 설계와 typedef",
+  "questions": [
+    {
+      "id": "c_l5_u04_q001",
+      "type": "predict_output",
+      "code": "typedef struct {\n    int x;\n    int y;\n} Point;\n\nPoint p1 = {1, 2};\nprintf(\"%d\", p1.x);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1", "2", "Point", "오류"],
+      "answer": 0,
+      "explanation_en": "typedef gives the anonymous struct a shorter alias, Point; declaring and using p1.x works exactly like a normal struct.",
+      "explanation_ko": "typedef는 이름 없는 구조체에 Point라는 짧은 별칭을 붙여줍니다. p1.x를 선언하고 사용하는 방식은 일반 구조체와 완전히 동일합니다.",
+      "concept_tags": ["typedef", "struct"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l5_u04_q002",
+      "type": "fill_blank",
+      "code": "____ struct {\n    int x;\n    int y;\n} Point;\n\nPoint p1;",
+      "prompt_en": "Fill in the blank so the struct can be used with just the name Point instead of 'struct Point'.",
+      "prompt_ko": "'struct Point' 대신 그냥 Point라는 이름만으로 쓸 수 있도록 빈칸을 채우세요.",
+      "options": ["typedef", "define", "alias", "struct"],
+      "answer": 0,
+      "explanation_en": "typedef creates a new type alias, letting Point be used directly without needing to write struct every time.",
+      "explanation_ko": "typedef는 새로운 타입 별칭을 만들어, 매번 struct를 쓰지 않고도 Point만으로 사용할 수 있게 해줍니다.",
+      "concept_tags": ["typedef"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l5_u04_q003",
+      "type": "predict_output",
+      "code": "typedef struct {\n    int x;\n    int y;\n} Point;\n\ntypedef struct {\n    Point topLeft;\n    Point bottomRight;\n} Rectangle;\n\nRectangle r = { {0, 0}, {10, 10} };\nprintf(\"%d\", r.bottomRight.x);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "10", "Rectangle", "오류"],
+      "answer": 1,
+      "explanation_en": "Rectangle contains a Point as a member; accessing r.bottomRight.x chains member access through the nested struct to reach 10.",
+      "explanation_ko": "Rectangle은 Point를 멤버로 포함합니다. r.bottomRight.x는 중첩된 구조체를 거쳐 멤버 접근을 이어가 10에 도달합니다.",
+      "concept_tags": ["nested_struct", "struct"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l5_u04_q004",
+      "type": "predict_output",
+      "code": "typedef struct {\n    int x;\n    int y;\n} Point;\n\nPoint a = {1, 2};\nPoint b = a;\nb.x = 100;\nprintf(\"%d%d\", a.x, b.x);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1100", "100100", "11", "오류"],
+      "answer": 0,
+      "explanation_en": "Assigning one struct to another (Point b = a) copies all members by value, creating an independent copy; changing b.x afterward does not affect a.x.",
+      "explanation_ko": "구조체를 다른 구조체에 대입하면(Point b = a) 모든 멤버가 값으로 복사되어 독립적인 사본이 만들어집니다. 이후 b.x를 바꿔도 a.x에는 영향이 없습니다.",
+      "concept_tags": ["struct", "struct_copy"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l5_u04_q005",
+      "type": "predict_output",
+      "code": "typedef struct {\n    int x;\n} Point;\n\nPoint points[3] = {{1}, {2}, {3}};\nint sum = 0;\nfor (int i = 0; i < 3; i++) {\n    sum += points[i].x;\n}\nprintf(\"%d\", sum);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "6", "123", "오류"],
+      "answer": 1,
+      "explanation_en": "An array of structs can be indexed and traversed just like an array of any other type; summing each x field gives 1+2+3=6.",
+      "explanation_ko": "구조체 배열도 다른 자료형의 배열과 마찬가지로 인덱싱하고 순회할 수 있습니다. 각 x 필드를 더하면 1+2+3=6입니다.",
+      "concept_tags": ["struct", "struct_array"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l5_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "typedef", "definition": "복잡한 자료형에 더 간단한 별칭을 붙이는 키워드" },
+        { "term": "중첩 구조체", "definition": "한 구조체가 다른 구조체를 멤버로 포함하는 구조" },
+        { "term": "구조체 대입", "definition": "모든 멤버를 값으로 복사해 독립적인 사본을 만드는 대입 방식" },
+        { "term": "구조체 배열", "definition": "같은 구조체 타입의 값을 여러 개 담는 배열" }
+      ],
+      "explanation_en": "typedef and struct composition are the closest C gets to designing custom data types without full object-oriented support — the foundation for organizing larger C programs.",
+      "explanation_ko": "typedef와 구조체 조합은 완전한 객체지향 지원 없이도 C가 사용자 정의 자료형을 설계할 수 있는 가장 가까운 방법이며, 더 큰 C 프로그램을 조직화하는 기초가 됩니다.",
+      "concept_tags": ["typedef", "struct", "nested_struct"],
+      "difficulty": "practice"
+    }
+  ]
+}

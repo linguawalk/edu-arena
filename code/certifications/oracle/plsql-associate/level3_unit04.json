@@ -1,0 +1,99 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "예외 전파와 WHEN OTHERS",
+  "rule_summary_ko": "현재 블록에서 처리되지 않은 예외는 자동으로 바깥을 감싸는 블록으로 전파(propagate)되며, 처리할 핸들러를 찾을 때까지 계속 바깥으로 퍼져나갑니다. 끝까지 처리되지 않으면 호출 환경에 처리되지 않은 예외 오류가 반환됩니다. WHEN OTHERS는 이름이 명시되지 않은 모든 예외를 잡는 핸들러로, 반드시 EXCEPTION 절의 맨 마지막에 와야 하며, 다른 예외와 OR로 묶어 나열할 수 없습니다. SQLCODE(오류 번호)와 SQLERRM(오류 메시지)은 WHEN OTHERS 안에서 어떤 오류가 발생했는지 파악하는 데 특히 유용합니다.",
+  "examples": [
+    { "code": "EXCEPTION\n    WHEN NO_DATA_FOUND THEN ...\n    WHEN OTHERS THEN\n        DBMS_OUTPUT.PUT_LINE(SQLCODE || ': ' || SQLERRM);", "note_ko": "WHEN OTHERS는 이름이 지정되지 않은 나머지 모든 오류를 잡아내며, SQLCODE·SQLERRM으로 구체적인 원인을 확인" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l3_u4_q001",
+      "type": "concept_matching_item",
+      "code": "PROCEDURE inner_proc IS\nBEGIN\n    RAISE ZERO_DIVIDE; -- 이 프로시저에는 예외 처리부가 없음\nEND;\n-- 바깥에서 inner_proc를 호출하고, 바깥 블록에 WHEN ZERO_DIVIDE 핸들러가 있음",
+      "prompt_ko": "inner_proc 안에 예외 처리부가 없을 때, ZERO_DIVIDE 예외는 어떻게 됩니까?",
+      "options": [
+        "그 자리에서 프로그램이 즉시 완전히 종료된다",
+        "바깥(호출한 쪽)의 블록으로 전파(propagate)되어, 그 블록에 있는 핸들러가 처리한다",
+        "예외가 조용히 무시된다",
+        "inner_proc가 자동으로 다시 실행된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "처리되지 않은 예외는 호출 스택을 따라 바깥으로 전파되며, 핸들러를 찾을 때까지 계속됩니다.",
+      "concept_tags": ["exception_propagation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l3_u4_q002",
+      "type": "concept_matching_item",
+      "code": "EXCEPTION\n    WHEN OTHERS THEN\n        DBMS_OUTPUT.PUT_LINE('오류');\n    WHEN NO_DATA_FOUND THEN -- OTHERS 뒤에 위치\n        DBMS_OUTPUT.PUT_LINE('데이터 없음');",
+      "prompt_ko": "WHEN OTHERS를 다른 핸들러보다 먼저 배치하면?",
+      "options": [
+        "정상적으로 컴파일되고, 순서대로 검사된다",
+        "컴파일 오류 발생 — WHEN OTHERS는 반드시 EXCEPTION 절의 맨 마지막 핸들러여야 한다",
+        "WHEN OTHERS가 무시되고 NO_DATA_FOUND만 작동한다",
+        "런타임 예외가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "WHEN OTHERS는 다른 모든 핸들러 뒤, 즉 반드시 마지막에 와야 합니다.",
+      "concept_tags": ["when_others_must_be_last"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l3_u4_q003",
+      "type": "fill_blank",
+      "code": "EXCEPTION\n    WHEN OTHERS THEN\n        DBMS_OUTPUT.PUT_LINE(SQLERRM);",
+      "prompt_ko": "발생한 오류의 메시지 텍스트를 반환하는 함수는 무엇입니까? (영문으로 정확히 입력)",
+      "expected_answers": ["SQLERRM"],
+      "explanation_ko": "SQLERRM은 현재 처리 중인 오류의 메시지 문자열을 반환합니다.",
+      "concept_tags": ["sqlerrm"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l3_u4_q004",
+      "type": "fill_blank",
+      "code": "EXCEPTION\n    WHEN OTHERS THEN\n        DBMS_OUTPUT.PUT_LINE(SQLCODE);",
+      "prompt_ko": "발생한 오류의 오류 번호를 반환하는 함수는 무엇입니까? (영문으로 정확히 입력)",
+      "expected_answers": ["SQLCODE"],
+      "explanation_ko": "SQLCODE는 현재 처리 중인 오류의 숫자 코드를 반환합니다.",
+      "concept_tags": ["sqlcode"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l3_u4_q005",
+      "type": "concept_matching_item",
+      "code": "EXCEPTION\n    WHEN OTHERS OR NO_DATA_FOUND THEN -- OTHERS를 다른 예외와 OR로 나열",
+      "prompt_ko": "WHEN OTHERS를 다른 예외 이름과 OR로 함께 나열하면?",
+      "options": [
+        "정상적으로 두 예외를 함께 처리한다",
+        "컴파일 오류 발생 — OTHERS는 예외 목록에서 다른 이름과 OR로 나열될 수 없다(단독으로만 사용 가능)",
+        "OTHERS만 무시되고 NO_DATA_FOUND만 처리된다",
+        "NO_DATA_FOUND만 무시되고 OTHERS만 처리된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "OTHERS는 '나머지 전부'를 뜻하므로, 이미 그 자체로 다른 모든 예외를 포함해 다른 이름과 나열하는 것이 문법적으로 허용되지 않습니다.",
+      "concept_tags": ["when_others_no_or_list"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l3_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "WHEN OTHERS 핸들러를 작성할 때, 아무 로직 없이 오류를 조용히 삼켜버리기만 하는 것(예: NULL;만 적는 것)이 위험한 이유는?",
+      "options": [
+        "위험하지 않다. 오히려 권장되는 방식이다",
+        "실제로 무슨 오류가 발생했는지에 대한 정보(SQLCODE, SQLERRM)를 로깅하지 않고 그냥 숨겨버려서, 나중에 문제를 진단하기 매우 어려워진다",
+        "이렇게 작성하면 컴파일 오류가 발생한다",
+        "이렇게 작성하면 프로그램이 즉시 멈춘다"
+      ],
+      "answer": 1,
+      "explanation_ko": "오류를 로깅하거나 다시 던지지(RAISE) 않고 조용히 삼키는 WHEN OTHERS는 버그를 숨기는 안티패턴으로 간주됩니다.",
+      "concept_tags": ["when_others_antipattern"],
+      "difficulty": "challenge"
+    }
+  ]
+}

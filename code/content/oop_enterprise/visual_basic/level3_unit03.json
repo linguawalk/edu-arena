@@ -1,0 +1,96 @@
+{
+  "language": "visual_basic",
+  "category": "oop_enterprise",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "Optional 매개변수와 오버로딩",
+  "questions": [
+    {
+      "id": "visual_basic_l3_u03_q001",
+      "type": "predict_output",
+      "code": "Sub Greet(name As String, Optional greeting As String = \"안녕\")\n    Console.WriteLine(greeting & \", \" & name)\nEnd Sub\n\nGreet(\"Kim\")",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["안녕, Kim", "오류: greeting이 없음", "Kim", ", Kim"],
+      "answer": 0,
+      "explanation_en": "Since greeting is Optional with a default of \"안녕\", omitting it in the call still works, using the default value.",
+      "explanation_ko": "greeting은 Optional이고 기본값이 \"안녕\"이므로, 호출 시 생략해도 기본값이 그대로 사용됩니다.",
+      "concept_tags": ["optional_parameter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l3_u03_q002",
+      "type": "predict_output",
+      "code": "Sub Greet(name As String, Optional greeting As String = \"안녕\")\n    Console.WriteLine(greeting & \", \" & name)\nEnd Sub\n\nGreet(\"Lee\", \"반가워\")",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["안녕, Lee", "반가워, Lee", "오류", "반가워"],
+      "answer": 1,
+      "explanation_en": "Supplying a value for greeting overrides the default; the call uses 반가워 instead of 안녕.",
+      "explanation_ko": "greeting에 값을 전달하면 기본값이 무시됩니다. 이 호출은 안녕 대신 반가워를 사용합니다.",
+      "concept_tags": ["optional_parameter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l3_u03_q003",
+      "type": "fill_blank",
+      "code": "Sub Greet(name As String, ____ greeting As String = \"안녕\")\n    Console.WriteLine(greeting & \", \" & name)\nEnd Sub",
+      "prompt_en": "Fill in the blank with the keyword that marks a parameter as omittable.",
+      "prompt_ko": "매개변수를 생략 가능하게 만드는 키워드를 빈칸에 채우세요.",
+      "options": ["Optional", "Default", "ByVal", "Nullable"],
+      "answer": 0,
+      "explanation_en": "The Optional keyword marks a parameter as not required in a call, but it must be given a default value.",
+      "explanation_ko": "Optional 키워드는 매개변수를 호출 시 필수가 아니게 만듭니다. 단, 반드시 기본값을 지정해야 합니다.",
+      "concept_tags": ["optional_parameter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l3_u03_q004",
+      "type": "predict_output",
+      "code": "Function Add(a As Integer, b As Integer) As Integer\n    Return a + b\nEnd Function\nFunction Add(a As Double, b As Double) As Double\n    Return a + b\nEnd Function\n\nConsole.WriteLine(Add(3, 4))\nConsole.WriteLine(Add(3.5, 2.5))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["7 6", "7 6.0", "오류: Add가 중복 정의됨", "34 3.52.5"],
+      "answer": 0,
+      "explanation_en": "VB allows overloading — multiple procedures with the same name but different parameter types; the compiler picks the matching version based on argument types.",
+      "explanation_ko": "VB는 오버로딩을 허용합니다 — 같은 이름이라도 매개변수 자료형이 다르면 여러 프로시저를 정의할 수 있습니다. 컴파일러는 인자 타입에 맞는 버전을 선택합니다.",
+      "concept_tags": ["overloading"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l3_u03_q005",
+      "type": "error_finding",
+      "code": "Sub Greet(name As String, Optional greeting As String, Optional times As Integer = 1)\n    Console.WriteLine(greeting & \", \" & name)\nEnd Sub",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "times 선언 문법 오류",
+        "greeting이 Optional인데 기본값이 없어서, 'Optional 매개변수는 기본값을 지정해야 한다'는 컴파일 오류가 발생함",
+        "name 매개변수 오류",
+        "문제 없음, greeting의 기본값은 빈 문자열로 자동 설정됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Every Optional parameter in VB must specify a default value; leaving greeting's default unspecified causes a compile error.",
+      "explanation_ko": "VB에서 모든 Optional 매개변수는 반드시 기본값을 지정해야 합니다. greeting의 기본값을 지정하지 않으면 컴파일 오류가 발생합니다.",
+      "concept_tags": ["optional_parameter"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "visual_basic_l3_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "Optional", "definition": "호출 시 생략 가능한 매개변수를 표시하는 키워드 — 기본값 필수" },
+        { "term": "오버로딩", "definition": "같은 이름, 다른 매개변수 자료형으로 여러 프로시저를 정의하는 기능" },
+        { "term": "기본값", "definition": "Optional 매개변수를 생략했을 때 자동으로 사용되는 값" },
+        { "term": "C++와의 유사성", "definition": "Optional은 C++의 기본값 매개변수, 오버로딩은 C++의 함수 오버로딩과 개념적으로 동일" }
+      ],
+      "explanation_en": "Optional parameters and overloading both let a procedure be called in multiple ways without writing separate procedures for each case, matching what C++ Level 1 covered.",
+      "explanation_ko": "Optional 매개변수와 오버로딩 모두 각 경우마다 별도의 프로시저를 작성하지 않고도 다양한 방식으로 프로시저를 호출할 수 있게 해줍니다. C++ Level 1에서 다룬 내용과 대응됩니다.",
+      "concept_tags": ["optional_parameter", "overloading"],
+      "difficulty": "practice"
+    }
+  ]
+}

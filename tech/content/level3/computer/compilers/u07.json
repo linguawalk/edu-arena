@@ -1,0 +1,101 @@
+{
+ "no": 7,
+ "title": "최적화와 코드 생성",
+ "hours": 5,
+ "after": [
+  5
+ ],
+ "objectives": [
+  "상수 접기·공통 부분식 제거·죽은 코드 제거 같은 지역 최적화를 적용할 수 있다.",
+  "루프 최적화와 레지스터 할당의 원리를 설명할 수 있다.",
+  "명령어 선택과 스케줄링이 하드웨어 성능에 주는 영향을 설명할 수 있다."
+ ],
+ "checklist": [
+  "상수 접기와 상수 전파",
+  "공통 부분식 제거, 복사 전파",
+  "죽은 코드 제거",
+  "루프 불변 코드 이동, 루프 펼치기",
+  "레지스터 할당(그래프 색칠)",
+  "명령어 선택과 스케줄링(파이프라인 해저드 줄이기)",
+  "최적화 단계(-O0 ~ -O3)와 디버깅의 맞바꿈"
+ ],
+ "advice": [
+  "최적화는 '프로그램의 의미는 바꾸지 않고 더 빠르게'라는 약속 아래에서만 할 수 있습니다. 같은 C 코드를 최적화 없이와 최고 단계로 컴파일한 어셈블리를 나란히 놓고 비교해 보면(Compiler Explorer 같은 도구가 편리합니다) 상수 접기와 루프 최적화가 실제로 일어나는 모습을 볼 수 있습니다. 레벨2 컴퓨터 구조 6단원의 파이프라인 해저드를 명령어 순서 바꾸기로 줄이는 것도 이 단원의 일입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Aho · Lam · Sethi · Ullman, Compilers: Principles, Techniques, and Tools (일명 드래곤 북, 장 제목으로 표기)",
+   "part": "Code Generation, Machine-Independent Optimizations 장"
+  },
+  {
+   "kind": "web",
+   "provider": "Compiler Explorer",
+   "title": "Compiler Explorer (컴파일 결과 비교)",
+   "url": "https://godbolt.org/",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "컴퓨터 구조 6단원 파이프라인과 해저드",
+   "url": "guide.html?lv=2&t=computer&s=computer-architecture&u=6"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "x = 3 * 4 + y 에 상수 접기를 적용하면 3 * 4는 컴파일할 때 어떤 값으로 바뀔까요?",
+   "answer": "12",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "상수끼리의 연산은 컴파일할 때 미리 계산해 x = 12 + y 가 됩니다.",
+   "hint": "3 × 4입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "결과가 어디에도 쓰이지 않아 없애도 프로그램 결과가 같은 코드를 지우는 최적화를 {{1}} 코드 제거라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "죽은",
+      "데드",
+      "불필요한"
+     ]
+    }
+   ],
+   "explanation": "상수 전파 뒤에 실행될 수 없게 된 분기도 함께 지워집니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "많은 변수를 적은 수의 CPU 레지스터에 배정하는 작업으로, 흔히 그래프 색칠 문제로 푸는 것을 레지스터 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "할당",
+      "배정"
+     ]
+    }
+   ],
+   "explanation": "레지스터에 넣지 못한 변수는 메모리로 내보냅니다(스필).",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "compilers",
+ "id": "l3-computer-compilers-u07"
+}

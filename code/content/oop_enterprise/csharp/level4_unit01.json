@@ -1,0 +1,96 @@
+{
+  "language": "csharp",
+  "category": "oop_enterprise",
+  "level": 4,
+  "unit": 1,
+  "unit_title": "배열",
+  "questions": [
+    {
+      "id": "csharp_l4_u01_q001",
+      "type": "predict_output",
+      "code": "int[] nums = new int[5];\nConsole.WriteLine(nums.Length);",
+      "prompt_en": "What is printed? (Compare with VB's Dim nums(4), which also makes 5 elements but via a different rule.)",
+      "prompt_ko": "출력 결과는? (VB의 Dim nums(4)도 5개를 만들지만 규칙이 다른 점과 비교해보세요.)",
+      "options": ["4", "5", "6", "오류"],
+      "answer": 1,
+      "explanation_en": "Unlike VB where the number specifies the highest index, C#'s new int[5] specifies the element count directly — 5 elements, just like C's array declarations.",
+      "explanation_ko": "숫자가 가장 큰 인덱스를 나타내는 VB와 달리, C#의 new int[5]는 요소 개수를 직접 나타냅니다 — C의 배열 선언과 마찬가지로 5개입니다.",
+      "concept_tags": ["array", "array_declaration"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l4_u01_q002",
+      "type": "predict_output",
+      "code": "int[] nums = { 1, 2, 3 };\nConsole.WriteLine(nums[1]);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1", "2", "3", "오류"],
+      "answer": 1,
+      "explanation_en": "Array indices start at 0, so nums[1] refers to the second element, 2.",
+      "explanation_ko": "배열 인덱스는 0부터 시작하므로 nums[1]은 두 번째 요소인 2를 가리킵니다.",
+      "concept_tags": ["array"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l4_u01_q003",
+      "type": "predict_output",
+      "code": "int[,] matrix = new int[2, 3];\nmatrix[0, 0] = 1;\nmatrix[1, 2] = 6;\nConsole.WriteLine(matrix[1, 2]);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1", "6", "12", "오류"],
+      "answer": 1,
+      "explanation_en": "new int[2, 3] creates a 2x3 rectangular array; matrix[1, 2] refers to the last row/column position, which was set to 6.",
+      "explanation_ko": "new int[2, 3]은 2x3 직사각형 배열을 만듭니다. matrix[1, 2]는 마지막 행/열 위치를 가리키며, 6으로 설정되어 있습니다.",
+      "concept_tags": ["array", "2d_array"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l4_u01_q004",
+      "type": "predict_output",
+      "code": "int[][] jagged = new int[2][];\njagged[0] = new int[] { 1, 2 };\njagged[1] = new int[] { 3, 4, 5 };\nConsole.WriteLine(jagged[1].Length);",
+      "prompt_en": "What is printed? (This is a jagged array — each row can have a different length.)",
+      "prompt_ko": "출력 결과는? (가변 배열(jagged array)로, 각 행마다 길이가 다를 수 있습니다.)",
+      "options": ["2", "3", "5", "오류"],
+      "answer": 1,
+      "explanation_en": "Unlike a rectangular 2D array, a jagged array is an array of arrays, each independently sized; jagged[1] has 3 elements.",
+      "explanation_ko": "직사각형 2차원 배열과 달리, 가변 배열은 배열들의 배열이며 각각 독립적인 크기를 가집니다. jagged[1]은 3개의 요소를 갖습니다.",
+      "concept_tags": ["jagged_array"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l4_u01_q005",
+      "type": "error_finding",
+      "code": "int[] nums = { 1, 2, 3 };\nConsole.WriteLine(nums[3]);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "배열 선언 문법 오류",
+        "nums는 요소가 3개(인덱스 0~2)뿐인데 인덱스 3에 접근해, 실행 시점에 IndexOutOfRangeException이 발생함",
+        "Console.WriteLine 사용법 오류",
+        "문제 없음, 0이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "C# performs runtime bounds checking on arrays, unlike C; accessing index 3 on a 3-element array throws an IndexOutOfRangeException instead of silently reading garbage memory.",
+      "explanation_ko": "C#은 C와 달리 배열에 대해 실행 시점 범위 검사를 수행합니다. 3개 요소인 배열의 인덱스 3에 접근하면 임의의 메모리를 조용히 읽는 대신 IndexOutOfRangeException이 발생합니다.",
+      "concept_tags": ["array", "indexoutofrangeexception"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l4_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "new int[5]", "definition": "5개의 요소를 담는 배열 생성 — 개수 기반 (VB와 반대)" },
+        { "term": "int[,] (2차원 배열)", "definition": "행과 열이 고정된 직사각형 배열" },
+        { "term": "int[][] (가변 배열)", "definition": "각 행의 길이가 서로 다를 수 있는 배열의 배열" },
+        { "term": "IndexOutOfRangeException", "definition": "범위를 벗어난 인덱스에 접근할 때 발생하는 실행 시점 예외" }
+      ],
+      "explanation_en": "C# arrays enforce runtime bounds checking, unlike raw C arrays, which is one of the memory-safety benefits of managed languages.",
+      "explanation_ko": "C# 배열은 원시 C 배열과 달리 실행 시점 범위 검사를 강제합니다. 이는 관리 언어가 주는 메모리 안전성 이점 중 하나입니다.",
+      "concept_tags": ["array", "2d_array", "jagged_array"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+ "no": 2,
+ "title": "관계 모델과 관계 대수",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "릴레이션의 구조(속성, 튜플, 차수, 카디널리티)를 설명할 수 있다.",
+  "키의 종류와 무결성 제약을 설명할 수 있다.",
+  "관계 대수 연산(선택, 투영, 조인, 합집합 등)을 적용할 수 있다."
+ ],
+ "checklist": [
+  "릴레이션 = 테이블, 튜플 = 행, 속성 = 열",
+  "차수(속성 수)와 카디널리티(튜플 수)",
+  "슈퍼 키, 후보 키, 기본 키, 대체 키, 외래 키",
+  "개체 무결성(기본 키는 NULL 불가), 참조 무결성",
+  "관계 대수: 선택 σ, 투영 π, 합집합, 차집합, 곱집합 ×, 조인 ⋈",
+  "자연 조인과 세타 조인",
+  "관계 해석(개념)"
+ ],
+ "advice": [
+  "관계 대수는 SQL의 수학적 뼈대입니다. SELECT 문의 WHERE가 선택(σ), 열 목록이 투영(π), FROM의 여러 테이블이 곱집합과 조인이라는 대응을 표로 만들어 두면, 7단원 질의 최적화에서 DBMS가 SQL을 관계 대수 트리로 바꿔 다루는 이유가 이해됩니다.",
+  "키의 종류는 시험에 꼭 나오는 부분입니다. '유일하게 구별할 수 있는가(유일성)'와 '그중에 꼭 필요한 속성만 있는가(최소성)' 두 기준으로 슈퍼 키와 후보 키를 구분하는 연습을 작은 표로 해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Silberschatz · Korth · Sudarshan",
+   "title": "Database System Concepts (교재 사이트, 장 제목으로 표기)",
+   "url": "https://www.db-book.com/",
+   "lang": "영어",
+   "part": "Introduction to the Relational Model, Formal Relational Query Languages 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "CMU 15-445 (공개 강의)",
+   "title": "Intro to Database Systems — 강의 노트·영상",
+   "url": "https://15445.courses.cs.cmu.edu/",
+   "lang": "영어",
+   "part": "Relational Model & Algebra 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "code-arena (실습)",
+   "title": "DB 이론 모듈",
+   "url": "https://code-arena.org/browse.html?type=module&key=db_theory",
+   "lang": "한국어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "속성 3개·튜플 4개인 R과 속성 2개·튜플 5개인 S의 곱집합 R × S의 튜플 수는 얼마일까요?",
+   "answer": "20",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "카디널리티는 곱해집니다: 4 × 5 = 20",
+   "hint": "튜플 수를 곱합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 R × S의 차수(속성 수)는 얼마일까요?",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "차수는 더해집니다: 3 + 2 = 5",
+   "hint": "속성 수를 더합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "다른 릴레이션의 기본 키를 참조해 두 릴레이션을 잇는 속성을 {{1}} 키라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "외래"
+     ]
+    }
+   ],
+   "explanation": "외래 키 값은 참조하는 기본 키에 있는 값이거나 NULL이어야 합니다(참조 무결성).",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "조건을 만족하는 튜플(행)만 고르는 관계 대수 연산을 {{1}} 연산이라고 하며 σ로 씁니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "선택",
+      "셀렉트"
+     ]
+    }
+   ],
+   "explanation": "원하는 속성(열)만 고르는 것은 투영(π)입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "databases",
+ "id": "l2-computer-databases-u02"
+}

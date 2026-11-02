@@ -1,0 +1,330 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch05",
+    "no": 5,
+    "title": "이산확률분포"
+  },
+  "lesson": {
+    "id": "c5-ch05-l01",
+    "no": 1,
+    "title": "확률변수와 확률분포",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "확률통계"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "확률변수",
+      "body": [
+        "시행의 결과에 따라 값이 정해지는 변수를 확률변수라고 합니다. 동전 두 개를 던져 나오는 앞면의 개수 X는 0, 1, 2 중 하나입니다.",
+        "X의 각 값과 그 확률을 나타낸 것을 확률분포라고 합니다.",
+        "확률변수는 '결과'를 '수'로 바꿔 주는 규칙입니다. 동전 두 개의 결과 HH, HT, TH, TT를 앞면의 개수 2, 1, 1, 0으로 바꾸면, 확률을 수의 언어로 다룰 수 있어 평균이나 흩어짐을 계산할 수 있게 됩니다. 이름은 '변수'이지만 실제로는 결과마다 값을 정하는 함수입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "동전 두 개를 던질 때 앞면의 개수 X에 대해 P(X = 1)은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "HH, HT, TH, TT 중 앞면이 1개인 것: HT, TH\nP(X = 1) = 2/4\n= 1/2\n원리: 확률변수의 값마다 해당하는 결과를 셉니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "같은 X에서 P(X = 2)는? (기약분수로)",
+      "answer": "1/4",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "앞면이 2개인 결과: HH 하나\nP(X = 2) = 1/4\n확인: P(X = 0) + P(X = 1) + P(X = 2) = 1/4 + 1/2 + 1/4 = 1"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "확률분포의 조건",
+      "body": [
+        "각 확률은 0 이상이고, 모든 확률의 합은 1입니다.",
+        "확률분포의 두 조건은 확률의 기본 성질에서 나옵니다. 각 값이 나올 확률은 0 이상이어야 하고, 확률변수가 가질 수 있는 값들은 표본공간 전체를 빠짐없이 나누므로 확률의 합은 반드시 1입니다. 모르는 상수가 있으면 '합이 1'이라는 조건으로 구합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "P(X = k) = c/k (k = 1, 2, 3)가 확률분포일 때 c와 P(X ≥ 2)를 구하세요.",
+      "steps": [
+        "확률의 합: c(1 + 1/2 + 1/3) = c × 11/6 = 1",
+        "c = 6/11",
+        "P(X ≥ 2) = (6/11)(1/2 + 1/3) = (6/11)(5/6)",
+        "= 5/11"
+      ],
+      "answer": "c = 6/11, P(X ≥ 2) = 5/11"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "P(X = k) = k/10 (k = 1, 2, 3, 4)일 때 P(X = 3)은? (기약분수로)",
+      "answer": "3/10",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "k = 3을 넣으면 P(X = 3) = 3/10\n확인: 1/10 + 2/10 + 3/10 + 4/10 = 1로 확률분포의 조건을 만족\n원리: 확률분포는 각 값의 확률을 알려 주는 함수입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "P(X = k) = ck (k = 1, 2, 3)가 확률분포일 때 c는? (기약분수로)",
+      "answer": "1/6",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "확률의 합이 1: c + 2c + 3c = 6c = 1\nc = 1/6\n원리: 확률분포에서 모든 확률의 합은 1입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "확률분포 구하기",
+      "body": [
+        "X가 가질 수 있는 값을 모두 적고, 각 값이 나오는 경우를 세어 확률을 구합니다.",
+        "확률분포를 구하는 순서: ① X가 가질 수 있는 값을 모두 적고 ② 각 값이 나오는 경우를 표본공간에서 세어 ③ 확률분포표로 정리한 뒤 ④ 확률의 합이 1인지 확인합니다. 마지막 확인 단계가 계산 실수를 잡아 줍니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "주사위 두 개를 던져 나온 두 눈의 차의 절댓값 X의 확률분포를 구하세요.",
+      "steps": [
+        "X = 0: 6가지, X = 1: 10가지, X = 2: 8가지",
+        "X = 3: 6가지, X = 4: 4가지, X = 5: 2가지",
+        "각각 36으로 나눔: 6/36, 10/36, 8/36, 6/36, 4/36, 2/36",
+        "확인: 6 + 10 + 8 + 6 + 4 + 2 = 36"
+      ],
+      "answer": "P(X = 1) = 5/18 등"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "주사위 두 개를 던져 나온 눈 중 큰 수를 X라 할 때 P(X = 6)은? (기약분수로)",
+      "answer": "11/36",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "큰 수가 6이면 적어도 한 개가 6\n여사건(둘 다 5 이하) 25가지를 빼면 36 − 25 = 11가지\nP = 11/36"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 X에서 P(X = 1)은? (기약분수로)",
+      "answer": "1/36",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "큰 수가 1이려면 두 눈이 모두 1: (1, 1) 하나\nP = 1/36\n원리: 큰 수 X = k는 두 눈이 모두 k 이하이면서 적어도 하나가 k"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "흰 공 2개, 검은 공 3개 중 2개를 뽑을 때 흰 공의 개수 X에 대해 P(X = 1)은? (기약분수로)",
+      "answer": "3/5",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "전체 ₅C₂ = 10\n흰 공 1개, 검은 공 1개: ₂C₁ × ₃C₁ = 6\nP = 6/10 = 3/5\n원리: 흰 공과 검은 공을 각각 고르는 방법을 곱합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "범위의 확률",
+      "body": [
+        "P(a ≤ X ≤ b)는 그 범위에 있는 값들의 확률을 모두 더합니다.",
+        "X의 값들이 나오는 사건은 서로 배반입니다(X가 동시에 1이면서 2일 수 없음). 그래서 범위의 확률은 해당 값들의 확률을 그대로 더하면 됩니다. 범위가 넓으면 여사건 P(X ≥ 2) = 1 − P(X ≤ 1)을 쓰는 것이 빠를 때도 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "동전 세 개를 던질 때 앞면의 개수 X에 대해 P(X ≥ 2)는? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "X = 2와 X = 3의 확률을 더하세요.",
+      "explanation": "P(X = 2) = 3/8, P(X = 3) = 1/8\n합 4/8 = 1/2\n원리: X의 값끼리는 배반이라 확률을 더합니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 X에서 P(1 ≤ X ≤ 2)는? (기약분수로)",
+      "answer": "3/4",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "범위에 있는 값의 확률을 더하세요.",
+      "explanation": "P(X = 1) = 3/8, P(X = 2) = 3/8\n합 6/8 = 3/4\n확인: 1 − P(X = 0) − P(X = 3) = 1 − 1/8 − 1/8 = 3/4"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "확률분포표를 만들면 확률의 합이 1인지 먼저 확인하는 습관을 들입니다.",
+        "확률분포표는 이 챕터의 모든 계산의 출발점입니다. 기댓값, 분산, 범위의 확률 모두 이 표에서 계산합니다. 표를 만든 뒤 합이 1이 아니면 경우를 빠뜨렸거나 중복해서 센 것이므로 다시 셉니다. 표에 누적 확률 열을 하나 더 두면 범위의 확률도 바로 읽을 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "불량품 2개를 포함한 6개 중 3개를 뽑을 때 불량품의 개수 X의 확률분포를 구하세요.",
+      "steps": [
+        "전체 ₆C₃ = 20",
+        "X = 0: ₄C₃ = 4, X = 1: ₂C₁₄C₂ = 12, X = 2: ₂C₂₄C₁ = 4",
+        "P = 4/20, 12/20, 4/20 = 1/5, 3/5, 1/5",
+        "확인: 합 1"
+      ],
+      "answer": "1/5, 3/5, 1/5"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "P(X = 0) = 0.2, P(X = 1) = a, P(X = 2) = 0.5일 때 a는?",
+      "answer": "0.3",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "확률의 합은 1입니다.",
+      "explanation": "확률의 합이 1: 0.2 + a + 0.5 = 1\na = 0.3\n원리: 모르는 확률은 '합이 1'로 구합니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 분포에서 P(X ≤ 1)은?",
+      "answer": "0.5",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "X = 0과 X = 1을 더하세요.",
+      "explanation": "P(X ≤ 1) = P(X = 0) + P(X = 1)\n= 0.2 + 0.3\n= 0.5 (= 1 − P(X = 2))"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "주사위 한 개의 눈 X에 대해 X가 소수일 확률은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "소수인 눈을 세세요.",
+      "explanation": "주사위 눈 중 소수: 2, 3, 5\nP = 3/6\n= 1/2\n원리: 확률변수의 값이 조건에 맞는 경우만 셉니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "P(X = k) = c·2ᵏ (k = 0, 1, 2)일 때 c는? (기약분수로)",
+      "answer": "1/7",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "k = 0, 1, 2를 넣어 더하세요.",
+      "explanation": "확률의 합: c(1 + 2 + 4) = 7c = 1\nc = 1/7\n원리: 모든 확률의 합은 1입니다.\n확인: 1/7 + 2/7 + 4/7 = 1"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "흰 공 3개, 검은 공 2개 중 3개를 뽑을 때 흰 공의 개수 X에 대해 P(X = 3)은? (기약분수로)",
+      "answer": "1/10",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "조합으로 세세요.",
+      "explanation": "전체 ₅C₃ = 10\n흰 공 3개: ₃C₃ = 1\nP = 1/10\n원리: 동시에 뽑으면 조합으로 셉니다.\n확인: 흰 공 3개를 모두 뽑는 방법은 한 가지뿐입니다."
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "동전 네 개를 던질 때 앞면의 개수 X에 대해 P(X = 2)는? (기약분수로)",
+      "answer": "3/8",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "₄C₂를 이용하세요.",
+      "explanation": "전체 2⁴ = 16, 앞면 2개: ₄C₂ = 6\nP = 6/16\n= 3/8\n원리: 앞면이 나올 동전 2개를 고르는 방법 ₄C₂"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "확률분포에서 모든 확률의 합이 1이어야 하는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "모든 값",
+            "빠짐없이",
+            "전부"
+          ],
+          [
+            "표본공간",
+            "반드시",
+            "어느 하나"
+          ],
+          [
+            "1"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "X는 가질 수 있는 값 중 반드시 어느 하나를 가집니다. 그 값들의 사건을 모두 합치면 표본공간 전체가 되고, 서로 겹치지 않으므로 확률의 합은 P(S) = 1입니다."
+    }
+  ]
+}

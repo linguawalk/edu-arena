@@ -1,0 +1,96 @@
+{
+ "no": 5,
+ "title": "파일 입출력",
+ "hours": 4,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "파일 디스크립터와 open·read·write·close의 동작을 설명할 수 있다.",
+  "표준 입출력 라이브러리의 버퍼링과 시스템 호출 입출력을 비교할 수 있다.",
+  "dup2로 입출력 재지정과 파이프를 구현하는 원리를 설명할 수 있다."
+ ],
+ "checklist": [
+  "파일 디스크립터: 0 표준 입력, 1 표준 출력, 2 표준 오류",
+  "open은 사용하지 않는 가장 작은 번호를 반환",
+  "read/write와 짧은 읽기·쓰기",
+  "stdio 버퍼링(전체, 줄, 없음)",
+  "파일 디스크립터 표와 열린 파일 표, fork 뒤 공유",
+  "dup2와 재지정, pipe",
+  "메모리 사상 파일(mmap)"
+ ],
+ "advice": [
+  "셸의 >, <, | 기호는 모두 파일 디스크립터를 바꿔 끼우는(dup2) 작업이고, 3단원의 fork·exec와 합치면 파이프라인 전체를 직접 구현할 수 있습니다. printf 출력이 fork 뒤 두 번 찍히는 현상을 일부러 만들어 보고, 그것이 버퍼링 때문이라는 점을 확인하면 이 단원의 핵심을 잡은 것입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Bryant · O'Hallaron, Computer Systems: A Programmer's Perspective (번역본 『컴퓨터 시스템』, 장 제목으로 표기)",
+   "part": "System-Level I/O 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Arpaci-Dusseau (무료 공개 교재)",
+   "title": "Operating Systems: Three Easy Pieces",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "lang": "영어",
+   "part": "Files and Directories 장"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "표준 입력·출력·오류가 열려 있는 프로세스가 처음으로 open()을 호출하면 반환되는 파일 디스크립터 번호는 보통 얼마일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "0, 1, 2가 이미 쓰이고 있으므로 가장 작은 빈 번호 3을 받습니다.",
+   "hint": "0·1·2 다음입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "운영체제가 열린 파일을 가리키려고 프로세스에 돌려주는 작은 정수를 파일 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "디스크립터",
+      "기술자",
+      "서술자"
+     ]
+    }
+   ],
+   "explanation": "소켓과 파이프도 같은 방식으로 다룹니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "한 파일 디스크립터를 다른 번호로 복제해 표준 출력을 파일로 바꾸는 등 재지정에 쓰는 시스템 호출은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "dup2",
+      "dup"
+     ]
+    }
+   ],
+   "explanation": "셸의 > 재지정이 이렇게 구현됩니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "system-programming",
+ "id": "l3-computer-system-programming-u05"
+}

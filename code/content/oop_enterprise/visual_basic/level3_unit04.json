@@ -1,0 +1,96 @@
+{
+  "language": "visual_basic",
+  "category": "oop_enterprise",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "Static 변수와 범위",
+  "questions": [
+    {
+      "id": "visual_basic_l3_u04_q001",
+      "type": "predict_output",
+      "code": "Sub Counter()\n    Static count As Integer = 0\n    count += 1\n    Console.WriteLine(count)\nEnd Sub\n\nCounter()\nCounter()\nCounter()",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1 1 1", "1 2 3", "0 0 0", "오류"],
+      "answer": 1,
+      "explanation_en": "Static preserves count's value between calls instead of resetting it; each call increments the same stored value: 1, 2, 3.",
+      "explanation_ko": "Static은 호출 사이에 count 값을 초기화하지 않고 유지합니다. 호출할 때마다 저장된 값이 증가해 1, 2, 3이 됩니다.",
+      "concept_tags": ["static_variable"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l3_u04_q002",
+      "type": "predict_output",
+      "code": "Sub Counter2()\n    Dim count As Integer = 0\n    count += 1\n    Console.WriteLine(count)\nEnd Sub\n\nCounter2()\nCounter2()\nCounter2()",
+      "prompt_en": "What is printed? (Compare with the Static version above.)",
+      "prompt_ko": "출력 결과는? (위의 Static 버전과 비교해보세요.)",
+      "options": ["1 2 3", "1 1 1", "0 0 0", "오류"],
+      "answer": 1,
+      "explanation_en": "Without Static, count is a fresh local variable each call, reset to 0 every time; it becomes 1 each time before printing.",
+      "explanation_ko": "Static이 없으면 count는 호출될 때마다 새로 생성되어 0으로 초기화됩니다. 매번 1이 된 뒤 출력되므로 1, 1, 1이 됩니다.",
+      "concept_tags": ["static_variable"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l3_u04_q003",
+      "type": "fill_blank",
+      "code": "Sub Counter()\n    ____ count As Integer = 0\n    count += 1\n    Console.WriteLine(count)\nEnd Sub\n// 호출할 때마다 값이 유지되어야 함",
+      "prompt_en": "Fill in the blank so count retains its value between calls.",
+      "prompt_ko": "호출 사이에 count 값이 유지되도록 빈칸을 채우세요.",
+      "options": ["Static", "Dim", "Const", "Public"],
+      "answer": 0,
+      "explanation_en": "Static makes a local variable persist across procedure calls instead of being recreated each time, just like C's static local variable.",
+      "explanation_ko": "Static은 지역 변수가 매번 새로 생성되는 대신 프로시저 호출 사이에도 값을 유지하게 만듭니다. C의 static 지역 변수와 같은 개념입니다.",
+      "concept_tags": ["static_variable"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l3_u04_q004",
+      "type": "predict_output",
+      "code": "Module Program\n    Dim total As Integer = 0\n\n    Sub AddToTotal(n As Integer)\n        total += n\n    End Sub\n\n    Sub Main()\n        AddToTotal(5)\n        AddToTotal(3)\n        Console.WriteLine(total)\n    End Sub\nEnd Module",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "3", "8", "0"],
+      "answer": 2,
+      "explanation_en": "total is declared at the Module level, making it shared across all procedures in the module; both calls modify the same value: 0+5+3=8.",
+      "explanation_ko": "total은 Module 수준에서 선언되어 모듈 안의 모든 프로시저가 공유합니다. 두 호출 모두 같은 값을 수정해 0+5+3=8이 됩니다.",
+      "concept_tags": ["module_level_variable"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l3_u04_q005",
+      "type": "error_finding",
+      "code": "Sub PrintX()\n    Console.WriteLine(x)\nEnd Sub\n\nSub Main()\n    Dim x As Integer = 5\n    PrintX()\nEnd Sub",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "PrintX 정의 문법 오류",
+        "x는 Main 안에서 선언된 지역 변수라 PrintX에서는 보이지 않아서, x를 찾을 수 없다는 컴파일 오류가 발생함",
+        "Dim 선언 위치 오류",
+        "문제 없음, x가 5로 정상 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "A variable declared with Dim inside a procedure is local to that procedure only; PrintX cannot see Main's x, since procedure-level scope isn't shared like Module-level scope is.",
+      "explanation_ko": "프로시저 안에서 Dim으로 선언한 변수는 그 프로시저에만 국한됩니다. PrintX는 Main의 x를 볼 수 없습니다. 프로시저 수준 스코프는 Module 수준 스코프처럼 공유되지 않기 때문입니다.",
+      "concept_tags": ["variable_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "visual_basic_l3_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "지역 변수 (Dim, 프로시저 안)", "definition": "선언된 프로시저 안에서만 유효하고, 호출이 끝나면 사라지는 변수" },
+        { "term": "Module 수준 변수", "definition": "Module 전체에서 공유되며, 모든 프로시저에서 접근 가능한 변수" },
+        { "term": "Static 지역 변수", "definition": "지역 변수처럼 프로시저 안에서만 접근 가능하지만, 값은 호출 사이에도 유지되는 변수" },
+        { "term": "스코프", "definition": "변수가 어디에서 접근 가능한지를 결정하는 유효 범위" }
+      ],
+      "explanation_en": "These scope rules mirror what was covered in C's Level 3 — local, global (module-level), and static variables — just with VB's own keywords.",
+      "explanation_ko": "이 스코프 규칙들은 C의 Level 3에서 다룬 지역/전역(모듈 수준)/static 변수와 본질적으로 동일하며, VB만의 키워드로 표현될 뿐입니다.",
+      "concept_tags": ["variable_scope", "static_variable", "module_level_variable"],
+      "difficulty": "practice"
+    }
+  ]
+}

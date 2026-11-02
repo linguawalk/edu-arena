@@ -1,0 +1,96 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "sql-associate-1z0-071",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "날짜 함수",
+  "rule_summary_ko": "SYSDATE는 현재 날짜와 시간을 반환합니다. ADD_MONTHS(날짜, n)는 n개월을 더한 날짜를 반환하는데, 원래 날짜가 그 달의 마지막 날이면 결과도 항상 그 결과 달의 마지막 날이 됩니다(예: 2월 말일에 1개월을 더하면 3월 29일이 아니라 3월 31일). MONTHS_BETWEEN(날짜1, 날짜2)은 두 날짜 사이의 개월 수를 반환합니다. TO_CHAR는 날짜를 지정한 형식의 문자열로, TO_DATE는 문자열을 날짜로 변환합니다.",
+  "examples": [
+    { "code": "ADD_MONTHS('29-FEB-16', 1)", "note_ko": "결과: '31-MAR-16' — 원래 날짜가 2월의 마지막 날이라, 결과도 3월의 마지막 날(29일이 아님)" },
+    { "code": "MONTHS_BETWEEN('02-FEB-00', '01-JAN-00')", "note_ko": "결과: 1(약 한 달 차이)" }
+  ],
+  "questions": [
+    {
+      "id": "sql_oracle_l1_u4_q001",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "현재 날짜와 시간을 반환하는 오라클 SQL 함수(의사 컬럼)는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["SYSDATE"],
+      "explanation_ko": "SYSDATE는 데이터베이스 서버의 현재 날짜·시간을 반환합니다.",
+      "concept_tags": ["sysdate"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l1_u4_q002",
+      "type": "concept_matching_item",
+      "code": "SELECT ADD_MONTHS(DATE '2016-02-29', 1) FROM DUAL;",
+      "prompt_ko": "결과는?(2016년은 윤년이라 2월 29일이 존재)",
+      "options": [
+        "2016년 3월 29일",
+        "2016년 3월 31일 — 원래 날짜가 2월의 마지막 날이므로, 결과도 3월의 마지막 날이 된다",
+        "오류가 발생한다",
+        "2016년 4월 1일"
+      ],
+      "answer": 1,
+      "explanation_ko": "ADD_MONTHS는 원래 날짜가 그 달의 마지막 날이면, 계산 결과도 항상 그 달의 마지막 날로 맞춰줍니다.",
+      "concept_tags": ["add_months"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l1_u4_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "MONTHS_BETWEEN(date1, date2) 함수가 반환하는 값은?",
+      "options": [
+        "date1과 date2 사이의 개월 수(숫자)",
+        "date1과 date2 중 더 이른 날짜",
+        "두 날짜가 같은 달인지 여부(true/false)",
+        "date1에서 date2를 뺀 일수"
+      ],
+      "answer": 0,
+      "explanation_ko": "MONTHS_BETWEEN은 두 날짜 사이의 개월 차이를 숫자(소수 포함 가능)로 반환합니다.",
+      "concept_tags": ["months_between"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l1_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "문자열 '2024-01-15'를 실제 DATE 타입으로 변환할 때 사용하는 함수는?",
+      "options": ["TO_CHAR", "TO_DATE", "TO_NUMBER", "NVL"],
+      "answer": 1,
+      "explanation_ko": "TO_DATE(문자열, 형식)은 문자열을 지정한 형식에 맞춰 DATE 타입으로 변환합니다.",
+      "concept_tags": ["to_date"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l1_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "DATE 타입의 값을 원하는 형식(예: 'YYYY-MM-DD')의 문자열로 바꿀 때 사용하는 함수는?",
+      "options": ["TO_DATE", "TO_CHAR", "TO_NUMBER", "DECODE"],
+      "answer": 1,
+      "explanation_ko": "TO_CHAR(날짜, 형식)은 날짜를 지정한 형식의 문자열로 변환합니다. TO_DATE와 반대 방향입니다.",
+      "concept_tags": ["to_char"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l1_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "TO_DATE와 TO_CHAR를 사용할 때, 원본 데이터의 실제 형식과 다른 형식 문자열을 지정하면?",
+      "options": [
+        "항상 자동으로 올바르게 인식되어 문제없다",
+        "형식이 맞지 않아 오류가 발생하거나, 의도와 다르게 잘못 해석된 값이 나올 수 있다",
+        "함수 자체가 무시되고 원본 문자열이 그대로 반환된다",
+        "날짜가 아니라 항상 NULL이 반환된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "형식 문자열은 실제 데이터의 형식과 정확히 일치해야 하며, 그렇지 않으면 변환 오류나 예상치 못한 결과가 나올 수 있습니다.",
+      "concept_tags": ["to_date", "to_char", "format_mismatch"],
+      "difficulty": "challenge"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "java-ocp-17",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "List·Set·Map 기초",
+  "rule_summary_ko": "List는 순서를 유지하며 중복을 허용합니다. Set은 중복을 허용하지 않으며, HashSet은 순서를 보장하지 않고, LinkedHashSet은 삽입 순서를 유지하며, TreeSet은 자동으로 정렬된 순서를 유지합니다. Map은 키-값 쌍을 저장하며, 이미 존재하는 키로 put()하면 기존 값을 덮어쓰고 크기는 늘어나지 않습니다.",
+  "examples": [
+    { "code": "Set<String> set = new HashSet<>();\nset.add(\"a\"); set.add(\"a\");", "note_ko": "같은 값을 두 번 추가해도 크기는 1 — Set은 중복을 자동으로 제거함" },
+    { "code": "map.put(\"x\", 1);\nmap.put(\"x\", 2);", "note_ko": "같은 키로 다시 put하면 값이 2로 덮어써지고, 새로운 엔트리가 추가되는 게 아니라 기존 것이 갱신됨" }
+  ],
+  "questions": [
+    {
+      "id": "java_ocp_l3_u1_q001",
+      "type": "fill_blank",
+      "code": "List<String> list = new ArrayList<>();\nlist.add(\"a\"); list.add(\"b\"); list.add(\"a\");\nSystem.out.println(list.size());",
+      "prompt_ko": "출력 결과는? (숫자만 입력)",
+      "expected_answers": ["3"],
+      "explanation_ko": "List는 중복을 허용하므로 \"a\"가 두 번 들어가도 전체 크기는 3입니다.",
+      "concept_tags": ["list_duplicates"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l3_u1_q002",
+      "type": "fill_blank",
+      "code": "Set<String> set = new HashSet<>();\nset.add(\"a\"); set.add(\"b\"); set.add(\"a\");\nSystem.out.println(set.size());",
+      "prompt_ko": "출력 결과는? (숫자만 입력)",
+      "expected_answers": ["2"],
+      "explanation_ko": "Set은 중복을 허용하지 않으므로, 두 번째 \"a\"는 무시되어 크기는 2({\"a\",\"b\"})입니다.",
+      "concept_tags": ["set_duplicates"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l3_u1_q003",
+      "type": "concept_matching_item",
+      "code": "Set<Integer> treeSet = new TreeSet<>();\ntreeSet.add(3); treeSet.add(1); treeSet.add(2);\nSystem.out.println(treeSet);",
+      "prompt_ko": "출력 결과는?",
+      "options": ["[3, 1, 2](삽입 순서)", "[1, 2, 3](자동 정렬됨)", "순서가 매번 무작위로 바뀐다", "컴파일 오류"],
+      "answer": 1,
+      "explanation_ko": "TreeSet은 요소를 자동으로 정렬된 순서로 유지합니다.",
+      "concept_tags": ["treeset"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l3_u1_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "HashSet과 LinkedHashSet의 차이는?",
+      "options": [
+        "HashSet은 순서를 보장하지 않지만, LinkedHashSet은 요소를 삽입한 순서를 유지한다",
+        "HashSet은 중복을 허용하지만 LinkedHashSet은 허용하지 않는다",
+        "LinkedHashSet은 자동으로 정렬된 순서를 유지한다(TreeSet과 동일)",
+        "둘은 완전히 동일하게 동작한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "LinkedHashSet은 내부적으로 연결 리스트를 함께 유지해서 삽입 순서를 보존합니다. 정렬 순서를 유지하는 것은 TreeSet입니다.",
+      "concept_tags": ["linkedhashset", "hashset"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l3_u1_q005",
+      "type": "concept_matching_item",
+      "code": "Map<String, Integer> map = new HashMap<>();\nmap.put(\"x\", 1);\nmap.put(\"x\", 2);\nSystem.out.println(map.get(\"x\") + \" \" + map.size());",
+      "prompt_ko": "출력 결과는?",
+      "options": ["\"1 1\"", "\"2 1\"", "\"1 2\"", "\"2 2\""],
+      "answer": 1,
+      "explanation_ko": "같은 키로 다시 put하면 값이 2로 덮어써지고, 엔트리 개수는 늘지 않아 size는 1입니다.",
+      "concept_tags": ["map_put_overwrite"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l3_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "List, Set, Map 중 키-값 쌍으로 데이터를 저장하는 자료구조는?",
+      "options": ["List", "Set", "Map", "셋 다 동일한 방식으로 저장한다"],
+      "answer": 2,
+      "explanation_ko": "Map은 유일한 키에 값을 매핑하는 구조이고, List와 Set은 단일 요소들의 컬렉션입니다.",
+      "concept_tags": ["map_basics"],
+      "difficulty": "intro"
+    }
+  ]
+}

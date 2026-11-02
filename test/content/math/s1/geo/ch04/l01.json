@@ -1,0 +1,485 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s1",
+  "track": "geo",
+  "work": "증명",
+  "track_title": "기하",
+  "chapter": {
+    "id": "math-s1-geo-ch04",
+    "no": 4,
+    "title": "넓이와 삼각비"
+  },
+  "lesson": {
+    "id": "math-s1-geo-ch04-l01",
+    "no": 1,
+    "title": "넓이의 비",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "기하"
+    ],
+    "competition": "KMO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "두 변과 끼인각으로 넓이 구하기",
+      "body": [
+        "삼각형의 두 변 a, b와 그 끼인각 C를 알면 넓이는 K = (1/2)ab sin C입니다.",
+        "A에서 변 BC(길이 a)에 내린 높이는 b sin C이므로 넓이는 (1/2) × a × b sin C입니다. C가 둔각이어도 sin C = sin(180° − C)이므로 같은 공식이 성립합니다.",
+        "sin 30° = 1/2, sin 45° = √2/2, sin 60° = √3/2, sin 90° = 1을 기억해 두세요. 예를 들어 두 변이 6, 8이고 끼인각이 30°이면 넓이는 (1/2) × 6 × 8 × 1/2 = 12입니다. 이 공식 하나로 넓이의 비에 관한 많은 문제가 풀립니다."
+      ],
+      "figure": {
+        "widget": "geo",
+        "config": {
+          "elements": [
+            {
+              "t": "poly",
+              "pts": [
+                [
+                  2.5,
+                  3.5
+                ],
+                [
+                  6,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "fill": false
+            },
+            {
+              "t": "seg",
+              "a": [
+                2.5,
+                3.5
+              ],
+              "b": [
+                2.5,
+                0
+              ],
+              "dash": true,
+              "hl": true
+            },
+            {
+              "t": "right",
+              "p": [
+                2.5,
+                0
+              ],
+              "a": [
+                6,
+                0
+              ],
+              "b": [
+                2.5,
+                3.5
+              ]
+            },
+            {
+              "t": "arc",
+              "p": [
+                0,
+                0
+              ],
+              "a": [
+                6,
+                0
+              ],
+              "b": [
+                2.5,
+                3.5
+              ],
+              "r": 22,
+              "label": "C"
+            },
+            {
+              "t": "text",
+              "p": [
+                3.2,
+                -0.45
+              ],
+              "s": "a"
+            },
+            {
+              "t": "text",
+              "p": [
+                0.9,
+                2.0
+              ],
+              "s": "b"
+            },
+            {
+              "t": "pt",
+              "p": [
+                2.5,
+                3.5
+              ],
+              "label": "A",
+              "pos": "n"
+            },
+            {
+              "t": "pt",
+              "p": [
+                6,
+                0
+              ],
+              "label": "B"
+            },
+            {
+              "t": "pt",
+              "p": [
+                0,
+                0
+              ],
+              "label": "C"
+            }
+          ],
+          "alt": "변 a, b와 끼인각 C. A에서 내린 높이는 b sin C",
+          "maxh": 240
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "두 변이 6, 8이고 끼인각이 30°인 삼각형의 넓이는?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "K = (1/2)ab sin C이고 sin 30° = 1/2입니다.",
+      "explanation": "두 변 6, 8과 끼인각 30°를 공식에 넣으면 K = (1/2) × 6 × 8 × sin 30°입니다.\n= 24 × 1/2입니다.\n= 12입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "높이가 같은 두 삼각형의 넓이의 비는 {{1}}의 비와 같습니다.",
+      "blanks": [
+        {
+          "answers": [
+            "밑변"
+          ]
+        }
+      ],
+      "hint": "넓이 = 밑변 × 높이 / 2입니다.",
+      "explanation": "두 삼각형의 높이가 h로 같으면 넓이는 각각 (밑변) × h/2입니다.\nh/2가 공통이므로 약분됩니다.\n따라서 넓이의 비는 밑변의 비입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "한 변을 나누는 점",
+      "body": [
+        "삼각형 ABC의 변 BC 위의 점 D에 대해, 두 삼각형 ABD와 ACD는 꼭짓점 A에서의 높이가 같습니다.",
+        "따라서 [ABD] : [ACD] = BD : DC입니다. 대괄호 [ ]는 넓이를 뜻합니다.",
+        "BD : DC = 2 : 3이고 [ABC] = 50이면 [ABD] = 50 × 2/5 = 20입니다. 이 사실은 무게중심의 '여섯 조각' 증명에서도 썼던 것입니다. 넓이 문제에서 높이가 같은 삼각형을 찾는 것이 첫 단계입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "[ABC] = 40인 삼각형에서 변 BC 위의 점 D가 BD : DC = 3 : 5를 만족할 때 [ABD]를 구하세요.",
+      "steps": [
+        "삼각형 ABD와 ACD는 꼭짓점 A에서의 높이가 같습니다.",
+        "따라서 [ABD] : [ACD] = BD : DC = 3 : 5입니다.",
+        "[ABD] = 40 × 3/8입니다.",
+        "= 15입니다."
+      ],
+      "answer": "15"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "[ABC] = 30인 삼각형에서 변 BC 위의 점 D가 BD : DC = 1 : 2를 만족할 때 [ABD]는?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "[ABD] : [ACD] = BD : DC입니다.",
+      "explanation": "삼각형 ABD와 ACD는 A에서의 높이가 같으므로 넓이의 비는 1 : 2입니다.\n[ABD] = 30 × 1/3입니다.\n= 10이고, [ACD] = 20입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "두 변이 10, 12이고 끼인각이 150°인 삼각형의 넓이는?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "sin 150° = sin 30° = 1/2입니다.",
+      "explanation": "sin 150° = sin(180° − 30°) = 1/2입니다.\nK = (1/2) × 10 × 12 × 1/2입니다.\n= 30입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "각을 공유하는 두 삼각형",
+      "body": [
+        "점 D, E가 각각 변 AB, AC 위에 있으면 삼각형 ADE와 ABC는 각 A를 공유합니다.",
+        "넓이 공식으로 [ADE] = (1/2)AD · AE sin A, [ABC] = (1/2)AB · AC sin A이므로 [ADE]/[ABC] = (AD · AE)/(AB · AC)입니다.",
+        "닮음이 아니어도 성립한다는 점이 중요합니다. AD : DB = 1 : 2, AE : EC = 3 : 1이면 AD/AB = 1/3, AE/AC = 3/4이므로 [ADE] = [ABC] × 1/4입니다. 두 비율을 곱하면 된다고 기억하세요."
+      ],
+      "figure": {
+        "widget": "geo",
+        "config": {
+          "elements": [
+            {
+              "t": "poly",
+              "pts": [
+                [
+                  1,
+                  5
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  7,
+                  0
+                ]
+              ],
+              "fill": false
+            },
+            {
+              "t": "poly",
+              "pts": [
+                [
+                  1,
+                  5
+                ],
+                [
+                  0.6,
+                  3.0
+                ],
+                [
+                  4.0,
+                  2.5
+                ]
+              ],
+              "hl": true
+            },
+            {
+              "t": "arc",
+              "p": [
+                1,
+                5
+              ],
+              "a": [
+                0,
+                0
+              ],
+              "b": [
+                7,
+                0
+              ],
+              "r": 18
+            },
+            {
+              "t": "pt",
+              "p": [
+                1,
+                5
+              ],
+              "label": "A",
+              "pos": "n"
+            },
+            {
+              "t": "pt",
+              "p": [
+                0,
+                0
+              ],
+              "label": "B"
+            },
+            {
+              "t": "pt",
+              "p": [
+                7,
+                0
+              ],
+              "label": "C"
+            },
+            {
+              "t": "pt",
+              "p": [
+                0.6,
+                3.0
+              ],
+              "label": "D",
+              "pos": "w"
+            },
+            {
+              "t": "pt",
+              "p": [
+                4.0,
+                2.5
+              ],
+              "label": "E",
+              "pos": "e"
+            }
+          ],
+          "alt": "각 A를 공유하는 삼각형 ADE와 ABC",
+          "maxh": 240
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "AB = 6, AC = 8인 삼각형 ABC에서 AB 위의 점 D, AC 위의 점 E가 AD = 3, AE = 4일 때, [ABC] = 40이면 [ADE]는?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "[ADE]/[ABC] = (AD · AE)/(AB · AC)입니다.",
+      "explanation": "[ADE]/[ABC] = (3 × 4)/(6 × 8) = 12/48입니다.\n= 1/4입니다.\n따라서 [ADE] = 40/4 = 10입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "[ABC] = 48인 삼각형에서 AD : DB = 1 : 2, AE : EC = 3 : 1일 때 [ADE]는? (D는 AB 위, E는 AC 위)",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "AD/AB = 1/3, AE/AC = 3/4입니다.",
+      "explanation": "AD/AB = 1/3이고 AE/AC = 3/4입니다.\n[ADE]/[ABC] = 1/3 × 3/4 = 1/4입니다.\n따라서 [ADE] = 48/4 = 12입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "모서리를 잘라 내기",
+      "body": [
+        "변 BC, CA, AB 위에 점 D, E, F를 BD/BC = CE/CA = AF/AB = 1/3이 되도록 잡으면, 삼각형 DEF의 넓이는 얼마일까요?",
+        "모서리 삼각형 AFE는 AF/AB = 1/3, AE/AC = 2/3이므로 [AFE] = [ABC] × 2/9입니다. 다른 두 모서리도 같으므로 세 모서리의 합은 6/9 = 2/3입니다.",
+        "따라서 [DEF] = [ABC] × 1/3입니다. 직접 구하기 어려운 넓이는 전체에서 쉬운 조각을 빼서 구합니다. [ABC] = 36이면 [DEF] = 12입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "[ABC] = 36이고 BD/BC = CE/CA = AF/AB = 1/3일 때 [DEF]는? (D는 BC, E는 CA, F는 AB 위)",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "모서리 삼각형 하나는 전체의 2/9입니다.",
+      "explanation": "[AFE] = 36 × (1/3)(2/3) = 8이고, 세 모서리 삼각형의 넓이가 모두 8입니다.\n모서리의 합은 24입니다.\n따라서 [DEF] = 36 − 24 = 12입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "두 변과 끼인각으로 K = (1/2)ab sin C입니다. 끼인각이 둔각이면 sin C = sin(180° − C)를 씁니다.",
+        "높이가 같은 삼각형의 넓이의 비는 밑변의 비입니다. 그래서 [ABD] : [ACD] = BD : DC입니다.",
+        "각 A를 공유하면 [ADE]/[ABC] = (AD · AE)/(AB · AC)입니다. 직접 구하기 어려운 넓이는 전체에서 쉬운 조각을 빼서 구합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "한 변이 4인 정삼각형의 넓이를 K라 할 때 K²의 값은?",
+      "answer": "48",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "K = (1/2) × 4 × 4 × sin 60°입니다.",
+      "explanation": "정삼각형의 두 변 4, 4와 끼인각 60°로 K = (1/2) × 4 × 4 × √3/2 = 4√3입니다.\nK² = 16 × 3입니다.\n= 48이고, 공식 (√3/4)a²과 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "두 변이 6, 10이고 한 내각이 30°인 평행사변형의 넓이는?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "평행사변형은 대각선으로 합동인 두 삼각형으로 나뉩니다.",
+      "explanation": "대각선으로 나눈 삼각형 하나의 넓이는 (1/2) × 6 × 10 × sin 30° = 15입니다.\n평행사변형은 이런 삼각형 2개입니다.\n따라서 넓이는 30이고, ab sin θ와 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "삼각형 ABC에서 BC = a, CA = b일 때 넓이가 (1/2)ab sin C임을 증명하세요. (C는 예각)",
+      "model_answer": [
+        "A에서 직선 BC에 내린 수선의 발을 H라 하면 AH가 밑변 BC에 대한 높이이다.",
+        "직각삼각형 AHC에서 ∠C의 대변이 AH, 빗변이 AC = b이므로 AH = b sin C이다.",
+        "따라서 넓이 = (1/2) × BC × AH이다.",
+        "= (1/2)ab sin C이다."
+      ],
+      "criteria": [
+        {
+          "text": "A에서 BC에 수선을 내려 높이를 정했다",
+          "points": 2
+        },
+        {
+          "text": "직각삼각형에서 높이 = b sin C를 얻었다",
+          "points": 2
+        },
+        {
+          "text": "넓이 공식에 대입해 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "A에서 BC에 수선을 내리세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "삼각형 ABC의 변 AB, AC 위에 점 D, E가 있을 때 [ADE]/[ABC] = (AD · AE)/(AB · AC)임을 증명하세요.",
+      "model_answer": [
+        "두 삼각형 ADE와 ABC는 각 A를 공유한다.",
+        "두 변과 끼인각의 넓이 공식에 의해 [ADE] = (1/2)AD · AE sin A이다.",
+        "마찬가지로 [ABC] = (1/2)AB · AC sin A이다.",
+        "나누면 (1/2)와 sin A가 약분되어 [ADE]/[ABC] = (AD · AE)/(AB · AC)이다."
+      ],
+      "criteria": [
+        {
+          "text": "공통인 각 A를 밝혔다",
+          "points": 1
+        },
+        {
+          "text": "두 넓이를 (1/2)ab sin A로 나타냈다",
+          "points": 3
+        },
+        {
+          "text": "나누어 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "두 삼각형 모두 각 A를 끼인각으로 쓰세요."
+    }
+  ]
+}

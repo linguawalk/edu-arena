@@ -1,0 +1,87 @@
+{
+ "no": 1,
+ "title": "신경망 연산 분석",
+ "hours": 5,
+ "after": [],
+ "objectives": [
+  "합성곱·완전 연결·어텐션 층의 연산량(MAC)을 계산할 수 있다.",
+  "층별 연산량과 메모리 요구를 분석해 병목을 찾을 수 있다."
+ ],
+ "checklist": [
+  "합성곱 MAC = H_out × W_out × C_out × K² × C_in",
+  "완전 연결과 어텐션의 행렬 곱",
+  "배치 크기와 재사용",
+  "매개변수·활성값 메모리",
+  "추론과 학습의 연산 차이(역전파 약 2배)"
+ ],
+ "advice": [
+  "가속기 설계는 대상 모델이 어떤 연산을 얼마나 하는지 분석하는 데서 시작합니다. 합성곱 층 하나의 MAC 수를 공식으로 계산해 보면 수억 번이 쉽게 나오고, 층마다 연산은 많은데 데이터는 적은 층(연산 병목)과 반대인 층(메모리 병목)이 섞여 있다는 것을 알 수 있습니다. 이 분석이 다음 단원들의 설계 선택의 근거가 됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan & Claypool",
+   "title": "Sze 외, Efficient Processing of Deep Neural Networks (장 제목으로 표기)",
+   "part": "Overview of DNNs, Key Metrics 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2 융합",
+   "title": "AI 반도체 입문 1단원 AI 연산의 정체: 행렬 곱",
+   "url": "guide.html?lv=2&t=convergence&s=ai-chip-intro&u=1"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "출력 56 × 56 × 64, 커널 3 × 3, 입력 채널 64인 합성곱 층의 MAC 수는 약 몇 × 10⁶일까요? (소수 첫째 자리까지)",
+   "answer": "115.6",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "56 × 56 × 64 × 9 × 64 ≈ 115.6 × 10⁶",
+   "hint": "H × W × C_out × K² × C_in입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "여러 입력을 한꺼번에 처리해 같은 가중치를 여러 번 재사용하게 하는 묶음 단위를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "배치"
+     ]
+    }
+   ],
+   "explanation": "배치가 크면 처리량이 늘지만 지연이 커질 수 있습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "작은 필터를 입력 위로 밀며 곱하고 더하는 영상 처리용 층을 {{1}} 층이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "합성곱",
+      "컨볼루션"
+     ]
+    }
+   ],
+   "explanation": "CNN의 핵심 연산입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "ai-chip",
+ "id": "l3-convergence-ai-chip-u01"
+}

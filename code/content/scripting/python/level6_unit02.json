@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 6,
+  "unit": 2,
+  "unit_title": "예외처리",
+  "questions": [
+    {
+      "id": "python_l6_u02_q001",
+      "type": "predict_output",
+      "code": "try:\n    result = 10 / 0\nexcept ZeroDivisionError:\n    print(\"0으로 나눌 수 없음\")\nfinally:\n    print(\"항상 실행됨\")",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0으로 나눌 수 없음\\n항상 실행됨", "항상 실행됨", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "Dividing by 0 raises ZeroDivisionError, which except handles, printing the message; finally then always runs afterward.",
+      "explanation_ko": "0으로 나누면 ZeroDivisionError가 발생하고, except가 이를 처리해 메시지를 출력합니다. 이후 finally가 항상 실행됩니다.",
+      "concept_tags": ["try_except_finally", "zerodivisionerror"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l6_u02_q002",
+      "type": "predict_output",
+      "code": "try:\n    raise ValueError(\"잘못된 값\")\nexcept ValueError as e:\n    print(e)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["잘못된 값", "ValueError", "오류", "빈 문자열"],
+      "answer": 0,
+      "explanation_en": "raise explicitly triggers an exception with a custom message; the matching except captures it as e, and printing e shows the message directly.",
+      "explanation_ko": "raise는 사용자 정의 메시지와 함께 예외를 명시적으로 발생시킵니다. 일치하는 except는 이를 e로 잡고, e를 출력하면 메시지가 바로 나타납니다.",
+      "concept_tags": ["raise"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l6_u02_q003",
+      "type": "predict_output",
+      "code": "def risky():\n    raise RuntimeError(\"문제 발생\")\n\nrisky()",
+      "prompt_en": "What happens? (Note: risky has no exception declaration of any kind.)",
+      "prompt_ko": "어떻게 될까요? (risky에는 어떤 종류의 예외 선언도 없는 점에 주의하세요.)",
+      "options": [
+        "컴파일 오류 (Java의 checked exception처럼)",
+        "정상적으로 파싱되지만, 실행 시점에 처리되지 않은 예외로 프로그램이 종료됨",
+        "아무 문제 없이 실행됨",
+        "경고만 뜨고 계속 실행됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike Java, Python has no checked exceptions at all — no throws-equivalent declaration is ever required. The code runs fine until the uncaught exception terminates the program at runtime.",
+      "explanation_ko": "Java와 달리 Python에는 checked exception 개념이 전혀 없습니다 — throws에 해당하는 선언이 전혀 필요 없습니다. 코드는 잘 실행되다가, 잡히지 않은 예외가 실행 시점에 프로그램을 종료시킵니다.",
+      "concept_tags": ["raise", "no_checked_exception"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l6_u02_q004",
+      "type": "predict_output",
+      "code": "try:\n    x = int(\"abc\")\nexcept ValueError:\n    print(\"값 오류\")\nexcept TypeError:\n    print(\"타입 오류\")",
+      "prompt_en": "What is printed? (Note multiple except clauses for different exception types.)",
+      "prompt_ko": "출력 결과는? (서로 다른 예외 타입에 대한 여러 except절에 주의하세요.)",
+      "options": ["값 오류", "타입 오류", "둘 다 출력됨", "오류"],
+      "answer": 0,
+      "explanation_en": "int(\"abc\") raises ValueError specifically; Python checks except clauses in order and matches the first one whose type fits, printing 값 오류.",
+      "explanation_ko": "int(\"abc\")는 구체적으로 ValueError를 발생시킵니다. Python은 except절을 순서대로 검사해 타입이 맞는 첫 번째 것과 일치시켜, 값 오류를 출력합니다.",
+      "concept_tags": ["multiple_except"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l6_u02_q005",
+      "type": "fill_blank",
+      "code": "def check_age(age):\n    if age < 0:\n        ____ ValueError(\"나이는 음수일 수 없습니다\")\n    return age",
+      "prompt_en": "Fill in the blank with the keyword that explicitly triggers an exception.",
+      "prompt_ko": "예외를 명시적으로 발생시키는 키워드를 빈칸에 채우세요.",
+      "options": ["raise", "throw", "except", "error"],
+      "answer": 0,
+      "explanation_en": "Python uses raise (not throw as in Java/C#/VB) to explicitly trigger an exception.",
+      "explanation_ko": "Python은 (Java/C#/VB의 throw가 아니라) raise를 사용해 예외를 명시적으로 발생시킵니다.",
+      "concept_tags": ["raise"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l6_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "try / except / finally", "definition": "예외가 발생할 수 있는 블록, 처리기, 항상 실행되는 블록" },
+        { "term": "raise", "definition": "예외를 직접 발생시키는 키워드 (Java/C#/VB의 throw에 대응)" },
+        { "term": "여러 except절", "definition": "예외 타입별로 다른 처리를 하기 위해 순서대로 검사되는 여러 개의 except" },
+        { "term": "checked exception의 부재", "definition": "Python에는 Java의 checked exception 개념이 전혀 없다는 사실 — C#/VB와 같은 입장" }
+      ],
+      "explanation_en": "Python's exception handling philosophy aligns with C# and VB (no checked exceptions) rather than Java, making it easier to move between Python and .NET languages in this regard.",
+      "explanation_ko": "Python의 예외처리 철학은 Java보다는 C#, VB와 같은 입장(checked exception 없음)이라서, 이 부분에서는 Python과 .NET 언어 사이를 오가기가 더 쉽습니다.",
+      "concept_tags": ["try_except_finally", "raise", "no_checked_exception"],
+      "difficulty": "practice"
+    }
+  ]
+}

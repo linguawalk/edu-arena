@@ -1,0 +1,101 @@
+{
+  "language": "basic_early",
+  "category": "legacy_historical",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "GOSUB/RETURN 서브루틴",
+  "questions": [
+    {
+      "id": "basic_early_l2_u02_q001",
+      "type": "predict_output",
+      "code": "10 GOSUB 100\n20 PRINT \"AFTER SUB\"\n30 END\n100 PRINT \"IN SUB\"\n110 RETURN",
+      "prompt_en": "What is printed, and in what order?",
+      "prompt_ko": "출력 결과는, 그리고 순서는?",
+      "options": ["IN SUB, AFTER SUB", "AFTER SUB, IN SUB", "IN SUB만", "오류"],
+      "answer": 0,
+      "explanation_en": "GOSUB 100 jumps to line 100, running the subroutine (IN SUB); RETURN sends control back to the line right after the GOSUB call, continuing to AFTER SUB.",
+      "explanation_ko": "GOSUB 100은 100번 줄로 뛰어가서 서브루틴(IN SUB)을 실행합니다. RETURN은 GOSUB 호출 바로 다음 줄로 제어를 되돌려서, AFTER SUB로 이어집니다.",
+      "concept_tags": ["gosub_return"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "basic_early_l2_u02_q002",
+      "type": "predict_output",
+      "code": "10 GOSUB 100\n20 PRINT \"MIDDLE\"\n30 GOSUB 100\n40 PRINT \"END\"\n50 END\n100 PRINT \"SUB CALLED\"\n110 RETURN",
+      "prompt_en": "What is printed? (The same subroutine is called twice.)",
+      "prompt_ko": "출력 결과는? (같은 서브루틴이 두 번 호출됩니다.)",
+      "options": [
+        "SUB CALLED, MIDDLE, SUB CALLED, END",
+        "SUB CALLED, SUB CALLED, MIDDLE, END",
+        "MIDDLE, END",
+        "오류"
+      ],
+      "answer": 0,
+      "explanation_en": "Each GOSUB call runs the subroutine and returns to right after that specific call, letting the same subroutine be reused: SUB CALLED, MIDDLE, SUB CALLED, END.",
+      "explanation_ko": "각 GOSUB 호출은 서브루틴을 실행하고 그 호출 바로 다음으로 돌아와서, 같은 서브루틴을 재사용할 수 있게 합니다: SUB CALLED, MIDDLE, SUB CALLED, END.",
+      "concept_tags": ["gosub_return"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "basic_early_l2_u02_q003",
+      "type": "fill_blank",
+      "code": "10 GOSUB 100\n20 END\n100 PRINT \"HELLO\"\n110 ____",
+      "prompt_en": "Fill in the blank with the keyword that returns control back to the caller.",
+      "prompt_ko": "호출한 쪽으로 제어를 되돌리는 키워드를 빈칸에 채우세요.",
+      "options": ["RETURN", "GOTO 10", "END", "BACK"],
+      "answer": 0,
+      "explanation_en": "RETURN sends execution back to the line immediately after the matching GOSUB, ending the subroutine.",
+      "explanation_ko": "RETURN은 짝이 되는 GOSUB 바로 다음 줄로 실행을 되돌려서 서브루틴을 끝냅니다.",
+      "concept_tags": ["gosub_return"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "basic_early_l2_u02_q004",
+      "type": "error_finding",
+      "code": "10 PRINT \"START\"\n20 PRINT \"HELLO\"\n30 END",
+      "prompt_en": "If the programmer intended lines 20 to be a reusable subroutine called via GOSUB, what's missing?",
+      "prompt_ko": "프로그래머가 20번 줄을 GOSUB으로 호출하는 재사용 가능한 서브루틴으로 만들려 했다면, 무엇이 빠져있을까요?",
+      "options": [
+        "GOSUB으로 호출하는 부분과, 서브루틴이 끝난 뒤 RETURN하는 부분",
+        "PRINT문 자체가 잘못됨",
+        "줄 번호가 잘못됨",
+        "빠진 것 없음, 이미 서브루틴임"
+      ],
+      "answer": 0,
+      "explanation_en": "As written, this is just sequential code with no GOSUB call and no RETURN; without those, line 20 runs once inline rather than being a callable, reusable subroutine.",
+      "explanation_ko": "지금 상태로는 GOSUB 호출도 RETURN도 없는 그냥 순차적인 코드일 뿐입니다. 이것들 없이는 20번 줄이 호출 가능한 재사용 서브루틴이 아니라 그냥 한 번 실행되는 코드입니다.",
+      "concept_tags": ["gosub_return"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "basic_early_l2_u02_q005",
+      "type": "predict_output",
+      "code": "10 LET X = 5\n20 GOSUB 100\n30 PRINT X\n40 END\n100 LET X = X * 2\n110 RETURN",
+      "prompt_en": "What is printed? (Subroutines share variables with the main program — no local scope.)",
+      "prompt_ko": "출력 결과는? (서브루틴은 메인 프로그램과 변수를 공유합니다 — 지역 스코프 없음.)",
+      "options": ["5", "10", "오류", "0"],
+      "answer": 1,
+      "explanation_en": "Classic BASIC subroutines have no local variable scope; X inside the subroutine is the same X as in the main program, so doubling it there affects the value printed afterward: 10.",
+      "explanation_ko": "초기 BASIC의 서브루틴에는 지역 변수 스코프가 없습니다. 서브루틴 안의 X는 메인 프로그램의 X와 같아서, 그곳에서 두 배로 만들면 이후 출력되는 값에도 영향을 줍니다: 10.",
+      "concept_tags": ["gosub_return", "no_local_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "basic_early_l2_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "GOSUB", "definition": "지정한 줄로 뛰어가 서브루틴을 실행하되, 돌아올 위치를 기억함" },
+        { "term": "RETURN", "definition": "GOSUB이 호출된 바로 다음 줄로 제어를 되돌림" },
+        { "term": "변수 공유 (지역 스코프 없음)", "definition": "서브루틴이 메인 프로그램과 같은 변수를 사용 — 별도의 매개변수나 지역 변수가 없음" },
+        { "term": "함수와의 차이", "definition": "GOSUB은 매개변수나 반환값 없이, 그저 코드를 재사용하는 원시적인 방법" }
+      ],
+      "explanation_en": "GOSUB/RETURN was the primitive ancestor of function calls; the lack of local scope or parameters is exactly what later languages' functions/procedures were designed to fix.",
+      "explanation_ko": "GOSUB/RETURN은 함수 호출의 원시적인 조상이었습니다. 지역 스코프나 매개변수가 없다는 것이 바로 이후 언어들의 함수/프로시저가 고치려 했던 점입니다.",
+      "concept_tags": ["gosub_return", "no_local_scope"],
+      "difficulty": "practice"
+    }
+  ]
+}

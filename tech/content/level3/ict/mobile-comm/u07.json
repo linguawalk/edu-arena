@@ -1,0 +1,100 @@
+{
+ "no": 7,
+ "title": "무선 자원 관리와 셀 계획",
+ "hours": 6,
+ "after": [
+  2,
+  4
+ ],
+ "objectives": [
+  "스케줄링·전력 제어·간섭 관리 등 무선 자원 관리 기능을 설명할 수 있다.",
+  "최대 허용 경로 손실과 전파 모델로 셀 반경을 계산할 수 있다.",
+  "커버리지와 용량을 함께 고려한 셀 계획 절차를 설명할 수 있다."
+ ],
+ "checklist": [
+  "스케줄러: 라운드 로빈, 최대 처리량, 비례 공정(PF)",
+  "상향 전력 제어(원근 문제, 단말 배터리)",
+  "셀 간 간섭 조정(ICIC)",
+  "최대 허용 경로 손실(MAPL) = 링크 버짓의 결과",
+  "경로 손실 모델로 셀 반경 d 구하기",
+  "육각형 셀 면적 ≈ 2.6R²",
+  "커버리지 한계 vs 용량 한계, 망 최적화(드라이브 테스트, SON)"
+ ],
+ "advice": [
+  "셀 계획은 레벨2 무선통신의 링크 버짓을 '거꾸로' 쓰는 작업입니다. 링크 버짓으로 최대 허용 경로 손실을 구하고, 전파 모델 식을 거리에 대해 풀면 셀 반경이 나오며, 셀 면적으로 서비스 지역을 나누면 필요한 기지국 수가 나옵니다. 그다음 트래픽(용량)이 충분한지 확인하는 두 단계를 차례로 해 보세요. 실제 망에서는 측정 데이터로 계속 고치는 최적화가 뒤따릅니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Rappaport, Wireless Communications: Principles and Practice (장 제목으로 표기)",
+   "part": "셀 설계·전력 제어 관련 절"
+  },
+  {
+   "kind": "book",
+   "provider": "Cambridge University Press",
+   "title": "Goldsmith, Wireless Communications (장 제목으로 표기)",
+   "part": "Cellular Systems 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Academic Press",
+   "title": "Dahlman · Parkvall · Sköld, 5G NR: The Next Generation Wireless Access Technology (장 제목으로 표기)",
+   "part": "Scheduling, Power Control 관련 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "무선통신 5단원 링크 버짓",
+   "url": "guide.html?lv=2&t=ict&s=wireless&u=5"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "최대 허용 경로 손실이 130 dB이고 경로 손실 모델이 L = 128 + 37.6 log₁₀d (d: km)이면 셀 반경은 약 몇 km일까요?",
+   "answer": "1.13",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "log₁₀d = (130 − 128)/37.6 ≈ 0.0532\nd ≈ 10^0.0532 ≈ 1.13 km",
+   "hint": "모델 식을 d에 대해 푸세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "반지름 1 km인 육각형 셀의 면적은 약 몇 km²일까요?",
+   "answer": "2.6",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "A ≈ 2.6R² = 2.6 km²",
+   "hint": "(3√3/2)R²입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "가까운 단말의 강한 신호가 먼 단말의 약한 신호를 가리지 않도록 단말 송신 전력을 조절하는 기능을 상향 {{1}} 제어라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "전력"
+     ]
+    }
+   ],
+   "explanation": "CDMA에서 특히 중요했고, LTE·5G에서도 간섭과 배터리 관리에 씁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "mobile-comm",
+ "id": "l3-ict-mobile-comm-u07"
+}

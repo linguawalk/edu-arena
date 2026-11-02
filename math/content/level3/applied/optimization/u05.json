@@ -1,0 +1,111 @@
+{
+ "no": 5,
+ "title": "정수계획과 조합최적화",
+ "hours": 5,
+ "after": [
+  4
+ ],
+ "objectives": [
+  "정수 조건이 있는 문제를 모형화할 수 있다.",
+  "분기한정법의 원리를 설명하고 작은 문제에 적용할 수 있다.",
+  "네트워크 흐름·할당 문제가 정수해를 자동으로 가지는 이유를 설명할 수 있다."
+ ],
+ "checklist": [
+  "정수계획과 0–1 변수 (예/아니오 결정)",
+  "선형완화(LP relaxation)와 그 한계",
+  "분기한정법",
+  "절단평면법(개요)",
+  "배낭 문제와 동적계획법",
+  "완전 단모듈 행렬과 네트워크 흐름·할당 문제",
+  "NP-완전성과 근사 알고리즘(개요)"
+ ],
+ "advice": [
+  "변수가 정수여야 하는 순간 문제가 훨씬 어려워집니다. 선형완화의 최적해를 반올림하면 가능해가 아니거나 최적과 멀어질 수 있습니다. 작은 배낭 문제를 분기한정법과 동적계획법 두 가지로 풀어 보면 조합최적화의 어려움과 기법을 함께 익힐 수 있습니다.",
+  "반면 네트워크 흐름과 할당 문제는 제약 행렬이 특별한 구조(완전 단모듈)를 가져서 선형계획으로 풀어도 저절로 정수해가 나옵니다. 레벨3 그래프 이론 3~4단원의 매칭과 흐름이 이 단원에서 선형계획의 특수한 경우로 다시 등장합니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Athena Scientific",
+   "title": "Bertsimas · Tsitsiklis, Introduction to Linear Optimization",
+   "part": "7장 Network Flow Problems, 10~11장 Integer Programming"
+  },
+  {
+   "kind": "book",
+   "provider": "Springer",
+   "title": "Nocedal · Wright, Numerical Optimization (2판)",
+   "part": "정수계획 관련 부분(개요)"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "배낭 용량 10, 물건 (무게, 가치) = (5, 10), (4, 40), (6, 30), (3, 50)일 때 최대 가치는?",
+   "answer": "90",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "물건 2와 4: 무게 7, 가치 90 (다른 조합은 더 작거나 용량 초과)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "3명에게 3개의 일을 하나씩 배정하는 방법은 모두 몇 가지일까요?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "3! = 6 (할당 문제의 가능해)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "네트워크 흐름 문제의 용량이 모두 정수이면 정수인 최대흐름이 존재할까요? (그렇다 1, 아니다 0)",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "완전 단모듈성 (포드–풀커슨의 정수성 정리)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "분기한정법에서 '한정(bound)'이 계산을 줄이는 원리를 설명해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "완화",
+      "상계",
+      "하계",
+      "한계"
+     ],
+     [
+      "현재",
+      "지금까지",
+      "최선"
+     ],
+     [
+      "버리",
+      "가지치기",
+      "탐색하지"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "각 분기의 선형완화로 얻은 한계가 지금까지 찾은 최선의 정수해보다 나쁘면, 그 분기 안에는 더 좋은 해가 없으므로 더 이상 탐색하지 않고 버립니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "applied",
+ "subject": "optimization",
+ "id": "l3-applied-optimization-u05"
+}

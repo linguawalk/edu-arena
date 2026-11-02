@@ -1,0 +1,103 @@
+{
+ "no": 4,
+ "title": "대칭좌표법과 불평형 고장",
+ "hours": 7,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "불평형 전압·전류를 영상·정상·역상분으로 분해할 수 있다.",
+  "기기와 변압기 결선에 따른 시퀀스 회로망을 구성할 수 있다.",
+  "1선 지락, 선간 단락, 2선 지락 고장 전류를 계산할 수 있다."
+ ],
+ "checklist": [
+  "연산자 a = 1∠120°, 1 + a + a² = 0",
+  "V_a = V₀ + V₁ + V₂, V₁ = (V_a + aV_b + a²V_c)/3",
+  "발전기 기전력은 정상분에만 있다",
+  "영상 회로망: 중성점 접지 임피던스는 3Z_n, Δ 결선에서는 영상 전류가 선로로 흐르지 않음",
+  "1선 지락: I_f = 3E/(Z₀ + Z₁ + Z₂ + 3Z_f)",
+  "선간 단락: |I_f| = √3E/|Z₁ + Z₂|",
+  "2선 지락: 정상·역상·영상 회로망을 병렬 연결",
+  "고장 종류별 상대적 크기와 차단기 선정"
+ ],
+ "advice": [
+  "대칭좌표법은 '불평형 문제 하나를 평형 문제 세 개로 바꾸는' 기법입니다. 고장 계산의 순서는 언제나 같습니다. 시퀀스 회로망 세 개를 만들고, 고장 종류에 따라 세 회로망을 직렬(1선 지락)·병렬로 잇고, 대칭분 전류를 구해 상전류로 되돌립니다. 가장 많이 틀리는 곳은 변압기 결선에 따른 영상 회로망이니, Y 접지–Δ 변압기에서 영상 전류가 어느 쪽으로만 흐르는지 그림으로 정리해 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Glover · Overbye · Sarma, Power System Analysis and Design (장 제목으로 표기)",
+   "part": "Symmetrical Components, Unsymmetrical Faults 장"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Grainger · Stevenson, Power System Analysis (번역본 『전력계통공학』)",
+   "part": "대칭분과 시퀀스 회로망, 불평형 고장 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.061 Introduction to Electric Power Systems (2011년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-061-introduction-to-electric-power-systems-spring-2011/",
+   "lang": "영어",
+   "part": "symmetrical components, faults 강의 노트"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "전력공학 기초 6단원 중성점 접지와 유도 장해",
+   "url": "guide.html?lv=2&t=electrical&s=power-basics&u=6",
+   "part": "접지 방식 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "E = 1 pu, Z₁ = Z₂ = j0.2 pu, Z₀ = j0.1 pu인 지점에서 직접 1선 지락이 나면 고장 전류는 몇 pu일까요?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "I_f = 3E/(Z₀ + Z₁ + Z₂) = 3/(0.1 + 0.2 + 0.2) = 6 pu",
+   "hint": "세 시퀀스 임피던스를 직렬로 더합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "같은 지점에서 선간 단락이 나면 고장 전류의 크기는 약 몇 pu일까요?",
+   "answer": "4.33",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "|I_f| = √3E/|Z₁ + Z₂| = 1.732/0.4 ≈ 4.33 pu",
+   "hint": "|I_f| = √3E/|Z₁ + Z₂|입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "Δ 결선 권선 쪽에서는 {{1}}분 전류가 선로로 흘러나가지 못하고 권선 안을 순환합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "영상"
+     ]
+    }
+   ],
+   "explanation": "세 상의 영상분 전류는 크기와 위상이 같아 Δ 결선 안에서만 돕니다.\n그래서 영상 회로망에서 Δ 쪽은 끊어진 것으로 그립니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "power-systems",
+ "id": "l3-electrical-power-systems-u04"
+}

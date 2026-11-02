@@ -1,0 +1,93 @@
+{
+ "no": 4,
+ "title": "HBM과 칩 간 연결",
+ "hours": 4,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "HBM 대역폭을 계산할 수 있다.",
+  "다중 칩·다중 서버 학습에서 칩 간 연결의 역할을 설명할 수 있다."
+ ],
+ "checklist": [
+  "HBM: 넓은 인터페이스(1024비트 이상) × 핀당 속도",
+  "대역폭 = 비트 폭 × 핀 속도 ÷ 8",
+  "스택 수와 총 대역폭·용량",
+  "칩 간 고속 연결과 스위치",
+  "집합 통신(all-reduce)과 분산 학습"
+ ],
+ "advice": [
+  "HBM의 비밀은 핀 하나의 속도보다 한 번에 1000개 넘는 선으로 데이터를 보내는 '넓은 길'에 있습니다. 대역폭 식으로 스택 하나와 여러 개의 대역폭을 계산해 보고, 수천 개 칩이 함께 학습할 때는 칩 사이 연결 속도가 새로운 병목이 된다는 점을 컴퓨터 트랙 분산시스템·클라우드와 연결해 이해하세요. HBM 세대와 연결 기술은 빠르게 바뀝니다."
+ ],
+ "resources": [
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2 융합",
+   "title": "AI 반도체 입문 4단원 메모리 병목과 HBM",
+   "url": "guide.html?lv=2&t=convergence&s=ai-chip-intro&u=4"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "분산시스템·클라우드 8단원 AI·LLM 서빙 인프라 (컴퓨터 트랙)",
+   "url": "guide.html?lv=3&t=computer&s=distributed-systems&u=8"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "인터페이스 1024비트, 핀당 6.4 Gbps인 HBM 스택 하나의 대역폭은 약 몇 GB/s일까요? (소수 첫째 자리까지)",
+   "answer": "819.2",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "1024 × 6.4/8 = 819.2 GB/s",
+   "hint": "비트 폭 × 속도 ÷ 8입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 HBM 스택 6개를 단 가속기의 총 메모리 대역폭은 약 몇 TB/s일까요? (소수 첫째 자리까지)",
+   "answer": "4.9",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "explanation": "819.2 × 6 ≈ 4915 GB/s ≈ 4.9 TB/s",
+   "hint": "스택 수를 곱하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "여러 칩이 계산한 기울기를 모두 더해 다시 모든 칩에 나눠 주는 분산 학습의 집합 통신을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "all-reduce",
+      "올리듀스",
+      "allreduce"
+     ]
+    }
+   ],
+   "explanation": "칩 간 연결 대역폭이 성능을 좌우합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "review": {
+  "basis": "HBM 세대·대역폭, AI 가속기 칩 간 연결 기술 동향",
+  "checked": "2026-10",
+  "next": "2027-04",
+  "watch": "HBM 차세대 규격, 칩 간 연결 표준·제품 변화",
+  "standards": []
+ },
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "ai-chip",
+ "id": "l3-convergence-ai-chip-u04"
+}

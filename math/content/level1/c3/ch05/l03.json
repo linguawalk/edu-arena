@@ -1,0 +1,476 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c3",
+    "title": "대수"
+  },
+  "chapter": {
+    "id": "c3-ch05",
+    "no": 5,
+    "title": "삼각형과 삼각함수"
+  },
+  "lesson": {
+    "id": "c3-ch05-l03",
+    "no": 3,
+    "title": "삼각형의 넓이",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "기하위상"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "두 변과 끼인각",
+      "body": [
+        "삼각형의 넓이는 S = (1/2)ab sin C입니다. b sin C가 변 a를 밑변으로 할 때의 높이이기 때문입니다.",
+        "넓이 = (1/2) × 밑변 × 높이에서 출발합니다. 변 a를 밑변으로 두면, 꼭짓점 A에서 내린 높이는 b와 각 C로 만든 직각삼각형의 높이라 b sin C입니다. 그래서 S = (1/2)ab sin C입니다. C가 둔각이어도 sin C = sin(180° − C)라 같은 공식이 성립합니다."
+      ],
+      "figure": {
+        "widget": "geo",
+        "config": {
+          "elements": [
+            {
+              "t": "poly",
+              "pts": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  2,
+                  3
+                ]
+              ]
+            },
+            {
+              "t": "seg",
+              "a": [
+                2,
+                3
+              ],
+              "b": [
+                2,
+                0
+              ],
+              "dash": true
+            },
+            {
+              "t": "right",
+              "p": [
+                2,
+                0
+              ],
+              "a": [
+                5,
+                0
+              ],
+              "b": [
+                2,
+                3
+              ]
+            },
+            {
+              "t": "arc",
+              "p": [
+                0,
+                0
+              ],
+              "a": [
+                5,
+                0
+              ],
+              "b": [
+                2,
+                3
+              ],
+              "r": 24,
+              "label": "C"
+            },
+            {
+              "t": "pt",
+              "p": [
+                0,
+                0
+              ],
+              "label": "C",
+              "pos": "sw"
+            },
+            {
+              "t": "pt",
+              "p": [
+                5,
+                0
+              ],
+              "label": "B",
+              "pos": "se"
+            },
+            {
+              "t": "pt",
+              "p": [
+                2,
+                3
+              ],
+              "label": "A",
+              "pos": "n"
+            },
+            {
+              "t": "text",
+              "p": [
+                2.5,
+                -0.4
+              ],
+              "s": "a"
+            },
+            {
+              "t": "text",
+              "p": [
+                0.7,
+                1.8
+              ],
+              "s": "b"
+            },
+            {
+              "t": "text",
+              "p": [
+                2.95,
+                1.3
+              ],
+              "s": "b sin C",
+              "hl": true
+            }
+          ],
+          "alt": "높이가 b sin C인 삼각형",
+          "maxh": 260
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "a = 4, b = 5, C = 30°인 삼각형의 넓이는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "S = (1/2)ab sin C = (1/2) × 4 × 5 × sin 30°\n= 10 × 1/2\n= 5\n원리: b sin C가 높이 역할"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "a = 6, b = 6, C = 60°인 삼각형의 넓이는 {{1}}√3",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "9"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "S = (1/2) × 6 × 6 × sin 60° = 18 × √3/2\n= 9√3\n빈칸은 9 (한 변이 6인 정삼각형의 넓이)"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "세 변만 알 때",
+      "body": [
+        "코사인법칙으로 cos를 구하고 sin² + cos² = 1로 sin을 구해 넓이를 계산합니다.",
+        "헤론의 공식 S = √(s(s − a)(s − b)(s − c)), s = (a + b + c)/2도 있습니다.",
+        "헤론의 공식은 세 변만으로 넓이를 한 번에 구하는 공식입니다. 계산이 복잡하면 코사인법칙으로 한 각의 cos을 구하고, sin² + cos² = 1로 sin을 구해 (1/2)ab sin C에 넣어도 됩니다. 이등변삼각형이라면 높이를 피타고라스 정리로 바로 구하는 것이 가장 빠릅니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "세 변이 5, 6, 7인 삼각형의 넓이를 구하세요.",
+      "steps": [
+        "헤론의 공식: s = (5 + 6 + 7)/2 = 9",
+        "S = √(9 × 4 × 3 × 2) = √216",
+        "= 6√6",
+        "다른 방법: cos C = (25 + 36 − 49)/60 = 1/5 → sin C = 2√6/5 → S = (1/2)(5)(6)(2√6/5) = 6√6"
+      ],
+      "answer": "6√6"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "세 변이 5, 5, 6인 삼각형의 넓이는?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "이등변삼각형이므로 밑변 6의 중점으로 높이를 내리면 높이 = √(25 − 9) = 4\n넓이 = (1/2) × 6 × 4\n= 12\n확인: 헤론의 공식 s = 8, √(8 × 3 × 3 × 2) = 12"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "세 변이 13, 14, 15인 삼각형의 넓이는?",
+      "answer": "84",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "헤론의 공식: s = (13 + 14 + 15)/2 = 21\nS = √(21 × 8 × 7 × 6) = √7056\n= 84"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "외접원과 내접원",
+      "body": [
+        "S = abc/4R (R: 외접원의 반지름),  S = rs (r: 내접원의 반지름, s: 둘레의 절반)",
+        "두 공식 모두 넓이를 다른 방법으로 나눠 센 것입니다. S = rs는 내심과 세 꼭짓점을 이어 만든 세 삼각형(높이 r)의 넓이를 더한 것이고, S = abc/4R은 사인법칙 sin C = c/2R을 (1/2)ab sin C에 넣은 것입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "세 변이 5, 12, 13인 삼각형의 내접원과 외접원의 반지름을 구하세요.",
+      "steps": [
+        "5² + 12² = 13²이므로 직각삼각형, 넓이 30",
+        "s = 15이므로 r = S/s = 2",
+        "R = abc/4S = 780/120 = 13/2",
+        "확인: 직각삼각형의 외접원 지름은 빗변 13"
+      ],
+      "answer": "r = 2, R = 13/2"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "세 변이 6, 8, 10인 삼각형의 내접원의 반지름은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "6² + 8² = 10²이므로 직각삼각형, 넓이 24\ns = 12이므로 S = rs에서 r = 24/12\n= 2"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 삼각형의 외접원의 반지름은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "직각삼각형의 외접원의 지름은 빗변입니다(지름에 대한 원주각 90°).\n2R = 10이므로 R = 5\n확인: abc/4S = 480/96 = 5"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "사각형의 넓이",
+      "body": [
+        "두 대각선의 길이가 p, q이고 끼인각이 θ인 사각형의 넓이는 (1/2)pq sin θ입니다.",
+        "평행사변형의 넓이는 ab sin θ입니다.",
+        "사각형의 넓이 공식은 대각선으로 나눈 네 삼각형의 넓이를 더하면 나옵니다. 네 삼각형 모두 대각선끼리 이루는 각 θ 또는 180° − θ를 끼고 있고, 사인값이 같기 때문에 합하면 (1/2)pq sin θ가 됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "두 대각선이 6, 8이고 끼인각이 30°인 사각형의 넓이는?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(1/2)pq sin θ",
+      "explanation": "(1/2)pq sin θ = (1/2) × 6 × 8 × sin 30°\n= 24 × 1/2\n= 12\n원리: 두 대각선이 이루는 각으로 나눈 네 삼각형의 넓이의 합입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "두 변이 4, 6이고 끼인각이 60°인 평행사변형의 넓이는 {{1}}√3",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "12"
+          ]
+        }
+      ],
+      "hint": "평행사변형은 삼각형 두 개입니다.",
+      "explanation": "평행사변형의 넓이 = ab sin θ = 4 × 6 × sin 60°\n= 24 × √3/2\n= 12√3이므로 빈칸은 12"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "한 변이 2인 정삼각형의 넓이는 √{{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "3"
+          ]
+        }
+      ],
+      "hint": "두 변 2, 2와 끼인각 60°",
+      "explanation": "S = (1/2) × 2 × 2 × sin 60°\n= 2 × √3/2\n= √3이므로 빈칸은 3\n확인: 한 변이 a인 정삼각형의 넓이는 (√3/4)a²이므로 (√3/4) × 4 = √3"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "넓이의 최대",
+      "body": [
+        "두 변의 길이가 정해지면 sin C가 1일 때, 즉 끼인각이 90°일 때 넓이가 가장 큽니다.",
+        "S = (1/2)ab sin C에서 a, b가 고정되면 넓이는 sin C에만 달려 있습니다. sin C의 최댓값은 1(C = 90°)이므로 넓이의 최댓값은 (1/2)ab입니다. 이는 끼인각을 벌려 높이가 가장 커질 때입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "변 AB = 4, AC = 6인 삼각형에서 넓이가 6√3일 때 BC를 구하세요(A는 둔각).",
+      "steps": [
+        "(1/2) × 4 × 6 × sin A = 6√3 → sin A = √3/2",
+        "둔각이므로 A = 120°",
+        "BC² = 16 + 36 − 2 × 4 × 6 × (−1/2) = 76",
+        "BC = 2√19"
+      ],
+      "answer": "2√19"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "두 변이 3, 4인 삼각형의 넓이의 최댓값은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "sin C의 최댓값은 1입니다.",
+      "explanation": "S = (1/2) × 3 × 4 × sin C\nsin C ≤ 1이고 C = 90°일 때 sin C = 1\n최댓값 (1/2) × 12 = 6"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "두 변이 4, 6이고 넓이가 6인 삼각형에서 끼인각의 사인값은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "넓이 공식에 대입하세요.",
+      "explanation": "(1/2) × 4 × 6 × sin θ = 6\n12 sin θ = 6\nsin θ = 1/2\n원리: 넓이 공식 S = (1/2)ab sin θ를 sin θ에 대해 풀었습니다."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "그 끼인각이 예각일 때 몇 도일까요?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "sin θ = 1/2인 예각을 찾으세요.",
+      "explanation": "sin θ = 1/2인 각은 30° 또는 150°\n예각이므로 30°\n주의: 사인값만으로는 예각과 둔각이 모두 가능합니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "한 변이 2인 정육각형의 넓이는 {{1}}√3",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "6"
+          ]
+        }
+      ],
+      "hint": "중심과 꼭짓점을 이어 나누세요.",
+      "explanation": "정육각형은 한 변이 2인 정삼각형 6개로 나뉩니다.\n정삼각형 하나의 넓이 (1/2) × 2 × 2 × sin 60° = √3\n6 × √3 = 6√3이므로 빈칸은 6"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a = 5, b = 8, C = 150°인 삼각형의 넓이는?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "sin 150° = sin 30°",
+      "explanation": "S = (1/2) × 5 × 8 × sin 150°\nsin 150° = sin 30° = 1/2\n= 20 × 1/2 = 10"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "반지름이 2인 원에 내접하는 정삼각형의 넓이는 {{1}}√3",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "3"
+          ]
+        }
+      ],
+      "hint": "먼저 사인법칙으로 한 변을 구하세요.",
+      "explanation": "사인법칙: 한 변 = 2R sin 60° = 4 × √3/2 = 2√3\n넓이 = (√3/4) × (2√3)² = (√3/4) × 12\n= 3√3이므로 빈칸은 3"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "삼각형의 넓이가 (1/2)ab sin C인 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "높이"
+          ],
+          [
+            "b sin C",
+            "bsinC"
+          ],
+          [
+            "밑변"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "변 a를 밑변으로 하면 꼭짓점 A에서 내린 수선의 길이가 높이이고, 그 높이는 b sin C입니다. 그래서 넓이는 (1/2) × a × b sin C입니다."
+    }
+  ]
+}

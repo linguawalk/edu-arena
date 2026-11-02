@@ -1,0 +1,84 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "clf-c02",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "보안 서비스: GuardDuty·Inspector·Shield·WAF·KMS",
+  "rule_summary_ko": "각 보안 서비스는 서로 다른 방어 계층을 담당합니다: GuardDuty(위협 탐지 — 로그를 분석해 실시간으로 이상 행위 감지), Inspector(취약점 평가 — EC2·컨테이너·Lambda를 주기적으로 스캔해 알려진 취약점·패치 누락 발견), Shield(DDoS 방어), WAF(웹 애플리케이션 방화벽 — SQL 인젝션 등 계층 7의 HTTP 공격 차단), KMS(암호화 키 관리). 이들은 서로 대체재가 아니라 함께 사용하는 다층 방어(defense-in-depth) 구조입니다.",
+  "examples": [
+    { "code": "웹사이트가 SQL 인젝션 공격을 받음", "note_ko": "AWS WAF로 차단(계층 7 HTTP 공격 방어) — GuardDuty나 Shield의 역할이 아님" },
+    { "code": "EC2 인스턴스에 패치 안 된 보안 취약점이 있는지 확인", "note_ko": "Amazon Inspector로 주기적 스캔 — GuardDuty는 실시간 위협 탐지이지 사전 취약점 스캔이 아님" }
+  ],
+  "questions": [
+    {
+      "id": "aws_clf_l2_u3_q001",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "CloudTrail·VPC Flow Logs 등을 머신러닝으로 분석해서, 계정 침해나 비정상 API 호출 같은 위협을 실시간으로 탐지하는 AWS 서비스는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["GuardDuty"],
+      "explanation_ko": "Amazon GuardDuty는 실시간 위협 탐지 서비스입니다.",
+      "concept_tags": ["guardduty"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_clf_l2_u3_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "EC2 인스턴스에 알려진 소프트웨어 취약점이나 누락된 보안 패치가 있는지 주기적으로 자동 스캔하는 서비스는?",
+      "options": ["Amazon GuardDuty", "Amazon Inspector", "AWS Shield", "AWS WAF"],
+      "answer": 1,
+      "explanation_ko": "Amazon Inspector는 EC2·컨테이너·Lambda의 취약점을 자동으로 평가하는 서비스입니다. GuardDuty와 달리 실시간 탐지가 아니라 정기적인 점검 성격입니다.",
+      "concept_tags": ["inspector"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_clf_l2_u3_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "웹사이트가 대규모 트래픽 폭주로 서비스 거부(DDoS) 공격을 받고 있습니다. 이를 방어하기 위한 서비스는?",
+      "options": ["AWS Shield", "Amazon Inspector", "AWS KMS", "AWS Artifact"],
+      "answer": 0,
+      "explanation_ko": "AWS Shield는 네트워크·전송·애플리케이션 계층의 DDoS 공격으로부터 보호합니다.",
+      "concept_tags": ["shield", "ddos"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "aws_clf_l2_u3_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "SQL 인젝션이나 크로스사이트 스크립팅(XSS)처럼 계층 7(HTTP)에서 이뤄지는 웹 공격을 필터링하는 방화벽 서비스는 무엇입니까? (영문 약자로 입력)",
+      "expected_answers": ["WAF"],
+      "explanation_ko": "AWS WAF(Web Application Firewall)는 HTTP 요청을 검사해 계층 7 공격을 차단합니다.",
+      "concept_tags": ["waf"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_clf_l2_u3_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "데이터를 암호화하는 데 사용되는 암호화 키를 생성·관리·제어하는 AWS 서비스는 무엇입니까? (영문 약자로 입력)",
+      "expected_answers": ["KMS"],
+      "explanation_ko": "AWS KMS(Key Management Service)는 암호화 키의 전체 수명 주기를 관리합니다.",
+      "concept_tags": ["kms"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "aws_clf_l2_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "보안팀이 \"GuardDuty만 있으면 Inspector는 필요 없다\"고 주장합니다. 이 주장이 부정확한 이유는?",
+      "options": [
+        "GuardDuty와 Inspector는 완전히 동일한 기능을 하므로 이 주장이 맞다",
+        "GuardDuty는 실시간 위협 탐지(공격이 실제 발생했는지)에 집중하고, Inspector는 공격이 발생하기 전에 취약점·패치 누락을 사전에 찾아내는 역할이라 서로 보완적이며 대체할 수 없다",
+        "Inspector는 이미 단종된 서비스이므로 이 주장이 맞다",
+        "GuardDuty는 EC2에서만 작동하고 Inspector는 S3에서만 작동한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "두 서비스는 '사후 탐지'와 '사전 예방'이라는 서로 다른 역할을 하는 다층 방어의 일부입니다.",
+      "concept_tags": ["guardduty", "inspector", "defense_in_depth"],
+      "difficulty": "challenge"
+    }
+  ]
+}

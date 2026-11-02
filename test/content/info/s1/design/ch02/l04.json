@@ -1,0 +1,275 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "design",
+  "work": "풀이",
+  "track_title": "알고리즘 설계",
+  "chapter": {
+    "id": "info-s1-design-ch02",
+    "no": 2,
+    "title": "동적 계획법 입문"
+  },
+  "lesson": {
+    "id": "info-s1-design-ch02-l04",
+    "no": 4,
+    "title": "탑다운과 바텀업",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "알고리즘 설계",
+      "동적 계획법 입문"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "두 가지 구현",
+      "body": [
+        "같은 점화식을 두 가지로 구현할 수 있습니다. 탑다운은 재귀 함수로 큰 문제부터 내려가며 필요한 작은 문제를 불러 계산하고, 메모이제이션으로 저장합니다. 바텀업은 반복문으로 작은 문제부터 표를 채웁니다.",
+        "시간 복잡도는 보통 같습니다. 탑다운은 점화식을 그대로 옮기기 쉽고 필요한 칸만 계산하며, 바텀업은 재귀 호출이 없어 빠르고 깊은 재귀로 스택이 넘칠 걱정이 없습니다.",
+        "f(0)부터 f(50)까지 담는 표는 51칸입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "피보나치 표 d[0]부터 d[50]까지를 배열에 담으려면 몇 칸이 필요한가요?",
+      "answer": "51",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "0도 한 칸입니다.",
+      "explanation": "바텀업 표는 계산할 모든 부분 문제마다 한 칸씩 필요합니다.\n0부터 50까지의 정수는 51개입니다.\n그래서 51칸입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "재귀 함수와 메모이제이션으로 큰 문제부터 내려가며 계산하는 방식을 {{1}}이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "탑다운",
+            "top-down",
+            "top down",
+            "하향식"
+          ]
+        }
+      ],
+      "hint": "위(큰 것)에서 아래로 내려갑니다.",
+      "explanation": "큰 문제를 풀려고 함수를 부르면 그 안에서 작은 문제를 다시 부릅니다.\n계산한 값은 저장해 두고 다시 씁니다.\n이 방식을 탑다운이라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "메모리 줄이기",
+      "body": [
+        "피보나치나 계단 문제는 d[i]를 구할 때 바로 앞의 두 값만 필요합니다. 그래서 표 전체 대신 변수 두 개만 두고 한 칸씩 밀어 가면 메모리가 O(1)이 됩니다.",
+        "아래 코드는 a = f(i − 2), b = f(i − 1)을 유지하며 i = 3부터 n까지 n − 2번 반복합니다. 끝나면 b = f(n)입니다.",
+        "n이 매우 크거나 표가 2차원일 때 이런 공간 절약이 중요합니다."
+      ],
+      "code": "long long a = 1, b = 1;            // f(1), f(2)\nfor (int i = 3; i <= n; i++) {     // 반복 한 번에 한 칸씩 나아간다\n    long long c = a + b;\n    a = b; b = c;\n}\n// 끝나면 b = f(n)"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "n = 10일 때 아래 코드가 끝난 뒤 b를 구하세요.",
+      "steps": [
+        "반복마다 (a, b)가 (1, 2), (2, 3), (3, 5), (5, 8)로 바뀝니다.",
+        "이어서 (8, 13), (13, 21), (21, 34), (34, 55)입니다.",
+        "8번 반복한 뒤 b = 55 = f(10)입니다."
+      ],
+      "answer": "55",
+      "code": "long long a = 1, b = 1;            // f(1), f(2)\nfor (int i = 3; i <= n; i++) {     // 반복 한 번에 한 칸씩 나아간다\n    long long c = a + b;\n    a = b; b = c;\n}\n// 끝나면 b = f(n)"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 b는?",
+      "answer": "55",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f(10)입니다.",
+      "explanation": "이 코드는 a와 b에 연속한 두 피보나치 수를 담아 한 칸씩 밀어 갑니다.\ni = 3부터 10까지 반복하면 b = f(10)이 됩니다.\nf(10) = 55입니다.",
+      "code": "long long a = 1, b = 1;            // f(1), f(2)\nfor (int i = 3; i <= n; i++) {     // 반복 한 번에 한 칸씩 나아간다\n    long long c = a + b;\n    a = b; b = c;\n}\n// 끝나면 b = f(n)"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 10일 때 아래 코드의 for 반복은 몇 번 도나요?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "i = 3부터 10까지입니다.",
+      "explanation": "반복 변수 i는 3부터 n까지 1씩 커집니다.\nn = 10이면 i = 3, 4, …, 10입니다.\n10 − 3 + 1 = 8번입니다.",
+      "code": "long long a = 1, b = 1;            // f(1), f(2)\nfor (int i = 3; i <= n; i++) {     // 반복 한 번에 한 칸씩 나아간다\n    long long c = a + b;\n    a = b; b = c;\n}\n// 끝나면 b = f(n)"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "값이 넘칠 때",
+      "body": [
+        "피보나치 수는 빠르게 커집니다. int의 최댓값은 2147483647인데 f(46) = 1836311903은 들어가지만 f(47) = 2971215073은 넘칩니다.",
+        "long long(최대 약 9.2 × 10¹⁸)을 쓰면 f(92)까지 담을 수 있습니다.",
+        "그보다 크면 문제에서 보통 '어떤 수로 나눈 나머지'를 묻습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(n)이 int 최댓값 2147483647 이하인 가장 큰 n은?",
+      "answer": "46",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f(46) = 1836311903, f(47) = 2971215073입니다.",
+      "explanation": "피보나치 수가 int 범위를 넘는 첫 n을 찾습니다.\nf(46) = 1836311903은 범위 안이고 f(47) = 2971215073은 넘습니다.\n그래서 46입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "나머지로 계산하기",
+      "body": [
+        "덧셈과 곱셈은 중간에 나머지를 취해도 결과의 나머지가 같습니다. (a + b) mod M = ((a mod M) + (b mod M)) mod M입니다.",
+        "그래서 매 단계 d[i] = (d[i − 1] + d[i − 2]) % M으로 계산하면 값이 넘치지 않으면서 정확한 나머지를 얻습니다.",
+        "f(10) = 55를 7로 나눈 나머지는 6이고, f(20) = 6765를 100으로 나눈 나머지는 65입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(10)을 7로 나눈 나머지는?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "55 = 7 × 7 + 6입니다.",
+      "explanation": "f(10) = 55이고 나머지는 55를 7로 나누어 구합니다.\n55 = 7 × 7 + 6입니다.\n그래서 6입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(20)을 100으로 나눈 나머지는?",
+      "answer": "65",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f(20) = 6765입니다.",
+      "explanation": "f(20) = 6765이고 100으로 나눈 나머지는 끝 두 자리입니다.\n6765 = 100 × 67 + 65입니다.\n그래서 65입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "탑다운은 재귀와 메모이제이션으로 큰 문제부터, 바텀업은 반복문으로 작은 문제부터 표를 채우며, 시간 복잡도는 보통 같습니다.",
+        "앞의 몇 칸만 필요하면 변수 몇 개만 두고 밀어 가 메모리를 O(1)로 줄일 수 있습니다.",
+        "값이 커지면 long long을 쓰거나, 매 단계 나머지를 취해 계산합니다. 덧셈과 곱셈은 중간에 나머지를 취해도 결과의 나머지가 같습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(30) = 832040을 1000으로 나눈 나머지는?",
+      "answer": "40",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "끝 세 자리입니다.",
+      "explanation": "1000으로 나눈 나머지는 끝 세 자리입니다.\n832040 = 1000 × 832 + 40입니다.\n그래서 40입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "n = 20일 때 아래 코드의 for 반복은 몇 번 도나요?",
+      "answer": "18",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "i = 3부터 20까지입니다.",
+      "explanation": "반복 변수 i는 3부터 n까지 1씩 커집니다.\nn = 20이면 i = 3, 4, …, 20입니다.\n20 − 3 + 1 = 18번입니다.",
+      "code": "long long a = 1, b = 1;            // f(1), f(2)\nfor (int i = 3; i <= n; i++) {     // 반복 한 번에 한 칸씩 나아간다\n    long long c = a + b;\n    a = b; b = c;\n}\n// 끝나면 b = f(n)"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "같은 점화식을 탑다운과 바텀업으로 구현할 때의 차이를 설명하세요.",
+      "model_answer": [
+        "탑다운은 재귀 함수로 큰 문제를 부르면 필요한 작은 문제를 다시 부르고, 결과를 메모이제이션으로 저장한다.",
+        "바텀업은 반복문으로 가장 작은 문제부터 차례로 표를 채워, 큰 문제를 계산할 때 필요한 값이 이미 있게 한다.",
+        "탑다운은 점화식을 그대로 옮기기 쉽고 필요한 칸만 계산하지만, 재귀 호출 비용과 깊은 재귀로 스택이 넘칠 위험이 있다.",
+        "바텀업은 계산 순서를 직접 정해야 하지만 빠르고, 앞의 몇 칸만 남기는 메모리 절약을 하기 쉽다."
+      ],
+      "criteria": [
+        {
+          "text": "탑다운의 동작을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "바텀업의 동작을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "장단점을 비교했다",
+          "points": 2
+        }
+      ],
+      "hint": "계산 순서와 구현 방법을 비교하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "DP에서 값이 매우 클 때 매 단계 나머지를 취해 계산해도 되는 이유를 설명하세요.",
+      "model_answer": [
+        "덧셈과 곱셈은 나머지와 잘 맞는다. a = Mq₁ + r₁, b = Mq₂ + r₂이면 a + b = M(q₁ + q₂) + (r₁ + r₂)이다.",
+        "그래서 (a + b) mod M = (r₁ + r₂) mod M으로, 나머지끼리 더한 뒤 다시 나머지를 취해도 같다. 곱셈도 마찬가지이다.",
+        "DP의 점화식이 덧셈과 곱셈으로만 이루어져 있으면 매 단계 나머지를 취해도 최종 나머지가 같다.",
+        "이렇게 하면 중간값이 M보다 작게 유지되어 넘치지 않는다."
+      ],
+      "criteria": [
+        {
+          "text": "나머지의 성질을 식으로 보였다",
+          "points": 2
+        },
+        {
+          "text": "점화식에 적용할 수 있음을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "넘침을 막는 효과를 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "a와 b를 M으로 나눈 몫과 나머지로 써 보세요."
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "language": "java",
+  "category": "oop_enterprise",
+  "level": 5,
+  "unit": 1,
+  "unit_title": "Class 기초",
+  "questions": [
+    {
+      "id": "java_l5_u01_q001",
+      "type": "predict_output",
+      "code": "class Dog {\n    String name;\n\n    void bark() {\n        System.out.println(name + \": 멍멍!\");\n    }\n}\n\nDog d = new Dog();\nd.name = \"바둑이\";\nd.bark();",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이: 멍멍!", "Dog: 멍멍!", "오류", "name: 멍멍!"],
+      "answer": 0,
+      "explanation_en": "new Dog() creates an object, and d.bark() calls the method using that object's own name field, 바둑이.",
+      "explanation_ko": "new Dog()는 객체를 생성하고, d.bark()는 그 객체 자신의 name 필드인 바둑이를 사용해 메서드를 호출합니다.",
+      "concept_tags": ["class", "object"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l5_u01_q002",
+      "type": "predict_output",
+      "code": "class Dog {\n    String name;\n\n    Dog(String name) {\n        this.name = name;\n    }\n}\n\nDog d = new Dog(\"바둑이\");\nSystem.out.println(d.name);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이", "Dog", "오류", "빈 문자열"],
+      "answer": 0,
+      "explanation_en": "A constructor shares the class's name and no return type; this.name distinguishes the field from the parameter, setting it to 바둑이.",
+      "explanation_ko": "생성자는 클래스와 이름이 같고 반환형이 없습니다. this.name은 필드를 매개변수와 구분해서, 바둑이로 설정합니다.",
+      "concept_tags": ["class", "constructor", "this"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l5_u01_q003",
+      "type": "error_finding",
+      "code": "class Dog {\n    String name;\n\n    Dog(String name) {\n        name = name;\n    }\n}\n\nDog d = new Dog(\"바둑이\");\nSystem.out.println(d.name);",
+      "prompt_en": "What problem does this code have? (Note: this.name is missing.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (this.name이 빠진 점에 주의하세요.)",
+      "options": [
+        "생성자 정의 문법 오류",
+        "매개변수 name이 필드 name을 가려서(shadowing), name = name은 매개변수를 자기 자신에게 대입할 뿐 필드는 그대로 null로 남음",
+        "Dog 클래스 정의 오류",
+        "문제 없음, name이 정상적으로 설정됨"
+      ],
+      "answer": 1,
+      "explanation_en": "The parameter name shadows the field of the same name inside the constructor; without this.name, the assignment just reassigns the parameter to itself, leaving the field uninitialized (null).",
+      "explanation_ko": "매개변수 name이 생성자 안에서 같은 이름의 필드를 가립니다. this.name이 없으면 대입은 매개변수를 자기 자신에게 대입할 뿐이라, 필드는 초기화되지 않은 채(null) 남습니다.",
+      "concept_tags": ["this", "shadowing"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l5_u01_q004",
+      "type": "fill_blank",
+      "code": "class Rectangle {\n    int width;\n    int height;\n\n    int area() {\n        return ____ * height;\n    }\n}",
+      "prompt_en": "Fill in the blank to complete the area calculation.",
+      "prompt_ko": "넓이 계산을 완성하려면 빈칸에 무엇이 들어가야 할까요?",
+      "options": ["width", "height", "Rectangle", "area"],
+      "answer": 0,
+      "explanation_en": "The method needs to multiply the object's own width and height fields.",
+      "explanation_ko": "메서드는 객체 자신의 width와 height 필드를 곱해야 합니다.",
+      "concept_tags": ["class", "method"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l5_u01_q005",
+      "type": "error_finding",
+      "code": "class Dog {\n    String name;\n\n    Dog(String name) {\n        this.name = name;\n    }\n}\n\nDog d = new Dog();",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "Dog 클래스 정의 오류",
+        "Dog에 매개변수 있는 생성자만 있어서, 인자 없이 new Dog()를 호출하면 일치하는 생성자가 없어 컴파일 오류가 발생함",
+        "name 필드 선언 오류",
+        "문제 없음, name이 null로 설정된 채 생성됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Once a class defines any constructor explicitly, the compiler no longer provides a free no-arg one; calling new Dog() with no arguments fails to match the single constructor requiring a String, the same rule as C#.",
+      "explanation_ko": "클래스가 생성자를 하나라도 명시적으로 정의하면, 컴파일러는 더 이상 인자 없는 기본 생성자를 공짜로 제공하지 않습니다. 인자 없이 new Dog()를 호출하면 String이 필요한 유일한 생성자와 일치하지 않습니다. C#과 같은 규칙입니다.",
+      "concept_tags": ["class", "constructor"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l5_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "class", "definition": "필드와 메서드를 하나로 묶는 참조 타입의 설계도" },
+        { "term": "생성자", "definition": "객체가 생성될 때 자동으로 호출되는, 클래스와 이름이 같은 메서드" },
+        { "term": "this", "definition": "현재 객체 자신을 가리키는 키워드 — 매개변수와 필드 이름이 같을 때 구분에 사용" },
+        { "term": "기본 생성자의 사라짐", "definition": "다른 생성자를 정의하면 인자 없는 기본 생성자가 자동으로 제공되지 않는 규칙" }
+      ],
+      "explanation_en": "Java's class syntax is nearly identical to C#'s in this area, with this playing the same role as C#'s this and VB's Me.",
+      "explanation_ko": "이 부분에서 Java의 class 문법은 C#과 거의 동일하며, this는 C#의 this, VB의 Me와 같은 역할을 합니다.",
+      "concept_tags": ["class", "constructor", "this"],
+      "difficulty": "practice"
+    }
+  ]
+}

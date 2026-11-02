@@ -1,0 +1,135 @@
+{
+ "no": 3,
+ "title": "마디 해석과 망 해석",
+ "hours": 6,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "마디 전압법으로 연립방정식을 세우고 풀 수 있다.",
+  "망 전류법으로 연립방정식을 세우고 풀 수 있다.",
+  "전압원·전류원이 끼어 있을 때 초마디·초망을 쓸 수 있다."
+ ],
+ "checklist": [
+  "기준 마디(접지) 정하기",
+  "마디 전압법: 각 마디에 KCL, 전류를 마디 전압으로 표현",
+  "망 전류법: 각 망에 KVL, 공유 저항에는 망 전류의 차",
+  "초마디(supernode): 두 마디 사이의 전압원",
+  "초망(supermesh): 두 망 사이의 전류원",
+  "종속 전원이 있는 회로의 제어 변수 표현",
+  "행렬 형태 GV = I, RI = V와 크래머 공식"
+ ],
+ "advice": [
+  "마디 해석과 망 해석은 회로이론에서 가장 많은 시간을 들여야 하는 단원입니다. 방정식 세우기는 기계적인 절차이므로, 같은 회로를 두 방법으로 모두 풀어 보는 연습을 다섯 문제 이상 하세요. 어느 쪽이 방정식 수가 적은지 판단하는 감각이 생기면 시험에서 시간을 크게 줄일 수 있습니다.",
+  "전원이 두 마디나 두 망 사이에 끼어 있으면 처음에는 방정식이 막힙니다. 이때 초마디·초망으로 두 개를 하나로 묶고, 전원이 주는 조건식(전압 차 또는 전류 차)을 하나 추가한다는 원칙만 기억하면 됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Nilsson · Riedel, Electric Circuits (번역본 『전기회로』, 장 번호는 원서 10판 기준)",
+   "part": "4장 Techniques of Circuit Analysis (4.1~4.8)"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Alexander · Sadiku, Fundamentals of Electric Circuits (번역본 『회로이론』)",
+   "part": "3장 Methods of Analysis"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.002 Circuits and Electronics (Anant Agarwal, 2007년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+   "lang": "영어",
+   "part": "Lecture 2~3 node method"
+  },
+  {
+   "kind": "book",
+   "provider": "All About Circuits (무료 온라인 교재)",
+   "title": "Lessons in Electric Circuits, Volume I — DC",
+   "url": "https://www.allaboutcircuits.com/textbook/direct-current/",
+   "lang": "영어",
+   "part": "DC Network Analysis 장"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "마디 A는 2 Ω을 거쳐 10 V 전원에, 2 Ω을 거쳐 접지에 연결되어 있고, 2 A 전류원이 마디 A로 전류를 공급합니다. 마디 A의 전압은 몇 V일까요?",
+   "answer": "7",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "KCL: (V − 10)/2 + V/2 = 2\nV − 5 = 2, V = 7 V",
+   "hint": "마디에서 나가는 전류의 합 = 들어오는 전류입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "10 V 전원과 1 Ω이 있는 망 1, 2 Ω만 있는 망 2가 2 Ω 저항을 공유합니다. 망 1의 전류는 몇 A일까요?",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "망 1: 10 = 3i₁ − 2i₂\n망 2: 0 = −2i₁ + 4i₂ → i₂ = i₁/2\n10 = 3i₁ − i₁ = 2i₁, i₁ = 5 A",
+   "hint": "공유 저항에는 두 망 전류의 차가 흐릅니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "두 망 사이에 전류원이 있을 때 두 망을 하나로 묶어 KVL을 쓰는 방법을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "초망",
+      "슈퍼메시",
+      "슈퍼망",
+      "supermesh"
+     ]
+    }
+   ],
+   "explanation": "전류원의 전압은 모르므로 그 경로를 피해 KVL을 쓰고, 전류원 조건 i₁ − i₂ = I를 추가합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "어떤 회로에 마디 해석과 망 해석 중 무엇을 쓸지 고르는 기준을 설명하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "마디",
+      "노드"
+     ],
+     [
+      "망",
+      "메시",
+      "루프"
+     ],
+     [
+      "개수",
+      "수가",
+      "적은"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "마디 방정식의 수(기준 마디를 뺀 마디 수)와 망 방정식의 수(망의 수)를 비교해 적은 쪽을 고릅니다. 전류원이 많으면 마디 해석, 전압원이 많으면 망 해석이 대체로 간단합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electrical",
+ "subject": "circuit-theory",
+ "id": "l2-electrical-circuit-theory-u03"
+}

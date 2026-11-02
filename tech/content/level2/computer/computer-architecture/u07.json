@@ -1,0 +1,112 @@
+{
+ "no": 7,
+ "title": "캐시",
+ "hours": 6,
+ "after": [
+  4
+ ],
+ "objectives": [
+  "직접 사상 캐시의 태그·인덱스·오프셋 비트를 계산할 수 있다.",
+  "집합 연관·완전 연관 캐시와 교체 정책을 비교할 수 있다.",
+  "쓰기 정책과 캐시 성능 식을 이용해 성능을 분석할 수 있다."
+ ],
+ "checklist": [
+  "블록(라인), 지역성(레벨1 컴퓨터 챕터 5)",
+  "주소 = 태그 + 인덱스 + 블록 오프셋",
+  "직접 사상, n-way 집합 연관, 완전 연관",
+  "교체 정책: LRU, 무작위",
+  "쓰기 정책: 즉시 쓰기(write-through), 나중 쓰기(write-back)",
+  "평균 접근 시간과 실패의 종류(초기, 용량, 충돌)",
+  "다단계 캐시와 성능 영향(CPI 증가)"
+ ],
+ "advice": [
+  "캐시 단원의 핵심 계산은 주소를 태그·인덱스·오프셋으로 나누는 것입니다. 캐시 크기 ÷ 블록 크기로 줄 수를 구하고, log₂를 취해 인덱스와 오프셋 비트를 얻은 뒤 남는 비트가 태그라는 순서를 몇 번 반복하면 어떤 문제든 풀 수 있습니다.",
+  "레벨1에서 평균 접근 시간을 계산했다면, 여기서는 캐시 실패가 CPI를 얼마나 늘리는지까지 연결합니다. 행렬을 행 순서와 열 순서로 읽는 두 코드를 code-arena 언어 트랙에서 실행해 시간을 비교해 보면 캐시가 실제 프로그램 속도를 좌우한다는 것을 체감할 수 있습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Patterson · Hennessy, Computer Organization and Design RISC-V Edition (번역본 『컴퓨터 구조 및 설계』, 장 제목으로 표기)",
+   "part": "Large and Fast: Exploiting Memory Hierarchy 장(caches)"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "caches 관련 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 5 메모리 계층",
+   "url": "browse.html?c=c4#ch05",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "용량 32 KB, 블록 64바이트인 직접 사상 캐시의 줄(라인)은 몇 개일까요?",
+   "answer": "512",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "32 × 1024/64 = 512줄",
+   "hint": "용량 ÷ 블록 크기입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 캐시의 블록 오프셋은 몇 비트일까요?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "블록 64바이트 = 2⁶이므로 6비트입니다.",
+   "hint": "log₂(블록 크기)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "32비트 주소에서 위 캐시의 태그는 몇 비트일까요?",
+   "answer": "17",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "인덱스 9비트(512 = 2⁹), 오프셋 6비트\n태그 = 32 − 9 − 6 = 17비트",
+   "hint": "32에서 인덱스와 오프셋을 빼세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "쓰기를 캐시에만 하고 그 블록이 쫓겨날 때 메모리에 반영하는 쓰기 정책을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "write-back",
+      "나중 쓰기",
+      "후기입",
+      "라이트백"
+     ]
+    }
+   ],
+   "explanation": "매번 메모리에도 쓰는 방식은 write-through(즉시 쓰기)입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "computer-architecture",
+ "id": "l2-computer-computer-architecture-u07"
+}

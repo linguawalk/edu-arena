@@ -1,0 +1,105 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 6,
+  "unit": 2,
+  "unit_title": ":NEW와 :OLD 의사 레코드",
+  "rule_summary_ko": "행 수준 트리거에서 :OLD와 :NEW 의사 레코드로 처리 중인 행의 이전·이후 값을 참조할 수 있습니다. INSERT에서는 새로 생기는 행이라 :OLD가 값이 없고(NULL) :NEW만 값을 가지며, DELETE에서는 그 반대(:OLD만 값, :NEW는 NULL)입니다. UPDATE에서는 둘 다 값을 가집니다. :NEW의 값은 BEFORE 행 트리거에서는 수정할 수 있지만(아직 실제 데이터베이스에 반영되기 전이라), AFTER 행 트리거에서 수정하려 하면 ORA-04084 오류가 발생합니다(이미 반영이 끝난 뒤라 의미가 없기 때문).",
+  "examples": [
+    { "code": "BEFORE INSERT ... FOR EACH ROW\nBEGIN\n    :NEW.created_date := SYSDATE; -- BEFORE에서는 NEW 수정 가능\nEND;", "note_ko": "아직 실제로 삽입되기 전이라, BEFORE 트리거에서 :NEW 값을 바꾸면 실제로 삽입되는 값이 바뀜" },
+    { "code": "AFTER UPDATE ... FOR EACH ROW\nBEGIN\n    :NEW.salary := :NEW.salary * 1.1; -- AFTER에서 NEW 수정 시도\nEND;", "note_ko": "이미 반영이 끝난 뒤라 ORA-04084 오류 발생" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l6_u2_q001",
+      "type": "concept_matching_item",
+      "code": "BEFORE INSERT ON employees FOR EACH ROW\nBEGIN\n    DBMS_OUTPUT.PUT_LINE(:OLD.salary);\nEND;",
+      "prompt_ko": "INSERT 트리거에서 :OLD.salary를 참조하면 값은 무엇입니까?",
+      "options": [
+        "삽입되는 새 값과 동일하다",
+        "NULL — INSERT는 새로 생기는 행이라 이전 값(OLD) 자체가 존재하지 않는다",
+        "0", "오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "INSERT에서는 그 행이 이전에 존재하지 않았으므로 :OLD는 값을 갖지 않습니다(NULL).",
+      "concept_tags": ["insert_old_null"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l6_u2_q002",
+      "type": "concept_matching_item",
+      "code": "BEFORE DELETE ON employees FOR EACH ROW\nBEGIN\n    DBMS_OUTPUT.PUT_LINE(:NEW.salary);\nEND;",
+      "prompt_ko": "DELETE 트리거에서 :NEW.salary를 참조하면 값은 무엇입니까?",
+      "options": [
+        "삭제되기 전 값과 동일하다",
+        "NULL — DELETE는 행이 사라지는 것이라 이후 값(NEW) 자체가 존재하지 않는다",
+        "0",
+        "오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "DELETE 후에는 그 행이 더 이상 존재하지 않으므로 :NEW는 값을 갖지 않습니다.",
+      "concept_tags": ["delete_new_null"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l6_u2_q003",
+      "type": "concept_matching_item",
+      "code": "AFTER UPDATE ON employees FOR EACH ROW\nBEGIN\n    :NEW.salary := :NEW.salary * 1.1; -- AFTER 트리거에서 NEW 수정 시도\nEND;",
+      "prompt_ko": "AFTER 행 트리거 안에서 :NEW 값을 수정하려고 하면?",
+      "options": [
+        "정상적으로 수정되고 실제 값도 바뀐다",
+        "ORA-04084 오류가 발생한다 — AFTER 트리거 시점에는 이미 실제 변경이 데이터베이스에 반영된 뒤라 :NEW를 수정하는 것이 의미가 없다",
+        "다음 행에는 반영되지만 현재 행에는 반영되지 않는다",
+        "경고만 발생하고 무시된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "값을 실제로 바꿀 기회가 있는 것은 아직 반영 전인 BEFORE 트리거뿐입니다.",
+      "concept_tags": ["ora_04084"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l6_u2_q004",
+      "type": "concept_matching_item",
+      "code": "BEFORE UPDATE ON employees FOR EACH ROW\nBEGIN\n    IF :NEW.salary < :OLD.salary THEN\n        RAISE_APPLICATION_ERROR(-20001, '급여는 감소할 수 없습니다');\n    END IF;\nEND;",
+      "prompt_ko": "이 트리거가 하는 일은?",
+      "options": [
+        "새 급여(:NEW.salary)가 이전 급여(:OLD.salary)보다 낮아지는 UPDATE를 감지해서 막는다",
+        "급여를 항상 10% 인상시킨다",
+        "직원을 삭제한다",
+        "아무 검증도 하지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "UPDATE 트리거에서는 :OLD와 :NEW를 비교해서 변경 전후 값을 검증하는 로직을 자주 작성합니다.",
+      "concept_tags": ["old_new_comparison"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l6_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": ":OLD와 :NEW 의사 레코드는 문장 수준(statement-level) 트리거에서도 사용할 수 있습니까?",
+      "options": [
+        "그렇다. 문장 수준과 행 수준 트리거 모두 사용할 수 있다",
+        "아니다. :OLD와 :NEW는 개별 행의 값을 나타내므로, 특정 행이 없는 문장 수준 트리거에서는 사용할 수 없고 행 수준(FOR EACH ROW) 트리거에서만 사용 가능하다",
+        "문장 수준 트리거에서만 사용할 수 있다",
+        "AFTER 트리거에서만 사용할 수 있다"
+      ],
+      "answer": 1,
+      "explanation_ko": ":OLD·:NEW는 '지금 처리 중인 그 행'의 값이라, 행 단위로 실행되는 행 수준 트리거에서만 의미가 있습니다.",
+      "concept_tags": ["old_new_row_level_only"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l6_u2_q006",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "행 수준 트리거에서 변경 이전의 값을 참조할 때 사용하는 의사 레코드 이름은 무엇입니까? (콜론 포함해서 입력, 예: :XXX)",
+      "expected_answers": [":OLD"],
+      "explanation_ko": ":OLD는 변경 전의 값을, :NEW는 변경 후의 값을 나타냅니다.",
+      "concept_tags": ["old_pseudorecord"],
+      "difficulty": "intro"
+    }
+  ]
+}

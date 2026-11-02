@@ -1,0 +1,100 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "배열 vs 연결 리스트",
+  "questions": [
+    {
+      "id": "dsa_l1_u04_q001",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each operation to which structure is faster for it.",
+      "prompt_ko": "각 연산이 어느 구조에서 더 빠른지 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "인덱스로 접근 (nums[i])", "definition": "배열이 빠름 — O(1) vs 연결 리스트의 O(n)" },
+        { "term": "맨 앞에 삽입", "definition": "연결 리스트가 빠름 — O(1) vs 배열의 O(n)" },
+        { "term": "끝에 추가", "definition": "둘 다 보통 O(1) — 배열은 여유 공간, 연결 리스트는 꼬리 포인터가 있다면" },
+        { "term": "메모리 사용량", "definition": "배열이 더 적음 — 연결 리스트는 각 노드마다 포인터 저장 공간이 추가로 필요" }
+      ],
+      "explanation_en": "Choosing between an array and a linked list depends entirely on which operations your program does most often — there's no universally 'better' structure.",
+      "explanation_ko": "배열과 연결 리스트 중 무엇을 선택할지는 프로그램이 어떤 연산을 가장 자주 하는지에 전적으로 달려 있습니다 — 보편적으로 '더 나은' 구조는 없습니다.",
+      "concept_tags": ["array", "linked_list", "trade_off"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l1_u04_q002",
+      "type": "fill_blank",
+      "code": "# 웹 브라우저의 '뒤로가기' 히스토리처럼, 맨 앞에 자주 추가되고\n# 인덱스 접근은 거의 필요 없는 데이터를 저장해야 함\n# 어떤 구조가 더 적합할까?",
+      "prompt_en": "Fill in the blank with the structure better suited for frequent front-insertion with rare indexed access.",
+      "prompt_ko": "앞쪽 삽입은 잦고 인덱스 접근은 거의 없는 경우에 더 적합한 구조를 빈칸에 채우세요.",
+      "options": ["연결 리스트", "배열", "둘 다 똑같음", "구조와 무관함"],
+      "answer": 0,
+      "explanation_en": "Since front-insertion is O(1) for a linked list but O(n) for an array, and indexed access (the array's strength) is rarely needed here, a linked list is the better fit.",
+      "explanation_ko": "앞쪽 삽입은 연결 리스트에서 O(1)이지만 배열에서는 O(n)이고, 여기서는 배열의 장점인 인덱스 접근이 거의 필요 없으므로 연결 리스트가 더 적합합니다.",
+      "concept_tags": ["array", "linked_list", "trade_off"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l1_u04_q003",
+      "type": "predict_output",
+      "code": "import time\n\nnums = list(range(50000))\nstart = time.perf_counter()\nfor _ in range(500):\n    nums.insert(0, 0)\narray_time = time.perf_counter() - start\n\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.next = None\n\nhead = None\nstart = time.perf_counter()\nfor i in range(500):\n    new_node = Node(i)\n    new_node.next = head\n    head = new_node\nll_time = time.perf_counter() - start\n\nprint(array_time > ll_time)",
+      "prompt_en": "What is printed? (Comparing measured time for 500 front-insertions on each structure.)",
+      "prompt_ko": "출력 결과는? (각 구조에서 500번의 앞쪽 삽입에 걸린 실제 시간을 비교합니다.)",
+      "options": ["True", "False", "오류", "정확히 같음"],
+      "answer": 0,
+      "explanation_en": "This matches the theoretical Big-O difference: repeated array front-insertion (O(n) each) is measurably slower than repeated linked-list prepend (O(1) each), so array_time > ll_time is True.",
+      "explanation_ko": "이는 이론적인 Big-O 차이와 일치합니다. 배열의 반복적인 앞쪽 삽입(각각 O(n))은 연결 리스트의 반복적인 prepend(각각 O(1))보다 측정 가능할 정도로 느려서, array_time > ll_time은 True입니다.",
+      "concept_tags": ["array", "linked_list", "trade_off"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l1_u04_q004",
+      "type": "predict_output",
+      "code": "nums = [10, 20, 30, 40, 50]\nprint(nums[3])",
+      "prompt_en": "What is printed? (Array's key strength.)",
+      "prompt_ko": "출력 결과는? (배열의 핵심 강점입니다.)",
+      "options": ["40", "30", "50", "오류"],
+      "answer": 0,
+      "explanation_en": "This is exactly the operation arrays are built for — direct O(1) access to any position; nums[3] returns 40 instantly regardless of the array's size.",
+      "explanation_ko": "이것이 바로 배열이 잘하도록 만들어진 연산입니다 — 어떤 위치든 직접 O(1)로 접근합니다. nums[3]은 배열 크기와 상관없이 즉시 40을 반환합니다.",
+      "concept_tags": ["array", "indexed_access"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l1_u04_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each real-world scenario to the more suitable structure.",
+      "prompt_ko": "각 실제 시나리오와 더 적합한 구조를 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "학생 성적표 (번호로 즉시 조회)", "definition": "배열 — 인덱스 접근이 핵심" },
+        { "term": "음악 재생목록 (곡을 앞뒤로 자주 추가/삭제)", "definition": "연결 리스트 — 삽입/삭제가 핵심" },
+        { "term": "이미지의 픽셀 데이터", "definition": "배열 — 고정 크기, 빠른 접근이 중요" },
+        { "term": "실행 취소(undo) 히스토리", "definition": "연결 리스트 — 맨 앞에서의 추가/제거가 잦음" }
+      ],
+      "explanation_en": "Recognizing these trade-offs in practice — not just memorizing Big-O tables — is what separates knowing data structures from being able to choose the right one for a real problem.",
+      "explanation_ko": "이런 장단점을 실제로 알아보는 것(단순히 Big-O 표를 외우는 게 아니라)이, 자료구조를 아는 것과 실제 문제에 맞는 것을 고를 수 있는 것의 차이입니다.",
+      "concept_tags": ["array", "linked_list", "trade_off"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l1_u04_q006",
+      "type": "error_finding",
+      "code": "# 프로그램은 수백만 번 인덱스로 조회하고, 삽입/삭제는 거의 안 함\n# 개발자가 성능을 위해 연결 리스트를 선택함",
+      "prompt_en": "What problem does this design decision have?",
+      "prompt_ko": "이 설계 결정은 어떤 문제가 있을까요?",
+      "options": [
+        "연결 리스트 자체가 잘못된 자료구조임(항상 사용하면 안 됨)",
+        "인덱스 조회가 압도적으로 많은데 연결 리스트를 선택해서, 매번 O(n)으로 노드를 순회해야 해 오히려 성능이 크게 나빠짐 — 배열(O(1) 접근)이 훨씬 적합했음",
+        "삽입/삭제가 거의 없으므로 문제 없음",
+        "문제 없음, 연결 리스트가 항상 배열보다 빠름"
+      ],
+      "answer": 1,
+      "explanation_en": "Choosing a structure based on its weakest point for your actual workload is a classic mistake; since indexed access dominates here, an array's O(1) access would vastly outperform a linked list's O(n) traversal for every single lookup.",
+      "explanation_ko": "실제 작업 부하와 맞지 않는 약점 기준으로 구조를 선택하는 것은 흔한 실수입니다. 여기서는 인덱스 조회가 압도적이므로, 매번 O(1)로 접근하는 배열이 매번 O(n)으로 순회해야 하는 연결 리스트보다 훨씬 뛰어난 성능을 보였을 것입니다.",
+      "concept_tags": ["array", "linked_list", "trade_off"],
+      "difficulty": "challenge"
+    }
+  ]
+}

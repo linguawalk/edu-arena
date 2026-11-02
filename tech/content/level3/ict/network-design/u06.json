@@ -1,0 +1,93 @@
+{
+ "no": 6,
+ "title": "무선 LAN 설계",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "커버리지와 용량 기준으로 필요한 AP 수를 산정할 수 있다.",
+  "채널 계획과 동일 채널 간섭을 설명할 수 있다.",
+  "현장 조사(사이트 서베이)와 운영 단계의 점검 방법을 설명할 수 있다."
+ ],
+ "checklist": [
+  "커버리지 설계: 목표 신호 세기와 셀 반경",
+  "용량 설계: AP당 동시 사용자 수, 대역별 처리량",
+  "2.4 GHz(겹치지 않는 채널 1·6·11), 5·6 GHz(채널 많음)",
+  "동일 채널 간섭과 송신 전력 조절",
+  "로밍, 대역 유도(band steering)",
+  "사전·사후 사이트 서베이, 히트맵",
+  "무선 보안: WPA3, 802.1X 인증"
+ ],
+ "advice": [
+  "무선 LAN 설계는 레벨2 무선통신의 링크 버짓과 레벨3 이동통신의 셀 계획을 실내로 옮겨 온 작업입니다. 처음에는 커버리지(신호가 닿는가)로 AP 수를 구하고, 이어서 용량(사람이 몰리는 회의실·강의실)으로 다시 구해 둘 가운데 큰 값을 씁니다. AP를 많이 둘수록 좋은 것이 아니라 같은 채널끼리 간섭한다는 점, 그래서 송신 전력을 낮추고 채널을 엇갈려 배치한다는 점을 그림으로 확인해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cisco Press",
+   "title": "Oppenheimer, Top-Down Network Design (장 제목으로 표기)",
+   "part": "무선 LAN 설계 관련 절"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "무선통신 8단원 근거리 무선 기술",
+   "url": "guide.html?lv=2&t=ict&s=wireless&u=8"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "이동통신 7단원 무선 자원 관리와 셀 계획",
+   "url": "guide.html?lv=3&t=ict&s=mobile-comm&u=7"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "AP 하나가 반경 30 m 원을 덮는다고 할 때, 면적 10 000 m²인 층을 덮으려면 AP가 최소 몇 대 필요할까요? (겹침 무시, 올림)",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "AP 하나 면적 = π × 30² ≈ 2827 m²\n10 000/2827 ≈ 3.5 → 올림 4대",
+   "hint": "원의 넓이로 나누고 올림하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "AP 하나가 동시 사용자 25명을 적정하게 처리할 때 동시 사용자 300명인 강당에는 AP가 몇 대 필요할까요?",
+   "answer": "12",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "300/25 = 12대\n커버리지 기준보다 많으면 용량 기준을 따릅니다.",
+   "hint": "사용자 수 ÷ AP당 사용자입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "같은 채널을 쓰는 AP들이 서로의 전송을 기다리게 되어 성능이 떨어지는 현상을 동일 채널 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "간섭"
+     ]
+    }
+   ],
+   "explanation": "채널을 엇갈려 배치하고 송신 전력을 알맞게 줄여 완화합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "network-design",
+ "id": "l3-ict-network-design-u06"
+}

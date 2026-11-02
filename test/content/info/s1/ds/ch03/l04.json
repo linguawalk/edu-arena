@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "ds",
+  "work": "풀이",
+  "track_title": "자료구조",
+  "chapter": {
+    "id": "info-s1-ds-ch03",
+    "no": 3,
+    "title": "우선순위 큐"
+  },
+  "lesson": {
+    "id": "info-s1-ds-ch03-l04",
+    "no": 4,
+    "title": "힙 정렬과 두 힙",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "자료구조",
+      "우선순위 큐"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "힙 정렬",
+      "body": [
+        "모든 원소를 최대 힙에 넣은 뒤 하나씩 꺼내면 큰 것부터 차례로 나오므로 정렬이 됩니다. 이것을 힙 정렬이라 합니다.",
+        "넣기 n번과 꺼내기 n번이 각각 O(log n)이므로 전체 O(n log n)입니다. 배열 안에서 힙을 만들면 추가 메모리 없이도 할 수 있습니다.",
+        "{3, 1, 4, 1, 5}를 최대 힙에서 꺼내면 5, 4, 3, 1, 1 순서로 나옵니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "{3, 1, 4, 1, 5}를 최대 힙에 넣고 차례로 꺼낼 때 세 번째로 나오는 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "큰 값부터 나옵니다.",
+      "explanation": "최대 힙에서 꺼내기는 항상 그 순간 가장 큰 값을 돌려주므로 내림차순으로 나옵니다.\n꺼내는 순서는 5, 4, 3, 1, 1입니다.\n세 번째는 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "힙에 모두 넣은 뒤 하나씩 꺼내 정렬하는 방법을 {{1}}이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "힙 정렬",
+            "힙정렬",
+            "heap sort",
+            "heapsort"
+          ]
+        }
+      ],
+      "hint": "힙을 이용한 정렬입니다.",
+      "explanation": "힙은 넣은 순서와 관계없이 가장 큰(작은) 값을 먼저 꺼냅니다.\n모두 넣고 하나씩 꺼내면 크기 순서로 나옵니다.\n이 정렬을 힙 정렬이라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "가운데 값 유지하기",
+      "body": [
+        "수가 하나씩 들어올 때마다 지금까지의 중앙값을 말해야 한다면, 수들을 작은 절반과 큰 절반으로 나누어 작은 절반은 최대 힙 lo, 큰 절반은 최소 힙 hi에 넣습니다.",
+        "lo의 크기가 hi와 같거나 하나 더 많도록 맞추면, lo의 top이 중앙값(짝수 개이면 가운데 둘 중 작은 값)입니다.",
+        "수 하나마다 힙 연산 몇 번이므로 O(log n)이고, n개 전체는 O(n log n)입니다."
+      ],
+      "code": "priority_queue<int> lo;                               // 작은 절반 (최대 힙)\npriority_queue<int, vector<int>, greater<int>> hi;    // 큰 절반 (최소 힙)\nvoid add(int x) {\n    if (lo.empty() || x <= lo.top()) lo.push(x); else hi.push(x);\n    if (lo.size() > hi.size() + 1) { hi.push(lo.top()); lo.pop(); }\n    if (hi.size() > lo.size())     { lo.push(hi.top()); hi.pop(); }\n}\nint median() { return lo.top(); }   // 짝수 개이면 가운데 둘 중 작은 값"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "1, 5, 2, 10, 6을 차례로 아래 add로 넣을 때 매번의 median()을 구하세요.",
+      "steps": [
+        "[1]: 1, [1, 5]: 1(가운데 둘 1, 5 중 작은 값)입니다.",
+        "[1, 2, 5]: 2입니다.",
+        "[1, 2, 5, 10]: 2입니다.",
+        "[1, 2, 5, 6, 10]: 5입니다."
+      ],
+      "answer": "1, 1, 2, 2, 5",
+      "code": "priority_queue<int> lo;                               // 작은 절반 (최대 힙)\npriority_queue<int, vector<int>, greater<int>> hi;    // 큰 절반 (최소 힙)\nvoid add(int x) {\n    if (lo.empty() || x <= lo.top()) lo.push(x); else hi.push(x);\n    if (lo.size() > hi.size() + 1) { hi.push(lo.top()); lo.pop(); }\n    if (hi.size() > lo.size())     { lo.push(hi.top()); hi.pop(); }\n}\nint median() { return lo.top(); }   // 짝수 개이면 가운데 둘 중 작은 값"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 다섯 수를 모두 넣은 뒤 median()은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "정렬하면 [1, 2, 5, 6, 10]입니다.",
+      "explanation": "lo의 top은 지금까지 들어온 수의 중앙값입니다.\n다섯 수를 정렬하면 [1, 2, 5, 6, 10]입니다.\n가운데 값은 5입니다.",
+      "code": "priority_queue<int> lo;                               // 작은 절반 (최대 힙)\npriority_queue<int, vector<int>, greater<int>> hi;    // 큰 절반 (최소 힙)\nvoid add(int x) {\n    if (lo.empty() || x <= lo.top()) lo.push(x); else hi.push(x);\n    if (lo.size() > hi.size() + 1) { hi.push(lo.top()); lo.pop(); }\n    if (hi.size() > lo.size())     { lo.push(hi.top()); hi.pop(); }\n}\nint median() { return lo.top(); }   // 짝수 개이면 가운데 둘 중 작은 값"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 네 번째 수까지 넣은 뒤 median()은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "가운데 둘 중 작은 값입니다.",
+      "explanation": "짝수 개일 때 median()은 가운데 두 수 중 작은 값입니다.\n네 수를 정렬하면 [1, 2, 5, 10]이고 가운데 둘은 2, 5입니다.\n그중 작은 값은 2입니다.",
+      "code": "priority_queue<int> lo;                               // 작은 절반 (최대 힙)\npriority_queue<int, vector<int>, greater<int>> hi;    // 큰 절반 (최소 힙)\nvoid add(int x) {\n    if (lo.empty() || x <= lo.top()) lo.push(x); else hi.push(x);\n    if (lo.size() > hi.size() + 1) { hi.push(lo.top()); lo.pop(); }\n    if (hi.size() > lo.size())     { lo.push(hi.top()); hi.pop(); }\n}\nint median() { return lo.top(); }   // 짝수 개이면 가운데 둘 중 작은 값"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "크기 맞추기",
+      "body": [
+        "add에서는 먼저 x를 알맞은 쪽에 넣은 뒤, lo가 hi보다 2개 이상 많으면 lo의 top을 hi로, hi가 lo보다 많으면 hi의 top을 lo로 옮깁니다.",
+        "그래서 수가 7개이면 lo에 4개, hi에 3개가 있습니다. lo의 모든 수는 hi의 모든 수 이하로 유지됩니다.",
+        "옮길 때도 top만 옮기므로 이 성질이 깨지지 않습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "수 7개를 add로 넣은 뒤 lo의 크기는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "lo는 hi와 같거나 하나 더 많습니다.",
+      "explanation": "add는 lo의 크기가 hi와 같거나 하나 더 많게 맞춥니다.\n7개를 나누면 lo에 4개, hi에 3개입니다.\n그래서 4입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "3, 1, 4, 1, 5를 차례로 아래 add로 넣은 뒤 median()은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "정렬하면 [1, 1, 3, 4, 5]입니다.",
+      "explanation": "lo의 top은 지금까지 들어온 수의 중앙값입니다.\n다섯 수를 정렬하면 [1, 1, 3, 4, 5]입니다.\n가운데 값은 3입니다.",
+      "code": "priority_queue<int> lo;                               // 작은 절반 (최대 힙)\npriority_queue<int, vector<int>, greater<int>> hi;    // 큰 절반 (최소 힙)\nvoid add(int x) {\n    if (lo.empty() || x <= lo.top()) lo.push(x); else hi.push(x);\n    if (lo.size() > hi.size() + 1) { hi.push(lo.top()); lo.pop(); }\n    if (hi.size() > lo.size())     { lo.push(hi.top()); hi.pop(); }\n}\nint median() { return lo.top(); }   // 짝수 개이면 가운데 둘 중 작은 값"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "직접 정렬과 비교",
+      "body": [
+        "수가 들어올 때마다 전체를 정렬해 중앙값을 구하면 매번 O(n log n), 정렬된 배열에 끼워 넣어도 매번 O(n)이 들어 n = 10⁵이면 너무 느립니다.",
+        "두 힙을 쓰면 매번 O(log n)입니다. 원소 10⁵개인 힙의 높이는 ⌊log₂ 10⁵⌋ = 16입니다.",
+        "최소 힙은 값이 작을수록 먼저 나오므로 {7, 2, 9, 4}에서 꺼내면 2, 4, 7, 9 순서입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "원소 10⁵개인 힙의 높이는?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2¹⁶ = 65536 ≤ 10⁵ < 2¹⁷입니다.",
+      "explanation": "완전 이진 트리는 층마다 노드가 두 배씩 늘어나므로 노드 n개의 높이는 ⌊log₂ n⌋입니다.\n2¹⁶ = 65536 ≤ 10⁵ < 131072입니다.\n그래서 높이는 16입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "{7, 2, 9, 4}가 든 최소 힙에서 차례로 꺼낼 때 두 번째로 나오는 값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "작은 값부터 나옵니다.",
+      "explanation": "최소 힙에서 꺼내기는 항상 그 순간 가장 작은 값을 돌려주므로 오름차순으로 나옵니다.\n꺼내는 순서는 2, 4, 7, 9입니다.\n두 번째는 4입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "힙 정렬은 힙에 모두 넣고 하나씩 꺼내는 O(n log n) 정렬입니다.",
+        "중앙값을 계속 구할 때는 작은 절반을 최대 힙, 큰 절반을 최소 힙에 두고 크기를 맞추어, 작은 쪽의 top을 중앙값으로 씁니다.",
+        "수 하나마다 O(log n)이므로, 수가 들어올 때마다 다시 정렬하는 O(n log n)이나 끼워 넣는 O(n) 방법보다 훨씬 빠릅니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "5, 15, 1, 3을 차례로 아래 add로 넣은 뒤 median()은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "정렬하면 [1, 3, 5, 15]입니다.",
+      "explanation": "짝수 개일 때 median()은 가운데 두 수 중 작은 값입니다.\n네 수를 정렬하면 [1, 3, 5, 15]이고 가운데 둘은 3, 5입니다.\n그중 작은 값은 3입니다.",
+      "code": "priority_queue<int> lo;                               // 작은 절반 (최대 힙)\npriority_queue<int, vector<int>, greater<int>> hi;    // 큰 절반 (최소 힙)\nvoid add(int x) {\n    if (lo.empty() || x <= lo.top()) lo.push(x); else hi.push(x);\n    if (lo.size() > hi.size() + 1) { hi.push(lo.top()); lo.pop(); }\n    if (hi.size() > lo.size())     { lo.push(hi.top()); hi.pop(); }\n}\nint median() { return lo.top(); }   // 짝수 개이면 가운데 둘 중 작은 값"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "{6, 2, 8, 4}가 든 최대 힙에서 차례로 꺼낼 때 세 번째로 나오는 값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "큰 값부터 나옵니다.",
+      "explanation": "최대 힙에서 꺼내기는 항상 그 순간 가장 큰 값을 돌려주므로 내림차순으로 나옵니다.\n꺼내는 순서는 8, 6, 4, 2입니다.\n세 번째는 4입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "두 힙으로 중앙값을 유지하는 방법에서 lo의 top이 중앙값인 이유를 설명하세요.",
+      "model_answer": [
+        "lo에는 작은 절반, hi에는 큰 절반이 들어가며 lo의 모든 수는 hi의 모든 수 이하이다.",
+        "크기는 lo가 hi와 같거나 하나 더 많도록 맞춘다.",
+        "그래서 전체를 정렬했을 때 lo의 수들이 앞쪽 ⌈n/2⌉개를 차지하고, lo의 top은 그중 가장 큰 수, 즉 ⌈n/2⌉번째 수이다.",
+        "⌈n/2⌉번째 수는 홀수 개이면 중앙값, 짝수 개이면 가운데 둘 중 작은 값이다."
+      ],
+      "criteria": [
+        {
+          "text": "두 힙의 값의 관계를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "크기 조건을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "lo의 top이 ⌈n/2⌉번째 수임을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "정렬했을 때 lo의 수들은 어디에 놓이나요?"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "힙 정렬의 시간 복잡도가 O(n log n)인 이유를 설명하세요.",
+      "model_answer": [
+        "원소 n개를 힙에 하나씩 넣는다. 넣기 한 번은 높이 이하로 바꾸므로 O(log n)이다.",
+        "그다음 n번 꺼낸다. 꺼내기 한 번도 O(log n)이다.",
+        "그래서 넣기와 꺼내기를 합쳐 2n번의 O(log n) 연산이다.",
+        "전체 시간은 O(n log n)이다."
+      ],
+      "criteria": [
+        {
+          "text": "넣기 단계의 비용을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "꺼내기 단계의 비용을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "합쳐 O(n log n)을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "넣기와 꺼내기가 각각 몇 번, 얼마씩 드나요?"
+    }
+  ]
+}

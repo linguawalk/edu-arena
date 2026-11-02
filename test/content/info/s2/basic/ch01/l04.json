@@ -1,0 +1,262 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "basic",
+  "work": "풀이",
+  "track_title": "기초",
+  "chapter": {
+    "id": "info-s2-basic-ch01",
+    "no": 1,
+    "title": "정당성 증명"
+  },
+  "lesson": {
+    "id": "info-s2-basic-ch01-l04",
+    "no": 4,
+    "title": "단조성과 이분 탐색",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "기초",
+      "정당성 증명"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "답을 이분 탐색하기",
+      "body": [
+        "길이가 802, 743, 457, 539인 랜선을 같은 길이로 잘라 11개 이상 만들려고 합니다. 자르는 길이를 최대로 하면 얼마일까요? (남는 조각은 버립니다.)",
+        "길이 x로 잘라 몇 개가 나오는지는 각 랜선 길이를 x로 나눈 몫의 합으로 쉽게 셉니다. 그래서 '길이 x로 11개 이상 만들 수 있는가'라는 예/아니오 질문 ok(x)에 답하기는 쉽습니다.",
+        "x가 커지면 조각 수는 줄기만 하므로, ok(x)는 어느 지점까지 참이다가 그 뒤로는 계속 거짓입니다. 이 경계를 이분 탐색으로 찾습니다."
+      ],
+      "code": "// ok(x): 길이 x로 잘라 K개 이상 얻을 수 있는가 (x가 커질수록 어려워진다)\nlong long lo = 0, hi = 1LL << 31;  // lo는 항상 가능, hi는 항상 불가능\nwhile (hi - lo > 1) {\n    long long mid = (lo + hi) / 2;\n    if (ok(mid)) lo = mid;\n    else hi = mid;\n}\n// 답은 lo"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "길이가 802, 743, 457, 539인 랜선을 길이 200으로 자르면 조각은 모두 몇 개인가요?",
+      "answer": "11",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "각 길이를 200으로 나눈 몫을 더하세요.",
+      "explanation": "랜선마다 200으로 나눈 몫만큼 조각이 나옵니다.\n몫은 4, 3, 2, 2입니다.\n4 + 3 + 2 + 2 = 11개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "같은 랜선을 길이 201로 자르면 조각은 모두 몇 개인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "802를 201로 나눈 몫이 달라집니다.",
+      "explanation": "랜선마다 201로 나눈 몫만큼 조각이 나옵니다.\n몫은 3, 3, 2, 2입니다.\n3 + 3 + 2 + 2 = 10개이므로 11개를 만들 수 없습니다."
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "x가 커질수록 조건이 참에서 거짓으로 한 번만 바뀌는 성질을 {{1}}이라 하며, 이것이 있어야 답을 이분 탐색할 수 있습니다.",
+      "blanks": [
+        {
+          "answers": [
+            "단조성",
+            "단조"
+          ]
+        }
+      ],
+      "hint": "한 방향으로만 변한다는 뜻입니다.",
+      "explanation": "ok(x)가 어떤 값까지 참이고 그 뒤로 계속 거짓이면 경계가 하나뿐입니다.\n이렇게 한 방향으로만 변하는 성질을 단조성이라 합니다.\n단조성이 있어야 가운데 값 하나로 절반을 버릴 수 있습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "불변식으로 보는 이분 탐색",
+      "body": [
+        "아래 코드에서 lo는 항상 ok가 참인 값, hi는 항상 ok가 거짓인 값입니다. 처음에 길이 0은 언제나 가능하고, 2³¹은 랜선보다 길어 불가능하므로 이 성질이 성립합니다.",
+        "반복마다 mid가 참이면 lo = mid, 거짓이면 hi = mid로 바꾸므로 성질이 유지됩니다. 이렇게 반복 내내 지켜지는 성질을 불변식이라 합니다. 또 hi − lo가 반으로 줄어 반드시 끝납니다.",
+        "끝났을 때 hi = lo + 1이고, lo는 참, lo + 1은 거짓입니다. 단조성 때문에 lo보다 큰 값은 모두 거짓이므로 lo가 답입니다."
+      ],
+      "code": "// ok(x): 길이 x로 잘라 K개 이상 얻을 수 있는가 (x가 커질수록 어려워진다)\nlong long lo = 0, hi = 1LL << 31;  // lo는 항상 가능, hi는 항상 불가능\nwhile (hi - lo > 1) {\n    long long mid = (lo + hi) / 2;\n    if (ok(mid)) lo = mid;\n    else hi = mid;\n}\n// 답은 lo"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "길이 10, 15인 랜선으로 5개 이상 만들 때 lo = 0, hi = 16에서 이분 탐색을 따라가 답을 구하세요.",
+      "steps": [
+        "mid = 8: 1 + 1 = 2개로 불가능하므로 hi = 8, 다음 mid = 4: 2 + 3 = 5개로 가능하므로 lo = 4입니다.",
+        "mid = 6: 1 + 2 = 3개로 불가능하므로 hi = 6, 다음 mid = 5: 2 + 3 = 5개로 가능하므로 lo = 5입니다.",
+        "hi − lo = 1이 되어 반복이 끝나고, 답은 lo = 5입니다."
+      ],
+      "answer": "5"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "길이가 802, 743, 457, 539인 랜선으로 11개 이상 만들 때 자를 수 있는 최대 길이는?",
+      "answer": "200",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "앞의 두 문제를 이용하세요.",
+      "explanation": "길이 200이면 11개로 가능하고, 길이 201이면 10개로 불가능합니다.\n단조성 때문에 201보다 긴 길이도 모두 불가능합니다.\n그래서 최대 길이는 200입니다."
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "lo = 0, hi = 1024에서 시작하면 반복문 몸체는 몇 번 실행되나요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "hi − lo가 1024, 512, …로 줄어듭니다.",
+      "explanation": "반복마다 hi − lo가 정확히 절반이 됩니다.\n1024 = 2¹⁰에서 1이 될 때까지 10번 절반으로 줄입니다.\n그래서 10번 실행됩니다.",
+      "code": "// ok(x): 길이 x로 잘라 K개 이상 얻을 수 있는가 (x가 커질수록 어려워진다)\nlong long lo = 0, hi = 1LL << 31;  // lo는 항상 가능, hi는 항상 불가능\nwhile (hi - lo > 1) {\n    long long mid = (lo + hi) / 2;\n    if (ok(mid)) lo = mid;\n    else hi = mid;\n}\n// 답은 lo"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "단조성이 없으면",
+      "body": [
+        "ok(x)가 참, 거짓, 참처럼 여러 번 바뀌면 이분 탐색은 경계 하나만 찾고 다른 경계를 놓칠 수 있습니다. 그래서 답을 이분 탐색하기 전에 단조성을 먼저 증명해야 합니다.",
+        "랜선 문제에서는 x < y이면 각 랜선에서 ⌊L/x⌋ ≥ ⌊L/y⌋이므로 조각 수의 합도 줄지 않습니다. 따라서 y로 K개를 만들 수 있으면 x로도 만들 수 있습니다.",
+        "'답이 x 이하가 될 수 있는가', 'x만큼 가능한가'처럼 질문을 바꾸면 최적화 문제가 단조인 결정 문제가 되는 경우가 많습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "나무 높이가 20, 15, 10, 17입니다. 절단기 높이를 H로 하면 H보다 높은 부분만 잘려 가져갑니다. 나무를 7 이상 가져가려면 H의 최댓값은?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "H = 15일 때 가져가는 양을 계산하세요.",
+      "explanation": "H가 낮을수록 가져가는 양이 늘어나므로 단조성이 있습니다.\nH = 15이면 5 + 0 + 0 + 2 = 7로 가능하고, H = 16이면 4 + 0 + 0 + 1 = 5로 불가능합니다.\n그래서 H의 최댓값은 15입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "이분 탐색이 끝났을 때 lo와 hi의 관계로 알맞은 것은? ① lo = hi ② hi = lo + 1이고 lo는 불가능, hi는 가능 ③ lo > hi ④ hi = lo + 1이고 lo는 가능, hi는 불가능",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "반복 조건과 불변식을 함께 보세요.",
+      "explanation": "반복은 hi − lo > 1인 동안 계속되므로 끝나면 hi − lo = 1입니다.\n불변식에 따라 lo는 항상 가능, hi는 항상 불가능입니다.\n답은 4입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "최댓값이나 최솟값을 묻는 문제를 '값 x가 가능한가'라는 결정 문제로 바꾸고, 결정 문제가 단조이면 답을 이분 탐색할 수 있습니다.",
+        "정당성은 불변식으로 보입니다. lo는 항상 가능, hi는 항상 불가능을 유지하면, 끝날 때 lo가 가능한 값 중 최대입니다.",
+        "탐색 범위가 R이면 반복은 약 log₂ R번이고, 한 번 판정에 O(n)이 걸리면 전체는 O(n log R)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "길이가 7, 10, 12인 랜선으로 6개 이상 만들 때 자를 수 있는 최대 길이는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "길이 4와 5를 각각 확인하세요.",
+      "explanation": "길이 4이면 1 + 2 + 3 = 6개로 가능합니다.\n길이 5이면 1 + 2 + 2 = 5개로 불가능하고, 단조성 때문에 더 긴 길이도 불가능합니다.\n그래서 최대 길이는 4입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "lo = 0, hi = 2²⁰에서 시작하면 반복문 몸체는 몇 번 실행되나요?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "hi − lo가 매번 정확히 절반이 됩니다.",
+      "explanation": "hi − lo가 2의 거듭제곱이면 mid가 정확히 가운데라 반복마다 차이가 절반이 됩니다.\n2²⁰에서 1이 될 때까지 절반으로 20번 줄입니다.\n그래서 20번 실행됩니다.",
+      "code": "// ok(x): 길이 x로 잘라 K개 이상 얻을 수 있는가 (x가 커질수록 어려워진다)\nlong long lo = 0, hi = 1LL << 31;  // lo는 항상 가능, hi는 항상 불가능\nwhile (hi - lo > 1) {\n    long long mid = (lo + hi) / 2;\n    if (ok(mid)) lo = mid;\n    else hi = mid;\n}\n// 답은 lo"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "위 코드가 끝났을 때 lo가 ok(x)가 참인 x 가운데 최댓값임을 증명하세요. (ok는 단조이고 ok(0)은 참, ok(2³¹)은 거짓)",
+      "model_answer": [
+        "불변식: 반복 직전마다 ok(lo)는 참, ok(hi)는 거짓이다. 처음에는 가정으로 성립한다.",
+        "mid가 참이면 lo = mid, 거짓이면 hi = mid로 바꾸므로 불변식이 유지된다.",
+        "hi − lo는 1보다 큰 동안 줄어드는 정수이므로 반복은 끝나고, 끝나면 hi = lo + 1이다.",
+        "ok(lo + 1)이 거짓이고 ok가 단조이므로 lo보다 큰 모든 x에서 거짓이다. 그래서 lo가 최댓값이다."
+      ],
+      "criteria": [
+        {
+          "text": "불변식을 세우고 처음에 성립함을 보였다",
+          "points": 2
+        },
+        {
+          "text": "반복마다 유지되고 반복이 끝남을 보였다",
+          "points": 2
+        },
+        {
+          "text": "단조성으로 lo가 최댓값임을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "lo와 hi가 항상 지키는 성질을 쓰세요.",
+      "code": "// ok(x): 길이 x로 잘라 K개 이상 얻을 수 있는가 (x가 커질수록 어려워진다)\nlong long lo = 0, hi = 1LL << 31;  // lo는 항상 가능, hi는 항상 불가능\nwhile (hi - lo > 1) {\n    long long mid = (lo + hi) / 2;\n    if (ok(mid)) lo = mid;\n    else hi = mid;\n}\n// 답은 lo"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "랜선 문제에서 'x로 K개 이상 만들 수 있다'가 단조임을, 즉 y로 가능하고 x < y이면 x로도 가능함을 증명하세요.",
+      "model_answer": [
+        "길이 L인 랜선에서 나오는 조각 수는 ⌊L/x⌋이다.",
+        "x < y이면 L/x > L/y이므로 ⌊L/x⌋ ≥ ⌊L/y⌋이다.",
+        "모든 랜선에 대해 더하면 x로 만든 조각 수의 합 ≥ y로 만든 조각 수의 합 ≥ K이다.",
+        "그래서 x로도 K개 이상 만들 수 있다."
+      ],
+      "criteria": [
+        {
+          "text": "랜선 하나의 조각 수를 식으로 썼다",
+          "points": 2
+        },
+        {
+          "text": "x < y일 때 몫의 대소를 비교했다",
+          "points": 2
+        },
+        {
+          "text": "합으로 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "랜선 하나씩 비교해 보세요."
+    }
+  ]
+}

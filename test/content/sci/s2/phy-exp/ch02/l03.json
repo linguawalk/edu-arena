@@ -1,0 +1,490 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s2",
+  "track": "phy-exp",
+  "work": "풀이",
+  "track_title": "실험과 오차",
+  "chapter": {
+    "id": "sci-s2-phy-exp-ch02",
+    "no": 2,
+    "title": "그래프 분석과 선형화"
+  },
+  "lesson": {
+    "id": "sci-s2-phy-exp-ch02-l03",
+    "no": 3,
+    "title": "기울기의 불확도와 절편",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "실험",
+      "그래프 분석"
+    ],
+    "competition": "KPhO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "기울기에도 불확도가 있다",
+      "body": [
+        "오차 막대가 있는 그래프에서는 모든 오차 막대를 지나는 가장 가파른 직선과 가장 완만한 직선을 그립니다. 기울기가 b_max, b_min이면 b = (b_max + b_min)/2, δb = (b_max − b_min)/2로 어림합니다.",
+        "최소제곱에서는 점들의 세로 흩어짐이 σ_y일 때 기울기의 불확도가 σ_b = σ_y/√Σ(x − x̄)²입니다. x를 넓은 범위에서 재면 Σ(x − x̄)²이 커져 기울기가 정확해집니다.",
+        "그림의 진자 자료에서 기울기가 4.00 ± 0.08 s²/m이면 g = 4π²/b의 상대 불확도도 2%라 g = 9.87 ± 0.20 m/s²입니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 1.2,
+          "ymin": 0,
+          "ymax": 5,
+          "xstep": 0.2,
+          "ystep": 1,
+          "xlabel": "L(m)",
+          "ylabel": "T²(s²)",
+          "curves": [
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0.08
+                ],
+                [
+                  1.2,
+                  4.88
+                ]
+              ],
+              "label": "T² = 4.0L + 0.08",
+              "at": [
+                0.05,
+                4.3
+              ]
+            }
+          ],
+          "alt": "진자의 길이 L에 대한 주기의 제곱 T²: 점들이 기울기 4.0 s²/m, 절편 0.08 s²인 직선 위에 놓인다.",
+          "points": [
+            [
+              0.2,
+              0.88
+            ],
+            [
+              0.4,
+              1.68
+            ],
+            [
+              0.6,
+              2.48
+            ],
+            [
+              0.8,
+              3.28
+            ],
+            [
+              1.0,
+              4.08
+            ]
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "그림의 기울기가 4.00 ± 0.08 s²/m일 때 g의 불확도는 몇 m/s²인가요? (소수 둘째 자리까지)",
+      "answer": "0.2",
+      "answer_format": "decimal",
+      "tolerance": 0.01,
+      "hint": "상대 불확도 2%입니다.",
+      "explanation": "g = 4π²/b이므로 g의 상대 불확도는 기울기의 상대 불확도 0.08/4.00 = 2%와 같습니다.\ng = π² ≈ 9.87 m/s²입니다.\nδg = 0.02 × 9.87 ≈ 0.20 m/s²입니다.",
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 1.2,
+          "ymin": 0,
+          "ymax": 5,
+          "xstep": 0.2,
+          "ystep": 1,
+          "xlabel": "L(m)",
+          "ylabel": "T²(s²)",
+          "curves": [
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0.08
+                ],
+                [
+                  1.2,
+                  4.88
+                ]
+              ],
+              "label": "T² = 4.0L + 0.08",
+              "at": [
+                0.05,
+                4.3
+              ]
+            }
+          ],
+          "alt": "진자의 길이 L에 대한 주기의 제곱 T²: 점들이 기울기 4.0 s²/m, 절편 0.08 s²인 직선 위에 놓인다.",
+          "points": [
+            [
+              0.2,
+              0.88
+            ],
+            [
+              0.4,
+              1.68
+            ],
+            [
+              0.6,
+              2.48
+            ],
+            [
+              0.8,
+              3.28
+            ],
+            [
+              1.0,
+              4.08
+            ]
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "x 값을 넓은 범위에서 측정할수록 맞춘 직선의 기울기 불확도는 {{1}}집니다.",
+      "blanks": [
+        {
+          "answers": [
+            "작아",
+            "줄어"
+          ]
+        }
+      ],
+      "hint": "σ_b = σ_y/√Σ(x − x̄)²입니다.",
+      "explanation": "기울기 불확도의 분모 Σ(x − x̄)²은 x가 넓게 퍼질수록 큽니다.\n그래서 σ_b가 작아집니다.\n측정 범위를 넓히는 것이 정밀도를 높이는 방법입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "절편이 알려 주는 것",
+      "body": [
+        "이론상 원점을 지나야 하는 직선의 절편이 0이 아니면 계통 오차를 의심합니다. 그림의 T²–L 직선은 절편이 0.08 s²입니다.",
+        "진자 길이를 매번 c만큼 짧게 쟀다면(예: 줄 길이만 재고 추의 반지름을 빠뜨림) 참 길이는 L + c이고 T² = (4π²/g)(L + c)이므로 절편 = 기울기 × c입니다.",
+        "0.08 = 4.0 × c에서 c = 0.02 m, 곧 길이를 2 cm씩 짧게 잰 것입니다. 기울기로 구한 g는 이 계통 오차의 영향을 받지 않습니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 1.2,
+          "ymin": 0,
+          "ymax": 5,
+          "xstep": 0.2,
+          "ystep": 1,
+          "xlabel": "L(m)",
+          "ylabel": "T²(s²)",
+          "curves": [
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0.08
+                ],
+                [
+                  1.2,
+                  4.88
+                ]
+              ],
+              "label": "T² = 4.0L + 0.08",
+              "at": [
+                0.05,
+                4.3
+              ]
+            }
+          ],
+          "alt": "진자의 길이 L에 대한 주기의 제곱 T²: 점들이 기울기 4.0 s²/m, 절편 0.08 s²인 직선 위에 놓인다.",
+          "points": [
+            [
+              0.2,
+              0.88
+            ],
+            [
+              0.4,
+              1.68
+            ],
+            [
+              0.6,
+              2.48
+            ],
+            [
+              0.8,
+              3.28
+            ],
+            [
+              1.0,
+              4.08
+            ]
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "최대 기울기 2.2, 최소 기울기 1.8인 두 직선이 모든 오차 막대를 지납니다. 기울기와 불확도를 구하세요.",
+      "steps": [
+        "기울기의 어림값은 두 기울기의 평균입니다.",
+        "(2.2 + 1.8)/2 = 2.0입니다.",
+        "불확도는 두 기울기 차이의 절반입니다.",
+        "(2.2 − 1.8)/2 = 0.2이므로 2.0 ± 0.2입니다."
+      ],
+      "answer": "2.0 ± 0.2"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "그림의 진자 자료에서 길이를 매번 몇 cm씩 짧게 잰 것인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "절편 = 기울기 × c입니다.",
+      "explanation": "참 길이가 L + c이면 T² = (4π²/g)L + (4π²/g)c이므로 절편 = 기울기 × c입니다.\n0.08 = 4.0 × c입니다.\nc = 0.02 m = 2 cm입니다.",
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 1.2,
+          "ymin": 0,
+          "ymax": 5,
+          "xstep": 0.2,
+          "ystep": 1,
+          "xlabel": "L(m)",
+          "ylabel": "T²(s²)",
+          "curves": [
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0.08
+                ],
+                [
+                  1.2,
+                  4.88
+                ]
+              ],
+              "label": "T² = 4.0L + 0.08",
+              "at": [
+                0.05,
+                4.3
+              ]
+            }
+          ],
+          "alt": "진자의 길이 L에 대한 주기의 제곱 T²: 점들이 기울기 4.0 s²/m, 절편 0.08 s²인 직선 위에 놓인다.",
+          "points": [
+            [
+              0.2,
+              0.88
+            ],
+            [
+              0.4,
+              1.68
+            ],
+            [
+              0.6,
+              2.48
+            ],
+            [
+              0.8,
+              3.28
+            ],
+            [
+              1.0,
+              4.08
+            ]
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x = 1, 2, 3, 4, 5인 자료에서 각 y의 불확도가 0.1일 때 최소제곱 기울기의 불확도는? (소수 셋째 자리까지)",
+      "answer": "0.032",
+      "answer_format": "decimal",
+      "tolerance": 0.001,
+      "hint": "σ_y/√10입니다.",
+      "explanation": "기울기 불확도는 σ_b = σ_y/√Σ(x − x̄)²입니다.\nΣ(x − x̄)² = 4 + 1 + 0 + 1 + 4 = 10이므로 0.1/√10입니다.\n≈ 0.032입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "변수를 바꾸면 불확도도 바뀐다",
+      "body": [
+        "선형화로 y 대신 ln y를 그리면 오차 막대도 바꿔야 합니다. δ(ln y) = δy/y이므로 y = 50 ± 2이면 ln y의 불확도는 0.04입니다.",
+        "y² 축이면 δ(y²) = 2y δy입니다. T = 2.00 ± 0.01 s이면 T² = 4.00 ± 0.04 s²입니다.",
+        "변수를 바꾼 뒤 오차 막대 크기가 점마다 달라지면, 작은 오차 막대를 가진 점을 더 믿고 맞추는 가중 맞춤이 더 좋습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "측정값 y = 50 ± 2를 ln y로 바꾸면 ln y의 불확도는? (소수로)",
+      "answer": "0.04",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "δ(ln y) = δy/y입니다.",
+      "explanation": "ln y를 미분하면 d(ln y) = dy/y이므로 δ(ln y) = δy/y입니다.\n2/50입니다.\n= 0.04입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "주기 T = 2.00 ± 0.01 s일 때 T²의 불확도는 몇 s²인가요? (소수로)",
+      "answer": "0.04",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "δ(T²) = 2T δT입니다.",
+      "explanation": "T²을 미분하면 d(T²) = 2T dT이므로 δ(T²) = 2T δT입니다.\n2 × 2.00 × 0.01입니다.\n= 0.04 s²입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 자료 수와 흩어짐으로 x의 측정 범위(각 x − x̄)를 모두 3배로 넓히면 기울기 불확도는 몇 분의 1이 되나요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "√Σ(x − x̄)²이 3배입니다.",
+      "explanation": "각 x − x̄가 3배면 Σ(x − x̄)²은 9배, 제곱근은 3배입니다.\nσ_b = σ_y/√Σ(x − x̄)²입니다.\n그래서 기울기 불확도는 1/3이 됩니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "오차 막대 그래프: 가장 가파른·완만한 직선으로 b = (b_max + b_min)/2, δb = (b_max − b_min)/2. 최소제곱: σ_b = σ_y/√Σ(x − x̄)².",
+        "기울기에서 구한 양의 불확도는 오차 전파로 구합니다(g = 4π²/b이면 상대 불확도가 같음).",
+        "원점을 지나야 할 직선의 절편은 계통 오차를 알려 주며, 변수를 바꾸면 오차 막대도 δ(ln y) = δy/y, δ(y²) = 2yδy처럼 바꿉니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "최대 기울기 5.6, 최소 기울기 4.8인 직선이 모든 오차 막대를 지납니다. 기울기의 불확도는? (소수로)",
+      "answer": "0.4",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "(b_max − b_min)/2입니다.",
+      "explanation": "기울기의 불확도는 가장 가파른 직선과 가장 완만한 직선의 기울기 차이의 절반입니다.\n(5.6 − 4.8)/2입니다.\n= 0.4이고 기울기는 5.2 ± 0.4입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "T²–L 직선의 기울기가 4.05 s²/m, 절편이 −0.081 s²였습니다. 길이를 매번 몇 cm씩 길게 잰 것인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "절편 = −기울기 × c입니다.",
+      "explanation": "길이를 c만큼 길게 쟀다면 참 길이는 L − c이고 절편은 −기울기 × c입니다.\n−0.081 = −4.05 × c입니다.\nc = 0.02 m = 2 cm입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "T²–L 그래프의 절편으로 길이 측정의 계통 오차 c를 구할 수 있는 이유를 설명하세요.",
+      "model_answer": [
+        "측정한 길이 L이 참 길이보다 c만큼 짧다면 참 길이는 L + c이다.",
+        "이론식은 T² = (4π²/g)(L + c) = (4π²/g)L + (4π²/g)c이다.",
+        "그래서 T²–L 직선의 기울기는 그대로 4π²/g이고 절편이 (4π²/g)c = 기울기 × c가 된다.",
+        "따라서 c = 절편/기울기로 구할 수 있고, 기울기로 구한 g는 이 오차의 영향을 받지 않는다."
+      ],
+      "criteria": [
+        {
+          "text": "참 길이를 썼다",
+          "points": 1
+        },
+        {
+          "text": "이론식을 전개했다",
+          "points": 2
+        },
+        {
+          "text": "절편과 c의 관계를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "g가 영향을 받지 않음을 밝혔다",
+          "points": 1
+        }
+      ],
+      "hint": "참 길이 L + c를 식에 넣으세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "ln y를 그래프로 그릴 때 오차 막대가 δy/y가 되는 이유를 쓰고, 오차 막대 크기가 점마다 다를 때 주의할 점을 쓰세요.",
+      "model_answer": [
+        "ln y의 미분은 d(ln y) = dy/y이다.",
+        "그래서 y의 불확도 δy는 ln y의 불확도 δy/y로 바뀐다.",
+        "δy가 일정해도 y가 작은 점일수록 ln y의 오차 막대가 커진다.",
+        "그런 점은 덜 믿어야 하므로 모든 점을 똑같이 취급하는 맞춤 대신 1/σ²로 무게를 준 가중 맞춤을 하는 것이 좋다."
+      ],
+      "criteria": [
+        {
+          "text": "미분으로 변환을 보였다",
+          "points": 2
+        },
+        {
+          "text": "점마다 달라짐을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "가중 맞춤을 제시했다",
+          "points": 2
+        }
+      ],
+      "hint": "d(ln y) = dy/y입니다."
+    }
+  ]
+}

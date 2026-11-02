@@ -1,0 +1,121 @@
+{
+ "no": 10,
+ "title": "가상화와 컨테이너",
+ "hours": 4,
+ "after": [
+  7
+ ],
+ "objectives": [
+  "하이퍼바이저 기반 가상화(유형 1·2)의 구조를 설명할 수 있다.",
+  "컨테이너가 가상 머신보다 가벼운 이유(네임스페이스, cgroup, 이미지 레이어)를 설명할 수 있다.",
+  "가상화가 클라우드의 바탕이 되는 원리를 설명할 수 있다."
+ ],
+ "checklist": [
+  "가상 머신과 하이퍼바이저: 유형 1(베어메탈), 유형 2(호스트형)",
+  "CPU 가상화 지원(하드웨어 가상화 확장)과 메모리 가상화",
+  "컨테이너: 커널 공유, 네임스페이스(격리), cgroup(자원 제한)",
+  "이미지 레이어와 공유",
+  "가상 머신 vs 컨테이너: 격리 수준, 기동 시간, 오버헤드",
+  "가상화와 클라우드(레벨3 분산시스템·클라우드)",
+  "샌드박스와 보안"
+ ],
+ "advice": [
+  "가상화는 '하나의 컴퓨터를 여러 대처럼' 보이게 하는 기술이고, 운영체제가 프로세스에게 해 주던 일(CPU·메모리 나눠 주기)을 운영체제 전체에 해 주는 것이라고 보면 이해가 쉽습니다. 컨테이너는 그보다 가볍게 커널은 공유하고 보이는 것(네임스페이스)과 쓸 수 있는 양(cgroup)만 나눕니다.",
+  "가상 머신과 컨테이너를 기동 시간, 메모리 사용량, 격리 수준 세 가지로 표를 만들어 비교해 보세요. 숨긴 클라우드 자격증이 다루던 내용의 기초가 바로 이 단원이며, 레벨3 분산시스템·클라우드에서 쿠버네티스로 이어집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Arpaci-Dusseau (무료 공개 교재)",
+   "title": "Operating Systems: Three Easy Pieces",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "lang": "영어",
+   "part": "Virtual Machine Monitors 부록"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Silberschatz · Galvin · Gagne, Operating System Concepts (번역본 『운영체제』, 장 제목으로 표기)",
+   "part": "Virtual Machines 장"
+  },
+  {
+   "kind": "web",
+   "provider": "Docker 공식 문서",
+   "title": "Docker overview",
+   "url": "https://docs.docker.com/get-started/overview/",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "여러 가상 머신을 만들고 실제 하드웨어를 나눠 주는 소프트웨어 계층을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "하이퍼바이저",
+      "가상 머신 모니터",
+      "VMM"
+     ]
+    }
+   ],
+   "explanation": "하드웨어 위에 바로 올라가는 유형 1과 호스트 운영체제 위에서 도는 유형 2가 있습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "호스트 커널을 공유하면서 프로세스 묶음을 격리해 가볍게 실행하는 가상화 방식을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "컨테이너"
+     ]
+    }
+   ],
+   "explanation": "가상 머신보다 기동이 빠르고 메모리를 적게 쓰지만 커널을 공유해 격리는 약합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "리눅스에서 프로세스 묶음이 쓸 수 있는 CPU·메모리 양을 제한하는 커널 기능을 영문 약어로 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "cgroup",
+      "cgroups",
+      "컨트롤 그룹"
+     ]
+    }
+   ],
+   "explanation": "보이는 범위를 나누는 네임스페이스와 함께 컨테이너의 바탕입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "공통 기반 이미지 레이어 500 MB를 공유하고 각자 50 MB만 더 쓰는 컨테이너 10개는 저장 공간을 모두 몇 MB 쓸까요?",
+   "answer": "1000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "500 + 10 × 50 = 1000 MB\n레이어를 공유하지 않으면 5500 MB입니다.",
+   "hint": "공유 레이어는 한 번만 셉니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "operating-systems",
+ "id": "l2-computer-operating-systems-u10"
+}

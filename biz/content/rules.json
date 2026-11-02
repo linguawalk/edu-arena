@@ -1,0 +1,556 @@
+{
+ "schema_version": "1.0",
+ "note": "바뀔 수 있는 법정·제도 수치를 한곳에서 관리합니다. 레슨 빌더는 tools/rules.py의 rv()로 이 값을 불러오고, 사용한 레슨에 review 정보가 붙습니다. 값을 바꾼 뒤에는 해당 챕터를 다시 빌드하세요.",
+ "rules": {
+  "min_wage_hourly": {
+   "label": "최저임금 시간급",
+   "value": 10320,
+   "unit": "원",
+   "effective": "2026-01-01",
+   "next": {
+    "value": 10700,
+    "effective": "2027-01-01"
+   },
+   "review_by": "2027-01-01",
+   "source": "고용노동부 최저임금 고시 (2026년 10,320원, 2027년 10,700원 결정)",
+   "url": "https://www.minimumwage.go.kr/"
+  },
+  "deposit_protection_limit": {
+   "label": "예금자 보호 한도(1인당, 금융회사별, 원금+이자)",
+   "value": 100000000,
+   "unit": "원",
+   "effective": "2025-09-01",
+   "review_by": "2027-09-01",
+   "source": "예금자보호법 시행령 개정(2025년 9월 1일 시행)",
+   "url": "https://www.kdic.or.kr/"
+  },
+  "interest_income_tax": {
+   "label": "이자 소득 원천징수 세율(소득세 14% + 지방소득세 1.4%)",
+   "value": 15.4,
+   "unit": "%",
+   "effective": "2026-01-01",
+   "review_by": "2027-01-01",
+   "source": "소득세법",
+   "url": "https://www.nts.go.kr/"
+  },
+  "pension_rate_worker": {
+   "label": "국민연금 근로자 부담률(전체 9.5%의 절반)",
+   "value": 4.75,
+   "unit": "%",
+   "effective": "2026-01-01",
+   "next": {
+    "value": 5.0,
+    "effective": "2027-01-01"
+   },
+   "review_by": "2027-01-01",
+   "source": "2026년 4대 보험 요율(국민연금공단·국민건강보험공단·근로복지공단 고시), 국민연금법 개정(2026년부터 매년 0.5%p 인상)",
+   "url": "https://www.nps.or.kr/"
+  },
+  "pension_rate_total": {
+   "label": "국민연금 보험료율",
+   "value": 9.5,
+   "unit": "%",
+   "effective": "2026-01-01",
+   "next": {
+    "value": 10.0,
+    "effective": "2027-01-01"
+   },
+   "review_by": "2027-01-01",
+   "source": "2026년 4대 보험 요율(국민연금공단·국민건강보험공단·근로복지공단 고시)",
+   "url": "https://www.nps.or.kr/"
+  },
+  "health_rate_worker": {
+   "label": "건강보험 근로자 부담률(전체 7.19%의 절반)",
+   "value": 3.595,
+   "unit": "%",
+   "effective": "2026-01-01",
+   "review_by": "2027-01-01",
+   "source": "2026년 4대 보험 요율(국민연금공단·국민건강보험공단·근로복지공단 고시)",
+   "url": "https://www.nhis.or.kr/"
+  },
+  "ltc_rate_of_health": {
+   "label": "장기요양보험료율(건강보험료 대비)",
+   "value": 13.14,
+   "unit": "%",
+   "effective": "2026-01-01",
+   "review_by": "2027-01-01",
+   "source": "2026년 4대 보험 요율(국민연금공단·국민건강보험공단·근로복지공단 고시)",
+   "url": "https://www.longtermcare.or.kr/"
+  },
+  "employment_rate_worker": {
+   "label": "고용보험(실업급여) 근로자 부담률",
+   "value": 0.9,
+   "unit": "%",
+   "effective": "2026-01-01",
+   "review_by": "2027-01-01",
+   "source": "2026년 4대 보험 요율(국민연금공단·국민건강보험공단·근로복지공단 고시)",
+   "url": "https://www.comwel.or.kr/"
+  },
+  "max_interest_rate": {
+   "label": "법정 최고 금리(연)",
+   "value": 20,
+   "unit": "%",
+   "effective": "2021-07-07",
+   "review_by": "2027-10-01",
+   "source": "대부업법·이자제한법 시행령",
+   "url": "https://www.fsc.go.kr/"
+  },
+  "pension_replacement_rate": {
+   "label": "국민연금 소득 대체율(40년 가입 기준 목표)",
+   "value": 43,
+   "unit": "%",
+   "effective": "2026-01-01",
+   "review_by": "2027-01-01",
+   "source": "국민연금법 개정(2025년 3월 국회 통과, 2026년 시행)",
+   "url": "https://www.nps.or.kr/"
+  },
+  "vat_rate": {
+   "label": "부가가치세 일반 세율",
+   "value": 10,
+   "unit": "%",
+   "effective": "1977-07-01",
+   "review_by": "2027-01-01",
+   "source": "부가가치세법 제30조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "meal_allowance_nontax": {
+   "label": "식대 비과세 한도(월)",
+   "value": 200000,
+   "unit": "원",
+   "effective": "2023-01-01",
+   "review_by": "2027-01-01",
+   "source": "소득세법 시행령 제17조의2",
+   "url": "https://www.nts.go.kr/"
+  },
+  "car_allowance_nontax": {
+   "label": "자가운전보조금 비과세 한도(월)",
+   "value": 200000,
+   "unit": "원",
+   "effective": "2001-01-01",
+   "review_by": "2027-01-01",
+   "source": "소득세법 시행령 제12조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "local_income_tax_ratio": {
+   "label": "지방소득세(소득세에 대한 비율)",
+   "value": 10,
+   "unit": "%",
+   "effective": "2014-01-01",
+   "review_by": "2027-01-01",
+   "source": "지방세법",
+   "url": "https://www.wetax.go.kr/"
+  },
+  "qualified_receipt_threshold": {
+   "label": "적격증빙 수취 의무 기준(거래 건당, 초과 시)",
+   "value": 30000,
+   "unit": "원",
+   "effective": "2008-01-01",
+   "review_by": "2027-01-01",
+   "source": "법인세법 제116조, 소득세법 제160조의2",
+   "url": "https://www.nts.go.kr/"
+  },
+  "receipt_penalty_rate": {
+   "label": "증빙불비가산세율",
+   "value": 2,
+   "unit": "%",
+   "effective": "2008-01-01",
+   "review_by": "2027-01-01",
+   "source": "법인세법 제75조의5, 소득세법 제81조의6",
+   "url": "https://www.nts.go.kr/"
+  },
+  "income_tax_brackets": {
+   "label": "종합소득세 기본세율 [과세표준 상한(원, 마지막은 없음), 세율%]",
+   "value": [
+    [
+     14000000,
+     6
+    ],
+    [
+     50000000,
+     15
+    ],
+    [
+     88000000,
+     24
+    ],
+    [
+     150000000,
+     35
+    ],
+    [
+     300000000,
+     38
+    ],
+    [
+     500000000,
+     40
+    ],
+    [
+     1000000000,
+     42
+    ],
+    [
+     null,
+     45
+    ]
+   ],
+   "unit": "",
+   "effective": "2023-01-01",
+   "review_by": "2027-01-01",
+   "source": "소득세법 제55조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "corp_tax_brackets": {
+   "label": "법인세율 [과세표준 상한(원), 세율%] (2026.1.1 이후 개시 사업연도)",
+   "value": [
+    [
+     200000000,
+     10
+    ],
+    [
+     20000000000,
+     20
+    ],
+    [
+     300000000000,
+     22
+    ],
+    [
+     null,
+     25
+    ]
+   ],
+   "unit": "",
+   "effective": "2026-01-01",
+   "review_by": "2027-01-01",
+   "source": "법인세법 제55조(2025년 12월 개정, 전 구간 1%p 인상)",
+   "url": "https://www.nts.go.kr/"
+  },
+  "earned_income_deduction": {
+   "label": "근로소득공제 [총급여 구간 상한(원), 구간 기초 공제액, 초과분 공제율%] (한도 2,000만 원)",
+   "value": [
+    [
+     5000000,
+     0,
+     70
+    ],
+    [
+     15000000,
+     3500000,
+     40
+    ],
+    [
+     45000000,
+     7500000,
+     15
+    ],
+    [
+     100000000,
+     12000000,
+     5
+    ],
+    [
+     null,
+     14750000,
+     2
+    ]
+   ],
+   "unit": "",
+   "effective": "2020-01-01",
+   "review_by": "2027-01-01",
+   "source": "소득세법 제47조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "basic_deduction": {
+   "label": "인적공제 기본공제(1인당)",
+   "value": 1500000,
+   "unit": "원",
+   "effective": "2009-01-01",
+   "review_by": "2027-01-01",
+   "source": "소득세법 제50조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "simplified_vat_threshold": {
+   "label": "간이과세 적용 기준(직전 연도 공급대가, 미만)",
+   "value": 104000000,
+   "unit": "원",
+   "effective": "2024-07-01",
+   "review_by": "2027-01-01",
+   "source": "부가가치세법 시행령 제109조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "simplified_vat_exempt": {
+   "label": "간이과세자 납부의무 면제 기준(해당 과세기간 공급대가, 미만)",
+   "value": 48000000,
+   "unit": "원",
+   "effective": "2021-07-01",
+   "review_by": "2027-01-01",
+   "source": "부가가치세법 제69조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "penalty_nofile": {
+   "label": "일반 무신고가산세율(부당은 40%)",
+   "value": 20,
+   "unit": "%",
+   "effective": "2007-01-01",
+   "review_by": "2027-01-01",
+   "source": "국세기본법 제47조의2",
+   "url": "https://www.nts.go.kr/"
+  },
+  "penalty_underreport": {
+   "label": "일반 과소신고가산세율(부당은 40%)",
+   "value": 10,
+   "unit": "%",
+   "effective": "2007-01-01",
+   "review_by": "2027-01-01",
+   "source": "국세기본법 제47조의3",
+   "url": "https://www.nts.go.kr/"
+  },
+  "penalty_late_daily": {
+   "label": "납부지연가산세율(1일)",
+   "value": 0.022,
+   "unit": "%",
+   "effective": "2022-02-15",
+   "review_by": "2027-01-01",
+   "source": "국세기본법 시행령 제27조의4",
+   "url": "https://www.nts.go.kr/"
+  },
+  "loss_carryforward_years": {
+   "label": "결손금 이월공제 기간(2020년 이후 발생분)",
+   "value": 15,
+   "unit": "년",
+   "effective": "2021-01-01",
+   "review_by": "2027-01-01",
+   "source": "법인세법 제13조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "acquisition_tax_general": {
+   "label": "취득세 일반 유상취득 세율(주택 외 부동산)",
+   "value": 4,
+   "unit": "%",
+   "effective": "2011-01-01",
+   "review_by": "2027-01-01",
+   "source": "지방세법 제11조",
+   "url": "https://www.wetax.go.kr/"
+  },
+  "ecommerce_withdrawal_days": {
+   "label": "전자상거래 청약철회 기간(계약서면을 받은 날, 공급이 늦으면 공급받은 날부터)",
+   "value": 7,
+   "unit": "일",
+   "effective": "2002-07-01",
+   "review_by": "2027-07-01",
+   "source": "전자상거래 등에서의 소비자보호에 관한 법률 제17조",
+   "url": "https://www.law.go.kr/"
+  },
+  "door_to_door_withdrawal_days": {
+   "label": "방문판매 청약철회 기간(계약서 받은 날부터)",
+   "value": 14,
+   "unit": "일",
+   "effective": "2002-07-01",
+   "review_by": "2027-07-01",
+   "source": "방문판매 등에 관한 법률 제8조",
+   "url": "https://www.law.go.kr/"
+  },
+  "installment_withdrawal_days": {
+   "label": "할부거래 청약철회 기간(계약서 받은 날부터)",
+   "value": 7,
+   "unit": "일",
+   "effective": "2010-09-18",
+   "review_by": "2027-07-01",
+   "source": "할부거래에 관한 법률 제8조",
+   "url": "https://www.law.go.kr/"
+  },
+  "personal_import_dutyfree_usd": {
+   "label": "개인 자가사용 물품 소액 면세 한도(일반)",
+   "value": 150,
+   "unit": "달러",
+   "effective": "2014-01-01",
+   "review_by": "2027-01-01",
+   "source": "관세법 시행규칙 제45조, 특송물품 수입통관 사무처리에 관한 고시",
+   "url": "https://www.customs.go.kr/"
+  },
+  "personal_import_dutyfree_us_usd": {
+   "label": "미국발 목록통관 물품 면세 한도",
+   "value": 200,
+   "unit": "달러",
+   "effective": "2016-06-01",
+   "review_by": "2027-01-01",
+   "source": "한미 FTA 이행 관련 관세청 고시",
+   "url": "https://www.customs.go.kr/"
+  },
+  "basic_tariff_rate_general": {
+   "label": "공산품 일반 기본 관세율",
+   "value": 8,
+   "unit": "%",
+   "effective": "1997-01-01",
+   "review_by": "2027-01-01",
+   "source": "관세법 별표 관세율표",
+   "url": "https://unipass.customs.go.kr/"
+  },
+  "lc_examination_days": {
+   "label": "신용장 서류 심사 기간(은행 영업일)",
+   "value": 5,
+   "unit": "일",
+   "effective": "2007-07-01",
+   "review_by": "2027-07-01",
+   "source": "신용장통일규칙(UCP 600) 제14조",
+   "url": "https://iccwbo.org/"
+  },
+  "inheritance_tax_brackets": {
+   "label": "상속세·증여세 세율 [과세표준 상한(원), 세율%]",
+   "value": [
+    [
+     100000000,
+     10
+    ],
+    [
+     500000000,
+     20
+    ],
+    [
+     1000000000,
+     30
+    ],
+    [
+     3000000000,
+     40
+    ],
+    [
+     null,
+     50
+    ]
+   ],
+   "unit": "",
+   "effective": "2000-01-01",
+   "review_by": "2027-01-01",
+   "source": "상속세 및 증여세법 제26조, 제56조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "inheritance_lump_sum_deduction": {
+   "label": "상속세 일괄공제",
+   "value": 500000000,
+   "unit": "원",
+   "effective": "1997-01-01",
+   "review_by": "2027-01-01",
+   "source": "상속세 및 증여세법 제21조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "gift_deduction_spouse": {
+   "label": "증여재산공제: 배우자(10년 합산)",
+   "value": 600000000,
+   "unit": "원",
+   "effective": "2008-01-01",
+   "review_by": "2027-01-01",
+   "source": "상속세 및 증여세법 제53조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "gift_deduction_lineal_adult": {
+   "label": "증여재산공제: 직계존속에게서 받은 성년(10년 합산, 미성년은 2,000만 원)",
+   "value": 50000000,
+   "unit": "원",
+   "effective": "2014-01-01",
+   "review_by": "2027-01-01",
+   "source": "상속세 및 증여세법 제53조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "entertainment_base_limit": {
+   "label": "기업업무추진비 기본 한도(일반 법인, 연간; 중소기업 3,600만 원)",
+   "value": 12000000,
+   "unit": "원",
+   "effective": "2020-01-01",
+   "review_by": "2027-01-01",
+   "source": "법인세법 제25조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "overdraft_interest_rate": {
+   "label": "가지급금 인정이자 계산용 당좌대출이자율",
+   "value": 4.6,
+   "unit": "%",
+   "effective": "2016-03-07",
+   "review_by": "2027-01-01",
+   "source": "법인세법 시행규칙 제43조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "loss_deduction_limit_general": {
+   "label": "이월결손금 공제 한도(일반 법인, 각 사업연도 소득 대비; 중소기업 100%)",
+   "value": 80,
+   "unit": "%",
+   "effective": "2023-01-01",
+   "review_by": "2027-01-01",
+   "source": "법인세법 제13조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "global_minimum_tax_rate": {
+   "label": "글로벌 최저한세율",
+   "value": 15,
+   "unit": "%",
+   "effective": "2024-01-01",
+   "review_by": "2027-01-01",
+   "source": "국제조세조정에 관한 법률 제61조 이하",
+   "url": "https://www.nts.go.kr/"
+  },
+  "financial_income_threshold": {
+   "label": "금융소득 종합과세 기준 금액(연간 이자·배당 합계, 초과 시)",
+   "value": 20000000,
+   "unit": "원",
+   "effective": "2013-01-01",
+   "review_by": "2027-01-01",
+   "source": "소득세법 제14조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "other_income_expense_ratio": {
+   "label": "강연료 등 기타소득의 의제 필요경비율",
+   "value": 60,
+   "unit": "%",
+   "effective": "2019-01-01",
+   "review_by": "2027-01-01",
+   "source": "소득세법 시행령 제87조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "other_income_withholding": {
+   "label": "기타소득 원천징수 세율(지방소득세 별도)",
+   "value": 20,
+   "unit": "%",
+   "effective": "2008-01-01",
+   "review_by": "2027-01-01",
+   "source": "소득세법 제129조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "one_house_high_price": {
+   "label": "1세대 1주택 양도소득세 비과세 고가주택 기준(양도가액, 초과분 과세)",
+   "value": 1200000000,
+   "unit": "원",
+   "effective": "2021-12-08",
+   "review_by": "2027-01-01",
+   "source": "소득세법 시행령 제156조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "overseas_account_threshold": {
+   "label": "해외금융계좌 신고 기준(연중 어느 하루라도 잔액 합계 초과)",
+   "value": 500000000,
+   "unit": "원",
+   "effective": "2019-01-01",
+   "review_by": "2027-01-01",
+   "source": "국제조세조정에 관한 법률 제53조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "e_invoice_individual_threshold": {
+   "label": "개인사업자 전자세금계산서 의무 발급 기준(직전 연도 공급가액 합계, 이상)",
+   "value": 80000000,
+   "unit": "원",
+   "effective": "2024-07-01",
+   "review_by": "2027-01-01",
+   "source": "부가가치세법 시행령 제68조",
+   "url": "https://www.nts.go.kr/"
+  },
+  "traveler_dutyfree_usd": {
+   "label": "여행자 휴대품 기본 면세 한도(술·담배·향수 별도)",
+   "value": 800,
+   "unit": "달러",
+   "effective": "2022-09-06",
+   "review_by": "2027-01-01",
+   "source": "관세법 시행규칙 제48조",
+   "url": "https://www.customs.go.kr/"
+  }
+ }
+}

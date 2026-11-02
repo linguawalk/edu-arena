@@ -1,0 +1,278 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s1",
+  "track": "nt",
+  "work": "증명",
+  "track_title": "정수론",
+  "chapter": {
+    "id": "math-s1-nt-ch02",
+    "no": 2,
+    "title": "합동식"
+  },
+  "lesson": {
+    "id": "math-s1-nt-ch02-l04",
+    "no": 4,
+    "title": "일차 합동식과 중국인의 나머지 정리",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "정수론"
+    ],
+    "competition": "KMO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "ax ≡ b (mod m) 풀기",
+      "body": [
+        "ax ≡ b (mod m)는 ax + my = b와 같습니다. 그래서 gcd(a, m) | b일 때만 해가 있습니다.",
+        "gcd(a, m) = 1이면 aa' ≡ 1 (mod m)인 a'가 있고, 이것을 a의 역원이라고 합니다. 양변에 a'를 곱하면 x ≡ a'b (mod m)으로 해가 하나 정해집니다.",
+        "3의 7을 법으로 한 역원은 5입니다(3 × 5 = 15 ≡ 1). 그래서 3x ≡ 2 (mod 7)의 해는 x ≡ 5 × 2 = 10 ≡ 3입니다. 법이 작으면 0부터 m − 1까지 넣어 보는 것이 가장 빠르고, 크면 호제법으로 베주 항등식을 구하는 것이 확실합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "3x ≡ 1 (mod 7)의 해 중 0 ≤ x < 7인 것은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3x를 7로 나눈 나머지가 1이 되는 x를 찾으세요.",
+      "explanation": "3 × 5 = 15 = 14 + 1이므로 3 × 5 ≡ 1 (mod 7)입니다.\n0부터 6까지 중 이 값이 유일합니다.\n따라서 x = 5이고, 5는 3의 역원입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "3 × {{1}} ≡ 1 (mod 11)입니다. (0 이상 10 이하로)",
+      "blanks": [
+        {
+          "answers": [
+            "4"
+          ]
+        }
+      ],
+      "hint": "3 × 4를 계산해 보세요.",
+      "explanation": "3 × 4 = 12 = 11 + 1입니다.\n따라서 3 × 4 ≡ 1 (mod 11)이고, 4가 3의 역원입니다.\n이 역원을 쓰면 3x ≡ b (mod 11)의 해는 x ≡ 4b입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "해가 여러 개일 때",
+      "body": [
+        "d = gcd(a, m)이 b를 나누면, ax ≡ b (mod m)는 0 ≤ x < m 범위에 정확히 d개의 해를 가집니다.",
+        "양변과 법을 d로 나누면 (a/d)x ≡ b/d (mod m/d)가 되고, a/d와 m/d는 서로소라 해가 하나 정해집니다. 그 해에 m/d씩 더한 것이 원래 범위의 d개 해입니다.",
+        "예를 들어 6x ≡ 4 (mod 10)은 d = 2이므로 3x ≡ 2 (mod 5)로 바꿉니다. 3의 역원은 2이므로 x ≡ 4 (mod 5)이고, 0 ≤ x < 10에서는 x = 4, 9의 두 해입니다. 레슨 1에서 본 '나누면 법도 줄어든다'는 규칙을 그대로 쓴 것입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "7x ≡ 3 (mod 12)의 해 중 0 ≤ x < 12인 것은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "7의 12를 법으로 한 역원은 7입니다 (49 = 48 + 1).",
+      "explanation": "7 × 7 = 49 ≡ 1 (mod 12)이므로 양변에 7을 곱하면 x ≡ 21 (mod 12)입니다.\n21 ≡ 9 (mod 12)입니다.\n확인: 7 × 9 = 63 = 60 + 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "6x ≡ 4 (mod 10)의 해 중 0 ≤ x < 10인 것은 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "gcd(6, 10) = 2가 4를 나눕니다. 3x ≡ 2 (mod 5)로 바꾸세요.",
+      "explanation": "gcd(6, 10) = 2이고 2 | 4이므로 해는 2개입니다.\n3x ≡ 2 (mod 5)에서 x ≡ 4 (mod 5)이므로 x = 4, 9입니다.\n확인: 24와 54는 모두 10으로 나눈 나머지가 4입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "중국인의 나머지 정리",
+      "body": [
+        "법 m₁, m₂, …, mₖ가 서로 서로소이면, 연립합동식 x ≡ a₁ (mod m₁), …, x ≡ aₖ (mod mₖ)는 m₁m₂⋯mₖ를 법으로 정확히 하나의 해를 가집니다.",
+        "x ≡ 2 (mod 3), x ≡ 3 (mod 5)라면 15를 법으로 해가 하나 있고, 그것은 x ≡ 8입니다.",
+        "푸는 방법은 차례로 대입하는 것입니다. 첫 조건에서 x = 3k + 2로 놓고 두 번째 조건에 넣어 k의 조건을 구합니다. 법이 서로소가 아니면 해가 없거나 여러 개일 수 있으므로, 조건이 서로 모순되지 않는지 먼저 확인합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "3으로 나누면 2, 5로 나누면 3, 7로 나누면 2가 남는 가장 작은 자연수를 구하세요.",
+      "steps": [
+        "x ≡ 2 (mod 3), x ≡ 2 (mod 7)이므로 x ≡ 2 (mod 21)입니다.",
+        "x = 21k + 2를 x ≡ 3 (mod 5)에 넣으면 21k + 2 ≡ k + 2 ≡ 3, 곧 k ≡ 1 (mod 5)입니다.",
+        "k = 1이면 x = 23입니다.",
+        "따라서 가장 작은 자연수는 23이고, 모든 해는 x ≡ 23 (mod 105)입니다."
+      ],
+      "answer": "23"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x ≡ 1 (mod 3), x ≡ 2 (mod 4), x ≡ 3 (mod 5)를 만족하는 가장 작은 자연수 x는?",
+      "answer": "58",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "세 조건 모두 x ≡ −2와 같습니다.",
+      "explanation": "1 ≡ −2 (mod 3), 2 ≡ −2 (mod 4), 3 ≡ −2 (mod 5)이므로 x + 2는 3, 4, 5의 공배수입니다.\n따라서 x ≡ −2 (mod 60)입니다.\n가장 작은 자연수는 60 − 2 = 58입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x ≡ 3 (mod 4), x ≡ 4 (mod 7)을 만족하는 가장 작은 자연수 x는?",
+      "answer": "11",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = 7k + 4로 놓고 4로 나눈 나머지가 3이 되는 k를 찾으세요.",
+      "explanation": "x = 7k + 4이면 4를 법으로 7k + 4 ≡ 3k이므로 3k ≡ 3, 곧 k ≡ 1 (mod 4)입니다.\nk = 1이면 x = 11입니다.\n확인: 11 = 4 × 2 + 3 = 7 × 1 + 4입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "법을 쪼개서 계산하기",
+      "body": [
+        "중국인의 나머지 정리는 큰 법을 작은 법으로 쪼개 계산할 수 있게 해 줍니다. 100 = 4 × 25이므로 100으로 나눈 나머지는 4로 나눈 나머지와 25로 나눈 나머지로 정해집니다.",
+        "예를 들어 n ≡ 0 (mod 4), n ≡ 1 (mod 25)이면 n ≡ 76 (mod 100)입니다. 그래서 76의 거듭제곱은 마지막 두 자리가 항상 76입니다.",
+        "법이 서로소가 아니면 조건이 모순될 수 있습니다. x ≡ 1 (mod 4)이면 x는 홀수이고, x ≡ 2 (mod 6)이면 x는 짝수이므로 둘을 동시에 만족하는 정수는 없습니다. 공통 약수 2를 법으로 두 조건이 맞는지 먼저 확인하는 것이 요령입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n ≡ 0 (mod 4), n ≡ 1 (mod 25)를 만족하는 n을 100으로 나눈 나머지는?",
+      "answer": "76",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n = 25k + 1로 놓고 4의 배수가 되는 k를 찾으세요.",
+      "explanation": "n = 25k + 1이면 4를 법으로 25k + 1 ≡ k + 1이므로 k ≡ 3 (mod 4)입니다.\nk = 3이면 n = 76입니다.\n따라서 n ≡ 76 (mod 100)입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x ≡ 1 (mod 4), x ≡ 2 (mod 6)을 동시에 만족하는 정수 x는 모두 몇 개인가요?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 조건이 각각 x의 홀짝에 대해 무엇을 말하는지 보세요.",
+      "explanation": "x ≡ 1 (mod 4)이면 x는 홀수입니다.\nx ≡ 2 (mod 6)이면 x = 6k + 2로 짝수입니다.\n두 조건이 모순되므로 동시에 만족하는 정수는 0개입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "ax ≡ b (mod m)는 gcd(a, m) | b일 때만 풀리고, 0 ≤ x < m에 gcd(a, m)개의 해가 있습니다. gcd(a, m) = 1이면 역원을 곱해 풉니다.",
+        "법이 서로 서로소인 연립합동식은 법들의 곱을 법으로 해가 하나뿐입니다(중국인의 나머지 정리). x = m₁k + a₁로 놓고 차례로 대입해 풉니다.",
+        "큰 법은 서로소인 작은 법으로 쪼개 계산하고, 법이 서로소가 아니면 공통 약수를 법으로 조건이 모순되지 않는지 먼저 확인합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "사과를 3개씩 담으면 2개, 5개씩 담으면 4개, 7개씩 담으면 6개가 남습니다. 사과는 적어도 몇 개인가요?",
+      "answer": "104",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "세 조건 모두 '하나가 모자란다', 곧 x ≡ −1입니다.",
+      "explanation": "x ≡ −1 (mod 3), x ≡ −1 (mod 5), x ≡ −1 (mod 7)이므로 x + 1은 105의 배수입니다.\n가장 작은 자연수 해는 105 − 1입니다.\n= 104개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "5x ≡ 7 (mod 13)의 해 중 0 ≤ x < 13인 것은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5의 13을 법으로 한 역원은 8입니다 (40 = 39 + 1).",
+      "explanation": "5 × 8 = 40 ≡ 1 (mod 13)이므로 양변에 8을 곱하면 x ≡ 56 (mod 13)입니다.\n56 = 13 × 4 + 4이므로 x ≡ 4입니다.\n확인: 5 × 4 = 20 = 13 + 7입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "gcd(a, m) = 1이면 ax ≡ b (mod m)은 정수해를 가짐을 증명하세요.",
+      "model_answer": [
+        "베주 항등식에 의해 au + mv = 1인 정수 u, v가 있다.",
+        "양변에 b를 곱하면 a(ub) + m(vb) = b이다.",
+        "따라서 a(ub) − b = −m(vb)는 m의 배수이므로 a(ub) ≡ b (mod m)이다.",
+        "그러므로 x = ub가 해이다."
+      ],
+      "criteria": [
+        {
+          "text": "베주 항등식 au + mv = 1을 썼다",
+          "points": 2
+        },
+        {
+          "text": "b를 곱해 a(ub) + m(vb) = b를 얻었다",
+          "points": 2
+        },
+        {
+          "text": "합동식의 뜻으로 x = ub가 해임을 보였다",
+          "points": 2
+        }
+      ],
+      "hint": "gcd(a, m) = 1을 베주 항등식으로 바꾸세요."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "정수 x가 x ≡ 2 (mod 3)이고 x ≡ 3 (mod 5)일 필요충분조건은 x ≡ 8 (mod 15)임을 증명하세요.",
+      "model_answer": [
+        "x ≡ 8 (mod 15)이면 x = 15k + 8이고, 8 ≡ 2 (mod 3), 8 ≡ 3 (mod 5)이므로 두 조건을 만족한다.",
+        "거꾸로 x가 두 조건을 만족한다고 하자. 8도 두 조건을 만족하므로 x − 8 ≡ 0 (mod 3), x − 8 ≡ 0 (mod 5)이다.",
+        "3과 5는 서로소이므로 3과 5의 공배수인 x − 8은 15의 배수이다.",
+        "따라서 x ≡ 8 (mod 15)이고, 두 방향이 모두 성립한다."
+      ],
+      "criteria": [
+        {
+          "text": "x ≡ 8 (mod 15)이면 두 조건을 만족함을 보였다",
+          "points": 2
+        },
+        {
+          "text": "거꾸로 x − 8이 3과 5의 배수임을 보였다",
+          "points": 2
+        },
+        {
+          "text": "서로소라서 15의 배수라고 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "8이 해임을 먼저 확인하고, 다른 해 x와 8의 차를 보세요."
+    }
+  ]
+}

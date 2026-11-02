@@ -1,0 +1,99 @@
+{
+ "no": 3,
+ "title": "동역학과 궤적 계획",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "관절에 필요한 토크(중력 보상)를 계산할 수 있다.",
+  "자코비안으로 관절 속도와 손끝 속도의 관계를 설명할 수 있다.",
+  "부드러운 궤적(다항식·사다리꼴 속도) 계획을 설명할 수 있다."
+ ],
+ "checklist": [
+  "로봇 동역학: 관성, 원심·코리올리, 중력(기계 트랙 동역학·진동 3단원)",
+  "중력 토크 τ = m g L(수평 자세)",
+  "자코비안: 관절 속도 → 손끝 속도, 힘의 관계",
+  "특이점에서 자코비안이 퇴화",
+  "궤적 계획: 관절 공간과 작업 공간",
+  "사다리꼴 속도 프로파일, 3차·5차 다항식",
+  "충돌 회피와 경로 계획(샘플링 기반)"
+ ],
+ "advice": [
+  "로봇이 무거운 물건을 들고 팔을 뻗을수록 어깨 관절에 걸리는 토크가 커지며, 이 중력 토크를 모터가 이겨야 합니다. 팔을 수평으로 뻗었을 때 토크를 계산해 보면 모터와 감속기(4단원) 크기를 어떻게 정하는지 감이 옵니다. 움직임이 갑자기 시작·정지하면 진동과 마모가 생기므로, 속도와 가속도가 부드럽게 변하는 궤적을 만드는 것이 실무 로봇 프로그래밍의 기본입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Craig, Introduction to Robotics: Mechanics and Control (장 제목으로 표기)"
+  },
+  {
+   "kind": "book",
+   "provider": "Lynch · Park (무료 공개 교재와 강의)",
+   "title": "Modern Robotics: Mechanics, Planning, and Control",
+   "url": "https://hades.mech.northwestern.edu/index.php/Modern_Robotics",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "동역학·진동 3단원 강체의 운동학과 운동역학 (기계 트랙)",
+   "url": "guide.html?lv=3&t=mechanical&s=dynamics-vibration&u=3"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "질량 2 kg 물체를 들고 길이 0.5 m 팔을 수평으로 뻗으면 어깨 관절에 걸리는 중력 토크는 약 몇 N·m일까요? (g = 9.81, 팔 무게 무시, 소수 둘째 자리까지)",
+   "answer": "9.81",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "τ = 2 × 9.81 × 0.5 = 9.81 N·m",
+   "hint": "m g L입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "관절 속도와 손끝 속도 사이의 관계를 나타내는 행렬을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "자코비안",
+      "야코비안"
+     ]
+    }
+   ],
+   "explanation": "이 행렬이 퇴화하는 자세가 특이점입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "로봇이 특정 방향으로 움직일 수 없게 되거나 관절 속도가 무한히 필요해지는 자세를 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "특이점",
+      "특이 자세"
+     ]
+    }
+   ],
+   "explanation": "궤적 계획에서 피해야 합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "robotics",
+ "id": "l3-convergence-robotics-u03"
+}

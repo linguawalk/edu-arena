@@ -1,0 +1,96 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 5,
+  "unit": 2,
+  "unit_title": "상속과 super",
+  "questions": [
+    {
+      "id": "javascript_l5_u02_q001",
+      "type": "predict_output",
+      "code": "class Animal {\n    speak() {\n        console.log(\"동물이 소리를 낸다\");\n    }\n}\n\nclass Dog extends Animal {\n    speak() {\n        console.log(\"멍멍!\");\n    }\n}\n\nconst a = new Animal();\nconst d = new Dog();\na.speak();\nd.speak();",
+      "prompt_en": "What is printed? (Note: no special keyword like virtual/override is needed at all.)",
+      "prompt_ko": "출력 결과는? (virtual/override 같은 특별한 키워드가 전혀 필요 없는 점에 주의하세요.)",
+      "options": ["동물이 소리를 낸다\\n동물이 소리를 낸다", "동물이 소리를 낸다\\n멍멍!", "멍멍!\\n멍멍!", "오류"],
+      "answer": 1,
+      "explanation_en": "Like Java and Python, JavaScript methods are overridable by default; each object's own speak() runs based on its actual class.",
+      "explanation_ko": "Java, Python과 마찬가지로 JavaScript의 메서드는 기본적으로 오버라이드 가능합니다. 각 객체는 자신의 실제 클래스에 따라 자신의 speak()를 실행합니다.",
+      "concept_tags": ["inheritance", "polymorphism"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l5_u02_q002",
+      "type": "fill_blank",
+      "code": "class Cat ____ Animal {\n    speak() {\n        console.log(\"야옹!\");\n    }\n}",
+      "prompt_en": "Fill in the blank with the keyword that makes Cat inherit from Animal.",
+      "prompt_ko": "Cat이 Animal을 상속받도록 빈칸에 들어갈 키워드는?",
+      "options": ["extends", ":", "implements", "Inherits"],
+      "answer": 0,
+      "explanation_en": "extends establishes class inheritance in JavaScript, the same keyword used in Java.",
+      "explanation_ko": "extends는 JavaScript에서 클래스 상속을 설정합니다. Java에서 쓰는 것과 같은 키워드입니다.",
+      "concept_tags": ["inheritance"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l5_u02_q003",
+      "type": "predict_output",
+      "code": "class Animal {\n    constructor(name) {\n        this.name = name;\n    }\n}\n\nclass Dog extends Animal {\n    constructor(name) {\n        super(name);\n    }\n    printName() {\n        console.log(this.name);\n    }\n}\n\nconst d = new Dog(\"바둑이\");\nd.printName();",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이", "오류", "빈 문자열", "Animal"],
+      "answer": 0,
+      "explanation_en": "super(name) calls the parent's constructor, initializing the inherited name property; printName then reads it, printing 바둑이.",
+      "explanation_ko": "super(name)는 부모의 생성자를 호출해서 상속받은 name 속성을 초기화합니다. printName은 이후 이를 읽어 바둑이를 출력합니다.",
+      "concept_tags": ["inheritance", "super"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l5_u02_q004",
+      "type": "error_finding",
+      "code": "class Animal {\n    constructor(name) {\n        this.name = name;\n    }\n}\n\nclass Dog extends Animal {\n    constructor(name) {\n        this.breed = \"진돗개\";\n    }\n}\n\nconst d = new Dog(\"바둑이\");",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "extends 문법 오류",
+        "부모 클래스를 상속받은 자식의 생성자는 this를 사용하기 전에 반드시 super()를 호출해야 하는데, 이를 빠뜨려서 ReferenceError가 발생함",
+        "breed 속성 선언 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "In a derived class, this isn't available until super() has been called (it initializes the parent portion of the object); using this.breed before super() throws a ReferenceError.",
+      "explanation_ko": "자식 클래스에서는 super()를 호출하기 전까지 this를 쓸 수 없습니다(this는 부모 부분을 초기화하며 만들어짐). super() 이전에 this.breed를 쓰면 ReferenceError가 발생합니다.",
+      "concept_tags": ["super", "inheritance"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l5_u02_q005",
+      "type": "predict_output",
+      "code": "class Animal {\n    speak() {\n        console.log(\"...\");\n    }\n    greet() {\n        console.log(\"안녕! \");\n        this.speak();\n    }\n}\n\nclass Dog extends Animal {\n    speak() {\n        console.log(\"멍멍!\");\n    }\n}\n\nconst d = new Dog();\nd.greet();",
+      "prompt_en": "What is printed? (Note: greet is inherited, but calls this.speak() internally.)",
+      "prompt_ko": "출력 결과는? (greet는 상속받은 것이지만, 내부에서 this.speak()를 호출합니다.)",
+      "options": ["안녕! \\n...", "안녕! \\n멍멍!", "멍멍!\\n안녕! ", "오류"],
+      "answer": 1,
+      "explanation_en": "greet() is inherited as-is, but this.speak() inside it still resolves based on d's actual type; since d is a Dog, Dog's speak() runs.",
+      "explanation_ko": "greet()는 그대로 상속되지만, 그 안의 this.speak()는 여전히 d의 실제 타입을 기준으로 결정됩니다. d는 Dog이므로 Dog의 speak()가 실행됩니다.",
+      "concept_tags": ["polymorphism"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l5_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "extends", "definition": "한 클래스가 다른 클래스를 상속받게 하는 키워드" },
+        { "term": "super(...)", "definition": "자식 생성자에서 부모의 생성자를 호출 — this 사용 전에 필수" },
+        { "term": "기본적으로 오버라이드 가능", "definition": "Java, Python처럼 JavaScript 메서드도 특별한 키워드 없이 재정의 가능" },
+        { "term": "super() 이전 this 사용 금지", "definition": "자식 클래스에서 super()를 호출하기 전까지는 this에 접근할 수 없다는 규칙" }
+      ],
+      "explanation_en": "The requirement to call super() before using this in a derived class constructor is a JavaScript-specific rule not found in Java, C#, or Python, stemming from how JS actually constructs the object.",
+      "explanation_ko": "자식 클래스 생성자에서 this를 쓰기 전 super()를 호출해야 한다는 요구사항은 Java, C#, Python에는 없는 JavaScript만의 규칙으로, JS가 실제로 객체를 구성하는 방식에서 비롯됩니다.",
+      "concept_tags": ["inheritance", "super", "polymorphism"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+ "no": 1,
+ "title": "단위법과 계통 모델링",
+ "hours": 6,
+ "after": [],
+ "objectives": [
+  "단위법(per-unit)으로 전압 수준이 다른 계통을 하나의 기준으로 표현할 수 있다.",
+  "기준 용량·기준 전압이 바뀔 때 임피던스를 환산할 수 있다.",
+  "단선도로 발전기·변압기·선로·부하의 모델을 그릴 수 있다."
+ ],
+ "checklist": [
+  "기준값: S_base(3상), V_base(선간), I_base = S_base/(√3V_base), Z_base = V_base²/S_base",
+  "단위법 값 = 실제값/기준값 (%Z = 단위법 × 100)",
+  "기준 변환: Z_new = Z_old × (V_old/V_new)² × (S_new/S_old)",
+  "변압기 양쪽의 기준 전압을 권수비대로 잡으면 이상 변압기가 사라진다",
+  "단선도(one-line diagram)와 임피던스도",
+  "발전기는 내부 기전력 뒤의 리액턴스, 부하는 정전력·정임피던스 모델"
+ ],
+ "advice": [
+  "단위법은 이 과목 전체의 언어입니다. 154 kV 선로와 22.9 kV 배전선, 발전기 단자 전압이 한 회로에 섞여 있어도 단위법으로 바꾸면 변압기가 사라지고 모든 값이 1 근처의 숫자가 되어, 계산 실수가 크게 줄고 기기끼리 크기를 바로 비교할 수 있습니다. 레벨2의 %임피던스는 단위법에 100을 곱한 것뿐이니 새로 배우는 개념이 아닙니다. 기준 변환 공식에서 용량은 비례, 전압은 제곱에 반비례한다는 방향만은 숫자 예로 꼭 손에 익혀 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Glover · Overbye · Sarma, Power System Analysis and Design (장 제목으로 표기)",
+   "part": "Power Transformers 장의 per-unit system 절"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Grainger · Stevenson, Power System Analysis (번역본 『전력계통공학』)",
+   "part": "기본 개념 장의 단위법"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.061 Introduction to Electric Power Systems (2011년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-061-introduction-to-electric-power-systems-spring-2011/",
+   "lang": "영어",
+   "part": "per-unit 관련 강의 노트"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "전력공학 기초 5단원 %임피던스와 고장 계산",
+   "url": "guide.html?lv=2&t=electrical&s=power-basics&u=5",
+   "part": "%임피던스 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "기준 용량 100 MVA, 기준 전압 154 kV일 때 기준 임피던스는 약 몇 Ω일까요?",
+   "answer": "237.2",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "Z_base = V²/S = 154²/100 = 237.16 Ω",
+   "hint": "Z_base = V_base²/S_base입니다(kV²/MVA = Ω).",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "자기 정격 50 MVA 기준으로 0.1 pu인 변압기 임피던스를 100 MVA 기준(전압 같음)으로 바꾸면 몇 pu일까요?",
+   "answer": "0.2",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "Z_new = 0.1 × (100/50) = 0.2 pu\n기준 용량에 비례합니다.",
+   "hint": "기준 용량이 2배가 되었습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "기준 용량 100 MVA, 기준 전압 154 kV일 때 기준 전류는 약 몇 A일까요?",
+   "answer": "375",
+   "answer_format": "integer",
+   "tolerance": 1,
+   "explanation": "I_base = S/(√3V) = 100 × 10⁶/(√3 × 154 × 10³) ≈ 374.9 A",
+   "hint": "3상 기준 전류는 S/(√3V)입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "power-systems",
+ "id": "l3-electrical-power-systems-u01"
+}

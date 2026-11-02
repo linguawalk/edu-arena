@@ -1,0 +1,95 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-1-102",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "셸 변수와 export",
+  "rule_summary_ko": "일반적으로 설정한 셸 변수(예: VAR=값)는 그 셸 자신에서만 사용 가능하고, 그 셸에서 실행한 하위(자식) 프로세스에는 전달되지 않습니다. export VAR=값으로 내보낸(exported) 변수만 환경 변수가 되어, 그 셸에서 실행되는 모든 자식 프로세스에 상속됩니다. 명령의 종료 상태(exit status)는 $?로 확인할 수 있으며, 성공은 0, 실패는 0이 아닌 값(보통 1)입니다.",
+  "examples": [
+    { "code": "VAR1=\"local\"\nexport VAR2=\"exported\"\nbash -c 'echo $VAR1 $VAR2'", "note_ko": "결과: (빈칸) exported — VAR1은 export 안 해서 자식 셸에 안 보이고, VAR2는 export해서 보임" }
+  ],
+  "questions": [
+    {
+      "id": "lpic1_l3_u1_q001",
+      "type": "concept_matching_item",
+      "code": "VAR1=\"local\"\nexport VAR2=\"exported\"\nbash -c 'echo \"[$VAR1] [$VAR2]\"'",
+      "prompt_ko": "이 명령의 출력 결과는?",
+      "options": [
+        "[] [exported] — export하지 않은 VAR1은 자식 셸(bash -c로 실행된 새 셸)에 전달되지 않고, export한 VAR2만 전달된다",
+        "[local] [exported] — 둘 다 자식 셸에서 보인다",
+        "[] [] — 둘 다 자식 셸에서 보이지 않는다",
+        "[local] [] — VAR1만 보이고 VAR2는 안 보인다(설명이 반대)"
+      ],
+      "answer": 0,
+      "explanation_ko": "export 여부가 변수가 하위 프로세스에 상속되는지를 결정하는 핵심 요인입니다.",
+      "concept_tags": ["export_inheritance"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic1_l3_u1_q002",
+      "type": "concept_matching_item",
+      "code": "true\necho $?",
+      "prompt_ko": "이 명령의 출력 결과는?",
+      "options": ["0 — true 명령은 항상 성공을 의미하는 종료 상태 0을 반환한다", "1", "-1", "true라는 문자열이 그대로 출력된다"],
+      "answer": 0,
+      "explanation_ko": "$?는 바로 직전에 실행한 명령의 종료 상태를 담고 있으며, 0은 성공을 의미합니다.",
+      "concept_tags": ["exit_status_zero"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l3_u1_q003",
+      "type": "concept_matching_item",
+      "code": "false\necho $?",
+      "prompt_ko": "이 명령의 출력 결과는?",
+      "options": ["0(성공을 의미, 설명이 반대)", "1 — false 명령은 실패를 의미하는 0이 아닌 종료 상태를 반환한다", "false라는 문자열이 그대로 출력된다", "오류가 발생해서 아무것도 출력되지 않는다"],
+      "answer": 1,
+      "explanation_ko": "관례적으로 0은 성공, 0이 아닌 값(보통 1)은 실패를 나타냅니다.",
+      "concept_tags": ["exit_status_nonzero"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l3_u1_q004",
+      "type": "fill_blank",
+      "code": "echo $((5 + 3))",
+      "prompt_ko": "이 명령의 출력 결과는? (숫자만 입력)",
+      "expected_answers": ["8"],
+      "explanation_ko": "$(( ))는 셸에서 산술 연산을 수행하는 문법입니다.",
+      "concept_tags": ["arithmetic_expansion"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic1_l3_u1_q005",
+      "type": "concept_matching_item",
+      "code": "result=$(date +%Y)\necho \"올해: $result\"",
+      "prompt_ko": "$(date +%Y) 부분이 하는 일은?",
+      "options": [
+        "명령 치환(command substitution) — date 명령을 실행한 결과(출력)를 그 자리에 텍스트로 대입한다",
+        "date라는 이름의 변수를 선언한다",
+        "date 명령의 실행을 미래로 예약한다",
+        "이 문법은 셸에서 지원되지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "$(명령)은 그 명령의 표준 출력을 문자열로 가져와 사용할 수 있게 해줍니다.",
+      "concept_tags": ["command_substitution"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l3_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "일반 변수를 export하지 않고 그대로 사용할 때와, export해서 사용할 때의 근본적인 차이는?",
+      "options": [
+        "export하지 않은 변수는 현재 셸에서만 유효하고, export한 변수는 환경 변수가 되어 그 셸에서 실행하는 모든 자식 프로세스에도 상속된다",
+        "export 여부는 변수의 값 자체를 바꾼다",
+        "export하지 않으면 변수를 아예 사용할 수 없다",
+        "export는 변수를 읽기 전용으로 만드는 기능이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "export는 변수의 '가시 범위(scope)'를 현재 프로세스에서 자식 프로세스까지로 넓혀주는 기능입니다.",
+      "concept_tags": ["export_purpose"],
+      "difficulty": "practice"
+    }
+  ]
+}

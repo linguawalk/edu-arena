@@ -1,0 +1,96 @@
+{
+  "language": "java",
+  "category": "oop_enterprise",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "매개변수 전달 방식",
+  "questions": [
+    {
+      "id": "java_l3_u02_q001",
+      "type": "predict_output",
+      "code": "static void modifyValue(int x) {\n    x = 100;\n}\n\npublic static void main(String[] args) {\n    int a = 5;\n    modifyValue(a);\n    System.out.println(a);\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "100", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "Java always passes primitives by value; changing x inside the method doesn't affect the original a, which stays 5.",
+      "explanation_ko": "Java는 기본형(primitive)을 항상 값으로 전달합니다. 메서드 안에서 x를 바꿔도 원본 a에는 영향이 없어 5로 유지됩니다.",
+      "concept_tags": ["pass_by_value"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l3_u02_q002",
+      "type": "error_finding",
+      "code": "static void modifyByRef(ref int x) {\n    x = 100;\n}",
+      "prompt_en": "What problem does this code have? (Someone copying C#'s ref syntax into Java.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (C#의 ref 문법을 Java에 그대로 가져온 경우입니다.)",
+      "options": [
+        "int x 매개변수 문법 오류",
+        "Java에는 C#의 ref, out, VB의 ByRef 같은 참조 전달 키워드가 전혀 존재하지 않아서, ref는 그냥 알 수 없는 식별자로 취급되어 컴파일 오류가 발생함",
+        "modifyByRef 함수명이 잘못됨",
+        "문제 없음, 정상적으로 참조 전달됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike C# (ref/out) and VB (ByRef), Java has no keyword for passing a primitive by reference at all; writing ref here is simply invalid syntax, not a recognized modifier.",
+      "explanation_ko": "C#(ref/out)이나 VB(ByRef)와 달리, Java는 기본형을 참조로 전달하는 키워드가 전혀 없습니다. 여기서 ref는 인식되는 수식어가 아니라 그냥 잘못된 문법입니다.",
+      "concept_tags": ["pass_by_value", "no_ref_keyword"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l3_u02_q003",
+      "type": "predict_output",
+      "code": "static void modifyArray(int[] arr) {\n    arr[0] = 100;\n}\n\npublic static void main(String[] args) {\n    int[] nums = {1, 2, 3};\n    modifyArray(nums);\n    System.out.println(nums[0]);\n}",
+      "prompt_en": "What is printed? (Compare with the primitive example above.)",
+      "prompt_ko": "출력 결과는? (위의 기본형 예제와 비교해보세요.)",
+      "options": ["1", "100", "오류", "0"],
+      "answer": 1,
+      "explanation_en": "Arrays are objects in Java; the reference itself is passed by value, but that reference points to the same array, so modifying its contents through arr affects the original.",
+      "explanation_ko": "Java에서 배열은 객체입니다. 참조 자체는 값으로 전달되지만, 그 참조가 같은 배열을 가리키므로 arr를 통해 내용을 수정하면 원본에도 반영됩니다.",
+      "concept_tags": ["pass_by_value", "reference_type"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l3_u02_q004",
+      "type": "predict_output",
+      "code": "static void reassignArray(int[] arr) {\n    arr = new int[]{100, 200};\n}\n\npublic static void main(String[] args) {\n    int[] nums = {1, 2, 3};\n    reassignArray(nums);\n    System.out.println(nums[0]);\n}",
+      "prompt_en": "What is printed? (Note: this reassigns arr entirely, not just an element.)",
+      "prompt_ko": "출력 결과는? (요소 하나가 아니라 arr 자체를 재할당하는 점에 주의하세요.)",
+      "options": ["1", "100", "200", "오류"],
+      "answer": 0,
+      "explanation_en": "Reassigning arr inside the method only changes the local copy of the reference to point elsewhere; it doesn't affect what nums points to in main, which stays {1, 2, 3}.",
+      "explanation_ko": "메서드 안에서 arr를 재할당하면 참조의 지역 복사본만 다른 곳을 가리키게 바뀝니다. main의 nums가 가리키는 대상에는 영향이 없어 {1, 2, 3} 그대로입니다.",
+      "concept_tags": ["pass_by_value", "reference_type"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l3_u02_q005",
+      "type": "fill_blank",
+      "code": "static void doubleValue(int x) {\n    x = x * 2;\n}\n\npublic static void main(String[] args) {\n    int n = 5;\n    doubleValue(n);\n    System.out.println(n);  // 여전히 ____ 이어야 함\n}",
+      "prompt_en": "Fill in the blank with what n prints as, given Java's pass-by-value rule for primitives.",
+      "prompt_ko": "Java의 기본형 값 전달 규칙을 감안할 때, n이 출력하는 값을 빈칸에 채우세요.",
+      "options": ["5", "10", "0", "오류"],
+      "answer": 0,
+      "explanation_en": "Since int is a primitive and always passed by value, doubleValue only modifies its own local copy of x; n in main remains 5.",
+      "explanation_ko": "int는 기본형이라 항상 값으로 전달되므로, doubleValue는 자신만의 지역 복사본인 x만 수정합니다. main의 n은 5 그대로 유지됩니다.",
+      "concept_tags": ["pass_by_value"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l3_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "값에 의한 전달 (기본형)", "definition": "복사본을 전달해, 메서드 안에서 바꿔도 원본에 영향이 없는 방식" },
+        { "term": "참조의 값 전달 (배열/객체)", "definition": "참조 자체는 값으로 복사되지만, 그 참조가 같은 객체를 가리키는 방식" },
+        { "term": "ref/out 부재", "definition": "Java에는 C#의 ref, out 같은 참조 전달 키워드가 존재하지 않는다는 사실" },
+        { "term": "요소 수정 vs 재할당", "definition": "배열의 요소를 바꾸는 것은 원본에 반영되지만, 매개변수 자체를 재할당하는 것은 반영되지 않음" }
+      ],
+      "explanation_en": "Java's 'everything is pass-by-value' rule (including for object references) is a famous point of confusion, and understanding the element-modification vs reassignment distinction is key to mastering it.",
+      "explanation_ko": "Java의 '모든 것은 값에 의한 전달'이라는 규칙(객체 참조도 포함)은 유명한 혼동 포인트이며, 요소 수정과 재할당의 차이를 이해하는 것이 이를 마스터하는 핵심입니다.",
+      "concept_tags": ["pass_by_value", "reference_type", "no_ref_keyword"],
+      "difficulty": "practice"
+    }
+  ]
+}

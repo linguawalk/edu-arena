@@ -1,0 +1,96 @@
+{
+  "language": "visual_basic",
+  "category": "oop_enterprise",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "ByVal과 ByRef",
+  "questions": [
+    {
+      "id": "visual_basic_l3_u02_q001",
+      "type": "predict_output",
+      "code": "Sub ModifyByVal(ByVal x As Integer)\n    x = 100\nEnd Sub\n\nDim a As Integer = 5\nModifyByVal(a)\nConsole.WriteLine(a)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "100", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "ByVal passes a copy of the value; changing x inside the procedure doesn't affect the original a, which stays 5.",
+      "explanation_ko": "ByVal은 값의 복사본을 전달합니다. 프로시저 안에서 x를 바꿔도 원본 a에는 영향이 없어 5로 유지됩니다.",
+      "concept_tags": ["byval"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l3_u02_q002",
+      "type": "predict_output",
+      "code": "Sub ModifyByRef(ByRef x As Integer)\n    x = 100\nEnd Sub\n\nDim b As Integer = 5\nModifyByRef(b)\nConsole.WriteLine(b)",
+      "prompt_en": "What is printed? (Compare with ByVal above.)",
+      "prompt_ko": "출력 결과는? (위의 ByVal과 비교해보세요.)",
+      "options": ["5", "100", "오류", "0"],
+      "answer": 1,
+      "explanation_en": "ByRef passes a reference to the original variable; changing x inside the procedure directly modifies b, making it 100.",
+      "explanation_ko": "ByRef는 원본 변수에 대한 참조를 전달합니다. 프로시저 안에서 x를 바꾸면 b가 직접 수정되어 100이 됩니다.",
+      "concept_tags": ["byref"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l3_u02_q003",
+      "type": "fill_blank",
+      "code": "Sub Swap(____ a As Integer, ____ b As Integer)\n    Dim temp As Integer = a\n    a = b\n    b = temp\nEnd Sub\n// 호출한 쪽의 변수 값이 실제로 교환되어야 함",
+      "prompt_en": "Fill in both blanks so the caller's variables are actually swapped.",
+      "prompt_ko": "호출한 쪽의 변수 값이 실제로 교환되도록 양쪽 빈칸을 채우세요.",
+      "options": ["ByRef", "ByVal", "Static", "Optional"],
+      "answer": 0,
+      "explanation_en": "Swapping the caller's actual variables requires ByRef, so changes inside Swap propagate back; ByVal would only swap local copies.",
+      "explanation_ko": "호출한 쪽의 실제 변수를 교환하려면 ByRef가 필요합니다. 그래야 Swap 안에서의 변경이 밖으로 전달됩니다. ByVal이면 지역 복사본끼리만 교환됩니다.",
+      "concept_tags": ["byref", "byval"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l3_u02_q004",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "ByVal", "definition": "값의 복사본을 전달해, 프로시저 안에서 바꿔도 원본에 영향이 없는 방식" },
+        { "term": "ByRef", "definition": "원본 변수에 대한 참조를 전달해, 프로시저 안에서 바꾸면 원본도 바뀌는 방식" },
+        { "term": "VB의 기본값", "definition": "명시하지 않으면 매개변수는 기본적으로 ByVal로 전달됨" },
+        { "term": "C++의 참조자와의 유사성", "definition": "ByRef는 C++의 & 참조자 매개변수와 개념적으로 같은 역할을 함" }
+      ],
+      "explanation_en": "Unlike C, where pointers are needed to modify the caller's variable, VB makes this explicit and readable with the ByRef keyword directly in the parameter list.",
+      "explanation_ko": "호출한 쪽의 변수를 수정하려면 포인터가 필요한 C와 달리, VB는 매개변수 목록에 ByRef 키워드를 직접 명시해서 이를 더 명확하고 읽기 쉽게 만듭니다.",
+      "concept_tags": ["byval", "byref"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l3_u02_q005",
+      "type": "predict_output",
+      "code": "Sub AddOne(ByRef n As Integer)\n    n += 1\nEnd Sub\n\nDim count As Integer = 0\nAddOne(count)\nAddOne(count)\nAddOne(count)\nConsole.WriteLine(count)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "1", "3", "오류"],
+      "answer": 2,
+      "explanation_en": "Each ByRef call directly increments the original count; calling AddOne three times results in count becoming 3.",
+      "explanation_ko": "ByRef 호출마다 원본 count가 직접 증가합니다. AddOne을 세 번 호출하면 count는 3이 됩니다.",
+      "concept_tags": ["byref"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l3_u02_q006",
+      "type": "error_finding",
+      "code": "Sub AddOne(n As Integer)\n    n += 1\nEnd Sub\n\nDim count As Integer = 0\nAddOne(count)\nConsole.WriteLine(count)",
+      "prompt_en": "If the programmer expected count to become 1, what actually goes wrong?",
+      "prompt_ko": "프로그래머가 count가 1이 될 것이라 기대했다면, 실제로는 무엇이 잘못됐을까요?",
+      "options": [
+        "AddOne 함수 정의 문법 오류",
+        "매개변수에 ByVal이나 ByRef를 명시하지 않으면 기본값인 ByVal로 처리되어, count는 여전히 0으로 남음",
+        "Dim 선언 문법 오류",
+        "문제 없음, count는 1이 됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Without an explicit modifier, VB defaults to ByVal, so n is a copy; changes inside AddOne don't propagate back to count, which stays 0.",
+      "explanation_ko": "명시적인 지정자가 없으면 VB는 기본값인 ByVal로 처리합니다. n은 복사본이므로 AddOne 안에서의 변경이 count로 전달되지 않아 0으로 남습니다.",
+      "concept_tags": ["byval", "byref"],
+      "difficulty": "challenge"
+    }
+  ]
+}

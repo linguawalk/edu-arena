@@ -1,0 +1,268 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s1",
+  "track": "astro-sphere",
+  "work": "풀이",
+  "track_title": "천구와 좌표",
+  "chapter": {
+    "id": "sci-s1-astro-sphere-ch02",
+    "no": 2,
+    "title": "구면삼각법"
+  },
+  "lesson": {
+    "id": "sci-s1-astro-sphere-ch02-l04",
+    "no": 4,
+    "title": "고도 구하기와 낮의 길이",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "천문",
+      "천구와 좌표",
+      "구면삼각법"
+    ],
+    "competition": "KAO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "천문 삼각형",
+      "body": [
+        "천구의 북극 P, 천정 Z, 천체 X를 꼭짓점으로 하는 구면 삼각형을 천문 삼각형이라 합니다. 지평 좌표와 적도 좌표를 서로 바꿀 때 씁니다.",
+        "변 PZ = 90° − φ, 변 PX = 90° − δ, 변 ZX = 90° − h(천정 거리)이고, P에서의 각은 천체의 시간각 H입니다. 시간각은 천체가 자오선을 지난 뒤 서쪽으로 돈 각입니다.",
+        "구면 코사인 법칙을 쓰면 sin h = sin φ sin δ + cos φ cos δ cos H입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "위도 30°N에서 적위 30°인 별이 남중(H = 0)할 때의 고도는 몇 °인가요?",
+      "answer": "90",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "sin h = cos(φ − δ)입니다.",
+      "explanation": "H = 0이면 cos H = 1이므로 sin h = sin φ sin δ + cos φ cos δ = cos(φ − δ)입니다.\nφ = δ = 30°이므로 sin h = cos 0° = 1입니다.\nh = 90°로 별이 천정을 지납니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "천구의 북극, 천정, 천체를 꼭짓점으로 하는 구면 삼각형을 {{1}}이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "천문 삼각형",
+            "천문삼각형"
+          ]
+        }
+      ],
+      "hint": "천문 계산의 기본 삼각형입니다.",
+      "explanation": "천구의 북극, 천정, 천체를 대원으로 이으면 구면 삼각형이 됩니다.\n이 삼각형으로 지평 좌표와 적도 좌표를 서로 바꿉니다.\n이것을 천문 삼각형이라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "고도 공식",
+      "body": [
+        "변 ZX에 구면 코사인 법칙을 쓰면 cos(90° − h) = cos(90° − φ)cos(90° − δ) + sin(90° − φ)sin(90° − δ)cos H, 즉 sin h = sin φ sin δ + cos φ cos δ cos H입니다.",
+        "시간각 H는 시간으로 주어지면 각도로 바꿉니다. H = 6h = 90°이면 cos H = 0이므로 sin h = sin φ sin δ입니다.",
+        "남중할 때(H = 0)는 h = 90° − |φ − δ|가 되어 앞 챕터의 남중 고도 식과 같습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "위도 30°N에서 적위 30°인 별의 시간각이 6h일 때 고도를 구하세요.",
+      "steps": [
+        "H = 6h = 90°이므로 cos H = 0입니다.",
+        "sin h = sin 30° × sin 30° = 0.25입니다.",
+        "h = sin⁻¹ 0.25 ≈ 14.5°입니다."
+      ],
+      "answer": "약 14.5°"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 별의 고도는 약 몇 °인가요? 소수 첫째 자리까지 쓰세요.",
+      "answer": "14.5",
+      "answer_format": "decimal",
+      "tolerance": 0.1,
+      "hint": "sin⁻¹ 0.25입니다.",
+      "explanation": "고도는 sin h = sin φ sin δ + cos φ cos δ cos H로 구하며 H = 90°이면 둘째 항이 0입니다.\nsin h = 0.5 × 0.5 = 0.25입니다.\nh = sin⁻¹ 0.25 ≈ 14.5°입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "적도(위도 0°)에서 적위 0°인 별의 시간각이 3h일 때 고도는 몇 °인가요?",
+      "answer": "45",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "sin h = cos H입니다.",
+      "explanation": "위도와 적위가 모두 0°이면 sin φ = sin δ = 0, cos φ = cos δ = 1이므로 sin h = cos H입니다.\nH = 3h = 45°이므로 sin h = cos 45°입니다.\n그래서 h = 45°입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "뜨고 지는 시간각",
+      "body": [
+        "천체가 지평선에 있을 때 h = 0이므로 0 = sin φ sin δ + cos φ cos δ cos H₀, 즉 cos H₀ = −tan φ tan δ입니다. H₀는 남중에서 질 때까지의 시간각입니다.",
+        "천체가 지평선 위에 있는 시간은 2H₀입니다. 태양이면 이것이 낮의 길이입니다(대기 굴절과 태양의 크기는 무시).",
+        "춘분·추분에는 δ = 0이므로 cos H₀ = 0, H₀ = 6h가 되어 어느 위도에서나 낮이 12시간입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "춘분 날 위도 50°N인 곳의 낮의 길이는 몇 시간인가요? (굴절 무시)",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "δ = 0이면 cos H₀ = 0입니다.",
+      "explanation": "천체가 뜨고 지는 시간각은 cos H₀ = −tan φ tan δ로 구합니다.\n춘분에 δ = 0이므로 cos H₀ = 0, H₀ = 90° = 6h입니다.\n낮의 길이는 2H₀ = 12시간입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "여름의 긴 낮",
+      "body": [
+        "tan φ tan δ = 0.5인 경우 cos H₀ = −0.5이므로 H₀ = 120° = 8h이고, 천체가 지평선 위에 16시간 머뭅니다.",
+        "서울(φ = 37.5°)의 하지(δ = 23.5°)는 tan 37.5° × tan 23.5° ≈ 0.767 × 0.435 ≈ 0.334이므로 cos H₀ ≈ −0.334, H₀ ≈ 109.5° ≈ 7.3h입니다. 낮의 길이는 약 14.6시간입니다.",
+        "실제 낮은 대기 굴절과 태양 원반의 크기 때문에 이보다 몇 분 깁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "tan φ tan δ = 0.5인 천체가 지평선 위에 있는 시간은 몇 시간인가요?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "cos H₀ = −0.5입니다.",
+      "explanation": "천체가 뜨고 지는 시간각은 cos H₀ = −tan φ tan δ로 구합니다.\ncos H₀ = −0.5이므로 H₀ = 120° = 8h입니다.\n지평선 위에 있는 시간은 2H₀ = 16시간입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "서울(37.5°N)의 하지 낮의 길이는 약 몇 시간인가요? (H₀ ≈ 109.5°, 굴절 무시, 소수 첫째 자리까지)",
+      "answer": "14.6",
+      "answer_format": "decimal",
+      "tolerance": 0.1,
+      "hint": "2 × 109.5/15입니다.",
+      "explanation": "낮의 길이는 뜨고 지는 시간각의 2배인 2H₀이고 각도를 15로 나누면 시간입니다.\n2 × 109.5/15 = 14.6입니다.\n약 14.6시간입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "천구의 북극, 천정, 천체로 이루어진 천문 삼각형에 구면 코사인 법칙을 쓰면 sin h = sin φ sin δ + cos φ cos δ cos H입니다.",
+        "천체가 뜨고 지는 시간각은 cos H₀ = −tan φ tan δ이고, 지평선 위에 있는 시간은 2H₀입니다.",
+        "춘분·추분에는 어디서나 낮이 12시간이며, 여름에는 위도가 높을수록 낮이 깁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "tan φ tan δ = −0.5인 천체가 지평선 위에 있는 시간은 몇 시간인가요?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "cos H₀ = 0.5입니다.",
+      "explanation": "천체가 뜨고 지는 시간각은 cos H₀ = −tan φ tan δ로 구합니다.\ncos H₀ = 0.5이므로 H₀ = 60° = 4h입니다.\n지평선 위에 있는 시간은 2H₀ = 8시간입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "위도 60°N에서 적위 0°인 별이 남중할 때 고도는 몇 °인가요?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "h = 90° − |φ − δ|입니다.",
+      "explanation": "남중할 때(H = 0) 고도 공식은 sin h = cos(φ − δ), 즉 h = 90° − |φ − δ|가 됩니다.\n90 − |60 − 0|입니다.\n= 30°입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "춘분과 추분에는 위도에 관계없이 낮과 밤의 길이가 같은 이유를 식과 함께 설명하세요.",
+      "model_answer": [
+        "태양이 뜨고 지는 시간각은 cos H₀ = −tan φ tan δ로 정해진다.",
+        "춘분과 추분에는 태양이 천구의 적도 위에 있어 적위 δ = 0이다.",
+        "tan 0° = 0이므로 위도 φ에 관계없이 cos H₀ = 0, H₀ = 6h이다.",
+        "낮의 길이 2H₀ = 12시간이므로 밤도 12시간이 된다(굴절 무시)."
+      ],
+      "criteria": [
+        {
+          "text": "H₀ 식을 썼다",
+          "points": 2
+        },
+        {
+          "text": "춘·추분에 δ = 0임을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "위도와 무관하게 12시간임을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "cos H₀ = −tan φ tan δ에서 δ = 0을 넣어 보세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "북극권(약 66.5°N)보다 고위도에서 하지 무렵 해가 지지 않는(백야) 이유를 식으로 설명하세요.",
+      "model_answer": [
+        "태양이 지는 시간각은 cos H₀ = −tan φ tan δ로 구한다.",
+        "하지에 δ = 23.5°이고, φ = 66.5° = 90° − 23.5°이면 tan φ tan δ = 1이 되어 cos H₀ = −1, H₀ = 180°이다.",
+        "φ가 66.5°보다 크면 tan φ tan δ > 1이 되어 cos H₀ < −1인 해가 없으므로, 태양은 지평선 아래로 내려가지 않는다.",
+        "즉 태양이 그 위도의 주극성 조건 δ ≥ 90° − φ를 만족해 하루 종일 지지 않는다."
+      ],
+      "criteria": [
+        {
+          "text": "H₀ 식을 썼다",
+          "points": 2
+        },
+        {
+          "text": "66.5°에서 경계가 됨을 보였다",
+          "points": 2
+        },
+        {
+          "text": "고위도에서 해가 없음을 주극성과 연결했다",
+          "points": 2
+        }
+      ],
+      "hint": "cos H₀가 −1보다 작아질 수 있나요?"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+ "no": 7,
+ "title": "컨테이너와 쿠버네티스",
+ "hours": 5,
+ "after": [
+  6
+ ],
+ "objectives": [
+  "컨테이너 이미지와 오케스트레이션의 필요성을 설명할 수 있다.",
+  "쿠버네티스의 파드·디플로이먼트·서비스를 설명할 수 있다.",
+  "수평 자동 확장과 롤링 업데이트를 계산·설명할 수 있다."
+ ],
+ "checklist": [
+  "컨테이너 이미지와 레지스트리",
+  "오케스트레이션: 배치, 복구, 확장, 업데이트",
+  "쿠버네티스 구조: 컨트롤 플레인(API 서버, etcd, 스케줄러)과 노드",
+  "파드, 디플로이먼트, 서비스, 인그레스",
+  "선언적 설정과 조정 루프(원하는 상태로 맞추기)",
+  "수평 파드 자동 확장: 필요 파드 = ⌈현재 파드 × 현재 사용률 ÷ 목표 사용률⌉",
+  "롤링 업데이트와 롤백, 헬스 체크"
+ ],
+ "advice": [
+  "쿠버네티스의 핵심 아이디어는 '원하는 상태를 적어 두면 시스템이 계속 그 상태로 맞춘다'는 조정 루프입니다. 파드 하나를 지워 보면 곧바로 새 파드가 생기는 것을 볼 수 있는데, 이것이 레벨3 제어공학(전기 트랙)의 피드백 제어와 같은 구조라는 점이 흥미롭습니다. 클러스터 상태가 5단원의 Raft로 동작하는 etcd에 저장된다는 연결도 기억해 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "web",
+   "provider": "Kubernetes 공식 문서 (한국어판 있음)",
+   "title": "쿠버네티스 문서",
+   "url": "https://kubernetes.io/ko/docs/",
+   "lang": "한국어"
+  },
+  {
+   "kind": "book",
+   "provider": "O'Reilly",
+   "title": "Kleppmann, Designing Data-Intensive Applications (번역본 『데이터 중심 애플리케이션 설계』)",
+   "part": "운영 관련 절"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "파드 4개의 평균 CPU 사용률이 80%이고 목표가 50%라면 수평 자동 확장은 파드를 몇 개로 늘릴까요?",
+   "answer": "7",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "⌈4 × 80/50⌉ = ⌈6.4⌉ = 7개",
+   "hint": "⌈현재 × 현재/목표⌉입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "쿠버네티스에서 함께 배치되는 하나 이상의 컨테이너 묶음으로, 배치의 가장 작은 단위를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "파드",
+      "포드",
+      "pod"
+     ]
+    }
+   ],
+   "explanation": "파드는 같은 네트워크 주소와 저장소를 공유합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "서비스를 멈추지 않고 파드를 조금씩 새 버전으로 바꿔 나가는 배포 방식을 {{1}} 업데이트라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "롤링"
+     ]
+    }
+   ],
+   "explanation": "문제가 생기면 이전 버전으로 롤백합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "distributed-systems",
+ "id": "l3-computer-distributed-systems-u07"
+}

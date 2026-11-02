@@ -1,0 +1,97 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-2-201",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "시스템 로깅: journalctl 우선순위 필터링",
+  "rule_summary_ko": "systemd 저널의 로그 우선순위는 syslog 표준을 따라 0(emerg, 가장 심각)부터 7(debug, 가장 상세)까지 8단계로 나뉩니다: 0=emerg, 1=alert, 2=crit, 3=err, 4=warning, 5=notice, 6=info, 7=debug. journalctl -p 레벨로 필터링하면, 지정한 레벨 '그리고 그보다 더 심각한(숫자가 더 작은)' 모든 메시지가 함께 표시됩니다 — 예를 들어 -p err는 err(3)뿐 아니라 crit(2)·alert(1)·emerg(0)까지 모두 보여줍니다.",
+  "examples": [
+    { "code": "journalctl -p err", "note_ko": "err(3), crit(2), alert(1), emerg(0) — err보다 심각도가 같거나 더 높은(숫자가 작은) 메시지를 모두 보여줌. warning(4) 이하는 제외됨" },
+    { "code": "journalctl -p warning..err", "note_ko": "warning(4)부터 err(3)까지의 범위만 지정해서 보여줌" }
+  ],
+  "questions": [
+    {
+      "id": "lpic2_l2_u2_q001",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "syslog 우선순위 체계에서 가장 심각한 수준(시스템 사용 불가)을 나타내는 숫자는 무엇입니까? (숫자만 입력)",
+      "expected_answers": ["0"],
+      "explanation_ko": "0(emerg)이 가장 심각한 수준이며, 숫자가 커질수록 심각도가 낮아집니다.",
+      "concept_tags": ["syslog_priority_zero"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic2_l2_u2_q002",
+      "type": "concept_matching_item",
+      "code": "journalctl -p err",
+      "prompt_ko": "이 명령이 실제로 보여주는 메시지의 범위는?",
+      "options": [
+        "err(3)와 그보다 더 심각한 수준(crit, alert, emerg)까지 모두 포함 — warning(4) 이하는 제외됨",
+        "err(3) 레벨의 메시지만 정확히 그것만 보여준다(다른 레벨은 전혀 안 보임)",
+        "err(3)보다 덜 심각한(warning, notice, info, debug) 메시지만 보여준다(설명이 반대)",
+        "모든 우선순위의 메시지를 보여준다"
+      ],
+      "answer": 0,
+      "explanation_ko": "단일 레벨을 지정하면 '그 레벨 이상으로 심각한 모든 것'이 포함되는 것이 -p 옵션의 동작 방식입니다.",
+      "concept_tags": ["journalctl_p_cumulative"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic2_l2_u2_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "syslog 우선순위에서 warning(4)과 debug(7) 중 어느 쪽이 더 상세하고 덜 심각한 메시지입니까?",
+      "options": [
+        "debug(7) — 숫자가 클수록 심각도는 낮고 더 상세한(개발자용) 정보를 담는다", "warning(4)이 더 상세하고 덜 심각하다(설명이 반대)", "둘은 심각도가 동일하다", "숫자와 심각도는 아무 관계가 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "숫자가 커질수록 심각도는 낮아지고, 디버깅에 유용한 상세 정보가 많아지는 경향이 있습니다.",
+      "concept_tags": ["debug_vs_warning"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l2_u2_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "systemd 저널의 로그를 조회하는 기본 명령어는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["journalctl"],
+      "explanation_ko": "journalctl은 systemd-journald가 수집한 로그를 조회·필터링하는 표준 도구입니다.",
+      "concept_tags": ["journalctl_command"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic2_l2_u2_q005",
+      "type": "concept_matching_item",
+      "code": "프로덕션 서버에서 문제를 신속히 진단하려는 관리자가 journalctl -p err --no-pager를 실행함",
+      "prompt_ko": "이렇게 심각도 err 이상으로 필터링해서 먼저 확인하는 것이 유용한 이유는?",
+      "options": [
+        "일상적인 정보성 로그(info, debug 등)에 묻히지 않고, 실제 문제(오류·심각·긴급) 상황에 집중해서 신속히 원인을 좁힐 수 있기 때문에",
+        "이렇게 필터링하면 오히려 중요한 정보를 놓치게 된다",
+        "err 이상 필터링은 실무에서 거의 사용되지 않는다",
+        "이 필터링은 성능에만 영향을 줄 뿐 문제 진단과는 무관하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "심각도 기반 필터링은 방대한 로그에서 노이즈를 줄이고 핵심 문제에 집중하게 해주는 실무 기법입니다.",
+      "concept_tags": ["priority_filtering_practical_use"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l2_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "journalctl -p warning..err 처럼 범위(FROM..TO)를 지정하는 것이 단일 레벨 지정과 다른 점은?",
+      "options": [
+        "지정한 두 레벨 사이의 범위(이 예시에서는 warning과 err 사이)로만 결과를 좁혀서, 그보다 더 심각하거나 덜 심각한 것은 제외한다",
+        "범위 지정은 단일 레벨 지정과 완전히 동일하게 작동한다",
+        "범위 지정은 항상 모든 레벨을 보여준다",
+        "범위 지정은 journalctl에서 지원되지 않는 문법이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "범위 지정은 단일 레벨의 '그 이상 전부'와 달리, 특정 구간만 정밀하게 볼 수 있게 해줍니다.",
+      "concept_tags": ["journalctl_priority_range"],
+      "difficulty": "challenge"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+ "no": 7,
+ "title": "2차 회로(RLC)의 과도 응답",
+ "hours": 6,
+ "after": [
+  6
+ ],
+ "objectives": [
+  "직렬·병렬 RLC 회로의 특성 방정식을 세울 수 있다.",
+  "과감쇠·임계 감쇠·부족 감쇠를 구별할 수 있다.",
+  "감쇠 진동 각주파수와 응답 모양을 구할 수 있다."
+ ],
+ "checklist": [
+  "특성 방정식 s² + 2αs + ω₀² = 0",
+  "공진 각주파수 ω₀ = 1/√(LC)",
+  "직렬 RLC α = R/(2L), 병렬 RLC α = 1/(2RC)",
+  "α > ω₀ 과감쇠, α = ω₀ 임계 감쇠, α < ω₀ 부족 감쇠",
+  "감쇠 진동 각주파수 ω_d = √(ω₀² − α²)",
+  "초기 조건 두 개: v_C(0)와 i_L(0) 및 그 도함수"
+ ],
+ "advice": [
+  "2차 회로는 sci-arena나 일반물리에서 본 감쇠 진동자와 수학적으로 같은 문제입니다. 질량–용수철–감쇠기와 L–C–R을 짝지어 보면 응답 모양을 공식 없이도 예측할 수 있습니다. α와 ω₀ 두 수만 구하면 응답의 종류가 정해지므로, 이 둘을 바로 쓰는 연습부터 하세요.",
+  "계산에서 가장 시간이 걸리는 부분은 두 번째 초기 조건(dv/dt(0⁺) 등)입니다. 커패시터 전류 i = C dv/dt를 이용해 초기 전류에서 초기 기울기를 구한다는 요령을 익혀 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Nilsson · Riedel, Electric Circuits (번역본 『전기회로』, 장 번호는 원서 10판 기준)",
+   "part": "8장 Natural and Step Responses of RLC Circuits"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Alexander · Sadiku, Fundamentals of Electric Circuits (번역본 『회로이론』)",
+   "part": "8장 Second-Order Circuits"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.002 Circuits and Electronics (Anant Agarwal, 2007년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+   "lang": "영어",
+   "part": "2차 회로(second-order systems) 강의"
+  },
+  {
+   "title": "math-arena 레벨2 · 상미분방정식 (2계 선형 방정식)",
+   "href": "https://math-arena.org/guide.html?lv=2&t=analysis&s=ode"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "L = 1 H, C = 0.25 F인 직렬 RLC 회로의 공진 각주파수 ω₀는 몇 rad/s일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "ω₀ = 1/√(LC) = 1/√0.25 = 2 rad/s",
+   "hint": "ω₀ = 1/√(LC)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "특성 방정식에서 α > ω₀이면 {{1}}감쇠입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "과",
+      "과대"
+     ]
+    }
+   ],
+   "explanation": "근이 서로 다른 두 음의 실수가 되어 진동 없이 천천히 수렴합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "같은 회로(L = 1 H, C = 0.25 F)에 R = 2 Ω을 쓰면 감쇠 진동 각주파수 ω_d는 약 몇 rad/s일까요?",
+   "answer": "1.73",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "α = R/(2L) = 1\nω_d = √(4 − 1) = √3 ≈ 1.73 rad/s",
+   "hint": "ω_d = √(ω₀² − α²)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "같은 회로가 임계 감쇠가 되려면 R은 몇 Ω이어야 할까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "α = ω₀에서 R/(2L) = 2\nR = 4 Ω (R = 2√(L/C)와 같음)",
+   "hint": "α = ω₀로 놓으세요.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electrical",
+ "subject": "circuit-theory",
+ "id": "l2-electrical-circuit-theory-u07"
+}

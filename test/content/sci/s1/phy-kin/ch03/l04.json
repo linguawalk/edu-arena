@@ -1,0 +1,436 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s1",
+  "track": "phy-kin",
+  "work": "풀이",
+  "track_title": "운동과 물리 수학",
+  "chapter": {
+    "id": "sci-s1-phy-kin-ch03",
+    "no": 3,
+    "title": "적분으로 보는 운동"
+  },
+  "lesson": {
+    "id": "sci-s1-phy-kin-ch03-l04",
+    "no": 4,
+    "title": "변하는 힘의 일과 충격량",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "역학",
+      "운동학"
+    ],
+    "competition": "KPhO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "일은 F-x 그래프의 넓이",
+      "body": [
+        "일정한 힘 F로 물체를 힘의 방향으로 x만큼 옮기면 일은 W = Fx입니다. 힘이 위치에 따라 변하면 잘게 나누어 더해야 하므로 W = ∫F dx입니다.",
+        "그래서 일은 F-x 그래프 아래의 넓이입니다. 그림에서 0~2 m 삼각형은 6 J, 2~5 m 직사각형은 18 J이므로 모두 24 J입니다.",
+        "v-t 그래프의 넓이가 변위였던 것과 같은 구조입니다. 가로축과 세로축의 곱이 무슨 물리량인지 생각하면 넓이의 뜻이 보입니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 6,
+          "ymin": -1,
+          "ymax": 8,
+          "xstep": 1,
+          "ystep": 1,
+          "xlabel": "x(m)",
+          "ylabel": "F(N)",
+          "curves": [
+            {
+              "kind": "shade",
+              "curve": {
+                "kind": "pw",
+                "pts": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    2,
+                    6
+                  ],
+                  [
+                    5,
+                    6
+                  ]
+                ]
+              },
+              "from": 0,
+              "to": 5
+            },
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  2,
+                  6
+                ],
+                [
+                  5,
+                  6
+                ]
+              ]
+            }
+          ],
+          "alt": "F-x 그래프: 힘이 0에서 6 N까지 늘었다가 일정. 아래 넓이가 일"
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "5 N의 일정한 힘으로 물체를 힘의 방향으로 4 m 옮겼을 때 한 일은 몇 J인가요?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "W = Fx입니다.",
+      "explanation": "힘이 일정하므로 F-x 그래프는 수평선입니다.\n넓이는 5 N × 4 m입니다.\n= 20 J입니다. 힘이 일정할 때 W = Fx와 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "F-x 그래프 아래의 넓이는 힘이 한 {{1}}입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "일"
+          ]
+        }
+      ],
+      "hint": "힘 × 거리입니다.",
+      "explanation": "짧은 거리 Δx 동안 힘이 한 일은 F × Δx입니다.\n이 조각들을 모두 더한 것이 그래프 아래 넓이입니다.\n따라서 넓이는 일입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "용수철을 늘이는 일",
+      "body": [
+        "용수철을 x만큼 늘이려면 F = kx의 힘이 필요합니다(훅의 법칙). 힘이 늘이는 길이에 비례하므로 F-x 그래프는 원점을 지나는 직선입니다.",
+        "0부터 x까지 늘이는 일은 삼각형의 넓이 (1/2) × x × kx = (1/2)kx²입니다. 적분으로는 ∫₀ˣ ks ds = (1/2)kx²입니다.",
+        "이 일은 용수철에 탄성 퍼텐셜 에너지로 저장됩니다. x₁에서 x₂까지 늘일 때의 일은 (1/2)k(x₂² − x₁²)로, (1/2)k(x₂ − x₁)²이 아니라는 점에 주의하세요."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "용수철 상수 200 N/m인 용수철을 0.1 m 늘이는 데 필요한 일을 구하세요.",
+      "steps": [
+        "필요한 힘은 F = 200x로 늘인 길이에 비례합니다.",
+        "W = ∫₀^0.1 200x dx = 100x²|₀^0.1입니다.",
+        "= 100 × 0.01입니다.",
+        "= 1 J입니다."
+      ],
+      "answer": "1 J"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "용수철 상수 100 N/m인 용수철을 0.2 m 늘이는 데 필요한 일은 몇 J인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "W = (1/2)kx²입니다.",
+      "explanation": "W = (1/2)kx² = (1/2) × 100 × 0.2²입니다.\n= 50 × 0.04입니다.\n= 2 J입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "용수철 상수 100 N/m인 용수철을 0.1 m 늘인 상태에서 0.3 m까지 더 늘이는 일은 몇 J인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(1/2)k(x₂² − x₁²)입니다.",
+      "explanation": "W = (1/2) × 100 × (0.3² − 0.1²)입니다.\n= 50 × (0.09 − 0.01) = 50 × 0.08입니다.\n= 4 J이고, (1/2)k(0.2)² = 2 J로 계산하면 틀립니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "충격량은 F-t 그래프의 넓이",
+      "body": [
+        "힘을 시간에 대해 적분한 J = ∫F dt를 충격량이라고 합니다. F = m dv/dt이므로 ∫F dt = mΔv, 곧 충격량은 운동량의 변화입니다.",
+        "충돌처럼 짧은 시간에 큰 힘이 변하며 작용할 때는 힘의 최댓값보다 F-t 그래프의 넓이가 중요합니다. 그림의 삼각형 넓이는 (1/2) × 0.1 × 200 = 10 N·s입니다.",
+        "같은 충격량이라도 시간이 길면 평균 힘이 작아집니다. 에어백이나 무릎을 굽혀 착지하는 것이 이 원리입니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 0.12,
+          "ymin": -20,
+          "ymax": 240,
+          "xstep": 0.02,
+          "ystep": 40,
+          "xlabel": "t(s)",
+          "ylabel": "F(N)",
+          "curves": [
+            {
+              "kind": "shade",
+              "curve": {
+                "kind": "pw",
+                "pts": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0.05,
+                    200
+                  ],
+                  [
+                    0.1,
+                    0
+                  ]
+                ]
+              },
+              "from": 0,
+              "to": 0.1
+            },
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.05,
+                  200
+                ],
+                [
+                  0.1,
+                  0
+                ]
+              ]
+            }
+          ],
+          "alt": "F-t 그래프: 0.1 s 동안 최대 200 N인 삼각형 모양의 충돌력"
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "그림의 충돌력이 준 충격량은 몇 N·s인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "삼각형의 넓이입니다.",
+      "explanation": "F-t 그래프는 밑변 0.1 s, 높이 200 N인 삼각형입니다.\n넓이 = (1/2) × 0.1 × 200입니다.\n= 10 N·s이고, 평균 힘은 10/0.1 = 100 N입니다.",
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 0.12,
+          "ymin": -20,
+          "ymax": 240,
+          "xstep": 0.02,
+          "ystep": 40,
+          "xlabel": "t(s)",
+          "ylabel": "F(N)",
+          "curves": [
+            {
+              "kind": "shade",
+              "curve": {
+                "kind": "pw",
+                "pts": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0.05,
+                    200
+                  ],
+                  [
+                    0.1,
+                    0
+                  ]
+                ]
+              },
+              "from": 0,
+              "to": 0.1
+            },
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.05,
+                  200
+                ],
+                [
+                  0.1,
+                  0
+                ]
+              ]
+            }
+          ],
+          "alt": "F-t 그래프: 0.1 s 동안 최대 200 N인 삼각형 모양의 충돌력"
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "정지해 있던 0.5 kg인 공이 앞 문제의 충격량을 받으면 속력은 몇 m/s가 되나요?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "충격량 = 운동량의 변화입니다.",
+      "explanation": "J = mΔv이므로 10 = 0.5 × v입니다.\nv = 10/0.5입니다.\n= 20 m/s입니다. 같은 충격량이면 가벼운 물체일수록 빨라집니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "일과 운동 에너지",
+      "body": [
+        "알짜힘이 한 일은 운동 에너지의 변화와 같습니다: W = ΔK. F = m dv/dt이고 dx = v dt이므로 ∫F dx = ∫m v dv = (1/2)mv² − (1/2)mv₀²입니다.",
+        "이 일-에너지 정리를 쓰면 힘이 위치에 따라 변해도 시간을 몰라도 속력을 구할 수 있습니다. 예를 들어 F = 3x(N)가 2 kg 물체를 0에서 2 m까지 밀면 W = [1.5x²]₀² = 6 J이고, 정지에서 출발했다면 v² = 2W/m = 6입니다.",
+        "충격량은 시간에 대한 적분이고 운동량을 바꾸며, 일은 거리에 대한 적분이고 운동 에너지를 바꿉니다. 두 쌍을 함께 기억하세요."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "2 kg인 물체가 정지 상태에서 F = 3x(N)의 힘을 받아 x = 0에서 2 m까지 움직였습니다. 나중 속력의 제곱 v²은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "W = ∫F dx = ΔK입니다.",
+      "explanation": "W = ∫₀² 3x dx = [1.5x²]₀² = 6 J입니다.\n6 = (1/2) × 2 × v²입니다.\n따라서 v² = 6이고 v = √6 ≈ 2.45 m/s입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "변하는 힘의 일은 W = ∫F dx이고 F-x 그래프의 넓이입니다. 용수철을 x만큼 늘이는 일은 (1/2)kx²입니다.",
+        "충격량은 J = ∫F dt이고 F-t 그래프의 넓이이며, 운동량의 변화 mΔv와 같습니다.",
+        "알짜힘의 일은 운동 에너지의 변화와 같습니다(W = ΔK). 시간이 필요 없는 문제는 일-에너지 정리가 빠릅니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "F = 6x²(N)인 힘이 물체를 x = 0에서 1 m까지 옮기며 한 일은 몇 J인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "∫₀¹ 6x² dx를 계산하세요.",
+      "explanation": "6x²의 원시함수는 2x³입니다.\nW = 2 × 1³ − 0입니다.\n= 2 J입니다. 힘이 변하므로 F × 거리로 계산하면 안 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "2 kg인 물체가 정지 상태에서 F = 4t(N)를 3 s 동안 받으면 나중 속력은 몇 m/s인가요?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "충격량 ∫F dt = mΔv입니다.",
+      "explanation": "J = ∫₀³ 4t dt = [2t²]₀³ = 18 N·s입니다.\n18 = 2 × v입니다.\nv = 9 m/s입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "용수철 상수 k인 용수철을 늘어나지 않은 상태에서 x만큼 늘이는 일이 (1/2)kx²임을 보이세요.",
+      "model_answer": [
+        "늘인 길이가 s일 때 필요한 힘은 F = ks이다(훅의 법칙).",
+        "힘이 위치에 따라 변하므로 일은 W = ∫₀ˣ ks ds이다.",
+        "= [(1/2)ks²]₀ˣ이다.",
+        "= (1/2)kx²이다. (F-x 그래프의 삼각형 넓이와 같다)"
+      ],
+      "criteria": [
+        {
+          "text": "훅의 법칙으로 힘을 나타냈다",
+          "points": 2
+        },
+        {
+          "text": "일을 적분으로 세웠다",
+          "points": 2
+        },
+        {
+          "text": "적분을 계산해 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "늘인 길이에 비례하는 힘을 적분하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "질량 m인 물체에 알짜힘 F가 작용할 때, F가 한 일 ∫F dx가 운동 에너지의 변화 (1/2)mv² − (1/2)mv₀²과 같음을 보이세요.",
+      "model_answer": [
+        "뉴턴 제2법칙에서 F = m dv/dt이다.",
+        "dx = v dt이므로 F dx = m (dv/dt) v dt = m v dv이다.",
+        "따라서 ∫F dx = ∫ᵥ₀ᵛ m v dv = [(1/2)mv²]ᵥ₀ᵛ이다.",
+        "= (1/2)mv² − (1/2)mv₀²이다."
+      ],
+      "criteria": [
+        {
+          "text": "F = m dv/dt를 썼다",
+          "points": 1
+        },
+        {
+          "text": "dx = v dt로 바꾸어 m v dv를 얻었다",
+          "points": 3
+        },
+        {
+          "text": "적분해 결론을 얻었다",
+          "points": 2
+        }
+      ],
+      "hint": "dx = v dt로 바꾸세요."
+    }
+  ]
+}

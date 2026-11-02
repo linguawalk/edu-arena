@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 6,
+  "unit": 1,
+  "unit_title": "파일 입출력",
+  "questions": [
+    {
+      "id": "c_l6_u01_q001",
+      "type": "fill_blank",
+      "code": "FILE *fp = ____(\"test.txt\", \"w\");\nfprintf(fp, \"%d\", 42);\nfclose(fp);",
+      "prompt_en": "Fill in the blank with the function used to open a file for writing.",
+      "prompt_ko": "파일을 쓰기 모드로 여는 함수를 빈칸에 채우세요.",
+      "options": ["fopen", "open", "fread", "create"],
+      "answer": 0,
+      "explanation_en": "fopen opens a file and returns a FILE pointer; the mode \"w\" means writing, creating the file if it doesn't exist.",
+      "explanation_ko": "fopen은 파일을 열고 FILE 포인터를 반환합니다. 모드 \"w\"는 쓰기를 의미하며, 파일이 없으면 새로 만듭니다.",
+      "concept_tags": ["file_io", "fopen"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l6_u01_q002",
+      "type": "predict_output",
+      "code": "FILE *fp = fopen(\"test.txt\", \"w\");\nfprintf(fp, \"%d\", 42);\nfclose(fp);\n\nFILE *fp2 = fopen(\"test.txt\", \"r\");\nint value;\nfscanf(fp2, \"%d\", &value);\nfclose(fp2);\nprintf(\"%d\", value);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["42", "0", "fp2", "오류"],
+      "answer": 0,
+      "explanation_en": "The value 42 is written to the file, then read back with fscanf; value ends up holding 42, which is printed.",
+      "explanation_ko": "42가 파일에 쓰인 뒤, fscanf로 다시 읽어들입니다. value에는 42가 저장되어 그대로 출력됩니다.",
+      "concept_tags": ["file_io", "fprintf", "fscanf"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l6_u01_q003",
+      "type": "error_finding",
+      "code": "FILE *fp = fopen(\"data.txt\", \"r\");\nint value;\nfscanf(fp, \"%d\", &value);\nprintf(\"%d\", value);",
+      "prompt_en": "What problem does this code have if data.txt doesn't exist?",
+      "prompt_ko": "data.txt 파일이 존재하지 않을 경우 이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "fscanf 문법 오류",
+        "fopen이 실패하면 fp가 NULL이 되는데, NULL 여부를 확인하지 않고 fscanf(fp, ...)를 호출해 오류로 이어질 수 있음",
+        "value 선언 문법 오류",
+        "문제 없음, 파일이 없어도 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "When fopen fails (e.g., the file doesn't exist), it returns NULL; using that NULL pointer with fscanf without checking first leads to undefined behavior.",
+      "explanation_ko": "fopen이 실패하면(예: 파일이 존재하지 않으면) NULL을 반환합니다. 이를 확인하지 않고 fscanf(fp, ...)에 그대로 사용하면 예측할 수 없는 오류로 이어질 수 있습니다. 파일을 열 때는 항상 NULL 여부를 확인해야 합니다.",
+      "concept_tags": ["file_io", "null_check"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l6_u01_q004",
+      "type": "predict_output",
+      "code": "FILE *fp = fopen(\"nonexistent_file.txt\", \"r\");\nif (fp == NULL) {\n    printf(\"파일 없음\");\n}",
+      "prompt_en": "What is printed, assuming the file doesn't exist?",
+      "prompt_ko": "파일이 존재하지 않는다고 가정할 때 출력 결과는?",
+      "options": ["파일 없음", "아무것도 출력되지 않음", "오류로 프로그램이 즉시 종료됨", "NULL"],
+      "answer": 0,
+      "explanation_en": "fopen returns NULL when it cannot open the file, and the NULL check catches this case, printing the message.",
+      "explanation_ko": "fopen은 파일을 열 수 없을 때 NULL을 반환하며, NULL 확인 코드가 이 상황을 감지해 메시지를 출력합니다.",
+      "concept_tags": ["file_io", "null_check"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l6_u01_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "fopen", "definition": "파일을 지정한 모드(읽기/쓰기 등)로 여는 함수" },
+        { "term": "fprintf / fscanf", "definition": "파일에 형식화된 데이터를 쓰거나 읽는 함수" },
+        { "term": "fclose", "definition": "열었던 파일을 닫아 자원을 반납하는 함수" },
+        { "term": "NULL 확인", "definition": "fopen 실패(파일 없음 등)를 감지하기 위해 반드시 거쳐야 하는 절차" }
+      ],
+      "explanation_en": "File I/O follows a consistent open-use-close pattern, and skipping the NULL check is one of the most common sources of crashes in file-handling code.",
+      "explanation_ko": "파일 입출력은 열기-사용-닫기라는 일관된 패턴을 따르며, NULL 확인을 건너뛰는 것이 파일 처리 코드에서 가장 흔한 오류 원인 중 하나입니다.",
+      "concept_tags": ["file_io", "fopen", "null_check"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l6_u01_q006",
+      "type": "fill_blank",
+      "code": "FILE *fp = fopen(\"log.txt\", \"w\");\nfprintf(fp, \"기록 완료\");\n____;",
+      "prompt_en": "Fill in the blank to properly close the file after use.",
+      "prompt_ko": "사용을 마친 파일을 올바르게 닫으려면 빈칸에 무엇이 들어가야 할까요?",
+      "options": ["fclose(fp)", "close(fp)", "fp = NULL", "fend(fp)"],
+      "answer": 0,
+      "explanation_en": "fclose releases the file resource and ensures any buffered output is actually written to disk.",
+      "explanation_ko": "fclose는 파일 자원을 반납하고, 버퍼에 남아있던 출력이 실제로 디스크에 기록되도록 보장합니다.",
+      "concept_tags": ["file_io", "fclose"],
+      "difficulty": "intro"
+    }
+  ]
+}

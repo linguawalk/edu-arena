@@ -1,0 +1,93 @@
+{
+ "no": 3,
+ "title": "인증과 접근 제어",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "지식·소유·생체 기반 인증과 다중 인증을 설명할 수 있다.",
+  "비밀번호 엔트로피와 안전한 저장 방법을 계산·설명할 수 있다.",
+  "DAC·MAC·RBAC·ABAC 접근 제어와 OAuth·OIDC를 구분할 수 있다."
+ ],
+ "checklist": [
+  "인증 요소: 아는 것, 가진 것, 나 자신",
+  "비밀번호 엔트로피 = log₂(경우의 수)",
+  "비밀번호 저장: 솔트 + 느린 해시(bcrypt, Argon2)",
+  "다중 인증과 패스키(FIDO2)",
+  "접근 제어 모델: DAC(소유자 재량), MAC(강제), RBAC(역할), ABAC(속성)",
+  "OAuth 2.0(권한 위임)과 OpenID Connect(인증)",
+  "단일 로그인(SSO)과 세션 관리"
+ ],
+ "advice": [
+  "인증은 '누구인가', 접근 제어는 '무엇을 해도 되는가'라는 레벨1의 구분을 실제 시스템 설계로 옮기는 단원입니다. 회사 시스템을 예로 들어 직원, 팀장, 관리자 역할을 만들고 각 역할에 권한을 주는 RBAC 표를 직접 작성해 보세요. 'Google로 로그인' 버튼 뒤에서 OAuth와 OIDC가 각각 무엇을 하는지 구분하는 것도 실무에서 자주 필요합니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Stallings · Brown, Computer Security: Principles and Practice (장 제목으로 표기)",
+   "part": "User Authentication, Access Control 장"
+  },
+  {
+   "kind": "web",
+   "provider": "FIDO Alliance",
+   "title": "패스키와 FIDO2 소개",
+   "url": "https://fidoalliance.org/passkeys/",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "대소문자·숫자 62가지로 된 8자리 무작위 비밀번호의 엔트로피는 약 몇 비트일까요? (소수 첫째 자리까지)",
+   "answer": "47.6",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "log₂(62⁸) = 8 × log₂62 ≈ 8 × 5.954 ≈ 47.6비트",
+   "hint": "자리 수 × log₂(문자 종류)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "사용자에게 역할을 주고 역할에 권한을 묶어 관리하는 접근 제어 모델을 영문 약어로 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "RBAC"
+     ]
+    }
+   ],
+   "explanation": "Role-Based Access Control의 줄임말입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "비밀번호를 넘기지 않고 다른 서비스에 내 자원의 접근 권한을 위임하는 표준 프로토콜은 {{1}} 2.0입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "OAuth",
+      "oauth"
+     ]
+    }
+   ],
+   "explanation": "인증(누구인가)까지 표준화한 것은 OAuth 위의 OpenID Connect입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "security",
+ "id": "l3-computer-security-u03"
+}

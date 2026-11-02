@@ -1,0 +1,91 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "참조 전달 (&)",
+  "questions": [
+    {
+      "id": "php_l3_u02_q001",
+      "type": "predict_output",
+      "code": "function modifyByValue($x) {\n    $x = 100;\n}\n$a = 5;\nmodifyByValue($a);\necho $a;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "100", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "By default, PHP passes parameters by value; changing $x inside the function doesn't affect the original $a, which stays 5.",
+      "explanation_ko": "기본적으로 PHP는 매개변수를 값으로 전달합니다. 함수 안에서 $x를 바꿔도 원본 $a에는 영향이 없어 5로 유지됩니다.",
+      "concept_tags": ["pass_by_value"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l3_u02_q002",
+      "type": "predict_output",
+      "code": "function modifyByRef(&$x) {\n    $x = 100;\n}\n$b = 5;\nmodifyByRef($b);\necho $b;",
+      "prompt_en": "What is printed? (Note: & is used in the function definition.)",
+      "prompt_ko": "출력 결과는? (함수 정의에 &가 쓰인 점에 주의하세요.)",
+      "options": ["5", "100", "오류", "0"],
+      "answer": 1,
+      "explanation_en": "&$x passes a reference to the original variable; changing x directly modifies b, making it 100.",
+      "explanation_ko": "&$x는 원본 변수에 대한 참조를 전달합니다. x를 바꾸면 b가 직접 수정되어 100이 됩니다.",
+      "concept_tags": ["reference_parameter"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l3_u02_q003",
+      "type": "predict_output",
+      "code": "function modifyByRef(&$x) {\n    $x = 100;\n}\n$b = 5;\nmodifyByRef($b);\necho $b;",
+      "prompt_en": "What is printed? (Compare with C#, which requires ref at the call site too.)",
+      "prompt_ko": "출력 결과는? (호출부에도 ref가 필요한 C#과 비교해보세요.)",
+      "options": ["5", "100", "오류: 호출부에 &가 없음", "0"],
+      "answer": 1,
+      "explanation_en": "Unlike C#'s ref (required at both definition and call site), PHP only needs & at the function definition; the call modifyByRef($b) works with no special syntax, similar to VB's ByRef.",
+      "explanation_ko": "정의와 호출 지점 양쪽 모두에 필요한 C#의 ref와 달리, PHP는 함수 정의에만 &가 필요합니다. modifyByRef($b) 호출은 특별한 문법 없이 동작하며, VB의 ByRef와 비슷합니다.",
+      "concept_tags": ["reference_parameter"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l3_u02_q004",
+      "type": "predict_output",
+      "code": "function addOne(&$n) {\n    $n += 1;\n}\n$count = 0;\naddOne($count);\naddOne($count);\naddOne($count);\necho $count;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "1", "3", "오류"],
+      "answer": 2,
+      "explanation_en": "Each reference call directly increments the original count; calling addOne three times results in count becoming 3.",
+      "explanation_ko": "참조 호출마다 원본 count가 직접 증가합니다. addOne을 세 번 호출하면 count는 3이 됩니다.",
+      "concept_tags": ["reference_parameter"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l3_u02_q005",
+      "type": "predict_output",
+      "code": "$nums = [1, 2, 3];\nforeach ($nums as &$n) {\n    $n *= 2;\n}\nunset($n);\nprint_r($nums);",
+      "prompt_en": "What is printed? (Note: & is used in the foreach itself.)",
+      "prompt_ko": "출력 결과는? (foreach 자체에 &가 쓰인 점에 주의하세요.)",
+      "options": ["[1, 2, 3]", "[2, 4, 6]", "오류", "[1, 4, 9]"],
+      "answer": 1,
+      "explanation_en": "foreach ($nums as &$n) makes $n a reference to each array element in turn, so $n *= 2 modifies the original array directly, doubling every element.",
+      "explanation_ko": "foreach ($nums as &$n)은 $n이 배열의 각 요소를 차례로 참조하게 만들어서, $n *= 2가 원본 배열을 직접 수정해 모든 요소를 두 배로 만듭니다.",
+      "concept_tags": ["reference_parameter", "foreach"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l3_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "값 전달 (기본값)", "definition": "복사본을 전달해, 함수 안에서 바꿔도 원본에 영향이 없는 방식" },
+        { "term": "&$param (참조 전달)", "definition": "원본 변수의 참조를 전달 — 함수 정의에만 &가 필요, 호출부는 불필요" },
+        { "term": "foreach ... as &$v", "definition": "배열 요소를 참조로 순회해서, 직접 수정할 수 있게 함" },
+        { "term": "C#/VB와의 비교", "definition": "PHP는 정의부에만 &가 필요해, 호출부에도 ref가 필요한 C#보다 VB의 ByRef에 더 가까움" }
+      ],
+      "explanation_en": "PHP's reference syntax requiring & only at the function definition (not the call site) matches VB's ByRef behavior more closely than C#'s stricter ref/ref pairing.",
+      "explanation_ko": "함수 정의에만 &가 필요하고 호출부는 필요 없는 PHP의 참조 문법은, C#의 더 엄격한 ref/ref 짝보다는 VB의 ByRef 동작에 더 가깝습니다.",
+      "concept_tags": ["pass_by_value", "reference_parameter"],
+      "difficulty": "practice"
+    }
+  ]
+}

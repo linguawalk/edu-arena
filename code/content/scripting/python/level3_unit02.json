@@ -1,0 +1,91 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "기본값 매개변수와 *args/**kwargs",
+  "questions": [
+    {
+      "id": "python_l3_u02_q001",
+      "type": "predict_output",
+      "code": "def greet(name, greeting=\"안녕\"):\n    print(f\"{greeting}, {name}\")\n\ngreet(\"Kim\")\ngreet(\"Lee\", \"반가워\")",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["안녕, Kim\\n반가워, Lee", "안녕, Kim\\n안녕, Lee", "오류", "반가워, Kim\\n반가워, Lee"],
+      "answer": 0,
+      "explanation_en": "greet(\"Kim\") uses the default greeting, while greet(\"Lee\", \"반가워\") overrides it with 반가워.",
+      "explanation_ko": "greet(\"Kim\")은 기본값 인사말을 사용하고, greet(\"Lee\", \"반가워\")는 이를 반가워로 덮어씁니다.",
+      "concept_tags": ["default_parameter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l3_u02_q002",
+      "type": "predict_output",
+      "code": "def add_item(item, my_list=[]):\n    my_list.append(item)\n    return my_list\n\nprint(add_item(\"a\"))\nprint(add_item(\"b\"))",
+      "prompt_en": "What is printed? (This is one of Python's most famous gotchas.)",
+      "prompt_ko": "출력 결과는? (Python에서 가장 유명한 함정 중 하나입니다.)",
+      "options": ["['a']\\n['b']", "['a']\\n['a', 'b']", "오류", "['a', 'b']\\n['a', 'b']"],
+      "answer": 1,
+      "explanation_en": "A mutable default argument like [] is created only once, when the function is defined — not fresh on every call. The same list is reused and accumulates across calls: ['a'], then ['a', 'b'].",
+      "explanation_ko": "[]같은 가변 기본값은 함수가 정의될 때 단 한 번만 만들어지며, 호출할 때마다 새로 만들어지지 않습니다. 같은 리스트가 재사용되어 호출할수록 누적됩니다: ['a'], 그다음 ['a', 'b'].",
+      "concept_tags": ["mutable_default_argument"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l3_u02_q003",
+      "type": "fill_blank",
+      "code": "def add_item(item, my_list=____):\n    if my_list is None:\n        my_list = []\n    my_list.append(item)\n    return my_list\n# 가변 기본값 함정을 피하는 표준적인 방법",
+      "prompt_en": "Fill in the blank with the safe default value used to avoid the mutable default argument trap.",
+      "prompt_ko": "가변 기본값 함정을 피하기 위한 안전한 기본값을 빈칸에 채우세요.",
+      "options": ["None", "[]", "list()", "{}"],
+      "answer": 0,
+      "explanation_en": "The standard idiom is to default to None (immutable) and create a fresh list inside the function body each call, sidestepping the shared-mutable-default problem entirely.",
+      "explanation_ko": "표준적인 관용구는 (불변인) None을 기본값으로 쓰고, 함수 본문 안에서 매번 새 리스트를 만드는 것입니다. 이렇게 하면 공유되는 가변 기본값 문제를 완전히 피할 수 있습니다.",
+      "concept_tags": ["mutable_default_argument"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l3_u02_q004",
+      "type": "predict_output",
+      "code": "def sum_all(*args):\n    total = 0\n    for n in args:\n        total += n\n    return total\n\nprint(sum_all(1, 2, 3))\nprint(sum_all(1, 2, 3, 4, 5))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["6\\n15", "3\\n5", "오류", "6\\n5"],
+      "answer": 0,
+      "explanation_en": "*args collects any number of positional arguments into a tuple; sum_all(1,2,3)=6 and sum_all(1,2,3,4,5)=15.",
+      "explanation_ko": "*args는 몇 개든 위치 인자를 튜플로 모읍니다. sum_all(1,2,3)=6이고 sum_all(1,2,3,4,5)=15입니다.",
+      "concept_tags": ["args"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l3_u02_q005",
+      "type": "predict_output",
+      "code": "def print_info(**kwargs):\n    for key, value in kwargs.items():\n        print(f\"{key}: {value}\")\n\nprint_info(name=\"Kim\", age=25)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["name: Kim\\nage: 25", "kwargs: {'name': 'Kim', 'age': 25}", "오류", "Kim 25"],
+      "answer": 0,
+      "explanation_en": "**kwargs collects any number of keyword arguments into a dictionary; iterating with .items() prints each key-value pair.",
+      "explanation_ko": "**kwargs는 몇 개든 키워드 인자를 딕셔너리로 모읍니다. .items()로 순회하며 각 키-값 쌍을 출력합니다.",
+      "concept_tags": ["kwargs"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l3_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "기본값 매개변수", "definition": "호출 시 생략하면 자동으로 적용되는 값" },
+        { "term": "가변 기본값 함정", "definition": "리스트/딕셔너리 같은 가변 객체를 기본값으로 쓰면 호출 간 공유되어 누적되는 문제" },
+        { "term": "*args", "definition": "여러 위치 인자를 튜플로 모으는 문법" },
+        { "term": "**kwargs", "definition": "여러 키워드 인자를 딕셔너리로 모으는 문법" }
+      ],
+      "explanation_en": "The mutable default argument trap is consistently ranked among the top Python gotchas in developer surveys, making it essential knowledge even for otherwise experienced programmers new to Python.",
+      "explanation_ko": "가변 기본값 함정은 개발자 설문조사에서 꾸준히 Python 최고의 함정으로 꼽힙니다. Python이 처음인 숙련된 프로그래머에게도 필수적으로 알아야 할 지식입니다.",
+      "concept_tags": ["default_parameter", "mutable_default_argument", "args", "kwargs"],
+      "difficulty": "practice"
+    }
+  ]
+}

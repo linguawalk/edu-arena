@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "스코프와 global",
+  "questions": [
+    {
+      "id": "python_l3_u03_q001",
+      "type": "error_finding",
+      "code": "count = 0\n\ndef increment():\n    count += 1\n\nincrement()",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "count 선언 문법 오류",
+        "count += 1이 count에 값을 대입하는 것으로 보여서, Python은 count를 자동으로 지역 변수로 취급하는데, 정의되기 전에 읽으려 해서 UnboundLocalError가 발생함",
+        "increment 함수 정의 오류",
+        "문제 없음, count가 1이 됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Because count += 1 assigns to count somewhere in the function, Python treats count as local to increment throughout the entire function body — even before the assignment line — so reading it first raises UnboundLocalError.",
+      "explanation_ko": "count += 1이 함수 안 어딘가에서 count에 값을 대입하기 때문에, Python은 함수 본문 전체에서 count를 지역 변수로 취급합니다 — 대입 줄 이전에도요. 그래서 먼저 읽으려 하면 UnboundLocalError가 발생합니다.",
+      "concept_tags": ["scope", "unboundlocalerror"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l3_u03_q002",
+      "type": "predict_output",
+      "code": "count = 0\n\ndef increment():\n    global count\n    count += 1\n\nincrement()\nincrement()\nincrement()\nprint(count)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "1", "3", "오류"],
+      "answer": 2,
+      "explanation_en": "global count tells Python to use the module-level count instead of creating a local one; three calls each add 1, making count 3.",
+      "explanation_ko": "global count는 Python에게 지역 변수를 만들지 말고 모듈 수준의 count를 사용하라고 알려줍니다. 세 번 호출할 때마다 1씩 더해져 count는 3이 됩니다.",
+      "concept_tags": ["global"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l3_u03_q003",
+      "type": "fill_blank",
+      "code": "total = 0\n\ndef add_to_total(n):\n    ____ total\n    total += n\n\nadd_to_total(5)\nprint(total)",
+      "prompt_en": "Fill in the blank with the keyword that lets this function modify the module-level total.",
+      "prompt_ko": "이 함수가 모듈 수준의 total을 수정할 수 있게 하는 키워드를 빈칸에 채우세요.",
+      "options": ["global", "nonlocal", "static", "extern"],
+      "answer": 0,
+      "explanation_en": "global declares that a name refers to the module-level variable rather than creating a new local one when assigned inside a function.",
+      "explanation_ko": "global은 함수 안에서 대입할 때 새 지역 변수를 만드는 대신, 그 이름이 모듈 수준 변수를 가리킨다고 선언합니다.",
+      "concept_tags": ["global"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l3_u03_q004",
+      "type": "predict_output",
+      "code": "def outer():\n    x = 10\n    def inner():\n        nonlocal x\n        x += 5\n    inner()\n    print(x)\n\nouter()",
+      "prompt_en": "What is printed? (nonlocal is used for enclosing function scope, not module scope.)",
+      "prompt_ko": "출력 결과는? (nonlocal은 모듈 스코프가 아니라 감싸는 함수의 스코프에 사용됩니다.)",
+      "options": ["10", "15", "5", "오류"],
+      "answer": 1,
+      "explanation_en": "nonlocal lets inner modify outer's local x directly (not a module-level variable, since x isn't global); after inner() runs, x becomes 10 + 5 = 15.",
+      "explanation_ko": "nonlocal은 inner가 outer의 지역 변수 x를 직접 수정하게 해줍니다(모듈 수준 변수가 아니라 x가 global이 아니기 때문). inner()가 실행된 뒤 x는 10 + 5 = 15가 됩니다.",
+      "concept_tags": ["nonlocal"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l3_u03_q005",
+      "type": "predict_output",
+      "code": "def outer():\n    x = 10\n    def inner():\n        x = 100\n    inner()\n    print(x)\n\nouter()",
+      "prompt_en": "What is printed? (Note: nonlocal is not used here.)",
+      "prompt_ko": "출력 결과는? (여기서는 nonlocal이 쓰이지 않은 점에 주의하세요.)",
+      "options": ["10", "100", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "Without nonlocal, inner's x = 100 creates a brand new local variable inside inner, leaving outer's own x untouched at 10.",
+      "explanation_ko": "nonlocal이 없으면 inner의 x = 100은 inner 안에 완전히 새로운 지역 변수를 만들 뿐이라, outer 자신의 x는 10 그대로 유지됩니다.",
+      "concept_tags": ["nonlocal", "scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l3_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "global", "definition": "함수 안에서 모듈 수준 변수를 수정할 수 있게 선언" },
+        { "term": "nonlocal", "definition": "중첩 함수 안에서 감싸는 함수의 변수를 수정할 수 있게 선언" },
+        { "term": "UnboundLocalError", "definition": "함수 안에서 대입되는 변수를 대입 전에 읽으려 할 때 발생하는 오류" },
+        { "term": "암묵적 지역 변수화", "definition": "함수 안에서 대입되는 이름은 명시적 선언 없이는 자동으로 지역 변수가 되는 규칙" }
+      ],
+      "explanation_en": "Python's scoping rule — any name assigned within a function is local by default, unless declared global or nonlocal — is one of the most surprising aspects for programmers coming from C-family languages.",
+      "explanation_ko": "Python의 스코프 규칙 — 함수 안에서 대입되는 모든 이름은 global이나 nonlocal로 선언하지 않는 한 기본적으로 지역 변수가 됨 — 은 C 계열 언어에서 넘어온 프로그래머에게 가장 놀라운 부분 중 하나입니다.",
+      "concept_tags": ["global", "nonlocal", "scope", "unboundlocalerror"],
+      "difficulty": "practice"
+    }
+  ]
+}

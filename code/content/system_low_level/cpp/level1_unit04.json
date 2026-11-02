@@ -1,0 +1,96 @@
+{
+  "language": "cpp",
+  "category": "system_low_level",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "함수 오버로딩과 기본값 매개변수",
+  "questions": [
+    {
+      "id": "cpp_l1_u04_q001",
+      "type": "predict_output",
+      "code": "int add(int a, int b) {\n    return a + b;\n}\n\ndouble add(double a, double b) {\n    return a + b;\n}\n\ncout << add(3, 4);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["7", "7.0", "오류: add가 중복 정의됨", "3.4"],
+      "answer": 0,
+      "explanation_en": "C++ allows multiple functions with the same name but different parameter types (overloading); since 3 and 4 are ints, the int version of add is called, returning 7.",
+      "explanation_ko": "C++는 같은 이름이라도 매개변수 자료형이 다르면 여러 함수를 정의할 수 있습니다(오버로딩). 3과 4는 정수이므로 int 버전의 add가 호출되어 7이 됩니다.",
+      "concept_tags": ["function_overloading"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l1_u04_q002",
+      "type": "predict_output",
+      "code": "int add(int a, int b) {\n    return a + b;\n}\n\ndouble add(double a, double b) {\n    return a + b;\n}\n\ncout << add(3.5, 2.5);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["6", "5.5", "오류", "3.52.5"],
+      "answer": 0,
+      "explanation_en": "Since 3.5 and 2.5 are doubles, the compiler selects the double version of add, which returns 6.0, printed by cout without a trailing zero as 6.",
+      "explanation_ko": "3.5와 2.5는 double이므로 컴파일러는 double 버전의 add를 선택합니다. 결과는 6.0이며, cout은 이를 소수점 없이 6으로 출력합니다.",
+      "concept_tags": ["function_overloading"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l1_u04_q003",
+      "type": "predict_output",
+      "code": "int multiply(int a, int b = 2) {\n    return a * b;\n}\n\ncout << multiply(5) << multiply(5, 3);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1015", "515", "1010", "오류"],
+      "answer": 0,
+      "explanation_en": "multiply(5) uses the default value b=2, giving 5*2=10; multiply(5, 3) explicitly supplies b=3, giving 5*3=15.",
+      "explanation_ko": "multiply(5)는 기본값 b=2를 사용해 5*2=10이 됩니다. multiply(5, 3)은 b=3을 명시적으로 전달해 5*3=15가 됩니다.",
+      "concept_tags": ["default_parameter"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l1_u04_q004",
+      "type": "fill_blank",
+      "code": "void greet(string name = ____) {\n    cout << \"Hello, \" << name;\n}\n// greet()를 인자 없이 호출하면 \"Hello, 게스트\"가 출력되어야 함",
+      "prompt_en": "Fill in the blank so calling greet() with no arguments prints 'Hello, 게스트'.",
+      "prompt_ko": "인자 없이 greet()를 호출하면 'Hello, 게스트'가 출력되도록 빈칸을 채우세요.",
+      "options": ["\"게스트\"", "게스트", "'게스트'", "name"],
+      "answer": 0,
+      "explanation_en": "A default parameter value is written directly in the function's parameter list; string defaults need to be quoted string literals.",
+      "explanation_ko": "기본값 매개변수는 함수의 매개변수 목록에 직접 작성합니다. 문자열 기본값은 큰따옴표로 감싼 문자열 리터럴이어야 합니다.",
+      "concept_tags": ["default_parameter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l1_u04_q005",
+      "type": "error_finding",
+      "code": "int calculate(int a, int b = 5, int c) {\n    return a + b + c;\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "매개변수 이름이 잘못됨",
+        "기본값이 있는 매개변수(b) 뒤에 기본값이 없는 매개변수(c)가 와서, c에 값을 생략할 방법이 없어 문법 오류가 발생함",
+        "return문 문법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Once a parameter has a default value, every parameter after it must also have one; c has no default here, which is a compile error in C++.",
+      "explanation_ko": "기본값이 있는 매개변수 뒤에 오는 모든 매개변수도 기본값을 가져야 합니다. 여기서는 c에 기본값이 없어 C++에서 컴파일 오류가 발생합니다.",
+      "concept_tags": ["default_parameter"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cpp_l1_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "함수 오버로딩", "definition": "같은 이름이라도 매개변수의 개수나 자료형이 다르면 여러 버전으로 정의할 수 있는 기능" },
+        { "term": "기본값 매개변수", "definition": "호출 시 인자를 생략하면 자동으로 적용되는 매개변수의 기본값" },
+        { "term": "오버로드 해석", "definition": "컴파일러가 전달된 인자의 자료형을 보고 어떤 오버로드 버전을 호출할지 결정하는 과정" },
+        { "term": "기본값 순서 규칙", "definition": "기본값이 있는 매개변수 뒤에는 반드시 기본값이 있는 매개변수만 와야 한다는 규칙" }
+      ],
+      "explanation_en": "Neither overloading nor default parameters exist in C; both let C++ code express variations of a function without duplicating its name.",
+      "explanation_ko": "함수 오버로딩과 기본값 매개변수 모두 C에는 없는 기능으로, 함수 이름을 중복 없이 다양한 변형으로 표현할 수 있게 해줍니다.",
+      "concept_tags": ["function_overloading", "default_parameter"],
+      "difficulty": "practice"
+    }
+  ]
+}

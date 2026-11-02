@@ -1,0 +1,369 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s1",
+  "track": "geo",
+  "work": "증명",
+  "track_title": "기하",
+  "chapter": {
+    "id": "math-s1-geo-ch03",
+    "no": 3,
+    "title": "삼각형의 오심"
+  },
+  "lesson": {
+    "id": "math-s1-geo-ch03-l02",
+    "no": 2,
+    "title": "외심",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "기하"
+    ],
+    "competition": "KMO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "세 꼭짓점에서 같은 거리",
+      "body": [
+        "삼각형의 세 변의 수직이등분선은 한 점 O에서 만나고, O에서 세 꼭짓점까지의 거리가 모두 같습니다. O를 외심, 그 거리 R을 외접원의 반지름이라고 합니다.",
+        "AB의 수직이등분선 위의 점은 A, B까지 거리가 같고, BC의 수직이등분선 위의 점은 B, C까지 거리가 같습니다. 두 직선의 교점은 세 꼭짓점까지 거리가 같으므로 CA의 수직이등분선 위에도 있습니다.",
+        "외심의 위치는 삼각형의 모양에 따라 달라집니다. 예각삼각형이면 안쪽, 직각삼각형이면 빗변의 중점, 둔각삼각형이면 바깥쪽에 있습니다. 직각삼각형이면 R은 빗변의 절반이라 바로 구할 수 있습니다."
+      ],
+      "figure": {
+        "widget": "geo",
+        "config": {
+          "elements": [
+            {
+              "t": "poly",
+              "pts": [
+                [
+                  1,
+                  5
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  7,
+                  0
+                ]
+              ],
+              "fill": false
+            },
+            {
+              "t": "circle",
+              "c": [
+                3.5,
+                1.9
+              ],
+              "r": 3.9825
+            },
+            {
+              "t": "seg",
+              "a": [
+                3.5,
+                1.9
+              ],
+              "b": [
+                1,
+                5
+              ],
+              "dash": true
+            },
+            {
+              "t": "seg",
+              "a": [
+                3.5,
+                1.9
+              ],
+              "b": [
+                0,
+                0
+              ],
+              "dash": true
+            },
+            {
+              "t": "seg",
+              "a": [
+                3.5,
+                1.9
+              ],
+              "b": [
+                7,
+                0
+              ],
+              "dash": true
+            },
+            {
+              "t": "pt",
+              "p": [
+                1,
+                5
+              ],
+              "label": "A"
+            },
+            {
+              "t": "pt",
+              "p": [
+                0,
+                0
+              ],
+              "label": "B"
+            },
+            {
+              "t": "pt",
+              "p": [
+                7,
+                0
+              ],
+              "label": "C"
+            },
+            {
+              "t": "pt",
+              "p": [
+                3.5,
+                1.9
+              ],
+              "label": "O",
+              "pos": "e"
+            }
+          ],
+          "alt": "세 변의 수직이등분선의 교점인 외심 O와 외접원",
+          "maxh": 240
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "두 다리가 6, 8인 직각삼각형의 외접원의 반지름은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "직각삼각형의 외심은 빗변의 중점입니다.",
+      "explanation": "빗변은 √(36 + 64) = 10입니다.\n직각삼각형의 외심은 빗변의 중점이므로 R은 빗변의 절반입니다.\n따라서 R = 5입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "직각삼각형의 외심은 빗변의 {{1}}입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "중점",
+            "가운데점"
+          ]
+        }
+      ],
+      "hint": "지름에 대한 원주각은 직각입니다.",
+      "explanation": "직각을 바라보는 빗변은 외접원의 지름입니다.\n원의 중심은 지름의 중점입니다.\n따라서 직각삼각형의 외심은 빗변의 중점입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "외접원의 반지름 구하기",
+      "body": [
+        "일반 삼각형의 외접원의 반지름은 R = abc/(4K)입니다. 여기서 K는 넓이입니다.",
+        "사인 법칙 a = 2R sin A와 넓이 K = (1/2)bc sin A를 합치면 나옵니다. sin A = a/(2R)를 넓이 공식에 넣으면 K = abc/(4R)이기 때문입니다.",
+        "세 변이 13, 14, 15인 삼각형은 넓이가 84이므로 R = 13 × 14 × 15/(4 × 84) = 65/8입니다. 넓이는 다음 챕터의 헤론 공식이나 높이를 직접 구해 얻습니다. 이등변삼각형이면 꼭지각에서 밑변에 수선을 내려 높이를 구하는 것이 빠릅니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "세 변이 13, 14, 15인 삼각형의 외접원의 반지름을 구하세요.",
+      "steps": [
+        "길이 14인 변을 밑변으로 놓으면 높이는 12입니다(5, 12, 13과 9, 12, 15의 두 직각삼각형).",
+        "넓이 K = 14 × 12/2 = 84입니다.",
+        "R = abc/(4K) = 13 × 14 × 15/336 = 2730/336입니다.",
+        "= 65/8입니다."
+      ],
+      "answer": "65/8"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "세 변이 5, 5, 6인 이등변삼각형의 외접원의 반지름을 분수로 쓰세요.",
+      "answer": "25/8",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "밑변 6에 대한 높이는 4이고 넓이는 12입니다.",
+      "explanation": "밑변 6의 중점에서 높이는 √(25 − 9) = 4이므로 넓이 K = 12입니다.\nR = abc/(4K) = 5 × 5 × 6/48 = 150/48입니다.\n= 25/8입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "한 변이 6인 정삼각형의 외접원의 반지름을 R이라 할 때 R²의 값은?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "정삼각형의 외심은 무게중심과 같으므로 R은 높이의 2/3입니다.",
+      "explanation": "정삼각형의 높이는 6 × √3/2 = 3√3입니다.\n외심은 무게중심과 같으므로 R = 3√3 × 2/3 = 2√3입니다.\nR² = 12입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "중심각과 외심",
+      "body": [
+        "외심 O에서 보면 ∠BOC는 호 BC에 대한 중심각이므로, 예각삼각형에서 ∠BOC = 2∠A입니다.",
+        "OB = OC이므로 △OBC는 이등변삼각형이고 ∠OBC = ∠OCB = 90° − ∠A입니다.",
+        "이처럼 외심이 있는 각 문제는 원주각과 중심각의 관계로 바꾸어 풉니다. ∠A가 둔각이면 O가 BC에 대해 A의 반대쪽에 있어 ∠BOC = 360° − 2∠A가 됩니다. 그림을 정확히 그려 O가 어디에 있는지 먼저 확인하는 것이 중요합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "예각삼각형 ABC의 외심을 O라 할 때 ∠BAC = 50°이면 ∠BOC는 몇 도인가요?",
+      "answer": "100",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "∠BOC는 호 BC에 대한 중심각입니다.",
+      "explanation": "∠BAC는 호 BC에 대한 원주각이고 ∠BOC는 같은 호에 대한 중심각입니다.\n중심각은 원주각의 두 배입니다.\n따라서 ∠BOC = 100°입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 문제에서 ∠OBC는 몇 도인가요?",
+      "answer": "40",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "△OBC는 OB = OC인 이등변삼각형입니다.",
+      "explanation": "OB = OC이므로 △OBC는 이등변삼각형입니다.\n∠OBC = (180° − 100°)/2입니다.\n= 40°이고, 이는 90° − ∠A와 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "외심이 삼각형의 바깥에 있으면 그 삼각형은 {{1}}삼각형입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "둔각"
+          ]
+        }
+      ],
+      "hint": "외심이 빗변의 중점에 있는 것은 직각삼각형입니다.",
+      "explanation": "예각삼각형의 외심은 안쪽, 직각삼각형은 빗변의 중점에 있습니다.\n둔각삼각형이면 둔각의 마주 보는 변 너머 바깥쪽에 있습니다.\n따라서 답은 둔각삼각형입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "세 변의 수직이등분선은 외심 O에서 만나고, O는 세 꼭짓점에서 같은 거리 R에 있습니다.",
+        "직각삼각형의 외심은 빗변의 중점이고 R은 빗변의 절반입니다. 일반적으로 R = abc/(4K) = a/(2 sin A)입니다.",
+        "예각삼각형에서 ∠BOC = 2∠A, ∠OBC = 90° − ∠A입니다. 외심의 위치(안, 변 위, 밖)는 예각·직각·둔각에 따라 정해집니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "세 변이 3, 4, 5인 삼각형의 외접원의 반지름을 분수로 쓰세요.",
+      "answer": "5/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "직각삼각형입니다.",
+      "explanation": "3² + 4² = 5²이므로 직각삼각형입니다.\n외심은 빗변의 중점이고 R은 빗변의 절반입니다.\n따라서 R = 5/2입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "외접원의 반지름이 5인 삼각형에서 한 변 a = 6일 때, 그 변의 대각 A에 대해 sin A를 분수로 쓰세요.",
+      "answer": "3/5",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "a = 2R sin A입니다.",
+      "explanation": "사인 법칙에 의해 a = 2R sin A, 곧 sin A = a/(2R)입니다.\nsin A = 6/(2 × 5) = 6/10입니다.\n= 3/5이고, 이때 cos A = 4/5 또는 −4/5입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "삼각형의 세 변의 수직이등분선은 한 점에서 만남을 증명하세요.",
+      "model_answer": [
+        "AB의 수직이등분선과 BC의 수직이등분선의 교점을 O라 하자. (두 직선은 평행하지 않으므로 만난다)",
+        "O는 AB의 수직이등분선 위에 있으므로 OA = OB이다.",
+        "O는 BC의 수직이등분선 위에 있으므로 OB = OC이다.",
+        "따라서 OA = OC이므로 O는 CA의 수직이등분선 위에도 있다. 곧 세 수직이등분선은 O에서 만난다."
+      ],
+      "criteria": [
+        {
+          "text": "두 수직이등분선의 교점 O를 정했다",
+          "points": 1
+        },
+        {
+          "text": "수직이등분선 위의 점이 양 끝에서 같은 거리임을 썼다",
+          "points": 2
+        },
+        {
+          "text": "OA = OB = OC를 얻었다",
+          "points": 2
+        },
+        {
+          "text": "O가 세 번째 수직이등분선 위에 있다고 결론지었다",
+          "points": 1
+        }
+      ],
+      "hint": "두 수직이등분선의 교점이 세 번째 위에도 있음을 보이세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "예각삼각형 ABC의 외심을 O라 하면 ∠OBC = 90° − ∠A임을 증명하세요.",
+      "model_answer": [
+        "O는 외접원의 중심이고 ∠A는 호 BC에 대한 원주각이므로, 중심각 ∠BOC = 2∠A이다. (예각삼각형이므로 O와 A는 BC의 같은 쪽에 있다)",
+        "OB = OC (외접원의 반지름)이므로 △OBC는 이등변삼각형이다.",
+        "따라서 ∠OBC = (180° − ∠BOC)/2이다.",
+        "= (180° − 2∠A)/2 = 90° − ∠A이다."
+      ],
+      "criteria": [
+        {
+          "text": "∠BOC = 2∠A를 근거와 함께 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "△OBC가 이등변삼각형임을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "밑각을 계산해 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "중심각과 이등변삼각형의 밑각을 함께 쓰세요."
+    }
+  ]
+}

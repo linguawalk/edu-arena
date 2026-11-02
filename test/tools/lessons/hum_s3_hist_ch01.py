@@ -1,0 +1,105 @@
+"""인문·사회 S3 · 역사 · 챕터 1 영어 역사 에세이 (학습 가이드, 자체 제작 문항).
+국제 대회로는 존 로크 연구소(John Locke Institute) 에세이 대회의 역사 부문 같은 영어 에세이 대회를 염두에 두었으며, 주제·단어 제한·마감 같은
+세부 규정은 해마다 공식 누리집에서 확인해야 한다. 역사적 사실은 교과서에 실리는 널리 알려진 내용만 썼고, 영어 예문은 이 가이드를 위해 쓴 것이다."""
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from lesson_kit import X, E, N, PR
+
+DOMAIN = ["역사", "에세이", "영어 역사 에세이"]
+
+GUIDE = {"title": "영어 역사 에세이 학습 가이드", "minutes": 150, "screens": [
+    X("이 가이드의 사용법", [
+        "영어 역사 에세이 대회(예: 존 로크 연구소 에세이 대회의 역사 부문)는 '왜', '얼마나', '무엇이 더 중요한가'를 묻는 열린 질문에 대해, 정해진 단어 수 안에서 논증하는 영어 에세이를 요구합니다. 주제, 단어 제한, 마감은 해마다 공식 누리집에서 확인하세요.",
+        "이 가이드는 S2 '한국사 사료 분석 탐구 보고서'의 사료 비판과 보고서 구조를 영어 논증 에세이로 옮기는 연습입니다. 풀이 문제는 영어로 쓰는 것을 원칙으로 하고, 모범 답안의 영어 문장과 비교하세요.",
+        "좋은 역사 에세이의 세 가지: ① 질문에 직접 답하는 논제(thesis) ② 구체적인 증거(사료와 연구) ③ 다른 해석(historiography)과의 대화.",
+    ], "intro"),
+    X("논제와 문단 구조", [
+        "논제는 질문에 직접 답하고, 논쟁의 여지가 있으며, 에세이 전체를 이끄는 한 문장입니다. 'This essay will discuss the causes of X'는 논제가 아니고, 'X was caused primarily by Y rather than Z, because …'가 논제입니다.",
+        "본론 문단은 PEEL 구조를 씁니다: Point(문단의 주장), Evidence(사료·자료·연구), Explanation(증거가 주장을 어떻게 뒷받침하는가), Link(논제와의 연결). 증거 없는 주장, 설명 없는 인용이 가장 흔한 약점입니다.",
+        "역사 서술의 영어 표현: 'contemporary sources suggest …', 'historians such as … have argued …', 'this interpretation is challenged by …', 'the evidence indicates …', 'to a large extent', 'in the long term'.",
+    ]),
+    N("PEEL 구조에서 'E' 두 개 가운데 첫째(Evidence) 다음에 오는 단계로, 증거가 주장을 어떻게 뒷받침하는지 밝히는 것은? ① Point ② Evidence ③ Explanation ④ Link", 3,
+      "증거를 해석하는 단계입니다.",
+      "PEEL은 Point, Evidence, Explanation, Link의 순서입니다.\n증거를 제시한 뒤 그 증거가 왜 주장을 뒷받침하는지 설명하는 단계가 Explanation입니다.\n답은 3입니다."),
+    N("다음 가운데 논제(thesis)의 조건을 갖춘 문장은? ① This essay will discuss the causes of the Imjin War. ② The Imjin War weakened Joseon's social order more through the collapse of the slave registers than through battlefield losses. ③ The Imjin War was a war between Joseon and Japan. ④ There were many causes of the Imjin War.", 2,
+      "질문에 답하고, 반박될 수 있으며, 이유를 담은 문장입니다.",
+      "①은 무엇을 할지 예고만 하고, ③은 반박할 수 없는 사실이며, ④는 내용이 없습니다.\n②는 '무엇이 더 큰 원인인가'에 대한 주장으로, 반대 해석과 논쟁할 수 있어 논제의 조건을 갖춥니다.\n답은 2입니다."),
+    E("질문 'To what extent was the creation of Hangul (1443) motivated by practical rather than political concerns?'에 대한 논제를 세우세요.", [
+        "먼저 질문의 핵심 어구 'to what extent'(어느 정도)와 대비 'practical vs political'을 확인합니다. 답은 '전적으로'가 아니라 정도를 판단해야 합니다.",
+        "알려진 사실: 세종의 서문은 백성이 한자를 몰라 뜻을 펴지 못함을 들었고, 『훈민정음』은 1446년에 반포되었으며, 최만리 등은 반대 상소를 올렸습니다.",
+        "논제 예: 'While King Sejong's stated aim of enabling ordinary people to express themselves was genuine, the creation of Hangul was also a political project to strengthen royal authority and Confucian moral education among commoners; practical and political motives were therefore intertwined rather than opposed.'",
+    ], "정도를 판단하는 논제"),
+    N("2000단어 에세이를 서론 10%, 본론 세 문단 각각 22%, 반론 문단 14%, 결론 10%로 나누면 본론 한 문단은 몇 단어인가요?", 440,
+      "2000 × 0.22입니다.",
+      "본론 한 문단은 전체의 22%입니다.\n2000 × 0.22 = 440입니다.\n세 문단이면 1320단어로 전체의 66%가 본론이고, 나머지 비율의 합 10 + 14 + 10 = 34%와 더하면 100%입니다."),
+    X("사료와 연구를 영어로 다루기", [
+        "1차 사료는 출처(provenance)를 밝혀 신뢰도를 평가하며 인용합니다: 'The Veritable Records of King Sejong, an official court chronicle, record that …; however, as an official source, it presents the king's intentions in the most favourable light.'",
+        "2차 연구(역사가의 해석)는 이름과 논지를 요약하고 자기 입장과 관계를 밝힙니다: 'Some historians emphasise …, whereas others argue …. This essay sides with the latter because …'. 이것이 역사 서술사(historiography)와의 대화입니다.",
+        "인용은 대회가 정한 형식(대개 각주나 괄호 안 출처, 참고 문헌 목록)을 따르고, 출처를 밝히지 않은 바꿔 쓰기는 표절입니다. 인터넷 백과사전보다 학술서와 1차 사료 번역본을 쓰세요.",
+    ]),
+    E("다음 증거를 PEEL 문단의 Evidence와 Explanation으로 써 보세요: '1910년 국권 피탈 뒤 조선총독부가 1910~1918년에 토지 조사 사업을 실시했다.'", [
+        "Evidence: 'Between 1910 and 1918, the Japanese Government-General of Korea carried out a comprehensive land survey, requiring landowners to register their land within a fixed period.'",
+        "Explanation: 'Because registration procedures were unfamiliar and customary rights were often not recognised, many cultivators lost secure access to land, while the colonial government became a major landowner.'",
+        "이어서 Link: 'This suggests that colonial economic policy restructured Korean society in ways that served the colonial state, supporting the essay's argument that …'로 논제와 연결합니다(구체적인 수치는 연구서를 인용해 덧붙임).",
+    ], "증거 → 해석 → 논제 연결"),
+    PR("[문제 1] 질문 'Was the Gabo Reform (1894-1896) a genuine attempt at modernisation or primarily the result of foreign pressure?'에 대한 서론 문단을 영어로 쓰세요(배경, 핵심 어구 정의, 논제).", [
+        "Background: The Gabo Reform was a series of sweeping reforms introduced by the Joseon government in 1894-1896, abolishing the traditional class system and the civil service examination and reorganising the administration.",
+        "Definition: By 'genuine attempt at modernisation' I mean reforms driven by Korean reformers' own aims to strengthen the state; by 'foreign pressure' I mean reforms imposed or shaped by Japan, whose troops were present in Korea during the Sino-Japanese War.",
+        "Context of debate: Historians have disagreed over whether the reforms reflected Korean initiative, building on earlier reform demands, or Japanese strategy to extend its influence.",
+        "Thesis: This essay argues that the reforms combined both: many measures answered long-standing Korean demands, but their timing, speed and political direction were decisively shaped by Japanese pressure, which limited their legitimacy among Koreans.",
+    ], [
+        ("배경을 정확히 제시했다", 1),
+        ("핵심 어구를 정의했다", 2),
+        ("해석의 논쟁을 소개했다", 1),
+        ("질문에 직접 답하는 논제를 세웠다", 2),
+    ], "'genuine'과 'foreign pressure'를 먼저 정의하세요.", "apply"),
+    PR("[문제 2] 문제 1의 논제를 뒷받침하는 본론 문단 하나를 PEEL 구조로 영어로 쓰세요.", [
+        "Point: Several Gabo measures answered demands that had been raised within Korea before 1894, suggesting a degree of domestic initiative.",
+        "Evidence: The abolition of the class system and of slavery echoed demands made by the Donghak peasant movement earlier in 1894, and some reformers had studied modern institutions and advocated change since the 1880s.",
+        "Explanation: These continuities indicate that the reforms were not simply a foreign blueprint; they drew on Korean critiques of the existing order, which helps explain why some measures, such as the end of the legal class system, endured.",
+        "Link: However, the fact that these demands were enacted only when Japanese forces controlled the capital supports the essay's argument that domestic aims were realised through, and constrained by, foreign pressure.",
+    ], [
+        ("문단 주장(Point)이 분명하다", 1),
+        ("구체적인 증거를 제시했다", 2),
+        ("증거를 해석했다", 2),
+        ("논제와 연결했다", 1),
+    ], "국내의 요구와 개혁 내용의 연속성을 보이세요.", "apply"),
+    PR("[문제 3] 문제 1의 논제에 대한 반론 문단(가장 강한 반대 해석과 그에 대한 응답)을 영어로 쓰세요.", [
+        "Counter-argument: A strong objection is that the reforms were essentially Japanese in design: they were launched after Japanese troops occupied the palace, and reform councils operated under Japanese influence, so domestic demands were used to legitimise a foreign agenda.",
+        "Evidence for the objection: the speed and scope of the reforms, implemented within a short period during wartime, suggest an external timetable rather than gradual domestic deliberation.",
+        "Response: This objection explains the timing and political direction of the reforms, but not their content, much of which had Korean precedents; moreover, some reforms were later continued or reinterpreted by Korean governments.",
+        "Conclusion of the paragraph: Therefore the objection strengthens rather than refutes the essay's thesis that the reforms combined domestic aims with decisive foreign pressure.",
+    ], [
+        ("가장 강한 반대 해석을 공정하게 제시했다", 2),
+        ("반론의 근거를 제시했다", 1),
+        ("구별을 통해 응답했다", 2),
+        ("논제와의 관계를 정리했다", 1),
+    ], "반론이 설명하는 것과 설명하지 못하는 것을 구별하세요.", "apply"),
+    PR("[문제 4] 1차 사료 하나(예: 조선왕조실록의 한 기사, 외국 외교관의 보고서)를 영어 에세이에서 쓸 때 출처를 평가하는 문장을 써 보세요. 출처의 강점과 한계를 모두 밝히세요.", [
+        "Example: 'A report by a foreign diplomat in Seoul in 1895 describes the reforms as being directed by Japanese advisers.'",
+        "Strength: 'As a contemporary eyewitness account written for his own government, the report was not intended for publication and may record observations candidly.'",
+        "Limitation: 'However, the diplomat's country had its own strategic interests in Korea, and he may have exaggerated Japanese control to influence his government's policy; he may also have had limited access to Korean deliberations.'",
+        "Use: 'The report is therefore valuable as evidence of how foreign observers perceived the reforms, but it must be corroborated by Korean sources before it is used as evidence of who actually designed them.'",
+    ], [
+        ("사료를 구체적으로 소개했다", 1),
+        ("강점을 출처의 성격으로 설명했다", 2),
+        ("한계를 저자의 이해관계와 접근성으로 설명했다", 2),
+        ("어떤 용도로 쓸 수 있는지 밝혔다", 1),
+    ], "누가, 누구를 위해, 왜 썼는지 보세요.", "apply"),
+    PR("[문제 5] 다음 결론 문단의 문제점을 지적하고 영어로 고쳐 쓰세요: 'In conclusion, the Gabo Reform had good and bad sides. Many things happened. It is a very important event in Korean history and we should learn from it.'", [
+        "문제: 질문(진정한 근대화인가, 외세의 압력인가)에 답하지 않고, 'good and bad sides', 'many things'처럼 내용이 없으며, 마지막 문장은 논증과 무관한 교훈이다.",
+        "Rewrite: 'This essay has argued that the Gabo Reform cannot be reduced either to a Korean modernising project or to a Japanese imposition. Its content drew heavily on domestic demands, while its timing and political direction were dictated by Japan's wartime dominance.'",
+        "'This dual character helps explain the reforms' ambiguous legacy: measures such as the abolition of the class system endured, yet the reforms' association with foreign power undermined their legitimacy and fuelled resistance.'",
+        "고친 결론은 논제를 새로운 말로 다시 밝히고, 그 해석이 무엇을 설명하는지(의의)를 보이며, 새로운 증거를 꺼내지 않는다.",
+    ], [
+        ("원래 결론의 문제를 정확히 지적했다", 2),
+        ("질문에 직접 답하도록 고쳤다", 2),
+        ("해석의 의의를 밝혔다", 1),
+        ("명료한 영어로 썼다", 1),
+    ], "결론은 질문에 대한 최종 답이어야 합니다.", "apply"),
+    X("자기 점검과 독학 자료", [
+        "에세이를 쓴 뒤 점검: 논제가 질문에 직접 답하는가, 문단마다 PEEL이 있는가, 반대 해석을 공정하게 다루었는가, 사료의 출처를 평가했는가, 모든 인용과 바꿔 쓰기에 출처가 있는가, 단어 제한을 지켰는가.",
+        "영어 역사 글쓰기 실력을 기르려면 영문 학술서의 서론과 결론을 많이 읽으세요. 한국사를 영어로 다룬 개설서(예: Michael Seth 『A Concise History of Korea』, Carter Eckert 외 『Korea Old and New』)가 용어와 표현을 익히는 데 좋습니다.",
+        "참고 자료: John Locke Institute 누리집의 대회 규정과 지난 수상 에세이(영문), 대학의 역사 에세이 작성 안내(예: 영국 대학 역사학과의 essay writing guide), 국사편찬위원회의 한국사 데이터베이스(1차 사료).",
+    ], "apply"),
+]}

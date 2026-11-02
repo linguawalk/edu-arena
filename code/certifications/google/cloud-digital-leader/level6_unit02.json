@@ -1,0 +1,100 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "google",
+  "exam": "cloud-digital-leader",
+  "level": 6,
+  "unit": 2,
+  "unit_title": "관찰가능성 도구",
+  "rule_summary_ko": "Google Cloud Observability(운영 제품군)는 여러 도구로 구성됩니다: Cloud Monitoring(지표·대시보드·알림으로 성능과 가동 시간 파악), Cloud Logging(애플리케이션·인프라 로그를 중앙에서 수집·검색), Cloud Trace(분산 추적으로 요청의 지연시간을 분석해 느린 서비스를 찾아냄), Cloud Profiler(프로덕션 환경에서 낮은 오버헤드로 CPU·메모리 사용을 지속적으로 프로파일링), Error Reporting(여러 서비스에 걸친 예외를 스택 트레이스 기준으로 그룹화·집계). 이 도구들은 함께 사용해서 문제를 발견(Monitoring)→원인 추적(Trace)→상세 분석(Logging)→성능 최적화(Profiler)하는 흐름을 이룹니다.",
+  "examples": [
+    { "code": "Cloud Monitoring이 높은 지연시간 경고를 보냄 → Cloud Trace로 어떤 서비스가 느린지 특정 → Cloud Logging으로 상세 오류 메시지 확인 → Cloud Profiler로 CPU 집약적 함수 발견", "note_ko": "여러 관찰가능성 도구를 조합해서 문제를 단계적으로 진단·해결하는 전형적인 흐름" }
+  ],
+  "questions": [
+    {
+      "id": "gcp_cdl_l6_u2_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "여러 서비스의 지표를 수집해서 대시보드로 보여주고, 특정 임계값을 넘으면 알림을 보내는 도구는?",
+      "options": ["Cloud Monitoring — 성능·가동 시간·전반적인 상태에 대한 가시성을 제공", "Cloud Trace", "Cloud Profiler", "Error Reporting"],
+      "answer": 0,
+      "explanation_ko": "Cloud Monitoring은 관찰가능성의 '전체 현황판' 역할을 합니다.",
+      "concept_tags": ["cloud_monitoring"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "gcp_cdl_l6_u2_q002",
+      "type": "concept_matching_item",
+      "code": "여러 마이크로서비스로 구성된 시스템에서 특정 요청이 왜 느린지, 어느 서비스에서 지연이 발생하는지 찾고 싶어함",
+      "prompt_ko": "이 시나리오에 가장 적합한 도구는?",
+      "options": [
+        "Cloud Trace — 분산 추적으로 요청의 지연시간을 분석해 느린 서비스를 정확히 찾아냄",
+        "Cloud Logging(전체 로그는 볼 수 있지만 지연시간 추적에 특화되지는 않음)",
+        "Error Reporting",
+        "이런 진단은 불가능하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Cloud Trace는 요청이 여러 서비스를 거치는 동안의 지연시간을 구간별로 시각화해줍니다.",
+      "concept_tags": ["cloud_trace"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "gcp_cdl_l6_u2_q003",
+      "type": "concept_matching_item",
+      "code": "프로덕션 환경에서 어떤 함수가 CPU를 과도하게 사용하는지 찾아 성능을 최적화하고 싶어함(서비스 중단 없이)",
+      "prompt_ko": "이 시나리오에 가장 적합한 도구는?",
+      "options": [
+        "Cloud Profiler — 낮은 오버헤드로 프로덕션 환경에서 지속적으로 CPU·메모리 사용을 프로파일링",
+        "Cloud Monitoring(전반적 지표는 보여주지만 코드 수준 프로파일링에는 특화되지 않음)",
+        "Cloud Logging",
+        "이런 작업은 프로덕션 환경에서 불가능하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Cloud Profiler는 프로덕션에 미치는 영향을 최소화하면서 코드 수준의 성능 병목을 찾아줍니다.",
+      "concept_tags": ["cloud_profiler"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "gcp_cdl_l6_u2_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "여러 서비스에 걸쳐 발생하는 예외(오류)를 스택 트레이스 기준으로 자동으로 그룹화·집계해서 보여주는 도구는 무엇입니까? (영문으로 입력, 정확한 명칭)",
+      "expected_answers": ["Error Reporting"],
+      "explanation_ko": "Error Reporting은 흩어진 오류들을 그룹화해서 우선순위를 파악하기 쉽게 해줍니다.",
+      "concept_tags": ["error_reporting"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "gcp_cdl_l6_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Cloud Monitoring, Cloud Trace, Cloud Logging, Cloud Profiler를 함께 사용하는 전형적인 문제 해결 흐름은?",
+      "options": [
+        "Monitoring으로 문제(예: 높은 지연시간)를 감지 → Trace로 원인이 되는 느린 서비스를 특정 → Logging으로 상세 오류 메시지 확인 → Profiler로 성능 최적화 지점을 찾음",
+        "이 도구들은 서로 완전히 무관해서 함께 사용할 수 없다",
+        "네 도구 모두 완전히 동일한 기능을 한다",
+        "이 흐름은 실무에서 사용되지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "각 도구가 서로 다른 관점(감지→추적→분석→최적화)을 담당하며 유기적으로 연결됩니다.",
+      "concept_tags": ["observability_workflow"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "gcp_cdl_l6_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "관찰가능성(observability) 도구들이 SRE(사이트 신뢰성 엔지니어링) 팀에게 중요한 이유는?",
+      "options": [
+        "시스템의 상태를 실시간으로 파악하고, 문제를 사전에 감지·신속히 진단해서 서비스의 안정성과 가용성을 유지하는 데 필수적이기 때문에",
+        "관찰가능성 도구는 SRE 업무와 무관하다",
+        "관찰가능성 도구는 오직 개발 단계에서만 사용된다",
+        "관찰가능성 도구는 비용만 발생시킬 뿐 실질적 가치가 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "관찰가능성은 SRE의 핵심 업무인 안정성 유지·장애 대응의 기반이 됩니다.",
+      "concept_tags": ["observability_sre_importance"],
+      "difficulty": "practice"
+    }
+  ]
+}

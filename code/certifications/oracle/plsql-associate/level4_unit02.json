@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 4,
+  "unit": 2,
+  "unit_title": "함수와 RETURN",
+  "rule_summary_ko": "함수는 반드시 RETURN 절로 반환 타입을 선언해야 하고, 실행되는 모든 경로(정상 실행뿐 아니라 EXCEPTION 절까지 포함)에서 값을 가진 RETURN 문을 실행해야 합니다. 값 없이 함수 실행이 끝나면 ORA-06503(\"Function returned without value\") 오류가 발생합니다. 함수는 프로시저와 달리 SQL 문(SELECT 등) 안에서 값처럼 사용할 수 있지만, 그러려면 BOOLEAN이나 레코드 같은 SQL이 인식하지 못하는 타입은 반환할 수 없습니다.",
+  "examples": [
+    { "code": "FUNCTION f_test(i_val NUMBER) RETURN NUMBER IS\n    o_val NUMBER;\nBEGIN\n    SELECT 100/i_val INTO o_val FROM DUAL;\n    -- RETURN 문이 없음\nEND;", "note_ko": "RETURN 문이 빠져있어, 정상적으로 실행이 끝나도 ORA-06503 발생" },
+    { "code": "EXCEPTION\n    WHEN OTHERS THEN\n        NULL; -- RETURN 없이 예외 처리부가 끝남", "note_ko": "예외 처리부에서도 RETURN 없이 끝나면 마찬가지로 ORA-06503 발생" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l4_u2_q001",
+      "type": "concept_matching_item",
+      "code": "FUNCTION f_test(i_val NUMBER) RETURN NUMBER IS\n    o_val NUMBER;\nBEGIN\n    SELECT 100/i_val INTO o_val FROM DUAL;\nEND; -- RETURN 문이 없음",
+      "prompt_ko": "RETURN 문 없이 함수 실행이 정상적으로 끝나면?",
+      "options": [
+        "NULL이 자동으로 반환된다",
+        "ORA-06503(\"Function returned without value\") 오류가 발생한다 — 함수는 반드시 값을 반환하는 RETURN을 실행해야 한다",
+        "0이 자동으로 반환된다",
+        "컴파일 시점에 오류가 발생해서 함수 자체가 생성되지 않는다"
+      ],
+      "answer": 1,
+      "explanation_ko": "이 오류는 컴파일이 아니라 런타임에 발생합니다(함수 자체는 정상 생성되지만, 실제 호출 시 문제가 드러남).",
+      "concept_tags": ["ora_06503"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l4_u2_q002",
+      "type": "concept_matching_item",
+      "code": "FUNCTION f_test(i_val NUMBER) RETURN NUMBER IS\n    o_val NUMBER;\nBEGIN\n    SELECT 100/i_val INTO o_val FROM DUAL;\n    RETURN o_val;\nEXCEPTION\n    WHEN OTHERS THEN\n        NULL; -- 예외 처리부에서 RETURN 없이 끝남\nEND;",
+      "prompt_ko": "정상 실행부에는 RETURN이 있지만, EXCEPTION 절에는 RETURN이 없습니다. i_val=0으로 호출해서 예외가 발생하면?",
+      "options": [
+        "정상 실행부의 RETURN이 대신 실행된다",
+        "ORA-06503이 발생한다 — 예외 처리부로 제어가 넘어갔는데 그 경로에도 값 있는 RETURN이 없기 때문",
+        "함수가 자동으로 재시도된다",
+        "NULL이 반환되고 정상 종료된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "함수는 '어떤 경로로 끝나든' 반드시 값을 반환해야 하며, 예외 처리부도 예외입니다.",
+      "concept_tags": ["ora_06503", "exception_handler_return"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l4_u2_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "함수와 프로시저의 근본적인 차이는?",
+      "options": [
+        "함수는 반드시 RETURN 타입을 선언하고 값을 반환해야 하며 SQL 문 안에서 값처럼 사용될 수 있지만, 프로시저는 값을 반환하지 않고 실행 문장으로만 호출된다",
+        "함수는 매개변수를 가질 수 없다",
+        "프로시저만 예외 처리를 할 수 있다",
+        "둘은 완전히 동일하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "'값 반환 + SQL에서 사용 가능'이 함수의 정체성이고, '작업 수행'이 프로시저의 정체성입니다.",
+      "concept_tags": ["function_vs_procedure"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l4_u2_q004",
+      "type": "concept_matching_item",
+      "code": "CREATE FUNCTION get_status RETURN BOOLEAN IS ...\n-- SELECT get_status FROM dual; 로 호출 시도",
+      "prompt_ko": "BOOLEAN을 반환하는 함수를 SELECT 문 안에서 호출하려고 하면?",
+      "options": [
+        "정상적으로 TRUE/FALSE가 조회된다",
+        "오류 발생(PLS-00513 계열) — SQL은 BOOLEAN 타입을 이해하지 못해서, SQL에서 호출되는 함수는 SQL이 인식하는 타입만 반환할 수 있다",
+        "BOOLEAN이 자동으로 문자열로 변환되어 조회된다",
+        "함수 자체가 컴파일되지 않는다"
+      ],
+      "answer": 1,
+      "explanation_ko": "PL/SQL 안에서는 BOOLEAN을 자유롭게 쓸 수 있지만, SQL 엔진은 BOOLEAN이라는 개념을 지원하지 않아 SQL에서 호출 시 문제가 됩니다.",
+      "concept_tags": ["boolean_not_valid_in_sql"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l4_u2_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "함수가 값을 반환하지 않고 실행이 끝났을 때 발생하는 오류 코드는 무엇입니까? (예: ORA-XXXXX 형식으로 입력)",
+      "expected_answers": ["ORA-06503"],
+      "explanation_ko": "ORA-06503은 함수가 RETURN 값 없이 종료됐을 때 발생하는 오류입니다.",
+      "concept_tags": ["ora_06503"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l4_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "함수 안에서 RETURN 문을 실행하면 어떤 일이 일어납니까?",
+      "options": [
+        "지정한 값을 반환하며 함수의 실행을 즉시 종료한다",
+        "함수를 처음부터 다시 시작한다",
+        "값만 저장해두고 함수는 계속 실행된다",
+        "RETURN은 함수 안에서 아무 효과가 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "RETURN은 값을 반환함과 동시에 함수 실행을 즉시 끝냅니다(RETURN 이후의 코드는 실행되지 않음).",
+      "concept_tags": ["return_statement_behavior"],
+      "difficulty": "intro"
+    }
+  ]
+}

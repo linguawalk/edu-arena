@@ -1,0 +1,124 @@
+{
+ "no": 5,
+ "title": "링크 버짓",
+ "hours": 5,
+ "after": [
+  3,
+  4
+ ],
+ "objectives": [
+  "송신 전력·안테나 이득·손실로 수신 전력을 계산할 수 있다.",
+  "수신 감도와 페이드 마진으로 링크가 성립하는지 판단할 수 있다.",
+  "EIRP의 의미와 규제 상한과의 관계를 설명할 수 있다."
+ ],
+ "checklist": [
+  "수신 전력 P_r = P_t + G_t + G_r − L_path − L_기타 [dB 단위]",
+  "EIRP = P_t + G_t − 급전선 손실",
+  "수신 감도 = 잡음 전력 + 잡음 지수 + 필요 SNR",
+  "페이드 마진 = 수신 전력 − 수신 감도",
+  "가용도 목표와 마진(페이딩, 강우)",
+  "케이블·커넥터 손실, 편파 손실",
+  "링크 버짓 표 작성"
+ ],
+ "advice": [
+  "링크 버짓은 무선 설계의 가계부입니다. 송신 전력에서 시작해 이득은 더하고 손실은 빼서 수신 전력을 구하고, 그것이 수신 감도보다 충분히 큰지(마진) 확인하는 것이 전부입니다. 모든 값을 dB로 바꾸면 곱셈과 나눗셈이 덧셈과 뺄셈이 되므로, 표 한 장에 항목을 적어 내려가는 습관을 들이세요.",
+  "수신 감도는 7단원(통신이론 기초)의 잡음 전력에 잡음 지수와 변조 방식이 요구하는 SNR을 더한 값입니다. 앞 과목의 계산들이 여기서 하나로 모인다는 점을 확인해 보면 과목 사이의 연결이 분명해집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Rappaport, Wireless Communications: Principles and Practice (장 제목으로 표기)",
+   "part": "링크 버짓 관련 절"
+  },
+  {
+   "kind": "book",
+   "provider": "Cambridge University Press",
+   "title": "Goldsmith, Wireless Communications (장 제목으로 표기)",
+   "part": "Path Loss 장의 링크 버짓 예제"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "통신이론 기초 7단원 잡음과 잡음 지수",
+   "url": "guide.html?lv=2&t=ict&s=comm-theory&u=7"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "송신 전력 30 dBm, 송수신 안테나 이득 각 10 dBi, 경로 손실 100 dB이면 수신 전력은 몇 dBm일까요? (기타 손실 없음)",
+   "answer": "-50",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "P_r = 30 + 10 + 10 − 100 = −50 dBm",
+   "hint": "더할 것과 뺄 것을 구분하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 링크의 수신 감도가 −90 dBm이면 페이드 마진은 몇 dB일까요?",
+   "answer": "40",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "마진 = −50 − (−90) = 40 dB",
+   "hint": "수신 전력 − 수신 감도입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "송신 전력 30 dBm, 안테나 이득 10 dBi, 급전선 손실 0 dB이면 EIRP는 몇 dBm일까요?",
+   "answer": "40",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "EIRP = 30 + 10 = 40 dBm",
+   "hint": "P_t + G_t − 급전선 손실입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "링크 버짓에서 페이드 마진을 두는 이유를 설명하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "페이딩",
+      "변동",
+      "다중 경로"
+     ],
+     [
+      "강우",
+      "날씨",
+      "장애물"
+     ],
+     [
+      "여유",
+      "마진"
+     ],
+     [
+      "끊",
+      "가용도",
+      "신뢰"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "실제 수신 전력은 다중 경로 페이딩, 강우, 장애물 때문에 계산값보다 일시적으로 크게 떨어질 수 있습니다. 그래서 수신 감도보다 충분한 여유(페이드 마진)를 두어 이런 변동에도 링크가 끊기지 않고 목표 가용도를 지키게 합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "ict",
+ "subject": "wireless",
+ "id": "l2-ict-wireless-u05"
+}

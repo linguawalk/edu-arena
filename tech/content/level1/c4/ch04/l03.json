@@ -1,0 +1,354 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch04",
+  "no": 4,
+  "title": "명령어 실행 사이클"
+ },
+ "lesson": {
+  "id": "c4-ch04-l03",
+  "no": 3,
+  "title": "분기와 반복",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "PC를 바꾸는 명령어",
+   "body": [
+    "분기 명령어는 PC에 새 주소를 넣어 다음에 실행할 명령어를 바꿉니다. JMP k는 무조건 k번 줄로 건너뜁니다. JNZ k는 바로 앞 계산 결과가 0이 아닐 때만(제로 플래그가 꺼져 있을 때) k번 줄로 건너뛰고, 0이면 다음 줄로 갑니다.",
+    "조건 분기는 ALU의 플래그(챕터 3)를 보고 결정합니다. 이것으로 '만약 ~이면'과 '~하는 동안 되풀이'를 만듭니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "fill_blank",
+   "prompt": "JNZ는 바로 앞 계산 결과가 0이 {{1}} 때 건너뜁니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "아닐",
+      "아닌"
+     ]
+    }
+   ],
+   "hint": "Not Zero의 뜻입니다.",
+   "explanation": "JNZ는 Jump if Not Zero입니다.\n0이면 건너뛰지 않고 다음 줄로 갑니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "반복문",
+   "body": [
+    "다음 프로그램은 A를 3, 2, 1로 줄여 가며 되풀이합니다. 1: MOV A, 3 / 2: SUB A, 1 / 3: JNZ 2 / 4: (끝).",
+    "2번 줄에서 A가 2가 되면 0이 아니므로 2번 줄로 돌아가고, 1이 되면 또 돌아가고, 0이 되면 4번 줄로 나갑니다. 2번 줄은 모두 3번 실행됩니다. 이처럼 카운터를 1씩 줄이다 0이 되면 빠져나오는 모양이 가장 흔한 반복입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "1: MOV A, 5 / 2: SUB A, 1 / 3: JNZ 2 / 4: (끝) 에서 2번 줄은 몇 번 실행될까요?",
+   "steps": [
+    "A는 5 → 4 → 3 → 2 → 1 → 0으로 줄어듭니다.",
+    "1씩 줄 때마다 2번 줄이 한 번 실행됩니다.",
+    "5번 실행된 뒤 A = 0이라 빠져나옵니다."
+   ],
+   "answer": "5번"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "무조건 다른 줄로 건너뛰는 명령어는 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "JMP",
+      "jmp"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "JMP는 조건 없이 PC를 바꿉니다.\n조건 분기는 플래그를 봅니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "1: MOV A, 4 / 2: SUB A, 1 / 3: JNZ 2 / 4: (끝) 에서 2번 줄은 몇 번 실행될까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "A가 4 → 3 → 2 → 1 → 0으로 줄어드는 동안 4번 실행됩니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 프로그램이 끝났을 때 A는 얼마일까요?",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "A가 0이 되어야 JNZ가 건너뛰지 않고 빠져나옵니다.\n그래서 A = 0입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "1: MOV A, 6 / 2: SUB A, 2 / 3: JNZ 2 / 4: (끝) 에서 2번 줄은 몇 번 실행될까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "A가 6 → 4 → 2 → 0으로 줄어듭니다.\n3번 실행됩니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "반복으로 곱셈",
+   "body": [
+    "간단한 CPU에는 곱셈 명령어가 없기도 합니다. 그래도 반복으로 곱셈을 만들 수 있습니다. 다음 프로그램은 3 × 4를 계산합니다.",
+    "1: MOV A, 0 / 2: MOV B, 3 / 3: MOV C, 4 / 4: ADD A, B / 5: SUB C, 1 / 6: JNZ 4 / 7: (끝). C가 4번 줄어드는 동안 A에 B(3)가 4번 더해져 A = 12가 됩니다. (여기서 SUB C, 1은 C에서 1을 뺍니다.)"
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "앞 곱셈 프로그램에서 MOV B, 3을 MOV B, 7로, MOV C, 4를 MOV C, 5로 바꾸면 A는?",
+   "steps": [
+    "C가 5번 줄어드는 동안 A에 7이 5번 더해집니다.",
+    "A = 7 × 5 = 35입니다."
+   ],
+   "answer": "35"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "반복을 몇 번 할지 세는 변수를 줄여 가다 0이 되면 빠져나오는데, 이 변수를 반복 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "카운터"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "카운터가 0이 되면 제로 플래그가 켜져 JNZ가 건너뛰지 않습니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "곱셈 프로그램에서 B = 6, C = 3이면 끝났을 때 A는 얼마일까요?",
+   "answer": "18",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "A에 6이 3번 더해집니다.\n6 × 3 = 18입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "곱셈 프로그램에서 B = 6, C = 3이면 4번 줄(ADD)은 몇 번 실행될까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "C가 3 → 2 → 1 → 0으로 줄어드는 동안 3번 실행됩니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "곱셈 프로그램에서 B = 5, C = 4이면 모두 몇 줄(명령어)이 실행될까요? (7번 끝 줄은 세지 않음)",
+   "answer": "15",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1~3번 줄 3개, 4~6번 줄 3개 × 4번 = 12개입니다.\n합계 15개입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "조건문",
+   "body": [
+    "'만약 A가 0이 아니면 X를 하고, 아니면 건너뛴다' 같은 조건문도 분기로 만듭니다. 조건이 거짓일 때 X 부분을 건너뛰는 분기를 두면 됩니다. 고급 언어의 if, while, for는 모두 이런 분기 명령어로 번역됩니다.",
+    "정리: JMP(무조건), JNZ(0이 아니면), 플래그를 보고 조건 분기, 카운터를 줄이는 반복, 반복으로 곱셈, if·while·for는 분기로 번역"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "고급 언어의 if, while, for는 기계어의 {{1}} 명령어로 번역됩니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "분기"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "분기 명령어가 PC를 바꿔 실행 흐름을 조절합니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "1: MOV A, 3 / 2: MOV B, 0 / 3: ADD B, A / 4: SUB A, 1 / 5: JNZ 3 / 6: (끝) 에서 B는? (ADD B, A는 B ← B + A)",
+   "steps": [
+    "A = 3일 때 B = 3, A = 2일 때 B = 5, A = 1일 때 B = 6입니다.",
+    "그다음 A = 0이 되어 빠져나옵니다.",
+    "B = 3 + 2 + 1 = 6입니다."
+   ],
+   "answer": "6"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 예제에서 MOV A, 3을 MOV A, 5로 바꾸면 끝났을 때 B는 얼마일까요?",
+   "answer": "15",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "A가 줄어드는 동안 B에 A를 더합니다.",
+   "explanation": "B = 5 + 4 + 3 + 2 + 1 = 15입니다.\n1부터 5까지의 합입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 문제에서 3번 줄(ADD)은 몇 번 실행될까요?",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "A가 0이 되기 전까지입니다.",
+   "explanation": "A가 5, 4, 3, 2, 1일 때 한 번씩입니다.\n5번입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "1: MOV A, 10 / 2: SUB A, 3 / 3: JNZ 2 / 4: (끝) 은 어떻게 될까요? A가 처음으로 음수가 되는 값은 얼마일까요?",
+   "answer": "-2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "3씩 빼면서 0이 되는지 확인하세요.",
+   "explanation": "A는 10 → 7 → 4 → 1 → −2 → …로 0을 건너뜁니다.\n처음 음수는 −2이며, 0이 되지 않아 끝나지 않습니다(무한 반복)."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "앞 프로그램처럼 끝나는 조건에 이르지 못해 멈추지 않는 반복을 {{1}} 반복이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "무한",
+      "끝없는"
+     ]
+    }
+   ],
+   "hint": "끝이 없는 반복입니다.",
+   "explanation": "카운터가 0을 건너뛰어 JNZ가 계속 건너뜁니다.\n흔한 프로그램 버그입니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "1: JMP 1 은 자기 자신으로 계속 건너뛰므로 {{1}} 반복입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "무한",
+      "끝없는"
+     ]
+    }
+   ],
+   "hint": "끝나는 조건이 있나요?",
+   "explanation": "조건 없이 자기 자신으로 돌아가므로 영원히 되풀이합니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "카운터를 1씩 줄이고 JNZ로 돌아가는 반복이 정해진 횟수만큼만 실행되고 끝나는 원리를 설명해 보세요.",
+   "hint": "카운터가 0이 되는 순간 JNZ가 어떻게 하는지 쓰세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "카운터",
+      "1씩",
+      "줄"
+     ],
+     [
+      "0"
+     ],
+     [
+      "제로 플래그",
+      "플래그",
+      "JNZ"
+     ],
+     [
+      "빠져",
+      "다음 줄",
+      "끝"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "반복할 때마다 카운터를 1씩 줄이고, JNZ는 결과가 0이 아니면 반복의 처음으로 돌아갑니다. 카운터가 0이 되면 제로 플래그가 켜져 JNZ가 건너뛰지 않으므로 다음 줄로 빠져나옵니다. 그래서 처음 카운터 값만큼만 반복합니다."
+  }
+ ]
+}

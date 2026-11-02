@@ -1,0 +1,104 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 5,
+  "unit": 4,
+  "unit_title": "패키지 종속성과 무효화",
+  "rule_summary_ko": "어떤 객체(예: 패키지 명세부, 테이블)가 변경되면, 그 객체에 의존하는 다른 객체(그 패키지를 사용하는 프로시저 등)는 자동으로 INVALID(무효) 상태가 됩니다. 무효화된 객체는 다음번에 참조될 때 오라클이 자동으로 재컴파일을 시도하며, 오류 없이 재컴파일되면 다시 VALID(유효) 상태가 됩니다. DBA_OBJECTS 뷰의 STATUS 컬럼으로 어떤 객체가 무효 상태인지 확인할 수 있습니다.",
+  "examples": [
+    { "code": "ALTER TABLE employees ADD (bonus NUMBER); -- 테이블 구조 변경\n-- employees를 참조하는 프로시저들이 자동으로 INVALID가 될 수 있음", "note_ko": "테이블이 바뀌면, 그 테이블에 의존하던 PL/SQL 객체들이 자동으로 무효화됨" },
+    { "code": "SELECT owner, object_name, status FROM dba_objects WHERE status != 'VALID';", "note_ko": "현재 무효 상태인 객체들을 조회하는 표준적인 방법" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l5_u4_q001",
+      "type": "concept_matching_item",
+      "code": "-- pkg_a의 명세부를 CREATE OR REPLACE로 변경\n-- pkg_b는 내부에서 pkg_a의 공개 프로시저를 호출함",
+      "prompt_ko": "pkg_a의 명세부가 변경되면, pkg_a에 의존하는 pkg_b는 어떻게 됩니까?",
+      "options": [
+        "아무 영향도 받지 않는다",
+        "자동으로 INVALID(무효) 상태로 표시된다 — 의존 대상이 바뀌면 그 객체를 사용하는 종속 객체들도 무효화된다",
+        "pkg_b가 자동으로 삭제된다",
+        "pkg_a의 이름이 pkg_b로 바뀐다"
+      ],
+      "answer": 1,
+      "explanation_ko": "오라클은 객체 간 의존성을 추적해서, 참조 대상이 바뀌면 관련된 종속 객체를 자동으로 무효화합니다.",
+      "concept_tags": ["dependency_invalidation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l5_u4_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "무효(INVALID) 상태가 된 객체가 다시 참조될 때는 어떻게 됩니까?",
+      "options": [
+        "영원히 사용할 수 없다",
+        "오라클이 자동으로 재컴파일을 시도하며, 오류 없이 성공하면 다시 유효(VALID) 상태가 된다",
+        "수동으로 DROP한 뒤 처음부터 다시 만들어야 한다",
+        "재컴파일은 DBA만 할 수 있고 자동으로는 절대 되지 않는다"
+      ],
+      "answer": 1,
+      "explanation_ko": "이를 '주문형 자동 재컴파일(on-demand automatic recompilation)'이라 하며, 개발자가 매번 수동으로 재컴파일할 필요가 없게 해줍니다.",
+      "concept_tags": ["automatic_recompilation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l5_u4_q003",
+      "type": "fill_blank",
+      "code": "SELECT owner, object_name, status FROM dba_objects WHERE status != 'VALID';",
+      "prompt_ko": "이 쿼리는 무엇을 조회합니까? (한글로 간단히 입력, 예: OO 상태인 객체 목록)",
+      "expected_answers": ["무효 상태인 객체 목록", "무효한 객체 목록"],
+      "explanation_ko": "STATUS가 'VALID'가 아닌(즉 무효한) 모든 객체를 조회하는 표준적인 방법입니다.",
+      "concept_tags": ["dba_objects_status"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l5_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "재컴파일을 시도했지만 오류가 발생하면 그 객체는 어떻게 됩니까?",
+      "options": [
+        "자동으로 이전 버전으로 복원된다",
+        "여전히 INVALID(무효) 상태로 남는다 — 오류의 원인을 해결해야 재컴파일이 성공해서 유효 상태가 될 수 있다",
+        "오라클이 자동으로 오류를 무시하고 유효 처리한다",
+        "데이터베이스 전체가 손상된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "재컴파일이 실패하면 그 객체는 계속 무효 상태로 남아, 근본 원인(예: 참조하는 테이블이 삭제됨)을 고쳐야 합니다.",
+      "concept_tags": ["recompilation_failure"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l5_u4_q005",
+      "type": "concept_matching_item",
+      "code": "-- employees 테이블에 새로운 컬럼(bonus)만 추가\n-- 어떤 프로시저도 이 새 컬럼을 참조하지 않음",
+      "prompt_ko": "새 컬럼을 추가했지만, 어떤 종속 객체도 그 컬럼을 실제로 사용(참조)하지 않는다면?",
+      "options": [
+        "관련 없는 모든 객체가 무조건 무효화된다",
+        "의존성에 실제로 관련된 요소가 바뀌지 않았다면, 종속 객체는 무효화되지 않고 그대로 유효 상태를 유지할 수 있다",
+        "테이블 자체가 삭제된다",
+        "새 컬럼이 자동으로 제거된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "오라클은 실제로 의존 관계에 관련된 요소가 바뀌었는지를 세밀하게 추적해서, 무관한 변경은 불필요한 무효화를 일으키지 않습니다.",
+      "concept_tags": ["fine_grained_dependency"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l5_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "대량의 무효 객체를 한 번에 재컴파일하고 싶을 때 사용할 수 있는 오라클 제공 패키지는?",
+      "options": [
+        "UTL_RECOMP — 데이터베이스(또는 특정 스키마)의 무효 객체들을 일괄(직렬 또는 병렬로) 재컴파일해준다",
+        "DBMS_OUTPUT", "DBMS_RANDOM", "UTL_FILE"
+      ],
+      "answer": 0,
+      "explanation_ko": "UTL_RECOMP는 대규모 업그레이드·패치 이후 대량의 무효 객체를 효율적으로 재컴파일할 때 사용하는 표준 패키지입니다.",
+      "concept_tags": ["utl_recomp"],
+      "difficulty": "challenge"
+    }
+  ]
+}

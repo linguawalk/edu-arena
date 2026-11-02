@@ -1,0 +1,111 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "cisco",
+  "exam": "ccna-200-301",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "STP: 스패닝 트리 프로토콜",
+  "rule_summary_ko": "STP(스패닝 트리 프로토콜)는 이중화된 스위치 연결에서 생기는 2계층 루프(브로드캐스트 스톰의 원인)를 막기 위해, 중복 경로 중 하나를 논리적으로 차단합니다. 루트 브리지는 가장 낮은 브리지 ID(우선순위+MAC 주소)를 가진 스위치가 선출됩니다. 보안 기능들의 역할이 서로 다릅니다: BPDU Guard는 PortFast가 설정된 포트에 BPDU가 들어오면 그 포트를 즉시 비활성화(err-disable)하고, Root Guard는 지정된 포트가 루트 포트가 되는 것을 막아 더 우수한(낮은) BPDU가 와도 그 포트를 차단 상태로 만들며, Loop Guard는 단방향 링크 장애로 BPDU 수신이 끊겼을 때 포트가 잘못 포워딩 상태로 전환되는 것을 막습니다.",
+  "examples": [
+    { "code": "PC에 리눅스 브리징 프로그램을 실행해서 낮은 우선순위의 BPDU를 보냄", "note_ko": "BPDU Guard가 없으면 이 PC가 루트 브리지로 선출되어 전체 토폴로지가 붕괴할 수 있음 — BPDU Guard로 이런 포트를 즉시 차단해야 함" }
+  ],
+  "questions": [
+    {
+      "id": "ccna_l2_u3_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "STP(스패닝 트리 프로토콜)가 존재하는 근본적인 이유는?",
+      "options": [
+        "이더넷 프레임에는 TTL이 없어서, 이중화된 연결에서 생기는 2계층 루프가 브로드캐스트를 무한 반복시켜 네트워크를 마비시킬 수 있는 것을 방지하기 위해",
+        "IP 주소를 자동으로 할당하기 위해",
+        "무선 네트워크의 채널을 관리하기 위해",
+        "VLAN 태그를 삽입하기 위해"
+      ],
+      "answer": 0,
+      "explanation_ko": "STP는 중복 경로 중 일부를 논리적으로 차단해서 루프 없는 트리 구조를 만듭니다.",
+      "concept_tags": ["stp_purpose"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "ccna_l2_u3_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "STP에서 루트 브리지(root bridge)는 어떻게 선출됩니까?",
+      "options": [
+        "가장 낮은 브리지 ID(우선순위+MAC 주소)를 가진 스위치가 루트 브리지로 선출된다",
+        "가장 높은 브리지 ID를 가진 스위치가 선출된다(설명이 반대)",
+        "가장 먼저 켜진 스위치가 항상 루트 브리지가 된다",
+        "루트 브리지는 관리자가 수동으로만 지정할 수 있고 자동 선출은 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "브리지 ID가 낮을수록 우선순위가 높아, 가장 낮은 값을 가진 스위치가 루트로 선출됩니다.",
+      "concept_tags": ["root_bridge_election"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l2_u3_q003",
+      "type": "concept_matching_item",
+      "code": "PC에 리눅스 브리징 프로그램을 실행해서, 매우 낮은 우선순위 값을 담은 BPDU를 실수로(혹은 악의적으로) 전송함",
+      "prompt_ko": "이런 위협을 막기 위해 액세스 포트에 설정해야 하는 기능은?",
+      "options": [
+        "BPDU Guard — PortFast가 설정된 포트에 BPDU가 들어오면 즉시 그 포트를 비활성화(err-disable)한다",
+        "STP 자체를 완전히 비활성화한다",
+        "이런 위협은 막을 방법이 없다",
+        "VLAN을 추가로 생성한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "일반 PC가 연결된 포트에서 BPDU가 들어온다는 것 자체가 비정상 상황이라, BPDU Guard가 즉시 포트를 차단합니다.",
+      "concept_tags": ["bpdu_guard"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l2_u3_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Root Guard가 하는 역할은?",
+      "options": [
+        "특정 포트에 더 우수한(낮은) BPDU가 들어와도, 그 포트가 루트 포트가 되는 것을 막고 대신 차단(root-inconsistent) 상태로 만든다",
+        "모든 BPDU를 무조건 차단한다",
+        "포트를 항상 포워딩 상태로 강제 전환한다",
+        "Root Guard는 VLAN 태깅과 관련된 기능이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Root Guard는 미리 정한 루트 브리지가 의도치 않게 바뀌는 것을 막는 안전장치입니다.",
+      "concept_tags": ["root_guard"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l2_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Loop Guard가 대응하는 대표적인 장애 상황은?",
+      "options": [
+        "단방향 링크 장애로 BPDU 수신이 끊겼을 때, 포트가 이를 '경로가 사라졌다'고 오판하고 잘못 포워딩 상태로 전환해서 루프가 생기는 것",
+        "정상적으로 모든 BPDU가 잘 수신되는 상황",
+        "VLAN 태그가 손상된 경우",
+        "IP 주소가 중복된 경우"
+      ],
+      "answer": 0,
+      "explanation_ko": "Loop Guard는 BPDU 수신이 끊긴 포트를 안전하게 비포워딩 상태로 유지시켜 줍니다.",
+      "concept_tags": ["loop_guard"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l2_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "BPDU Guard와 Root Guard의 차이를 가장 정확히 설명한 것은?",
+      "options": [
+        "BPDU Guard는 (보통 PortFast 포트에서) BPDU 수신 자체를 비정상으로 간주해 포트를 완전히 차단하지만, Root Guard는 BPDU 수신은 허용하되 그 포트가 루트 포트가 되는 것만 막는다",
+        "둘은 완전히 동일한 기능을 하는 중복 기능이다",
+        "BPDU Guard는 루트 브리지 선출만 막고, Root Guard는 포트 자체를 차단한다(설명이 반대)",
+        "BPDU Guard와 Root Guard는 STP와 전혀 무관한 기능이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "BPDU Guard는 'BPDU가 오면 안 되는 곳'에, Root Guard는 'BPDU는 오지만 루트가 되면 안 되는 곳'에 사용하는 서로 다른 목적의 기능입니다.",
+      "concept_tags": ["bpdu_guard_vs_root_guard"],
+      "difficulty": "challenge"
+    }
+  ]
+}

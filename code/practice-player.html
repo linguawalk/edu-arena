@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODE ARENA — 실습</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/php/php.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/ruby/ruby.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/rust/rust.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/r/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/shell/shell.min.js"></script>
+<style>
+  :root{
+    --bg: #f4f7fc;
+    --panel: #ffffff;
+    --panel-2: #eef2fa;
+    --border: rgba(30,50,90,0.12);
+    --text: #172038;
+    --text-dim: #5c6680;
+    --text-dimmer: #93a0b8;
+    --accent: #0284c7;
+    --good: #15803d;
+    --bad: #dc2626;
+    --warn: #b45309;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(2,132,199,0.06), transparent 45%),
+      radial-gradient(circle at 90% 10%, rgba(21,128,61,0.05), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family:'IBM Plex Sans KR', sans-serif;
+    line-height:1.6;
+  }
+  code, .mono, pre { font-family:'IBM Plex Mono', monospace; }
+  a { color: inherit; }
+
+  .wrap{ max-width: 1180px; margin:0 auto; padding: 28px 22px 100px; }
+
+  .topbar{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom: 20px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .topbar a.back{
+    color: var(--text-dim);
+    text-decoration:none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 12px;
+  }
+  .topbar a.back:hover{ border-color: var(--accent); color: var(--text); }
+
+  .meta{ margin-bottom: 16px; }
+  .meta .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 11.5px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .meta h1{ font-size: 20px; margin: 0; font-weight:600; }
+
+  .progress-track{
+    height: 6px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow:hidden;
+    margin-bottom: 22px;
+  }
+  .progress-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--accent), var(--good));
+    width:0%;
+    transition: width 0.25s ease;
+  }
+
+  /* ---------- backend not configured banner ---------- */
+  .backend-warning{
+    background: rgba(180,83,9,0.08);
+    border: 1px solid rgba(180,83,9,0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--warn);
+    margin-bottom: 20px;
+    display:none;
+  }
+  .backend-warning.show{ display:block; }
+  .backend-warning code{ background: rgba(180,83,9,0.12); padding: 1px 6px; border-radius: 4px; }
+
+  .layout{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 900px){
+    .layout{ grid-template-columns: 1fr; }
+  }
+
+  .panel{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 20px 18px;
+  }
+
+  .qhead{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom: 14px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 12px;
+    color: var(--text-dimmer);
+  }
+  .badge{
+    display:inline-block;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 11px;
+    border: 1px solid var(--border);
+  }
+  .badge.intro{ color: var(--good); border-color: rgba(21,128,61,0.35); }
+  .badge.practice{ color: var(--accent); border-color: rgba(2,132,199,0.35); }
+  .badge.challenge{ color: var(--warn); border-color: rgba(180,83,9,0.35); }
+
+  .prompt-title{ font-size: 15.5px; font-weight:600; margin: 0 0 8px; }
+  .prompt-text{ font-size: 14px; color: var(--text-dim); white-space: pre-wrap; margin-bottom: 14px; }
+
+  .editor-wrap{
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow:hidden;
+    margin-bottom: 12px;
+  }
+  .CodeMirror{ height: 320px; font-family:'IBM Plex Mono',monospace; font-size: 13.5px; }
+
+  .btnrow{ display:flex; gap: 10px; margin-bottom: 4px; }
+  button.action{
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 13px;
+    font-weight:600;
+    border-radius: 9px;
+    padding: 10px 18px;
+    cursor:pointer;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+  }
+  button.action:hover:not(:disabled){ border-color: var(--accent); }
+  button.action:disabled{ opacity: 0.4; cursor:default; }
+  button.action.primary{ background: var(--accent); color:#fff; border:none; }
+  button.action.primary:hover:not(:disabled){ filter: brightness(1.08); }
+  button.action.reset{ margin-left:auto; }
+
+  .output-panel{ display:flex; flex-direction:column; }
+  .output-title{
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 12px;
+    color: var(--text-dimmer);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .console{
+    background: #060911;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #cfe3ff;
+    white-space: pre-wrap;
+    word-break: break-word;
+    min-height: 90px;
+    max-height: 160px;
+    overflow-y:auto;
+    margin-bottom: 16px;
+  }
+  .console.empty{ color: #4a5570; font-style: italic; }
+
+  .test-results{ display:flex; flex-direction:column; gap: 8px; }
+  .test-case{
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  .test-case-head{ display:flex; justify-content:space-between; align-items:center; }
+  .test-case.pass{ border-color: rgba(21,128,61,0.35); background: rgba(21,128,61,0.05); }
+  .test-case.fail{ border-color: rgba(220,38,38,0.35); background: rgba(220,38,38,0.05); }
+  .test-case.pending{ opacity: 0.55; }
+  .verdict-icon{ font-family:'IBM Plex Mono',monospace; font-weight:700; }
+  .test-case.pass .verdict-icon{ color: var(--good); }
+  .test-case.fail .verdict-icon{ color: var(--bad); }
+  .test-case-detail{
+    margin-top: 8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    display:none;
+  }
+  .test-case.fail .test-case-detail{ display:block; }
+  .test-case-detail .row{ margin-bottom: 4px; white-space: pre-wrap; word-break: break-word; }
+  .test-case-detail .lbl{ color: var(--text-dimmer); }
+
+  .submit-summary{
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 13px;
+    display:none;
+  }
+  .submit-summary.show{ display:block; }
+  .submit-summary.all-pass{ color: var(--good); }
+  .submit-summary.some-fail{ color: var(--bad); }
+
+  .navbar{
+    display:flex; justify-content:space-between;
+    margin-top: 20px;
+  }
+  button.primary{
+    font-family:'IBM Plex Mono',monospace;
+    background: var(--accent);
+    color: #ffffff;
+    border:none;
+    border-radius: 9px;
+    padding: 11px 22px;
+    font-size: 13.5px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  button.primary:hover:not(:disabled){ filter: brightness(1.08); }
+  button.primary:disabled{ opacity:0.35; cursor:default; }
+  button.ghost{
+    font-family:'IBM Plex Mono',monospace;
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 11px 22px;
+    font-size: 13.5px;
+    cursor:pointer;
+  }
+  button.ghost:disabled{ opacity:0.35; cursor:default; }
+
+  .result{ text-align:center; padding: 50px 20px 20px; }
+  .result .score{ font-family:'IBM Plex Mono',monospace; font-size: 56px; font-weight:700; }
+  .result .score small{ font-size: 20px; color: var(--text-dimmer); font-weight:500; }
+  .result .msg{ color: var(--text-dim); margin: 10px 0 34px; }
+  .result-actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .result-actions a, .result-actions button{
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 13px;
+    text-decoration:none;
+    border-radius: 9px;
+    padding: 11px 20px;
+    cursor:pointer;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+  }
+  .result-actions .go-next{ background: var(--accent); color:#ffffff; border:none; font-weight:600; }
+
+  .loading, .error-state{
+    text-align:center;
+    padding: 80px 20px;
+    color: var(--text-dim);
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 14px;
+  }
+  .error-state .big{ font-size: 32px; margin-bottom: 14px; }
+
+  .spinner{
+    display:inline-block; width:13px; height:13px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius:50%;
+    animation: spin 0.7s linear infinite;
+    margin-right: 8px;
+    vertical-align: -2px;
+  }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" id="backLink" href="browse.html">← 돌아가기</a>
+    <span id="fileTag"></span>
+  </div>
+
+  <div id="app">
+    <div class="loading">문제를 불러오는 중…</div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   실행 백엔드 설정
+   ------------------------------------------------------------
+   Judge0를 자체 호스팅하거나 Piston 인증키를 발급받으면,
+   아래 두 값만 채우면 바로 작동합니다. 그 전까지는 "실행 서버
+   준비 중" 안내만 표시되고, 문제 열람과 코드 편집은 정상 작동합니다.
+
+   [Piston 인증 API를 쓰는 경우]
+     PISTON_API_URL: 'https://emkc.org/api/v2/piston/execute'
+     PISTON_API_KEY: EngineerMan에게 발급받은 키 문자열
+
+   [Judge0를 자체 호스팅하는 경우]
+     이 파일의 executeViaPiston() 함수를 Judge0 REST 형식에
+     맞게 바꿔야 합니다(요청/응답 포맷이 다름). 엔드포인트 URL을
+     PISTON_API_URL 자리에 넣고, executeViaPiston 내부의
+     요청 바디와 응답 파싱 부분을 Judge0 스펙으로 교체하세요.
+   ============================================================ */
+const PISTON_API_URL = '';   // 예: 'https://emkc.org/api/v2/piston/execute'
+const PISTON_API_KEY = '';   // 예: 'abcdef123456' (없으면 빈 문자열로 둘 것)
+
+const BACKEND_CONFIGURED = PISTON_API_URL.trim().length > 0;
+
+/* ============================================================ */
+
+const params = new URLSearchParams(location.search);
+const FILE  = params.get('file');
+const TITLE = params.get('title');
+const NEXT  = params.get('next');
+const BACK  = params.get('back');
+
+if (BACK) document.getElementById('backLink').href = BACK;
+if (FILE) document.getElementById('fileTag').textContent = FILE;
+
+const app = document.getElementById('app');
+
+// piston_language 값 -> CodeMirror 모드 매핑 (없으면 기본 텍스트)
+const CM_MODE_MAP = {
+  python: 'python', c: 'text/x-csrc', 'c++': 'text/x-c++src', java: 'text/x-java',
+  csharp: 'text/x-csharp', javascript: 'javascript', rust: 'rust', php: 'php',
+  ruby: 'ruby', rscript: 'r', sqlite3: 'sql', 'basic.net': 'text/x-vb',
+  basic: null, pascal: null, fortran: null, cobol: null
+};
+
+let unitData = null;
+let unitTitle = '';
+let idx = 0;
+let editor = null;
+let exerciseResults = []; // per-exercise: 'unattempted' | 'pass' | 'fail'
+let lastRunPassed = null; // 현재 문제의 마지막 채점 결과(all pass?) — 다음으로 넘어갈 때 사용
+
+async function init() {
+  if (!FILE) {
+    app.innerHTML = `<div class="error-state"><div class="big">⚠</div>파일 경로가 지정되지 않았습니다.<br><span style="opacity:.6">practice-player.html?file=경로/파일.json</span></div>`;
+    return;
+  }
+  try {
+    const res = await fetch(FILE);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    unitData = await res.json();
+    unitTitle = TITLE || unitData.unit_title || `${unitData.language} · Level ${unitData.level} Unit ${unitData.unit}`;
+    if (!Array.isArray(unitData.exercises) || unitData.exercises.length === 0) {
+      throw new Error('문제가 비어 있습니다.');
+    }
+    exerciseResults = unitData.exercises.map(() => 'unattempted');
+    renderExercise();
+  } catch (err) {
+    app.innerHTML = `<div class="error-state"><div class="big">⚠</div>불러오지 못했습니다.<br><span style="opacity:.6">${err.message}</span><br><br><span style="opacity:.5;font-size:12px">경로: ${FILE}</span></div>`;
+  }
+}
+
+function currentExercise() {
+  return unitData.exercises[idx];
+}
+
+function normalizeTestCases(ex) {
+  // sql 모드: exercise 자체가 단일 테스트케이스(setup_sql + expected_stdout)
+  if (unitData.mode === 'sql') {
+    return [{
+      stdin: '',
+      setup_sql: ex.setup_sql || '',
+      expected_stdout: ex.expected_stdout,
+      match: 'exact'
+    }];
+  }
+  // stdin_stdout / stdin_stdout_contains: test_cases 배열
+  return (ex.test_cases || []).map(tc => ({
+    stdin: tc.stdin || '',
+    setup_sql: '',
+    expected_stdout: tc.expected_stdout,
+    expected_contains: tc.expected_contains,
+    match: unitData.mode === 'stdin_stdout_contains' ? 'contains' : 'exact'
+  }));
+}
+
+function renderExercise() {
+  const ex = currentExercise();
+  const pct = Math.round((idx / unitData.exercises.length) * 100);
+  const testCases = normalizeTestCases(ex);
+  const cmMode = CM_MODE_MAP[unitData.piston_language] || null;
+
+  app.innerHTML = `
+    <div class="meta">
+      <div class="eyebrow">${escapeHtml(unitTitle)}</div>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+
+    <div class="backend-warning ${BACKEND_CONFIGURED ? '' : 'show'}" id="backendWarning">
+      실행 서버가 아직 연결되지 않았습니다. 코드는 편집할 수 있지만 실행·채점은 <code>PISTON_API_URL</code>이 설정된 뒤에 가능합니다.
+    </div>
+
+    <div class="qhead">
+      <span>문제 ${idx + 1} / ${unitData.exercises.length}</span>
+      <span class="badge ${ex.difficulty || 'practice'}">${ex.difficulty || 'practice'}</span>
+    </div>
+
+    <div class="layout">
+      <div class="panel">
+        <div class="prompt-title">${escapeHtml(ex.title_ko || '')}</div>
+        <div class="prompt-text">${escapeHtml(ex.prompt_ko || '')}</div>
+        <div class="editor-wrap"><textarea id="codeArea"></textarea></div>
+        <div class="btnrow">
+          <button class="action" id="runBtn" ${BACKEND_CONFIGURED ? '' : 'disabled'}>실행</button>
+          <button class="action primary" id="submitBtn" ${BACKEND_CONFIGURED ? '' : 'disabled'}>제출(채점)</button>
+          <button class="action reset" id="resetBtn">초기 코드로</button>
+        </div>
+      </div>
+
+      <div class="panel output-panel">
+        <div class="output-title">실행 결과(직접 실행)</div>
+        <div class="console empty" id="runConsole">아직 실행하지 않았습니다.</div>
+
+        <div class="output-title">테스트 케이스</div>
+        <div class="test-results" id="testResults"></div>
+        <div class="submit-summary" id="submitSummary"></div>
+      </div>
+    </div>
+
+    <div class="navbar">
+      <button class="ghost" id="prevBtn" ${idx === 0 ? 'disabled' : ''}>← 이전 문제</button>
+      <button class="primary" id="nextBtn">${idx === unitData.exercises.length - 1 ? '완료' : '다음 문제 →'}</button>
+    </div>
+  `;
+
+  // CodeMirror 에디터 초기화
+  const textarea = document.getElementById('codeArea');
+  editor = CodeMirror.fromTextArea(textarea, {
+    value: ex.starter_code || '',
+    lineNumbers: true,
+    theme: 'dracula',
+    mode: cmMode,
+    indentUnit: 4,
+    tabSize: 4,
+    matchBrackets: true
+  });
+  editor.setValue(ex.starter_code || '');
+
+  renderTestCaseSkeleton(testCases);
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    editor.setValue(ex.starter_code || '');
+  });
+
+  if (BACKEND_CONFIGURED) {
+    document.getElementById('runBtn').addEventListener('click', () => runOnce(testCases));
+    document.getElementById('submitBtn').addEventListener('click', () => submitAll(testCases));
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    if (idx > 0) { idx--; renderExercise(); window.scrollTo({top:0, behavior:'smooth'}); }
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    if (idx < unitData.exercises.length - 1) {
+      idx++;
+      renderExercise();
+      window.scrollTo({top:0, behavior:'smooth'});
+    } else {
+      renderFinalResult();
+    }
+  });
+}
+
+function renderTestCaseSkeleton(testCases) {
+  const container = document.getElementById('testResults');
+  container.innerHTML = testCases.map((tc, i) => `
+    <div class="test-case pending" data-tc="${i}">
+      <div class="test-case-head">
+        <span>테스트 ${i + 1}</span>
+        <span class="verdict-icon">—</span>
+      </div>
+      <div class="test-case-detail"></div>
+    </div>
+  `).join('');
+}
+
+// 단일 실행(첫 테스트케이스의 stdin으로 실행해서 결과만 눈으로 확인, 채점은 아님)
+async function runOnce(testCases) {
+  const runBtn = document.getElementById('runBtn');
+  const consoleEl = document.getElementById('runConsole');
+  const code = editor.getValue();
+  const tc = testCases[0] || { stdin: '', setup_sql: '' };
+
+  runBtn.disabled = true;
+  runBtn.innerHTML = '<span class="spinner"></span>실행 중';
+  consoleEl.classList.remove('empty');
+  consoleEl.textContent = '실행 중…';
+
+  try {
+    const result = await executeViaPiston(code, tc.stdin, tc.setup_sql);
+    consoleEl.textContent = formatRunOutput(result);
+  } catch (err) {
+    consoleEl.textContent = '오류: ' + err.message;
+  } finally {
+    runBtn.disabled = false;
+    runBtn.textContent = '실행';
+  }
+}
+
+// 전체 테스트케이스 채점
+async function submitAll(testCases) {
+  const submitBtn = document.getElementById('submitBtn');
+  const runBtn = document.getElementById('runBtn');
+  const summary = document.getElementById('submitSummary');
+  const code = editor.getValue();
+
+  submitBtn.disabled = true;
+  runBtn.disabled = true;
+  submitBtn.innerHTML = '<span class="spinner"></span>채점 중';
+  summary.classList.remove('show', 'all-pass', 'some-fail');
+  summary.textContent = '';
+
+  let passCount = 0;
+
+  for (let i = 0; i < testCases.length; i++) {
+    const tc = testCases[i];
+    const caseEl = document.querySelector(`.test-case[data-tc="${i}"]`);
+    caseEl.classList.remove('pending', 'pass', 'fail');
+    caseEl.querySelector('.verdict-icon').textContent = '⋯';
+
+    try {
+      const result = await executeViaPiston(code, tc.stdin, tc.setup_sql);
+      const actual = (result.run && result.run.stdout) || '';
+      const expected = tc.match === 'contains' ? tc.expected_contains : tc.expected_stdout;
+      const passed = tc.match === 'contains'
+        ? actual.includes(expected)
+        : actual === expected;
+
+      if (passed) passCount++;
+      caseEl.classList.add(passed ? 'pass' : 'fail');
+      caseEl.querySelector('.verdict-icon').textContent = passed ? '✓ 통과' : '✗ 실패';
+
+      if (!passed) {
+        const detail = caseEl.querySelector('.test-case-detail');
+        detail.innerHTML = `
+          ${tc.stdin ? `<div class="row"><span class="lbl">입력:</span> ${escapeHtml(tc.stdin)}</div>` : ''}
+          <div class="row"><span class="lbl">기대:</span> ${escapeHtml(expected)}</div>
+          <div class="row"><span class="lbl">실제:</span> ${escapeHtml(actual)}</div>
+          ${result.run && result.run.stderr ? `<div class="row"><span class="lbl">stderr:</span> ${escapeHtml(result.run.stderr)}</div>` : ''}
+        `;
+      }
+    } catch (err) {
+      caseEl.classList.add('fail');
+      caseEl.querySelector('.verdict-icon').textContent = '✗ 오류';
+      caseEl.querySelector('.test-case-detail').innerHTML = `<div class="row">${escapeHtml(err.message)}</div>`;
+    }
+  }
+
+  const allPass = passCount === testCases.length;
+  exerciseResults[idx] = allPass ? 'pass' : 'fail';
+  lastRunPassed = allPass;
+
+  summary.classList.add('show', allPass ? 'all-pass' : 'some-fail');
+  summary.textContent = allPass
+    ? `전체 통과 (${passCount}/${testCases.length})`
+    : `${passCount}/${testCases.length} 통과 — 실패한 테스트를 확인하세요`;
+
+  submitBtn.disabled = false;
+  runBtn.disabled = false;
+  submitBtn.textContent = '제출(채점)';
+}
+
+function formatRunOutput(result) {
+  const run = result.run || {};
+  let out = '';
+  if (result.compile && result.compile.stderr) {
+    out += '[컴파일 오류]\n' + result.compile.stderr + '\n';
+  }
+  out += run.stdout || '';
+  if (run.stderr) out += (out ? '\n' : '') + '[stderr]\n' + run.stderr;
+  return out || '(출력 없음)';
+}
+
+/* ============================================================
+   Piston 실행 함수
+   sql 모드에서는 setup_sql(테이블 생성/데이터 삽입)을 학생 코드
+   앞에 이어붙여서 하나의 스크립트로 실행합니다(sqlite3 런타임은
+   파일 내용을 SQL 스크립트로 그대로 실행).
+   ============================================================ */
+async function executeViaPiston(code, stdin, setupSql) {
+  const fileContent = setupSql ? (setupSql + '\n' + code) : code;
+
+  const headers = { 'Content-Type': 'application/json' };
+  if (PISTON_API_KEY) headers['Authorization'] = PISTON_API_KEY;
+
+  const res = await fetch(PISTON_API_URL, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      language: unitData.piston_language,
+      version: unitData.piston_version || '*',
+      files: [{ content: fileContent }],
+      stdin: stdin || ''
+    })
+  });
+
+  if (!res.ok) {
+    const body = await res.text().catch(() => '');
+    throw new Error(`실행 서버 오류(HTTP ${res.status}) ${body}`);
+  }
+  return res.json();
+}
+
+function renderFinalResult() {
+  const total = exerciseResults.length;
+  const passed = exerciseResults.filter(r => r === 'pass').length;
+  const attempted = exerciseResults.filter(r => r !== 'unattempted').length;
+
+  let msg;
+  if (!BACKEND_CONFIGURED) {
+    msg = '실행 서버가 연결되면 채점 결과를 확인할 수 있습니다.';
+  } else if (passed === total) {
+    msg = '모든 문제를 통과했습니다.';
+  } else if (attempted === 0) {
+    msg = '아직 채점을 시도하지 않았습니다.';
+  } else {
+    msg = '통과하지 못한 문제를 다시 확인해보세요.';
+  }
+
+  app.innerHTML = `
+    <div class="panel result">
+      <div class="score">${passed}<small> / ${total}</small></div>
+      <div class="msg">${msg}</div>
+      <div class="result-actions">
+        <button onclick="location.reload()">처음부터 다시</button>
+        <a href="${BACK || 'browse.html'}">목록으로</a>
+        ${NEXT ? `<a class="go-next" href="${NEXT}">다음 유닛 →</a>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+init();
+</script>
+<script src="../assets/family-bar.js" defer></script>
+</body>
+</html>

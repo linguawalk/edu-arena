@@ -1,0 +1,92 @@
+{
+  "language": "csharp",
+  "category": "oop_enterprise",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "형변환",
+  "questions": [
+    {
+      "id": "csharp_l1_u04_q001",
+      "type": "predict_output",
+      "code": "double d = 3.9;\nint i = (int)d;\nConsole.WriteLine(i);",
+      "prompt_en": "What is printed? (Compare with VB's CInt, which rounds.)",
+      "prompt_ko": "출력 결과는? (반올림하는 VB의 CInt와 비교해보세요.)",
+      "options": ["4", "3", "3.9", "오류"],
+      "answer": 1,
+      "explanation_en": "Unlike VB's CInt which rounds, C#'s explicit (int) cast truncates the decimal part entirely; 3.9 becomes 3.",
+      "explanation_ko": "반올림하는 VB의 CInt와 달리, C#의 명시적 (int) 캐스팅은 소수점을 완전히 버립니다. 3.9는 3이 됩니다.",
+      "concept_tags": ["explicit_cast", "truncation"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l1_u04_q002",
+      "type": "predict_output",
+      "code": "int a = 10;\ndouble b = a;\nConsole.WriteLine(b);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "10.0", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "Converting int to double is a safe implicit conversion (no data loss possible), so no cast is needed; C#'s console prints the whole-number double as 10.",
+      "explanation_ko": "int에서 double로의 변환은 데이터 손실 없이 안전한 암묵적 변환이라 캐스팅이 필요 없습니다. C# 콘솔은 정수값 double을 10으로 출력합니다.",
+      "concept_tags": ["implicit_cast"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l1_u04_q003",
+      "type": "error_finding",
+      "code": "double d = 3.9;\nint i = d;",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "d 선언 문법 오류",
+        "double을 int로 바꾸면 정밀도를 잃을 수 있어서, 명시적 (int) 캐스팅 없이는 컴파일 오류가 발생함",
+        "i 선언 문법 오류",
+        "문제 없음, 자동으로 4로 반올림됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Converting double to int can lose data (the decimal part), so C# requires an explicit cast to acknowledge this; without (int), the compiler rejects the implicit narrowing conversion.",
+      "explanation_ko": "double을 int로 바꾸면 데이터(소수점 부분)를 잃을 수 있어서, C#은 이를 명시적으로 인지하도록 캐스팅을 요구합니다. (int) 없이는 컴파일러가 암묵적인 축소 변환을 거부합니다.",
+      "concept_tags": ["explicit_cast", "narrowing_conversion"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l1_u04_q004",
+      "type": "predict_output",
+      "code": "int x = 300;\nbyte b = (byte)x;\nConsole.WriteLine(b);",
+      "prompt_en": "What is printed? (byte can only hold 0-255.)",
+      "prompt_ko": "출력 결과는? (byte는 0~255만 담을 수 있습니다.)",
+      "options": ["300", "255", "44", "오류"],
+      "answer": 2,
+      "explanation_en": "Casting 300 to byte overflows the type's range; the value wraps around using modulo 256, giving 300 % 256 = 44.",
+      "explanation_ko": "300을 byte로 캐스팅하면 타입의 범위를 초과합니다. 값은 256으로 나눈 나머지를 사용해 감싸지며, 300 % 256 = 44가 됩니다.",
+      "concept_tags": ["explicit_cast", "overflow"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l1_u04_q005",
+      "type": "fill_blank",
+      "code": "string s = \"42\";\nint n = ____.ToInt32(s);\nConsole.WriteLine(n);",
+      "prompt_en": "Fill in the blank with the class that provides safe type conversion methods.",
+      "prompt_ko": "안전한 타입 변환 메서드를 제공하는 클래스를 빈칸에 채우세요.",
+      "options": ["Convert", "Cast", "Parse", "Type"],
+      "answer": 0,
+      "explanation_en": "The Convert class provides methods like ToInt32 for explicitly converting between types, commonly used for string-to-number conversions.",
+      "explanation_ko": "Convert 클래스는 ToInt32 같은 메서드를 제공해 타입 간 명시적 변환을 수행합니다. 문자열을 숫자로 변환할 때 흔히 사용됩니다.",
+      "concept_tags": ["convert"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l1_u04_q006",
+      "type": "predict_output",
+      "code": "object obj = \"hello\";\nif (obj is string str)\n{\n    Console.WriteLine(str.Length);\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "hello", "오류", "True"],
+      "answer": 0,
+      "explanation_en": "is with a pattern (is string str) checks the type and, if it matches, binds the value to str in the same expression, letting the code use str.Length directly: 5.",
+      "explanation_ko": "패턴을 가진 is(is string str)는 타입을 검사하고, 일치하면 그 값을 같은 식 안에서 str에 바인딩합니다. 이후 코드는 str.Length를 바로 사용할 수 있어 5가 출력됩니다.",
+      "concept_tags": ["is_operator", "pattern_matching"],
+      "difficulty": "practice"
+    }
+  ]
+}

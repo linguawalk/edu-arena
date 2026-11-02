@@ -1,0 +1,351 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch06",
+    "no": 6,
+    "title": "연속확률분포"
+  },
+  "lesson": {
+    "id": "c5-ch06-l04",
+    "no": 4,
+    "title": "이항분포의 정규근사",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "확률통계"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "정규분포로 근사하기",
+      "body": [
+        "n이 충분히 크면 이항분포 B(n, p)는 평균 np, 분산 np(1 − p)인 정규분포에 가까워집니다.",
+        "왜 정규분포에 가까워질까요? 이항분포는 독립적인 성공(1)과 실패(0)를 n번 더한 것입니다. 많은 독립적인 값을 더하면 그 합의 분포는 원래 분포와 관계없이 종 모양에 가까워진다는 성질(중심극한정리)이 있습니다. 그래서 n이 크면 복잡한 nCr 계산 대신 정규분포표로 확률을 구할 수 있습니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 30,
+          "xmax": 70,
+          "ymin": 0,
+          "ymax": 0.1,
+          "xstep": 5,
+          "ystep": 0.02,
+          "curves": [
+            {
+              "kind": "normal",
+              "m": 50,
+              "s": 5,
+              "scale": 1
+            }
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "X ~ B(100, 1/2)일 때 근사하는 정규분포의 평균은?",
+      "answer": "50",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "근사하는 정규분포의 평균 = 이항분포의 평균 np\n100 × 1/2\n= 50\n원리: 이항분포의 평균을 그대로 씁니다.\n확인: 동전 100번이면 앞면이 평균 50번"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "그 표준편차는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "분산 np(1 − p) = 100 × 1/2 × 1/2 = 25\n표준편차 √25\n= 5\n원리: 이항분포의 표준편차 √(np(1 − p))가 근사하는 정규분포의 표준편차입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "근사해서 계산하기",
+      "body": [
+        "평균과 표준편차를 구해 표준화한 뒤 표의 값을 씁니다.",
+        "표준정규분포표: P(0 ≤ Z ≤ 0.5) = 0.1915, P(0 ≤ Z ≤ 1) = 0.3413, P(0 ≤ Z ≤ 1.5) = 0.4332, P(0 ≤ Z ≤ 2) = 0.4772, P(0 ≤ Z ≤ 2.5) = 0.4938, P(0 ≤ Z ≤ 3) = 0.4987",
+        "근사할 정규분포의 평균과 분산은 이항분포의 평균 np와 분산 np(1 − p)를 그대로 씁니다. 표준편차는 √(np(1 − p))입니다. 그다음은 앞 레슨의 표준화와 똑같이 계산합니다. 표: P(0 ≤ Z ≤ 0.5) = 0.1915, P(0 ≤ Z ≤ 1) = 0.3413, P(0 ≤ Z ≤ 1.5) = 0.4332, P(0 ≤ Z ≤ 2) = 0.4772."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "동전을 100번 던질 때 앞면이 40번 이상 60번 이하일 확률의 근삿값을 구하세요.",
+      "steps": [
+        "X ~ B(100, 1/2): 평균 50, 표준편차 5",
+        "Z = (40 − 50)/5 = −2, Z = (60 − 50)/5 = 2",
+        "P(−2 ≤ Z ≤ 2) = 2 × 0.4772",
+        "= 0.9544"
+      ],
+      "answer": "0.9544"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "X ~ B(100, 1/2)일 때 P(X ≥ 60)의 근삿값은?",
+      "answer": "0.0228",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": null,
+      "explanation": "평균 50, 표준편차 5이므로 Z = (60 − 50)/5 = 2\nP(Z ≥ 2) = 0.5 − 0.4772\n= 0.0228\n원리: 표준화 Z = (X − m)/σ로 바꾼 뒤 표준정규분포표를 씁니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 X에서 P(45 ≤ X ≤ 55)의 근삿값은?",
+      "answer": "0.6826",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": null,
+      "explanation": "Z = (45 − 50)/5 = −1, Z = (55 − 50)/5 = 1\nP(−1 ≤ Z ≤ 1) = 2 × 0.3413\n= 0.6826\n원리: 표준화 Z = (X − m)/σ로 바꾼 뒤 표준정규분포표를 씁니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "주사위의 예",
+      "body": [
+        "주사위를 180번 던질 때 1의 눈이 나오는 횟수 X는 B(180, 1/6)을 따릅니다.",
+        "주사위를 180번 던지면 1의 눈이 평균 30번 나오지만 매번 정확히 30번은 아닙니다. 표준편차 5는 '대개 25번에서 35번 사이'라는 흩어짐을 알려 줍니다. 40번 이상은 평균에서 2σ 이상 벗어난 드문 일(약 2.3%)입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "주사위를 720번 던질 때 6의 눈이 130번 이상 나올 확률의 근삿값을 구하세요.",
+      "steps": [
+        "X ~ B(720, 1/6): 평균 120, 분산 720 × 1/6 × 5/6 = 100, 표준편차 10",
+        "Z = (130 − 120)/10 = 1",
+        "P(Z ≥ 1) = 0.5 − 0.3413",
+        "= 0.1587"
+      ],
+      "answer": "0.1587"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "X의 평균은?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "X ~ B(180, 1/6)의 평균 np\n180 × 1/6\n= 30\n원리: 이항분포의 평균 np가 근사하는 정규분포의 평균입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "X의 표준편차는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "분산 180 × 1/6 × 5/6 = 25\n표준편차 √25\n= 5\n원리: 이항분포의 표준편차는 √(np(1 − p))입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "P(X ≥ 40)의 근삿값은?",
+      "answer": "0.0228",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": null,
+      "explanation": "Z = (40 − 30)/5 = 2\nP(Z ≥ 2) = 0.5 − 0.4772\n= 0.0228\n원리: 표준화 Z = (X − m)/σ로 바꾼 뒤 표준정규분포표를 씁니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "근사의 조건",
+      "body": [
+        "np와 n(1 − p)가 모두 충분히 클 때(대략 5 이상) 근사가 잘 맞습니다.",
+        "n이 커도 p가 0이나 1에 아주 가까우면 분포가 한쪽으로 치우쳐 종 모양이 되기 어렵습니다. 그래서 np와 n(1 − p)가 모두 충분히 커야 합니다. 이 조건이 맞지 않으면 원래의 이항분포로 계산해야 합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "X ~ B(400, 0.2)의 평균은?",
+      "answer": "80",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "np",
+      "explanation": "평균 np = 400 × 0.2\n= 80\n원리: 이항분포의 평균\n확인: 400번 중 20%이면 80번으로, np와 같은 값입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 X의 표준편차는?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "√(np(1 − p))",
+      "explanation": "분산 400 × 0.2 × 0.8 = 64\n표준편차 √64\n= 8\n원리: 이항분포의 표준편차 √(np(1 − p))"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 X에서 P(X ≤ 72)의 근삿값은?",
+      "answer": "0.1587",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "72를 표준화하세요.",
+      "explanation": "Z = (72 − 80)/8 = −1\nP(Z ≤ −1) = 0.5 − 0.3413\n= 0.1587\n원리: 표준화 Z = (X − m)/σ로 바꾼 뒤 표준정규분포표를 씁니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "이항분포 → 평균·표준편차 → 표준화 → 표 순서로 계산합니다.",
+        "표준정규분포표: P(0 ≤ Z ≤ 0.5) = 0.1915, P(0 ≤ Z ≤ 1) = 0.3413, P(0 ≤ Z ≤ 1.5) = 0.4332, P(0 ≤ Z ≤ 2) = 0.4772, P(0 ≤ Z ≤ 2.5) = 0.4938, P(0 ≤ Z ≤ 3) = 0.4987",
+        "이항분포의 정규근사는 여론조사, 품질 관리, 의약품 시험처럼 많은 수를 다루는 실제 통계의 기초입니다. 다음 챕터의 통계적 추정도 이 아이디어를 바탕으로 합니다. 표: P(0 ≤ Z ≤ 0.5) = 0.1915, P(0 ≤ Z ≤ 1) = 0.3413, P(0 ≤ Z ≤ 1.5) = 0.4332, P(0 ≤ Z ≤ 2) = 0.4772."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "어떤 씨앗의 발아율이 0.75입니다. 300개를 심을 때 발아하는 씨앗이 210개 이하일 확률의 근삿값은?",
+      "steps": [
+        "X ~ B(300, 0.75): 평균 225, 분산 300 × 0.75 × 0.25 = 56.25, 표준편차 7.5",
+        "Z = (210 − 225)/7.5 = −2",
+        "P(Z ≤ −2) = 0.5 − 0.4772",
+        "= 0.0228"
+      ],
+      "answer": "0.0228"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "동전을 400번 던질 때 앞면이 220번 이상 나올 확률의 근삿값은?",
+      "answer": "0.0228",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "평균과 표준편차부터 구하세요.",
+      "explanation": "X ~ B(400, 1/2): 평균 200, 표준편차 √100 = 10\nZ = (220 − 200)/10 = 2\nP(Z ≥ 2) = 0.0228"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "불량률이 0.1인 제품 900개 중 불량품이 99개 이상일 확률의 근삿값은?",
+      "answer": "0.1587",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "평균과 표준편차부터 구하세요.",
+      "explanation": "평균 900 × 0.1 = 90, 표준편차 √(900 × 0.1 × 0.9) = √81 = 9\nZ = (99 − 90)/9 = 1\nP(Z ≥ 1) = 0.5 − 0.3413 = 0.1587"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "X ~ B(2500, 0.5)의 표준편차는?",
+      "answer": "25",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "√(np(1 − p))",
+      "explanation": "분산 2500 × 0.5 × 0.5 = 625\n표준편차 √625\n= 25\n원리: 이항분포의 분산 np(1 − p)의 제곱근이 표준편차입니다."
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "명중률 0.8인 사수가 100발을 쏠 때 88발 이상 명중할 확률의 근삿값은?",
+      "answer": "0.0228",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "평균과 표준편차부터 구하세요.",
+      "explanation": "평균 100 × 0.8 = 80, 표준편차 √(100 × 0.8 × 0.2) = √16 = 4\nZ = (88 − 80)/4 = 2\nP(Z ≥ 2) = 0.0228"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "이항분포를 근사한 정규분포의 평균이 60, 분산이 24일 때 시행 횟수 n은?",
+      "answer": "100",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "분산을 평균으로 나누세요.",
+      "explanation": "np = 60, np(1 − p) = 24\n나누면 1 − p = 0.4, p = 0.6\nn = 60 ÷ 0.6 = 100"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "이항분포의 확률을 정규분포로 근사해서 계산하는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "n이 크",
+            "시행이 많"
+          ],
+          [
+            "계산",
+            "복잡",
+            "번거"
+          ],
+          [
+            "정규분포",
+            "표"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "n이 크면 이항분포의 확률을 nCr pʳ(1 − p)ⁿ⁻ʳ로 하나하나 더하기가 매우 번거롭습니다. 이때 이항분포는 정규분포에 가까워지므로 표준정규분포표로 간단히 근삿값을 구할 수 있습니다."
+    }
+  ]
+}

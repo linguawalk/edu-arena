@@ -1,0 +1,212 @@
+{
+ "level": 2,
+ "track": "electronics",
+ "id": "electronic-circuits",
+ "title": "전자회로",
+ "tagline": "다이오드와 트랜지스터로 신호를 다듬고 키우는 법 — 바이어스, 소신호 증폭기, 연산 증폭기, 궤환",
+ "overview": [
+  "전자회로는 반도체 소자(다이오드, BJT, MOSFET)를 써서 신호를 정류하고, 증폭하고, 원하는 모양으로 다듬는 회로를 다룹니다. 레벨1에서 트랜지스터를 스위치로 켜고 끄는 회로를 보았다면, 여기서는 트랜지스터를 '작은 신호를 키우는 증폭기'로 쓰는 방법이 중심입니다. 이를 위해 소자를 알맞은 동작점에 놓는 바이어스와, 동작점 근처에서 소자를 선형 회로로 바꾸는 소신호 모델을 배웁니다.",
+  "과목은 반도체와 pn 접합 → 다이오드 회로 → BJT 바이어스와 소신호 증폭기 → MOSFET 바이어스와 증폭기 → 다단·차동 증폭기 → 주파수 응답 → 연산 증폭기 응용 → 궤환과 발진기 → 전력 증폭기와 전원 회로 순서입니다. 회로이론의 테브난 등가 회로, 종속 전원, 주파수 응답이 그대로 쓰이므로 회로이론을 먼저 끝내는 것이 좋습니다.",
+  "전자산업기사·전자기사 필기의 핵심 과목이며, 디지털회로와 함께 전자 트랙의 기둥입니다. 레벨3 집적회로(아날로그·디지털 IC 설계)와 임베디드 시스템, 정보통신 트랙의 무선통신, 전기 트랙의 전력전자로 이어집니다."
+ ],
+ "level_note": "레벨 2 (응용, 전문대졸·산업기사 수준). 목차 검증 기준: 전자산업기사·전자기사 필기의 전자회로 과목 구성과 Sedra·Smith, Razavi 교재 목차. 최신 출제 기준은 큐넷(Q-Net) 공고로 확인하세요.",
+ "prereq": {
+  "text": "레벨2 회로이론의 회로 정리(테브난·노턴), 커패시터와 인덕터, 페이저, 주파수 응답 단원이 선수입니다. 레벨1 전기전자의 전원 회로와 트랜지스터 스위치 회로를 보았다면 출발이 훨씬 쉽습니다.",
+  "links": [
+   {
+    "title": "레벨1 · 전원 회로(정류·평활·레귤레이터)",
+    "href": "browse.html?c=c1#ch06"
+   },
+   {
+    "title": "레벨1 · 트랜지스터 스위치 회로",
+    "href": "browse.html?c=c1#ch07"
+   },
+   {
+    "title": "레벨2 회로이론 · 4단원 회로 정리: 중첩·테브난·노턴·최대 전력",
+    "href": "guide.html?lv=2&t=electrical&s=circuit-theory&u=4"
+   },
+   {
+    "title": "레벨2 회로이론 · 8단원 정현파, 페이저, 임피던스",
+    "href": "guide.html?lv=2&t=electrical&s=circuit-theory&u=8"
+   },
+   {
+    "title": "레벨2 회로이론 · 11단원 주파수 응답, 공진, 필터",
+    "href": "guide.html?lv=2&t=electrical&s=circuit-theory&u=11"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "p1",
+    "qtype": "numeric",
+    "prompt": "10 V 전원에 2 kΩ과 3 kΩ 저항을 직렬로 연결하면 3 kΩ 양단 전압은 몇 V일까요?",
+    "answer": "6",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "전압 분배: 10 × 3/(2 + 3) = 6 V (회로이론 2단원)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p2",
+    "qtype": "numeric",
+    "prompt": "1 kHz에서 1 μF 커패시터의 리액턴스 크기는 약 몇 Ω일까요?",
+    "answer": "159",
+    "answer_format": "integer",
+    "tolerance": 1,
+    "explanation": "X_C = 1/(2πfC) = 1/(2π × 10³ × 10⁻⁶) ≈ 159 Ω (회로이론 8단원)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p3",
+    "qtype": "numeric",
+    "prompt": "20 log₁₀ 10은 몇 dB일까요?",
+    "answer": "20",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "20 × 1 = 20 dB (회로이론 11단원)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p4",
+    "qtype": "fill_blank",
+    "prompt": "레벨1에서 트랜지스터를 스위치로 쓸 때, 베이스 전류를 충분히 넣어 완전히 켠 상태를 {{1}} 상태라고 했습니다.",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "포화"
+      ]
+     }
+    ],
+    "explanation": "스위치로 쓸 때는 포화와 차단을, 증폭기로 쓸 때는 그 사이의 활성 영역을 씁니다 (레벨1 전기전자 챕터 7).",
+    "stage": "prereq"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "레벨2 · 디지털회로",
+   "note": "트랜지스터를 스위치로 묶은 논리 회로"
+  },
+  {
+   "title": "레벨3 · 집적회로",
+   "note": "칩 위의 아날로그·디지털 회로 설계와 공정"
+  },
+  {
+   "title": "레벨3 · 임베디드 시스템",
+   "note": "센서·구동 회로와 마이크로컨트롤러의 연결"
+  },
+  {
+   "title": "레벨3 · 전력전자 (전기 트랙)",
+   "note": "전력용 소자로 만드는 정류기·컨버터·인버터"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "units": [
+  {
+   "no": 1,
+   "title": "반도체와 pn 접합",
+   "hours": 5,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "다이오드 회로",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "BJT의 동작과 바이어스",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "BJT 소신호 증폭기",
+   "hours": 6,
+   "after": [
+    3
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "MOSFET의 동작과 바이어스",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "MOSFET 증폭기",
+   "hours": 5,
+   "after": [
+    4,
+    5
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "다단 증폭기와 차동 증폭기",
+   "hours": 5,
+   "after": [
+    4,
+    6
+   ],
+   "file": "u07.json"
+  },
+  {
+   "no": 8,
+   "title": "주파수 응답",
+   "hours": 5,
+   "after": [
+    6
+   ],
+   "file": "u08.json"
+  },
+  {
+   "no": 9,
+   "title": "연산 증폭기 응용",
+   "hours": 5,
+   "after": [
+    4
+   ],
+   "file": "u09.json"
+  },
+  {
+   "no": 10,
+   "title": "궤환과 발진기",
+   "hours": 5,
+   "after": [
+    8,
+    9
+   ],
+   "file": "u10.json"
+  },
+  {
+   "no": 11,
+   "title": "전력 증폭기와 전원 회로",
+   "hours": 4,
+   "after": [
+    3
+   ],
+   "file": "u11.json"
+  }
+ ],
+ "total_hours": 55
+}

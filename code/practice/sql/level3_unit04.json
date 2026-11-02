@@ -1,0 +1,30 @@
+{
+  "language": "sql",
+  "piston_language": "sqlite3",
+  "piston_version": "*",
+  "mode": "sql",
+  "grading_note_ko": "SQLite에는 REVERSE 함수가 없어서, 재귀 CTE로 문자열을 직접 뒤집어야 합니다.",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "응용 종합",
+  "exercises": [
+    {
+      "id": "sql_l3_u4_ex1",
+      "title_ko": "재귀 CTE로 회문 판별",
+      "prompt_ko": "SQLite에는 REVERSE 함수가 없습니다. WITH RECURSIVE로 문자열 \"level\"을 한 글자씩 떼어 거꾸로 이어붙인 뒤, 원본과 같으면 \"yes\", 다르면 \"no\"를 출력하는 쿼리를 작성하세요.\n\n힌트: WITH RECURSIVE rev(remaining, result) AS (SELECT 'level', '' UNION ALL SELECT substr(remaining, 2), substr(remaining, 1, 1) || result FROM rev WHERE remaining != '') SELECT CASE WHEN 'level' = (SELECT result FROM rev WHERE remaining = '') THEN 'yes' ELSE 'no' END;",
+      "setup_sql": "",
+      "starter_code": "-- 여기에 쿼리를 작성하세요\n",
+      "expected_stdout": "yes\n",
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_l3_u4_ex2",
+      "title_ko": "재귀 CTE로 피보나치 수열",
+      "prompt_ko": "WITH RECURSIVE로 피보나치 수열의 10번째 항(1, 1, 2, 3, 5, 8, 13, 21, 34, 55)을 계산하는 쿼리를 작성하세요.\n\n힌트: WITH RECURSIVE fib(n, a, b) AS (SELECT 0, 0, 1 UNION ALL SELECT n+1, b, a+b FROM fib WHERE n < 10) SELECT a FROM fib WHERE n = 10;",
+      "setup_sql": "",
+      "starter_code": "-- 여기에 쿼리를 작성하세요\n",
+      "expected_stdout": "55\n",
+      "difficulty": "challenge"
+    }
+  ]
+}

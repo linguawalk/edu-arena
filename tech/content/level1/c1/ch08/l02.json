@@ -1,0 +1,340 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c1",
+  "title": "전기전자"
+ },
+ "chapter": {
+  "id": "c1-ch08",
+  "no": 8,
+  "title": "센서와 액추에이터"
+ },
+ "lesson": {
+  "id": "c1-ch08-l02",
+  "no": 2,
+  "title": "전압 분배로 센서 읽기",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "전기전자"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "저항을 전압으로",
+   "body": [
+    "마이크로컨트롤러는 저항값을 직접 읽지 못하고 전압만 읽을 수 있습니다. 그래서 저항형 센서를 고정 저항과 직렬로 연결해, 센서 저항에 따라 달라지는 가운데 지점의 전압을 읽습니다.",
+    "이 회로를 전압 분배 회로(분압 회로)라고 합니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "numeric",
+   "prompt": "5 V 전원에 같은 크기의 저항 두 개를 직렬로 연결하면 가운데 지점의 전압은 몇 V일까요?",
+   "answer": "2.5",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": "두 저항에 걸리는 전압이 같습니다.",
+   "explanation": "같은 저항이면 전압이 반씩 나뉩니다.\n5 ÷ 2 = 2.5 V입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "전압 분배 공식",
+   "body": [
+    "전원 Vin에 R1(위)과 R2(아래, 접지 쪽)를 직렬로 연결하면, 가운데 지점의 전압은 Vout = Vin × R2 ÷ (R1 + R2)입니다.",
+    "R2 자리에 센서를 두면 센서 저항이 커질수록 Vout이 커지고, 작아질수록 Vout이 작아집니다. R1 자리에 두면 반대로 움직입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "5 V, R1 = 10 kΩ, R2 = NTC 서미스터일 때, NTC가 10 kΩ과 5 kΩ이면 Vout은?",
+   "steps": [
+    "10 kΩ: 5 × 10 ÷ 20 = 2.5 V입니다.",
+    "5 kΩ: 5 × 5 ÷ 15 ≈ 1.67 V입니다.",
+    "온도가 올라 NTC 저항이 줄자 Vout이 떨어졌습니다."
+   ],
+   "answer": "2.5 V와 약 1.67 V"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "두 저항을 직렬로 연결해 전압을 나누는 회로를 {{1}} 회로라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "전압 분배",
+      "분압",
+      "전압분배"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "직렬 저항에는 저항에 비례해 전압이 나뉘어 걸립니다.\n이를 이용해 저항 변화를 전압 변화로 바꿉니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "5 V, R1 = 10 kΩ, R2 = 15 kΩ일 때 Vout은 몇 V일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "Vout = 5 × 15 ÷ 25 = 3 V입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "3.3 V, R1 = 10 kΩ, R2 = 20 kΩ일 때 Vout은 몇 V일까요?",
+   "answer": "2.2",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": null,
+   "explanation": "Vout = 3.3 × 20 ÷ 30 = 2.2 V입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "5 V, R1 = 10 kΩ, R2 = NTC 2.5 kΩ일 때 Vout은 몇 V일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "Vout = 5 × 2.5 ÷ 12.5 = 1 V입니다.\nNTC가 뜨거워져 저항이 작아진 상태입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "ADC: 전압을 숫자로",
+   "body": [
+    "마이크로컨트롤러 안의 ADC(아날로그-디지털 변환기)는 0 V부터 기준 전압까지를 정해진 단계로 나누어 숫자로 바꿉니다. n비트 ADC는 2ⁿ 단계로 나눕니다.",
+    "10비트 ADC는 1024단계(0~1023)입니다. 기준 전압이 5 V라면 한 단계는 5 ÷ 1023 ≈ 4.9 mV이고, 읽은 값을 전압으로 바꾸려면 V = 값 ÷ 1023 × 5를 계산합니다.",
+    "비트 수가 클수록 단계가 촘촘해 더 작은 변화까지 구별합니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "기준 전압 5 V인 10비트 ADC가 512를 읽었습니다. 입력 전압은?",
+   "steps": [
+    "V = 512 ÷ 1023 × 5입니다.",
+    "약 2.50 V입니다."
+   ],
+   "answer": "약 2.5 V"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "10비트 ADC는 전압을 몇 단계로 나눌까요?",
+   "answer": "1024",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "2¹⁰ = 1024단계입니다.\n값은 0부터 1023까지 나옵니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "12비트 ADC는 전압을 몇 단계로 나눌까요?",
+   "answer": "4096",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "2¹² = 4096단계입니다.\n10비트보다 4배 촘촘합니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "기준 전압 5 V인 10비트 ADC가 205를 읽었습니다. 입력 전압은 약 몇 V일까요? (소수 첫째 자리까지)",
+   "answer": "1.0",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": null,
+   "explanation": "V = 205 ÷ 1023 × 5 ≈ 1.00 V입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "기준 전압 5 V인 10비트 ADC의 한 단계는 약 몇 mV일까요? (소수 첫째 자리까지)",
+   "answer": "4.9",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "hint": null,
+   "explanation": "5 ÷ 1023 ≈ 0.00489 V입니다.\n약 4.9 mV입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "고정 저항 고르기",
+   "body": [
+    "고정 저항은 측정하려는 범위의 가운데쯤에서 센서가 갖는 저항과 비슷한 값으로 고릅니다. 그래야 그 범위에서 Vout이 가장 크게 변해 ADC로 잘 읽힙니다.",
+    "센서에 흐르는 전류가 크면 센서 스스로 데워져 온도 측정이 틀어질 수 있으므로, 너무 작은 저항은 피합니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "전압 분배의 고정 저항은 측정 범위 가운데에서의 센서 저항과 {{1}} 값으로 고릅니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "비슷한",
+      "같은",
+      "비슷하게"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "두 저항이 비슷할 때 센서 변화에 대한 Vout 변화가 가장 큽니다.\n그래서 범위 가운데의 센서 저항을 기준으로 고릅니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "5 V, R1 = 10 kΩ, R2 = CdS 조도 센서입니다. 밝을 때 1 kΩ, 어두울 때 100 kΩ이면 Vout은?",
+   "steps": [
+    "밝을 때: 5 × 1 ÷ 11 ≈ 0.45 V입니다.",
+    "어두울 때: 5 × 100 ÷ 110 ≈ 4.55 V입니다.",
+    "어두울수록 Vout이 커집니다."
+   ],
+   "answer": "밝을 때 약 0.45 V, 어두울 때 약 4.55 V"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 회로에서 CdS가 2 kΩ이면 Vout은 약 몇 V일까요? (소수 둘째 자리까지)",
+   "answer": "0.83",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": "Vout = Vin × R2 ÷ (R1 + R2)입니다.",
+   "explanation": "Vout = 5 × 2 ÷ 12 ≈ 0.83 V입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 회로에서 CdS가 40 kΩ이면 Vout은 몇 V일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "R2가 커지면 Vout도 커집니다.",
+   "explanation": "Vout = 5 × 40 ÷ 50 = 4 V입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "기준 전압 5 V인 10비트 ADC에 4 V가 들어가면 읽는 값은 약 얼마일까요? (정수로)",
+   "answer": "818",
+   "answer_format": "integer",
+   "tolerance": 1,
+   "hint": "전압 비율에 1023을 곱하세요.",
+   "explanation": "값 = 4 ÷ 5 × 1023 ≈ 818입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "기준 전압 3.3 V인 12비트 ADC가 2048을 읽었습니다. 입력 전압은 약 몇 V일까요? (소수 둘째 자리까지)",
+   "answer": "1.65",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": "12비트의 최댓값은 4095입니다.",
+   "explanation": "V = 2048 ÷ 4095 × 3.3 ≈ 1.65 V입니다.\n12비트의 가운데 값이므로 기준 전압의 절반입니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "앞의 조도 회로로 가로등을 켜려면, ADC 값이 기준값보다 {{1}} 켜도록 프로그램합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "크면",
+      "커지면",
+      "높으면"
+     ]
+    }
+   ],
+   "hint": "어두울 때 Vout이 어떻게 되었는지 떠올리세요.",
+   "explanation": "이 회로는 어두울수록 Vout과 ADC 값이 커집니다.\n그래서 값이 기준보다 크면 어둡다고 판단해 켭니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "저항형 센서를 전압 분배 회로로 연결해 읽는 이유를 설명해 보세요.",
+   "hint": "ADC가 읽을 수 있는 것이 무엇인지에서 출발하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "저항"
+     ],
+     [
+      "전압"
+     ],
+     [
+      "읽",
+      "측정",
+      "ADC"
+     ],
+     [
+      "직접",
+      "바꾸",
+      "변환"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "마이크로컨트롤러의 ADC는 전압만 읽을 수 있고 저항은 직접 읽지 못합니다. 센서를 고정 저항과 직렬로 연결하면 센서 저항 변화가 가운데 지점의 전압 변화로 바뀌어 ADC로 읽을 수 있습니다."
+  }
+ ]
+}

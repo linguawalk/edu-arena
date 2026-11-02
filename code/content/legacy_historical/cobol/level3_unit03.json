@@ -1,0 +1,96 @@
+{
+  "language": "cobol",
+  "category": "legacy_historical",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "CALL과 서브프로그램",
+  "questions": [
+    {
+      "id": "cobol_l3_u03_q001",
+      "type": "predict_output",
+      "code": "* SQUAREIT.cob (별도 컴파일된 서브프로그램)\nPROGRAM-ID. SQUAREIT.\nLINKAGE SECTION.\n01 NUM PIC 9(4).\nPROCEDURE DIVISION USING NUM.\n    COMPUTE NUM = NUM * NUM.\n    GOBACK.\n\n* 메인 프로그램\n01 X PIC 9(4).\n...\nMOVE 5 TO X.\nCALL \"SQUAREIT\" USING X.\nDISPLAY X.",
+      "prompt_en": "What is printed? (X is passed to a separately compiled subprogram.)",
+      "prompt_ko": "출력 결과는? (X가 별도로 컴파일된 서브프로그램에 전달됩니다.)",
+      "options": ["0025", "0005", "오류", "NUM"],
+      "answer": 0,
+      "explanation_en": "CALL \"SQUAREIT\" USING X passes X by reference (COBOL's default) to the subprogram, whose LINKAGE SECTION NUM parameter aliases X; squaring it inside modifies X directly, giving 25.",
+      "explanation_ko": "CALL \"SQUAREIT\" USING X는 X를 참조(COBOL의 기본값)로 서브프로그램에 전달하고, 그 LINKAGE SECTION의 NUM 매개변수는 X의 별칭이 됩니다. 안에서 제곱하면 X가 직접 수정되어 25가 됩니다.",
+      "concept_tags": ["call_statement", "linkage_section"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cobol_l3_u03_q002",
+      "type": "fill_blank",
+      "code": "____ \"SQUAREIT\" USING X.",
+      "prompt_en": "Fill in the blank with the statement that invokes a separately compiled subprogram.",
+      "prompt_ko": "별도로 컴파일된 서브프로그램을 호출하는 문장을 빈칸에 채우세요.",
+      "options": ["CALL", "PERFORM", "INVOKE", "RUN"],
+      "answer": 0,
+      "explanation_en": "CALL invokes another compiled COBOL program by name, passing arguments with USING — distinct from PERFORM, which stays within the same program's paragraphs.",
+      "explanation_ko": "CALL은 이름으로 다른 컴파일된 COBOL 프로그램을 호출하며, USING으로 인자를 전달합니다. 같은 프로그램의 단락 안에 머무는 PERFORM과는 다릅니다.",
+      "concept_tags": ["call_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cobol_l3_u03_q003",
+      "type": "fill_blank",
+      "code": "PROGRAM-ID. SQUAREIT.\n____ SECTION.\n01 NUM PIC 9(4).\nPROCEDURE DIVISION USING NUM.\n    COMPUTE NUM = NUM * NUM.",
+      "prompt_en": "Fill in the blank with the section that declares parameters received from a caller.",
+      "prompt_ko": "호출한 쪽에서 받는 매개변수를 선언하는 구역을 빈칸에 채우세요.",
+      "options": ["LINKAGE", "PARAMETER", "USING", "RECEIVE"],
+      "answer": 0,
+      "explanation_en": "LINKAGE SECTION declares the data items a subprogram receives from its caller via USING, distinct from WORKING-STORAGE which holds the subprogram's own internal variables.",
+      "explanation_ko": "LINKAGE SECTION은 서브프로그램이 USING을 통해 호출한 쪽에서 받는 데이터 항목을 선언합니다. 서브프로그램 자신의 내부 변수를 담는 WORKING-STORAGE와 다릅니다.",
+      "concept_tags": ["linkage_section"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cobol_l3_u03_q004",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "CALL \"이름\" USING ...", "definition": "별도로 컴파일된 프로그램을 이름으로 호출하며 인자를 전달" },
+        { "term": "LINKAGE SECTION", "definition": "서브프로그램이 호출한 쪽에서 받는 매개변수를 선언하는 구역" },
+        { "term": "GOBACK", "definition": "서브프로그램에서 호출한 쪽으로 제어를 돌려줌 — STOP RUN과 다름" },
+        { "term": "PERFORM 단락과의 차이", "definition": "CALL은 별도로 컴파일된 프로그램을, PERFORM은 같은 프로그램 안의 단락을 실행" }
+      ],
+      "explanation_en": "CALL/LINKAGE SECTION represents COBOL's mechanism for true separate compilation and modular programs, distinct from the paragraph-based PERFORM covered earlier — CALL is closer to how modern languages import and call functions across files.",
+      "explanation_ko": "CALL/LINKAGE SECTION은 진정한 별도 컴파일과 모듈식 프로그램을 위한 COBOL의 메커니즘을 나타내며, 앞서 다룬 단락 기반 PERFORM과 다릅니다 — CALL은 현대 언어가 파일 간에 함수를 가져오고 호출하는 방식에 더 가깝습니다.",
+      "concept_tags": ["call_statement", "linkage_section"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l3_u03_q005",
+      "type": "predict_output",
+      "code": "* ADDTWO.cob\nPROGRAM-ID. ADDTWO.\nLINKAGE SECTION.\n01 A PIC 9(4).\n01 B PIC 9(4).\n01 RESULT PIC 9(4).\nPROCEDURE DIVISION USING A, B, RESULT.\n    COMPUTE RESULT = A + B.\n    GOBACK.\n\n* 메인 프로그램\n01 X PIC 9(4).\n01 Y PIC 9(4).\n01 SUM-RESULT PIC 9(4).\n...\nMOVE 3 TO X.\nMOVE 4 TO Y.\nCALL \"ADDTWO\" USING X, Y, SUM-RESULT.\nDISPLAY SUM-RESULT.",
+      "prompt_en": "What is printed? (Multiple parameters passed to a subprogram.)",
+      "prompt_ko": "출력 결과는? (서브프로그램에 여러 매개변수를 전달합니다.)",
+      "options": ["0007", "0003", "0004", "오류"],
+      "answer": 0,
+      "explanation_en": "USING X, Y, SUM-RESULT passes all three by reference, matching A, B, RESULT positionally; the subprogram computes RESULT = A + B = 3+4=7, which appears in SUM-RESULT since it's the same memory.",
+      "explanation_ko": "USING X, Y, SUM-RESULT는 세 개 모두를 참조로 전달하며, 위치에 따라 A, B, RESULT와 대응됩니다. 서브프로그램은 RESULT = A + B = 3+4=7을 계산하고, 같은 메모리이므로 이는 SUM-RESULT에도 나타납니다.",
+      "concept_tags": ["call_statement", "linkage_section"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l3_u03_q006",
+      "type": "predict_output",
+      "code": "* GREETER.cob\nPROGRAM-ID. GREETER.\nPROCEDURE DIVISION.\n    DISPLAY \"HELLO FROM SUBPROGRAM\".\n    GOBACK.\n\n* 메인 프로그램\nPROCEDURE DIVISION.\n    DISPLAY \"BEFORE\".\n    CALL \"GREETER\".\n    DISPLAY \"AFTER\".",
+      "prompt_en": "What is printed, and in what order? (A subprogram with no parameters.)",
+      "prompt_ko": "출력 결과는, 그리고 순서는? (매개변수 없는 서브프로그램입니다.)",
+      "options": [
+        "BEFORE, HELLO FROM SUBPROGRAM, AFTER",
+        "HELLO FROM SUBPROGRAM, BEFORE, AFTER",
+        "BEFORE, AFTER",
+        "오류"
+      ],
+      "answer": 0,
+      "explanation_en": "CALL \"GREETER\" (with no USING) still works for subprograms that need no parameters; GOBACK returns control right after the CALL, so execution continues normally to AFTER.",
+      "explanation_ko": "CALL \"GREETER\"(USING 없이)는 매개변수가 필요 없는 서브프로그램에도 동작합니다. GOBACK은 CALL 바로 다음으로 제어를 돌려줘서, AFTER로 정상적으로 이어집니다.",
+      "concept_tags": ["call_statement"],
+      "difficulty": "practice"
+    }
+  ]
+}

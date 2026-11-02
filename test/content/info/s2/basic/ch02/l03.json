@@ -1,0 +1,268 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "basic",
+  "work": "풀이",
+  "track_title": "기초",
+  "chapter": {
+    "id": "info-s2-basic-ch02",
+    "no": 2,
+    "title": "불변식과 귀납"
+  },
+  "lesson": {
+    "id": "info-s2-basic-ch02-l03",
+    "no": 3,
+    "title": "귀납법과 재귀",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "기초",
+      "불변식과 귀납"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "재귀와 귀납은 같은 모양",
+      "body": [
+        "하노이의 탑은 원판 n개를 다른 기둥으로 옮기는 퍼즐입니다. 한 번에 원판 하나만, 작은 원판 위에 큰 원판을 올리지 않고 옮겨야 합니다.",
+        "아래 재귀 함수는 위의 n − 1개를 가운데 기둥으로 옮기고, 가장 큰 원판을 옮긴 뒤, n − 1개를 다시 그 위로 옮깁니다. n − 1개를 옮기는 일은 같은 함수가 맡습니다.",
+        "'더 작은 경우가 맞으면 지금 경우도 맞다'는 생각은 수학적 귀납법과 똑같습니다. 재귀 함수의 정당성과 실행 횟수는 귀납법으로 증명합니다."
+      ],
+      "code": "// n개의 원판을 from에서 to로 옮긴다 (via를 거쳐서)\nvoid hanoi(int n, int from, int via, int to) {\n    if (n == 0) return;\n    hanoi(n - 1, from, to, via);\n    move(from, to);                  // 가장 큰 원판 하나 옮기기\n    hanoi(n - 1, via, from, to);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "원판이 3개일 때 move는 모두 몇 번 실행되나요?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "T(n) = 2T(n − 1) + 1입니다.",
+      "explanation": "원판 n개를 옮기는 이동 횟수를 T(n)이라 하면 T(0) = 0, T(n) = 2T(n − 1) + 1입니다.\nT(1) = 1, T(2) = 3, T(3) = 2 × 3 + 1입니다.\n= 7번입니다.",
+      "code": "// n개의 원판을 from에서 to로 옮긴다 (via를 거쳐서)\nvoid hanoi(int n, int from, int via, int to) {\n    if (n == 0) return;\n    hanoi(n - 1, from, to, via);\n    move(from, to);                  // 가장 큰 원판 하나 옮기기\n    hanoi(n - 1, via, from, to);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "수학적 귀납법은 가장 작은 경우가 성립함을 보이는 {{1}} 단계와, n − 1에서 성립하면 n에서도 성립함을 보이는 귀납 단계로 이루어집니다.",
+      "blanks": [
+        {
+          "answers": [
+            "기저",
+            "기초"
+          ]
+        }
+      ],
+      "hint": "재귀 함수의 종료 조건에 해당합니다.",
+      "explanation": "귀납법의 첫 단계는 가장 작은 경우에 성립함을 직접 확인하는 것입니다.\n이 단계를 기저 단계라 하며, 재귀 함수의 종료 조건에 해당합니다.\n그다음 귀납 단계로 모든 n에 성립함을 이어 붙입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "귀납법으로 횟수 구하기",
+      "body": [
+        "하노이의 탑에서 T(n) = 2ⁿ − 1임을 귀납법으로 보입시다. 기저 단계: T(0) = 0 = 2⁰ − 1입니다.",
+        "귀납 단계: T(n − 1) = 2ⁿ⁻¹ − 1이라 가정하면 T(n) = 2T(n − 1) + 1 = 2ⁿ − 2 + 1 = 2ⁿ − 1입니다.",
+        "그래서 모든 n에 대해 T(n) = 2ⁿ − 1입니다. 재귀 함수의 실행 횟수는 이렇게 점화식을 세우고 귀납법으로 닫힌 식을 확인합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "아래 함수 fib(5)를 호출하면 fib는 모두 몇 번 호출되나요? (처음 호출 포함)",
+      "steps": [
+        "호출 횟수를 C(n)이라 하면 C(0) = C(1) = 1, C(n) = C(n − 1) + C(n − 2) + 1입니다.",
+        "C(2) = 3, C(3) = 5, C(4) = 9입니다.",
+        "C(5) = 9 + 5 + 1 = 15입니다."
+      ],
+      "answer": "15번",
+      "code": "int fib(int n) {\n    if (n <= 1) return n;\n    return fib(n - 1) + fib(n - 2);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "원판이 10개일 때 move는 모두 몇 번 실행되나요?",
+      "answer": "1023",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2¹⁰ − 1입니다.",
+      "explanation": "귀납법으로 보인 대로 원판 n개는 2ⁿ − 1번 옮깁니다.\nn = 10이면 2¹⁰ − 1입니다.\n= 1023번입니다.",
+      "code": "// n개의 원판을 from에서 to로 옮긴다 (via를 거쳐서)\nvoid hanoi(int n, int from, int via, int to) {\n    if (n == 0) return;\n    hanoi(n - 1, from, to, via);\n    move(from, to);                  // 가장 큰 원판 하나 옮기기\n    hanoi(n - 1, via, from, to);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "pw(x, 16)을 호출하면 pw는 모두 몇 번 호출되나요? (처음 호출 포함)",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n은 16, 8, 4, 2, 1, 0으로 바뀝니다.",
+      "explanation": "pw는 자기 자신을 n/2로 한 번만 부릅니다.\nn이 16, 8, 4, 2, 1, 0일 때 한 번씩 호출됩니다.\n그래서 6번입니다.",
+      "code": "long long pw(long long x, int n) {\n    if (n == 0) return 1;\n    long long h = pw(x, n / 2);\n    return (n % 2 == 0) ? h * h : h * h * x;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "pw(x, 13)을 호출하면 pw는 모두 몇 번 호출되나요? (처음 호출 포함)",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n은 13, 6, 3, 1, 0으로 바뀝니다.",
+      "explanation": "pw는 n이 홀수여도 자기 자신을 n/2(정수 나눗셈)로 한 번만 부릅니다.\nn이 13, 6, 3, 1, 0일 때 한 번씩 호출됩니다.\n그래서 5번입니다.",
+      "code": "long long pw(long long x, int n) {\n    if (n == 0) return 1;\n    long long h = pw(x, n / 2);\n    return (n % 2 == 0) ? h * h : h * h * x;\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "강한 귀납법과 재귀의 정당성",
+      "body": [
+        "재귀 함수가 맞음을 보일 때는 '입력 크기가 n보다 작은 모든 호출이 맞다고 가정하면 크기 n인 호출도 맞다'를 보입니다. 이것을 강한 귀납법이라 합니다.",
+        "아래 병합 정렬에서는 두 재귀 호출이 길이가 더 짧은 구간을 정렬한다고 가정할 수 있습니다. 그러면 merge가 정렬된 두 부분을 합쳐 전체를 정렬합니다. 길이가 1 이하인 구간은 그대로 정렬되어 있으므로 기저 단계도 성립합니다.",
+        "필요한 것은 세 가지입니다. 종료 조건이 맞을 것, 재귀 호출의 입력이 항상 더 작을 것, 작은 답들을 합치는 과정이 맞을 것입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "길이 8인 배열에 아래 msort를 실행하면 merge는 모두 몇 번 호출되나요?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "길이 1인 구간 8개가 하나로 합쳐지려면 몇 번 합쳐야 할까요?",
+      "explanation": "merge 한 번은 구간 두 개를 하나로 합칩니다.\n길이 1인 구간 8개에서 시작해 구간 하나가 될 때까지 구간 수가 하나씩 줄어듭니다.\n그래서 8 − 1 = 7번입니다.",
+      "code": "void msort(int l, int r) {           // a[l..r-1]을 정렬\n    if (r - l <= 1) return;\n    int m = (l + r) / 2;\n    msort(l, m); msort(m, r);\n    merge(l, m, r);                  // 정렬된 두 부분을 합친다\n}"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "재귀 함수가 맞음을 귀납법으로 보일 때 필요하지 않은 것은? ① 종료 조건에서 답이 맞는다 ② 재귀 호출의 입력이 더 작다 ③ 작은 답을 합치는 과정이 맞다 ④ 재귀 호출이 정확히 두 번이다",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "하노이와 pw의 재귀 호출 수를 비교해 보세요.",
+      "explanation": "강한 귀납법에는 기저 단계, 더 작은 입력으로의 재귀, 올바른 합치기가 필요합니다.\n재귀 호출의 개수는 pw처럼 한 번이든 하노이처럼 두 번이든 상관없습니다.\n답은 4입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "재귀 함수는 수학적 귀납법과 같은 구조입니다. 종료 조건이 기저 단계, 더 작은 입력에 대한 호출이 귀납 가정에 해당합니다.",
+        "실행 횟수는 점화식을 세운 뒤 귀납법으로 닫힌 식을 확인합니다. 하노이의 탑은 2ⁿ − 1번, 병합 정렬의 merge는 n − 1번입니다.",
+        "정당성은 강한 귀납법으로 보입니다. 더 작은 입력에서는 모두 맞다고 가정하고, 지금 입력에서도 맞음을 보입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "원판이 6개일 때 move는 모두 몇 번 실행되나요?",
+      "answer": "63",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2⁶ − 1입니다.",
+      "explanation": "원판 n개를 옮기는 횟수는 귀납법으로 2ⁿ − 1임을 보였습니다.\nn = 6이면 2⁶ − 1입니다.\n= 63번입니다.",
+      "code": "// n개의 원판을 from에서 to로 옮긴다 (via를 거쳐서)\nvoid hanoi(int n, int from, int via, int to) {\n    if (n == 0) return;\n    hanoi(n - 1, from, to, via);\n    move(from, to);                  // 가장 큰 원판 하나 옮기기\n    hanoi(n - 1, via, from, to);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "fib(6)을 호출하면 fib는 모두 몇 번 호출되나요? (처음 호출 포함)",
+      "answer": "25",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "C(6) = C(5) + C(4) + 1입니다.",
+      "explanation": "호출 횟수는 C(n) = C(n − 1) + C(n − 2) + 1을 따릅니다.\nC(4) = 9, C(5) = 15입니다.\nC(6) = 15 + 9 + 1 = 25번입니다.",
+      "code": "int fib(int n) {\n    if (n <= 1) return n;\n    return fib(n - 1) + fib(n - 2);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "하노이의 탑 함수가 원판 n개를 옮길 때 move를 정확히 2ⁿ − 1번 실행함을 수학적 귀납법으로 증명하세요.",
+      "model_answer": [
+        "이동 횟수를 T(n)이라 하면 코드에서 T(0) = 0, T(n) = 2T(n − 1) + 1이다.",
+        "기저 단계: T(0) = 0 = 2⁰ − 1이다.",
+        "귀납 단계: T(n − 1) = 2ⁿ⁻¹ − 1이라 가정하면 T(n) = 2(2ⁿ⁻¹ − 1) + 1 = 2ⁿ − 1이다.",
+        "따라서 모든 n ≥ 0에서 T(n) = 2ⁿ − 1이다."
+      ],
+      "criteria": [
+        {
+          "text": "코드에서 점화식을 세웠다",
+          "points": 2
+        },
+        {
+          "text": "기저 단계를 확인했다",
+          "points": 2
+        },
+        {
+          "text": "귀납 단계를 계산했다",
+          "points": 2
+        }
+      ],
+      "hint": "먼저 T(n)의 점화식을 세우세요.",
+      "code": "// n개의 원판을 from에서 to로 옮긴다 (via를 거쳐서)\nvoid hanoi(int n, int from, int via, int to) {\n    if (n == 0) return;\n    hanoi(n - 1, from, to, via);\n    move(from, to);                  // 가장 큰 원판 하나 옮기기\n    hanoi(n - 1, via, from, to);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "길이 n(≥ 1)인 배열에 msort를 실행하면 merge가 정확히 n − 1번 호출됨을 강한 귀납법으로 증명하세요.",
+      "model_answer": [
+        "길이 n일 때 merge 호출 수를 M(n)이라 하면 M(1) = 0이다. 이것이 기저 단계다.",
+        "n ≥ 2이면 길이 k = ⌊n/2⌋와 n − k인 두 구간으로 나누고 merge를 한 번 부르므로 M(n) = M(k) + M(n − k) + 1이다.",
+        "k와 n − k는 1 이상 n 미만이므로 강한 귀납 가정에 의해 M(k) = k − 1, M(n − k) = n − k − 1이다.",
+        "그래서 M(n) = (k − 1) + (n − k − 1) + 1 = n − 1이다."
+      ],
+      "criteria": [
+        {
+          "text": "기저 단계와 점화식을 세웠다",
+          "points": 2
+        },
+        {
+          "text": "두 부분이 더 작아 귀납 가정을 쓸 수 있음을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "계산으로 n − 1을 얻었다",
+          "points": 2
+        }
+      ],
+      "hint": "두 부분의 길이를 k와 n − k로 두세요.",
+      "code": "void msort(int l, int r) {           // a[l..r-1]을 정렬\n    if (r - l <= 1) return;\n    int m = (l + r) / 2;\n    msort(l, m); msort(m, r);\n    merge(l, m, r);                  // 정렬된 두 부분을 합친다\n}"
+    }
+  ]
+}

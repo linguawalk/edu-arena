@@ -1,0 +1,109 @@
+{
+ "no": 9,
+ "title": "메모리와 프로그래머블 논리",
+ "hours": 4,
+ "after": [
+  5,
+  6
+ ],
+ "objectives": [
+  "메모리의 용량을 주소선과 데이터 폭으로 계산할 수 있다.",
+  "여러 메모리 칩으로 용량과 데이터 폭을 확장할 수 있다.",
+  "ROM·PLA·FPGA로 논리 회로를 구현하는 원리를 설명할 수 있다."
+ ],
+ "checklist": [
+  "메모리 용량 = 2^(주소선 수) × 데이터 폭",
+  "ROM(마스크, PROM, EPROM, 플래시)과 RAM(SRAM, DRAM)",
+  "메모리 확장: 주소 확장(디코더로 칩 선택), 데이터 폭 확장(병렬)",
+  "ROM으로 조합 회로 구현(진리표를 저장)",
+  "PLA·PAL: 프로그래머블 AND–OR 배열",
+  "FPGA: 룩업 테이블(LUT) + 플립플롭 + 프로그래머블 배선",
+  "CPLD와 FPGA 비교"
+ ],
+ "advice": [
+  "메모리 계산은 '주소선 n개로 2ⁿ칸, 칸마다 데이터 폭만큼의 비트'라는 한 문장으로 모두 풀립니다. 레벨1 컴퓨터 챕터 2와 5에서 본 내용을 칩 단위로 확장하는 것이니, 여러 칩을 묶어 큰 메모리를 만들 때 늘어나는 주소선 몇 개를 디코더가 칩 선택에 쓴다는 그림을 그려 보세요.",
+  "FPGA는 5단원의 멀티플렉서·진리표 구현 아이디어를 수십만 개 모아 놓은 칩이라고 볼 수 있습니다. 회로를 '프로그램'처럼 바꿀 수 있어 시제품, 통신 장비, AI 가속기 개발에 널리 쓰인다는 점까지 알면 10단원의 하드웨어 기술 언어가 왜 필요한지 자연스럽게 이어집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Mano · Ciletti, Digital Design (장 제목으로 표기)",
+   "part": "Memory and Programmable Logic 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Harris · Harris, Digital Design and Computer Architecture (장 제목으로 표기)",
+   "part": "Digital Building Blocks 장의 메모리·논리 배열 절"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "memory 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "1K × 8 메모리(1024칸, 칸마다 8비트)에 필요한 주소선은 몇 개일까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2¹⁰ = 1024이므로 10개입니다.",
+   "hint": "2ⁿ = 1024인 n입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "64K × 8 메모리 칩으로 256K × 8 메모리를 만들려면 칩이 몇 개 필요할까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "256K/64K = 4개\n추가 주소선 2개를 디코더로 해독해 칩을 고릅니다.",
+   "hint": "용량 비율입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "룩업 테이블과 프로그래머블 배선으로 사용자가 원하는 디지털 회로를 칩 위에 구현하는 소자를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "FPGA"
+     ]
+    }
+   ],
+   "explanation": "Field-Programmable Gate Array의 줄임말입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "주소선 12개, 데이터 폭 16비트인 메모리의 용량은 몇 KB일까요? (1 KB = 1024 B)",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "4096칸 × 2바이트 = 8192 B = 8 KB",
+   "hint": "칸 수 × 칸당 바이트입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "digital-circuits",
+ "id": "l2-electronics-digital-circuits-u09"
+}

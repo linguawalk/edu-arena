@@ -1,0 +1,91 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 1,
+  "unit": 3,
+  "unit_title": "문자열 보간",
+  "questions": [
+    {
+      "id": "php_l1_u03_q001",
+      "type": "predict_output",
+      "code": "$name = \"Kim\";\necho \"안녕, $name!\";",
+      "prompt_en": "What is printed? (Note: double quotes, no special syntax like f\"\" or ${} needed.)",
+      "prompt_ko": "출력 결과는? (큰따옴표이며, f\"\"나 ${} 같은 특별한 문법이 필요 없는 점에 주의하세요.)",
+      "options": ["안녕, $name!", "안녕, Kim!", "오류", "안녕, name!"],
+      "answer": 1,
+      "explanation_en": "Double-quoted PHP strings automatically interpolate variables that appear directly inside them, no special prefix or braces required.",
+      "explanation_ko": "PHP의 큰따옴표 문자열은 그 안에 직접 등장하는 변수를 자동으로 보간합니다. 특별한 접두사나 중괄호가 필요 없습니다.",
+      "concept_tags": ["double_quote_interpolation"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l1_u03_q002",
+      "type": "predict_output",
+      "code": "$name = \"Kim\";\necho '안녕, $name!';",
+      "prompt_en": "What is printed? (Note: single quotes this time.)",
+      "prompt_ko": "출력 결과는? (이번엔 작은따옴표입니다.)",
+      "options": ["안녕, $name!", "안녕, Kim!", "오류", "안녕, !"],
+      "answer": 0,
+      "explanation_en": "Single-quoted strings in PHP are literal — they don't interpolate variables at all; $name prints as-is, unlike double quotes.",
+      "explanation_ko": "PHP의 작은따옴표 문자열은 있는 그대로 취급됩니다 — 변수를 전혀 보간하지 않습니다. $name은 큰따옴표와 달리 그대로 출력됩니다.",
+      "concept_tags": ["single_quote_literal"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l1_u03_q003",
+      "type": "predict_output",
+      "code": "$price = 19.5;\necho \"가격: {$price}원\";",
+      "prompt_en": "What is printed? (Curly brace syntax for clearer interpolation boundaries.)",
+      "prompt_ko": "출력 결과는? (보간 경계를 명확히 하는 중괄호 문법입니다.)",
+      "options": ["가격: {19.5}원", "가격: 19.5원", "오류", "가격: {$price}원"],
+      "answer": 1,
+      "explanation_en": "{$price} explicitly marks the interpolation boundary, useful when a variable is immediately followed by text that could otherwise be mistaken as part of its name; it produces 가격: 19.5원.",
+      "explanation_ko": "{$price}는 보간 경계를 명확히 표시합니다. 변수 바로 뒤에 이름의 일부로 오해될 수 있는 텍스트가 올 때 유용합니다. 가격: 19.5원을 만듭니다.",
+      "concept_tags": ["curly_brace_interpolation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l1_u03_q004",
+      "type": "predict_output",
+      "code": "$name = \"Kim\";\n$age = 25;\necho \"이름: \" . $name . \", 나이: \" . $age;",
+      "prompt_en": "What is printed? (Using . concatenation instead of interpolation.)",
+      "prompt_ko": "출력 결과는? (보간 대신 . 연결을 사용합니다.)",
+      "options": ["이름: Kim, 나이: 25", "이름: $name, 나이: $age", "오류", "이름: . $name . , 나이: . $age"],
+      "answer": 0,
+      "explanation_en": "This is an older, more explicit alternative to interpolation, joining string pieces with .; it produces the same result: 이름: Kim, 나이: 25.",
+      "explanation_ko": "이는 보간의 더 오래되고 명시적인 대안으로, .로 문자열 조각들을 이어붙입니다. 같은 결과를 만듭니다: 이름: Kim, 나이: 25.",
+      "concept_tags": ["concatenation_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l1_u03_q005",
+      "type": "fill_blank",
+      "code": "$name = \"Kim\";\necho ____안녕, $name!____;\n// 변수가 보간되어야 함",
+      "prompt_en": "Fill in the blanks with the type of quote that allows $name to be interpolated.",
+      "prompt_ko": "$name이 보간되도록 하는 따옴표 종류를 빈칸에 채우세요.",
+      "options": ["큰따옴표 \"", "작은따옴표 '", "백틱 `", "괄호 ()"],
+      "answer": 0,
+      "explanation_en": "Only double quotes trigger PHP's automatic variable interpolation; single quotes keep everything literal.",
+      "explanation_ko": "큰따옴표만이 PHP의 자동 변수 보간을 일으킵니다. 작은따옴표는 모든 것을 있는 그대로 유지합니다.",
+      "concept_tags": ["double_quote_interpolation", "single_quote_literal"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l1_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "큰따옴표 \"\"", "definition": "변수를 자동으로 보간하는 문자열" },
+        { "term": "작은따옴표 ''", "definition": "변수를 전혀 보간하지 않는, 있는 그대로의 문자열" },
+        { "term": "{$var} 문법", "definition": "보간 경계를 명확히 하는 중괄호 표기법" },
+        { "term": ". 연산자", "definition": "보간의 오래된 대안 — 문자열 조각을 명시적으로 이어붙임" }
+      ],
+      "explanation_en": "PHP's quote-type-dependent interpolation is unusual compared to Python's explicit f-strings or JavaScript's backtick template literals — the choice of quote character itself determines the behavior.",
+      "explanation_ko": "따옴표 종류에 따라 보간 여부가 달라지는 PHP의 방식은 Python의 명시적인 f-string이나 JavaScript의 백틱 템플릿 리터럴과 비교하면 독특합니다 — 따옴표 문자 자체의 선택이 동작을 결정합니다.",
+      "concept_tags": ["double_quote_interpolation", "single_quote_literal", "curly_brace_interpolation"],
+      "difficulty": "practice"
+    }
+  ]
+}

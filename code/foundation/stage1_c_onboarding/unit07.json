@@ -1,0 +1,100 @@
+{
+  "stage": "stage1_c_onboarding",
+  "stage_title": "C 언어 (온보딩)",
+  "unit": 7,
+  "unit_title": "포인터",
+  "questions": [
+    {
+      "id": "foundation_stage1_u07_q001",
+      "type": "concept_quiz",
+      "code": null,
+      "prompt_en": "What does a pointer store?",
+      "prompt_ko": "포인터(pointer)는 무엇을 저장할까요?",
+      "options": [
+        "변수의 값 그 자체",
+        "다른 변수가 저장되어 있는 메모리 주소",
+        "함수의 이름",
+        "자료형의 크기"
+      ],
+      "answer": 1,
+      "explanation_en": "A pointer stores the memory address of another variable, rather than the value itself.",
+      "explanation_ko": "포인터는 값 자체가 아니라, 다른 변수가 저장되어 있는 메모리 주소를 저장하는 변수입니다.",
+      "concept_tags": ["pointer"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "foundation_stage1_u07_q002",
+      "type": "predict_output",
+      "code": "int x = 10;\nint *p = &x;\n*p = 20;\nprintf(\"%d\", x);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "20", "&x의 주소값", "오류"],
+      "answer": 1,
+      "explanation_en": "p holds x's address; *p = 20 means 'store 20 at the address p points to,' which changes x itself.",
+      "explanation_ko": "p는 x의 주소를 담고 있습니다. *p = 20은 'p가 가리키는 곳에 20을 저장하라'는 뜻으로, 결국 x의 값이 바뀝니다.",
+      "concept_tags": ["pointer", "dereference"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "foundation_stage1_u07_q003",
+      "type": "fill_blank",
+      "code": "int num = 42;\nint *ptr = ____num;",
+      "prompt_en": "Fill in the blank so ptr stores the address of num.",
+      "prompt_ko": "ptr이 num의 주소를 저장하도록 빈칸에 무엇이 들어가야 할까요?",
+      "options": ["&", "*", "%", "#"],
+      "answer": 0,
+      "explanation_en": "The & (address-of) operator retrieves the memory address of a variable.",
+      "explanation_ko": "&(주소 연산자)는 변수의 메모리 주소를 가져옵니다.",
+      "concept_tags": ["pointer", "address_of"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "foundation_stage1_u07_q004",
+      "type": "predict_output",
+      "code": "int a = 5;\nint *p = &a;\nprintf(\"%d\", *p);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["a의 메모리 주소", "5", "&a", "오류"],
+      "answer": 1,
+      "explanation_en": "*p dereferences the pointer, retrieving the value stored at the address it points to — which is a's value, 5.",
+      "explanation_ko": "*p는 포인터를 역참조하여 그 주소에 저장된 값을 가져옵니다. p가 a를 가리키고 있으므로 결과는 a의 값인 5입니다.",
+      "concept_tags": ["pointer", "dereference"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "foundation_stage1_u07_q005",
+      "type": "concept_quiz",
+      "code": null,
+      "prompt_en": "Why is initializing a pointer before using it important?",
+      "prompt_ko": "포인터를 사용하기 전에 초기화하는 것이 중요한 이유는 무엇일까요?",
+      "options": [
+        "초기화하지 않으면 컴파일이 아예 되지 않기 때문에",
+        "초기화되지 않은 포인터는 어디를 가리키는지 알 수 없어, 역참조 시 예측 불가능한 동작이나 오류를 일으킬 수 있기 때문에",
+        "초기화하지 않으면 자동으로 0이 되어 안전하기 때문에",
+        "포인터는 초기화가 필요 없기 때문에"
+      ],
+      "answer": 1,
+      "explanation_en": "An uninitialized pointer holds a garbage address; dereferencing it can crash the program or corrupt unrelated memory.",
+      "explanation_ko": "초기화되지 않은 포인터는 임의의 쓰레기 주소를 담고 있을 수 있습니다. 이 상태에서 역참조하면 프로그램이 비정상 종료되거나 관련 없는 메모리를 손상시킬 수 있습니다.",
+      "concept_tags": ["pointer", "uninitialized_pointer"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "foundation_stage1_u07_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "포인터", "definition": "다른 변수의 메모리 주소를 저장하는 변수" },
+        { "term": "& (주소 연산자)", "definition": "변수의 메모리 주소를 가져오는 연산자" },
+        { "term": "* (역참조 연산자)", "definition": "포인터가 가리키는 주소에 저장된 값을 가져오거나 바꾸는 연산자" },
+        { "term": "초기화되지 않은 포인터", "definition": "어디를 가리키는지 알 수 없어 역참조 시 위험한 상태의 포인터" }
+      ],
+      "explanation_en": "Pointers are considered the most challenging concept in C onboarding, but these four terms are the complete vocabulary needed to reason about them.",
+      "explanation_ko": "포인터는 C 온보딩 과정에서 가장 어려운 개념으로 꼽히지만, 이 네 가지 용어만 정확히 이해하면 포인터를 다루는 데 필요한 기본 어휘는 모두 갖춘 것입니다.",
+      "concept_tags": ["pointer", "address_of", "dereference"],
+      "difficulty": "practice"
+    }
+  ]
+}

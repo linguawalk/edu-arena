@@ -1,0 +1,198 @@
+{
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "level": 3,
+ "track": "probability",
+ "id": "stochastic",
+ "title": "확률과정 입문",
+ "tagline": "시간에 따라 무작위로 변하는 계, 마르코프 연쇄에서 포아송 과정과 브라운 운동까지",
+ "overview": [
+  "확률과정은 시간에 따라 무작위로 변하는 양을 다룹니다. 주가의 움직임, 창구에 도착하는 손님, 웹페이지를 옮겨 다니는 사용자, 유전자 빈도의 변화, 통신망의 패킷이 모두 확률과정으로 모형화됩니다. 핵심 질문은 '오래 지나면 어떤 상태에 머무는가', '어떤 상태에 도달할 확률과 시간은 얼마인가'입니다.",
+  "과목의 중심은 마르코프 연쇄입니다. '미래는 현재에만 의존하고 과거에는 의존하지 않는다'는 단순한 가정으로 전이행렬을 만들고, 선형대수의 고유벡터로 장기 행동(정상분포)을 구합니다. 이어서 지수분포에서 포아송 과정을, 연속시간 마르코프 연쇄에서 대기행렬 이론을 만들고, 마지막으로 브라운 운동과 마팅게일을 맛봅니다.",
+  "산업공학(대기행렬, 신뢰성), 금융공학(주가 모형), 컴퓨터 과학(페이지랭크, 알고리즘 분석, 강화학습), 생물학(개체군 모형)의 기초 과목입니다. 이 가이드는 Ross 교재의 흐름을 따릅니다."
+ ],
+ "level_note": "레벨 3 (학부 전공 입문 수준, 1학기 분량). 목차 검증 기준: Ross, Karlin–Taylor, Durrett 등 확률과정 입문 교재와 산업공학 확률모형 과목의 목차.",
+ "prereq": {
+  "text": "레벨2 확률과 통계(특히 지수분포, 포아송분포, 조건부 기댓값)와 레벨2 선형대수의 고유값·고유벡터가 필요합니다. 6단원부터는 레벨2 상미분방정식의 연립 선형 방정식이 도움이 됩니다.",
+  "links": [
+   {
+    "title": "레벨2 확률과 통계 · 단원 5 지수분포",
+    "href": "guide.html?lv=2&t=probability&s=statistics&u=5"
+   },
+   {
+    "title": "레벨2 확률과 통계 · 단원 9 조건부 기댓값",
+    "href": "guide.html?lv=2&t=probability&s=statistics&u=9"
+   },
+   {
+    "title": "레벨2 선형대수 · 단원 10 마르코프 행렬",
+    "href": "guide.html?lv=2&t=algebra&s=linear-algebra&u=10"
+   },
+   {
+    "title": "레벨2 상미분방정식 · 단원 10 연립 방정식",
+    "href": "guide.html?lv=2&t=analysis&s=ode&u=10"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "q1",
+    "qtype": "fill_blank",
+    "prompt": "X ~ Exp(3)의 평균은 {{1}}",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "1/3"
+      ]
+     }
+    ],
+    "explanation": "1/λ = 1/3 (확률과 통계 단원 5)"
+   },
+   {
+    "type": "question",
+    "id": "q2",
+    "qtype": "fill_blank",
+    "prompt": "X ~ 포아송(4)일 때 P(X = 0) = e^{{1}}",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "-4",
+       "−4",
+       "(-4)"
+      ]
+     }
+    ],
+    "explanation": "e^(−λ) (확률과 통계 단원 3)"
+   },
+   {
+    "type": "question",
+    "id": "q3",
+    "qtype": "numeric",
+    "prompt": "공정한 동전을 앞면이 나올 때까지 던지는 횟수의 기댓값은?",
+    "answer": "2",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "기하분포 1/p = 2 (첫 단계 분석으로도 x = 1 + x/2)"
+   },
+   {
+    "type": "question",
+    "id": "q4",
+    "qtype": "fill_blank",
+    "prompt": "행렬 [[0.9, 0.2], [0.1, 0.8]]의 고유값 1에 대한 확률벡터는 (2/3, {{1}})",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "1/3"
+      ]
+     }
+    ],
+    "explanation": "−0.1x + 0.2y = 0 → x = 2y, 합 1 (선형대수 단원 10)"
+   },
+   {
+    "type": "question",
+    "id": "q5",
+    "qtype": "numeric",
+    "prompt": "x′ = −2x, x(0) = 5일 때 x(t) = 5e^(kt)에서 k는?",
+    "answer": "-2",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "지수 감소 (상미분방정식)"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "대학원 · 확률론",
+   "note": "측도론적 확률, 마팅게일 이론, 확률미분방정식"
+  },
+  {
+   "title": "레벨3 · 수리통계",
+   "note": "마르코프 연쇄 몬테카를로(MCMC)와 베이즈 계산"
+  },
+  {
+   "title": "레벨3 · 최적화",
+   "note": "마르코프 결정과정과 동적계획법"
+  },
+  {
+   "title": "tech-arena · 산업공학·AI 공학",
+   "note": "대기행렬, 신뢰성, 강화학습"
+  }
+ ],
+ "units": [
+  {
+   "no": 1,
+   "title": "확률과정의 개념과 랜덤워크",
+   "hours": 5,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "이산시간 마르코프 연쇄",
+   "hours": 6,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "상태의 분류와 정상분포",
+   "hours": 6,
+   "after": [
+    2
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "흡수 확률과 도박꾼의 파산",
+   "hours": 5,
+   "after": [
+    3
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "지수분포와 포아송 과정",
+   "hours": 6,
+   "after": [
+    1
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "연속시간 마르코프 연쇄와 출생–사망 과정",
+   "hours": 6,
+   "after": [
+    3,
+    5
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "대기행렬 이론 입문",
+   "hours": 5,
+   "after": [
+    6
+   ],
+   "file": "u07.json"
+  },
+  {
+   "no": 8,
+   "title": "브라운 운동과 마팅게일 맛보기",
+   "hours": 5,
+   "after": [
+    1,
+    4
+   ],
+   "file": "u08.json"
+  }
+ ],
+ "total_hours": 44
+}

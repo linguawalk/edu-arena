@@ -1,0 +1,102 @@
+{
+ "no": 5,
+ "title": "직렬 통신: UART, SPI, I2C, CAN",
+ "hours": 6,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "UART의 프레임 구조와 보율로 전송 속도를 계산할 수 있다.",
+  "SPI와 I2C의 배선·주소 방식·속도를 비교할 수 있다.",
+  "CAN의 특징과 자동차에서 쓰는 이유를 설명할 수 있다."
+ ],
+ "checklist": [
+  "UART: 비동기, 시작 비트 + 데이터 8비트 + 정지 비트(8N1 → 1바이트에 10비트)",
+  "보율(baud rate)과 실제 바이트 전송률",
+  "SPI: 클럭·MOSI·MISO·칩 선택, 전이중, 빠름",
+  "I2C: SDA·SCL 두 선, 7비트 주소, 오픈 드레인 + 풀업",
+  "CAN: 차동 신호, 다중 마스터, 우선순위 중재, 오류 검출(자동차·산업)",
+  "로직 분석기와 오실로스코프로 파형 확인",
+  "USB·이더넷과의 비교"
+ ],
+ "advice": [
+  "직렬 통신 방식은 선의 수, 속도, 연결할 수 있는 장치 수의 맞바꿈으로 정리됩니다. UART는 두 장치 사이의 간단한 연결, SPI는 짧은 거리의 빠른 연결, I2C는 두 선으로 여러 센서를 묶는 연결, CAN은 잡음이 많은 환경에서 여러 제어기를 묶는 연결입니다. 실제로 로직 분석기로 각 방식의 파형을 한 번씩 찍어 보면 프레임 구조가 확실히 이해되고, 통신이 안 될 때 원인을 찾는 능력이 생깁니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Lee · Seshia (무료 공개 교재)",
+   "title": "Introduction to Embedded Systems: A Cyber-Physical Systems Approach, 2nd ed.",
+   "url": "https://ptolemy.berkeley.edu/books/leeseshia/",
+   "lang": "영어",
+   "part": "Input and Output 장의 직렬 인터페이스 절"
+  },
+  {
+   "kind": "book",
+   "provider": "자가 출판",
+   "title": "Valvano, Embedded Systems: Introduction to ARM Cortex-M Microcontrollers (장 제목으로 표기)",
+   "part": "Serial Interfacing 관련 장"
+  },
+  {
+   "kind": "book",
+   "provider": "O'Reilly",
+   "title": "White, Making Embedded Systems (번역본 『임베디드 시스템 만들기』)",
+   "part": "Talking to Peripherals 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "디지털회로 10단원 논리 소자의 전기적 특성과 하드웨어 기술 언어",
+   "url": "guide.html?lv=2&t=electronics&s=digital-circuits&u=10",
+   "part": "오픈 드레인 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "8N1 형식(1바이트에 10비트), 115 200 bps UART의 최대 전송률은 초당 몇 바이트일까요?",
+   "answer": "11520",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "115 200/10 = 11 520 B/s",
+   "hint": "1바이트를 보내는 데 10비트가 듭니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "I2C의 7비트 주소로 구별할 수 있는 주소는 모두 몇 개일까요? (예약 주소 포함)",
+   "answer": "128",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2⁷ = 128개\n일부 주소는 예약되어 실제로 쓸 수 있는 수는 조금 적습니다.",
+   "hint": "2⁷입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "클럭·MOSI·MISO·칩 선택 선을 쓰는 빠른 동기식 직렬 통신 방식은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "SPI"
+     ]
+    }
+   ],
+   "explanation": "SPI는 전이중으로 동작하며 디스플레이·메모리·고속 ADC에 많이 씁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electronics",
+ "subject": "embedded",
+ "id": "l3-electronics-embedded-u05"
+}

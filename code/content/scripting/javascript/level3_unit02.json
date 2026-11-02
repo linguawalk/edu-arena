@@ -1,0 +1,91 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "화살표 함수와 this",
+  "questions": [
+    {
+      "id": "javascript_l3_u02_q001",
+      "type": "predict_output",
+      "code": "const square = (x) => x * x;\nconsole.log(square(5));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["25", "5", "오류", "x * x"],
+      "answer": 0,
+      "explanation_en": "Arrow function syntax (x) => x * x defines a concise function; when the body is a single expression, it's implicitly returned. square(5) computes 25.",
+      "explanation_ko": "화살표 함수 문법 (x) => x * x는 간결한 함수를 정의합니다. 본문이 하나의 표현식이면 암묵적으로 반환됩니다. square(5)는 25를 계산합니다.",
+      "concept_tags": ["arrow_function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l3_u02_q002",
+      "type": "fill_blank",
+      "code": "const add = (a, b) ____ a + b;\nconsole.log(add(3, 4));",
+      "prompt_en": "Fill in the blank with the arrow function symbol.",
+      "prompt_ko": "화살표 함수 기호를 빈칸에 채우세요.",
+      "options": ["=>", "->", "=>>", "::"],
+      "answer": 0,
+      "explanation_en": "=> separates an arrow function's parameters from its body, giving the syntax its name.",
+      "explanation_ko": "=>는 화살표 함수의 매개변수와 본문을 구분하며, 이 문법의 이름이 여기서 나왔습니다.",
+      "concept_tags": ["arrow_function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l3_u02_q003",
+      "type": "predict_output",
+      "code": "const obj = {\n    name: \"Kim\",\n    regularFunc: function() {\n        console.log(this.name);\n    }\n};\nobj.regularFunc();",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["Kim", "undefined", "오류", "obj"],
+      "answer": 0,
+      "explanation_en": "A regular function's this is dynamically bound to whatever object called it; obj.regularFunc() binds this to obj, so this.name is Kim.",
+      "explanation_ko": "일반 함수의 this는 호출한 객체에 따라 동적으로 바인딩됩니다. obj.regularFunc()는 this를 obj에 바인딩해서 this.name은 Kim이 됩니다.",
+      "concept_tags": ["this_binding"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l3_u02_q004",
+      "type": "predict_output",
+      "code": "const obj = {\n    name: \"Kim\",\n    arrowFunc: () => {\n        console.log(this.name);\n    }\n};\nobj.arrowFunc();",
+      "prompt_en": "What is printed? (Compare with the regular function example above.)",
+      "prompt_ko": "출력 결과는? (위의 일반 함수 예제와 비교해보세요.)",
+      "options": ["Kim", "undefined", "오류", "obj"],
+      "answer": 1,
+      "explanation_en": "Arrow functions don't have their own this — they inherit it from the surrounding lexical scope, not from how they're called. At the top level, this doesn't refer to obj, so this.name is undefined.",
+      "explanation_ko": "화살표 함수는 자신만의 this를 갖지 않습니다 — 호출 방식이 아니라 감싸는 어휘적 스코프에서 this를 물려받습니다. 최상위 레벨에서 this는 obj를 가리키지 않아 this.name은 undefined입니다.",
+      "concept_tags": ["arrow_function", "this_binding", "lexical_this"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l3_u02_q005",
+      "type": "predict_output",
+      "code": "const nums = [1, 2, 3];\nconst doubled = nums.map(n => n * 2);\nconsole.log(doubled);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["[1, 2, 3]", "[2, 4, 6]", "오류", "[1, 4, 9]"],
+      "answer": 1,
+      "explanation_en": "Arrow functions are commonly used as concise callbacks for array methods; map applies n => n * 2 to each element, doubling them.",
+      "explanation_ko": "화살표 함수는 배열 메서드의 콜백으로 간결하게 흔히 쓰입니다. map은 n => n * 2를 각 요소에 적용해 두 배로 만듭니다.",
+      "concept_tags": ["arrow_function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l3_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "화살표 함수 (=>)", "definition": "더 간결한 문법의 함수, 단일 식이면 암묵적으로 반환" },
+        { "term": "일반 함수의 this", "definition": "누가 호출했는지에 따라 동적으로 결정됨" },
+        { "term": "화살표 함수의 this (렉시컬 this)", "definition": "자신만의 this가 없이, 감싸는 스코프의 this를 그대로 물려받음" },
+        { "term": "콜백으로서의 화살표 함수", "definition": "map/filter/reduce 같은 배열 메서드에 흔히 쓰이는 간결한 함수 형태" }
+      ],
+      "explanation_en": "The difference between dynamic this (regular functions) and lexical this (arrow functions) is one of the most consequential design decisions in JavaScript, frequently causing subtle bugs when developers mix the two without understanding the distinction.",
+      "explanation_ko": "동적 this(일반 함수)와 렉시컬 this(화살표 함수)의 차이는 JavaScript에서 가장 중대한 설계 결정 중 하나로, 개발자가 이 차이를 이해하지 못하고 섞어 쓸 때 미묘한 버그를 자주 일으킵니다.",
+      "concept_tags": ["arrow_function", "this_binding", "lexical_this"],
+      "difficulty": "practice"
+    }
+  ]
+}

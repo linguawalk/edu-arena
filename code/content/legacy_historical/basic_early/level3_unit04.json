@@ -1,0 +1,96 @@
+{
+  "language": "basic_early",
+  "category": "legacy_historical",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "ON...GOTO",
+  "questions": [
+    {
+      "id": "basic_early_l3_u04_q001",
+      "type": "predict_output",
+      "code": "10 LET N = 2\n20 ON N GOTO 100, 200, 300\n30 END\n100 PRINT \"ONE\"\n110 END\n200 PRINT \"TWO\"\n210 END\n300 PRINT \"THREE\"\n310 END",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["ONE", "TWO", "THREE", "오류"],
+      "answer": 1,
+      "explanation_en": "ON N GOTO jumps to the Nth line number in the comma-separated list; N is 2, so it jumps to the second one, 200, printing TWO.",
+      "explanation_ko": "ON N GOTO는 쉼표로 구분된 목록에서 N번째 줄 번호로 뜁니다. N이 2이므로 두 번째인 200으로 뛰어서 TWO가 출력됩니다.",
+      "concept_tags": ["on_goto"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "basic_early_l3_u04_q002",
+      "type": "predict_output",
+      "code": "10 LET N = 1\n20 ON N GOTO 100, 200, 300\n30 END\n100 PRINT \"ONE\"\n110 END\n200 PRINT \"TWO\"\n210 END\n300 PRINT \"THREE\"\n310 END",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["ONE", "TWO", "THREE", "오류"],
+      "answer": 0,
+      "explanation_en": "N is 1, so ON N GOTO jumps to the first line number in the list, 100, printing ONE.",
+      "explanation_ko": "N이 1이므로 ON N GOTO는 목록의 첫 번째 줄 번호인 100으로 뛰어서 ONE이 출력됩니다.",
+      "concept_tags": ["on_goto"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "basic_early_l3_u04_q003",
+      "type": "fill_blank",
+      "code": "10 LET DAY = 3\n____ DAY GOTO 100, 200, 300, 400, 500\n// N번째 줄로 뛰는 계산된 분기여야 함",
+      "prompt_en": "Fill in the blank with the keyword that begins a computed branch based on a variable's value.",
+      "prompt_ko": "변수 값에 따라 계산된 분기를 시작하는 키워드를 빈칸에 채우세요.",
+      "options": ["ON", "SELECT", "SWITCH", "CASE"],
+      "answer": 0,
+      "explanation_en": "ON begins a computed GOTO (or GOSUB) that branches based on an expression's value, selecting among a list of destinations.",
+      "explanation_ko": "ON은 식의 값에 따라 분기하는 계산된 GOTO(또는 GOSUB)를 시작해서, 목적지 목록 중 하나를 선택합니다.",
+      "concept_tags": ["on_goto"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "basic_early_l3_u04_q004",
+      "type": "error_finding",
+      "code": "10 LET N = 5\n20 ON N GOTO 100, 200, 300\n30 PRINT \"FELL THROUGH\"\n40 END\n100 PRINT \"ONE\"\n110 END\n200 PRINT \"TWO\"\n210 END\n300 PRINT \"THREE\"\n310 END",
+      "prompt_en": "What problem does this code have? (Note: N is 5, but the list only has 3 destinations.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (N은 5인데 목록에는 목적지가 3개뿐인 점에 주의하세요.)",
+      "options": [
+        "ON GOTO 문법 자체가 틀림",
+        "N(5)이 목록의 어떤 위치와도 대응하지 않아서(3개짜리 목록의 범위를 벗어남), 실행 시점에 범위 초과 오류가 발생함",
+        "FELL THROUGH가 정상적으로 출력됨",
+        "THREE가 가장 가까운 값으로 선택되어 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "When N doesn't correspond to any position in the list (here, 5 is out of range for a 3-item list), ON...GOTO raises a runtime 'value out of range' error rather than silently continuing — the interpreter needs a valid position to jump to.",
+      "explanation_ko": "N이 목록의 어떤 위치와도 대응하지 않으면(여기서는 5가 3개짜리 목록의 범위를 벗어남), ON...GOTO는 조용히 계속 진행하는 대신 실행 시점에 '범위 초과' 오류를 냅니다. 인터프리터는 뛰어갈 유효한 위치가 필요합니다.",
+      "concept_tags": ["on_goto", "out_of_range"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "basic_early_l3_u04_q005",
+      "type": "predict_output",
+      "code": "10 LET N = 3\n20 ON N GOSUB 100, 200\n30 PRINT \"BACK\"\n40 END\n100 PRINT \"SUB ONE\"\n110 RETURN\n200 PRINT \"SUB TWO\"\n210 RETURN",
+      "prompt_en": "What is printed? (Note: N is 3, but the GOSUB list only has 2 destinations.)",
+      "prompt_ko": "출력 결과는? (N은 3인데 GOSUB 목록에는 목적지가 2개뿐인 점에 주의하세요.)",
+      "options": ["BACK", "오류: 범위 초과", "SUB ONE\\nBACK", "SUB TWO\\nBACK"],
+      "answer": 1,
+      "explanation_en": "Just like ON...GOTO, ON...GOSUB requires N to correspond to a valid position in the list; N=3 has no match among the 2 destinations, raising a range error before BACK is ever reached.",
+      "explanation_ko": "ON...GOTO와 마찬가지로 ON...GOSUB도 N이 목록의 유효한 위치에 대응해야 합니다. N=3은 2개짜리 목적지 중 어디에도 대응하지 않아, BACK에 도달하기도 전에 범위 오류가 발생합니다.",
+      "concept_tags": ["on_goto", "out_of_range"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "basic_early_l3_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "ON N GOSUB 목록", "definition": "ON...GOTO와 비슷하지만, 각 목적지가 서브루틴이라 RETURN으로 돌아옴" },
+        { "term": "값 기반 분기", "definition": "N의 값에 따라 어디로 갈지 결정하는 방식" },
+        { "term": "목록의 순서", "definition": "쉼표로 구분된 줄 번호들이 N=1,2,3...에 순서대로 대응" },
+        { "term": "구조화된 대안", "definition": "현대 언어라면 switch/match로 표현했을 것을 ON...GOTO가 대신함" }
+      ],
+      "explanation_en": "ON...GOTO also has a GOSUB variant (ON N GOSUB ...) for calling subroutines instead of jumping permanently, offering the same computed-branch idea with a return path.",
+      "explanation_ko": "ON...GOTO에는 GOSUB 버전(ON N GOSUB ...)도 있어서, 영구히 뛰어가는 대신 서브루틴을 호출할 수 있습니다. 같은 계산된 분기 개념에 돌아올 경로가 추가된 것입니다.",
+      "concept_tags": ["on_goto"],
+      "difficulty": "practice"
+    }
+  ]
+}

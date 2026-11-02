@@ -1,0 +1,105 @@
+{
+ "no": 7,
+ "title": "보상기와 PID 제어",
+ "hours": 6,
+ "after": [
+  5,
+  6
+ ],
+ "objectives": [
+  "진상·지상 보상기가 응답과 안정 여유에 주는 효과를 설명할 수 있다.",
+  "PID 제어기의 비례·적분·미분 동작의 역할을 설명할 수 있다.",
+  "지글러–니콜스 방법으로 PID 이득을 처음 정할 수 있다."
+ ],
+ "checklist": [
+  "진상 보상: 위상 여유 증가, 과도 응답 개선",
+  "지상 보상: 저주파 이득 증가, 정상 상태 오차 감소",
+  "PID: u = K_p e + K_i ∫e dt + K_d de/dt",
+  "P 동작: 빠르게 하지만 0형에서 오차가 남음, I 동작: 정상 상태 오차 제거, D 동작: 감쇠 개선(잡음에 민감)",
+  "지글러–니콜스 한계 감도법: K_p = 0.6K_u, T_i = P_u/2, T_d = P_u/8",
+  "적분기 와인드업과 방지(anti-windup)",
+  "디지털 PID 구현과 샘플링"
+ ],
+ "advice": [
+  "실제 산업 현장의 제어 루프는 대부분 PID입니다. 세 항의 역할을 '현재 오차(P), 쌓인 오차(I), 오차의 변화 추세(D)에 반응한다'로 이해하고, 각 항을 키울 때 오버슈트·정착 시간·정상 오차가 어떻게 바뀌는지 시뮬레이션으로 직접 확인해 보세요. 지글러–니콜스 값은 출발점일 뿐이고 실제로는 대상에 맞게 다시 조정한다는 점, 적분기가 포화된 구동기와 만나면 와인드업이 생긴다는 점을 함께 기억하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Ogata, Modern Control Engineering (번역본 『현대제어공학』, 장 제목으로 표기)",
+   "part": "PID Controllers and Modified PID Controllers 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Nise, Control Systems Engineering (장 제목으로 표기)",
+   "part": "Design via Root Locus, Design via Frequency Response 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Åström · Murray (무료 공개 교재)",
+   "title": "Feedback Systems: An Introduction for Scientists and Engineers, 2nd ed.",
+   "url": "https://fbsbook.org/",
+   "lang": "영어",
+   "part": "PID Control 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "16.06 Principles of Automatic Control (2012년 가을)",
+   "url": "https://ocw.mit.edu/courses/16-06-principles-of-automatic-control-fall-2012/",
+   "lang": "영어",
+   "part": "lead/lag compensation 관련 강의 노트"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "한계 감도법에서 진동이 시작되는 한계 이득 K_u = 10이면 지글러–니콜스 PID의 비례 이득 K_p는 얼마일까요?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "K_p = 0.6K_u = 6",
+   "hint": "K_p = 0.6K_u입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "같은 실험에서 진동 주기 P_u = 2 s이면 적분 시간 T_i는 몇 초일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "T_i = P_u/2 = 1 s",
+   "hint": "T_i = P_u/2입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "PID 제어기에서 계단 입력의 정상 상태 오차를 없애는 동작은 {{1}} 동작입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "적분",
+      "I"
+     ]
+    }
+   ],
+   "explanation": "오차가 남아 있는 동안 적분값이 계속 쌓여 조작량을 키우므로 오차가 0이 될 때까지 움직입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "control",
+ "id": "l3-electrical-control-u07"
+}

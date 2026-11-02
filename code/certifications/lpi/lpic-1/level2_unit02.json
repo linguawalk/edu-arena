@@ -1,0 +1,95 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-1-101",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "sed와 정규표현식",
+  "rule_summary_ko": "sed의 치환 명령 s/찾을패턴/바꿀값/은 기본적으로 각 줄에서 첫 번째로 일치하는 것만 바꾸며, 모든 일치 항목을 바꾸려면 끝에 g(global) 플래그를 붙여야 합니다. sed는 기본적으로 처리한 모든 줄을 자동으로 출력하는데, -n 옵션은 이 자동 출력을 억제합니다 — 그래서 -n 없이 '2p'(2번째 줄을 출력하라는 p 명령) 같은 명령을 쓰면, 자동 출력과 p 명령이 겹쳐 해당 줄이 중복 출력됩니다.",
+  "examples": [
+    { "code": "echo \"hello world hello\" | sed 's/hello/hi/'", "note_ko": "결과: \"hi world hello\" — g가 없어 첫 번째 hello만 바뀌고 두 번째는 그대로 남음" },
+    { "code": "sed '2p' 파일명   (vs   sed -n '2p' 파일명)", "note_ko": "-n 없이 쓰면 2번째 줄이 두 번 출력됨(자동출력+p명령), -n을 쓰면 2번째 줄만 정확히 한 번 출력됨" }
+  ],
+  "questions": [
+    {
+      "id": "lpic1_l2_u2_q001",
+      "type": "fill_blank",
+      "code": "echo \"hello world hello\" | sed 's/hello/hi/'",
+      "prompt_ko": "이 명령어의 출력 결과는 무엇입니까? (그대로 입력)",
+      "expected_answers": ["hi world hello"],
+      "explanation_ko": "g 플래그가 없으면 각 줄에서 첫 번째로 일치하는 것만 치환됩니다.",
+      "concept_tags": ["sed_first_match_only"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l2_u2_q002",
+      "type": "fill_blank",
+      "code": "echo \"hello world hello\" | sed 's/hello/hi/g'",
+      "prompt_ko": "이 명령어의 출력 결과는 무엇입니까? (그대로 입력)",
+      "expected_answers": ["hi world hi"],
+      "explanation_ko": "g(global) 플래그는 한 줄 안의 모든 일치 항목을 전부 치환합니다.",
+      "concept_tags": ["sed_global_flag"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l2_u2_q003",
+      "type": "concept_matching_item",
+      "code": "파일 내용: line1\\nline2\\nline3\nsed '2p' 파일명   (-n 옵션 없음)",
+      "prompt_ko": "이 명령어의 출력 결과는?",
+      "options": [
+        "line1, line2, line2, line3 — line2가 두 번 출력됨(sed의 기본 자동 출력 + p 명령의 출력이 겹침)",
+        "line2만 정확히 한 번 출력된다",
+        "line1, line2, line3(변화 없음)",
+        "아무것도 출력되지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "-n 없이 p 명령을 쓰면 자동 출력과 겹쳐 해당 줄이 중복 출력되는 흔한 실수입니다.",
+      "concept_tags": ["sed_p_without_n_duplicate"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic1_l2_u2_q004",
+      "type": "concept_matching_item",
+      "code": "sed -n '2p' 파일명",
+      "prompt_ko": "-n 옵션이 추가되면 결과가 어떻게 달라집니까?",
+      "options": [
+        "sed의 기본 자동 출력이 억제되어, p 명령으로 지정한 2번째 줄만 정확히 한 번 출력된다",
+        "-n을 붙여도 아무 차이가 없다",
+        "모든 줄이 두 번씩 출력된다",
+        "-n은 파일을 정렬하는 옵션이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "-n은 자동 출력을 끄고, 명시적으로 p로 지정한 줄만 보여주고 싶을 때 필수적으로 함께 사용됩니다.",
+      "concept_tags": ["sed_n_option"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l2_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "sed로 파일 자체의 내용을 직접(원본을 수정하며) 변경하고 싶을 때 사용하는 옵션은?",
+      "options": ["-i(in-place) — 결과를 화면에 출력하는 대신 원본 파일을 직접 수정한다", "-n", "-g", "-c"],
+      "answer": 0,
+      "explanation_ko": "-i 옵션은 편리하지만, 원본을 직접 덮어쓰므로 사용 시 각별한 주의가 필요합니다.",
+      "concept_tags": ["sed_i_option"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l2_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "sed -i 옵션을 사용할 때 특히 주의해야 하는 이유는?",
+      "options": [
+        "원본 파일을 즉시 덮어쓰기 때문에, 명령을 잘못 작성하면 원본 데이터를 되돌릴 수 없이 잃어버릴 위험이 있다",
+        "-i는 파일을 절대 수정하지 않아 안전하기만 하다",
+        "-i는 항상 백업을 자동으로 만들어줘서 위험하지 않다",
+        "-i 옵션은 실제로 존재하지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "실무에서는 먼저 -i 없이 결과를 확인한 뒤 적용하거나, 백업 확장자를 지정하는 것이 권장됩니다.",
+      "concept_tags": ["sed_i_risk"],
+      "difficulty": "challenge"
+    }
+  ]
+}

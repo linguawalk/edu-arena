@@ -1,0 +1,104 @@
+{
+ "no": 1,
+ "title": "AI 연산의 정체: 행렬 곱",
+ "hours": 4,
+ "after": [],
+ "objectives": [
+  "신경망의 한 층이 행렬–벡터 곱과 덧셈으로 이루어짐을 설명할 수 있다.",
+  "곱셈–누산(MAC) 횟수와 연산량(FLOPs)을 계산할 수 있다.",
+  "AI 연산이 대규모 병렬 처리에 맞는 이유를 설명할 수 있다."
+ ],
+ "checklist": [
+  "뉴런: 입력 × 가중치를 더하고 활성화 함수 통과",
+  "한 층 = 행렬(가중치) × 벡터(입력)",
+  "곱셈–누산(MAC): 곱하고 더하기",
+  "FLOPs ≈ 2 × MAC(곱셈 1 + 덧셈 1)",
+  "합성곱(CNN)과 어텐션(트랜스포머)도 결국 행렬 곱",
+  "연산들이 서로 독립 → 병렬 처리에 유리",
+  "학습(훈련)과 추론의 차이"
+ ],
+ "advice": [
+  "AI 칩을 이해하는 첫 걸음은 'AI가 하는 일의 대부분은 거대한 행렬 곱셈'이라는 사실입니다. 입력 1000개, 출력 1000개인 층 하나만 해도 곱셈–누산이 백만 번 필요하고, 큰 모델은 이런 층이 수백 개입니다. 작은 행렬 곱을 손으로 계산해 보며 각 곱셈이 서로 기다릴 필요 없이 동시에 할 수 있다는 점을 확인해 보세요.",
+  "학습은 가중치를 고치려고 같은 계산을 앞뒤로 여러 번 하고, 추론은 정해진 가중치로 한 번 계산하는 것이라 필요한 칩 성능이 다릅니다. 이 차이가 데이터센터 칩과 엣지 칩이 갈리는 이유입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan & Claypool",
+   "title": "Sze 외, Efficient Processing of Deep Neural Networks (장 제목으로 표기)",
+   "part": "Overview of Deep Neural Networks 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Dive into Deep Learning (무료 공개 교재)",
+   "title": "Dive into Deep Learning",
+   "url": "https://d2l.ai/",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "입력 1000개, 출력 1000개인 완전 연결 층의 곱셈–누산(MAC) 횟수는 약 몇 × 10⁶일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "1000 × 1000 = 10⁶ MAC",
+   "hint": "입력 수 × 출력 수입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 층의 연산량은 약 몇 × 10⁶ FLOPs일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "FLOPs ≈ 2 × MAC = 2 × 10⁶",
+   "hint": "MAC 하나에 곱셈과 덧셈 두 번입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "곱한 값을 바로 앞의 합에 더하는 AI 연산의 기본 단위를 곱셈–{{1}}(MAC)이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "누산",
+      "누적"
+     ]
+    }
+   ],
+   "explanation": "AI 칩 성능은 초당 MAC 또는 FLOPs로 나타냅니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "이미 학습된 모델로 새로운 입력에 대한 답을 계산하는 과정을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "추론"
+     ]
+    }
+   ],
+   "explanation": "가중치를 고치는 과정은 학습(훈련)입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "convergence",
+ "subject": "ai-chip-intro",
+ "id": "l2-convergence-ai-chip-intro-u01"
+}

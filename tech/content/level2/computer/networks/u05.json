@@ -1,0 +1,111 @@
+{
+ "no": 5,
+ "title": "네트워크 계층: IP, 서브네팅, NAT",
+ "hours": 6,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "IPv4 헤더의 주요 필드와 단편화를 설명할 수 있다.",
+  "CIDR 서브네팅으로 네트워크 주소, 호스트 수, 서브넷 분할을 계산할 수 있다.",
+  "DHCP·NAT·IPv6의 역할을 설명할 수 있다."
+ ],
+ "checklist": [
+  "데이터 평면(전달)과 제어 평면(라우팅)",
+  "IPv4 헤더: TTL, 프로토콜, 주소, 단편화 필드",
+  "CIDR 표기와 서브넷 마스크",
+  "네트워크 주소 = 주소 AND 마스크, 호스트 수 = 2^(32 − n) − 2",
+  "서브넷 분할과 경로 집약",
+  "DHCP, NAT와 포트 변환",
+  "IPv6 주소(128비트)와 전환 기술"
+ ],
+ "advice": [
+  "서브네팅은 손으로 빨리 할 수 있어야 하는 계산입니다. 마스크의 경계가 걸리는 옥텟 하나만 2진수로 펼쳐 AND를 하면 네트워크 주소가 나오고, 블록 크기(예: /26이면 64)의 배수로 경계가 생긴다는 규칙을 쓰면 대부분 암산이 됩니다. 레벨1 컴퓨터 챕터 8의 계산을 여러 서브넷으로 나누는 문제로 확장해 연습하세요.",
+  "NAT는 IPv4 주소 부족을 해결했지만 외부에서 안쪽 기기로 바로 연결할 수 없게 만드는 부작용이 있습니다. IPv6가 이 문제를 어떻게 풀려고 하는지까지 연결해 두면 좋습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Kurose · Ross, Computer Networking: A Top-Down Approach (번역본 『컴퓨터 네트워킹 하향식 접근』, 장 제목으로 표기)",
+   "part": "The Network Layer: Data Plane 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 8 인터넷 원리(IP 주소)",
+   "url": "browse.html?c=c4#ch08",
+   "part": "레벨1 복습"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "정보통신 통신망 7단원 IP 망과 라우팅",
+   "url": "guide.html?lv=2&t=ict&s=comm-networks&u=7"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "/20 네트워크에서 장치에 줄 수 있는 주소는 몇 개일까요?",
+   "answer": "4094",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2¹² − 2 = 4094",
+   "hint": "2^(32 − 20) − 2입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "192.168.10.77/26이 속한 네트워크 주소는 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "192.168.10.64"
+     ]
+    }
+   ],
+   "explanation": "/26은 블록 크기 64입니다.\n77은 64~127 블록에 있으므로 네트워크 주소는 192.168.10.64입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "/24 네트워크를 같은 크기의 서브넷 4개로 나누면 각 서브넷의 접두어 길이는 몇일까요?",
+   "answer": "26",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "4 = 2²이므로 2비트를 더 빌려 /26입니다.",
+   "hint": "2ⁿ개로 나누면 n비트 늘어납니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "장치가 네트워크에 접속할 때 IP 주소·게이트웨이·DNS 서버를 자동으로 받아 오는 프로토콜은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "DHCP"
+     ]
+    }
+   ],
+   "explanation": "Dynamic Host Configuration Protocol의 줄임말입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "networks",
+ "id": "l2-computer-networks-u05"
+}

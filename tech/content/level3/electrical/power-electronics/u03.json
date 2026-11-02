@@ -1,0 +1,97 @@
+{
+ "no": 3,
+ "title": "위상 제어 정류기",
+ "hours": 6,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "SCR의 점호각 α로 출력 평균 전압을 제어하는 원리를 설명할 수 있다.",
+  "부하 종류(저항, 큰 인덕턴스)에 따른 출력 전압 식을 쓸 수 있다.",
+  "α > 90°에서의 인버터 동작(전력 회생)을 설명할 수 있다."
+ ],
+ "checklist": [
+  "점호각 α: 다이오드였다면 켜질 시점부터 게이트 신호까지의 지연각",
+  "단상 전파, 저항 부하: V_dc = 0.45V(1 + cos α)",
+  "단상 전파, 큰 인덕턴스 부하(연속 전류): V_dc = 0.9V cos α",
+  "3상 브리지(연속 전류): V_dc = 1.35V_L cos α",
+  "α > 90°: 평균 전압이 음 → 직류 쪽에서 교류 쪽으로 전력 회생(인버터 동작)",
+  "중첩각(전류 이동)과 입력 역률 저하",
+  "응용: 직류 전동기 구동, HVDC 변환기(LCC)"
+ ],
+ "advice": [
+  "위상 제어 정류기는 '언제 켤 것인가' 하나로 출력 전압을 바꾸는 가장 오래된 전력 제어 방식이며, 대전력 HVDC 변환기(LCC)는 지금도 이 원리로 동작합니다. 저항 부하와 큰 인덕턴스 부하에서 식이 다른 이유는 인덕턴스가 전류를 이어 흐르게 해 출력 전압이 음의 구간까지 내려가기 때문이니, 두 경우의 파형을 나란히 그려 보세요. cos α 식에서 α가 90°를 넘으면 평균 전압이 음이 되어 전력이 거꾸로 흐른다는 점이 전동기 회생 제동과 HVDC 역변환의 원리입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Mohan · Undeland · Robbins, Power Electronics: Converters, Applications, and Design (장 제목으로 표기)",
+   "part": "Line-Frequency Phase-Controlled Rectifiers and Inverters 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Addison-Wesley",
+   "title": "Kassakian · Schlecht · Verghese, Principles of Power Electronics (MIT 6.334 교재)",
+   "part": "위상 제어 변환기 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.334 Power Electronics (2007년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-334-power-electronics-spring-2007/",
+   "lang": "영어",
+   "part": "phase-controlled converter 관련 강의 노트"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "선간전압 380 V, 3상 브리지 위상 제어 정류기를 점호각 60°로 운전하면 출력 평균 전압은 약 몇 V일까요? (연속 전류)",
+   "answer": "256.5",
+   "answer_format": "decimal",
+   "tolerance": 0.5,
+   "explanation": "V_dc = 1.35 × 380 × cos 60° = 256.5 V",
+   "hint": "1.35V_L cos α입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "실효값 100 V, 단상 전파 위상 제어 정류기에 저항 부하를 걸고 점호각 90°로 운전하면 출력 평균 전압은 몇 V일까요?",
+   "answer": "45",
+   "answer_format": "integer",
+   "tolerance": 0.5,
+   "explanation": "V_dc = 0.45 × 100 × (1 + cos 90°) = 45 V",
+   "hint": "저항 부하는 0.45V(1 + cos α)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "큰 인덕턴스 부하에서 점호각을 90°보다 크게 하면 출력 평균 전압이 음이 되어 직류 쪽 에너지를 교류 전원으로 돌려보내는 {{1}} 동작을 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "인버터",
+      "역변환",
+      "회생"
+     ]
+    }
+   ],
+   "explanation": "직류 쪽에 역기전력(전동기, 배터리 등)이 있어야 이런 동작이 이어집니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "power-electronics",
+ "id": "l3-electrical-power-electronics-u03"
+}

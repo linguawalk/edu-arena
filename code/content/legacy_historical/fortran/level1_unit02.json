@@ -1,0 +1,91 @@
+{
+  "language": "fortran",
+  "category": "legacy_historical",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "조건문",
+  "questions": [
+    {
+      "id": "fortran_l1_u02_q001",
+      "type": "predict_output",
+      "code": "integer :: score\nscore = 85\nif (score >= 90) then\n    print *, 'A'\nelse if (score >= 80) then\n    print *, 'B'\nelse\n    print *, 'C'\nend if",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["A", "B", "C", "아무것도 출력되지 않음"],
+      "answer": 1,
+      "explanation_en": "score is 85, which fails the first condition (>= 90) but satisfies else if's (>= 80), printing B.",
+      "explanation_ko": "score는 85이므로 첫 번째 조건(90 이상)은 거짓이지만 else if의 조건(80 이상)은 참입니다. B가 출력됩니다.",
+      "concept_tags": ["if_then_else"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "fortran_l1_u02_q002",
+      "type": "fill_blank",
+      "code": "integer :: age\nage = 20\nif (age >= 18) ____\n    print *, 'ADULT'\nend if",
+      "prompt_en": "Fill in the blank with the keyword that separates the condition from the action.",
+      "prompt_ko": "조건과 실행할 동작을 구분하는 키워드를 빈칸에 채우세요.",
+      "options": ["then", "do", "begin", ":"],
+      "answer": 0,
+      "explanation_en": "then separates the if condition from the block that runs when it's true.",
+      "explanation_ko": "then은 if 조건과, 참일 때 실행할 블록을 구분합니다.",
+      "concept_tags": ["if_then_else"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "fortran_l1_u02_q003",
+      "type": "fill_blank",
+      "code": "integer :: x\nx = 5\nif (x == 5) then\n    print *, 'FIVE'\n____",
+      "prompt_en": "Fill in the blank with the keywords that close an if block in Fortran.",
+      "prompt_ko": "Fortran에서 if 블록을 닫는 키워드를 빈칸에 채우세요.",
+      "options": ["end if", "endif;", "fi", "}"],
+      "answer": 0,
+      "explanation_en": "Fortran closes an if block with end if (or the equivalent endif), explicitly marking the block's end rather than relying on braces or indentation.",
+      "explanation_ko": "Fortran은 if 블록을 end if(또는 동일한 endif)로 닫아서, 중괄호나 들여쓰기에 의존하지 않고 블록의 끝을 명시적으로 표시합니다.",
+      "concept_tags": ["end_if"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "fortran_l1_u02_q004",
+      "type": "predict_output",
+      "code": "integer :: x\nx = 5\nif (x == 5) print *, 'FIVE'",
+      "prompt_en": "What is printed? (A single-statement if with no end if.)",
+      "prompt_ko": "출력 결과는? (end if가 없는 한 문장짜리 if입니다.)",
+      "options": ["FIVE", "오류", "아무것도 출력되지 않음", "x"],
+      "answer": 0,
+      "explanation_en": "The single-line form if (condition) statement doesn't need then or end if, since there's only one statement to execute conditionally; it prints FIVE.",
+      "explanation_ko": "한 줄짜리 형태인 if (조건) 문장은 조건부로 실행할 문장이 하나뿐이라 then이나 end if가 필요 없습니다. FIVE가 출력됩니다.",
+      "concept_tags": ["if_then_else"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "fortran_l1_u02_q005",
+      "type": "predict_output",
+      "code": "integer :: temp\ntemp = 15\nif (temp > 30) then\n    print *, 'HOT'\nelse if (temp > 20) then\n    print *, 'WARM'\nelse if (temp > 10) then\n    print *, 'COOL'\nelse\n    print *, 'COLD'\nend if",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["HOT", "WARM", "COOL", "COLD"],
+      "answer": 2,
+      "explanation_en": "temp is 15, which fails the first two conditions but satisfies temp > 10, so COOL is printed.",
+      "explanation_ko": "temp는 15이므로 앞의 두 조건은 거짓이지만 temp > 10은 참입니다. 따라서 COOL이 출력됩니다.",
+      "concept_tags": ["if_then_else"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "fortran_l1_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "if ... then ... end if", "definition": "조건에 따라 분기하되, 블록 끝을 명시적으로 표시하는 구조" },
+        { "term": "else if", "definition": "추가 조건을 검사하는 분기 — 여러 단어로 쓰지만 하나의 절로 취급" },
+        { "term": "한 줄 if (then 없음)", "definition": "조건부로 문장 하나만 실행할 때 then/end if를 생략하는 축약형" },
+        { "term": "명시적 블록 종료", "definition": "중괄호나 들여쓰기 대신 end if로 블록을 명확히 끝맺는 Fortran의 방식" }
+      ],
+      "explanation_en": "Fortran's explicit end if (rather than relying on braces like C or indentation like Python) reflects its origins in an era before those conventions were established, prioritizing unambiguous block boundaries.",
+      "explanation_ko": "C의 중괄호나 Python의 들여쓰기에 의존하지 않는 Fortran의 명시적인 end if는, 그런 관례들이 확립되기 전 시대에서 비롯된 기원을 반영하며, 모호하지 않은 블록 경계를 우선시합니다.",
+      "concept_tags": ["if_then_else", "end_if"],
+      "difficulty": "practice"
+    }
+  ]
+}

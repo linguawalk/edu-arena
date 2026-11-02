@@ -1,0 +1,275 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "ds",
+  "work": "풀이",
+  "track_title": "자료구조",
+  "chapter": {
+    "id": "info-s1-ds-ch01",
+    "no": 1,
+    "title": "스택"
+  },
+  "lesson": {
+    "id": "info-s1-ds-ch01-l03",
+    "no": 3,
+    "title": "후위 표기식",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "자료구조",
+      "스택"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "연산자를 뒤에",
+      "body": [
+        "우리가 쓰는 2 + 3 같은 식은 연산자가 피연산자 사이에 있는 중위 표기입니다. 연산자를 피연산자 뒤에 쓰는 2 3 +를 후위 표기라 합니다.",
+        "후위 표기는 괄호가 없어도 계산 순서가 정해집니다. (1 + 2) × 3은 1 2 + 3 *, 1 + 2 × 3은 1 2 3 * +입니다.",
+        "후위 표기식은 왼쪽부터 읽으며 수는 스택에 넣고, 연산자를 만나면 두 수를 꺼내 계산한 결과를 다시 넣으면 계산됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "후위 표기식 '3 4 +'의 값은?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3 + 4입니다.",
+      "explanation": "후위 표기는 연산자를 두 피연산자 뒤에 써서, 연산자 바로 앞의 두 값에 그 연산을 적용합니다.\n'3 4 +'는 3과 4를 더하라는 뜻입니다.\n= 7입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "연산자를 피연산자 뒤에 쓰는 식의 표기법을 {{1}}라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "후위 표기",
+            "후위표기",
+            "후위 표기법",
+            "후위표기법"
+          ]
+        }
+      ],
+      "hint": "뒤(後)에 쓰는 표기입니다.",
+      "explanation": "2 + 3처럼 연산자를 가운데 쓰는 것은 중위 표기입니다.\n2 3 +처럼 연산자를 뒤에 쓰는 표기가 있습니다.\n이것을 후위 표기라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "스택으로 계산하기",
+      "body": [
+        "아래 코드는 토큰을 차례로 읽어 수는 push하고, 연산자를 만나면 b, a 순서로 꺼내 a (연산자) b를 계산해 다시 push합니다. 먼저 꺼낸 것이 오른쪽 피연산자라는 점에 주의합니다.",
+        "식이 올바르면 끝에 스택에 수가 하나 남고, 그것이 답입니다.",
+        "토큰을 한 번씩만 읽으므로 O(n)입니다."
+      ],
+      "code": "// 공백으로 나뉜 후위 표기식을 계산\nstack<int> s;\nfor (string tok : tokens) {\n    if (tok is a number) s.push(value of tok);\n    else {\n        int b = s.top(); s.pop();\n        int a = s.top(); s.pop();\n        s.push(a (tok) b);         // + - * / 중 하나\n    }\n}\n// 답은 s.top()"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "'2 3 4 * +'를 아래 코드로 계산하세요.",
+      "steps": [
+        "2, 3, 4를 넣으면 스택은 [2, 3, 4]입니다.",
+        "*: 4와 3을 꺼내 3 × 4 = 12를 넣어 [2, 12]입니다.",
+        "+: 12와 2를 꺼내 2 + 12 = 14를 넣어 [14]입니다.",
+        "답은 14입니다."
+      ],
+      "answer": "14",
+      "code": "// 공백으로 나뉜 후위 표기식을 계산\nstack<int> s;\nfor (string tok : tokens) {\n    if (tok is a number) s.push(value of tok);\n    else {\n        int b = s.top(); s.pop();\n        int a = s.top(); s.pop();\n        s.push(a (tok) b);         // + - * / 중 하나\n    }\n}\n// 답은 s.top()"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제의 답은?",
+      "answer": "14",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2 + 3 × 4입니다.",
+      "explanation": "후위 표기식은 수를 스택에 넣고 연산자를 만나면 두 수를 꺼내 계산해 다시 넣습니다.\n'2 3 4 * +'는 3 × 4 = 12를 먼저 계산한 뒤 2 + 12를 계산합니다.\n= 14입니다.",
+      "code": "// 공백으로 나뉜 후위 표기식을 계산\nstack<int> s;\nfor (string tok : tokens) {\n    if (tok is a number) s.push(value of tok);\n    else {\n        int b = s.top(); s.pop();\n        int a = s.top(); s.pop();\n        s.push(a (tok) b);         // + - * / 중 하나\n    }\n}\n// 답은 s.top()"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "'8 2 3 * -'를 아래 코드로 계산하면?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "8 − 2 × 3입니다.",
+      "explanation": "후위 표기식은 수를 스택에 넣고 연산자를 만나면 b, a 순서로 꺼내 a (연산자) b를 계산합니다.\n*에서 2 × 3 = 6, -에서 8 − 6을 계산합니다.\n= 2입니다.",
+      "code": "// 공백으로 나뉜 후위 표기식을 계산\nstack<int> s;\nfor (string tok : tokens) {\n    if (tok is a number) s.push(value of tok);\n    else {\n        int b = s.top(); s.pop();\n        int a = s.top(); s.pop();\n        s.push(a (tok) b);         // + - * / 중 하나\n    }\n}\n// 답은 s.top()"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "스택의 크기",
+      "body": [
+        "계산 도중 스택에 쌓이는 수의 최대 개수는 식의 모양에 따라 다릅니다. '2 3 4 * +'는 2, 3, 4를 넣었을 때 3개로 가장 많습니다.",
+        "(1 + 2) × (3 + 4)의 후위 표기 '1 2 + 3 4 + *'는 [1, 2] → [3] → [3, 3, 4] → [3, 7] → [21]로 최대 3개입니다.",
+        "메모리를 미리 잡아야 할 때 이런 최대 크기를 따집니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "'2 3 4 * +'를 계산하는 동안 스택에 쌓이는 수의 최대 개수는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2, 3, 4를 넣은 직후입니다.",
+      "explanation": "수를 만나면 스택이 1 커지고, 연산자를 만나면 두 개를 꺼내 하나를 넣어 1 작아집니다.\n2, 3, 4를 넣으면 3개가 되고 그 뒤로는 줄어듭니다.\n최댓값은 3입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "중위 표기를 바꾸기",
+      "body": [
+        "중위 표기식을 후위 표기로 바꿀 때도 스택을 씁니다. 수는 바로 출력하고, 연산자는 우선순위가 높거나 같은 연산자가 스택 맨 위에 있으면 그것들을 먼저 꺼내 출력한 뒤 넣습니다. 괄호는 여는 괄호를 넣고 닫는 괄호에서 여는 괄호까지 꺼냅니다.",
+        "(1 + 2) × (3 + 4)는 1 2 + 3 4 + *가 되고 값은 21입니다.",
+        "9 − 3 ÷ 2가 아니라 (9 − 3) ÷ 2라면 9 3 - 2 /로 쓰고 값은 3입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "'1 2 + 3 4 + *'의 값은?",
+      "answer": "21",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(1 + 2) × (3 + 4)입니다.",
+      "explanation": "후위 표기식은 수를 스택에 넣고 연산자를 만나면 두 수를 꺼내 계산해 다시 넣습니다.\n1 + 2 = 3, 3 + 4 = 7을 계산한 뒤 3 × 7을 계산합니다.\n= 21입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "'9 3 - 2 /'의 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(9 − 3) ÷ 2입니다.",
+      "explanation": "후위 표기식은 수를 스택에 넣고 연산자를 만나면 b, a 순서로 꺼내 a (연산자) b를 계산합니다.\n9 − 3 = 6을 계산한 뒤 6 ÷ 2를 계산합니다.\n= 3입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "후위 표기는 연산자를 피연산자 뒤에 쓰는 표기로, 괄호 없이도 계산 순서가 정해집니다.",
+        "왼쪽부터 읽으며 수는 push하고, 연산자를 만나면 b, a 순서로 꺼내 a (연산자) b를 push하면 O(n)에 계산됩니다.",
+        "중위 표기를 후위 표기로 바꿀 때도 연산자의 우선순위와 괄호를 스택으로 처리합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "'4 5 6 * +'의 값은?",
+      "answer": "34",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "4 + 5 × 6입니다.",
+      "explanation": "후위 표기식은 수를 스택에 넣고 연산자를 만나면 두 수를 꺼내 계산해 다시 넣습니다.\n5 × 6 = 30을 계산한 뒤 4 + 30을 계산합니다.\n= 34입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "'7 2 3 + *'의 값은?",
+      "answer": "35",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "7 × (2 + 3)입니다.",
+      "explanation": "후위 표기식은 수를 스택에 넣고 연산자를 만나면 두 수를 꺼내 계산해 다시 넣습니다.\n2 + 3 = 5를 계산한 뒤 7 × 5를 계산합니다.\n= 35입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "후위 표기식에는 괄호가 없어도 계산 순서가 하나로 정해지는 이유를 설명하세요.",
+      "model_answer": [
+        "후위 표기에서 연산자는 바로 앞에서 계산된 두 값(스택 맨 위의 두 값)에 적용된다.",
+        "그래서 연산자가 나타나는 위치 자체가 언제 계산할지를 정해 준다.",
+        "예를 들어 (1 + 2) × 3은 1 2 + 3 *, 1 + 2 × 3은 1 2 3 * +로 서로 다르게 쓰인다.",
+        "식을 왼쪽부터 읽는 순서대로 계산하면 되므로 우선순위나 괄호가 필요 없다."
+      ],
+      "criteria": [
+        {
+          "text": "연산자가 스택 맨 위 두 값에 적용됨을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "위치가 계산 시점을 정함을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "예로 차이를 보였다",
+          "points": 2
+        }
+      ],
+      "hint": "두 식의 후위 표기를 비교해 보세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "후위 표기식을 계산할 때 연산자를 만나면 먼저 꺼낸 값을 오른쪽 피연산자로 써야 하는 이유를 설명하세요.",
+      "model_answer": [
+        "후위 표기 a b -는 a − b를 뜻하며, a가 먼저, b가 나중에 스택에 들어간다.",
+        "스택은 나중에 넣은 것이 먼저 나오므로 첫 pop은 b, 두 번째 pop은 a이다.",
+        "뺄셈과 나눗셈은 순서를 바꾸면 값이 달라진다.",
+        "그래서 먼저 꺼낸 값을 오른쪽 피연산자 b로 두고 a (연산자) b를 계산해야 한다."
+      ],
+      "criteria": [
+        {
+          "text": "a와 b가 들어간 순서를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "LIFO로 꺼내는 순서를 설명했다",
+          "points": 2
+        },
+        {
+          "text": "순서가 중요한 연산과 연결해 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "'8 2 -'를 계산해 보세요."
+    }
+  ]
+}

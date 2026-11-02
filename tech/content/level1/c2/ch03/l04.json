@@ -1,0 +1,355 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c2",
+  "title": "기계"
+ },
+ "chapter": {
+  "id": "c2-ch03",
+  "no": 3,
+  "title": "동력 전달"
+ },
+ "lesson": {
+  "id": "c2-ch03-l04",
+  "no": 4,
+  "title": "동력 전달 효율과 설계",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "기계"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "거칠 때마다 조금씩 잃는다",
+   "body": [
+    "모터의 동력은 감속기, 벨트, 체인을 거쳐 기계에 닿습니다. 각 단계에서 마찰로 조금씩 손실이 생기므로, 전체 효율은 각 단계 효율을 모두 곱한 값입니다.",
+    "대략 기어 한 쌍은 97~99 %, V벨트는 약 95 %, 체인은 약 97 %, 웜 기어는 감속비에 따라 50~90 %입니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "numeric",
+   "prompt": "효율 98 % 기어 한 쌍과 효율 95 % 벨트를 거치면 전체 효율은 약 몇 %일까요? (소수 첫째 자리까지)",
+   "answer": "93.1",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "hint": "효율을 곱하세요.",
+   "explanation": "0.98 × 0.95 = 0.931입니다.\n약 93.1 %입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "출력과 토크 계산",
+   "body": [
+    "기계 쪽 출력 = 모터 출력 × 전체 효율입니다. 기계 쪽 토크 = 모터 토크 × 전체 기어비 × 전체 효율입니다.",
+    "반대로 기계가 필요로 하는 출력이 정해지면, 모터 출력 = 필요한 출력 ÷ 전체 효율로 구합니다. 손실만큼 더 큰 모터가 필요합니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "필요한 출력이 3 kW이고 전체 효율이 0.9라면 모터 출력은 최소 얼마여야 할까요?",
+   "steps": [
+    "모터 출력 = 3 ÷ 0.9 ≈ 3.33 kW입니다.",
+    "여유를 두어 3.7 kW 같은 표준 모터를 고릅니다."
+   ],
+   "answer": "약 3.33 kW 이상"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "여러 단계를 거치는 동력 전달의 전체 효율은 각 단계 효율을 {{1}} 값입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "곱한",
+      "모두 곱한"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "각 단계에서 들어온 동력의 일부만 다음으로 넘어갑니다.\n그래서 효율을 차례로 곱합니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "모터 출력 5 kW, 전체 효율 0.85이면 기계 쪽 출력은 몇 kW일까요?",
+   "answer": "4.25",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "hint": null,
+   "explanation": "5 × 0.85 = 4.25 kW입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "필요한 출력 4.5 kW, 전체 효율 0.9이면 모터 출력은 몇 kW 이상이어야 할까요?",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "4.5 ÷ 0.9 = 5 kW입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "효율 98 % 기어 두 쌍을 거치면 전체 효율은 약 몇 %일까요? (소수 첫째 자리까지)",
+   "answer": "96.0",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "hint": null,
+   "explanation": "0.98 × 0.98 = 0.9604입니다.\n약 96.0 %입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "손실은 열이 된다",
+   "body": [
+    "잃어버린 동력은 대부분 기어, 베어링, 벨트를 데우는 열이 됩니다. 효율 90 %인 10 kW 감속기라면 1 kW의 열이 계속 나므로, 큰 감속기에는 냉각 핀이나 기름 냉각기를 답니다.",
+    "효율이 낮은 웜 기어 감속기가 특히 뜨거워지기 쉽습니다. 그래서 오래 돌리는 기계에는 효율이 높은 헬리컬 기어 감속기를 쓰기도 합니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "입력 20 kW, 효율 70 %인 웜 감속기에서 나는 열은?",
+   "steps": [
+    "출력 = 20 × 0.7 = 14 kW입니다.",
+    "손실 = 20 − 14 = 6 kW가 열이 됩니다."
+   ],
+   "answer": "6 kW"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "동력 전달 중에 잃어버린 동력은 대부분 {{1}}이 됩니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "열",
+      "열에너지"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "마찰로 잃어버린 에너지는 부품을 데웁니다.\n그래서 큰 감속기는 냉각이 필요합니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "입력 10 kW, 효율 90 %인 감속기에서 나는 열은 몇 kW일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "손실 = 10 × (1 − 0.9) = 1 kW입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "입력 5 kW, 효율 60 %인 웜 감속기에서 나는 열은 몇 kW일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "손실 = 5 × 0.4 = 2 kW입니다.\n효율이 낮아 발열이 큽니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "ordering",
+   "prompt": "효율이 높은 것부터 배열하세요.",
+   "items": [
+    {
+     "id": "a",
+     "text": "웜 기어(큰 감속비)"
+    },
+    {
+     "id": "b",
+     "text": "헬리컬 기어 한 쌍"
+    },
+    {
+     "id": "c",
+     "text": "V벨트"
+    }
+   ],
+   "answer_order": [
+    "b",
+    "c",
+    "a"
+   ],
+   "hint": null,
+   "explanation": "헬리컬 기어 한 쌍은 약 98 %, V벨트는 약 95 %입니다.\n큰 감속비 웜 기어는 50~70 %까지 떨어지기도 합니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "동력 전달 설계 순서",
+   "body": [
+    "먼저 기계가 필요로 하는 토크와 속도를 정합니다. 여기서 필요한 출력을 구하고, 모터 속도와의 비로 전체 감속비를 정합니다. 감속비를 어떤 방식으로 나눌지 정한 뒤 전체 효율을 곱해 모터 출력을 구하고, 여유를 두어 표준 모터를 고릅니다.",
+    "정리: 전체 효율 = 각 효율의 곱 → 기계 출력 = 모터 출력 × 효율 → 토크 = 모터 토크 × 기어비 × 효율 → 손실은 열"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "numeric",
+   "prompt": "모터 토크 5 N·m, 전체 기어비 20, 전체 효율 0.9이면 기계 쪽 토크는 몇 N·m일까요?",
+   "answer": "90",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "5 × 20 × 0.9 = 90 N·m입니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "모터 1500 rpm, 토크 20 N·m를 감속비 10 : 1, 효율 95 % 감속기로 줄이면 출력축의 속도와 토크는?",
+   "steps": [
+    "속도 = 1500 ÷ 10 = 150 rpm입니다.",
+    "토크 = 20 × 10 × 0.95 = 190 N·m입니다."
+   ],
+   "answer": "150 rpm, 190 N·m"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "모터 토크 10 N·m, 감속비 15, 효율 0.9이면 출력축 토크는 몇 N·m일까요?",
+   "answer": "135",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "토크에 감속비와 효율을 곱하세요.",
+   "explanation": "10 × 15 × 0.9 = 135 N·m입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "효율 97 % 감속기와 효율 95 % 체인을 거친 뒤 기계에 3.686 kW가 필요합니다. 모터 출력은 몇 kW여야 할까요? (소수 첫째 자리까지)",
+   "answer": "4.0",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "hint": "전체 효율부터 구하세요.",
+   "explanation": "전체 효율 = 0.97 × 0.95 = 0.9215입니다.\n3.686 ÷ 0.9215 ≈ 4.0 kW입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "출력축 토크 300 N·m, 속도 60 rpm이 필요합니다. 필요한 출력은 약 몇 W일까요? (정수로)",
+   "answer": "1885",
+   "answer_format": "integer",
+   "tolerance": 3,
+   "hint": "P = T × ω입니다.",
+   "explanation": "ω = 2π × 60 ÷ 60 = 2π ≈ 6.283 rad/s입니다.\n300 × 6.283 ≈ 1885 W입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 문제에서 전체 효율이 0.8이면 모터 출력은 약 몇 W 이상이어야 할까요? (정수로)",
+   "answer": "2356",
+   "answer_format": "integer",
+   "tolerance": 5,
+   "hint": "필요한 출력을 효율로 나누세요.",
+   "explanation": "1885 ÷ 0.8 ≈ 2356 W입니다.\n여유를 두어 2.2 kW보다 큰 3.7 kW 모터 등을 고릅니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "오래 돌리는 기계에 효율이 낮은 웜 감속기를 쓰면 {{1}}이 커져 냉각이 필요합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "발열",
+      "열",
+      "손실"
+     ]
+    }
+   ],
+   "hint": "잃은 동력은 무엇이 되나요?",
+   "explanation": "효율이 낮으면 잃는 동력이 많고, 그만큼 열이 됩니다.\n오래 돌면 온도가 크게 오릅니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "동력 전달 장치의 효율을 높이면 어떤 이점이 있는지 설명해 보세요.",
+   "hint": "모터, 전기 요금, 열 세 가지 면에서 생각해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "손실",
+      "열"
+     ],
+     [
+      "모터",
+      "작은",
+      "전력"
+     ],
+     [
+      "전기",
+      "에너지",
+      "비용",
+      "요금"
+     ],
+     [
+      "냉각",
+      "수명",
+      "온도"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "효율이 높으면 마찰로 잃는 손실이 줄어 같은 일을 더 작은 모터와 적은 전력으로 할 수 있어 에너지 비용이 줄어듭니다. 또 열이 적게 나 냉각 부담이 줄고 부품 수명도 길어집니다."
+  }
+ ]
+}

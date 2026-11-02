@@ -1,0 +1,109 @@
+{
+ "no": 5,
+ "title": "최대가능도 추정과 피셔 정보",
+ "hours": 6,
+ "after": [
+  3,
+  4
+ ],
+ "objectives": [
+  "가능도함수를 세우고 최대가능도 추정량(MLE)을 구할 수 있다.",
+  "피셔 정보와 크라메르–라오 하한을 계산할 수 있다.",
+  "MLE의 불변성과 점근정규성을 설명할 수 있다."
+ ],
+ "checklist": [
+  "가능도함수 L(θ) = Πf(xᵢ; θ), 로그가능도",
+  "MLE: 점수함수 = 0",
+  "불변성: g(θ)의 MLE는 g(θ̂)",
+  "피셔 정보 I(θ) = E[(∂/∂θ log f)²] = −E[∂²/∂θ² log f]",
+  "크라메르–라오 하한 Var(θ̂) ≥ 1/(nI(θ))",
+  "MLE의 점근정규성 √n(θ̂ − θ) →ᵈ N(0, 1/I(θ))",
+  "효율적 추정량"
+ ],
+ "advice": [
+  "최대가능도는 '관측된 자료가 나올 가능성을 가장 크게 만드는 모수'를 고르는 원리로, 통계와 기계학습에서 가장 널리 쓰이는 추정 방법입니다. 로그를 취해 곱을 합으로 바꾸고 미분하는 계산 패턴을 여러 분포(베르누이, 포아송, 정규, 지수)로 반복 연습하세요.",
+  "크라메르–라오 하한은 '어떤 불편추정량도 이보다 정확할 수는 없다'는 한계를 알려 주고, MLE가 표본이 클 때 이 한계에 도달한다는 것이 MLE가 좋은 이유입니다. 피셔 정보가 '자료가 모수에 대해 담고 있는 정보의 양'이라는 해석을 기억하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Hogg · McKean · Craig, Introduction to Mathematical Statistics (8판)",
+   "part": "6장 Maximum Likelihood Methods"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "18.650 Statistics for Applications (Philippe Rigollet, 2016년 가을)",
+   "url": "https://ocw.mit.edu/courses/18-650-statistics-for-applications-fall-2016/",
+   "lang": "영어",
+   "part": "최대가능도 추정, 피셔 정보 강의"
+  },
+  {
+   "kind": "lecture",
+   "provider": "KOCW",
+   "title": "수리통계학 2 (덕성여자대학교 허집)",
+   "url": "http://www.kocw.or.kr/home/cview.do?mty=p&kemId=1051325",
+   "lang": "한국어",
+   "part": "최대가능도 추정"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "베르누이 시행 10번 중 성공 7번일 때 p의 MLE는?",
+   "answer": "0.7",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "L(p) = p⁷(1 − p)³, 로그가능도 미분 = 0 → p̂ = 7/10",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "포아송 표본 10개의 합이 30일 때 λ의 MLE는?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "λ̂ = x̄ = 30/10 = 3",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "베르누이(p)의 피셔 정보 I(p) = 1/(p(1 − p))를 p = 1/2에서 계산하면?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "1/(1/4) = 4",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "포아송(λ = 3), n = 10일 때 λ의 불편추정량의 분산에 대한 크라메르–라오 하한은 {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "0.3",
+      "3/10"
+     ]
+    }
+   ],
+   "explanation": "포아송의 I(λ) = 1/λ\n1/(nI) = λ/n = 3/10\nX̄의 분산이 정확히 이 값이므로 X̄는 효율적",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "probability",
+ "subject": "math-statistics",
+ "id": "l3-probability-math-statistics-u05"
+}

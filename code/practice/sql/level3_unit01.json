@@ -1,0 +1,30 @@
+{
+  "language": "sql",
+  "piston_language": "sqlite3",
+  "piston_version": "*",
+  "mode": "sql",
+  "grading_note_ko": "sqlite3 CLI 기본 출력은 열을 '|'로 구분하며, NULL 값은 빈 문자열로 표시됩니다.",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "LEFT JOIN",
+  "exercises": [
+    {
+      "id": "sql_l3_u1_ex1",
+      "title_ko": "LEFT JOIN으로 매칭 안 되는 행도 포함하기",
+      "prompt_ko": "emps 테이블과 depts 테이블을 dept_id로 LEFT JOIN해서, 사원 이름과 부서 이름을 사원 id 순으로 조회하는 쿼리를 작성하세요. 매칭되는 부서가 없으면 부서명은 비어있게 나옵니다.\n\n테이블 구조: depts(id, name), emps(id, dept_id, name)\n데이터: depts(1,'Sales'),(2,'IT') / emps(1,1,'Kim'),(2,2,'Lee'),(3,3,'Park')  ← Park의 dept_id(3)는 depts에 없음",
+      "setup_sql": "CREATE TABLE depts (id INTEGER, name TEXT);\nINSERT INTO depts VALUES (1, 'Sales');\nINSERT INTO depts VALUES (2, 'IT');\nCREATE TABLE emps (id INTEGER, dept_id INTEGER, name TEXT);\nINSERT INTO emps VALUES (1, 1, 'Kim');\nINSERT INTO emps VALUES (2, 2, 'Lee');\nINSERT INTO emps VALUES (3, 3, 'Park');\n",
+      "starter_code": "-- 여기에 쿼리를 작성하세요\n",
+      "expected_stdout": "Kim|Sales\nLee|IT\nPark|\n",
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_l3_u1_ex2",
+      "title_ko": "INNER JOIN과 비교",
+      "prompt_ko": "같은 두 테이블을 이번엔 INNER JOIN(그냥 JOIN)으로 연결해서 조회하세요. LEFT JOIN과 달리 매칭 안 되는 Park은 결과에서 아예 빠집니다.",
+      "setup_sql": "CREATE TABLE depts (id INTEGER, name TEXT);\nINSERT INTO depts VALUES (1, 'Sales');\nINSERT INTO depts VALUES (2, 'IT');\nCREATE TABLE emps (id INTEGER, dept_id INTEGER, name TEXT);\nINSERT INTO emps VALUES (1, 1, 'Kim');\nINSERT INTO emps VALUES (2, 2, 'Lee');\nINSERT INTO emps VALUES (3, 3, 'Park');\n",
+      "starter_code": "-- 여기에 쿼리를 작성하세요\n",
+      "expected_stdout": "Kim|Sales\nLee|IT\n",
+      "difficulty": "practice"
+    }
+  ]
+}

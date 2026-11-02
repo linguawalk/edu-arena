@@ -1,0 +1,360 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch05",
+  "no": 5,
+  "title": "메모리 계층"
+ },
+ "lesson": {
+  "id": "c4-ch05-l02",
+  "no": 2,
+  "title": "지역성과 캐시 적중",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "프로그램의 버릇",
+   "body": [
+    "프로그램은 방금 쓴 데이터를 곧 다시 쓰는 경향이 있습니다. 반복문의 카운터나 합계 변수가 그렇습니다. 이를 시간 지역성이라고 합니다.",
+    "또 어떤 데이터를 쓰면 그 바로 옆의 데이터도 곧 쓰는 경향이 있습니다. 배열을 처음부터 차례로 읽는 경우가 그렇습니다. 이를 공간 지역성이라고 합니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "fill_blank",
+   "prompt": "방금 쓴 데이터를 곧 다시 쓰는 경향을 {{1}} 지역성이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "시간"
+     ]
+    }
+   ],
+   "hint": "같은 것을 '때를 달리해' 다시 씁니다.",
+   "explanation": "반복문 안의 변수가 대표적인 예입니다.\n옆의 데이터를 쓰는 경향은 공간 지역성입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "캐시 라인",
+   "body": [
+    "캐시는 데이터를 1바이트씩이 아니라 캐시 라인이라는 덩어리(흔히 64바이트)로 가져옵니다. 배열의 한 원소를 읽으면 그 옆 원소들도 함께 캐시에 들어와, 다음 원소를 읽을 때는 캐시에서 바로 찾습니다. 공간 지역성을 활용하는 방법입니다.",
+    "4바이트 정수 배열이라면 캐시 라인 하나(64바이트)에 16개가 들어갑니다. 배열을 차례로 읽으면 16개마다 한 번만 DRAM에 가면 됩니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "8바이트 원소의 배열을 차례로 읽을 때, 캐시 라인이 64바이트면 DRAM에 몇 개마다 한 번 갈까요?",
+   "steps": [
+    "64 ÷ 8 = 8개가 한 라인에 들어갑니다.",
+    "8개마다 한 번 DRAM에서 라인을 가져옵니다."
+   ],
+   "answer": "8개마다"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "캐시가 한 번에 가져오는 데이터 덩어리를 캐시 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "라인"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "캐시 라인은 흔히 64바이트입니다.\n옆 데이터를 함께 가져와 공간 지역성을 활용합니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "캐시 라인 64바이트에 2바이트 원소는 몇 개 들어갈까요?",
+   "answer": "32",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "라인 크기를 원소 크기로 나눕니다.\n64 ÷ 2 = 32개입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "4바이트 정수 1024개 배열을 차례로 읽으면 캐시 라인(64바이트)을 몇 번 가져올까요? (처음에 캐시는 비어 있음)",
+   "answer": "64",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "한 라인에 16개입니다.\n1024 ÷ 16 = 64번입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "배열을 처음부터 차례로 읽는 것은 {{1}} 지역성이 좋은 예입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "공간"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "바로 옆 데이터를 차례로 쓰기 때문입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "적중과 실패",
+   "body": [
+    "CPU가 찾는 데이터가 캐시에 있으면 적중(hit), 없으면 실패(miss)라고 합니다. 실패하면 아래층(L2, L3, DRAM)에서 가져와 캐시에 넣습니다.",
+    "전체 접근 가운데 적중한 비율을 적중률, 실패한 비율을 실패율이라고 하며, 적중률 + 실패율 = 1입니다. 지역성이 좋은 프로그램은 적중률이 90 %를 훌쩍 넘기도 합니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "캐시 접근 1000번 가운데 950번 적중했다면 적중률과 실패율은?",
+   "steps": [
+    "적중률 = 950 ÷ 1000 = 95 %입니다.",
+    "실패율 = 5 %입니다."
+   ],
+   "answer": "95 %, 5 %"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "찾는 데이터가 캐시에 없는 것을 캐시 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "실패",
+      "미스",
+      "miss"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "실패하면 아래층에서 데이터를 가져오느라 느려집니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "캐시 접근 2000번 가운데 1960번 적중했다면 적중률은 몇 %일까요?",
+   "answer": "98",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1960 ÷ 2000 = 0.98입니다.\n98 %입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "적중률이 92 %이면 실패율은 몇 %일까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "적중률 + 실패율 = 100 %입니다.\n100 − 92 = 8 %입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "적중률 97 %인 캐시에 10 000번 접근하면 실패는 몇 번일까요?",
+   "answer": "300",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "실패율 3 %입니다.\n10 000 × 0.03 = 300번입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "캐시에 친한 프로그램",
+   "body": [
+    "같은 계산이라도 데이터를 읽는 순서에 따라 속도가 크게 달라집니다. 2차원 배열이 줄 단위로 메모리에 놓여 있다면 줄을 따라 읽을 때 공간 지역성이 좋고, 칸(열)을 따라 띄엄띄엄 읽으면 캐시 실패가 많아져 몇 배 느려질 수 있습니다.",
+    "정리: 시간 지역성(다시 씀)과 공간 지역성(옆을 씀), 캐시 라인(흔히 64 B), 적중과 실패, 적중률 + 실패율 = 1, 접근 순서가 속도를 바꿈"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "줄 단위로 저장된 2차원 배열은 {{1}}을 따라 읽을 때 캐시 적중률이 높습니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "줄",
+      "행"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "줄을 따라 읽으면 메모리에서 붙어 있는 데이터를 차례로 읽게 됩니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "1000 × 1000 정수(4바이트) 배열을 줄을 따라 읽으면 캐시 라인(64 B)을 대략 몇 번 가져올까요?",
+   "steps": [
+    "원소는 100만 개입니다.",
+    "한 라인에 16개이므로 1 000 000 ÷ 16 = 62 500번입니다.",
+    "칸을 따라 읽으면 거의 원소마다 새 라인이 필요해 훨씬 많아집니다."
+   ],
+   "answer": "62 500번"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "8바이트 원소 800개 배열을 차례로 읽으면 캐시 라인(64 B)을 몇 번 가져올까요?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "한 라인에 몇 개가 들어가는지 먼저 구하세요.",
+   "explanation": "한 라인에 8개입니다.\n800 ÷ 8 = 100번입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 문제에서 적중률은 몇 %일까요? (원소 접근 800번 가운데 라인을 가져온 100번이 실패)",
+   "answer": "87.5",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": "실패는 라인을 가져온 횟수입니다.",
+   "explanation": "적중 = 800 − 100 = 700번입니다.\n700 ÷ 800 = 87.5 %입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "4바이트 원소 배열을 차례로 읽을 때 적중률은 몇 %일까요? (캐시 라인 64 B, 라인마다 첫 원소만 실패)",
+   "answer": "93.75",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": "16개 가운데 몇 개가 실패할까요?",
+   "explanation": "한 라인 16개 가운데 1개만 실패입니다.\n15 ÷ 16 = 93.75 %입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "반복문에서 합계 변수 sum을 계속 다시 쓰는 것은 {{1}} 지역성의 예입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "시간"
+     ]
+    }
+   ],
+   "hint": "같은 것을 다시 씁니다.",
+   "explanation": "같은 변수를 되풀이해 쓰므로 시간 지역성입니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "2차원 배열을 칸(열)을 따라 띄엄띄엄 읽으면 캐시 {{1}}가 많아져 느려집니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "실패",
+      "미스",
+      "miss"
+     ]
+    }
+   ],
+   "hint": "찾는 데이터가 캐시에 없는 경우입니다.",
+   "explanation": "매번 멀리 떨어진 곳을 읽어 캐시 라인을 새로 가져와야 합니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "캐시가 한 번에 한 바이트가 아니라 64바이트 덩어리(캐시 라인)로 데이터를 가져오는 이유를 설명해 보세요.",
+   "hint": "공간 지역성을 이용해 설명하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "공간 지역성",
+      "옆",
+      "이웃"
+     ],
+     [
+      "곧",
+      "다음"
+     ],
+     [
+      "캐시 라인",
+      "함께",
+      "한꺼번에"
+     ],
+     [
+      "적중",
+      "DRAM",
+      "덜"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "프로그램은 어떤 데이터를 쓰면 그 옆의 데이터도 곧 쓰는 공간 지역성이 있습니다. 옆 데이터를 캐시 라인으로 한꺼번에 가져와 두면 다음 접근이 캐시에서 적중해, DRAM까지 가는 횟수가 줄어 빨라집니다."
+  }
+ ]
+}

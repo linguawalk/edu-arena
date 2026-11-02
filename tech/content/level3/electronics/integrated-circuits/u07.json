@@ -1,0 +1,100 @@
+{
+ "no": 7,
+ "title": "설계 흐름, 레이아웃, 검증",
+ "hours": 5,
+ "after": [
+  3,
+  4
+ ],
+ "objectives": [
+  "RTL에서 GDS까지 디지털 IC 설계 흐름을 순서대로 설명할 수 있다.",
+  "레이아웃 설계 규칙과 DRC·LVS 검증의 목적을 설명할 수 있다.",
+  "배선의 기생 저항·커패시턴스가 지연에 주는 영향을 계산할 수 있다."
+ ],
+ "checklist": [
+  "설계 흐름: 사양 → RTL(HDL) → 기능 검증(시뮬레이션) → 논리 합성 → 배치·배선 → 타이밍·전력 검증 → GDS → 테이프아웃",
+  "표준 셀 기반 설계와 풀커스텀 설계",
+  "설계 규칙(최소 폭·간격)과 DRC",
+  "LVS: 레이아웃과 회로도의 일치 검사",
+  "기생 성분 추출과 배선 지연 RC",
+  "아날로그 레이아웃: 정합, 공통 중심 배치",
+  "EDA 도구와 파운드리 PDK"
+ ],
+ "advice": [
+  "설계 흐름 단원은 반도체 설계 직무가 실제로 어떤 단계로 일하는지를 보여 주는 지도입니다. 디지털회로 10단원의 HDL로 적은 코드가 합성 도구를 거쳐 표준 셀로 바뀌고, 배치·배선과 검증을 지나 파운드리에 보내는 도면 파일이 되기까지의 단계를 한 줄로 외워 두세요. 미세 공정에서는 트랜지스터보다 배선 지연이 더 커지기도 하므로, RC 지연 계산 하나로 그 크기를 감각적으로 확인해 보는 것이 좋습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Weste · Harris, CMOS VLSI Design: A Circuits and Systems Perspective (장 제목으로 표기)",
+   "part": "Circuit Simulation, Design Methodology and Tools, Testing 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Rabaey · Chandrakasan · Nikolić, Digital Integrated Circuits (장 제목으로 표기)",
+   "part": "The Wire, Designing Memory and Array Structures 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "digital design flow 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "레이아웃이 회로도와 같은 연결을 갖는지 검사하는 검증을 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "LVS"
+     ]
+    }
+   ],
+   "explanation": "Layout Versus Schematic의 줄임말입니다.\n설계 규칙 검사(DRC)와 함께 테이프아웃 전에 반드시 통과해야 합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "최소 선폭과 간격 같은 공정 규칙을 레이아웃이 지키는지 검사하는 검증을 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "DRC"
+     ]
+    }
+   ],
+   "explanation": "Design Rule Check의 줄임말입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "배선 저항 1 kΩ, 배선 커패시턴스 100 fF인 연결의 RC 시정수는 몇 ps일까요?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "τ = RC = 10³ × 10⁻¹³ = 10⁻¹⁰ s = 100 ps",
+   "hint": "τ = RC입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electronics",
+ "subject": "integrated-circuits",
+ "id": "l3-electronics-integrated-circuits-u07"
+}

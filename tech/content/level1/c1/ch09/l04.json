@@ -1,0 +1,352 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c1",
+  "title": "전기전자"
+ },
+ "chapter": {
+  "id": "c1-ch09",
+  "no": 9,
+  "title": "논리 게이트와 조합회로"
+ },
+ "lesson": {
+  "id": "c1-ch09-l04",
+  "no": 4,
+  "title": "가산기와 조합회로 응용",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "전기전자"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "게이트로 덧셈하기",
+   "body": [
+    "컴퓨터의 덧셈도 결국 논리 게이트의 조합입니다. 2진수 한 자리 덧셈은 0 + 0 = 0, 0 + 1 = 1, 1 + 0 = 1, 1 + 1 = 10입니다.",
+    "1 + 1은 2이므로 2진수로 10, 곧 이 자리는 0이고 윗자리로 1이 올라갑니다. 이를 자리올림(캐리)이라고 합니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "fill_blank",
+   "prompt": "2진수 1 + 1을 계산하면 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "10"
+     ]
+    }
+   ],
+   "hint": "10진수 2를 2진수로 쓰세요.",
+   "explanation": "1 + 1 = 2이고, 2를 2진수로 쓰면 10입니다.\n이 자리는 0, 윗자리로 1이 올라갑니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "반가산기",
+   "body": [
+    "두 비트 A, B를 더하는 회로를 반가산기라고 합니다. 이 자리의 합 S와 윗자리로 보낼 자리올림 C를 냅니다.",
+    "진리표를 보면 합 S는 두 입력이 다를 때만 1이므로 XOR이고, 자리올림 C는 두 입력이 모두 1일 때만 1이므로 AND입니다. 곧 S = A XOR B, C = A·B입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "반가산기에 A = 1, B = 1을 넣으면 S와 C는?",
+   "steps": [
+    "S = 1 XOR 1 = 0입니다.",
+    "C = 1·1 = 1입니다.",
+    "합쳐서 2진수 10, 곧 2입니다."
+   ],
+   "answer": "S = 0, C = 1"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "반가산기의 합 S는 {{1}} 게이트로 만듭니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "XOR"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "합은 두 입력이 다를 때만 1입니다.\n이는 XOR의 규칙입니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "반가산기에 A = 1, B = 0을 넣으면 합 S는 얼마일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "S = 1 XOR 0 = 1입니다.\n1 + 0 = 1이므로 맞습니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 문제에서 자리올림 C는 얼마일까요?",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "C = 1·0 = 0입니다.\n1 + 0에서는 올라가는 수가 없습니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "반가산기의 자리올림 C는 {{1}} 게이트로 만듭니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "AND"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "자리올림은 두 입력이 모두 1일 때만 생깁니다.\n이는 AND의 규칙입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "전가산기와 여러 비트 덧셈",
+   "body": [
+    "여러 자리 수를 더할 때는 각 자리에서 A, B에 아랫자리의 자리올림까지 세 비트를 더해야 합니다. 이를 전가산기라고 하며, 반가산기 2개와 OR 게이트 하나로 만들 수 있습니다.",
+    "전가산기를 자리 수만큼 줄지어 연결하고 자리올림을 다음 전가산기로 넘기면 여러 비트 덧셈기가 됩니다. 4비트 덧셈기는 전가산기 4개로 만듭니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "4비트 덧셈 0101 + 0011을 계산하면?",
+   "steps": [
+    "0101 = 5, 0011 = 3입니다.",
+    "오른쪽부터 1 + 1 = 10(0, 올림 1), 0 + 1 + 1 = 10(0, 올림 1), 1 + 0 + 1 = 10(0, 올림 1), 0 + 0 + 1 = 1입니다.",
+    "결과는 1000 = 8입니다."
+   ],
+   "answer": "1000"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "두 비트와 아랫자리 자리올림까지 세 비트를 더하는 회로를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "전가산기"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "전가산기는 A, B, 자리올림 입력 Cin을 더해 합과 자리올림을 냅니다.\n여러 개를 이어 여러 비트 덧셈을 합니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "2진수 0110 + 0011을 계산하면 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "1001"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "0110 = 6, 0011 = 3이므로 합은 9입니다.\n9를 2진수로 쓰면 1001입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "전가산기에 A = 1, B = 1, 자리올림 입력 1을 넣으면 합 S는 얼마일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1 + 1 + 1 = 3이고 2진수로 11입니다.\n이 자리의 합은 1, 자리올림도 1입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "4비트 덧셈기를 만들려면 전가산기가 몇 개 필요할까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "한 자리에 전가산기 하나씩 필요합니다.\n4비트이므로 4개입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "다른 조합회로들",
+   "body": [
+    "디코더는 n비트 입력을 받아 2ⁿ개 출력 가운데 하나만 1로 만듭니다. 메모리에서 주소에 해당하는 칸 하나를 고를 때 씁니다.",
+    "멀티플렉서는 선택 신호에 따라 여러 입력 가운데 하나를 골라 출력으로 보내는 전자 선택 스위치입니다. 선택선이 n개면 2ⁿ개 입력에서 고를 수 있습니다.",
+    "7세그먼트 디코더는 4비트 숫자를 받아 숫자 표시기의 막대 7개 가운데 어느 것을 켤지 정합니다. 계산기나 전자시계 숫자가 이렇게 표시됩니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "numeric",
+   "prompt": "3비트 입력 디코더의 출력은 몇 개일까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "2³ = 8개 출력입니다.\n입력값에 해당하는 출력 하나만 1이 됩니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "4비트 덧셈 1011 + 0110을 계산하면?",
+   "steps": [
+    "1011 = 11, 0110 = 6이므로 합은 17입니다.",
+    "17을 2진수로 쓰면 10001로 5비트입니다.",
+    "4비트 결과에 담기지 않아 마지막 자리올림이 넘칩니다."
+   ],
+   "answer": "10001 (자리 넘침)"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "2진수 1001 + 0101을 계산하면 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "1110"
+     ]
+    }
+   ],
+   "hint": "10진수로 더한 뒤 다시 2진수로 바꿔 확인해도 됩니다.",
+   "explanation": "1001 = 9, 0101 = 5이므로 합은 14입니다.\n14를 2진수로 쓰면 1110입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "4비트 덧셈 1111 + 0001의 결과를 자리올림까지 포함해 10진수로 쓰면 얼마일까요?",
+   "answer": "16",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "1111이 10진수로 얼마인지 먼저 구하세요.",
+   "explanation": "15 + 1 = 16이고 2진수로 10000입니다.\n4비트를 넘어서므로 자리올림이 넘칩니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "4비트 두 수를 더할 때 나올 수 있는 가장 큰 합은 10진수로 얼마일까요?",
+   "answer": "30",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "4비트로 나타낼 수 있는 가장 큰 수를 두 번 더하세요.",
+   "explanation": "4비트 최대 수는 15입니다.\n15 + 15 = 30입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "선택선이 2개인 멀티플렉서는 입력 몇 개 가운데 하나를 고를 수 있을까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "선택선 조합의 수를 구하세요.",
+   "explanation": "선택선 2개로 2² = 4가지 조합을 만듭니다.\n그래서 입력 4개 가운데 하나를 고릅니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "7세그먼트 표시기에 숫자 8을 나타내면 켜지는 막대는 몇 개일까요?",
+   "answer": "7",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "숫자 8의 모양을 떠올려 보세요.",
+   "explanation": "8은 막대 7개를 모두 켜서 나타냅니다.\n그래서 표시기가 고장 났는지 확인할 때 8을 띄워 봅니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "컴퓨터가 논리 게이트만으로 덧셈을 할 수 있는 원리를 설명해 보세요.",
+   "hint": "합과 자리올림이 각각 어떤 게이트인지부터 쓰세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "게이트",
+      "논리"
+     ],
+     [
+      "가산기",
+      "XOR",
+      "AND"
+     ],
+     [
+      "자리올림",
+      "올림",
+      "캐리"
+     ],
+     [
+      "2진",
+      "비트"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "2진수 한 자리 덧셈의 합은 XOR, 자리올림은 AND 게이트로 만들 수 있습니다. 이를 조합한 전가산기를 자리 수만큼 잇고 자리올림을 다음 자리로 넘기면, 게이트만으로 여러 비트의 2진수 덧셈을 할 수 있습니다."
+  }
+ ]
+}

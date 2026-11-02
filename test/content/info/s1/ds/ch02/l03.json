@@ -1,0 +1,274 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "ds",
+  "work": "풀이",
+  "track_title": "자료구조",
+  "chapter": {
+    "id": "info-s1-ds-ch02",
+    "no": 2,
+    "title": "큐와 덱"
+  },
+  "lesson": {
+    "id": "info-s1-ds-ch02-l03",
+    "no": 3,
+    "title": "덱",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "자료구조",
+      "큐와 덱"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "양쪽 끝에서",
+      "body": [
+        "덱(deque)은 앞과 뒤 양쪽 끝에서 모두 넣고 꺼낼 수 있는 자료구조입니다. push_front, push_back, pop_front, pop_back이 모두 O(1)입니다.",
+        "덱은 스택(한쪽 끝만)과 큐(넣는 끝과 꺼내는 끝이 다름)의 기능을 모두 가집니다.",
+        "push_back 1, push_back 2, push_front 3을 하면 [3, 1, 2]이고, pop_back하면 [3, 1]이 됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "빈 덱에 push_back 1, push_back 2, push_front 3, pop_back을 하면 front는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "[1] → [1, 2] → [3, 1, 2] → [3, 1]입니다.",
+      "explanation": "덱의 내용을 앞부터 적으며 연산을 하나씩 따라갑니다.\npush_front 3으로 [3, 1, 2]가 되고 pop_back으로 2가 빠져 [3, 1]입니다.\n맨 앞은 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "앞과 뒤 양쪽 끝에서 모두 넣고 꺼낼 수 있는 자료구조를 {{1}}이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "덱",
+            "deque",
+            "데크"
+          ]
+        }
+      ],
+      "hint": "double-ended queue의 줄임말입니다.",
+      "explanation": "스택은 한쪽 끝, 큐는 넣는 끝과 꺼내는 끝이 정해져 있습니다.\n양쪽 끝 모두에서 넣고 꺼낼 수 있는 자료구조가 있습니다.\n이것을 덱이라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "연산을 따라가기",
+      "body": [
+        "덱의 내용은 앞에서 뒤로 적습니다. 아래 코드는 [1, 2] → [3, 1, 2] → [4, 3, 1, 2] → pop_back → [4, 3, 1] → push_back 5 → [4, 3, 1, 5] → pop_front → [3, 1, 5]가 됩니다.",
+        "앞쪽에 넣은 것은 맨 앞에, 뒤쪽에 넣은 것은 맨 뒤에 붙는다는 점만 지키면 됩니다.",
+        "C++의 deque는 첨자로 d[i]처럼 가운데 원소도 볼 수 있습니다."
+      ],
+      "code": "deque<int> d;\nd.push_back(1); d.push_back(2);\nd.push_front(3); d.push_front(4);\nd.pop_back();\nd.push_back(5);\nd.pop_front();\n// 이제 d.front(), d.back()은?"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "아래 코드가 끝난 뒤 d.front()를 구하세요.",
+      "steps": [
+        "push_back 1, 2: [1, 2]입니다.",
+        "push_front 3, 4: [4, 3, 1, 2]입니다.",
+        "pop_back: [4, 3, 1], push_back 5: [4, 3, 1, 5]입니다.",
+        "pop_front: [3, 1, 5]이므로 맨 앞은 3입니다."
+      ],
+      "answer": "3",
+      "code": "deque<int> d;\nd.push_back(1); d.push_back(2);\nd.push_front(3); d.push_front(4);\nd.pop_back();\nd.push_back(5);\nd.pop_front();\n// 이제 d.front(), d.back()은?"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제의 코드가 끝난 뒤 d.back()은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "[3, 1, 5]의 맨 뒤입니다.",
+      "explanation": "덱의 내용을 앞부터 적으며 연산을 하나씩 따라가면 [3, 1, 5]가 됩니다.\n맨 뒤는 마지막에 push_back한 5입니다.\n그래서 5입니다.",
+      "code": "deque<int> d;\nd.push_back(1); d.push_back(2);\nd.push_front(3); d.push_front(4);\nd.pop_back();\nd.push_back(5);\nd.pop_front();\n// 이제 d.front(), d.back()은?"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제의 코드가 끝난 뒤 덱의 크기는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "넣기 5번, 꺼내기 2번입니다.",
+      "explanation": "덱의 크기는 넣을 때 1 늘고 꺼낼 때 1 줄어듭니다.\n넣기 5번, 꺼내기 2번이므로 5 − 2입니다.\n= 3입니다.",
+      "code": "deque<int> d;\nd.push_back(1); d.push_back(2);\nd.push_front(3); d.push_front(4);\nd.pop_back();\nd.push_back(5);\nd.pop_front();\n// 이제 d.front(), d.back()은?"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "회문 검사",
+      "body": [
+        "앞에서 읽으나 뒤에서 읽으나 같은 문자열을 회문이라 합니다. 문자를 덱에 넣고 앞과 뒤를 하나씩 꺼내 비교하면 됩니다.",
+        "'racecar'는 r–r, a–a, c–c를 비교한 뒤 가운데 e 하나가 남아 비교 3번으로 회문임을 압니다.",
+        "길이 n이면 비교는 ⌊n/2⌋번이고, 중간에 한 번이라도 다르면 바로 회문이 아니라고 판단하고 멈춥니다. 스택이나 큐만으로는 양쪽 끝을 동시에 꺼낼 수 없어 덱이 알맞습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "'racecar'를 덱으로 회문 검사할 때 앞뒤 문자를 비교하는 횟수는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "길이 7의 절반을 내림합니다.",
+      "explanation": "덱의 앞과 뒤에서 한 글자씩 꺼내 비교하므로 비교 한 번에 두 글자가 줄어듭니다.\n길이 7이면 ⌊7/2⌋ = 3번 비교하고 가운데 한 글자가 남습니다.\n그래서 3번입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "돌리기",
+      "body": [
+        "덱에 1부터 n까지 들어 있을 때 특정 원소를 맨 앞으로 가져오려면, 맨 앞을 맨 뒤로 보내는 왼쪽 회전이나 맨 뒤를 맨 앞으로 보내는 오른쪽 회전을 합니다.",
+        "원소가 앞에서 k번째 자리(0부터)에 있으면 왼쪽 회전 k번 또는 오른쪽 회전 n − k번이 필요하므로, 둘 중 작은 값이 최소 횟수입니다.",
+        "1부터 10이 든 덱에서 7(자리 6)을 맨 앞으로 가져오려면 왼쪽 6번 또는 오른쪽 4번이므로 최소 4번입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1부터 10까지 차례로 든 덱에서 7을 맨 앞으로 가져오는 최소 회전 횟수는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "자리 6에서 min(6, 10 − 6)입니다.",
+      "explanation": "자리 k(0부터)의 원소를 맨 앞으로 가져오는 데 왼쪽 회전 k번 또는 오른쪽 회전 n − k번이 듭니다.\n7은 자리 6이므로 min(6, 10 − 6)입니다.\n= 4번입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1부터 10까지 차례로 든 덱에서 3을 맨 앞으로 가져오는 최소 회전 횟수는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "자리 2에서 min(2, 8)입니다.",
+      "explanation": "자리 k(0부터)의 원소를 맨 앞으로 가져오는 데 왼쪽 회전 k번 또는 오른쪽 회전 n − k번이 듭니다.\n3은 자리 2이므로 min(2, 10 − 2)입니다.\n= 2번입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "덱은 양쪽 끝에서 넣고 꺼내는 자료구조로 네 연산이 모두 O(1)이며, 스택과 큐의 기능을 모두 가집니다.",
+        "회문 검사는 앞뒤를 하나씩 꺼내 ⌊n/2⌋번 비교합니다.",
+        "자리 k(0부터)의 원소를 맨 앞으로 가져오는 최소 회전 횟수는 왼쪽 회전 k번과 오른쪽 회전 n − k번 중 작은 값인 min(k, n − k)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "1부터 8까지 차례로 든 덱에서 6을 맨 앞으로 가져오는 최소 회전 횟수는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "자리 5에서 min(5, 3)입니다.",
+      "explanation": "자리 k(0부터)의 원소를 맨 앞으로 가져오는 데 왼쪽 회전 k번 또는 오른쪽 회전 n − k번이 듭니다.\n6은 자리 5이므로 min(5, 8 − 5)입니다.\n= 3번입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "'abcba'를 덱으로 회문 검사할 때 앞뒤 문자를 비교하는 횟수는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "⌊5/2⌋입니다.",
+      "explanation": "덱의 앞과 뒤에서 한 글자씩 꺼내 비교하므로 비교 한 번에 두 글자가 줄어듭니다.\n길이 5이면 a–a, b–b를 비교한 뒤 가운데 c가 남습니다.\n그래서 2번입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "덱이 스택과 큐를 모두 대신할 수 있는 이유를 설명하세요.",
+      "model_answer": [
+        "스택은 한쪽 끝에서만 넣고 빼는 자료구조이다.",
+        "덱에서 push_back과 pop_back만 쓰면 뒤쪽 끝에서만 넣고 빼므로 스택과 같다.",
+        "큐는 뒤에서 넣고 앞에서 빼는 자료구조이다.",
+        "덱에서 push_back과 pop_front만 쓰면 큐와 같다. 네 연산이 모두 O(1)이므로 효율도 같다."
+      ],
+      "criteria": [
+        {
+          "text": "스택으로 쓰는 방법을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "큐로 쓰는 방법을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "효율이 같음을 밝혔다",
+          "points": 2
+        }
+      ],
+      "hint": "덱의 연산 중 어떤 것만 쓰면 될까요?"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "1부터 n까지 든 덱에서 자리 k의 원소를 맨 앞으로 가져오는 최소 회전 횟수가 min(k, n − k)인 이유를 설명하세요.",
+      "model_answer": [
+        "왼쪽 회전 한 번은 맨 앞 원소를 맨 뒤로 보내 모든 원소의 자리를 하나씩 앞당긴다.",
+        "그래서 자리 k의 원소는 왼쪽 회전 k번이면 맨 앞에 온다.",
+        "오른쪽 회전 한 번은 맨 뒤 원소를 맨 앞으로 보내므로, 자리 k의 원소는 n − k번이면 맨 앞에 온다.",
+        "한 방향으로만 돌리는 것이 가장 적게 드므로 두 값 중 작은 값이 최소 횟수이다."
+      ],
+      "criteria": [
+        {
+          "text": "왼쪽 회전의 효과를 설명했다",
+          "points": 2
+        },
+        {
+          "text": "오른쪽 회전의 효과를 설명했다",
+          "points": 2
+        },
+        {
+          "text": "둘 중 작은 값으로 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "한 번 돌릴 때 자리가 어떻게 바뀌나요?"
+    }
+  ]
+}

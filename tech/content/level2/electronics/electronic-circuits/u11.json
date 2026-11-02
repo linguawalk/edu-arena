@@ -1,0 +1,116 @@
+{
+ "no": 11,
+ "title": "전력 증폭기와 전원 회로",
+ "hours": 4,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "A급·B급·AB급 출력단의 동작과 효율을 비교할 수 있다.",
+  "크로스오버 왜곡의 원인과 대책을 설명할 수 있다.",
+  "선형 레귤레이터의 손실과 효율을 계산할 수 있다."
+ ],
+ "checklist": [
+  "A급: 항상 도통, 선형성 좋음, 최대 효율 25%(저항 부하)·50%(변압기 결합)",
+  "B급(푸시풀): 반주기씩 도통, 최대 효율 π/4 ≈ 78.5%",
+  "크로스오버 왜곡과 AB급(작은 바이어스)",
+  "D급: 스위칭 증폭기, 높은 효율",
+  "방열과 열저항",
+  "선형 레귤레이터: 손실 = (V_in − V_out) × I, 드롭아웃 전압",
+  "선형 레귤레이터와 스위칭 레귤레이터(전력전자) 비교"
+ ],
+ "advice": [
+  "전력 증폭기는 신호의 모양보다 '전원의 전력을 얼마나 아껴 부하에 전달하는가'가 중요한 회로입니다. A급은 신호가 없어도 전류가 흘러 효율이 낮고, B급은 효율이 높은 대신 두 트랜지스터가 교대하는 0 근처에서 왜곡이 생깁니다. 두 단점을 절충한 것이 AB급이라는 흐름으로 정리하세요.",
+  "선형 레귤레이터는 남는 전압을 트랜지스터에서 열로 버리는 방식이라 입출력 전압 차가 크면 효율이 크게 떨어집니다. 손실 = 전압 차 × 전류라는 한 식으로 몇 가지 경우를 계산해 보면, 레벨3 전력전자의 스위칭 레귤레이터(DC–DC 컨버터)가 왜 필요한지 바로 납득됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Sedra · Smith, Microelectronic Circuits (번역본 『마이크로 전자회로』, 장 제목으로 표기)",
+   "part": "Output Stages and Power Amplifiers 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Razavi, Fundamentals of Microelectronics (장 제목으로 표기)",
+   "part": "Output Stages and Power Amplifiers 장"
+  },
+  {
+   "kind": "book",
+   "provider": "All About Circuits (무료 온라인 교재)",
+   "title": "Lessons in Electric Circuits, Volume III — Semiconductors",
+   "url": "https://www.allaboutcircuits.com/textbook/semiconductors/",
+   "lang": "영어",
+   "part": "Bipolar Junction Transistors 장의 증폭기 급 절"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "챕터 6 전원 회로(정류·평활·레귤레이터)",
+   "url": "browse.html?c=c1#ch06"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "이상적인 B급 푸시풀 증폭기의 최대 효율은 약 몇 %일까요?",
+   "answer": "78.5",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "η_max = π/4 ≈ 0.785 = 78.5%",
+   "hint": "π/4입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "저항 부하를 직접 연결한 A급 증폭기의 최대 효율은 몇 %일까요?",
+   "answer": "25",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "직렬 저항 부하 A급의 이론적 최대 효율은 25%입니다.\n변압기 결합이면 50%까지 올라갑니다.",
+   "hint": "가장 효율이 낮은 출력단입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "입력 12 V, 출력 5 V, 부하 전류 1 A인 선형 레귤레이터에서 열로 버려지는 전력은 몇 W일까요?",
+   "answer": "7",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "손실 = (12 − 5) × 1 = 7 W\n효율은 5/12 ≈ 42%입니다.",
+   "hint": "(V_in − V_out) × I입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "B급 푸시풀 증폭기에서 두 트랜지스터가 교대하는 0 V 근처에서 생기는 왜곡을 {{1}} 왜곡이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "크로스오버",
+      "교차",
+      "크로스 오버"
+     ]
+    }
+   ],
+   "explanation": "트랜지스터가 0.7 V 정도의 문턱을 넘어야 켜지기 때문에 생깁니다.\n작은 바이어스를 주는 AB급으로 줄입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "electronic-circuits",
+ "id": "l2-electronics-electronic-circuits-u11"
+}

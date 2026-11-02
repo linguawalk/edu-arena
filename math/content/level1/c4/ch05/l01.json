@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch05",
+    "no": 5,
+    "title": "수열의 극한과 급수"
+  },
+  "lesson": {
+    "id": "c4-ch05-l01",
+    "no": 1,
+    "title": "수열의 극한",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "수렴과 발산",
+      "body": [
+        "n이 한없이 커질 때 aₙ이 일정한 값 L에 한없이 가까워지면 수열이 L에 수렴한다고 하고 lim(n→∞) aₙ = L로 씁니다.",
+        "수렴하지 않으면 발산한다고 합니다.",
+        "함수의 극한에서 x → ∞를 다룬 것과 같지만, 수열은 n이 자연수로만 커진다는 점이 다릅니다. 수렴은 '어떤 값에 한없이 가까워지는' 것이고, 한없이 커지거나 여러 값 사이를 오가며 정착하지 않으면 발산입니다. 1/n은 0이 되지는 않지만 0에 한없이 가까워지므로 0에 수렴합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "lim(n→∞) 1/n의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "n이 한없이 커지면 1을 아주 큰 수로 나누는 셈입니다.\n1/n은 0에 한없이 가까워집니다(0이 되지는 않음).\n극한값 0\n확인: n = 1000이면 0.001"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "lim(n→∞) (2n + 1)/n의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "(2n + 1)/n = 2 + 1/n으로 나눕니다.\nn → ∞이면 1/n → 0\n극한값 2\n원리: 분모의 최고차항 n으로 나눕니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "∞/∞ 꼴",
+      "body": [
+        "분모의 최고차항으로 분모, 분자를 나눕니다. 차수가 같으면 최고차항 계수의 비, 분모 차수가 크면 0입니다.",
+        "n이 한없이 커지면 최고차항이 나머지 항을 압도합니다. 분모의 최고차항으로 나누면 나머지 항들은 1/n, 1/n² 꼴이 되어 0으로 사라지고 최고차항끼리의 비교만 남습니다. 분자의 차수가 더 크면 분모보다 빨리 커져 발산합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "lim(n→∞) (3n² − 2n + 1)/(2n² + 5)를 구하세요.",
+      "steps": [
+        "분모의 최고차항 n²으로 분모, 분자를 나눕니다.",
+        "(3 − 2/n + 1/n²)/(2 + 5/n²)",
+        "n → ∞이면 1/n, 1/n² → 0",
+        "= 3/2 (최고차항 계수의 비)"
+      ],
+      "answer": "3/2"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "lim(n→∞) (n² + 1)/(3n² − n)의 값은? (기약분수로)",
+      "answer": "1/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "분모, 분자를 n²으로 나누면 (1 + 1/n²)/(3 − 1/n)\nn → ∞이면 1/3\n원리: 차수가 같으면 최고차항 계수의 비"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "lim(n→∞) (3n + 2)/(n² + 1)의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "분모, 분자를 n²으로 나누면 (3/n + 2/n²)/(1 + 1/n²)\n분자 → 0, 분모 → 1\n극한값 0 (분모의 차수가 더 높음)"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "lim(n→∞) (2n² − n)/(n² + 5)의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "차수가 2로 같으므로 최고차항 계수의 비\nn²으로 나누면 (2 − 1/n)/(1 + 5/n²) → 2\n극한값 2"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "발산하는 수열",
+      "body": [
+        "한없이 커지면 양의 무한대로 발산, 1, −1, 1, −1처럼 오가면 진동한다고 합니다.",
+        "발산에는 두 종류가 있습니다. 한 방향으로 한없이 커지거나 작아지는 것(∞ 또는 −∞로 발산)과, 1, −1, 1, −1처럼 오가며 어느 한 값에도 가까워지지 않는 것(진동)입니다. 진동하는 수열도 수렴하지 않으므로 발산입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "수열 (−1)ⁿ은 수렴할까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "(−1)ⁿ은 −1, 1, −1, 1, …로 두 값을 오갑니다.\n어느 한 값에도 가까워지지 않으므로 진동(발산)\n수렴하지 않으므로 0"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "수열 (n² + 1)/n은 수렴할까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "(n² + 1)/n = n + 1/n\nn이 한없이 커지므로 양의 무한대로 발산\n수렴하지 않으므로 0 (분자의 차수가 더 높음)"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "∞ − ∞ 꼴",
+      "body": [
+        "√가 있는 차는 유리화해 ∞/∞ 꼴로 바꿉니다. √(n² + 2n) − n = 2n/(√(n² + 2n) + n)",
+        "∞ − ∞는 '큰 수에서 큰 수를 뺀 것'이라 얼마인지 바로 알 수 없습니다. √(n² + 2n)과 n은 둘 다 커지지만 그 차는 일정한 값에 가까워질 수 있습니다. 켤레를 곱해 유리화하면 ∞/∞ 꼴이 되어 앞의 방법으로 계산할 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "lim(n→∞) (√(n² + 6n) − n)을 구하세요.",
+      "steps": [
+        "켤레 √(n² + 6n) + n을 분모, 분자에 곱합니다.",
+        "분자: (n² + 6n) − n² = 6n",
+        "6n/(√(n² + 6n) + n)을 n으로 나누면 6/(√(1 + 6/n) + 1)",
+        "→ 6/2 = 3"
+      ],
+      "answer": "3"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "lim(n→∞) (√(n² + 2n) − n)의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "켤레를 곱해 유리화하세요.",
+      "explanation": "유리화: 2n/(√(n² + 2n) + n)\n분모, 분자를 n으로 나누면 2/(√(1 + 2/n) + 1)\n→ 2/2 = 1"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "lim(n→∞) (√(n² + n) − n)의 값은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "켤레를 곱해 유리화하세요.",
+      "explanation": "유리화: n/(√(n² + n) + n)\nn으로 나누면 1/(√(1 + 1/n) + 1)\n→ 1/2\n원리: ∞ − ∞ 꼴은 켤레를 곱해 ∞/∞ 꼴로 바꿉니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "극한의 성질",
+      "body": [
+        "수렴하는 두 수열의 합, 차, 곱, 몫의 극한은 각 극한의 합, 차, 곱, 몫입니다.",
+        "aₙ ≤ cₙ ≤ bₙ이고 lim aₙ = lim bₙ = L이면 lim cₙ = L입니다.",
+        "마지막 성질은 '샌드위치 정리'라고도 합니다. 극한을 직접 구하기 어려운 수열도, 극한이 같은 두 수열 사이에 끼워 넣으면 극한을 알 수 있습니다. 예를 들어 −1/n ≤ (sin n)/n ≤ 1/n이고 양쪽이 0으로 가므로 가운데도 0으로 갑니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "lim(n→∞) (1 + 2 + … + n)/(n² + 1)을 구하세요.",
+      "steps": [
+        "분자: n(n + 1)/2 = (n² + n)/2",
+        "(n² + n)/(2(n² + 1))",
+        "최고차항 계수의 비: 1/2",
+        "원리: Σ 공식으로 분자를 n의 식으로 바꿉니다."
+      ],
+      "answer": "1/2"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "lim aₙ = 3, lim bₙ = 2일 때 lim (aₙ + 2bₙ)의 값은?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "극한의 성질을 쓰세요.",
+      "explanation": "극한의 성질: lim aₙ + 2 lim bₙ\n= 3 + 2 × 2\n= 7\n주의: 두 수열이 모두 수렴할 때만 쓸 수 있습니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 조건에서 lim aₙbₙ의 값은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "lim aₙ × lim bₙ",
+      "explanation": "수렴하는 두 수열의 곱의 극한은 각 극한의 곱입니다.\nlim aₙ × lim bₙ = 3 × 2\n= 6\n주의: 한쪽이라도 발산하면 이 성질을 쓸 수 없습니다."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "lim(n→∞) (sin n)/n의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "sin n의 범위를 이용하세요.",
+      "explanation": "−1 ≤ sin n ≤ 1이므로 −1/n ≤ (sin n)/n ≤ 1/n\n양쪽 모두 0으로 가므로 샌드위치 정리에 의해\n극한값 0"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "lim(n→∞) (1 + 2 + … + n)/n²의 값은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "Σk 공식으로 분자를 바꾸세요.",
+      "explanation": "분자 = n(n + 1)/2 = (n² + n)/2\n(n² + n)/(2n²)에서 최고차항 계수의 비\n= 1/2"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "lim(n→∞) (1² + 2² + … + n²)/n³의 값은? (기약분수로)",
+      "answer": "1/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "Σk² 공식을 쓰세요.",
+      "explanation": "분자 = n(n + 1)(2n + 1)/6이고 최고차항은 2n³/6 = n³/3\nn³으로 나누면\n→ 1/3\n원리: 자연수의 제곱의 합은 n의 삼차식이라 n³과 비교합니다."
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "lim(n→∞) (an + 1)/(2n + 3) = 3일 때 a의 값은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "극한 = 최고차항 계수의 비",
+      "explanation": "차수가 같으므로 극한은 최고차항 계수의 비 a/2\na/2 = 3\na = 6\n원리: 차수가 같은 분수식의 극한은 최고차항 계수의 비입니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "∞/∞ 꼴의 극한에서 분모의 최고차항으로 나누는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "최고차항"
+          ],
+          [
+            "0으로",
+            "0에 가까"
+          ],
+          [
+            "나머지",
+            "다른 항"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "최고차항으로 나누면 나머지 항들은 1/n, 1/n²처럼 되어 0으로 갑니다. 그러면 최고차항끼리의 비만 남아 극한을 바로 알 수 있습니다."
+    }
+  ]
+}

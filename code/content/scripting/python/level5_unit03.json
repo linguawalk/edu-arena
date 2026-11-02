@@ -1,0 +1,91 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 5,
+  "unit": 3,
+  "unit_title": "상속과 다형성",
+  "questions": [
+    {
+      "id": "python_l5_u03_q001",
+      "type": "predict_output",
+      "code": "class Animal:\n    def speak(self):\n        print(\"동물이 소리를 낸다\")\n\nclass Dog(Animal):\n    def speak(self):\n        print(\"멍멍!\")\n\na = Animal()\nd = Dog()\nfor animal in [a, d]:\n    animal.speak()",
+      "prompt_en": "What is printed? (Note: no special keyword like virtual/override is used at all.)",
+      "prompt_ko": "출력 결과는? (virtual/override 같은 특별한 키워드가 전혀 없는 점에 주의하세요.)",
+      "options": ["동물이 소리를 낸다\\n동물이 소리를 낸다", "동물이 소리를 낸다\\n멍멍!", "멍멍!\\n멍멍!", "오류"],
+      "answer": 1,
+      "explanation_en": "Like Java, Python methods are overridable by default with no special keyword; each object's own speak() is called based on its actual type — Animal's for a, Dog's for d.",
+      "explanation_ko": "Java와 마찬가지로 Python의 메서드는 특별한 키워드 없이 기본적으로 오버라이드 가능합니다. 각 객체의 실제 타입에 따라 자신의 speak()가 호출됩니다 — a는 Animal의 것, d는 Dog의 것.",
+      "concept_tags": ["inheritance", "polymorphism"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l5_u03_q002",
+      "type": "fill_blank",
+      "code": "class Cat(____):\n    def speak(self):\n        print(\"야옹!\")",
+      "prompt_en": "Fill in the blank with the base class Cat inherits from, given it should behave like Animal above.",
+      "prompt_ko": "위의 Animal처럼 동작해야 한다면, Cat이 상속받을 부모 클래스를 빈칸에 채우세요.",
+      "options": ["Animal", "Object", "Base", "Parent"],
+      "answer": 0,
+      "explanation_en": "Inheritance is expressed by placing the parent class in parentheses after the class name: class Cat(Animal).",
+      "explanation_ko": "상속은 클래스 이름 뒤 괄호 안에 부모 클래스를 넣어 표현합니다: class Cat(Animal).",
+      "concept_tags": ["inheritance"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l5_u03_q003",
+      "type": "predict_output",
+      "code": "class Animal:\n    def __init__(self, name):\n        self.name = name\n\nclass Dog(Animal):\n    def __init__(self, name):\n        super().__init__(name)\n\n    def print_name(self):\n        print(self.name)\n\nd = Dog(\"바둑이\")\nd.print_name()",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이", "오류", "빈 문자열", "Animal"],
+      "answer": 0,
+      "explanation_en": "super().__init__(name) calls the parent's constructor, initializing the inherited name attribute; print_name then reads it, printing 바둑이.",
+      "explanation_ko": "super().__init__(name)은 부모의 생성자를 호출해서 상속받은 name 속성을 초기화합니다. print_name은 이후 이를 읽어 바둑이를 출력합니다.",
+      "concept_tags": ["inheritance", "super"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l5_u03_q004",
+      "type": "predict_output",
+      "code": "class Duck:\n    def speak(self):\n        print(\"꽥꽥!\")\n\nclass Person:\n    def speak(self):\n        print(\"저는 오리 소리를 흉내낼 수 있어요, 꽥꽥!\")\n\ndef make_it_speak(thing):\n    thing.speak()\n\nmake_it_speak(Duck())\nmake_it_speak(Person())",
+      "prompt_en": "What is printed? (Neither class inherits from a common base — this is duck typing.)",
+      "prompt_ko": "출력 결과는? (두 클래스 모두 공통 부모를 상속받지 않습니다 — 덕 타이핑입니다.)",
+      "options": ["오류 (타입 불일치)", "꽥꽥!\\n저는 오리 소리를 흉내낼 수 있어요, 꽥꽥!", "꽥꽥!\\n꽥꽥!", "아무것도 출력되지 않음"],
+      "answer": 1,
+      "explanation_en": "make_it_speak doesn't check the type of thing at all — it just calls .speak(). As long as an object has that method, it works, regardless of inheritance or interfaces. This is duck typing: 'if it walks like a duck and speaks like a duck...'",
+      "explanation_ko": "make_it_speak는 thing의 타입을 전혀 검사하지 않습니다 — 그냥 .speak()를 호출할 뿐입니다. 상속이나 인터페이스와 무관하게, 그 메서드만 있으면 동작합니다. 이것이 덕 타이핑입니다: '오리처럼 걷고 오리처럼 소리 낸다면...'",
+      "concept_tags": ["duck_typing"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l5_u03_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "class Dog(Animal)", "definition": "괄호 안에 부모 클래스를 넣어 상속을 표현" },
+        { "term": "super()", "definition": "부모 클래스의 메서드(주로 __init__)를 호출하는 방법" },
+        { "term": "기본적으로 오버라이드 가능", "definition": "Java처럼 Python 메서드도 특별한 키워드 없이 재정의 가능" },
+        { "term": "덕 타이핑", "definition": "상속이나 인터페이스 없이, 필요한 메서드만 있으면 어떤 객체든 쓸 수 있는 Python의 특징" }
+      ],
+      "explanation_en": "Duck typing is arguably Python's most distinctive OOP feature — it doesn't require explicit interfaces (unlike Java/C#/VB) for polymorphism to work, relying purely on an object having the right methods.",
+      "explanation_ko": "덕 타이핑은 Python의 가장 독특한 객체지향 특징이라 할 수 있습니다. 다형성이 동작하는 데 (Java/C#/VB와 달리) 명시적인 인터페이스가 필요 없고, 그저 객체가 알맞은 메서드를 갖고 있으면 됩니다.",
+      "concept_tags": ["inheritance", "super", "polymorphism", "duck_typing"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l5_u03_q006",
+      "type": "predict_output",
+      "code": "class Animal:\n    def speak(self):\n        print(\"...\")\n\n    def greet(self):\n        print(\"안녕! \", end=\"\")\n        self.speak()\n\nclass Dog(Animal):\n    def speak(self):\n        print(\"멍멍!\")\n\nd = Dog()\nd.greet()",
+      "prompt_en": "What is printed? (Note: greet is inherited, but calls self.speak() internally.)",
+      "prompt_ko": "출력 결과는? (greet는 상속받은 것이지만, 내부에서 self.speak()를 호출합니다.)",
+      "options": ["안녕! ...", "안녕! 멍멍!", "멍멍!안녕! ", "오류"],
+      "answer": 1,
+      "explanation_en": "greet() is inherited as-is, but self.speak() inside it still resolves based on d's actual type; since d is a Dog, Dog's speak() runs, printing 멍멍!.",
+      "explanation_ko": "greet()는 그대로 상속되지만, 그 안의 self.speak()는 여전히 d의 실제 타입을 기준으로 결정됩니다. d는 Dog이므로 Dog의 speak()가 실행되어 멍멍!이 출력됩니다.",
+      "concept_tags": ["polymorphism"],
+      "difficulty": "challenge"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+ "no": 4,
+ "title": "DC–DC 컨버터",
+ "hours": 7,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "벅·부스트·벅–부스트 컨버터의 전압 변환비를 유도하고 계산할 수 있다.",
+  "인덕터 전류 리플을 계산하고 연속·불연속 모드를 구분할 수 있다.",
+  "절연형 컨버터(플라이백, 포워드)의 구조와 쓰임을 설명할 수 있다."
+ ],
+ "checklist": [
+  "정상 상태 원리: 인덕터 볼트–초 평형, 콘덴서 전하 평형",
+  "벅: V_o = D·V_in (강압)",
+  "부스트: V_o = V_in/(1 − D) (승압)",
+  "벅–부스트: V_o = −D/(1 − D)·V_in (극성 반전)",
+  "벅 인덕터 전류 리플 ΔI = (V_in − V_o)D/(Lf_s)",
+  "연속 전류 모드(CCM)와 불연속 전류 모드(DCM)",
+  "절연형: 플라이백(소전력 충전기), 포워드, 풀브리지(대전력)"
+ ],
+ "advice": [
+  "DC–DC 컨버터는 모든 전원 장치의 기본 블록이고, 변환비 공식은 '한 주기 동안 인덕터 양단 전압의 평균은 0'이라는 볼트–초 평형 한 가지 원리에서 모두 나옵니다. 벅 컨버터로 이 원리를 한 번 직접 적용해 V_o = DV_in을 얻고, 같은 방법을 부스트와 벅–부스트에 반복해 보세요. 공식을 외우는 것보다 훨씬 오래 남고, 처음 보는 컨버터도 같은 방법으로 풀 수 있게 됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Springer",
+   "title": "Erickson · Maksimović, Fundamentals of Power Electronics (장 제목으로 표기)",
+   "part": "Principles of Steady-State Converter Analysis, Discontinuous Conduction Mode, Converter Circuits 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Mohan · Undeland · Robbins, Power Electronics: Converters, Applications, and Design (장 제목으로 표기)",
+   "part": "dc-dc Switch-Mode Converters 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.334 Power Electronics (2007년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-334-power-electronics-spring-2007/",
+   "lang": "영어",
+   "part": "dc/dc converter 관련 강의 노트"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "입력 48 V를 12 V로 낮추는 벅 컨버터의 듀티비는 얼마일까요? (이상적, 연속 모드)",
+   "answer": "0.25",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "D = V_o/V_in = 12/48 = 0.25",
+   "hint": "벅은 V_o = D·V_in입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "입력 12 V 부스트 컨버터를 듀티비 0.4로 운전하면 출력 전압은 몇 V일까요? (이상적, 연속 모드)",
+   "answer": "20",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "V_o = V_in/(1 − D) = 12/0.6 = 20 V",
+   "hint": "부스트는 V_in/(1 − D)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "입력 48 V, 출력 12 V, 인덕턴스 100 μH, 스위칭 주파수 100 kHz인 벅 컨버터의 인덕터 전류 리플(첨두–첨두)은 몇 A일까요?",
+   "answer": "0.9",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "ΔI = (V_in − V_o)D/(Lf_s) = 36 × 0.25/(10⁻⁴ × 10⁵) = 0.9 A",
+   "hint": "ΔI = (V_in − V_o)D/(Lf_s)입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "power-electronics",
+ "id": "l3-electrical-power-electronics-u04"
+}

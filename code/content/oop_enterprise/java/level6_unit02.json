@@ -1,0 +1,101 @@
+{
+  "language": "java",
+  "category": "oop_enterprise",
+  "level": 6,
+  "unit": 2,
+  "unit_title": "checked/unchecked 예외처리",
+  "questions": [
+    {
+      "id": "java_l6_u02_q001",
+      "type": "predict_output",
+      "code": "static void risky() {\n    throw new RuntimeException(\"문제 발생\");\n}\n\npublic static void main(String[] args) {\n    try {\n        risky();\n    } catch (RuntimeException e) {\n        System.out.println(e.getMessage());\n    }\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["문제 발생", "RuntimeException", "오류", "빈 문자열"],
+      "answer": 0,
+      "explanation_en": "throw raises an exception with a custom message; the matching catch block accesses that message through e.getMessage().",
+      "explanation_ko": "throw는 사용자 정의 메시지와 함께 예외를 발생시킵니다. 일치하는 catch 블록은 e.getMessage()로 그 메시지에 접근합니다.",
+      "concept_tags": ["throw", "try_catch"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l6_u02_q002",
+      "type": "predict_output",
+      "code": "static void risky() {\n    throw new RuntimeException(\"문제 발생\");\n}\n\npublic static void main(String[] args) {\n    risky();\n}",
+      "prompt_en": "What happens? (Note: risky() has no throws declaration.)",
+      "prompt_ko": "어떻게 될까요? (risky()에 throws 선언이 없는 점에 주의하세요.)",
+      "options": [
+        "컴파일 오류 발생",
+        "정상적으로 컴파일되지만, 실행 시점에 처리되지 않은 예외로 프로그램이 비정상 종료됨",
+        "아무 문제 없이 실행됨",
+        "경고만 발생하고 정상 실행됨"
+      ],
+      "answer": 1,
+      "explanation_en": "RuntimeException is unchecked, so it never requires throws or try/catch at compile time; it compiles fine but crashes the program at runtime if uncaught.",
+      "explanation_ko": "RuntimeException은 unchecked이므로 컴파일 시점에 throws나 try/catch가 전혀 필요 없습니다. 컴파일은 잘 되지만, 잡히지 않으면 실행 시점에 프로그램이 비정상 종료됩니다.",
+      "concept_tags": ["unchecked_exception"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l6_u02_q003",
+      "type": "error_finding",
+      "code": "import java.io.IOException;\n\nstatic void risky() {\n    throw new IOException(\"파일 문제\");\n}",
+      "prompt_en": "What problem does this code have? (Compare with the RuntimeException example above.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (위의 RuntimeException 예제와 비교해보세요.)",
+      "options": [
+        "throw 사용법 자체가 잘못됨",
+        "IOException은 checked exception인데, 메서드가 이를 처리(try/catch)하거나 선언(throws)하지 않아서 컴파일 오류가 발생함",
+        "risky 메서드 이름이 잘못됨",
+        "문제 없음, RuntimeException처럼 정상 컴파일됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike RuntimeException, IOException is a checked exception, so Java requires it to be handled or declared; simply throwing it without either causes a compile error.",
+      "explanation_ko": "RuntimeException과 달리 IOException은 checked exception이라서, Java는 이를 처리하거나 선언하도록 요구합니다. 둘 다 없이 그냥 던지면 컴파일 오류가 발생합니다.",
+      "concept_tags": ["checked_exception"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l6_u02_q004",
+      "type": "predict_output",
+      "code": "int divisor = 0;\ntry {\n    int result = 10 / divisor;\n} catch (ArithmeticException e) {\n    System.out.println(\"0으로 나눌 수 없음\");\n} finally {\n    System.out.println(\"항상 실행됨\");\n}",
+      "prompt_en": "What is printed? (Note: Java's divide-by-zero exception has a different name than C#/VB.)",
+      "prompt_ko": "출력 결과는? (Java의 0나누기 예외 이름이 C#/VB와 다른 점에 주의하세요.)",
+      "options": ["0으로 나눌 수 없음 항상 실행됨", "항상 실행됨", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "Dividing by a variable holding 0 throws ArithmeticException (not DivideByZeroException as in C#/VB); catch handles it, then finally always runs.",
+      "explanation_ko": "0을 담은 변수로 나누면 (C#/VB의 DivideByZeroException이 아니라) ArithmeticException이 발생합니다. catch가 이를 처리하고, 이어서 finally가 항상 실행됩니다.",
+      "concept_tags": ["arithmeticexception", "try_catch_finally"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l6_u02_q005",
+      "type": "fill_blank",
+      "code": "____\n{\n    int result = 10 / someDivisor;\n}\n____ (ArithmeticException e)\n{\n    System.out.println(\"오류\");\n}",
+      "prompt_en": "Fill in both blanks with the keywords that begin the protected block and the exception handler.",
+      "prompt_ko": "보호할 블록과 예외 처리기를 시작하는 키워드를 각각 빈칸에 채우세요.",
+      "options": ["try / catch", "attempt / handle", "protect / rescue", "begin / except"],
+      "answer": 0,
+      "explanation_en": "try marks the block where exceptions might occur, and catch defines how to handle a specific exception type — identical syntax to C#/C++/VB.",
+      "explanation_ko": "try는 예외가 발생할 수 있는 블록을 표시하고, catch는 특정 예외 타입을 어떻게 처리할지 정의합니다. C#/C++/VB와 동일한 문법입니다.",
+      "concept_tags": ["try_catch"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l6_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "checked exception", "definition": "컴파일러가 처리 또는 선언을 강제하는 예외 (예: IOException)" },
+        { "term": "unchecked exception (RuntimeException)", "definition": "처리나 선언이 강제되지 않는 예외 — 컴파일은 되지만 잡히지 않으면 런타임에 종료됨" },
+        { "term": "ArithmeticException", "definition": "0으로 나누기 등 산술 오류 시 발생하는 예외 (C#/VB의 DivideByZeroException과 다른 이름)" },
+        { "term": "C#/VB와의 근본적 차이", "definition": "C#/VB에는 checked exception 개념 자체가 없어 모든 예외가 Java의 unchecked처럼 동작함" }
+      ],
+      "explanation_en": "The checked/unchecked distinction is unique to Java among the languages covered in this track, and is one of the most debated design decisions in language history — some newer JVM languages like Kotlin deliberately removed it.",
+      "explanation_ko": "checked/unchecked 구분은 이 트랙에서 다룬 언어들 중 Java만의 특징이며, 언어 역사상 가장 논쟁적인 설계 결정 중 하나입니다 — Kotlin 같은 일부 최신 JVM 언어는 의도적으로 이를 없앴습니다.",
+      "concept_tags": ["checked_exception", "unchecked_exception", "arithmeticexception"],
+      "difficulty": "practice"
+    }
+  ]
+}

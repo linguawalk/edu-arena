@@ -1,0 +1,348 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s1",
+  "track": "chem-eq",
+  "work": "풀이",
+  "track_title": "화학 평형",
+  "chapter": {
+    "id": "sci-s1-chem-eq-ch02",
+    "no": 2,
+    "title": "르샤틀리에 원리"
+  },
+  "lesson": {
+    "id": "sci-s1-chem-eq-ch02-l01",
+    "no": 1,
+    "title": "농도 변화",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "화학",
+      "화학 평형"
+    ],
+    "competition": "KChO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "평형은 변화를 줄이는 쪽으로 움직인다",
+      "body": [
+        "르샤틀리에 원리: 평형 상태에 있는 계에 농도, 압력, 온도 같은 조건의 변화를 주면, 계는 그 변화를 줄이는 방향으로 평형을 이동합니다.",
+        "반응물을 더하면 그것을 써 버리는 쪽(정반응)으로, 생성물을 빼내면 그것을 다시 만드는 쪽(정반응)으로 이동합니다. 반대로 생성물을 더하면 역반응 쪽입니다.",
+        "그림처럼 A ⇌ B(K = 1)의 평형([A] = [B] = 1 M)에 A를 1 M 더하면 [A]가 2 M로 뛰었다가 일부가 B로 바뀌어 [A] = [B] = 1.5 M인 새 평형에 이릅니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 6,
+          "ymin": 0,
+          "ymax": 2.2,
+          "xstep": 1,
+          "ystep": 0.5,
+          "xlabel": "시간",
+          "ylabel": "농도(M)",
+          "curves": [
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "color": "#7A1F3D"
+            },
+            {
+              "kind": "exp",
+              "a": 0.5,
+              "b": 0.35,
+              "p": 2,
+              "q": 1.5,
+              "from": 2,
+              "to": 6,
+              "color": "#7A1F3D"
+            },
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "color": "#1D3FA8"
+            },
+            {
+              "kind": "exp",
+              "a": -0.5,
+              "b": 0.35,
+              "p": 2,
+              "q": 1.5,
+              "from": 2,
+              "to": 6,
+              "color": "#1D3FA8"
+            },
+            {
+              "kind": "vline",
+              "x": 2
+            }
+          ],
+          "alt": "A ⇌ B(K = 1) 평형에 A를 1 M 더한 뒤: [A]는 2 M에서 1.5 M로, [B]는 1 M에서 1.5 M로 다시 평형",
+          "points": [
+            [
+              0.5,
+              1,
+              "[A] = [B]"
+            ],
+            [
+              2,
+              2,
+              "A 추가"
+            ],
+            [
+              5.5,
+              1.5,
+              "새 평형"
+            ]
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "A ⇌ B(K = 1)의 평형([A] = [B] = 1 M)에 A를 1 M 더했습니다. 새 평형에서 [B]는 몇 M인가요? 소수로 쓰세요.",
+      "answer": "1.5",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "(1 + x)/(2 − x) = 1을 푸세요.",
+      "explanation": "A를 더한 직후 [A] = 2, [B] = 1이고, 정반응 쪽으로 x만큼 진행합니다.\n(1 + x)/(2 − x) = 1에서 x = 0.5입니다.\n[B] = 1.5 M이고, [A]도 1.5 M로 비가 1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "평형 상태에 반응물을 더하면 평형은 {{1}} 쪽으로 이동합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "정반응",
+            "정방향",
+            "생성물"
+          ]
+        }
+      ],
+      "hint": "더한 반응물을 써 버리는 쪽입니다.",
+      "explanation": "반응물을 더하면 Q가 작아져 Q < K가 됩니다.\n그래서 반응물을 소모하는 정반응이 진행합니다.\n르샤틀리에 원리로는 '늘어난 반응물을 줄이는 쪽'입니다."
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "앞의 예에서 A를 더한 직후의 Q를 구하고, 이동 방향을 정하세요.",
+      "steps": [
+        "A를 더한 직후 [A] = 2 M, [B] = 1 M입니다.",
+        "Q = [B]/[A] = 1/2 = 0.5입니다.",
+        "Q < K = 1입니다.",
+        "따라서 정반응 쪽으로 이동합니다."
+      ],
+      "answer": "Q = 0.5, 정반응 쪽"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 A를 더한 직후의 Q는? 소수로 쓰세요.",
+      "answer": "0.5",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "Q = [B]/[A]입니다.",
+      "explanation": "A를 더한 직후에는 아직 반응이 일어나지 않았으므로 [A] = 2, [B] = 1입니다.\nQ = 1/2입니다.\n= 0.5로 K보다 작으므로 정반응 쪽으로 이동합니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "A ⇌ B(K = 1)의 평형([A] = [B] = 1 M)에서 B를 0.5 M 빼냈습니다. 새 평형에서 [B]는 몇 M인가요? 소수로 쓰세요.",
+      "answer": "0.75",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "(0.5 + x)/(1 − x) = 1을 푸세요.",
+      "explanation": "빼낸 직후 [A] = 1, [B] = 0.5이고 Q = 0.5 < K이므로 정반응 쪽입니다.\n(0.5 + x)/(1 − x) = 1에서 x = 0.25입니다.\n[B] = 0.75 M로, 빼낸 양의 절반만 회복합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "K는 그대로, 변화는 일부만 상쇄",
+      "body": [
+        "농도를 바꾸어도 온도가 같으면 평형 상수 K는 변하지 않습니다. 평형의 위치(농도들)만 바뀝니다.",
+        "평형 이동은 가해진 변화를 줄일 뿐 완전히 없애지는 못합니다. 앞의 예에서 A를 1 M 더했더니 새 평형의 [A]는 1.5 M로, 처음 1 M보다는 크고 더한 직후 2 M보다는 작습니다.",
+        "그래서 '르샤틀리에 원리로 원래 상태로 돌아간다'는 말은 틀립니다. 새 평형은 원래와 다른 위치에 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞의 예에서 A를 더한 뒤 새 평형에 이르렀을 때 평형 상수 K는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "온도가 같습니다.",
+      "explanation": "농도를 바꾸어도 온도가 그대로이므로 K는 변하지 않습니다.\n새 평형의 [B]/[A] = 1.5/1.5 = 1로 확인됩니다.\n따라서 K = 1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞의 예에서 새 평형의 [A]는 몇 M인가요? 소수로 쓰세요.",
+      "answer": "1.5",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "2 − x이고 x = 0.5입니다.",
+      "explanation": "A를 더한 직후 [A] = 2 M였고, 0.5 M가 B로 바뀌었습니다.\n[A] = 2 − 0.5입니다.\n= 1.5 M로, 처음 1 M로 돌아가지 않습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "한 반응물을 넉넉히 넣는 이유",
+      "body": [
+        "A + B ⇌ C + D(K = 4)에서 A와 B를 1 M씩 넣으면 x²/(1 − x)² = 4에서 x = 2/3, 곧 A의 2/3만 반응합니다.",
+        "값싼 반응물 B를 넉넉히 넣으면 평형이 정반응 쪽으로 이동해 비싼 반응물 A가 더 많이 반응합니다. 에스터 합성에서 알코올을 많이 넣는 것이 그 예입니다.",
+        "생성물을 계속 빼내는 것도 같은 효과가 있습니다. 증류로 생성물을 빼내거나 앙금·기체로 빠져나가게 하면 반응이 거의 끝까지 진행합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "A + B ⇌ C + D(K = 4)에서 A와 B를 1 M씩 넣고 시작하면 A의 몇 분의 몇이 반응하나요? 분수로 쓰세요.",
+      "answer": "2/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "x²/(1 − x)² = 4입니다.",
+      "explanation": "평형에서 [C] = [D] = x, [A] = [B] = 1 − x이므로 x²/(1 − x)² = 4입니다.\n제곱근을 취하면 x/(1 − x) = 2이므로 x = 2/3입니다.\nA의 2/3가 반응합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "평형에 변화를 주면 그 변화를 줄이는 쪽으로 이동합니다. 반응물을 더하거나 생성물을 빼면 정반응 쪽, 생성물을 더하면 역반응 쪽입니다.",
+        "이동 방향은 Q와 K를 비교해 확인할 수 있고, 새 평형 농도는 처음-변화-평형 표로 구합니다.",
+        "농도 변화는 K를 바꾸지 않고, 가한 변화를 일부만 상쇄합니다. 한 반응물을 넉넉히 넣거나 생성물을 빼내면 수득률이 높아집니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "A ⇌ B(K = 2)의 평형([A] = 1 M, [B] = 2 M)에 B를 3 M 더했습니다. 새 평형에서 [A]는 몇 M인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "Q = 5 > K이므로 역반응 쪽입니다.",
+      "explanation": "B를 더한 직후 [A] = 1, [B] = 5이고 역반응 쪽으로 x만큼 진행합니다.\n(5 − x)/(1 + x) = 2에서 5 − x = 2 + 2x, x = 1입니다.\n[A] = 2 M입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "앞 문제에서 새 평형의 [B]는 몇 M인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5 − x입니다.",
+      "explanation": "역반응으로 B가 1 M 줄었습니다.\n[B] = 5 − 1입니다.\n= 4 M이고, [B]/[A] = 4/2 = 2로 K와 맞습니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "평형 상태에 반응물을 더하면 정반응 쪽으로 이동함을 반응 지수로 설명하세요.",
+      "model_answer": [
+        "평형에서는 Q = K이다.",
+        "반응물을 더하면 Q의 분모(반응물 농도)가 커져 Q < K가 된다.",
+        "Q < K이면 정반응이 진행해 생성물이 늘고 반응물이 줄어 Q가 커진다.",
+        "Q가 다시 K와 같아질 때까지 정반응 쪽으로 이동한다."
+      ],
+      "criteria": [
+        {
+          "text": "평형에서 Q = K임을 썼다",
+          "points": 1
+        },
+        {
+          "text": "반응물을 더하면 Q < K가 됨을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "정반응으로 Q가 K로 돌아감을 설명했다",
+          "points": 3
+        }
+      ],
+      "hint": "반응물을 더한 직후의 Q를 생각하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "A + B ⇌ C + D(K = 4)에서 A와 B를 1 M씩 넣고 시작하면 A의 2/3가 반응함을 보이세요.",
+      "model_answer": [
+        "반응한 A를 x라 하면 평형에서 [A] = [B] = 1 − x, [C] = [D] = x이다.",
+        "K = x²/(1 − x)² = 4이다.",
+        "양변이 양수이므로 제곱근을 취하면 x/(1 − x) = 2, 곧 x = 2/3이다.",
+        "처음 A가 1 M이므로 2/3가 반응한다."
+      ],
+      "criteria": [
+        {
+          "text": "평형 농도를 x로 나타냈다",
+          "points": 2
+        },
+        {
+          "text": "평형 상수식을 세웠다",
+          "points": 2
+        },
+        {
+          "text": "풀어서 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "처음-변화-평형 표를 쓰세요."
+    }
+  ]
+}

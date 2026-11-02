@@ -1,0 +1,271 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "ds",
+  "work": "풀이",
+  "track_title": "자료구조",
+  "chapter": {
+    "id": "info-s2-ds-ch01",
+    "no": 1,
+    "title": "세그먼트 트리"
+  },
+  "lesson": {
+    "id": "info-s2-ds-ch01-l04",
+    "no": 4,
+    "title": "다양한 세그먼트 트리",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "자료구조",
+      "세그먼트 트리"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "합 대신 다른 연산",
+      "body": [
+        "세그먼트 트리의 노드에 합 대신 최솟값을 저장하면 구간 최솟값을 O(log n)에 구할 수 있습니다. 코드에서 더하기를 min으로, 겹치지 않을 때 돌려주는 0을 아주 큰 값(무한대)으로 바꾸면 됩니다.",
+        "최댓값, 최대공약수, 곱처럼 두 구간의 결과를 합쳐 큰 구간의 결과를 낼 수 있는 연산이면 같은 방법을 씁니다. 이때 연산은 결합 법칙 (a∘b)∘c = a∘(b∘c)를 만족해야 합니다.",
+        "질의 구간을 어떻게 쪼개 묶든 같은 답이 나와야 하기 때문입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "a = {5, 3, 7, 9, 6, 4, 1, 2}로 만든 최솟값 세그먼트 트리에서 [1, 5]의 최솟값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "[1, 5]는 a[1], a[2..3], a[4..5]로 쪼개집니다.",
+      "explanation": "세 노드에는 각각 min(3) = 3, min(7, 9) = 7, min(6, 4) = 4가 저장되어 있습니다.\n세 값의 최솟값을 구합니다.\nmin(3, 7, 4) = 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "같은 최솟값 세그먼트 트리에서 [4, 7]의 최솟값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "[4, 7]은 노드 3 하나입니다.",
+      "explanation": "[4, 7]은 노드 3이 맡은 구간과 정확히 같습니다.\n노드 3에는 min(6, 4, 1, 2)가 저장되어 있습니다.\n그래서 1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "세그먼트 트리에 쓰는 연산은 (a∘b)∘c = a∘(b∘c)인 {{1}} 법칙을 만족해야 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "결합"
+          ]
+        }
+      ],
+      "hint": "괄호를 어디에 치든 결과가 같다는 법칙입니다.",
+      "explanation": "질의 구간이 노드 몇 개로 쪼개지는 방식은 구간마다 다릅니다.\n어떻게 묶어 계산해도 결과가 같아야 하므로 괄호 위치에 상관없는 성질이 필요합니다.\n이것이 결합 법칙입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "개수 세기 트리와 역순 쌍",
+      "body": [
+        "값의 범위가 1~m일 때, 리프 v에 '지금까지 나온 값 v의 개수'를 저장하는 세그먼트 트리를 만들 수 있습니다. 그러면 '지금까지 나온 값 중 x보다 큰 것의 개수'를 [x + 1, m]의 합으로 O(log m)에 셉니다.",
+        "역순 쌍(i < j인데 a[i] > a[j]인 쌍)의 수를 세려면 배열을 왼쪽부터 보며, 각 a[j]에 대해 앞에 나온 값 중 a[j]보다 큰 것의 개수를 더한 뒤 리프 a[j]에 1을 더합니다.",
+        "원소마다 질의 한 번과 갱신 한 번이므로 전체 O(n log m)입니다. 모든 쌍을 비교하는 O(n²)보다 훨씬 빠릅니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "{3, 1, 2}의 역순 쌍의 수를 개수 세기 트리로 구하세요.",
+      "steps": [
+        "3: 앞에 나온 값이 없어 0을 더하고, 리프 3에 1을 더합니다.",
+        "1: 앞에 나온 값 중 1보다 큰 것은 3 하나라 1을 더하고, 리프 1에 1을 더합니다. 2: 2보다 큰 것은 3 하나라 1을 더합니다.",
+        "역순 쌍은 0 + 1 + 1 = 2개입니다."
+      ],
+      "answer": "2"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "{4, 2, 6, 1, 5, 3}의 역순 쌍은 모두 몇 개인가요?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "각 원소마다 앞에 나온 더 큰 값의 개수를 더하세요.",
+      "explanation": "왼쪽부터 앞에 나온 더 큰 값의 개수는 4: 0, 2: 1, 6: 0, 1: 3, 5: 1, 3: 3입니다.\n이 값들을 모두 더합니다.\n0 + 1 + 0 + 3 + 1 + 3 = 8개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "{4, 2, 6, 1, 5, 3}을 왼쪽부터 처리할 때, 5를 처리하는 순간 [6, 6]에 대한 질의(5보다 큰 값의 개수) 결과는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5보다 앞에 나온 값은 4, 2, 6, 1입니다.",
+      "explanation": "5를 처리할 때 트리에는 앞에 나온 4, 2, 6, 1이 하나씩 들어 있습니다.\n그중 5보다 큰 값은 6 하나입니다.\n그래서 질의 결과는 1입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "k번째로 작은 값 찾기",
+      "body": [
+        "개수 세기 트리에서 k번째로 작은 값을 찾을 수도 있습니다. 루트에서 출발해, 왼쪽 자식의 개수가 k 이상이면 왼쪽으로, 아니면 k에서 왼쪽 개수를 빼고 오른쪽으로 내려갑니다.",
+        "리프에 도착하면 그 리프의 값이 답입니다. 루트에서 리프까지 한 번만 내려가므로 O(log m)입니다.",
+        "값을 넣고 빼면서 중간값이나 k번째 값을 계속 물어보는 문제에서 유용합니다."
+      ],
+      "code": "// cnt 트리: 리프 v에 값 v가 몇 개 있는지 저장 (값 1~8, 리프 순서대로)\nint kth(int k, int l, int r, int rank) {   // rank번째로 작은 값\n    if (l == r) return l;\n    int m = (l + r) / 2;\n    if (t[2 * k] >= rank) return kth(2 * k, l, m, rank);\n    return kth(2 * k + 1, m + 1, r, rank - t[2 * k]);\n}\n// 호출: kth(1, 1, 8, rank)"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "값 1~8의 개수 세기 트리에 1, 3, 3, 5, 6, 8이 들어 있습니다. kth로 구한 4번째로 작은 값은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "작은 것부터 1, 3, 3, 5, …입니다.",
+      "explanation": "루트에서 왼쪽 [1, 4]의 개수는 3으로 4보다 작으므로 오른쪽으로 가며 rank = 4 − 3 = 1이 됩니다.\n[5, 6]의 개수는 2로 1 이상이라 왼쪽, [5, 5]의 개수는 1로 1 이상이라 왼쪽으로 내려갑니다.\n그래서 답은 5입니다.",
+      "code": "// cnt 트리: 리프 v에 값 v가 몇 개 있는지 저장 (값 1~8, 리프 순서대로)\nint kth(int k, int l, int r, int rank) {   // rank번째로 작은 값\n    if (l == r) return l;\n    int m = (l + r) / 2;\n    if (t[2 * k] >= rank) return kth(2 * k, l, m, rank);\n    return kth(2 * k + 1, m + 1, r, rank - t[2 * k]);\n}\n// 호출: kth(1, 1, 8, rank)"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "값 1~8의 개수 세기 트리(n = 8)에서 kth를 한 번 실행하면 kth는 몇 번 호출되나요? (처음 호출 포함)",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "루트에서 리프까지 한 갈래로만 내려갑니다.",
+      "explanation": "kth는 매번 두 자식 중 하나만 부르므로 루트에서 리프까지 한 경로를 따라갑니다.\nn = 8이면 깊이 0, 1, 2, 3의 노드를 하나씩 지납니다.\n그래서 4번입니다.",
+      "code": "// cnt 트리: 리프 v에 값 v가 몇 개 있는지 저장 (값 1~8, 리프 순서대로)\nint kth(int k, int l, int r, int rank) {   // rank번째로 작은 값\n    if (l == r) return l;\n    int m = (l + r) / 2;\n    if (t[2 * k] >= rank) return kth(2 * k, l, m, rank);\n    return kth(2 * k + 1, m + 1, r, rank - t[2 * k]);\n}\n// 호출: kth(1, 1, 8, rank)"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "노드 값을 두 자식의 값만으로 계산할 수 없어 이 방식의 세그먼트 트리로 구간 질의를 하기 어려운 것은? ① 구간의 합 ② 구간의 최솟값 ③ 구간의 최대공약수 ④ 구간의 중앙값",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 구간의 중앙값만 알면 합친 구간의 중앙값을 알 수 있을까요?",
+      "explanation": "합, 최솟값, 최대공약수는 두 자식의 결과만으로 부모의 결과를 계산할 수 있습니다.\n중앙값은 두 부분의 중앙값만으로 합친 구간의 중앙값을 정할 수 없습니다.\n답은 4입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "결합 법칙을 만족하는 연산이면 합 대신 최솟값, 최댓값, 최대공약수 등을 저장하는 세그먼트 트리를 만들 수 있습니다. 겹치지 않을 때는 연산의 항등원을 돌려줍니다.",
+        "값을 리프로 하는 개수 세기 트리로 '나보다 큰 값의 개수'를 세면 역순 쌍을 O(n log m)에 구하고, 한 번 내려가기로 k번째 값을 O(log m)에 찾습니다.",
+        "구간 전체를 바꾸는 갱신은 S3에서 다룰 게으른 전파로 해결합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "{2, 5, 1, 4, 3}의 역순 쌍은 모두 몇 개인가요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "앞에 나온 더 큰 값의 개수를 차례로 세세요.",
+      "explanation": "왼쪽부터 앞에 나온 더 큰 값의 개수는 2: 0, 5: 0, 1: 2, 4: 1, 3: 2입니다.\n이 값들을 모두 더합니다.\n0 + 0 + 2 + 1 + 2 = 5개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a = {12, 18, 24, 6, 9, 15}로 만든 최대공약수 세그먼트 트리에서 [0, 2]의 최대공약수는?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "gcd(12, 18) = 6입니다.",
+      "explanation": "최대공약수는 결합 법칙을 만족하므로 세그먼트 트리에 쓸 수 있습니다.\ngcd(12, 18) = 6이고 gcd(6, 24) = 6입니다.\n그래서 6입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "세그먼트 트리에 쓰는 연산이 결합 법칙을 만족해야 하는 이유를 설명하세요.",
+      "model_answer": [
+        "트리의 노드 값은 구간을 반씩 나눈 특정한 방식으로 묶어 계산한 결과다.",
+        "질의는 구간을 노드 몇 개로 쪼개 그 결과들을 다시 합치는데, 쪼개는 방식은 질의마다, 트리 모양마다 다르다.",
+        "결합 법칙이 성립하면 괄호를 어떻게 치든 a[l]∘a[l + 1]∘…∘a[r]의 값이 같으므로 어떤 쪼갬에서도 같은 답이 나온다.",
+        "결합 법칙이 없으면 묶는 방식에 따라 답이 달라져 노드 값을 미리 저장해 둘 수 없다."
+      ],
+      "criteria": [
+        {
+          "text": "노드 값이 특정한 묶음으로 계산됨을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "질의마다 쪼개는 방식이 다름을 지적했다",
+          "points": 2
+        },
+        {
+          "text": "결합 법칙이 같은 답을 보장함을 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "질의 구간을 쪼개는 방식이 하나뿐인가요?"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "개수 세기 세그먼트 트리로 역순 쌍의 수를 세는 방법이 맞는 이유와 시간 복잡도를 설명하세요. (값의 범위 1~m)",
+      "model_answer": [
+        "역순 쌍 (i, j)는 뒤쪽 원소 a[j]를 기준으로 '앞에 나온 원소 중 a[j]보다 큰 것' 하나하나와 대응한다.",
+        "a[j]를 처리할 때 트리에는 a[0..j − 1]이 정확히 들어 있으므로, [a[j] + 1, m]의 합이 그 개수다.",
+        "모든 j에 대해 더하면 역순 쌍마다 정확히 한 번씩 세어진다.",
+        "원소마다 질의와 갱신을 한 번씩 하므로 전체 O(n log m)이다."
+      ],
+      "criteria": [
+        {
+          "text": "역순 쌍을 뒤쪽 원소 기준으로 셈을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "처리 시점의 트리 내용을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "시간 복잡도를 구했다",
+          "points": 2
+        }
+      ],
+      "hint": "역순 쌍을 뒤쪽 원소 기준으로 나눠 세 보세요."
+    }
+  ]
+}

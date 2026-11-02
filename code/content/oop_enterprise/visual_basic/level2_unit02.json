@@ -1,0 +1,96 @@
+{
+  "language": "visual_basic",
+  "category": "oop_enterprise",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "Select Case",
+  "questions": [
+    {
+      "id": "visual_basic_l2_u02_q001",
+      "type": "predict_output",
+      "code": "Dim day As Integer = 1\nSelect Case day\n    Case 1\n        Console.WriteLine(\"월요일\")\n    Case 2\n        Console.WriteLine(\"화요일\")\n    Case Else\n        Console.WriteLine(\"기타\")\nEnd Select",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["월요일", "화요일", "기타", "오류"],
+      "answer": 0,
+      "explanation_en": "Select Case compares day against each Case value; day is 1, matching the first case, so 월요일 is printed.",
+      "explanation_ko": "Select Case는 day를 각 Case 값과 비교합니다. day가 1이므로 첫 번째 case와 일치해 월요일이 출력됩니다.",
+      "concept_tags": ["select_case"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l2_u02_q002",
+      "type": "predict_output",
+      "code": "Dim day As Integer = 3\nSelect Case day\n    Case 1\n        Console.WriteLine(\"월요일\")\n    Case 2, 3\n        Console.WriteLine(\"화요일 또는 수요일\")\n    Case Else\n        Console.WriteLine(\"기타\")\nEnd Select",
+      "prompt_en": "What is printed? (Note the comma-separated case.)",
+      "prompt_ko": "출력 결과는? (쉼표로 구분된 case인 점에 주의하세요.)",
+      "options": ["월요일", "화요일 또는 수요일", "기타", "3"],
+      "answer": 1,
+      "explanation_en": "Case 2, 3 matches either value; since day is 3, this case runs, printing 화요일 또는 수요일.",
+      "explanation_ko": "Case 2, 3은 두 값 중 하나라도 일치하면 매칭됩니다. day가 3이므로 이 case가 실행되어 화요일 또는 수요일이 출력됩니다.",
+      "concept_tags": ["select_case"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l2_u02_q003",
+      "type": "predict_output",
+      "code": "Dim score As Integer = 75\nSelect Case score\n    Case 90 To 100\n        Console.WriteLine(\"A\")\n    Case 80 To 89\n        Console.WriteLine(\"B\")\n    Case 70 To 79\n        Console.WriteLine(\"C\")\n    Case Else\n        Console.WriteLine(\"F\")\nEnd Select",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["A", "B", "C", "F"],
+      "answer": 2,
+      "explanation_en": "The To keyword defines an inclusive range; score (75) falls within 70 To 79, so C is printed.",
+      "explanation_ko": "To 키워드는 포함 범위를 정의합니다. score(75)는 70 To 79 범위에 속하므로 C가 출력됩니다.",
+      "concept_tags": ["select_case", "case_range"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l2_u02_q004",
+      "type": "fill_blank",
+      "code": "Dim x As Integer = 15\nSelect Case x\n    Case Is < 10\n        Console.WriteLine(\"작음\")\n    Case ____ 20\n        Console.WriteLine(\"중간\")\n    Case Else\n        Console.WriteLine(\"큼\")\nEnd Select\n// x가 20 미만일 때 '중간'이 출력되어야 함",
+      "prompt_en": "Fill in the blank using the Is keyword form to match values less than 20.",
+      "prompt_ko": "20 미만인 값을 매칭하는 Is 키워드 형태로 빈칸을 채우세요.",
+      "options": ["Is <", "<", "To <", "Is"],
+      "answer": 0,
+      "explanation_en": "Case Is < 20 uses a comparison operator directly, matching any value that satisfies the condition relative to the Select Case expression.",
+      "explanation_ko": "Case Is < 20은 비교 연산자를 직접 사용해서, Select Case 식과 비교했을 때 조건을 만족하는 모든 값을 매칭합니다.",
+      "concept_tags": ["select_case", "case_is"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l2_u02_q005",
+      "type": "error_finding",
+      "code": "Dim x As Integer = 5\nSelect Case x\n    Case 1\n        Console.WriteLine(\"하나\")\n    Case 2\n        Console.WriteLine(\"둘\")\nEnd Select",
+      "prompt_en": "If the programmer wants some message printed even when x matches none of the cases, what's missing?",
+      "prompt_ko": "x가 어떤 case와도 일치하지 않을 때도 메시지를 출력하고 싶다면, 무엇이 빠져있을까요?",
+      "options": [
+        "Case Else 분기",
+        "break 문",
+        "default: 라벨",
+        "빠진 것 없음, x=5는 이미 처리됨"
+      ],
+      "answer": 0,
+      "explanation_en": "Without a Case Else branch, values that don't match any listed case (like 5 here) simply fall through with no output, since Select Case doesn't require exhaustiveness.",
+      "explanation_ko": "Case Else 분기가 없으면, 나열된 case 중 어디에도 해당하지 않는 값(여기서는 5)은 아무 출력 없이 그냥 지나갑니다. Select Case는 완전성을 요구하지 않기 때문입니다.",
+      "concept_tags": ["select_case", "case_else"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "visual_basic_l2_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "Select Case", "definition": "하나의 값을 여러 경우와 비교해 분기하는 구문" },
+        { "term": "Case 값1, 값2", "definition": "여러 값을 쉼표로 묶어 하나의 case로 처리" },
+        { "term": "Case 시작 To 끝", "definition": "값이 특정 범위에 속하는지로 매칭" },
+        { "term": "Case Is 연산자 값", "definition": "비교 연산자를 직접 사용해 매칭 조건을 표현" }
+      ],
+      "explanation_en": "Unlike C's switch, VB's Select Case has no fall-through by default and supports ranges and comparisons directly, without needing break statements.",
+      "explanation_ko": "C의 switch와 달리, VB의 Select Case는 기본적으로 fall-through가 없고 범위와 비교를 break문 없이도 직접 지원합니다.",
+      "concept_tags": ["select_case", "case_range", "case_is"],
+      "difficulty": "practice"
+    }
+  ]
+}

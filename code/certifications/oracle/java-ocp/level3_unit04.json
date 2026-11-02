@@ -1,0 +1,100 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "java-ocp-17",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "컬렉션 심화: Iterator·불변 컬렉션",
+  "rule_summary_ko": "for-each 루프로 컬렉션을 순회하는 도중 컬렉션 자체를 직접 수정(add/remove)하면 ConcurrentModificationException(CME)이 발생할 수 있습니다. 안전하게 순회 중 요소를 제거하려면 Iterator의 remove() 메서드를 사용해야 합니다. List.of(), Set.of(), Map.of()로 만든 컬렉션은 불변(immutable)이라서, add·remove 등 변경을 시도하면 UnsupportedOperationException이 발생합니다.",
+  "examples": [
+    { "code": "for (String s : list) { if (s.equals(\"a\")) list.remove(s); }", "note_ko": "for-each 순회 중 리스트를 직접 수정 → ConcurrentModificationException 발생 위험" },
+    { "code": "Iterator<String> it = list.iterator();\nwhile (it.hasNext()) { if (it.next().equals(\"a\")) it.remove(); }", "note_ko": "Iterator.remove()를 사용하면 안전하게 순회 중 제거 가능" }
+  ],
+  "questions": [
+    {
+      "id": "java_ocp_l3_u4_q001",
+      "type": "concept_matching_item",
+      "code": "List<String> list = new ArrayList<>(List.of(\"a\", \"b\", \"c\", \"d\"));\nfor (String s : list) {\n    if (s.equals(\"a\")) {\n        list.remove(s);\n    }\n}",
+      "prompt_ko": "이 코드를 실행하면 어떻게 됩니까?",
+      "options": [
+        "정상적으로 실행되어 \"a\"가 제거된 리스트가 남는다",
+        "ConcurrentModificationException이 발생한다 — for-each 순회 중에는 컬렉션을 직접 수정하면 안 된다",
+        "컴파일 오류가 발생한다",
+        "무한 루프에 빠진다"
+      ],
+      "answer": 1,
+      "explanation_ko": "for-each는 내부적으로 Iterator를 사용하는데, 순회 도중 컬렉션이 직접 변경되면 fail-fast 메커니즘이 이를 감지해 예외를 던집니다.",
+      "concept_tags": ["concurrent_modification_exception"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l3_u4_q002",
+      "type": "concept_matching_item",
+      "code": "Iterator<String> it = list.iterator();\nwhile (it.hasNext()) {\n    String s = it.next();\n    if (s.equals(\"a\")) {\n        it.remove();\n    }\n}",
+      "prompt_ko": "위 문제와 달리 이 코드가 예외 없이 안전하게 작동하는 이유는?",
+      "options": [
+        "while 루프는 for-each와 달리 예외를 절대 던지지 않기 때문에",
+        "Iterator 자신의 remove() 메서드를 사용하면, Iterator가 내부 상태를 함께 갱신해서 fail-fast 검사에 걸리지 않기 때문에",
+        "list가 이미 불변이기 때문에",
+        "이 코드도 사실 예외가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "Iterator.remove()는 컬렉션과 Iterator의 상태를 함께 안전하게 갱신해주는 유일하게 안전한 순회 중 제거 방법입니다.",
+      "concept_tags": ["iterator_remove"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l3_u4_q003",
+      "type": "concept_matching_item",
+      "code": "List<String> immutable = List.of(\"x\", \"y\");\nimmutable.add(\"z\");",
+      "prompt_ko": "이 코드를 실행하면 어떻게 됩니까?",
+      "options": [
+        "정상적으로 \"z\"가 추가된다",
+        "UnsupportedOperationException이 발생한다 — List.of()로 만든 리스트는 불변이다",
+        "컴파일 오류가 발생한다",
+        "immutable이 null이 된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "List.of(), Set.of(), Map.of()는 Java 9부터 도입된 불변 컬렉션 팩토리 메서드로, 생성 후 변경을 시도하면 예외가 발생합니다.",
+      "concept_tags": ["immutable_collections"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l3_u4_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "컬렉션을 순회하는 도중 컬렉션이 예상치 못하게 수정되었을 때 발생하는 예외 클래스는 무엇입니까? (영문으로 정확히 입력)",
+      "expected_answers": ["ConcurrentModificationException"],
+      "explanation_ko": "ConcurrentModificationException(CME)은 fail-fast 순회 메커니즘이 감지한 예상치 못한 수정을 알립니다.",
+      "concept_tags": ["concurrent_modification_exception"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l3_u4_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "List.of()로 만든 불변 리스트를 수정하려고 할 때 발생하는 예외 클래스는 무엇입니까? (영문으로 정확히 입력)",
+      "expected_answers": ["UnsupportedOperationException"],
+      "explanation_ko": "UnsupportedOperationException은 그 연산 자체가 해당 구현에서 지원되지 않을 때 발생하는 예외입니다.",
+      "concept_tags": ["unsupported_operation_exception"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l3_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "List.of(1, 2, 3)로 만든 리스트와, new ArrayList<>(List.of(1, 2, 3))로 만든 리스트의 차이는?",
+      "options": [
+        "둘 다 완전히 동일하게 불변이다",
+        "List.of()의 결과는 불변이지만, 이를 new ArrayList<>()로 한 번 더 감싸면 변경 가능한 새로운 가변 리스트가 만들어진다",
+        "new ArrayList<>()로 감싸도 여전히 불변이다",
+        "둘 다 컴파일 오류를 일으킨다"
+      ],
+      "answer": 1,
+      "explanation_ko": "List.of()의 불변 리스트를 ArrayList의 생성자에 전달하면, 그 내용을 복사한 완전히 새로운 가변 ArrayList가 만들어집니다.",
+      "concept_tags": ["immutable_collections", "arraylist_constructor"],
+      "difficulty": "challenge"
+    }
+  ]
+}

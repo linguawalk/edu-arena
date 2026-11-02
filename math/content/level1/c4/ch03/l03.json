@@ -1,0 +1,361 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch03",
+    "no": 3,
+    "title": "도함수의 활용"
+  },
+  "lesson": {
+    "id": "c4-ch03-l03",
+    "no": 3,
+    "title": "극값과 최대·최소",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "극대와 극소",
+      "body": [
+        "f′(x)의 부호가 +에서 −로 바뀌는 점에서 극대, −에서 +로 바뀌는 점에서 극소입니다. 그때의 함숫값이 극댓값, 극솟값입니다.",
+        "극대는 '그 근처에서 가장 높은 점', 극소는 '그 근처에서 가장 낮은 점'입니다. 산봉우리와 골짜기처럼 증가하다 감소로 바뀌는 곳이 극대, 감소하다 증가로 바뀌는 곳이 극소입니다. 극댓값이 극솟값보다 항상 큰 것은 아니며, 구간 전체의 최댓값과도 다를 수 있습니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": -3,
+          "xmax": 3,
+          "ymin": -3,
+          "ymax": 3,
+          "xstep": 1,
+          "ystep": 1,
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                0,
+                -3,
+                0,
+                1
+              ]
+            }
+          ],
+          "points": [
+            [
+              -1,
+              2,
+              "극대"
+            ],
+            [
+              1,
+              -2,
+              "극소"
+            ]
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³ − 3x의 극댓값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "f′(x) = 3x² − 3 = 3(x + 1)(x − 1)\nx = −1에서 + → −로 극대, f(−1) = −1 + 3\n= 2"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "같은 함수의 극솟값은?",
+      "answer": "-2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x = 1에서 f′의 부호가 − → +로 극소\nf(1) = 1 − 3\n= −2\n확인: 원점 대칭인 그래프라 극댓값과 부호만 다름"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "f′(a) = 0이어도 극값이 아닐 수 있다",
+      "body": [
+        "y = x³은 f′(0) = 0이지만 x = 0 양쪽에서 모두 증가하므로 극값이 아닙니다.",
+        "f′(a) = 0은 극값을 가질 필요조건일 뿐 충분조건이 아닙니다. 극값이 되려면 f′의 부호가 a의 양쪽에서 실제로 바뀌어야 합니다. 그래서 f′(x) = 0의 해를 구한 뒤 반드시 증감표로 부호 변화를 확인합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "f(x) = x⁴ − 4x³의 극값을 조사하세요.",
+      "steps": [
+        "f′(x) = 4x³ − 12x² = 4x²(x − 3)",
+        "x = 0: 양쪽 모두 f′ < 0 (부호 변화 없음) → 극값 아님",
+        "x = 3: − → + 로 바뀜 → 극소, f(3) = 81 − 108 = −27",
+        "극댓값은 없고 극솟값 −27"
+      ],
+      "answer": "극솟값 −27 (x = 0은 극값 아님)"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³은 x = 0에서 극값을 가질까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "f′(x) = 3x²에서 f′(0) = 0이지만 x = 0 양쪽 모두 f′ > 0\n부호가 바뀌지 않아 계속 증가하므로 극값이 아님\n0"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³ − 3x² + 4의 극솟값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "f′(x) = 3x² − 6x = 3x(x − 2)\nx = 2에서 − → +로 극소: f(2) = 8 − 12 + 4\n= 0"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 함수의 극댓값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x = 0에서 + → −로 극대\nf(0) = 4\n확인: 극댓값 4, 극솟값 0\n원리: 도함수의 부호가 + → −로 바뀌는 점이 극대입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "극값 조건으로 계수 찾기",
+      "body": [
+        "x = p에서 극값을 가지면 f′(p) = 0입니다. 두 극값 위치를 알면 f′(x) = 3(x − p)(x − q)로 놓을 수 있습니다.",
+        "삼차함수 f(x) = x³ + …의 도함수는 최고차항이 3x²인 이차식이고, 극값을 갖는 x가 p, q이면 그 두 근이 p, q입니다. 그래서 f′(x) = 3(x − p)(x − q)로 놓고 전개해 계수를 비교하면 모르는 계수를 한 번에 구할 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "f(x) = x³ + ax² + bx + 1이 x = −1에서 극댓값 6을 가질 때 a, b를 구하세요.",
+      "steps": [
+        "f′(−1) = 3 − 2a + b = 0",
+        "f(−1) = −1 + a − b + 1 = a − b = 6",
+        "두 식을 더하면 3 − a = 6, a = −3, b = −9",
+        "확인: f′(x) = 3x² − 6x − 9 = 3(x − 3)(x + 1)에서 x = −1은 + → − (극대)"
+      ],
+      "answer": "a = −3, b = −9"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³ + ax² + bx가 x = 1에서 극대, x = 3에서 극소일 때 a의 값은?",
+      "answer": "-6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "f′(x) = 3x² + 2ax + b = 3(x − 1)(x − 3) = 3x² − 12x + 9\nx의 계수 비교: 2a = −12\na = −6"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 조건에서 b의 값은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "상수항 비교: b = 9\n확인: f′(x) = 3x² − 12x + 9에서 x = 1은 + → − (극대), x = 3은 − → + (극소)\n원리: 두 극값의 위치 1, 3이 도함수의 두 근입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³ − 3x + k의 극솟값이 0일 때 k의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "f′(x) = 3x² − 3 = 0에서 x = ±1, x = 1에서 극소\nf(1) = 1 − 3 + k = 0\nk = 2"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "닫힌구간에서의 최대·최소",
+      "body": [
+        "구간 안의 극값과 양 끝의 함숫값을 모두 비교해 가장 큰 값과 작은 값을 고릅니다.",
+        "왜 양 끝도 비교할까요? 극값은 '근처에서' 가장 크거나 작은 값이라, 구간의 끝에서 그보다 더 큰 값이 나올 수 있습니다. 닫힌구간에서 최댓값·최솟값은 극값 또는 양 끝의 함숫값 중에서 나오므로, 후보를 모두 계산해 비교합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "구간 [0, 2]에서 f(x) = x³ − 3x의 최댓값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "극값과 양 끝을 비교하세요.",
+      "explanation": "구간 [0, 2] 안의 극값: x = 1에서 극소 −2\n양 끝: f(0) = 0, f(2) = 8 − 6 = 2\n최댓값 2 (오른쪽 끝)"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 구간에서 최솟값은?",
+      "answer": "-2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "후보를 모두 비교하세요.",
+      "explanation": "후보: f(0) = 0, f(1) = −2, f(2) = 2\n가장 작은 값\n최솟값 −2 (극솟값)\n원리: 닫힌구간의 최솟값은 극값 또는 양 끝에서 나옵니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "구간 [0, 4]에서 f(x) = x³ − 6x² + 9x의 최댓값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "극값과 양 끝을 모두 계산하세요.",
+      "explanation": "f′(x) = 3x² − 12x + 9 = 3(x − 1)(x − 3): f(1) = 4 (극대), f(3) = 0 (극소)\n양 끝: f(0) = 0, f(4) = 64 − 96 + 36 = 4\n최댓값 4 (x = 1과 x = 4에서)"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "최적화",
+      "body": [
+        "구하는 양을 한 변수의 함수로 나타내고, 그 변수의 범위에서 최대·최소를 찾습니다.",
+        "최적화 문제의 순서: ① 변수 x를 정하고 ② 구하는 양을 x의 함수로 나타내고 ③ x의 범위를 정하고(길이는 양수 등) ④ 미분해 극값을 찾고 ⑤ 범위의 양 끝과 비교합니다. 범위를 빼먹으면 현실에서 불가능한 답이 나올 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "밑면이 정사각형이고 뚜껑이 없는 상자의 겉넓이가 48일 때 부피의 최댓값을 구하세요.",
+      "steps": [
+        "밑면 한 변 x, 높이 h: x² + 4xh = 48 → h = (48 − x²)/(4x)",
+        "V = x²h = (48x − x³)/4 (0 < x < √48)",
+        "V′ = (48 − 3x²)/4 = 0에서 x = 4",
+        "h = 2, V = 32 (최대)"
+      ],
+      "answer": "32"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "한 변이 12인 정사각형 종이의 네 귀퉁이에서 한 변이 x인 정사각형을 잘라 뚜껑 없는 상자를 만듭니다. 부피가 최대가 되는 x는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "부피를 x의 함수로 나타내세요.",
+      "explanation": "V(x) = x(12 − 2x)² (0 < x < 6)\nV′(x) = (12 − 2x)² − 4x(12 − 2x) = (12 − 2x)(12 − 6x) = 0\n범위 안에서 x = 2"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "그때의 부피는?",
+      "answer": "128",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = 2를 넣으세요.",
+      "explanation": "V(2) = 2 × (12 − 4)²\n= 2 × 64\n= 128\n확인: 밑면 8 × 8, 높이 2인 상자의 부피 8 × 8 × 2 = 128"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "x + y = 6 (x, y > 0)일 때 xy²의 최댓값은?",
+      "answer": "32",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "한 문자를 없애세요.",
+      "explanation": "x = 6 − y로 바꾸면 g(y) = (6 − y)y² (0 < y < 6)\ng′(y) = 12y − 3y² = 3y(4 − y) = 0에서 y = 4\ng(4) = 2 × 16 = 32"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = x⁴ − 2x²의 극솟값은?",
+      "answer": "-1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f′(x) = 0인 점의 부호 변화를 보세요.",
+      "explanation": "f′(x) = 4x³ − 4x = 4x(x − 1)(x + 1)\nx = ±1에서 − → +로 극소\nf(±1) = 1 − 2 = −1"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "f′(a) = 0이라고 해서 x = a에서 반드시 극값을 갖는 것은 아닌 이유를 예를 들어 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "x³"
+          ],
+          [
+            "부호"
+          ],
+          [
+            "바뀌지",
+            "증가"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "극값이 되려면 f′(x)의 부호가 a의 양쪽에서 바뀌어야 합니다. f(x) = x³은 f′(0) = 0이지만 f′(x) = 3x²이 양쪽 모두 양수라 계속 증가하므로 극값이 아닙니다."
+    }
+  ]
+}

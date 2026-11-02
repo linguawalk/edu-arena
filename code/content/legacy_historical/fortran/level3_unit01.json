@@ -1,0 +1,96 @@
+{
+  "language": "fortran",
+  "category": "legacy_historical",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "다차원 배열",
+  "questions": [
+    {
+      "id": "fortran_l3_u01_q001",
+      "type": "predict_output",
+      "code": "integer :: m(2,3)\nm(1,1) = 10\nm(2,3) = 60\nprint *, m(1,1)\nprint *, m(2,3)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10 60", "1 1", "오류", "60 10"],
+      "answer": 0,
+      "explanation_en": "m(2,3) declares a 2-row, 3-column array; m(1,1) and m(2,3) store and return their assigned values, 10 and 60.",
+      "explanation_ko": "m(2,3)은 2행 3열 배열을 선언합니다. m(1,1)과 m(2,3)은 대입된 값인 10과 60을 저장하고 반환합니다.",
+      "concept_tags": ["2d_array"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "fortran_l3_u01_q002",
+      "type": "predict_output",
+      "code": "integer :: m(2,3)\ninteger :: flat(6)\ninteger :: k\nk = 1\ndo j = 1, 3\n    do i = 1, 2\n        m(i,j) = k\n        k = k + 1\n    end do\nend do\nflat = reshape(m, (/6/))\nprint *, flat",
+      "prompt_en": "What is printed? (This reveals Fortran's memory layout for 2D arrays — the opposite of C's.)",
+      "prompt_ko": "출력 결과는? (2차원 배열에 대한 Fortran의 메모리 배치를 드러냅니다 — C와 정반대입니다.)",
+      "options": [
+        "1 2 3 4 5 6",
+        "1 4 2 5 3 6",
+        "6 5 4 3 2 1",
+        "오류"
+      ],
+      "answer": 0,
+      "explanation_en": "Fortran stores multi-dimensional arrays in COLUMN-MAJOR order — the FIRST index varies fastest in memory (unlike C's row-major, where the LAST index varies fastest); filling m(i,j) with i as the inner loop matches this layout exactly, so the flat memory order is 1,2,3,4,5,6.",
+      "explanation_ko": "Fortran은 다차원 배열을 열 우선(COLUMN-MAJOR) 순서로 저장합니다 — 첫 번째 인덱스가 메모리상 가장 빠르게 변합니다(마지막 인덱스가 가장 빠르게 변하는 C의 행 우선과 반대). i를 안쪽 반복문으로 해서 m(i,j)를 채우면 이 배치와 정확히 일치해서, 평탄화된 메모리 순서는 1,2,3,4,5,6입니다.",
+      "concept_tags": ["column_major_order"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "fortran_l3_u01_q003",
+      "type": "fill_blank",
+      "code": "integer :: grid(____)\ngrid(1,1) = 100\n// 3행 4열 배열이어야 함",
+      "prompt_en": "Fill in the blank with the declaration for a 3-row, 4-column array.",
+      "prompt_ko": "3행 4열 배열을 위한 선언을 빈칸에 채우세요.",
+      "options": ["3,4", "3][4", "3;4", "[3,4]"],
+      "answer": 0,
+      "explanation_en": "Multiple dimensions are listed comma-separated inside a single set of parentheses: grid(3,4).",
+      "explanation_ko": "여러 차원은 하나의 괄호 안에 쉼표로 구분해서 나열합니다: grid(3,4).",
+      "concept_tags": ["2d_array"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "fortran_l3_u01_q004",
+      "type": "predict_output",
+      "code": "integer :: m(3,3)\nm = 0\nm(2,2) = 5\nprint *, sum(m)",
+      "prompt_en": "What is printed? (sum() works on any dimensionality of array.)",
+      "prompt_ko": "출력 결과는? (sum()은 어떤 차원의 배열에도 동작합니다.)",
+      "options": ["5", "0", "9", "오류"],
+      "answer": 0,
+      "explanation_en": "m = 0 sets every element to 0 in one statement, then m(2,2) = 5 changes just one; sum() adds all 9 elements, giving 5.",
+      "explanation_ko": "m = 0은 한 문장으로 모든 요소를 0으로 설정하고, m(2,2) = 5는 그중 하나만 바꿉니다. sum()은 9개 요소를 모두 더해서 5가 됩니다.",
+      "concept_tags": ["2d_array", "sum_function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "fortran_l3_u01_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "m(행,열)", "definition": "행과 열 두 인덱스로 접근하는 2차원 배열" },
+        { "term": "열 우선 (column-major)", "definition": "첫 번째 인덱스가 메모리상 가장 빠르게 변하는 Fortran의 저장 방식" },
+        { "term": "행 우선 (row-major)", "definition": "마지막 인덱스가 가장 빠르게 변하는 C 계열 언어의 저장 방식" },
+        { "term": "성능에 미치는 영향", "definition": "루프 순서가 메모리 접근 패턴과 맞지 않으면 캐시 효율이 크게 떨어질 수 있음" }
+      ],
+      "explanation_en": "Column-major vs row-major is a real performance consideration when porting numerical code between Fortran and C — looping in the 'wrong' order for a given language can cause significant cache-miss slowdowns.",
+      "explanation_ko": "열 우선 대 행 우선은 Fortran과 C 사이에 수치 코드를 이식할 때 실제 성능 고려사항입니다 — 해당 언어에 맞지 않는 순서로 반복하면 캐시 미스로 인해 상당한 속도 저하가 발생할 수 있습니다.",
+      "concept_tags": ["column_major_order"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "fortran_l3_u01_q006",
+      "type": "predict_output",
+      "code": "integer :: m(2,2)\nm(1,1) = 1\nm(1,2) = 2\nm(2,1) = 3\nm(2,2) = 4\nprint *, m(2,1)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "2", "1", "4"],
+      "answer": 0,
+      "explanation_en": "m(2,1) refers to row 2, column 1, which was explicitly set to 3.",
+      "explanation_ko": "m(2,1)은 2행 1열을 가리키며, 명시적으로 3으로 설정됐습니다.",
+      "concept_tags": ["2d_array"],
+      "difficulty": "intro"
+    }
+  ]
+}

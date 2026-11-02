@@ -1,0 +1,96 @@
+{
+  "language": "visual_basic",
+  "category": "oop_enterprise",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "형변환과 Option Strict",
+  "questions": [
+    {
+      "id": "visual_basic_l1_u04_q001",
+      "type": "predict_output",
+      "code": "Dim a As Integer = \"10\"\nConsole.WriteLine(a)",
+      "prompt_en": "What is printed? (Assume Option Strict is Off, VB's default.)",
+      "prompt_ko": "출력 결과는? (Option Strict가 기본값인 Off 상태라고 가정)",
+      "options": ["10", "오류", "\"10\"", "0"],
+      "answer": 0,
+      "explanation_en": "By default, VB allows implicit conversion from String to Integer when the text represents a valid number, silently converting \"10\" to 10.",
+      "explanation_ko": "기본적으로 VB는 텍스트가 유효한 숫자를 나타낼 경우 String에서 Integer로의 암묵적 변환을 허용해서, \"10\"을 조용히 10으로 변환합니다.",
+      "concept_tags": ["implicit_conversion", "option_strict"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l1_u04_q002",
+      "type": "error_finding",
+      "code": "Option Strict On\n\nModule Program\n    Sub Main()\n        Dim a As Integer = \"10\"\n        Console.WriteLine(a)\n    End Sub\nEnd Module",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "Dim 선언 문법 오류",
+        "Option Strict On 상태에서는 String에서 Integer로의 암묵적 변환이 금지되어 컴파일 오류(BC30512)가 발생함",
+        "Console.WriteLine 사용법이 잘못됨",
+        "문제 없음, 항상 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Option Strict On disables implicit conversions between unrelated types like String and Integer, catching potential bugs that would silently work (or silently fail) under the default setting.",
+      "explanation_ko": "Option Strict On은 String과 Integer처럼 관련 없는 타입 간의 암묵적 변환을 금지합니다. 기본 설정에서는 조용히 동작하거나 조용히 실패했을 잠재적 버그를 잡아냅니다.",
+      "concept_tags": ["option_strict", "implicit_conversion"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "visual_basic_l1_u04_q003",
+      "type": "fill_blank",
+      "code": "Option Strict On\n\nDim s As String = \"10\"\nDim a As Integer = ____(s)\nConsole.WriteLine(a)",
+      "prompt_en": "Fill in the blank with the function that explicitly converts a String to an Integer.",
+      "prompt_ko": "String을 Integer로 명시적으로 변환하는 함수를 빈칸에 채우세요.",
+      "options": ["CInt", "CStr", "ToString", "Integer"],
+      "answer": 0,
+      "explanation_en": "CInt explicitly converts a value to Integer; using it satisfies Option Strict's requirement that conversions be stated clearly.",
+      "explanation_ko": "CInt는 값을 명시적으로 Integer로 변환합니다. 이를 사용하면 Option Strict가 요구하는 '변환을 명확히 밝힐 것'이라는 조건을 만족시킵니다.",
+      "concept_tags": ["explicit_conversion", "cint"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l1_u04_q004",
+      "type": "predict_output",
+      "code": "Dim d As Double = 3.9\nDim i As Integer = CInt(d)\nConsole.WriteLine(i)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "4", "3.9", "오류"],
+      "answer": 1,
+      "explanation_en": "Unlike C's (int) cast which truncates, CInt rounds to the nearest whole number; 3.9 rounds up to 4.",
+      "explanation_ko": "소수점을 버리는 C의 (int) 형변환과 달리, CInt는 가장 가까운 정수로 반올림합니다. 3.9는 반올림되어 4가 됩니다.",
+      "concept_tags": ["cint", "rounding"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "visual_basic_l1_u04_q005",
+      "type": "predict_output",
+      "code": "Console.WriteLine(CInt(2.5))",
+      "prompt_en": "What is printed? (This is a well-known VB rounding quirk.)",
+      "prompt_ko": "출력 결과는? (VB의 잘 알려진 반올림 특징입니다.)",
+      "options": ["3", "2", "2.5", "오류"],
+      "answer": 1,
+      "explanation_en": "CInt uses 'banker's rounding' (round half to even): exactly 2.5 rounds to the nearest even number, which is 2, not 3 as simple rounding might suggest.",
+      "explanation_ko": "CInt는 '은행가 반올림'(가장 가까운 짝수로 반올림)을 사용합니다. 정확히 2.5는 가장 가까운 짝수인 2로 반올림되며, 단순 반올림에서 기대할 3이 아닙니다.",
+      "concept_tags": ["cint", "rounding", "banker_rounding"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "visual_basic_l1_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "Option Strict", "definition": "암묵적 타입 변환을 금지해서 잠재적 버그를 컴파일 시점에 잡아내는 설정" },
+        { "term": "암묵적 변환", "definition": "개발자의 명시 없이 컴파일러가 자동으로 수행하는 타입 변환" },
+        { "term": "CInt / CType", "definition": "타입 변환을 명시적으로 수행하는 함수들" },
+        { "term": "은행가 반올림", "definition": "CInt가 사용하는, 0.5를 가장 가까운 짝수로 반올림하는 방식" }
+      ],
+      "explanation_en": "Turning Option Strict On is widely recommended practice in professional VB.NET development, since it surfaces type-related bugs early instead of letting them slip through implicit conversions.",
+      "explanation_ko": "Option Strict를 On으로 설정하는 것은 전문적인 VB.NET 개발에서 널리 권장되는 관행입니다. 암묵적 변환으로 슬쩍 넘어갈 수 있는 타입 관련 버그를 미리 드러내주기 때문입니다.",
+      "concept_tags": ["option_strict", "implicit_conversion", "cint"],
+      "difficulty": "practice"
+    }
+  ]
+}

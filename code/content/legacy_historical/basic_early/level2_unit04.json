@@ -1,0 +1,96 @@
+{
+  "language": "basic_early",
+  "category": "legacy_historical",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "DEF FN 사용자 정의 함수",
+  "questions": [
+    {
+      "id": "basic_early_l2_u04_q001",
+      "type": "predict_output",
+      "code": "10 DEF FNSQ(X) = X * X\n20 PRINT FNSQ(5)\n30 END",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "25", "X * X", "오류"],
+      "answer": 1,
+      "explanation_en": "DEF FN defines a single-expression function; FNSQ(5) substitutes 5 for X, computing 5*5=25.",
+      "explanation_ko": "DEF FN은 하나의 식으로 이루어진 함수를 정의합니다. FNSQ(5)는 X 자리에 5를 넣어 5*5=25를 계산합니다.",
+      "concept_tags": ["def_fn"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "basic_early_l2_u04_q002",
+      "type": "fill_blank",
+      "code": "10 ____ FNDBL(X) = X * 2\n20 PRINT FNDBL(7)\n30 END",
+      "prompt_en": "Fill in the blank with the keywords that define a single-line function.",
+      "prompt_ko": "한 줄짜리 함수를 정의하는 키워드를 빈칸에 채우세요.",
+      "options": ["DEF", "FUNC", "SUB", "DIM"],
+      "answer": 0,
+      "explanation_en": "DEF (paired with the FN prefix on the function name) introduces a user-defined function.",
+      "explanation_ko": "DEF(함수 이름의 FN 접두사와 짝을 이룸)는 사용자 정의 함수를 시작합니다.",
+      "concept_tags": ["def_fn"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "basic_early_l2_u04_q003",
+      "type": "predict_output",
+      "code": "10 DEF FNDBL(X) = X * 2\n20 LET A = 5\n30 PRINT FNDBL(A) + FNDBL(10)\n40 END",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["15", "30", "20", "오류"],
+      "answer": 1,
+      "explanation_en": "FNDBL(A) doubles 5 to get 10, and FNDBL(10) doubles 10 to get 20; 10+20=30.",
+      "explanation_ko": "FNDBL(A)는 5를 두 배로 만들어 10이 되고, FNDBL(10)은 10을 두 배로 만들어 20이 됩니다. 10+20=30입니다.",
+      "concept_tags": ["def_fn"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "basic_early_l2_u04_q004",
+      "type": "predict_output",
+      "code": "10 DEF FNSQ(X) = X * X\n20 PRINT FNSQ(3)\n30 PRINT FNSQ(5)\n40 END",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["9 25", "6 10", "3 5", "오류"],
+      "answer": 0,
+      "explanation_en": "The same defined function can be reused with different arguments each time: FNSQ(3)=9, FNSQ(5)=25.",
+      "explanation_ko": "같은 정의된 함수를 매번 다른 인자로 재사용할 수 있습니다: FNSQ(3)=9, FNSQ(5)=25.",
+      "concept_tags": ["def_fn"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "basic_early_l2_u04_q005",
+      "type": "error_finding",
+      "code": "10 DEF FNCOMPLEX(X) = \n20     IF X > 0 THEN Y = X ELSE Y = -X\n30     Y\n40 PRINT FNCOMPLEX(-5)\n50 END",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "FNCOMPLEX 함수 이름이 잘못됨",
+        "고전 BASIC의 DEF FN은 여러 줄이 아니라 단 하나의 식만 담을 수 있어서, 이렇게 여러 줄로 나눠 쓸 수 없음",
+        "IF...THEN...ELSE 문법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Classic BASIC's DEF FN is limited to a single expression on one line; it cannot contain multi-line logic like IF statements — that limitation is exactly why GOSUB subroutines remained necessary for anything more complex.",
+      "explanation_ko": "초기 BASIC의 DEF FN은 한 줄의 단일 식으로 제한됩니다. IF문 같은 여러 줄 로직을 담을 수 없습니다 — 이 제약이 바로 더 복잡한 작업에 GOSUB 서브루틴이 여전히 필요했던 이유입니다.",
+      "concept_tags": ["def_fn", "single_expression"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "basic_early_l2_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "DEF FN", "definition": "한 줄의 식으로 재사용 가능한 함수를 정의" },
+        { "term": "단일 식 제한", "definition": "DEF FN은 IF나 반복문 같은 여러 줄 로직을 담을 수 없음" },
+        { "term": "함수와 GOSUB의 역할 분담", "definition": "간단한 계산은 DEF FN, 복잡한 다단계 로직은 GOSUB" },
+        { "term": "현대 함수와의 관계", "definition": "DEF FN은 매개변수를 가진 함수의 초기 형태 — 오늘날 함수의 조상" }
+      ],
+      "explanation_en": "DEF FN's expression-only limitation illustrates why classic BASIC programs often mixed both DEF FN (for simple math) and GOSUB (for everything else) — modern languages merged both roles into a single, unrestricted function construct.",
+      "explanation_ko": "DEF FN의 식 전용 제약은 초기 BASIC 프로그램이 왜 DEF FN(단순 계산용)과 GOSUB(그 외 모든 것)을 함께 섞어 썼는지 보여줍니다 — 현대 언어들은 이 두 역할을 하나의, 제약 없는 함수 구문으로 합쳤습니다.",
+      "concept_tags": ["def_fn", "gosub_return"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+ "no": 10,
+ "title": "병렬 처리",
+ "hours": 5,
+ "after": [
+  6,
+  7
+ ],
+ "objectives": [
+  "멀티코어에서 암달의 법칙으로 속도 향상을 계산할 수 있다.",
+  "SIMD·GPU 같은 데이터 병렬 구조를 설명할 수 있다.",
+  "캐시 일관성 문제와 공유 메모리 동기화를 설명할 수 있다."
+ ],
+ "checklist": [
+  "플린 분류: SISD, SIMD, MIMD",
+  "멀티코어와 공유 메모리, 캐시 일관성 프로토콜(MESI 개념)",
+  "SIMD 벡터 명령어: 레지스터 폭 ÷ 원소 크기 = 동시 처리 수",
+  "GPU: 수천 개의 단순 코어, SIMT",
+  "강한 확장성·약한 확장성",
+  "하드웨어 멀티스레딩",
+  "가속기와 AI 반도체(융합 과정)"
+ ],
+ "advice": [
+  "병렬 처리는 클럭을 더 올리기 어려워진(1단원의 전력 벽) 뒤 성능을 키우는 주된 방법입니다. 코어를 늘리는 방법(MIMD), 한 명령어로 여러 데이터를 처리하는 방법(SIMD·GPU)을 구분하고, 각 방식이 어떤 문제(분기가 많은 일 vs 행렬 연산)에 맞는지 정리하세요.",
+  "여러 코어가 같은 데이터를 캐시에 들고 있으면 한쪽이 고칠 때 다른 쪽 사본이 낡게 됩니다. 이 캐시 일관성 문제와 운영체제 과목의 동기화(잠금)가 같은 현상을 하드웨어·소프트웨어 양쪽에서 본 것이라는 점을 연결해 두면 좋습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Patterson · Hennessy, Computer Organization and Design RISC-V Edition (번역본 『컴퓨터 구조 및 설계』, 장 제목으로 표기)",
+   "part": "Parallel Processors from Client to Cloud 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "parallelism 관련 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 3 CPU 구조(멀티코어)",
+   "url": "browse.html?c=c4#ch03",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "전체의 90%가 병렬화되는 프로그램을 코어 16개로 실행하면 몇 배 빨라질까요? (소수 첫째 자리까지)",
+   "answer": "6.4",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "explanation": "1/(0.1 + 0.9/16) = 1/0.15625 = 6.4배",
+   "hint": "암달의 법칙입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "256비트 SIMD 레지스터는 32비트 실수를 한 번에 몇 개 처리할까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "256/32 = 8개",
+   "hint": "레지스터 폭 ÷ 원소 크기입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "여러 코어의 캐시에 있는 같은 데이터 사본이 서로 어긋나지 않게 유지하는 문제를 캐시 {{1}} 문제라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "일관성",
+      "코히런스",
+      "일치성"
+     ]
+    }
+   ],
+   "explanation": "MESI 같은 프로토콜로 하드웨어가 자동으로 관리합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "수천 개의 단순한 코어로 같은 연산을 많은 데이터에 동시에 적용해 그래픽과 AI 학습에 쓰는 처리기를 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "GPU"
+     ]
+    }
+   ],
+   "explanation": "Graphics Processing Unit의 줄임말입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "computer-architecture",
+ "id": "l2-computer-computer-architecture-u10"
+}

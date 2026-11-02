@@ -1,0 +1,112 @@
+{
+ "no": 7,
+ "title": "LLM 응용 보안",
+ "hours": 5,
+ "after": [
+  4
+ ],
+ "objectives": [
+  "LLM 응용에서 생기는 대표 위험(프롬프트 인젝션, 민감 정보 유출, 안전하지 않은 출력 처리, 과도한 권한)을 설명할 수 있다.",
+  "직접·간접 프롬프트 인젝션의 차이와 대책을 설명할 수 있다.",
+  "LLM 에이전트에 도구를 줄 때 최소 권한과 사람 확인을 설계할 수 있다."
+ ],
+ "checklist": [
+  "OWASP Top 10 for LLM Applications",
+  "직접 프롬프트 인젝션(사용자가 지시를 덮어쓰기)",
+  "간접 프롬프트 인젝션(문서·웹 페이지 속에 숨긴 지시)",
+  "민감 정보 유출(학습 데이터, 시스템 프롬프트, 대화 기록)",
+  "안전하지 않은 출력 처리: 모델 출력을 검증 없이 코드·SQL·셸로 실행",
+  "과도한 권한(에이전트 도구): 최소 권한, 사람 확인, 감사 로그",
+  "데이터·모델 공급망, 평가와 레드팀"
+ ],
+ "advice": [
+  "LLM 응용 보안의 핵심은 '모델의 입력과 출력을 모두 신뢰할 수 없는 데이터로 다룬다'는 원칙입니다. 4단원의 SQL 인젝션이 데이터를 코드로 해석해서 생겼듯, 프롬프트 인젝션은 문서 속 문장을 지시로 해석해서 생깁니다. 다만 자연어에는 '매개변수화된 질의' 같은 완벽한 분리 방법이 아직 없으므로, 모델이 쓸 수 있는 도구의 권한을 줄이고, 중요한 동작 전에는 사람이 확인하며, 출력은 실행 전에 검증하는 여러 겹의 방어를 씁니다. 이 분야는 공격과 대책이 빠르게 바뀌므로 최신 OWASP 자료로 확인하세요."
+ ],
+ "resources": [
+  {
+   "kind": "web",
+   "provider": "OWASP GenAI Security Project",
+   "title": "OWASP Top 10 for LLM Applications",
+   "url": "https://genai.owasp.org/",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "OWASP",
+   "title": "OWASP Top 10 웹 애플리케이션 보안 위험",
+   "url": "https://owasp.org/www-project-top-ten/",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "분산시스템·클라우드 8단원 AI·LLM 서빙 인프라",
+   "url": "guide.html?lv=3&t=computer&s=distributed-systems&u=8"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "사용자가 입력에 지시문을 넣어 LLM 응용의 원래 지시를 무시하게 만드는 공격을 프롬프트 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "인젝션",
+      "주입"
+     ]
+    }
+   ],
+   "explanation": "SQL 인젝션처럼 데이터가 지시로 해석되어 생깁니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "LLM이 읽는 웹 페이지나 문서 속에 공격자가 숨겨 둔 지시문으로 일어나는 공격을 {{1}} 프롬프트 인젝션이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "간접"
+     ]
+    }
+   ],
+   "explanation": "사용자가 직접 입력하지 않아도 생기므로 검색·RAG·에이전트에서 특히 위험합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "LLM의 출력을 검증하지 않고 바로 셸 명령이나 SQL로 실행할 때 생기는 위험을 안전하지 않은 출력 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "처리",
+      "핸들링"
+     ]
+    }
+   ],
+   "explanation": "모델 출력도 신뢰할 수 없는 입력으로 보고 검증·제한된 실행 환경에서 다뤄야 합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "review": {
+  "basis": "OWASP Top 10 for LLM Applications 최신판과 주요 AI 보안 지침",
+  "checked": "2026-10",
+  "next": "2027-04",
+  "watch": "LLM 위험 목록 개정, 새 공격 기법(에이전트·도구 사용)과 대책",
+  "standards": []
+ },
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "security",
+ "id": "l3-computer-security-u07"
+}

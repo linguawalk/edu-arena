@@ -1,0 +1,91 @@
+{
+ "no": 2,
+ "title": "공정 동특성 모델링",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "물질·에너지수지로 공정의 동적 모델(미분 방정식)을 세울 수 있다.",
+  "선형화와 편차 변수를 설명할 수 있다.",
+  "전달함수로 공정 모델을 나타낼 수 있다."
+ ],
+ "checklist": [
+  "동적 모델 = 비정상 수지(축적 항)",
+  "탱크 액위, 가열 탱크 온도, CSTR 농도 모델",
+  "비선형 모델의 선형화(테일러 전개)",
+  "편차 변수와 정상 상태",
+  "라플라스 변환과 전달함수(제어공학 1~2단원)",
+  "공정 이득과 시정수",
+  "자기 조절 공정과 적분 공정(액위)"
+ ],
+ "advice": [
+  "공정 동특성 모델은 화공양론 10단원의 비정상 수지에 지나지 않습니다. 물이 들어오고 나가는 탱크 하나로 액위 모델을 세우고, 출구 밸브가 있으면 스스로 안정되는(자기 조절) 공정, 펌프로 일정하게 빼면 계속 쌓이는(적분) 공정이 된다는 차이를 확인해 보세요. 이 차이가 제어기 설계를 크게 바꿉니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Seborg · Edgar · Mellichamp · Doyle, Process Dynamics and Control (번역본 『공정제어』, 장 제목으로 표기)",
+   "part": "Theoretical Models of Chemical Processes, Laplace Transforms 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3 (전기 트랙)",
+   "title": "제어공학 2단원 전달함수, 블록선도, 신호흐름선도",
+   "url": "guide.html?lv=3&t=electrical&s=control&u=2"
+  },
+  {
+   "title": "math-arena 레벨2 · 상미분방정식",
+   "href": "https://math-arena.org/guide.html?lv=2&t=analysis&s=ode"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "부피 2 m³인 완전 혼합 탱크에 0.5 m³/min이 흐를 때 농도 변화의 시정수는 몇 분일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "τ = V/q = 2/0.5 = 4 min",
+   "hint": "V/q입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "1차 공정이 계단 입력 뒤 시정수의 2배 시간이 지나면 최종 변화의 약 몇 %에 이를까요? (소수 첫째 자리까지)",
+   "answer": "86.5",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "1 − e^(−2) ≈ 86.5%",
+   "hint": "1 − e^(−t/τ)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "펌프로 일정량을 빼내는 탱크 액위처럼 입력이 조금만 어긋나도 계속 쌓이거나 비어 스스로 안정되지 않는 공정을 {{1}} 공정이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "적분"
+     ]
+    }
+   ],
+   "explanation": "자기 조절이 없어 반드시 제어가 필요합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "chemical",
+ "subject": "process-control",
+ "id": "l3-chemical-process-control-u02"
+}

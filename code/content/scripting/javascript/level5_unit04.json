@@ -1,0 +1,96 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 5,
+  "unit": 4,
+  "unit_title": "static 메서드",
+  "questions": [
+    {
+      "id": "javascript_l5_u04_q001",
+      "type": "predict_output",
+      "code": "class MathHelper {\n    static square(x) {\n        return x * x;\n    }\n}\n\nconsole.log(MathHelper.square(5));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["25", "5", "오류", "x * x"],
+      "answer": 0,
+      "explanation_en": "static methods belong to the class itself, called directly on the class name without creating an instance; MathHelper.square(5) returns 25.",
+      "explanation_ko": "static 메서드는 클래스 자체에 속해서, 인스턴스를 만들지 않고 클래스 이름으로 바로 호출합니다. MathHelper.square(5)는 25를 반환합니다.",
+      "concept_tags": ["static_method"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l5_u04_q002",
+      "type": "error_finding",
+      "code": "class MathHelper {\n    static square(x) {\n        return x * x;\n    }\n}\n\nconst m = new MathHelper();\nm.square(5);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "square 함수 정의 오류",
+        "static 메서드는 인스턴스에 속하지 않아서, m.square(5)처럼 인스턴스로 호출하면 TypeError가 발생함",
+        "MathHelper 클래스 정의 오류",
+        "문제 없음, 정상적으로 25가 반환됨"
+      ],
+      "answer": 1,
+      "explanation_en": "static methods exist only on the class itself, not on instances; m.square is undefined, and calling it as a function throws TypeError.",
+      "explanation_ko": "static 메서드는 클래스 자체에만 존재하며, 인스턴스에는 없습니다. m.square는 undefined이고, 이를 함수처럼 호출하면 TypeError가 발생합니다.",
+      "concept_tags": ["static_method"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l5_u04_q003",
+      "type": "fill_blank",
+      "code": "class Counter {\n    ____ count = 0;\n\n    static increment() {\n        Counter.count++;\n    }\n}\n\nCounter.increment();\nCounter.increment();\nconsole.log(Counter.count);\n// 2가 출력되어야 함",
+      "prompt_en": "Fill in the blank with the keyword that makes count belong to the class rather than instances.",
+      "prompt_ko": "count가 인스턴스가 아니라 클래스에 속하도록 만드는 키워드를 빈칸에 채우세요.",
+      "options": ["static", "const", "shared", "class"],
+      "answer": 0,
+      "explanation_en": "static marks a field as belonging to the class itself, so it can be accessed and modified as Counter.count without any instance.",
+      "explanation_ko": "static은 필드가 클래스 자체에 속하도록 표시해서, 인스턴스 없이도 Counter.count로 접근하고 수정할 수 있게 합니다.",
+      "concept_tags": ["static_field"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l5_u04_q004",
+      "type": "predict_output",
+      "code": "class BankAccount {\n    static totalAccounts = 0;\n\n    constructor() {\n        BankAccount.totalAccounts++;\n    }\n}\n\nnew BankAccount();\nnew BankAccount();\nnew BankAccount();\nconsole.log(BankAccount.totalAccounts);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "1", "3", "오류"],
+      "answer": 2,
+      "explanation_en": "totalAccounts is a static field incremented in the constructor; creating 3 objects runs the constructor 3 times, so totalAccounts becomes 3.",
+      "explanation_ko": "totalAccounts는 생성자에서 증가하는 static 필드입니다. 객체 3개를 만들면 생성자가 3번 실행되어 totalAccounts는 3이 됩니다.",
+      "concept_tags": ["static_field"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l5_u04_q005",
+      "type": "predict_output",
+      "code": "class MathHelper {\n    static PI = 3.14;\n    static square(x) {\n        return x * x;\n    }\n    static circleArea(r) {\n        return MathHelper.PI * MathHelper.square(r);\n    }\n}\n\nconsole.log(MathHelper.circleArea(2));",
+      "prompt_en": "What is printed? (Note: one static method calls another using the class name.)",
+      "prompt_ko": "출력 결과는? (한 static 메서드가 클래스 이름으로 다른 static 멤버를 호출하는 점에 주의하세요.)",
+      "options": ["6.28", "12.56", "4", "오류"],
+      "answer": 1,
+      "explanation_en": "static members reference each other via the class name (MathHelper.PI, MathHelper.square), not this; circleArea(2) computes 3.14 * square(2) = 3.14 * 4 = 12.56.",
+      "explanation_ko": "static 멤버끼리는 this가 아니라 클래스 이름(MathHelper.PI, MathHelper.square)으로 서로를 참조합니다. circleArea(2)는 3.14 * square(2) = 3.14 * 4 = 12.56을 계산합니다.",
+      "concept_tags": ["static_method", "static_field"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l5_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "static 메서드", "definition": "인스턴스 없이 클래스 이름으로 바로 호출하는 메서드" },
+        { "term": "static 필드", "definition": "모든 인스턴스가 공유하는, 클래스 자체에 속한 변수" },
+        { "term": "인스턴스로 static 호출 시도", "definition": "static 멤버는 인스턴스에 없어서 TypeError가 발생하는 흔한 실수" },
+        { "term": "다른 언어와의 유사성", "definition": "static 개념은 C#/Java/C++의 static과 거의 동일하게 동작함" }
+      ],
+      "explanation_en": "JavaScript's static keyword works almost identically to its counterparts in C#, Java, and C++ — the concept transfers cleanly across languages, unlike some of the more JS-specific quirks covered elsewhere in this track.",
+      "explanation_ko": "JavaScript의 static 키워드는 C#, Java, C++의 대응 개념과 거의 동일하게 동작합니다 — 이 트랙의 다른 부분에서 다룬 JS만의 특이 동작들과 달리, 이 개념은 언어 간에 깔끔하게 옮겨갑니다.",
+      "concept_tags": ["static_method", "static_field"],
+      "difficulty": "practice"
+    }
+  ]
+}

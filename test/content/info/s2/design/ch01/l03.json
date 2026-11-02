@@ -1,0 +1,273 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "design",
+  "work": "풀이",
+  "track_title": "알고리즘 설계",
+  "chapter": {
+    "id": "info-s2-design-ch01",
+    "no": 1,
+    "title": "분할 정복"
+  },
+  "lesson": {
+    "id": "info-s2-design-ch01-l03",
+    "no": 3,
+    "title": "거듭제곱과 행렬",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "알고리즘 설계",
+      "분할 정복"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "반으로 나눠 거듭제곱하기",
+      "body": [
+        "xⁿ은 n이 짝수이면 (x^(n/2))², 홀수이면 (x^(n/2))² · x입니다(n/2는 정수 나눗셈). 그래서 x^(n/2)를 한 번만 구해 제곱하면 됩니다.",
+        "답이 매우 커지므로 보통 어떤 수 m으로 나눈 나머지를 구합니다. (a × b) mod m = ((a mod m) × (b mod m)) mod m이므로 곱할 때마다 나머지를 취해도 됩니다.",
+        "n이 매번 절반이 되므로 곱셈은 O(log n)번입니다. n이 10¹⁸이어도 백 번 남짓이면 끝납니다."
+      ],
+      "code": "long long pw(long long x, long long n, long long m) {   // xⁿ mod m\n    if (n == 0) return 1 % m;\n    long long h = pw(x, n / 2, m);\n    if (n % 2 == 0) return h * h % m;                    // 곱셈 한 번\n    return h * h % m * x % m;                            // 곱셈 두 번\n}"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "pw(3, 13, 7)이 돌려주는 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3⁶ = 729를 7로 나눈 나머지는 1입니다.",
+      "explanation": "3⁶ = 729 = 7 × 104 + 1이므로 3⁶ mod 7 = 1입니다.\n3¹³ = (3⁶)² × 3이므로 나머지는 1 × 1 × 3입니다.\n= 3입니다.",
+      "code": "long long pw(long long x, long long n, long long m) {   // xⁿ mod m\n    if (n == 0) return 1 % m;\n    long long h = pw(x, n / 2, m);\n    if (n % 2 == 0) return h * h % m;                    // 곱셈 한 번\n    return h * h % m * x % m;                            // 곱셈 두 번\n}"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "pw(3, 13, 7)을 실행하면 곱셈(코드의 주석에 적힌 횟수)은 모두 몇 번 일어나나요?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n은 13, 6, 3, 1, 0으로 바뀝니다.",
+      "explanation": "n = 13(홀수) 2번, n = 6(짝수) 1번, n = 3(홀수) 2번, n = 1(홀수) 2번이고 n = 0에서는 곱하지 않습니다.\n모두 더합니다.\n2 + 1 + 2 + 2 = 7번입니다.",
+      "code": "long long pw(long long x, long long n, long long m) {   // xⁿ mod m\n    if (n == 0) return 1 % m;\n    long long h = pw(x, n / 2, m);\n    if (n % 2 == 0) return h * h % m;                    // 곱셈 한 번\n    return h * h % m * x % m;                            // 곱셈 두 번\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "넘침 막기",
+      "body": [
+        "m이 10⁹ 정도이면 나머지는 10⁹보다 작고, 두 나머지의 곱은 10¹⁸보다 작아 long long에 들어갑니다. 그래서 곱할 때마다 바로 % m을 해야 합니다.",
+        "h * h * x처럼 세 수를 한 번에 곱하면 10²⁷까지 커져 넘칩니다. 코드처럼 h * h % m을 먼저 한 뒤 x를 곱하고 다시 % m을 합니다.",
+        "빼기가 섞이면 결과가 음수가 될 수 있으므로 (a − b + m) % m처럼 m을 더한 뒤 나머지를 구합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "pw(2, 10, 1000)을 구하세요.",
+      "steps": [
+        "n = 10 → 5 → 2 → 1 → 0으로, 2¹ = 2, 2² = 4, 2⁵ = 4² × 2 = 32를 차례로 얻습니다.",
+        "2¹⁰ = 32² = 1024입니다.",
+        "1024 mod 1000 = 24입니다."
+      ],
+      "answer": "24",
+      "code": "long long pw(long long x, long long n, long long m) {   // xⁿ mod m\n    if (n == 0) return 1 % m;\n    long long h = pw(x, n / 2, m);\n    if (n % 2 == 0) return h * h % m;                    // 곱셈 한 번\n    return h * h % m * x % m;                            // 곱셈 두 번\n}"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "pw(2, 20, 1000)이 돌려주는 값은?",
+      "answer": "576",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2²⁰ = (2¹⁰)²이고 2¹⁰ mod 1000 = 24입니다.",
+      "explanation": "2¹⁰ mod 1000 = 24이므로 2²⁰ mod 1000 = 24² mod 1000입니다.\n24² = 576입니다.\n그래서 576입니다.",
+      "code": "long long pw(long long x, long long n, long long m) {   // xⁿ mod m\n    if (n == 0) return 1 % m;\n    long long h = pw(x, n / 2, m);\n    if (n % 2 == 0) return h * h % m;                    // 곱셈 한 번\n    return h * h % m * x % m;                            // 곱셈 두 번\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "피보나치 수와 행렬",
+      "body": [
+        "피보나치 수 F(0) = 0, F(1) = 1, F(n) = F(n − 1) + F(n − 2)는 2 × 2 행렬로 나타낼 수 있습니다. M = [[1, 1], [1, 0]]이라 하면 Mⁿ = [[F(n + 1), F(n)], [F(n), F(n − 1)]]입니다.",
+        "행렬 곱셈도 결합 법칙을 만족하므로 수의 거듭제곱과 똑같이 반씩 나눠 Mⁿ을 O(log n)번의 행렬 곱으로 구합니다.",
+        "2 × 2 행렬 곱 한 번은 원소 곱셈 8번이므로, n = 10¹⁸인 F(n) mod m도 금방 구합니다. 점화식이 선형이면 같은 방법을 쓸 수 있습니다."
+      ],
+      "code": "// [[1, 1], [1, 0]]ⁿ = [[F(n+1), F(n)], [F(n), F(n-1)]]\ntypedef array<array<long long, 2>, 2> Mat;\nMat mul(Mat A, Mat B) {                // 2 × 2 곱: 원소 곱셈 8번\n    Mat C{};\n    for (int i = 0; i < 2; i++) for (int j = 0; j < 2; j++)\n        for (int k = 0; k < 2; k++) C[i][j] += A[i][k] * B[k][j];\n    return C;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "M = [[1, 1], [1, 0]]일 때 M⁵의 오른쪽 위 원소는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "M⁵의 오른쪽 위 원소는 F(5)입니다.",
+      "explanation": "Mⁿ의 오른쪽 위 원소는 F(n)입니다.\nF(0)부터 0, 1, 1, 2, 3, 5입니다.\n그래서 F(5) = 5입니다."
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "행렬 거듭제곱으로 구한 F(20)은?",
+      "answer": "6765",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "F(10) = 55, F(11) = 89입니다.",
+      "explanation": "M²⁰ = (M¹⁰)²에서 F(20) = F(11)F(10) + F(10)F(9)입니다.\nF(9) = 34, F(10) = 55, F(11) = 89입니다.\n89 × 55 + 55 × 34 = 4895 + 1870 = 6765입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "아래 mul로 2 × 2 행렬 두 개를 곱하면 원소 곱셈은 몇 번 일어나나요?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "i, j, k가 각각 2가지입니다.",
+      "explanation": "삼중 반복문은 i, j, k가 각각 0과 1을 돌므로 몸체가 2 × 2 × 2번 실행됩니다.\n몸체마다 곱셈이 한 번입니다.\n그래서 8번입니다.",
+      "code": "// [[1, 1], [1, 0]]ⁿ = [[F(n+1), F(n)], [F(n), F(n-1)]]\ntypedef array<array<long long, 2>, 2> Mat;\nMat mul(Mat A, Mat B) {                // 2 × 2 곱: 원소 곱셈 8번\n    Mat C{};\n    for (int i = 0; i < 2; i++) for (int j = 0; j < 2; j++)\n        for (int k = 0; k < 2; k++) C[i][j] += A[i][k] * B[k][j];\n    return C;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "행렬 거듭제곱으로 F(n) mod m을 구하는 시간 복잡도는? ① O(1) ② O(n) ③ O(log n) ④ O(n²)",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n이 매번 절반이 됩니다.",
+      "explanation": "Mⁿ을 반씩 나눠 구하면 행렬 곱은 O(log n)번입니다.\n2 × 2 행렬 곱 한 번은 상수 시간입니다.\n답은 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 10¹⁸을 이진수로 나타내면 몇 자리인가요? (반씩 나누는 거듭제곱의 재귀 깊이와 같음)",
+      "answer": "60",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2⁵⁹ ≈ 5.8 × 10¹⁷, 2⁶⁰ ≈ 1.15 × 10¹⁸입니다.",
+      "explanation": "n의 이진수 자릿수 k는 2ᵏ⁻¹ ≤ n < 2ᵏ인 k입니다.\n2⁵⁹ ≈ 5.8 × 10¹⁷ ≤ 10¹⁸ < 2⁶⁰ ≈ 1.15 × 10¹⁸입니다.\n그래서 60자리입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "xⁿ은 x^(n/2)를 한 번 구해 제곱(n이 홀수면 x를 한 번 더 곱함)하는 분할 정복으로 O(log n)번의 곱셈에 구합니다.",
+        "곱할 때마다 % m을 해 넘침을 막고, 세 수를 한꺼번에 곱하지 않습니다.",
+        "피보나치 수는 [[1, 1], [1, 0]]의 거듭제곱으로 O(log n)에 구합니다. 결합 법칙을 만족하는 곱이면 같은 방법이 통합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "pw(7, 100, 13)이 돌려주는 값은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "7¹² mod 13 = 1입니다(페르마의 소정리).",
+      "explanation": "13은 소수라 7¹² mod 13 = 1이고, 100 = 12 × 8 + 4입니다.\n그래서 7¹⁰⁰ mod 13 = 7⁴ mod 13이고 7² = 49 ≡ 10입니다.\n10² = 100 ≡ 9이므로 9입니다.",
+      "code": "long long pw(long long x, long long n, long long m) {   // xⁿ mod m\n    if (n == 0) return 1 % m;\n    long long h = pw(x, n / 2, m);\n    if (n % 2 == 0) return h * h % m;                    // 곱셈 한 번\n    return h * h % m * x % m;                            // 곱셈 두 번\n}"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "F(12)를 10으로 나눈 나머지는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "F(12) = 144입니다.",
+      "explanation": "F(10) = 55, F(11) = 89이므로 F(12) = 55 + 89입니다.\n= 144입니다.\n144를 10으로 나눈 나머지는 4입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "pw(x, n, m)이 xⁿ mod m을 돌려줌을 n에 대한 강한 귀납법으로 증명하세요.",
+      "model_answer": [
+        "기저: n = 0이면 1 % m을 돌려주고 x⁰ mod m = 1 mod m이므로 맞다.",
+        "n ≥ 1이면 n/2 < n이므로 귀납 가정에 의해 h = x^(n/2) mod m이다(n/2는 정수 나눗셈).",
+        "n이 짝수이면 xⁿ = (x^(n/2))²이므로 h × h mod m이 xⁿ mod m이다.",
+        "n이 홀수이면 xⁿ = (x^(n/2))² × x이므로 h × h mod m × x mod m이 xⁿ mod m이다. 나머지 연산은 곱셈과 순서를 바꿔도 되므로 맞다."
+      ],
+      "criteria": [
+        {
+          "text": "기저를 확인했다",
+          "points": 1
+        },
+        {
+          "text": "n/2 < n이라 귀납 가정을 쓸 수 있음을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "짝수와 홀수 경우를 모두 보였다",
+          "points": 3
+        }
+      ],
+      "hint": "n이 짝수일 때와 홀수일 때를 나누세요.",
+      "code": "long long pw(long long x, long long n, long long m) {   // xⁿ mod m\n    if (n == 0) return 1 % m;\n    long long h = pw(x, n / 2, m);\n    if (n % 2 == 0) return h * h % m;                    // 곱셈 한 번\n    return h * h % m * x % m;                            // 곱셈 두 번\n}"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "M = [[1, 1], [1, 0]]일 때 n ≥ 1이면 Mⁿ = [[F(n + 1), F(n)], [F(n), F(n − 1)]]임을 귀납법으로 증명하세요.",
+      "model_answer": [
+        "기저: n = 1이면 M = [[1, 1], [1, 0]] = [[F(2), F(1)], [F(1), F(0)]]이다.",
+        "n에서 성립한다고 하면 Mⁿ⁺¹ = Mⁿ × M = [[F(n + 1), F(n)], [F(n), F(n − 1)]] × [[1, 1], [1, 0]]이다.",
+        "곱하면 [[F(n + 1) + F(n), F(n + 1)], [F(n) + F(n − 1), F(n)]]이다.",
+        "피보나치 점화식에 의해 이는 [[F(n + 2), F(n + 1)], [F(n + 1), F(n)]]이므로 n + 1에서도 성립한다."
+      ],
+      "criteria": [
+        {
+          "text": "기저를 확인했다",
+          "points": 2
+        },
+        {
+          "text": "Mⁿ × M을 계산했다",
+          "points": 2
+        },
+        {
+          "text": "점화식으로 n + 1 꼴을 얻었다",
+          "points": 2
+        }
+      ],
+      "hint": "Mⁿ⁺¹ = Mⁿ × M을 계산하세요."
+    }
+  ]
+}

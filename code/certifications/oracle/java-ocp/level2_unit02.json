@@ -1,0 +1,101 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "java-ocp-17",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "인터페이스와 추상 클래스",
+  "rule_summary_ko": "추상 클래스(abstract class)와 인터페이스 모두 직접 인스턴스화(new)할 수 없습니다. Java 8부터 인터페이스는 default 메서드(구현 몸체가 있는 메서드)와 static 메서드를 가질 수 있게 되었습니다. 정확히 하나의 추상 메서드만 가진 인터페이스를 함수형 인터페이스(functional interface)라 하며, 람다 표현식으로 간결하게 구현할 수 있습니다.",
+  "examples": [
+    { "code": "abstract class Shape { abstract double area(); }", "note_ko": "Shape s = new Shape(); 는 컴파일 오류 — 추상 클래스는 직접 인스턴스화 불가, 서브클래스를 통해서만 사용 가능" },
+    { "code": "interface Flyable { void fly(); }\nFlyable f = () -> System.out.println(\"flying\");", "note_ko": "추상 메서드가 하나뿐인 함수형 인터페이스는 람다로 바로 구현 가능" }
+  ],
+  "questions": [
+    {
+      "id": "java_ocp_l2_u2_q001",
+      "type": "concept_matching_item",
+      "code": "abstract class Shape {\n    abstract double area();\n}\n// ...\nShape s = new Shape();",
+      "prompt_ko": "마지막 줄을 컴파일하면 어떻게 됩니까?",
+      "options": [
+        "정상적으로 컴파일된다",
+        "컴파일 오류 발생 — 추상 클래스는 직접 인스턴스화할 수 없다",
+        "런타임 예외가 발생한다",
+        "s의 값이 null이 된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "추상 클래스는 미완성된 설계도이므로, 반드시 구체적인 서브클래스를 통해서만 사용할 수 있습니다.",
+      "concept_tags": ["abstract_class"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l2_u2_q002",
+      "type": "concept_matching_item",
+      "code": "interface Greetable {\n    String name();\n    default String greet() {\n        return \"안녕, \" + name();\n    }\n}\nclass Person implements Greetable {\n    public String name() { return \"철수\"; }\n}",
+      "prompt_ko": "Person 클래스가 greet() 메서드를 직접 구현하지 않아도 컴파일이 되는 이유는?",
+      "options": [
+        "인터페이스의 default 메서드는 이미 구현 몸체를 가지고 있어, 구현 클래스가 재정의하지 않으면 그대로 상속되어 사용되기 때문에",
+        "Java는 인터페이스 메서드를 강제하지 않기 때문에",
+        "이는 실제로 컴파일 오류이며, 코드가 잘못됐다",
+        "greet()는 추상 메서드라서 구현이 필요 없기 때문에"
+      ],
+      "answer": 0,
+      "explanation_ko": "Java 8부터 도입된 default 메서드는 구현 클래스가 원하면 재정의할 수도 있고, 그대로 물려받아 사용할 수도 있습니다.",
+      "concept_tags": ["default_method"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l2_u2_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "추상 메서드를 정확히 하나만 가지고 있어, 람다 표현식으로 구현할 수 있는 인터페이스를 무엇이라 합니까? (한글로 입력)",
+      "expected_answers": ["함수형 인터페이스"],
+      "explanation_ko": "함수형 인터페이스(functional interface)는 람다 표현식이나 메서드 참조로 간결하게 구현할 수 있습니다.",
+      "concept_tags": ["functional_interface"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l2_u2_q004",
+      "type": "concept_matching_item",
+      "code": "interface Flyable {\n    void fly();\n}\n// ...\nFlyable f = () -> System.out.println(\"flying\");\nf.fly();",
+      "prompt_ko": "이 코드의 출력 결과는?",
+      "options": ["\"flying\"", "컴파일 오류", "NullPointerException", "아무 출력도 없다"],
+      "answer": 0,
+      "explanation_ko": "Flyable은 추상 메서드가 fly() 하나뿐인 함수형 인터페이스라, 람다 표현식으로 간결하게 구현할 수 있습니다.",
+      "concept_tags": ["lambda", "functional_interface"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l2_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "인터페이스와 추상 클래스의 차이 중 옳은 것은?",
+      "options": [
+        "인터페이스는 여러 개를 동시에 구현(implements)할 수 있지만, 클래스는 오직 하나의 클래스만 상속(extends)할 수 있다",
+        "추상 클래스는 여러 개를 동시에 상속할 수 있다",
+        "인터페이스는 필드(상수 외에는)를 가질 수 없어 아무 쓸모가 없다",
+        "인터페이스와 추상 클래스는 완전히 동일한 개념이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "자바는 클래스의 다중 상속을 허용하지 않지만, 인터페이스는 여러 개를 동시에 구현할 수 있어 다중 상속과 유사한 유연성을 제공합니다.",
+      "concept_tags": ["interface_vs_abstract_class"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l2_u2_q006",
+      "type": "concept_matching_item",
+      "code": "interface Greetable {\n    static String info() {\n        return \"인터페이스 정보\";\n    }\n}",
+      "prompt_ko": "인터페이스의 static 메서드 info()를 호출하는 올바른 방법은?",
+      "options": [
+        "Greetable.info() — 인터페이스 이름으로 직접 호출",
+        "구현 객체의 인스턴스를 통해서만 호출 가능(예: new Person().info())",
+        "static 메서드는 인터페이스에 선언할 수 없다",
+        "info()는 자동으로 모든 구현 클래스에 상속되어 인스턴스에서 바로 호출 가능하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "인터페이스의 static 메서드는 클래스의 static 메서드처럼 인터페이스 이름으로 직접 호출하며, 구현 클래스에 상속되지 않습니다.",
+      "concept_tags": ["interface_static_method"],
+      "difficulty": "challenge"
+    }
+  ]
+}

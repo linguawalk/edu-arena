@@ -1,0 +1,330 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch02",
+    "no": 2,
+    "title": "중복조합과 이항정리"
+  },
+  "lesson": {
+    "id": "c5-ch02-l02",
+    "no": 2,
+    "title": "이항정리",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "이산조합",
+      "대수"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "이항정리",
+      "body": [
+        "(a + b)ⁿ = Σ nCr aⁿ⁻ʳbʳ. 각 괄호에서 a 또는 b를 하나씩 고를 때 b를 r번 고르는 방법이 nCr가지이기 때문입니다.",
+        "(a + b)ⁿ은 괄호 n개를 곱한 것이고, 전개하면 각 괄호에서 a나 b 중 하나를 골라 곱한 항들이 모두 나옵니다. b를 r개의 괄호에서, a를 나머지에서 고르면 aⁿ⁻ʳbʳ이 되고, b를 고를 괄호를 정하는 방법이 nCr가지이므로 그 항의 계수가 nCr입니다. 계수를 조합으로 구하는 이유가 여기에 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "(x + 1)⁴의 전개식에서 x²의 계수는?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "일반항 ₄Cᵣ x⁴⁻ʳ × 1ʳ에서 4 − r = 2, r = 2\n₄C₂ = 6\n원리: 네 괄호 중 x를 고를 두 괄호를 정하는 방법의 수"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "(x + 2)⁵의 전개식에서 x³의 계수는?",
+      "answer": "40",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "일반항 ₅Cᵣ x⁵⁻ʳ 2ʳ에서 5 − r = 3, r = 2\n₅C₂ × 2² = 10 × 4\n= 40\n원리: b 자리의 2를 r번 곱하는 것을 잊지 않습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "일반항",
+      "body": [
+        "(a + b)ⁿ의 일반항은 nCr aⁿ⁻ʳbʳ입니다. 원하는 차수가 나오는 r을 먼저 찾습니다.",
+        "원하는 항을 찾을 때는 일반항 nCr aⁿ⁻ʳbʳ에서 문자의 지수를 r로 나타낸 뒤, 목표 차수와 같게 놓아 r을 구합니다. a, b에 계수나 음수가 붙어 있으면 그것까지 거듭제곱해야 합니다. (2x − 1)⁵에서 a = 2x, b = −1입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "(3x − 2)⁴의 전개식에서 x²의 계수를 구하세요.",
+      "steps": [
+        "일반항 ₄Cᵣ(3x)⁴⁻ʳ(−2)ʳ",
+        "x²이 되려면 4 − r = 2, r = 2",
+        "₄C₂ × 3² × (−2)² = 6 × 9 × 4",
+        "= 216"
+      ],
+      "answer": "216"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "(2x − 1)⁵의 전개식에서 x²의 계수는?",
+      "answer": "-40",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "일반항 ₅Cᵣ(2x)⁵⁻ʳ(−1)ʳ에서 5 − r = 2, r = 3\n₅C₃ × 2² × (−1)³ = 10 × 4 × (−1)\n= −40 (계수 2와 부호까지 거듭제곱)"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "(x + 1/x)⁶의 전개식에서 상수항은?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "일반항 ₆Cᵣ x⁶⁻ʳ(1/x)ʳ = ₆Cᵣ x⁶⁻²ʳ\n상수항은 6 − 2r = 0, r = 3\n₆C₃ = 20"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "(x² + 1/x)⁶의 전개식에서 상수항은?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "일반항 ₆Cᵣ(x²)⁶⁻ʳ(1/x)ʳ = ₆Cᵣ x¹²⁻³ʳ\n12 − 3r = 0에서 r = 4\n₆C₄ = 15"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "계수의 합",
+      "body": [
+        "x = 1을 넣으면 모든 계수의 합, x = −1을 넣으면 부호가 번갈아 바뀐 합이 나옵니다.",
+        "nC0 + nC1 + … + nCn = 2ⁿ",
+        "(1 + x)ⁿ = Σ nCr xʳ에 x = 1을 넣으면 Σ nCr = 2ⁿ입니다. n개 원소의 부분집합의 개수가 2ⁿ인 것과 같은 이야기입니다. x = −1을 넣으면 부호가 번갈아 바뀐 합이 0이 되어, 짝수 번째와 홀수 번째 계수의 합이 같다는 것을 알 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "(1 + x)¹⁰의 전개식에서 계수가 짝수 번째인 항들의 합(₁₀C₁ + ₁₀C₃ + … + ₁₀C₉)을 구하세요.",
+      "steps": [
+        "x = 1: 전체 합 2¹⁰",
+        "x = −1: (짝수 항 합) − (홀수 항 합) = 0",
+        "두 합이 같으므로 각각 2¹⁰ ÷ 2",
+        "= 512"
+      ],
+      "answer": "512"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "(2x − 1)⁵의 전개식에서 모든 계수의 합은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "모든 계수의 합은 x = 1을 넣은 값\n(2 − 1)⁵ = 1⁵\n= 1\n원리: x = 1을 넣으면 모든 계수의 합이 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "₆C₀ + ₆C₁ + … + ₆C₆의 값은?",
+      "answer": "64",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "(1 + x)⁶에 x = 1을 넣은 값\n2⁶\n= 64 (원소 6개인 집합의 부분집합의 수)\n원리: 이항정리 (1 + x)ⁿ에 x = 1을 넣으면 계수의 합"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "₅C₀ − ₅C₁ + ₅C₂ − ₅C₃ + ₅C₄ − ₅C₅의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "(1 + x)⁵에 x = −1을 넣은 값\n(1 − 1)⁵\n= 0\n원리: x = −1을 넣으면 부호가 번갈아 바뀐 합이 됩니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "두 식의 곱",
+      "body": [
+        "두 전개식을 곱할 때는 원하는 차수를 만드는 항의 짝을 모두 찾아 계수를 곱해 더합니다.",
+        "두 식의 곱에서 특정 차수의 계수를 구할 때는, 첫째 식의 xᵖ 항과 둘째 식의 xᵠ 항을 짝지어 p + q가 목표 차수가 되는 경우를 모두 찾습니다. 각 짝의 계수를 곱해 더하면 됩니다. 두 식이 같은 꼴이면 합쳐서 하나로 계산할 수도 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(1 + x)³(1 + x)²의 전개식에서 x²의 계수는?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 식을 먼저 합치세요.",
+      "explanation": "(1 + x)³(1 + x)² = (1 + x)⁵로 합칩니다.\nx²의 계수 ₅C₂\n= 10\n원리: 같은 밑의 거듭제곱은 지수끼리 더해 하나로 합칩니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(1 + 2x)(1 + x)⁴의 전개식에서 x²의 계수는?",
+      "answer": "14",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x²을 만드는 짝을 모두 찾으세요.",
+      "explanation": "(1 + x)⁴의 계수: x⁰ 1, x¹ 4, x² 6\nx²을 만드는 짝: 1 × 6x² + 2x × 4x\n6 + 8 = 14"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "나머지와 근사",
+      "body": [
+        "11ⁿ = (10 + 1)ⁿ으로 보고 전개하면 앞의 몇 항만으로 나머지나 근삿값을 알 수 있습니다.",
+        "11¹⁰ = (10 + 1)¹⁰을 전개하면 10², 10³, …이 곱해진 항은 모두 100으로 나누어떨어집니다. 그래서 100으로 나눈 나머지는 앞의 두 항 1 + 10 × 10 = 101에서 결정되고, 101을 100으로 나눈 나머지는 1입니다. 복잡한 거듭제곱의 나머지를 구하는 강력한 방법입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "9¹⁰을 8로 나눈 나머지를 구하세요.",
+      "steps": [
+        "9¹⁰ = (8 + 1)¹⁰",
+        "전개하면 8이 곱해진 항은 모두 8의 배수",
+        "마지막 항 ₁₀C₁₀ × 1¹⁰ = 1만 남음",
+        "나머지 1"
+      ],
+      "answer": "1"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "11¹⁰을 100으로 나눈 나머지는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(10 + 1)¹⁰으로 전개하세요.",
+      "explanation": "11¹⁰ = (10 + 1)¹⁰에서 10² 이상이 곱해진 항은 100의 배수\n남는 항: ₁₀C₀ + ₁₀C₁ × 10 = 1 + 100 = 101\n101을 100으로 나눈 나머지 1"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "₁₀C₀ + ₁₀C₂ + ₁₀C₄ + … + ₁₀C₁₀의 값은?",
+      "answer": "512",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = 1과 x = −1을 넣어 보세요.",
+      "explanation": "짝수 번째 계수의 합과 홀수 번째 계수의 합은 같습니다(x = −1).\n전체 2¹⁰ = 1024의 절반\n= 512"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(x − 2)⁶의 전개식에서 x⁵의 계수는?",
+      "answer": "-12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "r을 먼저 구하세요.",
+      "explanation": "일반항 ₆Cᵣ x⁶⁻ʳ(−2)ʳ에서 6 − r = 5, r = 1\n₆C₁ × (−2) = 6 × (−2)\n= −12"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(1 + x)ⁿ의 전개식에서 x²의 계수가 28일 때 n의 값은?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "ₙC₂ = n(n − 1)/2",
+      "explanation": "x²의 계수 ₙC₂ = n(n − 1)/2 = 28\nn(n − 1) = 56 = 8 × 7\nn = 8\n확인: ₈C₂ = 28"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(a + b)⁷을 전개했을 때 항은 몇 개일까요?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "r이 가질 수 있는 값을 세세요.",
+      "explanation": "(a + b)⁷의 항은 r = 0, 1, …, 7일 때의 ₇Cᵣ a⁷⁻ʳbʳ\n모두 8개\n원리: (a + b)ⁿ의 항은 n + 1개"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "이항정리에서 계수의 합을 구할 때 x = 1을 넣는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "1"
+          ],
+          [
+            "거듭제곱",
+            "xᵏ",
+            "x의 거듭제곱"
+          ],
+          [
+            "계수만",
+            "계수의 합"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "x = 1이면 xᵏ은 모두 1이 되어 각 항에서 계수만 남습니다. 그래서 전개식에 x = 1을 넣은 값이 모든 계수의 합입니다."
+    }
+  ]
+}

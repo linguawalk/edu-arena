@@ -1,0 +1,96 @@
+{
+  "language": "pascal",
+  "category": "legacy_historical",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "연산자 심화",
+  "questions": [
+    {
+      "id": "pascal_l1_u02_q001",
+      "type": "predict_output",
+      "code": "var\n  x, y: Integer;\nbegin\n  x := 7;\n  y := 2;\n  writeln(x div y);\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3.5", "3", "1", "오류"],
+      "answer": 1,
+      "explanation_en": "div performs integer division, discarding the remainder: 7 div 2 is 3.",
+      "explanation_ko": "div는 정수 나눗셈을 수행해 나머지를 버립니다: 7 div 2는 3입니다.",
+      "concept_tags": ["div_operator"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l1_u02_q002",
+      "type": "predict_output",
+      "code": "var\n  x, y: Integer;\nbegin\n  x := 7;\n  y := 2;\n  writeln(x mod y);\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "1", "3.5", "오류"],
+      "answer": 1,
+      "explanation_en": "mod returns the remainder of division; 7 mod 2 is 1.",
+      "explanation_ko": "mod는 나눗셈의 나머지를 반환합니다. 7 mod 2는 1입니다.",
+      "concept_tags": ["mod_operator"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l1_u02_q003",
+      "type": "error_finding",
+      "code": "var\n  x, y: Integer;\nbegin\n  x := 7;\n  y := 2;\n  writeln(x / y);\nend.",
+      "prompt_en": "What problem might a beginner encounter here, expecting an Integer result?",
+      "prompt_ko": "Integer 결과를 기대한 초보자가 여기서 마주칠 수 있는 문제는 무엇일까요?",
+      "options": [
+        "컴파일 오류가 발생함",
+        "/ 는 정수끼리도 항상 실수(Real)를 반환하며, 기본 형식은 3.5000000000000000E+000처럼 과학적 표기법으로 나타남",
+        "3이 출력됨(자동으로 정수로 버려짐)",
+        "문제 없음, 3.5가 그대로 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "/ always performs real (floating-point) division in Pascal, even for two Integers; the default writeln format for reals uses scientific notation, which can surprise beginners expecting a plain 3.5.",
+      "explanation_ko": "Pascal의 /는 두 Integer끼리도 항상 실수(부동소수점) 나눗셈을 수행합니다. writeln의 기본 실수 형식은 과학적 표기법을 쓰는데, 단순한 3.5를 기대한 초보자에게는 놀라울 수 있습니다.",
+      "concept_tags": ["division_operator", "real_type"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "pascal_l1_u02_q004",
+      "type": "predict_output",
+      "code": "var\n  s1, s2: string;\nbegin\n  s1 := 'Hello';\n  s2 := 'World';\n  writeln(s1 + ' ' + s2);\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["Hello World", "HelloWorld", "오류", "s1 s2"],
+      "answer": 0,
+      "explanation_en": "+ concatenates strings in Pascal, joining Hello, a space, and World.",
+      "explanation_ko": "+는 Pascal에서 문자열을 연결합니다. Hello, 공백, World를 이어붙입니다.",
+      "concept_tags": ["string_concatenation"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l1_u02_q005",
+      "type": "fill_blank",
+      "code": "var\n  a, b: Integer;\nbegin\n  a := 10;\n  b := 3;\n  writeln(a ____ b);\n  // 나머지를 계산해야 함 (10을 3으로 나눈 나머지는 1)\nend.",
+      "prompt_en": "Fill in the blank with the operator that computes the remainder.",
+      "prompt_ko": "나머지를 계산하는 연산자를 빈칸에 채우세요.",
+      "options": ["mod", "div", "rem", "%"],
+      "answer": 0,
+      "explanation_en": "mod computes the remainder of integer division, using the word form rather than a symbol like C's %.",
+      "explanation_ko": "mod는 정수 나눗셈의 나머지를 계산하며, C의 %같은 기호가 아니라 단어 형태를 씁니다.",
+      "concept_tags": ["mod_operator"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l1_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "div", "definition": "정수 나눗셈 — 나머지를 버림" },
+        { "term": "mod", "definition": "나눗셈의 나머지를 반환" },
+        { "term": "/ (항상 실수)", "definition": "Integer끼리도 항상 실수 나눗셈을 수행하는 연산자" },
+        { "term": "+ (문자열 연결)", "definition": "숫자 덧셈과 문자열 연결에 모두 쓰이는 연산자" }
+      ],
+      "explanation_en": "Pascal's word-based operators (div, mod) instead of symbols reflect its design philosophy of readable, near-English syntax, a hallmark of its role as an educational language.",
+      "explanation_ko": "기호 대신 단어 기반 연산자(div, mod)를 쓰는 것은 읽기 쉬운, 영어에 가까운 문법이라는 Pascal의 설계 철학을 반영합니다. 교육용 언어로서의 특징입니다.",
+      "concept_tags": ["div_operator", "mod_operator", "division_operator"],
+      "difficulty": "practice"
+    }
+  ]
+}

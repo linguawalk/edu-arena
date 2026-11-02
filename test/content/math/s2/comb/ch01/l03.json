@@ -1,0 +1,262 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s2",
+  "track": "comb",
+  "work": "증명",
+  "track_title": "조합",
+  "chapter": {
+    "id": "math-s2-comb-ch01",
+    "no": 1,
+    "title": "그래프 이론"
+  },
+  "lesson": {
+    "id": "math-s2-comb-ch01-l03",
+    "no": 3,
+    "title": "트리",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "조합",
+      "그래프"
+    ],
+    "competition": "KMO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "회로가 없는 연결 그래프",
+      "body": [
+        "회로가 없는 연결 그래프를 트리라 합니다. 꼭짓점이 n개인 트리의 변은 정확히 n − 1개입니다.",
+        "꼭짓점이 2개 이상인 트리에는 차수가 1인 꼭짓점(잎)이 적어도 2개 있습니다. 가장 긴 경로의 양 끝이 잎이기 때문입니다(극단 원리).",
+        "그래서 트리에서 잎 하나를 떼어 내면 꼭짓점 n − 1개인 트리가 되고, 귀납법으로 변이 n − 1개임을 보일 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "꼭짓점이 20개인 트리의 변은 몇 개인가요?",
+      "answer": "19",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n − 1입니다.",
+      "explanation": "트리는 잎을 하나씩 떼어 내며 세면 꼭짓점이 n개일 때 변이 정확히 n − 1개입니다.\nn = 20입니다.\n그래서 변은 19개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "회로가 없는 연결 그래프를 {{1}}라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "트리",
+            "나무",
+            "tree"
+          ]
+        }
+      ],
+      "hint": "가지를 뻗는 모양입니다.",
+      "explanation": "연결되어 있으면서 고리(회로)가 하나도 없는 그래프가 있습니다.\n가지가 뻗어 나가는 모양이라 나무에 빗대어 부릅니다.\n이것을 트리라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "트리의 여러 성질",
+      "body": [
+        "꼭짓점 n개인 그래프에 대해 다음은 서로 같습니다: ① 트리이다 ② 연결이고 변이 n − 1개 ③ 회로가 없고 변이 n − 1개 ④ 두 꼭짓점 사이 경로가 정확히 하나.",
+        "트리의 차수의 합은 2(n − 1)입니다. 꼭짓점 10개인 트리의 차수 합은 18입니다.",
+        "연결 성분이 c개인 숲(회로가 없는 그래프)의 변은 n − c개입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "차수가 3인 꼭짓점이 4개이고 나머지는 모두 잎(차수 1)인 트리의 꼭짓점 수를 구하세요.",
+      "steps": [
+        "잎의 수를 L이라 하면 꼭짓점은 4 + L개, 변은 3 + L개입니다.",
+        "차수의 합은 4 × 3 + L = 12 + L입니다.",
+        "악수 정리로 12 + L = 2(3 + L)이므로 L = 6입니다.",
+        "꼭짓점은 4 + 6 = 10개입니다."
+      ],
+      "answer": "10개"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "차수가 3인 꼭짓점이 4개이고 나머지는 모두 잎인 트리의 잎은 몇 개인가요?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "12 + L = 2(3 + L)입니다.",
+      "explanation": "잎이 L개이면 꼭짓점 4 + L개, 변 3 + L개입니다.\n차수 합 12 + L = 2(3 + L)에서 L = 6입니다.\n그래서 잎은 6개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "꼭짓점 30개, 연결 성분 4개인 숲의 변은 몇 개인가요?",
+      "answer": "26",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n − c입니다.",
+      "explanation": "숲의 각 연결 성분은 트리이므로 성분마다 (꼭짓점 수 − 1)개의 변이 있습니다.\n모두 더하면 n − c개입니다.\n30 − 4 = 26개입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "케일리 공식",
+      "body": [
+        "꼭짓점에 1부터 n까지 번호를 붙인 트리(번호 붙은 트리)의 개수는 nⁿ⁻²입니다(케일리 공식).",
+        "n = 3이면 3개(가운데 꼭짓점을 고르는 3가지), n = 4이면 4² = 16개입니다. n = 4의 16개는 별 모양 4개와 일직선 모양 12개입니다.",
+        "증명은 프뤼퍼 수열(트리와 길이 n − 2인 수열의 일대일 대응)로 합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "꼭짓점 5개에 번호를 붙인 트리는 모두 몇 개인가요?",
+      "answer": "125",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5³입니다.",
+      "explanation": "케일리 공식에 의해 꼭짓점 n개에 번호를 붙인 트리는 모두 nⁿ⁻²개입니다.\nn = 5이면 5³입니다.\n= 125개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "꼭짓점 4개에 번호를 붙인 트리 가운데 일직선(경로) 모양은 몇 개인가요?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "4!/2입니다.",
+      "explanation": "일직선 트리는 네 꼭짓점을 한 줄로 늘어놓은 것인데, 앞뒤를 뒤집어도 같은 트리입니다.\n그래서 4!/2 = 24/2입니다.\n= 12개이며, 별 모양 4개와 합쳐 16개가 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "꼭짓점 10개인 트리의 차수의 합은?",
+      "answer": "18",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2(n − 1)입니다.",
+      "explanation": "꼭짓점 n개인 트리의 변은 n − 1개입니다.\n악수 정리로 차수의 합은 2(n − 1)입니다.\n2 × 9 = 18입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "트리는 회로가 없는 연결 그래프이며, 꼭짓점 n개이면 변은 n − 1개, 차수 합은 2(n − 1)입니다. 꼭짓점이 2개 이상이면 잎이 적어도 2개 있습니다.",
+        "연결 + 변 n − 1개, 회로 없음 + 변 n − 1개, 경로가 하나뿐인 것은 모두 트리와 같은 조건입니다. 성분 c개인 숲의 변은 n − c개입니다.",
+        "번호 붙은 트리는 nⁿ⁻²개입니다(케일리 공식)."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "꼭짓점 6개에 번호를 붙인 트리는 모두 몇 개인가요?",
+      "answer": "1296",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "6⁴입니다.",
+      "explanation": "케일리 공식에 의해 꼭짓점 n개에 번호를 붙인 트리는 모두 nⁿ⁻²개입니다.\nn = 6이면 6⁴입니다.\n= 1296개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "차수가 4인 꼭짓점이 3개, 차수가 2인 꼭짓점이 2개이고 나머지는 잎인 트리의 잎은 몇 개인가요?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "꼭짓점 5 + L개, 변 4 + L개입니다.",
+      "explanation": "잎이 L개이면 꼭짓점 5 + L개, 변 4 + L개입니다.\n차수 합은 12 + 4 + L = 16 + L이고 악수 정리로 16 + L = 2(4 + L)입니다.\n그래서 L = 8입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "꼭짓점이 2개 이상인 트리에는 잎(차수 1인 꼭짓점)이 적어도 2개 있음을 증명하세요.",
+      "model_answer": [
+        "트리에서 가장 긴 경로 v₁v₂⋯vₖ를 잡는다(극단 원리). 꼭짓점이 2개 이상이고 연결이므로 k ≥ 2이다.",
+        "v₁이 v₂ 말고 다른 꼭짓점 w와도 연결되어 있다고 하자.",
+        "w가 경로 위에 있으면 회로가 생겨 트리라는 데 모순이고, 경로 밖에 있으면 wv₁⋯vₖ가 더 긴 경로라 모순이다.",
+        "그래서 v₁의 차수는 1이고, 같은 이유로 vₖ의 차수도 1이므로 잎이 적어도 2개 있다."
+      ],
+      "criteria": [
+        {
+          "text": "가장 긴 경로를 잡았다",
+          "points": 2
+        },
+        {
+          "text": "두 경우로 나누어 모순을 보였다",
+          "points": 3
+        },
+        {
+          "text": "두 끝이 잎임을 결론지었다",
+          "points": 1
+        }
+      ],
+      "hint": "가장 긴 경로의 끝점을 보세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "꼭짓점 n개인 트리의 변이 n − 1개임을 귀납법으로 증명하세요.",
+      "model_answer": [
+        "기저: n = 1이면 변이 0개이므로 성립한다.",
+        "귀납 가정: 꼭짓점 n개인 트리의 변이 n − 1개라 하자.",
+        "꼭짓점 n + 1개인 트리는 잎 v를 가진다. v와 그 변 하나를 떼어 내면 남은 그래프는 여전히 연결이고 회로가 없어 꼭짓점 n개인 트리이다.",
+        "귀납 가정으로 남은 트리의 변은 n − 1개이므로 원래 트리의 변은 n개이다. 따라서 모든 n에서 성립한다."
+      ],
+      "criteria": [
+        {
+          "text": "기저를 밝혔다",
+          "points": 1
+        },
+        {
+          "text": "잎의 존재를 썼다",
+          "points": 2
+        },
+        {
+          "text": "떼어 낸 그래프가 트리임을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "결론을 냈다",
+          "points": 1
+        }
+      ],
+      "hint": "잎을 하나 떼어 내세요."
+    }
+  ]
+}

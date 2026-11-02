@@ -1,0 +1,257 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "ds",
+  "work": "풀이",
+  "track_title": "자료구조",
+  "chapter": {
+    "id": "info-s2-ds-ch02",
+    "no": 2,
+    "title": "유니온 파인드"
+  },
+  "lesson": {
+    "id": "info-s2-ds-ch02-l03",
+    "no": 3,
+    "title": "크기를 기준으로 합치기",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "자료구조",
+      "유니온 파인드"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "작은 트리를 큰 트리 밑에",
+      "body": [
+        "합칠 때 어느 루트를 밑에 둘지 아무렇게나 정하면 트리가 한 줄로 늘어질 수 있습니다. 집합의 크기를 sz에 기록해 두고, 항상 작은 집합의 루트를 큰 집합의 루트 밑에 붙이면 이를 막을 수 있습니다.",
+        "아래 코드는 sz[a] < sz[b]이면 a와 b를 바꿔 a가 큰 쪽이 되게 한 뒤 p[b] = a로 붙입니다. 크기가 같으면 a 쪽이 루트가 됩니다.",
+        "이렇게 하면 트리의 높이가 log₂ n을 넘지 않아 find가 O(log n)이 됩니다."
+      ],
+      "code": "int sz[MAXN];                     // 처음에는 sz[x] = 1 (루트에서만 의미가 있음)\nbool unite(int a, int b) {\n    a = find(a); b = find(b);\n    if (a == b) return false;\n    if (sz[a] < sz[b]) swap(a, b);  // a가 더 큰 쪽(같으면 그대로)\n    p[b] = a;                     // 작은 트리를 큰 트리 밑에\n    sz[a] += sz[b];\n    return true;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "원소 1~4가 모두 따로인 상태에서 크기 기준으로 unite(1, 2), unite(3, 4), unite(1, 3)을 실행하면 트리의 높이(루트에서 가장 먼 원소까지의 간선 수)는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "크기 2인 두 트리가 합쳐집니다.",
+      "explanation": "unite(1, 2)로 2가 1 밑, unite(3, 4)로 4가 3 밑에 붙어 크기 2인 트리 두 개가 됩니다.\nunite(1, 3)은 크기가 같아 3이 1 밑에 붙으므로 4는 4 → 3 → 1로 깊이 2입니다.\n그래서 높이는 2입니다.",
+      "code": "int sz[MAXN];                     // 처음에는 sz[x] = 1 (루트에서만 의미가 있음)\nbool unite(int a, int b) {\n    a = find(a); b = find(b);\n    if (a == b) return false;\n    if (sz[a] < sz[b]) swap(a, b);  // a가 더 큰 쪽(같으면 그대로)\n    p[b] = a;                     // 작은 트리를 큰 트리 밑에\n    sz[a] += sz[b];\n    return true;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "바로 앞 문제의 세 번 합친 뒤 루트의 sz 값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "sz[a] += sz[b]를 따라가세요.",
+      "explanation": "합칠 때마다 큰 쪽 루트의 sz에 작은 쪽 크기를 더합니다.\nsz[1]은 1 + 1 = 2가 되고, 다시 2 + 2가 됩니다.\n= 4이며 이는 집합의 원소 수와 같습니다.",
+      "code": "int sz[MAXN];                     // 처음에는 sz[x] = 1 (루트에서만 의미가 있음)\nbool unite(int a, int b) {\n    a = find(a); b = find(b);\n    if (a == b) return false;\n    if (sz[a] < sz[b]) swap(a, b);  // a가 더 큰 쪽(같으면 그대로)\n    p[b] = a;                     // 작은 트리를 큰 트리 밑에\n    sz[a] += sz[b];\n    return true;\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "높이가 log₂ n 이하인 이유",
+      "body": [
+        "원소 x의 깊이는 x가 속한 트리의 루트가 다른 루트 밑에 붙을 때만 1 늘어납니다. 크기 기준 합치기에서는 x의 집합이 크기가 같거나 더 큰 집합 밑으로 들어갈 때만 이런 일이 생깁니다.",
+        "그때 x가 속한 집합의 크기는 적어도 두 배가 됩니다. 집합의 크기는 n을 넘을 수 없으므로 두 배가 되는 일은 많아야 log₂ n번입니다.",
+        "따라서 모든 원소의 깊이가 log₂ n 이하이고, find는 경로 압축 없이도 O(log n)입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "원소 1~8에서 크기 기준 합치기로 만들 수 있는 가장 높은 트리의 높이를 구하세요.",
+      "steps": [
+        "깊이가 늘어나려면 크기가 같거나 큰 집합 밑으로 들어가야 하므로, 크기가 같은 집합끼리 합칠 때 높이가 가장 잘 자랍니다.",
+        "unite(1, 2), unite(3, 4), unite(5, 6), unite(7, 8)로 높이 1인 트리 4개를, 다시 둘씩 합쳐 높이 2인 트리 2개를 만듭니다.",
+        "마지막으로 둘을 합치면 높이 3인 트리가 되고, 이는 log₂ 8 = 3과 같습니다."
+      ],
+      "answer": "3",
+      "code": "int sz[MAXN];                     // 처음에는 sz[x] = 1 (루트에서만 의미가 있음)\nbool unite(int a, int b) {\n    a = find(a); b = find(b);\n    if (a == b) return false;\n    if (sz[a] < sz[b]) swap(a, b);  // a가 더 큰 쪽(같으면 그대로)\n    p[b] = a;                     // 작은 트리를 큰 트리 밑에\n    sz[a] += sz[b];\n    return true;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "원소 1024개에서 크기 기준 합치기만 쓸 때 트리의 높이는 최대 얼마인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "log₂ 1024입니다.",
+      "explanation": "크기 기준 합치기에서는 높이가 log₂ n을 넘지 않고, 같은 크기끼리 합치면 그 높이를 실제로 만들 수 있습니다.\n1024 = 2¹⁰입니다.\n그래서 최대 높이는 10입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "원소 1~5가 모두 따로인 상태에서 크기 기준으로 unite(2, 1), unite(3, 2), unite(4, 3), unite(5, 4)를 실행하면 트리의 높이는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "합칠 때마다 큰 쪽이 루트로 남습니다.",
+      "explanation": "unite(2, 1)로 1이 2 밑에 붙고, 이후 3, 4, 5는 모두 크기 1이라 크기가 더 큰 루트 2 밑으로 들어갑니다.\n그래서 모든 원소가 루트 2 바로 밑에 있습니다.\n높이는 1로, 앞 레슨에서 한 줄로 늘어졌던 것과 대조됩니다.",
+      "code": "int sz[MAXN];                     // 처음에는 sz[x] = 1 (루트에서만 의미가 있음)\nbool unite(int a, int b) {\n    a = find(a); b = find(b);\n    if (a == b) return false;\n    if (sz[a] < sz[b]) swap(a, b);  // a가 더 큰 쪽(같으면 그대로)\n    p[b] = a;                     // 작은 트리를 큰 트리 밑에\n    sz[a] += sz[b];\n    return true;\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "두 방법을 함께 쓰기",
+      "body": [
+        "크기 대신 트리의 높이 상한(랭크)을 기준으로 합쳐도 같은 효과가 납니다. 이를 랭크 기준 합치기라 합니다.",
+        "크기(또는 랭크) 기준 합치기와 경로 압축을 함께 쓰면, 연산 m번의 전체 시간이 O(m α(n))임이 알려져 있습니다. α는 역 아커만 함수로, 우주의 원자 수만큼 큰 n에서도 4 이하입니다.",
+        "그래서 대회에서는 연산 하나를 사실상 상수 시간으로 봅니다. 대부분은 경로 압축만으로도 충분히 빠르지만, 두 가지를 함께 쓰면 최악의 경우도 안전합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "크기 기준 합치기와 경로 압축을 함께 쓸 때 연산 하나의 (분할 상환) 시간 복잡도는? ① 항상 정확히 O(1) ② O(α(n)) ③ O(n) ④ O(n log n)",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "역 아커만 함수가 나옵니다.",
+      "explanation": "두 기법을 함께 쓰면 연산 m번의 전체 시간이 O(m α(n))입니다.\n그래서 연산 하나는 분할 상환으로 O(α(n))이며, α(n)은 현실의 n에서 4 이하입니다.\n답은 2입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "원소 1~6이 모두 따로인 상태에서 크기 기준으로 unite(1, 2), unite(3, 4), unite(5, 6), unite(1, 3), unite(5, 1)을 실행하면 최종 루트는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "마지막 합치기에서 크기는 2와 4입니다.",
+      "explanation": "unite(1, 3)까지 하면 루트 1의 집합은 크기 4, 루트 5의 집합은 크기 2입니다.\nunite(5, 1)에서 sz[5] = 2 < sz[1] = 4라 a와 b를 바꾸므로 5가 1 밑에 붙습니다.\n그래서 최종 루트는 1입니다.",
+      "code": "int sz[MAXN];                     // 처음에는 sz[x] = 1 (루트에서만 의미가 있음)\nbool unite(int a, int b) {\n    a = find(a); b = find(b);\n    if (a == b) return false;\n    if (sz[a] < sz[b]) swap(a, b);  // a가 더 큰 쪽(같으면 그대로)\n    p[b] = a;                     // 작은 트리를 큰 트리 밑에\n    sz[a] += sz[b];\n    return true;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "바로 앞 문제의 최종 트리에서 깊이가 2인 원소는 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3과 5가 1 바로 밑에 있습니다.",
+      "explanation": "1 밑에 2, 3, 5가 있고, 3 밑에 4, 5 밑에 6이 있습니다.\n그래서 4와 6이 깊이 2입니다.\n깊이 2인 원소는 2개입니다.",
+      "code": "int sz[MAXN];                     // 처음에는 sz[x] = 1 (루트에서만 의미가 있음)\nbool unite(int a, int b) {\n    a = find(a); b = find(b);\n    if (a == b) return false;\n    if (sz[a] < sz[b]) swap(a, b);  // a가 더 큰 쪽(같으면 그대로)\n    p[b] = a;                     // 작은 트리를 큰 트리 밑에\n    sz[a] += sz[b];\n    return true;\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "크기 기준 합치기는 작은 집합의 루트를 큰 집합의 루트 밑에 붙입니다. 원소의 깊이가 늘 때마다 집합 크기가 두 배 이상이 되므로 높이는 log₂ n 이하입니다.",
+        "같은 크기끼리 계속 합치면 높이 log₂ n을 실제로 만들 수 있어, 이 상한은 정확합니다.",
+        "크기(랭크) 기준 합치기와 경로 압축을 함께 쓰면 연산 하나가 분할 상환 O(α(n))으로 사실상 상수입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "원소 10⁶개에서 크기 기준 합치기만 쓸 때 트리의 높이는 최대 얼마인가요? (log₂ n을 넘지 않는 가장 큰 정수)",
+      "answer": "19",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2¹⁹ = 524288, 2²⁰ = 1048576입니다.",
+      "explanation": "높이는 log₂ n을 넘지 않는 정수입니다.\n2¹⁹ = 524288 ≤ 10⁶ < 2²⁰이므로 log₂ 10⁶은 19와 20 사이입니다.\n그래서 높이는 최대 19입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "원소 16개에서 크기 기준 합치기만 쓸 때 트리의 높이는 최대 얼마인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "같은 크기끼리 합치면 높이가 가장 잘 자랍니다.",
+      "explanation": "높이는 log₂ n을 넘을 수 없습니다.\n크기 1, 2, 4, 8인 같은 크기끼리 차례로 합치면 실제로 log₂ 16에 이릅니다.\n= 4입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "크기 기준 합치기만 쓸 때 모든 원소의 깊이가 log₂ n 이하임을 증명하세요.",
+      "model_answer": [
+        "원소 x의 깊이는 x의 루트가 다른 루트 밑에 붙을 때만 1 늘고, 다른 때는 변하지 않는다.",
+        "크기 기준에서는 x의 집합(크기 s)이 크기 t ≥ s인 집합 밑으로 붙을 때만 그런 일이 생기고, 합친 집합의 크기는 s + t ≥ 2s다.",
+        "그래서 x의 깊이가 d이면 x가 속한 집합의 크기는 2ᵈ 이상이다.",
+        "집합의 크기는 n 이하이므로 2ᵈ ≤ n, 즉 d ≤ log₂ n이다."
+      ],
+      "criteria": [
+        {
+          "text": "깊이가 늘어나는 경우를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "그때 집합 크기가 두 배 이상이 됨을 보였다",
+          "points": 2
+        },
+        {
+          "text": "2ᵈ ≤ n으로 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "깊이가 1 늘 때 x의 집합 크기는 어떻게 되나요?",
+      "code": "int sz[MAXN];                     // 처음에는 sz[x] = 1 (루트에서만 의미가 있음)\nbool unite(int a, int b) {\n    a = find(a); b = find(b);\n    if (a == b) return false;\n    if (sz[a] < sz[b]) swap(a, b);  // a가 더 큰 쪽(같으면 그대로)\n    p[b] = a;                     // 작은 트리를 큰 트리 밑에\n    sz[a] += sz[b];\n    return true;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "크기를 보지 않고 항상 b의 루트를 a의 루트 밑에 붙이면 find 한 번이 Θ(n)이 될 수 있음을 예로 보이세요.",
+      "model_answer": [
+        "원소 1~n이 따로인 상태에서 unite(2, 1), unite(3, 2), …, unite(n, n − 1)을 실행한다.",
+        "unite(k + 1, k)에서 k의 루트는 k이므로 p[k] = k + 1이 된다. 그래서 p[1] = 2, p[2] = 3, …, p[n − 1] = n인 한 줄 트리가 된다.",
+        "이때 find(1)은 1, 2, …, n을 모두 지나므로 n번 호출된다.",
+        "그래서 find 한 번이 Θ(n)이 될 수 있다."
+      ],
+      "criteria": [
+        {
+          "text": "한 줄 트리를 만드는 연산 순서를 제시했다",
+          "points": 3
+        },
+        {
+          "text": "그때 find가 n번 호출됨을 보였다",
+          "points": 3
+        }
+      ],
+      "hint": "unite 순서를 거꾸로 이어 보세요.",
+      "code": "int p[MAXN];                      // 처음에는 p[x] = x (모두 따로)\nint find(int x) {                 // x가 속한 집합의 루트\n    if (p[x] == x) return x;\n    return find(p[x]);\n}\nbool unite(int a, int b) {\n    a = find(a); b = find(b);\n    if (a == b) return false;     // 이미 같은 집합\n    p[b] = a;                     // b의 루트를 a의 루트 밑에\n    return true;\n}"
+    }
+  ]
+}

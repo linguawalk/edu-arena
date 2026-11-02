@@ -1,0 +1,134 @@
+{
+ "no": 10,
+ "title": "분산형 전원 설비: 태양광·ESS·전기차 충전",
+ "hours": 5,
+ "after": [
+  7
+ ],
+ "objectives": [
+  "태양광 발전 설비의 구성과 직류 회로 전압을 계산할 수 있다.",
+  "ESS의 가용 용량과 안전 기준의 취지를 설명할 수 있다.",
+  "전기차 충전 설비의 주요 시설 기준과 계통 연계 보호를 설명할 수 있다."
+ ],
+ "checklist": [
+  "태양광: 모듈–스트링–접속함–인버터–계통 연계",
+  "스트링 개방 전압 = 모듈 V_oc × 직렬 수(저온에서 상승)",
+  "ESS: 배터리, PCS, BMS와 화재 안전 기준",
+  "가용 에너지 = 정격 용량 × 방전 심도 × 효율",
+  "전기차 충전 설비: 옥외 충전 장치 보호 등급 IP44 이상, 급속 충전기 비상 정지 장치 등",
+  "계통 연계: 단독 운전 방지, 역조류, 전압·주파수 보호"
+ ],
+ "advice": [
+  "분산형 전원은 KEC에서 가장 자주 개정되는 분야입니다. ESS 화재 이후의 안전 기준 강화, 지하 주차장 전기차 충전 설비 기준 등 최근 몇 년 사이에도 여러 번 바뀌었습니다. 이 단원은 특히 '왜 이런 기준이 생겼는가'(사고 사례와 위험 요인)를 중심으로 공부하고, 세부 수치는 최신 원문으로 확인하세요.",
+  "계산 문제는 스트링 전압, ESS 가용 용량처럼 간단하지만, 단독 운전 방지 같은 개념 문제가 중요합니다. 정전된 선로에 태양광 인버터가 계속 전기를 보내면 복구 작업자가 감전될 수 있다는 점이 계통 연계 보호의 출발점입니다."
+ ],
+ "resources": [
+  {
+   "kind": "web",
+   "provider": "대한전기협회 KEC 홈페이지",
+   "title": "한국전기설비규정(KEC) 원문·개정 안내·해설",
+   "url": "https://kec.kea.kr",
+   "lang": "한국어",
+   "part": "제5장 분산형전원설비(510 전기저장장치, 520 태양광발전설비), 241.17 전기자동차 전원설비"
+  },
+  {
+   "kind": "book",
+   "provider": "대한전기협회",
+   "title": "한국전기설비규정 핸드북 (KEC 해설서, 최신 개정판 확인)",
+   "part": "제5장 분산형전원설비"
+  },
+  {
+   "kind": "web",
+   "provider": "한국전기안전공사",
+   "title": "전기안전 정보·검사 기준·안전 교육 자료",
+   "url": "https://www.kesco.or.kr",
+   "lang": "한국어",
+   "part": "ESS·태양광·충전 설비 안전 자료"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "개방 전압 45 V인 모듈 20장을 직렬로 연결한 스트링의 개방 전압은 몇 V일까요?",
+   "answer": "900",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "45 × 20 = 900 V\n겨울철 저온에서는 이보다 높아지므로 인버터 최대 입력 전압과 비교해야 합니다.",
+   "hint": "직렬이면 전압이 더해집니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "정격 100 kWh인 ESS를 방전 심도 90%, 효율 95%로 운전하면 실제로 꺼내 쓸 수 있는 에너지는 몇 kWh일까요?",
+   "answer": "85.5",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "100 × 0.9 × 0.95 = 85.5 kWh",
+   "hint": "정격 × 방전 심도 × 효율입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "옥외에 설치하는 전기차 충전 장치의 방수·방진 보호 등급은 IP{{1}} 이상이어야 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "44"
+     ]
+    }
+   ],
+   "explanation": "KEC 개정으로 옥외 충전 장치는 IP44 이상이 요구됩니다. (KEC 241.17)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "태양광 인버터에 단독 운전 방지 기능이 필요한 이유를 설명하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "단독 운전",
+      "단독운전"
+     ],
+     [
+      "감전",
+      "작업자"
+     ],
+     [
+      "정전",
+      "분리",
+      "차단",
+      "정지"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "계통이 정전되었는데 태양광 인버터가 계속 전력을 보내 단독 운전 상태가 되면, 정전된 줄 알고 작업하는 복구 작업자가 감전될 수 있고 재투입 때 설비가 손상될 수 있습니다. 그래서 계통 정전을 감지하면 인버터를 즉시 정지하고 계통에서 분리해야 합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "review": {
+  "basis": "한국전기설비규정(KEC)",
+  "checked": "2026-10",
+  "next": "2027-04",
+  "watch": "분산형전원설비(제5장)와 전기자동차 전원설비(241.17) 조항 개정 — 개정이 잦은 분야",
+  "standards": [
+   "kec.ev_ip_outdoor"
+  ]
+ },
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electrical",
+ "subject": "electrical-installation",
+ "id": "l2-electrical-electrical-installation-u10"
+}

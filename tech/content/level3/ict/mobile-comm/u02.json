@@ -1,0 +1,98 @@
+{
+ "no": 2,
+ "title": "이동 무선 채널",
+ "hours": 6,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "경로 손실 지수 모델과 섀도잉으로 대규모 손실을 계산할 수 있다.",
+  "이동 속도와 주파수로 도플러 주파수를 계산할 수 있다.",
+  "지연 확산·코히런스 대역폭과 코히런스 시간이 시스템 설계에 주는 영향을 설명할 수 있다."
+ ],
+ "checklist": [
+  "경로 손실 지수 모델 L(d) = L(d₀) + 10n log₁₀(d/d₀)",
+  "도심 n ≈ 3~4: 거리 2배 → 9~12 dB",
+  "섀도잉: 로그 정규, 표준 편차 수 dB",
+  "도플러 f_d = vf/c, 코히런스 시간 ≈ 1/f_d에 반비례",
+  "지연 확산과 코히런스 대역폭",
+  "실내·실외·고속 이동 채널 모델(3GPP 채널 모델)",
+  "밀리미터파 채널의 특성(차단, 높은 손실)"
+ ],
+ "advice": [
+  "이동 채널은 레벨2 무선통신의 페이딩을 시스템 설계 숫자로 바꾸는 단원입니다. 도플러 주파수가 커지면 채널이 빨리 변해 채널 추정을 자주 해야 하고(파일럿 간격), 지연 확산이 커지면 OFDM의 CP를 길게 해야 합니다. 고속철도(시속 300 km)와 실내(보행 속도)의 숫자를 각각 넣어 보면 5G NR이 왜 여러 부반송파 간격을 두는지(5단원) 미리 이해할 수 있습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Rappaport, Wireless Communications: Principles and Practice (장 제목으로 표기)",
+   "part": "Mobile Radio Propagation 장(대규모·소규모)"
+  },
+  {
+   "kind": "book",
+   "provider": "Cambridge University Press",
+   "title": "Goldsmith, Wireless Communications (장 제목으로 표기)",
+   "part": "Path Loss and Shadowing, Statistical Multipath Channel Models 장"
+  },
+  {
+   "kind": "web",
+   "provider": "3GPP",
+   "title": "3GPP 규격과 릴리스 정보",
+   "url": "https://www.3gpp.org/",
+   "lang": "영어",
+   "part": "채널 모델 기술 보고서(TR 38.901 등)"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "경로 손실 지수 n = 4인 환경에서 거리가 2배가 되면 경로 손실은 약 몇 dB 늘어날까요?",
+   "answer": "12",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "10 × 4 × log₁₀2 ≈ 12.04 dB",
+   "hint": "10n log₁₀2입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "시속 120 km로 움직이는 단말이 3.5 GHz 신호를 받을 때 최대 도플러 주파수는 약 몇 Hz일까요?",
+   "answer": "389",
+   "answer_format": "integer",
+   "tolerance": 1,
+   "explanation": "v = 33.3 m/s\nf_d = 33.3 × 3.5 × 10⁹/3 × 10⁸ ≈ 389 Hz",
+   "hint": "km/h를 m/s로 바꾸세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "건물·지형에 가려 넓은 지역에서 수신 전력이 평균보다 수 dB씩 오르내리는 현상을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "섀도잉",
+      "셰도잉",
+      "쉐도잉",
+      "음영"
+     ]
+    }
+   ],
+   "explanation": "로그 정규 분포로 모델링하며, 셀 계획에서 마진으로 반영합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "mobile-comm",
+ "id": "l3-ict-mobile-comm-u02"
+}

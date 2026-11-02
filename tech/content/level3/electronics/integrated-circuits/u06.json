@@ -1,0 +1,91 @@
+{
+ "no": 6,
+ "title": "데이터 변환기",
+ "hours": 5,
+ "after": [
+  5
+ ],
+ "objectives": [
+  "샘플링 정리로 필요한 샘플링 주파수를 정할 수 있다.",
+  "ADC·DAC의 해상도, LSB, 이상적 SNR을 계산할 수 있다.",
+  "플래시·SAR·시그마–델타 ADC의 구조와 쓰임을 비교할 수 있다."
+ ],
+ "checklist": [
+  "샘플링 정리: f_s > 2f_max(나이퀴스트), 에일리어싱과 안티에일리어싱 필터",
+  "N비트 해상도, LSB = V_ref/2ᴺ",
+  "양자화 오차와 이상적 SNR ≈ 6.02N + 1.76 dB",
+  "DAC: 저항 열, R–2R 래더, 전류 조향",
+  "플래시 ADC(빠름, 비교기 2ᴺ − 1개), SAR ADC(중속·저전력), 시그마–델타(고해상도·저속)",
+  "유효 비트 수(ENOB)",
+  "샘플–홀드 회로"
+ ],
+ "advice": [
+  "데이터 변환기는 아날로그 세상과 디지털 칩을 잇는 문입니다. 계산은 LSB와 SNR 두 식이 대부분이며, '1비트 늘 때마다 SNR이 약 6 dB 좋아진다'는 감각을 기억하면 됩니다. 세 가지 ADC 구조는 속도·해상도·전력의 맞바꿈으로 정리하세요. 플래시는 비교기가 비트 수에 지수적으로 늘어 고해상도가 어렵고, SAR은 이진 탐색으로 비트마다 한 번씩 비교하며, 시그마–델타는 과샘플링과 잡음 성형으로 해상도를 얻는다는 차이입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Razavi, Design of Analog CMOS Integrated Circuits (장 제목으로 표기)",
+   "part": "데이터 변환기 관련 장 또는 Razavi의 데이터 변환기 교재"
+  },
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Weste · Harris, CMOS VLSI Design: A Circuits and Systems Perspective (장 제목으로 표기)",
+   "part": "Special-Purpose Subsystems 장의 혼성 신호 절"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.012 Microelectronic Devices and Circuits (2009년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/",
+   "lang": "영어",
+   "part": "혼성 신호 관련 강의 노트"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "기준 전압 1.024 V인 10비트 ADC의 LSB는 몇 mV일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "LSB = 1.024 V/2¹⁰ = 1.024/1024 = 1 mV",
+   "hint": "V_ref/2ᴺ입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "이상적인 12비트 ADC의 SNR은 약 몇 dB일까요?",
+   "answer": "74",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "SNR ≈ 6.02 × 12 + 1.76 ≈ 74.0 dB",
+   "hint": "6.02N + 1.76입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "최고 주파수 성분이 20 kHz인 신호를 에일리어싱 없이 샘플링하려면 샘플링 주파수가 이론상 몇 kHz보다 커야 할까요?",
+   "answer": "40",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "나이퀴스트 조건 f_s > 2f_max = 40 kHz\n실제로는 여유를 두어 44.1 kHz, 48 kHz 등을 씁니다.",
+   "hint": "최고 주파수의 2배입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electronics",
+ "subject": "integrated-circuits",
+ "id": "l3-electronics-integrated-circuits-u06"
+}

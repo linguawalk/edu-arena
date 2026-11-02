@@ -1,0 +1,113 @@
+{
+ "no": 7,
+ "title": "이분산, 자기상관, 모형 진단",
+ "hours": 5,
+ "after": [
+  5
+ ],
+ "objectives": [
+  "이분산이 있을 때 강건 표준 오차를 써야 하는 이유를 설명할 수 있다.",
+  "시계열 자기상관을 진단할 수 있다.",
+  "다중공선성과 측정 오차의 영향을 설명할 수 있다."
+ ],
+ "checklist": [
+  "이분산의 결과: 계수는 불편, 표준 오차는 틀림",
+  "이분산 강건 표준 오차(화이트)",
+  "브로이시–페이건·화이트 검정",
+  "시계열 회귀와 자기상관, 더빈–왓슨 통계량",
+  "다중공선성: 표준 오차 증가",
+  "측정 오차와 감쇠 편향"
+ ],
+ "advice": [
+  "이분산은 계수 추정 자체를 틀리게 하지는 않지만 표준 오차를 틀리게 해 잘못된 결론을 낳습니다. 그래서 요즘 실증 연구는 처음부터 강건 표준 오차를 보고하는 것이 표준입니다. 더빈–왓슨 통계량은 약 2(1 − ρ)라는 근사식으로 기억하면 2 근처면 자기상관이 없다는 판단을 바로 할 수 있습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage(번역본)",
+   "title": "Jeffrey M. Wooldridge, 『계량경제학』(Introductory Econometrics: A Modern Approach)",
+   "part": "Heteroskedasticity, Serial Correlation and Heteroskedasticity in Time Series Regressions"
+  },
+  {
+   "kind": "book",
+   "provider": "Pearson(번역본)",
+   "title": "Stock · Watson, 『계량경제학』(Introduction to Econometrics)",
+   "part": "Assessing Studies Based on Multiple Regression"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "14.32 Econometrics (2007년 봄)",
+   "url": "https://ocw.mit.edu/courses/14-32-econometrics-spring-2007/",
+   "lang": "영어",
+   "part": "관련 강의 노트"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "이분산이 있어도 올바른 추론을 하려면 이분산 {{1}} 표준 오차를 씁니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "강건",
+      "robust",
+      "로버스트"
+     ]
+    }
+   ],
+   "explanation": "화이트(White) 표준 오차라고도 합니다.\n계수 추정값은 그대로입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "잔차의 1차 자기상관 계수 ρ = 0.5일 때 더빈–왓슨 통계량의 근사값은?",
+   "answer": "1",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "DW ≈ 2(1 − ρ) = 2 × 0.5 = 1\n2보다 작아 양의 자기상관을 시사합니다.",
+   "hint": "2(1 − ρ)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "written",
+   "prompt": "설명 변수들 사이의 상관이 매우 높으면(다중공선성) 회귀 결과에 어떤 문제가 생기는지 설명하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "표준 오차",
+      "분산"
+     ],
+     [
+      "커",
+      "증가",
+      "불안정"
+     ],
+     [
+      "유의",
+      "t",
+      "구별",
+      "분리"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "다중공선성이 높으면 계수 추정값의 분산과 표준 오차가 커집니다. 그래서 각 변수의 개별 효과를 구별하기 어렵고, 실제로 효과가 있어도 t 값이 작아 유의하지 않게 나오며 추정값이 불안정해집니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "economics",
+ "subject": "econometrics",
+ "id": "l3-economics-econometrics-u07"
+}

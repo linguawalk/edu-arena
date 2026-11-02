@@ -1,0 +1,95 @@
+{
+ "no": 4,
+ "title": "비행 역학과 자세 제어",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "멀티콥터가 롤·피치·요를 제어하는 원리를 설명할 수 있다.",
+  "자세 제어 루프와 제어 주기를 설명하고 계산할 수 있다."
+ ],
+ "checklist": [
+  "6자유도 운동: 위치 3 + 자세(롤·피치·요) 3",
+  "멀티콥터: 모터 속도 차로 롤·피치, 반토크 차로 요",
+  "자세 추정(IMU 센서 융합)",
+  "다중 루프 제어: 자세(빠름) → 속도 → 위치(느림)",
+  "PID 튜닝과 외란(바람)"
+ ],
+ "advice": [
+  "쿼드콥터는 모터 네 개의 속도만 바꿔 모든 움직임을 만듭니다. 한쪽 모터를 빠르게 하면 기울고(롤·피치), 시계·반시계 방향 모터의 회전 차이로 반토크를 바꿔 제자리에서 돕니다(요). 안쪽의 빠른 자세 제어 루프와 바깥의 느린 위치 제어 루프를 쌓는 구조는 전기 트랙 제어공학의 캐스케이드 제어와 같으니 연결해 정리하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Princeton University Press",
+   "title": "Beard · McLain, Small Unmanned Aircraft: Theory and Practice (장 제목으로 표기)"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "공정제어 6단원 고급 제어 구조(캐스케이드) (화공 트랙)",
+   "url": "guide.html?lv=3&t=chemical&s=process-control&u=6"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "동역학·진동 3단원 강체의 운동학과 운동역학 (기계 트랙)",
+   "url": "guide.html?lv=3&t=mechanical&s=dynamics-vibration&u=3"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "자세 제어 루프가 400 Hz로 동작하면 제어 주기는 몇 ms일까요? (소수 첫째 자리까지)",
+   "answer": "2.5",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "1/400 s = 2.5 ms",
+   "hint": "1 ÷ 주파수입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "쿼드콥터가 제자리에서 수직축으로 회전하는 운동을 {{1}}라고 하며, 서로 반대 방향으로 도는 모터들의 반토크 차이로 만듭니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "요",
+      "yaw"
+     ]
+    }
+   ],
+   "explanation": "앞뒤 기울기는 피치, 좌우 기울기는 롤입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "빠른 안쪽 자세 루프의 목표값을 느린 바깥 위치 루프가 정해 주는 제어 구조를 {{1}} 제어라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "캐스케이드",
+      "다중 루프"
+     ]
+    }
+   ],
+   "explanation": "드론 비행 제어기의 표준 구조입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "drone-uam",
+ "id": "l3-convergence-drone-uam-u04"
+}

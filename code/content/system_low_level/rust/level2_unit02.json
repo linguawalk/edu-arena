@@ -1,0 +1,96 @@
+{
+  "language": "rust",
+  "category": "system_low_level",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "참조와 빌림",
+  "questions": [
+    {
+      "id": "rust_l2_u02_q001",
+      "type": "predict_output",
+      "code": "fn calculate_length(s: &String) -> usize {\n    s.len()\n}\n\nfn main() {\n    let s1 = String::from(\"hello\");\n    let len = calculate_length(&s1);\n    println!(\"{} {}\", s1, len);\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["hello 5", "오류: s1이 이동됨", "5 hello", "hello"],
+      "answer": 0,
+      "explanation_en": "Passing &s1 borrows the value instead of moving it; s1 remains valid in main and calculate_length only gets temporary access.",
+      "explanation_ko": "&s1을 전달하면 값을 이동시키는 대신 빌려옵니다. s1은 main에서 계속 유효하고, calculate_length는 일시적인 접근 권한만 얻습니다.",
+      "concept_tags": ["reference", "borrowing"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l2_u02_q002",
+      "type": "fill_blank",
+      "code": "fn calculate_length(s: ____String) -> usize {\n    s.len()\n}\n// s1의 소유권을 가져가지 않고 빌려서 길이만 계산해야 함",
+      "prompt_en": "Fill in the blank so the function borrows the String instead of taking ownership.",
+      "prompt_ko": "함수가 String의 소유권을 가져가지 않고 빌리기만 하도록 빈칸을 채우세요.",
+      "options": ["&", "*", "mut", "&mut"],
+      "answer": 0,
+      "explanation_en": "The & symbol before a type creates a reference parameter, borrowing the value rather than taking ownership of it.",
+      "explanation_ko": "타입 앞의 & 기호는 참조 매개변수를 만들어, 소유권을 가져가는 대신 값을 빌립니다.",
+      "concept_tags": ["reference", "borrowing"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l2_u02_q003",
+      "type": "predict_output",
+      "code": "fn add_world(s: &mut String) {\n    s.push_str(\", world\");\n}\n\nfn main() {\n    let mut s = String::from(\"hello\");\n    add_world(&mut s);\n    println!(\"{}\", s);\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["hello", "hello, world", "오류", ", world"],
+      "answer": 1,
+      "explanation_en": "&mut s creates a mutable reference, letting add_world modify the original String directly; the change is visible in main afterward.",
+      "explanation_ko": "&mut s는 가변 참조를 만들어, add_world가 원본 String을 직접 수정할 수 있게 합니다. 이후 main에서도 그 변경 사항이 그대로 보입니다.",
+      "concept_tags": ["mutable_reference", "borrowing"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l2_u02_q004",
+      "type": "error_finding",
+      "code": "fn add_world(s: &String) {\n    s.push_str(\", world\");\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "함수 매개변수 문법 오류",
+        "s는 불변 참조(&String)인데 push_str로 값을 수정하려 해서, 컴파일러가 '불변 값을 빌린 것으로는 수정할 수 없다'는 오류를 발생시킴",
+        "push_str 사용법 자체가 잘못됨",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "An immutable reference (&String) only grants read access; attempting to mutate through it requires &mut String instead.",
+      "explanation_ko": "불변 참조(&String)는 읽기 권한만 부여합니다. 이를 통해 값을 수정하려면 &mut String이 필요합니다.",
+      "concept_tags": ["mutable_reference", "borrowing"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l2_u02_q005",
+      "type": "predict_output",
+      "code": "fn main() {\n    let x = 5;\n    let r = &x;\n    println!(\"{}\", *r);\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "&x", "r", "오류"],
+      "answer": 0,
+      "explanation_en": "r borrows x's address; *r dereferences it to get the value it points to, 5, just like pointer dereferencing in C.",
+      "explanation_ko": "r은 x의 주소를 빌립니다. *r은 이를 역참조해서 가리키는 값인 5를 가져옵니다. C의 포인터 역참조와 비슷한 개념입니다.",
+      "concept_tags": ["reference", "dereference"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l2_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "빌림 (borrowing)", "definition": "소유권을 가져가지 않고 값에 대한 접근 권한만 일시적으로 얻는 것" },
+        { "term": "&T (불변 참조)", "definition": "값을 읽을 수만 있는 참조" },
+        { "term": "&mut T (가변 참조)", "definition": "값을 읽고 수정할 수 있는 참조" },
+        { "term": "역참조 (*)", "definition": "참조가 가리키는 실제 값에 접근하는 연산" }
+      ],
+      "explanation_en": "References let functions work with data without taking ownership, avoiding the need to move values back and forth for every function call.",
+      "explanation_ko": "참조 덕분에 함수는 소유권을 가져가지 않고도 데이터를 다룰 수 있어, 함수를 호출할 때마다 값을 이리저리 이동시킬 필요가 없어집니다.",
+      "concept_tags": ["reference", "borrowing", "mutable_reference"],
+      "difficulty": "practice"
+    }
+  ]
+}

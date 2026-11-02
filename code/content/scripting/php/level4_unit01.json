@@ -1,0 +1,96 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 4,
+  "unit": 1,
+  "unit_title": "클래스 기초",
+  "questions": [
+    {
+      "id": "php_l4_u01_q001",
+      "type": "predict_output",
+      "code": "class Dog {\n    public string $name;\n\n    public function __construct(string $name) {\n        $this->name = $name;\n    }\n\n    public function bark(): void {\n        echo \"{$this->name}: 멍멍!\";\n    }\n}\n\n$d = new Dog(\"바둑이\");\n$d->bark();",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이: 멍멍!", "Dog: 멍멍!", "오류", "name: 멍멍!"],
+      "answer": 0,
+      "explanation_en": "__construct runs automatically when new Dog(\"바둑이\") creates an object, setting $this->name; bark() then uses that value.",
+      "explanation_ko": "__construct는 new Dog(\"바둑이\")가 객체를 만들 때 자동으로 실행되어 $this->name을 설정합니다. bark()는 이후 그 값을 사용합니다.",
+      "concept_tags": ["class", "constructor"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l4_u01_q002",
+      "type": "predict_output",
+      "code": "class Dog {\n    public function __construct(\n        public string $name,\n        private int $age = 0\n    ) {}\n\n    public function getAge(): int {\n        return $this->age;\n    }\n}\n\n$d = new Dog(\"바둑이\", 3);\necho $d->name . \" \" . $d->getAge();",
+      "prompt_en": "What is printed? (This is constructor property promotion — a PHP 8 shorthand.)",
+      "prompt_ko": "출력 결과는? (PHP 8의 축약형인 생성자 프로퍼티 승격입니다.)",
+      "options": ["바둑이 3", "오류", "바둑이 0", "name age"],
+      "answer": 0,
+      "explanation_en": "Declaring visibility (public/private) directly on constructor parameters automatically creates and assigns matching properties, without needing separate property declarations or $this-> assignments.",
+      "explanation_ko": "생성자 매개변수에 직접 접근 제어자(public/private)를 선언하면, 별도의 프로퍼티 선언이나 $this-> 대입 없이도 자동으로 대응하는 프로퍼티를 만들고 대입합니다.",
+      "concept_tags": ["constructor_promotion"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l4_u01_q003",
+      "type": "error_finding",
+      "code": "class Dog {\n    private int $age = 0;\n}\n\n$d = new Dog();\necho $d->age;",
+      "prompt_en": "What problem does this code have? (Compare with Python's _var, which has no real enforcement.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (강제력이 전혀 없는 Python의 _var와 비교해보세요.)",
+      "options": [
+        "age 필드 선언 오류",
+        "age가 private이라 클래스 밖에서 $d->age로 직접 접근할 수 없어서, 실제로 강제되는 Error가 발생함",
+        "Dog 클래스 정의 오류",
+        "문제 없음, 0이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike Python's convention-only privacy, PHP's private is genuinely enforced by the engine; accessing $d->age from outside the class throws a fatal Error, similar to Java/C#/VB.",
+      "explanation_ko": "관례일 뿐인 Python의 privacy와 달리, PHP의 private은 엔진 차원에서 실제로 강제됩니다. 클래스 밖에서 $d->age에 접근하면 치명적인 Error가 발생합니다. Java/C#/VB와 비슷합니다.",
+      "concept_tags": ["access_modifier", "private"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l4_u01_q004",
+      "type": "predict_output",
+      "code": "class Animal {\n    public function speak(): void {\n        echo \"동물이 소리를 낸다\";\n    }\n}\n\nclass Dog extends Animal {\n    public function speak(): void {\n        echo \"멍멍!\";\n    }\n}\n\n$a = new Animal();\n$d = new Dog();\n$a->speak();\n$d->speak();",
+      "prompt_en": "What is printed? (Note: no special keyword like virtual/override is needed.)",
+      "prompt_ko": "출력 결과는? (virtual/override 같은 특별한 키워드가 필요 없는 점에 주의하세요.)",
+      "options": ["동물이 소리를 낸다동물이 소리를 낸다", "동물이 소리를 낸다멍멍!", "멍멍!멍멍!", "오류"],
+      "answer": 1,
+      "explanation_en": "Like JavaScript and Java, PHP methods are overridable by default with no special keyword; each object's own speak() runs based on its actual class.",
+      "explanation_ko": "JavaScript, Java와 마찬가지로 PHP의 메서드는 특별한 키워드 없이 기본적으로 오버라이드 가능합니다. 각 객체는 자신의 실제 클래스에 따라 자신의 speak()를 실행합니다.",
+      "concept_tags": ["inheritance", "polymorphism"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l4_u01_q005",
+      "type": "fill_blank",
+      "code": "class Cat ____ Animal {\n    public function speak(): void {\n        echo \"야옹!\";\n    }\n}",
+      "prompt_en": "Fill in the blank with the keyword that makes Cat inherit from Animal.",
+      "prompt_ko": "Cat이 Animal을 상속받도록 빈칸에 들어갈 키워드는?",
+      "options": ["extends", ":", "implements", "Inherits"],
+      "answer": 0,
+      "explanation_en": "extends establishes class inheritance in PHP, the same keyword used in Java and JavaScript.",
+      "explanation_ko": "extends는 PHP에서 클래스 상속을 설정합니다. Java, JavaScript에서 쓰는 것과 같은 키워드입니다.",
+      "concept_tags": ["inheritance"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l4_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "__construct", "definition": "객체가 생성될 때 자동으로 호출되는 생성자 메서드" },
+        { "term": "생성자 프로퍼티 승격", "definition": "매개변수에 접근 제어자를 직접 써서 프로퍼티 선언과 대입을 축약하는 PHP 8 문법" },
+        { "term": "private의 실제 강제", "definition": "PHP의 private은 Python과 달리 엔진이 실제로 접근을 막음" },
+        { "term": "extends", "definition": "클래스 상속을 설정하는 키워드" }
+      ],
+      "explanation_en": "PHP's class system combines JavaScript-like default-overridable methods with Java/C#-like genuinely enforced access modifiers — a unique blend among the languages in this curriculum.",
+      "explanation_ko": "PHP의 클래스 시스템은 JavaScript 같은 기본 오버라이드 가능한 메서드와 Java/C# 같은 실제로 강제되는 접근 제어자를 결합합니다 — 이 커리큘럼의 언어들 중 독특한 조합입니다.",
+      "concept_tags": ["class", "constructor", "constructor_promotion", "access_modifier"],
+      "difficulty": "practice"
+    }
+  ]
+}

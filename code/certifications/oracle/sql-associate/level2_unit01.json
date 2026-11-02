@@ -1,0 +1,101 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "sql-associate-1z0-071",
+  "level": 2,
+  "unit": 1,
+  "unit_title": "집계 함수와 GROUP BY·HAVING",
+  "rule_summary_ko": "COUNT, SUM, AVG, MAX, MIN 같은 집계 함수는 여러 행을 하나의 값으로 요약합니다. GROUP BY는 지정한 컬럼 값이 같은 행들끼리 묶어서 그룹별로 집계를 계산합니다. WHERE는 그룹화되기 전에 개별 행을 걸러내고, HAVING은 그룹화된 결과(집계값)를 걸러낼 때 사용합니다 — 이 실행 순서 차이가 핵심입니다.",
+  "examples": [
+    { "code": "SELECT dept, COUNT(*), AVG(salary) FROM employees GROUP BY dept;", "note_ko": "부서별로 묶어서 인원수와 평균 급여를 계산 — IT(2명,3500), Sales(3명,5000)" },
+    { "code": "SELECT dept, COUNT(*) FROM employees GROUP BY dept HAVING COUNT(*) >= 3;", "note_ko": "그룹화 후 인원수가 3명 이상인 그룹만 남김 — Sales만 조회됨" }
+  ],
+  "questions": [
+    {
+      "id": "sql_oracle_l2_u1_q001",
+      "type": "concept_matching_item",
+      "code": "-- 데이터: Kim(Sales,5000), Lee(IT,3000), Park(Sales,7000), Choi(IT,4000), Jung(Sales,3000)\nSELECT dept, COUNT(*) FROM employees GROUP BY dept HAVING COUNT(*) >= 3;",
+      "prompt_ko": "결과로 조회되는 부서는?",
+      "options": ["IT만", "Sales만 — Sales 부서 인원이 3명으로 조건(>=3)을 만족", "IT, Sales 둘 다", "아무 부서도 조회되지 않는다"],
+      "answer": 1,
+      "explanation_ko": "IT는 2명, Sales는 3명이라 HAVING COUNT(*)>=3 조건을 Sales만 만족합니다.",
+      "concept_tags": ["having"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l2_u1_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "WHERE와 HAVING의 근본적인 차이는?",
+      "options": [
+        "WHERE는 그룹화되기 전 개별 행을 걸러내고, HAVING은 그룹화된 후의 집계 결과를 걸러낸다",
+        "WHERE와 HAVING은 완전히 동일한 기능이라 서로 바꿔 써도 무방하다",
+        "HAVING은 GROUP BY 없이는 절대 사용할 수 없는 문법 오류다",
+        "WHERE는 집계 함수와 함께 사용할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "이 실행 순서 차이(WHERE 먼저, GROUP BY, 그다음 HAVING) 때문에, 집계값 자체로 필터링하려면 HAVING을 써야 합니다.",
+      "concept_tags": ["where_vs_having"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l2_u1_q003",
+      "type": "concept_matching_item",
+      "code": "SELECT dept, AVG(salary) FROM employees WHERE salary > 3000 GROUP BY dept;",
+      "prompt_ko": "이 쿼리에서 salary=3000인 행(Jung, Lee)은 어떻게 처리됩니까?",
+      "options": [
+        "집계 계산에 포함된다",
+        "WHERE 절이 GROUP BY보다 먼저 적용되어, salary>3000을 만족하지 못하는 행은 애초에 그룹화·집계 대상에서 제외된다",
+        "HAVING 절이 없어서 오류가 발생한다",
+        "salary가 3000인 행만 별도로 처리된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "WHERE는 그룹화 이전에 적용되므로, 조건을 만족하지 못하는 행은 집계 계산에 아예 들어가지 않습니다.",
+      "concept_tags": ["where_clause", "group_by"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l2_u1_q004",
+      "type": "concept_matching_item",
+      "code": "SELECT dept, name, salary FROM employees GROUP BY dept;",
+      "prompt_ko": "SELECT 절에 GROUP BY에 없는 컬럼(name, salary)을 그대로 나열하면?",
+      "options": [
+        "정상적으로 각 부서의 대표 직원 정보가 출력된다",
+        "ORA-00979(\"not a GROUP BY expression\") 오류 발생 — GROUP BY를 사용하면, SELECT 절에는 GROUP BY에 포함된 컬럼이나 집계 함수만 올 수 있다",
+        "모든 직원의 정보가 그대로 출력된다(GROUP BY가 무시됨)",
+        "name과 salary가 자동으로 집계 함수로 감싸진다"
+      ],
+      "answer": 1,
+      "explanation_ko": "GROUP BY를 쓰면, SELECT의 비집계 컬럼은 반드시 GROUP BY 목록에 포함되어야 합니다. name, salary는 그룹당 여러 값이 있을 수 있어 ORA-00979 오류가 납니다.",
+      "concept_tags": ["group_by_rule", "ora_00979"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l2_u1_q005",
+      "type": "fill_blank",
+      "code": "SELECT COUNT(*) FROM employees;",
+      "prompt_ko": "전체 직원이 5명일 때, 이 쿼리의 결과는? (숫자만 입력)",
+      "expected_answers": ["5"],
+      "explanation_ko": "COUNT(*)는 조건에 맞는 전체 행의 개수를 셉니다.",
+      "concept_tags": ["count"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l2_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "집계 함수(COUNT, SUM, AVG 등)가 NULL 값을 다루는 방식으로 옳은 것은?",
+      "options": [
+        "COUNT(컬럼명)과 AVG는 일반적으로 NULL 값을 계산에서 제외한다(단, COUNT(*)는 NULL 여부와 무관하게 전체 행을 센다)",
+        "모든 집계 함수는 NULL을 0으로 취급해서 계산한다",
+        "NULL이 하나라도 있으면 집계 함수 전체가 NULL을 반환한다",
+        "집계 함수는 NULL이 있으면 항상 오류를 발생시킨다"
+      ],
+      "answer": 0,
+      "explanation_ko": "SUM, AVG, COUNT(컬럼명) 등은 NULL을 무시하고 계산하지만, COUNT(*)는 NULL 포함 여부와 무관하게 행 자체의 개수를 셉니다.",
+      "concept_tags": ["aggregate_functions", "null_handling"],
+      "difficulty": "challenge"
+    }
+  ]
+}

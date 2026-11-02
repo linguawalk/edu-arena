@@ -1,0 +1,30 @@
+{
+  "language": "sql",
+  "piston_language": "sqlite3",
+  "piston_version": "*",
+  "mode": "sql",
+  "grading_note_ko": "sqlite3 CLI 기본 출력은 열을 '|'로 구분합니다.",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "집계와 조인",
+  "exercises": [
+    {
+      "id": "sql_l1_u2_ex1",
+      "title_ko": "GROUP BY로 고객별 합계",
+      "prompt_ko": "orders 테이블에서 고객(customer)별 주문 금액(amount) 합계를, 고객 이름 순으로 정렬해서 조회하는 쿼리를 작성하세요.\n\n테이블 구조: orders(id, customer, amount)\n데이터: (1,'Kim',100), (2,'Lee',200), (3,'Kim',150), (4,'Park',300)",
+      "setup_sql": "CREATE TABLE orders (id INTEGER, customer TEXT, amount INTEGER);\nINSERT INTO orders VALUES (1, 'Kim', 100);\nINSERT INTO orders VALUES (2, 'Lee', 200);\nINSERT INTO orders VALUES (3, 'Kim', 150);\nINSERT INTO orders VALUES (4, 'Park', 300);\n",
+      "starter_code": "-- 여기에 쿼리를 작성하세요\n",
+      "expected_stdout": "Kim|250\nLee|200\nPark|300\n",
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_l1_u2_ex2",
+      "title_ko": "JOIN으로 두 테이블 연결",
+      "prompt_ko": "customers와 orders2 테이블을 customer_id로 연결(JOIN)해서, 고객 이름과 주문 금액을 주문 id 순으로 조회하는 쿼리를 작성하세요.\n\n테이블 구조: customers(id, name), orders2(id, customer_id, amount)\n데이터: customers(1,'Kim'),(2,'Lee') / orders2(1,1,100),(2,2,200),(3,1,150)",
+      "setup_sql": "CREATE TABLE customers (id INTEGER, name TEXT);\nINSERT INTO customers VALUES (1, 'Kim');\nINSERT INTO customers VALUES (2, 'Lee');\nCREATE TABLE orders2 (id INTEGER, customer_id INTEGER, amount INTEGER);\nINSERT INTO orders2 VALUES (1, 1, 100);\nINSERT INTO orders2 VALUES (2, 2, 200);\nINSERT INTO orders2 VALUES (3, 1, 150);\n",
+      "starter_code": "-- 여기에 쿼리를 작성하세요\n",
+      "expected_stdout": "Kim|100\nLee|200\nKim|150\n",
+      "difficulty": "challenge"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+ "no": 4,
+ "title": "데이터 파이프라인과 평가",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "데이터 수집·정제·라벨링·분할 파이프라인을 설계할 수 있다.",
+  "정밀도·재현율·F1으로 분류 모델을 평가할 수 있다.",
+  "데이터 누수와 분포 변화의 위험을 설명할 수 있다."
+ ],
+ "checklist": [
+  "데이터가 성능을 결정: 양, 품질, 대표성",
+  "수집 → 정제 → 라벨링 → 증강 → 분할",
+  "혼동 행렬: TP, FP, FN, TN",
+  "정밀도 = TP/(TP + FP), 재현율 = TP/(TP + FN), F1",
+  "목적에 맞는 지표 선택(불량 검출은 재현율 중시 등)",
+  "데이터 누수: 시험 정보가 훈련에 섞임",
+  "분포 변화와 모니터링"
+ ],
+ "advice": [
+  "실무 AI 프로젝트 시간의 대부분은 모델이 아니라 데이터에 쓰인다고 할 만큼 데이터 품질이 성능을 좌우합니다. 불량 검사처럼 놓치면 큰일 나는 문제는 재현율을, 스팸 필터처럼 잘못 걸러 내면 곤란한 문제는 정밀도를 중시하는 식으로 지표를 목적에 맞게 고르는 판단력을 기르세요. 산업 트랙 품질공학 4단원의 생산자·소비자 위험과 같은 맞바꿈이라는 점을 연결하면 이해가 쉽습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Dive into Deep Learning (무료 공개 교재)",
+   "title": "Dive into Deep Learning",
+   "url": "https://d2l.ai/",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "품질공학 4단원 샘플링 검사 (산업 트랙)",
+   "url": "guide.html?lv=3&t=industrial&s=quality-engineering&u=4"
+  },
+  {
+   "title": "math-arena 레벨2 · 확률과 통계",
+   "href": "https://math-arena.org/guide.html?lv=2&t=probability&s=statistics"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "TP 80, FP 20인 분류기의 정밀도는 얼마일까요? (소수 첫째 자리까지)",
+   "answer": "0.8",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "80/(80 + 20) = 0.8",
+   "hint": "TP/(TP + FP)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "같은 분류기의 FN이 40이면 재현율은 약 얼마일까요? (소수 셋째 자리까지)",
+   "answer": "0.667",
+   "answer_format": "decimal",
+   "tolerance": 0.002,
+   "explanation": "80/(80 + 40) ≈ 0.667",
+   "hint": "TP/(TP + FN)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "시험 데이터의 정보가 훈련 과정에 섞여 성능이 실제보다 좋게 측정되는 문제를 데이터 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "누수",
+      "유출",
+      "리키지"
+     ]
+    }
+   ],
+   "explanation": "시간 순서가 있는 데이터에서 특히 자주 생깁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "ai-engineering",
+ "id": "l3-convergence-ai-engineering-u04"
+}

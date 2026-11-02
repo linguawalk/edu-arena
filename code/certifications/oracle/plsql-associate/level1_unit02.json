@@ -1,0 +1,100 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "실행문과 SQL 통합(SELECT INTO)",
+  "rule_summary_ko": "PL/SQL 안에서 SELECT ... INTO 문은 정확히 한 행만 반환할 것을 전제로 합니다. 쿼리 결과가 0행이면 NO_DATA_FOUND 예외가, 2행 이상이면 TOO_MANY_ROWS 예외(ORA-01422)가 발생합니다. 이런 이유로 SELECT INTO를 사용할 때는 반드시 조건을 통해 결과가 정확히 한 행이 되도록 보장하거나, 두 예외를 모두 처리해야 안전합니다.",
+  "examples": [
+    { "code": "SELECT last_name INTO v_name FROM employees WHERE employee_id = 9999; -- 존재하지 않는 ID", "note_ko": "0행 반환 → NO_DATA_FOUND 예외 발생" },
+    { "code": "SELECT last_name INTO v_name FROM employees WHERE last_name = 'King'; -- 동명이인 2명 존재", "note_ko": "2행 이상 반환 → TOO_MANY_ROWS 예외(ORA-01422) 발생" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l1_u2_q001",
+      "type": "concept_matching_item",
+      "code": "DECLARE\n    v_name employees.last_name%TYPE;\nBEGIN\n    SELECT last_name INTO v_name FROM employees WHERE employee_id = 9999;\n    -- 9999에 해당하는 직원이 존재하지 않음\nEND;",
+      "prompt_ko": "이 SELECT INTO가 0행을 반환하면 어떤 예외가 발생합니까?",
+      "options": [
+        "TOO_MANY_ROWS", "NO_DATA_FOUND — SELECT INTO가 행을 하나도 찾지 못했을 때 발생하는 예외", "ZERO_DIVIDE", "VALUE_ERROR"
+      ],
+      "answer": 1,
+      "explanation_ko": "SELECT INTO는 정확히 한 행을 기대하는데, 조건에 맞는 행이 없으면 NO_DATA_FOUND가 발생합니다.",
+      "concept_tags": ["no_data_found"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l1_u2_q002",
+      "type": "concept_matching_item",
+      "code": "DECLARE\n    v_name employees.last_name%TYPE;\nBEGIN\n    SELECT last_name INTO v_name FROM employees WHERE last_name = 'King';\n    -- 'King'이라는 성을 가진 직원이 2명 이상 존재\nEND;",
+      "prompt_ko": "이 SELECT INTO가 2행 이상을 반환하면 어떤 예외가 발생합니까?",
+      "options": [
+        "NO_DATA_FOUND", "TOO_MANY_ROWS — SELECT INTO가 예상보다 많은 행을 반환했을 때 발생하는 예외(ORA-01422)", "DUP_VAL_ON_INDEX", "INVALID_NUMBER"
+      ],
+      "answer": 1,
+      "explanation_ko": "SELECT INTO는 여러 행을 변수 하나에 담을 수 없어, 2행 이상이면 TOO_MANY_ROWS 예외가 발생합니다.",
+      "concept_tags": ["too_many_rows"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l1_u2_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "SELECT INTO 문을 안전하게 사용하기 위한 모범 사례는?",
+      "options": [
+        "항상 결과가 정확히 한 행이 되도록 조건(보통 기본키)을 사용하거나, NO_DATA_FOUND와 TOO_MANY_ROWS를 모두 처리하는 예외 처리 코드를 작성한다",
+        "SELECT INTO는 예외 처리가 필요 없다",
+        "SELECT INTO는 항상 여러 행을 자동으로 배열에 담아준다",
+        "WHERE 절 없이 SELECT INTO를 사용해야 한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "기본키처럼 고유성이 보장된 조건을 사용하거나, 두 예외를 모두 명시적으로 처리하는 것이 안전한 패턴입니다.",
+      "concept_tags": ["select_into_best_practice"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l1_u2_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "SELECT INTO가 여러 행을 반환해서 발생하는 오류의 오라클 오류 코드는 무엇입니까? (예: ORA-XXXXX 형식으로 입력)",
+      "expected_answers": ["ORA-01422"],
+      "explanation_ko": "ORA-01422는 \"exact fetch returns more than requested number of rows\"라는 메시지와 함께 발생합니다.",
+      "concept_tags": ["ora_01422"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l1_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "여러 행을 결과로 받아 하나씩 순차적으로 처리하고 싶을 때, SELECT INTO 대신 사용해야 하는 것은?",
+      "options": [
+        "여전히 SELECT INTO를 그대로 사용하면 된다",
+        "커서(cursor) — 여러 행의 결과를 하나씩 순회하며 처리할 수 있게 해준다",
+        "%TYPE",
+        "DECLARE 절"
+      ],
+      "answer": 1,
+      "explanation_ko": "SELECT INTO는 단일 행 전용이며, 여러 행을 처리하려면 커서를 사용해야 합니다.",
+      "concept_tags": ["cursor_vs_select_into"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l1_u2_q006",
+      "type": "concept_matching_item",
+      "code": "DECLARE\n    v_count NUMBER;\nBEGIN\n    SELECT COUNT(*) INTO v_count FROM employees WHERE department_id = 999;\n    -- 999 부서에 직원이 0명이어도\nEND;",
+      "prompt_ko": "COUNT(*)를 SELECT INTO로 받을 때, 조건에 맞는 행이 0개라면 NO_DATA_FOUND가 발생합니까?",
+      "options": [
+        "그렇다. 조건에 맞는 행이 없으므로 항상 NO_DATA_FOUND가 발생한다",
+        "아니다. COUNT(*) 같은 집계 함수는 대상 행이 0개여도 '0'이라는 값을 반환하는 하나의 행이 항상 존재해서, NO_DATA_FOUND가 발생하지 않는다",
+        "TOO_MANY_ROWS가 발생한다",
+        "컴파일 오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "집계 함수(COUNT, SUM 등)는 그룹화 없이 사용하면 대상 행이 없어도 항상 하나의 결과 행(집계값, 없으면 0이나 NULL)을 반환하므로 NO_DATA_FOUND가 발생하지 않습니다.",
+      "concept_tags": ["aggregate_select_into"],
+      "difficulty": "challenge"
+    }
+  ]
+}

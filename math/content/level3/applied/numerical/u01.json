@@ -1,0 +1,121 @@
+{
+ "no": 1,
+ "title": "오차와 부동소수점 산술",
+ "hours": 4,
+ "after": [],
+ "objectives": [
+  "절대오차와 상대오차, 반올림 오차와 절단 오차를 구별할 수 있다.",
+  "부동소수점 표현과 기계 엡실론을 설명할 수 있다.",
+  "조건수와 알고리즘의 안정성을 구별할 수 있다."
+ ],
+ "checklist": [
+  "절대오차, 상대오차, 유효숫자",
+  "IEEE 754 배정밀도와 기계 엡실론 (약 2.2 × 10⁻¹⁶)",
+  "반올림 오차와 절단(이산화) 오차",
+  "파국적 소거 (비슷한 두 수의 뺄셈)",
+  "문제의 조건수(민감도)와 알고리즘의 안정성",
+  "수렴 차수와 O 표기"
+ ],
+ "advice": [
+  "컴퓨터에서 0.1 + 0.2가 정확히 0.3이 아니라는 사실에서 수치해석이 시작됩니다. 실수를 유한한 비트로 저장하기 때문에 생기는 반올림 오차는 피할 수 없고, 계산 순서에 따라 커지거나 작아질 수 있습니다. 이차방정식의 근의 공식에서 b² ≫ 4ac일 때 생기는 파국적 소거를 직접 실험해 보세요.",
+  "'문제가 나쁜 것(조건수가 큼)'과 '알고리즘이 나쁜 것(불안정)'을 구별하는 것이 이 과목 전체의 핵심 사고방식입니다. 조건수가 큰 문제는 어떤 알고리즘으로도 정확히 풀기 어렵고, 불안정한 알고리즘은 좋은 문제도 망칩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Burden · Faires · Burden, Numerical Analysis (10판)",
+   "part": "1장 Mathematical Preliminaries and Error Analysis"
+  },
+  {
+   "kind": "lecture",
+   "provider": "KOCW",
+   "title": "수치해석 (한양대학교 박종일, 방정식·최적화·데이터 모델링·미분방정식)",
+   "url": "http://www.kocw.net/home/cview.do?mty=p&kemId=1085613",
+   "lang": "한국어",
+   "part": "수치 오차"
+  },
+  {
+   "kind": "book",
+   "provider": "SIAM",
+   "title": "Trefethen · Bau, Numerical Linear Algebra (심화)",
+   "part": "Lecture 12~15 (조건수와 안정성)"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "IEEE 배정밀도에서 가수부의 비트 수(기계 엡실론 2⁻ᵏ의 k)는?",
+   "answer": "52",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "배정밀도: 부호 1비트, 지수 11비트, 가수 52비트 → ε = 2⁻⁵²",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "부동소수점 계산에서 0.1 + 0.2 == 0.3은 참일까요? (참 1, 거짓 0)",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "0.1과 0.2가 이진수로 정확히 표현되지 않아 0.30000000000000004",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "행렬 [[1, 0], [0, 0.01]]의 조건수(2-노름)는?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "최대 특이값 / 최소 특이값 = 1/0.01 = 100",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "파국적 소거가 무엇이고 어떻게 피할 수 있는지 설명해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "비슷한",
+      "가까운",
+      "거의 같은"
+     ],
+     [
+      "뺄셈",
+      "빼",
+      "차"
+     ],
+     [
+      "유효숫자",
+      "상대오차",
+      "정확도"
+     ],
+     [
+      "변형",
+      "바꾸",
+      "다른 공식",
+      "유리화"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "크기가 거의 같은 두 수를 빼면 앞자리 유효숫자가 사라져 상대오차가 크게 늘어나는 현상입니다. 식을 대수적으로 변형(예: 유리화, 근과 계수의 관계 이용)해 그런 뺄셈을 피합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "applied",
+ "subject": "numerical",
+ "id": "l3-applied-numerical-u01"
+}

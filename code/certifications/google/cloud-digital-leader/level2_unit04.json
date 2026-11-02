@@ -1,0 +1,105 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "google",
+  "exam": "cloud-digital-leader",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "분석 도구: Looker·Pub/Sub·Dataflow",
+  "rule_summary_ko": "실시간 스트리밍 분석의 전형적인 파이프라인은 Pub/Sub(IoT·클릭스트림 등 실시간 데이터를 수집하는 확장 가능한 메시징 버퍼)로 데이터를 받아, Dataflow(배치·스트리밍 데이터를 변환·집계하는 완전관리형 처리 서비스)로 가공한 뒤, BigQuery(처리된 데이터를 저장하고 분석하는 데이터 웨어하우스)에 적재하는 흐름입니다. Looker는 BigQuery 등의 데이터를 시각화해서 실시간 리포트·대시보드를 만들고, 이를 여러 사용자·워크플로에 걸쳐 데이터 접근을 민주화(democratize)해주는 BI 도구입니다.",
+  "examples": [
+    { "code": "IoT 센서 데이터 → Pub/Sub → Dataflow(1분 평균 계산) → BigQuery → Looker 대시보드", "note_ko": "실시간 센서 데이터가 수집·처리·저장·시각화되는 전형적인 스트리밍 분석 파이프라인" }
+  ],
+  "questions": [
+    {
+      "id": "gcp_cdl_l2_u4_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Pub/Sub의 핵심 역할은?",
+      "options": [
+        "IoT 센서, 클릭스트림, 로그 등에서 발생하는 실시간 데이터를 수집하는 확장 가능한 메시징 버퍼",
+        "데이터를 시각화해서 대시보드를 만드는 BI 도구",
+        "구조화된 데이터를 SQL로 분석하는 데이터 웨어하우스",
+        "관계형 데이터베이스 서비스"
+      ],
+      "answer": 0,
+      "explanation_ko": "Pub/Sub은 데이터 발생원과 처리 시스템을 분리(decouple)해주는 메시징 서비스입니다.",
+      "concept_tags": ["pubsub"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "gcp_cdl_l2_u4_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Dataflow의 핵심 역할은?",
+      "options": [
+        "배치·스트리밍 데이터를 변환·집계하는 완전관리형 데이터 처리 서비스로, 인프라 관리 없이 파이프라인을 실행할 수 있게 해준다",
+        "Dataflow는 데이터를 저장만 하고 처리는 하지 않는다",
+        "Dataflow는 오직 정적인(배치) 데이터만 처리할 수 있다",
+        "Dataflow는 시각화 전용 도구다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Dataflow는 Apache Beam 기반으로 배치와 스트리밍을 동일한 모델로 처리하는 것이 특징입니다.",
+      "concept_tags": ["dataflow"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "gcp_cdl_l2_u4_q003",
+      "type": "concept_matching_item",
+      "code": "IoT 센서 데이터를 실시간으로 수집해서 1분 단위 평균을 계산한 뒤, 그 결과를 분석 가능한 형태로 저장하고 싶음",
+      "prompt_ko": "이 파이프라인을 구성하는 올바른 순서는?",
+      "options": [
+        "Pub/Sub(수집) → Dataflow(1분 평균 계산·변환) → BigQuery(저장·분석)",
+        "BigQuery → Dataflow → Pub/Sub",
+        "Dataflow → Pub/Sub → BigQuery",
+        "순서는 중요하지 않다"
+      ],
+      "answer": 0,
+      "explanation_ko": "수집(Pub/Sub) → 처리(Dataflow) → 저장·분석(BigQuery)이 전형적인 스트리밍 파이프라인 순서입니다.",
+      "concept_tags": ["streaming_pipeline_order"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "gcp_cdl_l2_u4_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "BigQuery에 저장된 데이터를 시각화해서 실시간 리포트·대시보드를 만들고, 여러 사용자가 데이터에 쉽게 접근하도록(민주화) 해주는 BI 도구는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["Looker"],
+      "explanation_ko": "Looker는 데이터 접근을 조직 전반에 걸쳐 민주화하는 것이 핵심 가치입니다.",
+      "concept_tags": ["looker"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "gcp_cdl_l2_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "실시간 스트리밍 분석이 현대 비즈니스에 중요한 이유는?",
+      "options": [
+        "이상 거래 탐지, 실시간 개인화, 즉각적인 운영 모니터링처럼 지연 없이 신속한 대응이 필요한 의사결정을 가능하게 해주기 때문에",
+        "실시간 분석은 배치 분석보다 항상 비용이 저렴하기 때문에",
+        "실시간 분석은 실무에서 거의 쓰이지 않기 때문에",
+        "실시간 분석은 정확도가 항상 더 낮기 때문에"
+      ],
+      "answer": 0,
+      "explanation_ko": "실시간성은 사기 탐지, 재고 관리, 개인화 추천 등에서 비즈니스 가치를 좌우하는 핵심 요소입니다.",
+      "concept_tags": ["streaming_analytics_value"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "gcp_cdl_l2_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "\"Looker가 데이터 접근을 민주화한다\"는 표현이 의미하는 것은?",
+      "options": [
+        "전문 데이터 엔지니어가 아니어도, 조직 내 다양한 구성원이 쉽게 데이터를 조회·시각화하고 의사결정에 활용할 수 있게 해준다는 것",
+        "Looker가 무료로 제공된다는 뜻이다",
+        "Looker는 데이터 접근을 오직 관리자에게만 허용한다는 뜻이다",
+        "이 표현은 실질적인 의미가 없는 마케팅 문구일 뿐이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "데이터 접근을 넓혀서, 비전문가도 셀프서비스로 인사이트를 얻을 수 있게 하는 것이 '민주화'의 의미입니다.",
+      "concept_tags": ["looker_democratization"],
+      "difficulty": "challenge"
+    }
+  ]
+}

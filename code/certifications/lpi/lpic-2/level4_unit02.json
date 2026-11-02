@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-2-202",
+  "level": 4,
+  "unit": 2,
+  "unit_title": "LDAP 디렉터리 서비스",
+  "rule_summary_ko": "LDAP 디렉터리는 DN(Distinguished Name)으로 각 항목의 위치를 계층적으로 표현합니다(예: uid=jkim,ou=People,dc=example,dc=com — 가장 구체적인 것이 왼쪽, 트리의 뿌리로 갈수록 오른쪽). 새 항목은 LDIF(LDAP Data Interchange Format) 텍스트 형식으로 작성해서 ldapadd로 추가하며, dn·objectClass·속성들을 순서대로 정의합니다. ldapsearch는 -b(검색을 시작할 기준 DN)와 필터((uid=jkim) 같은)를 지정해서 원하는 항목만 찾아내며, 뒤에 속성 이름을 나열하면 그 속성만 선택적으로 반환합니다.",
+  "examples": [
+    { "code": "dn: uid=jkim,ou=People,dc=example,dc=com", "note_ko": "가장 왼쪽(uid=jkim)이 가장 구체적인 항목 자신이고, 오른쪽으로 갈수록 상위(부모) 컨테이너 — People 조직단위, example.com 도메인 순" },
+    { "code": "ldapsearch -x -b \"dc=example,dc=com\" \"(uid=jkim)\" cn mail", "note_ko": "dc=example,dc=com 아래에서 uid가 jkim인 항목을 찾아, cn과 mail 속성만 반환" }
+  ],
+  "questions": [
+    {
+      "id": "lpic2_l4_u2_q001",
+      "type": "concept_matching_item",
+      "code": "dn: uid=jkim,ou=People,dc=example,dc=com",
+      "prompt_ko": "이 DN(Distinguished Name)에서 가장 구체적인(자기 자신을 가리키는) 부분은 어디입니까?",
+      "options": [
+        "가장 왼쪽의 uid=jkim — LDAP DN은 왼쪽이 가장 구체적이고 오른쪽으로 갈수록 상위 컨테이너를 나타낸다",
+        "가장 오른쪽의 dc=com이 가장 구체적이다(설명이 반대)",
+        "모든 부분이 동등하게 구체적이다",
+        "DN에는 구체성의 개념이 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "파일 경로와 반대로, LDAP DN은 '자기 자신 → 부모 → 조부모' 순서로 왼쪽에서 오른쪽으로 읽습니다.",
+      "concept_tags": ["ldap_dn_structure"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic2_l4_u2_q002",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "LDAP에 새 항목을 추가할 때 사용하는, dn·objectClass·속성을 정의하는 텍스트 형식의 이름은 무엇입니까? (영문 약자로 입력)",
+      "expected_answers": ["LDIF"],
+      "explanation_ko": "LDIF(LDAP Data Interchange Format)는 LDAP 항목을 텍스트로 표현하는 표준 형식입니다.",
+      "concept_tags": ["ldif_format"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l4_u2_q003",
+      "type": "concept_matching_item",
+      "code": "ldapsearch -x -b \"dc=example,dc=com\" \"(uid=jkim)\" cn mail",
+      "prompt_ko": "이 명령의 마지막에 있는 'cn mail'이 하는 역할은?",
+      "options": [
+        "검색 결과에서 cn과 mail 속성만 선택적으로 반환하도록 지정한다(다른 속성은 결과에 포함되지 않음)",
+        "cn과 mail이라는 이름의 새 항목을 추가한다",
+        "이 부분은 검색 필터의 일부다(uid=jkim과 동일한 역할)",
+        "이 옵션은 아무 의미도 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "필터 뒤에 속성 이름을 나열하면, 필요한 정보만 골라서 받아올 수 있어 효율적입니다.",
+      "concept_tags": ["ldapsearch_attribute_selection"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l4_u2_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "ldapsearch의 -b 옵션이 지정하는 것은?",
+      "options": [
+        "검색을 시작할 기준이 되는 DN(base DN) — 이 지점 아래의 하위 트리에서 검색이 이뤄진다",
+        "검색 결과의 개수 제한(limit)",
+        "바인드(로그인)할 때 사용할 비밀번호",
+        "-b는 ldapsearch에서 지원되지 않는 옵션이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "-b는 디렉터리 트리의 어느 지점부터 검색을 시작할지 정하는 필수 옵션입니다.",
+      "concept_tags": ["ldapsearch_base_dn"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l4_u2_q005",
+      "type": "concept_matching_item",
+      "code": "ldapadd -x -D \"cn=admin,dc=example,dc=com\" -w 비밀번호 -f newentry.ldif",
+      "prompt_ko": "이 명령이 하는 일은?",
+      "options": [
+        "newentry.ldif 파일에 정의된 새 항목(들)을 관리자 계정으로 인증해서 LDAP 디렉터리에 추가한다",
+        "기존 항목을 검색만 하고 아무것도 추가하지 않는다(ldapsearch와 혼동)",
+        "LDAP 서버 자체를 삭제한다",
+        "비밀번호를 변경하는 명령이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "-D는 인증할 계정(bind DN), -w는 비밀번호, -f는 추가할 내용이 담긴 LDIF 파일을 지정합니다.",
+      "concept_tags": ["ldapadd_command"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l4_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "조직이 사용자 계정·연락처 정보를 LDAP 같은 중앙 디렉터리 서비스로 관리하는 것의 이점은?",
+      "options": [
+        "여러 시스템·애플리케이션이 각자 별도의 사용자 데이터베이스를 유지하는 대신, 하나의 신뢰할 수 있는 중앙 저장소를 공유해서 일관성 있게 인증·조회할 수 있다",
+        "LDAP은 오직 이메일 주소만 저장할 수 있는 제한적인 시스템이다",
+        "중앙 디렉터리는 오히려 관리를 더 복잡하게 만들 뿐 이점이 없다",
+        "LDAP은 소규모 조직에서는 사용할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "중앙집중식 디렉터리는 여러 시스템 간 사용자 정보의 일관성과 재사용성을 크게 높여줍니다.",
+      "concept_tags": ["ldap_centralized_directory_benefit"],
+      "difficulty": "practice"
+    }
+  ]
+}

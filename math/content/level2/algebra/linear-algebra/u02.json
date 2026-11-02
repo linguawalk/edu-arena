@@ -1,0 +1,128 @@
+{
+ "no": 2,
+ "title": "가우스 소거법과 LU 분해",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "피벗을 이용해 행렬을 상삼각행렬 U로 소거하고 후진대입으로 해를 구할 수 있다.",
+  "소거 과정을 기본행렬의 곱으로 나타내고 A = LU로 분해할 수 있다.",
+  "피벗이 0이 되는 경우 행 교환이 필요한지, 행렬이 특이한지 판단할 수 있다."
+ ],
+ "checklist": [
+  "피벗: 소거에 쓰는 대각선의 0이 아닌 수",
+  "승수 lᵢⱼ = (지울 성분) ÷ (피벗)",
+  "기본(소거)행렬 Eᵢⱼ와 치환행렬 P(행 교환)",
+  "상삼각행렬 U와 후진대입",
+  "A = LU: L은 대각 1, 대각 아래에 승수를 그대로 저장",
+  "특이행렬: 행 교환으로도 피벗을 얻을 수 없음 → 해가 없거나 무수히 많음",
+  "계산량: n × n 소거는 약 n³/3번의 곱셈"
+ ],
+ "advice": [
+  "소거법 자체는 중학교부터 해 온 가감법과 같습니다. 새로운 것은 그 과정을 '행렬의 곱'으로 기록한다는 점입니다. EA = U를 뒤집으면 A = LU가 되고, L 안에는 소거에 쓴 승수가 부호도 바뀌지 않고 그대로 들어간다는 사실이 이 단원의 가장 중요한 발견입니다.",
+  "직접 3 × 3 행렬 두세 개를 손으로 끝까지 소거해 보는 것을 권합니다. 계산 실수보다 더 흔한 막힘은 '왜 L이 이렇게 깔끔하게 나오는가'인데, E₃₂E₃₁E₂₁의 역행렬을 곱하는 순서가 뒤집히면서 승수들이 서로 섞이지 않기 때문입니다. Strang 4강에서 이 점을 짚어 줍니다."
+ ],
+ "resources": [
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "18.06 Linear Algebra (Gilbert Strang, 2010년 봄)",
+   "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+   "lang": "영어",
+   "part": "2강 Elimination with matrices, 4강 Factorization into A = LU"
+  },
+  {
+   "kind": "lecture",
+   "provider": "KOCW",
+   "title": "선형대수 (한양대학교 이상화, 2013년 2학기)",
+   "url": "http://www.kocw.net/home/search/kemView.do?kemId=977757",
+   "lang": "한국어",
+   "part": "2강 1차 연립방정식과 가우스 소거법"
+  },
+  {
+   "kind": "book",
+   "provider": "Wellesley-Cambridge Press",
+   "title": "Gilbert Strang, Introduction to Linear Algebra (5판)",
+   "part": "2.2~2.6절"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "A = [[2, 1], [6, 5]]를 소거할 때 둘째 행에서 첫째 행을 몇 배 빼야 할까요? (승수 l₂₁)",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "l₂₁ = (지울 성분) ÷ (피벗) = 6 ÷ 2 = 3\n둘째 행 − 3 × 첫째 행 = (0, 5 − 3) = (0, 2)\n원리: 승수는 L의 (2, 1) 성분으로 그대로 들어갑니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위의 A = LU에서 U의 (2, 2) 성분(둘째 피벗)은?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "U = [[2, 1], [0, 5 − 3 × 1]] = [[2, 1], [0, 2]]\n둘째 피벗 2\n확인: 피벗의 곱 2 × 2 = 4 = det A (= 10 − 6)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "x + 2y = 5, 3x + 8y = 17을 소거법으로 풀면 x = {{1}}, y = {{2}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "3"
+     ]
+    },
+    {
+     "id": 2,
+     "answers": [
+      "1"
+     ]
+    }
+   ],
+   "explanation": "승수 3: (3x + 8y) − 3(x + 2y) → 2y = 17 − 15 = 2\n후진대입: y = 1, x = 5 − 2 = 3",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "소거 도중 피벗 자리에 0이 나오면 어떻게 해야 하고, 무엇을 의심해야 할까요?",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "교환",
+      "바꾸",
+      "치환"
+     ],
+     [
+      "특이",
+      "해가 없",
+      "무수히",
+      "유일하지",
+      "역행렬이 없"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "아래 행 중 그 열에 0이 아닌 수가 있는 행과 교환합니다(치환행렬 P). 교환할 행이 없으면 행렬이 특이해서 해가 없거나 무수히 많습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "algebra",
+ "subject": "linear-algebra",
+ "id": "l2-algebra-linear-algebra-u02"
+}

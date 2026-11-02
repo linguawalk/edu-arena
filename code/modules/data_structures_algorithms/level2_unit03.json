@@ -1,0 +1,91 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "큐 개념과 FIFO",
+  "questions": [
+    {
+      "id": "dsa_l2_u03_q001",
+      "type": "predict_output",
+      "code": "from collections import deque\n\nqueue = deque()\nqueue.append(1)\nqueue.append(2)\nqueue.append(3)\nprint(queue.popleft())",
+      "prompt_en": "What is printed? (Queue follows First-In-First-Out order.)",
+      "prompt_ko": "출력 결과는? (큐는 선입선출(FIFO) 순서를 따릅니다.)",
+      "options": ["3", "1", "2", "오류"],
+      "answer": 1,
+      "explanation_en": "A queue removes the earliest-added element first (FIFO); 1 was added first, so it's the first to leave via popleft().",
+      "explanation_ko": "큐는 가장 먼저 추가된 요소를 먼저 제거합니다(FIFO). 1이 가장 먼저 추가됐으므로 popleft()로 가장 먼저 나갑니다.",
+      "concept_tags": ["queue", "fifo"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l2_u03_q002",
+      "type": "fill_blank",
+      "code": "from collections import ____\n\nqueue = deque()\nqueue.append(1)\nprint(queue.popleft())",
+      "prompt_en": "Fill in the blank with the module that provides an efficient double-ended queue.",
+      "prompt_ko": "효율적인 양방향 큐를 제공하는 모듈을 빈칸에 채우세요.",
+      "options": ["deque", "queue", "list", "array"],
+      "answer": 0,
+      "explanation_en": "collections.deque provides O(1) append and pop from both ends, making it the efficient choice for queue implementations, unlike a plain list.",
+      "explanation_ko": "collections.deque는 양쪽 끝에서 O(1) 추가/제거를 제공해서, 일반 리스트와 달리 큐 구현에 효율적인 선택입니다.",
+      "concept_tags": ["queue", "deque"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l2_u03_q003",
+      "type": "predict_output",
+      "code": "nums = [1, 2, 3]\nfirst = nums.pop(0)\nprint(first)\nprint(nums)",
+      "prompt_en": "What is printed? (A plain list can also act as a queue, but with a cost.)",
+      "prompt_ko": "출력 결과는? (일반 리스트도 큐처럼 쓸 수 있지만 대가가 있습니다.)",
+      "options": ["1\\n[2, 3]", "3\\n[1, 2]", "오류", "1\\n[1, 2, 3]"],
+      "answer": 0,
+      "explanation_en": "pop(0) removes and returns the first element, giving correct FIFO behavior on a plain list — but every remaining element must shift left, making this O(n) rather than deque's O(1).",
+      "explanation_ko": "pop(0)은 첫 번째 요소를 제거하고 반환해서, 일반 리스트에서도 올바른 FIFO 동작을 보입니다 — 다만 남은 모든 요소가 왼쪽으로 밀려야 해서, deque의 O(1)과 달리 O(n)입니다.",
+      "concept_tags": ["queue", "list_as_queue"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l2_u03_q004",
+      "type": "predict_output",
+      "code": "import time\nfrom collections import deque\n\nlst = list(range(80000))\nstart = time.perf_counter()\nfor _ in range(1000):\n    lst.pop(0)\nlist_time = time.perf_counter() - start\n\ndq = deque(range(80000))\nstart = time.perf_counter()\nfor _ in range(1000):\n    dq.popleft()\ndeque_time = time.perf_counter() - start\n\nprint(list_time > deque_time)",
+      "prompt_en": "What is printed? (Comparing measured time for 1000 dequeue operations.)",
+      "prompt_ko": "출력 결과는? (1000번의 dequeue 연산에 걸린 실제 시간을 비교합니다.)",
+      "options": ["True", "False", "오류", "정확히 같음"],
+      "answer": 0,
+      "explanation_en": "This confirms the theoretical difference in practice: repeated list.pop(0) (O(n) each) is measurably — often dramatically — slower than repeated deque.popleft() (O(1) each).",
+      "explanation_ko": "이는 이론적 차이를 실제로 확인해줍니다. 반복적인 list.pop(0)(각각 O(n))은 반복적인 deque.popleft()(각각 O(1))보다 측정 가능할 정도로 — 종종 극적으로 — 느립니다.",
+      "concept_tags": ["queue", "deque", "list_as_queue"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l2_u03_q005",
+      "type": "predict_output",
+      "code": "from collections import deque\n\nqueue = deque()\nqueue.append('A')\nqueue.append('B')\nqueue.append('C')\nprint(queue.popleft())\nprint(queue.popleft())\nprint(queue)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["A\\nB\\ndeque(['C'])", "C\\nB\\ndeque(['A'])", "오류", "A\\nA\\ndeque(['B', 'C'])"],
+      "answer": 0,
+      "explanation_en": "Two popleft() calls remove elements in the order they were added: A first, then B, leaving only C in the queue.",
+      "explanation_ko": "popleft() 두 번은 추가된 순서대로 요소를 제거합니다: A가 먼저, 그다음 B, 큐에는 C만 남습니다.",
+      "concept_tags": ["queue", "fifo"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l2_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "각 용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "FIFO", "definition": "First-In-First-Out — 가장 먼저 넣은 것이 가장 먼저 나옴" },
+        { "term": "enqueue (append)", "definition": "큐의 뒤쪽에 요소를 추가" },
+        { "term": "dequeue (popleft)", "definition": "큐의 앞쪽에서 요소를 제거하고 반환" },
+        { "term": "deque가 list보다 나은 이유", "definition": "양쪽 끝에서 모두 O(1) — list.pop(0)의 O(n)과 달리 요소를 밀 필요가 없음" }
+      ],
+      "explanation_en": "The stack/queue distinction (LIFO vs FIFO) is really about which end of the data you access — this single design choice determines whether you get a call-stack-like or a waiting-line-like behavior.",
+      "explanation_ko": "스택/큐의 구분(LIFO vs FIFO)은 사실 데이터의 어느 쪽 끝에 접근하는지에 관한 것입니다 — 이 하나의 설계 선택이 콜 스택 같은 동작을 얻을지, 대기열 같은 동작을 얻을지를 결정합니다.",
+      "concept_tags": ["queue", "fifo", "deque"],
+      "difficulty": "practice"
+    }
+  ]
+}

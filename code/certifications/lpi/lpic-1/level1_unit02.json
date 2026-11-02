@@ -1,0 +1,100 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-1-101",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "RPM 계열 패키지 관리: rpm과 yum/dnf",
+  "rule_summary_ko": "rpm은 Red Hat 계열(RHEL, Fedora, CentOS 등)의 저수준 패키지 관리 도구로, -qa(설치된 전체 패키지 조회), -ql(특정 패키지가 설치한 파일 목록), -qf(특정 파일이 어느 패키지 소속인지 역조회), -qi(패키지 정보 조회) 옵션을 사용합니다. dpkg와 마찬가지로 rpm은 의존성을 자동으로 해결하지 않으며, yum(또는 최신 배포판의 dnf)이 저장소 연동과 의존성 자동 해결을 담당하는 고수준 도구입니다.",
+  "examples": [
+    { "code": "rpm -qf /usr/bin/python3", "note_ko": "/usr/bin/python3 파일이 어느 패키지에 의해 설치됐는지 역으로 찾아줌" },
+    { "code": "rpm -ql httpd", "note_ko": "httpd 패키지가 시스템에 설치한 모든 파일 목록을 나열함" }
+  ],
+  "questions": [
+    {
+      "id": "lpic1_l1_u2_q001",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "시스템에 설치된 모든 RPM 패키지의 목록을 보여주는 옵션은 무엇입니까? (예: -qX 형식이면 X만 입력)",
+      "expected_answers": ["a", "-qa", "qa"],
+      "explanation_ko": "rpm -qa(query all)는 설치된 모든 패키지를 나열합니다.",
+      "concept_tags": ["rpm_qa"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic1_l1_u2_q002",
+      "type": "concept_matching_item",
+      "code": "rpm -qf /usr/bin/python3",
+      "prompt_ko": "이 명령어가 하는 일은?",
+      "options": [
+        "/usr/bin/python3 파일이 어느 패키지에 의해 설치됐는지 역으로 찾아준다",
+        "python3 패키지를 새로 설치한다",
+        "python3 패키지가 설치한 모든 파일을 나열한다(-ql과 혼동)",
+        "python3 패키지를 삭제한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "-qf(query file)는 파일 경로로부터 소속 패키지를 역추적합니다.",
+      "concept_tags": ["rpm_qf"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l1_u2_q003",
+      "type": "concept_matching_item",
+      "code": "rpm -ql httpd",
+      "prompt_ko": "이 명령어가 하는 일은?",
+      "options": [
+        "httpd 패키지가 시스템에 설치한 모든 파일의 목록을 보여준다",
+        "httpd라는 이름을 가진 파일이 어느 패키지 소속인지 찾는다(-qf와 혼동)",
+        "httpd 패키지를 설치한다",
+        "httpd 서비스를 시작한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "-ql(query list)은 패키지가 설치한 파일 목록을 나열합니다(dpkg -L과 동일한 목적).",
+      "concept_tags": ["rpm_ql"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l1_u2_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "rpm과 yum(또는 dnf)의 관계는 dpkg와 apt의 관계와 비교했을 때 어떻습니까?",
+      "options": [
+        "동일한 패턴이다 — rpm/dpkg는 저수준(개별 파일 직접 처리, 의존성 미해결)이고, yum(dnf)/apt는 고수준(저장소 연동, 의존성 자동 해결)이다",
+        "완전히 반대되는 패턴이다",
+        "rpm 계열에는 고수준 도구가 존재하지 않는다",
+        "두 계열은 서로 아무 유사점이 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Red Hat 계열과 Debian 계열은 이름은 다르지만 '저수준+고수준' 2계층 구조라는 동일한 설계 패턴을 따릅니다.",
+      "concept_tags": ["rpm_yum_vs_dpkg_apt"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic1_l1_u2_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "특정 패키지의 이름·버전·크기·설치 날짜 등 상세 정보를 보여주는 rpm 쿼리 옵션은 무엇입니까? (예: -qX 형식이면 X만 입력)",
+      "expected_answers": ["i", "-qi", "qi"],
+      "explanation_ko": "rpm -qi(query info)는 패키지의 메타데이터 정보를 상세히 보여줍니다.",
+      "concept_tags": ["rpm_qi"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l1_u2_q006",
+      "type": "concept_matching_item",
+      "code": "rpm -ivh package.rpm 로 패키지를 직접 설치하려는데, 이 패키지가 의존하는 다른 패키지가 시스템에 없음",
+      "prompt_ko": "이 상황에서 어떤 일이 일어납니까?",
+      "options": [
+        "rpm은 의존성을 자동으로 해결하지 않으므로, 의존성 오류로 설치가 실패할 수 있다 — 이런 경우 yum/dnf 사용이 권장된다",
+        "rpm이 자동으로 인터넷에서 의존성 패키지를 찾아 설치해준다",
+        "의존성과 무관하게 항상 정상적으로 설치된다",
+        "rpm은 이런 상황을 아예 인식하지 못하고 무한 대기한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "저수준 도구인 rpm은 의존성 자동 해결 기능이 없어, dpkg와 마찬가지로 이런 문제를 겪을 수 있습니다.",
+      "concept_tags": ["rpm_no_dependency_resolution"],
+      "difficulty": "challenge"
+    }
+  ]
+}

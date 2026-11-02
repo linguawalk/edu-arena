@@ -1,0 +1,130 @@
+{
+ "no": 7,
+ "title": "순차 회로의 해석과 설계",
+ "hours": 5,
+ "after": [
+  6
+ ],
+ "objectives": [
+  "순차 회로에서 상태 방정식, 상태표, 상태도를 구할 수 있다.",
+  "무어형과 밀리형 상태 기계를 구분할 수 있다.",
+  "문제 설명에서 상태도를 그리고 플립플롭으로 순차 회로를 설계할 수 있다."
+ ],
+ "checklist": [
+  "순차 회로 = 조합 회로 + 기억 소자(플립플롭)",
+  "상태 방정식 → 상태표 → 상태도",
+  "무어형(출력이 현재 상태만으로 결정), 밀리형(현재 상태와 입력으로 결정)",
+  "필요한 플립플롭 수 = ⌈log₂(상태 수)⌉",
+  "상태 할당: 2진, 그레이, 원-핫(상태 수만큼 플립플롭)",
+  "설계 절차: 상태도 → 상태표 → 상태 할당 → 여기표 → 간소화 → 회로",
+  "순서 검출기(예: 1011 검출)"
+ ],
+ "advice": [
+  "순차 회로 설계는 이 과목에서 가장 어렵지만 가장 쓸모 있는 부분입니다. 핵심은 문제를 '기억해야 할 상황(상태)'으로 나누는 것입니다. 예를 들어 1011 검출기라면 '지금까지 1, 10, 101까지 맞았다'가 각각 상태가 됩니다. 상태도를 먼저 정확히 그리면 나머지 단계(상태표, 여기표, 간소화)는 앞 단원에서 익힌 기계적인 절차입니다.",
+  "무어형과 밀리형의 차이는 출력이 상태에만 붙어 있느냐, 상태 전이(화살표)에 붙어 있느냐로 그림에서 바로 구별됩니다. 같은 문제를 두 방식으로 설계해 상태 수와 출력 타이밍을 비교해 보세요. 이 상태 기계 개념은 임베디드 프로그래밍과 통신 프로토콜에서도 그대로 쓰입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Mano · Ciletti, Digital Design (장 제목으로 표기)",
+   "part": "Synchronous Sequential Logic 장(analysis, state reduction, design procedure)"
+  },
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Harris · Harris, Digital Design and Computer Architecture (장 제목으로 표기)",
+   "part": "Sequential Logic Design 장의 유한 상태 기계 절"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "finite state machines 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "상태가 5개인 상태 기계를 2진 상태 할당으로 만들려면 플립플롭이 최소 몇 개 필요할까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2² = 4 < 5 ≤ 2³ = 8이므로 3개입니다.",
+   "hint": "⌈log₂ 5⌉입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "출력이 현재 상태만으로 정해지는 상태 기계를 {{1}}형이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "무어",
+      "Moore",
+      "moore"
+     ]
+    }
+   ],
+   "explanation": "출력이 현재 상태와 입력에 함께 의존하면 밀리형입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "같은 5상태 기계를 원-핫 할당으로 만들면 플립플롭이 몇 개 필요할까요?",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "원-핫은 상태마다 플립플롭 하나를 씁니다.\n플립플롭은 많지만 다음 상태 논리가 간단해집니다.",
+   "hint": "상태 수만큼입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "순차 회로를 설계하는 절차를 순서대로 설명하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "상태도"
+     ],
+     [
+      "상태표"
+     ],
+     [
+      "상태 할당",
+      "할당"
+     ],
+     [
+      "여기표",
+      "플립플롭 입력"
+     ],
+     [
+      "간소화",
+      "카르노"
+     ]
+    ],
+    "min_groups_matched": 4
+   },
+   "model_answer": "먼저 문제를 상태로 나누어 상태도를 그리고, 이를 상태표로 옮깁니다. 각 상태에 2진 코드를 붙이는 상태 할당을 한 뒤, 사용할 플립플롭의 여기표로 플립플롭 입력식을 구하고 카르노 맵으로 간소화해 회로를 완성합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "digital-circuits",
+ "id": "l2-electronics-digital-circuits-u07"
+}

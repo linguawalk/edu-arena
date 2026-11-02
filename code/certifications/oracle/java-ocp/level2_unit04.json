@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "java-ocp-17",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "sealed 클래스와 레코드",
+  "rule_summary_ko": "sealed 클래스·인터페이스(Java 17)는 permits 절에 명시한 클래스만 상속·구현할 수 있도록 제한합니다. 목록에 없는 클래스가 구현을 시도하면 컴파일 오류가 발생합니다. record(Java 16)는 불변 데이터를 담는 클래스를 간결하게 선언하게 해주며, 생성자·getter·equals()·hashCode()·toString()을 컴파일러가 자동으로 생성해줍니다.",
+  "examples": [
+    { "code": "sealed interface Shape permits Circle, Square {}", "note_ko": "Circle, Square 외의 다른 클래스가 Shape를 구현하려 하면 컴파일 오류" },
+    { "code": "record Circle(double radius) implements Shape {}", "note_ko": "생성자·getter(radius())·equals()·toString()이 자동 생성됨" }
+  ],
+  "questions": [
+    {
+      "id": "java_ocp_l2_u4_q001",
+      "type": "concept_matching_item",
+      "code": "sealed interface Shape permits Circle {}\nrecord Circle(double radius) implements Shape {}\nrecord Triangle(double base, double height) implements Shape {}",
+      "prompt_ko": "Triangle이 permits 목록에 없는 상태로 Shape를 구현하려 하면 어떻게 됩니까?",
+      "options": [
+        "정상적으로 컴파일된다",
+        "컴파일 오류 발생 — sealed 타입은 permits에 명시된 클래스만 구현·상속을 허용한다",
+        "런타임 예외가 발생한다",
+        "경고만 발생하고 정상 실행된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "sealed는 허용된 하위 타입의 집합을 컴파일 시점에 엄격히 제한합니다.",
+      "concept_tags": ["sealed_class"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l2_u4_q002",
+      "type": "concept_matching_item",
+      "code": "record Circle(double radius) implements Shape {}\n// ...\nCircle c1 = new Circle(2);\nCircle c2 = new Circle(2);\nSystem.out.println(c1.equals(c2));",
+      "prompt_ko": "출력 결과는?",
+      "options": [
+        "false — 서로 다른 객체라서 equals는 false다",
+        "true — record는 컴파일러가 필드 값을 비교하는 equals()를 자동 생성해줘서, 내용이 같으면 true다",
+        "컴파일 오류 발생",
+        "NullPointerException 발생"
+      ],
+      "answer": 1,
+      "explanation_ko": "record는 모든 필드 값을 비교하는 equals()·hashCode()를 자동으로 생성해줍니다.",
+      "concept_tags": ["record_equals"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l2_u4_q003",
+      "type": "concept_matching_item",
+      "code": "record Circle(double radius) implements Shape {}\n// ...\nCircle c = new Circle(2);\nSystem.out.println(c.radius());",
+      "prompt_ko": "record의 필드 값을 꺼내는 메서드 이름 규칙으로 옳은 것은?",
+      "options": [
+        "getRadius() — 일반 자바빈 규칙과 동일하다",
+        "radius() — record는 getX() 대신 필드명과 똑같은 이름의 접근자 메서드를 생성한다",
+        "Radius() — 대문자로 시작한다",
+        "record는 필드 접근자를 자동 생성하지 않는다"
+      ],
+      "answer": 1,
+      "explanation_ko": "record의 접근자는 전통적인 getX() 방식이 아니라, 필드명과 동일한 이름(radius())으로 생성됩니다.",
+      "concept_tags": ["record_accessor"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l2_u4_q004",
+      "type": "concept_matching_item",
+      "code": "sealed interface Shape permits Circle, Square {}\n// Circle, Square는 각각 record로 정의됨\nstatic double area(Shape s) {\n    return switch (s) {\n        case Circle c -> Math.PI * c.radius() * c.radius();\n        case Square sq -> sq.side() * sq.side();\n    };\n}",
+      "prompt_ko": "이 switch 표현식에 default 절이 없어도 컴파일이 되는 이유는?",
+      "options": [
+        "switch 표현식은 원래 default가 항상 필요 없다",
+        "Shape가 sealed 타입이라 permits에 정의된 모든 하위 타입(Circle, Square)이 컴파일 시점에 정해져 있어, 이 두 case만으로 모든 경우를 다뤘다는 것(exhaustive)을 컴파일러가 알 수 있기 때문에",
+        "이 코드는 사실 컴파일 오류다",
+        "record 타입은 switch에서 default가 필요 없다는 별도 규칙 때문에"
+      ],
+      "answer": 1,
+      "explanation_ko": "sealed 타입과 switch 패턴 매칭을 결합하면, 컴파일러가 '모든 경우를 다뤘는지(exhaustiveness)'를 검증해줘서 안전하게 default를 생략할 수 있습니다.",
+      "concept_tags": ["sealed_class", "switch_pattern_matching", "exhaustiveness"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_ocp_l2_u4_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "sealed 클래스·인터페이스에서, 상속·구현을 허용할 클래스 목록을 명시하는 키워드는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["permits"],
+      "explanation_ko": "permits 절에 나열된 클래스만 sealed 타입을 상속·구현할 수 있습니다.",
+      "concept_tags": ["permits_clause"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l2_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "record가 일반 클래스와 비교해 갖는 근본적인 목적은?",
+      "options": [
+        "가변(mutable) 데이터를 다루기 위한 것",
+        "불변(immutable) 데이터를 담는 클래스를, 생성자·접근자·equals·hashCode·toString을 직접 작성할 필요 없이 간결하게 선언하기 위한 것",
+        "record는 일반 클래스보다 항상 실행 속도가 빠르다는 것 외에는 차이가 없다",
+        "record는 상속을 위해 설계된 것이다"
+      ],
+      "answer": 1,
+      "explanation_ko": "record는 '데이터를 담는 것'이 주 목적인 클래스의 보일러플레이트 코드를 줄여주기 위해 도입되었습니다.",
+      "concept_tags": ["record_purpose"],
+      "difficulty": "practice"
+    }
+  ]
+}

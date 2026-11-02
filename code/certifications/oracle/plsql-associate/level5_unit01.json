@@ -1,0 +1,103 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 5,
+  "unit": 1,
+  "unit_title": "패키지 명세부와 본문",
+  "rule_summary_ko": "패키지는 명세부(specification, 필수)와 본문(body, 명세부에 커서·서브프로그램이 있으면 필수)으로 구성됩니다. 명세부는 외부에서 접근 가능한 공개(public) 항목만 선언하는 인터페이스이고, 본문은 그 공개 항목들을 실제로 구현하며 외부에서 볼 수 없는 비공개(private) 항목도 선언할 수 있습니다. 명세부를 바꾸지 않고 본문만 수정하면, 그 패키지를 사용하는 외부 코드는 영향받지 않습니다(캡슐화).",
+  "examples": [
+    { "code": "CREATE PACKAGE emp_pkg IS\n    PROCEDURE hire_employee(...);\nEND emp_pkg;", "note_ko": "명세부 — hire_employee가 외부에서 호출 가능한 공개 프로시저임을 선언" },
+    { "code": "CREATE PACKAGE BODY emp_pkg IS\n    v_internal_counter NUMBER; -- 비공개(본문에만 선언, 명세부에 없음)\n    PROCEDURE hire_employee(...) IS BEGIN ... END;\nEND emp_pkg;", "note_ko": "본문 — 명세부의 hire_employee를 실제로 구현하고, 외부에서 볼 수 없는 v_internal_counter도 선언" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l5_u1_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "패키지 명세부(specification)의 역할은?",
+      "options": [
+        "외부에서 접근 가능한(공개) 항목들의 인터페이스를 선언한다",
+        "모든 구현 코드를 담고 있다",
+        "패키지의 이름만 지정할 뿐 아무 내용도 없다",
+        "명세부는 선택 사항이라 생략할 수 있다"
+      ],
+      "answer": 0,
+      "explanation_ko": "명세부는 '무엇을 제공하는가'를 선언하는 공개 인터페이스이며, 패키지에 항상 필요합니다.",
+      "concept_tags": ["package_specification"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l5_u1_q002",
+      "type": "concept_matching_item",
+      "code": "CREATE PACKAGE BODY emp_pkg IS\n    v_secret NUMBER; -- 명세부에는 없고 본문에만 선언됨\n    ...\nEND;\n-- 외부에서 emp_pkg.v_secret 접근 시도",
+      "prompt_ko": "명세부에 선언되지 않고 본문에만 선언된 v_secret을 외부에서 emp_pkg.v_secret으로 접근하려고 하면?",
+      "options": [
+        "정상적으로 접근된다",
+        "컴파일 오류 발생 — 본문에만 선언된 항목은 비공개(private)라서 패키지 외부에서 접근할 수 없다",
+        "v_secret이 자동으로 공개된다",
+        "런타임에만 오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "명세부에 없고 본문에만 있는 항목은 그 패키지 내부에서만 사용 가능한 비공개 항목입니다.",
+      "concept_tags": ["private_package_item"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l5_u1_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "패키지 명세부에 커서나 서브프로그램(프로시저·함수)이 선언되어 있다면, 본문(body)은 어떻게 됩니까?",
+      "options": [
+        "본문이 필요 없다", "본문이 반드시 있어야 하며, 그 커서·서브프로그램을 실제로 구현해야 한다", "본문은 선택 사항이다", "본문 대신 다른 패키지가 대신 구현해야 한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "명세부에서 선언만 하고 실제 구현(쿼리 정의, 코드 본문)은 반드시 본문에 있어야 합니다.",
+      "concept_tags": ["package_body_required"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l5_u1_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "명세부는 그대로 두고 본문의 구현 코드만 수정했을 때, 이 패키지를 사용하는 외부 애플리케이션은 어떤 영향을 받습니까?",
+      "options": [
+        "외부 애플리케이션도 반드시 함께 수정해야 한다",
+        "영향을 받지 않는다 — 명세부(인터페이스)가 그대로라면, 본문의 내부 구현이 바뀌어도 외부에서 보기엔 동일하게 작동한다(캡슐화)",
+        "외부 애플리케이션이 더 이상 그 패키지를 호출할 수 없게 된다",
+        "패키지 이름이 자동으로 바뀐다"
+      ],
+      "answer": 1,
+      "explanation_ko": "이것이 패키지 명세부/본문 분리의 핵심 이점인 캡슐화(encapsulation)입니다.",
+      "concept_tags": ["package_encapsulation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l5_u1_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "패키지의 두 구성 요소 중, 외부에서 접근 가능한 공개 인터페이스를 선언하는 부분은 무엇입니까? (한글로 입력)",
+      "expected_answers": ["명세부"],
+      "explanation_ko": "명세부(specification)는 패키지의 공개 인터페이스입니다.",
+      "concept_tags": ["package_specification"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l5_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "패키지를 사용하는 이유(장점)로 가장 적절한 것은?",
+      "options": [
+        "관련된 프로시저·함수·변수·예외 등을 하나의 논리적 단위로 묶어서 모듈성과 재사용성, 구현 은닉(캡슐화)을 높일 수 있다",
+        "패키지는 프로시저나 함수보다 항상 실행 속도가 느리다",
+        "패키지는 하나의 프로시저만 담을 수 있다",
+        "패키지는 비공개 항목을 가질 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "관련 기능을 논리적으로 묶고, 구현 세부사항을 숨길 수 있다는 것이 패키지의 핵심 가치입니다.",
+      "concept_tags": ["package_benefits"],
+      "difficulty": "intro"
+    }
+  ]
+}

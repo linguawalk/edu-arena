@@ -1,0 +1,97 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 6,
+  "unit": 1,
+  "unit_title": "DML 트리거 기초",
+  "rule_summary_ko": "일반 DML 트리거는 네 가지 시점 중 하나에서 실행됩니다: BEFORE STATEMENT(문장 실행 전, 한 번), AFTER STATEMENT(문장 실행 후, 한 번), BEFORE EACH ROW(영향받는 각 행 처리 전), AFTER EACH ROW(각 행 처리 후). BEFORE/AFTER 트리거는 테이블에만 정의할 수 있고 뷰에는 정의할 수 없습니다(뷰에는 INSTEAD OF 트리거를 사용). 한 문장이 여러 트리거를 발동시키면, 문장 수준 트리거가 먼저, 그다음 행 수준 트리거가 실행되는 순서를 따릅니다.",
+  "examples": [
+    { "code": "CREATE TRIGGER trg_before_ins\nBEFORE INSERT ON employees\nFOR EACH ROW\nBEGIN\n    ...\nEND;", "note_ko": "FOR EACH ROW가 있으면 행 수준(row-level) 트리거 — 삽입되는 각 행마다 한 번씩 실행됨" },
+    { "code": "CREATE TRIGGER trg_before_ins_stmt\nBEFORE INSERT ON employees\nBEGIN\n    ...\nEND;", "note_ko": "FOR EACH ROW가 없으면 문장 수준(statement-level) 트리거 — 몇 개의 행이 영향받든 딱 한 번만 실행됨" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l6_u1_q001",
+      "type": "concept_matching_item",
+      "code": "INSERT INTO employees SELECT * FROM new_employees; -- 100개 행이 삽입됨",
+      "prompt_ko": "employees 테이블에 FOR EACH ROW가 있는 BEFORE INSERT 트리거가 있을 때, 100개 행이 삽입되면 이 트리거는 몇 번 실행됩니까?",
+      "options": [
+        "1번", "100번 — 행 수준 트리거는 영향받는 각 행마다 한 번씩 실행된다", "0번", "10000번"
+      ],
+      "answer": 1,
+      "explanation_ko": "FOR EACH ROW가 지정된 행 수준 트리거는 영향받는 행의 개수만큼 반복 실행됩니다.",
+      "concept_tags": ["row_level_trigger"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l6_u1_q002",
+      "type": "concept_matching_item",
+      "code": "INSERT INTO employees SELECT * FROM new_employees; -- 100개 행이 삽입됨",
+      "prompt_ko": "같은 상황에서, FOR EACH ROW가 없는(문장 수준) BEFORE INSERT 트리거는 몇 번 실행됩니까?",
+      "options": [
+        "100번", "1번 — 문장 수준 트리거는 영향받는 행 수와 무관하게 그 SQL 문장당 딱 한 번만 실행된다", "0번", "행마다 두 번씩"
+      ],
+      "answer": 1,
+      "explanation_ko": "문장 수준 트리거는 전체 문장 실행 전후로 딱 한 번만 발동됩니다.",
+      "concept_tags": ["statement_level_trigger"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l6_u1_q003",
+      "type": "concept_matching_item",
+      "code": "CREATE TRIGGER trg_view\nBEFORE INSERT ON my_view -- 뷰에 직접 BEFORE 트리거 시도\nFOR EACH ROW\nBEGIN ... END;",
+      "prompt_ko": "일반 뷰(my_view)에 BEFORE INSERT 트리거를 직접 만들려고 하면?",
+      "options": [
+        "정상적으로 생성된다",
+        "오류 발생 — BEFORE/AFTER 트리거는 테이블에만 정의할 수 있으며, 뷰에서 DML을 가로채려면 INSTEAD OF 트리거를 사용해야 한다",
+        "자동으로 INSTEAD OF 트리거로 변환된다",
+        "뷰 자체가 테이블로 자동 변환된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "뷰에 대한 DML 가로채기는 INSTEAD OF 트리거의 역할이며, 일반 BEFORE/AFTER는 테이블 전용입니다.",
+      "concept_tags": ["before_after_table_only"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l6_u1_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "하나의 INSERT 문장이 문장 수준 BEFORE 트리거와 행 수준 BEFORE 트리거를 둘 다 발동시킬 때, 실행 순서는?",
+      "options": [
+        "행 수준 트리거가 먼저, 그다음 문장 수준 트리거", "문장 수준 트리거가 먼저 실행된 뒤, 각 행에 대해 행 수준 트리거가 실행된다", "동시에 실행된다", "무작위 순서로 실행된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "문장 수준(BEFORE STATEMENT)이 먼저, 그다음 각 행에 대한 행 수준(BEFORE EACH ROW) 처리가 이어집니다.",
+      "concept_tags": ["trigger_firing_order"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l6_u1_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "트리거를 행 수준(row-level)으로 만들 때, CREATE TRIGGER 문에 추가로 명시하는 절은 무엇입니까? (영문 세 단어로 입력)",
+      "expected_answers": ["FOR EACH ROW"],
+      "explanation_ko": "FOR EACH ROW가 있으면 행 수준, 없으면 문장 수준 트리거가 됩니다.",
+      "concept_tags": ["for_each_row"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l6_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "트리거를 사용하는 대표적인 목적은?",
+      "options": [
+        "테이블 구조를 정의하기 위해",
+        "특정 이벤트(INSERT·UPDATE·DELETE 등)가 발생할 때 자동으로 업무 규칙을 강제하거나, 감사 로그를 남기거나, 파생 값을 계산하는 등의 부가 작업을 수행하기 위해",
+        "SELECT 쿼리의 결과를 정렬하기 위해",
+        "사용자 세션을 종료하기 위해"
+      ],
+      "answer": 1,
+      "explanation_ko": "트리거는 데이터 변경 이벤트에 자동으로 반응하는 로직을 구현하는 대표적인 도구입니다.",
+      "concept_tags": ["trigger_purpose"],
+      "difficulty": "intro"
+    }
+  ]
+}

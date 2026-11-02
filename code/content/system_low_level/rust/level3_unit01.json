@@ -1,0 +1,96 @@
+{
+  "language": "rust",
+  "category": "system_low_level",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "열거형 (enum)",
+  "questions": [
+    {
+      "id": "rust_l3_u01_q001",
+      "type": "predict_output",
+      "code": "enum Direction {\n    North,\n    South,\n    East,\n    West,\n}\n\nfn describe(d: Direction) -> &'static str {\n    match d {\n        Direction::North => \"북쪽\",\n        Direction::South => \"남쪽\",\n        Direction::East => \"동쪽\",\n        Direction::West => \"서쪽\",\n    }\n}\n\nlet d = Direction::North;\nprintln!(\"{}\", describe(d));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["North", "북쪽", "Direction::North", "오류"],
+      "answer": 1,
+      "explanation_en": "match compares d against each enum variant; since d is Direction::North, it matches the first arm and returns 북쪽.",
+      "explanation_ko": "match는 d를 각 열거형 값과 비교합니다. d가 Direction::North이므로 첫 번째 분기와 일치해 북쪽을 반환합니다.",
+      "concept_tags": ["enum", "match"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l3_u01_q002",
+      "type": "predict_output",
+      "code": "enum Shape {\n    Circle(f64),\n    Rectangle(f64, f64),\n}\n\nfn area(s: &Shape) -> f64 {\n    match s {\n        Shape::Circle(r) => 3.14 * r * r,\n        Shape::Rectangle(w, h) => w * h,\n    }\n}\n\nlet c = Shape::Circle(2.0);\nprintln!(\"{}\", area(&c));",
+      "prompt_en": "What is printed? (Note that this enum's variants carry data.)",
+      "prompt_ko": "출력 결과는? (이 열거형의 각 값이 데이터를 담고 있는 점에 주의하세요.)",
+      "options": ["2", "12.56", "3.14", "오류"],
+      "answer": 1,
+      "explanation_en": "Unlike C's plain enums, Rust enum variants can hold data; Circle(2.0) carries a radius of 2.0, and match extracts it as r for the area calculation: 3.14*2*2=12.56.",
+      "explanation_ko": "단순한 값만 갖는 C의 enum과 달리, Rust의 열거형 값은 데이터를 담을 수 있습니다. Circle(2.0)은 반지름 2.0을 담고 있고, match가 이를 r로 추출해 넓이를 계산합니다: 3.14*2*2=12.56.",
+      "concept_tags": ["enum", "enum_with_data"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l3_u01_q003",
+      "type": "fill_blank",
+      "code": "enum Shape {\n    Circle(f64),\n    ____(f64, f64),\n}\n// 가로, 세로 두 값을 가진 직사각형을 표현해야 함",
+      "prompt_en": "Fill in the blank with a reasonable variant name for a rectangle holding width and height.",
+      "prompt_ko": "가로와 세로 두 값을 담는 직사각형 변형의 이름을 빈칸에 채우세요.",
+      "options": ["Rectangle", "Square", "Circle", "Shape"],
+      "answer": 0,
+      "explanation_en": "Rectangle(f64, f64) is a variant that carries two associated values, unlike Circle which carries just one.",
+      "explanation_ko": "Rectangle(f64, f64)은 Circle이 하나의 값만 담는 것과 달리 두 개의 연관 값을 담는 변형입니다.",
+      "concept_tags": ["enum", "enum_with_data"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l3_u01_q004",
+      "type": "error_finding",
+      "code": "enum Shape {\n    Circle(f64),\n    Rectangle(f64, f64),\n}\n\nfn area(s: &Shape) -> f64 {\n    match s {\n        Shape::Circle(r) => 3.14 * r * r,\n    }\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "Circle(r) 패턴 문법 오류",
+        "match가 Shape::Rectangle 경우를 처리하지 않아서, 모든 경우를 다루지 않았다는 컴파일 오류(non-exhaustive)가 발생함",
+        "area 함수 반환형 오류",
+        "문제 없음, Rectangle이 전달되면 그냥 무시됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Rust's match requires every possible variant to be handled (exhaustiveness); missing the Rectangle arm causes a compile error rather than silently ignoring it at runtime.",
+      "explanation_ko": "Rust의 match는 가능한 모든 값을 반드시 처리해야 합니다(완전성 검사). Rectangle 분기가 빠지면 실행 시점에 조용히 무시되는 게 아니라 컴파일 오류가 발생합니다.",
+      "concept_tags": ["enum", "match", "exhaustiveness"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l3_u01_q005",
+      "type": "predict_output",
+      "code": "enum Shape {\n    Circle(f64),\n    Rectangle(f64, f64),\n}\n\nfn area(s: &Shape) -> f64 {\n    match s {\n        Shape::Circle(r) => 3.14 * r * r,\n        Shape::Rectangle(w, h) => w * h,\n    }\n}\n\nlet r = Shape::Rectangle(3.0, 4.0);\nprintln!(\"{}\", area(&r));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["7", "12", "3.14", "오류"],
+      "answer": 1,
+      "explanation_en": "The Rectangle arm destructures w and h from the associated data, computing w * h = 3.0 * 4.0 = 12.",
+      "explanation_ko": "Rectangle 분기는 연관 데이터에서 w와 h를 추출해 w * h = 3.0 * 4.0 = 12를 계산합니다.",
+      "concept_tags": ["enum", "match", "enum_with_data"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l3_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "enum", "definition": "여러 값 중 하나를 표현하는 타입 — Rust에서는 각 값이 데이터를 가질 수 있음" },
+        { "term": "데이터를 담는 variant", "definition": "Circle(f64)처럼 열거형의 각 값이 연관된 데이터를 함께 가지는 것" },
+        { "term": "match", "definition": "값의 모든 가능한 형태를 분기 처리하는 패턴 매칭 구문" },
+        { "term": "완전성 검사 (exhaustiveness)", "definition": "match가 모든 경우를 빠짐없이 처리하도록 컴파일러가 강제하는 것" }
+      ],
+      "explanation_en": "Rust's enums are more powerful than C's, since they can carry different types and amounts of data per variant, and match's exhaustiveness check prevents forgetting a case.",
+      "explanation_ko": "Rust의 열거형은 각 값마다 다른 종류와 양의 데이터를 담을 수 있어 C의 enum보다 강력하며, match의 완전성 검사는 경우를 빠뜨리는 실수를 막아줍니다.",
+      "concept_tags": ["enum", "match", "exhaustiveness"],
+      "difficulty": "practice"
+    }
+  ]
+}

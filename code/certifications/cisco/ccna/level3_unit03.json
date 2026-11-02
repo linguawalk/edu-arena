@@ -1,0 +1,105 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "cisco",
+  "exam": "ccna-200-301",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "OSPF 단일 영역 기초",
+  "rule_summary_ko": "OSPF는 링크 상태(link-state) 라우팅 프로토콜로, 이웃(neighbor) 관계를 맺기 위해 Hello 패킷을 주고받습니다(기본값: Hello 10초·Dead 40초, Dead는 Hello의 4배). 이웃 간 Hello 타이머·Dead 타이머·영역 ID·인증 정보가 모두 일치해야 인접(adjacency)을 맺을 수 있습니다. 다중 접근(브로드캐스트) 네트워크에서는 지정 라우터(DR)와 백업 지정 라우터(BDR)를 선출해서 불필요한 트래픽을 줄이며, 우선순위가 같으면 가장 높은 라우터 ID를 가진 라우터가 DR로 선출됩니다. OSPF의 비용(cost) 메트릭은 기준 대역폭(기본 100Mbps)을 인터페이스 실제 대역폭으로 나눠 계산하며, 값이 낮을수록 더 선호되는 경로입니다.",
+  "examples": [
+    { "code": "라우터 A(우선순위 1, RID 1.1.1.1), 라우터 B(우선순위 1, RID 4.4.4.4)가 같은 세그먼트에 있음", "note_ko": "우선순위가 같으므로, 더 높은 라우터 ID(4.4.4.4)를 가진 라우터 B가 DR로 선출됨" }
+  ],
+  "questions": [
+    {
+      "id": "ccna_l3_u3_q001",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "OSPF의 기본 Hello 타이머(브로드캐스트 네트워크 기준)는 몇 초입니까? (숫자만 입력)",
+      "expected_answers": ["10"],
+      "explanation_ko": "브로드캐스트·점대점 네트워크에서 기본 Hello 간격은 10초입니다.",
+      "concept_tags": ["ospf_hello_timer"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l3_u3_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "OSPF Dead 타이머와 Hello 타이머의 관계는?",
+      "options": [
+        "Dead 타이머는 일반적으로 Hello 타이머의 4배(예: Hello 10초 → Dead 40초)로, 이 시간 동안 Hello를 받지 못하면 이웃이 다운된 것으로 간주한다",
+        "Dead 타이머와 Hello 타이머는 항상 동일한 값이다",
+        "Dead 타이머가 Hello 타이머보다 항상 짧다",
+        "Dead 타이머는 Hello 타이머와 무관한 별개의 값이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "4번의 Hello를 놓치면 이웃 관계가 끊긴 것으로 판단합니다.",
+      "concept_tags": ["ospf_dead_timer"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l3_u3_q003",
+      "type": "concept_matching_item",
+      "code": "두 라우터의 OSPF Hello 타이머는 같지만, 영역 ID(Area ID) 설정이 서로 다름",
+      "prompt_ko": "이 두 라우터는 OSPF 이웃 관계(adjacency)를 맺을 수 있습니까?",
+      "options": [
+        "그렇다. Hello 타이머만 일치하면 나머지 설정은 무관하다",
+        "아니다. 영역 ID를 포함해 Hello 타이머·Dead 타이머·인증 정보 등이 모두 일치해야 이웃 관계를 맺을 수 있다",
+        "영역 ID는 OSPF 이웃 관계와 전혀 무관한 설정이다",
+        "OSPF는 영역이라는 개념 자체가 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "여러 파라미터가 동시에 일치해야만 정상적으로 인접 관계가 형성됩니다.",
+      "concept_tags": ["ospf_adjacency_requirements"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l3_u3_q004",
+      "type": "concept_matching_item",
+      "code": "같은 세그먼트의 라우터들이 모두 동일한 우선순위(priority)를 가지고 있음",
+      "prompt_ko": "이 경우 DR(지정 라우터)은 어떻게 선출됩니까?",
+      "options": [
+        "가장 높은 라우터 ID(Router ID)를 가진 라우터가 DR로 선출된다",
+        "가장 낮은 라우터 ID를 가진 라우터가 선출된다(설명이 반대)",
+        "먼저 부팅된 라우터가 항상 DR이 된다",
+        "우선순위가 같으면 DR을 선출할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "우선순위가 동률일 때는 라우터 ID가 타이브레이커 역할을 합니다.",
+      "concept_tags": ["dr_election_tiebreaker"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l3_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "인터페이스의 OSPF 우선순위(priority)를 0으로 설정하면?",
+      "options": [
+        "그 라우터는 절대 DR이나 BDR로 선출되지 않는다",
+        "그 라우터가 항상 DR로 우선 선출된다",
+        "우선순위 0은 OSPF에서 아무 의미가 없다",
+        "그 인터페이스는 OSPF를 아예 사용할 수 없게 된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "우선순위 0은 DR/BDR 선출 과정에서 완전히 제외되겠다는 명시적 설정입니다.",
+      "concept_tags": ["ospf_priority_zero"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l3_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "OSPF의 비용(cost) 메트릭이 계산되는 방식은?",
+      "options": [
+        "기준 대역폭(기본 100Mbps)을 인터페이스의 실제 대역폭(Mbps)으로 나눠서 계산하며, 값이 낮을수록 더 선호되는 경로다",
+        "인터페이스의 물리적 길이(미터)로 계산한다",
+        "홉 수만으로 계산한다(RIP과 혼동)",
+        "비용은 항상 고정된 값이며 대역폭과 무관하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "대역폭이 높을수록(더 빠른 링크일수록) OSPF 비용은 낮아져 더 선호됩니다.",
+      "concept_tags": ["ospf_cost_calculation"],
+      "difficulty": "challenge"
+    }
+  ]
+}

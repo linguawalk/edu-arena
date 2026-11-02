@@ -1,0 +1,267 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "mathstr",
+  "work": "풀이",
+  "track_title": "수학·문자열",
+  "chapter": {
+    "id": "info-s2-mathstr-ch03",
+    "no": 3,
+    "title": "해싱"
+  },
+  "lesson": {
+    "id": "info-s2-mathstr-ch03-l01",
+    "no": 1,
+    "title": "문자열을 수로 바꾸기",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "수학·문자열",
+      "해싱"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "다항식 해시",
+      "body": [
+        "두 문자열이 같은지 확인하려면 글자를 하나씩 비교해 O(길이)가 듭니다. 문자열을 수 하나로 바꿔 두면 수 두 개만 비교해 O(1)에 확인할 수 있습니다. 이렇게 바꾸는 함수를 해시 함수라 합니다.",
+        "가장 널리 쓰는 것은 다항식 해시입니다. 글자 값을 a = 1, b = 2, …로 두고 문자열을 B진법 수처럼 읽은 뒤 M으로 나눈 나머지를 씁니다. B = 10이면 \"cab\"는 3, 1, 2를 이어 읽어 312입니다.",
+        "같은 문자열은 해시가 늘 같습니다. 그러나 수의 범위가 M개뿐이라 다른 문자열이 같은 해시를 가질 수도 있습니다. 이 위험을 어떻게 다루는지도 이 챕터에서 봅니다."
+      ],
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "B = 31, M = 10⁹ + 7일 때 \"abc\"의 해시는?",
+      "answer": "1026",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1 × 31² + 2 × 31 + 3입니다.",
+      "explanation": "글자 값은 a = 1, b = 2, c = 3입니다.\n1 × 961 + 2 × 31 + 3을 계산합니다.\n= 1026이고 M보다 작아 그대로입니다.",
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "B = 31, M = 10⁹ + 7일 때 \"ba\"의 해시는?",
+      "answer": "63",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2 × 31 + 1입니다.",
+      "explanation": "글자 값은 b = 2, a = 1입니다.\n2 × 31 + 1을 계산합니다.\n= 63이며 \"ab\"의 해시 1 × 31 + 2 = 33과 달라 순서를 구별합니다.",
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "서로 다른 두 문자열의 해시가 같아지는 일을 해시 {{1}}이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "충돌"
+          ]
+        }
+      ],
+      "hint": "부딪친다는 뜻의 말입니다.",
+      "explanation": "해시 값은 0부터 M − 1까지 M가지뿐입니다.\n문자열은 그보다 훨씬 많으므로 다른 문자열이 같은 값을 가질 수 있습니다.\n이를 해시 충돌이라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "B와 M 고르기",
+      "body": [
+        "B는 글자 종류 수보다 큰 수로 고릅니다. 그래야 M으로 나누기 전에는 서로 다른 문자열이 서로 다른 수가 됩니다. 소문자만 쓰면 26보다 큰 31이나 37을 자주 씁니다.",
+        "M은 10⁹ + 7처럼 큰 소수를 씁니다. 나머지 값이 고르게 퍼져 충돌이 잘 일어나지 않고, 두 나머지의 곱이 10¹⁸ 안이라 long long으로 계산할 수 있습니다.",
+        "글자 값을 0부터 시작하면 \"a\", \"aa\", \"aaa\"의 해시가 모두 0이 되어 구별하지 못합니다. 그래서 1부터 시작합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "B = 10, M = 1000일 때 \"cab\"의 해시를 구하세요.",
+      "steps": [
+        "글자 값은 c = 3, a = 1, b = 2입니다.",
+        "h는 0 → 3 → 31 → 312로 바뀝니다.",
+        "312는 1000보다 작으므로 해시는 312입니다."
+      ],
+      "answer": "312",
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "B = 10, M = 1000일 때 \"abcd\"의 해시는?",
+      "answer": "234",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1234를 1000으로 나눈 나머지입니다.",
+      "explanation": "B = 10이면 글자 값 1, 2, 3, 4를 이어 읽어 1234입니다.\n1234를 1000으로 나눈 나머지를 구합니다.\n그래서 234입니다.",
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "B = 10, M = 1000일 때 \"bcd\"의 해시는?",
+      "answer": "234",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "234입니다.",
+      "explanation": "글자 값 2, 3, 4를 이어 읽으면 234입니다.\n234는 1000보다 작아 그대로입니다.\n\"abcd\"와 해시가 같으므로 M이 작으면 충돌이 쉽게 생깁니다.",
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "글자 값을 a = 0, b = 1, …로 두고 B = 31로 계산하면 \"aa\"의 해시는?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "0 × 31 + 0입니다.",
+      "explanation": "글자 값이 a = 0이면 \"aa\"의 해시는 0 × 31 + 0입니다.\n= 0으로, \"a\"의 해시 0과 같습니다.\n그래서 글자 값은 1부터 시작해야 길이가 다른 문자열을 구별합니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "다항식 해시에서 B를 글자 종류 수보다 크게 고르는 이유로 알맞은 것은? ① 계산을 빠르게 하려고 ② M으로 나누기 전에 서로 다른 문자열이 서로 다른 수가 되게 하려고 ③ 해시 값을 작게 하려고 ④ 음수를 막으려고",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "B진법에서 각 자리의 숫자가 B보다 작아야 합니다.",
+      "explanation": "글자 값이 모두 B보다 작으면 문자열은 B진법 수의 자릿수와 같아 서로 다른 문자열이 서로 다른 수가 됩니다.\n그래서 충돌은 M으로 나눌 때만 생깁니다.\n답은 2입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "B = 31, M = 10⁹ + 7일 때 \"zz\"의 해시는?",
+      "answer": "832",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "26 × 31 + 26입니다.",
+      "explanation": "다항식 해시는 글자 값을 B진법 자릿수로 보고 계산하며, z의 글자 값은 26입니다.\n26 × 31 + 26 = 806 + 26입니다.\n= 832입니다.",
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "다항식 해시는 문자열을 B진법 수로 읽고 M으로 나눈 나머지입니다. 글자 값은 1부터 시작하고, B는 글자 종류보다 크게, M은 큰 소수로 고릅니다.",
+        "같은 문자열은 해시가 같으므로, 해시가 다르면 문자열이 다릅니다. 해시가 같으면 거의 확실히 같지만 충돌 가능성이 남습니다.",
+        "해시를 구하는 데 O(길이), 두 해시를 비교하는 데 O(1)이 듭니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "B = 10, M = 1000일 때 \"bad\"의 해시는?",
+      "answer": "214",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "글자 값 2, 1, 4입니다.",
+      "explanation": "B = 10이면 글자 값을 이어 읽습니다.\nb = 2, a = 1, d = 4이므로 214입니다.\n1000보다 작아 해시는 214입니다.",
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "B = 31, M = 10⁹ + 7일 때 \"ab\"의 해시는?",
+      "answer": "33",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1 × 31 + 2입니다.",
+      "explanation": "다항식 해시는 앞 글자에 B를 곱한 뒤 다음 글자 값을 더하며, 글자 값은 a = 1, b = 2입니다.\n1 × 31 + 2를 계산합니다.\n= 33입니다.",
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "해시가 다르면 두 문자열은 반드시 다르지만, 해시가 같다고 두 문자열이 반드시 같지는 않은 이유를 설명하세요.",
+      "model_answer": [
+        "해시 함수는 같은 문자열에 늘 같은 값을 준다. 그래서 두 문자열이 같으면 해시도 같고, 대우로 해시가 다르면 문자열이 다르다.",
+        "해시 값은 0~M − 1의 M가지뿐인데, 길이가 긴 문자열은 그보다 훨씬 많다.",
+        "비둘기집 원리에 의해 서로 다른 두 문자열이 같은 해시를 갖는 경우가 반드시 있다.",
+        "그래서 해시가 같다는 것만으로는 문자열이 같다고 확신할 수 없다."
+      ],
+      "criteria": [
+        {
+          "text": "대우로 해시가 다르면 문자열이 다름을 보였다",
+          "points": 2
+        },
+        {
+          "text": "해시 값의 가짓수가 유한함을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "비둘기집 원리로 충돌이 있음을 보였다",
+          "points": 2
+        }
+      ],
+      "hint": "해시 값은 몇 가지인가요?"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "아래 코드가 h(s) = (s[0]·Bᵏ⁻¹ + … + s[k−1]) mod M을 계산함을 설명하세요.",
+      "model_answer": [
+        "불변식: 앞의 i글자를 처리한 뒤 h = (s[0]·Bⁱ⁻¹ + … + s[i−1]) mod M이다. 처음에는 i = 0이라 h = 0이다.",
+        "다음 글자를 처리하면 h·B는 각 항의 지수를 1씩 올리고, s[i]를 더하면 새 마지막 항이 생긴다.",
+        "나머지 연산은 덧셈과 곱셈에 대해 중간에 해도 결과가 같으므로 % M을 해도 불변식이 유지된다.",
+        "k글자를 모두 처리하면 h가 원하는 값이다."
+      ],
+      "criteria": [
+        {
+          "text": "불변식을 세웠다",
+          "points": 2
+        },
+        {
+          "text": "한 글자 처리로 유지됨을 보였다",
+          "points": 2
+        },
+        {
+          "text": "중간 나머지가 괜찮음을 밝혔다",
+          "points": 2
+        }
+      ],
+      "hint": "i글자를 처리한 뒤 h가 무엇인지 정하세요.",
+      "code": "long long h = 0;\nfor (char c : s)\n    h = (h * B + (c - 'a' + 1)) % M;      // 글자 값 a = 1, b = 2, …"
+    }
+  ]
+}

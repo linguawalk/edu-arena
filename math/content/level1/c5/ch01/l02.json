@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch01",
+    "no": 1,
+    "title": "여러 가지 순열"
+  },
+  "lesson": {
+    "id": "c5-ch01-l02",
+    "no": 2,
+    "title": "중복순열",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "이산조합"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "중복순열",
+      "body": [
+        "서로 다른 n개에서 중복을 허락해 r개를 늘어놓는 방법은 nΠr = nʳ입니다. 자리마다 n가지를 고를 수 있기 때문입니다.",
+        "순열에서는 한 번 쓴 것을 다시 쓸 수 없어 n, n − 1, n − 2, …로 줄어들었지만, 중복순열은 매번 n가지를 모두 고를 수 있습니다. 그래서 자리마다 n가지를 r번 곱해 nʳ입니다. 중복을 허락하므로 r이 n보다 커도 됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "서로 다른 3종류의 우표에서 중복을 허락해 4장을 골라 일렬로 붙이는 방법은?",
+      "answer": "81",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "우표를 붙일 자리 4곳마다 3종류 중 하나(중복 허용)\n3 × 3 × 3 × 3 = 3⁴\n= 81\n원리: 중복순열 nΠr = nʳ"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "₂Π₅의 값은?",
+      "answer": "32",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "₂Π₅ = 2⁵\n= 32\n원리: 2가지 중 하나를 5번 고르기(예: 동전 5개의 앞뒤)\n확인: 앞면과 뒷면이 나오는 5번의 결과를 늘어놓는 경우의 수와 같습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "함수의 개수",
+      "body": [
+        "원소가 m개인 X에서 원소가 n개인 Y로의 함수는 nᵐ개입니다. X의 원소마다 Y의 원소를 하나씩 고르기 때문입니다.",
+        "함수는 정의역의 원소마다 공역의 원소를 하나씩 대응시키는 것입니다. 정의역의 m개 원소가 각각 n가지 중 하나를 고르고, 같은 값을 골라도 되므로 중복순열 nᵐ입니다. 일대일함수는 같은 값을 고를 수 없어 순열 nPm이 됩니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "X = {1, 2, 3}에서 Y = {a, b, c}로의 함수 중 f(1) = a인 것은 몇 개일까요?",
+      "steps": [
+        "f(1)은 a로 정해짐: 1가지",
+        "f(2), f(3)은 각각 3가지 중 자유롭게",
+        "1 × 3 × 3 = 9",
+        "비교: 전체 함수는 3³ = 27개"
+      ],
+      "answer": "9개"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "X = {1, 2, 3}에서 Y = {a, b, c, d}로의 함수는 몇 개일까요?",
+      "answer": "64",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "정의역의 원소 1, 2, 3이 각각 공역 4개 중 하나를 고름\n4 × 4 × 4 = 4³\n= 64\n원리: 함수의 개수는 (공역의 원소 수)^(정의역의 원소 수)"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "X = {1, 2, 3, 4}에서 Y = {a, b}로의 함수는 몇 개일까요?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "정의역의 원소 4개가 각각 2가지 중 하나를 고름\n2⁴\n= 16\n주의: 공역의 원소 수가 밑, 정의역의 원소 수가 지수"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "숫자 만들기",
+      "body": [
+        "중복을 허락하면 자리마다 쓸 수 있는 숫자를 곱합니다. 맨 앞자리 0과 짝수 조건을 먼저 처리합니다.",
+        "숫자 만들기에서는 '같은 숫자를 써도 되는가'를 먼저 확인합니다. 써도 되면 자리마다 독립적으로 고를 수 있어 곱하면 되고, 맨 앞자리의 0이나 끝자리의 짝수 같은 조건만 그 자리에서 선택지를 줄여 줍니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "0, 1, 2, 3, 4로 만드는 네 자리 짝수는? (같은 숫자 사용 가능)",
+      "steps": [
+        "맨 앞자리: 0 제외 4가지",
+        "끝자리: 0, 2, 4의 3가지",
+        "가운데 두 자리: 각각 5가지",
+        "4 × 5 × 5 × 3 = 300"
+      ],
+      "answer": "300개"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1, 2, 3으로 만들 수 있는 네 자리 수는? (같은 숫자 사용 가능)",
+      "answer": "81",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "네 자리 각각에 1, 2, 3 중 하나(중복 허용)\n3⁴\n= 81 (0이 없어 맨 앞자리 제한도 없음)\n원리: 중복을 허락하면 자리마다 독립적으로 고릅니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "0, 1, 2로 만들 수 있는 세 자리 수는? (같은 숫자 사용 가능)",
+      "answer": "18",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "맨 앞자리: 0 제외 1, 2의 2가지\n나머지 두 자리: 각각 3가지\n2 × 3 × 3 = 18\n원리: 조건이 있는 맨 앞자리부터 정합니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1, 2, 3, 4, 5로 만들 수 있는 세 자리 짝수는? (같은 숫자 사용 가능)",
+      "answer": "50",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "끝자리: 짝수 2, 4의 2가지\n앞의 두 자리: 각각 5가지\n5 × 5 × 2 = 50\n원리: 조건이 있는 끝자리부터 정합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "신호 만들기",
+      "body": [
+        "길이가 정해지지 않은 신호는 길이별로 중복순열을 구해 더합니다.",
+        "신호의 길이가 1, 2, 3, …으로 여러 가지이면 길이마다 경우가 겹치지 않으므로 합의 법칙으로 더합니다. 각 길이에서는 중복순열로 셉니다. 결과는 등비수열의 합이 됩니다. 모스 부호처럼 두 기호로 만드는 신호는 길이 n까지 2 + 4 + … + 2ⁿ가지입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "서로 다른 깃발 3종류를 1개에서 3개까지 일렬로 세워 만드는 신호는? (같은 종류 반복 가능)",
+      "answer": "39",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "길이별로 나눠 더하세요.",
+      "explanation": "길이 1: 3, 길이 2: 3² = 9, 길이 3: 3³ = 27\n길이가 다르면 겹치지 않으므로 합의 법칙\n3 + 9 + 27 = 39"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "점과 선을 1개에서 4개까지 늘어놓아 만드는 부호는 몇 가지일까요?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "길이별로 2ⁿ을 구해 더하세요.",
+      "explanation": "길이 1: 2, 2: 4, 3: 8, 4: 16\n합 2 + 4 + 8 + 16\n= 30\n원리: 길이가 다른 부호는 겹치지 않으므로 길이별 중복순열을 더합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "빈 곳이 없게 나누기",
+      "body": [
+        "서로 다른 공을 서로 다른 상자에 빈 상자 없이 넣는 경우는 전체에서 빈 상자가 있는 경우를 빼서 셉니다.",
+        "빈 상자가 없는 경우를 직접 세기는 어렵습니다. 대신 전체 3⁴에서 '적어도 한 상자가 빈' 경우를 뺍니다. 이때 두 상자가 빈 경우가 두 번 빠지므로 다시 더해 주는 포함배제의 원리를 씁니다: 3⁴ − 3 × 2⁴ + 3 × 1⁴."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "서로 다른 사탕 5개를 두 아이에게 모두 나눠 줄 때 두 아이 모두 적어도 한 개씩 받는 방법은?",
+      "steps": [
+        "사탕마다 받을 아이 2가지: 2⁵ = 32",
+        "한 아이가 모두 받는 경우 2가지",
+        "32 − 2 = 30",
+        "원리: 전체에서 빈 경우를 뺌"
+      ],
+      "answer": "30"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "서로 다른 공 4개를 서로 다른 상자 3개에 빈 상자 없이 넣는 방법은?",
+      "answer": "36",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "전체에서 빈 상자가 있는 경우를 빼세요.",
+      "explanation": "전체 3⁴ = 81에서 빈 상자가 있는 경우를 뺌\n한 상자 이상 빈 경우: 3 × 2⁴ − 3 × 1 = 45 (포함배제)\n81 − 45 = 36"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "5명이 후보 3명 중 한 명에게 각각 기명 투표하는 방법은?",
+      "answer": "243",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "사람마다 3가지씩입니다.",
+      "explanation": "5명이 각각 후보 3명 중 한 명을 고름(중복 허용)\n3⁵\n= 243\n원리: 투표하는 사람 기준으로 세면 중복순열입니다."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "X = {1, 2, 3}에서 Y = {1, 2, 3, 4}로의 함수 중 일대일함수가 아닌 것은 몇 개일까요?",
+      "answer": "40",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "전체에서 일대일함수를 빼세요.",
+      "explanation": "전체 함수 4³ = 64\n일대일함수 ₄P₃ = 24\n64 − 24 = 40\n원리: '일대일이 아닌 것'은 전체에서 일대일인 것을 빼서 셉니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "3명이 가위바위보를 한 번 할 때 나오는 경우는 모두 몇 가지일까요?",
+      "answer": "27",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "사람마다 3가지씩입니다.",
+      "explanation": "세 명이 각각 가위, 바위, 보 중 하나\n3³\n= 27\n원리: 사람마다 독립적으로 고르는 중복순열이므로 3을 세 번 곱합니다."
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "그중 비기는 경우(모두 같거나 모두 다름)는 몇 가지일까요?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 경우로 나눠 세세요.",
+      "explanation": "모두 같은 것 내기: 3가지\n모두 다른 것 내기: 3! = 6가지\n비기는 경우 3 + 6 = 9\n원리: 비기는 두 경우는 겹치지 않으므로 합의 법칙으로 더합니다."
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "1000보다 작은 자연수 중 모든 자리의 숫자가 홀수인 수는 몇 개일까요?",
+      "answer": "155",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "자릿수별로 나눠 세세요.",
+      "explanation": "홀수 숫자는 1, 3, 5, 7, 9의 5가지\n한 자리 5 + 두 자리 5² + 세 자리 5³ = 5 + 25 + 125\n= 155"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "중복순열과 순열의 차이를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "중복"
+          ],
+          [
+            "다시",
+            "여러 번",
+            "반복"
+          ],
+          [
+            "nʳ",
+            "n^r",
+            "줄어"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "순열은 한 번 쓴 것을 다시 쓸 수 없어 자리마다 고를 수 있는 것이 하나씩 줄지만, 중복순열은 같은 것을 여러 번 쓸 수 있어 자리마다 n가지로 같습니다. 그래서 중복순열은 nʳ입니다."
+    }
+  ]
+}

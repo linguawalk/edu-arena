@@ -1,0 +1,103 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 6,
+  "unit": 4,
+  "unit_title": "INSTEAD OF 트리거와 시스템 트리거",
+  "rule_summary_ko": "INSTEAD OF 트리거는 뷰에만 정의할 수 있으며(테이블에는 불가), 원래의 DML 문장을 실행하는 대신 트리거의 코드를 대신 실행합니다 — 조인이나 집계를 포함해 직접 수정할 수 없는 복잡한 뷰를 수정 가능하게 만드는 데 사용됩니다. 시스템 트리거는 DDL 문(CREATE, ALTER 등)이나 데이터베이스 이벤트(LOGON, LOGOFF, STARTUP, SHUTDOWN)에 반응하며, 스키마나 데이터베이스 단위로 정의됩니다. LOGON은 AFTER만, LOGOFF는 BEFORE만 의미가 있습니다. 트리거 안에서는 COMMIT·ROLLBACK·SAVEPOINT를 직접 실행할 수 없습니다(자율 트랜잭션을 쓰면 예외).",
+  "examples": [
+    { "code": "CREATE TRIGGER upd_view_trg\nINSTEAD OF UPDATE ON complex_view\nBEGIN\n    UPDATE base_table SET ... WHERE ...;\nEND;", "note_ko": "복잡한 뷰(조인 포함)에 대한 UPDATE 시도를 가로채서, 실제로는 기반 테이블에 직접 UPDATE를 실행" },
+    { "code": "CREATE TRIGGER hr_logon_trigger\nAFTER LOGON ON HR.SCHEMA\nBEGIN\n    INSERT INTO hr_users_log VALUES (USER, 'LOGON', SYSDATE);\nEND;", "note_ko": "HR 스키마 사용자가 로그온할 때마다 로그를 남기는 시스템 트리거" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l6_u4_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "INSTEAD OF 트리거는 어떤 객체에 정의할 수 있습니까?",
+      "options": [
+        "테이블에만", "뷰(view)에만 — 조인·집계를 포함한 복잡한 뷰처럼 직접 DML이 불가능한 뷰를 수정 가능하게 만드는 데 사용", "스키마에만", "데이터베이스 전체에만"
+      ],
+      "answer": 1,
+      "explanation_ko": "INSTEAD OF 트리거는 뷰 전용이며, 일반 BEFORE/AFTER는 테이블 전용입니다(서로 반대).",
+      "concept_tags": ["instead_of_trigger_view_only"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l6_u4_q002",
+      "type": "concept_matching_item",
+      "code": "CREATE TRIGGER upd_view_trg\nINSTEAD OF UPDATE ON complex_view\nBEGIN\n    UPDATE base_table SET col1 = :NEW.col1 WHERE id = :NEW.id;\nEND;\n-- UPDATE complex_view SET col1='X' WHERE id=1;",
+      "prompt_ko": "INSTEAD OF 트리거가 있는 상태에서 이 UPDATE 문을 실행하면 실제로 어떤 일이 일어납니까?",
+      "options": [
+        "complex_view에 직접 UPDATE가 시도되어 오류가 발생한다",
+        "실제 UPDATE 문 대신, 트리거 안의 코드(base_table에 대한 UPDATE)가 실행된다",
+        "아무 일도 일어나지 않는다",
+        "complex_view와 base_table 둘 다 UPDATE된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "'INSTEAD OF(대신에)'라는 이름 그대로, 원래 문장 대신 트리거 코드가 실행됩니다.",
+      "concept_tags": ["instead_of_trigger_behavior"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l6_u4_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "LOGON과 LOGOFF 시스템 트리거에 대해 옳은 설명은?",
+      "options": [
+        "LOGON은 AFTER만, LOGOFF는 BEFORE만 의미가 있다(각각 로그온 완료 후, 로그오프 시작 시점에 자연스럽게 대응)",
+        "LOGON과 LOGOFF 둘 다 BEFORE로만 정의할 수 있다",
+        "LOGON과 LOGOFF 둘 다 AFTER로만 정의할 수 있다",
+        "LOGON과 LOGOFF는 시스템 트리거로 정의할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "로그온은 완료된 뒤(AFTER)에, 로그오프는 시작되는 시점(BEFORE)에 트리거가 의미를 가집니다.",
+      "concept_tags": ["logon_logoff_trigger_timing"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l6_u4_q004",
+      "type": "concept_matching_item",
+      "code": "CREATE TRIGGER my_trg\nAFTER INSERT ON employees\nFOR EACH ROW\nBEGIN\n    INSERT INTO log_table VALUES (SYSDATE);\n    COMMIT; -- 트리거 안에서 COMMIT 시도\nEND;",
+      "prompt_ko": "트리거 본문 안에서 직접 COMMIT을 실행하려고 하면?",
+      "options": [
+        "정상적으로 커밋이 실행된다",
+        "일반적으로 허용되지 않는다 — 트리거 안에서는 COMMIT·ROLLBACK·SAVEPOINT를 직접 실행할 수 없으며, 필요하면 자율 트랜잭션(AUTONOMOUS_TRANSACTION)을 사용해야 한다",
+        "COMMIT이 조용히 무시된다",
+        "트리거가 무한 반복된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "트리거는 자신을 발동시킨 트랜잭션의 일부로 실행되므로, 그 트랜잭션을 직접 끝내는 명령을 함부로 실행할 수 없습니다.",
+      "concept_tags": ["trigger_no_commit"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l6_u4_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "DDL 문(CREATE, ALTER 등)이나 데이터베이스 이벤트(LOGON 등)에 반응하는, 특정 테이블이 아니라 스키마나 데이터베이스 단위로 정의되는 트리거를 무엇이라 합니까? (한글로 입력)",
+      "expected_answers": ["시스템 트리거", "시스템트리거"],
+      "explanation_ko": "시스템 트리거는 DML 트리거와 달리 테이블이 아닌 스키마·데이터베이스 수준의 이벤트에 반응합니다.",
+      "concept_tags": ["system_trigger"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l6_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "INSTEAD OF 트리거를 사용하는 대표적인 실용적 목적은?",
+      "options": [
+        "여러 테이블을 조인하거나 집계 함수를 포함해 직접 DML이 불가능한 복잡한 뷰에, 사용자가 마치 일반 테이블처럼 INSERT·UPDATE·DELETE를 할 수 있게 해주기 위해",
+        "테이블의 인덱스를 자동으로 생성하기 위해",
+        "SELECT 쿼리의 실행 속도를 높이기 위해",
+        "사용자 로그인을 막기 위해"
+      ],
+      "answer": 0,
+      "explanation_ko": "복잡한 뷰를 '수정 가능한 것처럼' 보이게 만드는 것이 INSTEAD OF 트리거의 핵심 용도입니다.",
+      "concept_tags": ["instead_of_trigger_purpose"],
+      "difficulty": "practice"
+    }
+  ]
+}

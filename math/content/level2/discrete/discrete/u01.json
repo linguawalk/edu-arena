@@ -1,0 +1,117 @@
+{
+ "no": 1,
+ "title": "알고리즘과 점근 분석",
+ "hours": 4,
+ "after": [],
+ "objectives": [
+  "알고리즘을 의사코드로 나타내고 연산 횟수를 셀 수 있다.",
+  "O, Ω, Θ 표기로 함수의 증가 속도를 비교할 수 있다.",
+  "탐색과 정렬 알고리즘의 복잡도를 설명할 수 있다."
+ ],
+ "checklist": [
+  "알고리즘의 조건: 유한성, 명확성, 입력과 출력",
+  "연산 횟수 세기와 반복문 분석",
+  "빅오 O: 위로 유계, Ω: 아래로 유계, Θ: 같은 증가 속도",
+  "증가 속도의 서열: log n < n < n log n < n² < 2ⁿ < n!",
+  "선형 탐색 O(n)과 이진 탐색 O(log n)",
+  "정렬: 버블 O(n²), 병합 O(n log n)"
+ ],
+ "advice": [
+  "점근 분석은 '입력이 아주 커질 때 무엇이 지배하는가'를 보는 방법입니다. 3n² + 100n + 5000에서 n이 커지면 3n²만 중요하고, 상수 3도 무시해 O(n²)으로 씁니다. 식을 정확히 계산하기보다 가장 빨리 자라는 항을 골라내는 감각을 기르세요.",
+  "이진 탐색이 왜 log n번인지(매번 절반으로 줄어든다), 이중 반복문이 왜 n²인지(1 + 2 + … + n)를 직접 세어 보는 것이 공식을 외우는 것보다 훨씬 오래 남습니다. 레벨1 코스 3의 수열의 합이 여기서 연산 횟수 계산으로 쓰입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Kenneth H. Rosen, Discrete Mathematics and Its Applications (8판)",
+   "part": "3장 Algorithms"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.042J Mathematics for Computer Science (Tom Leighton 강의, 2010년 가을, 전체 강의 노트 무료)",
+   "url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/",
+   "lang": "영어",
+   "part": "점근 표기와 함수의 증가 강의"
+  },
+  {
+   "kind": "lecture",
+   "provider": "KOCW",
+   "title": "이산수학 (가천대학교 김철연)",
+   "url": "http://www.kocw.net/home/cview.do?mty=p&kemId=1017495",
+   "lang": "한국어",
+   "part": "알고리즘과 복잡도"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "정렬된 1024개 원소에서 이진 탐색은 최악의 경우 범위를 몇 번 절반으로 줄이면 원소 하나가 남을까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "1024 = 2¹⁰이므로 10번",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "3n² + 5n + 7 = O(nᵏ)가 되는 가장 작은 자연수 k는?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "최고차항 3n²이 지배",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "for i = 1..10, for j = 1..(i − 1)의 안쪽 문장은 몇 번 실행될까요?",
+   "answer": "45",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "0 + 1 + … + 9 = 45 (= n(n − 1)/2, Θ(n²))",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "O(n log n) 알고리즘이 O(n²) 알고리즘보다 좋은 이유를 설명해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "n이 커",
+      "입력이 커",
+      "큰 입력"
+     ],
+     [
+      "느리게",
+      "덜",
+      "작",
+      "빠르"
+     ],
+     [
+      "log",
+      "로그"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "입력 크기 n이 커질수록 n log n은 n²보다 훨씬 느리게 증가하므로(log n이 n보다 매우 작음), 큰 입력에서 실행 시간이 훨씬 짧습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "discrete",
+ "subject": "discrete",
+ "id": "l2-discrete-discrete-u01"
+}

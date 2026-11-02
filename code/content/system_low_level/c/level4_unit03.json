@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 4,
+  "unit": 3,
+  "unit_title": "큐 구현",
+  "questions": [
+    {
+      "id": "c_l4_u03_q001",
+      "type": "predict_output",
+      "code": "int queue[5];\nint front = 0, rear = 0;\nqueue[rear++] = 10;\nqueue[rear++] = 20;\nqueue[rear++] = 30;\nprintf(\"%d\", queue[front++]);\nprintf(\"%d\", queue[front++]);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3020", "1020", "1030", "3010"],
+      "answer": 1,
+      "explanation_en": "A queue follows FIFO (First In, First Out); the first value enqueued (10) is dequeued first, then 20 — the order 10, 20, 30 comes back in the same order.",
+      "explanation_ko": "큐는 FIFO(First In, First Out) 방식입니다. 가장 먼저 넣은 값(10)이 가장 먼저 나오고, 그다음 20이 나옵니다. 넣은 순서(10, 20, 30) 그대로 꺼내집니다.",
+      "concept_tags": ["queue", "fifo"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l4_u03_q002",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "큐 (Queue)", "definition": "가장 먼저 넣은 것이 가장 먼저 나오는 자료구조 (FIFO)" },
+        { "term": "enqueue", "definition": "큐의 뒤쪽(rear)에 새 값을 추가하는 연산" },
+        { "term": "dequeue", "definition": "큐의 앞쪽(front)에서 값을 꺼내서 제거하는 연산" },
+        { "term": "front / rear", "definition": "각각 큐의 꺼낼 위치와 넣을 위치를 가리키는 인덱스" }
+      ],
+      "explanation_en": "Queues model real-world waiting lines and are used for task scheduling, printer queues, and breadth-first search, where order of arrival matters.",
+      "explanation_ko": "큐는 실제 줄서기를 모델링하며, 작업 스케줄링, 프린터 대기열, 너비 우선 탐색처럼 도착한 순서가 중요한 곳에 쓰입니다.",
+      "concept_tags": ["queue", "fifo", "enqueue", "dequeue"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l4_u03_q003",
+      "type": "fill_blank",
+      "code": "int queue[5];\nint front = 0, rear = 0;\n\nvoid enqueue(int value) {\n    queue[rear____] = value;\n}",
+      "prompt_en": "Fill in the blank so enqueue stores the value at rear, then advances rear.",
+      "prompt_ko": "enqueue가 rear 위치에 값을 저장한 뒤 rear를 증가시키도록 빈칸을 채우세요.",
+      "options": ["++", "--", "+1", "-1"],
+      "answer": 0,
+      "explanation_en": "Post-incrementing rear stores the value at the current rear position first, then moves rear forward to the next empty slot.",
+      "explanation_ko": "rear를 후위 증가시키면 현재 rear 위치에 먼저 값을 저장한 뒤, rear가 다음 빈 자리로 이동합니다.",
+      "concept_tags": ["queue", "enqueue"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l4_u03_q004",
+      "type": "error_finding",
+      "code": "int queue[3];\nint front = 0, rear = 0;\nqueue[rear++] = 10;\nqueue[rear++] = 20;\nqueue[rear++] = 30;\nqueue[rear++] = 40;",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "enqueue 순서가 잘못됨",
+        "queue 배열 크기가 3인데 4개의 값을 넣으려 해서, 마지막 enqueue가 배열 범위를 벗어남",
+        "front, rear 초기값이 잘못됨",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "The array can only hold indices 0-2, but the fourth enqueue attempts to write to queue[3], which is out of bounds.",
+      "explanation_ko": "배열은 인덱스 0~2까지만 담을 수 있는데, 네 번째 enqueue가 queue[3]에 쓰려고 시도해 범위를 벗어납니다. 스택과 마찬가지로 고정 크기 배열 큐에서 흔히 발생하는 문제입니다.",
+      "concept_tags": ["queue", "array", "out_of_bounds"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l4_u03_q005",
+      "type": "fill_blank",
+      "code": "int isEmpty(int front, int rear) {\n    return front == ____;\n}",
+      "prompt_en": "Fill in the blank to check whether the queue is empty.",
+      "prompt_ko": "큐가 비어있는지 확인하려면 빈칸에 무엇이 들어가야 할까요?",
+      "options": ["rear", "0", "-1", "front + 1"],
+      "answer": 0,
+      "explanation_en": "When front and rear point to the same position, there are no elements left to dequeue, meaning the queue is empty.",
+      "explanation_ko": "front와 rear가 같은 위치를 가리키면 더 이상 꺼낼 요소가 없다는 뜻이므로, 큐가 비어있는 상태입니다.",
+      "concept_tags": ["queue"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l4_u03_q006",
+      "type": "predict_output",
+      "code": "int stack[3]; int top = -1;\nstack[++top] = 10; stack[++top] = 20; stack[++top] = 30;\n\nint queue[3]; int front = 0, rear = 0;\nqueue[rear++] = 10; queue[rear++] = 20; queue[rear++] = 30;\n\nprintf(\"%d\", stack[top--]);\nprintf(\"%d\", queue[front++]);",
+      "prompt_en": "The same values (10, 20, 30) are pushed into a stack and enqueued into a queue. What is printed by popping the stack once and dequeuing the queue once?",
+      "prompt_ko": "스택과 큐에 똑같이 10, 20, 30을 넣었습니다. 스택에서 한 번 pop하고 큐에서 한 번 dequeue한 결과는?",
+      "options": ["1010", "3010", "3030", "1030"],
+      "answer": 1,
+      "explanation_en": "Popping the stack returns the last value pushed (30, LIFO), while dequeuing the queue returns the first value enqueued (10, FIFO) — the same insertion order produces different retrieval orders.",
+      "explanation_ko": "스택에서 pop하면 마지막에 넣은 값(30, LIFO)이 나오고, 큐에서 dequeue하면 처음 넣은 값(10, FIFO)이 나옵니다. 같은 순서로 넣었어도 꺼내는 순서는 서로 다릅니다.",
+      "concept_tags": ["stack", "queue", "lifo", "fifo"],
+      "difficulty": "challenge"
+    }
+  ]
+}

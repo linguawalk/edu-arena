@@ -1,0 +1,113 @@
+{
+ "no": 2,
+ "title": "응용 계층: HTTP, DNS, 이메일",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "HTTP 요청·응답, 지속·비지속 연결의 지연을 계산할 수 있다.",
+  "쿠키·캐시·CDN이 웹 성능과 상태 유지에 하는 역할을 설명할 수 있다.",
+  "DNS와 이메일(SMTP)의 동작을 설명할 수 있다."
+ ],
+ "checklist": [
+  "클라이언트–서버와 P2P",
+  "HTTP 메시지, 메서드, 상태 코드(레벨1 컴퓨터 챕터 8)",
+  "비지속 연결(객체마다 TCP 연결) vs 지속 연결",
+  "HTTP/2(다중화)와 HTTP/3(QUIC, UDP 기반)",
+  "쿠키와 상태 유지, 웹 캐시와 CDN",
+  "DNS 계층과 캐시, 레코드 종류(A, AAAA, CNAME, MX)",
+  "이메일: SMTP(전송), IMAP(조회)"
+ ],
+ "advice": [
+  "응용 계층은 사용자에게 가장 가깝고 가장 익숙한 계층입니다. 브라우저 개발자 도구의 네트워크 탭을 열고 웹 페이지 하나가 몇 개의 요청으로 이루어지는지, 각 요청의 상태 코드와 걸린 시간이 얼마인지 직접 확인해 보세요. 레벨1 컴퓨터 챕터 8에서 본 내용이 실제로 어떻게 보이는지 알 수 있습니다.",
+  "HTTP 지연 계산의 핵심은 '연결 맺기 1 RTT + 요청·응답 1 RTT'입니다. 비지속 연결에서 객체 10개를 받을 때와 지속 연결에서 받을 때를 비교해 보면 HTTP가 지속 연결과 다중화 방향으로 발전해 온 이유가 보입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Kurose · Ross, Computer Networking: A Top-Down Approach (번역본 『컴퓨터 네트워킹 하향식 접근』, 장 제목으로 표기)",
+   "part": "Application Layer 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 8 인터넷 원리(IP·DNS·HTTP)",
+   "url": "browse.html?c=c4#ch08",
+   "part": "레벨1 복습"
+  },
+  {
+   "kind": "web",
+   "provider": "MDN Web Docs",
+   "title": "HTTP 개요",
+   "url": "https://developer.mozilla.org/ko/docs/Web/HTTP",
+   "lang": "한국어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "비지속 HTTP로 기본 HTML 1개와 그 안의 이미지 10개를 차례로 받으면 몇 RTT가 걸릴까요? (객체마다 연결 1 RTT + 요청·응답 1 RTT, 전송 시간 무시)",
+   "answer": "22",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "객체 11개 × 2 RTT = 22 RTT",
+   "hint": "객체마다 2 RTT입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "웹 서버가 브라우저에 작은 식별 정보를 저장해 두고 다음 요청 때 돌려받아 상태를 유지하는 방법을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "쿠키",
+      "cookie"
+     ]
+    }
+   ],
+   "explanation": "HTTP 자체는 상태가 없어서 쿠키로 로그인 상태 등을 유지합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "메일 서버끼리 메일을 전달하는 SMTP의 기본 포트 번호는 얼마일까요?",
+   "answer": "25",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "SMTP는 25번 포트를 씁니다(사용자 제출용으로 587도 씀).",
+   "hint": "두 자리 수입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "도메인의 메일을 받을 서버를 지정하는 DNS 레코드 종류는 {{1}} 레코드입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "MX"
+     ]
+    }
+   ],
+   "explanation": "Mail eXchange의 줄임말입니다. IPv4 주소는 A, IPv6 주소는 AAAA 레코드입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "networks",
+ "id": "l2-computer-networks-u02"
+}

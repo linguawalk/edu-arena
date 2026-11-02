@@ -1,0 +1,274 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s1",
+  "track": "alg",
+  "work": "증명",
+  "track_title": "대수",
+  "chapter": {
+    "id": "math-s1-alg-ch03",
+    "no": 3,
+    "title": "다항식"
+  },
+  "lesson": {
+    "id": "math-s1-alg-ch03-l04",
+    "no": 4,
+    "title": "다항식의 값과 항등식",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "대수"
+    ],
+    "competition": "KMO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "근을 이용해 다항식을 정하기",
+      "body": [
+        "최고차항 계수가 1인 삼차식 P(x)가 P(1) = 1, P(2) = 2, P(3) = 3을 만족한다고 합시다. P(4)를 구하려면 P(x) − x를 봅니다.",
+        "P(x) − x는 x = 1, 2, 3에서 0이고, 최고차항 계수가 1인 삼차식이므로 (x − 1)(x − 2)(x − 3)과 같습니다. 그러면 P(4) = 3 × 2 × 1 + 4 = 10입니다.",
+        "핵심은 '주어진 값에서 0이 되는 다항식'을 만드는 것입니다. 차수가 n인 다항식은 근이 n개를 넘을 수 없으므로, 근을 n개 알고 최고차항 계수를 알면 다항식 전체가 정해집니다. 직접 계수를 연립해 구하는 것보다 훨씬 빠릅니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "최고차항 계수가 1인 삼차식 P(x)가 P(1) = 1, P(2) = 2, P(3) = 3을 만족할 때 P(4)는?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "P(x) − x = (x − 1)(x − 2)(x − 3)입니다.",
+      "explanation": "P(x) − x는 1, 2, 3을 근으로 하고 최고차항 계수가 1인 삼차식입니다.\n따라서 P(x) = (x − 1)(x − 2)(x − 3) + x입니다.\nP(4) = 3 × 2 × 1 + 4 = 10입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "앞 문제에서 P(x) − x = (x − 1)(x − 2)(x − {{1}})입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "3"
+          ]
+        }
+      ],
+      "hint": "P(x) − x가 0이 되는 x를 모두 찾으세요.",
+      "explanation": "P(1) − 1 = 0, P(2) − 2 = 0, P(3) − 3 = 0입니다.\n따라서 P(x) − x는 x − 1, x − 2, x − 3을 인수로 가집니다.\n삼차식이고 최고차항 계수가 1이므로 정확히 (x − 1)(x − 2)(x − 3)입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "항등식은 아무 값이나 넣어도 된다",
+      "body": [
+        "모든 x에 대해 성립하는 등식을 항등식이라고 합니다. 항등식은 아무 x나 넣어도 성립하므로, 계산이 쉬워지는 값을 골라 넣어 계수를 구합니다.",
+        "x² + 3x + 5 = a(x − 1)² + b(x − 1) + c에서 x = 1을 넣으면 c = 9가 바로 나옵니다. x²의 계수를 비교하면 a = 1이고, x = 0을 넣으면 5 = 1 − b + 9에서 b = 5입니다.",
+        "x − 1의 거듭제곱으로 다시 쓰는 것은 t = x − 1로 치환하는 것과 같습니다. x = t + 1을 넣어 전개해도 됩니다. 값 넣기와 계수 비교를 섞어 쓰면 대부분의 항등식 문제를 빠르게 풀 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "x² + 3x + 5 = a(x − 1)² + b(x − 1) + c가 항등식일 때 a, b, c를 구하세요.",
+      "steps": [
+        "x = 1을 넣으면 1 + 3 + 5 = c이므로 c = 9입니다.",
+        "양변의 x² 계수를 비교하면 a = 1입니다.",
+        "x = 0을 넣으면 5 = a − b + c = 1 − b + 9이므로 b = 5입니다.",
+        "따라서 a = 1, b = 5, c = 9이고, (x − 1)² + 5(x − 1) + 9를 전개하면 x² + 3x + 5와 같습니다."
+      ],
+      "answer": "a = 1, b = 5, c = 9"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x³ = a(x − 1)³ + b(x − 1)² + c(x − 1) + d가 항등식일 때 b의 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "t = x − 1로 놓으면 x = t + 1이고 x³ = (t + 1)³입니다.",
+      "explanation": "t = x − 1이면 x³ = (t + 1)³ = t³ + 3t² + 3t + 1입니다.\n따라서 a = 1, b = 3, c = 3, d = 1입니다.\n답은 b = 3입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "P(x) − (간단한 식)의 근 찾기",
+      "body": [
+        "레슨 첫 화면의 방법은 P(k)가 k, k², 2k처럼 규칙적인 값일 때 모두 쓸 수 있습니다. P(x)에서 그 규칙의 식을 빼면 주어진 점들에서 0이 됩니다.",
+        "최고차항 계수가 1인 사차식 P(x)가 P(k) = k² (k = 1, 2, 3, 4)를 만족하면 P(x) − x² = (x − 1)(x − 2)(x − 3)(x − 4)입니다.",
+        "빼는 식의 차수는 P(x)보다 낮아야 최고차항 계수가 그대로 유지됩니다. 값이 1/k처럼 분수이면 xP(x) − 1처럼 분모를 곱한 식을 만듭니다. 이때 차수가 하나 늘어나고 최고차항 계수를 모르므로, x = 0 같은 다른 값을 넣어 계수를 정합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "최고차항 계수가 1인 사차식 P(x)가 P(1) = 1, P(2) = 4, P(3) = 9, P(4) = 16을 만족할 때 P(5)는?",
+      "answer": "49",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "P(x) − x² = (x − 1)(x − 2)(x − 3)(x − 4)입니다.",
+      "explanation": "P(x) − x²은 1, 2, 3, 4를 근으로 하고 최고차항 계수가 1인 사차식입니다.\nP(x) = (x − 1)(x − 2)(x − 3)(x − 4) + x²입니다.\nP(5) = 4 × 3 × 2 × 1 + 25 = 24 + 25 = 49입니다."
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "이차 이하의 다항식 P(x)가 P(0) = 1, P(1) = 3, P(2) = 7을 만족할 때 P(3)은?",
+      "answer": "13",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "P(x) = ax² + bx + c로 놓고 세 식을 세우세요.",
+      "explanation": "P(0) = c = 1, P(1) = a + b + 1 = 3, P(2) = 4a + 2b + 1 = 7입니다.\na + b = 2, 2a + b = 3에서 a = 1, b = 1이므로 P(x) = x² + x + 1입니다.\nP(3) = 9 + 3 + 1 = 13입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "차분으로 다항식 찾기",
+      "body": [
+        "P(x + 1) − P(x)를 P의 차분이라고 합니다. 차수가 n인 다항식의 차분은 차수가 n − 1입니다.",
+        "그래서 P(x + 1) − P(x) = 2x + 1이라면 P는 이차식입니다. (x + 1)² − x² = 2x + 1이므로 P(x) = x² + c로 놓을 수 있습니다.",
+        "c는 P(0) 같은 값 하나로 정해집니다. 이 생각은 수열의 계차와 똑같습니다. 정수 n에서만 보면 P(n) = P(0) + Σ(차분)이고, 귀납법으로 P(n)의 공식을 증명할 수 있습니다. 다음 장의 수열과 점화식이 이 생각을 이어받습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "다항식 P(x)가 모든 x에 대해 P(x + 1) − P(x) = 2x + 1이고 P(0) = 2일 때 P(5)는?",
+      "answer": "27",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "P(x) = x² + c로 놓을 수 있습니다.",
+      "explanation": "(x + 1)² − x² = 2x + 1이므로 P(x) − x²의 차분은 0이고, P(x) − x²은 상수입니다.\nP(0) = 2이므로 P(x) = x² + 2입니다.\nP(5) = 25 + 2 = 27입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "최고차항 계수가 양수인 일차식 P(x)가 P(P(x)) = 4x + 3을 만족할 때 P(5)는?",
+      "answer": "11",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "P(x) = ax + b로 놓고 P(P(x)) = a²x + ab + b를 비교하세요.",
+      "explanation": "P(x) = ax + b이면 P(P(x)) = a(ax + b) + b = a²x + ab + b입니다.\na² = 4이고 a > 0이므로 a = 2, ab + b = 3b = 3에서 b = 1입니다.\nP(x) = 2x + 1이므로 P(5) = 11입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "주어진 점들에서 P(x)가 규칙적인 값을 가지면, 그 규칙의 식을 빼서 근을 만들고 인수분해 꼴로 P(x)를 정합니다.",
+        "항등식은 계산이 쉬운 값을 넣거나 계수를 비교해 미지수를 구합니다.",
+        "차분 P(x + 1) − P(x)는 차수를 하나 낮추므로, 차분이 주어지면 P의 꼴을 짐작할 수 있습니다. 차수가 n인 다항식은 n + 1개의 값으로 정해진다는 사실이 이 모든 방법의 바탕입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "삼차식 P(x)가 P(k) = 1/k (k = 1, 2, 3, 4)를 만족할 때 P(5)의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "Q(x) = xP(x) − 1은 사차식이고 1, 2, 3, 4를 근으로 가집니다. x = 0을 넣어 최고차항 계수를 구하세요.",
+      "explanation": "Q(x) = xP(x) − 1 = a(x − 1)(x − 2)(x − 3)(x − 4)로 쓸 수 있습니다.\nx = 0을 넣으면 −1 = 24a이므로 a = −1/24입니다.\nx = 5를 넣으면 5P(5) − 1 = −1/24 × 24 = −1이므로 5P(5) = 0, 곧 P(5) = 0입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(x² + x + 1)⁵을 전개했을 때 모든 계수의 합은?",
+      "answer": "243",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = 1을 넣으세요.",
+      "explanation": "x = 1을 넣으면 각 항이 계수만 남으므로 계수의 합은 x = 1을 넣은 값입니다.\n(1 + 1 + 1)⁵ = 3⁵입니다.\n= 243입니다. 전개하지 않고도 계수의 합을 바로 구할 수 있습니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "최고차항 계수가 1인 삼차식 P(x)가 P(1) = 1, P(2) = 2, P(3) = 3을 만족하면 P(4) = 10임을 증명하세요.",
+      "model_answer": [
+        "Q(x) = P(x) − x라 하면 Q(x)는 최고차항 계수가 1인 삼차식이다.",
+        "Q(1) = Q(2) = Q(3) = 0이므로 인수 정리에 의해 Q(x)는 (x − 1)(x − 2)(x − 3)으로 나누어떨어진다.",
+        "Q(x)가 최고차항 계수 1인 삼차식이므로 Q(x) = (x − 1)(x − 2)(x − 3)이다.",
+        "따라서 P(4) = Q(4) + 4 = 6 + 4 = 10이다."
+      ],
+      "criteria": [
+        {
+          "text": "Q(x) = P(x) − x를 정의했다",
+          "points": 1
+        },
+        {
+          "text": "Q가 1, 2, 3을 근으로 가짐을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "차수와 최고차항 계수로 Q(x)를 확정했다",
+          "points": 2
+        },
+        {
+          "text": "P(4)를 계산했다",
+          "points": 1
+        }
+      ],
+      "hint": "P(x) − x를 새 다항식으로 놓으세요. 차수와 최고차항 계수가 그대로인지 확인해야 합니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "다항식 P(x)가 모든 x에 대해 P(x + 1) − P(x) = 2x + 1이고 P(0) = 0이면, 모든 자연수 n에 대해 P(n) = n²임을 증명하세요.",
+      "model_answer": [
+        "기저: x = 0을 넣으면 P(1) − P(0) = 1이므로 P(1) = 1 = 1²이다.",
+        "귀납 가정: P(k) = k²이라고 가정한다.",
+        "x = k를 넣으면 P(k + 1) = P(k) + 2k + 1 = k² + 2k + 1 = (k + 1)²이다.",
+        "따라서 수학적 귀납법에 의해 모든 자연수 n에 대해 P(n) = n²이다."
+      ],
+      "criteria": [
+        {
+          "text": "기저 P(1) = 1을 확인했다",
+          "points": 1
+        },
+        {
+          "text": "귀납 가정을 세웠다",
+          "points": 1
+        },
+        {
+          "text": "x = k를 넣어 P(k + 1) = (k + 1)²을 얻었다",
+          "points": 3
+        },
+        {
+          "text": "귀납법에 의한 결론을 썼다",
+          "points": 1
+        }
+      ],
+      "hint": "주어진 등식에 x = k를 넣으면 P(k + 1)과 P(k)가 이어집니다."
+    }
+  ]
+}

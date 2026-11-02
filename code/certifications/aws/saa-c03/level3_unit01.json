@@ -1,0 +1,112 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "saa-c03",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "ElastiCache 캐싱 전략",
+  "rule_summary_ko": "레이지 로딩(Lazy Loading, 캐시 사이드)은 캐시 미스가 발생했을 때만 데이터베이스에서 값을 가져와 캐시에 채워서, 실제로 요청되지 않을 데이터로 캐시가 채워지는 것을 막지만 데이터가 오래될(stale) 수 있습니다. 라이트 스루(Write-Through)는 데이터베이스에 쓰기가 일어날 때마다 캐시도 함께 갱신해서 항상 최신 상태를 유지하지만, 실제로 조회되지 않을 데이터까지 캐시에 채우는 낭비가 생길 수 있습니다. TTL(생존 시간)을 함께 사용하면 두 전략의 단점을 완화할 수 있습니다. Redis는 영속성·복제·자동 장애 조치를 지원하지만, Memcached는 순수 인메모리라 재부팅하면 데이터가 사라지는 대신 멀티스레드와 간단한 수평 확장(샤딩)에 강점이 있습니다.",
+  "examples": [
+    { "code": "실제로 요청될 데이터만 딱 그만큼 캐시에 채우고 싶음", "note_ko": "레이지 로딩이 적합 — 캐시 미스가 났을 때만 채워서 불필요한 데이터로 캐시가 낭비되지 않음" },
+    { "code": "캐시가 항상 최신 데이터를 반영해야 하고, 오래된 데이터를 보여주면 안 됨", "note_ko": "라이트 스루가 적합 — DB에 쓸 때마다 캐시도 함께 갱신되어 항상 최신 상태 유지" }
+  ],
+  "questions": [
+    {
+      "id": "aws_saa_l3_u1_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "레이지 로딩(Lazy Loading) 전략의 핵심 동작 방식은?",
+      "options": [
+        "캐시 미스(요청한 데이터가 캐시에 없음)가 발생했을 때만 데이터베이스에서 값을 가져와 캐시에 채운다",
+        "데이터베이스에 쓰기가 일어날 때마다 무조건 캐시도 함께 갱신한다(라이트 스루와 혼동)",
+        "모든 데이터를 미리 예측해서 캐시에 채워둔다",
+        "레이지 로딩은 캐시를 전혀 사용하지 않는 전략이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "레이지 로딩은 '필요할 때만' 캐시를 채우는 것이 핵심으로, 캐시 공간을 효율적으로 사용합니다.",
+      "concept_tags": ["lazy_loading"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l3_u1_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "레이지 로딩 전략의 대표적인 단점은?",
+      "options": [
+        "원본 데이터베이스의 값이 바뀌어도 캐시에 있던 값은 별도의 조치(TTL 만료 등) 없이는 자동으로 갱신되지 않아, 오래된(stale) 데이터를 계속 보여줄 수 있다",
+        "레이지 로딩은 캐시를 불필요한 데이터로 항상 가득 채운다(라이트 스루의 단점과 혼동)",
+        "레이지 로딩은 캐시 미스를 절대 발생시키지 않는다",
+        "레이지 로딩에는 알려진 단점이 전혀 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "TTL 같은 보완 장치 없이는 캐시 데이터가 실제 DB 상태와 어긋날 위험이 있습니다.",
+      "concept_tags": ["lazy_loading_staleness"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l3_u1_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "라이트 스루(Write-Through) 전략의 대표적인 단점은?",
+      "options": [
+        "실제로 나중에 조회되지 않을 데이터까지 쓰기 시점에 미리 캐시에 채워 넣어서, 캐시 공간이 불필요하게 낭비될 수 있다",
+        "라이트 스루는 캐시 데이터가 항상 오래된 상태로 유지된다(레이지 로딩의 단점과 혼동)",
+        "라이트 스루는 데이터베이스 쓰기 자체를 막는다",
+        "라이트 스루에는 알려진 단점이 전혀 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "모든 쓰기에 캐시 갱신이 따라붙다 보니, 다시 조회되지 않을 데이터도 캐시를 차지하게 됩니다.",
+      "concept_tags": ["write_through_downside"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l3_u1_q004",
+      "type": "concept_matching_item",
+      "code": "서버를 재부팅해도 캐시에 저장된 데이터가 그대로 유지되어야 함",
+      "prompt_ko": "이 요구사항에 적합한 ElastiCache 엔진은?",
+      "options": [
+        "Redis — 데이터 영속성(디스크 저장)을 지원해서 재시작 후에도 데이터가 보존될 수 있음",
+        "Memcached — 순수 인메모리라 재부팅하면 데이터가 모두 사라짐",
+        "이런 요구사항은 어떤 캐시 엔진으로도 지원되지 않는다",
+        "Redis와 Memcached 모두 이 요구사항에 부적합하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "영속성이 필요하면 Memcached가 아닌 Redis를 선택해야 합니다.",
+      "concept_tags": ["redis_persistence"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l3_u1_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "TTL(생존 시간, Time To Live)을 캐시 항목에 설정하는 것이 유용한 이유는?",
+      "options": [
+        "일정 시간이 지나면 자동으로 캐시 항목이 만료되게 해서, 레이지 로딩의 '오래된 데이터' 문제와 라이트 스루의 '불필요한 데이터 누적' 문제를 동시에 완화할 수 있다",
+        "TTL은 캐시 성능을 항상 저하시킬 뿐 아무 이점이 없다",
+        "TTL을 설정하면 캐시가 절대 만료되지 않는다(설명이 반대)",
+        "TTL은 Redis에서만 사용 가능하고 Memcached에서는 지원되지 않는다(둘 다 지원)"
+      ],
+      "answer": 0,
+      "explanation_ko": "TTL은 완벽하지는 않지만, 두 전략의 단점을 실용적으로 절충하는 방법입니다.",
+      "concept_tags": ["ttl_benefit"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l3_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "ElastiCache 같은 인메모리 캐시를 사용해서 데이터베이스 앞단에 캐싱 계층을 두는 것의 근본적인 가치는?",
+      "options": [
+        "자주 조회되는 데이터를 훨씬 빠른 메모리에서 제공해서 응답 지연시간을 크게 줄이고, 원본 데이터베이스로 가는 반복적인 조회 부하를 덜어준다",
+        "캐싱은 데이터베이스 부하와 전혀 무관한 기능이다",
+        "캐싱은 항상 데이터의 정확성을 데이터베이스보다 더 높여준다",
+        "캐싱 계층을 추가하면 데이터베이스 자체가 필요 없어진다"
+      ],
+      "answer": 0,
+      "explanation_ko": "지연시간 단축과 DB 부하 경감이 캐싱의 두 가지 핵심 가치입니다.",
+      "concept_tags": ["caching_layer_value"],
+      "difficulty": "practice"
+    }
+  ]
+}

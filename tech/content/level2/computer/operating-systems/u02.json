@@ -1,0 +1,118 @@
+{
+ "no": 2,
+ "title": "프로세스와 스레드",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "프로세스의 상태 전이와 프로세스 제어 블록(PCB)을 설명할 수 있다.",
+  "fork·exec로 프로세스가 만들어지는 과정을 설명하고 결과를 예측할 수 있다.",
+  "스레드가 공유하는 것과 따로 가지는 것을 구분할 수 있다."
+ ],
+ "checklist": [
+  "프로세스 상태: 생성, 준비, 실행, 대기, 종료",
+  "PCB: PC, 레지스터, 메모리 정보, 열린 파일",
+  "fork(복제)와 exec(새 프로그램 실행), wait",
+  "좀비·고아 프로세스",
+  "스레드: 코드·데이터·힙 공유, 스택·레지스터는 각자",
+  "사용자 수준·커널 수준 스레드",
+  "프로세스 간 통신(IPC): 파이프, 공유 메모리, 메시지"
+ ],
+ "advice": [
+  "프로세스와 스레드의 차이는 '무엇을 함께 쓰는가'로 정리됩니다. 스레드는 같은 주소 공간을 공유해 만들기 싸고 통신이 쉽지만, 바로 그 공유 때문에 4단원의 동기화 문제가 생깁니다. 한 그림 안에 프로세스 두 개와 스레드 두 개를 그려 공유 영역에 색을 칠해 보세요.",
+  "fork는 처음 보면 헷갈리지만 '호출한 순간 똑같은 프로세스가 둘이 되어 각자 다음 줄부터 실행한다'는 규칙 하나로 모든 문제가 풀립니다. fork를 여러 번 부르는 짧은 코드의 결과를 손으로 예측한 뒤 레벨3 시스템 프로그래밍에서 직접 실행해 확인해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Arpaci-Dusseau (무료 공개 교재)",
+   "title": "Operating Systems: Three Easy Pieces",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "lang": "영어",
+   "part": "Processes, Process API, Concurrency and Threads 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Silberschatz · Galvin · Gagne, Operating System Concepts (번역본 『운영체제』, 장 제목으로 표기)",
+   "part": "Processes, Threads 장"
+  },
+  {
+   "kind": "web",
+   "provider": "code-arena (실습)",
+   "title": "Linux 모듈 (권한·명령어·프로세스·셸)",
+   "url": "https://code-arena.org/browse.html?type=module&key=linux",
+   "lang": "한국어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "fork()를 연달아 세 번 호출하는 프로그램이 끝까지 실행되면 프로세스는 처음 것을 포함해 모두 몇 개일까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "fork마다 프로세스 수가 2배가 되어 2³ = 8개입니다.",
+   "hint": "fork마다 2배입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "운영체제가 프로세스마다 PC, 레지스터, 메모리 정보 등을 저장해 두는 자료 구조를 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "PCB"
+     ]
+    }
+   ],
+   "explanation": "Process Control Block의 줄임말로, 문맥 교환 때 저장·복원됩니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "같은 프로세스 안에서 코드·데이터·힙을 공유하고 스택만 따로 가지는 실행 흐름을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "스레드",
+      "쓰레드"
+     ]
+    }
+   ],
+   "explanation": "공유하기 때문에 만들기 싸지만 동기화가 필요합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "실행은 끝났지만 부모가 wait로 종료 상태를 거두지 않아 PCB만 남아 있는 프로세스를 {{1}} 프로세스라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "좀비"
+     ]
+    }
+   ],
+   "explanation": "부모가 먼저 끝나 남겨진 자식은 고아 프로세스입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "operating-systems",
+ "id": "l2-computer-operating-systems-u02"
+}

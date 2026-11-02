@@ -1,0 +1,107 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-2-202",
+  "level": 4,
+  "unit": 3,
+  "unit_title": "DHCP 서버 설정: ISC DHCP",
+  "rule_summary_ko": "ISC DHCP 서버의 설정 파일(/etc/dhcp/dhcpd.conf)에서 subnet 블록은 range로 동적으로 할당할 IP 범위를, host 블록은 특정 MAC 주소(hardware ethernet)에 항상 같은 IP(fixed-address)를 고정 할당하는 예약을 정의합니다. 설정 파일의 거의 모든 문장은 세미콜론(;)으로 끝나야 하며, 세미콜론을 하나라도 빠뜨리면 'semicolon expected'라는 명확한 오류와 함께 서버가 시작되지 않습니다. dhcpd -t(테스트 모드)로 실제 서비스를 시작하지 않고도 설정 파일의 문법을 미리 검증할 수 있습니다.",
+  "examples": [
+    { "code": "subnet 192.0.2.0 netmask 255.255.255.0 {\n  range 192.0.2.100 192.0.2.200;\n  option routers 192.0.2.1;\n}", "note_ko": "192.0.2.100~200 범위 안에서 동적으로 IP를 할당하고, 기본 게이트웨이는 192.0.2.1로 안내" },
+    { "code": "host printer1 {\n  hardware ethernet 00:11:22:33:44:55;\n  fixed-address 192.0.2.50;\n}", "note_ko": "이 MAC 주소를 가진 장치(프린터)에는 항상 192.0.2.50이라는 고정 IP를 부여" }
+  ],
+  "questions": [
+    {
+      "id": "lpic2_l4_u3_q001",
+      "type": "concept_matching_item",
+      "code": "subnet 192.0.2.0 netmask 255.255.255.0 {\n  range 192.0.2.100 192.0.2.200\n  ...\n}\ndhcpd -t -cf dhcpd.conf",
+      "prompt_ko": "range 문장 끝에 세미콜론을 빠뜨리면 결과는?",
+      "options": [
+        "\"semicolon expected\"라는 명확한 오류와 함께 검증이 실패하고 서버가 시작되지 않는다",
+        "세미콜론이 없어도 정상적으로 작동한다",
+        "경고만 표시되고 서버는 정상 시작된다",
+        "세미콜론 대신 자동으로 쉼표가 삽입된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "ISC DHCP 설정 문법은 문장 끝의 세미콜론을 엄격하게 요구합니다.",
+      "concept_tags": ["dhcpd_semicolon_required"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic2_l4_u3_q002",
+      "type": "concept_matching_item",
+      "code": "host printer1 {\n  hardware ethernet 00:11:22:33:44:55;\n  fixed-address 192.0.2.50;\n}",
+      "prompt_ko": "이 host 블록이 하는 일은?",
+      "options": [
+        "지정한 MAC 주소를 가진 장치에게 항상 동일한 고정 IP(192.0.2.50)를 할당한다",
+        "192.0.2.50이라는 IP를 가진 모든 장치의 MAC 주소를 바꾼다",
+        "이 장치의 인터넷 접근을 차단한다",
+        "이 설정은 동적 IP 할당 범위(range)와 동일한 기능을 한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "host 예약은 프린터·서버처럼 항상 같은 IP가 필요한 장치에 흔히 사용됩니다.",
+      "concept_tags": ["dhcp_host_reservation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l4_u3_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "DHCP 서버가 동적으로 할당할 IP 주소의 범위(시작~끝)를 지정하는 키워드는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["range"],
+      "explanation_ko": "range는 subnet 블록 안에서 자동 할당 대상 IP 범위를 정의합니다.",
+      "concept_tags": ["dhcp_range_keyword"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic2_l4_u3_q004",
+      "type": "concept_matching_item",
+      "code": "dhcpd -t -cf /etc/dhcp/dhcpd.conf",
+      "prompt_ko": "이 명령의 -t 옵션이 하는 역할은?",
+      "options": [
+        "실제로 DHCP 서비스를 시작하지 않고, 설정 파일의 문법만 테스트(검증)한다",
+        "DHCP 서비스를 즉시 재시작한다",
+        "모든 임대(lease) 기록을 삭제한다",
+        "새로운 서브넷을 자동으로 생성한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "-t(test)는 Apache의 configtest, Samba의 testparm과 같은 목적의 사전 검증 기능입니다.",
+      "concept_tags": ["dhcpd_t_option"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l4_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "default-lease-time과 max-lease-time의 차이는?",
+      "options": [
+        "default-lease-time은 클라이언트가 특별히 요청하지 않았을 때 기본으로 부여하는 임대 시간이고, max-lease-time은 클라이언트가 특정 임대 시간을 요청해도 서버가 허용하는 최대 상한이다",
+        "두 값은 완전히 동일한 의미다",
+        "default-lease-time이 항상 max-lease-time보다 길어야 한다(일반적으로 반대)",
+        "이 옵션들은 DHCP와 무관하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "기본값과 상한값을 구분해서 유연하면서도 통제된 임대 정책을 구성할 수 있습니다.",
+      "concept_tags": ["dhcp_lease_time_options"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic2_l4_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "parameter_note": "",
+      "prompt_ko": "설정을 바꾼 뒤 dhcpd -t로 미리 검증하는 습관이 프로덕션 환경에서 중요한 이유는?",
+      "options": [
+        "문법 오류가 있는 설정으로 서비스를 재시작하면 DHCP 서버 전체가 중단되어, 새로운 클라이언트들이 IP를 받지 못하는 네트워크 장애로 이어질 수 있기 때문에",
+        "dhcpd -t는 설정 검증과 무관한 명령이다",
+        "검증 없이 재시작해도 항상 안전하다",
+        "DHCP 서버는 문법 오류가 있어도 항상 정상 작동한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "DHCP 서버 장애는 네트워크 전체의 신규 접속에 즉각적인 영향을 미치므로 사전 검증이 중요합니다.",
+      "concept_tags": ["dhcp_validation_importance"],
+      "difficulty": "practice"
+    }
+  ]
+}

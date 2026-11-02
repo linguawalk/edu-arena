@@ -1,0 +1,132 @@
+{
+ "no": 2,
+ "title": "이산시간 마르코프 연쇄",
+ "hours": 6,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "마르코프 성질을 설명하고 전이행렬을 세울 수 있다.",
+  "채프먼–콜모고로프 방정식으로 n단계 전이확률을 구할 수 있다."
+ ],
+ "checklist": [
+  "마르코프 성질: P(Xₙ₊₁ | Xₙ, …, X₀) = P(Xₙ₊₁ | Xₙ)",
+  "전이행렬 P, 각 행의 합 1",
+  "전이 그래프",
+  "n단계 전이확률 = Pⁿ의 성분 (채프먼–콜모고로프)",
+  "초기분포와 시각 n의 분포 = 초기분포 × Pⁿ",
+  "모형 예: 날씨, 유전, 브랜드 전환"
+ ],
+ "advice": [
+  "마르코프 연쇄의 계산은 거의 전부 행렬 곱셈입니다. n단계 전이확률이 행렬의 n제곱이라는 채프먼–콜모고로프 방정식을 이해하면, 선형대수의 모든 도구(대각화, 고유값)를 쓸 수 있게 됩니다.",
+  "모형을 세우는 연습을 충분히 하세요. '상태를 무엇으로 정해야 마르코프 성질이 성립하는가'가 실제 문제에서 가장 어려운 부분입니다. 과거 이틀의 날씨에 의존하는 모형도 상태를 '(어제, 오늘)'의 쌍으로 잡으면 마르코프 연쇄가 된다는 요령을 익혀 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Academic Press",
+   "title": "Sheldon M. Ross, Introduction to Probability Models (12판)",
+   "part": "4장 Markov Chains 4.1~4.2절"
+  },
+  {
+   "kind": "lecture",
+   "provider": "Harvard",
+   "title": "Statistics 110 (Joe Blitzstein) 마르코프 연쇄 강의",
+   "url": "https://stat110.hsites.harvard.edu/",
+   "lang": "영어",
+   "part": "31~33강 Markov chains"
+  },
+  {
+   "kind": "book",
+   "provider": "CRC Press (온라인 무료판)",
+   "title": "Blitzstein · Hwang, Introduction to Probability (2판)",
+   "url": "http://probabilitybook.net",
+   "lang": "영어",
+   "part": "11장 Markov chains"
+  },
+  {
+   "kind": "lecture",
+   "provider": "KOCW",
+   "title": "확률과정모형 (영남대학교 이지연)",
+   "url": "http://www.kocw.net/home/cview.do?cid=9fbbd35998370dc9",
+   "lang": "한국어",
+   "part": "마코브 연쇄"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "P = [[0.7, 0.3], [0.4, 0.6]]일 때 P²의 (1, 1) 성분은 {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "0.61"
+     ]
+    }
+   ],
+   "explanation": "0.7 × 0.7 + 0.3 × 0.4 = 0.49 + 0.12 = 0.61",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "같은 연쇄에서 상태 1에서 출발해 2단계 후 상태 2에 있을 확률은 {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "0.39"
+     ]
+    }
+   ],
+   "explanation": "1 − 0.61 = 0.39 (0.7 × 0.3 + 0.3 × 0.6)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "전이행렬의 각 행의 합은?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "다음 상태로 반드시 어딘가로 가므로 확률의 합 1",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "이틀 전 날씨에도 의존하는 날씨 모형을 마르코프 연쇄로 만드는 방법을 설명해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "상태",
+      "쌍"
+     ],
+     [
+      "어제",
+      "이틀"
+     ],
+     [
+      "오늘"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "상태를 '(어제의 날씨, 오늘의 날씨)'의 쌍으로 정의하면 다음 상태가 현재 상태(쌍)에만 의존하므로 마르코프 연쇄가 됩니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "probability",
+ "subject": "stochastic",
+ "id": "l3-probability-stochastic-u02"
+}

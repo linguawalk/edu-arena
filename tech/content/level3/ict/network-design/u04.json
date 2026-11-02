@@ -1,0 +1,94 @@
+{
+ "no": 4,
+ "title": "IP 주소와 라우팅 설계",
+ "hours": 6,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "VLSM으로 부서별 서브넷을 효율적으로 나눌 수 있다.",
+  "경로 요약(집약)으로 라우팅 표를 줄일 수 있다.",
+  "IGP(OSPF 영역)와 BGP를 쓰는 라우팅 구조를 설계할 수 있다."
+ ],
+ "checklist": [
+  "사설 주소 대역과 NAT(레벨1 컴퓨터 챕터 8)",
+  "VLSM: 서브넷마다 필요한 크기로 나누기",
+  "호스트 수 = 2^(32 − 접두어) − 2",
+  "경로 요약: 연속한 서브넷을 하나의 접두어로",
+  "OSPF 영역 설계(백본 영역 0)",
+  "BGP: 사업자 연결, 멀티홈",
+  "IPv6 주소 계획과 이중 스택"
+ ],
+ "advice": [
+  "주소 설계는 한 번 정하면 바꾸기 매우 어려우므로, 성장 여유와 요약 가능성을 처음부터 고려해야 합니다. 부서별 필요 호스트 수를 큰 순서로 정렬해 VLSM으로 나누고, 같은 건물이나 지역의 서브넷을 연속된 블록으로 배치해 상위에서 하나로 요약하는 연습을 해 보세요. 요약이 잘 되면 라우팅 표가 작아지고 장애가 생겨도 영향이 좁은 영역에 머뭅니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cisco Press",
+   "title": "Oppenheimer, Top-Down Network Design (장 제목으로 표기)",
+   "part": "Designing Models for Addressing and Numbering, Selecting Switching and Routing Protocols 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "통신망 7단원 IP 망과 라우팅",
+   "url": "guide.html?lv=2&t=ict&s=comm-networks&u=7"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 8 인터넷 원리(IP·DNS·HTTP)",
+   "url": "browse.html?c=c4#ch08",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "/27 서브넷에서 장치에 줄 수 있는 주소는 몇 개일까요?",
+   "answer": "30",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2^(32 − 27) − 2 = 32 − 2 = 30",
+   "hint": "2^(32 − n) − 2입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "192.168.0.0/24부터 192.168.3.0/24까지 연속한 네 서브넷을 하나로 요약하면 접두어 길이는 몇일까요?",
+   "answer": "22",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "네 개(2²)를 묶으므로 24 − 2 = /22입니다.\n192.168.0.0/22",
+   "hint": "2ⁿ개를 묶으면 n비트 줄어듭니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "인터넷 서비스 사업자나 자율 시스템 사이의 경로 정보를 교환하는 라우팅 프로토콜은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "BGP"
+     ]
+    }
+   ],
+   "explanation": "Border Gateway Protocol의 줄임말이며, 내부에는 OSPF 같은 IGP를 씁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "network-design",
+ "id": "l3-ict-network-design-u04"
+}

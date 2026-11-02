@@ -1,0 +1,230 @@
+{
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "level": 2,
+ "track": "analysis",
+ "id": "ode",
+ "title": "상미분방정식",
+ "tagline": "변화의 법칙을 식으로 세우고 푸는 과목, 1계 방정식에서 연립계와 안정성까지",
+ "overview": [
+  "미분방정식은 '양 자체'가 아니라 '양이 변하는 규칙'이 주어졌을 때 그 양을 찾는 방정식입니다. 인구의 증가, 약물의 분해, 전기 회로의 전류, 용수철의 진동, 행성의 운동이 모두 미분방정식으로 쓰입니다. 상미분방정식(ODE)은 변수가 하나(대개 시간)인 경우를 다룹니다.",
+  "과목은 세 흐름으로 이루어집니다. 1계 방정식의 풀이법과 응용, 2계 선형 방정식(진동과 공명)과 라플라스 변환, 그리고 연립 선형 방정식을 선형대수의 고유값으로 푸는 방법과 비선형 방정식의 안정성 분석입니다. 해를 식으로 구하는 기술과 함께, 식을 풀지 않고도 해의 모양을 그림으로 읽는 능력을 기릅니다.",
+  "대학 1~2학년 이공계 공통 과목이며, 편미분방정식, 공학수학, 제어공학, 회로이론, 일반물리의 핵심 도구입니다. 이 가이드는 MIT 18.03(Mattuck 강의)과 Boyce–DiPrima 교재의 흐름을 따릅니다."
+ ],
+ "level_note": "레벨 2 (대학 1~2학년 수준). 목차 검증 기준: Boyce–DiPrima 등 미분방정식 표준 교재와 MIT 18.03 강의 구성.",
+ "prereq": {
+  "text": "레벨1 미적분의 적분법(치환·부분적분)과 레벨2 대학 미적분학의 급수, 선형대수의 고유값이 필요합니다. 고유값은 10단원 전까지만 준비되면 됩니다.",
+  "links": [
+   {
+    "title": "코스 4 · 챕터 8 여러 가지 적분법",
+    "href": "browse.html?c=c4#ch08"
+   },
+   {
+    "title": "레벨2 대학 미적분학 · 단원 2 테일러 급수",
+    "href": "guide.html?lv=2&t=analysis&s=calculus&u=2"
+   },
+   {
+    "title": "레벨2 선형대수 · 단원 9 고유값",
+    "href": "guide.html?lv=2&t=algebra&s=linear-algebra&u=9"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "q1",
+    "qtype": "fill_blank",
+    "prompt": "∫ x eˣ dx = (x − {{1}})eˣ + C",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "1"
+      ]
+     }
+    ],
+    "explanation": "부분적분: u = x, dv = eˣdx\nx eˣ − ∫eˣ dx = (x − 1)eˣ + C (코스 4 챕터 8)"
+   },
+   {
+    "type": "question",
+    "id": "q2",
+    "qtype": "fill_blank",
+    "prompt": "∫ 1/x dx = ln|x| + C이므로 ∫₁^{e²} 1/x dx = {{1}}",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "2"
+      ]
+     }
+    ],
+    "explanation": "ln e² − ln 1 = 2"
+   },
+   {
+    "type": "question",
+    "id": "q3",
+    "qtype": "fill_blank",
+    "prompt": "A = [[3, 1], [0, 2]]의 고유값은 큰 값 {{1}}, 작은 값 {{2}}",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "3"
+      ]
+     },
+     {
+      "id": 2,
+      "answers": [
+       "2"
+      ]
+     }
+    ],
+    "explanation": "상삼각행렬의 고유값은 대각성분 (선형대수 단원 9)"
+   },
+   {
+    "type": "question",
+    "id": "q4",
+    "qtype": "fill_blank",
+    "prompt": "e^(iθ) = cos θ + i sin {{1}}",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "θ",
+       "theta"
+      ]
+     }
+    ],
+    "explanation": "오일러 공식 (2계 방정식에서 복소근을 다룰 때 필수)"
+   },
+   {
+    "type": "question",
+    "id": "q5",
+    "qtype": "numeric",
+    "prompt": "d/dx (e^(3x))를 e^(3x)로 나눈 값은?",
+    "answer": "3",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "d/dx e^(3x) = 3e^(3x)\n지수함수가 미분방정식의 기본 해가 되는 이유"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "레벨3 · 편미분방정식 입문",
+   "note": "열·파동·라플라스 방정식, 변수분리법"
+  },
+  {
+   "title": "레벨2 · 공학수학",
+   "note": "라플라스·푸리에 변환의 공학 응용"
+  },
+  {
+   "title": "레벨3 · 수치해석",
+   "note": "오일러법, 룽게–쿠타법으로 컴퓨터로 풀기"
+  },
+  {
+   "title": "sci-arena 레벨2 · 일반물리",
+   "note": "진동, 감쇠, 회로 방정식"
+  }
+ ],
+ "units": [
+  {
+   "no": 1,
+   "title": "미분방정식의 뜻과 기하학",
+   "hours": 4,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "1계 방정식: 변수분리와 선형 방정식",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "1계 방정식의 응용과 자율방정식",
+   "hours": 4,
+   "after": [
+    2
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "완전 방정식과 치환법",
+   "hours": 4,
+   "after": [
+    2
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "2계 선형 방정식: 상수계수 제차",
+   "hours": 5,
+   "after": [
+    2
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "비제차 방정식, 진동과 공명",
+   "hours": 5,
+   "after": [
+    5
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "거듭제곱급수 해",
+   "hours": 4,
+   "after": [
+    5
+   ],
+   "file": "u07.json"
+  },
+  {
+   "no": 8,
+   "title": "라플라스 변환",
+   "hours": 5,
+   "after": [
+    6
+   ],
+   "file": "u08.json"
+  },
+  {
+   "no": 9,
+   "title": "불연속 입력, 충격, 합성곱",
+   "hours": 4,
+   "after": [
+    8
+   ],
+   "file": "u09.json"
+  },
+  {
+   "no": 10,
+   "title": "연립 1계 선형 미분방정식",
+   "hours": 6,
+   "after": [
+    5
+   ],
+   "file": "u10.json"
+  },
+  {
+   "no": 11,
+   "title": "비선형 방정식과 안정성",
+   "hours": 5,
+   "after": [
+    3,
+    10
+   ],
+   "file": "u11.json"
+  }
+ ],
+ "total_hours": 51
+}

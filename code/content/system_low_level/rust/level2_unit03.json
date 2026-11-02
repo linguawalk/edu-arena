@@ -1,0 +1,101 @@
+{
+  "language": "rust",
+  "category": "system_low_level",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "빌림 규칙",
+  "questions": [
+    {
+      "id": "rust_l2_u03_q001",
+      "type": "predict_output",
+      "code": "let s = String::from(\"hello\");\nlet r1 = &s;\nlet r2 = &s;\nprintln!(\"{} {}\", r1, r2);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["hello hello", "오류: 참조가 두 번 만들어짐", "hello", "오류: s가 이동됨"],
+      "answer": 0,
+      "explanation_en": "Multiple immutable references to the same value are allowed at the same time; both r1 and r2 can read s without conflict.",
+      "explanation_ko": "같은 값에 대한 여러 개의 불변 참조는 동시에 허용됩니다. r1과 r2 모두 충돌 없이 s를 읽을 수 있습니다.",
+      "concept_tags": ["borrowing_rules"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l2_u03_q002",
+      "type": "error_finding",
+      "code": "let mut s = String::from(\"hello\");\nlet r1 = &mut s;\nlet r2 = &mut s;\nprintln!(\"{} {}\", r1, r2);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "String 선언 문법 오류",
+        "같은 값에 대해 가변 참조는 동시에 하나만 존재할 수 있는데, r1과 r2가 동시에 &mut s를 가져서 컴파일 오류가 발생함",
+        "println! 문법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Rust allows at most one mutable reference to a value at a time (within the same scope), preventing data races at compile time; two simultaneous &mut s violates this rule.",
+      "explanation_ko": "Rust는 같은 스코프에서 한 값에 대해 동시에 최대 하나의 가변 참조만 허용해서 데이터 경합을 컴파일 시점에 막습니다. 동시에 두 개의 &mut s는 이 규칙을 위반합니다.",
+      "concept_tags": ["borrowing_rules", "mutable_reference"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l2_u03_q003",
+      "type": "error_finding",
+      "code": "let mut s = String::from(\"hello\");\nlet r1 = &s;\nlet r2 = &mut s;\nprintln!(\"{} {}\", r1, r2);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "r1과 r2의 타입이 달라서 문법 오류",
+        "불변 참조(r1)가 아직 사용 중인 상태에서 가변 참조(r2)를 만들려고 해서, 불변 참조와 가변 참조를 동시에 가질 수 없다는 규칙에 위반됨",
+        "mut 키워드 위치가 잘못됨",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Rust doesn't allow a mutable reference to coexist with an immutable one that's still in use, because the mutable reference could change data the immutable reference assumes is stable.",
+      "explanation_ko": "Rust는 아직 사용 중인 불변 참조와 가변 참조가 동시에 존재하는 것을 허용하지 않습니다. 가변 참조가 불변 참조가 안정적이라고 가정한 데이터를 바꿔버릴 수 있기 때문입니다.",
+      "concept_tags": ["borrowing_rules"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l2_u03_q004",
+      "type": "predict_output",
+      "code": "let mut s = String::from(\"hello\");\n{\n    let r1 = &mut s;\n    r1.push_str(\" world\");\n}\nlet r2 = &mut s;\nprintln!(\"{}\", r2);",
+      "prompt_en": "What is printed? (Note that r1 is scoped inside the inner block.)",
+      "prompt_ko": "출력 결과는? (r1이 안쪽 블록 안에서만 유효한 점에 주의하세요.)",
+      "options": ["hello world", "오류: 가변 참조 중복", "hello", "오류"],
+      "answer": 0,
+      "explanation_en": "Because r1's scope ends with the inner block, it no longer conflicts with r2 created afterward; the borrow checker allows sequential mutable borrows as long as they don't overlap.",
+      "explanation_ko": "r1의 스코프가 안쪽 블록에서 끝나기 때문에, 이후 만들어지는 r2와 충돌하지 않습니다. 빌림 검사기는 겹치지만 않는다면 순차적인 가변 빌림을 허용합니다.",
+      "concept_tags": ["borrowing_rules", "scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l2_u03_q005",
+      "type": "fill_blank",
+      "code": "// 빌림 규칙 요약\n// 1. 불변 참조는 ____개까지 동시에 가능\n// 2. 가변 참조는 동시에 최대 1개만 가능\n// 3. 불변 참조와 가변 참조는 동시에 존재할 수 없음",
+      "prompt_en": "Fill in the blank describing how many simultaneous immutable references are allowed.",
+      "prompt_ko": "동시에 허용되는 불변 참조의 개수를 빈칸에 채우세요.",
+      "options": ["여러", "1", "0", "2"],
+      "answer": 0,
+      "explanation_en": "Any number of immutable references can coexist, since none of them can modify the data — the danger only arises when mutation is involved.",
+      "explanation_ko": "불변 참조는 데이터를 수정할 수 없으므로 몇 개든 동시에 존재할 수 있습니다. 위험은 수정이 개입될 때만 발생합니다.",
+      "concept_tags": ["borrowing_rules"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l2_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "빌림 규칙", "definition": "불변 참조는 여러 개, 가변 참조는 하나만, 둘을 섞을 수는 없다는 규칙" },
+        { "term": "데이터 경합 (data race)", "definition": "여러 참조가 동시에 값을 읽고 쓰면서 발생할 수 있는 예측 불가능한 문제" },
+        { "term": "빌림 검사기 (Borrow Checker)", "definition": "컴파일 시점에 빌림 규칙 위반을 잡아내는 Rust 컴파일러의 구성 요소" },
+        { "term": "스코프와 빌림", "definition": "참조의 유효 범위가 끝나면 그 빌림도 끝나, 이후 다른 참조와 충돌하지 않는다는 원리" }
+      ],
+      "explanation_en": "These borrowing rules are what let Rust guarantee memory safety without a garbage collector, catching bugs that would otherwise only appear at runtime in C or C++.",
+      "explanation_ko": "이 빌림 규칙들이 바로 Rust가 가비지 컬렉션 없이도 메모리 안전성을 보장하는 방법이며, C나 C++에서는 실행 시점에야 드러났을 버그를 미리 잡아냅니다.",
+      "concept_tags": ["borrowing_rules", "mutable_reference"],
+      "difficulty": "practice"
+    }
+  ]
+}

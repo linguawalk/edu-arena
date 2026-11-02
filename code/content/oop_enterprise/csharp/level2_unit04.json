@@ -1,0 +1,96 @@
+{
+  "language": "csharp",
+  "category": "oop_enterprise",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "foreach와 break/continue",
+  "questions": [
+    {
+      "id": "csharp_l2_u04_q001",
+      "type": "predict_output",
+      "code": "int[] nums = { 10, 20, 30 };\nint total = 0;\nforeach (int n in nums)\n{\n    total += n;\n}\nConsole.WriteLine(total);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["30", "60", "3", "오류"],
+      "answer": 1,
+      "explanation_en": "foreach visits every element of nums without needing an index; it sums 10+20+30=60.",
+      "explanation_ko": "foreach는 인덱스 없이도 nums의 모든 요소를 순회합니다. 10+20+30=60을 합산합니다.",
+      "concept_tags": ["foreach"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l2_u04_q002",
+      "type": "predict_output",
+      "code": "for (int i = 1; i <= 10; i++)\n{\n    if (i == 5)\n    {\n        break;\n    }\n    Console.Write(i);\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1234", "12345", "12345678910", "5"],
+      "answer": 0,
+      "explanation_en": "break immediately terminates the loop once i reaches 5, so only 1, 2, 3, 4 are printed.",
+      "explanation_ko": "break는 i가 5가 되는 순간 반복문을 즉시 종료시킵니다. 따라서 1, 2, 3, 4까지만 출력됩니다.",
+      "concept_tags": ["break"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l2_u04_q003",
+      "type": "predict_output",
+      "code": "for (int i = 1; i <= 5; i++)\n{\n    if (i == 3)\n    {\n        continue;\n    }\n    Console.Write(i);\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1245", "12345", "12", "45"],
+      "answer": 0,
+      "explanation_en": "continue skips just the rest of the current iteration when i is 3, but the loop keeps going: 1, 2, 4, 5.",
+      "explanation_ko": "continue는 i가 3일 때 그 회차의 나머지만 건너뛰고, 반복문은 계속 진행됩니다: 1, 2, 4, 5.",
+      "concept_tags": ["continue"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l2_u04_q004",
+      "type": "predict_output",
+      "code": "for (int i = 1; i <= 3; i++)\n{\n    for (int j = 1; j <= 3; j++)\n    {\n        if (j == 2) break;\n        Console.Write($\"{i}{j}\");\n    }\n}",
+      "prompt_en": "What is printed? (Note that break only affects the innermost loop.)",
+      "prompt_ko": "출력 결과는? (break가 가장 안쪽 반복문에만 영향을 주는 점에 주의하세요.)",
+      "options": ["112131", "11", "111213212223313233", "오류"],
+      "answer": 0,
+      "explanation_en": "break exits only the nearest enclosing loop (the inner one); for each of the 3 outer iterations, the inner loop prints one pair before breaking at j=2, giving 11, 21, 31.",
+      "explanation_ko": "break는 가장 가까운 반복문(안쪽)만 종료시킵니다. 바깥 반복문 3번 각각에서 안쪽 반복문이 j=2에서 종료되기 전 한 쌍씩 출력해 11, 21, 31이 됩니다.",
+      "concept_tags": ["break", "nested_loop"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l2_u04_q005",
+      "type": "error_finding",
+      "code": "int[] nums = { 10, 20, 30 };\nforeach (int n in nums)\n{\n    n = n * 2;\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "foreach 문법 자체가 틀림",
+        "foreach의 반복 변수는 읽기 전용이라, n에 값을 대입하려 하면 컴파일 오류가 발생함",
+        "배열 선언 문법 오류",
+        "문제 없음, nums의 각 요소가 두 배가 됨"
+      ],
+      "answer": 1,
+      "explanation_en": "The iteration variable in a foreach loop is read-only in C#; attempting to assign to n causes a compile error, unlike a regular for loop where modifying the array by index is allowed.",
+      "explanation_ko": "C#의 foreach 반복 변수는 읽기 전용입니다. n에 값을 대입하려 하면 컴파일 오류가 발생합니다. 인덱스로 배열을 수정할 수 있는 일반 for문과는 다른 점입니다.",
+      "concept_tags": ["foreach", "readonly"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l2_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "foreach", "definition": "인덱스 없이 컬렉션의 모든 요소를 순회하는 반복문" },
+        { "term": "break", "definition": "반복문을 즉시 완전히 종료시키는 키워드" },
+        { "term": "continue", "definition": "현재 회차의 나머지만 건너뛰고 반복은 계속하는 키워드" },
+        { "term": "foreach 변수의 읽기 전용성", "definition": "foreach의 반복 변수는 값을 대입할 수 없는 C#만의 제약" }
+      ],
+      "explanation_en": "foreach's read-only iteration variable is a C#-specific safety feature not present in VB's For Each, which allows modifying the loop variable freely.",
+      "explanation_ko": "foreach 반복 변수의 읽기 전용 특성은 반복 변수를 자유롭게 수정할 수 있는 VB의 For Each에는 없는 C# 고유의 안전장치입니다.",
+      "concept_tags": ["foreach", "break", "continue"],
+      "difficulty": "practice"
+    }
+  ]
+}

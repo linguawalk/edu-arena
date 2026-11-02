@@ -1,0 +1,96 @@
+{
+  "language": "csharp",
+  "category": "oop_enterprise",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "메서드 오버로딩과 기본값 매개변수",
+  "questions": [
+    {
+      "id": "csharp_l3_u03_q001",
+      "type": "predict_output",
+      "code": "class Calc\n{\n    public static int Add(int a, int b) => a + b;\n    public static double Add(double a, double b) => a + b;\n}\n\nConsole.WriteLine(Calc.Add(3, 4));\nConsole.WriteLine(Calc.Add(3.5, 2.5));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["7 6", "7 6.0", "오류: Add가 중복 정의됨", "34 3.52.5"],
+      "answer": 0,
+      "explanation_en": "C# allows overloading — multiple methods with the same name but different parameter types; the compiler selects the version matching the argument types.",
+      "explanation_ko": "C#은 오버로딩을 허용합니다 — 같은 이름이라도 매개변수 자료형이 다르면 여러 메서드를 정의할 수 있습니다. 컴파일러는 인자 타입에 맞는 버전을 선택합니다.",
+      "concept_tags": ["overloading"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l3_u03_q002",
+      "type": "predict_output",
+      "code": "void Greet(string name, string greeting = \"안녕\")\n{\n    Console.WriteLine($\"{greeting}, {name}\");\n}\n\nGreet(\"Kim\");",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["안녕, Kim", "오류: greeting이 없음", "Kim", ", Kim"],
+      "answer": 0,
+      "explanation_en": "greeting has a default value, so omitting it in the call still works, using 안녕.",
+      "explanation_ko": "greeting에는 기본값이 있으므로 호출 시 생략해도 안녕을 사용합니다.",
+      "concept_tags": ["default_parameter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l3_u03_q003",
+      "type": "fill_blank",
+      "code": "void Greet(string name, string greeting ____ \"안녕\")\n{\n    Console.WriteLine($\"{greeting}, {name}\");\n}",
+      "prompt_en": "Fill in the blank with the operator that assigns a default value to the parameter.",
+      "prompt_ko": "매개변수에 기본값을 지정하는 연산자를 빈칸에 채우세요.",
+      "options": ["=", "==", ":=", "->"],
+      "answer": 0,
+      "explanation_en": "A default parameter value is written directly with = in the parameter list, similar to C++'s syntax.",
+      "explanation_ko": "기본값 매개변수는 매개변수 목록에 =로 직접 작성하며, C++의 문법과 비슷합니다.",
+      "concept_tags": ["default_parameter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l3_u03_q004",
+      "type": "error_finding",
+      "code": "void Calculate(int a, int b = 5, int c)\n{\n    Console.WriteLine(a + b + c);\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "매개변수 이름이 잘못됨",
+        "기본값이 있는 매개변수(b) 뒤에 기본값이 없는 매개변수(c)가 와서 컴파일 오류가 발생함",
+        "return문 문법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Once a parameter has a default value, every parameter after it must also have one; c has no default here, causing a compile error — the same rule as C++.",
+      "explanation_ko": "기본값이 있는 매개변수 뒤에 오는 모든 매개변수도 기본값을 가져야 합니다. c에 기본값이 없어 컴파일 오류가 발생합니다. C++와 같은 규칙입니다.",
+      "concept_tags": ["default_parameter"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l3_u03_q005",
+      "type": "predict_output",
+      "code": "void PrintInfo(string name, int age = 20, string city = \"서울\")\n{\n    Console.WriteLine($\"{name}, {age}, {city}\");\n}\n\nPrintInfo(\"Kim\", city: \"부산\");",
+      "prompt_en": "What is printed? (Note the named argument, skipping age.)",
+      "prompt_ko": "출력 결과는? (age를 건너뛰고 이름 붙은 인자를 사용한 점에 주의하세요.)",
+      "options": ["Kim, 20, 부산", "Kim, 20, 서울", "오류", "Kim, 부산"],
+      "answer": 0,
+      "explanation_en": "Named arguments (city: \"부산\") let you supply a specific parameter out of order, while age still falls back to its default, 20.",
+      "explanation_ko": "이름 붙은 인자(city: \"부산\")는 순서와 상관없이 특정 매개변수를 지정할 수 있게 해줍니다. age는 여전히 기본값인 20을 사용합니다.",
+      "concept_tags": ["default_parameter", "named_argument"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l3_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "메서드 오버로딩", "definition": "같은 이름, 다른 매개변수로 여러 버전을 정의하는 기능" },
+        { "term": "기본값 매개변수", "definition": "호출 시 생략하면 자동으로 적용되는 매개변수의 값" },
+        { "term": "이름 붙은 인자", "definition": "매개변수 이름을 명시해서 순서와 무관하게 값을 전달하는 방법" },
+        { "term": "기본값 순서 규칙", "definition": "기본값이 있는 매개변수 뒤에는 반드시 기본값이 있는 매개변수만 와야 한다는 규칙" }
+      ],
+      "explanation_en": "Overloading, default parameters, and named arguments together give C# methods the same flexibility covered in C++ Level 1, plus VB's named-argument style.",
+      "explanation_ko": "오버로딩, 기본값 매개변수, 이름 붙은 인자를 함께 쓰면 C++ Level 1에서 다룬 유연함에 더해 VB의 이름 붙은 인자 스타일까지 C# 메서드에 담을 수 있습니다.",
+      "concept_tags": ["overloading", "default_parameter", "named_argument"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "saa-c03",
+  "level": 4,
+  "unit": 3,
+  "unit_title": "비용 모니터링 도구: Cost Explorer·Budgets·Trusted Advisor",
+  "rule_summary_ko": "Cost Explorer는 과거 지출 데이터를 시각화·분석하고 미래 비용을 예측하는 조사 도구로, 문제를 자동으로 감지하거나 조치를 취하지는 않습니다. Budgets는 사용자가 정한 비용·사용량 임계값을 지속적으로 감시하다가, 그 기준을 넘으면 알림을 보내거나(선택적으로) 정해진 조치를 실행하는 사전 예방적 도구입니다. Trusted Advisor는 비용·보안·성능·내결함성 등 여러 영역에서 자동화된 모범 사례 점검을 수행해서, 유휴 EC2 인스턴스나 연결 안 된 EBS 볼륨 같은 낭비 요소를 찾아내며, 전체 기능은 Business·Enterprise 지원 플랜에서 이용할 수 있습니다.",
+  "examples": [
+    { "code": "Budgets가 이번 달 예산의 80%를 넘었다고 알림을 보냄", "note_ko": "감지(Budgets) → 그다음 Cost Explorer로 어느 서비스·리소스 때문에 늘었는지 원인을 조사하는 흐름" },
+    { "code": "Trusted Advisor 점검 결과, 3개월째 사용되지 않는 RDS 인스턴스와 연결 안 된 EBS 볼륨을 발견함", "note_ko": "자동화된 모범 사례 점검으로 낭비되고 있는 리소스를 찾아내는 사례" }
+  ],
+  "questions": [
+    {
+      "id": "aws_saa_l4_u3_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Cost Explorer의 핵심 역할은?",
+      "options": [
+        "과거 지출 데이터를 시각화하고 분석하며, 향후 비용을 예측하는 조사·분석 도구",
+        "임계값을 정해두고 초과 시 알림을 보내는 사전 예방적 도구다(Budgets와 혼동)",
+        "자동화된 모범 사례 점검을 수행해서 낭비 요소를 찾아준다(Trusted Advisor와 혼동)",
+        "Cost Explorer는 비용과 무관한 성능 모니터링 도구다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Cost Explorer는 '왜 비용이 늘었는가'를 파고드는 분석에 특화되어 있습니다.",
+      "concept_tags": ["cost_explorer"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l4_u3_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "AWS Budgets의 핵심 역할은?",
+      "options": [
+        "사용자가 정한 비용·사용량 임계값을 지속적으로 감시하다가, 그 기준을 넘으면 알림을 보내거나 조치를 실행하는 사전 예방적 도구",
+        "과거 지출 트렌드를 분석하는 조사 도구다(Cost Explorer와 혼동)",
+        "보안 취약점을 점검하는 도구다",
+        "Budgets는 비용과 무관한 도구다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Budgets는 '한계를 정해두고 넘으면 알려달라'는 요청에 특화된 도구입니다.",
+      "concept_tags": ["aws_budgets"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l4_u3_q003",
+      "type": "concept_matching_item",
+      "code": "3개월째 아무도 사용하지 않는 RDS 인스턴스와, 어떤 인스턴스에도 연결되지 않은 EBS 볼륨을 찾아 정리하고 싶어함",
+      "prompt_ko": "이 요구사항에 가장 적합한 도구는?",
+      "options": [
+        "Trusted Advisor — 자동화된 모범 사례 점검으로 유휴·낭비 리소스를 찾아내는 데 특화됨",
+        "Cost Explorer(과거 지출 분석에는 유용하지만 개별 유휴 리소스를 콕 집어 찾아주지는 않음)",
+        "Budgets(임계값 알림이 목적이라 개별 리소스 점검과는 다름)",
+        "이런 리소스를 찾는 도구는 AWS에 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Trusted Advisor의 비용 최적화 점검이 정확히 이런 낭비 요소를 찾아내는 데 특화되어 있습니다.",
+      "concept_tags": ["trusted_advisor_idle_resources"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l4_u3_q004",
+      "type": "concept_matching_item",
+      "code": "Budgets가 이번 달 예산의 80%를 초과했다는 알림을 보냄",
+      "prompt_ko": "이 알림을 받은 후, 어느 서비스 때문에 비용이 급증했는지 구체적으로 파악하려면 어떤 도구를 사용해야 합니까?",
+      "options": [
+        "Cost Explorer — Budgets가 '문제가 있다'는 것을 알려줬다면, Cost Explorer로 '무엇이 원인인지' 구체적으로 조사한다",
+        "Budgets만으로 원인까지 상세히 파악할 수 있다",
+        "이런 조사에는 Trusted Advisor만 사용해야 한다",
+        "원인 조사는 AWS 도구로는 불가능하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Budgets(감지)와 Cost Explorer(조사)를 연계해서 사용하는 것이 전형적인 흐름입니다.",
+      "concept_tags": ["budgets_then_cost_explorer"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l4_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Trusted Advisor의 전체 기능(모든 점검 카테고리)을 이용하려면 일반적으로 필요한 조건은?",
+      "options": [
+        "Business 또는 Enterprise 지원 플랜", "무료 계정이면 아무 제한 없이 모든 기능을 이용할 수 있다", "루트 사용자로만 로그인하면 된다", "Trusted Advisor는 항상 완전 무료이며 아무 제약이 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "기본적인 일부 점검은 무료지만, 전체 점검 카테고리는 유료 지원 플랜이 필요합니다.",
+      "concept_tags": ["trusted_advisor_support_plan"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l4_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Cost Explorer, Budgets, Trusted Advisor 세 도구를 함께 사용하는 것이 권장되는 이유는?",
+      "options": [
+        "서로 다른 역할(감지, 분석, 최적화 권장)을 담당해서, 함께 사용하면 비용 문제를 사전에 감지하고 원인을 분석하며 구체적인 개선 방안까지 얻는 완결된 비용 관리 흐름을 만들 수 있다",
+        "세 도구는 완전히 동일한 기능을 하는 중복 도구라 하나만 사용해도 충분하다",
+        "세 도구를 함께 사용하면 오히려 비용이 더 늘어난다",
+        "이 도구들은 서로 호환되지 않아 함께 사용할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "감지(Budgets)-분석(Cost Explorer)-개선(Trusted Advisor)의 조합이 완결된 비용 관리 사이클을 이룹니다.",
+      "concept_tags": ["three_tools_together"],
+      "difficulty": "practice"
+    }
+  ]
+}

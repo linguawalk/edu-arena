@@ -1,0 +1,352 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch02",
+  "no": 2,
+  "title": "플립플롭과 메모리"
+ },
+ "lesson": {
+  "id": "c4-ch02-l02",
+  "no": 2,
+  "title": "D 플립플롭과 클럭",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "박자에 맞춰 저장",
+   "body": [
+    "클럭은 0과 1을 규칙적으로 되풀이하는 신호입니다. 0에서 1로 올라가는 순간을 상승 에지라고 합니다. 컴퓨터의 모든 플립플롭은 같은 클럭의 에지에 맞추어 한꺼번에 값을 바꿉니다.",
+    "1초에 클럭이 몇 번 되풀이되는지를 클럭 주파수라고 합니다. 3 GHz CPU는 1초에 30억 번 박자를 맞춥니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "numeric",
+   "prompt": "3 GHz는 1초에 몇 억 번일까요?",
+   "answer": "30",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "1 GHz는 10억 Hz입니다.",
+   "explanation": "1 GHz = 10억 번입니다.\n3 GHz = 30억 번입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "D 플립플롭",
+   "body": [
+    "D 플립플롭은 입력 D와 클럭을 받습니다. 클럭의 상승 에지 순간에 D의 값을 Q로 옮겨 저장하고, 그 밖의 시간에는 D가 바뀌어도 Q는 그대로입니다.",
+    "그래서 'D(data)를 한 클럭 동안 붙잡아 두는' 소자라고 할 수 있습니다. SR 래치와 달리 금지 입력이 없고, 정해진 순간에만 값이 바뀌어 여러 비트를 함께 다루기 쉽습니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "Q = 0인 D 플립플롭에서, 클럭이 0일 때 D가 1로 바뀌고 다시 0으로 돌아간 뒤 상승 에지가 오면 Q는?",
+   "steps": [
+    "클럭이 0인 동안 D가 바뀌어도 Q는 그대로 0입니다.",
+    "상승 에지 순간의 D는 0입니다.",
+    "그래서 Q = 0입니다."
+   ],
+   "answer": "Q = 0"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "D 플립플롭은 클럭의 {{1}} 에지 순간에 D의 값을 저장합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "상승"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "0에서 1로 올라가는 순간입니다.\n하강 에지를 쓰는 플립플롭도 있습니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "상승 에지 순간 D = 1이었고 이후 D가 0으로 바뀌었습니다. 다음 에지 전까지 Q는 얼마일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "에지 순간의 D = 1이 저장됩니다.\n다음 에지 전까지 Q = 1을 유지합니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "D 플립플롭은 SR 래치와 달리 {{1}} 입력이 없습니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "금지"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "D 하나만 받으므로 설정과 초기화를 동시에 명령하는 경우가 없습니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "D 입력이 에지마다 1, 0, 1, 1 순으로 주어지면 네 번째 에지 뒤 Q는 얼마일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "Q는 에지마다 그 순간의 D를 따릅니다.\n네 번째 에지의 D = 1입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "클럭 주기",
+   "body": [
+    "클럭 한 번이 되풀이되는 시간을 주기라고 하며, 주기 = 1 ÷ 주파수입니다. 1 GHz면 1 ns(나노초, 10억분의 1초), 2 GHz면 0.5 ns입니다.",
+    "한 주기 안에 조합회로의 계산이 끝나서 다음 플립플롭 입력에 결과가 도착해야 합니다. 회로의 가장 느린 길(임계 경로)이 주기보다 길면 잘못된 값이 저장되므로, 이것이 클럭을 높이는 데 한계가 됩니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "4 GHz CPU의 클럭 주기는?",
+   "steps": [
+    "주기 = 1 ÷ (4 × 10⁹) s입니다.",
+    "= 0.25 × 10⁻⁹ s = 0.25 ns입니다."
+   ],
+   "answer": "0.25 ns"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "클럭 주기 = 1 ÷ {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "주파수",
+      "클럭 주파수"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "주파수가 높을수록 주기가 짧습니다.\n1 GHz는 1 ns입니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "2 GHz CPU의 클럭 주기는 몇 ns일까요?",
+   "answer": "0.5",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "hint": null,
+   "explanation": "주기 = 1 ÷ 주파수입니다.\n1 ÷ 2 = 0.5 ns입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "클럭 주기가 0.4 ns이면 주파수는 몇 GHz일까요?",
+   "answer": "2.5",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "hint": null,
+   "explanation": "주파수 = 1 ÷ 0.4 = 2.5 GHz입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "회로의 가장 느린 신호 길을 {{1}} 경로라고 하며, 이것이 클럭 주기보다 짧아야 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "임계"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "가장 느린 길이 한 주기 안에 끝나야 올바른 값이 저장됩니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "동기식 설계",
+   "body": [
+    "모든 저장 소자가 같은 클럭에 맞추어 움직이는 설계를 동기식이라고 합니다. 한 박자 동안 조합회로가 계산하고, 박자 끝에 플립플롭이 결과를 저장하는 일이 되풀이됩니다. CPU 전체가 이렇게 박자를 맞추어 동작합니다.",
+    "정리: 클럭과 상승 에지, D 플립플롭(에지에서 D를 저장), 주기 = 1 ÷ 주파수(1 GHz = 1 ns), 임계 경로가 주기보다 짧아야 함, 동기식 설계"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "모든 저장 소자가 같은 클럭에 맞추어 움직이는 설계를 {{1}}식 설계라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "동기"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "동기식 설계는 박자가 맞아 동작을 예측하기 쉽습니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "조합회로의 임계 경로가 0.8 ns입니다. 이 회로를 쓰는 CPU의 최대 클럭은?",
+   "steps": [
+    "주기가 0.8 ns 이상이어야 합니다.",
+    "최대 주파수 = 1 ÷ 0.8 = 1.25 GHz입니다."
+   ],
+   "answer": "1.25 GHz"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "임계 경로가 0.5 ns인 회로의 최대 클럭은 몇 GHz일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "주파수 = 1 ÷ 주기입니다.",
+   "explanation": "주기가 0.5 ns 이상이어야 합니다.\n1 ÷ 0.5 = 2 GHz입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "3 GHz CPU에서 어떤 작업이 12 클럭 걸리면 몇 ns일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "클럭 수 × 주기입니다.",
+   "explanation": "주기 = 1/3 ns입니다.\n12 × 1/3 = 4 ns입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "1 GHz CPU가 1초 동안 되풀이하는 클럭은 몇 억 번일까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "1 GHz는 10억 Hz입니다.",
+   "explanation": "1 GHz = 10⁹ = 10억 번입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "D 입력이 에지마다 0, 1, 1, 0, 1이면 다섯 에지 동안 Q가 1이었던 에지 구간은 몇 번일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "Q는 에지 순간의 D를 따릅니다.",
+   "explanation": "Q는 에지마다 D를 따라 0, 1, 1, 0, 1이 됩니다.\n1인 구간은 3번입니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "클럭을 너무 높이면 계산이 한 주기 안에 끝나지 않아 {{1}} 값이 저장됩니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "잘못된",
+      "틀린"
+     ]
+    }
+   ],
+   "hint": "계산이 끝나기 전에 저장하면?",
+   "explanation": "결과가 도착하기 전에 저장되면 이전 값이나 중간 값이 저장됩니다.\n오버클럭의 위험입니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "CPU의 클럭 주파수를 무한정 높일 수 없는 이유를 설명해 보세요.",
+   "hint": "한 주기 안에 끝나야 하는 일을 생각하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "주기",
+      "짧아"
+     ],
+     [
+      "임계 경로",
+      "계산",
+      "조합회로"
+     ],
+     [
+      "끝나",
+      "도착",
+      "안에"
+     ],
+     [
+      "열",
+      "전력",
+      "잘못"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "클럭 주파수를 높이면 주기가 짧아지는데, 한 주기 안에 조합회로의 가장 느린 경로(임계 경로)의 계산이 끝나야 올바른 값이 저장됩니다. 또 주파수가 높을수록 전력과 열이 늘어납니다. 그래서 무한정 높일 수 없습니다."
+  }
+ ]
+}

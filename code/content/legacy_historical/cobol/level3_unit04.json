@@ -1,0 +1,91 @@
+{
+  "language": "cobol",
+  "category": "legacy_historical",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "EVALUATE문",
+  "questions": [
+    {
+      "id": "cobol_l3_u04_q001",
+      "type": "predict_output",
+      "code": "01 DAY-NUM PIC 9(1).\n...\nMOVE 2 TO DAY-NUM.\nEVALUATE DAY-NUM\n    WHEN 1\n        DISPLAY \"MONDAY\"\n    WHEN 2\n        DISPLAY \"TUESDAY\"\n    WHEN OTHER\n        DISPLAY \"OTHER DAY\"\nEND-EVALUATE.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["TUESDAY", "MONDAY", "OTHER DAY", "오류"],
+      "answer": 0,
+      "explanation_en": "EVALUATE compares DAY-NUM against each WHEN in order; DAY-NUM is 2, matching the second WHEN, printing TUESDAY.",
+      "explanation_ko": "EVALUATE는 DAY-NUM을 각 WHEN과 순서대로 비교합니다. DAY-NUM이 2이므로 두 번째 WHEN과 일치해 TUESDAY가 출력됩니다.",
+      "concept_tags": ["evaluate_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cobol_l3_u04_q002",
+      "type": "predict_output",
+      "code": "01 X PIC 9(3).\n...\nMOVE 1 TO X.\nEVALUATE X\n    WHEN 1\n        DISPLAY \"A\"\n    WHEN 2\n        DISPLAY \"B\"\nEND-EVALUATE.",
+      "prompt_en": "What is printed? (Compare with switch's fall-through in other languages.)",
+      "prompt_ko": "출력 결과는? (다른 언어에서 switch가 fall-through하던 것과 비교해보세요.)",
+      "options": ["A", "AB", "오류", "B"],
+      "answer": 0,
+      "explanation_en": "Unlike switch in C, Java, JavaScript, and PHP, EVALUATE never falls through — only the matching WHEN's block runs, with no break needed; only A is printed.",
+      "explanation_ko": "C, Java, JavaScript, PHP의 switch와 달리, EVALUATE는 절대 fall-through하지 않습니다 — break 없이도 일치하는 WHEN의 블록만 실행됩니다. A만 출력됩니다.",
+      "concept_tags": ["evaluate_statement", "no_fall_through"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l3_u04_q003",
+      "type": "predict_output",
+      "code": "01 SCORE PIC 9(3).\n...\nMOVE 85 TO SCORE.\nEVALUATE TRUE\n    WHEN SCORE >= 90\n        DISPLAY \"A\"\n    WHEN SCORE >= 80\n        DISPLAY \"B\"\n    WHEN OTHER\n        DISPLAY \"C\"\nEND-EVALUATE.",
+      "prompt_en": "What is printed? (EVALUATE TRUE evaluates boolean conditions instead of matching values.)",
+      "prompt_ko": "출력 결과는? (EVALUATE TRUE는 값 매칭 대신 boolean 조건을 평가합니다.)",
+      "options": ["B", "A", "C", "오류"],
+      "answer": 0,
+      "explanation_en": "EVALUATE TRUE checks each WHEN as a boolean condition, running the first one that's true — a common idiom replacing chained IF/ELSE IF; SCORE >= 90 is false, but SCORE >= 80 is true, printing B.",
+      "explanation_ko": "EVALUATE TRUE는 각 WHEN을 boolean 조건으로 검사해서, 참인 첫 번째 것을 실행합니다 — 연쇄된 IF/ELSE IF를 대체하는 흔한 관용구입니다. SCORE >= 90은 거짓이지만 SCORE >= 80은 참이므로 B가 출력됩니다.",
+      "concept_tags": ["evaluate_statement", "evaluate_true"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l3_u04_q004",
+      "type": "fill_blank",
+      "code": "____ X\n    WHEN 1\n        DISPLAY \"ONE\"\n    WHEN OTHER\n        DISPLAY \"OTHER\"\nEND-EVALUATE.",
+      "prompt_en": "Fill in the blank with COBOL's switch/case equivalent keyword.",
+      "prompt_ko": "COBOL의 switch/case에 해당하는 키워드를 빈칸에 채우세요.",
+      "options": ["EVALUATE", "SWITCH", "CASE", "SELECT"],
+      "answer": 0,
+      "explanation_en": "EVALUATE is COBOL's more powerful, more modern alternative to switch/case, added later than the traditional IF and providing no-fall-through, multi-condition matching.",
+      "explanation_ko": "EVALUATE는 switch/case에 대한 COBOL의 더 강력하고 현대적인 대안으로, 전통적인 IF보다 나중에 추가됐으며 fall-through 없이 여러 조건을 매칭할 수 있습니다.",
+      "concept_tags": ["evaluate_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cobol_l3_u04_q005",
+      "type": "predict_output",
+      "code": "01 X PIC 9(3).\n...\nMOVE 2 TO X.\nEVALUATE X\n    WHEN 1 THRU 3\n        DISPLAY \"LOW\"\n    WHEN 4 THRU 6\n        DISPLAY \"MID\"\n    WHEN OTHER\n        DISPLAY \"HIGH\"\nEND-EVALUATE.",
+      "prompt_en": "What is printed? (WHEN can match a range with THRU, just like 88-level condition names.)",
+      "prompt_ko": "출력 결과는? (WHEN도 88 레벨 조건명처럼 THRU로 범위를 매칭할 수 있습니다.)",
+      "options": ["LOW", "MID", "HIGH", "오류"],
+      "answer": 0,
+      "explanation_en": "WHEN 1 THRU 3 matches any value from 1 to 3 inclusive; X is 2, which falls in this range, printing LOW.",
+      "explanation_ko": "WHEN 1 THRU 3은 1부터 3까지(포함) 어떤 값이든 매칭합니다. X는 2이며 이 범위에 속하므로 LOW가 출력됩니다.",
+      "concept_tags": ["evaluate_statement", "thru_range"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l3_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "EVALUATE 값", "definition": "특정 값과 각 WHEN을 비교 — fall-through 없음" },
+        { "term": "EVALUATE TRUE", "definition": "각 WHEN을 boolean 조건으로 평가 — IF/ELSE IF 체인의 대안" },
+        { "term": "WHEN ... THRU ...", "definition": "단일 값이 아니라 범위를 매칭" },
+        { "term": "WHEN OTHER", "definition": "다른 어떤 WHEN과도 일치하지 않을 때의 기본 분기" }
+      ],
+      "explanation_en": "EVALUATE's design — no fall-through, plus the EVALUATE TRUE idiom for boolean chains — closely resembles PHP's match expression covered earlier in this curriculum, both being later, safer alternatives to their languages' traditional switch/IF patterns.",
+      "explanation_ko": "fall-through 없음과 boolean 체인을 위한 EVALUATE TRUE 관용구라는 EVALUATE의 설계는 이 커리큘럼에서 앞서 다룬 PHP의 match 표현식과 매우 비슷합니다. 둘 다 각 언어의 전통적인 switch/IF 패턴에 대한 더 나중에 나온, 더 안전한 대안입니다.",
+      "concept_tags": ["evaluate_statement", "evaluate_true", "no_fall_through"],
+      "difficulty": "practice"
+    }
+  ]
+}

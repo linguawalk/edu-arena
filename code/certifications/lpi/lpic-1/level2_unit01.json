@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-1-101",
+  "level": 2,
+  "unit": 1,
+  "unit_title": "텍스트 처리 기초: sort·uniq·cut·grep",
+  "rule_summary_ko": "uniq는 오직 서로 인접한(연속된) 중복 줄만 제거하기 때문에, 파일 전체의 중복을 제거하려면 반드시 먼저 sort로 정렬해야 합니다(정렬되지 않은 상태에서 uniq만 쓰면 떨어져 있는 중복은 그대로 남습니다). uniq -c는 각 줄이 몇 번 반복됐는지 개수와 함께 보여줍니다. cut -d'구분자' -f번호는 구분자로 나눈 필드 중 원하는 번호의 값만 추출합니다. grep -c는 일치하는 줄의 개수를, grep -v는 일치하지 않는 줄만 반대로 보여줍니다.",
+  "examples": [
+    { "code": "파일: apple, banana, apple, cherry, banana (이 순서로 나열)\nuniq 파일명", "note_ko": "결과: 5줄 그대로 — apple끼리, banana끼리 서로 붙어있지 않아 uniq가 중복으로 인식하지 못함" },
+    { "code": "sort 파일명 | uniq", "note_ko": "먼저 정렬해서 같은 값끼리 인접하게 만든 뒤 uniq를 적용 — 결과: apple, banana, cherry(중복 제거됨)" }
+  ],
+  "questions": [
+    {
+      "id": "lpic1_l2_u1_q001",
+      "type": "concept_matching_item",
+      "code": "파일 내용(순서대로): apple, banana, apple, cherry, banana\nuniq 파일명",
+      "prompt_ko": "sort 없이 바로 uniq를 실행하면 결과는?",
+      "options": [
+        "apple, banana, cherry (중복이 모두 제거됨)",
+        "apple, banana, apple, cherry, banana (원본 그대로) — uniq는 서로 인접한 중복만 제거하는데, 이 파일에서는 같은 값끼리 붙어있지 않기 때문",
+        "빈 결과가 나온다",
+        "오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "uniq는 '인접한' 중복만 처리하므로, 떨어져 있는 동일한 줄은 제거되지 않습니다.",
+      "concept_tags": ["uniq_adjacent_only"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic1_l2_u1_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "파일 전체에서 중복된 줄을 확실하게 제거하고 싶을 때 올바른 명령 조합은?",
+      "options": [
+        "sort 파일명 | uniq — 먼저 정렬해서 같은 값을 인접하게 만든 뒤 uniq를 적용해야 한다",
+        "uniq 파일명 하나만으로 항상 충분하다",
+        "cut 파일명만으로 충분하다",
+        "grep 파일명만으로 충분하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "sort와 uniq의 조합은 파일 전체의 중복 제거를 위한 표준적인 관용구입니다.",
+      "concept_tags": ["sort_uniq_idiom"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l2_u1_q003",
+      "type": "concept_matching_item",
+      "code": "sort 파일명 | uniq -c",
+      "prompt_ko": "uniq -c 옵션이 추가로 하는 일은?",
+      "options": [
+        "각 고유한 줄이 몇 번 반복됐는지 그 개수를 줄 앞에 함께 표시한다",
+        "중복된 줄만 삭제하지 않고 그대로 둔다(옵션 없는 uniq와 반대)",
+        "대소문자를 구분하지 않고 비교한다",
+        "파일을 알파벳 역순으로 정렬한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "-c(count)는 각 고유 항목의 등장 횟수를 함께 보여줘서 빈도 분석에 유용합니다.",
+      "concept_tags": ["uniq_c"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l2_u1_q004",
+      "type": "fill_blank",
+      "code": "echo \"apple:5:fruit\" | cut -d':' -f2",
+      "prompt_ko": "이 명령어의 출력 결과는 무엇입니까? (그대로 입력)",
+      "expected_answers": ["5"],
+      "explanation_ko": "-d':' 는 콜론을 구분자로 지정하고, -f2는 두 번째 필드(5)를 추출합니다.",
+      "concept_tags": ["cut_field"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l2_u1_q005",
+      "type": "concept_matching_item",
+      "code": "grep -c apple 파일명",
+      "prompt_ko": "grep -c 옵션의 역할은?",
+      "options": [
+        "패턴(apple)과 일치하는 줄의 개수만 숫자로 출력한다(일치하는 줄 자체는 출력하지 않음)",
+        "일치하는 줄의 전체 내용을 출력한다(기본 grep과 동일)",
+        "일치하지 않는 줄만 출력한다(-v와 혼동)",
+        "대소문자를 무시하고 검색한다(-i와 혼동)"
+      ],
+      "answer": 0,
+      "explanation_ko": "-c(count)는 일치하는 줄의 개수만 간결하게 보여줍니다.",
+      "concept_tags": ["grep_c"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l2_u1_q006",
+      "type": "concept_matching_item",
+      "code": "grep -v apple 파일명",
+      "prompt_ko": "grep -v 옵션의 역할은?",
+      "options": [
+        "패턴(apple)과 일치하지 않는 줄만 반대로(반전) 출력한다",
+        "패턴과 일치하는 줄만 출력한다(기본 grep과 동일)",
+        "일치하는 줄의 개수만 출력한다(-c와 혼동)",
+        "패턴을 정규표현식으로 해석하지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "-v(invert)는 일치하지 않는 줄을 보여주는 반전 검색입니다.",
+      "concept_tags": ["grep_v"],
+      "difficulty": "practice"
+    }
+  ]
+}

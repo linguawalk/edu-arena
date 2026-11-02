@@ -1,0 +1,96 @@
+{
+  "language": "rust",
+  "category": "system_low_level",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "슬라이스",
+  "questions": [
+    {
+      "id": "rust_l2_u04_q001",
+      "type": "predict_output",
+      "code": "let s = String::from(\"hello\");\nlet slice = &s[0..3];\nprintln!(\"{}\", slice);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["hel", "hello", "llo", "오류"],
+      "answer": 0,
+      "explanation_en": "A string slice &s[0..3] references characters at indices 0, 1, 2 (h, e, l), producing hel.",
+      "explanation_ko": "문자열 슬라이스 &s[0..3]은 인덱스 0, 1, 2(h, e, l)를 참조해 hel을 만듭니다.",
+      "concept_tags": ["slice", "string_slice"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l2_u04_q002",
+      "type": "predict_output",
+      "code": "let arr = [1, 2, 3, 4, 5];\nlet slice = &arr[1..3];\nprintln!(\"{} {}\", slice[0], slice.len());",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["2 2", "1 3", "2 3", "오류"],
+      "answer": 0,
+      "explanation_en": "arr[1..3] slices out elements at indices 1 and 2 (values 2 and 3); slice[0] is 2, and the slice has 2 elements.",
+      "explanation_ko": "arr[1..3]은 인덱스 1과 2(값 2와 3)를 잘라냅니다. slice[0]은 2이고, 슬라이스의 길이는 2입니다.",
+      "concept_tags": ["slice", "array_slice"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l2_u04_q003",
+      "type": "fill_blank",
+      "code": "fn first_word(s: &String) -> &____ {\n    let bytes = s.as_bytes();\n    for (i, &item) in bytes.iter().enumerate() {\n        if item == b' ' {\n            return &s[0..i];\n        }\n    }\n    &s[..]\n}",
+      "prompt_en": "Fill in the blank with the return type for a borrowed string slice.",
+      "prompt_ko": "빌려온 문자열 슬라이스를 반환하는 타입을 빈칸에 채우세요.",
+      "options": ["str", "String", "char", "Vec"],
+      "answer": 0,
+      "explanation_en": "A function returning a borrowed slice of a String uses &str, the string slice type, rather than the owned String type.",
+      "explanation_ko": "String의 빌려온 조각을 반환하는 함수는 소유권을 가진 String 타입이 아니라, 문자열 슬라이스 타입인 &str을 씁니다.",
+      "concept_tags": ["slice", "string_slice"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l2_u04_q004",
+      "type": "error_finding",
+      "code": "let mut v = vec![1, 2, 3, 4, 5];\nlet slice = &v[0..2];\nv.push(6);\nprintln!(\"{:?}\", slice);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "슬라이스 문법 오류",
+        "slice가 v를 불변으로 빌리고 있는 동안 v.push(6)이 가변으로 빌리려 해서, 빌림 규칙 위반으로 컴파일 오류가 발생함",
+        "push 사용법 자체가 잘못됨",
+        "문제 없음, 정상적으로 [1, 2]가 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "A slice is itself an immutable borrow of the vector; calling push (which needs a mutable borrow) while the slice is still in use violates the same borrowing rules covered earlier.",
+      "explanation_ko": "슬라이스 자체가 벡터에 대한 불변 빌림입니다. slice가 아직 사용 중인 상태에서 push(가변 빌림이 필요)를 호출하면 앞서 배운 빌림 규칙을 위반해 컴파일 오류가 발생합니다.",
+      "concept_tags": ["slice", "borrowing_rules"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l2_u04_q005",
+      "type": "predict_output",
+      "code": "let s = String::from(\"hello world\");\nfn first_word(s: &String) -> &str {\n    let bytes = s.as_bytes();\n    for (i, &item) in bytes.iter().enumerate() {\n        if item == b' ' {\n            return &s[0..i];\n        }\n    }\n    &s[..]\n}\nprintln!(\"{}\", first_word(&s));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["hello", "world", "hello world", "오류"],
+      "answer": 0,
+      "explanation_en": "first_word scans for the first space and returns everything before it as a slice; for \"hello world\", that's hello.",
+      "explanation_ko": "first_word는 첫 번째 공백을 찾아 그 앞부분을 슬라이스로 반환합니다. \"hello world\"에서는 hello가 됩니다.",
+      "concept_tags": ["slice", "string_slice"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l2_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "슬라이스", "definition": "컬렉션의 연속된 일부를 소유권 없이 참조하는 방식" },
+        { "term": "&str", "definition": "String의 일부 또는 전체를 빌려온 문자열 슬라이스 타입" },
+        { "term": "배열 슬라이스", "definition": "&arr[1..3]처럼 배열의 일부 구간을 참조하는 것" },
+        { "term": "슬라이스도 빌림", "definition": "슬라이스 자체가 원본에 대한 참조라, 빌림 규칙이 그대로 적용된다는 점" }
+      ],
+      "explanation_en": "Slices are a natural extension of the borrowing system, letting code reference part of a collection without copying it or taking ownership.",
+      "explanation_ko": "슬라이스는 빌림 시스템의 자연스러운 확장으로, 컬렉션을 복사하거나 소유권을 가져가지 않고도 일부를 참조할 수 있게 해줍니다.",
+      "concept_tags": ["slice", "string_slice", "borrowing_rules"],
+      "difficulty": "practice"
+    }
+  ]
+}

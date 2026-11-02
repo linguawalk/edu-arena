@@ -1,0 +1,101 @@
+{
+  "language": "cobol",
+  "category": "legacy_historical",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "문자열 함수",
+  "questions": [
+    {
+      "id": "cobol_l2_u04_q001",
+      "type": "predict_output",
+      "code": "01 FIRST-NAME PIC X(10) VALUE \"KIM\".\n01 LAST-NAME PIC X(10) VALUE \"MIN\".\n01 FULL-NAME PIC X(21).\n...\nSTRING FUNCTION TRIM(FIRST-NAME) DELIMITED BY SIZE\n       \" \" DELIMITED BY SIZE\n       FUNCTION TRIM(LAST-NAME) DELIMITED BY SIZE\n       INTO FULL-NAME.\nDISPLAY FULL-NAME.",
+      "prompt_en": "What is printed? (FUNCTION TRIM removes the padding before concatenation.)",
+      "prompt_ko": "출력 결과는? (FUNCTION TRIM은 연결 전에 패딩을 제거합니다.)",
+      "options": [
+        "\"KIM MIN\" + 후행 공백 (총 21글자)",
+        "\"KIM       MIN       \" (패딩 그대로)",
+        "오류",
+        "KIMMIN"
+      ],
+      "answer": 0,
+      "explanation_en": "STRING concatenates multiple pieces into one field; FUNCTION TRIM strips the trailing spaces from each fixed-width source first, so the result is a clean KIM MIN (padded to fill FULL-NAME's 21 characters).",
+      "explanation_ko": "STRING은 여러 조각을 하나의 필드로 연결합니다. FUNCTION TRIM은 먼저 각 고정폭 원본의 후행 공백을 제거해서, 결과는 깔끔한 KIM MIN이 됩니다(FULL-NAME의 21글자를 채우도록 패딩됨).",
+      "concept_tags": ["string_statement", "trim_function"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cobol_l2_u04_q002",
+      "type": "fill_blank",
+      "code": "01 A PIC X(5) VALUE \"HI\".\n01 B PIC X(5) VALUE \"BYE\".\n01 RESULT PIC X(10).\n...\n____ A DELIMITED BY SIZE\n       B DELIMITED BY SIZE\n       INTO RESULT.",
+      "prompt_en": "Fill in the blank with the statement that concatenates multiple fields into one.",
+      "prompt_ko": "여러 필드를 하나로 연결하는 문장을 빈칸에 채우세요.",
+      "options": ["STRING", "CONCAT", "JOIN", "COMBINE"],
+      "answer": 0,
+      "explanation_en": "STRING joins multiple source fields into a destination field, with DELIMITED BY specifying how each source's meaningful content is determined.",
+      "explanation_ko": "STRING은 여러 원본 필드를 대상 필드로 이어붙이며, DELIMITED BY는 각 원본의 의미 있는 내용을 어떻게 판단할지 지정합니다.",
+      "concept_tags": ["string_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cobol_l2_u04_q003",
+      "type": "predict_output",
+      "code": "01 MSG PIC X(20) VALUE \"KIM MIN\".\n01 COUNT-RESULT PIC 9(3) VALUE 0.\n...\nINSPECT MSG TALLYING COUNT-RESULT FOR ALL \"M\".\nDISPLAY COUNT-RESULT.",
+      "prompt_en": "What is printed? (INSPECT TALLYING counts occurrences of a substring.)",
+      "prompt_ko": "출력 결과는? (INSPECT TALLYING은 부분 문자열의 등장 횟수를 셉니다.)",
+      "options": ["002", "001", "000", "오류"],
+      "answer": 0,
+      "explanation_en": "INSPECT ... TALLYING ... FOR ALL \"M\" counts every occurrence of M in MSG; \"KIM MIN\" contains M twice, giving 2 (displayed as 002).",
+      "explanation_ko": "INSPECT ... TALLYING ... FOR ALL \"M\"은 MSG에서 M이 나타나는 모든 횟수를 셉니다. \"KIM MIN\"에는 M이 두 번 있으므로 2가 됩니다(002로 출력).",
+      "concept_tags": ["inspect_statement", "tallying"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l2_u04_q004",
+      "type": "predict_output",
+      "code": "01 MSG PIC X(10) VALUE \"HELLO\".\n...\nINSPECT MSG REPLACING ALL \"L\" BY \"X\".\nDISPLAY MSG.",
+      "prompt_en": "What is printed? (INSPECT can replace, not just count.)",
+      "prompt_ko": "출력 결과는? (INSPECT는 세는 것뿐 아니라 바꿀 수도 있습니다.)",
+      "options": [
+        "\"HEXXO\" + 후행 공백",
+        "\"HELLO\" + 후행 공백",
+        "오류",
+        "HXLLO"
+      ],
+      "answer": 0,
+      "explanation_en": "INSPECT ... REPLACING ALL \"L\" BY \"X\" replaces every occurrence of L with X directly in MSG; HELLO becomes HEXXO.",
+      "explanation_ko": "INSPECT ... REPLACING ALL \"L\" BY \"X\"는 MSG 안에서 L의 모든 등장을 X로 직접 바꿉니다. HELLO는 HEXXO가 됩니다.",
+      "concept_tags": ["inspect_statement", "replacing"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l2_u04_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "STRING ... INTO ...", "definition": "여러 필드를 하나로 연결" },
+        { "term": "UNSTRING", "definition": "STRING의 반대 — 하나의 필드를 구분자를 기준으로 여러 필드로 나눔" },
+        { "term": "INSPECT ... TALLYING", "definition": "부분 문자열이나 문자의 등장 횟수를 셈" },
+        { "term": "INSPECT ... REPLACING", "definition": "부분 문자열이나 문자를 다른 것으로 바꿈" }
+      ],
+      "explanation_en": "COBOL's verbose STRING/UNSTRING/INSPECT statements accomplish what modern languages compress into short methods (concat, split, count, replace), reflecting COBOL's English-sentence design philosophy even for string manipulation.",
+      "explanation_ko": "COBOL의 장황한 STRING/UNSTRING/INSPECT 문은 현대 언어가 짧은 메서드(concat, split, count, replace)로 압축하는 것을 수행하며, 문자열 조작에서도 COBOL의 영어 문장 설계 철학을 반영합니다.",
+      "concept_tags": ["string_statement", "inspect_statement", "tallying", "replacing"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l2_u04_q006",
+      "type": "predict_output",
+      "code": "01 FULL-DATE PIC X(10) VALUE \"2026-07-20\".\n01 YEAR-PART PIC X(4).\n01 MONTH-PART PIC X(2).\n01 DAY-PART PIC X(2).\n...\nUNSTRING FULL-DATE DELIMITED BY \"-\"\n    INTO YEAR-PART, MONTH-PART, DAY-PART.\nDISPLAY YEAR-PART.\nDISPLAY MONTH-PART.",
+      "prompt_en": "What is printed? (UNSTRING splits a field using a delimiter.)",
+      "prompt_ko": "출력 결과는? (UNSTRING은 구분자를 사용해 필드를 나눕니다.)",
+      "options": ["2026\\n07", "07\\n2026", "오류", "2026-07-20\\n"],
+      "answer": 0,
+      "explanation_en": "UNSTRING splits FULL-DATE at each \"-\", distributing the pieces into YEAR-PART, MONTH-PART, and DAY-PART in order: 2026, then 07.",
+      "explanation_ko": "UNSTRING은 각 \"-\"에서 FULL-DATE를 나눠서, 조각들을 순서대로 YEAR-PART, MONTH-PART, DAY-PART에 나눠 담습니다: 2026, 그다음 07.",
+      "concept_tags": ["unstring_statement"],
+      "difficulty": "challenge"
+    }
+  ]
+}

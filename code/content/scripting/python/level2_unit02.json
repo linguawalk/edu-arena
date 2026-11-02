@@ -1,0 +1,91 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "for와 range()",
+  "questions": [
+    {
+      "id": "python_l2_u02_q001",
+      "type": "predict_output",
+      "code": "for i in range(5):\n    print(i, end=\"\")",
+      "prompt_en": "What is printed? (Note: range(5) starts at 0 and excludes 5.)",
+      "prompt_ko": "출력 결과는? (range(5)는 0부터 시작해서 5는 포함하지 않는 점에 주의하세요.)",
+      "options": ["12345", "01234", "05", "오류"],
+      "answer": 1,
+      "explanation_en": "range(5) generates 0, 1, 2, 3, 4 — starting at 0 by default and stopping just before 5.",
+      "explanation_ko": "range(5)는 0, 1, 2, 3, 4를 생성합니다 — 기본적으로 0부터 시작해 5 바로 전에서 멈춥니다.",
+      "concept_tags": ["for_loop", "range_function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l2_u02_q002",
+      "type": "predict_output",
+      "code": "for i in range(2, 6):\n    print(i, end=\"\")",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["23456", "2345", "12345", "오류"],
+      "answer": 1,
+      "explanation_en": "range(2, 6) starts at 2 and stops just before 6, generating 2, 3, 4, 5.",
+      "explanation_ko": "range(2, 6)은 2부터 시작해 6 바로 전에서 멈추어 2, 3, 4, 5를 생성합니다.",
+      "concept_tags": ["for_loop", "range_function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l2_u02_q003",
+      "type": "predict_output",
+      "code": "for i in range(10, 0, -2):\n    print(i, end=\" \")",
+      "prompt_en": "What is printed? (Note: the third argument to range is the step.)",
+      "prompt_ko": "출력 결과는? (range의 세 번째 인자는 증감 간격입니다.)",
+      "options": ["10 8 6 4 2", "10 8 6 4 2 0", "0 2 4 6 8 10", "오류"],
+      "answer": 0,
+      "explanation_en": "range(10, 0, -2) counts down from 10 by 2, stopping just before (not including) 0: 10, 8, 6, 4, 2.",
+      "explanation_ko": "range(10, 0, -2)는 10부터 2씩 거꾸로 세며, 0 바로 전에서 멈춥니다(0은 포함 안 됨): 10, 8, 6, 4, 2.",
+      "concept_tags": ["for_loop", "range_function"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l2_u02_q004",
+      "type": "predict_output",
+      "code": "fruits = [\"사과\", \"바나나\", \"체리\"]\nfor fruit in fruits:\n    print(fruit)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0 1 2", "사과 바나나 체리 (각각 새 줄)", "[사과, 바나나, 체리]", "오류"],
+      "answer": 1,
+      "explanation_en": "Python's for is fundamentally a for-each loop over any iterable; it directly visits each element of fruits, no range() or index needed.",
+      "explanation_ko": "Python의 for는 본질적으로 어떤 iterable이든 순회하는 for-each 반복문입니다. range()나 인덱스 없이도 fruits의 각 요소를 직접 방문합니다.",
+      "concept_tags": ["for_loop"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l2_u02_q005",
+      "type": "fill_blank",
+      "code": "fruits = [\"사과\", \"바나나\", \"체리\"]\nfor i, fruit in ____(fruits):\n    print(i, fruit)\n# 인덱스와 값을 동시에 얻어야 함",
+      "prompt_en": "Fill in the blank with the function that pairs each element with its index during iteration.",
+      "prompt_ko": "순회하면서 각 요소를 인덱스와 함께 짝지어주는 함수를 빈칸에 채우세요.",
+      "options": ["enumerate", "index", "zip", "pair"],
+      "answer": 0,
+      "explanation_en": "enumerate() wraps an iterable, yielding (index, value) pairs, avoiding the need for manual index tracking or range(len(...)).",
+      "explanation_ko": "enumerate()는 iterable을 감싸서 (인덱스, 값) 쌍을 만들어내, 수동으로 인덱스를 추적하거나 range(len(...))을 쓸 필요를 없애줍니다.",
+      "concept_tags": ["for_loop", "enumerate"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l2_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "range(n)", "definition": "0부터 n-1까지의 숫자 시퀀스를 생성" },
+        { "term": "range(시작, 끝, 증감)", "definition": "시작부터 끝 바로 전까지, 지정한 증감으로 숫자를 생성" },
+        { "term": "for-each로서의 for", "definition": "Python의 for는 카운팅이 아니라 iterable을 순회하는 것이 본질" },
+        { "term": "enumerate()", "definition": "순회 중 인덱스와 값을 함께 얻게 해주는 함수" }
+      ],
+      "explanation_en": "Unlike C-family for(int i=0; i<n; i++) loops, Python's for is always a for-each; range() is just one common iterable used to simulate counting.",
+      "explanation_ko": "C 계열의 for(int i=0; i<n; i++) 반복문과 달리, Python의 for는 항상 for-each입니다. range()는 카운팅을 흉내내는 데 쓰이는 흔한 iterable 중 하나일 뿐입니다.",
+      "concept_tags": ["for_loop", "range_function", "enumerate"],
+      "difficulty": "practice"
+    }
+  ]
+}

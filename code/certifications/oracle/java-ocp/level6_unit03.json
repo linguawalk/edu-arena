@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "java-ocp-17",
+  "level": 6,
+  "unit": 3,
+  "unit_title": "ExecutorService와 Future",
+  "rule_summary_ko": "ExecutorService는 스레드를 직접 만들고 관리하는 대신, 스레드 풀을 통해 작업을 제출·관리하게 해주는 상위 수준의 동시성 API입니다. Callable&lt;T&gt;은 값을 반환하고 예외를 던질 수 있는 작업이며, submit()하면 Future&lt;T&gt;를 반환받아 나중에 get()으로 결과를 꺼낼 수 있습니다(get()은 결과가 준비될 때까지 블로킹). Runnable은 반환값이 없는 작업입니다.",
+  "examples": [
+    { "code": "Callable<Integer> task = () -> { Thread.sleep(100); return 42; };\nFuture<Integer> future = executor.submit(task);", "note_ko": "submit() 직후에는 아직 작업이 안 끝났을 수 있어 future.isDone()이 false일 수 있음" },
+    { "code": "Integer result = future.get();", "note_ko": "작업이 끝날 때까지 현재 스레드를 블로킹한 뒤, 완료되면 결과(42)를 반환" }
+  ],
+  "questions": [
+    {
+      "id": "java_ocp_l6_u3_q001",
+      "type": "concept_matching_item",
+      "code": "Callable<Integer> task = () -> {\n    Thread.sleep(100);\n    return 42;\n};\nFuture<Integer> future = executor.submit(task);\nSystem.out.println(future.isDone());",
+      "prompt_ko": "submit() 호출 직후(작업이 100ms 걸림) future.isDone()의 결과는 일반적으로 어떻습니까?",
+      "options": [
+        "항상 true다 — submit()은 작업이 끝날 때까지 기다린 뒤 반환한다",
+        "일반적으로 false다 — submit()은 작업을 큐에 등록하고 즉시 반환하며, 작업은 아직 끝나지 않았을 가능성이 크다",
+        "컴파일 오류가 발생한다",
+        "항상 예외가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "submit()은 작업 완료를 기다리지 않고 즉시 Future를 반환하는 비동기 방식입니다.",
+      "concept_tags": ["executorservice", "future_isdone"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l6_u3_q002",
+      "type": "concept_matching_item",
+      "code": "Integer result = future.get();",
+      "prompt_ko": "future.get()을 호출하면 어떻게 됩니까?",
+      "options": [
+        "작업이 아직 끝나지 않았으면 즉시 null을 반환한다",
+        "작업이 완료될 때까지 현재 스레드가 블로킹(대기)된 뒤, 완료되면 결과를 반환한다",
+        "항상 즉시 반환되며 절대 대기하지 않는다",
+        "get()은 Future에 존재하지 않는 메서드다"
+      ],
+      "answer": 1,
+      "explanation_ko": "get()은 결과가 준비될 때까지 호출한 스레드를 블로킹시키는 동기적 대기 메서드입니다.",
+      "concept_tags": ["future_get"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l6_u3_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Callable과 Runnable의 근본적인 차이는?",
+      "options": [
+        "Callable은 값을 반환하고 체크 예외를 던질 수 있지만, Runnable은 반환값이 없고(void) 체크 예외를 던질 수 없다",
+        "Runnable만 ExecutorService에 제출할 수 있다",
+        "Callable은 스레드를 직접 생성해야 한다",
+        "둘은 완전히 동일한 인터페이스다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Callable<V>는 call() 메서드가 V를 반환하고 예외를 던질 수 있는 반면, Runnable의 run()은 void이고 체크 예외를 던질 수 없습니다.",
+      "concept_tags": ["callable_vs_runnable"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l6_u3_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "매번 new Thread()로 스레드를 직접 만드는 대신 ExecutorService(스레드 풀)를 사용하는 이유는?",
+      "options": [
+        "스레드 생성·관리 비용을 줄이고, 동시에 실행되는 스레드 수를 제한해서 자원을 효율적으로 관리할 수 있기 때문에",
+        "ExecutorService는 스레드를 하나도 만들지 않기 때문에",
+        "ExecutorService를 쓰면 코드가 항상 더 길어지기 때문에 사용을 피해야 한다",
+        "ExecutorService는 단일 스레드 프로그램에서만 사용 가능하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "스레드 풀은 스레드를 재사용해서 생성 비용을 줄이고, 동시 실행 스레드 수를 제한해 시스템 자원 고갈을 막습니다.",
+      "concept_tags": ["executorservice", "thread_pool"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l6_u3_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "ExecutorService를 더 이상 사용하지 않을 때, 새로운 작업 제출을 막고 정상적으로 종료를 요청하는 메서드는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["shutdown"],
+      "explanation_ko": "shutdown()은 이미 제출된 작업은 완료하게 두면서, 새 작업 제출은 거부하고 점진적으로 종료합니다.",
+      "concept_tags": ["executorservice_shutdown"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l6_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "ExecutorService의 shutdown()을 호출하지 않고 프로그램을 그냥 종료하려고 하면 어떤 문제가 생길 수 있습니까?",
+      "options": [
+        "아무 문제도 없다 — shutdown()은 선택 사항이다",
+        "스레드 풀의 스레드들이 계속 살아있어서, 애플리케이션(특히 non-daemon 스레드 기반 풀)이 정상적으로 종료되지 않고 계속 실행 상태로 남을 수 있다",
+        "즉시 컴파일 오류가 발생한다",
+        "메모리가 자동으로 완전히 해제되어 문제가 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "기본 스레드 풀의 스레드는 non-daemon이라, 명시적으로 종료하지 않으면 JVM이 종료되지 않고 계속 실행될 수 있습니다.",
+      "concept_tags": ["executorservice_shutdown", "resource_leak"],
+      "difficulty": "challenge"
+    }
+  ]
+}

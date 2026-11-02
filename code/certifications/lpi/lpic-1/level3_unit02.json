@@ -1,0 +1,96 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-1-102",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "셸 스크립트 제어 구조",
+  "rule_summary_ko": "for 루프는 목록의 각 항목에 대해 반복하고, while 루프는 조건이 참인 동안 계속 반복합니다. 테스트 조건 [ ]에서 숫자 비교는 -gt(초과)·-lt(미만)·-eq(같음) 같은 연산자를 사용하며(> < = 는 문자열 비교나 리다이렉션과 혼동되므로 사용하지 않음), 파일 존재 여부는 -f(일반 파일)·-d(디렉터리) 같은 연산자로 확인합니다.",
+  "examples": [
+    { "code": "if [ 5 -gt 3 ]; then echo \"참\"; fi", "note_ko": "-gt는 숫자 비교의 '초과(greater than)'를 의미 — 결과: \"참\" 출력" },
+    { "code": "if [ -f /etc/hostname ]; then echo \"존재함\"; fi", "note_ko": "-f는 그 경로가 일반 파일로서 존재하는지 확인" }
+  ],
+  "questions": [
+    {
+      "id": "lpic1_l3_u2_q001",
+      "type": "concept_matching_item",
+      "code": "if [ 5 -gt 3 ]; then echo \"참\"; fi",
+      "prompt_ko": "-gt 연산자의 의미는?",
+      "options": ["초과(greater than) — 왼쪽 값이 오른쪽 값보다 큰지 비교", "미만(less than)", "같음(equal)", "문자열 결합"],
+      "answer": 0,
+      "explanation_ko": "셸의 숫자 비교에서 -gt는 '>'에 해당하는 연산자입니다.",
+      "concept_tags": ["test_gt"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l3_u2_q002",
+      "type": "concept_matching_item",
+      "code": "if [ -f /etc/hostname ]; then echo \"존재함\"; fi",
+      "prompt_ko": "-f 연산자가 확인하는 것은?",
+      "options": [
+        "지정한 경로가 일반 파일로서 존재하는지 여부",
+        "지정한 경로가 디렉터리인지 여부(-d와 혼동)",
+        "파일에 실행 권한이 있는지 여부(-x와 혼동)",
+        "파일이 비어있는지 여부"
+      ],
+      "answer": 0,
+      "explanation_ko": "-f는 대표적인 파일 존재·종류 확인 연산자입니다.",
+      "concept_tags": ["test_f"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l3_u2_q003",
+      "type": "concept_matching_item",
+      "code": "count=0\nwhile [ $count -lt 3 ]; do\n    echo \"while: $count\"\n    count=$((count + 1))\ndone",
+      "prompt_ko": "이 while 루프는 몇 번 실행됩니까?",
+      "options": ["3번(count가 0, 1, 2일 때 실행되고 3이 되면 조건이 거짓이 되어 종료)", "무한 반복된다", "0번(전혀 실행 안 됨)", "4번"],
+      "answer": 0,
+      "explanation_ko": "count가 0→1→2로 증가하다가 3이 되는 순간 -lt 3 조건이 거짓이 되어 루프가 끝납니다.",
+      "concept_tags": ["while_loop_counter"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l3_u2_q004",
+      "type": "concept_matching_item",
+      "code": "if [ 5 > 3 ]; then echo \"참\"; fi   (문자 > 사용, -gt 아님)",
+      "prompt_ko": "[ ] 안에서 -gt 대신 >를 그대로 쓰면 어떻게 됩니까?",
+      "options": [
+        "예상과 다르게 동작할 수 있다 — [ ]는 >를 숫자 비교가 아니라 리다이렉션(또는 문자열 비교, 셸에 따라 다름)으로 해석할 수 있어, 숫자 비교에는 -gt 등을 사용해야 안전하다",
+        "> 와 -gt는 [ ] 안에서 완전히 동일하게 작동한다",
+        "> 는 [ ] 안에서 사용할 수 없어 항상 문법 오류가 난다",
+        "> 는 항상 -gt보다 더 정확한 숫자 비교를 제공한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "[ ] 테스트 명령 안에서는 >가 리다이렉션으로 오인될 수 있어, 숫자 비교에는 반드시 -gt/-lt/-eq 등을 사용해야 합니다.",
+      "concept_tags": ["test_gt_vs_greater_symbol"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic1_l3_u2_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "셸 스크립트에서 지정한 경로가 디렉터리인지 확인하는 test 연산자는 무엇입니까? (예: -X 형식이면 X만 입력)",
+      "expected_answers": ["d", "-d"],
+      "explanation_ko": "-d는 디렉터리 존재 여부를 확인하는 연산자입니다(-f는 일반 파일용).",
+      "concept_tags": ["test_d"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l3_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "for 루프와 while 루프를 사용하는 상황을 구분하는 일반적인 기준은?",
+      "options": [
+        "반복할 항목의 목록이 미리 정해져 있으면 for가, 특정 조건이 만족되는 동안 반복해야 하면 while이 자연스럽다",
+        "for와 while은 완전히 동일해서 아무거나 써도 무방하다",
+        "for는 항상 무한 반복에만 사용된다",
+        "while은 목록을 순회하는 데만 사용된다(for와 혼동)"
+      ],
+      "answer": 0,
+      "explanation_ko": "목록 기반 반복은 for, 조건 기반 반복은 while이 더 직관적입니다.",
+      "concept_tags": ["for_vs_while"],
+      "difficulty": "practice"
+    }
+  ]
+}

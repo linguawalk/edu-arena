@@ -1,0 +1,335 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c1",
+    "title": "수학의 기초"
+  },
+  "chapter": {
+    "id": "c1-ch06",
+    "no": 6,
+    "title": "경우의 수"
+  },
+  "lesson": {
+    "id": "c1-ch06-l03",
+    "no": 3,
+    "title": "조합",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "이산조합"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "조합",
+      "body": [
+        "서로 다른 n개에서 순서를 생각하지 않고 r개를 고르는 경우의 수를 nCr로 씁니다.",
+        "순열과의 차이는 '순서'입니다. 대표 2명을 뽑는 것은 (A, B)와 (B, A)가 같은 결과이지만, 회장과 부회장을 뽑는 것은 다른 결과입니다. 순서가 결과를 바꾸는지로 순열과 조합을 구별합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "5명 중 대표 2명을 뽑는 방법은?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "대표 2명은 뽑는 순서가 상관없으므로 조합 ₅C₂\n= (5 × 4)/(2 × 1)\n= 10"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "₆C₃의 값은?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "₆C₃ = ₆P₃ / 3!\n= (6 × 5 × 4)/(3 × 2 × 1)\n= 20"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "조합의 계산",
+      "body": [
+        "nCr = nPr / r!. 고른 r개를 늘어놓는 r!가지를 같은 것으로 보기 때문입니다.",
+        "nCr = nC(n−r). r개를 고르는 것은 남길 n − r개를 고르는 것과 같습니다.",
+        "nCr = nC(n−r)을 쓰면 계산을 줄일 수 있습니다. ₁₀C₈은 10개 중 8개를 고르는 것인데, 남길 2개를 고르는 ₁₀C₂와 같으므로 45로 바로 계산됩니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "₈C₅를 계산하세요.",
+      "steps": [
+        "nCr = nC(n−r)을 이용: ₈C₅ = ₈C₃",
+        "₈C₃ = (8 × 7 × 6)/(3 × 2 × 1)",
+        "= 336/6 = 56"
+      ],
+      "answer": "56"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "₁₀C₈의 값은?",
+      "answer": "45",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "nCr = nC(n−r)이므로 ₁₀C₈ = ₁₀C₂\n= (10 × 9)/2\n= 45"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "ₙC₂ = 15일 때 n의 값은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "ₙC₂ = n(n − 1)/2 = 15\nn(n − 1) = 30 = 6 × 5\nn = 6"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "₇C₀의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "7개 중 하나도 고르지 않는 방법은 '아무것도 고르지 않는다' 한 가지입니다.\n₇C₀ = 1"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "파스칼의 삼각형",
+      "body": [
+        "nCr = n−1Cr−1 + n−1Cr. 특정한 하나를 포함하는 경우와 포함하지 않는 경우로 나눈 것입니다.",
+        "특정한 사람 A를 기준으로 생각하면 이해됩니다. A를 포함하면 나머지 n − 1명 중 r − 1명을, 포함하지 않으면 n − 1명 중 r명을 고르므로 두 경우를 더한 것이 nCr입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "₅C₂ = ₄C₁ + ₄C{{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "nCr = n−1Cr−1 + n−1Cr (파스칼의 삼각형)\n₅C₂ = ₄C₁ + ₄C₂\n빈칸은 2 (확인: 4 + 6 = 10)"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "₈C₃의 값은?",
+      "answer": "56",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "₈C₃ = (8 × 7 × 6)/(3 × 2 × 1)\n= 336/6\n= 56"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "조건이 있는 선택",
+      "body": [
+        "반드시 포함할 것은 미리 뽑아 두고 나머지에서 고릅니다. 제외할 것은 처음부터 빼고 고릅니다.",
+        "'적어도 하나'는 전체에서 '하나도 없는 경우'를 뺍니다.",
+        "반드시 포함하거나 제외하는 조건은 전체 인원과 뽑을 인원을 먼저 조정해 두는 것입니다. '적어도 하나'는 여러 경우로 나뉘므로 여사건으로 빼는 편이 실수가 적습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "남자 4명, 여자 3명 중 3명을 뽑을 때 남녀가 모두 포함되는 방법은?",
+      "steps": [
+        "전체: ₇C₃ = 35",
+        "남자만: ₄C₃ = 4, 여자만: ₃C₃ = 1",
+        "35 − 4 − 1 = 30"
+      ],
+      "answer": "30"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "8명 중 3명을 뽑을 때 A가 반드시 포함되는 방법은?",
+      "answer": "21",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "A를 먼저 뽑아 두세요.",
+      "explanation": "A를 미리 뽑아 두면 나머지 7명 중 2명만 고르면 됩니다.\n₇C₂ = 21"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "8명 중 3명을 뽑을 때 A가 포함되지 않는 방법은?",
+      "answer": "35",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "A를 빼고 고르세요.",
+      "explanation": "A를 처음부터 빼면 7명 중 3명을 고릅니다.\n₇C₃ = 35\n확인: 21 + 35 = 56 = ₈C₃"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "남학생 5명, 여학생 4명 중 남학생 2명, 여학생 2명을 뽑는 방법은?",
+      "answer": "60",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "남녀를 따로 뽑아 곱하세요.",
+      "explanation": "남학생 5명 중 2명: ₅C₂ = 10\n여학생 4명 중 2명: ₄C₂ = 6\n곱의 법칙: 10 × 6 = 60"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 9명 중 3명을 뽑을 때 여학생이 적어도 한 명 포함되는 방법은?",
+      "answer": "74",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "여사건을 이용하세요.",
+      "explanation": "전체: ₉C₃ = 84\n여학생이 하나도 없는 경우(남학생만): ₅C₃ = 10\n84 − 10 = 74"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "도형과 조 나누기",
+      "body": [
+        "어느 세 점도 한 직선 위에 있지 않으면 점 3개를 고를 때마다 삼각형이 하나 생깁니다.",
+        "같은 크기의 조로 나눌 때는 조끼리의 순서가 없으므로 조 개수의 계승으로 나눕니다.",
+        "왜 조 개수의 계승으로 나눌까요? 크기가 같은 조는 이름이 없으므로 (AB, CD, EF)와 (CD, AB, EF)는 같은 나눔입니다. 조의 순서를 바꾼 3!가지가 모두 같은 것으로 세어졌기 때문에 나눠 줍니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "원 위의 7개 점 중 2개를 이어 만든 선분과, 3개를 이어 만든 삼각형은 각각 몇 개일까요?",
+      "steps": [
+        "어느 세 점도 한 직선 위에 있지 않습니다.",
+        "선분: 두 점을 고르는 방법 ₇C₂ = 21",
+        "삼각형: 세 점을 고르는 방법 ₇C₃ = 35"
+      ],
+      "answer": "선분 21개, 삼각형 35개"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "원 위의 6개 점으로 만들 수 있는 삼각형은 몇 개일까요?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "세 점을 고르는 방법의 수와 같습니다.",
+      "explanation": "원 위의 점은 어느 세 점도 한 직선 위에 있지 않습니다.\n점 3개를 고를 때마다 삼각형이 하나씩 생기므로\n₆C₃ = 20"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "팔각형의 대각선은 몇 개일까요?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 점을 이은 선분 중 변을 빼세요.",
+      "explanation": "꼭짓점 8개 중 2개를 이으면 선분 ₈C₂ = 28개\n그중 변 8개를 빼면 대각선\n28 − 8 = 20"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "평행한 직선 4개와 이들과 만나는 다른 방향의 평행한 직선 3개로 만들 수 있는 평행사변형은 몇 개일까요?",
+      "answer": "18",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "각 방향에서 직선을 2개씩 고르세요.",
+      "explanation": "평행사변형은 한 방향에서 2개, 다른 방향에서 2개의 직선을 고르면 생깁니다.\n₄C₂ × ₃C₂ = 6 × 3\n= 18"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "6명을 2명씩 3개 조로 나누는 방법은?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "같은 크기의 조는 순서가 없습니다.",
+      "explanation": "차례로 뽑으면 ₆C₂ × ₄C₂ × ₂C₂ = 15 × 6 × 1 = 90\n세 조는 크기가 같아 순서가 없으므로 3! = 6으로 나눕니다.\n90 ÷ 6 = 15"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "순열과 조합의 차이를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "순서"
+          ],
+          [
+            "고려",
+            "생각",
+            "따지"
+          ],
+          [
+            "r!",
+            "늘어놓",
+            "고르기만",
+            "뽑기만"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "순열은 고른 것을 늘어놓는 순서까지 구분하고, 조합은 순서 없이 무엇을 골랐는지만 봅니다. 그래서 nCr은 nPr을 r!로 나눈 값입니다."
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+ "no": 6,
+ "title": "직교성, 사영, 최소제곱",
+ "hours": 6,
+ "after": [
+  5
+ ],
+ "objectives": [
+  "벡터를 직선과 부분공간에 사영하고 사영행렬을 구할 수 있다.",
+  "정규방정식 AᵀAx̂ = Aᵀb로 최소제곱해를 구할 수 있다.",
+  "자료에 가장 잘 맞는 직선을 최소제곱으로 구할 수 있다."
+ ],
+ "checklist": [
+  "직교: xᵀy = 0, 직교 부분공간",
+  "행공간과 영공간은 서로의 직교여공간",
+  "직선 위로의 사영: p = (aᵀb / aᵀa)a",
+  "부분공간 위로의 사영: P = A(AᵀA)⁻¹Aᵀ, P² = P",
+  "오차 e = b − p는 C(A)에 수직",
+  "정규방정식 AᵀAx̂ = Aᵀb",
+  "최소제곱 직선 y = C + Dt 맞추기"
+ ],
+ "advice": [
+  "Ax = b가 풀리지 않을 때(방정식이 미지수보다 많을 때) 포기하지 않고 '가장 가까운 답'을 찾는 것이 이 단원의 주제입니다. 풀리지 않는 이유는 b가 열공간 밖에 있기 때문이고, 가장 가까운 점은 b에서 열공간에 수선을 내린 발 p입니다. 모든 공식이 '오차 e가 열공간에 수직'이라는 한 문장에서 나옵니다.",
+  "공식 P = A(AᵀA)⁻¹Aᵀ를 외우기 전에 1차원(직선 위로의 사영)을 완전히 이해하세요. 레벨1 코스 6의 정사영과 같은 그림입니다. 최소제곱은 통계의 회귀분석과 데이터 과학의 출발점이므로, 작은 자료(점 3~4개)로 직접 직선을 맞춰 보는 연습이 가장 효과적입니다."
+ ],
+ "resources": [
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "18.06 Linear Algebra (Gilbert Strang, 2010년 봄)",
+   "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+   "lang": "영어",
+   "part": "14강 Orthogonal vectors and subspaces, 15강 Projections onto subspaces, 16강 Projection matrices and least squares"
+  },
+  {
+   "kind": "video",
+   "provider": "3Blue1Brown",
+   "title": "Essence of linear algebra",
+   "url": "https://www.3blue1brown.com/topics/linear-algebra",
+   "lang": "영어(한국어 자막 제공)",
+   "part": "9장 내적과 쌍대성"
+  },
+  {
+   "kind": "book",
+   "provider": "Wellesley-Cambridge Press",
+   "title": "Gilbert Strang, Introduction to Linear Algebra (5판)",
+   "part": "4장 Orthogonality 4.1~4.3절"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "b = (2, 4)를 a = (1, 1) 방향의 직선에 사영한 벡터 p = ({{1}}, {{2}})",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "3"
+     ]
+    },
+    {
+     "id": 2,
+     "answers": [
+      "3"
+     ]
+    }
+   ],
+   "explanation": "aᵀb = 2 + 4 = 6, aᵀa = 2\np = (6/2)a = 3(1, 1) = (3, 3)\n확인: e = b − p = (−1, 1)은 a와 수직 (내적 0)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "위에서 오차 e의 길이는 √{{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "2"
+     ]
+    }
+   ],
+   "explanation": "e = (2, 4) − (3, 3) = (−1, 1)\n|e| = √(1 + 1) = √2\n원리: b에서 직선까지의 최단 거리",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "세 점 (0, 1), (1, 3), (2, 4)에 최소제곱 직선 y = C + Dt를 맞출 때 기울기 D는?",
+   "answer": "3/2",
+   "answer_format": "fraction",
+   "tolerance": 0,
+   "explanation": "A = [[1, 0], [1, 1], [1, 2]], b = (1, 3, 4)\nAᵀA = [[3, 3], [3, 5]], Aᵀb = (8, 11)\n3C + 3D = 8, 3C + 5D = 11에서 2D = 3\nD = 3/2 (C = 7/6)",
+   "hint": "정규방정식 AᵀAx̂ = Aᵀb를 세우세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "최소제곱에서 오차 e가 열공간에 수직이 되는 이유를 설명해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "수직",
+      "직교"
+     ],
+     [
+      "가장 가까",
+      "최소",
+      "짧",
+      "최단"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "열공간 안에서 b에 가장 가까운 점은 b에서 열공간에 내린 수선의 발이므로, 그때의 오차 e = b − p는 열공간에 수직입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "algebra",
+ "subject": "linear-algebra",
+ "id": "l2-algebra-linear-algebra-u06"
+}

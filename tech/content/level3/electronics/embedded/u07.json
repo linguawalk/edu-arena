@@ -1,0 +1,97 @@
+{
+ "no": 7,
+ "title": "저전력 설계와 신뢰성",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "활성·슬립 모드의 전류와 동작 비율로 평균 전류와 배터리 수명을 계산할 수 있다.",
+  "MCU의 저전력 모드와 클럭·주변장치 관리 기법을 설명할 수 있다.",
+  "워치독·브라운아웃 리셋 등 신뢰성 기법을 설명할 수 있다."
+ ],
+ "checklist": [
+  "평균 전류 = 활성 전류 × 활성 비율 + 슬립 전류 × 슬립 비율",
+  "배터리 수명 ≈ 용량(mAh)/평균 전류(mA)",
+  "저전력 모드: 슬립, 딥 슬립, 스탠바이와 깨우기 원인",
+  "클럭 낮추기, 쓰지 않는 주변장치 끄기, 핀 상태 관리",
+  "워치독 타이머: 프로그램이 멈추면 자동 리셋",
+  "브라운아웃 리셋: 전원 전압이 낮을 때 오동작 방지",
+  "EMC·정전기(ESD) 대책과 현장 신뢰성"
+ ],
+ "advice": [
+  "배터리로 몇 년씩 동작하는 IoT 기기는 '대부분의 시간을 자고, 잠깐 깨어 일하고 다시 잔다'는 원칙으로 설계합니다. 평균 전류 식에 활성 전류와 슬립 전류를 넣어 보면, 슬립 전류가 수 μA여도 활성 비율이 조금만 늘면 수명이 크게 줄어드는 것을 바로 확인할 수 있습니다. 워치독은 현장에서 아무도 다시 켜 줄 수 없는 장치를 위한 마지막 안전망이니, 메인 루프에서 주기적으로 워치독을 갱신하는 구조를 습관처럼 넣으세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Lee · Seshia (무료 공개 교재)",
+   "title": "Introduction to Embedded Systems: A Cyber-Physical Systems Approach, 2nd ed.",
+   "url": "https://ptolemy.berkeley.edu/books/leeseshia/",
+   "lang": "영어",
+   "part": "Energy-efficient design 관련 절"
+  },
+  {
+   "kind": "book",
+   "provider": "O'Reilly",
+   "title": "White, Making Embedded Systems (번역본 『임베디드 시스템 만들기』)",
+   "part": "Reducing Power Consumption 장"
+  },
+  {
+   "kind": "book",
+   "provider": "자가 출판",
+   "title": "Valvano, Embedded Systems: Introduction to ARM Cortex-M Microcontrollers (장 제목으로 표기)",
+   "part": "low-power 관련 절"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "활성 10 mA로 1%의 시간, 슬립 10 μA로 99%의 시간을 보내는 기기의 평균 전류는 약 몇 mA일까요?",
+   "answer": "0.11",
+   "answer_format": "decimal",
+   "tolerance": 0.002,
+   "explanation": "10 × 0.01 + 0.01 × 0.99 = 0.1 + 0.0099 ≈ 0.11 mA",
+   "hint": "두 상태의 전류 × 비율을 더하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 기기를 220 mAh 배터리로 쓰면 대략 몇 시간 동작할까요?",
+   "answer": "2000",
+   "answer_format": "integer",
+   "tolerance": 10,
+   "explanation": "220/0.1099 ≈ 2002시간(약 83일)",
+   "hint": "용량 ÷ 평균 전류입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "프로그램이 멈추어 정해진 시간 안에 갱신 신호가 오지 않으면 MCU를 자동으로 리셋하는 타이머를 {{1}} 타이머라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "워치독",
+      "와치독",
+      "watchdog"
+     ]
+    }
+   ],
+   "explanation": "현장에서 사람이 다시 켜 줄 수 없는 장치의 마지막 안전망입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electronics",
+ "subject": "embedded",
+ "id": "l3-electronics-embedded-u07"
+}

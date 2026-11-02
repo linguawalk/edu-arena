@@ -1,0 +1,100 @@
+{
+ "no": 5,
+ "title": "반송파 동기와 심볼 동기",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "반송파 주파수·위상 오차가 수신 성능에 주는 영향을 설명할 수 있다.",
+  "PLL과 코스타스 루프로 반송파를 복원하는 원리를 설명할 수 있다.",
+  "심볼 타이밍 복원과 프레임 동기의 필요성을 설명할 수 있다."
+ ],
+ "checklist": [
+  "코히런트 검파에는 반송파 위상 정보가 필요",
+  "주파수 오차 원인: 발진기 오차(ppm), 도플러",
+  "PLL, 코스타스 루프(억압 반송파 복원)",
+  "파일럿·프리앰블을 이용한 데이터 지원 동기",
+  "심볼 타이밍 복원(조기–지연 게이트, 가드너)",
+  "프레임 동기와 상관 검출",
+  "OFDM의 동기 민감성(주파수 오프셋)"
+ ],
+ "advice": [
+  "교과서의 오류 확률 식은 수신기가 반송파와 타이밍을 완벽히 안다고 가정하지만, 실제 수신기 설계의 상당 부분은 이것을 알아내는 일입니다. 발진기 오차 1 ppm이 2 GHz에서 2 kHz나 된다는 계산을 해 보면, 동기가 왜 어려운지 실감할 수 있습니다. 실제 시스템이 데이터 사이에 이미 아는 신호(파일럿·프리앰블)를 섞어 보내는 이유가 이 단원의 핵심입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Proakis · Salehi, Digital Communications (장 제목으로 표기)",
+   "part": "Carrier and Symbol Synchronization 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Haykin, Communication Systems (번역본 『통신 시스템』, 장 제목으로 표기)",
+   "part": "동기 관련 절"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "무선통신 7단원 무선 송수신기 구조(PLL)",
+   "url": "guide.html?lv=2&t=ict&s=wireless&u=7"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "정확도 1 ppm인 발진기로 2 GHz 반송파를 만들면 주파수 오차는 최대 몇 kHz일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2 × 10⁹ × 10⁻⁶ = 2000 Hz = 2 kHz",
+   "hint": "ppm은 백만분의 1입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "억압 반송파 신호(BPSK 등)에서 반송파 위상을 복원하는 대표적인 루프 회로를 {{1}} 루프라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "코스타스",
+      "Costas"
+     ]
+    }
+   ],
+   "explanation": "PLL을 변형해 동상·직교 두 갈래를 곱해 위상 오차를 얻습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "동기를 돕기 위해 데이터 사이에 송수신 모두 미리 아는 신호를 섞어 보내는데, 이를 {{1}} 신호라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "파일럿",
+      "기준",
+      "참조"
+     ]
+    }
+   ],
+   "explanation": "LTE·5G에서는 기준 신호(RS)라고 부르며 채널 추정에도 씁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "digital-comm",
+ "id": "l3-ict-digital-comm-u05"
+}

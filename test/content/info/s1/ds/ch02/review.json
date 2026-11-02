@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "ds",
+  "work": "풀이",
+  "chapter": {
+    "id": "info-s1-ds-ch02",
+    "no": 2,
+    "title": "큐와 덱"
+  },
+  "review": {
+    "id": "info-s1-ds-ch02-review",
+    "title": "큐와 덱 복습",
+    "minutes": 15
+  },
+  "questions": [
+    {
+      "type": "question",
+      "id": "r1",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "빈 큐에 1, 2, 3, 4를 차례로 push한 뒤 pop을 두 번 하면 front는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1과 2가 나갑니다.",
+      "explanation": "큐는 먼저 넣은 것이 먼저 나오는 자료구조입니다.\npop 두 번으로 1과 2가 나가 [3, 4]가 남습니다.\n맨 앞은 3입니다.",
+      "source_lesson": "info-s1-ds-ch02-l01"
+    },
+    {
+      "type": "question",
+      "id": "r2",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "아래 원형 큐에서 N = 6, head = 4, tail = 1이면 원소는 몇 개인가요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(1 − 4 + 6) % 6입니다.",
+      "explanation": "원형 큐의 원소 수는 (tail − head + N) % N으로 구합니다.\n(1 − 4 + 6) % 6입니다.\n= 3개(첨자 4, 5, 0)입니다.",
+      "code": "int buf[N], head = 0, tail = 0;   // head: 맨 앞 칸, tail: 다음에 넣을 칸\nvoid push(int x) { buf[tail] = x; tail = (tail + 1) % N; }\nvoid pop() { head = (head + 1) % N; }\nint size() { return (tail - head + N) % N; }",
+      "source_lesson": "info-s1-ds-ch02-l01"
+    },
+    {
+      "type": "question",
+      "id": "r3",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "n = 8일 때 카드 버리기 코드가 끝난 뒤 남는 카드는?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "8은 2의 거듭제곱입니다.",
+      "explanation": "카드 버리기에서 n이 2의 거듭제곱이면 마지막 카드는 n번입니다.\n8 = 2³입니다.\n그래서 8번 카드가 남습니다.",
+      "code": "// 1번 카드가 맨 위인 카드 n장: 맨 위를 버리고, 그다음 맨 위를 맨 아래로 옮긴다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (q.size() > 1) {\n    q.pop();                       // 버리기\n    q.push(q.front()); q.pop();    // 맨 아래로 옮기기\n}\n// 남은 카드는 q.front()",
+      "source_lesson": "info-s1-ds-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r4",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "n = 5, K = 2일 때 아래 코드에서 가장 먼저 제거되는 사람은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1을 뒤로 보냅니다.",
+      "explanation": "K번째 사람을 제거하려면 큐의 앞에서 K − 1명을 뒤로 보낸 뒤 맨 앞을 꺼냅니다.\n1을 뒤로 보내면 맨 앞이 2입니다.\n그래서 2번이 가장 먼저 제거됩니다.",
+      "code": "// 1~n번 사람이 원으로 앉아 있을 때 K번째 사람을 차례로 제거한다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (!q.empty()) {\n    for (int t = 0; t < K - 1; t++) { q.push(q.front()); q.pop(); }\n    print(q.front()); q.pop();     // 제거되는 사람\n}",
+      "source_lesson": "info-s1-ds-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r5",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "n = 4, K = 2일 때 아래 코드에서 마지막으로 제거되는 사람은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "제거 순서는 2, 4, 3, 1입니다.",
+      "explanation": "큐로 K − 1명을 뒤로 보내고 맨 앞을 제거하는 일을 끝까지 되풀이합니다.\n제거 순서는 2, 4, 3, 1입니다.\n마지막은 1번입니다.",
+      "code": "// 1~n번 사람이 원으로 앉아 있을 때 K번째 사람을 차례로 제거한다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (!q.empty()) {\n    for (int t = 0; t < K - 1; t++) { q.push(q.front()); q.pop(); }\n    print(q.front()); q.pop();     // 제거되는 사람\n}",
+      "source_lesson": "info-s1-ds-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r6",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "1부터 10까지 차례로 든 덱에서 9를 맨 앞으로 가져오는 최소 회전 횟수는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "자리 8에서 min(8, 2)입니다.",
+      "explanation": "자리 k(0부터)의 원소를 맨 앞으로 가져오는 데 왼쪽 회전 k번 또는 오른쪽 회전 n − k번이 듭니다.\n9는 자리 8이므로 min(8, 10 − 8)입니다.\n= 2번입니다.",
+      "source_lesson": "info-s1-ds-ch02-l03"
+    },
+    {
+      "type": "question",
+      "id": "r7",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "'level'을 덱으로 회문 검사할 때 앞뒤 문자를 비교하는 횟수는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "⌊5/2⌋입니다.",
+      "explanation": "덱의 앞과 뒤에서 한 글자씩 꺼내 비교하므로 비교 한 번에 두 글자가 줄어듭니다.\n길이 5이면 l–l, e–e를 비교한 뒤 가운데 v가 남습니다.\n그래서 2번입니다.",
+      "source_lesson": "info-s1-ds-ch02-l03"
+    },
+    {
+      "type": "question",
+      "id": "r8",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "n = 8, k = 3일 때 길이 k인 구간은 몇 개인가요?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n − k + 1입니다.",
+      "explanation": "길이 n인 배열에서 길이 k인 구간은 시작 위치가 0부터 n − k까지이므로 n − k + 1개입니다.\n8 − 3 + 1입니다.\n= 6개입니다.",
+      "source_lesson": "info-s1-ds-ch02-l04"
+    },
+    {
+      "type": "question",
+      "id": "r9",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "a = [3, 1, 2, 4], k = 2일 때 아래 코드가 출력하는 값을 모두 더하면?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "구간 최솟값은 1, 1, 2입니다.",
+      "explanation": "길이 2인 구간은 [3, 1], [1, 2], [2, 4]의 3개입니다.\n각 구간의 최솟값은 1, 1, 2입니다.\n합은 4입니다.",
+      "code": "// 길이 k인 구간마다 최솟값을 구한다 (d에는 첨자, 값이 앞에서 뒤로 커진다)\ndeque<int> d;\nfor (int i = 0; i < n; i++) {\n    while (!d.empty() && a[d.back()] >= a[i]) d.pop_back();\n    d.push_back(i);\n    if (d.front() <= i - k) d.pop_front();     // 구간을 벗어난 첨자\n    if (i >= k - 1) print(a[d.front()]);       // 구간 [i-k+1, i]의 최솟값\n}",
+      "source_lesson": "info-s1-ds-ch02-l04"
+    },
+    {
+      "type": "question",
+      "id": "r10",
+      "stage": "review",
+      "qtype": "proof",
+      "prompt": "카드 버리기 과정을 큐로 흉내 내는 방법을 설명하세요.",
+      "model_answer": [
+        "카드 묶음의 맨 위를 큐의 맨 앞, 맨 아래를 큐의 맨 뒤로 본다.",
+        "처음에 1번부터 n번까지 차례로 push한다.",
+        "맨 위 카드를 버리는 것은 pop, 그다음 맨 위 카드를 맨 아래로 옮기는 것은 front를 push한 뒤 pop하는 것이다.",
+        "큐에 한 장이 남을 때까지 되풀이하면 front가 답이며, 한 번에 한 장씩 줄어 O(n)이다."
+      ],
+      "criteria": [
+        {
+          "text": "카드 묶음과 큐의 대응을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "두 동작을 큐 연산으로 바꾸었다",
+          "points": 2
+        },
+        {
+          "text": "종료 조건과 복잡도를 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "맨 위와 맨 아래가 큐의 어디에 해당하나요?",
+      "source_lesson": "info-s1-ds-ch02-l02"
+    }
+  ]
+}

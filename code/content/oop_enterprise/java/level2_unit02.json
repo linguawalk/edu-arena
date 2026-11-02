@@ -1,0 +1,96 @@
+{
+  "language": "java",
+  "category": "oop_enterprise",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "switch문과 switch 표현식",
+  "questions": [
+    {
+      "id": "java_l2_u02_q001",
+      "type": "predict_output",
+      "code": "int x = 1;\nswitch (x) {\n    case 1:\n        System.out.println(\"A\");\n    case 2:\n        System.out.println(\"B\");\n        break;\n}",
+      "prompt_en": "What is printed? (Compare with C#'s switch, which forbids this.)",
+      "prompt_ko": "출력 결과는? (이를 금지하는 C#의 switch와 비교해보세요.)",
+      "options": ["A", "AB", "오류", "B"],
+      "answer": 1,
+      "explanation_en": "Unlike C# which treats a missing break as a compile error, Java's traditional switch allows fall-through just like C: without a break after case 1, execution continues into case 2, printing AB.",
+      "explanation_ko": "break 누락을 컴파일 오류로 처리하는 C#과 달리, Java의 전통적인 switch는 C처럼 fall-through를 허용합니다. case 1 뒤에 break가 없으면 실행이 case 2로 이어져 AB가 출력됩니다.",
+      "concept_tags": ["switch_statement", "fall_through"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l2_u02_q002",
+      "type": "predict_output",
+      "code": "int day = 1;\nswitch (day) {\n    case 1:\n        System.out.println(\"월요일\");\n        break;\n    default:\n        System.out.println(\"기타\");\n        break;\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["월요일", "기타", "1", "오류"],
+      "answer": 0,
+      "explanation_en": "switch compares day against each case; day is 1, matching the first case, and break stops execution there.",
+      "explanation_ko": "switch는 day를 각 case와 비교합니다. day가 1이므로 첫 번째 case와 일치하고, break가 그 지점에서 실행을 멈춥니다.",
+      "concept_tags": ["switch_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l2_u02_q003",
+      "type": "predict_output",
+      "code": "int day = 3;\nString result = switch (day) {\n    case 1 -> \"월요일\";\n    case 2, 3 -> \"화요일 또는 수요일\";\n    default -> \"기타\";\n};\nSystem.out.println(result);",
+      "prompt_en": "What is printed? (This is a switch expression, a modern Java form that doesn't fall through.)",
+      "prompt_ko": "출력 결과는? (fall-through가 없는 최신 형태인 switch 표현식입니다.)",
+      "options": ["월요일", "화요일 또는 수요일", "기타", "오류"],
+      "answer": 1,
+      "explanation_en": "The -> switch expression directly evaluates to a value with no fall-through risk; case 2, 3 matches multiple values in one arm, producing 화요일 또는 수요일.",
+      "explanation_ko": "-> switch 표현식은 fall-through 위험 없이 바로 값으로 평가됩니다. case 2, 3은 한 분기에서 여러 값을 매칭해 화요일 또는 수요일이 됩니다.",
+      "concept_tags": ["switch_expression"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l2_u02_q004",
+      "type": "error_finding",
+      "code": "int x = 2;\nswitch (x) {\n    case 1:\n        System.out.println(\"하나\");\n        break;\n    case 2:\n        System.out.println(\"둘\");\n    case 3:\n        System.out.println(\"셋\");\n        break;\n}",
+      "prompt_en": "If the programmer expected only 둘 to print, what actually happens?",
+      "prompt_ko": "프로그래머가 둘만 출력될 것이라 기대했다면, 실제로는 어떻게 될까요?",
+      "options": [
+        "둘만 출력됨, 의도한 대로 동작",
+        "case 2에 break가 없어서 case 3까지 이어져(fall-through) 둘과 셋이 모두 출력됨",
+        "컴파일 오류 발생",
+        "아무것도 출력되지 않음"
+      ],
+      "answer": 1,
+      "explanation_en": "Java's traditional switch silently falls through when break is missing; this prints both 둘 and 셋 rather than stopping after 둘 — the same class of bug covered in C.",
+      "explanation_ko": "Java의 전통적인 switch는 break가 없으면 조용히 다음으로 넘어갑니다. 둘에서 멈추는 대신 둘과 셋이 모두 출력됩니다 — C에서 다뤘던 것과 같은 종류의 버그입니다.",
+      "concept_tags": ["switch_statement", "fall_through"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l2_u02_q005",
+      "type": "predict_output",
+      "code": "int x = 2;\nString result = switch (x) {\n    case 1, 2, 3 -> \"1~3\";\n    default -> \"기타\";\n};\nSystem.out.println(result);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1~3", "기타", "2", "오류"],
+      "answer": 0,
+      "explanation_en": "case 1, 2, 3 groups three values into a single arm; since x is 2, it matches this arm and produces 1~3.",
+      "explanation_ko": "case 1, 2, 3은 세 값을 하나의 분기로 묶습니다. x가 2이므로 이 분기와 일치해 1~3이 됩니다.",
+      "concept_tags": ["switch_expression"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l2_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "전통적인 switch문", "definition": "case별로 문장을 실행하며, C처럼 break가 없으면 fall-through되는 형태" },
+        { "term": "fall-through", "definition": "break가 없어 다음 case까지 실행이 계속 이어지는 현상 — Java는 C처럼 허용" },
+        { "term": "switch 표현식 (->)", "definition": "fall-through 없이 =>로 값을 바로 만들어내는 최신 문법" },
+        { "term": "C#과의 결정적 차이", "definition": "C#은 fall-through를 컴파일 오류로 막지만, Java는 C처럼 허용함" }
+      ],
+      "explanation_en": "Java's traditional switch preserving C's fall-through behavior (while C# forbids it) is one of the most important cross-language gotchas in this entire OOP/Enterprise track.",
+      "explanation_ko": "C의 fall-through 동작을 그대로 유지하는 Java의 전통적인 switch(C#은 이를 금지)는 이 트랙 전체에서 가장 중요한 언어 간 함정 중 하나입니다.",
+      "concept_tags": ["switch_statement", "fall_through", "switch_expression"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "language": "csharp",
+  "category": "oop_enterprise",
+  "level": 6,
+  "unit": 2,
+  "unit_title": "예외처리",
+  "questions": [
+    {
+      "id": "csharp_l6_u02_q001",
+      "type": "predict_output",
+      "code": "int divisor = 0;\ntry\n{\n    int result = 10 / divisor;\n}\ncatch (DivideByZeroException)\n{\n    Console.WriteLine(\"0으로 나눌 수 없음\");\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0으로 나눌 수 없음", "프로그램이 비정상 종료됨", "0", "오류"],
+      "answer": 0,
+      "explanation_en": "Dividing by a variable holding 0 throws DivideByZeroException at runtime, which the catch block handles gracefully.",
+      "explanation_ko": "0을 담은 변수로 나누면 실행 시점에 DivideByZeroException이 발생합니다. catch 블록이 이를 안전하게 처리합니다.",
+      "concept_tags": ["try_catch", "dividebyzero"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l6_u02_q002",
+      "type": "error_finding",
+      "code": "int result = 10 / 0;",
+      "prompt_en": "What problem does this code have? (Note: both operands are literal numbers.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (두 피연산자 모두 리터럴 숫자인 점에 주의하세요.)",
+      "options": [
+        "실행 시점에 DivideByZeroException이 발생함",
+        "10과 0이 모두 상수라 컴파일러가 미리 계산해서, 실행 전 컴파일 시점에 오류(CS0020)가 발생함",
+        "/ 연산자 문법 오류",
+        "문제 없음, result에 0이 저장됨"
+      ],
+      "answer": 1,
+      "explanation_en": "When both operands are compile-time constants, C#'s compiler catches the division by zero ahead of time, the same behavior seen in VB (which reports BC30542).",
+      "explanation_ko": "두 피연산자가 모두 컴파일 시점 상수이면, C# 컴파일러는 0으로 나누는 것을 미리 잡아냅니다. VB에서 봤던 것(BC30542)과 같은 동작입니다.",
+      "concept_tags": ["dividebyzero", "compile_time_constant"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l6_u02_q003",
+      "type": "predict_output",
+      "code": "int divisor = 0;\ntry\n{\n    int x = 5 / divisor;\n}\ncatch (Exception ex)\n{\n    Console.WriteLine(\"오류\");\n}\nfinally\n{\n    Console.WriteLine(\"항상 실행됨\");\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["오류 항상 실행됨", "항상 실행됨", "오류", "아무것도 출력되지 않음"],
+      "answer": 0,
+      "explanation_en": "finally always runs, whether or not an exception occurred; catch handles the exception first, printing 오류, then finally runs, printing 항상 실행됨.",
+      "explanation_ko": "finally는 예외 발생 여부와 상관없이 항상 실행됩니다. catch가 먼저 예외를 처리해 오류를 출력하고, 이어서 finally가 실행되어 항상 실행됨을 출력합니다.",
+      "concept_tags": ["try_catch_finally"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l6_u02_q004",
+      "type": "predict_output",
+      "code": "try\n{\n    throw new ArgumentException(\"잘못된 인자\");\n}\ncatch (ArgumentException ex)\n{\n    Console.WriteLine(ex.Message);\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["잘못된 인자", "ArgumentException", "오류", "빈 문자열"],
+      "answer": 0,
+      "explanation_en": "throw explicitly raises an exception with a custom message; the matching catch block accesses that message through ex.Message.",
+      "explanation_ko": "throw는 사용자 정의 메시지와 함께 예외를 명시적으로 발생시킵니다. 일치하는 catch 블록은 ex.Message로 그 메시지에 접근합니다.",
+      "concept_tags": ["throw"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l6_u02_q005",
+      "type": "fill_blank",
+      "code": "____\n{\n    int result = 10 / someDivisor;\n}\n____ (DivideByZeroException ex)\n{\n    Console.WriteLine(\"오류\");\n}",
+      "prompt_en": "Fill in both blanks with the keywords that begin the protected block and the exception handler.",
+      "prompt_ko": "보호할 블록과 예외 처리기를 시작하는 키워드를 각각 빈칸에 채우세요.",
+      "options": ["try / catch", "attempt / handle", "protect / rescue", "begin / except"],
+      "answer": 0,
+      "explanation_en": "try marks the block where exceptions might occur, and catch defines how to handle a specific exception type — identical syntax to C++ and VB's Try/Catch.",
+      "explanation_ko": "try는 예외가 발생할 수 있는 블록을 표시하고, catch는 특정 예외 타입을 어떻게 처리할지 정의합니다. C++와 VB의 Try/Catch와 동일한 문법입니다.",
+      "concept_tags": ["try_catch"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l6_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "try ... catch", "definition": "예외가 발생할 수 있는 블록과 그 처리기를 정의" },
+        { "term": "finally", "definition": "예외 발생 여부와 상관없이 항상 실행되는 블록" },
+        { "term": "throw", "definition": "예외를 직접 발생시키는 키워드" },
+        { "term": "C++/VB와의 유사성", "definition": "try/catch/finally/throw는 C++와 VB의 예외처리 구문과 거의 동일함" }
+      ],
+      "explanation_en": "C#'s exception handling syntax is essentially identical to C++'s (try/catch/throw), with finally added just like VB — this three-language consistency makes exceptions one of the easier concepts to transfer across the .NET family.",
+      "explanation_ko": "C#의 예외처리 문법은 C++(try/catch/throw)와 사실상 동일하며, VB처럼 finally도 추가되어 있습니다 — 이 세 언어 간의 일관성 덕분에 예외처리는 .NET 계열 안에서 옮기기 쉬운 개념 중 하나입니다.",
+      "concept_tags": ["try_catch_finally", "throw"],
+      "difficulty": "practice"
+    }
+  ]
+}

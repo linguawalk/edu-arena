@@ -1,0 +1,101 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "var vs let/const 스코프",
+  "questions": [
+    {
+      "id": "javascript_l1_u04_q001",
+      "type": "predict_output",
+      "code": "if (true) {\n    var x = 10;\n}\nconsole.log(x);",
+      "prompt_en": "What is printed? (Note: x was declared inside the if block.)",
+      "prompt_ko": "출력 결과는? (x가 if 블록 안에서 선언된 점에 주의하세요.)",
+      "options": ["10", "오류: x가 정의되지 않음", "undefined", "0"],
+      "answer": 0,
+      "explanation_en": "var is function-scoped (or global-scoped), not block-scoped; it leaks out of the if block entirely, so x is still accessible afterward with its value, 10.",
+      "explanation_ko": "var는 블록 스코프가 아니라 함수(또는 전역) 스코프입니다. if 블록 밖으로 완전히 새어나가서, 이후에도 x는 값 10과 함께 접근 가능합니다.",
+      "concept_tags": ["var_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l1_u04_q002",
+      "type": "error_finding",
+      "code": "if (true) {\n    let y = 20;\n}\nconsole.log(y);",
+      "prompt_en": "What problem does this code have? (Compare with the var example above.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (위의 var 예제와 비교해보세요.)",
+      "options": [
+        "if문 문법 오류",
+        "let은 블록 스코프라서 if 블록 밖에서는 y가 존재하지 않아, ReferenceError가 발생함",
+        "y 선언 문법 오류",
+        "문제 없음, var처럼 20이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike var, let is properly block-scoped; y only exists inside the if block's {} and is inaccessible outside it, causing a ReferenceError.",
+      "explanation_ko": "var와 달리 let은 제대로 블록 스코프를 갖습니다. y는 if 블록의 {} 안에서만 존재하며 밖에서는 접근할 수 없어 ReferenceError가 발생합니다.",
+      "concept_tags": ["let_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l1_u04_q003",
+      "type": "predict_output",
+      "code": "for (var i = 0; i < 3; i++) {\n}\nconsole.log(i);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "오류", "2", "undefined"],
+      "answer": 0,
+      "explanation_en": "Since var isn't block-scoped, the loop's i leaks out of the for loop entirely, retaining its final value of 3 after the loop ends.",
+      "explanation_ko": "var는 블록 스코프가 아니므로, 반복문의 i는 for문 밖으로 완전히 새어나가 반복문이 끝난 뒤에도 마지막 값인 3을 유지합니다.",
+      "concept_tags": ["var_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l1_u04_q004",
+      "type": "error_finding",
+      "code": "for (let i = 0; i < 3; i++) {\n}\nconsole.log(i);",
+      "prompt_en": "What problem does this code have? (Compare with the var version above.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (위의 var 버전과 비교해보세요.)",
+      "options": [
+        "for문 문법 오류",
+        "let로 선언된 i는 for문의 블록 스코프에 갇혀서, 반복문 밖에서 접근하면 ReferenceError가 발생함",
+        "i++ 사용법 오류",
+        "문제 없음, 3이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "let's block scoping means i only exists within the for loop's own scope; accessing it afterward throws ReferenceError, unlike var's leaking behavior.",
+      "explanation_ko": "let의 블록 스코프는 i가 for문 자체의 스코프 안에서만 존재함을 뜻합니다. 이후 접근하면 ReferenceError가 발생하며, var의 누출 동작과 다릅니다.",
+      "concept_tags": ["let_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l1_u04_q005",
+      "type": "predict_output",
+      "code": "console.log(z);\nvar z = 5;",
+      "prompt_en": "What is printed? (Note: z is used before its declaration line.)",
+      "prompt_ko": "출력 결과는? (z가 선언 줄보다 먼저 사용된 점에 주의하세요.)",
+      "options": ["5", "undefined", "ReferenceError", "null"],
+      "answer": 1,
+      "explanation_en": "var declarations are 'hoisted' to the top of their scope, but only the declaration, not the assignment; z exists but is still undefined at the point it's logged.",
+      "explanation_ko": "var 선언은 스코프 맨 위로 '끌어올려'지지만(hoisting), 선언만 끌어올려지고 대입은 그대로입니다. z는 존재하지만, 출력되는 시점에는 아직 undefined입니다.",
+      "concept_tags": ["hoisting"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l1_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "var", "definition": "함수(또는 전역) 스코프 — 블록 밖으로 값이 새어나감" },
+        { "term": "let / const", "definition": "블록 스코프 — {} 밖에서는 접근할 수 없음" },
+        { "term": "호이스팅 (hoisting)", "definition": "var 선언이 스코프 맨 위로 끌어올려지지만, 대입은 그대로 남는 현상" },
+        { "term": "왜 let을 권장하는가", "definition": "var의 예측하기 어려운 스코프 누출을 피하고, 더 직관적인 블록 단위 동작을 위해" }
+      ],
+      "explanation_en": "The var-to-let/const shift is one of the most significant changes in modern JavaScript's history, directly addressing scoping confusion that caused countless real-world bugs.",
+      "explanation_ko": "var에서 let/const로의 전환은 현대 JavaScript 역사상 가장 중요한 변화 중 하나로, 수많은 실제 버그를 일으켰던 스코프 혼란을 직접 해결합니다.",
+      "concept_tags": ["var_scope", "let_scope", "hoisting"],
+      "difficulty": "practice"
+    }
+  ]
+}

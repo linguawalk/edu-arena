@@ -1,0 +1,268 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s1",
+  "track": "phy-kin",
+  "work": "풀이",
+  "track_title": "운동과 물리 수학",
+  "chapter": {
+    "id": "sci-s1-phy-kin-ch03",
+    "no": 3,
+    "title": "적분으로 보는 운동"
+  },
+  "lesson": {
+    "id": "sci-s1-phy-kin-ch03-l03",
+    "no": 3,
+    "title": "정적분으로 변위 구하기",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "역학",
+      "운동학"
+    ],
+    "competition": "KPhO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "정적분과 미적분의 기본 정리",
+      "body": [
+        "∫ₐᵇ v dt는 t = a부터 b까지 v-t 그래프 아래의 부호 있는 넓이입니다. 미적분의 기본 정리에 의해 이것은 원시함수의 차 x(b) − x(a)와 같습니다.",
+        "그래서 넓이를 도형으로 나누지 않아도 계산할 수 있습니다. ∫₀³ t² dt = [t³/3]₀³ = 9 − 0 = 9입니다.",
+        "정적분에서는 적분 상수 C가 빼면서 사라집니다. 변위를 구할 때 처음 위치를 몰라도 되는 이유입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "∫₀³ t² dt의 값은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "원시함수는 t³/3입니다.",
+      "explanation": "t²의 원시함수는 t³/3입니다.\n∫₀³ t² dt = 27/3 − 0입니다.\n= 9입니다. 정적분에서는 적분 상수가 빼면서 사라집니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "∫ₐᵇ v dt = x(b) − x({{1}})입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "a"
+          ]
+        }
+      ],
+      "hint": "끝 위치에서 처음 위치를 뺍니다.",
+      "explanation": "v의 원시함수는 위치 x(t)입니다.\n정적분은 원시함수의 차이므로 x(b) − x(a)입니다.\n이것은 t = a부터 b까지의 변위입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "변위와 이동 거리 계산",
+      "body": [
+        "변위는 ∫v dt를 그대로 계산하면 됩니다. 이동 거리는 ∫|v| dt이므로, v의 부호가 바뀌는 시각에서 구간을 나누어 각 구간의 절댓값을 더해야 합니다.",
+        "예를 들어 v = 3t² − 12는 t = 2에서 부호가 바뀝니다. 0~3 s의 변위는 [t³ − 12t]₀³ = 27 − 36 = −9 m입니다.",
+        "이동 거리는 0~2 s의 |−16| = 16 m와 2~3 s의 7 m를 더한 23 m입니다. v = 0인 시각을 먼저 찾는 것이 핵심입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "v = 3t² − 12(m/s)일 때 0 s부터 3 s까지의 이동 거리를 구하세요.",
+      "steps": [
+        "v = 0인 시각은 t² = 4에서 t = 2 s입니다.",
+        "0~2 s: [t³ − 12t]₀² = 8 − 24 = −16이므로 거리 16 m입니다.",
+        "2~3 s: [t³ − 12t]₂³ = (27 − 36) − (8 − 24) = 7이므로 거리 7 m입니다.",
+        "이동 거리는 16 + 7 = 23 m입니다."
+      ],
+      "answer": "23 m"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "v = 3t² − 12(m/s)일 때 0 s부터 3 s까지의 변위는 몇 m인가요?",
+      "answer": "-9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "[t³ − 12t]₀³을 계산하세요.",
+      "explanation": "v의 원시함수는 t³ − 12t입니다.\n변위 = (27 − 36) − 0입니다.\n= −9 m이고, 이동 거리 23 m와 다릅니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "v = 4 − 2t(m/s)일 때 0 s부터 4 s까지의 이동 거리는 몇 m인가요?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "t = 2에서 v = 0입니다.",
+      "explanation": "0~2 s: [4t − t²]₀² = 4이고, 2~4 s: [4t − t²]₂⁴ = 0 − 4 = −4입니다.\n이동 거리는 4 + 4입니다.\n= 8 m이고, 변위는 0입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "평균값",
+      "body": [
+        "구간 [0, T]에서 속도의 평균은 v̄ = (1/T)∫₀ᵀ v dt입니다. 넓이를 밑변으로 나눈 '높이의 평균'이고, 변위 ÷ 시간이라는 평균 속도의 정의와 같습니다.",
+        "v = 3t²이면 0~2 s의 평균 속도는 (1/2) × [t³]₀² = 4 m/s입니다. 두 끝값 0과 12의 평균 6이 아니라는 점에 주의하세요.",
+        "끝값의 평균이 평균 속도가 되는 것은 v가 t에 대해 일차식일 때, 곧 등가속도일 때뿐입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "v = 4t³(m/s)일 때 0 s부터 2 s까지의 평균 속도는 몇 m/s인가요?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(1/T)∫v dt입니다.",
+      "explanation": "∫₀² 4t³ dt = [t⁴]₀² = 16 m입니다.\n평균 속도 = 16/2입니다.\n= 8 m/s이고, 끝값의 평균 16과 다릅니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "v = 6t − 3t²(m/s)일 때 0 s부터 2 s까지의 평균 속도는 몇 m/s인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "변위를 먼저 구하세요.",
+      "explanation": "∫₀² (6t − 3t²) dt = [3t² − t³]₀² = 12 − 8 = 4 m입니다.\n평균 속도 = 4/2입니다.\n= 2 m/s입니다. 이 구간에서 v ≥ 0이라 이동 거리도 4 m입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "표에서 넓이 어림하기",
+      "body": [
+        "실험에서는 v가 식이 아니라 표로 주어집니다. 이때는 이웃한 점을 직선으로 이어 사다리꼴 넓이를 더합니다(사다리꼴 공식).",
+        "간격이 Δt로 같으면 넓이 ≈ Δt × (v₀/2 + v₁ + v₂ + … + vₙ₋₁ + vₙ/2)입니다. 양 끝값만 절반으로 셉니다.",
+        "예를 들어 1 s 간격으로 v = 0, 2, 6, 12, 20 m/s이면 넓이 ≈ 1 × (0 + 2 + 6 + 12 + 10) = 30 m입니다. S2의 실험 문제에서 자주 씁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1 s 간격으로 측정한 속도가 0, 2, 6, 12, 20 m/s일 때 사다리꼴 공식으로 어림한 0~4 s의 변위는 몇 m인가요?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "양 끝값은 절반으로 셉니다.",
+      "explanation": "넓이 ≈ 1 × (0/2 + 2 + 6 + 12 + 20/2)입니다.\n= 0 + 2 + 6 + 12 + 10입니다.\n= 30 m입니다. (실제 식이 v = t² + t라면 정확한 값은 29.3 m)"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "∫ₐᵇ v dt = x(b) − x(a)는 부호 있는 넓이, 곧 변위입니다.",
+        "이동 거리는 v = 0인 시각에서 구간을 나누어 각 정적분의 절댓값을 더합니다.",
+        "평균 속도는 (1/T)∫v dt이고, 표로 주어진 자료는 사다리꼴 공식으로 넓이를 어림합니다. 끝값의 평균이 평균 속도가 되는 것은 등가속도일 때뿐입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "v = t² − 4t + 3(m/s)일 때 0 s부터 3 s까지의 이동 거리를 분수로 쓰세요.",
+      "answer": "8/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "v = (t − 1)(t − 3)이므로 t = 1에서 부호가 바뀝니다.",
+      "explanation": "원시함수 t³/3 − 2t² + 3t로 0~1 s의 값은 4/3입니다.\n1~3 s의 값은 0 − 4/3 = −4/3입니다.\n이동 거리는 4/3 + 4/3 = 8/3 m입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "앞 문제에서 0 s부터 3 s까지의 변위는 몇 m인가요?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "부호 있는 넓이를 더하세요.",
+      "explanation": "0~1 s의 변위는 4/3 m, 1~3 s의 변위는 −4/3 m입니다.\n더하면 4/3 − 4/3입니다.\n= 0이므로 물체는 3 s에 출발점으로 돌아옵니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "어떤 구간에서든 이동 거리가 변위의 크기보다 작지 않음을 보이세요.",
+      "model_answer": [
+        "변위는 ∫ₐᵇ v dt이고 이동 거리는 ∫ₐᵇ |v| dt이다.",
+        "모든 t에서 −|v| ≤ v ≤ |v|이다.",
+        "적분하면 −∫|v| dt ≤ ∫v dt ≤ ∫|v| dt, 곧 |∫v dt| ≤ ∫|v| dt이다.",
+        "따라서 이동 거리 ≥ |변위|이고, 등호는 v의 부호가 바뀌지 않을 때 성립한다."
+      ],
+      "criteria": [
+        {
+          "text": "변위와 이동 거리를 적분으로 나타냈다",
+          "points": 2
+        },
+        {
+          "text": "−|v| ≤ v ≤ |v|를 썼다",
+          "points": 2
+        },
+        {
+          "text": "적분해 부등식을 얻었다",
+          "points": 2
+        }
+      ],
+      "hint": "v와 |v|를 비교하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "등가속도 운동에서 0부터 t까지의 평균 속도가 (v₀ + v)/2임을 적분으로 보이세요. (v는 시각 t의 속도)",
+      "model_answer": [
+        "등가속도이므로 v(s) = v₀ + as이다.",
+        "∫₀ᵗ (v₀ + as) ds = v₀t + (1/2)at²이다.",
+        "평균 속도 = (1/t)(v₀t + (1/2)at²) = v₀ + (1/2)at이다.",
+        "v = v₀ + at이므로 v₀ + (1/2)at = (v₀ + v)/2이다."
+      ],
+      "criteria": [
+        {
+          "text": "변위를 적분으로 구했다",
+          "points": 2
+        },
+        {
+          "text": "시간으로 나누어 평균 속도를 구했다",
+          "points": 2
+        },
+        {
+          "text": "(v₀ + v)/2로 바꾸어 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "평균 속도 = 변위 ÷ 시간입니다."
+    }
+  ]
+}

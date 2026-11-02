@@ -1,0 +1,110 @@
+{
+ "no": 7,
+ "title": "무선 송수신기 구조",
+ "hours": 5,
+ "after": [
+  5
+ ],
+ "objectives": [
+  "슈퍼헤테로다인 수신기의 블록 구성과 중간 주파수의 역할을 설명할 수 있다.",
+  "국부 발진 주파수와 영상 주파수를 계산할 수 있다.",
+  "직접 변환 수신기, PLL 주파수 합성기, 전력 증폭기의 역할을 설명할 수 있다."
+ ],
+ "checklist": [
+  "슈퍼헤테로다인: RF 필터 → LNA → 혼합기 → IF 필터·증폭 → 복조",
+  "혼합기 출력 f_RF ± f_LO, 중간 주파수 f_IF = |f_RF − f_LO|",
+  "영상 주파수(상측 LO): f_image = f_RF + 2f_IF",
+  "직접 변환(제로 IF) 수신기와 SDR",
+  "PLL 주파수 합성기: 채널 선택",
+  "송신기: 변조기 → 상향 변환 → 전력 증폭기(효율과 선형성)",
+  "위상 잡음, 상호 변조 왜곡"
+ ],
+ "advice": [
+  "슈퍼헤테로다인 구조는 100년 가까이 라디오와 무선 기기의 표준이었고, 지금의 스마트폰 칩도 그 아이디어를 바탕으로 합니다. 핵심은 '어떤 채널을 받든 같은 중간 주파수로 옮겨 놓고, 그 하나의 주파수에서 좋은 필터와 증폭기로 처리한다'는 것입니다. 영상 주파수는 이 구조의 부작용이니, 주파수 축에 RF·LO·IF·영상을 직접 그려 위치를 확인해 보세요.",
+  "레벨2 전자회로의 발진기·궤환·전력 증폭기 단원이 여기서 실제 블록으로 쓰입니다. 전력 증폭기의 효율과 선형성 사이의 맞바꿈은 배터리로 동작하는 단말에서 특히 중요하다는 점도 기억해 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Rappaport, Wireless Communications: Principles and Practice (장 제목으로 표기)",
+   "part": "송수신기 관련 절"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Pozar, Microwave Engineering (장 제목으로 표기)",
+   "part": "Microwave Amplifier Design, Mixers, Oscillators 관련 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "전자회로 10단원 궤환과 발진기",
+   "url": "guide.html?lv=2&t=electronics&s=electronic-circuits&u=10"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "수신 주파수 100 MHz, 중간 주파수 10.7 MHz인 FM 수신기에서 국부 발진기를 수신 주파수보다 높게 두면 국부 발진 주파수는 몇 MHz일까요?",
+   "answer": "110.7",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "f_LO = 100 + 10.7 = 110.7 MHz",
+   "hint": "상측 LO는 f_RF + f_IF입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 수신기의 영상 주파수는 몇 MHz일까요?",
+   "answer": "121.4",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "f_image = f_RF + 2f_IF = 100 + 21.4 = 121.4 MHz",
+   "hint": "f_RF + 2f_IF입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "기준 발진기와 위상 비교·분주기를 이용해 원하는 주파수를 정확히 만들어 내는 회로를 영문 약어로 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "PLL"
+     ]
+    }
+   ],
+   "explanation": "Phase-Locked Loop의 줄임말로, 채널을 바꿀 때 분주비를 바꿉니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "수신한 RF 신호를 중간 주파수 없이 바로 기저대역으로 내리는 수신기를 직접 변환 또는 제로 {{1}} 수신기라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "IF"
+     ]
+    }
+   ],
+   "explanation": "부품이 적어 스마트폰 칩에 널리 쓰입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "ict",
+ "subject": "wireless",
+ "id": "l2-ict-wireless-u07"
+}

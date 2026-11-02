@@ -1,0 +1,113 @@
+{
+ "no": 2,
+ "title": "교환 방식",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "회선 교환·메시지 교환·패킷 교환의 원리를 비교할 수 있다.",
+  "전송 지연·전파 지연·처리·큐 지연을 구분해 계산할 수 있다.",
+  "가상 회선과 데이터그램 방식을 비교할 수 있다."
+ ],
+ "checklist": [
+  "회선 교환: 통화 전에 경로 확보, 일정한 지연, 전화망",
+  "메시지 교환: 메시지 전체를 저장 후 전달",
+  "패킷 교환: 축적 전달(store-and-forward), 회선 공유",
+  "가상 회선(연결형)과 데이터그램(비연결형)",
+  "전송 지연 = 패킷 길이/전송률, 전파 지연 = 거리/전파 속도",
+  "노드 처리 지연, 큐잉 지연",
+  "음성의 패킷화: VoIP"
+ ],
+ "advice": [
+  "교환 방식의 차이는 '자원을 미리 잡아 두느냐, 필요할 때 나눠 쓰느냐'입니다. 회선 교환은 통화하는 동안 회선을 독점해 지연이 일정하지만 말하지 않는 시간에도 자원을 낭비하고, 패킷 교환은 자원을 효율적으로 나눠 쓰지만 혼잡할 때 지연이 들쭉날쭉합니다. 전화망이 인터넷 위의 VoIP로 옮겨 온 이유를 이 차이로 설명해 보세요.",
+  "지연 계산에서는 전송 지연(데이터를 선에 올리는 시간)과 전파 지연(신호가 거리를 가는 시간)을 혼동하는 실수가 가장 많습니다. 레벨1 컴퓨터 챕터 7에서 한 계산을 패킷 여러 개, 노드 여러 개로 늘려 보면 축적 전달의 지연이 어떻게 쌓이는지 보입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Tanenbaum · Wetherall, Computer Networks (번역본 『컴퓨터 네트워크』, 장 제목으로 표기)",
+   "part": "The Physical Layer 장의 교환 절"
+  },
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Kurose · Ross, Computer Networking: A Top-Down Approach (장 제목으로 표기)",
+   "part": "Computer Networks and the Internet 장의 지연·교환 절"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 7 네트워크 기초",
+   "url": "browse.html?c=c4#ch07",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "1500바이트 패킷을 10 Mbps 링크로 보내는 전송 지연은 몇 ms일까요?",
+   "answer": "1.2",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "12 000비트/10⁷ bps = 1.2 ms",
+   "hint": "비트 수 ÷ 전송률입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "광섬유 200 km의 전파 지연은 몇 ms일까요? (전파 속도 2 × 10⁸ m/s)",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2 × 10⁵ m/2 × 10⁸ m/s = 10⁻³ s = 1 ms",
+   "hint": "거리 ÷ 전파 속도입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "통화를 시작하기 전에 송수신 사이 경로를 확보해 통화 동안 독점하는 방식을 {{1}} 교환이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "회선"
+     ]
+    }
+   ],
+   "explanation": "전통적인 전화망(PSTN)이 회선 교환입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "패킷 교환 노드가 패킷 전체를 받은 뒤 다음 노드로 보내는 방식을 {{1}} 전달이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "축적",
+      "저장 후",
+      "store-and-forward"
+     ]
+    }
+   ],
+   "explanation": "링크마다 전송 지연이 한 번씩 더해집니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "ict",
+ "subject": "comm-networks",
+ "id": "l2-ict-comm-networks-u02"
+}

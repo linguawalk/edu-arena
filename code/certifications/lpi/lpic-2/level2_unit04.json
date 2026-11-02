@@ -1,0 +1,105 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-2-201",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "네트워크 문제 해결: ss와 traceroute",
+  "rule_summary_ko": "ss(예전 netstat을 대체)는 소켓 상태를 확인하는 현대적인 명령어로, -t(TCP만), -l(리스닝 소켓만), -n(포트·주소를 이름 대신 숫자로), -p(그 소켓을 사용하는 프로세스 정보)를 조합해서 사용합니다. traceroute는 목적지까지 패킷이 거쳐가는 각 홉(중간 라우터)의 경로와 지연시간을 보여줘서, 네트워크 경로 중 어느 구간에서 지연이나 장애가 발생하는지 진단하는 데 사용합니다.",
+  "examples": [
+    { "code": "ss -tlnp", "note_ko": "TCP(t)이면서 리스닝 중인(l) 소켓을, 숫자로(n) 표시 — 서버에서 어떤 포트가 열려 있는지 빠르게 확인할 때 사용" }
+  ],
+  "questions": [
+    {
+      "id": "lpic2_l2_u4_q001",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "예전의 netstat 명령어를 대체하는, 소켓 상태를 확인하는 현대적인 명령어는 무엇입니까? (영문 두 글자로 입력)",
+      "expected_answers": ["ss"],
+      "explanation_ko": "ss(socket statistics)는 netstat보다 더 빠르고 상세한 정보를 제공합니다.",
+      "concept_tags": ["ss_command"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic2_l2_u4_q002",
+      "type": "concept_matching_item",
+      "code": "ss -tlnp\n결과: LISTEN 0.0.0.0:2025 ...",
+      "prompt_ko": "이 명령어의 -t, -l 옵션이 각각 의미하는 것은?",
+      "options": [
+        "-t는 TCP 소켓만, -l은 현재 연결을 기다리는(리스닝) 소켓만 필터링",
+        "-t는 UDP만, -l은 이미 연결된 소켓만(설명이 다름)",
+        "-t와 -l은 완전히 동일한 필터를 적용한다",
+        "-t는 삭제, -l은 목록(list)이라는 뜻이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "TCP 리스닝 소켓 확인은 '이 서버에서 어떤 서비스가 접속을 받고 있는가'를 파악할 때 흔히 쓰는 조합입니다.",
+      "concept_tags": ["ss_tl_flags"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l2_u4_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "ss 명령어에서 -n 옵션의 역할은?",
+      "options": [
+        "포트 번호나 호스트 이름을 이름으로 변환하지 않고 숫자 그대로 표시해서, 이름 조회(DNS 등) 지연 없이 빠르게 결과를 보여준다",
+        "네트워크(network) 인터페이스 목록만 보여준다",
+        "새로운(new) 연결만 필터링한다",
+        "-n은 ss 명령어에서 지원되지 않는 옵션이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "-n은 이름 해석 과정을 생략해서 결과를 더 빠르게 보여주는 데 유용합니다.",
+      "concept_tags": ["ss_n_flag"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l2_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "traceroute 명령어가 진단에 도움을 주는 대표적인 상황은?",
+      "options": [
+        "특정 목적지에 접속이 느리거나 실패할 때, 중간의 어느 네트워크 구간(홉)에서 지연이나 장애가 발생하는지 파악하고 싶을 때",
+        "로컬 시스템에 설치된 패키지 목록을 확인하고 싶을 때",
+        "파일 권한을 확인하고 싶을 때",
+        "CPU 사용률을 확인하고 싶을 때"
+      ],
+      "answer": 0,
+      "explanation_ko": "traceroute는 '어디서' 문제가 생기는지 경로상의 위치를 좁혀주는 도구입니다.",
+      "concept_tags": ["traceroute_use_case"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l2_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "traceroute 결과에서 특정 홉(중간 라우터)에 응답 시간이 급격히 늘어나거나 응답 자체가 없는 경우, 이것이 항상 그 지점에 실제 장애가 있다는 것을 확실히 의미합니까?",
+      "options": [
+        "아니다 — 일부 라우터는 traceroute가 사용하는 프로브 패킷에 낮은 우선순위를 부여하거나 응답하지 않도록 설정되어 있어, 실제 성능 저하 없이도 그 구간만 느리거나 무응답으로 보일 수 있다",
+        "그렇다. traceroute 결과는 항상 100% 정확하게 실제 장애 위치를 알려준다",
+        "traceroute는 애초에 응답 시간을 측정하지 않는다",
+        "홉 응답과 실제 성능은 완전히 무관한 별개의 정보다"
+      ],
+      "answer": 0,
+      "explanation_ko": "일부 라우터의 ICMP 응답 정책 때문에 오해를 낳을 수 있어, traceroute 결과 해석에는 주의가 필요합니다.",
+      "concept_tags": ["traceroute_interpretation_caution"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic2_l2_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "ss -p 옵션이 제공하는 추가 정보는?",
+      "options": [
+        "그 소켓을 실제로 사용하고 있는 프로세스(PID·프로그램 이름) 정보 — 어떤 프로그램이 그 포트를 점유하고 있는지 바로 알 수 있음",
+        "패킷(packet)의 내용 전체를 보여준다",
+        "포트(port) 번호 범위를 제한한다",
+        "-p는 ss에서 지원되지 않는 옵션이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "-p는 '어떤 프로세스가 이 포트를 쓰고 있나'를 확인할 때 필수적인 정보를 추가해줍니다.",
+      "concept_tags": ["ss_p_flag"],
+      "difficulty": "practice"
+    }
+  ]
+}

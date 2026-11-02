@@ -1,0 +1,96 @@
+{
+  "language": "csharp",
+  "category": "oop_enterprise",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "switch문과 switch 표현식",
+  "questions": [
+    {
+      "id": "csharp_l2_u02_q001",
+      "type": "predict_output",
+      "code": "int day = 1;\nswitch (day)\n{\n    case 1:\n        Console.WriteLine(\"월요일\");\n        break;\n    default:\n        Console.WriteLine(\"기타\");\n        break;\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["월요일", "기타", "1", "오류"],
+      "answer": 0,
+      "explanation_en": "switch compares day against each case; day is 1, matching the first case, so 월요일 is printed.",
+      "explanation_ko": "switch는 day를 각 case와 비교합니다. day가 1이므로 첫 번째 case와 일치해 월요일이 출력됩니다.",
+      "concept_tags": ["switch_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l2_u02_q002",
+      "type": "error_finding",
+      "code": "int x = 1;\nswitch (x)\n{\n    case 1:\n        Console.WriteLine(\"A\");\n    case 2:\n        Console.WriteLine(\"B\");\n        break;\n}",
+      "prompt_en": "What problem does this code have? (Compare with C's switch behavior.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (C의 switch 동작과 비교해보세요.)",
+      "options": [
+        "case 문법 자체가 틀림",
+        "case 1에 break가 없어서, C와 달리 C#은 암묵적 fall-through를 허용하지 않아 컴파일 오류(CS0163)가 발생함",
+        "switch 사용법이 잘못됨",
+        "문제 없음, C처럼 fall-through되어 AB가 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike C, where a missing break silently falls through to the next case, C# treats this as a compile error — each non-empty case must end with break, return, or similar.",
+      "explanation_ko": "break가 없으면 조용히 다음 case로 넘어가는 C와 달리, C#은 이를 컴파일 오류로 처리합니다. 비어있지 않은 각 case는 break, return 등으로 반드시 끝나야 합니다.",
+      "concept_tags": ["switch_statement", "fall_through"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l2_u02_q003",
+      "type": "predict_output",
+      "code": "int x = 2;\nswitch (x)\n{\n    case 1:\n    case 2:\n    case 3:\n        Console.WriteLine(\"1~3\");\n        break;\n    default:\n        Console.WriteLine(\"기타\");\n        break;\n}",
+      "prompt_en": "What is printed? (Note: case 1 and case 2 are empty, stacked before case 3.)",
+      "prompt_ko": "출력 결과는? (case 1과 case 2가 비어있는 채로 case 3 앞에 쌓여있는 점에 주의하세요.)",
+      "options": ["1~3", "기타", "오류", "아무것도 출력되지 않음"],
+      "answer": 0,
+      "explanation_en": "Empty case labels stacked together are allowed and share the same body; since x is 2, it falls into the shared block with 1 and 3, printing 1~3.",
+      "explanation_ko": "비어있는 case 라벨을 연이어 쌓는 것은 허용되며 같은 본문을 공유합니다. x가 2이므로 1, 3과 함께 묶인 블록에 해당해 1~3이 출력됩니다.",
+      "concept_tags": ["switch_statement"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l2_u02_q004",
+      "type": "predict_output",
+      "code": "int day = 3;\nstring result = day switch\n{\n    1 => \"월요일\",\n    2 or 3 => \"화요일 또는 수요일\",\n    _ => \"기타\"\n};\nConsole.WriteLine(result);",
+      "prompt_en": "What is printed? (This is a switch expression, a more modern C# form.)",
+      "prompt_ko": "출력 결과는? (이것은 더 최신 형태인 switch 표현식입니다.)",
+      "options": ["월요일", "화요일 또는 수요일", "기타", "오류"],
+      "answer": 1,
+      "explanation_en": "The switch expression directly evaluates to a value; 2 or 3 matches multiple values in one arm, and since day is 3, it produces 화요일 또는 수요일.",
+      "explanation_ko": "switch 표현식은 바로 값으로 평가됩니다. 2 or 3은 한 분기에서 여러 값을 매칭하며, day가 3이므로 화요일 또는 수요일이 됩니다.",
+      "concept_tags": ["switch_expression"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l2_u02_q005",
+      "type": "fill_blank",
+      "code": "int x = 15;\nstring result = x switch\n{\n    < 10 => \"작음\",\n    ____ 20 => \"중간\",\n    _ => \"큼\"\n};\n// x가 20 미만일 때 '중간'이어야 함",
+      "prompt_en": "Fill in the blank using a relational pattern to match values less than 20.",
+      "prompt_ko": "20 미만인 값을 매칭하는 관계 패턴으로 빈칸을 채우세요.",
+      "options": ["<", "Is <", "<=", "=="],
+      "answer": 0,
+      "explanation_en": "Switch expressions support relational patterns directly, so < 20 matches any value less than 20 without needing extra keywords.",
+      "explanation_ko": "switch 표현식은 관계 패턴을 직접 지원해서, 추가 키워드 없이도 < 20이 20 미만인 모든 값을 매칭합니다.",
+      "concept_tags": ["switch_expression", "relational_pattern"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l2_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "switch문", "definition": "case별로 문장을 실행하는 전통적인 형태 — 각 case는 break 등으로 끝나야 함" },
+        { "term": "fall-through 금지", "definition": "C#이 C와 달리 case 사이의 암묵적 흐름을 컴파일 오류로 막는 규칙" },
+        { "term": "switch 표현식", "definition": "=>로 값을 바로 만들어내는 더 간결한 최신 문법" },
+        { "term": "or 패턴 / 관계 패턴", "definition": "switch 표현식에서 여러 값이나 범위를 표현하는 방법" }
+      ],
+      "explanation_en": "C#'s fall-through restriction is one of the language's deliberate safety improvements over C, eliminating an entire class of bugs.",
+      "explanation_ko": "C#의 fall-through 제한은 C 대비 언어가 의도적으로 개선한 안전장치 중 하나로, 특정 유형의 버그 전체를 없애줍니다.",
+      "concept_tags": ["switch_statement", "switch_expression", "fall_through"],
+      "difficulty": "practice"
+    }
+  ]
+}

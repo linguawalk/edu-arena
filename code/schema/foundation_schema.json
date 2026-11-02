@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Code Arena Foundation Schema",
+  "description": "foundation/, modules/ 구간 전용 스키마. 트랙 구간(schema/question_schema.json)과 별도로 관리하며, 코드 없는 개념 문제와 순서 배열 문제를 추가로 지원한다.",
+  "type": "object",
+  "required": ["stage", "stage_title", "unit", "unit_title", "questions"],
+  "properties": {
+    "stage": {
+      "type": "string",
+      "description": "예: stage0_computer_thinking, stage1_c_onboarding, data_structures_algorithms"
+    },
+    "stage_title": {
+      "type": "string",
+      "description": "단계 제목 (한국어)"
+    },
+    "unit": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "unit_title": {
+      "type": "string"
+    },
+    "questions": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/question" }
+    }
+  },
+  "definitions": {
+    "question": {
+      "type": "object",
+      "required": ["id", "type", "prompt_ko", "explanation_en", "explanation_ko", "concept_tags"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^foundation_[a-z0-9]+_u[0-9]{2}_q[0-9]{3}$",
+          "description": "예: foundation_stage0_u01_q001"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["concept_quiz", "order", "fill_blank", "concept_matching", "predict_output", "error_finding"],
+          "description": "concept_quiz: 코드 없는 객관식 / order: 순서 배열(드래그) / fill_blank: 순서도·코드 빈칸 / concept_matching: 용어-설명 매칭 / predict_output: 코드 출력 예측(stage1 C 온보딩부터 사용) / error_finding: 오류 위치 찾기(stage1부터 사용)"
+        },
+        "code": {
+          "type": ["string", "null"],
+          "description": "fill_blank, predict_output, error_finding에서 사용. 나머지 유형은 null."
+        },
+        "prompt_en": { "type": "string" },
+        "prompt_ko": { "type": "string" },
+        "options": {
+          "type": ["array", "null"],
+          "description": "concept_quiz, fill_blank용 4지선다 보기",
+          "items": { "type": "string" },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "answer": {
+          "type": ["integer", "null"],
+          "description": "options 배열의 정답 인덱스 (0-based)"
+        },
+        "items": {
+          "type": ["array", "null"],
+          "description": "order 전용: 배열 대상이 되는 항목 목록 (뒤섞인 순서로 제공)",
+          "items": { "type": "string" }
+        },
+        "correct_order": {
+          "type": ["array", "null"],
+          "description": "order 전용: items 배열의 올바른 순서를 나타내는 인덱스 배열 (0-based)",
+          "items": { "type": "integer" }
+        },
+        "pairs": {
+          "type": ["array", "null"],
+          "description": "concept_matching 전용",
+          "items": {
+            "type": "object",
+            "properties": {
+              "term": { "type": "string" },
+              "definition": { "type": "string" }
+            }
+          }
+        },
+        "explanation_en": { "type": "string" },
+        "explanation_ko": { "type": "string" },
+        "concept_tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "difficulty": {
+          "type": "string",
+          "enum": ["intro", "practice", "challenge"],
+          "default": "intro"
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "order" } } },
+          "then": { "required": ["items", "correct_order"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "concept_matching" } } },
+          "then": { "required": ["pairs"] }
+        },
+        {
+          "if": { "properties": { "type": { "enum": ["concept_quiz", "fill_blank", "predict_output", "error_finding"] } } },
+          "then": { "required": ["options", "answer"] }
+        }
+      ]
+    }
+  }
+}

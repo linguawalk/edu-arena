@@ -1,0 +1,257 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s2",
+  "track": "phy-exp",
+  "work": "풀이",
+  "track_title": "실험과 오차",
+  "chapter": {
+    "id": "sci-s2-phy-exp-ch01",
+    "no": 1,
+    "title": "측정과 오차 전파"
+  },
+  "lesson": {
+    "id": "sci-s2-phy-exp-ch01-l03",
+    "no": 3,
+    "title": "오차 전파",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "실험",
+      "오차"
+    ],
+    "competition": "KPhO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "불확도는 계산을 따라 퍼진다",
+      "body": [
+        "독립인 측정값으로 계산한 양의 불확도는 다음 규칙으로 구합니다. 덧셈·뺄셈 q = a ± b: δq = √(δa² + δb²)(절대 불확도를 제곱해 더함).",
+        "곱셈·나눗셈 q = ab 또는 a/b: δq/q = √((δa/a)² + (δb/b)²)(상대 불확도를 제곱해 더함). 거듭제곱 q = aⁿ: δq/q = |n| δa/a.",
+        "독립이 아니거나 최대 오차를 원하면 제곱합 대신 단순히 더합니다. 이 강좌에서는 따로 말이 없으면 제곱합을 씁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "(10.0 ± 0.3) − (6.0 ± 0.4)의 불확도는? (소수로)",
+      "answer": "0.5",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "√(0.3² + 0.4²)입니다.",
+      "explanation": "뺄셈에서는 절대 불확도를 제곱해 더합니다.\n√(0.09 + 0.16) = √0.25입니다.\n= 0.5이므로 결과는 4.0 ± 0.5입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "곱셈과 나눗셈에서는 {{1}} 불확도를 제곱해 더합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "상대"
+          ]
+        }
+      ],
+      "hint": "백분율로 더합니다.",
+      "explanation": "q = ab의 미소 변화는 dq/q = da/a + db/b입니다.\n독립이면 이 상대 변화들을 제곱해 더합니다.\n그래서 상대 불확도를 제곱해 더합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "거듭제곱과 일반 함수",
+      "body": [
+        "정육면체 한 변을 1% 불확도로 재면 부피의 상대 불확도는 3%입니다. 같은 변을 세 번 곱하므로 상대 불확도가 3배가 됩니다(독립인 세 값이 아니므로 √3배가 아님).",
+        "일반적인 함수 q = f(x)는 δq = |f′(x)| δx입니다. 각 θ = 30° ± 1°(= 0.01745 rad)이면 δ(sin θ) = cos 30° × 0.01745 ≈ 0.0151입니다. 각은 반드시 라디안으로 바꿉니다.",
+        "여러 변수 함수는 각 변수에 대한 편미분 기여를 제곱해 더합니다: δq = √((∂q/∂x δx)² + (∂q/∂y δy)²)."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "진자로 g = 4π²L/T²을 구합니다. L의 상대 불확도가 1%, T의 상대 불확도가 0.5%일 때 g의 상대 불확도를 구하세요.",
+      "steps": [
+        "g ∝ L¹ T⁻²이므로 L은 1배, T는 2배의 상대 불확도를 줍니다.",
+        "L의 기여: 1 × 1% = 1%, T의 기여: 2 × 0.5% = 1%입니다.",
+        "제곱해 더하면 √(1² + 1²) = √2입니다.",
+        "≈ 1.41%입니다."
+      ],
+      "answer": "약 1.4%"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "길이 3% 불확도, 너비 4% 불확도로 잰 직사각형 넓이의 상대 불확도는 몇 %인가요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "√(3² + 4²)입니다.",
+      "explanation": "독립인 두 측정값을 곱한 양의 상대 불확도는 각 상대 불확도를 제곱해 더한 뒤 제곱근을 취합니다.\n√(9 + 16) = √25입니다.\n= 5%입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "구의 지름을 2% 불확도로 재었을 때 부피의 상대 불확도는 몇 %인가요?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "V ∝ d³입니다.",
+      "explanation": "부피는 V = πd³/6로 지름의 세제곱에 비례합니다.\n거듭제곱 규칙으로 상대 불확도는 3 × 2%입니다.\n= 6%입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "주로 어디서 오나",
+      "body": [
+        "제곱합 때문에 큰 기여가 결과를 지배합니다. 3%와 0.5%를 합치면 √(9 + 0.25) ≈ 3.04%로 거의 3%입니다. 그래서 가장 큰 불확도의 원인을 먼저 줄여야 합니다.",
+        "거듭제곱이 큰 변수(예: g = 4π²L/T²의 T)는 같은 상대 불확도라도 결과에 두 배로 영향을 줍니다.",
+        "실험을 설계할 때는 각 측정이 결과 불확도에 얼마나 기여하는지 미리 계산해 정밀하게 잴 양을 고릅니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "속력 v = d/t에서 d = 100 ± 1 m, t = 12.5 ± 0.5 s입니다. v의 상대 불확도는 몇 %인가요? (소수 둘째 자리까지)",
+      "answer": "4.12",
+      "answer_format": "decimal",
+      "tolerance": 0.01,
+      "hint": "√(1² + 4²)입니다.",
+      "explanation": "나눗셈에서는 상대 불확도를 제곱해 더합니다: d는 1%, t는 0.5/12.5 = 4%입니다.\n√(1 + 16) = √17입니다.\n≈ 4.12%입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "θ = 30° ± 1°일 때 sin θ의 불확도는? (소수 넷째 자리까지)",
+      "answer": "0.0151",
+      "answer_format": "decimal",
+      "tolerance": 0.0002,
+      "hint": "δ(sin θ) = cos θ δθ(라디안)입니다.",
+      "explanation": "δθ = 1° = π/180 ≈ 0.01745 rad입니다.\nδ(sin θ) = cos 30° × 0.01745 = 0.866 × 0.01745입니다.\n≈ 0.0151입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "상대 불확도가 각각 6%와 1%인 두 값의 곱의 상대 불확도는 몇 %인가요? (소수 둘째 자리까지)",
+      "answer": "6.08",
+      "answer_format": "decimal",
+      "tolerance": 0.01,
+      "hint": "√(36 + 1)입니다.",
+      "explanation": "곱셈에서는 상대 불확도를 제곱해 더합니다.\n√(36 + 1) = √37입니다.\n≈ 6.08%로 큰 쪽(6%)이 거의 전부를 차지합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "덧셈·뺄셈: δq = √(δa² + δb²). 곱셈·나눗셈: δq/q = √((δa/a)² + (δb/b)²). 거듭제곱 aⁿ: δq/q = |n|δa/a.",
+        "일반 함수 δq = |f′(x)|δx(각은 라디안), 다변수는 편미분 기여를 제곱해 더합니다.",
+        "제곱합에서는 가장 큰 기여가 결과를 지배하므로 그 원인을 먼저 줄입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "진자 실험에서 L의 상대 불확도 0.4%, T의 상대 불확도 0.15%일 때 g = 4π²L/T²의 상대 불확도는 몇 %인가요?",
+      "answer": "0.5",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "√(0.4² + (2 × 0.15)²)입니다.",
+      "explanation": "g ∝ L T⁻²이므로 T의 상대 불확도는 2배로 들어갑니다.\n√(0.16 + 0.09) = √0.25입니다.\n= 0.5%입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(25.0 ± 0.2) + (12.0 ± 0.3) − (7.0 ± 0.6)의 불확도는? (소수로)",
+      "answer": "0.7",
+      "answer_format": "decimal",
+      "tolerance": 0,
+      "hint": "√(0.04 + 0.09 + 0.36)입니다.",
+      "explanation": "덧셈·뺄셈에서는 절대 불확도를 제곱해 더합니다.\n√(0.04 + 0.09 + 0.36) = √0.49입니다.\n= 0.7이므로 결과는 30.0 ± 0.7입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "q = ab(a, b 독립)의 상대 불확도가 δq/q = √((δa/a)² + (δb/b)²)임을 보이세요.",
+      "model_answer": [
+        "작은 변화에 대해 dq = b da + a db이다.",
+        "양변을 q = ab로 나누면 dq/q = da/a + db/b이다.",
+        "독립인 우연 오차는 분산이 더해지므로 (δq/q)² = (δa/a)² + (δb/b)²이다.",
+        "그래서 δq/q = √((δa/a)² + (δb/b)²)이다."
+      ],
+      "criteria": [
+        {
+          "text": "미분을 썼다",
+          "points": 2
+        },
+        {
+          "text": "상대 변화로 바꿨다",
+          "points": 2
+        },
+        {
+          "text": "독립 조건으로 제곱해 더했다",
+          "points": 2
+        }
+      ],
+      "hint": "dq = b da + a db에서 시작하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "정육면체 부피의 상대 불확도가 변의 상대 불확도의 3배인 이유와, √3배가 아닌 이유를 설명하세요.",
+      "model_answer": [
+        "V = a³이므로 dV/V = 3 da/a이다.",
+        "그래서 δV/V = 3 δa/a이다.",
+        "√3배는 독립인 세 측정값 a, b, c를 곱할 때의 결과이다.",
+        "여기서는 같은 한 측정값을 세 번 곱하므로 오차가 같은 방향으로 함께 움직여 상쇄되지 않고 그대로 3배가 된다."
+      ],
+      "criteria": [
+        {
+          "text": "미분으로 3배를 보였다",
+          "points": 2
+        },
+        {
+          "text": "√3배가 되는 경우를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "같은 값이라 상관됨을 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "독립인지가 핵심입니다."
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+ "no": 6,
+ "title": "수요 예측",
+ "hours": 4,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "정성적·정량적 예측 방법을 구분할 수 있다.",
+  "이동 평균과 지수 평활로 예측값을 계산할 수 있다.",
+  "예측 오차 지표(MAD, MAPE)를 설명할 수 있다."
+ ],
+ "checklist": [
+  "예측의 역할: 생산·재고·인력 계획의 출발점",
+  "정성적 예측: 전문가 의견, 델파이",
+  "시계열: 추세, 계절성, 순환, 불규칙",
+  "단순 이동 평균",
+  "지수 평활 F_{t+1} = αA_t + (1 − α)F_t",
+  "회귀 분석과 인과 모형",
+  "예측 오차: MAD, MSE, MAPE"
+ ],
+ "advice": [
+  "예측은 언제나 틀리지만, 얼마나 틀리는지 알고 쓰면 유용합니다. 같은 자료에 이동 평균과 지수 평활을 적용해 예측값을 구하고 오차를 비교해 보세요. 지수 평활의 α가 클수록 최근 변화에 빨리 반응하지만 우연한 흔들림에도 흔들린다는 맞바꿈이 핵심입니다.",
+  "최근에는 머신러닝 예측도 많이 쓰이지만, 기본 방법으로 기준선을 먼저 세우고 비교하는 습관이 중요합니다. 복잡한 모델이 단순한 방법보다 늘 낫지는 않습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Heizer · Render · Munson, Operations Management (번역본 『생산운영관리』, 장 제목으로 표기)",
+   "part": "Forecasting 장"
+  },
+  {
+   "title": "math-arena 레벨2 · 확률과 통계",
+   "href": "https://math-arena.org/guide.html?lv=2&t=probability&s=statistics"
+  },
+  {
+   "kind": "web",
+   "provider": "NIST/SEMATECH (무료)",
+   "title": "e-Handbook of Statistical Methods",
+   "url": "https://www.itl.nist.gov/div898/handbook/",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "최근 3개월 수요가 100, 120, 110이면 3개월 이동 평균 예측값은 얼마일까요?",
+   "answer": "110",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "(100 + 120 + 110)/3 = 110",
+   "hint": "평균입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "α = 0.3, 이번 달 예측 100, 실제 수요 120이면 다음 달 지수 평활 예측값은 얼마일까요?",
+   "answer": "106",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "0.3 × 120 + 0.7 × 100 = 106",
+   "hint": "αA + (1 − α)F입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "예측 오차의 절댓값을 평균한 지표를 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "MAD"
+     ]
+    }
+   ],
+   "explanation": "Mean Absolute Deviation의 줄임말입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "여름마다 에어컨 판매가 늘어나는 것처럼 일정한 주기로 반복되는 수요 변동을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "계절성",
+      "계절 변동"
+     ]
+    }
+   ],
+   "explanation": "계절 지수로 보정해 예측합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "industrial",
+ "subject": "ie-intro",
+ "id": "l2-industrial-ie-intro-u06"
+}

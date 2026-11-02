@@ -1,0 +1,103 @@
+{
+ "no": 6,
+ "title": "런타임 환경과 가비지 컬렉션",
+ "hours": 5,
+ "after": [
+  4
+ ],
+ "objectives": [
+  "활성 레코드와 호출 규약, 스택·힙 할당을 설명할 수 있다.",
+  "참조 계수와 표시–쓸기 가비지 컬렉션을 비교할 수 있다.",
+  "클로저와 객체가 메모리에 놓이는 방식을 설명할 수 있다."
+ ],
+ "checklist": [
+  "활성 레코드(스택 프레임)와 호출 규약(컴퓨터 구조 4단원)",
+  "정적·스택·힙 할당",
+  "수동 메모리 관리(C)의 위험",
+  "참조 계수: 즉시 회수, 순환 참조 문제",
+  "추적 GC: 표시–쓸기, 복사, 세대별 수집",
+  "GC 정지 시간과 성능",
+  "클로저, 가상 함수 표(객체지향의 동적 디스패치)"
+ ],
+ "advice": [
+  "메모리 관리 방식은 언어 선택에 가장 큰 영향을 주는 요소입니다. C는 개발자가 직접(빠르지만 위험), Java·Python은 가비지 컬렉터가 자동으로(안전하지만 정지 시간이 생김), Rust는 컴파일러가 소유권 규칙으로(안전하고 빠르지만 배우기 어려움) 관리합니다. 참조 계수가 서로를 가리키는 두 객체를 왜 회수하지 못하는지 그림으로 그려 보면 추적 GC가 필요한 이유가 바로 보입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Aho · Lam · Sethi · Ullman, Compilers: Principles, Techniques, and Tools (일명 드래곤 북, 장 제목으로 표기)",
+   "part": "Run-Time Environments 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Nystrom (무료 공개 교재)",
+   "title": "Crafting Interpreters",
+   "url": "https://craftinginterpreters.com/",
+   "lang": "영어",
+   "part": "Garbage Collection 장"
+  },
+  {
+   "kind": "web",
+   "provider": "code-arena (실습)",
+   "title": "C 언어 트랙",
+   "url": "https://code-arena.org/browse.html?type=language&track=track_a&lang=c",
+   "lang": "한국어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "객체 하나를 변수 a와 b가 가리키다가 b에 다른 객체를 대입하면, 원래 객체의 참조 계수는 얼마가 될까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "a만 남아 참조 계수는 2에서 1로 줄어듭니다.",
+   "hint": "남은 참조를 세세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "더 이상 쓰이지 않는 힙 메모리를 런타임이 자동으로 찾아 회수하는 기능을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "가비지 컬렉션",
+      "가비지컬렉션",
+      "쓰레기 수집",
+      "GC"
+     ]
+    }
+   ],
+   "explanation": "Java, Python, Go, JavaScript가 가비지 컬렉션을 씁니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "참조 계수 방식은 두 객체가 서로를 가리키는 {{1}} 참조가 있으면 쓰이지 않아도 회수하지 못합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "순환"
+     ]
+    }
+   ],
+   "explanation": "그래서 Python은 참조 계수에 순환 탐지기를 더해 씁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "compilers",
+ "id": "l3-computer-compilers-u06"
+}

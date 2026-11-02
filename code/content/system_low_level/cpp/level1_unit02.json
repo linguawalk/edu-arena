@@ -1,0 +1,96 @@
+{
+  "language": "cpp",
+  "category": "system_low_level",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "참조자 (reference)",
+  "questions": [
+    {
+      "id": "cpp_l1_u02_q001",
+      "type": "predict_output",
+      "code": "int x = 5;\nint &ref = x;\nref = 10;\ncout << x;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "10", "&x", "오류"],
+      "answer": 1,
+      "explanation_en": "A reference is another name for the same variable, not a separate copy; changing ref directly changes x, so x becomes 10.",
+      "explanation_ko": "참조자는 같은 변수의 또 다른 이름일 뿐, 별도의 사본이 아닙니다. ref를 바꾸면 x도 그대로 바뀌어 10이 됩니다.",
+      "concept_tags": ["reference"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l1_u02_q002",
+      "type": "predict_output",
+      "code": "void swapValues(int &a, int &b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n\nint main() {\n    int a = 1, b = 2;\n    swapValues(a, b);\n    cout << a << b;\n    return 0;\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["12", "21", "11", "22"],
+      "answer": 1,
+      "explanation_en": "Because the parameters are references, swapValues operates directly on main's a and b, actually swapping them, unlike C's pass-by-value.",
+      "explanation_ko": "매개변수가 참조자이기 때문에 swapValues는 main의 a와 b를 직접 다룹니다. C의 값에 의한 전달과 달리 실제로 값이 교환됩니다.",
+      "concept_tags": ["reference", "reference_parameter"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cpp_l1_u02_q003",
+      "type": "fill_blank",
+      "code": "int total = 0;\n\nvoid add(int ____n) {\n    total += n;\n}",
+      "prompt_en": "Fill in the blank to declare n as a reference parameter (not required here, but shown for comparison with pointers).",
+      "prompt_ko": "n을 참조자 매개변수로 선언하려면 빈칸에 무엇이 들어가야 할까요? (포인터와 비교하기 위한 예시)",
+      "options": ["&", "*", "**", "(없음)"],
+      "answer": 0,
+      "explanation_en": "A reference parameter is declared with & after the type, letting the function modify the caller's original variable without pointer syntax.",
+      "explanation_ko": "참조자 매개변수는 자료형 뒤에 &를 붙여 선언하며, 포인터 문법 없이도 함수가 호출한 쪽의 원본 변수를 수정할 수 있게 해줍니다.",
+      "concept_tags": ["reference", "reference_parameter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l1_u02_q004",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "참조자 (&)", "definition": "이미 존재하는 변수에 붙이는 또 다른 이름 (별칭)" },
+        { "term": "참조자 매개변수", "definition": "함수가 원본 변수를 직접 수정할 수 있게 하는 매개변수 전달 방식" },
+        { "term": "포인터와의 차이", "definition": "참조자는 재할당이 불가능하고 NULL이 될 수 없어 포인터보다 안전함" },
+        { "term": "값에 의한 전달과의 차이", "definition": "복사본이 아닌 원본에 직접 접근한다는 점" }
+      ],
+      "explanation_en": "References give C++ a safer alternative to pointers for many common cases, especially when passing variables into functions that need to modify them.",
+      "explanation_ko": "참조자는 많은 경우 포인터보다 더 안전한 대안을 제공합니다. 특히 함수가 변수를 직접 수정해야 할 때 유용합니다.",
+      "concept_tags": ["reference", "pointer"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l1_u02_q005",
+      "type": "error_finding",
+      "code": "int x = 5;\nint y = 10;\nint &ref = x;\nref = y;\ncout << x;",
+      "prompt_en": "If the programmer expected ref to now 'point to' y (making x's later prints show y's value), what actually happens?",
+      "prompt_ko": "프로그래머가 ref가 이제 y를 '가리키게' 될 것이라 기대했다면(이후 x 출력이 y의 값을 보여줄 것이라 기대), 실제로는 어떻게 될까요?",
+      "options": [
+        "ref가 y를 가리키게 되어 x 출력은 무관해짐",
+        "참조자는 한 번 초기화되면 다시 다른 변수를 가리킬 수 없어서, ref = y는 y의 값을 x에 대입하는 것과 같음 — x가 10이 됨",
+        "컴파일 오류 발생",
+        "ref와 x, y가 모두 같은 값을 공유하게 됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike a pointer, a reference cannot be reseated after initialization; ref = y is interpreted as assigning y's value through ref into x, not making ref refer to y.",
+      "explanation_ko": "포인터와 달리 참조자는 한 번 초기화되면 다른 변수를 다시 가리키도록 바꿀 수 없습니다. ref = y는 ref를 y로 재지정하는 것이 아니라, ref를 통해 y의 값을 x에 대입하는 것으로 해석되어 x가 10이 됩니다.",
+      "concept_tags": ["reference", "pointer"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cpp_l1_u02_q006",
+      "type": "predict_output",
+      "code": "int arr[3] = {1, 2, 3};\nint &first = arr[0];\nfirst = 100;\ncout << arr[0];",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1", "100", "arr[0]", "오류"],
+      "answer": 1,
+      "explanation_en": "A reference can bind to an array element just like any other variable; modifying first modifies arr[0] directly, resulting in 100.",
+      "explanation_ko": "참조자는 다른 변수와 마찬가지로 배열 요소에도 바인딩될 수 있습니다. first를 수정하면 arr[0]이 직접 바뀌어 100이 됩니다.",
+      "concept_tags": ["reference"],
+      "difficulty": "practice"
+    }
+  ]
+}

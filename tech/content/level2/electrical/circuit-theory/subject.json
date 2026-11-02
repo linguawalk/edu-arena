@@ -1,0 +1,233 @@
+{
+ "level": 2,
+ "track": "electrical",
+ "id": "circuit-theory",
+ "title": "회로이론",
+ "tagline": "옴의 법칙에서 라플라스 변환까지, 전기·전자 공학 전체가 쓰는 회로 해석의 언어",
+ "overview": [
+  "회로이론은 전기·전자·정보통신 분야가 공통으로 처음 배우는 과목입니다. 레벨1에서 회로도를 읽고 옴의 법칙으로 간단한 회로를 계산했다면, 여기서는 아무리 복잡한 선형 회로라도 체계적으로 풀어내는 방법을 배웁니다. 키르히호프 법칙으로 방정식을 세우는 마디·망 해석, 회로를 단순한 등가 회로로 바꾸는 테브난·노턴 정리가 그 중심입니다.",
+  "후반부는 시간에 따라 변하는 회로입니다. 커패시터와 인덕터가 들어가면 회로 방정식이 미분방정식이 되고, 스위치를 켠 직후의 과도 응답과 교류를 걸었을 때의 정상 상태 응답을 구분해 다룹니다. 교류는 페이저(복소수)로 바꾸면 직류 회로와 똑같이 풀 수 있고, 마지막에는 라플라스 변환이 과도 응답과 교류 해석을 하나로 묶어 줍니다.",
+  "전기기기, 전력공학, 전자회로, 통신이론, 제어공학 등 거의 모든 레벨2·3 전기전자 과목의 선수 과목입니다. 전기산업기사·전기기사 필기 시험에서도 독립 과목으로 출제됩니다. 이 가이드는 Nilsson 교재와 MIT 6.002 강의의 흐름을 따르되, 전기 분야에서 중요한 교류 전력과 3상 회로에 단원을 따로 두었습니다."
+ ],
+ "level_note": "레벨 2 (응용, 전문대졸·산업기사 수준). 목차 검증 기준: 전기산업기사·전기기사 필기 '회로이론' 과목 구성과 Nilsson·Riedel, Alexander·Sadiku 교재 목차.",
+ "prereq": {
+  "text": "레벨1 전기전자의 회로도·전력 챕터와 sci-arena 물리Ⅱ(전기·자기)가 선수입니다. 후반부(6·7·12단원)는 미분방정식을 쓰므로 math-arena 레벨1 미적분과 레벨2 상미분방정식을 함께 공부하면 좋습니다.",
+  "links": [
+   {
+    "title": "레벨1 · 회로도 읽기와 부품",
+    "href": "browse.html?c=c1#ch01"
+   },
+   {
+    "title": "레벨1 · 전력량·요금과 에너지 효율",
+    "href": "browse.html?c=c1#ch03"
+   },
+   {
+    "title": "레벨1 · 변압기와 송배전",
+    "href": "browse.html?c=c1#ch05"
+   },
+   {
+    "title": "sci-arena 레벨1 · 물리Ⅱ (전기장·자기장·교류)",
+    "href": "https://sci-arena.org/browse.html?c=c5"
+   },
+   {
+    "title": "math-arena 레벨1 · 미적분",
+    "href": "https://math-arena.org/browse.html?c=c4"
+   },
+   {
+    "title": "math-arena 레벨2 · 상미분방정식",
+    "href": "https://math-arena.org/guide.html?lv=2&t=analysis&s=ode"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "p1",
+    "qtype": "numeric",
+    "prompt": "12 V 전지에 4 Ω 저항을 연결하면 흐르는 전류는 몇 A일까요?",
+    "answer": "3",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "I = V/R = 12/4 = 3 A (레벨1 전기전자 챕터 1)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p2",
+    "qtype": "numeric",
+    "prompt": "220 V에서 5 A를 쓰는 전열기의 소비 전력은 몇 W일까요?",
+    "answer": "1100",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "P = VI = 220 × 5 = 1100 W (레벨1 전기전자 챕터 3)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p3",
+    "qtype": "numeric",
+    "prompt": "1차 권수 100회, 2차 권수 20회인 변압기에 1차 전압 100 V를 걸면 2차 전압은 몇 V일까요?",
+    "answer": "20",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "V₂ = V₁ × N₂/N₁ = 100 × 20/100 = 20 V (레벨1 전기전자 챕터 5)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p4",
+    "qtype": "numeric",
+    "prompt": "f(t) = e^(−2t)일 때 f′(0)은?",
+    "answer": "-2",
+    "answer_format": "decimal",
+    "tolerance": 0,
+    "explanation": "f′(t) = −2e^(−2t)\nf′(0) = −2 (math-arena 미적분)",
+    "stage": "prereq"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "레벨2 · 전기자기학",
+   "note": "회로 소자 R·L·C의 바탕이 되는 전계·자계 이론"
+  },
+  {
+   "title": "레벨2 · 전기기기",
+   "note": "변압기·전동기·발전기를 등가 회로로 해석"
+  },
+  {
+   "title": "레벨2 · 전력공학 기초",
+   "note": "3상 회로와 교류 전력을 송배전에 적용"
+  },
+  {
+   "title": "레벨2 · 전자회로 (전자 트랙)",
+   "note": "다이오드·트랜지스터·연산 증폭기 회로"
+  },
+  {
+   "title": "레벨3 · 제어공학",
+   "note": "라플라스 변환과 전달함수가 제어의 출발점"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "units": [
+  {
+   "no": 1,
+   "title": "회로 변수와 회로 소자",
+   "hours": 4,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "저항 회로와 키르히호프 법칙",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "마디 해석과 망 해석",
+   "hours": 6,
+   "after": [
+    2
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "회로 정리: 중첩·테브난·노턴·최대 전력",
+   "hours": 6,
+   "after": [
+    3
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "커패시터와 인덕터",
+   "hours": 4,
+   "after": [
+    1
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "1차 회로의 과도 응답",
+   "hours": 6,
+   "after": [
+    4,
+    5
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "2차 회로(RLC)의 과도 응답",
+   "hours": 6,
+   "after": [
+    6
+   ],
+   "file": "u07.json"
+  },
+  {
+   "no": 8,
+   "title": "정현파, 페이저, 임피던스",
+   "hours": 6,
+   "after": [
+    4,
+    5
+   ],
+   "file": "u08.json"
+  },
+  {
+   "no": 9,
+   "title": "교류 전력과 역률",
+   "hours": 5,
+   "after": [
+    8
+   ],
+   "file": "u09.json"
+  },
+  {
+   "no": 10,
+   "title": "3상 회로",
+   "hours": 6,
+   "after": [
+    9
+   ],
+   "file": "u10.json"
+  },
+  {
+   "no": 11,
+   "title": "주파수 응답, 공진, 필터",
+   "hours": 6,
+   "after": [
+    8
+   ],
+   "file": "u11.json"
+  },
+  {
+   "no": 12,
+   "title": "라플라스 변환과 회로 해석",
+   "hours": 7,
+   "after": [
+    7,
+    11
+   ],
+   "file": "u12.json"
+  },
+  {
+   "no": 13,
+   "title": "자기 결합 회로와 2포트 회로망",
+   "hours": 5,
+   "after": [
+    8
+   ],
+   "file": "u13.json"
+  }
+ ],
+ "total_hours": 72
+}

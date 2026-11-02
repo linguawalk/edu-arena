@@ -1,0 +1,107 @@
+{
+ "no": 8,
+ "title": "망 품질과 신뢰성",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "지연·지터·패킷 손실·처리량 등 QoS 지표를 설명할 수 있다.",
+  "MTBF와 MTTR로 가용도를 계산하고 연간 장애 시간을 구할 수 있다.",
+  "직렬·병렬 구성의 가용도를 계산할 수 있다."
+ ],
+ "checklist": [
+  "QoS 지표: 지연, 지터(지연 변동), 패킷 손실률, 처리량",
+  "서비스별 요구: 음성·영상(지연·지터), 파일 전송(손실·처리량)",
+  "가용도 A = MTBF/(MTBF + MTTR)",
+  "99.9%(연 약 8.8시간), 99.99%(연 약 53분), 99.999%(연 약 5분)",
+  "직렬 구성 A = A₁ × A₂, 병렬(이중화) A = 1 − (1 − A₁)(1 − A₂)",
+  "서비스 수준 협약(SLA)",
+  "망 관리(장애·성능·구성 관리)"
+ ],
+ "advice": [
+  "망의 품질은 '얼마나 빠른가'뿐 아니라 '얼마나 일정하고, 얼마나 자주 멈추는가'로 평가합니다. 음성 통화는 지연과 지터에, 파일 전송은 손실에 민감하다는 차이를 서비스별로 표로 만들어 보세요. 가용도 계산은 MTBF와 MTTR 두 숫자로 시작하며, '9가 하나 늘 때마다 연간 장애 시간이 1/10'이라는 감각을 숫자로 확인해 두면 됩니다.",
+  "직렬로 연결된 장비가 많을수록 가용도는 곱해져 낮아지고, 이중화하면 크게 올라갑니다. 이 계산이 레벨3 통신망 설계의 생존성 설계와 1단원의 위상 선택의 근거가 됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Tanenbaum · Wetherall, Computer Networks (번역본 『컴퓨터 네트워크』, 장 제목으로 표기)",
+   "part": "Quality of Service 관련 절"
+  },
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Kurose · Ross, Computer Networking: A Top-Down Approach (장 제목으로 표기)",
+   "part": "Multimedia Networking 장"
+  },
+  {
+   "kind": "web",
+   "provider": "ITU",
+   "title": "ITU 무선통신부문(ITU-R) 전파규칙과 권고",
+   "url": "https://www.itu.int/en/ITU-R/",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "MTBF 999시간, MTTR 1시간인 장비의 가용도는 몇 %일까요?",
+   "answer": "99.9",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "A = 999/(999 + 1) = 0.999 = 99.9%",
+   "hint": "MTBF/(MTBF + MTTR)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "가용도 99.99%인 서비스의 연간 최대 장애 시간은 약 몇 분일까요? (1년 = 525 600분)",
+   "answer": "52.6",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "525 600 × 0.0001 ≈ 52.6분",
+   "hint": "1년 × (1 − 가용도)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "가용도 99%인 장비 두 대를 직렬로 연결하면 전체 가용도는 몇 %일까요?",
+   "answer": "98.01",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "0.99 × 0.99 = 0.9801 = 98.01%",
+   "hint": "직렬은 곱합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "패킷마다 지연 시간이 들쭉날쭉한 정도를 {{1}}라고 하며, 음성·영상 통화 품질에 큰 영향을 줍니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "지터"
+     ]
+    }
+   ],
+   "explanation": "수신 측 지터 버퍼로 완화합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "ict",
+ "subject": "comm-networks",
+ "id": "l2-ict-comm-networks-u08"
+}

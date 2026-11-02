@@ -1,0 +1,287 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "mathstr",
+  "work": "풀이",
+  "track_title": "수학·문자열",
+  "chapter": {
+    "id": "info-s1-mathstr-ch01",
+    "no": 1,
+    "title": "소수와 약수"
+  },
+  "lesson": {
+    "id": "info-s1-mathstr-ch01-l02",
+    "no": 2,
+    "title": "에라토스테네스의 체",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "수학·문자열",
+      "소수와 약수"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "배수를 지워 나가기",
+      "body": [
+        "N 이하의 소수를 모두 구하려면 2부터 차례로 보며, 지워지지 않은 수를 만나면 소수로 남기고 그 수의 배수를 모두 지웁니다. 이것을 에라토스테네스의 체라 합니다.",
+        "2의 배수, 3의 배수, 5의 배수, …를 지우고 나면 남은 수가 소수입니다. N = 30이면 2, 3, 5의 배수만 지우면 됩니다(7 × 7 = 49 > 30).",
+        "시간은 O(N log log N)으로 거의 O(N)입니다. N = 10⁷까지도 쓸 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "1부터 100까지의 자연수 중 소수는 몇 개인가요?",
+      "answer": "25",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "50 이하 15개에 53, 59, 61, 67, 71, 73, 79, 83, 89, 97을 더합니다.",
+      "explanation": "에라토스테네스의 체로 2, 3, 5, 7의 배수를 지우면 100 이하의 소수가 남습니다.\n50 이하 15개에 53, 59, 61, 67, 71, 73, 79, 83, 89, 97을 더합니다.\n그래서 25개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "소수의 배수를 차례로 지워 N 이하의 소수를 한꺼번에 구하는 방법을 에라토스테네스의 {{1}}라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "체",
+            "sieve"
+          ]
+        }
+      ],
+      "hint": "가루를 거르는 도구입니다.",
+      "explanation": "배수를 지우고 남은 수만 걸러 냅니다.\n고운 가루를 거르는 도구에 빗댄 이름입니다.\n그래서 에라토스테네스의 체라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "코드로 보기",
+      "body": [
+        "아래 코드는 i × i ≤ N인 i까지만 보며, i가 지워지지 않았으면 i × i부터 i씩 건너뛰며 지웁니다.",
+        "i × i부터 시작해도 되는 이유는 i보다 작은 배수 2i, 3i, …는 이미 더 작은 소수의 배수로 지워졌기 때문입니다.",
+        "N = 30이면 i = 2, 3, 5에서 지우고 i = 4는 이미 지워져 건너뜁니다."
+      ],
+      "code": "// 2 이상 N 이하의 소수를 모두 표시한다 (에라토스테네스의 체)\nvector<bool> composite(N + 1, false);\nfor (int i = 2; i * i <= N; i++)\n    if (!composite[i])\n        for (int j = i * i; j <= N; j += i)\n            composite[j] = true;        // i의 배수를 지운다\n// composite[x]가 false인 2 이상의 x가 소수"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "N = 30일 때 아래 코드에서 i = 3이 지우는 수를 구하세요.",
+      "steps": [
+        "i = 3은 지워지지 않았으므로 소수입니다.",
+        "j는 3 × 3 = 9부터 3씩 커집니다.",
+        "9, 12, 15, 18, 21, 24, 27, 30을 지웁니다(이미 지워진 수도 다시 표시).",
+        "모두 8번 표시합니다."
+      ],
+      "answer": "9, 12, …, 30",
+      "code": "// 2 이상 N 이하의 소수를 모두 표시한다 (에라토스테네스의 체)\nvector<bool> composite(N + 1, false);\nfor (int i = 2; i * i <= N; i++)\n    if (!composite[i])\n        for (int j = i * i; j <= N; j += i)\n            composite[j] = true;        // i의 배수를 지운다\n// composite[x]가 false인 2 이상의 x가 소수"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "N = 30일 때 아래 코드에서 i = 3이 composite[j] = true를 실행하는 횟수는?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "9부터 30까지 3씩입니다.",
+      "explanation": "i가 소수이면 j를 i × i부터 N까지 i씩 늘리며 표시합니다.\ni = 3이면 j = 9, 12, …, 30입니다.\n(30 − 9)/3 + 1 = 8번입니다.",
+      "code": "// 2 이상 N 이하의 소수를 모두 표시한다 (에라토스테네스의 체)\nvector<bool> composite(N + 1, false);\nfor (int i = 2; i * i <= N; i++)\n    if (!composite[i])\n        for (int j = i * i; j <= N; j += i)\n            composite[j] = true;        // i의 배수를 지운다\n// composite[x]가 false인 2 이상의 x가 소수"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "N = 30일 때 아래 코드에서 바깥 반복문의 i는 가장 큰 값이 얼마까지 가나요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "i × i ≤ 30입니다.",
+      "explanation": "바깥 반복문은 i × i ≤ N인 동안만 돕니다.\n5 × 5 = 25 ≤ 30이고 6 × 6 = 36 > 30입니다.\n그래서 i는 5까지 갑니다.",
+      "code": "// 2 이상 N 이하의 소수를 모두 표시한다 (에라토스테네스의 체)\nvector<bool> composite(N + 1, false);\nfor (int i = 2; i * i <= N; i++)\n    if (!composite[i])\n        for (int j = i * i; j <= N; j += i)\n            composite[j] = true;        // i의 배수를 지운다\n// composite[x]가 false인 2 이상의 x가 소수"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "남은 수가 소수인 이유",
+      "body": [
+        "N 이하의 합성수 x는 √N 이하의 소인수 p를 가집니다. 체는 그 p의 단계에서 x를 지우므로 합성수는 모두 지워집니다.",
+        "소수는 자기보다 작은 수의 배수가 아니므로 지워지지 않습니다. 그래서 끝까지 남은 2 이상의 수가 정확히 소수입니다.",
+        "N = 50이면 i = 2, 3, 5, 7 단계만 하면 됩니다(7 × 7 = 49 ≤ 50 < 64)."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "N = 50일 때 에라토스테네스의 체에서 배수를 지우는 소수 i는 몇 개인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "i × i ≤ 50인 소수입니다.",
+      "explanation": "체는 i × i ≤ N인 소수 i에 대해서만 배수를 지웁니다.\ni × i ≤ 50인 소수는 2, 3, 5, 7입니다.\n그래서 4개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "N = 100일 때 아래 코드에서 i = 7이 composite[j] = true를 실행하는 횟수는?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "49부터 100까지 7씩입니다.",
+      "explanation": "i가 소수이면 j를 i × i부터 N까지 i씩 늘리며 표시합니다.\ni = 7이면 j = 49, 56, …, 98입니다.\n(98 − 49)/7 + 1 = 8번입니다.",
+      "code": "// 2 이상 N 이하의 소수를 모두 표시한다 (에라토스테네스의 체)\nvector<bool> composite(N + 1, false);\nfor (int i = 2; i * i <= N; i++)\n    if (!composite[i])\n        for (int j = i * i; j <= N; j += i)\n            composite[j] = true;        // i의 배수를 지운다\n// composite[x]가 false인 2 이상의 x가 소수"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "시간과 메모리",
+      "body": [
+        "체는 소수 p마다 N/p번 정도 지우므로 전체 N(1/2 + 1/3 + 1/5 + …) ≈ N log log N번입니다. N = 10⁷이어도 수천만 번이면 끝납니다.",
+        "메모리는 bool 배열 N + 1칸입니다. bool이 1바이트이면 N = 10⁷에서 약 10 MB입니다.",
+        "한 번 체를 만들어 두면 이후 소수 판정은 배열을 한 칸 보는 O(1)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "N = 10⁷일 때 체의 bool 배열(1칸 1바이트)은 약 몇 MB인가요? (1 MB = 10⁶바이트, N + 1칸을 N칸으로 어림)",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "10⁷바이트입니다.",
+      "explanation": "체는 0부터 N까지 bool 한 칸씩을 쓰므로 약 N바이트가 필요합니다.\n10⁷바이트 = 10⁷/10⁶ MB입니다.\n= 10 MB입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1부터 20까지의 자연수 중 소수는 몇 개인가요?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2, 3, 5, 7, 11, 13, 17, 19입니다.",
+      "explanation": "에라토스테네스의 체로 2, 3의 배수를 지우면 20 이하의 소수가 남습니다.\n2, 3, 5, 7, 11, 13, 17, 19입니다.\n그래서 8개입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "에라토스테네스의 체는 2부터 보며 지워지지 않은 수의 배수를 지워, N 이하의 소수를 O(N log log N)에 모두 구합니다.",
+        "i × i ≤ N인 i까지만 보면 되고, 지우기는 i × i부터 시작합니다.",
+        "체를 만들어 두면 이후 소수 판정은 O(1)이므로, 많은 수를 판정해야 할 때 씁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "N = 100일 때 아래 코드에서 i = 5가 composite[j] = true를 실행하는 횟수는?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "25부터 100까지 5씩입니다.",
+      "explanation": "i가 소수이면 j를 i × i부터 N까지 i씩 늘리며 표시합니다.\ni = 5이면 j = 25, 30, …, 100입니다.\n(100 − 25)/5 + 1 = 16번입니다.",
+      "code": "// 2 이상 N 이하의 소수를 모두 표시한다 (에라토스테네스의 체)\nvector<bool> composite(N + 1, false);\nfor (int i = 2; i * i <= N; i++)\n    if (!composite[i])\n        for (int j = i * i; j <= N; j += i)\n            composite[j] = true;        // i의 배수를 지운다\n// composite[x]가 false인 2 이상의 x가 소수"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "N = 200일 때 에라토스테네스의 체에서 배수를 지우는 소수 i는 몇 개인가요?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "i × i ≤ 200인 소수입니다.",
+      "explanation": "체는 i × i ≤ N인 소수 i에 대해서만 배수를 지웁니다.\ni × i ≤ 200인 소수는 2, 3, 5, 7, 11, 13입니다(14 × 14 = 196, 17 × 17 = 289).\n그래서 6개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "에라토스테네스의 체가 끝났을 때 지워지지 않은 2 이상의 수가 정확히 소수인 이유를 설명하세요.",
+      "model_answer": [
+        "체는 소수 p의 배수(p × p 이상)를 지운다.",
+        "N 이하의 합성수 x는 √x ≤ √N 이하의 소인수 p를 가지고 x ≥ p × p이므로, p 단계에서 반드시 지워진다.",
+        "소수 q는 자기보다 작은 소수의 배수가 아니고, 자기 단계에서는 q × q부터 지우므로 지워지지 않는다.",
+        "따라서 남은 2 이상의 수는 모두 소수이고, 소수는 모두 남는다."
+      ],
+      "criteria": [
+        {
+          "text": "체가 지우는 수를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "합성수가 모두 지워짐을 보였다",
+          "points": 2
+        },
+        {
+          "text": "소수는 남음을 보여 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "합성수는 어떤 단계에서 지워지나요?"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "에라토스테네스의 체에서 i의 배수를 2i가 아니라 i × i부터 지워도 되는 이유를 설명하세요.",
+      "model_answer": [
+        "i보다 작은 배수 k × i(2 ≤ k < i)를 생각하자.",
+        "k는 i보다 작으므로 k의 소인수 p도 i보다 작다.",
+        "그래서 k × i는 p의 배수이고, 더 앞선 p 단계에서 이미 지워졌다.",
+        "따라서 i 단계에서는 i × i부터 지우면 충분하고, 그만큼 일을 줄인다."
+      ],
+      "criteria": [
+        {
+          "text": "i보다 작은 배수를 생각했다",
+          "points": 2
+        },
+        {
+          "text": "더 작은 소인수가 있음을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "이미 지워졌음을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "2i, 3i, …는 언제 지워졌나요?"
+    }
+  ]
+}

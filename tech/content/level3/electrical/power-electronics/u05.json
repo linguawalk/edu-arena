@@ -1,0 +1,97 @@
+{
+ "no": 5,
+ "title": "인버터",
+ "hours": 7,
+ "after": [
+  4
+ ],
+ "objectives": [
+  "단상·3상 전압형 인버터의 구조와 구형파·PWM 동작을 설명할 수 있다.",
+  "정현파 PWM에서 변조 지수와 출력 기본파 전압의 관계를 계산할 수 있다.",
+  "데드 타임과 계통 연계 인버터의 역할을 설명할 수 있다."
+ ],
+ "checklist": [
+  "단상 풀브리지 구형파 출력의 기본파 실효값 = 4V_dc/(π√2) ≈ 0.9V_dc",
+  "3상 전압형 인버터(6스위치), 6스텝 운전",
+  "정현파 PWM: 진폭 변조 지수 m_a, 주파수 변조 지수 m_f",
+  "3상 SPWM 선간 기본파 실효값 ≈ 0.612·m_a·V_dc (m_a ≤ 1)",
+  "과변조와 공간 벡터 PWM(직류 전압 이용률 향상)",
+  "데드 타임: 같은 레그 위아래 스위치의 동시 도통(단락) 방지",
+  "전압형(VSI)과 전류형(CSI), 계통 연계 인버터와 위상 동기(PLL)"
+ ],
+ "advice": [
+  "인버터는 DC–DC 컨버터의 스위칭 레그 두 개(단상) 또는 세 개(3상)를 정현파 모양으로 듀티비를 바꿔 가며 구동하는 것이라고 이해하면 됩니다. PWM 출력은 고주파 펄스지만 전동기 권선이나 필터 인덕터가 평균을 취해 주므로 결국 '듀티비의 평균이 정현파'라는 그림이 핵심입니다. m_a가 1을 넘으면 출력이 더 이상 비례해 늘지 않는 과변조가 생긴다는 점, 데드 타임이 없으면 레그가 단락된다는 점을 함께 기억하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Mohan · Undeland · Robbins, Power Electronics: Converters, Applications, and Design (장 제목으로 표기)",
+   "part": "Switch-Mode dc-ac Inverters 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Springer",
+   "title": "Erickson · Maksimović, Fundamentals of Power Electronics (장 제목으로 표기)",
+   "part": "Converter Circuits 장의 인버터 절"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.334 Power Electronics (2007년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-334-power-electronics-spring-2007/",
+   "lang": "영어",
+   "part": "inverter 관련 강의 노트"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "직류 100 V로 동작하는 단상 풀브리지 인버터의 구형파 출력에서 기본파 실효값은 약 몇 V일까요?",
+   "answer": "90",
+   "answer_format": "decimal",
+   "tolerance": 0.2,
+   "explanation": "V₁ = 4V_dc/(π√2) = 400/4.443 ≈ 90.0 V",
+   "hint": "4V_dc/(π√2)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "직류 600 V, 3상 SPWM 인버터를 변조 지수 0.8로 운전하면 출력 선간전압 기본파 실효값은 약 몇 V일까요?",
+   "answer": "293.9",
+   "answer_format": "decimal",
+   "tolerance": 0.5,
+   "explanation": "V_LL ≈ 0.612 × 0.8 × 600 ≈ 293.9 V",
+   "hint": "0.612·m_a·V_dc입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "같은 레그의 위아래 스위치가 동시에 켜져 직류 전원이 단락되지 않도록 두는 짧은 휴지 시간을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "데드 타임",
+      "데드타임",
+      "dead time"
+     ]
+    }
+   ],
+   "explanation": "데드 타임 동안은 다이오드로 전류가 흘러 출력 전압에 작은 오차가 생기므로 보상 제어를 하기도 합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "power-electronics",
+ "id": "l3-electrical-power-electronics-u05"
+}

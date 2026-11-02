@@ -1,0 +1,113 @@
+{
+ "no": 7,
+ "title": "이상 전압과 보호 장치",
+ "hours": 5,
+ "after": [
+  5
+ ],
+ "objectives": [
+  "뇌·개폐 이상 전압과 진행파의 반사·투과를 계산할 수 있다.",
+  "피뢰기·가공 지선 등 이상 전압 방호 장치와 절연 협조를 설명할 수 있다.",
+  "차단기·보호 계전기의 종류와 역할을 설명할 수 있다."
+ ],
+ "checklist": [
+  "외부(뇌) 이상 전압과 내부(개폐) 이상 전압",
+  "진행파 반사 계수 (Z₂ − Z₁)/(Z₂ + Z₁), 투과 계수 2Z₂/(Z₁ + Z₂)",
+  "가공 지선, 매설 지선(역섬락 방지)",
+  "피뢰기: 제한 전압, 속류 차단",
+  "절연 협조: 기준 충격 절연 강도(BIL)",
+  "차단기(가스·진공 등)와 차단 용량 √3 × 정격 전압 × 정격 차단 전류",
+  "보호 계전기: 과전류, 거리, 차동, 지락 계전기",
+  "단로기와 차단기의 조작 순서"
+ ],
+ "advice": [
+  "보호 단원은 '무엇이 침입하면(뇌, 단락, 지락) 무엇이 막는가(피뢰기, 차단기, 계전기)'의 짝으로 정리하면 됩니다. 특히 차단기는 고장 전류를 끊고 단로기는 전류가 없을 때만 회로를 여닫는다는 차이, 그래서 투입은 단로기 → 차단기, 개방은 차단기 → 단로기 순서라는 점은 실무 안전과도 직결됩니다.",
+  "진행파의 반사·투과 계수는 끝이 개방(Z₂ = ∞)이면 전압이 2배, 단락(Z₂ = 0)이면 0이 된다는 극한 경우로 검산하세요. 개방단에서 전압이 2배가 되는 성질은 선로 끝의 변압기나 개방된 차단기에 피뢰기를 두는 이유이기도 합니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Glover · Overbye · Sarma, Power System Analysis and Design (장 제목으로 표기)",
+   "part": "Transient Operation of Transmission Lines, System Protection 장"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Grainger · Stevenson, Power System Analysis (번역본 『전력계통공학』)",
+   "part": "보호 계전·차단기 관련 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.061 Introduction to Electric Power Systems (2011년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-061-introduction-to-electric-power-systems-spring-2011/",
+   "lang": "영어",
+   "part": "protection 관련 강의 노트"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "피뢰기의 제한 전압이 {{1}}수록 기기 보호 성능이 좋습니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "낮을"
+     ]
+    }
+   ],
+   "explanation": "이상 전압이 들어왔을 때 피뢰기 단자에 남는 전압이 낮을수록 기기 절연에 걸리는 전압이 낮아집니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "특성 임피던스 400 Ω인 선로를 진행하던 파가 100 Ω 선로와의 접속점에 도달했습니다. 전압 반사 계수는?",
+   "answer": "-0.6",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "Γ = (100 − 400)/(100 + 400) = −0.6",
+   "hint": "(Z₂ − Z₁)/(Z₂ + Z₁)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "같은 접속점의 전압 투과 계수는?",
+   "answer": "0.4",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "τ = 2 × 100/(400 + 100) = 0.4\n1 + Γ = 0.4로 검산됩니다.",
+   "hint": "2Z₂/(Z₁ + Z₂)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "3상 차단기의 정격 차단 용량은 √3 × 정격 전압 × 정격 {{1}} 전류입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "차단"
+     ]
+    }
+   ],
+   "explanation": "설치 지점의 단락 용량보다 커야 합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electrical",
+ "subject": "power-basics",
+ "id": "l2-electrical-power-basics-u07"
+}

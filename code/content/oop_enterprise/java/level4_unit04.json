@@ -1,0 +1,96 @@
+{
+  "language": "java",
+  "category": "oop_enterprise",
+  "level": 4,
+  "unit": 4,
+  "unit_title": "참조 타입만 존재 (struct의 부재)",
+  "questions": [
+    {
+      "id": "java_l4_u04_q001",
+      "type": "error_finding",
+      "code": "struct Point {\n    int x;\n    int y;\n}",
+      "prompt_en": "What problem does this code have? (Someone copying C#/VB's value type syntax into Java.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (C#/VB의 값 타입 문법을 Java에 그대로 가져온 경우입니다.)",
+      "options": [
+        "필드 선언 문법 오류",
+        "Java에는 struct(C#) 또는 Structure(VB) 같은 사용자 정의 값 타입 문법이 아예 없어서, struct는 인식되지 않는 키워드로 컴파일 오류가 발생함",
+        "Point 클래스 이름이 잘못됨",
+        "문제 없음, 정상적으로 값 타입이 정의됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Java has no keyword for defining a custom value type at all; every user-defined type (via class) is a reference type. The primitive types (int, double, etc.) are the only value-like types Java has.",
+      "explanation_ko": "Java에는 사용자 정의 값 타입을 만드는 키워드가 전혀 없습니다. class로 정의하는 모든 사용자 타입은 참조 타입입니다. 기본형(int, double 등)만이 Java에서 유일하게 값처럼 동작하는 타입입니다.",
+      "concept_tags": ["no_struct", "reference_type"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l4_u04_q002",
+      "type": "predict_output",
+      "code": "class Point {\n    int x;\n    int y;\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Point p1 = new Point();\n        p1.x = 3;\n        Point p2 = p1;\n        p2.x = 100;\n        System.out.println(p1.x);\n    }\n}",
+      "prompt_en": "What is printed? (Compare with C#/VB's struct, where this stays independent.)",
+      "prompt_ko": "출력 결과는? (독립적으로 유지되는 C#/VB의 struct와 비교해보세요.)",
+      "options": ["3", "100", "오류", "0"],
+      "answer": 1,
+      "explanation_en": "Since class is always a reference type in Java, Point p2 = p1 copies the reference, not the data; both p1 and p2 point to the same object, so p1.x becomes 100 too — unlike C#/VB's value-copying struct.",
+      "explanation_ko": "Java에서 class는 항상 참조 타입이므로, Point p2 = p1은 데이터가 아니라 참조를 복사합니다. p1과 p2는 같은 객체를 가리키게 되어 p1.x도 100이 됩니다 — 값을 복사하는 C#/VB의 struct와 다릅니다.",
+      "concept_tags": ["reference_type", "no_struct"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l4_u04_q003",
+      "type": "predict_output",
+      "code": "class Point {\n    int x;\n    int y;\n}\n\nstatic void moveOrigin(Point p) {\n    p.x = 0;\n    p.y = 0;\n}\n\npublic static void main(String[] args) {\n    Point pt = new Point();\n    pt.x = 5;\n    moveOrigin(pt);\n    System.out.println(pt.x);\n}",
+      "prompt_en": "What is printed? (Compare with the equivalent struct example in C#/VB, which stayed 5.)",
+      "prompt_ko": "출력 결과는? (5로 유지됐던 C#/VB의 동일한 struct 예제와 비교해보세요.)",
+      "options": ["5", "0", "오류", "10"],
+      "answer": 1,
+      "explanation_en": "Since Point is a class (Java's only option), the reference is passed to moveOrigin, and modifying its fields directly changes the original object; pt.x becomes 0.",
+      "explanation_ko": "Point는 클래스(Java의 유일한 선택지)이므로 참조가 moveOrigin에 전달되고, 필드를 수정하면 원본 객체가 직접 바뀝니다. pt.x는 0이 됩니다.",
+      "concept_tags": ["reference_type", "no_struct"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l4_u04_q004",
+      "type": "predict_output",
+      "code": "int a = 5;\nint b = a;\nb = 100;\nSystem.out.println(a);",
+      "prompt_en": "What is printed? (Primitives, unlike class objects, still copy by value.)",
+      "prompt_ko": "출력 결과는? (클래스 객체와 달리 기본형은 여전히 값으로 복사됩니다.)",
+      "options": ["5", "100", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "Primitives like int are copied by value even in Java; changing b doesn't affect a, which stays 5. This is the one place Java's value semantics still apply.",
+      "explanation_ko": "int 같은 기본형은 Java에서도 값으로 복사됩니다. b를 바꿔도 a에는 영향이 없어 5로 유지됩니다. 이것이 Java에서 값 의미론이 여전히 적용되는 유일한 지점입니다.",
+      "concept_tags": ["primitive_type"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l4_u04_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "struct/Structure의 부재", "definition": "Java에는 C#의 struct, VB의 Structure에 해당하는 문법이 전혀 없다는 사실" },
+        { "term": "class는 항상 참조 타입", "definition": "Java에서 사용자 정의 타입은 예외 없이 모두 참조 타입" },
+        { "term": "기본형 (primitive)", "definition": "int, double, boolean 등 값으로 복사되는, Java의 유일한 값 타입" },
+        { "term": "이식 시 주의점", "definition": "C#/VB의 struct 기반 코드를 Java로 옮길 때 값 복사가 참조 공유로 바뀌는 것에 유의해야 함" }
+      ],
+      "explanation_en": "This absence of value types for user-defined data is one of the most fundamental structural differences between Java and the .NET languages covered earlier in this track.",
+      "explanation_ko": "사용자 정의 데이터에 값 타입이 없다는 이 사실은 Java와 이 트랙에서 앞서 다룬 .NET 언어들 사이의 가장 근본적인 구조적 차이 중 하나입니다.",
+      "concept_tags": ["no_struct", "reference_type", "primitive_type"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l4_u04_q006",
+      "type": "fill_blank",
+      "code": "// Java에서 값 타입처럼 동작하게 하려면 흔히 사용하는 최신 대안\n____ Point(int x, int y) {}\n// Java 14+의 불변 데이터 클래스 — 여전히 참조 타입이지만 값처럼 다루기 편함",
+      "prompt_en": "Fill in the blank with the modern Java keyword for a concise, immutable data-carrier class (still a reference type under the hood).",
+      "prompt_ko": "간결하고 불변인 데이터 전달용 클래스를 만드는 최신 Java 키워드를 빈칸에 채우세요 (내부적으로는 여전히 참조 타입).",
+      "options": ["record", "struct", "data", "value"],
+      "answer": 0,
+      "explanation_en": "record (Java 14+) provides a concise syntax for immutable data classes, automatically generating fields, constructor, equals, and toString — but it is still a reference type, not a true value type like struct.",
+      "explanation_ko": "record(Java 14+)는 불변 데이터 클래스를 간결하게 만드는 문법으로, 필드·생성자·equals·toString을 자동 생성합니다 — 하지만 struct 같은 진짜 값 타입이 아니라 여전히 참조 타입입니다.",
+      "concept_tags": ["record", "no_struct"],
+      "difficulty": "practice"
+    }
+  ]
+}

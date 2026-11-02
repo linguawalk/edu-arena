@@ -1,0 +1,108 @@
+{
+ "no": 3,
+ "title": "라플라스 변환과 전달함수",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "라플라스 변환으로 계단·충격 입력의 응답을 구할 수 있다.",
+  "전달함수를 구하고 극의 위치로 안정성을 판정할 수 있다.",
+  "최종값 정리로 정상상태를 구할 수 있다."
+ ],
+ "checklist": [
+  "라플라스 변환과 역변환 (부분분수)",
+  "단위계단 u(t − a)와 디랙 델타 δ(t − a)",
+  "전달함수 H(s) = Y(s)/U(s) (초기조건 0)",
+  "임펄스 응답 h(t)와 합성곱 y = h * u",
+  "극과 영점, 안정성: 모든 극의 실수부 < 0",
+  "최종값 정리 lim y(t) = lim sY(s)",
+  "블록 선도와 피드백(개요)"
+ ],
+ "advice": [
+  "전달함수는 시스템을 '입력을 받아 출력을 내는 상자'로 보는 공학의 핵심 관점입니다. 미분방정식을 라플라스 변환하면 s의 유리함수 하나로 시스템 전체가 요약되고, 분모의 근(극)의 위치만 보면 시스템이 안정한지, 진동하는지, 얼마나 빨리 반응하는지를 알 수 있습니다.",
+  "최종값 정리는 역변환 없이 정상상태 값을 바로 구하게 해 주는 실용적인 도구입니다. 계산 기법은 레벨2 상미분방정식 8~9단원과 같으니, 여기서는 '극의 위치 → 시간 응답의 모양'을 연결하는 감각을 기르세요. 제어공학 과목의 출발점입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley (한국어판: 범한서적)",
+   "title": "Erwin Kreyszig, Advanced Engineering Mathematics (10판)",
+   "part": "6장 Laplace Transforms"
+  },
+  {
+   "kind": "lecture",
+   "provider": "KOCW",
+   "title": "공학수학 및 연습1 (건국대학교, 미분방정식·라플라스 변환·벡터·행렬)",
+   "url": "http://www.kocw.net/home/cview.do?mty=p&kemId=1122023",
+   "lang": "한국어",
+   "part": "라플라스 변환"
+  },
+  {
+   "kind": "video",
+   "provider": "YouTube",
+   "title": "Kreyszig 공업수학 (경희대학교 이상준, 미분방정식·선형대수)",
+   "url": "https://www.youtube.com/playlist?list=PLaqQvlCBe8vJSkha_-G0uCV2c1aXTs8i9",
+   "lang": "한국어",
+   "part": "라플라스 변환"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "y″ + 3y′ + 2y = u의 전달함수의 극은 −1과 −2입니다. 이 시스템은 안정할까요? (그렇다 1, 아니다 0)",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "모든 극의 실수부가 음수",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "위 시스템에 단위계단 입력을 넣었을 때 출력의 최종값은 {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "1/2",
+      "0.5"
+     ]
+    }
+   ],
+   "explanation": "Y = H(s)/s, 최종값 = lim sY = H(0) = 1/2",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "L{δ(t)}(디랙 델타의 라플라스 변환)는?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "∫δ(t)e^(−st) dt = e^0 = 1",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "전달함수 1/(s − 1)인 시스템은 안정할까요? (그렇다 1, 아니다 0)",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "극 s = 1이 오른쪽 반평면: 임펄스 응답 eᵗ가 발산",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "applied",
+ "subject": "engineering-math",
+ "id": "l2-applied-engineering-math-u03"
+}

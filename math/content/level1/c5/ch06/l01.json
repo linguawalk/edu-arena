@@ -1,0 +1,361 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch06",
+    "no": 6,
+    "title": "연속확률분포"
+  },
+  "lesson": {
+    "id": "c5-ch06-l01",
+    "no": 1,
+    "title": "연속확률변수",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "확률통계"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "확률밀도함수",
+      "body": [
+        "키나 시간처럼 어떤 구간의 모든 실수 값을 가질 수 있는 확률변수를 연속확률변수라고 합니다.",
+        "확률은 확률밀도함수 f(x)의 그래프와 x축 사이의 넓이로 나타냅니다. f(x) ≥ 0이고 전체 넓이는 1입니다.",
+        "왜 넓이로 확률을 나타낼까요? 키가 정확히 170.000…cm일 확률은 사실상 0이라, 연속적인 값에서는 '한 값의 확률'이 아니라 '구간의 확률'만 의미가 있습니다. 코스 0의 히스토그램에서 계급의 폭을 한없이 좁히면 막대들의 윗부분이 매끄러운 곡선이 되는데, 그 곡선이 확률밀도함수이고 막대 넓이의 합이 확률입니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": -0.5,
+          "xmax": 5,
+          "ymin": -0.1,
+          "ymax": 0.5,
+          "xstep": 1,
+          "ystep": 0.1,
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                0.25
+              ],
+              "from": 0,
+              "to": 4
+            },
+            {
+              "kind": "shade",
+              "curve": {
+                "kind": "poly",
+                "coef": [
+                  0.25
+                ]
+              },
+              "from": 1,
+              "to": 3
+            }
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "f(x) = 1/4 (0 ≤ x ≤ 4)일 때 P(1 ≤ X ≤ 3)은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "밀도함수가 높이 1/4인 수평선이므로 넓이는 직사각형\n폭 3 − 1 = 2, 높이 1/4\nP = 2 × 1/4 = 1/2\n원리: 연속확률변수의 확률은 밀도함수 아래 넓이"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "f(x) = k (0 ≤ x ≤ 5)가 확률밀도함수일 때 k는? (기약분수로)",
+      "answer": "1/5",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "전체 넓이가 1: 폭 5 × 높이 k = 1\nk = 1/5\n원리: 확률밀도함수 아래 전체 넓이는 1\n확인: 균일분포에서 높이는 1 ÷ (구간의 길이)입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "한 점의 확률은 0",
+      "body": [
+        "연속확률변수에서 한 점의 넓이는 0이므로 P(X = a) = 0입니다. 그래서 P(a ≤ X ≤ b) = P(a < X < b)입니다.",
+        "한 점은 폭이 0인 선분이라 그 위의 넓이는 0입니다. 그래서 연속확률변수에서는 부등호에 등호가 있든 없든 확률이 같습니다. 이산확률변수에서는 P(X = a)가 0이 아닐 수 있어 등호를 조심해야 하는 것과 대조됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "연속확률변수 X에 대해 P(X = 2)의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "한 점은 폭이 0이라 그 위의 넓이도 0\nP(X = 2) = 0\n원리: 그래서 연속확률변수에서는 등호의 유무가 확률에 영향을 주지 않습니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = x/2 (0 ≤ x ≤ 2)일 때 P(0 ≤ X ≤ 1)은? (기약분수로)",
+      "answer": "1/4",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "0 ≤ x ≤ 1 부분은 밑변 1, 높이 f(1) = 1/2인 삼각형\n넓이 = 1 × 1/2 ÷ 2\n= 1/4"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "삼각형 모양의 밀도함수",
+      "body": [
+        "직선 모양의 밀도함수는 넓이를 삼각형이나 사다리꼴로 계산하면 됩니다.",
+        "직선 모양의 밀도함수는 적분 대신 도형의 넓이 공식으로 계산할 수 있습니다. 먼저 전체 넓이가 1이라는 조건으로 모르는 상수를 정하고, 구하는 구간의 삼각형이나 사다리꼴 넓이를 구합니다. 여사건을 쓰면 더 간단한 도형으로 계산할 수 있는 경우가 많습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "f(x) = k(4 − x) (0 ≤ x ≤ 4)가 확률밀도함수일 때 k와 P(X ≤ 2)를 구하세요.",
+      "steps": [
+        "그래프는 높이 4k, 밑변 4인 직각삼각형: 넓이 8k = 1, k = 1/8",
+        "P(X ≥ 2): 밑변 2, 높이 2k = 1/4인 삼각형 넓이 1/4",
+        "P(X ≤ 2) = 1 − 1/4",
+        "= 3/4"
+      ],
+      "answer": "k = 1/8, P = 3/4"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = ax (0 ≤ x ≤ 2)가 확률밀도함수일 때 a는? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "그래프는 밑변 2, 높이 2a인 삼각형\n넓이 = 2 × 2a ÷ 2 = 2a = 1\na = 1/2\n원리: 직선 모양의 밀도함수는 도형의 넓이 공식으로 계산합니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = 2x (0 ≤ x ≤ 1)일 때 P(X ≤ 1/2)은? (기약분수로)",
+      "answer": "1/4",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "0 ≤ x ≤ 1/2 부분은 밑변 1/2, 높이 f(1/2) = 1인 삼각형\n넓이 = (1/2) × 1 ÷ 2\n= 1/4"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 f에서 P(1/2 ≤ X ≤ 1)은? (기약분수로)",
+      "answer": "3/4",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "여사건: 1 − P(X ≤ 1/2)\n= 1 − 1/4\n= 3/4 (큰 값 쪽에 확률이 더 많이 몰려 있음)\n확인: 사다리꼴 넓이 (1 + 2) × (1/2) ÷ 2 = 3/4"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "연속확률변수의 기댓값",
+      "body": [
+        "E(X) = ∫ x f(x) dx. 이산확률변수의 합이 적분으로 바뀐 것입니다.",
+        "이산확률변수의 기댓값 Σ xᵢpᵢ에서, 값이 연속적으로 바뀌면 합 Σ가 적분 ∫으로, 각 값의 확률 pᵢ가 '아주 좁은 구간의 확률' f(x)dx로 바뀝니다. 그래서 E(X) = ∫ x f(x) dx입니다. 균일한 밀도이면 기댓값은 구간의 가운데 값입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "f(x) = 3x² (0 ≤ x ≤ 1)일 때 E(X)를 구하세요.",
+      "steps": [
+        "E(X) = ∫₀¹ x × 3x² dx = ∫₀¹ 3x³ dx",
+        "= [3x⁴/4]₀¹",
+        "= 3/4",
+        "확인: 큰 값 쪽의 밀도가 커서 평균이 1/2보다 큼"
+      ],
+      "answer": "3/4"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = 2x (0 ≤ x ≤ 1)일 때 E(X)는? (기약분수로)",
+      "answer": "2/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "∫ x f(x) dx",
+      "explanation": "E(X) = ∫₀¹ x × 2x dx = ∫₀¹ 2x² dx\n= [2x³/3]₀¹\n= 2/3\n원리: 연속확률변수의 기댓값은 x f(x)를 적분한 값입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = 1/4 (0 ≤ x ≤ 4)일 때 E(X)는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "균일한 밀도의 평균은 가운데 값입니다.",
+      "explanation": "E(X) = ∫₀⁴ x/4 dx = [x²/8]₀⁴\n= 16/8\n= 2 (구간 [0, 4]의 가운데)\n원리: 연속확률변수의 기댓값은 x f(x)를 적분합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "연속확률변수의 확률은 넓이, 기댓값은 x f(x)의 적분입니다.",
+        "연속확률변수의 계산은 코스 4의 정적분과 코스 5의 확률분포가 만나는 곳입니다. 확률은 밀도함수의 정적분, 기댓값은 x f(x)의 정적분이며, 전체 넓이가 1이라는 조건이 확률분포의 '합이 1' 조건을 대신합니다. 이산과 연속의 대응을 기억해 두면 공식을 새로 외울 필요가 없습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "버스가 10분 간격으로 옵니다. 아무 때나 정류장에 가면 기다리는 시간 X(분)는 0 ≤ X ≤ 10에서 균일합니다. 3분 이하로 기다릴 확률과 기다리는 시간의 기댓값은?",
+      "steps": [
+        "f(x) = 1/10 (0 ≤ x ≤ 10)",
+        "P(X ≤ 3) = 3 × 1/10 = 3/10",
+        "E(X) = ∫₀¹⁰ x/10 dx = 5",
+        "균일분포의 평균은 구간의 가운데"
+      ],
+      "answer": "3/10, 5분"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = 1/3 (1 ≤ x ≤ 4)일 때 P(X ≥ 3)은? (기약분수로)",
+      "answer": "1/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "직사각형의 넓이입니다.",
+      "explanation": "3 ≤ x ≤ 4 부분의 넓이: 폭 1 × 높이 1/3\n= 1/3\n원리: 균일한 밀도는 구간의 길이에 비례\n확인: 전체 구간 1 ≤ x ≤ 4 중 1/3을 차지합니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = c(2 − x) (0 ≤ x ≤ 2)가 확률밀도함수일 때 c는? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "전체 넓이를 1로 놓으세요.",
+      "explanation": "그래프는 밑변 2, 높이 2c인 삼각형: 넓이 2c = 1\nc = 1/2\n원리: 전체 넓이가 1인 조건으로 상수를 정합니다."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 f에서 P(X ≤ 1)은? (기약분수로)",
+      "answer": "3/4",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "사다리꼴의 넓이로 구하세요.",
+      "explanation": "0 ≤ x ≤ 1 부분은 사다리꼴: 윗변 f(0) = 1, 아랫변 f(1) = 1/2, 높이 1\n넓이 = (1 + 1/2) × 1 ÷ 2\n= 3/4"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = 3x² (0 ≤ x ≤ 1)일 때 P(X ≤ 1/2)은? (기약분수로)",
+      "answer": "1/8",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "적분으로 구하세요.",
+      "explanation": "P(X ≤ 1/2) = ∫₀^(1/2) 3x² dx = [x³]₀^(1/2)\n= 1/8\n원리: 곡선 모양의 밀도함수는 정적분으로 넓이를 구합니다."
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "0 ≤ x ≤ 10에서 f(x)가 일정한 확률밀도함수일 때 P(2 ≤ X ≤ 5)는? (기약분수로)",
+      "answer": "3/10",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "구간의 길이에 비례합니다.",
+      "explanation": "균일한 밀도 f(x) = 1/10\n폭 5 − 2 = 3이므로 넓이 3/10\n원리: 균일분포의 확률은 구간의 길이 ÷ 전체 길이\n확인: 폭 10 중 3만큼이므로 3/10"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = x/8 (0 ≤ x ≤ 4)일 때 P(X ≥ 2)는? (기약분수로)",
+      "answer": "3/4",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "여사건으로 구하세요.",
+      "explanation": "여사건: P(X < 2) = 밑변 2, 높이 f(2) = 1/4인 삼각형 = 1/4\n1 − 1/4\n= 3/4"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "연속확률변수에서 한 점의 확률이 0인 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "넓이"
+          ],
+          [
+            "폭",
+            "선분",
+            "두께"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "연속확률변수의 확률은 그래프 아래의 넓이입니다. 한 점은 폭이 0인 선분이라 넓이가 0이므로 X가 정확히 한 값을 가질 확률은 0입니다."
+    }
+  ]
+}

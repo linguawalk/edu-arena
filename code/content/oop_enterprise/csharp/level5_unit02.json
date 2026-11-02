@@ -1,0 +1,96 @@
+{
+  "language": "csharp",
+  "category": "oop_enterprise",
+  "level": 5,
+  "unit": 2,
+  "unit_title": "Property와 캡슐화",
+  "questions": [
+    {
+      "id": "csharp_l5_u02_q001",
+      "type": "predict_output",
+      "code": "class Dog\n{\n    private int _age;\n\n    public int Age\n    {\n        get { return _age; }\n        set { _age = value; }\n    }\n}\n\nDog d = new Dog();\nd.Age = 3;\nConsole.WriteLine(d.Age);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "0", "오류", "_age"],
+      "answer": 0,
+      "explanation_en": "d.Age = 3 calls the set block, storing 3 in _age; d.Age then calls get, returning that stored value.",
+      "explanation_ko": "d.Age = 3은 set 블록을 호출해 _age에 3을 저장합니다. 이후 d.Age는 get을 호출해 저장된 값을 반환합니다.",
+      "concept_tags": ["property"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l5_u02_q002",
+      "type": "predict_output",
+      "code": "class Dog\n{\n    private int _age;\n\n    public int Age\n    {\n        get { return _age; }\n        set\n        {\n            if (value >= 0)\n            {\n                _age = value;\n            }\n        }\n    }\n}\n\nDog d = new Dog();\nd.Age = 5;\nd.Age = -3;\nConsole.WriteLine(d.Age);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "-3", "0", "오류"],
+      "answer": 0,
+      "explanation_en": "The set block validates that value is non-negative before assigning; -3 fails this check, so _age stays at its previous value, 5.",
+      "explanation_ko": "set 블록은 대입 전에 value가 음수가 아닌지 검증합니다. -3은 이 검사를 통과하지 못해 _age는 이전 값인 5로 유지됩니다.",
+      "concept_tags": ["property", "encapsulation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l5_u02_q003",
+      "type": "fill_blank",
+      "code": "public string Name ____ ____;\n// Get/Set 로직을 직접 쓰지 않는 자동 구현 프로퍼티여야 함",
+      "prompt_en": "Fill in the blanks to create an auto-implemented property.",
+      "prompt_ko": "자동 구현 프로퍼티가 되도록 빈칸을 채우세요.",
+      "options": ["{ get; set; }", "{ get set }", "(get; set;)", "= get, set"],
+      "answer": 0,
+      "explanation_en": "{ get; set; } without bodies creates an auto-implemented property, where the compiler generates a hidden backing field automatically.",
+      "explanation_ko": "본문 없는 { get; set; }는 자동 구현 프로퍼티를 만들며, 컴파일러가 보이지 않는 내부 필드를 자동으로 생성합니다.",
+      "concept_tags": ["property", "auto_property"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l5_u02_q004",
+      "type": "predict_output",
+      "code": "class Dog\n{\n    public string Name { get; set; }\n}\n\nDog d = new Dog();\nd.Name = \"바둑이\";\nConsole.WriteLine(d.Name);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이", "오류", "빈 문자열", "Name"],
+      "answer": 0,
+      "explanation_en": "The auto-implemented property works exactly like a full property from the outside; d.Name = \"바둑이\" and then reading it prints 바둑이.",
+      "explanation_ko": "자동 구현 프로퍼티는 외부에서 보기엔 완전한 프로퍼티와 똑같이 동작합니다. d.Name = \"바둑이\"로 설정한 뒤 읽으면 바둑이가 출력됩니다.",
+      "concept_tags": ["property", "auto_property"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l5_u02_q005",
+      "type": "error_finding",
+      "code": "class Dog\n{\n    public int Age;\n}\n\nDog d = new Dog();\nd.Age = -10;\nConsole.WriteLine(d.Age);",
+      "prompt_en": "If the class was meant to prevent negative ages, what's missing here?",
+      "prompt_ko": "클래스가 음수 나이를 막으려는 의도였다면, 여기서 무엇이 빠져있을까요?",
+      "options": [
+        "생성자 정의",
+        "Age가 public 필드로 직접 노출되어 있어서, 어떤 검증도 없이 -10 같은 값이 그대로 들어갈 수 있음 — Property로 캡슐화해야 함",
+        "클래스 이름이 잘못됨",
+        "문제 없음, C#이 자동으로 음수를 막아줌"
+      ],
+      "answer": 1,
+      "explanation_en": "A public field has no validation logic; wrapping it in a property with a set block that checks the value is the standard way to enforce constraints, matching what was covered in VB.",
+      "explanation_ko": "public 필드는 검증 로직이 없습니다. 값을 검사하는 set 블록을 가진 프로퍼티로 감싸는 것이 제약을 강제하는 표준적인 방법이며, VB에서 다룬 내용과 동일합니다.",
+      "concept_tags": ["encapsulation", "property"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l5_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "Property", "definition": "필드처럼 접근하지만 실제로는 get/set 메서드가 실행되는 멤버" },
+        { "term": "get / set", "definition": "각각 읽기와 쓰기 시 실행되는 프로퍼티의 로직" },
+        { "term": "자동 구현 프로퍼티 ({ get; set; })", "definition": "get/set을 직접 쓰지 않아도 컴파일러가 자동으로 생성해주는 단순한 프로퍼티" },
+        { "term": "VB Property와의 대응", "definition": "C#의 { get; set; } 문법은 VB의 Property...Get...Set...End Property에 대응" }
+      ],
+      "explanation_en": "C#'s property syntax is more compact than VB's, using curly braces instead of separate Get/Set/End Property blocks, but achieves exactly the same encapsulation goal.",
+      "explanation_ko": "C#의 프로퍼티 문법은 별도의 Get/Set/End Property 블록 대신 중괄호를 써서 VB보다 더 간결하지만, 정확히 같은 캡슐화 목표를 달성합니다.",
+      "concept_tags": ["property", "encapsulation", "auto_property"],
+      "difficulty": "practice"
+    }
+  ]
+}

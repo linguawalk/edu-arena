@@ -1,0 +1,96 @@
+{
+  "language": "cobol",
+  "category": "legacy_historical",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "88 레벨 조건명",
+  "questions": [
+    {
+      "id": "cobol_l3_u01_q001",
+      "type": "predict_output",
+      "code": "01 STATUS-CODE PIC X(1).\n    88 IS-ACTIVE VALUE \"A\".\n    88 IS-INACTIVE VALUE \"I\".\n...\nMOVE \"A\" TO STATUS-CODE.\nIF IS-ACTIVE\n    DISPLAY \"ACTIVE\"\nEND-IF.",
+      "prompt_en": "What is printed? (Note: IS-ACTIVE is checked directly, with no comparison operator.)",
+      "prompt_ko": "출력 결과는? (IS-ACTIVE가 비교 연산자 없이 직접 검사되는 점에 주의하세요.)",
+      "options": ["ACTIVE", "오류", "아무것도 출력되지 않음", "A"],
+      "answer": 0,
+      "explanation_en": "88 IS-ACTIVE VALUE \"A\" defines a condition name tied to STATUS-CODE; IF IS-ACTIVE checks whether STATUS-CODE currently equals \"A\" — a readable shortcut for IF STATUS-CODE = \"A\". Since it does, ACTIVE is printed.",
+      "explanation_ko": "88 IS-ACTIVE VALUE \"A\"는 STATUS-CODE에 연결된 조건명을 정의합니다. IF IS-ACTIVE는 STATUS-CODE가 현재 \"A\"인지 확인합니다 — IF STATUS-CODE = \"A\"의 읽기 쉬운 축약형입니다. 실제로 그렇기 때문에 ACTIVE가 출력됩니다.",
+      "concept_tags": ["condition_name", "level_88"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l3_u01_q002",
+      "type": "fill_blank",
+      "code": "01 GENDER PIC X(1).\n    ____ IS-MALE VALUE \"M\".\n    ____ IS-FEMALE VALUE \"F\".",
+      "prompt_en": "Fill in the blanks with the level number used for condition names.",
+      "prompt_ko": "조건명에 쓰이는 레벨 번호를 빈칸에 채우세요.",
+      "options": ["88", "01", "05", "99"],
+      "answer": 0,
+      "explanation_en": "Level 88 is reserved specifically for defining condition names — readable, boolean-like labels attached to a value of the parent field.",
+      "explanation_ko": "레벨 88은 조건명을 정의하는 데 특별히 예약되어 있습니다 — 부모 필드의 값에 붙는, 읽기 쉬운 boolean 같은 라벨입니다.",
+      "concept_tags": ["level_88"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cobol_l3_u01_q003",
+      "type": "predict_output",
+      "code": "01 STATUS-CODE PIC X(1).\n    88 IS-ACTIVE VALUE \"A\".\n    88 IS-INACTIVE VALUE \"I\".\n...\nMOVE \"A\" TO STATUS-CODE.\nIF IS-INACTIVE\n    DISPLAY \"INACTIVE\"\nELSE\n    DISPLAY \"NOT INACTIVE\"\nEND-IF.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["NOT INACTIVE", "INACTIVE", "오류", "A"],
+      "answer": 0,
+      "explanation_en": "STATUS-CODE is \"A\", not \"I\", so IS-INACTIVE is false; the ELSE branch runs, printing NOT INACTIVE.",
+      "explanation_ko": "STATUS-CODE는 \"I\"가 아니라 \"A\"이므로 IS-INACTIVE는 거짓입니다. ELSE 분기가 실행되어 NOT INACTIVE가 출력됩니다.",
+      "concept_tags": ["condition_name", "level_88"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l3_u01_q004",
+      "type": "predict_output",
+      "code": "01 AGE PIC 9(3).\n    88 IS-MINOR VALUE 0 THRU 17.\n    88 IS-ADULT VALUE 18 THRU 999.\n...\nMOVE 25 TO AGE.\nIF IS-ADULT\n    DISPLAY \"ADULT\"\nEND-IF.",
+      "prompt_en": "What is printed? (Note: THRU defines a range of values for the condition.)",
+      "prompt_ko": "출력 결과는? (THRU가 조건을 위한 값의 범위를 정의하는 점에 주의하세요.)",
+      "options": ["ADULT", "오류", "아무것도 출력되지 않음", "25"],
+      "answer": 0,
+      "explanation_en": "88-level condition names can cover a range with THRU, not just a single value; 25 falls within 18 THRU 999, so IS-ADULT is true, printing ADULT.",
+      "explanation_ko": "88 레벨 조건명은 단일 값뿐 아니라 THRU로 범위도 다룰 수 있습니다. 25는 18 THRU 999 범위 안에 있으므로 IS-ADULT는 참이 되어 ADULT가 출력됩니다.",
+      "concept_tags": ["condition_name", "level_88", "thru_range"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cobol_l3_u01_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "88 레벨", "definition": "값(또는 값의 범위)에 이름을 붙여 조건명을 정의하는 특별한 레벨 번호" },
+        { "term": "IF 조건명", "definition": "필드가 특정 값인지 명시적 비교 없이 확인 — IF X = value의 축약형" },
+        { "term": "VALUE ... THRU ...", "definition": "조건명이 단일 값이 아니라 값의 범위를 다루게 함" },
+        { "term": "가독성 향상 목적", "definition": "코드가 IF STATUS = \"A\" 대신 IF IS-ACTIVE처럼 읽히게 함" }
+      ],
+      "explanation_en": "The 88-level condition name is a genuinely unique COBOL feature with no direct equivalent in most other languages — it's essentially a named boolean expression baked into the data declaration itself, improving readability for business-rule-heavy code.",
+      "explanation_ko": "88 레벨 조건명은 대부분의 다른 언어에 직접적인 대응물이 없는 진정으로 독특한 COBOL 기능입니다 — 본질적으로 데이터 선언 자체에 내장된 이름 붙은 boolean 표현식으로, 비즈니스 규칙이 많은 코드의 가독성을 높입니다.",
+      "concept_tags": ["condition_name", "level_88", "thru_range"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l3_u01_q006",
+      "type": "error_finding",
+      "code": "01 STATUS-CODE PIC X(1).\n    88 IS-ACTIVE VALUE \"A\".\n...\nMOVE \"A\" TO STATUS-CODE.\nIF STATUS-CODE\n    DISPLAY \"ACTIVE\"\nEND-IF.",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "88 레벨 선언 문법 오류",
+        "IF STATUS-CODE처럼 조건명이 아니라 필드 자체를 직접 조건으로 쓰려고 해서, PIC X 필드는 boolean이 아니라 비교식이 필요하기 때문에 컴파일 오류가 발생함",
+        "MOVE 문법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "IS-ACTIVE (the condition name) can be used directly in an IF, but STATUS-CODE itself (a plain PIC X field) cannot — it isn't a boolean and needs an explicit comparison like STATUS-CODE = \"A\"; using it bare as a condition is a compile error.",
+      "explanation_ko": "IS-ACTIVE(조건명)는 IF에서 직접 쓸 수 있지만, STATUS-CODE 자체(일반 PIC X 필드)는 그럴 수 없습니다 — boolean이 아니라서 STATUS-CODE = \"A\" 같은 명시적 비교가 필요합니다. 이를 조건으로 그냥 쓰면 컴파일 오류가 발생합니다.",
+      "concept_tags": ["condition_name", "level_88"],
+      "difficulty": "challenge"
+    }
+  ]
+}

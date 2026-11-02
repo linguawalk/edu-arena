@@ -1,0 +1,91 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "switch문",
+  "questions": [
+    {
+      "id": "javascript_l2_u02_q001",
+      "type": "predict_output",
+      "code": "let day = 1;\nswitch (day) {\n    case 1:\n        console.log(\"월요일\");\n        break;\n    default:\n        console.log(\"기타\");\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["월요일", "기타", "1", "오류"],
+      "answer": 0,
+      "explanation_en": "switch compares day against each case; day is 1, matching the first case, and break stops there.",
+      "explanation_ko": "switch는 day를 각 case와 비교합니다. day가 1이므로 첫 번째 case와 일치하고, break가 그 지점에서 멈춥니다.",
+      "concept_tags": ["switch_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l2_u02_q002",
+      "type": "predict_output",
+      "code": "let x = 1;\nswitch (x) {\n    case 1:\n        console.log(\"A\");\n    case 2:\n        console.log(\"B\");\n        break;\n}",
+      "prompt_en": "What is printed? (Compare with C#, which forbids this pattern entirely.)",
+      "prompt_ko": "출력 결과는? (이 패턴을 아예 금지하는 C#과 비교해보세요.)",
+      "options": ["A", "AB", "오류", "B"],
+      "answer": 1,
+      "explanation_en": "Like C and Java, JavaScript's switch allows fall-through: without a break after case 1, execution continues into case 2, printing AB — the opposite of C#'s strict prohibition.",
+      "explanation_ko": "C, Java와 마찬가지로 JavaScript의 switch는 fall-through를 허용합니다. case 1 뒤에 break가 없으면 실행이 case 2로 이어져 AB가 출력됩니다 — 엄격히 금지하는 C#과 정반대입니다.",
+      "concept_tags": ["switch_statement", "fall_through"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l2_u02_q003",
+      "type": "predict_output",
+      "code": "let x = 2;\nswitch (x) {\n    case 1:\n    case 2:\n    case 3:\n        console.log(\"1~3\");\n        break;\n    default:\n        console.log(\"기타\");\n}",
+      "prompt_en": "What is printed? (Note: case 1 and case 2 are empty, stacked before case 3.)",
+      "prompt_ko": "출력 결과는? (case 1과 case 2가 비어있는 채로 case 3 앞에 쌓여있는 점에 주의하세요.)",
+      "options": ["1~3", "기타", "오류", "아무것도 출력되지 않음"],
+      "answer": 0,
+      "explanation_en": "Empty case labels stacked together intentionally share the same body; x is 2, falling into the shared block with 1 and 3, printing 1~3.",
+      "explanation_ko": "비어있는 case 라벨을 연이어 쌓으면 의도적으로 같은 본문을 공유합니다. x가 2이므로 1, 3과 함께 묶인 블록에 해당해 1~3이 출력됩니다.",
+      "concept_tags": ["switch_statement", "fall_through"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l2_u02_q004",
+      "type": "predict_output",
+      "code": "let x = 9;\nswitch (x) {\n    case 1:\n        console.log(\"A\");\n        break;\n    default:\n        console.log(\"기본값\");\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["A", "기본값", "아무것도 출력되지 않음", "오류"],
+      "answer": 1,
+      "explanation_en": "Since x doesn't match any case, execution falls to the default branch, printing 기본값.",
+      "explanation_ko": "x가 어떤 case와도 일치하지 않으므로 default 분기가 실행되어 기본값이 출력됩니다.",
+      "concept_tags": ["switch_statement", "default_case"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l2_u02_q005",
+      "type": "predict_output",
+      "code": "let x = 1;\nswitch (x) {\n    case \"1\":\n        console.log(\"문자열 1\");\n        break;\n    case 1:\n        console.log(\"숫자 1\");\n        break;\n}",
+      "prompt_en": "What is printed? (Note: switch uses === for comparison, not ==.)",
+      "prompt_ko": "출력 결과는? (switch는 ==가 아니라 ===로 비교하는 점에 주의하세요.)",
+      "options": ["문자열 1", "숫자 1", "둘 다 출력됨", "오류"],
+      "answer": 1,
+      "explanation_en": "switch compares using strict equality (===), so the number x (1) doesn't match case \"1\" (a string); it matches case 1 (a number) instead, printing 숫자 1.",
+      "explanation_ko": "switch는 엄격한 동등(===)으로 비교하므로, 숫자 x(1)는 case \"1\"(문자열)과 일치하지 않습니다. 대신 case 1(숫자)과 일치해 숫자 1이 출력됩니다.",
+      "concept_tags": ["switch_statement", "strict_equality"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l2_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "fall-through", "definition": "break가 없어 다음 case까지 실행이 이어지는 현상 — JS는 C처럼 허용" },
+        { "term": "default", "definition": "어떤 case와도 일치하지 않을 때 실행되는 분기" },
+        { "term": "그룹 case", "definition": "여러 case 값을 break 없이 붙여 같은 블록을 공유하게 만드는 의도적 fall-through" },
+        { "term": "=== 기반 비교", "definition": "switch가 느슨한 ==가 아니라 엄격한 ===로 case를 비교한다는 사실" }
+      ],
+      "explanation_en": "JavaScript's switch shares C's fall-through behavior but uses strict equality for comparisons — a combination worth remembering when porting code between languages.",
+      "explanation_ko": "JavaScript의 switch는 C의 fall-through 동작을 공유하지만 비교에는 엄격한 동등을 사용합니다. 언어 간 코드를 옮길 때 기억해둘 만한 조합입니다.",
+      "concept_tags": ["switch_statement", "fall_through", "strict_equality"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c1",
+  "title": "전기전자"
+ },
+ "chapter": {
+  "id": "c1-ch10",
+  "no": 10,
+  "title": "통신 기초"
+ },
+ "lesson": {
+  "id": "c1-ch10-l04",
+  "no": 4,
+  "title": "통신 속도와 잡음",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "전기전자"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "bps와 바이트",
+   "body": [
+    "통신 속도는 1초에 보내는 비트 수, bps(bit per second)로 나타냅니다. 100 Mbps는 1초에 1억 비트입니다.",
+    "파일 크기는 보통 바이트(B)로 나타내므로 속도와 비교할 때는 8을 곱하거나 나눠야 합니다. 1 B = 8 bit입니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "numeric",
+   "prompt": "100 Mbps 인터넷은 1초에 최대 몇 MB(메가바이트)를 받을 수 있을까요? (소수 첫째 자리까지)",
+   "answer": "12.5",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": "비트를 8로 나누면 바이트입니다.",
+   "explanation": "100 Mbit ÷ 8 = 12.5 MB입니다.\n그래서 100 Mbps로 1초에 약 12.5 MB를 받습니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "전송 시간",
+   "body": [
+    "전송 시간 = 데이터 양(bit) ÷ 전송 속도(bps)입니다. 파일 크기가 바이트로 주어지면 먼저 8을 곱해 비트로 바꿉니다.",
+    "실제로는 오류 검사, 주소 같은 부가 정보와 여러 사람이 나눠 쓰는 영향 때문에, 광고된 최대 속도보다 느린 경우가 많습니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "100 MB 파일을 100 Mbps로 받으면 몇 초가 걸릴까요?",
+   "steps": [
+    "100 MB = 100 × 8 = 800 Mbit입니다.",
+    "시간 = 800 ÷ 100 = 8초입니다."
+   ],
+   "answer": "8초"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "1바이트는 {{1}}비트입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "8"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "1 B = 8 bit입니다.\n속도(bps)와 파일 크기(B)를 비교할 때 꼭 챙겨야 합니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "1 GB(1000 MB) 영화를 500 Mbps로 받으면 몇 초가 걸릴까요?",
+   "answer": "16",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1000 MB = 8000 Mbit입니다.\n8000 ÷ 500 = 16초입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "20 Mbps 영상 스트리밍을 1분 보면 몇 MB를 쓸까요?",
+   "answer": "150",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "20 × 60 = 1200 Mbit입니다.\n1200 ÷ 8 = 150 MB입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "5 MB 사진을 10초 만에 보내려면 속도가 최소 몇 Mbps여야 할까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "5 MB = 40 Mbit입니다.\n40 ÷ 10 = 4 Mbps입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "신호 대 잡음비와 데시벨",
+   "body": [
+    "받은 신호의 세기와 잡음의 세기의 비를 신호 대 잡음비(SNR)라고 합니다. 이 비는 수천, 수백만 배로 커지기 쉬워 dB(데시벨)로 나타냅니다.",
+    "dB = 10 × log₁₀(전력비)입니다. 10배는 10 dB, 100배는 20 dB, 1000배는 30 dB입니다. 3 dB는 약 2배입니다.",
+    "SNR이 클수록 신호가 잡음보다 또렷해 오류가 적고, 더 빠른 변조를 쓸 수 있습니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "신호 전력이 잡음 전력의 1000배이면 SNR은 몇 dB일까요?",
+   "steps": [
+    "dB = 10 × log₁₀1000입니다.",
+    "log₁₀1000 = 3이므로 30 dB입니다."
+   ],
+   "answer": "30 dB"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "받은 신호의 세기와 잡음의 세기의 비를 신호 대 {{1}}비라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "잡음"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "신호 대 잡음비(SNR)가 클수록 신호가 또렷합니다.\n보통 dB로 나타냅니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "신호 전력이 잡음 전력의 100배이면 SNR은 몇 dB일까요?",
+   "answer": "20",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "10 × log₁₀100 = 10 × 2 = 20 dB입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "SNR 40 dB는 신호 전력이 잡음 전력의 몇 배라는 뜻일까요?",
+   "answer": "10000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "40 ÷ 10 = 4이므로 10⁴ = 10 000배입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "전력이 2배가 되면 약 몇 dB 늘어날까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "10 × log₁₀2 ≈ 10 × 0.301 ≈ 3 dB입니다.\n그래서 3 dB는 '약 2배'를 뜻합니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "통신 용량의 한계",
+   "body": [
+    "섀넌은 대역폭 B와 신호 대 잡음비 SNR로 오류 없이 보낼 수 있는 최대 속도를 구했습니다. C = B × log₂(1 + SNR)이며, 여기서 SNR은 dB가 아니라 배수입니다.",
+    "속도를 높이려면 대역폭을 넓히거나 SNR을 높여야 합니다. 5G가 넓은 대역을 쓰고, 기지국을 촘촘히 세워 신호를 세게 받게 하는 이유입니다.",
+    "정리: 전송 시간 = 비트 ÷ bps, 1 B = 8 bit, dB = 10 log₁₀(비), C = B log₂(1 + SNR)"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "numeric",
+   "prompt": "대역폭 1 MHz, SNR 15배인 채널의 최대 용량은 몇 Mbps일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "C = 1 MHz × log₂(1 + 15) = 1 × log₂16입니다.\nlog₂16 = 4이므로 4 Mbps입니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "대역폭 20 MHz, SNR 63배인 와이파이 채널의 최대 용량은?",
+   "steps": [
+    "log₂(1 + 63) = log₂64 = 6입니다.",
+    "C = 20 × 6 = 120 Mbps입니다."
+   ],
+   "answer": "120 Mbps"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "대역폭 10 MHz, SNR 255배인 채널의 최대 용량은 몇 Mbps일까요?",
+   "answer": "80",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "1 + SNR의 log₂를 먼저 구하세요.",
+   "explanation": "log₂(1 + 255) = log₂256 = 8입니다.\nC = 10 × 8 = 80 Mbps입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 문제에서 대역폭만 2배(20 MHz)로 늘리면 최대 용량은 몇 Mbps일까요?",
+   "answer": "160",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "대역폭에 비례합니다.",
+   "explanation": "C = 20 × 8 = 160 Mbps입니다.\n용량은 대역폭에 비례합니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "2 GB(2000 MB) 파일을 80 Mbps로 받으면 몇 초가 걸릴까요?",
+   "answer": "200",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "MB에 8을 곱해 Mbit로 바꾸세요.",
+   "explanation": "2000 MB = 16 000 Mbit입니다.\n16 000 ÷ 80 = 200초입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "SNR이 20 dB에서 30 dB로 좋아졌습니다. 신호 대 잡음 전력비는 몇 배가 되었을까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "10 dB 차이는 몇 배인가요?",
+   "explanation": "20 dB는 100배, 30 dB는 1000배입니다.\n1000 ÷ 100 = 10배가 되었습니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "광고된 인터넷 속도가 100 Mbps여도 실제 속도가 낮은 까닭 하나는 여러 사람이 회선을 {{1}} 쓰기 때문입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "나눠",
+      "나누어",
+      "함께",
+      "공유해"
+     ]
+    }
+   ],
+   "hint": "같은 길을 여러 차가 함께 쓰는 상황을 떠올리세요.",
+   "explanation": "같은 회선이나 기지국을 여럿이 동시에 쓰면 속도를 나누게 됩니다.\n오류 검사 같은 부가 정보도 실제 속도를 줄입니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "통신 속도를 높이는 두 가지 방법을 섀넌의 식을 이용해 설명해 보세요.",
+   "hint": "식의 두 변수 B와 SNR을 각각 어떻게 바꿀지 쓰세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "대역폭"
+     ],
+     [
+      "SNR",
+      "신호 대 잡음",
+      "잡음"
+     ],
+     [
+      "넓",
+      "높",
+      "늘",
+      "키우"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "섀넌의 식 C = B × log₂(1 + SNR)에 따르면 최대 용량은 대역폭 B와 신호 대 잡음비 SNR로 정해집니다. 따라서 더 넓은 대역폭을 쓰거나, 신호를 세게 하고 잡음을 줄여 SNR을 높이면 속도를 높일 수 있습니다."
+  }
+ ]
+}

@@ -1,0 +1,96 @@
+{
+  "language": "basic_early",
+  "category": "legacy_historical",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "다차원 배열",
+  "questions": [
+    {
+      "id": "basic_early_l3_u01_q001",
+      "type": "predict_output",
+      "code": "10 DIM A(2,2)\n20 LET A(0,0) = 1\n30 LET A(1,2) = 6\n40 PRINT A(0,0)\n50 PRINT A(1,2)\n60 END",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1 6", "0 1", "오류", "6 1"],
+      "answer": 0,
+      "explanation_en": "DIM A(2,2) creates a 2D array indexed by row and column; A(0,0) and A(1,2) store and return their assigned values, 1 and 6.",
+      "explanation_ko": "DIM A(2,2)는 행과 열로 인덱싱되는 2차원 배열을 만듭니다. A(0,0)과 A(1,2)는 대입된 값인 1과 6을 저장하고 반환합니다.",
+      "concept_tags": ["2d_array"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "basic_early_l3_u01_q002",
+      "type": "fill_blank",
+      "code": "10 ____ GRID(3,3)\n20 LET GRID(1,1) = 100\n30 PRINT GRID(1,1)\n40 END",
+      "prompt_en": "Fill in the blank with the keyword that declares a 2D array.",
+      "prompt_ko": "2차원 배열을 선언하는 키워드를 빈칸에 채우세요.",
+      "options": ["DIM", "DIM2", "ARRAY2D", "GRID"],
+      "answer": 0,
+      "explanation_en": "DIM works for multi-dimensional arrays too, just by listing multiple sizes separated by commas: DIM GRID(3,3).",
+      "explanation_ko": "DIM은 다차원 배열에도 그대로 쓰이며, 쉼표로 구분된 여러 크기를 나열하기만 하면 됩니다: DIM GRID(3,3).",
+      "concept_tags": ["2d_array"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "basic_early_l3_u01_q003",
+      "type": "predict_output",
+      "code": "10 DIM M(2,2)\n20 FOR I = 0 TO 2\n30 FOR J = 0 TO 2\n40 LET M(I,J) = I * 10 + J\n50 NEXT J\n60 NEXT I\n70 PRINT M(2,1)\n80 END",
+      "prompt_en": "What is printed? (Nested loops filling a 2D array.)",
+      "prompt_ko": "출력 결과는? (중첩 반복문으로 2차원 배열을 채웁니다.)",
+      "options": ["21", "12", "3", "오류"],
+      "answer": 0,
+      "explanation_en": "Each M(I,J) is set to I*10+J; M(2,1) was set when I=2, J=1, giving 2*10+1=21.",
+      "explanation_ko": "각 M(I,J)는 I*10+J로 설정됩니다. M(2,1)은 I=2, J=1일 때 설정되어 2*10+1=21이 됩니다.",
+      "concept_tags": ["2d_array", "nested_loop"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "basic_early_l3_u01_q004",
+      "type": "predict_output",
+      "code": "10 DIM SCORES(1,2)\n20 LET SCORES(0,0) = 90\n30 LET SCORES(0,1) = 85\n40 LET SCORES(0,2) = 95\n50 LET TOTAL = SCORES(0,0) + SCORES(0,1) + SCORES(0,2)\n60 PRINT TOTAL\n70 END",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["270", "90", "185", "오류"],
+      "answer": 0,
+      "explanation_en": "DIM SCORES(1,2) gives valid indices 0-1 for the first dimension and 0-2 for the second; all three column-0 values are summed: 90+85+95=270.",
+      "explanation_ko": "DIM SCORES(1,2)는 첫 번째 차원에 0~1, 두 번째 차원에 0~2의 유효 인덱스를 줍니다. 0번 행의 세 값이 모두 더해집니다: 90+85+95=270.",
+      "concept_tags": ["2d_array"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "basic_early_l3_u01_q005",
+      "type": "error_finding",
+      "code": "10 DIM A(2,2)\n20 LET A(3,0) = 100\n30 PRINT A(3,0)\n40 END",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "A(3,0) 대입 문법 오류",
+        "DIM A(2,2)는 각 차원의 인덱스를 0부터 2까지만 허용하는데, 인덱스 3을 사용해 범위를 벗어나 오류가 발생함",
+        "PRINT문 사용법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "DIM A(2,2) only allows indices 0 through 2 in each dimension; using index 3 exceeds the declared bounds, typically causing a subscript-out-of-range error.",
+      "explanation_ko": "DIM A(2,2)는 각 차원에서 인덱스 0부터 2까지만 허용합니다. 인덱스 3을 쓰면 선언된 범위를 벗어나며, 보통 첨자 범위 초과 오류가 발생합니다.",
+      "concept_tags": ["2d_array", "array_bounds"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "basic_early_l3_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "DIM A(행,열)", "definition": "행과 열 두 인덱스로 접근하는 2차원 배열 선언" },
+        { "term": "중첩 FOR로 채우기", "definition": "2차원 배열의 모든 칸을 순회하며 값을 채우는 흔한 패턴" },
+        { "term": "각 차원의 범위", "definition": "DIM A(2,2)는 각 차원에서 인덱스 0~2를 허용 — 벗어나면 오류" },
+        { "term": "표 형태 데이터", "definition": "2차원 배열이 흔히 쓰이는 용도 — 격자, 표, 행렬 등" }
+      ],
+      "explanation_en": "Multi-dimensional DIM arrays were classic BASIC's way of representing grids and tables, a pattern that persists conceptually in every modern language's 2D array or matrix type.",
+      "explanation_ko": "다차원 DIM 배열은 격자와 표를 표현하는 초기 BASIC의 방식이었으며, 이 패턴은 모든 현대 언어의 2차원 배열이나 행렬 타입에 개념적으로 이어지고 있습니다.",
+      "concept_tags": ["2d_array", "nested_loop"],
+      "difficulty": "practice"
+    }
+  ]
+}

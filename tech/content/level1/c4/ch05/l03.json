@@ -1,0 +1,341 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch05",
+  "no": 5,
+  "title": "메모리 계층"
+ },
+ "lesson": {
+  "id": "c4-ch05-l03",
+  "no": 3,
+  "title": "평균 접근 시간",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "캐시가 얼마나 도움이 될까",
+   "body": [
+    "캐시에 적중하면 빠르고 실패하면 느립니다. 평균적으로 한 번 접근에 걸리는 시간을 평균 메모리 접근 시간이라고 합니다.",
+    "평균 접근 시간 = 적중 시간 + 실패율 × 실패 비용입니다. 적중 시간은 캐시를 확인하는 시간, 실패 비용은 실패했을 때 아래층에서 가져오는 데 더 드는 시간입니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "numeric",
+   "prompt": "적중 시간 1 ns, 실패율 10 %, 실패 비용 50 ns이면 평균 접근 시간은 몇 ns일까요?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "적중 시간 + 실패율 × 실패 비용입니다.",
+   "explanation": "1 + 0.1 × 50 = 1 + 5 = 6 ns입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "실패율이 성능을 좌우한다",
+   "body": [
+    "적중 시간 1 ns, 실패 비용 100 ns인 캐시에서 실패율이 5 %면 평균 1 + 5 = 6 ns, 1 %면 1 + 1 = 2 ns입니다. 실패율이 4 %포인트만 줄어도 평균 시간은 1/3이 됩니다.",
+    "그래서 캐시를 크게 하거나, 데이터를 캐시에 친하게 배치해 실패율을 줄이는 것이 중요합니다. 캐시를 크게 하면 대신 적중 시간이 조금 늘어나는 맞바꿈이 있습니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "적중 시간 2 ns, 실패 비용 100 ns, 실패율 3 %인 캐시의 평균 접근 시간은?",
+   "steps": [
+    "실패로 늘어나는 시간 = 0.03 × 100 = 3 ns입니다.",
+    "평균 = 2 + 3 = 5 ns입니다."
+   ],
+   "answer": "5 ns"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "평균 접근 시간 = 적중 시간 + 실패율 × 실패 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "비용"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "실패 비용은 실패했을 때 아래층에서 가져오는 데 더 드는 시간입니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "적중 시간 1 ns, 실패율 2 %, 실패 비용 100 ns이면 평균 접근 시간은 몇 ns일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1 + 0.02 × 100 = 3 ns입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 캐시의 실패율이 8 %로 늘면 평균 접근 시간은 몇 ns일까요?",
+   "answer": "9",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1 + 0.08 × 100 = 9 ns입니다.\n3배 느려집니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "캐시가 없어 매번 DRAM(100 ns)에 간다면 평균 접근 시간은 몇 ns일까요?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "모든 접근이 100 ns입니다.\n캐시가 있으면 3~9 ns로 크게 줄어듭니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "여러 층의 캐시",
+   "body": [
+    "캐시가 여러 층이면 식을 겹쳐 씁니다. L1에서 실패하면 L2를 보고, L2에서도 실패하면 DRAM에 갑니다. L1의 실패 비용 = L2 평균 접근 시간 = L2 적중 시간 + L2 실패율 × DRAM 시간입니다.",
+    "예: L1 적중 1 ns, L1 실패율 10 %, L2 적중 10 ns, L2 실패율 20 %, DRAM 100 ns이면 L2 평균 = 10 + 0.2 × 100 = 30 ns, 전체 평균 = 1 + 0.1 × 30 = 4 ns입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "L1 적중 1 ns, L1 실패율 5 %, L2 적중 8 ns, L2 실패율 25 %, DRAM 80 ns이면 평균 접근 시간은?",
+   "steps": [
+    "L2 평균 = 8 + 0.25 × 80 = 28 ns입니다.",
+    "전체 = 1 + 0.05 × 28 = 2.4 ns입니다."
+   ],
+   "answer": "2.4 ns"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "L1 캐시의 실패 비용은 {{1}} 캐시의 평균 접근 시간입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "L2"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "L1에서 실패하면 L2로 가므로 L2 평균 시간이 곧 L1의 실패 비용입니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "L2 적중 10 ns, L2 실패율 10 %, DRAM 100 ns이면 L2 평균 접근 시간은 몇 ns일까요?",
+   "answer": "20",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "10 + 0.1 × 100 = 20 ns입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 L2를 쓰고 L1 적중 1 ns, L1 실패율 5 %이면 전체 평균 접근 시간은 몇 ns일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1 + 0.05 × 20 = 2 ns입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "캐시를 크게 하면 실패율은 줄지만 {{1}} 시간이 조금 늘어납니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "적중"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "큰 캐시는 찾는 데 시간이 조금 더 걸립니다.\n그래서 작은 L1과 큰 L2, L3를 나눕니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "CPU가 기다리는 시간",
+   "body": [
+    "평균 접근 시간을 클럭 수로 바꾸면 CPU가 메모리를 기다리는 정도를 알 수 있습니다. 3 GHz CPU에서 평균 2 ns는 6클럭입니다. 명령어의 약 1/3이 메모리를 읽는다면 이 기다림이 CPI를 크게 늘립니다(챕터 3).",
+    "정리: 평균 접근 시간 = 적중 시간 + 실패율 × 실패 비용, 실패율이 성능을 좌우, 여러 층은 식을 겹쳐 씀, 큰 캐시는 적중 시간이 늘어나는 맞바꿈"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "numeric",
+   "prompt": "3 GHz CPU에서 평균 접근 시간 4 ns는 몇 클럭일까요?",
+   "answer": "12",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1 ns에 3클럭입니다.\n4 × 3 = 12클럭입니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "프로그램 구조를 바꿔 L1 실패율을 10 %에서 4 %로 줄였습니다. 적중 1 ns, 실패 비용 50 ns라면 평균 접근 시간은 어떻게 바뀔까요?",
+   "steps": [
+    "전: 1 + 0.1 × 50 = 6 ns입니다.",
+    "후: 1 + 0.04 × 50 = 3 ns입니다.",
+    "메모리 접근이 2배 빨라졌습니다."
+   ],
+   "answer": "6 ns → 3 ns"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "적중 시간 2 ns, 실패 비용 60 ns인 캐시의 실패율을 5 %에서 2 %로 줄이면 평균 접근 시간은 몇 ns 줄까요?",
+   "answer": "1.8",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": "두 경우를 각각 계산하세요.",
+   "explanation": "전: 2 + 3 = 5 ns, 후: 2 + 1.2 = 3.2 ns입니다.\n1.8 ns 줄어듭니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "평균 접근 시간을 3 ns 이하로 하려면, 적중 시간 1 ns·실패 비용 100 ns인 캐시의 실패율은 최대 몇 %여야 할까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "식을 실패율에 대해 푸세요.",
+   "explanation": "1 + 실패율 × 100 ≤ 3이므로 실패율 ≤ 0.02입니다.\n최대 2 %입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "L1 적중 1 ns, L1 실패율 10 %, L2 적중 5 ns, L2 실패율 50 %, DRAM 90 ns이면 전체 평균 접근 시간은 몇 ns일까요?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "L2 평균부터 구하세요.",
+   "explanation": "L2 평균 = 5 + 0.5 × 90 = 50 ns입니다.\n전체 = 1 + 0.1 × 50 = 6 ns입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 문제에서 L2가 없어 L1 실패 때 바로 DRAM(90 ns)에 가면 평균 접근 시간은 몇 ns일까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "실패 비용이 DRAM 시간이 됩니다.",
+   "explanation": "1 + 0.1 × 90 = 10 ns입니다.\nL2가 평균을 10 ns에서 6 ns로 줄입니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "같은 캐시라도 프로그램의 데이터 접근 순서를 바꾸면 {{1}}이 달라져 평균 접근 시간이 바뀝니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "실패율",
+      "적중률"
+     ]
+    }
+   ],
+   "hint": "캐시에서 찾는 비율입니다.",
+   "explanation": "지역성이 좋은 순서는 실패율을 낮춥니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "적중 시간이 1 ns로 같은 캐시에서 실패율이 조금만 늘어도 평균 접근 시간이 크게 늘어나는 이유를 설명해 보세요.",
+   "hint": "실패 비용과 적중 시간의 크기를 비교하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "실패 비용",
+      "DRAM",
+      "100"
+     ],
+     [
+      "크",
+      "길",
+      "느"
+     ],
+     [
+      "곱",
+      "실패율"
+     ],
+     [
+      "적중 시간",
+      "작",
+      "1 ns"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "평균 접근 시간은 적중 시간 + 실패율 × 실패 비용입니다. 실패 비용(DRAM 접근)이 적중 시간보다 수십~수백 배 크기 때문에, 실패율이 조금만 늘어도 곱한 값이 크게 늘어나 작은 적중 시간을 압도합니다."
+  }
+ ]
+}

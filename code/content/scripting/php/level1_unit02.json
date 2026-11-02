@@ -1,0 +1,96 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "연산자 심화",
+  "questions": [
+    {
+      "id": "php_l1_u02_q001",
+      "type": "predict_output",
+      "code": "echo \"Hello\" . 5;",
+      "prompt_en": "What is printed? (Note the . operator, not +.)",
+      "prompt_ko": "출력 결과는? (+가 아니라 . 연산자인 점에 주의하세요.)",
+      "options": ["Hello5", "오류", "Hello", "5"],
+      "answer": 0,
+      "explanation_en": "PHP uses . (a period) for string concatenation, not +; \"Hello\" . 5 converts 5 to text and joins them: Hello5.",
+      "explanation_ko": "PHP는 문자열 연결에 +가 아니라 .(마침표)를 사용합니다. \"Hello\" . 5는 5를 텍스트로 변환해 이어붙입니다: Hello5.",
+      "concept_tags": ["concatenation_operator"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l1_u02_q002",
+      "type": "error_finding",
+      "code": "echo \"Hello\" + 5;",
+      "prompt_en": "What problem does this code have? (Note: + is used here instead of the concatenation operator.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (연결 연산자 대신 +가 쓰인 점에 주의하세요.)",
+      "options": [
+        "5 리터럴 문법 오류",
+        "+는 PHP에서 순수 산술 연산인데, \"Hello\"는 숫자로 전혀 변환할 수 없어서 PHP 8에서는 TypeError가 발생함",
+        "echo 사용법 오류",
+        "문제 없음, \"Hello5\"가 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "+ is strictly arithmetic in PHP; since \"Hello\" cannot be converted to a number at all (unlike \"5abc\", which extracts a leading numeric part with a warning), PHP 8 throws a fatal TypeError instead of silently coercing.",
+      "explanation_ko": "PHP에서 +는 순전히 산술 연산입니다. \"Hello\"는 숫자로 전혀 변환할 수 없어서(앞부분의 숫자를 추출하며 경고만 내는 \"5abc\"와 다름), PHP 8은 조용히 강제 변환하는 대신 치명적인 TypeError를 던집니다.",
+      "concept_tags": ["plus_operator", "type_coercion"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l1_u02_q003",
+      "type": "predict_output",
+      "code": "echo intdiv(7, 2);\necho \"\\n\";\necho 7 / 2;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3\\n3", "3\\n3.5", "3.5\\n3", "오류"],
+      "answer": 1,
+      "explanation_en": "intdiv() explicitly performs integer division, discarding the remainder: 3. Plain / always returns a float when division isn't exact: 3.5.",
+      "explanation_ko": "intdiv()는 명시적으로 정수 나눗셈을 수행해 나머지를 버립니다: 3. 일반 /는 나눗셈이 딱 떨어지지 않으면 항상 실수를 반환합니다: 3.5.",
+      "concept_tags": ["intdiv"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l1_u02_q004",
+      "type": "predict_output",
+      "code": "var_dump(1 == \"1\");\nvar_dump(1 === \"1\");",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["bool(true) bool(true)", "bool(false) bool(false)", "bool(true) bool(false)", "bool(false) bool(true)"],
+      "answer": 2,
+      "explanation_en": "== performs loose comparison with type coercion (true); === requires both type and value to match, and int isn't the same type as string (false) — the same pair of operators as JavaScript.",
+      "explanation_ko": "==는 타입 강제 변환을 거치는 느슨한 비교입니다(true). ===는 타입과 값이 모두 일치해야 하며, int와 string은 같은 타입이 아닙니다(false) — JavaScript와 같은 연산자 쌍입니다.",
+      "concept_tags": ["loose_equality", "strict_equality"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l1_u02_q005",
+      "type": "fill_blank",
+      "code": "$greeting = \"안녕\" ____ \", \" ____ \"Kim\";\necho $greeting;\n// \"안녕, Kim\"이 출력되어야 함",
+      "prompt_en": "Fill in both blanks with PHP's string concatenation operator.",
+      "prompt_ko": "PHP의 문자열 연결 연산자로 양쪽 빈칸을 채우세요.",
+      "options": [".", "+", "&", "concat"],
+      "answer": 0,
+      "explanation_en": ". concatenates strings in PHP, chainable just like + in other languages.",
+      "explanation_ko": ".는 PHP에서 문자열을 연결하며, 다른 언어의 +처럼 이어붙일 수 있습니다.",
+      "concept_tags": ["concatenation_operator"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l1_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": ". (연결 연산자)", "definition": "PHP에서 문자열을 이어붙이는 연산자 — +가 아님" },
+        { "term": "+ (순수 산술)", "definition": "PHP의 +는 오직 숫자 연산 전용, 문자열 연결 아님" },
+        { "term": "intdiv()", "definition": "정수 나눗셈을 수행하는 함수 — /는 항상 실수를 반환할 수 있음" },
+        { "term": "== / ===", "definition": "느슨한 비교와 엄격한 비교 — JavaScript와 같은 개념" }
+      ],
+      "explanation_en": "PHP's decision to use . instead of + for concatenation is a deliberate design choice that avoids the type-ambiguity issues seen in JavaScript's overloaded +, at the cost of an unfamiliar operator for newcomers.",
+      "explanation_ko": "PHP가 연결에 +대신 .을 쓰기로 한 것은 JavaScript의 중복 사용된 +에서 봤던 타입 모호성 문제를 피하기 위한 의도적인 설계이지만, 처음 접하는 사람에게는 낯선 연산자라는 대가가 있습니다.",
+      "concept_tags": ["concatenation_operator", "plus_operator"],
+      "difficulty": "practice"
+    }
+  ]
+}

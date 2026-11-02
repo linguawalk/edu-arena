@@ -1,0 +1,97 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "cisco",
+  "exam": "ccna-200-301",
+  "level": 6,
+  "unit": 2,
+  "unit_title": "REST API와 HTTP 메서드",
+  "rule_summary_ko": "REST API는 HTTP 메서드로 CRUD(생성·조회·수정·삭제) 작업을 표현합니다: GET(조회, 데이터를 변경하지 않음), POST(새 리소스 생성, 성공 시 201 반환), PUT(기존 리소스 수정), DELETE(리소스 삭제). HTTP 상태 코드는 결과를 알려줍니다: 200(성공), 201(생성 성공), 400(잘못된 요청, 클라이언트 오류), 401(인증 실패), 404(리소스를 찾을 수 없음), 500(서버 오류).",
+  "examples": [
+    { "code": "GET /api/devices/123", "note_ko": "ID 123인 장치 정보를 조회 — 데이터를 변경하지 않음, 성공 시 200 반환" },
+    { "code": "POST /api/devices", "note_ko": "새 장치를 생성 — 성공 시 201(Created) 반환" }
+  ],
+  "questions": [
+    {
+      "id": "ccna_l6_u2_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "REST API에서 데이터를 조회만 하고 서버의 상태를 변경하지 않는 HTTP 메서드는?",
+      "options": ["GET", "POST", "PUT", "DELETE"],
+      "answer": 0,
+      "explanation_ko": "GET은 안전한(safe) 메서드로, 호출해도 서버 데이터에 변화를 주지 않아야 합니다.",
+      "concept_tags": ["http_get"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "ccna_l6_u2_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "새로운 리소스를 생성할 때 일반적으로 사용하는 HTTP 메서드와, 성공 시 반환되는 대표적인 상태 코드는?",
+      "options": ["GET, 200", "POST, 201(Created)", "DELETE, 204", "PUT, 400"],
+      "answer": 1,
+      "explanation_ko": "POST로 새 리소스를 생성하면, 성공 시 201(Created) 상태 코드가 반환되는 것이 일반적입니다.",
+      "concept_tags": ["http_post"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l6_u2_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "HTTP 상태 코드 404가 의미하는 것은?",
+      "options": [
+        "요청한 리소스를 서버에서 찾을 수 없다",
+        "요청이 성공적으로 처리됐다(200과 혼동)",
+        "새 리소스가 성공적으로 생성됐다(201과 혼동)",
+        "서버 내부에 오류가 발생했다(500과 혼동)"
+      ],
+      "answer": 0,
+      "explanation_ko": "404(Not Found)는 요청한 리소스가 존재하지 않음을 나타내는 대표적인 클라이언트 오류 코드입니다.",
+      "concept_tags": ["http_404"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l6_u2_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "HTTP 상태 코드 400과 500의 차이는?",
+      "options": [
+        "400은 클라이언트 측의 잘못된 요청을 나타내고, 500은 서버 측 내부 오류를 나타낸다",
+        "400과 500은 완전히 동일한 의미다",
+        "500이 클라이언트 오류, 400이 서버 오류다(설명이 반대)",
+        "이 두 코드는 REST API와 무관하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "4xx는 클라이언트 측 문제, 5xx는 서버 측 문제를 나타내는 것이 HTTP 상태 코드의 일반적인 관례입니다.",
+      "concept_tags": ["http_4xx_5xx"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l6_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "기존 리소스를 수정(업데이트)할 때 일반적으로 사용하는 HTTP 메서드는?",
+      "options": ["GET", "POST(주로 생성에 사용)", "PUT — 기존 리소스를 수정할 때 사용", "이런 작업에는 HTTP 메서드를 사용할 수 없다"],
+      "answer": 2,
+      "explanation_ko": "PUT은 이미 존재하는 리소스의 내용을 수정(대체)하는 데 사용됩니다.",
+      "concept_tags": ["http_put"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l6_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "네트워크 자동화에서 REST API를 사용하는 근본적인 이유는?",
+      "options": [
+        "표준화된 HTTP 메서드와 상태 코드를 통해, 프로그램(스크립트)이 사람의 개입 없이도 네트워크 장치나 컨트롤러와 일관되게 상호작용할 수 있게 해주기 때문에",
+        "REST API는 오직 웹사이트 개발에만 사용되고 네트워크 자동화와는 무관하다",
+        "REST API는 네트워크 장치가 아니라 사람만 사용할 수 있다",
+        "REST API는 CLI보다 항상 느리고 비효율적이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "표준화된 인터페이스가 프로그래밍적(자동화된) 상호작용을 가능하게 하는 것이 REST API의 핵심 가치입니다.",
+      "concept_tags": ["rest_api_automation_value"],
+      "difficulty": "practice"
+    }
+  ]
+}

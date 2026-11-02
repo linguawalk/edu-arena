@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 4,
+  "unit": 4,
+  "unit_title": "2차원 배열",
+  "questions": [
+    {
+      "id": "c_l4_u04_q001",
+      "type": "predict_output",
+      "code": "int matrix[2][3] = {{1, 2, 3}, {4, 5, 6}};\nprintf(\"%d\", matrix[1][2]);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "5", "6", "오류"],
+      "answer": 2,
+      "explanation_en": "matrix[1] refers to the second row {4, 5, 6}, and index [2] within it refers to the third value, 6.",
+      "explanation_ko": "matrix[1]은 두 번째 행인 {4, 5, 6}을 가리키고, 그 안에서 인덱스 [2]는 세 번째 값인 6을 가리킵니다.",
+      "concept_tags": ["2d_array"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l4_u04_q002",
+      "type": "predict_output",
+      "code": "int matrix[2][3] = {{1, 2, 3}, {4, 5, 6}};\nint total = 0;\nfor (int i = 0; i < 2; i++) {\n    for (int j = 0; j < 3; j++) {\n        total += matrix[i][j];\n    }\n}\nprintf(\"%d\", total);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["15", "21", "6", "9"],
+      "answer": 1,
+      "explanation_en": "Nested loops visit every element (1+2+3+4+5+6), summing to 21 — a common pattern for processing a 2D array row by row.",
+      "explanation_ko": "중첩 반복문이 모든 요소(1+2+3+4+5+6)를 방문하며 합산해 21이 됩니다. 2차원 배열을 행 단위로 처리하는 대표적인 패턴입니다.",
+      "concept_tags": ["2d_array", "nested_loop"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l4_u04_q003",
+      "type": "fill_blank",
+      "code": "int grid[3][____];  // 3행 4열의 2차원 배열",
+      "prompt_en": "Fill in the blank to declare a 2D array with 3 rows and 4 columns.",
+      "prompt_ko": "3행 4열의 2차원 배열을 선언하려면 빈칸에 무엇이 들어가야 할까요?",
+      "options": ["4", "3", "12", "7"],
+      "answer": 0,
+      "explanation_en": "The first bracket specifies the number of rows, and the second specifies the number of columns; 3 rows and 4 columns means the second bracket should be 4.",
+      "explanation_ko": "첫 번째 대괄호는 행의 개수, 두 번째 대괄호는 열의 개수를 나타냅니다. 3행 4열이므로 두 번째 대괄호는 4가 되어야 합니다.",
+      "concept_tags": ["2d_array"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l4_u04_q004",
+      "type": "error_finding",
+      "code": "int matrix[2][3] = {{1, 2, 3}, {4, 5, 6}};\nprintf(\"%d\", matrix[2][0]);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "matrix 선언 자체가 잘못됨",
+        "행은 인덱스 0과 1만 존재하는데(2행), matrix[2]는 존재하지 않는 세 번째 행에 접근해 범위를 벗어남",
+        "printf 형식 지정자 오류",
+        "문제 없음, 정상적으로 4가 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "The array has 2 rows, valid indices 0 and 1; matrix[2] accesses a nonexistent third row, going out of bounds just like a 1D array would.",
+      "explanation_ko": "배열은 2행이므로 유효한 인덱스는 0과 1뿐입니다. matrix[2]는 존재하지 않는 세 번째 행에 접근하는 것으로, 1차원 배열과 마찬가지로 범위를 벗어난 접근입니다.",
+      "concept_tags": ["2d_array", "out_of_bounds"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l4_u04_q005",
+      "type": "predict_output",
+      "code": "int grid[2][2] = {{1, 2}, {3, 4}};\nfor (int i = 0; i < 2; i++) {\n    for (int j = 0; j < 2; j++) {\n        printf(\"%d\", grid[j][i]);\n    }\n}",
+      "prompt_en": "What is printed? (Note that i and j are swapped inside the brackets compared to the usual order.)",
+      "prompt_ko": "출력 결과는? (대괄호 안의 i와 j 순서가 평소와 반대인 점에 주의하세요.)",
+      "options": ["1234", "1324", "1243", "4321"],
+      "answer": 1,
+      "explanation_en": "Swapping the index order (grid[j][i] instead of grid[i][j]) transposes the traversal: it visits column-first, printing 1, 3, 2, 4.",
+      "explanation_ko": "인덱스 순서를 바꾸면(grid[i][j] 대신 grid[j][i]) 순회 방식이 행 우선에서 열 우선으로 바뀝니다. 그 결과 1, 3, 2, 4 순서로 출력됩니다.",
+      "concept_tags": ["2d_array", "nested_loop"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l4_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "2차원 배열", "definition": "행과 열로 구성된 표 형태의 자료구조" },
+        { "term": "행 (row)", "definition": "2차원 배열의 첫 번째 인덱스가 가리키는 가로줄" },
+        { "term": "열 (column)", "definition": "2차원 배열의 두 번째 인덱스가 가리키는 세로줄" },
+        { "term": "중첩 반복문 순회", "definition": "바깥 반복문으로 행을, 안쪽 반복문으로 열을 순서대로 방문하는 표준 패턴" }
+      ],
+      "explanation_en": "2D arrays are the natural way to represent tables, matrices, and grids in C, built directly on the same indexing rules as 1D arrays.",
+      "explanation_ko": "2차원 배열은 C에서 표, 행렬, 격자를 표현하는 자연스러운 방법이며, 1차원 배열과 동일한 인덱싱 규칙 위에 만들어집니다.",
+      "concept_tags": ["2d_array", "nested_loop"],
+      "difficulty": "practice"
+    }
+  ]
+}

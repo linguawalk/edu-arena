@@ -1,0 +1,104 @@
+{
+ "no": 2,
+ "title": "GPIO와 인터럽트",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "GPIO의 입력·출력 설정과 풀업·풀다운 저항의 역할을 설명할 수 있다.",
+  "기계식 스위치의 채터링과 디바운싱 방법을 설명할 수 있다.",
+  "인터럽트의 우선순위·지연과 인터럽트 처리 루틴 작성 원칙을 설명할 수 있다."
+ ],
+ "checklist": [
+  "GPIO 방향 설정, 푸시풀과 오픈 드레인 출력",
+  "풀업·풀다운 저항: 입력이 떠 있는(floating) 상태 방지",
+  "채터링과 디바운싱(하드웨어 RC, 소프트웨어 지연)",
+  "폴링과 인터럽트 비교(레벨1 컴퓨터 챕터 4)",
+  "인터럽트 벡터 테이블, 우선순위, 중첩",
+  "인터럽트 지연(latency)",
+  "ISR 원칙: 짧게, 공유 변수는 volatile, 무거운 일은 메인 루프로"
+ ],
+ "advice": [
+  "GPIO와 인터럽트는 임베디드 시스템이 바깥 세계와 만나는 가장 기본적인 통로입니다. 입력 핀을 아무 데도 연결하지 않으면 잡음에 따라 0과 1을 오가는 '떠 있는' 상태가 되므로 풀업이나 풀다운이 꼭 필요하다는 점, 기계식 스위치는 눌리는 순간 수 ms 동안 떨린다는 점을 실제 회로로 확인해 보세요. 인터럽트 처리 루틴은 플래그만 세우고 빨리 끝내는 것이 원칙이며, 이를 어기면 다른 인터럽트를 놓치는 버그가 생깁니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Lee · Seshia (무료 공개 교재)",
+   "title": "Introduction to Embedded Systems: A Cyber-Physical Systems Approach, 2nd ed.",
+   "url": "https://ptolemy.berkeley.edu/books/leeseshia/",
+   "lang": "영어",
+   "part": "Input and Output 장"
+  },
+  {
+   "kind": "book",
+   "provider": "자가 출판",
+   "title": "Valvano, Embedded Systems: Introduction to ARM Cortex-M Microcontrollers (장 제목으로 표기)",
+   "part": "GPIO, Interrupts 관련 장"
+  },
+  {
+   "kind": "book",
+   "provider": "O'Reilly",
+   "title": "White, Making Embedded Systems (번역본 『임베디드 시스템 만들기』)",
+   "part": "Inputs, Outputs, and Timers 장, Interrupts 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "디지털회로 10단원 논리 소자의 전기적 특성과 하드웨어 기술 언어",
+   "url": "guide.html?lv=2&t=electronics&s=digital-circuits&u=10",
+   "part": "풀업·오픈 드레인 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "3.3 V에 10 kΩ 풀업 저항이 연결된 입력 핀의 스위치를 눌러 접지에 연결하면 풀업 저항으로 흐르는 전류는 몇 mA일까요?",
+   "answer": "0.33",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "I = 3.3/10 000 = 0.33 mA",
+   "hint": "옴의 법칙입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "기계식 스위치가 눌리는 순간 접점이 떨려 여러 번 눌린 것처럼 보이는 현상을 없애는 처리를 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "디바운싱",
+      "디바운스",
+      "채터링 제거"
+     ]
+    }
+   ],
+   "explanation": "RC 필터 같은 하드웨어나 일정 시간 기다린 뒤 다시 읽는 소프트웨어로 처리합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "48 MHz로 동작하는 MCU의 인터럽트 진입에 12클럭이 걸리면 인터럽트 지연은 몇 μs일까요?",
+   "answer": "0.25",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "12/(48 × 10⁶) = 0.25 μs",
+   "hint": "클럭 수 ÷ 클럭 주파수입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electronics",
+ "subject": "embedded",
+ "id": "l3-electronics-embedded-u02"
+}

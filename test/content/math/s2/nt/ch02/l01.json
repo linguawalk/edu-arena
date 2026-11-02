@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s2",
+  "track": "nt",
+  "work": "증명",
+  "track_title": "정수론",
+  "chapter": {
+    "id": "math-s2-nt-ch02",
+    "no": 2,
+    "title": "디오판토스 방정식"
+  },
+  "lesson": {
+    "id": "math-s2-nt-ch02-l01",
+    "no": 1,
+    "title": "일차 디오판토스 방정식",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "정수론",
+      "디오판토스 방정식"
+    ],
+    "competition": "KMO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "정수해가 있을 조건",
+      "body": [
+        "정수해를 구하는 방정식을 디오판토스 방정식이라 합니다. 일차 방정식 ax + by = c는 gcd(a, b) | c일 때, 그리고 그때만 정수해를 가집니다(베주 항등식).",
+        "6x + 9y = 100은 gcd(6, 9) = 3이 100을 나누지 않으므로 정수해가 없습니다. 왼쪽은 언제나 3의 배수이기 때문입니다.",
+        "해가 하나 (x₀, y₀) 있으면 모든 해는 x = x₀ + (b/d)t, y = y₀ − (a/d)t (d = gcd(a, b), t는 정수)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "6x + 9y = 100의 정수해는 몇 개인가요?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "왼쪽은 무엇의 배수인가요?",
+      "explanation": "6x + 9y = 3(2x + 3y)는 언제나 3의 배수입니다.\n100은 3의 배수가 아닙니다.\n그래서 정수해는 0개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "ax + by = c가 정수해를 가질 필요충분조건은 gcd(a, b)가 {{1}}를 나누는 것입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "c"
+          ]
+        }
+      ],
+      "hint": "오른쪽 상수입니다.",
+      "explanation": "ax + by는 언제나 gcd(a, b)의 배수입니다.\n거꾸로 베주 항등식으로 gcd(a, b)의 모든 배수를 만들 수 있습니다.\n그래서 조건은 gcd(a, b) | c입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "확장 유클리드 호제법",
+      "body": [
+        "13x + 8y = 1의 해: 13 = 8 + 5, 8 = 5 + 3, 5 = 3 + 2, 3 = 2 + 1로 호제법을 한 뒤 거꾸로 올라갑니다.",
+        "1 = 3 − 2 = 3 − (5 − 3) = 2 × 3 − 5 = 2(8 − 5) − 5 = 2 × 8 − 3 × 5 = 2 × 8 − 3(13 − 8) = 5 × 8 − 3 × 13. 그래서 (x, y) = (−3, 5)입니다.",
+        "모든 해는 x = −3 + 8t, y = 5 − 13t이고, 예를 들어 t = 1이면 (5, −8)입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "3x + 5y = 47의 양의 정수해를 모두 구하세요.",
+      "steps": [
+        "47 − 3x가 5의 배수여야 하므로 3x ≡ 47 ≡ 2 (mod 5), 곧 x ≡ 4 (mod 5)입니다.",
+        "x = 4, 9, 14, …이고 y = (47 − 3x)/5 > 0이어야 합니다.",
+        "x = 4 → y = 7, x = 9 → y = 4, x = 14 → y = 1, x = 19 → y < 0입니다.",
+        "양의 정수해는 (4, 7), (9, 4), (14, 1)의 3개입니다."
+      ],
+      "answer": "3개"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "3x + 5y = 47의 양의 정수해는 몇 개인가요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x ≡ 4 (mod 5)입니다.",
+      "explanation": "3x ≡ 47 ≡ 2 (mod 5)에서 x ≡ 4 (mod 5)이므로 x = 4, 9, 14, …입니다.\ny = (47 − 3x)/5 > 0이려면 x ≤ 15이므로 x = 4, 9, 14입니다.\n양의 정수해는 (4, 7), (9, 4), (14, 1)의 3개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "13x + 8y = 1의 정수해 가운데 x가 가장 작은 양수인 해의 x는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "모든 해는 x = −3 + 8t입니다.",
+      "explanation": "확장 유클리드 호제법으로 13 × (−3) + 8 × 5 = 1입니다.\n모든 해는 x = −3 + 8t, y = 5 − 13t입니다.\nx > 0인 가장 작은 값은 t = 1일 때 x = 5입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "해의 개수 세기",
+      "body": [
+        "양의 정수해의 개수는 x의 범위를 정한 뒤 등차수열로 셉니다. x는 b/d 간격으로 나타나고, y > 0이 되는 범위에서 끊습니다.",
+        "4x + 6y = 50은 양변을 2로 나누어 2x + 3y = 25입니다. x ≡ 2 (mod 3)이므로 x = 2, 5, 8, 11이고 y = 7, 5, 3, 1입니다. 4개입니다.",
+        "먼저 gcd로 나누어 간단히 하면 간격을 바르게 셀 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "4x + 6y = 50의 양의 정수해는 몇 개인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2x + 3y = 25로 바꾸세요.",
+      "explanation": "양변을 2로 나누면 2x + 3y = 25이고 x ≡ 2 (mod 3)입니다.\nx = 2, 5, 8, 11에서 y = 7, 5, 3, 1로 모두 양수이고, x = 14이면 y < 0입니다.\n그래서 4개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "5x + 8y = 100의 양의 정수해는 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5x ≡ 100 ≡ 4 (mod 8)입니다.",
+      "explanation": "100 − 5x가 8의 배수이려면 5x ≡ 4 (mod 8), 곧 x ≡ 4 (mod 8)입니다.\nx = 4 → y = 10, x = 12 → y = 5, x = 20 → y = 0이라 양수가 아닙니다.\n그래서 (4, 10), (12, 5)의 2개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "7x + 11y = 100의 양의 정수해에서 x + y는?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x ≡ 8 (mod 11)입니다.",
+      "explanation": "100 − 7x가 11의 배수이려면 7x ≡ 100 ≡ 1 (mod 11), 곧 x ≡ 8 (mod 11)입니다.\nx = 8이면 y = (100 − 56)/11 = 4이고, x = 19이면 y < 0입니다.\n유일한 양의 정수해 (8, 4)에서 x + y = 12입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "ax + by = c는 gcd(a, b) | c일 때만 정수해를 가지며, 한 해 (x₀, y₀)에서 모든 해는 x = x₀ + (b/d)t, y = y₀ − (a/d)t입니다.",
+        "특수해는 확장 유클리드 호제법을 거꾸로 올라가 구합니다(13 × (−3) + 8 × 5 = 1).",
+        "양의 정수해는 합동식으로 x의 나머지를 정하고, y > 0인 범위에서 등차수열로 셉니다. 먼저 gcd로 나누어 간단히 합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "2x + 7y = 60의 양의 정수해는 몇 개인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "y는 짝수여야 합니다.",
+      "explanation": "60 − 7y가 짝수여야 하므로 y는 짝수입니다.\ny = 2, 4, 6, 8에서 x = 23, 16, 9, 2로 모두 양수이고, y = 10이면 x < 0입니다.\n그래서 4개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "17x + 12y = 1의 정수해 가운데 x가 가장 작은 양수인 해의 x는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "17 × 5 = 85입니다.",
+      "explanation": "17x ≡ 1 (mod 12), 곧 5x ≡ 1 (mod 12)이므로 x ≡ 5 (mod 12)입니다.\nx = 5이면 17 × 5 + 12y = 1에서 y = −7입니다.\n그래서 가장 작은 양수 x는 5입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "ax + by = c가 정수해를 가지면 gcd(a, b) | c이고, 역으로 gcd(a, b) | c이면 정수해가 있음을 설명하세요.",
+      "model_answer": [
+        "d = gcd(a, b)라 하면 d | a, d | b이므로 정수 x, y에 대해 d | ax + by이다. 해가 있으면 d | c이다.",
+        "역으로, 베주 항등식에 의해 ax₀ + by₀ = d인 정수 x₀, y₀가 있다(확장 유클리드 호제법).",
+        "c = dk이면 a(kx₀) + b(ky₀) = dk = c이다.",
+        "따라서 (kx₀, ky₀)가 정수해이다."
+      ],
+      "criteria": [
+        {
+          "text": "필요조건을 보였다",
+          "points": 2
+        },
+        {
+          "text": "베주 항등식을 썼다",
+          "points": 2
+        },
+        {
+          "text": "k배해 해를 만들었다",
+          "points": 2
+        }
+      ],
+      "hint": "베주 항등식을 쓰세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "13x + 8y = 1의 정수해를 모두 구하세요.",
+      "model_answer": [
+        "호제법: 13 = 1 × 8 + 5, 8 = 1 × 5 + 3, 5 = 1 × 3 + 2, 3 = 1 × 2 + 1.",
+        "거꾸로: 1 = 3 − 2 = 2 × 3 − 5 = 2 × 8 − 3 × 5 = 5 × 8 − 3 × 13이므로 (x₀, y₀) = (−3, 5)이다.",
+        "13x + 8y = 1과 13(−3) + 8(5) = 1을 빼면 13(x + 3) = −8(y − 5)이고, gcd(13, 8) = 1이므로 8 | x + 3이다.",
+        "x = −3 + 8t로 쓰면 y = 5 − 13t (t는 정수)가 모든 해이다."
+      ],
+      "criteria": [
+        {
+          "text": "호제법을 했다",
+          "points": 1
+        },
+        {
+          "text": "특수해를 구했다",
+          "points": 2
+        },
+        {
+          "text": "일반해의 꼴을 이끌었다",
+          "points": 2
+        },
+        {
+          "text": "모든 해를 썼다",
+          "points": 1
+        }
+      ],
+      "hint": "특수해를 찾은 뒤 차를 보세요."
+    }
+  ]
+}

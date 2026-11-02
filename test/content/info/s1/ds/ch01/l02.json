@@ -1,0 +1,284 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "ds",
+  "work": "풀이",
+  "track_title": "자료구조",
+  "chapter": {
+    "id": "info-s1-ds-ch01",
+    "no": 1,
+    "title": "스택"
+  },
+  "lesson": {
+    "id": "info-s1-ds-ch01-l02",
+    "no": 2,
+    "title": "괄호 검사",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "자료구조",
+      "스택"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "짝이 맞는 괄호",
+      "body": [
+        "괄호 문자열이 올바르려면 여는 괄호와 닫는 괄호의 짝이 맞고, 닫는 괄호가 자기 짝보다 먼저 나오지 않아야 합니다. '(())()'는 올바르고 '())('는 올바르지 않습니다.",
+        "여는 괄호를 스택에 넣고, 닫는 괄호를 만나면 스택에서 하나를 꺼내 짝을 지으면 됩니다. 꺼낼 것이 없거나, 끝났는데 스택이 남아 있으면 올바르지 않습니다.",
+        "스택에 쌓인 여는 괄호의 수를 깊이라 하면, '(()())'의 최대 깊이는 2입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "'(()())'를 왼쪽부터 읽을 때 스택에 쌓인 여는 괄호 수(깊이)의 최댓값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "깊이를 1, 2, 1, 2, 1, 0으로 적어 보세요.",
+      "explanation": "여는 괄호를 만나면 깊이가 1 늘고 닫는 괄호를 만나면 1 줄어듭니다.\n깊이는 1, 2, 1, 2, 1, 0으로 바뀝니다.\n최댓값은 2입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "스택의 맨 위 원소를 꺼내는 연산을 {{1}}이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "pop",
+            "팝"
+          ]
+        }
+      ],
+      "hint": "넣는 연산은 push입니다.",
+      "explanation": "스택에 원소를 넣는 연산은 push입니다.\n맨 위 원소를 꺼내는 연산이 따로 있습니다.\n그 연산을 pop이라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "한 종류일 때는 수 하나로",
+      "body": [
+        "괄호가 한 종류뿐이면 스택에 '('만 쌓이므로, 스택 대신 그 개수 depth만 세어도 됩니다.",
+        "닫는 괄호에서 depth가 음수가 되면 짝 없는 닫는 괄호이므로 바로 실패이고, 끝에서 depth가 0이 아니면 짝 없는 여는 괄호가 남은 것입니다.",
+        "아래 코드는 문자열을 한 번만 읽으므로 O(n)입니다."
+      ],
+      "code": "// 괄호 문자열 t가 올바른지 검사 (괄호 한 종류)\nint depth = 0;\nfor (int i = 0; i < (int)t.size(); i++) {\n    if (t[i] == '(') depth++;\n    else depth--;\n    if (depth < 0) return false;   // 여기서 실패\n}\nreturn depth == 0;"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "t = '(()))('를 아래 코드로 검사할 때 몇 번째 문자(0부터)에서 실패하는지 구하세요.",
+      "steps": [
+        "depth는 1, 2, 1, 0으로 바뀝니다(첨자 0~3).",
+        "첨자 4의 ')'에서 depth = −1이 됩니다.",
+        "depth < 0이므로 첨자 4에서 false를 돌려줍니다."
+      ],
+      "answer": "첨자 4",
+      "code": "// 괄호 문자열 t가 올바른지 검사 (괄호 한 종류)\nint depth = 0;\nfor (int i = 0; i < (int)t.size(); i++) {\n    if (t[i] == '(') depth++;\n    else depth--;\n    if (depth < 0) return false;   // 여기서 실패\n}\nreturn depth == 0;"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 실패하는 첨자(0부터)는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "depth가 처음 음수가 되는 곳입니다.",
+      "explanation": "한 종류의 괄호 검사는 depth가 처음으로 음수가 되는 순간 실패합니다.\ndepth는 첨자 0~4에서 1, 2, 1, 0, −1로 바뀝니다.\n그래서 첨자 4입니다.",
+      "code": "// 괄호 문자열 t가 올바른지 검사 (괄호 한 종류)\nint depth = 0;\nfor (int i = 0; i < (int)t.size(); i++) {\n    if (t[i] == '(') depth++;\n    else depth--;\n    if (depth < 0) return false;   // 여기서 실패\n}\nreturn depth == 0;"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "'(()(()))'의 최대 깊이는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "깊이를 차례로 적어 보세요.",
+      "explanation": "여는 괄호를 만나면 깊이가 1 늘고 닫는 괄호를 만나면 1 줄어듭니다.\n깊이는 1, 2, 1, 2, 3, 2, 1, 0으로 바뀝니다.\n최댓값은 3입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "여러 종류의 괄호",
+      "body": [
+        "(), [], {}처럼 괄호가 여러 종류이면 개수만으로는 부족합니다. '([)]'는 각 종류의 개수는 맞지만 올바르지 않습니다.",
+        "이때는 여는 괄호 자체를 스택에 넣고, 닫는 괄호를 만나면 맨 위의 여는 괄호와 종류가 같은지 확인합니다.",
+        "'([)]'에서 ')'를 만날 때 맨 위는 '['이므로 실패합니다. '{[()()]}'는 끝까지 짝이 맞아 올바릅니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "'([)]'가 올바른 괄호 문자열이면 1, 아니면 2를 쓰세요.",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "')'를 만날 때 맨 위는 무엇인가요?",
+      "explanation": "여러 종류의 괄호는 닫는 괄호를 만날 때 스택 맨 위의 여는 괄호와 종류가 같아야 합니다.\n')'를 만날 때 스택은 ['(', '[']이고 맨 위가 '['입니다.\n종류가 달라 올바르지 않으므로 2입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "'{[()()]}'가 올바른 괄호 문자열이면 1, 아니면 2를 쓰세요.",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "닫는 괄호마다 맨 위와 비교하세요.",
+      "explanation": "여러 종류의 괄호는 닫는 괄호를 만날 때마다 스택 맨 위의 여는 괄호와 종류가 같아야 합니다.\n')'는 '(', ']'는 '[', '}'는 '{'와 차례로 짝이 맞고 끝에 스택이 빕니다.\n올바르므로 1입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "짝 찾기와 개수",
+      "body": [
+        "스택에 첨자를 넣으면 각 닫는 괄호의 짝이 몇 번째 여는 괄호인지도 알 수 있습니다. '(()(()))'에서 첨자 0의 '('는 맨 끝 첨자 7의 ')'와 짝입니다.",
+        "길이 2n인 올바른 괄호 문자열의 수는 카탈랑 수입니다. 길이 6이면 ((())), (()()), (())(), ()(()), ()()()로 5개입니다.",
+        "앞 레슨의 '가능한 꺼내는 순서'와 같은 수가 나오는 것은 push를 '(', pop을 ')'로 바꾸면 같은 문제가 되기 때문입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "길이 6인 올바른 괄호 문자열(한 종류)은 모두 몇 개인가요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "((())), (()()), (())(), ()(()), ()()()입니다.",
+      "explanation": "길이 2n인 올바른 괄호 문자열의 수는 카탈랑 수입니다.\nn = 3이면 ((())), (()()), (())(), ()(()), ()()()입니다.\n그래서 5개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "'(()(()))'에서 첨자 3의 '('와 짝인 ')'의 첨자는? (0부터)",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "스택에 첨자를 넣으며 따라가 보세요.",
+      "explanation": "스택에 여는 괄호의 첨자를 넣고, 닫는 괄호에서 꺼낸 첨자가 그 짝입니다.\n첨자 4의 '('는 5의 ')'와 먼저 짝지어지고, 첨자 6의 ')'에서 꺼내는 것이 3입니다.\n그래서 6입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "괄호 검사는 여는 괄호를 스택에 넣고 닫는 괄호에서 꺼내 짝을 짓는 방법으로 O(n)에 합니다.",
+        "한 종류이면 깊이만 세면 되며, 깊이가 음수가 되거나 끝에서 0이 아니면 올바르지 않습니다.",
+        "여러 종류이면 맨 위의 여는 괄호와 종류까지 확인해야 합니다. 길이 2n인 올바른 괄호 문자열의 수는 카탈랑 수입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "'(()())(('를 끝까지 읽은 뒤 스택에 남은 여는 괄호는 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "깊이를 끝까지 적어 보세요.",
+      "explanation": "여는 괄호를 만나면 깊이가 1 늘고 닫는 괄호를 만나면 1 줄어듭니다.\n앞의 '(()())'를 읽으면 깊이가 0이 되고, 뒤의 '(('로 2가 됩니다.\n그래서 2개가 남아 올바르지 않습니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "t = '())('를 아래 코드로 검사할 때 실패하는 첨자(0부터)는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "depth를 1, 0, −1로 적어 보세요.",
+      "explanation": "한 종류의 괄호 검사는 depth가 처음으로 음수가 되는 순간 실패합니다.\ndepth는 첨자 0, 1, 2에서 1, 0, −1로 바뀝니다.\n그래서 첨자 2입니다.",
+      "code": "// 괄호 문자열 t가 올바른지 검사 (괄호 한 종류)\nint depth = 0;\nfor (int i = 0; i < (int)t.size(); i++) {\n    if (t[i] == '(') depth++;\n    else depth--;\n    if (depth < 0) return false;   // 여기서 실패\n}\nreturn depth == 0;"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "괄호가 여러 종류일 때 개수만 세는 방법으로는 부족하고 스택이 필요한 이유를 설명하세요.",
+      "model_answer": [
+        "'([)]'는 종류마다 여는 괄호와 닫는 괄호의 개수가 같지만 올바르지 않다.",
+        "닫는 괄호는 가장 최근에 열린, 아직 닫히지 않은 괄호와 짝이어야 한다.",
+        "가장 최근에 열린 괄호를 알려면 여는 괄호들을 순서대로 쌓아 두고 맨 위를 봐야 하므로 스택이 알맞다.",
+        "닫는 괄호를 만날 때 맨 위와 종류를 비교해야 '([)]' 같은 경우를 잡아낼 수 있다."
+      ],
+      "criteria": [
+        {
+          "text": "개수만으로 판단할 수 없는 반례를 들었다",
+          "points": 2
+        },
+        {
+          "text": "가장 최근에 열린 괄호와 짝이어야 함을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "스택으로 맨 위와 비교함을 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "'([)]'를 생각해 보세요."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "괄호가 한 종류일 때 depth만 세는 코드가 올바른 괄호 문자열을 정확히 판별하는 이유를 설명하세요.",
+      "model_answer": [
+        "한 종류일 때 스택에는 '('만 쌓이므로 스택의 상태는 그 개수 depth로 충분히 나타난다.",
+        "')'를 만났을 때 depth가 0이면 짝지을 '('가 없으므로 올바르지 않고, 이것이 depth < 0이 되는 순간이다.",
+        "끝까지 읽었을 때 depth > 0이면 짝 없는 '('가 남은 것이므로 올바르지 않다.",
+        "두 경우가 모두 없으면 모든 괄호가 짝지어졌으므로 올바르다."
+      ],
+      "criteria": [
+        {
+          "text": "스택을 개수로 대신할 수 있음을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "중간에 음수가 되는 경우를 설명했다",
+          "points": 2
+        },
+        {
+          "text": "끝에서 0인지 확인하는 이유를 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "스택에 무엇이 쌓이는지 보세요."
+    }
+  ]
+}

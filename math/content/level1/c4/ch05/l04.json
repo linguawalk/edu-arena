@@ -1,0 +1,327 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch05",
+    "no": 5,
+    "title": "수열의 극한과 급수"
+  },
+  "lesson": {
+    "id": "c4-ch05-l04",
+    "no": 4,
+    "title": "등비급수",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "등비급수의 합",
+      "body": [
+        "첫째항이 a(≠ 0), 공비가 r인 등비급수는 |r| < 1일 때 수렴하고 합은 a/(1 − r)입니다. |r| ≥ 1이면 발산합니다.",
+        "왜 a/(1 − r)일까요? 등비수열의 합 Sₙ = a(1 − rⁿ)/(1 − r)에서 |r| < 1이면 rⁿ → 0이므로 Sₙ → a/(1 − r)입니다. |r| ≥ 1이면 rⁿ이 0으로 가지 않아 부분합이 수렴하지 않습니다. 앞 레슨의 등비수열의 극한이 그대로 쓰입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "1 + 1/2 + 1/4 + …의 합은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "첫째항 1, 공비 1/2 (|r| < 1이라 수렴)\n합 = 1/(1 − 1/2)\n= 2\n확인: 부분합 1, 1.5, 1.75, …가 2에 가까워집니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "1/3 + 1/9 + 1/27 + …의 합은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "첫째항 1/3, 공비 1/3\n합 = (1/3)/(1 − 1/3) = (1/3)/(2/3)\n= 1/2\n원리: 등비급수의 합은 첫째항/(1 − 공비)"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "수렴 조건",
+      "body": [
+        "공비의 절댓값이 1보다 작아야 합니다. 공비에 문자가 있으면 −1 < r < 1을 풉니다.",
+        "공비에 문자가 있으면 −1 < r < 1을 풉니다. 등비수열의 수렴 조건(−1 < r ≤ 1)과 달리 r = 1은 제외됩니다. r = 1이면 a + a + a + …로 발산하기 때문입니다. 단, 첫째항이 0이면 모든 항이 0이라 공비와 관계없이 수렴합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "Σ(n=1~∞) ((x + 1)/2)ⁿ이 수렴하는 x의 범위를 구하세요.",
+      "steps": [
+        "공비 r = (x + 1)/2",
+        "수렴 조건: −1 < (x + 1)/2 < 1",
+        "−2 < x + 1 < 2",
+        "−3 < x < 1"
+      ],
+      "answer": "−3 < x < 1"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "2 + 4 + 8 + …은 수렴할까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "공비 2로 |r| ≥ 1\n부분합이 한없이 커져 발산\n수렴하지 않음 → 0\n원리: |공비| ≥ 1인 등비급수는 발산합니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "Σ(n=1~∞) (x − 2)ⁿ이 수렴하는 정수 x는 몇 개일까요?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "공비 x − 2, 수렴 조건 −1 < x − 2 < 1\n1 < x < 3에서 정수는 2 하나\n1개 (x = 2이면 모든 항이 0)"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "순환소수",
+      "body": [
+        "0.777… = 0.7 + 0.07 + 0.007 + …은 첫째항 7/10, 공비 1/10인 등비급수입니다.",
+        "순환소수는 등비급수의 대표적인 예입니다. 0.777… = 7/10 + 7/100 + …은 첫째항 7/10, 공비 1/10이므로 합은 (7/10)/(1 − 1/10) = 7/9입니다. 코스 0에서 x로 놓고 10x − x로 풀었던 방법과 같은 결과가 나옵니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "0.2363636…(36이 반복)을 기약분수로 나타내세요.",
+      "steps": [
+        "0.2 + 0.036 + 0.00036 + …",
+        "뒤의 부분은 첫째항 0.036, 공비 0.01인 등비급수: 0.036/0.99 = 36/990 = 2/55",
+        "0.2 + 2/55 = 11/55 + 2/55",
+        "= 13/55"
+      ],
+      "answer": "13/55"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "0.777…을 기약분수로 나타내면?",
+      "answer": "7/9",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "0.7 + 0.07 + …: 첫째항 7/10, 공비 1/10\n합 = (7/10)/(9/10)\n= 7/9\n확인: 코스 0에서 10x − x로 구한 7/9와 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "0.1212…(12가 반복)를 기약분수로 나타내면?",
+      "answer": "4/33",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "0.12 + 0.0012 + …: 첫째항 12/100, 공비 1/100\n합 = (12/100)/(99/100) = 12/99\n= 4/33"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "도형과 운동의 반복",
+      "body": [
+        "넓이나 길이가 일정한 비율로 줄어들며 끝없이 반복되면 그 합을 등비급수로 구합니다.",
+        "도형이 일정한 비율로 줄어들며 반복되면, 넓이나 길이도 일정한 비율로 줄어드는 등비수열이 됩니다. 이때 넓이의 비는 길이의 비의 제곱이라는 점에 주의합니다. 튀어 오르는 공은 처음 떨어지는 거리만 한 번이고, 그 뒤로는 올라갔다 내려오므로 2배로 셉니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "한 변이 2인 정삼각형의 각 변의 중점을 이어 작은 정삼각형을 만드는 일을 끝없이 반복할 때 모든 정삼각형의 넓이의 합은?",
+      "steps": [
+        "처음 넓이 √3 (한 변 2)",
+        "변이 1/2배가 되므로 넓이는 1/4배",
+        "√3 + √3/4 + … = √3/(1 − 1/4)",
+        "= 4√3/3"
+      ],
+      "answer": "4√3/3"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "넓이 4인 정사각형의 각 변의 중점을 이어 새 정사각형을 만드는 일을 끝없이 반복합니다. 모든 정사각형의 넓이의 합은?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "넓이가 몇 배씩 줄어드는지 보세요.",
+      "explanation": "중점을 이으면 넓이가 절반: 4, 2, 1, …\n첫째항 4, 공비 1/2\n합 = 4/(1 − 1/2) = 8"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "10m 높이에서 떨어뜨린 공이 매번 떨어진 높이의 1/2만큼 튀어 오릅니다. 공이 움직인 전체 거리는 몇 m일까요?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "처음 낙하와 그 뒤의 왕복을 나눠 세세요.",
+      "explanation": "처음 떨어지는 거리 10m\n그 뒤로 5m, 2.5m, …를 올라갔다 내려옴: 2 × 5/(1 − 1/2) = 20\n전체 10 + 20 = 30m"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "첫째항과 공비를 정확히 찾는 것이 핵심입니다. 첫째항이 n = 1일 때의 항인지 확인합니다.",
+        "등비급수의 합을 구할 때 가장 흔한 실수는 첫째항을 잘못 잡는 것입니다. Σ(n=1~∞) (1/2)ⁿ의 첫째항은 n = 1일 때인 1/2이지, 1이 아닙니다. 식에 n = 1을 직접 넣어 첫째항을 확인하는 습관을 들이세요."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "Σ(n=1~∞) 3(2/3)ⁿ⁻¹의 합은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "첫째항과 공비를 찾으세요.",
+      "explanation": "n = 1일 때 첫째항 3, 공비 2/3\n합 = 3/(1 − 2/3) = 3/(1/3)\n= 9\n원리: 첫째항은 n = 1을 넣은 3(2/3)⁰ = 3"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "Σ(n=1~∞) (1/2)ⁿ의 합은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "첫째항은 n = 1일 때의 항입니다.",
+      "explanation": "n = 1일 때 첫째항 1/2, 공비 1/2\n합 = (1/2)/(1 − 1/2)\n= 1\n주의: 첫째항을 1로 잡으면 2가 되어 틀립니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "Σ(n=1~∞) (−1/2)ⁿ⁻¹의 합은? (기약분수로)",
+      "answer": "2/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "공비가 음수여도 |r| < 1이면 수렴합니다.",
+      "explanation": "첫째항 (−1/2)⁰ = 1, 공비 −1/2\n합 = 1/(1 + 1/2)\n= 2/3\n확인: 1 − 1/2 + 1/4 − … = 2/3"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "첫째항이 2이고 합이 4인 등비급수의 공비는? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "합 공식에 넣으세요.",
+      "explanation": "합 = a/(1 − r)에 넣으면 2/(1 − r) = 4\n1 − r = 1/2\nr = 1/2\n확인: 2 + 1 + 1/2 + … = 4"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "Σ(n=1~∞) (2ⁿ + 3ⁿ)/6ⁿ의 합은? (기약분수로)",
+      "answer": "3/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "두 등비급수로 나누세요.",
+      "explanation": "(2ⁿ + 3ⁿ)/6ⁿ = (1/3)ⁿ + (1/2)ⁿ로 나눕니다.\nΣ(1/3)ⁿ = 1/2, Σ(1/2)ⁿ = 1\n합 3/2"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "0.999…의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "등비급수로 나타내세요.",
+      "explanation": "0.9 + 0.09 + …: 첫째항 9/10, 공비 1/10\n합 = (9/10)/(9/10)\n= 1 (0.999…와 1은 같은 수)"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "첫째항이 6이고 합이 12인 등비급수의 공비는? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "합 공식에 넣으세요.",
+      "explanation": "6/(1 − r) = 12\n1 − r = 1/2\nr = 1/2\n확인: 공비 1/2이면 6 + 3 + 3/2 + … = 12로 맞습니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "0.999… = 1인 이유를 등비급수로 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "9/10",
+            "0.9"
+          ],
+          [
+            "1/10",
+            "공비"
+          ],
+          [
+            "1"
+          ]
+        ],
+        "min_groups_matched": 3
+      },
+      "model_answer": "0.999… = 0.9 + 0.09 + 0.009 + …은 첫째항 9/10, 공비 1/10인 등비급수입니다. 합은 (9/10)/(1 − 1/10) = 1이므로 0.999…은 1과 같습니다."
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+ "no": 2,
+ "title": "경로 손실과 지연",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "위성 링크의 자유 공간 경로 손실을 계산할 수 있다.",
+  "궤도별 전파 지연과 그것이 서비스에 주는 영향을 계산할 수 있다.",
+  "앙각에 따른 경사 거리 변화를 설명할 수 있다."
+ ],
+ "checklist": [
+  "FSPL[dB] = 20 log₁₀d[km] + 20 log₁₀f[MHz] + 32.44",
+  "GEO 링크 경로 손실 약 200 dB 안팎",
+  "지구국–위성–지구국 편도 지연(GEO) 약 240 ms 이상",
+  "왕복(질문–응답) 지연 약 0.5초 이상: 음성·TCP에 영향",
+  "LEO 지연은 수 ms~수십 ms",
+  "앙각이 낮을수록 경사 거리와 대기 손실 증가",
+  "지연 대책: TCP 가속, 프로토콜 스푸핑"
+ ],
+ "advice": [
+  "위성 링크는 지상 링크보다 수십 dB 큰 경로 손실과 눈에 띄는 지연을 가진다는 두 가지가 핵심입니다. 정지궤도 위성을 거친 대화에서 상대 대답이 늦게 들리는 경험이 바로 이 지연입니다. 레벨2 통신망 6단원의 정지–대기 효율 계산을 GEO 지연으로 다시 해 보면, 위성 인터넷에서 TCP가 느려지는 이유와 저궤도 군집 위성이 주목받는 이유가 동시에 보입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Pratt · Allnutt, Satellite Communications (장 제목으로 표기)",
+   "part": "Satellite Link Design 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "무선통신 4단원 전파 전파와 경로 손실",
+   "url": "guide.html?lv=2&t=ict&s=wireless&u=4"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "통신망 6단원 데이터 링크와 흐름 제어",
+   "url": "guide.html?lv=2&t=ict&s=comm-networks&u=6"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "지구국에서 정지궤도 위성을 거쳐 다른 지구국까지(바로 아래 지점 가정) 편도 전파 지연은 약 몇 ms일까요?",
+   "answer": "239",
+   "answer_format": "integer",
+   "tolerance": 2,
+   "explanation": "2 × 35 786 km/3 × 10⁵ km/s ≈ 0.239 s = 239 ms",
+   "hint": "올라갔다 내려오는 거리입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "거리 36 000 km, 주파수 12 GHz의 자유 공간 경로 손실은 약 몇 dB일까요?",
+   "answer": "205.2",
+   "answer_format": "decimal",
+   "tolerance": 0.2,
+   "explanation": "20 log₁₀36 000 + 20 log₁₀12 000 + 32.44 ≈ 91.13 + 81.58 + 32.44 ≈ 205.2 dB",
+   "hint": "d는 km, f는 MHz입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "지구국에서 위성을 올려다보는 각도인 {{1}}이 낮을수록 경사 거리와 대기 통과 거리가 길어져 손실이 커집니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "앙각",
+      "고도각",
+      "올려본각"
+     ]
+    }
+   ],
+   "explanation": "고위도 지역에서 정지궤도 위성의 앙각이 낮은 것이 대표적인 문제입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "satellite-comm",
+ "id": "l3-ict-satellite-comm-u02"
+}

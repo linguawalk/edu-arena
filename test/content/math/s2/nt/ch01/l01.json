@@ -1,0 +1,257 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s2",
+  "track": "nt",
+  "work": "증명",
+  "track_title": "정수론",
+  "chapter": {
+    "id": "math-s2-nt-ch01",
+    "no": 1,
+    "title": "위수와 원시근"
+  },
+  "lesson": {
+    "id": "math-s2-nt-ch01-l01",
+    "no": 1,
+    "title": "위수",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "정수론",
+      "위수"
+    ],
+    "competition": "KMO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "처음으로 1이 되는 거듭제곱",
+      "body": [
+        "n과 서로소인 a에 대해 aᵏ ≡ 1 (mod n)이 되는 가장 작은 자연수 k를 a의 위수라 하고 ordₙ(a)로 씁니다. 오일러 정리 a^φ(n) ≡ 1 때문에 위수는 항상 존재합니다.",
+        "예: 2¹ = 2, 2² = 4, 2³ = 8 ≡ 1 (mod 7)이므로 ord₇(2) = 3입니다. 3은 3, 2, 6, 4, 5, 1 (mod 7)이므로 ord₇(3) = 6입니다.",
+        "위수를 알면 aᵐ (mod n)이 k마다 되풀이된다는 것을 알 수 있어 큰 거듭제곱의 나머지를 쉽게 구합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "ord₇(2), 곧 2ᵏ ≡ 1 (mod 7)인 가장 작은 자연수 k는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2, 4, 8을 7로 나누어 보세요.",
+      "explanation": "2¹ ≡ 2, 2² ≡ 4, 2³ = 8 ≡ 1 (mod 7)입니다.\n처음으로 1이 되는 지수가 3입니다.\n그래서 ord₇(2) = 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "aᵏ ≡ 1 (mod n)이 되는 가장 작은 자연수 k를 a의 {{1}}라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "위수",
+            "order"
+          ]
+        }
+      ],
+      "hint": "ordₙ(a)로 씁니다.",
+      "explanation": "a의 거듭제곱을 n으로 나눈 나머지는 언젠가 1이 됩니다.\n처음으로 1이 되는 지수가 그 수열의 주기를 정합니다.\n이 지수를 a의 위수라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "위수의 핵심 성질",
+      "body": [
+        "aᵐ ≡ 1 (mod n)이면 ordₙ(a)는 m의 약수입니다. m = q · ord + r (0 ≤ r < ord)로 쓰면 aʳ ≡ 1이 되어 r = 0이어야 하기 때문입니다.",
+        "그래서 ordₙ(a)는 φ(n)의 약수입니다. 소수 p이면 ordₚ(a)는 p − 1의 약수입니다.",
+        "이 성질 덕분에 위수를 구할 때 p − 1의 약수만 확인하면 됩니다. ord₁₃(2)를 구하려면 12의 약수 1, 2, 3, 4, 6, 12만 확인합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "ord₁₃(2)를 구하세요.",
+      "steps": [
+        "위수는 12의 약수 1, 2, 3, 4, 6, 12 가운데 하나입니다.",
+        "2² = 4, 2³ = 8, 2⁴ = 16 ≡ 3 (mod 13)입니다.",
+        "2⁶ = 64 ≡ 12 ≡ −1 (mod 13)이므로 6도 아닙니다.",
+        "남은 것은 12이므로 ord₁₃(2) = 12입니다."
+      ],
+      "answer": "12"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "ord₁₃(2)는?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "12의 약수만 확인하세요.",
+      "explanation": "ord₁₃(2)는 12의 약수이므로 1, 2, 3, 4, 6, 12만 확인합니다.\n2⁴ ≡ 3, 2⁶ ≡ −1 (mod 13)이라 12보다 작은 약수에서는 1이 되지 않습니다.\n그래서 ord₁₃(2) = 12입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "ord₁₇(2)는?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2⁴ = 16 ≡ −1 (mod 17)입니다.",
+      "explanation": "ord₁₇(2)는 16의 약수 1, 2, 4, 8, 16 가운데 하나입니다.\n2⁴ = 16 ≡ −1이므로 4는 아니고, 2⁸ = (2⁴)² ≡ 1입니다.\n그래서 ord₁₇(2) = 8입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "순환소수의 주기",
+      "body": [
+        "1/p (p는 2, 5가 아닌 소수)의 순환마디 길이는 ordₚ(10)입니다. 10ᵏ ≡ 1 (mod p)이면 (10ᵏ − 1)/p가 정수라 1/p = (그 정수)/(10ᵏ − 1)로 k자리마다 되풀이되기 때문입니다.",
+        "1/7 = 0.142857142857…이므로 ord₇(10) = 6입니다. 1/37 = 0.027027…이므로 ord₃₇(10) = 3입니다.",
+        "순환마디 길이도 p − 1의 약수입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1/13의 순환마디 길이(ord₁₃(10))는?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1/13 = 0.076923076923…입니다.",
+      "explanation": "1/13 = 0.076923…으로 076923이 되풀이됩니다.\n그래서 10⁶ ≡ 1 (mod 13)이고 더 작은 지수에서는 1이 아닙니다.\n순환마디 길이는 6입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1/41의 순환마디 길이는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "40의 약수만 확인하세요. 10⁵ = 100000입니다.",
+      "explanation": "ord₄₁(10)은 40의 약수입니다. 10² = 100 ≡ 18, 10⁴ ≡ 18² = 324 ≡ 37 (mod 41)이라 1, 2, 4는 아닙니다.\n10⁵ ≡ 37 × 10 = 370 = 9 × 41 + 1 ≡ 1 (mod 41)입니다.\n그래서 순환마디 길이는 5입니다(1/41 = 0.0243902439…)."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "ord₁₇(3)은?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "16의 약수 1, 2, 4, 8, 16을 확인하세요.",
+      "explanation": "3² = 9, 3⁴ = 81 ≡ 13, 3⁸ ≡ 13² = 169 ≡ 16 ≡ −1 (mod 17)입니다.\n16의 진약수에서는 1이 되지 않으므로 위수는 16입니다.\n그래서 ord₁₇(3) = 16입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "ordₙ(a)는 aᵏ ≡ 1 (mod n)인 가장 작은 자연수 k이며, aᵐ ≡ 1이면 ordₙ(a) | m입니다. 특히 ordₙ(a) | φ(n), 소수이면 ordₚ(a) | p − 1입니다.",
+        "위수를 구할 때는 p − 1의 약수만 확인하면 되고, aᵏ ≡ −1이면 위수는 k의 약수가 아니라 2k의 약수입니다.",
+        "1/p의 순환마디 길이는 ordₚ(10)입니다(1/7 → 6, 1/13 → 6, 1/37 → 3, 1/41 → 5)."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "ord₃₁(2)는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2⁵ = 32입니다.",
+      "explanation": "2⁵ = 32 ≡ 1 (mod 31)입니다.\n5는 소수라서 더 작은 약수는 1뿐인데 2¹ ≠ 1입니다.\n그래서 ord₃₁(2) = 5입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "1/17의 순환마디 길이는?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "ord₁₇(10)입니다. 10 ≡ −7 (mod 17)부터 계산해 보세요.",
+      "explanation": "10² = 100 ≡ 15 ≡ −2, 10⁴ ≡ 4, 10⁸ ≡ 16 ≡ −1 (mod 17)입니다.\n16의 진약수에서는 1이 되지 않으므로 ord₁₇(10) = 16입니다.\n그래서 순환마디 길이는 16입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "aᵐ ≡ 1 (mod n)이면 ordₙ(a)가 m을 나눔을 증명하세요.",
+      "model_answer": [
+        "d = ordₙ(a)라 하고, m을 d로 나누어 m = qd + r (0 ≤ r < d)로 쓴다.",
+        "aᵐ = (aᵈ)^q · aʳ ≡ 1^q · aʳ = aʳ (mod n)이다.",
+        "aᵐ ≡ 1이므로 aʳ ≡ 1이다.",
+        "r < d이고 d는 aᵏ ≡ 1인 가장 작은 자연수이므로 r = 0이어야 한다. 따라서 d | m이다."
+      ],
+      "criteria": [
+        {
+          "text": "나눗셈 정리로 m을 썼다",
+          "points": 2
+        },
+        {
+          "text": "aʳ ≡ 1을 얻었다",
+          "points": 2
+        },
+        {
+          "text": "최소성으로 r = 0을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "m = qd + r로 쓰세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "ord₁₃(2) = 12임을 답안 형식으로 보이세요.",
+      "model_answer": [
+        "페르마 소정리로 2¹² ≡ 1 (mod 13)이므로 ord₁₃(2)는 12의 약수 1, 2, 3, 4, 6, 12 가운데 하나이다.",
+        "12의 진약수 d는 모두 4나 6의 약수이므로, 2⁴ ≢ 1과 2⁶ ≢ 1만 확인하면 된다.",
+        "2⁴ = 16 ≡ 3, 2⁶ = 64 ≡ 12 (mod 13)이므로 둘 다 1이 아니다.",
+        "따라서 ord₁₃(2) = 12이다."
+      ],
+      "criteria": [
+        {
+          "text": "위수가 12의 약수임을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "확인할 지수를 줄였다",
+          "points": 2
+        },
+        {
+          "text": "계산해 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "12/2 = 6과 12/3 = 4만 확인하면 됩니다."
+    }
+  ]
+}

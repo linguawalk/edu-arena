@@ -1,0 +1,96 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "화살표 함수와 클로저",
+  "questions": [
+    {
+      "id": "php_l3_u04_q001",
+      "type": "predict_output",
+      "code": "$square = fn($x) => $x * $x;\necho $square(5);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["25", "5", "오류", "x * x"],
+      "answer": 0,
+      "explanation_en": "fn($x) => $x * $x defines a concise arrow function; the expression after => is implicitly returned. square(5) computes 25.",
+      "explanation_ko": "fn($x) => $x * $x는 간결한 화살표 함수를 정의합니다. => 뒤의 식은 암묵적으로 반환됩니다. square(5)는 25를 계산합니다.",
+      "concept_tags": ["arrow_function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l3_u04_q002",
+      "type": "error_finding",
+      "code": "function makeMultiplier($factor) {\n    return function($n) {\n        return $n * $factor;\n    };\n}\n$double = makeMultiplier(2);\necho $double(5);",
+      "prompt_en": "What problem does this code have? (Note: this uses function, not fn.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (fn이 아니라 function을 쓴 점에 주의하세요.)",
+      "options": [
+        "makeMultiplier 정의 문법 오류",
+        "function으로 만든 익명 함수는 바깥 변수를 자동으로 캡처하지 않아서, $factor에 접근할 수 없어 경고와 함께 예상과 다른 값(0)이 나옴",
+        "double(5) 호출 문법 오류",
+        "문제 없음, 정상적으로 10이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike JavaScript's closures (which capture automatically) or PHP's own fn arrow functions, a regular function() {} closure in PHP does NOT capture outer variables unless explicitly told to with use; $factor is undefined inside, producing a warning and treating it as 0.",
+      "explanation_ko": "자동으로 캡처하는 JavaScript의 클로저나 PHP 자신의 fn 화살표 함수와 달리, PHP의 일반 function() {} 클로저는 use로 명시하지 않으면 바깥 변수를 캡처하지 않습니다. $factor는 안에서 정의되지 않아 경고와 함께 0으로 취급됩니다.",
+      "concept_tags": ["closure", "use_keyword"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l3_u04_q003",
+      "type": "predict_output",
+      "code": "function makeMultiplier($factor) {\n    return function($n) use ($factor) {\n        return $n * $factor;\n    };\n}\n$double = makeMultiplier(2);\necho $double(5);",
+      "prompt_en": "What is printed? (Compare with the previous example — use is added here.)",
+      "prompt_ko": "출력 결과는? (이전 예제와 비교해보세요 — 여기엔 use가 추가됐습니다.)",
+      "options": ["0", "10", "오류", "5"],
+      "answer": 1,
+      "explanation_en": "use ($factor) explicitly captures the outer $factor into the closure; $n * $factor now correctly computes 5 * 2 = 10.",
+      "explanation_ko": "use ($factor)는 바깥의 $factor를 클로저 안으로 명시적으로 캡처합니다. $n * $factor는 이제 5 * 2 = 10을 올바르게 계산합니다.",
+      "concept_tags": ["closure", "use_keyword"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l3_u04_q004",
+      "type": "predict_output",
+      "code": "function makeMultiplier($factor) {\n    return fn($n) => $n * $factor;\n}\n$triple = makeMultiplier(3);\necho $triple(5);",
+      "prompt_en": "What is printed? (Note: fn is used instead of function, with no use keyword.)",
+      "prompt_ko": "출력 결과는? (function이 아니라 fn을 쓰고, use 키워드가 없는 점에 주의하세요.)",
+      "options": ["오류: $factor 캡처 안 됨", "15", "5", "0"],
+      "answer": 1,
+      "explanation_en": "Unlike regular function() closures, PHP's arrow functions (fn) automatically capture outer variables by value with no use needed; $n * $factor works directly, giving 5 * 3 = 15.",
+      "explanation_ko": "일반 function() 클로저와 달리, PHP의 화살표 함수(fn)는 use 없이도 바깥 변수를 값으로 자동 캡처합니다. $n * $factor가 바로 동작해서 5 * 3 = 15가 됩니다.",
+      "concept_tags": ["arrow_function"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l3_u04_q005",
+      "type": "fill_blank",
+      "code": "function makeCounter() {\n    $count = 0;\n    return function() ____ (&$count) {\n        $count++;\n        return $count;\n    };\n}\n// count가 호출 사이에도 유지되고 증가해야 함",
+      "prompt_en": "Fill in the blank with the closure keyword, combined with & for by-reference capture.",
+      "prompt_ko": "참조로 캡처하는 &와 결합된 클로저 키워드를 빈칸에 채우세요.",
+      "options": ["use", "with", "capture", "ref"],
+      "answer": 0,
+      "explanation_en": "use (&$count) captures $count by reference instead of by value, letting the returned closure modify and remember the outer variable across calls.",
+      "explanation_ko": "use (&$count)는 $count를 값이 아니라 참조로 캡처해서, 반환된 클로저가 호출 사이에도 바깥 변수를 수정하고 기억할 수 있게 합니다.",
+      "concept_tags": ["closure", "use_keyword"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l3_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "fn($x) => ...", "definition": "바깥 변수를 자동으로 캡처하는 화살표 함수" },
+        { "term": "function() {...}", "definition": "명시적인 use 없이는 바깥 변수를 캡처하지 않는 일반 익명 함수" },
+        { "term": "use ($var)", "definition": "일반 익명 함수가 바깥 변수를 값으로 캡처하게 하는 키워드" },
+        { "term": "use (&$var)", "definition": "값이 아니라 참조로 캡처해서, 클로저가 원본을 수정할 수 있게 함" }
+      ],
+      "explanation_en": "PHP's explicit use requirement for regular closures is a genuinely unique design choice — JavaScript, Python, and most languages capture enclosing variables automatically, but PHP requires it to be stated deliberately.",
+      "explanation_ko": "일반 클로저에 명시적인 use를 요구하는 PHP의 방식은 진정으로 독특한 설계 선택입니다 — JavaScript, Python을 비롯한 대부분의 언어는 감싸는 변수를 자동으로 캡처하지만, PHP는 이를 의도적으로 명시하도록 요구합니다.",
+      "concept_tags": ["closure", "use_keyword", "arrow_function"],
+      "difficulty": "practice"
+    }
+  ]
+}

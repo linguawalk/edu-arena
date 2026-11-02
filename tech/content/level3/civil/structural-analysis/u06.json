@@ -1,0 +1,85 @@
+{
+ "no": 6,
+ "title": "매트릭스 강성법",
+ "hours": 5,
+ "after": [
+  5
+ ],
+ "objectives": [
+  "부재 강성 행렬과 전체 강성 행렬 조립의 원리를 설명할 수 있다.",
+  "축부재(트러스)의 강성 AE/L을 계산할 수 있다.",
+  "구조해석 프로그램이 강성법으로 동작하는 방식과 결과 검증 방법을 설명할 수 있다."
+ ],
+ "checklist": [
+  "강성법: {F} = [K]{d}",
+  "축부재 강성 k = AE/L",
+  "부재 강성 행렬과 좌표 변환",
+  "전체 강성 행렬 조립(자유도 수 × 자유도 수)",
+  "경계 조건 적용과 변위 풀이",
+  "부재력 계산",
+  "구조해석 프로그램과 결과 검증(손계산, 평형 확인)"
+ ],
+ "advice": [
+  "오늘날 실무의 구조해석은 거의 모두 프로그램으로 하며, 그 안에서 돌아가는 것이 매트릭스 강성법입니다. 스프링 두세 개로 된 단순한 계를 손으로 강성 행렬을 조립해 풀어 보면, 프로그램이 하는 일이 같은 절차를 수천 개 자유도로 반복하는 것이라는 점이 이해됩니다. 프로그램 결과는 반드시 반력 합계가 하중과 맞는지 같은 손계산으로 확인하는 습관을 들이세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Hibbeler, Structural Analysis (번역본 『구조해석』, 장 제목으로 표기)",
+   "part": "Truss Analysis Using the Stiffness Method, Beam/Frame Analysis Using the Stiffness Method 장"
+  },
+  {
+   "title": "math-arena 레벨2 · 선형대수",
+   "href": "https://math-arena.org/guide.html?lv=2&t=algebra&s=linear-algebra"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "단면적 0.01 m², 탄성 계수 200 GPa(2 × 10⁸ kN/m²), 길이 4 m인 축부재의 축 강성은 몇 kN/m일까요?",
+   "answer": "500000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "k = AE/L = 0.01 × 2 × 10⁸/4 = 500 000 kN/m",
+   "hint": "AE/L입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "절점 4개인 평면 트러스(절점당 자유도 2)의 전체 강성 행렬은 몇 행일까요? (경계 조건 적용 전)",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "4 × 2 = 8행(8 × 8 행렬)",
+   "hint": "절점 수 × 절점당 자유도입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "하중 벡터와 변위 벡터를 {F} = [K]{d}로 잇는 행렬 [K]를 {{1}} 행렬이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "강성"
+     ]
+    }
+   ],
+   "explanation": "구조해석 프로그램은 이 행렬을 조립해 연립 방정식을 풉니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "civil",
+ "subject": "structural-analysis",
+ "id": "l3-civil-structural-analysis-u06"
+}

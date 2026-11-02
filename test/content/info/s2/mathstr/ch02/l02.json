@@ -1,0 +1,269 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "mathstr",
+  "work": "풀이",
+  "track_title": "수학·문자열",
+  "chapter": {
+    "id": "info-s2-mathstr-ch02",
+    "no": 2,
+    "title": "KMP"
+  },
+  "lesson": {
+    "id": "info-s2-mathstr-ch02-l02",
+    "no": 2,
+    "title": "실패 함수",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "수학·문자열",
+      "KMP"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "접두사이면서 접미사",
+      "body": [
+        "문자열 s의 접두사이면서 접미사인 것(s 자신은 빼고)을 경계라 합니다. \"ABACABA\"의 경계는 \"A\"와 \"ABA\"입니다.",
+        "패턴 p의 실패 함수 pi[i]는 p[0..i]의 가장 긴 경계의 길이입니다. 예를 들어 p = \"ABABAC\"이면 pi = 0, 0, 1, 2, 3, 0입니다. p[0..4] = \"ABABA\"의 가장 긴 경계는 \"ABA\"라 pi[4] = 3입니다.",
+        "아래 코드는 pi를 O(m)에 구합니다. j는 '지금까지 맞춘 경계의 길이'이고, 다음 글자가 맞지 않으면 j를 더 짧은 경계 pi[j − 1]로 줄여 다시 시도합니다."
+      ],
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "p = \"ABABAC\"의 pi[3]은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "p[0..3] = \"ABAB\"입니다.",
+      "explanation": "\"ABAB\"의 경계 가운데 가장 긴 것을 찾습니다.\n접두사 \"AB\"와 접미사 \"AB\"가 같고, 길이 3인 \"ABA\"와 \"BAB\"는 다릅니다.\n그래서 pi[3] = 2입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "p = \"ABABAC\"의 pi[5]는?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "p[0..5]는 C로 끝납니다.",
+      "explanation": "p[0..5] = \"ABABAC\"의 접미사는 모두 C로 끝납니다.\n접두사는 A로 시작하는데 C로 끝나는 접두사가 되려면 C가 앞에 있어야 하므로 경계가 없습니다.\n그래서 pi[5] = 0입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "문자열의 접두사이면서 접미사인 부분(자기 자신 제외)을 그 문자열의 {{1}}라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "경계",
+            "보더",
+            "border"
+          ]
+        }
+      ],
+      "hint": "양 끝에 걸친 공통 부분입니다.",
+      "explanation": "접두사는 앞에서부터, 접미사는 뒤에서부터 자른 부분입니다.\n둘이 같은 부분은 문자열의 양 끝에 걸쳐 있습니다.\n이를 경계라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "경계의 경계",
+      "body": [
+        "p[0..i]의 가장 긴 경계를 B라 하면, 두 번째로 긴 경계는 B의 가장 긴 경계입니다. 경계는 앞뒤에 모두 나타나므로, 더 짧은 경계는 B 안에서도 접두사이자 접미사이기 때문입니다.",
+        "그래서 pi[i]를 늘릴 수 없을 때는 j = pi[j − 1]로 '경계의 경계'를 따라가며 다음 글자가 맞는 것을 찾습니다. 모든 경계를 길이순으로 빠짐없이 차례로 보게 됩니다.",
+        "j는 한 번에 많아야 1씩 늘고, 줄어드는 총량은 늘어난 총량을 넘을 수 없으므로 전체 O(m)입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "p = \"AABAAAB\"의 pi를 구하세요.",
+      "steps": [
+        "pi[0] = 0, \"AA\"는 \"A\"가 경계라 pi[1] = 1, \"AAB\"는 경계가 없어 pi[2] = 0입니다.",
+        "\"AABA\"는 1, \"AABAA\"는 \"AA\"로 2입니다. \"AABAAA\"는 j = 2에서 B ≠ A라 j = pi[1] = 1로 줄인 뒤 A = A로 2가 되어 pi[5] = 2입니다.",
+        "\"AABAAAB\"는 j = 2에서 p[6] = B = p[2]라 3이 되어 pi = 0, 1, 0, 1, 2, 2, 3입니다."
+      ],
+      "answer": "0, 1, 0, 1, 2, 2, 3",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "p = \"ABACABA\"의 pi[6]은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "\"ABACABA\"의 가장 긴 경계는?",
+      "explanation": "\"ABACABA\"의 경계 후보를 길게부터 보면 \"ABACAB\"와 \"BACABA\"는 다르고, \"ABA\"는 앞뒤가 같습니다.\n길이 4~6인 접두사와 접미사는 서로 다릅니다.\n그래서 pi[6] = 3입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "p = \"AAAA\"의 pi[3]은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "자기 자신은 빼고 셉니다.",
+      "explanation": "\"AAAA\"의 접두사 \"AAA\"와 접미사 \"AAA\"가 같습니다.\n자기 자신 \"AAAA\"는 경계에서 빼므로 길이 3이 가장 깁니다.\n그래서 pi[3] = 3입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "p = \"ABCABD\"의 pi 값을 모두 더하면?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "pi = 0, 0, 0, 1, 2, 0입니다.",
+      "explanation": "\"ABCA\"는 \"A\", \"ABCAB\"는 \"AB\"가 가장 긴 경계라 pi[3] = 1, pi[4] = 2이고 나머지는 0입니다.\n그래서 pi = 0, 0, 0, 1, 2, 0입니다.\n합은 1 + 2 = 3입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "\"ABACABA\"의 경계(자기 자신 제외)는 모두 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "가장 긴 경계 \"ABA\"의 경계도 경계입니다.",
+      "explanation": "가장 긴 경계는 \"ABA\"이고, 그다음은 \"ABA\"의 가장 긴 경계 \"A\"입니다.\n\"A\"의 경계는 없으므로 더 없습니다.\n그래서 \"ABA\", \"A\"의 2개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "실패 함수를 구하는 코드에서 j = pi[j − 1]로 줄이는 이유로 알맞은 것은? ① j를 0으로 되돌리려고 ② 텍스트를 한 칸 넘기려고 ③ 비교 횟수를 늘리려고 ④ 다음으로 긴 경계로 옮겨 다시 맞춰 보려고",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 번째로 긴 경계는 무엇인가요?",
+      "explanation": "지금 경계 길이 j에서 다음 글자가 맞지 않으면, 그보다 짧은 경계 가운데 가장 긴 것을 시도해야 합니다.\n그 길이가 바로 pi[j − 1]입니다.\n답은 4입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "경계는 접두사이면서 접미사인 부분이고, 실패 함수 pi[i]는 p[0..i]의 가장 긴 경계의 길이입니다.",
+        "두 번째로 긴 경계는 가장 긴 경계의 경계이므로, 맞지 않을 때 j = pi[j − 1]로 줄여 가며 모든 경계를 차례로 봅니다.",
+        "j는 한 번에 1씩만 늘어나므로 줄어드는 횟수도 그 이하이고, pi 전체를 O(m)에 구합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "p = \"AABAAB\"의 pi[5]는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "\"AABAAB\"의 가장 긴 경계는?",
+      "explanation": "\"AABAAB\"의 접두사 \"AAB\"와 접미사 \"AAB\"가 같습니다.\n길이 4, 5인 접두사 \"AABA\", \"AABAA\"는 접미사 \"BAAB\", \"ABAAB\"와 다릅니다.\n그래서 pi[5] = 3입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "p = \"ABCABCABC\"의 pi[8]은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "\"ABCABC\"가 앞뒤에 모두 있습니다.",
+      "explanation": "\"ABCABCABC\"의 접두사 \"ABCABC\"와 접미사 \"ABCABC\"가 같습니다.\n길이 7, 8인 접두사는 접미사와 다릅니다.\n그래서 pi[8] = 6입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "s의 가장 긴 경계를 B라 할 때, s의 두 번째로 긴 경계가 B의 가장 긴 경계임을 증명하세요.",
+      "model_answer": [
+        "s의 경계 가운데 B보다 짧은 것을 X라 하자. X는 s의 접두사이고 B도 s의 접두사이며 |X| < |B|이므로 X는 B의 접두사다.",
+        "마찬가지로 X와 B는 모두 s의 접미사이므로 X는 B의 접미사다. 따라서 X는 B의 경계다.",
+        "반대로 B의 경계는 B의 앞과 뒤에 나타나고, B는 s의 앞과 뒤에 나타나므로 s의 경계다.",
+        "그래서 B보다 짧은 s의 경계는 정확히 B의 경계들이고, 그중 가장 긴 것이 B의 가장 긴 경계다."
+      ],
+      "criteria": [
+        {
+          "text": "짧은 경계가 B의 경계임을 보였다",
+          "points": 3
+        },
+        {
+          "text": "B의 경계가 s의 경계임을 보였다",
+          "points": 2
+        },
+        {
+          "text": "결론을 썼다",
+          "points": 1
+        }
+      ],
+      "hint": "짧은 경계 X가 B 안에서도 접두사이자 접미사인지 보세요."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "실패 함수를 구하는 코드가 O(m)임을 설명하세요.",
+      "model_answer": [
+        "바깥 반복은 m − 1번이고, 반복마다 j는 많아야 1 늘어난다. 그래서 j가 늘어난 총량은 m − 1 이하다.",
+        "while 문이 한 번 돌 때마다 j는 pi[j − 1] < j로 적어도 1 줄어든다.",
+        "j는 0 아래로 내려가지 않으므로, 줄어든 총량은 늘어난 총량 이하다. 그래서 while 문은 전체에서 m − 1번 이하로 돈다.",
+        "따라서 전체 O(m)이다."
+      ],
+      "criteria": [
+        {
+          "text": "j가 늘어난 총량을 구했다",
+          "points": 2
+        },
+        {
+          "text": "while 한 번마다 j가 줄어듦을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "분할 상환으로 O(m)을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "j가 늘어난 양과 줄어든 양을 비교하세요.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+ "no": 4,
+ "title": "ADC와 센서 인터페이스",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "ADC 변환값을 실제 전압과 물리량으로 바꿀 수 있다.",
+  "센서 신호를 ADC 입력 범위에 맞추는 조정 회로를 설명할 수 있다.",
+  "샘플링 주기와 안티에일리어싱, 잡음 대책을 설명할 수 있다."
+ ],
+ "checklist": [
+  "ADC 변환식: 전압 = 코드 × V_ref/2ᴺ",
+  "센서 출력 → 물리량 환산(감도, 오프셋)",
+  "신호 조정: 증폭(연산 증폭기), 레벨 이동, 분압",
+  "안티에일리어싱 필터와 샘플링 주기",
+  "잡음 대책: 평균 필터, 이동 평균, 차폐와 접지",
+  "DAC로 아날로그 출력",
+  "디지털 센서(I2C·SPI 출력)와 아날로그 센서 비교"
+ ],
+ "advice": [
+  "센서 값을 읽는 일은 '물리량 → 전압 → 코드 → 다시 물리량'의 두 번의 변환입니다. 각 단계의 식을 종이에 적고, 코드 하나(1 LSB)가 실제 물리량으로 얼마인지 계산해 보면 필요한 ADC 해상도와 증폭률을 스스로 정할 수 있습니다. 레벨3 집적회로 6단원의 데이터 변환기 이론과 레벨2 전자회로의 연산 증폭기 회로가 여기서 함께 쓰입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Lee · Seshia (무료 공개 교재)",
+   "title": "Introduction to Embedded Systems: A Cyber-Physical Systems Approach, 2nd ed.",
+   "url": "https://ptolemy.berkeley.edu/books/leeseshia/",
+   "lang": "영어",
+   "part": "Sensors and Actuators 장"
+  },
+  {
+   "kind": "book",
+   "provider": "자가 출판",
+   "title": "Valvano, Embedded Systems: Introduction to ARM Cortex-M Microcontrollers (장 제목으로 표기)",
+   "part": "ADC, Data Acquisition 관련 장"
+  },
+  {
+   "kind": "book",
+   "provider": "O'Reilly",
+   "title": "White, Making Embedded Systems (번역본 『임베디드 시스템 만들기』)",
+   "part": "Doing More with Less 장 등 센서 관련 절"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "전기전자 챕터 8 센서와 액추에이터",
+   "url": "browse.html?c=c1#ch08",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "기준 전압 3.3 V인 12비트 ADC가 2048을 출력했다면 입력 전압은 약 몇 V일까요?",
+   "answer": "1.65",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "전압 = 2048 × 3.3/4096 = 1.65 V",
+   "hint": "코드 × V_ref/2ᴺ입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "감도 10 mV/°C, 0 °C에서 0 V인 온도 센서의 출력이 0.25 V이면 온도는 몇 °C일까요?",
+   "answer": "25",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "0.25 V/0.01 V/°C = 25 °C",
+   "hint": "출력 ÷ 감도입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "ADC 앞에 두어 샘플링 주파수의 절반보다 높은 성분을 미리 걸러 내는 필터를 {{1}} 필터라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "안티에일리어싱",
+      "안티 에일리어싱",
+      "앤티에일리어싱",
+      "에일리어싱 방지"
+     ]
+    }
+   ],
+   "explanation": "걸러 내지 않으면 높은 주파수가 낮은 주파수로 둔갑해 섞입니다(에일리어싱).",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electronics",
+ "subject": "embedded",
+ "id": "l3-electronics-embedded-u04"
+}

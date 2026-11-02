@@ -1,0 +1,364 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch07",
+  "no": 7,
+  "title": "네트워크 기초"
+ },
+ "lesson": {
+  "id": "c4-ch07-l03",
+  "no": 3,
+  "title": "이더넷과 MAC 주소",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "LAN의 주소",
+   "body": [
+    "LAN 안에서 데이터를 옆 장치에 보내려면 받을 장치를 가리킬 주소가 필요합니다. 이더넷과 Wi-Fi는 네트워크 장치마다 붙은 MAC 주소를 씁니다. MAC 주소는 48비트로, 3C:22:FB:9A:10:7E처럼 16진수 12자리를 두 자리씩 끊어 씁니다.",
+    "앞 24비트는 제조사 번호, 뒤 24비트는 제조사가 붙인 일련번호라서 원칙적으로 세상에 하나뿐입니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "numeric",
+   "prompt": "MAC 주소는 몇 비트일까요?",
+   "answer": "48",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "16진수 12자리입니다.",
+   "explanation": "MAC 주소는 48비트, 곧 6바이트입니다.\n16진수 12자리로 씁니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "프레임",
+   "body": [
+    "링크 계층에서 보내는 데이터 묶음을 프레임이라고 합니다. 이더넷 프레임의 헤더에는 받는 쪽 MAC 주소, 보내는 쪽 MAC 주소, 안에 든 데이터의 종류가 들어 있고, 끝에는 오류 검사 값(FCS)이 붙습니다.",
+    "받는 쪽은 오류 검사 값을 다시 계산해 보고, 맞지 않으면 전송 중에 비트가 바뀐 것으로 보고 프레임을 버립니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "MAC 주소 3C:22:FB:9A:10:7E에서 제조사를 나타내는 부분은?",
+   "steps": [
+    "앞 24비트(3바이트)가 제조사 번호입니다.",
+    "16진수로 앞 세 묶음입니다.",
+    "3C:22:FB입니다."
+   ],
+   "answer": "3C:22:FB"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "링크 계층에서 보내는 데이터 묶음을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "프레임"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "프레임에는 MAC 주소와 오류 검사 값이 들어 있습니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "MAC 주소는 몇 바이트일까요?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1바이트는 8비트이므로 8로 나눕니다.\n48 ÷ 8 = 6바이트입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "MAC 주소 가운데 제조사 번호는 몇 비트일까요?",
+   "answer": "24",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "앞 절반인 24비트가 제조사 번호입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "전송 중에 바뀐 비트를 찾아내려고 프레임 끝에 붙이는 값을 {{1}} 검사 값이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "오류"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "받는 쪽이 다시 계산해 맞지 않으면 프레임을 버립니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "스위치의 학습",
+   "body": [
+    "스위치는 프레임이 들어오면 보낸 쪽 MAC 주소와 들어온 포트를 표(MAC 주소 표)에 적어 둡니다. 다음에 그 주소로 가는 프레임이 오면 표를 보고 그 포트로만 보냅니다.",
+    "표에 없는 주소로 가는 프레임은 모든 포트로 내보냅니다. 목적지가 답하면 그 위치도 표에 적힙니다. 모든 장치에 보내는 브로드캐스트 주소(FF:FF:FF:FF:FF:FF)도 있습니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "8포트 스위치가 MAC 주소 표에 없는 주소로 가는 프레임을 1번 포트로 받으면 몇 개의 포트로 내보낼까요?",
+   "steps": [
+    "표에 없으므로 모든 포트로 내보냅니다.",
+    "들어온 1번 포트는 빼고 나머지로 보냅니다.",
+    "7개 포트입니다."
+   ],
+   "answer": "7개"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "LAN의 모든 장치에 보내는 MAC 주소는 FF:FF:FF:FF:FF:FF이며, 이를 {{1}} 주소라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "브로드캐스트"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "브로드캐스트는 '널리 알린다'는 뜻입니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "24포트 스위치가 표에 없는 주소로 가는 프레임을 받으면 몇 개의 포트로 내보낼까요?",
+   "answer": "23",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "들어온 포트를 뺀 모든 포트로 보냅니다.\n24 − 1 = 23개입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "같은 스위치가 목적지를 표에서 찾으면 몇 개의 포트로 보낼까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "목적지가 연결된 포트 하나로만 보냅니다.\n그래서 다른 장치의 선이 붐비지 않습니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "스위치는 들어온 프레임의 {{1}} 쪽 MAC 주소와 포트를 표에 적어 학습합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "보낸",
+      "보내는",
+      "출발지"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "보낸 장치가 그 포트 쪽에 있다는 것을 알게 됩니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "Wi-Fi",
+   "body": [
+    "Wi-Fi도 MAC 주소를 쓰는 링크 계층 기술로, 선 대신 전파로 무선 접속 장치(AP)와 프레임을 주고받습니다(전기전자 챕터 11). 전파는 모두가 함께 쓰므로 한 번에 한 장치만 말하도록 순서를 조정하고, 가까이 있는 누구나 신호를 받을 수 있어 암호화(WPA2, WPA3)가 꼭 필요합니다.",
+    "정리: MAC 주소(48비트, 16진수 12자리, 앞 24비트 제조사), 프레임과 오류 검사, 스위치의 MAC 주소 표 학습, 모르는 주소는 모든 포트로, 브로드캐스트, Wi-Fi와 암호화"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "Wi-Fi는 누구나 전파를 받을 수 있으므로 WPA2나 WPA3 같은 {{1}}가 필요합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "암호화"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "암호화하지 않으면 가까운 사람이 내용을 엿볼 수 있습니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "4포트 스위치의 표가 비어 있습니다. A(1번 포트)가 B(2번 포트)에게 보내고, B가 A에게 답하면 표에는 무엇이 남을까요?",
+   "steps": [
+    "A가 보낼 때: A는 1번 포트로 학습되고, B를 몰라 2~4번으로 모두 보냅니다.",
+    "B가 답할 때: B는 2번 포트로 학습되고, A는 표에 있어 1번으로만 보냅니다.",
+    "표: A → 1번, B → 2번입니다."
+   ],
+   "answer": "A → 1번, B → 2번"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 예제에서 A가 B에게 두 번째로 보낼 때 스위치는 몇 개의 포트로 내보낼까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "표에 B가 있나요?",
+   "explanation": "B가 2번 포트에 있다는 것을 이미 학습했습니다.\n2번 포트 하나로만 보냅니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "16포트 스위치에 브로드캐스트 프레임이 3번 포트로 들어오면 몇 개의 포트로 나갈까요?",
+   "answer": "15",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "모두에게 보내는 주소입니다.",
+   "explanation": "브로드캐스트는 들어온 포트를 뺀 모든 포트로 나갑니다.\n16 − 1 = 15개입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "MAC 주소 00:1A:2B:3C:4D:5E의 제조사 번호 부분은 00:1A:{{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "2B",
+      "2b"
+     ]
+    }
+   ],
+   "hint": "앞 세 묶음입니다.",
+   "explanation": "앞 세 바이트가 제조사 번호입니다.\n00:1A:2B입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "MAC 주소 48비트로 이론상 몇 개의 서로 다른 주소를 만들 수 있을까요? 2의 몇 제곱인지 답하세요.",
+   "answer": "48",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "비트 수가 곧 지수입니다.",
+   "explanation": "n비트로 2ⁿ가지를 만듭니다.\n2⁴⁸, 약 281조 개입니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "카페의 암호 없는 Wi-Fi에서 같은 곳의 다른 사람이 내 통신을 엿볼 수 있는 까닭은 전파를 {{1}}가 받을 수 있기 때문입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "누구나",
+      "모두",
+      "아무나"
+     ]
+    }
+   ],
+   "hint": "전파가 닿는 범위를 생각하세요.",
+   "explanation": "전파는 공중으로 퍼져 가까운 모든 장치에 닿습니다.\n그래서 암호화가 필요합니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "스위치가 모든 프레임을 모든 포트로 보내지 않고 목적지 포트로만 보내는 방법과 그 장점을 설명해 보세요.",
+   "hint": "MAC 주소 표를 어떻게 만드는지부터 쓰세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "MAC 주소 표",
+      "표",
+      "학습"
+     ],
+     [
+      "보낸",
+      "출발지",
+      "포트"
+     ],
+     [
+      "목적지",
+      "그 포트",
+      "하나"
+     ],
+     [
+      "붐비",
+      "효율",
+      "보안",
+      "다른 장치"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "스위치는 프레임이 들어올 때 보낸 쪽 MAC 주소와 들어온 포트를 표에 적어 학습하고, 이후 그 주소로 가는 프레임은 표에 적힌 포트 하나로만 보냅니다. 그래서 다른 장치의 선이 불필요한 프레임으로 붐비지 않아 효율적이고, 남의 프레임이 다른 장치에 가지 않아 보안에도 도움이 됩니다."
+  }
+ ]
+}

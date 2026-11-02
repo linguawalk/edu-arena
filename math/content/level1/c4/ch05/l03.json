@@ -1,0 +1,330 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch05",
+    "no": 5,
+    "title": "수열의 극한과 급수"
+  },
+  "lesson": {
+    "id": "c4-ch05-l03",
+    "no": 3,
+    "title": "급수",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "급수와 부분합",
+      "body": [
+        "a₁ + a₂ + a₃ + …처럼 수열의 항을 끝없이 더한 것을 급수라고 합니다.",
+        "첫째항부터 제n항까지의 합 Sₙ을 부분합이라 하고, lim Sₙ이 수렴하면 그 값이 급수의 합입니다.",
+        "끝없이 더한다는 것은 직접 할 수 없으므로, n개까지 더한 부분합 Sₙ을 구하고 n → ∞일 때의 극한으로 정의합니다. 즉 급수의 합은 '수열 Sₙ의 극한'입니다. 부분분수로 나뉘는 급수는 Sₙ에서 가운데 항이 지워져 극한을 쉽게 구할 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "Σ(n=1~∞) 1/(n(n + 1))의 합은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "부분분수: 1/(n(n + 1)) = 1/n − 1/(n + 1)\n부분합 Sₙ = 1 − 1/(n + 1) (가운데 항이 지워짐)\nlim Sₙ = 1"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "Σ(n=1~∞) 1/((2n − 1)(2n + 1))의 합은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "부분분수: (1/2)(1/(2n − 1) − 1/(2n + 1))\nSₙ = (1/2)(1 − 1/(2n + 1))\nlim Sₙ = 1/2"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "발산하는 급수",
+      "body": [
+        "부분합이 한없이 커지거나 진동하면 급수는 발산합니다.",
+        "끝없이 더하는데 합이 유한할 수 있다는 것이 급수의 신기한 점입니다. 1/2 + 1/4 + 1/8 + …은 2를 넘지 못합니다. 반대로 1 + 1 + 1 + …처럼 더하는 항이 줄지 않으면 합은 한없이 커집니다. 수렴 여부는 항상 부분합의 극한으로 판단합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "Σ(n=1~∞) 1/(n(n + 3))의 합을 구하세요.",
+      "steps": [
+        "부분분수: 1/(n(n + 3)) = (1/3)(1/n − 1/(n + 3))",
+        "부분합에서 세 칸씩 떨어진 항끼리 지워져 1, 1/2, 1/3과 끝의 세 항만 남음",
+        "끝의 세 항은 n → ∞이면 0",
+        "합 = (1/3)(1 + 1/2 + 1/3) = 11/18"
+      ],
+      "answer": "11/18"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1 + 1 + 1 + …은 수렴할까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "부분합 Sₙ = n으로 한없이 커집니다.\n발산\n수렴하지 않으므로 0 (일반항 1이 0으로 가지 않음)\n원리: 일반항이 0으로 가지 않는 급수는 발산합니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "Σ(n=1~∞) (1/n − 1/(n + 1))의 합은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "부분합: (1 − 1/2) + (1/2 − 1/3) + … = 1 − 1/(n + 1)\nn → ∞이면 1\n합 1"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "수렴하면 항은 0으로",
+      "body": [
+        "급수가 수렴하면 lim aₙ = 0입니다. 대우를 쓰면 lim aₙ ≠ 0인 급수는 발산합니다.",
+        "하지만 lim aₙ = 0이라고 급수가 수렴하는 것은 아닙니다.",
+        "왜 lim aₙ = 0일까요? aₙ = Sₙ − Sₙ₋₁이고, 급수가 S로 수렴하면 Sₙ과 Sₙ₋₁이 모두 S로 가므로 aₙ → S − S = 0입니다. 하지만 역은 거짓입니다. 1/n → 0이지만 1 + 1/2 + 1/3 + …은 발산하는 유명한 예(조화급수)가 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "Σ(n=1~∞) (2n + 1)/(n + 3)이 수렴하는지 판정하세요.",
+      "steps": [
+        "일반항의 극한: (2n + 1)/(n + 3) → 2",
+        "lim aₙ = 2 ≠ 0",
+        "수렴하면 항이 0으로 가야 하므로 발산",
+        "원리: 일반항이 0으로 가지 않으면 반드시 발산"
+      ],
+      "answer": "발산"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "Σaₙ이 수렴할 때 lim aₙ의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "급수가 수렴하면 aₙ = Sₙ − Sₙ₋₁ → S − S\n= 0\n원리: 수렴하는 급수의 일반항은 반드시 0으로 갑니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "lim aₙ = 0이면 Σaₙ은 반드시 수렴할까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "역은 성립하지 않습니다.\n예: 1/n → 0이지만 1 + 1/2 + 1/3 + …은 발산(조화급수)\n반드시 수렴하는 것은 아니므로 0"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "Σ n/(n + 1)은 수렴할까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "일반항 n/(n + 1) → 1 ≠ 0\n일반항이 0으로 가지 않으므로 발산\n수렴하지 않음 → 0\n원리: 수렴하는 급수의 일반항은 반드시 0으로 가므로, 그 대우를 이용한 판정입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "부분합과 일반항",
+      "body": [
+        "Sₙ이 주어지면 급수의 합은 lim Sₙ이고, aₙ = Sₙ − Sₙ₋₁입니다.",
+        "부분합 Sₙ이 식으로 주어지면 두 가지를 알 수 있습니다. 급수의 합은 lim Sₙ, 각 항은 aₙ = Sₙ − Sₙ₋₁ (n ≥ 2), a₁ = S₁입니다. 수열의 합과 일반항 사이의 관계를 그대로 쓰는 것입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "부분합이 Sₙ = n/(2n + 1)인 급수의 합과 a₃을 구하세요.",
+      "steps": [
+        "급수의 합 = lim Sₙ = 1/2",
+        "a₃ = S₃ − S₂ = 3/7 − 2/5",
+        "= 15/35 − 14/35 = 1/35",
+        "확인: 일반항 aₙ = 1/((2n − 1)(2n + 1))"
+      ],
+      "answer": "합 1/2, a₃ = 1/35"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "Σ(aₙ − 2)가 수렴할 때 lim aₙ의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "수렴하는 급수의 일반항은 0으로 갑니다.",
+      "explanation": "Σ(aₙ − 2)가 수렴하면 일반항 aₙ − 2 → 0\naₙ → 2\nlim aₙ = 2\n원리: 수렴하는 급수의 일반항은 0으로 간다는 성질을 썼습니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "부분합이 Sₙ = 2n/(n + 1)인 급수의 합은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "부분합의 극한이 급수의 합입니다.",
+      "explanation": "급수의 합 = lim Sₙ = lim 2n/(n + 1)\n최고차항 계수의 비\n= 2\n원리: 급수의 합은 부분합 Sₙ의 극한입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 급수의 첫째항 a₁은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "a₁ = S₁",
+      "explanation": "a₁ = S₁ = 2/(1 + 1)\n= 1\n원리: 첫째항은 첫 번째 부분합과 같습니다.\n확인: a₁ = 2/2 = 1"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "부분분수로 나눠 소거되는 꼴이면 부분합을 구해 극한을 계산합니다.",
+        "급수가 수렴하면 상수배와 합에 대해 Σ(paₙ + qbₙ) = pΣaₙ + qΣbₙ이 성립합니다. 다만 두 급수가 모두 수렴할 때만 이렇게 나눌 수 있습니다. 발산하는 급수끼리의 합은 따로 조사해야 합니다. 부분분수로 소거되는 급수는 부분합을 먼저 식으로 구한 뒤 극한을 취합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "Σ(n=1~∞) 1/(n(n + 2))의 합은? (기약분수로)",
+      "answer": "3/4",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "두 칸 떨어진 항끼리 지워집니다.",
+      "explanation": "부분분수: (1/2)(1/n − 1/(n + 2))\n두 칸씩 지워져 1과 1/2만 남음: (1/2)(1 + 1/2)\n= 3/4"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "Σ(n=1~∞) (√(n + 1) − √n)은 수렴할까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "부분합을 구하세요.",
+      "explanation": "부분합 Sₙ = √(n + 1) − 1 (가운데 항이 지워짐)\n√(n + 1)이 한없이 커지므로 발산\n수렴하지 않음 → 0"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "Σ(n=1~∞) 2/(n(n + 1))의 합은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "앞의 급수의 2배입니다.",
+      "explanation": "2/(n(n + 1)) = 2(1/n − 1/(n + 1))\nSₙ = 2(1 − 1/(n + 1)) → 2\n합 2"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "Σaₙ = 4, Σbₙ = 1일 때 Σ(aₙ − 2bₙ)의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "급수의 성질로 나누세요.",
+      "explanation": "두 급수가 모두 수렴하므로 Σaₙ − 2Σbₙ\n= 4 − 2\n= 2\n원리: 두 급수가 모두 수렴할 때만 Σ(aₙ − 2bₙ) = Σaₙ − 2Σbₙ로 나눌 수 있습니다."
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "부분합이 Sₙ = 3 − 1/n인 급수의 합은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "부분합의 극한을 구하세요.",
+      "explanation": "급수의 합 = lim Sₙ = lim (3 − 1/n)\n1/n → 0\n= 3\n원리: 급수의 합은 부분합의 극한입니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "lim aₙ = 0이어도 급수 Σaₙ이 발산할 수 있음을 예를 들어 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "1/n",
+            "조화"
+          ],
+          [
+            "0",
+            "작아"
+          ],
+          [
+            "발산",
+            "커"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "1 + 1/2 + 1/3 + …은 항이 0에 가까워지지만 부분합은 한없이 커져 발산합니다. 항이 0으로 가는 것은 수렴의 필요조건일 뿐 충분조건이 아닙니다."
+    }
+  ]
+}

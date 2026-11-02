@@ -1,0 +1,112 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "saa-c03",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "디커플링 아키텍처: SQS와 SNS",
+  "rule_summary_ko": "SQS(Simple Queue Service)는 풀(pull) 기반으로, 소비자가 직접 큐를 조회(폴링)해서 메시지를 가져가며, 소비되기 전까지 메시지가 큐에 보존됩니다(기본 4일, 최대 14일). SNS(Simple Notification Service)는 푸시(push) 기반으로, 발행된 메시지를 구독자들에게 즉시 전달하지만 지속성이 없어서(만약 그 순간 구독자가 없거나 처리에 실패하면) 메시지가 그냥 사라질 수 있습니다. SNS는 하나의 메시지를 여러 구독자에게 동시에 뿌리는 팬아웃(fan-out)에 강점이 있고, SNS와 SQS를 결합하면(SNS 토픽 → 여러 SQS 큐) 팬아웃의 확장성과 SQS의 안정적인 보존을 동시에 얻을 수 있습니다.",
+  "examples": [
+    { "code": "주문 처리 시스템 — 주문이 몰려도 유실 없이 순차적으로 처리되어야 함", "note_ko": "SQS가 적합 — 소비자가 준비될 때까지 메시지가 큐에 안전하게 보존됨" },
+    { "code": "중요 이벤트 발생 시 여러 팀(이메일·SMS·슬랙 알림)에게 동시에 알려야 함", "note_ko": "SNS가 적합 — 하나의 메시지를 여러 구독자에게 동시에 팬아웃" }
+  ],
+  "questions": [
+    {
+      "id": "aws_saa_l2_u2_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "SQS와 SNS의 메시지 전달 방식 차이는?",
+      "options": [
+        "SQS는 소비자가 직접 큐를 조회(폴링)하는 풀(pull) 방식이고, SNS는 발행 즉시 구독자에게 전달되는 푸시(push) 방식이다",
+        "SQS가 푸시 방식이고 SNS가 풀 방식이다(설명이 반대)",
+        "둘 다 완전히 동일한 풀 방식을 사용한다",
+        "둘 다 완전히 동일한 푸시 방식을 사용한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "이 풀 vs 푸시 차이가 두 서비스의 다른 특성(지속성, 사용 사례)을 결정합니다.",
+      "concept_tags": ["sqs_pull_sns_push"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l2_u2_q002",
+      "type": "concept_matching_item",
+      "code": "주문 처리 시스템 — 갑자기 주문이 몰려도, 소비자(처리 서비스)가 준비될 때까지 주문 데이터가 안전하게 유실 없이 보존되어야 함",
+      "prompt_ko": "이 요구사항에 가장 적합한 서비스는?",
+      "options": [
+        "SQS — 소비자가 없거나 바쁠 때도 메시지가 큐에 보존되어 나중에 처리 가능",
+        "SNS — 그 순간 구독자가 없으면 메시지가 유실될 수 있어 부적합",
+        "둘 다 이 요구사항에 부적합하다",
+        "S3만으로 이 요구사항을 완전히 대체할 수 있다"
+      ],
+      "answer": 0,
+      "explanation_ko": "메시지 지속성이 중요한 워크로드에는 SQS의 보존 기능이 필수적입니다.",
+      "concept_tags": ["sqs_persistence"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l2_u2_q003",
+      "type": "concept_matching_item",
+      "code": "중요한 시스템 알람이 발생하면, 이메일·SMS·슬랙 알림 등 여러 채널로 동시에 즉시 알려야 함",
+      "prompt_ko": "이 요구사항에 가장 적합한 서비스는?",
+      "options": [
+        "SNS — 하나의 메시지를 여러 구독자(채널)에게 동시에 팬아웃해서 실시간으로 전달",
+        "SQS — 순차 처리에 특화되어 있어 동시 다중 알림에는 부적합",
+        "이런 요구사항은 AWS에서 지원되지 않는다",
+        "SNS와 SQS 둘 다 이 요구사항에 부적합하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "실시간 팬아웃 알림은 SNS의 대표적인 강점입니다.",
+      "concept_tags": ["sns_fanout"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l2_u2_q004",
+      "type": "concept_matching_item",
+      "code": "SNS 토픽에 메시지를 발행했는데, 그 순간 구독 중인 소비자가 아무도 없거나 처리에 실패함",
+      "prompt_ko": "이 메시지는 어떻게 됩니까?",
+      "options": [
+        "SNS는 기본적으로 메시지를 지속적으로 보존하지 않아, 그 메시지가 유실될 수 있다",
+        "SQS처럼 최대 14일간 안전하게 보존된다",
+        "메시지가 자동으로 다른 리전으로 복제되어 안전하게 보관된다",
+        "SNS는 실패한 메시지를 무한정 재시도한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "SNS 단독으로는 지속성이 보장되지 않는다는 점이 SQS와의 핵심 차이입니다.",
+      "concept_tags": ["sns_no_persistence"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l2_u2_q005",
+      "type": "concept_matching_item",
+      "code": "하나의 이벤트(예: 신규 주문)를 여러 개의 독립적인 마이크로서비스(재고 처리, 배송 준비, 이메일 발송)가 각자 자기 속도로 안전하게 처리하고 싶어함",
+      "prompt_ko": "이 요구사항에 적합한 아키텍처는?",
+      "options": [
+        "SNS 토픽 하나에 여러 개의 SQS 큐를 구독시키는 팬아웃 패턴 — SNS의 동시 배포와 SQS의 안전한 보존을 함께 얻음",
+        "SNS만 단독으로 사용(지속성이 없어 각 서비스가 처리 실패 시 메시지를 잃을 위험)",
+        "SQS만 단독으로 사용(한 메시지를 여러 소비자에게 동시에 팬아웃하기 어려움)",
+        "이런 조합은 AWS에서 지원되지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "SNS+SQS 팬아웃 패턴은 여러 독립적인 소비자에게 안전하게 이벤트를 분배하는 대표적인 아키텍처입니다.",
+      "concept_tags": ["sns_sqs_fanout_pattern"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l2_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "SQS·SNS 같은 메시징 서비스를 사용해서 애플리케이션 구성 요소를 디커플링(decoupling)하는 것의 이점은?",
+      "options": [
+        "한 구성 요소에 장애가 생기거나 처리 속도가 느려져도, 다른 구성 요소가 즉시 함께 영향받지 않아 전체 시스템의 복원력과 확장성이 높아진다",
+        "디커플링은 시스템을 오히려 더 복잡하고 취약하게 만들 뿐이다",
+        "디커플링된 구성 요소는 항상 서로 강하게 동기화되어야 한다",
+        "메시징 서비스는 디커플링과 무관한 별개의 기능이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "느슨한 결합(loose coupling)은 장애 전파를 막고 각 구성 요소를 독립적으로 확장·복구할 수 있게 해줍니다.",
+      "concept_tags": ["decoupling_benefit"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+ "no": 4,
+ "title": "BJT 소신호 증폭기",
+ "hours": 6,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "BJT의 소신호 모델(하이브리드 π)을 그리고 g_m, r_π를 계산할 수 있다.",
+  "공통 이미터·공통 컬렉터·공통 베이스 증폭기의 이득과 입출력 저항을 비교할 수 있다.",
+  "이미터 축퇴(degeneration)가 이득과 선형성에 주는 효과를 설명할 수 있다."
+ ],
+ "checklist": [
+  "직류 해석(바이어스)과 교류 해석(소신호)의 분리: 직류 전원 → 접지, 큰 커패시터 → 단락",
+  "상호 컨덕턴스 g_m = I_C/V_T",
+  "입력 저항 r_π = β/g_m, 출력 저항 r_o = V_A/I_C",
+  "공통 이미터(CE): 전압 이득 ≈ −g_mR_C, 반전",
+  "공통 컬렉터(이미터 팔로워): 이득 ≈ 1, 높은 입력 저항, 낮은 출력 저항(버퍼)",
+  "공통 베이스(CB): 낮은 입력 저항, 고주파에 유리",
+  "이미터 저항 R_E가 있을 때 이득 ≈ −R_C/R_E"
+ ],
+ "advice": [
+  "소신호 해석은 '바이어스로 동작점을 정한 뒤, 그 근처의 작은 변화만 선형 회로로 본다'는 생각입니다. 회로를 직류 회로와 교류 회로 두 장으로 나누어 그리는 습관을 들이면 혼동이 사라집니다. g_m = I_C/V_T 한 식이 이득을 결정한다는 점, 즉 바이어스 전류를 키우면 이득이 커진다는 연결이 이 단원의 핵심입니다.",
+  "세 가지 기본 증폭기는 '어느 단자를 공통으로 두는가'의 차이입니다. 전압 이득·입력 저항·출력 저항을 한 표로 비교해 두면, 다단 증폭기를 설계할 때 왜 CE 뒤에 이미터 팔로워를 두는지(출력 저항을 낮추려고) 바로 이해됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Sedra · Smith, Microelectronic Circuits (번역본 『마이크로 전자회로』, 장 제목으로 표기)",
+   "part": "Bipolar Junction Transistors 장의 소신호 절"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Razavi, Fundamentals of Microelectronics (장 제목으로 표기)",
+   "part": "Bipolar Amplifiers 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.012 Microelectronic Devices and Circuits (2009년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/",
+   "lang": "영어",
+   "part": "Lecture 13 (소신호 등가 회로)"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "회로이론 1단원 회로 변수와 회로 소자",
+   "url": "guide.html?lv=2&t=electrical&s=circuit-theory&u=1",
+   "part": "종속 전원 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "컬렉터 전류 1 mA인 BJT의 상호 컨덕턴스 g_m은 몇 mS일까요? (V_T = 25 mV로 계산)",
+   "answer": "40",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "g_m = I_C/V_T = 1 mA/25 mV = 40 mS",
+   "hint": "g_m = I_C/V_T입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 트랜지스터의 β가 100이면 r_π는 몇 kΩ일까요?",
+   "answer": "2.5",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "explanation": "r_π = β/g_m = 100/0.04 = 2500 Ω = 2.5 kΩ",
+   "hint": "r_π = β/g_m입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "위 트랜지스터로 만든 공통 이미터 증폭기의 컬렉터 저항이 5 kΩ이면 전압 이득은 얼마일까요? (r_o와 부하 무시)",
+   "answer": "-200",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "A_v ≈ −g_mR_C = −0.04 × 5000 = −200\n음수는 위상이 반전된다는 뜻입니다.",
+   "hint": "A_v ≈ −g_mR_C입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "전압 이득이 약 1이고 입력 저항은 크며 출력 저항이 작아 버퍼로 쓰는 BJT 증폭기는 공통 {{1}} 증폭기(이미터 팔로워)입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "컬렉터"
+     ]
+    }
+   ],
+   "explanation": "출력이 이미터에서 입력을 따라가므로 이미터 팔로워라고 부릅니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "electronic-circuits",
+ "id": "l2-electronics-electronic-circuits-u04"
+}

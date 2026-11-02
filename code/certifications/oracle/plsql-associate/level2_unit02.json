@@ -1,0 +1,111 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "커서 FOR 루프",
+  "rule_summary_ko": "커서 FOR 루프는 명시적 커서(또는 인라인 SELECT 문)를 자동으로 OPEN·FETCH·CLOSE 해주는 편리한 문법입니다. 루프의 인덱스는 커서가 반환하는 행의 구조에 맞춰 %ROWTYPE 레코드로 암묵적으로 선언되며, 이 레코드는 루프 안에서만 유효합니다(루프 밖에서는 참조 불가). OPEN, FETCH, CLOSE, %NOTFOUND 검사를 직접 작성할 필요가 없고, 예외가 발생하거나 루프를 중간에 빠져나가도 커서가 자동으로 닫힙니다.",
+  "examples": [
+    { "code": "FOR emp_rec IN (SELECT last_name, salary FROM employees WHERE department_id = 20)\nLOOP\n    DBMS_OUTPUT.PUT_LINE(emp_rec.last_name);\nEND LOOP;", "note_ko": "OPEN, FETCH, CLOSE, %NOTFOUND 검사가 전부 필요 없음 — emp_rec는 자동으로 선언된 레코드" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l2_u2_q001",
+      "type": "concept_matching_item",
+      "code": "FOR emp_rec IN (SELECT last_name, salary FROM employees WHERE department_id = 20)\nLOOP\n    DBMS_OUTPUT.PUT_LINE(emp_rec.last_name);\nEND LOOP;",
+      "prompt_ko": "이 커서 FOR 루프에서 emp_rec는 어떻게 선언됩니까?",
+      "options": [
+        "DECLARE 절에 미리 선언해야 한다",
+        "루프가 시작될 때 쿼리 결과의 구조에 맞춰 %ROWTYPE 레코드로 자동(암묵적)으로 선언된다",
+        "emp_rec는 선언 없이 사용할 수 없어 컴파일 오류가 발생한다",
+        "emp_rec는 항상 NUMBER 타입으로 선언된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "커서 FOR 루프는 별도 선언 없이도 결과 행의 구조에 맞는 레코드 변수를 자동으로 만들어줍니다.",
+      "concept_tags": ["cursor_for_loop_implicit_record"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l2_u2_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "커서 FOR 루프를 사용할 때 명시적으로 작성할 필요가 없는 것은?",
+      "options": [
+        "SELECT 쿼리(또는 커서 이름)",
+        "OPEN, FETCH, CLOSE 문과 %NOTFOUND를 이용한 종료 조건 검사 — 이들은 모두 자동으로 처리된다",
+        "루프 본문에서 처리할 로직",
+        "END LOOP"
+      ],
+      "answer": 1,
+      "explanation_ko": "커서 FOR 루프의 핵심 장점은 OPEN/FETCH/CLOSE와 종료 조건 검사를 모두 자동화해준다는 것입니다.",
+      "concept_tags": ["cursor_for_loop_automation"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l2_u2_q003",
+      "type": "concept_matching_item",
+      "code": "FOR emp_rec IN (SELECT last_name FROM employees) LOOP\n    NULL;\nEND LOOP;\nDBMS_OUTPUT.PUT_LINE(emp_rec.last_name); -- 루프 밖에서 참조 시도",
+      "prompt_ko": "루프가 끝난 후 바깥에서 emp_rec를 참조하려고 하면?",
+      "options": [
+        "루프의 마지막 값을 그대로 사용할 수 있다",
+        "컴파일 오류 발생 — emp_rec는 커서 FOR 루프 안에서만 유효한 지역 변수라, 루프 밖에서는 정의되지 않는다",
+        "emp_rec는 자동으로 NULL이 된다",
+        "런타임 예외가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "커서 FOR 루프의 암묵적 레코드는 루프 범위 안에서만 존재하는 지역 변수입니다.",
+      "concept_tags": ["cursor_for_loop_scope"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l2_u2_q004",
+      "type": "concept_matching_item",
+      "code": "FOR emp_rec IN (SELECT last_name FROM employees) LOOP\n    IF emp_rec.last_name = 'King' THEN\n        RETURN; -- 루프 중간에 강제로 빠져나감\n    END IF;\nEND LOOP;",
+      "prompt_ko": "RETURN으로 루프 중간에 강제로 빠져나가면, 자동으로 열렸던 커서는 어떻게 됩니까?",
+      "options": [
+        "닫히지 않고 계속 열려있어 리소스가 누수된다",
+        "정상적으로 자동 종료(닫힘)된다 — 커서 FOR 루프는 예외나 조기 종료 시에도 커서를 자동으로 닫아준다",
+        "프로그램이 비정상 종료된다",
+        "다음 번 커서 사용 시 오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "커서 FOR 루프는 루프가 어떻게 끝나든(정상 완료, 조기 종료, 예외) 자동으로 커서를 닫아줘서 리소스 누수를 방지합니다.",
+      "concept_tags": ["cursor_for_loop_auto_close"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l2_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "커서 FOR 루프는 미리 선언된 명시적 커서와 인라인 SELECT 문 중 어느 쪽을 사용할 수 있습니까?",
+      "options": [
+        "미리 선언된 명시적 커서만 가능하다",
+        "둘 다 가능하다 — DECLARE에서 미리 선언한 커서, 또는 FOR 뒤에 괄호로 바로 SELECT 문을 적는 인라인 방식 모두 지원된다",
+        "인라인 SELECT 문만 가능하다",
+        "커서 FOR 루프는 SELECT 문을 아예 사용할 수 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "명시적으로 미리 선언한 커서를 사용할 수도 있고, 간단히 FOR rec IN (SELECT ...) 형태로 바로 쓸 수도 있습니다.",
+      "concept_tags": ["cursor_for_loop_syntax_variants"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l2_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "커서 FOR 루프가 명시적 OPEN·FETCH·CLOSE 방식보다 일반적으로 권장되는 이유는?",
+      "options": [
+        "코드가 더 간결해지고, 커서를 닫는 것을 깜빡하는 실수(리소스 누수)를 원천적으로 방지해주기 때문에",
+        "커서 FOR 루프는 항상 훨씬 더 빠르게 실행되기 때문에",
+        "커서 FOR 루프만 여러 행을 처리할 수 있기 때문에",
+        "명시적 커서는 최신 오라클 버전에서 사용할 수 없기 때문에"
+      ],
+      "answer": 0,
+      "explanation_ko": "간결함과 안전성(자동 자원 관리)이 커서 FOR 루프의 핵심 장점입니다.",
+      "concept_tags": ["cursor_for_loop_benefits"],
+      "difficulty": "practice"
+    }
+  ]
+}

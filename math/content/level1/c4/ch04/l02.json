@@ -1,0 +1,367 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch04",
+    "no": 4,
+    "title": "적분"
+  },
+  "lesson": {
+    "id": "c4-ch04-l02",
+    "no": 2,
+    "title": "정적분의 뜻",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "넓이를 직사각형으로",
+      "body": [
+        "곡선 아래 넓이는 폭이 좁은 직사각형 여러 개로 채워 어림할 수 있습니다. 폭을 좁힐수록 정확해집니다.",
+        "곡선 아래 넓이는 직접 공식으로 구할 수 없지만, 직사각형의 넓이는 가로 × 세로로 쉽게 구할 수 있습니다. 그래서 구간을 잘게 나눠 직사각형으로 채우고, 나누는 개수를 늘려 가며 오차를 줄입니다. 이 아이디어가 적분의 출발점입니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": -0.5,
+          "xmax": 1.5,
+          "ymin": -0.5,
+          "ymax": 1.5,
+          "xstep": 0.5,
+          "ystep": 0.5,
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                0,
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "shade",
+              "curve": {
+                "kind": "poly",
+                "coef": [
+                  0,
+                  0,
+                  1
+                ]
+              },
+              "from": 0,
+              "to": 1
+            }
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "y = 2와 x축 사이, 0 ≤ x ≤ 3 부분의 넓이는?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y = 2는 수평선이라 넓이는 직사각형입니다.\n가로 3 × 세로 2\n= 6\n원리: 상수함수의 정적분은 직사각형의 넓이"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "y = x와 x축 사이, 0 ≤ x ≤ 4 부분의 넓이는?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y = x, x축, x = 4가 만드는 직각삼각형\n넓이 = 4 × 4 ÷ 2\n= 8\n확인: ∫₀⁴ x dx = [x²/2]₀⁴ = 8"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "구분구적법",
+      "body": [
+        "구간을 n등분해 직사각형 넓이의 합을 구하고 n → ∞일 때의 극한을 구하면 정확한 넓이가 됩니다.",
+        "y = x²과 x축 사이, 0 ≤ x ≤ 1의 넓이는 이렇게 1/3이 됩니다.",
+        "n등분하면 각 직사각형의 폭은 1/n, 오른쪽 끝의 높이는 (k/n)²입니다. 합은 (1/n)Σ(k/n)² = (1/n³)Σk² = (n + 1)(2n + 1)/(6n²)이고, n → ∞이면 2/6 = 1/3입니다. 코스 3에서 배운 Σk² 공식과 코스 4의 극한이 여기서 만납니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "0 ≤ x ≤ 2에서 y = x와 x축 사이의 넓이를 4등분 직사각형(오른쪽 끝 높이)으로 어림하고 참값과 비교하세요.",
+      "steps": [
+        "폭 0.5, 높이 0.5, 1, 1.5, 2",
+        "합: 0.5 × (0.5 + 1 + 1.5 + 2) = 2.5",
+        "참값은 삼각형 넓이 2 × 2 ÷ 2 = 2",
+        "오른쪽 끝을 쓰면 증가함수에서 조금 크게 어림됩니다."
+      ],
+      "answer": "어림 2.5, 참값 2"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "y = x²과 x축 사이, 0 ≤ x ≤ 1 부분의 넓이는? (기약분수로)",
+      "answer": "1/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "구분구적법: n등분한 직사각형 넓이의 합 (1/n³)Σk² = (n + 1)(2n + 1)/(6n²)\nn → ∞이면 2n²/(6n²) → 1/3\n넓이 1/3"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "0 ≤ x ≤ 1을 4등분해 각 구간 오른쪽 끝의 높이로 만든 직사각형 넓이의 합은? (기약분수로)",
+      "answer": "15/32",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "폭 1/4, 높이 (1/4)², (2/4)², (3/4)², (4/4)² = 1/16, 4/16, 9/16, 16/16\n합: (1/4) × 30/16 = 30/64\n= 15/32 (참값 1/3보다 조금 큼)"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "정적분",
+      "body": [
+        "f(x) ≥ 0일 때 y = f(x)와 x축 사이, a ≤ x ≤ b 부분의 넓이를 정적분 ∫ₐᵇ f(x) dx로 씁니다.",
+        "∫ₐᵇ f(x) dx에서 ∫는 합(Sum)의 S를 길게 늘인 모양이고, f(x) dx는 '높이 × 아주 얇은 폭'인 직사각형 하나의 넓이를 뜻합니다. 즉 정적분은 아주 얇은 직사각형들을 a부터 b까지 모두 더한 것입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "∫₀² 3 dx의 값은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y = 3과 x축 사이, 0 ≤ x ≤ 2의 직사각형\n가로 2 × 세로 3\n= 6\n원리: 상수함수의 정적분은 직사각형의 넓이입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "∫₀² x dx의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y = x와 x축 사이, 0 ≤ x ≤ 2의 직각삼각형\n2 × 2 ÷ 2\n= 2\n확인: [x²/2]₀² = 2"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "∫₋₁¹ |x| dx의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y = |x|는 V자 모양이라 두 개의 직각삼각형\n각각 1 × 1 ÷ 2 = 1/2\n합 1 (|x| ≥ 0이라 모두 양수로 더해짐)"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "x축 아래의 부분",
+      "body": [
+        "f(x) < 0인 부분은 정적분에서 음수로 계산됩니다. 그래서 정적분은 '넓이'가 아니라 '부호가 있는 넓이'입니다.",
+        "f(x) < 0이면 '높이 × 폭'이 음수가 되므로 그 부분은 음수로 더해집니다. 그래서 x축 위와 아래의 넓이가 같으면 정적분은 0이 될 수 있습니다. 실제 넓이를 구할 때는 절댓값을 씌워야 합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "∫₋₂² x dx와 y = x와 x축 사이(−2 ≤ x ≤ 2)의 넓이를 비교하세요.",
+      "steps": [
+        "x축 위: 0 ≤ x ≤ 2의 삼각형 넓이 2 (정적분 +2)",
+        "x축 아래: −2 ≤ x ≤ 0의 삼각형 넓이 2 (정적분 −2)",
+        "정적분 = 2 + (−2) = 0",
+        "실제 넓이 = 2 + 2 = 4"
+      ],
+      "answer": "정적분 0, 넓이 4"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "∫₀² (−x) dx의 값은?",
+      "answer": "-2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x축 아래 부분은 음수로 계산됩니다.",
+      "explanation": "y = −x는 0 < x ≤ 2에서 x축 아래\n넓이 2 × 2 ÷ 2 = 2이지만 정적분은 음수로 계산\n= −2"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "∫₋₁¹ x dx의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "위와 아래가 서로 상쇄됩니다.",
+      "explanation": "x축 위(0 ≤ x ≤ 1)의 삼각형 +1/2, 아래(−1 ≤ x ≤ 0)의 삼각형 −1/2\n합 0\n원리: 원점 대칭인 함수는 대칭 구간에서 정적분이 0"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정적분의 성질",
+      "body": [
+        "∫ₐᵇ f + ∫ᵦᶜ f = ∫ₐᶜ f,  ∫ᵦₐ f = −∫ₐᵇ f,  ∫ₐₐ f = 0",
+        "이 성질들은 정적분을 '구간 위에서 넓이를 쌓는 것'으로 보면 자연스럽습니다. 구간을 이어 붙이면 넓이도 이어 붙고, 방향을 거꾸로 하면 부호가 바뀌며, 구간의 길이가 0이면 넓이도 0입니다. 이 성질들은 정적분의 계산을 크게 줄여 줍니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "∫₀⁵ f(x) dx = 9, ∫₂⁵ f(x) dx = 4일 때 ∫₀² f(x) dx와 ∫₅² f(x) dx를 구하세요.",
+      "steps": [
+        "∫₀⁵ = ∫₀² + ∫₂⁵이므로 ∫₀² = 9 − 4 = 5",
+        "∫₅² = −∫₂⁵",
+        "= −4",
+        "원리: 위끝과 아래끝을 바꾸면 부호가 바뀜"
+      ],
+      "answer": "5, −4"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "∫₀¹ f(x) dx = 2, ∫₁³ f(x) dx = 5일 때 ∫₀³ f(x) dx의 값은?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "∫ₐᵇ + ∫ᵦᶜ = ∫ₐᶜ",
+      "explanation": "구간을 이어 붙이면 정적분도 더해집니다: ∫₀³ = ∫₀¹ + ∫₁³\n2 + 5\n= 7\n원리: 구간을 이어 붙이면 넓이도 이어 붙습니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 조건에서 ∫₃⁰ f(x) dx의 값은?",
+      "answer": "-7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "방향이 반대이면 부호가 바뀝니다.",
+      "explanation": "위끝과 아래끝을 바꾸면 부호가 바뀝니다.\n∫₃⁰ f = −∫₀³ f\n= −7\n원리: 적분 방향을 거꾸로 하면 부호가 바뀝니다."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "∫₂² f(x) dx의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "구간의 길이가 0입니다.",
+      "explanation": "위끝과 아래끝이 같으면 구간의 길이가 0\n넓이도 0\n= 0\n원리: 폭이 0인 영역의 넓이는 0이므로 f가 무엇이든 0입니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "∫₀³ f(x) dx = 7일 때 ∫₀³ (2f(x) + 1) dx의 값은?",
+      "answer": "17",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "상수배와 합으로 나누세요.",
+      "explanation": "정적분의 선형성: 2∫₀³ f dx + ∫₀³ 1 dx\n= 2 × 7 + 3\n= 17\n주의: ∫₀³ 1 dx = 3 (1을 더하는 부분도 적분해야 함)"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "∫₋₂² √(4 − x²) dx = {{1}}π",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": "어떤 도형인지 그려 보세요.",
+      "explanation": "y = √(4 − x²)은 반지름 2인 원의 위쪽 절반\n넓이 = π × 2² ÷ 2\n= 2π이므로 빈칸은 2"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "∫₀⁴ (4 − x) dx의 값은?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "도형의 넓이로 구하세요.",
+      "explanation": "y = 4 − x, x축, y축이 만드는 직각삼각형\n4 × 4 ÷ 2\n= 8\n확인: [4x − x²/2]₀⁴ = 16 − 8 = 8"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "정적분의 값이 음수가 나올 수 있는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "x축 아래",
+            "음수"
+          ],
+          [
+            "부호"
+          ],
+          [
+            "넓이"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "정적분은 x축 위의 넓이는 양수로, x축 아래의 넓이는 음수로 더합니다. 그래서 그래프가 x축 아래에 있는 부분이 더 크면 정적분의 값이 음수가 됩니다."
+    }
+  ]
+}

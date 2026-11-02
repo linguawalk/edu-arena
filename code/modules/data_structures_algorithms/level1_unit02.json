@@ -1,0 +1,91 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "배열의 특징과 연산",
+  "questions": [
+    {
+      "id": "dsa_l1_u02_q001",
+      "type": "predict_output",
+      "code": "nums = [1, 2, 3, 4, 5]\nprint(nums[2])",
+      "prompt_en": "What is printed? (Indexed access into an array/list.)",
+      "prompt_ko": "출력 결과는? (배열/리스트의 인덱스 접근입니다.)",
+      "options": ["2", "3", "4", "오류"],
+      "answer": 1,
+      "explanation_en": "Indexed access like nums[2] jumps directly to that memory location using its address — no scanning needed, making it O(1).",
+      "explanation_ko": "nums[2] 같은 인덱스 접근은 주소를 이용해 그 메모리 위치로 바로 이동합니다 — 훑어볼 필요가 없어 O(1)입니다.",
+      "concept_tags": ["array", "indexed_access"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l1_u02_q002",
+      "type": "predict_output",
+      "code": "nums = [1, 2, 3, 4, 5]\nnums.append(6)\nprint(nums)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["[1, 2, 3, 4, 5]", "[1, 2, 3, 4, 5, 6]", "[6, 1, 2, 3, 4, 5]", "오류"],
+      "answer": 1,
+      "explanation_en": "append() adds an element to the end of the array; if there's spare capacity, this is typically O(1) — one of the fastest array operations.",
+      "explanation_ko": "append()는 배열 끝에 요소를 추가합니다. 여유 공간이 있으면 보통 O(1)로, 배열 연산 중 가장 빠른 축에 속합니다.",
+      "concept_tags": ["array", "append_operation"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l1_u02_q003",
+      "type": "predict_output",
+      "code": "nums = [1, 2, 3, 4, 5]\nnums.insert(0, 0)\nprint(nums)",
+      "prompt_en": "What is printed? (Note: inserting at the very front.)",
+      "prompt_ko": "출력 결과는? (맨 앞에 삽입하는 점에 주의하세요.)",
+      "options": ["[0, 1, 2, 3, 4, 5]", "[1, 2, 3, 4, 5, 0]", "오류", "[1, 0, 2, 3, 4, 5]"],
+      "answer": 0,
+      "explanation_en": "insert(0, 0) places the new element at the front; every existing element must shift one position over, making this O(n) — much more expensive than append.",
+      "explanation_ko": "insert(0, 0)은 새 요소를 맨 앞에 놓습니다. 기존 요소가 모두 한 칸씩 밀려야 해서 O(n)이며, append보다 훨씬 비쌉니다.",
+      "concept_tags": ["array", "insert_operation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l1_u02_q004",
+      "type": "fill_blank",
+      "code": "nums = [1, 2, 3, 4, 5]\nnums.insert(0, 0)\n# 이 연산의 복잡도는?",
+      "prompt_en": "Fill in the blank with the Big-O complexity of inserting at the front of an array.",
+      "prompt_ko": "배열 맨 앞에 삽입하는 연산의 Big-O 복잡도를 빈칸에 채우세요.",
+      "options": ["O(n)", "O(1)", "O(log n)", "O(n^2)"],
+      "answer": 0,
+      "explanation_en": "Because every element after the insertion point must shift to make room, front-insertion touches all n elements in the worst case: O(n).",
+      "explanation_ko": "삽입 지점 이후의 모든 요소가 자리를 만들기 위해 밀려야 하므로, 앞쪽 삽입은 최악의 경우 n개 요소를 모두 건드립니다: O(n).",
+      "concept_tags": ["array", "insert_operation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l1_u02_q005",
+      "type": "predict_output",
+      "code": "nums = [1, 2, 3, 4, 5]\nremoved = nums.pop()\nprint(removed)\nprint(nums)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5\\n[1, 2, 3, 4]", "1\\n[2, 3, 4, 5]", "5\\n[1, 2, 3, 4, 5]", "오류"],
+      "answer": 0,
+      "explanation_en": "pop() with no argument removes and returns the LAST element; 5 is removed, leaving [1, 2, 3, 4].",
+      "explanation_ko": "인자 없는 pop()은 마지막 요소를 제거하고 반환합니다. 5가 제거되어 [1, 2, 3, 4]가 남습니다.",
+      "concept_tags": ["array", "pop_operation"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l1_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each array operation to its typical Big-O complexity.",
+      "prompt_ko": "각 배열 연산과 일반적인 Big-O 복잡도를 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "인덱스로 접근 (nums[i])", "definition": "O(1) — 주소 계산으로 바로 이동" },
+        { "term": "끝에 추가 (append)", "definition": "O(1) — 여유 공간이 있으면 바로 뒤에 놓음" },
+        { "term": "맨 앞에 삽입 (insert(0, x))", "definition": "O(n) — 기존 요소를 모두 한 칸씩 밀어야 함" },
+        { "term": "값으로 검색 (x in nums)", "definition": "O(n) — 찾을 때까지 처음부터 하나씩 확인" }
+      ],
+      "explanation_en": "Arrays excel at indexed access and end-insertion but are expensive for front-insertion and unsorted search — understanding these trade-offs is the foundation for choosing the right data structure.",
+      "explanation_ko": "배열은 인덱스 접근과 끝에 추가하는 데는 뛰어나지만, 앞쪽 삽입과 정렬되지 않은 검색에는 비용이 큽니다 — 이런 장단점을 이해하는 것이 올바른 자료구조를 선택하는 기초입니다.",
+      "concept_tags": ["array", "indexed_access", "append_operation", "insert_operation"],
+      "difficulty": "practice"
+    }
+  ]
+}

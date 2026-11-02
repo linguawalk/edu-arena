@@ -1,0 +1,341 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch02",
+  "no": 2,
+  "title": "플립플롭과 메모리"
+ },
+ "lesson": {
+  "id": "c4-ch02-l03",
+  "no": 3,
+  "title": "레지스터와 카운터",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "플립플롭을 나란히",
+   "body": [
+    "D 플립플롭 n개를 나란히 두고 같은 클럭을 연결하면 n비트를 한꺼번에 저장하는 레지스터가 됩니다. 8비트 레지스터는 플립플롭 8개, 64비트 레지스터는 64개입니다.",
+    "레지스터는 CPU 안에서 계산 중인 값을 담는 가장 빠른 저장소입니다. '64비트 CPU'는 보통 레지스터 하나가 64비트라는 뜻입니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "numeric",
+   "prompt": "32비트 레지스터에는 D 플립플롭이 몇 개 필요할까요?",
+   "answer": "32",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "비트 수만큼 필요합니다.",
+   "explanation": "플립플롭 하나가 1비트입니다.\n32비트면 32개입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "시프트 레지스터",
+   "body": [
+    "플립플롭의 출력을 다음 플립플롭의 입력에 차례로 이으면, 클럭마다 비트들이 한 칸씩 옆으로 이동합니다. 이것을 시프트 레지스터라고 합니다.",
+    "2진수를 왼쪽으로 한 칸 옮기고 오른쪽에 0을 채우면 값이 2배가 됩니다. 0000 0101(5)을 왼쪽으로 한 칸 옮기면 0000 1010(10)입니다. 오른쪽으로 한 칸 옮기면 2로 나눈 몫이 됩니다.",
+    "직렬 통신에서는 시프트 레지스터로 병렬 데이터를 한 비트씩 내보내거나, 한 비트씩 받은 것을 모아 바이트로 만듭니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "0000 0011(3)을 왼쪽으로 두 칸 시프트하면?",
+   "steps": [
+    "한 칸: 0000 0110 = 6입니다.",
+    "두 칸: 0000 1100 = 12입니다.",
+    "두 칸은 2² = 4배입니다."
+   ],
+   "answer": "0000 1100 (12)"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "2진수를 왼쪽으로 한 칸 시프트하면 값이 {{1}}배가 됩니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "2"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "모든 자릿값이 한 단계씩 올라가므로 2배입니다.\n넘치는 비트는 버려집니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "0000 0110(6)을 왼쪽으로 한 칸 시프트하면 10진수로 얼마일까요?",
+   "answer": "12",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "2배가 되어 0000 1100 = 12입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "0001 0100(20)을 오른쪽으로 두 칸 시프트하면 10진수로 얼마일까요?",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "두 칸은 4로 나누는 것입니다.\n20 ÷ 4 = 5(0000 0101)입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "어떤 수를 왼쪽으로 세 칸 시프트하면 몇 배가 될까요? (넘침 없음)",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "한 칸마다 2배이므로 2³ = 8배입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "카운터",
+   "body": [
+    "클럭이 올 때마다 저장된 값이 1씩 늘어나는 레지스터를 카운터라고 합니다. n비트 카운터는 0부터 2ⁿ − 1까지 센 뒤 다시 0으로 돌아갑니다. 3비트 카운터는 0, 1, …, 7, 0, 1, …을 되풀이합니다.",
+    "카운터의 맨 아래 비트는 클럭마다 뒤집히고, 그다음 비트는 두 클럭마다, 그다음은 네 클럭마다 뒤집힙니다. 그래서 각 비트의 주파수는 한 단계마다 절반이 됩니다. 이를 이용해 빠른 클럭을 느린 박자로 나누는 것을 분주라고 합니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "3비트 카운터가 0에서 시작해 클럭 10번을 받으면 값은?",
+   "steps": [
+    "3비트는 0~7, 8가지를 셉니다.",
+    "10 ÷ 8 = 1 나머지 2입니다.",
+    "한 바퀴 돌고 2에 있습니다."
+   ],
+   "answer": "2"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "빠른 클럭을 카운터로 느린 박자로 나누는 것을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "분주"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "카운터의 각 비트는 주파수가 절반씩 줄어듭니다.\n시계와 타이머에 씁니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "4비트 카운터가 셀 수 있는 가장 큰 값은 얼마일까요?",
+   "answer": "15",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "2⁴ − 1 = 15입니다.\n그다음은 0으로 돌아갑니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "4비트 카운터가 0에서 시작해 클럭 20번을 받으면 값은 얼마일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "16가지를 되풀이합니다.\n20 ÷ 16 = 1 나머지 4입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "1 MHz 클럭을 카운터의 셋째 비트(맨 아래를 첫째로)에서 꺼내면 주파수는 몇 kHz일까요?",
+   "answer": "125",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "비트마다 절반이므로 1 MHz ÷ 2³ = 125 kHz입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "레지스터의 쓰임",
+   "body": [
+    "CPU 안에는 계산할 값을 담는 범용 레지스터, 다음에 실행할 명령어 주소를 담는 프로그램 카운터(PC), 지금 실행 중인 명령어를 담는 명령어 레지스터 등이 있습니다. 프로그램 카운터는 이름 그대로 명령어를 하나 실행할 때마다 늘어나는 카운터입니다(챕터 3~4).",
+    "정리: 레지스터 = D 플립플롭 n개, 시프트(왼쪽 ×2, 오른쪽 ÷2), n비트 카운터는 0~2ⁿ − 1 순환, 분주, 프로그램 카운터"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "다음에 실행할 명령어의 주소를 담고 명령어마다 늘어나는 레지스터를 프로그램 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "카운터"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "프로그램 카운터(PC)는 CPU가 어디까지 실행했는지 기억합니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "32 768 Hz 수정 진동자로 1초마다 한 번 박자를 만들려면 몇 비트 카운터의 맨 위 비트를 쓰면 될까요?",
+   "steps": [
+    "32 768 = 2¹⁵입니다.",
+    "15번 절반으로 나누면 1 Hz가 됩니다.",
+    "15비트 카운터의 맨 위 비트가 1초 주기입니다. 전자시계의 원리입니다."
+   ],
+   "answer": "15비트"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "1024 Hz 신호를 1 Hz로 만들려면 몇 번 절반으로 나누어야 할까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "1024는 2의 몇 제곱일까요?",
+   "explanation": "1024 = 2¹⁰입니다.\n10번 나누면 1 Hz입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "8비트 레지스터의 1000 0001을 왼쪽으로 한 칸 시프트하면(넘친 비트는 버림) 10진수로 얼마일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "넘친 비트는 사라집니다.",
+   "explanation": "0000 0010이 됩니다.\n맨 왼쪽 1이 넘쳐 버려져 2입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "8비트 카운터가 250에서 시작해 클럭 10번을 받으면 값은 얼마일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "255 다음은 0입니다.",
+   "explanation": "256가지를 되풀이합니다.\n250 + 10 = 260, 260 − 256 = 4입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "x를 왼쪽으로 2칸 시프트한 값과 x를 더하면 x의 몇 배가 될까요?",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "2칸 시프트는 4배입니다.",
+   "explanation": "4x + x = 5x입니다.\n곱셈 회로 없이 시프트와 덧셈으로 곱할 수 있습니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "통신선 하나로 한 비트씩 들어온 데이터를 모아 바이트로 만드는 데는 {{1}} 레지스터를 씁니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "시프트"
+     ]
+    }
+   ],
+   "hint": "비트가 한 칸씩 이동하는 레지스터입니다.",
+   "explanation": "비트를 한 칸씩 밀어 넣어 8비트가 차면 한꺼번에 읽습니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "n비트 카운터가 2ⁿ − 1 다음에 0으로 돌아가는 이유를 설명해 보세요.",
+   "hint": "모든 비트가 1일 때 1을 더하면 어떻게 될까요?",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "n비트",
+      "비트 수"
+     ],
+     [
+      "2ⁿ",
+      "가짓수",
+      "최대"
+     ],
+     [
+      "넘치",
+      "올림",
+      "버려"
+     ],
+     [
+      "0"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "n비트로는 0부터 2ⁿ − 1까지 2ⁿ가지만 나타낼 수 있습니다. 2ⁿ − 1은 모든 비트가 1인 상태라서 1을 더하면 모든 비트가 0이 되고 맨 위로 올림이 생기는데, 이 올림을 담을 비트가 없어 버려지므로 0으로 돌아갑니다."
+  }
+ ]
+}

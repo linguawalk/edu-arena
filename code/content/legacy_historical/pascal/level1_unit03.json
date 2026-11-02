@@ -1,0 +1,96 @@
+{
+  "language": "pascal",
+  "category": "legacy_historical",
+  "level": 1,
+  "unit": 3,
+  "unit_title": "조건문",
+  "questions": [
+    {
+      "id": "pascal_l1_u03_q001",
+      "type": "predict_output",
+      "code": "var\n  score: Integer;\nbegin\n  score := 85;\n  if score >= 90 then\n    writeln('A')\n  else if score >= 80 then\n    writeln('B')\n  else\n    writeln('C');\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["A", "B", "C", "아무것도 출력되지 않음"],
+      "answer": 1,
+      "explanation_en": "score is 85, which fails the first condition (>= 90) but satisfies the else if's (>= 80), printing B.",
+      "explanation_ko": "score는 85이므로 첫 번째 조건(90 이상)은 거짓이지만 else if의 조건(80 이상)은 참입니다. B가 출력됩니다.",
+      "concept_tags": ["if_then_else"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l1_u03_q002",
+      "type": "error_finding",
+      "code": "var\n  x: Integer;\nbegin\n  x := 5;\n  if x = 5 then\n    writeln('FIVE');\n  else\n    writeln('NOT FIVE');\nend.",
+      "prompt_en": "What problem does this code have? (This is one of Pascal's most famous gotchas.)",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요? (Pascal에서 가장 유명한 함정 중 하나입니다.)",
+      "options": [
+        "if 조건식 문법 오류",
+        "then절 뒤의 문장에 세미콜론이 붙어서, Pascal에서 세미콜론은 문의 구분자라 if문 전체를 조기에 끝내버려 뒤따르는 else가 유효하지 않게 되어 문법 오류가 발생함",
+        "writeln 사용법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "In Pascal, ; is a statement SEPARATOR, not a terminator like in C; the semicolon after writeln('FIVE') closes the if-then statement entirely, so the following else has nothing to attach to, causing a syntax error.",
+      "explanation_ko": "Pascal에서 ;은 C처럼 문의 종결자가 아니라 구분자입니다. writeln('FIVE') 뒤의 세미콜론이 if-then문 전체를 완전히 끝내버려서, 뒤따르는 else가 붙을 곳이 없어져 문법 오류가 발생합니다.",
+      "concept_tags": ["semicolon_separator"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "pascal_l1_u03_q003",
+      "type": "predict_output",
+      "code": "var\n  x: Integer;\nbegin\n  x := 5;\n  if x = 5 then\n    writeln('FIVE')\n  else\n    writeln('NOT FIVE');\nend.",
+      "prompt_en": "What is printed? (Compare with the previous example — no semicolon before else this time.)",
+      "prompt_ko": "출력 결과는? (이전 예제와 비교해보세요 — 이번엔 else 앞에 세미콜론이 없습니다.)",
+      "options": ["FIVE", "NOT FIVE", "오류", "아무것도 출력되지 않음"],
+      "answer": 0,
+      "explanation_en": "Without the premature semicolon, the if-then-else forms one complete statement; x = 5 is true, so FIVE is printed.",
+      "explanation_ko": "이른 세미콜론이 없으면 if-then-else가 하나의 완전한 문을 이룹니다. x = 5는 참이므로 FIVE가 출력됩니다.",
+      "concept_tags": ["if_then_else", "semicolon_separator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l1_u03_q004",
+      "type": "fill_blank",
+      "code": "var\n  age: Integer;\nbegin\n  age := 20;\n  if age >= 18 ____\n    writeln('ADULT');\nend.",
+      "prompt_en": "Fill in the blank with the keyword that separates the condition from the action.",
+      "prompt_ko": "조건과 실행할 동작을 구분하는 키워드를 빈칸에 채우세요.",
+      "options": ["then", "do", "begin", ":"],
+      "answer": 0,
+      "explanation_en": "then separates the if condition from the statement to execute when it's true.",
+      "explanation_ko": "then은 if 조건과, 참일 때 실행할 문장을 구분합니다.",
+      "concept_tags": ["if_then_else"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l1_u03_q005",
+      "type": "predict_output",
+      "code": "var\n  x: Integer;\nbegin\n  x := 10;\n  if x > 5 then\n  begin\n    writeln('BIG');\n    writeln('POSITIVE');\n  end;\nend.",
+      "prompt_en": "What is printed? (Note: begin...end groups multiple statements as one block.)",
+      "prompt_ko": "출력 결과는? (begin...end가 여러 문장을 하나의 블록으로 묶는 점에 주의하세요.)",
+      "options": ["BIG", "BIG\\nPOSITIVE", "오류", "POSITIVE"],
+      "answer": 1,
+      "explanation_en": "Since then can only be followed by a single statement, begin...end wraps multiple statements into one compound statement, so both BIG and POSITIVE are printed.",
+      "explanation_ko": "then 뒤에는 하나의 문장만 올 수 있으므로, begin...end가 여러 문장을 하나의 복합문으로 묶습니다. BIG과 POSITIVE 둘 다 출력됩니다.",
+      "concept_tags": ["begin_end_block"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l1_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "if ... then ... else", "definition": "조건에 따라 분기하는 기본 구조" },
+        { "term": "; (구분자, 종결자 아님)", "definition": "Pascal의 세미콜론은 문을 구분할 뿐, 끝맺지 않음 — C와의 핵심 차이" },
+        { "term": "begin ... end", "definition": "여러 문장을 하나의 복합문으로 묶는 블록" },
+        { "term": "then절 뒤 세미콜론 함정", "definition": "else 앞에 세미콜론을 붙이면 if문이 조기 종료되어 오류가 나는 유명한 실수" }
+      ],
+      "explanation_en": "Understanding ; as a separator rather than a terminator is essential to reading Pascal correctly — this single design choice explains many of its syntax quirks compared to C-family languages.",
+      "explanation_ko": ";을 종결자가 아니라 구분자로 이해하는 것은 Pascal을 올바르게 읽는 데 필수적입니다 — 이 하나의 설계 선택이 C 계열 언어와 비교했을 때 Pascal의 많은 문법적 특이 동작을 설명합니다.",
+      "concept_tags": ["if_then_else", "semicolon_separator", "begin_end_block"],
+      "difficulty": "practice"
+    }
+  ]
+}

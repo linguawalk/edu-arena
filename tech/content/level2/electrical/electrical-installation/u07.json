@@ -1,0 +1,129 @@
+{
+ "no": 7,
+ "title": "수변전 설비",
+ "hours": 6,
+ "after": [
+  3,
+  5
+ ],
+ "objectives": [
+  "수전 방식과 수변전 설비의 단선 결선도를 읽을 수 있다.",
+  "수요율·부등률로 변압기 용량을 산정할 수 있다.",
+  "%임피던스로 수용가 변압기 2차 단락 전류를 구할 수 있다."
+ ],
+ "checklist": [
+  "수전 방식: 1회선, 2회선, 스폿 네트워크",
+  "단선 결선도 기호: 차단기(CB), 부하 개폐기, 피뢰기(LA), 계기용 변성기(PT·CT·MOF)",
+  "변압기 용량 = 설비 용량 × 수용률/(부등률 × 역률)",
+  "변압기 2차 단락 전류 I_s = (100/%Z) × I_n",
+  "보호 계전기(과전류·지락)와 차단기 연동",
+  "CT 2차 정격 전류(보통 5 A)와 CT 2차 개방 금지",
+  "공동주택 변압기 상태 감시 등 최근 강화된 기준"
+ ],
+ "advice": [
+  "수변전 설비는 실기 시험의 단선 결선도 문제로 자주 나옵니다. 기호를 외우는 것보다 전원에서 부하까지 '측정(MOF) → 보호(LA, CB) → 변압 → 배전반' 순서로 흐름을 따라가며 각 기기가 왜 그 자리에 있는지 설명해 보세요.",
+  "변압기 용량 산정과 2차 단락 전류 계산은 전력공학 기초 5·8단원의 공식을 그대로 씁니다. 이 단원은 두 과목을 수용가 설계 문제 하나로 묶는 연습이라고 생각하면 됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "web",
+   "provider": "대한전기협회 KEC 홈페이지",
+   "title": "한국전기설비규정(KEC) 원문·개정 안내·해설",
+   "url": "https://kec.kea.kr",
+   "lang": "한국어",
+   "part": "제3장 고압·특고압 전기설비(341 기계 및 기구, 351 발전소·변전소 등)"
+  },
+  {
+   "kind": "book",
+   "provider": "대한전기협회",
+   "title": "한국전기설비규정 핸드북 (KEC 해설서, 최신 개정판 확인)",
+   "part": "제3장 고압·특고압 전기설비"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "전력공학 기초 5단원 %임피던스와 고장 계산",
+   "url": "guide.html?lv=2&t=electrical&s=power-basics&u=5",
+   "part": "단락 계산 복습"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "전력공학 기초 8단원 배전 방식과 설비",
+   "url": "guide.html?lv=2&t=electrical&s=power-basics&u=8",
+   "part": "수용률·부등률 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "설비 용량 500 kW, 수용률 0.6, 부등률 1.2, 역률 0.8일 때 필요한 변압기 용량은 몇 kVA일까요?",
+   "answer": "312.5",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "500 × 0.6/(1.2 × 0.8) = 312.5 kVA\n실제로는 이보다 큰 표준 용량을 고릅니다.",
+   "hint": "설비 × 수용률 ÷ (부등률 × 역률)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "1000 kVA, 2차 380 V, %Z = 5%인 변압기 2차 측 3상 단락 전류는 약 몇 kA일까요?",
+   "answer": "30.4",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "I_n = 1000 × 10³/(√3 × 380) ≈ 1519 A\nI_s = 20 × 1519 ≈ 30.4 kA",
+   "hint": "I_s = (100/%Z) × I_n입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "수변전 설비 입구에서 뇌 서지 등 이상 전압으로부터 기기를 보호하는 장치는 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "피뢰기",
+      "LA"
+     ]
+    }
+   ],
+   "explanation": "피뢰기는 이상 전압을 대지로 방전하고 속류를 끊습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "계기용 변류기(CT)의 2차 정격 전류는 보통 {{1}} A입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "5"
+     ]
+    }
+   ],
+   "explanation": "CT 2차를 개방하면 고전압이 생겨 위험하므로 계기를 뗄 때는 반드시 단락합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "review": {
+  "basis": "한국전기설비규정(KEC)",
+  "checked": "2026-10",
+  "next": "2027-04",
+  "watch": "고압·특고압 설비(제3장) 조항, 수전 설비 관련 한전 전기공급약관 변경",
+  "standards": []
+ },
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electrical",
+ "subject": "electrical-installation",
+ "id": "l2-electrical-electrical-installation-u07"
+}

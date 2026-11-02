@@ -1,0 +1,109 @@
+{
+ "no": 2,
+ "title": "데이터 표현과 연산",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "부호 있는 정수(2의 보수)의 범위와 오버플로를 판단할 수 있다.",
+  "IEEE 754 부동소수점의 구조(부호·지수·가수)와 바이어스를 설명할 수 있다.",
+  "곱셈·나눗셈 하드웨어와 시프트 연산의 관계를 설명할 수 있다."
+ ],
+ "checklist": [
+  "n비트 2의 보수 범위 −2ⁿ⁻¹ ~ 2ⁿ⁻¹ − 1, 오버플로 판정",
+  "부호 확장과 0 확장",
+  "시프트와 2의 거듭제곱 곱셈·나눗셈",
+  "IEEE 754 단정밀도: 부호 1 + 지수 8(바이어스 127) + 가수 23",
+  "정규화 수, 0, 무한대, NaN, 비정규화 수",
+  "반올림 오차(0.1 + 0.2 ≠ 0.3)",
+  "덧셈기·곱셈기 하드웨어(레벨2 디지털회로 4단원)"
+ ],
+ "advice": [
+  "레벨1 컴퓨터 챕터 1에서 2의 보수를 보았다면, 이 단원의 새 내용은 부동소수점입니다. 6.5 같은 수를 1.xxx × 2ᵉ 꼴로 바꾸고 지수에 127을 더해 비트로 적는 과정을 손으로 몇 번 해 보면 IEEE 754의 구조가 확실해집니다.",
+  "0.1을 2진수로 정확히 나타낼 수 없어 반올림 오차가 생긴다는 사실은 금융 계산이나 반복 누적에서 실제 버그를 만듭니다. code-arena의 언어 트랙에서 0.1 + 0.2를 직접 출력해 보며 원리와 현상을 연결해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Patterson · Hennessy, Computer Organization and Design RISC-V Edition (번역본 『컴퓨터 구조 및 설계』, 장 제목으로 표기)",
+   "part": "Arithmetic for Computers 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "binary representation, arithmetic 관련 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 1 정보의 표현",
+   "url": "browse.html?c=c4#ch01",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "6.5를 IEEE 754 단정밀도로 나타낼 때 지수 필드(바이어스 포함)의 값은 10진수로 얼마일까요?",
+   "answer": "129",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "6.5 = 1.625 × 2²\n지수 필드 = 2 + 127 = 129",
+   "hint": "정규화한 뒤 바이어스 127을 더하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "IEEE 754 단정밀도의 지수 바이어스는 얼마일까요?",
+   "answer": "127",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "지수 8비트의 바이어스는 2⁷ − 1 = 127입니다.",
+   "hint": "2⁷ − 1입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "8비트 2의 보수에서 100 + 50을 계산하면 결과 비트를 부호 있는 수로 읽은 값은 얼마일까요?",
+   "answer": "-106",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "150은 범위(최대 127)를 넘어 오버플로입니다.\n150 − 256 = −106으로 읽힙니다.",
+   "hint": "256을 빼세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "현재 거의 모든 컴퓨터가 쓰는 부동소수점 표준은 IEEE {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "754"
+     ]
+    }
+   ],
+   "explanation": "단정밀도(32비트)와 배정밀도(64비트)를 정의합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "computer-architecture",
+ "id": "l2-computer-computer-architecture-u02"
+}

@@ -1,0 +1,104 @@
+{
+ "no": 9,
+ "title": "배전 선로의 계산",
+ "hours": 5,
+ "after": [
+  8
+ ],
+ "objectives": [
+  "부등률과 부하율로 합성 최대 수요와 평균 전력을 구할 수 있다.",
+  "역률 개선이 선로 손실에 주는 효과를 계산할 수 있다.",
+  "역률 개선용 콘덴서 용량을 계산할 수 있다."
+ ],
+ "checklist": [
+  "합성 최대 수요 = 개별 최대 수요의 합/부등률",
+  "손실 계수와 부하율의 관계",
+  "선로 손실 ∝ 1/cos²θ (같은 유효 전력)",
+  "콘덴서 용량 Q_C = P(tan θ₁ − tan θ₂)",
+  "전압 조정: 탭 변환, 선로 전압 조정기, 콘덴서",
+  "말단 집중 부하와 균등 분포 부하의 전압 강하(분포 부하는 1/2)"
+ ],
+ "advice": [
+  "이 단원은 회로이론 9단원의 역률 개선과 8단원의 수요·부하 개념을 실제 배전선에 적용합니다. 역률을 높이면 같은 유효 전력에서 전류가 줄어 손실이 cos²θ에 반비례해 줄어든다는 점을 숫자로 확인해 보세요. 콘덴서 용량 공식은 전력 삼각형 두 개를 겹쳐 그리면 외울 필요가 없습니다.",
+  "균등 분포 부하의 전압 강하가 말단 집중 부하의 절반, 손실은 1/3이라는 결과는 적분으로 한 번 유도해 보면 오래 기억됩니다. 실제 배전선은 두 경우의 중간이므로, 두 결과가 계산의 상한과 하한을 알려 준다고 생각하면 됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Glover · Overbye · Sarma, Power System Analysis and Design (장 제목으로 표기)",
+   "part": "Distribution 관련 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "회로이론 9단원 교류 전력과 역률",
+   "url": "guide.html?lv=2&t=electrical&s=circuit-theory&u=9",
+   "part": "역률 개선 복습"
+  },
+  {
+   "kind": "book",
+   "provider": "All About Circuits (무료 온라인 교재)",
+   "title": "Lessons in Electric Circuits, Volume II — AC",
+   "url": "https://www.allaboutcircuits.com/textbook/alternating-current/",
+   "lang": "영어",
+   "part": "Power Factor 장"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "최대 수요가 각각 300, 200, 100 kW인 세 수용가의 합성 최대 수요가 500 kW이면 부등률은?",
+   "answer": "1.2",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "부등률 = (300 + 200 + 100)/500 = 1.2",
+   "hint": "개별 최대의 합 ÷ 합성 최대입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "최대 전력 500 kW, 평균 전력 400 kW인 부하의 부하율은?",
+   "answer": "0.8",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "부하율 = 400/500 = 0.8",
+   "hint": "평균 ÷ 최대입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "같은 유효 전력을 보낼 때 역률을 0.8에서 1로 높이면 선로 손실은 원래의 몇 배가 될까요?",
+   "answer": "0.64",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "손실 ∝ 1/cos²θ\n(0.8/1)² = 0.64배",
+   "hint": "손실은 역률 제곱에 반비례합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "100 kW, 역률 0.8인 부하의 역률을 1로 개선하는 데 필요한 콘덴서 용량은 몇 kVA일까요?",
+   "answer": "75",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "Q_C = P(tan θ₁ − tan θ₂) = 100 × (0.75 − 0) = 75 kVA",
+   "hint": "tan θ₁ = 0.6/0.8 = 0.75입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electrical",
+ "subject": "power-basics",
+ "id": "l2-electrical-power-basics-u09"
+}

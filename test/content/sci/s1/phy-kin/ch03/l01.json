@@ -1,0 +1,504 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s1",
+  "track": "phy-kin",
+  "work": "풀이",
+  "track_title": "운동과 물리 수학",
+  "chapter": {
+    "id": "sci-s1-phy-kin-ch03",
+    "no": 3,
+    "title": "적분으로 보는 운동"
+  },
+  "lesson": {
+    "id": "sci-s1-phy-kin-ch03-l01",
+    "no": 1,
+    "title": "v-t 그래프의 넓이",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "역학",
+      "운동학"
+    ],
+    "competition": "KPhO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "넓이가 변위다",
+      "body": [
+        "속도가 v로 일정하면 시간 t 동안의 변위는 vt이고, 이것은 v-t 그래프에서 높이 v, 밑변 t인 직사각형의 넓이입니다.",
+        "속도가 변해도 시간을 아주 잘게 나누면 각 조각에서는 속도가 거의 일정하므로, 조각 넓이를 모두 더한 것이 변위입니다. 이렇게 '잘게 나누어 더하기'가 적분입니다.",
+        "그림에서 0~2 s는 삼각형(4 m), 2~6 s는 직사각형(16 m), 6~8 s는 삼각형(4 m)이므로 변위는 24 m입니다. 미분이 기울기라면 적분은 넓이입니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 9,
+          "ymin": -1,
+          "ymax": 6,
+          "xstep": 1,
+          "ystep": 1,
+          "xlabel": "t(s)",
+          "ylabel": "v(m/s)",
+          "curves": [
+            {
+              "kind": "shade",
+              "curve": {
+                "kind": "pw",
+                "pts": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    2,
+                    4
+                  ],
+                  [
+                    6,
+                    4
+                  ],
+                  [
+                    8,
+                    0
+                  ]
+                ]
+              },
+              "from": 0,
+              "to": 8
+            },
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  6,
+                  4
+                ],
+                [
+                  8,
+                  0
+                ]
+              ]
+            }
+          ],
+          "alt": "v-t 그래프 아래 색칠한 넓이가 0~8 s 동안의 변위"
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "6 m/s로 일정하게 5 s 동안 움직인 물체의 변위는 몇 m인가요?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "직사각형의 넓이입니다.",
+      "explanation": "속도가 일정하면 v-t 그래프는 수평선입니다.\n그 아래 넓이는 6 m/s × 5 s입니다.\n= 30 m입니다. 속력 × 시간이 곧 넓이입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "v-t 그래프 아래의 넓이는 그 시간 동안의 {{1}}입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "변위"
+          ]
+        }
+      ],
+      "hint": "속도 × 시간입니다.",
+      "explanation": "짧은 시간 Δt 동안의 변위는 v × Δt입니다.\n이 조각들을 모두 더한 것이 그래프 아래의 넓이입니다.\n따라서 넓이는 변위입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "등가속도 운동의 넓이",
+      "body": [
+        "가속도가 일정하면 v-t 그래프는 직선이고, 그 아래 넓이는 사다리꼴입니다. 사다리꼴의 넓이는 (v₀ + v)/2 × t이므로 '평균 속도 × 시간'과 같습니다.",
+        "v = v₀ + at를 넣으면 넓이는 v₀t + (1/2)at²이 되어 등가속도 위치 공식이 나옵니다. 공식을 외우지 않아도 그래프만 그리면 다시 얻을 수 있습니다.",
+        "복잡한 v-t 그래프는 삼각형, 직사각형, 사다리꼴로 나누어 넓이를 더하세요. 경시 1차 시험에는 이런 그래프 문제가 자주 나옵니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "속도가 3 s 동안 2 m/s에서 8 m/s로 일정하게 늘었습니다. 이 동안의 변위를 구하세요.",
+      "steps": [
+        "v-t 그래프는 (0, 2)에서 (3, 8)까지의 직선입니다.",
+        "그 아래는 평행한 두 변이 2와 8, 높이가 3인 사다리꼴입니다.",
+        "넓이 = (2 + 8)/2 × 3입니다.",
+        "= 15 m입니다."
+      ],
+      "answer": "15 m"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "정지 상태에서 4 s 동안 일정하게 가속해 10 m/s가 된 뒤 6 s 동안 그 속력을 유지했습니다. 전체 변위는 몇 m인가요?",
+      "answer": "80",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "삼각형과 직사각형의 넓이를 더하세요.",
+      "explanation": "0~4 s는 삼각형으로 (1/2) × 4 × 10 = 20 m입니다.\n4~10 s는 직사각형으로 10 × 6 = 60 m입니다.\n합은 20 + 60 = 80 m입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "그림의 v-t 그래프에서 0 s부터 8 s까지의 변위는 몇 m인가요?",
+      "answer": "24",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "그래프 아래를 세 도형으로 나누세요.",
+      "explanation": "0~2 s 삼각형: (1/2) × 2 × 4 = 4 m, 2~6 s 직사각형: 4 × 4 = 16 m입니다.\n6~8 s 삼각형: (1/2) × 2 × 4 = 4 m입니다.\n합은 4 + 16 + 4 = 24 m이고, 사다리꼴 공식 (4 + 8)/2 × 4와도 같습니다.",
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 9,
+          "ymin": -1,
+          "ymax": 6,
+          "xstep": 1,
+          "ystep": 1,
+          "xlabel": "t(s)",
+          "ylabel": "v(m/s)",
+          "curves": [
+            {
+              "kind": "shade",
+              "curve": {
+                "kind": "pw",
+                "pts": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    2,
+                    4
+                  ],
+                  [
+                    6,
+                    4
+                  ],
+                  [
+                    8,
+                    0
+                  ]
+                ]
+              },
+              "from": 0,
+              "to": 8
+            },
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  6,
+                  4
+                ],
+                [
+                  8,
+                  0
+                ]
+              ]
+            }
+          ],
+          "alt": "v-t 그래프 아래 색칠한 넓이가 0~8 s 동안의 변위"
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "음의 넓이",
+      "body": [
+        "v < 0인 구간에서는 그래프가 t축 아래에 있고, 그 넓이는 음의 변위입니다. 변위는 넓이를 부호까지 붙여 더한 값입니다.",
+        "이동 거리는 부호를 떼고 넓이를 모두 더한 값입니다. 그래서 물체가 방향을 바꾸면 이동 거리가 변위의 크기보다 커집니다.",
+        "그림처럼 6 m/s에서 −6 m/s로 고르게 바뀌면 0~3 s의 넓이 +9 m와 3~6 s의 넓이 −9 m가 상쇄되어 변위는 0입니다. 이동 거리는 18 m이고, 물체는 3 s에 가장 멀리(9 m) 갔다가 돌아옵니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 7,
+          "ymin": -7,
+          "ymax": 7,
+          "xstep": 1,
+          "ystep": 2,
+          "xlabel": "t(s)",
+          "ylabel": "v(m/s)",
+          "curves": [
+            {
+              "kind": "shade",
+              "curve": {
+                "kind": "pw",
+                "pts": [
+                  [
+                    0,
+                    6
+                  ],
+                  [
+                    6,
+                    -6
+                  ]
+                ]
+              },
+              "from": 0,
+              "to": 6
+            },
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  6
+                ],
+                [
+                  6,
+                  -6
+                ]
+              ]
+            }
+          ],
+          "alt": "v-t 그래프: 6 m/s에서 일정하게 줄어 3 s에 0, 6 s에 −6 m/s"
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "+4 m/s로 3 s 움직인 뒤 −2 m/s로 4 s 움직였습니다. 전체 변위는 몇 m인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "넓이에 부호를 붙여 더하세요.",
+      "explanation": "앞 구간의 넓이는 4 × 3 = +12 m입니다.\n뒤 구간의 넓이는 −2 × 4 = −8 m입니다.\n변위는 12 − 8 = 4 m입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 문제에서 이동 거리는 몇 m인가요?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "넓이의 절댓값을 더하세요.",
+      "explanation": "이동 거리는 부호를 떼고 넓이를 더한 값입니다.\n12 + 8입니다.\n= 20 m로, 변위 4 m보다 큽니다. 방향을 바꾸면 둘이 달라집니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "넓이로 위치 구하기",
+      "body": [
+        "시각 t의 위치는 처음 위치에 0부터 t까지의 넓이를 더한 값입니다: x(t) = x₀ + (넓이).",
+        "그래서 v-t 그래프가 t축을 지나는 순간(v = 0)에 위치가 극대나 극소가 됩니다. 그때까지 넓이가 더해지다가 그 뒤로는 빼지기 때문입니다.",
+        "x₀이 주어지지 않으면 v-t 그래프만으로는 위치를 정할 수 없고 변위만 알 수 있습니다. 문제에서 '처음 위치'를 확인하는 습관을 들이세요."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "처음 위치가 x = 5 m인 물체가 3 m/s로 4 s 동안 움직였습니다. 나중 위치는 몇 m인가요?",
+      "answer": "17",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = x₀ + 넓이입니다.",
+      "explanation": "4 s 동안의 넓이는 3 × 4 = 12 m입니다.\nx = 5 + 12입니다.\n= 17 m입니다. 처음 위치를 더하는 것을 잊지 마세요."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "그림의 운동에서 물체가 출발점에서 가장 멀어졌을 때의 거리는 몇 m인가요?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "v = 0이 되는 순간까지의 넓이입니다.",
+      "explanation": "v는 t = 3 s에 0이 되고, 그 뒤로는 되돌아옵니다.\n0~3 s의 넓이는 (1/2) × 3 × 6입니다.\n= 9 m이므로 가장 멀리 간 거리는 9 m입니다.",
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 7,
+          "ymin": -7,
+          "ymax": 7,
+          "xstep": 1,
+          "ystep": 2,
+          "xlabel": "t(s)",
+          "ylabel": "v(m/s)",
+          "curves": [
+            {
+              "kind": "shade",
+              "curve": {
+                "kind": "pw",
+                "pts": [
+                  [
+                    0,
+                    6
+                  ],
+                  [
+                    6,
+                    -6
+                  ]
+                ]
+              },
+              "from": 0,
+              "to": 6
+            },
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  6
+                ],
+                [
+                  6,
+                  -6
+                ]
+              ]
+            }
+          ],
+          "alt": "v-t 그래프: 6 m/s에서 일정하게 줄어 3 s에 0, 6 s에 −6 m/s"
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "v-t 그래프 아래 넓이는 변위입니다. t축 아래 넓이는 음의 변위로 셉니다.",
+        "이동 거리는 넓이의 절댓값을 모두 더한 값입니다. 등가속도 구간의 넓이는 평균 속도 × 시간입니다.",
+        "위치는 x₀ + 넓이이고, v = 0인 순간에 위치가 극값을 가집니다. 두 물체가 만나는 문제는 두 그래프의 넓이가 같아지는 시각을 찾습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 곳에서 동시에 출발해 A는 정지 상태에서 2 m/s²로 가속하고 B는 10 m/s로 일정하게 달립니다. A가 B를 따라잡는 시각은 몇 s인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 그래프 아래 넓이가 같아지는 시각입니다.",
+      "explanation": "A의 변위는 (1/2) × 2 × t² = t², B의 변위는 10t입니다.\nt² = 10t에서 t = 0 또는 10입니다.\n출발 후 따라잡는 시각은 t = 10 s입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "앞 문제에서 A가 B를 따라잡을 때까지 간 거리는 몇 m인가요?",
+      "answer": "100",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "B의 변위 10t에 t = 10을 넣으세요.",
+      "explanation": "따라잡는 순간 두 변위가 같습니다.\nB의 변위는 10 × 10입니다.\n= 100 m이고, A의 t² = 100과도 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "v-t 그래프의 넓이를 이용해 등가속도 운동의 변위가 v₀t + (1/2)at²임을 보이세요.",
+      "model_answer": [
+        "가속도가 a로 일정하면 v-t 그래프는 v = v₀ + at인 직선이다.",
+        "0부터 t까지 그래프 아래는 평행한 두 변이 v₀와 v₀ + at이고 높이가 t인 사다리꼴이다.",
+        "넓이 = (v₀ + v₀ + at)/2 × t이다.",
+        "= v₀t + (1/2)at²이고, 넓이는 변위이므로 결론이 성립한다."
+      ],
+      "criteria": [
+        {
+          "text": "v-t 그래프가 직선임을 밝혔다",
+          "points": 1
+        },
+        {
+          "text": "그래프 아래를 사다리꼴로 보았다",
+          "points": 2
+        },
+        {
+          "text": "넓이를 계산해 결론지었다",
+          "points": 3
+        }
+      ],
+      "hint": "그래프 아래가 어떤 도형인지 생각하세요."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "같은 곳에서 동시에 출발해 A는 정지 상태에서 일정한 가속도로, B는 일정한 속력 v로 움직입니다. A가 B를 따라잡는 순간 A의 속력이 2v임을 보이세요.",
+      "model_answer": [
+        "A의 가속도를 a라 하면 시각 t에서 A의 변위는 (1/2)at², B의 변위는 vt이다.",
+        "따라잡는 순간 (1/2)at² = vt이므로 (t ≠ 0) at = 2v이다.",
+        "그 순간 A의 속력은 at이다.",
+        "따라서 A의 속력은 2v이다. (v-t 그래프에서 삼각형과 직사각형의 넓이가 같을 조건과 같다)"
+      ],
+      "criteria": [
+        {
+          "text": "두 변위를 시간으로 나타냈다",
+          "points": 2
+        },
+        {
+          "text": "변위가 같다는 조건에서 at = 2v를 얻었다",
+          "points": 2
+        },
+        {
+          "text": "A의 속력이 2v라고 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "따라잡는 순간 두 변위가 같습니다."
+    }
+  ]
+}

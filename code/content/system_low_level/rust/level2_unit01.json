@@ -1,0 +1,101 @@
+{
+  "language": "rust",
+  "category": "system_low_level",
+  "level": 2,
+  "unit": 1,
+  "unit_title": "소유권 기초",
+  "questions": [
+    {
+      "id": "rust_l2_u01_q001",
+      "type": "predict_output",
+      "code": "let s1 = String::from(\"hello\");\nlet s2 = s1;\nprintln!(\"{}\", s2);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["hello", "s1", "오류", "빈 문자열"],
+      "answer": 0,
+      "explanation_en": "Assigning s1 to s2 moves ownership of the String data to s2; s2 now owns it and prints hello.",
+      "explanation_ko": "s1을 s2에 대입하면 String 데이터의 소유권이 s2로 이동합니다. s2가 이제 그것을 소유하며 hello를 출력합니다.",
+      "concept_tags": ["ownership", "move"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l2_u01_q002",
+      "type": "error_finding",
+      "code": "let s1 = String::from(\"hello\");\nlet s2 = s1;\nprintln!(\"{}\", s1);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "s2 선언 문법 오류",
+        "let s2 = s1이 s1의 소유권을 s2로 이동시켜서, 이후 s1을 다시 사용하려 하면 '이동된 값을 빌리려 한다'는 컴파일 오류가 발생함",
+        "println! 문법 오류",
+        "문제 없음, 정상적으로 hello가 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike copying a pointer in C, Rust's move invalidates the original variable; using s1 after it has been moved into s2 triggers error E0382.",
+      "explanation_ko": "C에서 포인터를 복사하는 것과 달리, Rust의 이동(move)은 원래 변수를 무효화시킵니다. s1이 s2로 이동된 뒤 s1을 다시 쓰려 하면 E0382 오류가 발생합니다.",
+      "concept_tags": ["ownership", "move"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l2_u01_q003",
+      "type": "predict_output",
+      "code": "let x = 5;\nlet y = x;\nprintln!(\"{} {}\", x, y);",
+      "prompt_en": "What is printed? (Compare with the String example above.)",
+      "prompt_ko": "출력 결과는? (위의 String 예제와 비교해보세요.)",
+      "options": ["오류: x는 이동됨", "5 5", "5", "오류: y 선언 문제"],
+      "answer": 1,
+      "explanation_en": "Simple types like i32 implement the Copy trait, so let y = x copies the value instead of moving it; both x and y remain usable.",
+      "explanation_ko": "i32 같은 단순한 타입은 Copy 트레이트를 구현하고 있어서, let y = x는 이동이 아니라 값을 복사합니다. x와 y 모두 계속 사용할 수 있습니다.",
+      "concept_tags": ["ownership", "copy_trait"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l2_u01_q004",
+      "type": "predict_output",
+      "code": "fn takes_ownership(s: String) {\n    println!(\"{}\", s);\n}\n\nfn main() {\n    let s = String::from(\"hello\");\n    takes_ownership(s);\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["hello", "s", "오류", "아무것도 출력되지 않음"],
+      "answer": 0,
+      "explanation_en": "Passing s into takes_ownership moves it into the function's parameter; the function prints it as hello before it goes out of scope.",
+      "explanation_ko": "s를 takes_ownership에 전달하면 함수의 매개변수로 소유권이 이동합니다. 함수는 스코프를 벗어나기 전에 hello를 출력합니다.",
+      "concept_tags": ["ownership", "function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l2_u01_q005",
+      "type": "error_finding",
+      "code": "fn takes_ownership(s: String) {\n    println!(\"{}\", s);\n}\n\nfn main() {\n    let s = String::from(\"hello\");\n    takes_ownership(s);\n    println!(\"{}\", s);\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "함수 정의 문법 오류",
+        "s가 함수 호출로 소유권을 잃었는데(이동), main에서 s를 다시 사용하려 해서 컴파일 오류가 발생함",
+        "String::from 사용법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Function calls move ownership just like variable assignment does; once s is passed to takes_ownership, main no longer owns it and cannot use it afterward.",
+      "explanation_ko": "함수 호출도 변수 대입과 마찬가지로 소유권을 이동시킵니다. s가 takes_ownership에 전달되면 main은 더 이상 그것을 소유하지 않아 이후 사용할 수 없습니다.",
+      "concept_tags": ["ownership", "function"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l2_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "소유권", "definition": "Rust에서 값마다 정확히 하나의 소유자만 있을 수 있다는 규칙" },
+        { "term": "이동 (move)", "definition": "소유권이 다른 변수로 넘어가면서 원래 변수가 무효화되는 것" },
+        { "term": "Copy 트레이트", "definition": "i32처럼 단순한 타입이 이동 대신 값을 복사하게 해주는 특성" },
+        { "term": "함수 호출과 소유권", "definition": "값을 함수에 전달하면 대입과 마찬가지로 소유권이 이동한다는 규칙" }
+      ],
+      "explanation_en": "Rust's ownership system replaces garbage collection with compile-time rules, catching memory bugs before the program ever runs.",
+      "explanation_ko": "Rust의 소유권 시스템은 가비지 컬렉션 대신 컴파일 시점의 규칙으로 메모리 문제를 프로그램 실행 전에 미리 잡아냅니다.",
+      "concept_tags": ["ownership", "move", "copy_trait"],
+      "difficulty": "practice"
+    }
+  ]
+}

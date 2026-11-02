@@ -1,0 +1,96 @@
+{
+ "no": 5,
+ "title": "아날로그 IC 기본 블록",
+ "hours": 6,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "전류 미러·차동 쌍·능동 부하 같은 아날로그 IC 기본 블록의 동작을 설명할 수 있다.",
+  "2단 연산 증폭기의 구조와 주파수 보상의 필요성을 설명할 수 있다.",
+  "기준 전압·전류원(밴드갭)의 역할을 설명할 수 있다."
+ ],
+ "checklist": [
+  "전류 미러: I_out = I_ref × (W/L)₂/(W/L)₁",
+  "차동 쌍과 능동 부하: 차동 이득 ≈ g_m(r_o₂ ∥ r_o₄)",
+  "캐스코드 구조로 출력 저항·이득 증가",
+  "2단 연산 증폭기: 차동단 + 공통 소스 이득단",
+  "밀러 보상 커패시터로 위상 여유 확보",
+  "밴드갭 기준 전압: 온도에 거의 무관한 기준",
+  "잡음·오프셋과 소자 정합(matching)"
+ ],
+ "advice": [
+  "아날로그 IC 설계는 레벨2 전자회로의 소신호 해석을 그대로 쓰되, 저항 대신 트랜지스터를 부하와 전류원으로 쓴다는 점이 다릅니다. 전류 미러로 바이어스를 나누어 주고, 차동 쌍으로 신호를 받고, 능동 부하로 이득을 키우고, 보상 커패시터로 안정시키는 흐름을 2단 연산 증폭기 하나의 회로도 위에서 따라가 보세요. 보상은 레벨3 제어공학의 위상 여유와 같은 개념이라 함께 보면 이해가 빠릅니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Razavi, Design of Analog CMOS Integrated Circuits (장 제목으로 표기)",
+   "part": "Single-Stage Amplifiers, Differential Amplifiers, Current Mirrors, Operational Amplifiers, Stability and Frequency Compensation 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "전자회로 7단원 다단 증폭기와 차동 증폭기",
+   "url": "guide.html?lv=2&t=electronics&s=electronic-circuits&u=7",
+   "part": "레벨2 복습"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.012 Microelectronic Devices and Circuits (2009년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/",
+   "lang": "영어",
+   "part": "differential amplifier, current mirror 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "기준 쪽 트랜지스터보다 W/L이 2배인 출력 트랜지스터로 만든 전류 미러에 기준 전류 50 μA를 흘리면 출력 전류는 몇 μA일까요?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "I_out = 50 × 2 = 100 μA",
+   "hint": "W/L 비만큼 복사됩니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "g_m = 1 mS인 차동 쌍의 부하 저항이 20 kΩ이면 차동 전압 이득(단일 출력 기준이 아닌 차동 출력)은 얼마일까요?",
+   "answer": "20",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "A_d ≈ g_mR_D = 10⁻³ × 2 × 10⁴ = 20",
+   "hint": "A_d ≈ g_mR_D입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "2단 연산 증폭기에서 두 단 사이에 커패시터를 연결해 위상 여유를 확보하는 것을 주파수 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "보상"
+     ]
+    }
+   ],
+   "explanation": "밀러 효과로 작은 커패시터가 큰 커패시터처럼 동작해 주된 극점을 낮은 주파수로 옮깁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electronics",
+ "subject": "integrated-circuits",
+ "id": "l3-electronics-integrated-circuits-u05"
+}

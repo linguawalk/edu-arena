@@ -1,0 +1,96 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "switch문",
+  "questions": [
+    {
+      "id": "php_l2_u02_q001",
+      "type": "predict_output",
+      "code": "$day = 1;\nswitch ($day) {\n    case 1:\n        echo \"월요일\";\n        break;\n    default:\n        echo \"기타\";\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["월요일", "기타", "1", "오류"],
+      "answer": 0,
+      "explanation_en": "switch compares day against each case; day is 1, matching the first case, and break stops there.",
+      "explanation_ko": "switch는 day를 각 case와 비교합니다. day가 1이므로 첫 번째 case와 일치하고, break가 그 지점에서 멈춥니다.",
+      "concept_tags": ["switch_statement"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l2_u02_q002",
+      "type": "predict_output",
+      "code": "$x = 1;\nswitch ($x) {\n    case 1:\n        echo \"A\";\n    case 2:\n        echo \"B\";\n        break;\n}",
+      "prompt_en": "What is printed? (Compare with JavaScript's === and C#'s prohibition.)",
+      "prompt_ko": "출력 결과는? (JavaScript의 === 및 이를 금지하는 C#과 비교해보세요.)",
+      "options": ["A", "AB", "오류", "B"],
+      "answer": 1,
+      "explanation_en": "Like C, Java, and JavaScript, PHP's switch allows fall-through: without a break after case 1, execution continues into case 2, printing AB.",
+      "explanation_ko": "C, Java, JavaScript와 마찬가지로 PHP의 switch는 fall-through를 허용합니다. case 1 뒤에 break가 없으면 실행이 case 2로 이어져 AB가 출력됩니다.",
+      "concept_tags": ["switch_statement", "fall_through"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l2_u02_q003",
+      "type": "predict_output",
+      "code": "$x = \"1\";\nswitch ($x) {\n    case 1:\n        echo \"매칭됨\";\n        break;\n    default:\n        echo \"매칭 안됨\";\n}",
+      "prompt_en": "What is printed? (Note: switch compares loosely, using ==, not ===.)",
+      "prompt_ko": "출력 결과는? (switch는 ===가 아니라 느슨한 ==로 비교하는 점에 주의하세요.)",
+      "options": ["매칭됨", "매칭 안됨", "오류", "1"],
+      "answer": 0,
+      "explanation_en": "Unlike JavaScript's switch (which uses strict ===), PHP's switch compares using loose equality (==); the string \"1\" loosely equals the number 1, so case 1 matches.",
+      "explanation_ko": "엄격한 ===를 쓰는 JavaScript의 switch와 달리, PHP의 switch는 느슨한 동등(==)으로 비교합니다. 문자열 \"1\"은 숫자 1과 느슨하게 같으므로 case 1이 매칭됩니다.",
+      "concept_tags": ["switch_statement", "loose_equality"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l2_u02_q004",
+      "type": "predict_output",
+      "code": "$x = 2;\nswitch ($x) {\n    case 1:\n    case 2:\n    case 3:\n        echo \"1~3\";\n        break;\n    default:\n        echo \"기타\";\n}",
+      "prompt_en": "What is printed? (Note: case 1 and case 2 are empty, stacked before case 3.)",
+      "prompt_ko": "출력 결과는? (case 1과 case 2가 비어있는 채로 case 3 앞에 쌓여있는 점에 주의하세요.)",
+      "options": ["1~3", "기타", "오류", "아무것도 출력되지 않음"],
+      "answer": 0,
+      "explanation_en": "Empty case labels stacked together share the same body; x is 2, falling into the shared block with 1 and 3, printing 1~3.",
+      "explanation_ko": "비어있는 case 라벨을 연이어 쌓으면 같은 본문을 공유합니다. x가 2이므로 1, 3과 함께 묶인 블록에 해당해 1~3이 출력됩니다.",
+      "concept_tags": ["switch_statement", "fall_through"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l2_u02_q005",
+      "type": "error_finding",
+      "code": "$x = 2;\nswitch ($x) {\n    case 1:\n        echo \"하나\";\n        break;\n    case 2:\n        echo \"둘\";\n    case 3:\n        echo \"셋\";\n        break;\n}",
+      "prompt_en": "If the programmer expected only 둘 to print, what actually happens?",
+      "prompt_ko": "프로그래머가 둘만 출력될 것이라 기대했다면, 실제로는 어떻게 될까요?",
+      "options": [
+        "둘만 출력됨, 의도한 대로 동작",
+        "case 2에 break가 없어서 case 3까지 이어져(fall-through) 둘과 셋이 모두 출력됨",
+        "컴파일 오류 발생",
+        "아무것도 출력되지 않음"
+      ],
+      "answer": 1,
+      "explanation_en": "PHP's switch silently falls through when break is missing; this prints both 둘 and 셋 rather than stopping after 둘 — the same class of bug seen in C.",
+      "explanation_ko": "PHP의 switch는 break가 없으면 조용히 다음으로 넘어갑니다. 둘에서 멈추는 대신 둘과 셋이 모두 출력됩니다 — C에서 봤던 것과 같은 종류의 버그입니다.",
+      "concept_tags": ["switch_statement", "fall_through"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l2_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "fall-through", "definition": "break가 없어 다음 case까지 실행이 이어지는 현상 — PHP는 C처럼 허용" },
+        { "term": "느슨한 비교 (==)", "definition": "switch가 case를 비교할 때 사용하는 방식 — JavaScript의 엄격한 ===와 다름" },
+        { "term": "그룹 case", "definition": "여러 case 값을 break 없이 붙여 같은 블록을 공유하게 만드는 의도적 fall-through" },
+        { "term": "다음 유닛의 match와의 대조", "definition": "PHP 8의 match는 switch와 달리 fall-through 없고 엄격 비교를 사용함" }
+      ],
+      "explanation_en": "PHP's switch uses loose equality by default, unlike JavaScript's strict-comparing switch — worth remembering, since the next unit's match expression flips this behavior entirely.",
+      "explanation_ko": "PHP의 switch는 기본적으로 느슨한 동등을 사용합니다. 엄격 비교하는 JavaScript의 switch와 다릅니다 — 다음 유닛의 match 표현식이 이 동작을 완전히 뒤집는다는 점을 기억해둘 만합니다.",
+      "concept_tags": ["switch_statement", "fall_through", "loose_equality"],
+      "difficulty": "practice"
+    }
+  ]
+}

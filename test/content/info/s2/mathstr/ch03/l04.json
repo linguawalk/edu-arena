@@ -1,0 +1,253 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "mathstr",
+  "work": "풀이",
+  "track_title": "수학·문자열",
+  "chapter": {
+    "id": "info-s2-mathstr-ch03",
+    "no": 3,
+    "title": "해싱"
+  },
+  "lesson": {
+    "id": "info-s2-mathstr-ch03-l04",
+    "no": 4,
+    "title": "해싱 활용",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "수학·문자열",
+      "해싱"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "서로 다른 부분 문자열 세기",
+      "body": [
+        "길이 L인 부분 문자열의 종류 수는, 구간 해시로 n − L + 1개의 해시를 구해 집합(set)에 넣고 크기를 보면 됩니다. 문자열을 직접 넣으면 비교에 O(L)씩 들지만 해시는 O(1)입니다.",
+        "예를 들어 \"banana\"의 길이 3인 부분 문자열은 ban, ana, nan, ana로 서로 다른 것은 3개입니다.",
+        "모든 길이에 대해 하면 서로 다른 부분 문자열의 총 수도 O(n²)에 셉니다. 더 빠른 방법은 S3의 접미사 배열에서 다룹니다."
+      ],
+      "code": "// H[i] = s[0..i-1]의 해시, P[i] = Bⁱ mod M\nH[0] = 0; P[0] = 1;\nfor (int i = 0; i < n; i++) {\n    H[i + 1] = (H[i] * B + (s[i] - 'a' + 1)) % M;\n    P[i + 1] = P[i] * B % M;\n}\n// s[l..r-1]의 해시\nlong long get(int l, int r) {\n    return ((H[r] - H[l] * P[r - l]) % M + M) % M;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "\"abab\"의 길이 2인 부분 문자열 가운데 서로 다른 것은 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "ab, ba, ab입니다.",
+      "explanation": "길이 2인 부분 문자열은 \"ab\", \"ba\", \"ab\"의 3개입니다.\n같은 \"ab\"는 한 번만 셉니다.\n그래서 2개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "\"banana\"의 길이 3인 부분 문자열 가운데 서로 다른 것은 몇 개인가요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "ban, ana, nan, ana입니다.",
+      "explanation": "길이 3인 창은 \"ban\", \"ana\", \"nan\", \"ana\"의 4개입니다.\n\"ana\"가 두 번 나오므로 한 번만 셉니다.\n그래서 3개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "\"banana\"의 길이 2인 부분 문자열 가운데 서로 다른 것은 몇 개인가요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "ba, an, na, an, na입니다.",
+      "explanation": "길이 2인 창은 \"ba\", \"an\", \"na\", \"an\", \"na\"의 5개입니다.\n중복을 빼면 \"ba\", \"an\", \"na\"입니다.\n그래서 3개입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "가장 긴 반복 부분 문자열",
+      "body": [
+        "두 번 이상 나타나는 부분 문자열 가운데 가장 긴 것의 길이를 구하려 합니다. 길이 L인 것이 두 번 나타나면 그 앞 L − 1글자도 두 번 나타나므로, '길이 L인 반복 부분 문자열이 있는가'는 단조입니다.",
+        "그래서 L을 이분 탐색하고, 각 L에서는 길이 L인 구간 해시들을 집합에 넣으며 같은 것이 이미 있는지 봅니다. 판정이 O(n log n)(또는 해시 테이블로 O(n))이고 이분 탐색이 O(log n)번입니다.",
+        "기초 트랙에서 배운 '답을 이분 탐색하기'와 해싱을 함께 쓰는 대표적인 예입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "\"banana\"의 가장 긴 반복 부분 문자열의 길이를 구하세요.",
+      "steps": [
+        "길이 3: \"ana\"가 위치 1과 3에 두 번 나타나므로 가능합니다.",
+        "길이 4: \"bana\", \"anan\", \"nana\"는 모두 한 번씩만 나타나므로 불가능합니다.",
+        "단조성에 의해 4보다 긴 것도 불가능하므로 답은 3입니다."
+      ],
+      "answer": "3"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "\"mississippi\"의 가장 긴 반복 부분 문자열의 길이는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "\"issi\"를 찾아보세요.",
+      "explanation": "\"issi\"는 위치 1과 4에 두 번 나타납니다(겹쳐도 됨).\n길이 5인 부분 문자열은 모두 한 번씩만 나타납니다.\n그래서 답은 4입니다."
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "\"abab\"의 서로 다른 부분 문자열(빈 문자열 제외)은 모두 몇 개인가요?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "길이 1, 2, 3, 4별로 세어 더하세요.",
+      "explanation": "길이 1은 a, b의 2개, 길이 2는 ab, ba의 2개, 길이 3은 aba, bab의 2개, 길이 4는 abab의 1개입니다.\n길이별 개수를 모두 더합니다.\n2 + 2 + 2 + 1 = 7개입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "회문 판정",
+      "body": [
+        "s와 뒤집은 문자열 r의 접두사 해시를 함께 구해 두면, s[l..r − 1]이 회문(앞뒤가 같은 문자열)인지 O(1)에 판정합니다. s의 그 구간 해시와, r에서 같은 글자들을 거꾸로 읽은 구간의 해시를 비교하면 됩니다.",
+        "예를 들어 \"abcba\"의 해시와 뒤집은 \"abcba\"의 해시는 같습니다. 그래서 회문입니다.",
+        "가장 긴 회문 부분 문자열도 중심마다 길이를 이분 탐색하면 O(n log n)에 구합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "\"abcab\"의 길이 3인 부분 문자열 가운데 회문은 몇 개인가요?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "abc, bca, cab를 뒤집어 보세요.",
+      "explanation": "길이 3인 부분 문자열은 \"abc\", \"bca\", \"cab\"입니다.\n뒤집으면 \"cba\", \"acb\", \"bac\"로 모두 원래와 다릅니다.\n그래서 회문은 0개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "가장 긴 반복 부분 문자열을 '길이 이분 탐색 + 해시 집합'으로 구할 때 이분 탐색이 맞는 이유로 알맞은 것은? ① 길이 L인 반복이 있으면 L − 1인 반복도 있다 ② 해시 값이 단조이다 ③ 문자열이 정렬되어 있다 ④ 부분 문자열의 개수가 L에 비례한다",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "길이 L인 반복 부분 문자열의 앞부분을 보세요.",
+      "explanation": "길이 L인 부분 문자열이 두 번 나타나면 각각의 앞 L − 1글자도 두 번 나타납니다.\n그래서 '길이 L인 반복이 있다'는 L이 작을수록 참이 되는 단조 성질입니다.\n답은 1입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "해시를 집합에 넣어 서로 다른 부분 문자열을 세고, 같은 해시가 다시 나오는지로 반복을 찾습니다.",
+        "가장 긴 반복 부분 문자열은 길이에 대한 단조성으로 이분 탐색하고, 각 길이는 해시로 판정합니다.",
+        "뒤집은 문자열의 해시를 함께 쓰면 구간이 회문인지 O(1)에 판정합니다. 어느 경우든 충돌을 막으려면 문자열이 많을수록 이중 해싱을 쓰는 것이 안전합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "\"aaa\"의 서로 다른 부분 문자열(빈 문자열 제외)은 모두 몇 개인가요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "a, aa, aaa입니다.",
+      "explanation": "길이 1은 \"a\", 길이 2는 \"aa\", 길이 3은 \"aaa\"이고 길이마다 한 종류뿐입니다.\n길이별 개수를 더합니다.\n1 + 1 + 1 = 3개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "\"abcabcd\"의 가장 긴 반복 부분 문자열의 길이는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "\"abc\"가 두 번 나타납니다.",
+      "explanation": "\"abc\"는 위치 0과 3에 두 번 나타납니다.\n길이 4인 \"abca\", \"bcab\", \"cabc\", \"abcd\"는 모두 한 번씩만 나타납니다.\n그래서 답은 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "가장 긴 반복 부분 문자열을 '길이 이분 탐색 + 해시'로 구하는 방법과 시간 복잡도를 설명하세요.",
+      "model_answer": [
+        "길이 L인 반복 부분 문자열이 있으면 그 앞 L − 1글자도 반복이므로, '길이 L인 반복이 있는가'는 단조다.",
+        "길이 L을 정하면 구간 해시로 n − L + 1개의 해시를 O(1)씩 구해 집합에 넣고, 이미 있는 값이 나오면 반복이 있다고 판정한다.",
+        "판정 한 번은 O(n log n)(해시 테이블이면 평균 O(n))이고, L을 0~n에서 이분 탐색하므로 O(log n)번 판정한다.",
+        "그래서 전체는 O(n log² n)(또는 평균 O(n log n))이다. 해시 충돌을 막으려면 이중 해싱을 쓴다."
+      ],
+      "criteria": [
+        {
+          "text": "단조성을 보였다",
+          "points": 2
+        },
+        {
+          "text": "한 길이의 판정 방법을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "전체 시간 복잡도를 구했다",
+          "points": 2
+        }
+      ],
+      "hint": "길이 L의 판정과 이분 탐색을 나눠 쓰세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "서로 다른 길이 L인 부분 문자열의 수를 문자열 대신 해시로 셀 때 얻는 이점과 주의할 점을 설명하세요.",
+      "model_answer": [
+        "문자열을 집합에 넣으면 비교와 저장에 길이 L만큼 들어 O(nL log n)이 걸리지만, 해시는 정수 하나라 O(n log n)이다.",
+        "구간 해시를 쓰면 각 해시를 O(1)에 구하므로 준비도 O(n)이다.",
+        "다만 서로 다른 부분 문자열이 같은 해시를 가지면 하나로 세어져 답이 작게 나올 수 있다.",
+        "부분 문자열이 많을수록 충돌 기댓값이 커지므로 이중 해싱 등으로 충돌 확률을 낮춘다."
+      ],
+      "criteria": [
+        {
+          "text": "시간 이점을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "구간 해시로 O(1)에 구함을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "충돌의 영향과 대책을 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "문자열 비교와 정수 비교의 비용을 비교하세요."
+    }
+  ]
+}

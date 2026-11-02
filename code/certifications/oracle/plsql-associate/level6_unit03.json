@@ -1,0 +1,102 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 6,
+  "unit": 3,
+  "unit_title": "뮤테이팅 테이블과 조건 술어",
+  "rule_summary_ko": "행 수준 트리거가 자신을 발동시킨 바로 그 테이블을 조회하거나 수정하려고 하면, 그 테이블이 아직 변경 중(mutating)이라 일관성을 보장할 수 없어 ORA-04091 오류가 발생합니다. 해결 방법은 문장 수준 트리거로 바꾸거나, 자율 트랜잭션(AUTONOMOUS_TRANSACTION), 또는 컴파운드 트리거를 사용하는 것입니다. INSERTING·UPDATING·DELETING 조건 술어는 하나의 트리거가 여러 DML 이벤트(INSERT, UPDATE, DELETE)에 반응하도록 만들 때, 실제로 어떤 이벤트가 트리거를 발동시켰는지 구분하는 데 사용합니다.",
+  "examples": [
+    { "code": "AFTER UPDATE OF status ON employee\nFOR EACH ROW\nDECLARE v_count NUMBER;\nBEGIN\n    SELECT COUNT(*) INTO v_count FROM employee WHERE status='ACTIVE';\nEND;", "note_ko": "employee를 UPDATE하는 도중, 같은 employee 테이블을 SELECT하려다 ORA-04091 발생" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l6_u3_q001",
+      "type": "concept_matching_item",
+      "code": "AFTER UPDATE OF status ON employee\nFOR EACH ROW\nDECLARE v_count NUMBER;\nBEGIN\n    SELECT COUNT(*) INTO v_count FROM employee WHERE status = 'ACTIVE';\nEND;\n-- UPDATE employee SET status='ACTIVE' WHERE id=3;",
+      "prompt_ko": "이 UPDATE 문을 실행하면 어떤 오류가 발생합니까?",
+      "options": [
+        "오류 없이 정상 실행된다",
+        "ORA-04091(뮤테이팅 테이블 오류) — 행 수준 트리거가 자신을 발동시킨 employee 테이블을 다시 조회하려 하기 때문",
+        "ORA-01427",
+        "ORA-06503"
+      ],
+      "answer": 1,
+      "explanation_ko": "UPDATE로 변경 중인 바로 그 테이블을, 같은 트리거 안에서 다시 조회(SELECT)하려 하면 뮤테이팅 테이블 오류가 발생합니다.",
+      "concept_tags": ["ora_04091"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l6_u3_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "위 문제의 뮤테이팅 테이블 오류를 해결하는 방법으로 적절하지 않은 것은?",
+      "options": [
+        "행 수준 대신 문장 수준 트리거로 바꾼다",
+        "AUTONOMOUS_TRANSACTION pragma를 사용한다",
+        "컴파운드 트리거를 사용한다",
+        "트리거의 이름을 바꾼다"
+      ],
+      "answer": 3,
+      "explanation_ko": "트리거 이름 변경은 문제의 근본 원인(같은 테이블을 동시에 읽고 쓰려는 시도)과 무관합니다.",
+      "concept_tags": ["mutating_table_solutions"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l6_u3_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "행 수준 트리거가 자신을 발동시킨 테이블을 조회·수정하려 할 때 발생하는 오류 코드는 무엇입니까? (예: ORA-XXXXX 형식으로 입력)",
+      "expected_answers": ["ORA-04091"],
+      "explanation_ko": "ORA-04091은 '뮤테이팅 테이블' 오류로 잘 알려져 있습니다.",
+      "concept_tags": ["ora_04091"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l6_u3_q004",
+      "type": "concept_matching_item",
+      "code": "CREATE TRIGGER trg_multi\nBEFORE INSERT OR UPDATE OR DELETE ON employees\nFOR EACH ROW\nBEGIN\n    IF INSERTING THEN\n        DBMS_OUTPUT.PUT_LINE('삽입됨');\n    ELSIF UPDATING THEN\n        DBMS_OUTPUT.PUT_LINE('수정됨');\n    ELSIF DELETING THEN\n        DBMS_OUTPUT.PUT_LINE('삭제됨');\n    END IF;\nEND;",
+      "prompt_ko": "INSERTING, UPDATING, DELETING 조건 술어가 하는 역할은?",
+      "options": [
+        "하나의 트리거가 INSERT·UPDATE·DELETE 여러 이벤트에 반응하도록 정의됐을 때, 실제로 어떤 이벤트가 트리거를 발동시켰는지 구분해준다",
+        "테이블에 몇 개의 행이 있는지 센다",
+        "트리거를 활성화·비활성화한다",
+        ":OLD와 :NEW의 값을 서로 바꾼다"
+      ],
+      "answer": 0,
+      "explanation_ko": "여러 DML 이벤트를 하나의 트리거로 통합했을 때, 이 조건 술어들로 실제 발생한 이벤트에 따라 다른 로직을 실행할 수 있습니다.",
+      "concept_tags": ["inserting_updating_deleting"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l6_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "뮤테이팅 테이블 오류가 주로 발생하는 트리거 유형은?",
+      "options": [
+        "문장 수준 트리거", "행 수준(row-level) 트리거 — 각 행 처리 중에 같은 테이블을 다시 건드리려 하기 때문에", "INSTEAD OF 트리거만", "시스템 트리거만"
+      ],
+      "answer": 1,
+      "explanation_ko": "문장 수준 트리거는 전체 문장이 끝난 뒤(또는 시작 전) 한 번만 실행되어 이런 충돌이 생기지 않지만, 행 수준은 처리 도중이라 문제가 됩니다.",
+      "concept_tags": ["mutating_table_row_level"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l6_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "뮤테이팅 테이블 오류가 존재하는 근본적인 이유는?",
+      "options": [
+        "오라클의 임의적인 제약일 뿐 특별한 이유가 없다",
+        "테이블이 아직 변경(트랜잭션)이 완료되지 않은 중간 상태에서, 그 불완전한 데이터를 조회하면 일관성 없는(잘못된) 결과를 얻을 위험이 있어 이를 방지하기 위해",
+        "성능을 항상 빠르게 만들기 위해",
+        "트리거 자체를 사용하지 못하게 막기 위해"
+      ],
+      "answer": 1,
+      "explanation_ko": "데이터 일관성을 보장하기 위한 안전장치가 뮤테이팅 테이블 오류의 존재 이유입니다.",
+      "concept_tags": ["mutating_table_rationale"],
+      "difficulty": "challenge"
+    }
+  ]
+}

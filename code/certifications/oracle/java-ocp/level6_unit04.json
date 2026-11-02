@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "java-ocp-17",
+  "level": 6,
+  "unit": 4,
+  "unit_title": "동시성 컬렉션과 원자적 변수",
+  "rule_summary_ko": "AtomicInteger·AtomicLong 등은 synchronized 없이도 증가·감소 같은 연산을 원자적으로(중간에 다른 스레드가 끼어들 수 없게) 수행해주는 클래스입니다. ConcurrentHashMap은 여러 스레드가 동시에 접근해도 안전한 Map으로, 일반 HashMap과 달리 순회 중 다른 스레드가 수정해도 ConcurrentModificationException을 던지지 않습니다(약한 일관성, weak consistency).",
+  "examples": [
+    { "code": "AtomicInteger counter = new AtomicInteger(0);\ncounter.incrementAndGet();", "note_ko": "synchronized 없이도 여러 스레드가 안전하게 증가시킬 수 있음 — 10개 스레드×1000번 증가 시 항상 정확히 10000" },
+    { "code": "ConcurrentHashMap<String,Integer> map = ...;\nIterator<String> it = map.keySet().iterator();\nmap.put(\"b\", 2); // 순회 중 수정", "note_ko": "일반 HashMap이었다면 위험했겠지만, ConcurrentHashMap은 예외 없이 계속 순회 가능(약한 일관성)" }
+  ],
+  "questions": [
+    {
+      "id": "java_ocp_l6_u4_q001",
+      "type": "concept_matching_item",
+      "code": "AtomicInteger counter = new AtomicInteger(0);\n// 여러 스레드가 counter.incrementAndGet()을 동시 호출",
+      "prompt_ko": "AtomicInteger를 사용하면 synchronized 없이도 안전한 이유는?",
+      "options": [
+        "AtomicInteger는 내부적으로 하드웨어 수준의 원자적 연산(CAS 등)을 사용해서, 증가 연산 자체가 중간에 끼어들 수 없게 보장하기 때문에",
+        "AtomicInteger는 사실 내부적으로 아무 보호 장치가 없다",
+        "AtomicInteger는 항상 단일 스레드에서만 사용해야 한다",
+        "AtomicInteger는 값을 저장하지 않는 클래스다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Atomic 클래스들은 CAS(Compare-And-Swap) 같은 저수준 원자적 연산을 활용해서 락(synchronized) 없이도 스레드 안전성을 제공합니다.",
+      "concept_tags": ["atomicinteger"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l6_u4_q002",
+      "type": "concept_matching_item",
+      "code": "ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();\nmap.put(\"a\", 1);\nIterator<String> it = map.keySet().iterator();\nmap.put(\"b\", 2); // 순회 시작 후 수정\nwhile (it.hasNext()) { System.out.println(it.next()); }",
+      "prompt_ko": "이 코드는 일반 HashMap이었다면 ConcurrentModificationException 위험이 있는 패턴입니다. ConcurrentHashMap에서는 어떻게 됩니까?",
+      "options": [
+        "일반 HashMap과 동일하게 ConcurrentModificationException이 발생한다",
+        "예외 없이 계속 순회할 수 있다 — ConcurrentHashMap은 순회 중 수정에도 CME를 던지지 않는 약한 일관성을 제공한다",
+        "프로그램이 즉시 종료된다",
+        "컴파일 오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "ConcurrentHashMap은 동시 수정 상황을 고려해 설계되어, 순회 중 수정이 있어도 예외를 던지지 않습니다(다만 최신 값이 100% 반영된다는 보장은 아닙니다).",
+      "concept_tags": ["concurrenthashmap"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_ocp_l6_u4_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "동기화 없이도 정수를 원자적으로 증가·감소시킬 수 있게 해주는 클래스는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["AtomicInteger"],
+      "explanation_ko": "AtomicInteger는 java.util.concurrent.atomic 패키지의 대표적인 원자적 변수 클래스입니다.",
+      "concept_tags": ["atomicinteger"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_ocp_l6_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "일반 HashMap 대신 ConcurrentHashMap을 사용해야 하는 상황은?",
+      "options": [
+        "단일 스레드 환경에서만 사용할 때",
+        "여러 스레드가 동시에 같은 Map을 읽고 쓸 가능성이 있는 멀티스레드 환경",
+        "Map을 절대 수정하지 않을 때만",
+        "ConcurrentHashMap은 어떤 상황에서도 HashMap보다 항상 무조건 더 좋다"
+      ],
+      "answer": 1,
+      "explanation_ko": "동시성 문제가 없는 단일 스레드 환경에서는 일반 HashMap이 오버헤드 없이 더 적합할 수 있습니다.",
+      "concept_tags": ["concurrenthashmap", "use_case"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l6_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "AtomicInteger와 synchronized를 사용한 int 변수 증가 방식을 비교했을 때 가장 정확한 설명은?",
+      "options": [
+        "AtomicInteger는 항상 synchronized보다 느리다",
+        "둘 다 스레드 안전성을 제공하지만, 단순 증가·감소 같은 연산에는 저수준 원자적 연산을 활용하는 AtomicInteger가 일반적으로 synchronized보다 가볍고 효율적인 경우가 많다",
+        "AtomicInteger는 스레드 안전성을 전혀 제공하지 않는다",
+        "synchronized는 int 타입에 사용할 수 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "단순한 원자적 연산 하나만 필요하다면, 락을 거는 synchronized보다 CAS 기반의 Atomic 클래스가 더 가벼운 경우가 많습니다.",
+      "concept_tags": ["atomicinteger", "synchronized", "comparison"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_ocp_l6_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "java.util.concurrent 패키지가 제공하는 도구들(ExecutorService, AtomicInteger, ConcurrentHashMap 등)의 공통된 목적은?",
+      "options": [
+        "멀티스레드 프로그래밍에서 흔히 발생하는 위험(경쟁 조건, 예외적인 동작)을 개발자가 직접 저수준으로 다루지 않고도 안전하고 효율적으로 처리할 수 있게 해주는 것",
+        "모든 프로그램을 단일 스레드로 강제 전환하는 것",
+        "코드를 실행하는 것을 아예 막는 것",
+        "이 패키지들은 서로 아무 연관이 없는 무작위 기능 모음이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "java.util.concurrent 패키지는 동시성 프로그래밍의 어려운 부분(경쟁 조건, 스레드 관리 등)을 검증된 도구로 추상화해서 제공합니다.",
+      "concept_tags": ["java_util_concurrent", "synthesis"],
+      "difficulty": "practice"
+    }
+  ]
+}

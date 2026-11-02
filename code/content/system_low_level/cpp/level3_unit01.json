@@ -1,0 +1,96 @@
+{
+  "language": "cpp",
+  "category": "system_low_level",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "상속 기초",
+  "questions": [
+    {
+      "id": "cpp_l3_u01_q001",
+      "type": "predict_output",
+      "code": "class Animal {\npublic:\n    string name;\n    Animal(string n) : name(n) {}\n    void eat() {\n        cout << name << \" eats.\";\n    }\n};\n\nclass Dog : public Animal {\npublic:\n    Dog(string n) : Animal(n) {}\n    void bark() {\n        cout << name << \" barks.\";\n    }\n};\n\nDog d(\"바둑이\");\nd.eat();",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이 eats.", "오류: Dog에는 eat이 없음", "Animal eats.", "아무것도 출력되지 않음"],
+      "answer": 0,
+      "explanation_en": "Dog inherits from Animal, so it automatically has access to eat() and the name field, even though Dog itself never defines eat().",
+      "explanation_ko": "Dog는 Animal을 상속받으므로 eat()과 name 필드를 자동으로 물려받습니다. Dog 자신은 eat()을 따로 정의하지 않았는데도 사용할 수 있습니다.",
+      "concept_tags": ["inheritance"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l3_u01_q002",
+      "type": "fill_blank",
+      "code": "class Animal {\npublic:\n    string name;\n};\n\nclass Dog ____ Animal {\npublic:\n    void bark() { cout << name << \" barks.\"; }\n};",
+      "prompt_en": "Fill in the blank so Dog inherits publicly from Animal.",
+      "prompt_ko": "Dog가 Animal을 public으로 상속받도록 빈칸을 채우세요.",
+      "options": [": public", "extends", "inherits", "->"],
+      "answer": 0,
+      "explanation_en": "C++ expresses inheritance with a colon followed by the access level and base class name: class Derived : public Base.",
+      "explanation_ko": "C++는 콜론 뒤에 접근 수준과 부모 클래스 이름을 붙여 상속을 표현합니다: class 자식클래스 : public 부모클래스.",
+      "concept_tags": ["inheritance"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l3_u01_q003",
+      "type": "predict_output",
+      "code": "class Animal {\npublic:\n    string name;\n    Animal(string n) : name(n) {}\n};\n\nclass Dog : public Animal {\npublic:\n    Dog(string n) : Animal(n) {}\n};\n\nDog d(\"바둑이\");\ncout << d.name;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이", "오류: name은 Animal의 필드", "Dog", "빈 문자열"],
+      "answer": 0,
+      "explanation_en": "Dog's constructor calls Animal(n) to initialize the inherited name field; since Dog is-a Animal, d.name is directly accessible.",
+      "explanation_ko": "Dog의 생성자는 Animal(n)을 호출해 상속받은 name 필드를 초기화합니다. Dog는 Animal의 한 종류이므로 d.name에 바로 접근할 수 있습니다.",
+      "concept_tags": ["inheritance", "constructor"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l3_u01_q004",
+      "type": "error_finding",
+      "code": "class Animal {\nprivate:\n    string name;\npublic:\n    Animal(string n) : name(n) {}\n};\n\nclass Dog : public Animal {\npublic:\n    Dog(string n) : Animal(n) {}\n    void printName() {\n        cout << name;\n    }\n};",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "Dog 생성자 문법 오류",
+        "name이 Animal에서 private이라, 상속을 받아도 Dog 안에서 직접 접근할 수 없어 컴파일 오류가 발생함",
+        "public 상속 문법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "private members of the base class are not accessible in derived classes, even with public inheritance; only protected or public members can be reached directly from Dog.",
+      "explanation_ko": "부모 클래스의 private 멤버는 public 상속을 받아도 자식 클래스에서 직접 접근할 수 없습니다. protected나 public 멤버만 Dog에서 직접 접근 가능합니다.",
+      "concept_tags": ["inheritance", "access_modifier"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cpp_l3_u01_q005",
+      "type": "fill_blank",
+      "code": "class Animal {\n____:\n    string name;\npublic:\n    Animal(string n) : name(n) {}\n};\n\nclass Dog : public Animal {\npublic:\n    Dog(string n) : Animal(n) {}\n    void printName() { cout << name; }  // 여기서 name에 접근 가능해야 함\n};",
+      "prompt_en": "Fill in the blank with the access modifier that allows derived classes (but not outside code) to access name.",
+      "prompt_ko": "자식 클래스에서는 접근 가능하지만 외부에서는 접근 불가능하도록 빈칸에 들어갈 접근 제어자는?",
+      "options": ["protected", "private", "public", "internal"],
+      "answer": 0,
+      "explanation_en": "protected members are accessible within the class itself and its derived classes, but not from outside code — a middle ground between private and public.",
+      "explanation_ko": "protected 멤버는 그 클래스 자신과 자식 클래스에서는 접근할 수 있지만, 외부 코드에서는 접근할 수 없습니다. private과 public의 중간 단계입니다.",
+      "concept_tags": ["inheritance", "access_modifier"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l3_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "상속", "definition": "한 클래스가 다른 클래스의 필드와 함수를 물려받는 것" },
+        { "term": "부모 클래스 (Base)", "definition": "물려주는 쪽의 클래스" },
+        { "term": "자식 클래스 (Derived)", "definition": "물려받는 쪽의 클래스" },
+        { "term": "protected", "definition": "자신과 자식 클래스에서는 접근 가능하지만 외부에서는 불가능한 접근 제어자" }
+      ],
+      "explanation_en": "Inheritance lets classes share common structure and behavior, avoiding duplication when several classes are variations of a common concept.",
+      "explanation_ko": "상속은 클래스들이 공통 구조와 동작을 공유하게 해서, 여러 클래스가 하나의 공통 개념의 변형일 때 중복을 피할 수 있게 해줍니다.",
+      "concept_tags": ["inheritance", "access_modifier"],
+      "difficulty": "practice"
+    }
+  ]
+}

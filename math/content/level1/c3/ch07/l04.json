@@ -1,0 +1,343 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c3",
+    "title": "대수"
+  },
+  "chapter": {
+    "id": "c3-ch07",
+    "no": 7,
+    "title": "수학적 귀납법"
+  },
+  "lesson": {
+    "id": "c3-ch07-l04",
+    "no": 4,
+    "title": "귀납적으로 생각하기",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "이산조합"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "규칙을 추측하기",
+      "body": [
+        "작은 경우를 몇 개 계산해 규칙을 추측하고, 수학적 귀납법으로 그 추측을 증명합니다.",
+        "1 = 1, 1 + 3 = 4, 1 + 3 + 5 = 9처럼 홀수의 합은 제곱수가 됩니다.",
+        "수학의 많은 공식은 이렇게 발견됩니다. 작은 경우에서 규칙을 추측하는 것을 귀납적 추론이라 하고, 그 추측이 모든 경우에 맞는지 확인하는 것이 수학적 귀납법입니다. 추측만으로는 틀릴 수 있으므로 반드시 증명이 필요합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "1, 1 + 2, 1 + 2 + 4, 1 + 2 + 4 + 8, …을 계산해 규칙을 추측하세요.",
+      "steps": [
+        "1 = 2 − 1",
+        "3 = 4 − 1, 7 = 8 − 1",
+        "15 = 16 − 1",
+        "추측: 1 + 2 + … + 2ⁿ⁻¹ = 2ⁿ − 1 (등비수열의 합 공식과 일치)"
+      ],
+      "answer": "2ⁿ − 1"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "1 + 3 + 5 + …의 처음 12개 홀수의 합은?",
+      "answer": "144",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "처음 n개 홀수의 합은 n²\n12개이면 12²\n= 144\n원리: 1, 4, 9, 16, …에서 추측하고 수학적 귀납법으로 증명한 규칙"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "1³ + 2³ + … + n³ = (1 + 2 + … + n)²을 이용하면 n = 5일 때 합은?",
+      "answer": "225",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "1 + 2 + … + 5 = 15\n세제곱의 합은 그 제곱: 15²\n= 225\n확인: 1 + 8 + 27 + 64 + 125 = 225"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "몇 개만 확인하면 안 되는 이유",
+      "body": [
+        "n² + n + 41은 n = 1부터 39까지 모두 소수지만 n = 40이면 41²이 되어 소수가 아닙니다.",
+        "39개의 사례가 모두 맞아도 40번째에서 틀릴 수 있다는 것이 이 예의 교훈입니다. n = 40이면 40² + 40 + 41 = 40(40 + 1) + 41 = 41 × 41이 되어 합성수입니다. 유한 개를 확인하는 것은 증명이 아니라 추측의 근거일 뿐입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 40일 때 n² + n + 41은 소수일까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "n = 40이면 40² + 40 + 41 = 40 × 41 + 41 = 41 × 41\n= 41²으로 합성수\n소수가 아니므로 0\n원리: 반례 하나로 '모든 n'이 거짓이 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 1부터 5까지 성립하는 것을 확인했다면 모든 자연수에서 성립한다고 할 수 있을까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "몇 개를 확인한 것은 추측의 근거일 뿐 증명이 아닙니다.\nn² + n + 41처럼 39개가 맞아도 40번째에서 틀릴 수 있습니다.\n0 (수학적 귀납법 같은 증명이 필요)"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "도형에서 찾는 귀납",
+      "body": [
+        "n각형의 대각선은 n(n − 3)/2개입니다. 꼭짓점이 하나 늘 때 대각선이 몇 개 늘어나는지 보면 점화식이 됩니다.",
+        "왜 n(n − 3)/2일까요? 한 꼭짓점에서 자기 자신과 이웃한 두 꼭짓점을 뺀 n − 3개의 꼭짓점으로 대각선을 그을 수 있고, n개의 꼭짓점 모두에서 세면 각 대각선이 두 번씩 세어지므로 2로 나눕니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "n각형의 대각선 수 aₙ에 대해 aₙ₊₁ − aₙ을 구하세요.",
+      "steps": [
+        "꼭짓점을 하나 더하면 새 꼭짓점에서 n − 2개의 대각선이 새로 생깁니다.",
+        "원래 변 하나가 대각선으로 바뀌어 1개 더 생깁니다.",
+        "aₙ₊₁ − aₙ = n − 1",
+        "확인: a₄ = 2, a₅ = 5 (차 3 = 4 − 1)"
+      ],
+      "answer": "n − 1"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "오각형의 대각선은 몇 개일까요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "n(n − 3)/2에 n = 5\n5 × 2/2\n= 5\n원리: 각 꼭짓점에서 2개씩, 두 번씩 세어지므로 2로 나눔"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "육각형에 꼭짓점을 하나 더해 칠각형을 만들 때 늘어나는 대각선은 몇 개일까요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "새 꼭짓점은 이웃한 두 꼭짓점을 뺀 7 − 3 = 4개와 대각선을 만듭니다.\n원래 육각형의 변 하나가 대각선으로 바뀌어 1개 추가\n4 + 1 = 5 (확인: 14 − 9 = 5)"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "십각형의 대각선은 몇 개일까요?",
+      "answer": "35",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "n(n − 3)/2에 n = 10\n10 × 7/2\n= 35\n원리: 한 꼭짓점에서 7개씩, 두 번씩 세어짐\n확인: 칠각형에서 3개씩 늘어 35개"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "악수 문제",
+      "body": [
+        "n명이 서로 한 번씩 악수하면 n(n − 1)/2번입니다. 한 명이 새로 오면 그 사람이 기존 n명과 악수하므로 n번 늘어납니다.",
+        "악수 문제는 n명 중 2명을 고르는 조합 nC2와 같습니다. 점화식으로 보면 aₙ₊₁ = aₙ + n이고, a₁ = 0에서 시작해 더하면 aₙ = 0 + 1 + 2 + … + (n − 1) = n(n − 1)/2가 됩니다. 같은 문제를 두 가지 방법으로 푼 것입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "6명이 서로 한 번씩 악수하면 모두 몇 번일까요?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n(n − 1)/2",
+      "explanation": "n(n − 1)/2에 n = 6\n6 × 5/2\n= 15 (6명 중 2명을 고르는 조합 ₆C₂)\n원리: 악수 한 번은 두 사람의 짝 하나입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "10명이 모인 곳에 1명이 새로 와서 모두와 악수하면 악수는 몇 번 늘어날까요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "새로 온 사람이 몇 명과 악수하나요?",
+      "explanation": "새로 온 1명이 기존 10명과 한 번씩 악수합니다.\n늘어나는 악수 10번\n원리: aₙ₊₁ = aₙ + n\n확인: 45 + 10 = 55 = 11 × 10/2"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "증명 단계 채우기",
+      "body": [
+        "n = k일 때의 식을 그대로 쓰고, 새로 더하거나 곱해지는 부분만 계산합니다.",
+        "증명의 빈칸 채우기 문제는 결국 식 변형 연습입니다. 새로 더해지거나 곱해지는 부분을 정확히 계산한 뒤, 목표 식(n = k + 1을 넣은 식)과 같아지도록 묶거나 통분합니다. 통분한 분자가 인수분해되는 경우가 많습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "1/(1·2) + … + 1/(k(k + 1)) = k/(k + 1)을 가정할 때 n = k + 1일 때의 식을 정리하세요.",
+      "steps": [
+        "좌변 = k/(k + 1) + 1/((k + 1)(k + 2))",
+        "통분: (k(k + 2) + 1)/((k + 1)(k + 2))",
+        "분자 k² + 2k + 1 = (k + 1)²",
+        "= (k + 1)/(k + 2)이므로 n = k + 1일 때도 성립"
+      ],
+      "answer": "(k + 1)/(k + 2)"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "2ᵏ⁺¹ − 1 + 2ᵏ⁺¹ = 2^(k + {{1}}) − 1",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": "같은 수를 두 번 더하면 2배입니다.",
+      "explanation": "2ᵏ⁺¹ + 2ᵏ⁺¹ = 2 × 2ᵏ⁺¹ = 2ᵏ⁺²\n따라서 2ᵏ⁺² − 1\n빈칸은 2 (1 + 2 + … + 2ᵏ⁺¹ = 2ᵏ⁺² − 1)"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "k/(k + 1) + 1/((k + 1)(k + 2)) = (k + 1)/(k + {{1}})",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": "통분해서 분자를 인수분해하세요.",
+      "explanation": "통분: (k(k + 2) + 1)/((k + 1)(k + 2))\n분자 k² + 2k + 1 = (k + 1)²\n약분하면 (k + 1)/(k + 2)이므로 빈칸은 2"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "5ᵏ⁺¹ − 1 = 5(5ᵏ − 1) + {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "4"
+          ]
+        }
+      ],
+      "hint": "5 × 5ᵏ − 5 + 4로 바꾸세요.",
+      "explanation": "5ᵏ⁺¹ − 1 = 5 × 5ᵏ − 5 + 4\n= 5(5ᵏ − 1) + 4\n빈칸은 4 (4의 배수 증명에 쓰는 변형)"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "n! > 2ⁿ이 n ≥ a인 모든 자연수에서 성립할 때 a의 최솟값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n을 차례로 넣어 보세요.",
+      "explanation": "n = 1: 1 > 2 (거짓), n = 2: 2 > 4 (거짓), n = 3: 6 > 8 (거짓)\nn = 4: 24 > 16 (참), 이후 n!은 n배, 2ⁿ은 2배씩 늘어 계속 성립\na의 최솟값 4"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "어느 두 직선도 평행하지 않고 어느 세 직선도 한 점에서 만나지 않는 직선 5개의 교점은 몇 개일까요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 직선마다 교점이 하나입니다.",
+      "explanation": "어느 두 직선을 고르든 교점이 하나씩 생깁니다.\n5개 중 2개를 고르는 방법 ₅C₂\n= 10\n원리: 조건 때문에 교점이 겹치지 않아 두 직선의 쌍마다 하나씩 셉니다."
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "하노이의 탑에서 원판 10개를 옮기는 최소 횟수는?",
+      "answer": "1023",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "일반항 2ⁿ − 1을 쓰세요.",
+      "explanation": "aₙ = 2ⁿ − 1 (점화식 aₙ₊₁ = 2aₙ + 1, a₁ = 1)\na₁₀ = 2¹⁰ − 1\n= 1023번"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "처음 몇 개의 경우가 모두 참이어도 모든 자연수에서 참이라고 할 수 없는 예를 들어 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "n² + n + 41",
+            "41"
+          ],
+          [
+            "40"
+          ],
+          [
+            "소수가 아니",
+            "성립하지"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "n² + n + 41은 n = 1부터 39까지 모두 소수이지만 n = 40이면 41²이 되어 소수가 아닙니다. 그래서 몇 개를 확인하는 것만으로는 부족하고 수학적 귀납법 같은 증명이 필요합니다."
+    }
+  ]
+}

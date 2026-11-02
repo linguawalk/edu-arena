@@ -1,0 +1,103 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "microsoft",
+  "exam": "az-900",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "컴퓨팅 서비스",
+  "rule_summary_ko": "Azure Virtual Machines(IaaS)는 OS까지 완전한 통제를 제공하지만 기본적으로 수동 확장이며, Virtual Machine Scale Sets를 사용해야 자동 확장이 가능합니다. Azure App Service(PaaS)는 웹앱·API를 손쉽게 호스팅하고 자동 확장 기능을 내장하고 있지만 OS에 대한 세밀한 제어는 제공하지 않습니다. Azure Container Instances(ACI)는 VM이나 오케스트레이터 관리 없이 컨테이너를 빠르게 실행하는 서버리스 컨테이너 서비스입니다. Azure Functions는 이벤트에 반응해 코드 조각을 실행하는 서버리스(FaaS) 서비스로, 사용한 실행 횟수·시간만큼만 과금되며 트래픽이 없으면 0까지 축소됩니다.",
+  "examples": [
+    { "code": "사용자 업로드 이미지가 생길 때마다 자동으로 썸네일을 생성하는 기능", "note_ko": "Azure Functions(서버리스)가 적합 — 이벤트(업로드)에 반응해서 짧은 코드만 실행, 트래픽 없을 때는 비용 없음" },
+    { "code": "OS를 자유롭게 커스터마이징해야 하는 레거시 애플리케이션", "note_ko": "Azure Virtual Machines(IaaS)가 적합 — OS 수준까지 완전한 제어 필요" }
+  ],
+  "questions": [
+    {
+      "id": "az900_l2_u2_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Azure Virtual Machine을 단독으로(Scale Set 없이) 사용할 때, 부하 증가에 따른 확장은 기본적으로 어떻게 이뤄집니까?",
+      "options": [
+        "항상 완전 자동으로 확장된다",
+        "기본적으로 수동 개입(추가 VM 프로비저닝 등)이 필요하다 — 자동 확장을 원하면 Virtual Machine Scale Sets를 사용해야 한다",
+        "VM은 확장이 아예 불가능하다",
+        "VM은 항상 무제한으로 자동 확장된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "단독 VM의 확장은 기본적으로 수동이며, 자동 확장이 필요하면 VM Scale Sets라는 별도 기능을 사용해야 합니다.",
+      "concept_tags": ["vm_scaling"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "az900_l2_u2_q002",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "동일한 VM의 인스턴스를 여러 개 관리하며 수요에 따라 자동으로 늘리거나 줄여주는 Azure 서비스는 무엇입니까? (영문으로 입력, 세 단어: XXXXXX XXXXXXX XXXX)",
+      "expected_answers": ["Virtual Machine Scale Sets"],
+      "explanation_ko": "VM Scale Sets는 동일한 구성의 VM 여러 대를 묶어 자동 확장·부하 분산을 지원합니다.",
+      "concept_tags": ["vm_scale_sets"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "az900_l2_u2_q003",
+      "type": "concept_matching_item",
+      "code": "사용자가 업로드한 이미지가 생길 때마다, 그 순간에만 짧게 실행되어 썸네일을 만드는 기능이 필요함(평소에는 트래픽이 거의 없음)",
+      "prompt_ko": "이 시나리오에 가장 적합한 컴퓨팅 서비스는?",
+      "options": [
+        "Azure Virtual Machines — 항상 켜져 있어야 하므로 유휴 시간에도 비용이 발생",
+        "Azure Functions — 이벤트(업로드)에 반응해 실행되고, 트래픽이 없으면 0까지 축소되어 그 시간에는 비용이 발생하지 않는다",
+        "Azure Virtual Desktop",
+        "온프레미스 서버"
+      ],
+      "answer": 1,
+      "explanation_ko": "이벤트 기반의 짧고 간헐적인 작업에는 사용한 만큼만 과금되는 Functions(서버리스)가 이상적입니다.",
+      "concept_tags": ["azure_functions_use_case"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "az900_l2_u2_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Azure Container Instances(ACI)의 핵심 특징은?",
+      "options": [
+        "가상 머신이나 복잡한 오케스트레이터(Kubernetes 등)를 직접 관리할 필요 없이, 컨테이너를 빠르고 간단하게 실행할 수 있는 서버리스 컨테이너 서비스",
+        "반드시 Kubernetes 클러스터를 먼저 구축해야만 사용할 수 있다",
+        "OS 수준의 완전한 제어를 제공하는 IaaS 서비스",
+        "컨테이너를 전혀 실행할 수 없는 서비스다"
+      ],
+      "answer": 0,
+      "explanation_ko": "ACI는 인프라 관리 부담 없이 컨테이너를 즉시 실행하고 싶을 때 적합한 서버리스 옵션입니다.",
+      "concept_tags": ["container_instances"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "az900_l2_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "복잡한 마이크로서비스 아키텍처를 다수의 컨테이너로 장기간 운영하며, Kubernetes API에 직접 접근해 세밀하게 제어하고 싶을 때 적합한 서비스는?",
+      "options": [
+        "Azure Container Instances(단순 실행에 최적화)", "Azure Kubernetes Service(AKS) — 관리형 쿠버네티스로 API·컨트롤 플레인에 직접 접근 가능", "Azure Functions", "Azure Virtual Desktop"
+      ],
+      "answer": 1,
+      "explanation_ko": "AKS는 Kubernetes의 정교한 오케스트레이션 기능이 필요한 대규모·장기 실행 컨테이너 워크로드에 적합합니다.",
+      "concept_tags": ["aks"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "az900_l2_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Azure App Service와 Azure Virtual Machines를 비교했을 때 옳은 것은?",
+      "options": [
+        "App Service는 웹앱·API 호스팅에 최적화되어 손쉬운 확장·개발 도구를 제공하지만, VM만큼 세밀한 OS 제어는 할 수 없다",
+        "App Service가 VM보다 항상 더 많은 OS 제어권을 제공한다",
+        "둘은 완전히 동일한 서비스다",
+        "VM은 웹앱을 호스팅할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "App Service는 편의성과 자동화에, VM은 통제력과 유연성에 강점이 있다는 트레이드오프가 있습니다.",
+      "concept_tags": ["app_service_vs_vm"],
+      "difficulty": "practice"
+    }
+  ]
+}

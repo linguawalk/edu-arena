@@ -1,0 +1,281 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "ds",
+  "work": "풀이",
+  "track_title": "자료구조",
+  "chapter": {
+    "id": "info-s1-ds-ch02",
+    "no": 2,
+    "title": "큐와 덱"
+  },
+  "lesson": {
+    "id": "info-s1-ds-ch02-l02",
+    "no": 2,
+    "title": "큐로 시뮬레이션하기",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "자료구조",
+      "큐와 덱"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "카드 버리기",
+      "body": [
+        "1번부터 n번까지의 카드가 1번이 맨 위로 쌓여 있습니다. 맨 위 카드를 버리고, 그다음 맨 위 카드를 맨 아래로 옮기는 일을 카드가 한 장 남을 때까지 되풀이합니다.",
+        "맨 위에서 꺼내고 맨 아래에 넣으므로 큐로 그대로 흉내 낼 수 있습니다. 한 번 되풀이할 때 카드가 한 장 줄어 전체 O(n)입니다.",
+        "n = 6이면 마지막에 4번 카드가 남습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "n = 6일 때 아래 코드가 끝난 뒤 남는 카드는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "[1, 2, 3, 4, 5, 6]에서 시작해 따라가 보세요.",
+      "explanation": "큐로 맨 위를 버리고 다음 맨 위를 맨 아래로 옮기는 일을 되풀이합니다.\n[3, 4, 5, 6, 2] → [5, 6, 2, 4] → [2, 4, 6] → [6, 4] → [4] 순서로 바뀝니다.\n그래서 4번 카드가 남습니다.",
+      "code": "// 1번 카드가 맨 위인 카드 n장: 맨 위를 버리고, 그다음 맨 위를 맨 아래로 옮긴다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (q.size() > 1) {\n    q.pop();                       // 버리기\n    q.push(q.front()); q.pop();    // 맨 아래로 옮기기\n}\n// 남은 카드는 q.front()"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "n명이 원으로 앉아 K번째 사람을 차례로 제거하는 문제를 {{1}} 문제라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "요세푸스",
+            "josephus"
+          ]
+        }
+      ],
+      "hint": "역사가의 이름이 붙은 문제입니다.",
+      "explanation": "원으로 앉은 사람 가운데 K번째 사람을 제거하고, 다음 사람부터 다시 K번째를 셉니다.\n이를 모두 제거될 때까지 되풀이합니다.\n이 문제를 요세푸스 문제라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "코드로 보기",
+      "body": [
+        "카드 버리기 코드는 큐에 1부터 n까지 넣고, 큐에 두 장 이상 남아 있는 동안 pop 한 번(버리기), front를 push한 뒤 pop(맨 아래로 옮기기)을 합니다.",
+        "n = 4이면 [1, 2, 3, 4] → [3, 4, 2] → [2, 4] → [4]로 4번 카드가 남습니다.",
+        "n이 2의 거듭제곱이면 마지막 카드는 n번이고, 일반적으로 2ᵏ ≤ n < 2ᵏ⁺¹일 때 2(n − 2ᵏ)번입니다(n이 2의 거듭제곱이면 n번)."
+      ],
+      "code": "// 1번 카드가 맨 위인 카드 n장: 맨 위를 버리고, 그다음 맨 위를 맨 아래로 옮긴다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (q.size() > 1) {\n    q.pop();                       // 버리기\n    q.push(q.front()); q.pop();    // 맨 아래로 옮기기\n}\n// 남은 카드는 q.front()"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "n = 4일 때 아래 코드가 끝난 뒤 남는 카드를 구하세요.",
+      "steps": [
+        "1을 버리고 2를 아래로: [3, 4, 2]입니다.",
+        "3을 버리고 4를 아래로: [2, 4]입니다.",
+        "2를 버리고 4를 아래로: [4]입니다.",
+        "4번 카드가 남습니다."
+      ],
+      "answer": "4",
+      "code": "// 1번 카드가 맨 위인 카드 n장: 맨 위를 버리고, 그다음 맨 위를 맨 아래로 옮긴다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (q.size() > 1) {\n    q.pop();                       // 버리기\n    q.push(q.front()); q.pop();    // 맨 아래로 옮기기\n}\n// 남은 카드는 q.front()"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 남는 카드는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "[2, 4]에서 2를 버립니다.",
+      "explanation": "큐로 맨 위를 버리고 다음 맨 위를 맨 아래로 옮기는 일을 되풀이합니다.\n[3, 4, 2] → [2, 4] → [4]로 바뀝니다.\n그래서 4번 카드가 남습니다.",
+      "code": "// 1번 카드가 맨 위인 카드 n장: 맨 위를 버리고, 그다음 맨 위를 맨 아래로 옮긴다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (q.size() > 1) {\n    q.pop();                       // 버리기\n    q.push(q.front()); q.pop();    // 맨 아래로 옮기기\n}\n// 남은 카드는 q.front()"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 7일 때 아래 코드가 끝난 뒤 남는 카드는?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2(n − 2ᵏ)를 이용하거나 직접 따라가 보세요.",
+      "explanation": "카드 버리기에서 2ᵏ ≤ n < 2ᵏ⁺¹이면 마지막 카드는 2(n − 2ᵏ)번입니다.\nn = 7이면 2² = 4 ≤ 7 < 8이므로 2(7 − 4)입니다.\n= 6번입니다.",
+      "code": "// 1번 카드가 맨 위인 카드 n장: 맨 위를 버리고, 그다음 맨 위를 맨 아래로 옮긴다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (q.size() > 1) {\n    q.pop();                       // 버리기\n    q.push(q.front()); q.pop();    // 맨 아래로 옮기기\n}\n// 남은 카드는 q.front()"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "요세푸스 문제",
+      "body": [
+        "1번부터 n번까지 원으로 앉아 있을 때, 큐의 앞에서 K − 1명을 뒤로 보내고 맨 앞 사람을 제거하면 'K번째 사람 제거'가 됩니다.",
+        "n = 7, K = 3이면 제거 순서는 3, 6, 2, 7, 5, 1, 4입니다.",
+        "제거 한 번에 K번 연산하므로 전체 O(nK)입니다. n, K가 5000이면 2.5 × 10⁷번으로 충분합니다."
+      ],
+      "code": "// 1~n번 사람이 원으로 앉아 있을 때 K번째 사람을 차례로 제거한다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (!q.empty()) {\n    for (int t = 0; t < K - 1; t++) { q.push(q.front()); q.pop(); }\n    print(q.front()); q.pop();     // 제거되는 사람\n}"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 7, K = 3일 때 아래 코드에서 가장 먼저 제거되는 사람은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "앞의 두 명을 뒤로 보냅니다.",
+      "explanation": "K번째 사람을 제거하려면 큐의 앞에서 K − 1명을 뒤로 보낸 뒤 맨 앞을 꺼냅니다.\n1, 2를 뒤로 보내면 맨 앞이 3입니다.\n그래서 3번이 가장 먼저 제거됩니다.",
+      "code": "// 1~n번 사람이 원으로 앉아 있을 때 K번째 사람을 차례로 제거한다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (!q.empty()) {\n    for (int t = 0; t < K - 1; t++) { q.push(q.front()); q.pop(); }\n    print(q.front()); q.pop();     // 제거되는 사람\n}"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 7, K = 3일 때 아래 코드에서 세 번째로 제거되는 사람은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "제거 순서는 3, 6, 2, …입니다.",
+      "explanation": "K번째 사람을 제거한 뒤 다음 사람부터 다시 셉니다.\n3을 제거하고 4, 5를 뒤로 보내 6을 제거한 뒤, 7, 1을 뒤로 보내 2를 제거합니다.\n그래서 세 번째는 2번입니다.",
+      "code": "// 1~n번 사람이 원으로 앉아 있을 때 K번째 사람을 차례로 제거한다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (!q.empty()) {\n    for (int t = 0; t < K - 1; t++) { q.push(q.front()); q.pop(); }\n    print(q.front()); q.pop();     // 제거되는 사람\n}"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 7, K = 3일 때 아래 코드에서 마지막으로 제거되는 사람은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "제거 순서는 3, 6, 2, 7, 5, 1, 4입니다.",
+      "explanation": "큐로 K − 1명을 뒤로 보내고 맨 앞을 제거하는 일을 끝까지 되풀이합니다.\n제거 순서는 3, 6, 2, 7, 5, 1, 4입니다.\n마지막은 4번입니다.",
+      "code": "// 1~n번 사람이 원으로 앉아 있을 때 K번째 사람을 차례로 제거한다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (!q.empty()) {\n    for (int t = 0; t < K - 1; t++) { q.push(q.front()); q.pop(); }\n    print(q.front()); q.pop();     // 제거되는 사람\n}"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 5000, K = 5000일 때 요세푸스 코드의 연산 횟수를 n × K로 어림하면?",
+      "answer": "25000000",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5000 × 5000입니다.",
+      "explanation": "제거 한 번마다 K − 1명을 뒤로 보내고 한 명을 꺼내므로 약 K번 연산하고, 이를 n번 합니다.\n5000 × 5000입니다.\n= 25000000번으로 1초 안에 끝납니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "맨 앞에서 꺼내 맨 뒤에 넣는 과정은 큐로 그대로 흉내 낼 수 있습니다. 카드 버리기, 요세푸스 문제가 대표적입니다.",
+        "카드 버리기는 O(n)이고, 2ᵏ ≤ n < 2ᵏ⁺¹일 때 마지막 카드는 2(n − 2ᵏ)번(n이 2의 거듭제곱이면 n번)입니다.",
+        "요세푸스 문제는 K − 1명을 뒤로 보내고 맨 앞을 제거하는 일을 되풀이하며 O(nK)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "n = 10일 때 카드 버리기 코드가 끝난 뒤 남는 카드는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2³ = 8 ≤ 10입니다.",
+      "explanation": "카드 버리기에서 2ᵏ ≤ n < 2ᵏ⁺¹이면 마지막 카드는 2(n − 2ᵏ)번입니다.\nn = 10이면 2³ = 8이므로 2(10 − 8)입니다.\n= 4번입니다.",
+      "code": "// 1번 카드가 맨 위인 카드 n장: 맨 위를 버리고, 그다음 맨 위를 맨 아래로 옮긴다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (q.size() > 1) {\n    q.pop();                       // 버리기\n    q.push(q.front()); q.pop();    // 맨 아래로 옮기기\n}\n// 남은 카드는 q.front()"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "n = 6, K = 2일 때 아래 코드에서 마지막으로 제거되는 사람은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "제거 순서는 2, 4, 6, 3, 1, 5입니다.",
+      "explanation": "큐로 K − 1명을 뒤로 보내고 맨 앞을 제거하는 일을 끝까지 되풀이합니다.\nK = 2이면 한 명 건너 한 명씩 제거되어 2, 4, 6, 3, 1, 5 순서입니다.\n마지막은 5번입니다.",
+      "code": "// 1~n번 사람이 원으로 앉아 있을 때 K번째 사람을 차례로 제거한다\nqueue<int> q;\nfor (int i = 1; i <= n; i++) q.push(i);\nwhile (!q.empty()) {\n    for (int t = 0; t < K - 1; t++) { q.push(q.front()); q.pop(); }\n    print(q.front()); q.pop();     // 제거되는 사람\n}"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "원으로 앉은 사람들을 큐로 나타낼 수 있는 이유를 요세푸스 문제로 설명하세요.",
+      "model_answer": [
+        "원에서는 마지막 사람 다음이 다시 첫 사람이므로 세는 일이 끝없이 이어진다.",
+        "큐의 맨 앞 사람을 꺼내 맨 뒤에 넣으면, 세는 차례가 다음 사람으로 넘어가면서 그 사람이 원의 끝으로 간다.",
+        "이렇게 하면 큐의 순서가 언제나 '지금 셀 차례인 사람부터 원을 한 바퀴 도는 순서'가 된다.",
+        "그래서 K − 1명을 뒤로 보내고 맨 앞을 제거하면 원에서 K번째 사람을 제거하는 것과 같다."
+      ],
+      "criteria": [
+        {
+          "text": "원의 순환 구조를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "맨 앞을 맨 뒤로 보내는 동작의 의미를 설명했다",
+          "points": 2
+        },
+        {
+          "text": "K번째 제거와 같음을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "맨 앞을 맨 뒤로 보내면 무엇이 바뀌나요?"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "카드 버리기 코드의 시간 복잡도가 O(n)인 이유를 설명하세요.",
+      "model_answer": [
+        "while 반복 한 번에 pop 두 번과 push 한 번을 하며, 각 연산은 O(1)이다.",
+        "반복 한 번마다 카드가 정확히 한 장 버려진다.",
+        "카드가 n장에서 1장이 될 때까지 n − 1번 반복한다.",
+        "그래서 전체 연산은 n에 비례하는 O(n)이다."
+      ],
+      "criteria": [
+        {
+          "text": "반복 한 번의 비용을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "반복마다 카드가 한 장 줄어듦을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "반복 횟수로 O(n)을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "반복 한 번에 카드가 몇 장 줄어드나요?"
+    }
+  ]
+}

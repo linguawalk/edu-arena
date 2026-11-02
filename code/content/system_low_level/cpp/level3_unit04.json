@@ -1,0 +1,101 @@
+{
+  "language": "cpp",
+  "category": "system_low_level",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "추상 클래스와 순수 가상 함수",
+  "questions": [
+    {
+      "id": "cpp_l3_u04_q001",
+      "type": "fill_blank",
+      "code": "class Shape {\npublic:\n    virtual double area() ____ 0;\n};\n// area()는 몸체 없이, 자식 클래스가 반드시 구현하도록 강제해야 함",
+      "prompt_en": "Fill in the blank to make area() a pure virtual function.",
+      "prompt_ko": "area()를 순수 가상 함수로 만들려면 빈칸에 무엇이 들어가야 할까요?",
+      "options": ["=", "==", "->", "::"],
+      "answer": 0,
+      "explanation_en": "Writing = 0 after a virtual function's declaration makes it pure virtual, meaning the class provides no implementation and derived classes must supply one.",
+      "explanation_ko": "virtual 함수 선언 뒤에 = 0을 붙이면 순수 가상 함수가 됩니다. 이 클래스는 구현을 제공하지 않으며, 자식 클래스가 반드시 구현해야 합니다.",
+      "concept_tags": ["abstract_class", "pure_virtual"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l3_u04_q002",
+      "type": "error_finding",
+      "code": "class Shape {\npublic:\n    virtual double area() = 0;\n};\n\nShape s;",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "area() 선언 문법 오류",
+        "Shape는 순수 가상 함수를 가진 추상 클래스라서, 직접 객체(Shape s)를 만들 수 없어 컴파일 오류가 발생함",
+        "class 선언 문법 오류",
+        "문제 없음, s 객체가 정상적으로 만들어짐"
+      ],
+      "answer": 1,
+      "explanation_en": "A class with at least one pure virtual function becomes abstract, and abstract classes cannot be instantiated directly — only concrete derived classes that implement all pure virtual functions can be.",
+      "explanation_ko": "순수 가상 함수가 하나라도 있는 클래스는 추상 클래스가 되며, 추상 클래스는 직접 객체를 만들 수 없습니다. 모든 순수 가상 함수를 구현한 자식 클래스만 객체로 만들 수 있습니다.",
+      "concept_tags": ["abstract_class"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cpp_l3_u04_q003",
+      "type": "predict_output",
+      "code": "class Shape {\npublic:\n    virtual double area() = 0;\n};\n\nclass Circle : public Shape {\npublic:\n    double radius;\n    Circle(double r) : radius(r) {}\n    double area() override {\n        return 3.14 * radius * radius;\n    }\n};\n\nShape *s = new Circle(2);\ncout << s->area();",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "12.56", "오류", "2"],
+      "answer": 1,
+      "explanation_en": "Circle implements area(), satisfying the pure virtual requirement; calling it through a Shape pointer dispatches to Circle's implementation: 3.14 * 2 * 2 = 12.56.",
+      "explanation_ko": "Circle이 area()를 구현해서 순수 가상 함수 요구사항을 충족합니다. Shape 포인터를 통해 호출해도 Circle의 구현으로 디스패치되어 3.14 * 2 * 2 = 12.56이 됩니다.",
+      "concept_tags": ["abstract_class", "pure_virtual", "polymorphism"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l3_u04_q004",
+      "type": "error_finding",
+      "code": "class Shape {\npublic:\n    virtual double area() = 0;\n    virtual double perimeter() = 0;\n};\n\nclass Circle : public Shape {\npublic:\n    double radius;\n    Circle(double r) : radius(r) {}\n    double area() override {\n        return 3.14 * radius * radius;\n    }\n};\n\nCircle c(2);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "area() 구현 문법 오류",
+        "Circle이 area()는 구현했지만 perimeter()는 구현하지 않아, Circle도 여전히 추상 클래스로 남아 객체를 만들 수 없음",
+        "radius 필드 선언 오류",
+        "문제 없음, c 객체가 정상적으로 만들어짐"
+      ],
+      "answer": 1,
+      "explanation_en": "A derived class remains abstract until every pure virtual function from the base class is implemented; since perimeter() is still unimplemented, Circle cannot be instantiated either.",
+      "explanation_ko": "자식 클래스는 부모의 모든 순수 가상 함수를 구현해야 비로소 추상 클래스에서 벗어납니다. perimeter()가 아직 구현되지 않았으므로 Circle도 여전히 객체를 만들 수 없습니다.",
+      "concept_tags": ["abstract_class", "pure_virtual"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cpp_l3_u04_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "순수 가상 함수", "definition": "구현 없이 = 0으로 선언되어, 자식 클래스가 반드시 구현해야 하는 함수" },
+        { "term": "추상 클래스", "definition": "순수 가상 함수를 하나 이상 가진, 직접 객체로 만들 수 없는 클래스" },
+        { "term": "구체 클래스 (Concrete class)", "definition": "모든 순수 가상 함수를 구현해서 객체로 만들 수 있게 된 자식 클래스" },
+        { "term": "인터페이스 역할", "definition": "추상 클래스가 '이런 기능은 반드시 있어야 한다'는 계약을 자식 클래스에 강제하는 역할" }
+      ],
+      "explanation_en": "Abstract classes let a base class define what operations must exist without dictating how each subclass implements them — a common pattern for designing extensible systems.",
+      "explanation_ko": "추상 클래스는 부모 클래스가 '어떤 동작이 반드시 있어야 하는지'는 정의하되, 각 자식 클래스가 그것을 어떻게 구현할지는 강제하지 않습니다. 확장 가능한 시스템을 설계할 때 자주 쓰이는 패턴입니다.",
+      "concept_tags": ["abstract_class", "pure_virtual"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l3_u04_q006",
+      "type": "predict_output",
+      "code": "class Shape {\npublic:\n    virtual double area() = 0;\n};\n\nclass Square : public Shape {\npublic:\n    double side;\n    Square(double s) : side(s) {}\n    double area() override {\n        return side * side;\n    }\n};\n\nShape *shapes[2] = { new Square(3), new Square(5) };\ndouble total = 0;\nfor (int i = 0; i < 2; i++) {\n    total += shapes[i]->area();\n}\ncout << total;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["8", "34", "15", "오류"],
+      "answer": 1,
+      "explanation_en": "Square(3).area() is 9, and Square(5).area() is 25; summed through polymorphism, the total is 34.",
+      "explanation_ko": "Square(3).area()는 9, Square(5).area()는 25입니다. 다형성을 통해 합산하면 총합은 34입니다.",
+      "concept_tags": ["abstract_class", "polymorphism"],
+      "difficulty": "practice"
+    }
+  ]
+}

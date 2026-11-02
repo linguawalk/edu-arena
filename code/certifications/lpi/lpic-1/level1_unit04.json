@@ -1,0 +1,92 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-1-101",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "파일시스템 계층 구조: FHS",
+  "rule_summary_ko": "FHS(Filesystem Hierarchy Standard)는 Linux 배포판 간에 디렉터리 구조를 표준화합니다: /etc(시스템 설정 파일), /var(로그·캐시 등 자주 변하는 가변 데이터, 예: /var/log), /tmp(임시 파일, 누구나 쓰기 가능하지만 스티키 비트로 보호됨), /home(일반 사용자의 홈 디렉터리), /usr(공유 가능한 읽기 전용 프로그램·라이브러리), /opt(배포판 표준 패키지가 아닌 추가·서드파티 소프트웨어), /boot(부트로더와 커널 파일). /tmp의 권한(rwxrwxrwt)에서 마지막 t는 스티키 비트로, 누구나 파일을 만들 수 있지만 자신이 만든 파일만 삭제·수정할 수 있게 해줍니다.",
+  "examples": [
+    { "code": "ls -ld /tmp\n결과: drwxrwxrwt", "note_ko": "마지막 t는 스티키 비트 — 모든 사용자가 쓸 수 있지만, 각자 자신의 파일만 지울 수 있음(다른 사람 파일은 삭제 불가)" },
+    { "code": "ls /var/log", "note_ko": "시스템 로그 파일들이 위치 — /var는 시간에 따라 계속 변하는 데이터를 위한 디렉터리" }
+  ],
+  "questions": [
+    {
+      "id": "lpic1_l1_u4_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "시스템의 설정 파일들이 위치하는 표준 디렉터리는?",
+      "options": ["/etc — 시스템 설정 파일 전용 디렉터리", "/var(로그·가변 데이터용)", "/tmp(임시 파일용)", "/opt(추가 소프트웨어용)"],
+      "answer": 0,
+      "explanation_ko": "/etc는 FHS에서 시스템 전역 설정 파일의 표준 위치입니다.",
+      "concept_tags": ["etc_directory"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic1_l1_u4_q002",
+      "type": "concept_matching_item",
+      "code": "ls -ld /tmp\ndrwxrwxrwt 499 root root ...",
+      "prompt_ko": "권한 문자열 끝의 't'(스티키 비트)가 의미하는 것은?",
+      "options": [
+        "모든 사용자가 이 디렉터리에 파일을 만들 수 있지만, 각자 자신이 만든 파일만 삭제·수정할 수 있고 다른 사람의 파일은 지울 수 없다",
+        "이 디렉터리는 아무도 접근할 수 없다는 뜻이다",
+        "이 디렉터리의 파일들은 자동으로 실행 가능하다는 뜻이다",
+        "'t'는 아무 의미도 없는 임의의 문자다"
+      ],
+      "answer": 0,
+      "explanation_ko": "스티키 비트는 여러 사용자가 공유하는 /tmp 같은 디렉터리에서, 서로의 파일을 함부로 지우지 못하게 보호합니다.",
+      "concept_tags": ["sticky_bit"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic1_l1_u4_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "시스템 로그 파일이 저장되는 표준 디렉터리는?",
+      "options": ["/etc(설정 파일용)", "/var/log — 로그 등 자주 변하는(가변) 데이터를 저장하는 /var 아래의 로그 전용 위치", "/tmp(임시 파일용, 재부팅 시 사라질 수 있음)", "/boot(커널·부트로더용)"],
+      "answer": 1,
+      "explanation_ko": "/var는 'variable(가변)'의 약자로, 계속 내용이 바뀌는 데이터(로그, 캐시, 메일큐 등)를 담습니다.",
+      "concept_tags": ["var_log"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic1_l1_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "배포판의 표준 패키지 관리자로 설치되지 않은, 추가로 설치한 서드파티 소프트웨어가 관례적으로 위치하는 디렉터리는?",
+      "options": ["/opt — 표준 패키지 체계 밖의 추가·선택적 소프트웨어용", "/etc", "/var", "/home"],
+      "answer": 0,
+      "explanation_ko": "/opt는 'optional'의 약자로, 배포판 표준 패키지 흐름과 분리된 소프트웨어를 위한 공간입니다.",
+      "concept_tags": ["opt_directory"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l1_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "부트로더 설정 파일과 커널 이미지가 위치하는 표준 디렉터리는?",
+      "options": ["/boot — 부팅에 필요한 커널·부트로더 관련 파일 전용", "/etc", "/usr", "/tmp"],
+      "answer": 0,
+      "explanation_ko": "/boot는 시스템이 부팅되는 데 꼭 필요한 파일들을 모아둔 곳입니다.",
+      "concept_tags": ["boot_directory"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic1_l1_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "FHS(파일시스템 계층 구조) 표준이 존재하는 근본적인 이유는?",
+      "options": [
+        "여러 Linux 배포판 사이에서 디렉터리 구조를 일관되게 유지해서, 관리자·개발자가 배포판이 달라도 파일 위치를 예측하고 도구·스크립트를 호환되게 만들 수 있게 하기 위해",
+        "FHS는 특정 배포판 하나에만 적용되는 규칙이다",
+        "FHS는 실질적인 의미 없이 임의로 정해진 규칙일 뿐이다",
+        "FHS는 파일 이름을 규제하는 표준일 뿐 디렉터리와는 무관하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "표준화된 디렉터리 구조는 다양한 배포판 간의 호환성과 예측 가능성을 높여줍니다.",
+      "concept_tags": ["fhs_purpose"],
+      "difficulty": "practice"
+    }
+  ]
+}

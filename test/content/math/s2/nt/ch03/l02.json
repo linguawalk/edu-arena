@@ -1,0 +1,261 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s2",
+  "track": "nt",
+  "work": "증명",
+  "track_title": "정수론",
+  "chapter": {
+    "id": "math-s2-nt-ch03",
+    "no": 3,
+    "title": "이차잉여"
+  },
+  "lesson": {
+    "id": "math-s2-nt-ch03-l02",
+    "no": 2,
+    "title": "오일러 판정법",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "정수론",
+      "이차잉여"
+    ],
+    "competition": "KMO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "거듭제곱 하나로 판정",
+      "body": [
+        "오일러 판정법: 홀수 소수 p와 p ∤ a에 대해 a^((p−1)/2) ≡ (a/p) (mod p)입니다. 곧 a^((p−1)/2) ≡ 1이면 이차잉여, −1이면 이차비잉여입니다.",
+        "mod 11에서 3⁵ = 243 = 22 × 11 + 1 ≡ 1이므로 3은 이차잉여, 2⁵ = 32 ≡ 10 ≡ −1이므로 2는 이차비잉여입니다.",
+        "제곱표를 다 만들지 않고도 큰 p에서 판정할 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "3⁵을 11로 나눈 나머지는? (오일러 판정법으로 3이 이차잉여인지 판정)",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "243 = 22 × 11 + 1입니다.",
+      "explanation": "3⁵ = 243이고 243 = 22 × 11 + 1입니다.\n그래서 3⁵ ≡ 1 (mod 11)입니다.\n오일러 판정법에 의해 3은 mod 11의 이차잉여입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "a^((p−1)/2) ≡ (a/p) (mod p)라는 판정법을 {{1}} 판정법이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "오일러",
+            "Euler"
+          ]
+        }
+      ],
+      "hint": "오일러 정리의 그 수학자입니다.",
+      "explanation": "르장드르 기호를 거듭제곱 하나로 계산할 수 있습니다.\n지수 (p − 1)/2로 올리면 1 또는 −1이 나옵니다.\n이것을 오일러 판정법이라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "왜 성립할까",
+      "body": [
+        "페르마 소정리로 a^(p−1) ≡ 1이므로 (a^((p−1)/2))² ≡ 1이고, a^((p−1)/2) ≡ ±1입니다.",
+        "a가 이차잉여이면 a ≡ x²이라 a^((p−1)/2) ≡ x^(p−1) ≡ 1입니다. 거꾸로 원시근 g로 a = gᵏ로 쓰면, a^((p−1)/2) ≡ 1인 것은 k가 짝수일 때뿐이고 그때 a = (g^(k/2))²이라 이차잉여입니다.",
+        "그래서 이차잉여는 정확히 원시근의 짝수 거듭제곱입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "오일러 판정법으로 7이 mod 19의 이차잉여인지 판정하세요.",
+      "steps": [
+        "(p − 1)/2 = 9이므로 7⁹ (mod 19)를 구합니다.",
+        "7² = 49 ≡ 11, 7⁴ ≡ 11² = 121 ≡ 7, 7⁸ ≡ 49 ≡ 11 (mod 19)입니다.",
+        "7⁹ = 7⁸ × 7 ≡ 77 = 4 × 19 + 1 ≡ 1 (mod 19)입니다.",
+        "그래서 7은 이차잉여입니다(실제로 8² = 64 ≡ 7)."
+      ],
+      "answer": "이차잉여"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "7⁹를 19로 나눈 나머지는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "7⁸ ≡ 11입니다.",
+      "explanation": "7² ≡ 11, 7⁴ ≡ 7, 7⁸ ≡ 11 (mod 19)입니다.\n7⁹ ≡ 11 × 7 = 77 ≡ 1 (mod 19)입니다.\n그래서 나머지는 1이고 7은 이차잉여입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x² ≡ 7 (mod 19)의 해(0 ≤ x < 19) 가운데 작은 것은?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "8² = 64입니다.",
+      "explanation": "7은 mod 19의 이차잉여이므로 해가 두 개 있습니다.\n8² = 64 = 3 × 19 + 7, 11² = 121 = 6 × 19 + 7입니다.\n작은 해는 8입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "−1은 언제 제곱수인가",
+      "body": [
+        "오일러 판정법에 a = −1을 넣으면 (−1/p) = (−1)^((p−1)/2)입니다. p ≡ 1 (mod 4)이면 (p − 1)/2가 짝수라 1, p ≡ 3 (mod 4)이면 −1입니다.",
+        "그래서 x² ≡ −1 (mod p)는 p ≡ 1 (mod 4)일 때만 해가 있습니다. mod 13에서 5² = 25 ≡ −1, mod 17에서 4² = 16 ≡ −1입니다.",
+        "따름 결과: n² + 1의 홀수 소인수는 모두 4k + 1 꼴입니다. 145 = 12² + 1 = 5 × 29가 그 예입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x² ≡ −1 (mod 13)의 해(0 ≤ x < 13) 가운데 작은 것은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5² = 25입니다.",
+      "explanation": "13 ≡ 1 (mod 4)이므로 −1은 이차잉여라 해가 두 개입니다.\n5² = 25 ≡ −1, 8² = 64 ≡ −1 (mod 13)입니다.\n작은 해는 5입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "(−1/19)의 값은?",
+      "answer": "-1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "19 ≡ 3 (mod 4)입니다.",
+      "explanation": "오일러 판정법으로 (−1/p) = (−1)^((p−1)/2)입니다.\np = 19이면 (p − 1)/2 = 9는 홀수입니다.\n그래서 (−1/19) = −1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n² + 1 (n = 1, 2, …, 49)의 홀수 소인수를 4로 나눈 나머지로 나올 수 있는 값의 개수는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "모두 4k + 1 꼴입니다.",
+      "explanation": "p가 n² + 1의 홀수 소인수이면 n² ≡ −1 (mod p)이라 −1이 이차잉여입니다.\n그래서 p ≡ 1 (mod 4)입니다.\n나올 수 있는 나머지는 1 하나뿐입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "오일러 판정법: a^((p−1)/2) ≡ (a/p) (mod p). 1이면 이차잉여, −1이면 이차비잉여입니다.",
+        "이차잉여는 원시근의 짝수 거듭제곱입니다.",
+        "(−1/p) = (−1)^((p−1)/2)이므로 −1은 p ≡ 1 (mod 4)일 때만 이차잉여이고, n² + 1의 홀수 소인수는 모두 4k + 1 꼴입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "6⁶을 13으로 나눈 나머지는? (6이 mod 13의 이차잉여인지 판정)",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "6² = 36 ≡ 10입니다.",
+      "explanation": "6² ≡ 10, 6⁴ ≡ 100 ≡ 9, 6⁶ = 6⁴ × 6² ≡ 90 = 6 × 13 + 12 ≡ 12 (mod 13)입니다.\n12 ≡ −1이므로 오일러 판정법에 의해 6은 이차비잉여입니다.\n나머지는 12입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "x² ≡ −1 (mod 29)의 해(0 ≤ x < 29) 가운데 작은 것은?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "12² = 144입니다.",
+      "explanation": "29 ≡ 1 (mod 4)이므로 −1은 이차잉여라 해가 두 개입니다.\n12² = 144 = 5 × 29 − 1 ≡ −1이고 다른 해는 29 − 12 = 17입니다.\n작은 해는 12입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "p ≡ 3 (mod 4)인 소수이면 x² ≡ −1 (mod p)가 해가 없음을 증명하세요.",
+      "model_answer": [
+        "해 x가 있다고 하자. p ∤ x이다(x² ≡ −1 ≢ 0).",
+        "페르마 소정리로 x^(p−1) ≡ 1 (mod p)이다.",
+        "한편 x^(p−1) = (x²)^((p−1)/2) ≡ (−1)^((p−1)/2)이고, p ≡ 3 (mod 4)이면 (p − 1)/2는 홀수라 이 값은 −1이다.",
+        "1 ≡ −1 (mod p)이면 p | 2인데 p는 홀수이므로 모순이다. 따라서 해가 없다."
+      ],
+      "criteria": [
+        {
+          "text": "해를 가정했다",
+          "points": 1
+        },
+        {
+          "text": "페르마 소정리를 썼다",
+          "points": 2
+        },
+        {
+          "text": "(−1)^((p−1)/2) = −1을 보였다",
+          "points": 2
+        },
+        {
+          "text": "모순으로 결론지었다",
+          "points": 1
+        }
+      ],
+      "hint": "x^(p−1)을 두 가지로 계산하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "n² + 1의 홀수 소인수는 모두 4k + 1 꼴임을 증명하세요.",
+      "model_answer": [
+        "p가 n² + 1의 홀수 소인수라 하자. 그러면 n² ≡ −1 (mod p)이다.",
+        "그래서 −1은 mod p의 이차잉여이고, (−1/p) = 1이다.",
+        "오일러 판정법에 의해 (−1/p) = (−1)^((p−1)/2)이므로 (p − 1)/2는 짝수이다.",
+        "따라서 p ≡ 1 (mod 4), 곧 p는 4k + 1 꼴이다."
+      ],
+      "criteria": [
+        {
+          "text": "−1이 이차잉여임을 이끌었다",
+          "points": 2
+        },
+        {
+          "text": "오일러 판정법을 썼다",
+          "points": 2
+        },
+        {
+          "text": "p ≡ 1 (mod 4)를 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "n² ≡ −1 (mod p)부터 시작하세요."
+    }
+  ]
+}

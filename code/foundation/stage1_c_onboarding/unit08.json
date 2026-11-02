@@ -1,0 +1,105 @@
+{
+  "stage": "stage1_c_onboarding",
+  "stage_title": "C 언어 (온보딩)",
+  "unit": 8,
+  "unit_title": "문자열",
+  "questions": [
+    {
+      "id": "foundation_stage1_u08_q001",
+      "type": "predict_output",
+      "code": "char name[] = \"Kim\";\nprintf(\"%s\", name);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["Kim", "K", "오류", "이름의 메모리 주소"],
+      "answer": 0,
+      "explanation_en": "In C, a string is represented as a char array; %s prints characters from the array until it hits the null terminator.",
+      "explanation_ko": "C에서 문자열은 char 배열로 표현됩니다. %s는 배열의 문자를 처음부터 null 문자를 만날 때까지 출력합니다.",
+      "concept_tags": ["string", "char_array"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "foundation_stage1_u08_q002",
+      "type": "concept_quiz",
+      "code": null,
+      "prompt_en": "What is the role of the null terminator ('\\0') in a C string?",
+      "prompt_ko": "C 문자열에서 null 문자('\\0')의 역할은 무엇일까요?",
+      "options": [
+        "문자열의 첫 글자를 표시한다",
+        "문자열이 끝나는 지점을 표시해, 함수들이 어디까지 읽어야 할지 알게 해준다",
+        "문자열의 길이를 숫자로 저장한다",
+        "문자열을 대문자로 바꾼다"
+      ],
+      "answer": 1,
+      "explanation_en": "The null terminator marks where a string ends, so functions like printf(\"%s\") know exactly when to stop reading characters.",
+      "explanation_ko": "null 문자는 문자열이 끝나는 지점을 표시해서, printf(\"%s\")와 같은 함수들이 어디까지 읽어야 할지 알 수 있게 해줍니다. 이게 없으면 배열 뒤의 쓰레기 값까지 계속 읽게 됩니다.",
+      "concept_tags": ["string", "null_terminator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "foundation_stage1_u08_q003",
+      "type": "fill_blank",
+      "code": "char city[10] = ____;\nprintf(\"%s\", city);",
+      "prompt_en": "Fill in the blank to store the text 'Seoul' in the city array.",
+      "prompt_ko": "city 배열에 'Seoul'이라는 문자열을 저장하려면 빈칸에 무엇이 들어가야 할까요?",
+      "options": ["\"Seoul\"", "'Seoul'", "Seoul", "%Seoul%"],
+      "answer": 0,
+      "explanation_en": "String literals in C are written with double quotes; single quotes are reserved for individual characters.",
+      "explanation_ko": "C에서 문자열 리터럴은 큰따옴표로 작성합니다. 작은따옴표는 문자 하나를 나타낼 때만 사용합니다.",
+      "concept_tags": ["string"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "foundation_stage1_u08_q004",
+      "type": "error_finding",
+      "code": "char name[3] = \"Kim\";\nprintf(\"%s\", name);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "printf 형식 지정자 오류",
+        "\"Kim\"은 문자 3개 + null 문자 1개, 총 4칸이 필요한데 배열 크기가 3이라 null 문자가 들어갈 자리가 없음",
+        "char 배열은 문자열을 저장할 수 없음",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "\"Kim\" needs 4 bytes (3 characters plus the null terminator), but the array only has room for 3, so the terminator has nowhere to go.",
+      "explanation_ko": "\"Kim\"은 문자 3개(K, i, m)에 null 문자까지 합쳐 총 4칸이 필요합니다. 그런데 배열 크기가 3이라 null 문자가 들어갈 자리가 없어 문제가 생깁니다.",
+      "concept_tags": ["string", "null_terminator", "array"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "foundation_stage1_u08_q005",
+      "type": "concept_quiz",
+      "code": null,
+      "prompt_en": "What is the key difference between a char and a string in C?",
+      "prompt_ko": "C에서 char와 문자열의 핵심 차이는 무엇일까요?",
+      "options": [
+        "char는 문자 하나, 문자열은 문자들의 배열(+ null 문자)",
+        "char와 문자열은 완전히 같은 것이다",
+        "문자열은 숫자만 저장할 수 있다",
+        "char는 여러 개의 문자를 저장할 수 있다"
+      ],
+      "answer": 0,
+      "explanation_en": "A char holds a single character, while a string is an array of chars terminated by a null character.",
+      "explanation_ko": "char는 문자 하나만 저장하는 자료형이고, 문자열은 여러 문자를 담은 배열에 null 문자로 끝을 표시한 것입니다.",
+      "concept_tags": ["string", "char_array"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "foundation_stage1_u08_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "문자열", "definition": "문자들을 순서대로 담은 char 배열" },
+        { "term": "null 문자 ('\\0')", "definition": "문자열이 끝나는 지점을 표시하는 특수 문자" },
+        { "term": "문자열 리터럴", "definition": "큰따옴표로 감싸서 작성하는 문자열 값 (예: \"Kim\")" },
+        { "term": "char 배열 크기", "definition": "실제 문자 수 + null 문자 1개를 포함해야 하는 크기" }
+      ],
+      "explanation_en": "These four terms explain why C strings require careful size planning, unlike higher-level languages with built-in string types.",
+      "explanation_ko": "이 네 가지 용어는 문자열 자료형이 내장된 고수준 언어와 달리, C에서는 왜 배열 크기를 신중하게 계산해야 하는지를 설명합니다.",
+      "concept_tags": ["string", "null_terminator", "char_array"],
+      "difficulty": "practice"
+    }
+  ]
+}

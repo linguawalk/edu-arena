@@ -1,0 +1,103 @@
+{
+ "no": 4,
+ "title": "복제와 일관성",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "리더 기반·다중 리더·리더 없는 복제를 비교할 수 있다.",
+  "정족수(쿼럼) 조건 W + R > N을 계산할 수 있다.",
+  "강한 일관성과 최종 일관성, CAP의 의미를 설명할 수 있다."
+ ],
+ "checklist": [
+  "복제의 목적: 가용성, 읽기 확장, 지연 감소",
+  "리더–팔로워 복제, 동기·비동기 복제",
+  "다중 리더, 리더 없는 복제(다이나모 계열)",
+  "정족수: 쓰기 W개, 읽기 R개, W + R > N이면 최신 값 읽기 보장",
+  "선형성(강한 일관성)과 최종 일관성",
+  "CAP 정리와 PACELC",
+  "복제 지연과 읽은 값 다시 읽기(read-your-writes)"
+ ],
+ "advice": [
+  "복제는 '같은 데이터를 여러 곳에 두면 어느 것이 맞는가'라는 질문을 낳습니다. 정족수 조건 W + R > N은 쓰기 집합과 읽기 집합이 반드시 한 곳 이상 겹친다는 뜻이라서 최신 값을 놓치지 않는다는 단순한 원리입니다. N = 3, 5로 W와 R을 바꿔 가며 겹침 그림을 그려 보세요. CAP는 '네트워크가 끊겼을 때 일관성과 가용성 가운데 무엇을 포기할 것인가'로 이해하면 오해가 줄어듭니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "O'Reilly",
+   "title": "Kleppmann, Designing Data-Intensive Applications (번역본 『데이터 중심 애플리케이션 설계』)",
+   "part": "Replication, Consistency and Consensus 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT 6.5840 (구 6.824, 공개 강의 자료)",
+   "title": "Distributed Systems",
+   "url": "https://pdos.csail.mit.edu/6.824/",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "데이터베이스 시스템 10단원 NoSQL",
+   "url": "guide.html?lv=2&t=computer&s=databases&u=10"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "복제본 5개(N = 5)에서 쓰기를 3곳(W = 3)에 하면, 최신 값을 반드시 읽으려면 읽기는 최소 몇 곳(R)에서 해야 할까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "W + R > N에서 3 + R > 5이므로 R ≥ 3",
+   "hint": "W + R > N입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "쓰기가 멈추면 시간이 지나 결국 모든 복제본이 같은 값이 된다는 약한 일관성 모델을 {{1}} 일관성이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "최종",
+      "결과적",
+      "궁극적"
+     ]
+    }
+   ],
+   "explanation": "가용성을 높이는 대신 잠깐 낡은 값을 읽을 수 있습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "모든 쓰기를 한 노드가 받아 다른 노드에 전달하는 복제 방식에서 쓰기를 받는 노드를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "리더",
+      "주",
+      "마스터",
+      "프라이머리"
+     ]
+    }
+   ],
+   "explanation": "나머지는 팔로워(복제본)이며, 리더가 죽으면 새 리더를 뽑아야 합니다(5단원).",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "distributed-systems",
+ "id": "l3-computer-distributed-systems-u04"
+}

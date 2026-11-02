@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-2-201",
+  "level": 1,
+  "unit": 1,
+  "unit_title": "RAID 레벨",
+  "rule_summary_ko": "RAID 0(스트라이핑)은 데이터를 여러 디스크에 분산 저장해 성능은 최고지만 중복성이 전혀 없어(디스크 하나만 고장 나도 전체 데이터 손실) 전체 용량(n개 디스크)을 그대로 사용합니다. RAID 1(미러링)은 데이터를 그대로 복제해서 최소 2개 디스크로 50% 용량을 사용하는 대신 하나가 고장 나도 데이터가 보존됩니다. RAID 5는 분산 패리티로 최소 3개 디스크에서 (n-1)개 용량을 쓰며 디스크 1개 고장까지 견디고, RAID 6은 이중 패리티로 최소 4개 디스크에서 (n-2)개 용량을 쓰며 디스크 2개 고장까지 견딥니다. RAID 10(1+0)은 미러링한 쌍들을 다시 스트라이핑해서 50% 용량이지만 성능과 중복성을 모두 갖춰 데이터베이스 등에 적합합니다.",
+  "examples": [
+    { "code": "1TB 디스크 2개로 RAID 0 구성", "note_ko": "사용 가능 용량 2TB(디스크 용량 그대로 합산), 성능은 최고지만 디스크 하나만 죽어도 전체 데이터 손실" },
+    { "code": "1TB 디스크 2개로 RAID 1 구성", "note_ko": "사용 가능 용량 1TB(50%), 디스크 하나가 죽어도 나머지 하나로 데이터 보존" }
+  ],
+  "questions": [
+    {
+      "id": "lpic2_l1_u1_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "RAID 0(스트라이핑)에 대한 설명으로 옳은 것은?",
+      "options": [
+        "데이터를 여러 디스크에 분산해서 성능은 극대화되지만, 중복성이 전혀 없어 디스크 하나만 고장 나도 전체 데이터를 잃는다",
+        "데이터를 그대로 복제해서 안정성이 가장 높다(RAID 1과 혼동)",
+        "패리티를 사용해 하나의 디스크 고장까지 견딘다(RAID 5와 혼동)",
+        "최소 4개의 디스크가 필요하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "RAID 0은 성능에는 최적이지만 중복성이 전혀 없다는 것이 핵심 특징입니다.",
+      "concept_tags": ["raid0"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l1_u1_q002",
+      "type": "fill_blank",
+      "code": "1TB 디스크 2개로 RAID 1을 구성",
+      "prompt_ko": "실제 사용 가능한 용량은 몇 TB입니까? (숫자만 입력)",
+      "expected_answers": ["1"],
+      "explanation_ko": "RAID 1은 데이터를 그대로 복제하므로, 전체 용량의 50%만 실제로 사용 가능합니다.",
+      "concept_tags": ["raid1_capacity"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l1_u1_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "RAID 5의 특징으로 옳은 것은?",
+      "options": [
+        "분산 패리티를 사용해서 최소 3개 디스크로 (n-1)개 디스크만큼의 용량을 쓰며, 디스크 1개의 고장까지 견딜 수 있다",
+        "RAID 5는 중복성이 전혀 없다(RAID 0과 혼동)",
+        "RAID 5는 디스크 2개만으로 구성 가능하다",
+        "RAID 5는 두 개의 디스크 고장까지 견딘다(RAID 6과 혼동)"
+      ],
+      "answer": 0,
+      "explanation_ko": "RAID 5는 성능·용량·중복성의 균형을 맞춘 대표적인 레벨입니다.",
+      "concept_tags": ["raid5"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l1_u1_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "RAID 5와 RAID 6의 핵심 차이는?",
+      "options": [
+        "RAID 6은 이중 패리티를 사용해서 디스크 2개의 동시 고장까지 견디지만, 그만큼 사용 가능 용량이 (n-2)로 RAID 5보다 하나 더 줄어든다",
+        "RAID 6은 중복성이 전혀 없다",
+        "RAID 5가 RAID 6보다 항상 더 많은 디스크 고장을 견딘다(설명이 반대)",
+        "RAID 5와 RAID 6은 완전히 동일하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "재구축(rebuild) 중 추가 디스크 고장 위험에 대비해, RAID 6은 한 단계 더 높은 내결함성을 제공합니다.",
+      "concept_tags": ["raid5_vs_raid6"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic2_l1_u1_q005",
+      "type": "concept_matching_item",
+      "code": "데이터베이스처럼 높은 성능과 높은 중복성이 동시에 필요한 워크로드",
+      "prompt_ko": "이런 워크로드에 흔히 권장되는 RAID 레벨은?",
+      "options": [
+        "RAID 10 — 미러링과 스트라이핑을 결합해서 성능과 중복성을 모두 확보(대신 50% 용량 비용)",
+        "RAID 0(중복성이 전혀 없어 부적합)",
+        "RAID 6(RAID 10보다 쓰기 성능이 떨어짐)",
+        "RAID는 데이터베이스 워크로드와 무관하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "RAID 10은 패리티 계산 부담 없이 미러의 사본에서 바로 읽어올 수 있어 성능과 안정성 모두 뛰어납니다.",
+      "concept_tags": ["raid10_use_case"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l1_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "RAID가 제공하는 보호 범위에 대한 설명으로 옳은 것은?",
+      "options": [
+        "RAID는 디스크의 물리적 하드웨어 고장으로부터만 데이터를 보호할 뿐, 실수로 인한 삭제·데이터 손상·랜섬웨어 같은 위협은 막아주지 못하므로 별도의 백업 전략이 필요하다",
+        "RAID만 있으면 백업이 전혀 필요 없다",
+        "RAID는 모든 종류의 데이터 손실을 완벽하게 방지해준다",
+        "RAID는 하드웨어 고장으로부터도 전혀 보호해주지 못한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "실수로 삭제하거나 손상된 데이터는 모든 디스크에 동일하게(또는 미러링되어) 반영되므로, RAID만으로는 이런 위협을 막을 수 없습니다.",
+      "concept_tags": ["raid_not_backup"],
+      "difficulty": "challenge"
+    }
+  ]
+}

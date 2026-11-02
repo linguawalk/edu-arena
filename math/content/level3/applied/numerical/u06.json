@@ -1,0 +1,124 @@
+{
+ "no": 6,
+ "title": "반복법과 희소 행렬",
+ "hours": 5,
+ "after": [
+  5
+ ],
+ "objectives": [
+  "야코비와 가우스–자이델 반복을 수행할 수 있다.",
+  "반복법의 수렴 조건(스펙트럼 반지름)을 설명할 수 있다.",
+  "켤레기울기법의 아이디어를 설명할 수 있다."
+ ],
+ "checklist": [
+  "직접법이 비싼 대규모 희소 행렬",
+  "야코비 반복과 가우스–자이델 반복",
+  "대각우세 행렬이면 수렴",
+  "반복 행렬의 스펙트럼 반지름 ρ < 1 ⇔ 수렴",
+  "SOR(연속 과이완)",
+  "켤레기울기법: 대칭 양의 정부호 행렬, 이론적으로 n번 안에 수렴",
+  "전처리(preconditioning)의 개념"
+ ],
+ "advice": [
+  "편미분방정식을 이산화하면 백만 × 백만 크기의 행렬이 생기지만 대부분의 원소가 0입니다. 이런 희소 행렬에는 n³ 연산이 필요한 직접법 대신, 행렬-벡터 곱만 반복하는 반복법이 훨씬 효율적입니다.",
+  "야코비와 가우스–자이델의 차이는 '새로 계산한 값을 바로 쓰는가'뿐이지만, 가우스–자이델이 대개 두 배쯤 빠르게 수렴합니다. 작은 2 × 2 예로 두 방법을 손으로 몇 번 반복해 보세요. 켤레기울기법은 7단원의 최적화 관점(이차함수 최소화)과 연결되는 아름다운 알고리즘입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Burden · Faires · Burden, Numerical Analysis (10판)",
+   "part": "7장 Iterative Techniques in Matrix Algebra"
+  },
+  {
+   "kind": "book",
+   "provider": "SIAM",
+   "title": "Trefethen · Bau, Numerical Linear Algebra (심화)",
+   "part": "Lecture 38 Conjugate Gradients"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "4x + y = 5, x + 3y = 4에 (0, 0)에서 야코비 반복을 한 번 하면 x₁ = {{1}}, y₁ = {{2}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "5/4",
+      "1.25"
+     ]
+    },
+    {
+     "id": 2,
+     "answers": [
+      "4/3"
+     ]
+    }
+   ],
+   "explanation": "x₁ = (5 − 0)/4, y₁ = (4 − 0)/3",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "같은 문제에 가우스–자이델 반복을 한 번 하면 y₁ = {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "11/12"
+     ]
+    }
+   ],
+   "explanation": "x₁ = 5/4를 바로 써서 y₁ = (4 − 5/4)/3 = 11/12\n(참값 x = 1, y = 1)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "엄격한 대각우세 행렬에서 야코비 반복은 항상 수렴할까요? (그렇다 1, 아니다 0)",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "반복 행렬의 무한대 노름 < 1",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "반복법이 수렴하기 위한 필요충분조건을 설명해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "스펙트럼 반지름",
+      "고유값의 절댓값",
+      "ρ"
+     ],
+     [
+      "1보다 작",
+      "< 1"
+     ],
+     [
+      "반복 행렬"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "반복 xₖ₊₁ = Txₖ + c가 모든 초기값에서 수렴할 필요충분조건은 반복 행렬 T의 스펙트럼 반지름(고유값의 절댓값의 최댓값)이 1보다 작은 것입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "applied",
+ "subject": "numerical",
+ "id": "l3-applied-numerical-u06"
+}

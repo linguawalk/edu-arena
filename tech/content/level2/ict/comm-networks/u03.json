@@ -1,0 +1,107 @@
+{
+ "no": 3,
+ "title": "트래픽 이론",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "호 발생률과 평균 보류 시간으로 트래픽 양(얼랑)을 계산할 수 있다.",
+  "얼랑 B 공식으로 호손율을 계산할 수 있다.",
+  "목표 호손율에 맞춰 회선 수를 정하는 원리를 설명할 수 있다."
+ ],
+ "checklist": [
+  "트래픽 양 A = 호 발생률 λ × 평균 보류 시간 h [얼랑, Erl]",
+  "1얼랑 = 회선 하나가 계속 사용되는 양",
+  "최번시(busy hour) 트래픽으로 설계",
+  "얼랑 B 공식: 즉시 손실 시스템의 호손율",
+  "B(N, A) = (Aᴺ/N!)/Σ(Aᵏ/k!)",
+  "회선 수가 늘면 회선당 이용률이 높아짐(규모의 이익)",
+  "얼랑 C(대기 시스템), 콜센터 설계"
+ ],
+ "advice": [
+  "트래픽 이론은 '회선을 몇 개 깔아야 통화가 거의 막히지 않는가'에 답하는 도구입니다. 얼랑은 호가 얼마나 자주(λ), 얼마나 오래(h) 쓰이는지를 곱한 하나의 숫자이고, 얼랑 B 공식이 회선 수와 트래픽으로 호손율을 알려 줍니다. 회선 2~3개짜리 작은 경우를 손으로 계산해 공식에 익숙해진 뒤, 큰 값은 얼랑 표나 계산기를 쓰면 됩니다.",
+  "같은 호손율을 지키려면 회선 수가 많을수록 회선 하나당 더 많은 트래픽을 받을 수 있다는 '규모의 이익'은 통신 사업자가 가입자를 모아 처리하는 이유입니다. 이 성질은 레벨3 통신망 설계와 이동통신의 셀 용량 계산으로 이어집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Tanenbaum · Wetherall, Computer Networks (번역본 『컴퓨터 네트워크』, 장 제목으로 표기)",
+   "part": "트래픽·큐잉 관련 절"
+  },
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Rappaport, Wireless Communications: Principles and Practice (장 제목으로 표기)",
+   "part": "Trunking and Grade of Service 절"
+  },
+  {
+   "title": "math-arena 레벨3 · 확률과정 입문 (포아송 과정)",
+   "href": "https://math-arena.org/guide.html?lv=3&t=probability&s=stochastic"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "최번시에 시간당 120통의 호가 발생하고 평균 통화 시간이 3분이면 트래픽 양은 몇 얼랑일까요?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "A = 120 × 3/60 = 6 Erl",
+   "hint": "λ와 h의 시간 단위를 맞추세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "트래픽 1얼랑이 회선 2개에 들어오는 즉시 손실 시스템의 호손율은 얼마일까요? (얼랑 B)",
+   "answer": "0.2",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "B = (1²/2!)/(1 + 1 + 1²/2!) = 0.5/2.5 = 0.2",
+   "hint": "분모는 k = 0, 1, 2 항의 합입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "트래픽 2얼랑이 회선 1개에 들어오면 호손율은 약 얼마일까요? (얼랑 B)",
+   "answer": "0.667",
+   "answer_format": "decimal",
+   "tolerance": 0.002,
+   "explanation": "B = 2/(1 + 2) ≈ 0.667",
+   "hint": "N = 1이면 A/(1 + A)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "트래픽 양의 단위로, 회선 하나가 한 시간 내내 쓰이는 양을 1로 하는 단위를 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "얼랑",
+      "Erlang",
+      "erlang",
+      "Erl"
+     ]
+    }
+   ],
+   "explanation": "덴마크의 수학자 얼랑의 이름에서 왔습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "ict",
+ "subject": "comm-networks",
+ "id": "l2-ict-comm-networks-u03"
+}

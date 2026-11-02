@@ -1,0 +1,107 @@
+{
+ "no": 8,
+ "title": "상태 공간, 디지털 제어, 시퀀스 제어",
+ "hours": 6,
+ "after": [
+  2,
+  4
+ ],
+ "objectives": [
+  "상태 방정식을 세우고 전달함수와 특성 방정식을 구할 수 있다.",
+  "샘플링과 z 변환으로 디지털 제어계의 안정 조건을 설명할 수 있다.",
+  "시퀀스 제어의 기본 회로(자기 유지, 인터록)를 논리식으로 나타낼 수 있다."
+ ],
+ "checklist": [
+  "상태 방정식 ẋ = Ax + Bu, 출력 방정식 y = Cx + Du",
+  "전달함수 G(s) = C(sI − A)⁻¹B + D, 특성 방정식 det(sI − A) = 0",
+  "A의 고유값 = 시스템 극점",
+  "가제어성과 가관측성",
+  "샘플링 주파수와 z 변환, z = e^(sT)",
+  "디지털 시스템의 안정 조건: 극점이 z평면 단위원 안",
+  "시퀀스 제어: 자기 유지 회로, 인터록, 타이머, 래더도와 PLC"
+ ],
+ "advice": [
+  "상태 공간은 지금까지의 전달함수 방법을 행렬로 다시 쓰는 것이며, 입출력이 여러 개인 시스템과 현대 제어(상태 궤환, 관측기)로 가는 문입니다. 2×2 행렬 몇 개로 특성 방정식과 고유값을 직접 구해 보고, 그것이 전달함수의 극점과 같다는 것을 확인해 보세요. 디지털 제어는 s평면의 좌반면이 z평면의 단위원 안으로 옮겨 간다는 그림 하나가 핵심이고, 시퀀스 제어는 레벨1 전기전자 9단원의 논리 게이트를 릴레이와 PLC로 구현한 것이라고 보면 쉽습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Ogata, Modern Control Engineering (번역본 『현대제어공학』, 장 제목으로 표기)",
+   "part": "Control Systems Analysis and Design in State Space 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Nise, Control Systems Engineering (장 제목으로 표기)",
+   "part": "Modeling in the Time Domain, Digital Control Systems 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Åström · Murray (무료 공개 교재)",
+   "title": "Feedback Systems: An Introduction for Scientists and Engineers, 2nd ed.",
+   "url": "https://fbsbook.org/",
+   "lang": "영어",
+   "part": "Linear Systems, State Feedback 장"
+  },
+  {
+   "title": "math-arena 레벨2 · 선형대수 (고유값)",
+   "href": "https://math-arena.org/guide.html?lv=2&t=algebra&s=linear-algebra"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "챕터 9 논리 게이트와 조합회로",
+   "url": "browse.html?c=c1#ch09"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "A = [[0, 1], [−6, −5]]인 시스템의 두 극점 가운데 허축에 더 가까운 극점은 얼마일까요?",
+   "answer": "-2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "det(sI − A) = s² + 5s + 6 = (s + 2)(s + 3)\n극점은 −2, −3이므로 −2입니다.",
+   "hint": "det(sI − A) = 0을 푸세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "디지털 제어계가 안정하려면 모든 극점이 z평면의 {{1}} 안에 있어야 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "단위원",
+      "단위 원"
+     ]
+    }
+   ],
+   "explanation": "z = e^(sT)에서 s평면 좌반면이 단위원 안으로 옮겨 갑니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "샘플링 주기가 0.001 s인 디지털 제어기의 샘플링 주파수는 몇 Hz일까요?",
+   "answer": "1000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "f_s = 1/T = 1/0.001 = 1000 Hz",
+   "hint": "f_s = 1/T입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "control",
+ "id": "l3-electrical-control-u08"
+}

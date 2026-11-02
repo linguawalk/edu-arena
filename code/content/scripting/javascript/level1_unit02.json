@@ -1,0 +1,91 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "연산자 심화",
+  "questions": [
+    {
+      "id": "javascript_l1_u02_q001",
+      "type": "predict_output",
+      "code": "console.log(1 == \"1\");\nconsole.log(1 === \"1\");",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["true true", "false false", "true false", "false true"],
+      "answer": 2,
+      "explanation_en": "== performs loose equality with type coercion, converting \"1\" to 1 before comparing (true); === requires both type and value to match without coercion (false, since number ≠ string).",
+      "explanation_ko": "==는 타입 강제 변환을 거치는 느슨한 동등 비교로, \"1\"을 1로 변환한 뒤 비교합니다(true). ===는 강제 변환 없이 타입과 값이 모두 일치해야 합니다(false, number와 string은 다른 타입).",
+      "concept_tags": ["loose_equality", "strict_equality"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l1_u02_q002",
+      "type": "predict_output",
+      "code": "console.log(\"Hello\" + 5);\nconsole.log(5 + \"5\");",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["Hello5 55", "Hello5 10", "오류", "5Hello 55"],
+      "answer": 0,
+      "explanation_en": "+ favors string concatenation whenever either operand is a string; \"Hello\"+5 becomes \"Hello5\", and 5+\"5\" becomes \"55\" (not numeric addition).",
+      "explanation_ko": "+는 피연산자 중 하나라도 문자열이면 문자열 연결을 우선합니다. \"Hello\"+5는 \"Hello5\"가 되고, 5+\"5\"는 \"55\"가 됩니다(숫자 덧셈이 아님).",
+      "concept_tags": ["plus_operator", "type_coercion"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l1_u02_q003",
+      "type": "predict_output",
+      "code": "console.log(NaN == NaN);\nconsole.log(Number.isNaN(NaN));",
+      "prompt_en": "What is printed? (This is one of JavaScript's most surprising behaviors.)",
+      "prompt_ko": "출력 결과는? (JavaScript에서 가장 놀라운 동작 중 하나입니다.)",
+      "options": ["true true", "false false", "false true", "true false"],
+      "answer": 2,
+      "explanation_en": "NaN is defined to never equal itself, so NaN == NaN is false; Number.isNaN() is the correct way to actually check for NaN, returning true.",
+      "explanation_ko": "NaN은 자기 자신과도 절대 같지 않게 정의되어 있어서 NaN == NaN은 false입니다. Number.isNaN()이 실제로 NaN을 확인하는 올바른 방법으로, true를 반환합니다.",
+      "concept_tags": ["nan"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l1_u02_q004",
+      "type": "fill_blank",
+      "code": "let age = 20;\nlet isAdult = age ____ 18;\nconsole.log(isAdult);\n// age가 18보다 크거나 같아야 true",
+      "prompt_en": "Fill in the blank with the operator that checks 'greater than or equal to'.",
+      "prompt_ko": "'크거나 같음'을 확인하는 연산자를 빈칸에 채우세요.",
+      "options": [">=", "=>", ">==", "=="],
+      "answer": 0,
+      "explanation_en": ">= checks whether the left value is greater than or equal to the right value.",
+      "explanation_ko": ">=는 왼쪽 값이 오른쪽 값보다 크거나 같은지 확인합니다.",
+      "concept_tags": ["comparison_operator"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l1_u02_q005",
+      "type": "predict_output",
+      "code": "console.log(0 == false);\nconsole.log(0 === false);\nconsole.log(\"\" == false);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["true false true", "true true true", "false false false", "true false false"],
+      "answer": 0,
+      "explanation_en": "== coerces 0 and false to be equal, and empty string \"\" also coerces to false-like comparison, giving true; === blocks this coercion since number and boolean are different types, giving false.",
+      "explanation_ko": "==는 0과 false를 같다고 강제 변환하며, 빈 문자열 \"\"도 false와 비교 시 강제 변환되어 true가 됩니다. ===는 number와 boolean이 다른 타입이라 이 변환을 막아 false가 됩니다.",
+      "concept_tags": ["loose_equality", "strict_equality", "type_coercion"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l1_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "== (느슨한 동등)", "definition": "타입을 강제로 변환한 뒤 값을 비교" },
+        { "term": "=== (엄격한 동등)", "definition": "타입 변환 없이 타입과 값을 모두 비교 — 권장되는 방식" },
+        { "term": "+ 의 이중 역할", "definition": "문자열이 하나라도 있으면 연결, 둘 다 숫자면 덧셈" },
+        { "term": "NaN", "definition": "자기 자신과도 같지 않은 특수한 값 — Number.isNaN()으로 확인해야 함" }
+      ],
+      "explanation_en": "The near-universal advice in the JavaScript community is to always use === instead of ==, precisely to avoid the surprising coercion rules covered in this unit.",
+      "explanation_ko": "JavaScript 커뮤니티에서 거의 보편적인 조언은 항상 ==대신 ===를 쓰라는 것입니다. 바로 이 유닛에서 다룬 놀라운 강제 변환 규칙을 피하기 위해서입니다.",
+      "concept_tags": ["loose_equality", "strict_equality", "nan"],
+      "difficulty": "practice"
+    }
+  ]
+}

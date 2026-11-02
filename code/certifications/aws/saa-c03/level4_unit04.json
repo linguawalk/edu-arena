@@ -1,0 +1,112 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "saa-c03",
+  "level": 4,
+  "unit": 4,
+  "unit_title": "데이터 전송 비용 최적화",
+  "rule_summary_ko": "같은 가용 영역(AZ) 안에서 프라이빗 IP로 주고받는 데이터 전송은 무료이지만, 같은 리전 안이라도 서로 다른 AZ 사이의 전송에는 요금(양방향 각각 부과)이 붙고, 리전 간 전송은 그보다 더 비쌉니다. 프라이빗 서브넷의 인스턴스가 NAT 게이트웨이를 통해 S3·DynamoDB 같은 AWS 서비스에 접근하면, 그 트래픽이 실제로는 같은 AWS 네트워크 안에 머무는데도 NAT 게이트웨이의 데이터 처리 요금이 그대로 부과됩니다 — VPC 게이트웨이 엔드포인트(S3·DynamoDB 전용, 완전 무료)를 사용하면 이 트래픽을 NAT 게이트웨이를 거치지 않고 곧장 연결해서 그 요금을 통째로 없앨 수 있습니다.",
+  "examples": [
+    { "code": "같은 리전, 서로 다른 AZ에 있는 EC2와 RDS 사이에서 매일 500GB의 데이터를 주고받음", "note_ko": "교차 AZ 전송 요금(GB당 소액이지만 양방향 부과)이 지속적으로 발생 — 가능하면 같은 AZ에 배치하는 것이 비용 절감에 유리" },
+    { "code": "프라이빗 서브넷의 EC2가 NAT 게이트웨이를 거쳐 S3에 대량의 데이터를 업로드함", "note_ko": "NAT 게이트웨이 데이터 처리 요금이 부과됨 — VPC 게이트웨이 엔드포인트(S3용, 무료)로 바꾸면 이 요금이 완전히 사라짐" }
+  ],
+  "questions": [
+    {
+      "id": "aws_saa_l4_u4_q001",
+      "type": "concept_matching_item",
+      "code": "프라이빗 서브넷의 EC2가 NAT 게이트웨이를 거쳐 같은 리전의 S3 버킷에 대량의 데이터를 반복적으로 업로드함",
+      "prompt_ko": "이 구성에서 발생하는 불필요한 비용을 줄이는 방법은?",
+      "options": [
+        "VPC 게이트웨이 엔드포인트(S3용)를 추가해서, S3로 가는 트래픽이 NAT 게이트웨이를 거치지 않고 곧장 연결되게 한다 — 이 엔드포인트는 완전 무료라 NAT 게이트웨이의 데이터 처리 요금을 없앨 수 있다",
+        "NAT 게이트웨이를 더 큰 인스턴스로 교체한다(비용만 늘어날 뿐 근본 해결이 안 됨)",
+        "이 비용은 줄일 방법이 없다",
+        "S3 버킷을 삭제하는 것 외에는 방법이 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "AWS 서비스로 향하는 트래픽이 NAT 게이트웨이를 거치는 것은 대표적인 불필요한 비용 발생 패턴이며, 게이트웨이 엔드포인트가 무료 해결책입니다.",
+      "concept_tags": ["vpc_gateway_endpoint_saves_nat_cost"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l4_u4_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "같은 가용 영역(AZ) 안에서 프라이빗 IP로 주고받는 데이터 전송의 비용은?",
+      "options": [
+        "무료 — 같은 AZ, 같은 VPC 안에서 프라이빗 IP로 주고받는 전송은 요금이 부과되지 않는다",
+        "교차 리전 전송과 동일한 요금이 부과된다",
+        "교차 AZ 전송보다 항상 더 비싸다",
+        "이런 전송에는 항상 별도의 고정 요금이 부과된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "같은 AZ 내부 통신은 AWS 데이터 전송 요금 체계에서 가장 저렴한(무료인) 경로입니다.",
+      "concept_tags": ["same_az_transfer_free"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l4_u4_q003",
+      "type": "concept_matching_item",
+      "code": "같은 리전, 서로 다른 AZ에 있는 EC2와 RDS 인스턴스 사이에서 대량의 데이터를 지속적으로 주고받음",
+      "prompt_ko": "이 구성에서 발생하는 비용 패턴은?",
+      "options": [
+        "교차 AZ(cross-AZ) 데이터 전송 요금이 양방향으로 부과된다 — 같은 리전이라도 AZ가 다르면 무료가 아니다",
+        "같은 리전이므로 완전히 무료다",
+        "교차 리전 전송보다 항상 더 비싸다(일반적으로는 그 반대)",
+        "이런 구성은 AWS에서 지원되지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "같은 리전 안이라도 AZ 경계를 넘는 순간부터 요금이 발생한다는 것이 흔히 간과되는 포인트입니다.",
+      "concept_tags": ["cross_az_transfer_cost"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l4_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "인터넷에서 AWS로 들어오는(인그레스) 데이터 전송의 비용 정책은?",
+      "options": [
+        "일반적으로 무료다 — AWS는 인바운드(들어오는) 데이터 전송에는 과금하지 않는다",
+        "아웃바운드보다 항상 더 비싸다",
+        "인그레스도 아웃바운드와 동일한 요금이 부과된다",
+        "인그레스는 AWS에서 아예 지원되지 않는 개념이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "AWS는 데이터를 '내보내는(egress)' 트래픽에 주로 과금하며, '들여오는(ingress)' 트래픽은 대부분 무료입니다.",
+      "concept_tags": ["ingress_free"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l4_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "지연시간에 민감하지 않고 서로 자주 통신하는(chatty) 두 서비스를 배치할 때, 비용 관점에서 고려할 점은?",
+      "options": [
+        "가능하다면 같은 가용 영역에 배치해서, 빈번한 통신에서 발생할 수 있는 교차 AZ 전송 요금을 피하는 것이 비용 효율적이다",
+        "항상 서로 다른 AZ에 분산시키는 것이 비용 면에서 유리하다(설명이 반대, 고가용성 관점과 혼동)",
+        "서비스 배치는 데이터 전송 비용과 전혀 무관하다",
+        "같은 AZ에 배치하면 오히려 더 비싸진다"
+      ],
+      "answer": 0,
+      "explanation_ko": "다만 이는 고가용성(여러 AZ 분산)과 상충될 수 있어, 지연시간·비용·가용성 요구사항을 종합적으로 고려해야 합니다.",
+      "concept_tags": ["chatty_service_same_az_tradeoff"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l4_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "S3·DynamoDB 전용 VPC 게이트웨이 엔드포인트와, 다른 AWS 서비스용 인터페이스 엔드포인트의 비용 차이는?",
+      "options": [
+        "게이트웨이 엔드포인트(S3·DynamoDB)는 완전 무료(시간당 요금도, GB당 요금도 없음)이지만, 인터페이스 엔드포인트는 시간당 요금과 GB당 처리 요금이 부과된다(그래도 일반적으로 NAT 게이트웨이보다는 저렴함)",
+        "두 엔드포인트 유형은 완전히 동일한 요금 체계를 가진다",
+        "인터페이스 엔드포인트가 게이트웨이 엔드포인트보다 항상 더 저렴하다(설명이 반대)",
+        "게이트웨이 엔드포인트도 인터페이스 엔드포인트와 동일하게 시간당 요금이 부과된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "S3·DynamoDB만 예외적으로 완전 무료 게이트웨이 방식을 제공하고, 다른 서비스들은 유료(하지만 NAT보다는 저렴한) 인터페이스 방식을 사용합니다.",
+      "concept_tags": ["gateway_vs_interface_endpoint_cost"],
+      "difficulty": "challenge"
+    }
+  ]
+}

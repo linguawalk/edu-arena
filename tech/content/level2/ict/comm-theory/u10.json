@@ -1,0 +1,112 @@
+{
+ "no": 10,
+ "title": "오류 제어 부호",
+ "hours": 5,
+ "after": [
+  8
+ ],
+ "objectives": [
+  "패리티·해밍 부호·CRC의 원리를 설명할 수 있다.",
+  "해밍 거리로 검출·정정 가능한 오류 수를 계산할 수 있다.",
+  "ARQ와 FEC를 비교하고 부호율을 계산할 수 있다."
+ ],
+ "checklist": [
+  "패리티 비트(오류 검출)",
+  "해밍 거리, 최소 거리 d_min",
+  "검출 가능 오류 d_min − 1, 정정 가능 오류 ⌊(d_min − 1)/2⌋",
+  "해밍 (7, 4) 부호: 4비트 데이터 + 3비트 검사, d_min = 3",
+  "부호율 = k/n",
+  "CRC: 다항식 나눗셈, 이더넷·저장 장치",
+  "ARQ(재전송)와 FEC(순방향 오류 정정), 하이브리드 ARQ"
+ ],
+ "advice": [
+  "오류 제어는 '여분의 비트를 붙여 오류를 찾거나 고친다'는 단순한 아이디어입니다. 해밍 거리 개념 하나로 '최소 거리가 3이면 오류 1개를 고칠 수 있다'는 결론이 나오는 과정을 직접 따라가 보세요. 해밍 (7, 4) 부호를 손으로 부호화하고 오류 하나를 일부러 넣어 고쳐 보는 연습이 가장 효과적입니다.",
+  "검출만 하고 다시 보내 달라고 하는 ARQ는 TCP(레벨1 컴퓨터 챕터 8)처럼 지연을 감수할 수 있을 때, 받는 쪽에서 스스로 고치는 FEC는 위성이나 실시간 방송처럼 다시 보낼 수 없을 때 씁니다. 실제 이동통신은 둘을 섞은 하이브리드 ARQ를 쓴다는 점까지 연결해 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Haykin, Communication Systems (번역본 『통신 시스템』, 장 제목으로 표기)",
+   "part": "Error-Control Coding 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Lathi · Ding, Modern Digital and Analog Communication Systems (장 제목으로 표기)",
+   "part": "Error Correcting Codes 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.02 Introduction to EECS II: Digital Communication Systems (2012년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/",
+   "lang": "영어",
+   "part": "error correction, Hamming codes, convolutional codes 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "해밍 (7, 4) 부호의 부호율은 약 얼마일까요?",
+   "answer": "0.571",
+   "answer_format": "decimal",
+   "tolerance": 0.002,
+   "explanation": "부호율 = 4/7 ≈ 0.571",
+   "hint": "k/n입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "최소 해밍 거리가 3인 부호는 오류를 최대 몇 개까지 정정할 수 있을까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "⌊(3 − 1)/2⌋ = 1개\n검출은 2개까지 가능합니다.",
+   "hint": "⌊(d_min − 1)/2⌋입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "재전송 없이 받는 쪽에서 스스로 오류를 고치는 방식을 순방향 오류 정정, 영문 약어로 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "FEC"
+     ]
+    }
+   ],
+   "explanation": "위성과 방송처럼 되돌려 요청하기 어려운 곳에서 특히 중요합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "다항식 나눗셈의 나머지를 붙여 이더넷 프레임의 오류를 검출하는 방식을 {{1}}라고 합니다. (영문 약어)",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "CRC"
+     ]
+    }
+   ],
+   "explanation": "Cyclic Redundancy Check의 줄임말입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "ict",
+ "subject": "comm-theory",
+ "id": "l2-ict-comm-theory-u10"
+}

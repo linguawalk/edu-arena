@@ -1,0 +1,359 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch08",
+    "no": 8,
+    "title": "여러 가지 적분법"
+  },
+  "lesson": {
+    "id": "c4-ch08-l04",
+    "no": 4,
+    "title": "속도와 거리, 곡선의 길이",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "평면 운동의 이동 거리",
+      "body": [
+        "위치가 (x(t), y(t))인 점이 t = a부터 b까지 움직인 거리는 ∫ₐᵇ √(x′² + y′²) dt입니다.",
+        "평면 운동의 속력은 √(x′² + y′²)이고, 짧은 시간 dt 동안 움직인 거리는 속력 × dt입니다. 이를 모두 더하면 이동 거리입니다. 점이 지나간 곡선의 길이와 같다고 생각할 수 있습니다(되돌아가지 않는 경우)."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "x = 3t, y = 4t일 때 t = 0부터 t = 1까지 움직인 거리는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "속력 √(9 + 16) = 5 (일정)\n∫₀¹ 5 dt\n= 5\n확인: 두 점 (0, 0)과 (3, 4) 사이의 거리"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "x = cos t, y = sin t일 때 t = 0부터 t = π까지 움직인 거리는 {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "π"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "속력 √(sin² t + cos² t) = 1\n∫₀^π 1 dt = π\n빈칸은 π (단위원의 반 바퀴)\n원리: 이동 거리는 속력을 적분한 것입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "곡선의 길이",
+      "body": [
+        "곡선 y = f(x)의 a ≤ x ≤ b 부분의 길이는 ∫ₐᵇ √(1 + {f′(x)}²) dx입니다. 짧은 직각삼각형의 빗변을 모두 더한 것입니다.",
+        "왜 √(1 + f′²)일까요? 곡선을 아주 짧게 잘라 직선으로 보면, 가로 dx, 세로 dy인 직각삼각형의 빗변 √(dx² + dy²)이 그 조각의 길이입니다. dx를 묶어 내면 √(1 + (dy/dx)²) dx이므로, 이를 모두 더한 적분이 곡선의 길이입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "곡선 y = (1/2)x² (0 ≤ x ≤ 1)의 길이를 식으로 나타내고 직선과 비교하세요.",
+      "steps": [
+        "y′ = x이므로 길이 = ∫₀¹ √(1 + x²) dx",
+        "양 끝 (0, 0)과 (1, 1/2)를 이은 선분의 길이 √(1 + 1/4) ≈ 1.118",
+        "곡선의 길이 ≈ 1.148 (적분의 근삿값)",
+        "곡선이 휘어 있어 선분보다 조금 깁니다."
+      ],
+      "answer": "∫₀¹ √(1 + x²) dx ≈ 1.148"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "직선 y = x에서 0 ≤ x ≤ 1 부분의 길이는 √{{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "y′ = 1이므로 ∫₀¹ √(1 + 1) dx = √2\n빈칸은 2\n확인: (0, 0)과 (1, 1) 사이의 거리 √2"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "y = (2/3)x^(3/2)에서 0 ≤ x ≤ 3 부분의 길이는? (기약분수로)",
+      "answer": "14/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "y′ = x^(1/2)이므로 √(1 + x)\n∫₀³ √(1 + x) dx = [(2/3)(1 + x)^(3/2)]₀³ = (2/3)(8 − 1)\n= 14/3"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "매개변수 곡선의 길이",
+      "body": [
+        "x = f(t), y = g(t)로 나타낸 곡선의 길이도 ∫ √(x′² + y′²) dt입니다.",
+        "매개변수 곡선은 x, y가 모두 t로 주어지므로 빗변을 √(x′² + y′²) dt로 씁니다. 원 x = r cos t, y = r sin t는 속력이 r로 일정해서 한 바퀴의 길이가 2πr이 되는데, 원의 둘레 공식을 적분으로 확인한 것입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "x = t − sin t, y = 1 − cos t (0 ≤ t ≤ 2π)의 길이를 구하세요.",
+      "steps": [
+        "x′ = 1 − cos t, y′ = sin t",
+        "속력² = 2 − 2 cos t = 4 sin²(t/2), 속력 = 2 sin(t/2) (0 ≤ t ≤ 2π)",
+        "∫₀^(2π) 2 sin(t/2) dt = [−4 cos(t/2)]₀^(2π)",
+        "= 4 + 4 = 8 (사이클로이드 한 아치의 길이)"
+      ],
+      "answer": "8"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "x = 3cos t, y = 3sin t (0 ≤ t ≤ 2π)의 길이는 {{1}}π",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "6"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "속력 √(9 sin² t + 9 cos² t) = 3\n∫₀^(2π) 3 dt = 6π\n빈칸은 6 (원의 둘레 2π × 3)"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x = 5t, y = 12t (0 ≤ t ≤ 2)의 길이는?",
+      "answer": "26",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "속력 √(25 + 144) = 13\n∫₀² 13 dt\n= 26\n확인: 두 점 (0, 0)과 (10, 24) 사이의 거리 26"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "직선 운동의 이동 거리",
+      "body": [
+        "수직선 위에서는 ∫|v(t)| dt가 이동 거리, ∫v(t) dt가 위치의 변화입니다.",
+        "수직선 위의 운동에서 위치의 변화와 이동 거리가 다른 이유는 방향이 바뀌기 때문입니다. v(t)의 부호가 바뀌는 시각을 찾아 구간을 나누고, 이동 거리는 각 구간의 절댓값을 더합니다. 평면 운동의 거리 공식은 항상 양수인 속력을 적분하므로 자동으로 절댓값이 처리됩니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "v(t) = cos t일 때 t = 0부터 t = π까지 위치의 변화와 이동 거리를 구하세요.",
+      "steps": [
+        "위치의 변화: ∫₀^π cos t dt = [sin t]₀^π = 0",
+        "t = π/2에서 부호가 바뀜",
+        "거리: ∫₀^(π/2) cos t dt − ∫_(π/2)^π cos t dt = 1 + 1",
+        "= 2"
+      ],
+      "answer": "위치 변화 0, 거리 2"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "v(t) = sin t일 때 t = 0부터 2π까지 움직인 거리는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "t = π에서 구간을 나누세요.",
+      "explanation": "sin t는 0 ~ π에서 양수, π ~ 2π에서 음수\n∫₀^π sin t dt = 2, ∫_π^(2π) sin t dt = −2이므로 절댓값의 합\n거리 4"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 운동에서 t = 0부터 2π까지 위치의 변화는?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "부호 그대로 적분하세요.",
+      "explanation": "위치의 변화는 부호 그대로: ∫₀^(2π) sin t dt\n= [−cos t]₀^(2π) = −1 + 1\n= 0 (한 번 갔다가 제자리로)"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "길이와 거리는 항상 '속력' 또는 '빗변'을 적분합니다.",
+        "넓이, 부피, 길이, 거리는 모두 '아주 작은 조각을 구해 모두 더한다'는 하나의 아이디어로 구합니다. 조각이 직사각형이면 넓이, 판이면 부피, 빗변이면 길이, 속력 × 시간이면 거리입니다. 이것이 적분의 핵심이며, 물리의 일과 에너지, 확률의 계산에서도 같은 생각이 쓰입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "v(t) = eᵗ일 때 t = 0부터 t = ln 3까지 움직인 거리는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "속도가 항상 양수입니다.",
+      "explanation": "eᵗ > 0이라 방향이 바뀌지 않음\n∫₀^(ln 3) eᵗ dt = e^(ln 3) − 1\n= 3 − 1 = 2"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "x = 2cos t, y = 2sin t (0 ≤ t ≤ 2π)의 길이는 {{1}}π",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "4"
+          ]
+        }
+      ],
+      "hint": "원의 둘레 공식과 비교하세요.",
+      "explanation": "속력 2 (반지름 2인 원)\n∫₀^(2π) 2 dt = 4π\n빈칸은 4\n원리: 원의 둘레 2πr과 같은 결과가 나옵니다(r = 2)."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "x = t², y = t² (0 ≤ t ≤ 1)의 길이는 √{{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": "속력을 구하세요.",
+      "explanation": "x′ = y′ = 2t이므로 속력 √(8t²) = 2√2 t\n∫₀¹ 2√2 t dt = √2\n빈칸은 2 (직선 y = x 위의 (0, 0)부터 (1, 1)까지)"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "v(t) = 3t² − 3일 때 t = 0부터 t = 2까지 움직인 거리는?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "t = 1에서 구간을 나누세요.",
+      "explanation": "v = 3(t − 1)(t + 1): 0 ~ 1에서 음수, 1 ~ 2에서 양수\n∫₀¹ |v| dt = 2, ∫₁² v dt = 4\n거리 6"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 운동에서 t = 0부터 t = 2까지 위치의 변화는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "부호 그대로 적분하세요.",
+      "explanation": "위치의 변화는 부호 그대로: ∫₀² (3t² − 3) dt\n= [t³ − 3t]₀²\n= 8 − 6 = 2\n주의: 이동 거리 6과 다릅니다(방향이 바뀌었기 때문)."
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x^(3/2)에서 0 ≤ x ≤ 4/3 부분의 길이는? (기약분수로)",
+      "answer": "56/27",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "√(1 + f′²)을 적분하세요.",
+      "explanation": "y′ = (3/2)x^(1/2)이므로 √(1 + 9x/4)\n∫₀^(4/3) √(1 + 9x/4) dx = (8/27)[(1 + 9x/4)^(3/2)]₀^(4/3) = (8/27)(8 − 1)\n= 56/27"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "x = 2t + 1, y = 2t (0 ≤ t ≤ 1)의 길이는 {{1}}√2",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": "속력을 구하세요.",
+      "explanation": "x′ = 2, y′ = 2이므로 속력 2√2\n∫₀¹ 2√2 dt = 2√2\n빈칸은 2 (두 점 (1, 0)과 (3, 2) 사이의 거리)"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "곡선의 길이 공식 ∫ √(1 + {f′(x)}²) dx가 피타고라스 정리에서 나오는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "직각삼각형",
+            "빗변"
+          ],
+          [
+            "dx",
+            "가로"
+          ],
+          [
+            "dy",
+            "세로",
+            "f′"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "곡선을 아주 짧게 나누면 각 조각은 가로 dx, 세로 dy = f′(x)dx인 직각삼각형의 빗변과 거의 같습니다. 빗변의 길이는 √(dx² + dy²) = √(1 + f′²) dx이고, 이를 모두 더하면 곡선의 길이입니다."
+    }
+  ]
+}

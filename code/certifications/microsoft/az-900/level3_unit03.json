@@ -1,0 +1,112 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "microsoft",
+  "exam": "az-900",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "리소스 관리 계층 구조",
+  "rule_summary_ko": "Azure는 관리 그룹(management group) → 구독(subscription) → 리소스 그룹(resource group) → 개별 리소스(resource)의 4단계 계층 구조를 가집니다. 정책과 RBAC 권한은 상위 수준에 적용하면 하위의 모든 항목에 자동으로 상속(적용)됩니다. 모든 리소스는 정확히 하나의 리소스 그룹에 속해야 하며, 리소스 그룹을 삭제하면 그 안의 모든 리소스가 함께 삭제됩니다. 구독은 청구·접근의 경계 역할을 하고, 관리 그룹은 여러 구독을 묶어 조직 전체에 통일된 거버넌스를 적용할 수 있게 해줍니다.",
+  "examples": [
+    { "code": "관리 그룹 수준에 \"East US 리전에만 배포 가능\"이라는 정책을 적용", "note_ko": "그 관리 그룹 아래의 모든 구독·리소스 그룹·리소스에 자동으로 상속되어 적용됨" },
+    { "code": "테스트가 끝난 프로젝트의 리소스 그룹을 삭제", "note_ko": "그 리소스 그룹 안에 있던 모든 리소스(VM, 스토리지 등)가 한꺼번에 삭제됨 — 정리에 유용" }
+  ],
+  "questions": [
+    {
+      "id": "az900_l3_u3_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Azure 리소스 관리 계층 구조를 상위에서 하위 순서로 올바르게 나열한 것은?",
+      "options": [
+        "리소스 → 리소스 그룹 → 구독 → 관리 그룹",
+        "관리 그룹 → 구독 → 리소스 그룹 → 리소스",
+        "구독 → 관리 그룹 → 리소스 → 리소스 그룹",
+        "리소스 그룹 → 관리 그룹 → 구독 → 리소스"
+      ],
+      "answer": 1,
+      "explanation_ko": "관리 그룹이 가장 상위, 그 아래 구독, 그 아래 리소스 그룹, 가장 아래에 개별 리소스가 위치합니다.",
+      "concept_tags": ["resource_hierarchy"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "az900_l3_u3_q002",
+      "type": "concept_matching_item",
+      "code": "관리 그룹 수준에 \"모든 리소스는 East US 리전에만 배포 가능\"이라는 정책을 적용함",
+      "prompt_ko": "이 정책은 그 관리 그룹 아래의 구독·리소스 그룹·개별 리소스에 어떻게 적용됩니까?",
+      "options": [
+        "관리 그룹 자체에만 적용되고 하위 항목에는 영향이 없다",
+        "자동으로 상속되어, 하위의 모든 구독·리소스 그룹·리소스에도 동일하게 적용된다",
+        "각 하위 구독마다 별도로 정책을 다시 설정해야 한다",
+        "정책은 관리 그룹 수준에서는 적용할 수 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "상위 수준의 정책·RBAC는 하위로 자동 상속되는 것이 이 계층 구조의 핵심 이점입니다.",
+      "concept_tags": ["policy_inheritance"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "az900_l3_u3_q003",
+      "type": "concept_matching_item",
+      "code": "테스트 프로젝트에 사용한 VM, 스토리지 계정, 네트워크가 모두 같은 리소스 그룹 안에 있고, 프로젝트가 끝나서 이 리소스 그룹을 삭제함",
+      "prompt_ko": "리소스 그룹을 삭제하면 어떻게 됩니까?",
+      "options": [
+        "리소스 그룹만 삭제되고 안의 리소스들은 남는다",
+        "그 리소스 그룹 안에 있던 모든 리소스(VM, 스토리지, 네트워크 등)가 함께 삭제된다",
+        "가장 비싼 리소스만 삭제된다",
+        "삭제하려면 안의 리소스를 먼저 하나씩 다 삭제해야 한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "리소스 그룹 삭제는 그 안의 모든 리소스를 한꺼번에 정리하는 편리한(하지만 신중해야 하는) 방법입니다.",
+      "concept_tags": ["resource_group_deletion"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "az900_l3_u3_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "한 리소스 그룹 안의 리소스들은 모두 같은 리전에 있어야 합니까?",
+      "options": [
+        "그렇다. 한 리소스 그룹의 모든 리소스는 반드시 같은 리전에 있어야 한다",
+        "아니다. 리소스 그룹 자체의 위치는 메타데이터 저장용일 뿐이며, 그 안의 리소스들은 서로 다른 리전에 있어도 된다",
+        "리소스 그룹은 항상 전 세계 모든 리전에 걸쳐 있다",
+        "리소스 그룹에는 리전 개념이 아예 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "리소스 그룹의 위치는 그룹 메타데이터를 저장하는 위치일 뿐, 소속 리소스들의 실제 위치를 제한하지 않습니다.",
+      "concept_tags": ["resource_group_location"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "az900_l3_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "구독(subscription)의 주된 역할은?",
+      "options": [
+        "청구(billing)와 접근의 경계 역할을 하며, 각 구독은 자체 청구서를 생성한다",
+        "개별 리소스를 논리적으로 묶는 가장 작은 단위다",
+        "여러 조직을 하나로 통합하는 최상위 단위다",
+        "구독은 실제로는 아무 실질적 기능이 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "구독은 비용·접근 관리의 경계로, 부서나 프로젝트별로 나누는 데 자주 사용됩니다.",
+      "concept_tags": ["subscription_role"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "az900_l3_u3_q006",
+      "type": "concept_matching_item",
+      "code": "수십 개의 구독을 가진 대기업이, 모든 구독에 걸쳐 동일한 보안·컴플라이언스 규칙을 한 번에 적용하고 싶어함",
+      "prompt_ko": "이 요구사항에 적합한 도구는?",
+      "options": [
+        "각 구독마다 개별적으로 규칙을 반복 설정한다",
+        "관리 그룹(management group) — 여러 구독을 하나로 묶어 조직 전체에 통일된 거버넌스를 한 번에 적용할 수 있다",
+        "리소스 그룹만으로 충분하다",
+        "이런 통합 관리는 Azure에서 불가능하다"
+      ],
+      "answer": 1,
+      "explanation_ko": "관리 그룹은 여러 구독을 아우르는 조직 차원의 거버넌스를 위해 설계되었습니다.",
+      "concept_tags": ["management_group_purpose"],
+      "difficulty": "practice"
+    }
+  ]
+}

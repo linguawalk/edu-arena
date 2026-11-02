@@ -1,0 +1,367 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch02",
+  "no": 2,
+  "title": "플립플롭과 메모리"
+ },
+ "lesson": {
+  "id": "c4-ch02-l01",
+  "no": 1,
+  "title": "기억하는 회로",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "조합회로는 기억하지 못한다",
+   "body": [
+    "전기전자 챕터 9의 가산기 같은 조합회로는 지금 들어온 입력만으로 출력이 정해집니다. 입력이 사라지면 결과도 사라집니다. 하지만 컴퓨터는 계산 결과를 잠시 들고 있다가 다음 계산에 써야 합니다.",
+    "지금 입력뿐 아니라 이전 상태에 따라 출력이 정해지는 회로를 순차회로라고 합니다. 순차회로의 가장 작은 기억 소자가 1비트를 저장하는 래치와 플립플롭입니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "fill_blank",
+   "prompt": "이전 상태를 기억해 출력이 정해지는 회로를 {{1}}회로라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "순차"
+     ]
+    }
+   ],
+   "hint": "차례(순서)가 있는 회로입니다.",
+   "explanation": "순차회로는 기억 소자를 가집니다.\n조합회로는 지금 입력만으로 출력이 정해집니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "SR 래치",
+   "body": [
+    "NOR 게이트 두 개의 출력을 서로의 입력으로 되먹이면 SR 래치가 됩니다. 입력은 S(set)와 R(reset), 출력은 Q입니다.",
+    "S = 1, R = 0이면 Q = 1로 설정되고, S = 0, R = 1이면 Q = 0으로 초기화됩니다. S = 0, R = 0이면 Q는 이전 값을 그대로 유지하는데, 이것이 기억입니다. S = 1, R = 1은 결과가 정해지지 않아 쓰지 않는(금지) 입력입니다.",
+    "출력을 입력으로 되먹이는 구조(피드백) 덕분에 입력이 사라져도 상태가 남습니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "Q = 0인 SR 래치에 S = 1, R = 0을 잠깐 넣었다가 S = 0, R = 0으로 돌리면 Q는?",
+   "steps": [
+    "S = 1이 들어오면 Q = 1로 설정됩니다.",
+    "S = 0, R = 0은 유지입니다.",
+    "Q = 1이 그대로 남습니다."
+   ],
+   "answer": "Q = 1"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "SR 래치에서 S = 0, R = 0이면 Q는 이전 값을 {{1}}합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "유지"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "두 입력이 모두 0이면 되먹임으로 이전 상태가 그대로 남습니다.\n이것이 1비트 기억입니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "SR 래치에 S = 0, R = 1을 넣으면 Q는 얼마일까요?",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "R은 reset이므로 Q를 0으로 만듭니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "SR 래치에서 결과가 정해지지 않아 쓰지 않는 입력은 S = 1, R = {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "1"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "설정과 초기화를 동시에 명령하면 출력이 정해지지 않습니다.\n그래서 금지 입력입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "래치가 입력이 사라져도 상태를 유지하는 것은 출력을 입력으로 되먹이는 {{1}} 구조 때문입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "피드백",
+      "되먹임",
+      "궤환"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "출력이 다시 입력이 되어 스스로 상태를 붙잡습니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "상태표로 따라가기",
+   "body": [
+    "래치의 동작은 시간 순서대로 입력을 적고 Q를 따라가며 확인합니다. 각 줄에서 S = 1이면 1, R = 1이면 0, 둘 다 0이면 바로 앞 줄의 Q를 그대로 적습니다.",
+    "예: 처음 Q = 0 → (S,R) = (1,0) → Q = 1 → (0,0) → 1 → (0,1) → 0 → (0,0) → 0."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "처음 Q = 1인 SR 래치에 (S,R) = (0,0), (0,1), (0,0), (1,0) 순으로 넣으면 마지막 Q는?",
+   "steps": [
+    "(0,0): 유지하여 1입니다.",
+    "(0,1): 초기화하여 0, (0,0): 유지하여 0입니다.",
+    "(1,0): 설정하여 1입니다."
+   ],
+   "answer": "Q = 1"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "SR 래치의 S는 Q를 1로 {{1}}하는 입력입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "설정",
+      "세트",
+      "set"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "S는 set(설정), R은 reset(초기화)입니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "처음 Q = 0인 SR 래치에 (S,R) = (1,0), (0,0), (0,0) 순으로 넣으면 마지막 Q는 얼마일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "(1,0)에서 1로 설정된 뒤 (0,0)은 유지입니다.\n마지막 Q = 1입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "처음 Q = 1인 SR 래치에 (S,R) = (0,1), (1,0), (0,1) 순으로 넣으면 마지막 Q는 얼마일까요?",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "0 → 1 → 0으로 바뀝니다.\n마지막 (0,1)이 초기화이므로 Q = 0입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "래치 하나가 저장하는 정보는 몇 비트일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "Q가 0 또는 1이므로 1비트입니다.\nn비트를 저장하려면 n개가 필요합니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "기억의 시작",
+   "body": [
+    "래치는 1비트 기억의 출발점입니다. 하지만 입력이 바뀌는 즉시 출력이 따라 바뀌어, 여러 비트를 같은 순간에 맞추어 저장하기 어렵습니다. 다음 레슨의 플립플롭은 클럭이라는 신호에 맞추어 정해진 순간에만 값을 받아들입니다.",
+    "정리: 조합회로(기억 없음)와 순차회로(기억 있음), SR 래치(S 설정, R 초기화, 00 유지, 11 금지), 피드백, 상태표 따라가기"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "플립플롭이 정해진 순간에만 값을 받아들이게 하는 신호를 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "클럭",
+      "클록",
+      "clock"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "클럭은 규칙적으로 0과 1을 되풀이하는 신호입니다.\n컴퓨터 전체의 박자를 맞춥니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "도난 경보기에서 문이 잠깐 열려도 경보가 계속 울리게 하려면 래치를 어떻게 쓸까요?",
+   "steps": [
+    "문 열림 센서를 S에 연결합니다.",
+    "문이 잠깐 열려도 Q = 1로 설정되어 유지됩니다.",
+    "해제 버튼을 R에 연결해 Q = 0으로 초기화합니다."
+   ],
+   "answer": "센서 → S, 해제 버튼 → R"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "앞 경보기에서 경보를 끄는 해제 버튼은 래치의 {{1}} 입력에 연결합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "R"
+     ]
+    }
+   ],
+   "hint": "reset 입력입니다.",
+   "explanation": "R은 Q를 0으로 초기화합니다.\n그래서 경보가 꺼집니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 경보기에서 문이 열렸다 닫힌 뒤(S가 1이었다가 0으로) 아무도 해제하지 않으면 Q는 얼마일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "S와 R이 모두 0이면 유지입니다.",
+   "explanation": "S가 1이었을 때 Q = 1로 설정되었습니다.\n이후 S = R = 0이라 유지되어 1입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "8비트 값을 저장하려면 1비트 기억 소자가 최소 몇 개 필요할까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "소자 하나가 몇 비트일까요?",
+   "explanation": "기억 소자 하나가 1비트이므로 8개가 필요합니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "처음 Q = 0인 SR 래치에 (S,R) = (0,0), (1,0), (0,0), (0,1), (0,0), (1,0) 순으로 넣었을 때 Q가 1인 단계는 모두 몇 번일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "한 줄씩 Q를 적어 보세요.",
+   "explanation": "Q는 0, 1, 1, 0, 0, 1입니다.\n1인 단계는 3번입니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "가산기처럼 지금 입력만으로 출력이 정해지는 회로는 {{1}}회로입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "조합"
+     ]
+    }
+   ],
+   "hint": "논리 게이트를 조합한 회로입니다.",
+   "explanation": "조합회로에는 기억 소자가 없습니다.\n그래서 입력이 사라지면 결과도 사라집니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "조합회로만으로는 컴퓨터를 만들 수 없는 이유를 설명해 보세요.",
+   "hint": "계산 결과를 다음 단계에 쓰려면 무엇이 필요할까요?",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "조합회로"
+     ],
+     [
+      "기억",
+      "저장"
+     ],
+     [
+      "이전",
+      "결과",
+      "상태"
+     ],
+     [
+      "다음",
+      "이어",
+      "순차"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "조합회로는 지금 입력만으로 출력이 정해져서 입력이 사라지면 결과도 사라집니다. 컴퓨터는 계산 결과나 프로그램의 상태를 기억했다가 다음 단계에서 써야 하므로, 이전 상태를 저장하는 순차회로가 반드시 필요합니다."
+  }
+ ]
+}

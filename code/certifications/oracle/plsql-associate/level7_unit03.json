@@ -1,0 +1,105 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 7,
+  "unit": 3,
+  "unit_title": "자율 트랜잭션(AUTONOMOUS_TRANSACTION)",
+  "rule_summary_ko": "PRAGMA AUTONOMOUS_TRANSACTION은 서브프로그램(또는 트리거)을 메인 트랜잭션과 완전히 독립된 트랜잭션으로 실행되게 만듭니다. 자율 트랜잭션이 시작되면 메인 트랜잭션은 잠시 멈추고(suspend), 자율 트랜잭션은 락·자원·커밋 여부를 메인 트랜잭션과 전혀 공유하지 않습니다. 자율 트랜잭션을 벗어나기 전에는 반드시 COMMIT이나 ROLLBACK을 해야 하며, 하지 않으면 예외가 발생합니다. 메인 트랜잭션이 나중에 ROLLBACK되어도, 이미 커밋된 자율 트랜잭션의 변경 사항은 영향받지 않고 그대로 유지됩니다.",
+  "examples": [
+    { "code": "PROCEDURE log_error(msg VARCHAR2) IS\n    PRAGMA AUTONOMOUS_TRANSACTION;\nBEGIN\n    INSERT INTO error_log VALUES (msg, SYSDATE);\n    COMMIT;\nEND;", "note_ko": "오류 로그 기록용 프로시저 — 메인 트랜잭션이 나중에 실패해서 롤백되더라도, 이 로그는 이미 독립적으로 커밋되어 남아있음" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l7_u3_q001",
+      "type": "concept_matching_item",
+      "code": "PROCEDURE log_error(msg VARCHAR2) IS\n    PRAGMA AUTONOMOUS_TRANSACTION;\nBEGIN\n    INSERT INTO error_log VALUES (msg, SYSDATE);\n    COMMIT;\nEND;\n-- 메인 트랜잭션: UPDATE ...; log_error('오류 발생'); ROLLBACK;",
+      "prompt_ko": "메인 트랜잭션이 UPDATE 후 log_error를 호출하고 이후 ROLLBACK을 실행하면, error_log에 기록된 로그는 어떻게 됩니까?",
+      "options": [
+        "메인 트랜잭션의 ROLLBACK과 함께 로그도 사라진다",
+        "그대로 유지된다 — 자율 트랜잭션은 메인 트랜잭션과 완전히 독립적이라, 이미 커밋된 로그는 메인 트랜잭션의 ROLLBACK에 영향받지 않는다",
+        "로그가 두 번 기록된다",
+        "log_error 호출 자체가 실패한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "이것이 자율 트랜잭션이 오류 로깅에 자주 쓰이는 이유입니다 — 메인 작업이 실패해도 로그는 남아야 하기 때문입니다.",
+      "concept_tags": ["autonomous_transaction_independence"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l7_u3_q002",
+      "type": "concept_matching_item",
+      "code": "PROCEDURE log_error(msg VARCHAR2) IS\n    PRAGMA AUTONOMOUS_TRANSACTION;\nBEGIN\n    INSERT INTO error_log VALUES (msg, SYSDATE);\n    -- COMMIT이나 ROLLBACK 없이 그냥 END\nEND;",
+      "prompt_ko": "자율 트랜잭션 안에서 COMMIT이나 ROLLBACK 없이 그냥 종료하려고 하면?",
+      "options": [
+        "정상적으로 종료된다(자동 커밋됨)",
+        "예외가 발생한다 — 자율 트랜잭션을 벗어나기 전에는 반드시 COMMIT이나 ROLLBACK으로 명시적으로 마무리해야 한다",
+        "자동으로 롤백된다",
+        "무한 대기 상태에 빠진다"
+      ],
+      "answer": 1,
+      "explanation_ko": "자율 트랜잭션은 반드시 명시적으로 완결(커밋 또는 롤백)되어야 하며, 그러지 않으면 오류가 발생합니다.",
+      "concept_tags": ["autonomous_transaction_must_end"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l7_u3_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "서브프로그램을 메인 트랜잭션과 독립적으로 실행되게 만드는 컴파일러 지시문은 무엇입니까? (영문으로 정확히 입력)",
+      "expected_answers": ["AUTONOMOUS_TRANSACTION"],
+      "explanation_ko": "PRAGMA AUTONOMOUS_TRANSACTION은 선언부에 작성합니다.",
+      "concept_tags": ["autonomous_transaction_pragma"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l7_u3_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "자율 트랜잭션이 시작되면, 그것을 호출한 메인 트랜잭션은 어떻게 됩니까?",
+      "options": [
+        "메인 트랜잭션도 함께 동시에 계속 진행된다",
+        "자율 트랜잭션이 끝날 때까지 잠시 중단(suspend)된다",
+        "메인 트랜잭션이 즉시 커밋된다",
+        "메인 트랜잭션이 자동으로 종료된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "메인 트랜잭션은 자율 루틴이 완료될 때까지 대기 상태(suspend)에 들어갑니다.",
+      "concept_tags": ["main_transaction_suspend"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l7_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "일반(자율이 아닌) 트리거와 비교했을 때, 자율 트랜잭션으로 지정된 트리거가 할 수 있는 것은?",
+      "options": [
+        "트리거 안에서 COMMIT·ROLLBACK 같은 트랜잭션 제어 문과 DDL 문을 실행할 수 있다 — 일반 트리거는 원칙적으로 이것이 금지되어 있다",
+        "일반 트리거와 완전히 동일하게 동작하며 아무 차이가 없다",
+        ":NEW와 :OLD를 사용할 수 없게 된다",
+        "행 수준으로만 동작해야 한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "자율 트랜잭션 트리거는 독립적인 트랜잭션이라, 일반 트리거에서는 금지된 COMMIT·ROLLBACK·DDL을 실행할 수 있습니다.",
+      "concept_tags": ["autonomous_trigger_capabilities"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l7_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "자율 트랜잭션을 사용하는 대표적인 실용적 목적은?",
+      "options": [
+        "오류 로그나 감사 기록처럼, 메인 작업의 성공·실패 여부와 무관하게 반드시 남아야 하는 기록을 안정적으로 저장하기 위해",
+        "메인 트랜잭션의 속도를 항상 빠르게 만들기 위해",
+        "메인 트랜잭션과 항상 같은 결과를 내기 위해",
+        "테이블 구조를 변경하기 위해"
+      ],
+      "answer": 0,
+      "explanation_ko": "오류 로깅·감사 추적은 자율 트랜잭션의 가장 대표적인 실무 활용 사례입니다.",
+      "concept_tags": ["autonomous_transaction_use_case"],
+      "difficulty": "practice"
+    }
+  ]
+}

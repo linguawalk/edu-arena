@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "switch문 심화 (fall-through)",
+  "questions": [
+    {
+      "id": "c_l2_u03_q001",
+      "type": "predict_output",
+      "code": "int x = 1;\nswitch (x) {\n    case 1:\n        printf(\"A\");\n    case 2:\n        printf(\"B\");\n        break;\n    case 3:\n        printf(\"C\");\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["A", "AB", "ABC", "B"],
+      "answer": 1,
+      "explanation_en": "Because case 1 has no break, execution falls through into case 2 and prints B as well, then stops at the break there.",
+      "explanation_ko": "case 1에 break가 없기 때문에 실행이 case 2로 그대로 이어져(fall-through) B까지 출력된 뒤, 거기 있는 break에서 멈춥니다.",
+      "concept_tags": ["switch", "fall_through"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l2_u03_q002",
+      "type": "fill_blank",
+      "code": "int x = 1;\nswitch (x) {\n    case 1:\n        printf(\"A\");\n        ____;\n    case 2:\n        printf(\"B\");\n        break;\n}\n// A만 출력되고 멈춰야 함",
+      "prompt_en": "Fill in the blank so only A is printed, without falling through to case 2.",
+      "prompt_ko": "case 2로 넘어가지 않고 A만 출력되도록 빈칸을 채우세요.",
+      "options": ["break", "continue", "return", "stop"],
+      "answer": 0,
+      "explanation_en": "Adding break at the end of case 1 stops execution there, preventing fall-through into case 2.",
+      "explanation_ko": "case 1 끝에 break를 추가하면 그 지점에서 실행이 멈춰 case 2로 넘어가는 fall-through를 막을 수 있습니다.",
+      "concept_tags": ["switch", "fall_through"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l2_u03_q003",
+      "type": "error_finding",
+      "code": "int month = 4;\nswitch (month) {\n    case 12:\n    case 1:\n    case 2:\n        printf(\"겨울\");\n        break;\n    case 3:\n    case 4:\n    case 5:\n        printf(\"봄\");\n    case 6:\n        printf(\"여름 시작\");\n        break;\n}",
+      "prompt_en": "What does this code print, and is that likely intended?",
+      "prompt_ko": "이 코드는 무엇을 출력하며, 이것이 의도한 결과일까요?",
+      "options": [
+        "'봄'만 출력되며 의도한 대로 동작함",
+        "'봄여름 시작'이 출력되는데, case 4에 break가 없어 case 6까지 fall-through된 것으로 보임",
+        "컴파일 오류가 발생함",
+        "'겨울'이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "month is 4, matching case 4, which has no break — execution falls through into case 6 and prints both messages, likely not the intended single-season output.",
+      "explanation_ko": "month는 4이므로 case 4에 해당하는데, break가 없어 case 6까지 이어져(fall-through) '봄'과 '여름 시작'이 모두 출력됩니다. 봄 한 계절만 출력하려던 의도와는 다른 결과일 가능성이 큽니다.",
+      "concept_tags": ["switch", "fall_through"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l2_u03_q004",
+      "type": "predict_output",
+      "code": "int x = 9;\nswitch (x) {\n    case 1:\n        printf(\"A\");\n        break;\n    default:\n        printf(\"기본값\");\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["A", "기본값", "아무것도 출력되지 않음", "오류"],
+      "answer": 1,
+      "explanation_en": "Since x does not match any case, execution falls to the default branch, printing '기본값'.",
+      "explanation_ko": "x가 어떤 case와도 일치하지 않으므로 default 분기가 실행되어 '기본값'이 출력됩니다.",
+      "concept_tags": ["switch", "default_case"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l2_u03_q005",
+      "type": "predict_output",
+      "code": "char grade = 'B';\nswitch (grade) {\n    case 'A':\n    case 'B':\n        printf(\"우수\");\n        break;\n    case 'C':\n        printf(\"보통\");\n        break;\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["우수", "보통", "AB우수", "아무것도 출력되지 않음"],
+      "answer": 0,
+      "explanation_en": "Grouping case 'A' and case 'B' without a break between them means both values share the same block; grade is 'B', so 우수 is printed.",
+      "explanation_ko": "case 'A'와 case 'B'를 break 없이 붙여두면 두 값이 같은 블록을 공유하게 됩니다. grade가 'B'이므로 우수가 출력됩니다. 이는 fall-through를 의도적으로 활용하는 대표적인 패턴입니다.",
+      "concept_tags": ["switch", "fall_through"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l2_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "fall-through", "definition": "break가 없어 다음 case까지 실행이 계속 이어지는 현상" },
+        { "term": "default", "definition": "어떤 case와도 일치하지 않을 때 실행되는 분기" },
+        { "term": "그룹 case", "definition": "여러 case 값을 break 없이 붙여 같은 블록을 공유하게 만드는 의도적 fall-through" },
+        { "term": "break", "definition": "해당 case에서 switch문 실행을 끝내는 키워드" }
+      ],
+      "explanation_en": "fall-through can be a bug when accidental, but is a deliberate and useful pattern when case values are intentionally grouped.",
+      "explanation_ko": "fall-through는 의도치 않게 발생하면 버그가 되지만, case 값을 의도적으로 그룹화할 때는 유용하고 의도적인 패턴이 됩니다.",
+      "concept_tags": ["switch", "fall_through", "default_case"],
+      "difficulty": "practice"
+    }
+  ]
+}

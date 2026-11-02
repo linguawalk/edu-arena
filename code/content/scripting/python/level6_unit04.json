@@ -1,0 +1,91 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 6,
+  "unit": 4,
+  "unit_title": "데코레이터",
+  "questions": [
+    {
+      "id": "python_l6_u04_q001",
+      "type": "predict_output",
+      "code": "def my_decorator(func):\n    def wrapper():\n        print(\"함수 실행 전\")\n        func()\n        print(\"함수 실행 후\")\n    return wrapper\n\n@my_decorator\ndef say_hello():\n    print(\"안녕!\")\n\nsay_hello()",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["안녕!", "함수 실행 전\\n안녕!\\n함수 실행 후", "함수 실행 전\\n함수 실행 후", "오류"],
+      "answer": 1,
+      "explanation_en": "@my_decorator wraps say_hello, replacing it with wrapper; calling say_hello() now runs the extra code before and after the original function.",
+      "explanation_ko": "@my_decorator는 say_hello를 감싸서 wrapper로 대체합니다. say_hello()를 호출하면 이제 원래 함수 앞뒤로 추가 코드가 실행됩니다.",
+      "concept_tags": ["decorator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l6_u04_q002",
+      "type": "fill_blank",
+      "code": "def my_decorator(func):\n    def wrapper():\n        print(\"실행 전\")\n        func()\n    return wrapper\n\n____my_decorator\ndef greet():\n    print(\"안녕\")\n\ngreet()",
+      "prompt_en": "Fill in the blank with the symbol that applies a decorator to a function.",
+      "prompt_ko": "함수에 데코레이터를 적용하는 기호를 빈칸에 채우세요.",
+      "options": ["@", "#", "&", "%"],
+      "answer": 0,
+      "explanation_en": "@ placed above a function definition applies the named decorator, equivalent to writing greet = my_decorator(greet) manually.",
+      "explanation_ko": "함수 정의 위에 @를 붙이면 이름 붙은 데코레이터가 적용되며, 이는 greet = my_decorator(greet)를 직접 쓰는 것과 같습니다.",
+      "concept_tags": ["decorator"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l6_u04_q003",
+      "type": "predict_output",
+      "code": "def my_decorator(func):\n    def wrapper():\n        print(\"실행 전\")\n        func()\n    return wrapper\n\ndef greet():\n    print(\"안녕\")\n\ngreet = my_decorator(greet)\ngreet()",
+      "prompt_en": "What is printed? (This shows what @decorator does manually, without the @ syntax.)",
+      "prompt_ko": "출력 결과는? (@ 문법 없이, 데코레이터가 실제로 하는 일을 수동으로 보여줍니다.)",
+      "options": ["안녕", "실행 전\\n안녕", "실행 전", "오류"],
+      "answer": 1,
+      "explanation_en": "greet = my_decorator(greet) reassigns greet to the wrapper function, exactly what @my_decorator does behind the scenes; calling greet() now runs the wrapper's extra logic first.",
+      "explanation_ko": "greet = my_decorator(greet)는 greet를 wrapper 함수로 재할당합니다. 이것이 바로 @my_decorator가 내부적으로 하는 일입니다. greet()를 호출하면 이제 wrapper의 추가 로직이 먼저 실행됩니다.",
+      "concept_tags": ["decorator"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l6_u04_q004",
+      "type": "predict_output",
+      "code": "def repeat(func):\n    def wrapper():\n        func()\n        func()\n    return wrapper\n\n@repeat\ndef greet():\n    print(\"안녕\")\n\ngreet()",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["안녕", "안녕\\n안녕", "오류", "아무것도 출력되지 않음"],
+      "answer": 1,
+      "explanation_en": "The repeat decorator's wrapper calls the wrapped function twice, so greet() prints 안녕 two times.",
+      "explanation_ko": "repeat 데코레이터의 wrapper는 감싸진 함수를 두 번 호출하므로, greet()는 안녕을 두 번 출력합니다.",
+      "concept_tags": ["decorator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l6_u04_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "데코레이터", "definition": "함수를 받아서 감싼(wrapped) 새 함수를 반환하는 함수" },
+        { "term": "@ 문법", "definition": "func = decorator(func)를 간결하게 표현하는 문법 설탕" },
+        { "term": "wrapper 함수", "definition": "원래 함수 호출 앞뒤에 추가 동작을 끼워 넣는, 데코레이터 안의 내부 함수" },
+        { "term": "함수를 값으로 다루는 능력", "definition": "데코레이터가 가능한 이유 — Python 함수가 일급 객체이기 때문" }
+      ],
+      "explanation_en": "Decorators are a genuinely unique Python feature built directly on top of first-class functions, commonly used in real code for logging, timing, access control, and caching.",
+      "explanation_ko": "데코레이터는 일급 함수 위에 직접 쌓아 올린, 진정으로 독특한 Python 기능입니다. 실제 코드에서 로깅, 시간 측정, 접근 제어, 캐싱 등에 흔히 쓰입니다.",
+      "concept_tags": ["decorator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l6_u04_q006",
+      "type": "predict_output",
+      "code": "def shout(func):\n    def wrapper(name):\n        result = func(name)\n        return result.upper()\n    return wrapper\n\n@shout\ndef greet(name):\n    return f\"hello {name}\"\n\nprint(greet(\"kim\"))",
+      "prompt_en": "What is printed? (This decorator takes a parameter through to the wrapped function.)",
+      "prompt_ko": "출력 결과는? (이 데코레이터는 매개변수를 감싸진 함수까지 전달합니다.)",
+      "options": ["hello kim", "HELLO KIM", "오류", "kim"],
+      "answer": 1,
+      "explanation_en": "wrapper accepts name and passes it to func, then transforms the result with .upper(); greet(\"kim\") produces \"hello kim\", which becomes \"HELLO KIM\".",
+      "explanation_ko": "wrapper는 name을 받아 func에 전달하고, 그 결과를 .upper()로 변환합니다. greet(\"kim\")은 \"hello kim\"을 만들고, 이는 \"HELLO KIM\"이 됩니다.",
+      "concept_tags": ["decorator"],
+      "difficulty": "challenge"
+    }
+  ]
+}

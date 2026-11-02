@@ -1,0 +1,100 @@
+{
+ "no": 3,
+ "title": "트랜스포머와 대규모 언어 모델",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "셀프 어텐션과 트랜스포머 구조의 원리를 설명할 수 있다.",
+  "토큰·문맥 길이·매개변수 규모와 학습 연산량을 어림할 수 있다.",
+  "사전 학습·미세 조정·지시 학습·인간 피드백 강화 학습의 흐름을 설명할 수 있다."
+ ],
+ "checklist": [
+  "토큰화와 임베딩",
+  "셀프 어텐션: 각 토큰이 다른 토큰을 참고하는 가중 합",
+  "트랜스포머: 어텐션 + 피드포워드 층의 반복",
+  "다음 토큰 예측으로 사전 학습",
+  "학습 연산량 어림 ≈ 6 × 매개변수 수 × 학습 토큰 수",
+  "미세 조정, 지시 학습, 인간 피드백 강화 학습(RLHF)",
+  "문맥 길이, 검색 증강 생성(RAG), 멀티모달"
+ ],
+ "advice": [
+  "대규모 언어 모델은 '다음 토큰 맞히기'라는 단순한 목표를 엄청난 데이터와 연산으로 학습해 언어 능력을 얻은 트랜스포머입니다. 셀프 어텐션을 '문장의 각 단어가 다른 단어들을 얼마나 참고할지 정하는 가중 평균'으로 이해하고, 학습 연산량 어림식으로 큰 모델 학습에 왜 수천 개의 GPU가 필요한지 계산해 보세요. 모델 구조와 학습 방법은 몇 달 단위로 발전하므로 원리를 잡고 최신 동향은 따로 확인하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Dive into Deep Learning (무료 공개 교재)",
+   "title": "Dive into Deep Learning",
+   "url": "https://d2l.ai/",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "분산시스템·클라우드 8단원 AI·LLM 서빙 인프라 (컴퓨터 트랙)",
+   "url": "guide.html?lv=3&t=computer&s=distributed-systems&u=8"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "매개변수 10억 개(10⁹) 모델을 토큰 2 × 10¹⁰개로 학습할 때 연산량(6ND)은 약 몇 × 10²⁰ FLOPs일까요? (소수 첫째 자리까지)",
+   "answer": "1.2",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "6 × 10⁹ × 2 × 10¹⁰ = 1.2 × 10²⁰ FLOPs",
+   "hint": "6 × N × D입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "입력 시퀀스의 각 토큰이 다른 모든 토큰을 얼마나 참고할지 가중치를 계산하는 트랜스포머의 핵심 연산을 셀프 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "어텐션",
+      "주의"
+     ]
+    }
+   ],
+   "explanation": "문맥 길이가 길어지면 연산량이 크게 늘어납니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "외부 문서를 검색해 질문과 함께 모델에 넣어 답변의 근거와 최신성을 보완하는 방법을 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "RAG"
+     ]
+    }
+   ],
+   "explanation": "Retrieval-Augmented Generation의 줄임말입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "review": {
+  "basis": "LLM 구조·학습 방법·평가 동향(주요 모델 기술 보고서)",
+  "checked": "2026-10",
+  "next": "2027-04",
+  "watch": "주류 구조(전문가 혼합, 추론 모델 등)와 학습·정렬 방법 변화",
+  "standards": []
+ },
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "ai-engineering",
+ "id": "l3-convergence-ai-engineering-u03"
+}

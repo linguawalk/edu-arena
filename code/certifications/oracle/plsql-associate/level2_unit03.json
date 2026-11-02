@@ -1,0 +1,111 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "매개변수화된 커서",
+  "rule_summary_ko": "매개변수화된 커서는 CURSOR 커서명(매개변수 목록) IS 쿼리; 형태로 선언하고, OPEN 커서명(값 목록); 으로 값을 전달해서 엽니다. 커서 매개변수는 항상 IN 전용이며(값을 밖으로 반환할 수 없음), 기본값을 지정할 수도 있습니다. 커서의 WHERE 절에 있는 변수(또는 매개변수)는 OPEN하는 시점에 한 번만 평가되므로, 다른 값으로 다시 조회하려면 커서를 CLOSE한 뒤 다시 OPEN해야 합니다.",
+  "examples": [
+    { "code": "CURSOR emp_cursor (p_dept_id NUMBER) IS\n    SELECT last_name FROM employees WHERE department_id = p_dept_id;\n-- ...\nOPEN emp_cursor(20);", "note_ko": "부서 ID를 매개변수로 받아, 호출할 때마다 다른 부서를 조회할 수 있는 재사용 가능한 커서" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l2_u3_q001",
+      "type": "concept_matching_item",
+      "code": "CURSOR emp_cursor (p_dept_id NUMBER) IS\n    SELECT last_name FROM employees WHERE department_id = p_dept_id;\n-- ...\nOPEN emp_cursor(20);",
+      "prompt_ko": "OPEN emp_cursor(20); 이 하는 일은?",
+      "options": [
+        "커서를 20번 반복해서 연다",
+        "매개변수 p_dept_id에 20을 전달해서, department_id=20인 직원만 대상으로 커서를 연다",
+        "20번째 행부터 커서를 연다",
+        "컴파일 오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "OPEN 시 괄호 안의 값이 커서 매개변수에 전달되어, 그 값을 기준으로 쿼리가 실행됩니다.",
+      "concept_tags": ["parameterized_cursor_open"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l2_u3_q002",
+      "type": "concept_matching_item",
+      "code": "CURSOR emp_cursor (p_dept_id NUMBER) IS\n    SELECT last_name FROM employees WHERE department_id = p_dept_id;\n-- ...\nOPEN emp_cursor(20);\n-- 처리 후\nOPEN emp_cursor(30); -- CLOSE 없이 바로 다시 OPEN 시도",
+      "prompt_ko": "이미 열려있는 명시적 커서를 CLOSE 없이 다시 OPEN하려고 하면?",
+      "options": [
+        "정상적으로 새 값(30)으로 다시 열린다",
+        "오류가 발생한다 — 명시적 커서를 다시 열려면(다른 매개변수 값이라도) 먼저 CLOSE해야 한다",
+        "기존 20의 결과와 30의 결과가 합쳐진다",
+        "아무 일도 일어나지 않는다"
+      ],
+      "answer": 1,
+      "explanation_ko": "명시적 커서는 CLOSE 후에만 다시 OPEN할 수 있습니다(커서 변수·REF CURSOR는 예외적으로 CLOSE 없이 재오픈 가능).",
+      "concept_tags": ["cursor_reopen_requires_close"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l2_u3_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "커서 매개변수의 파라미터 모드(IN/OUT)에 대한 규칙은?",
+      "options": [
+        "IN, OUT, IN OUT 모두 자유롭게 사용할 수 있다",
+        "커서 매개변수는 항상 IN 모드만 가능하다 — 커서 밖으로 값을 반환할 수 없다",
+        "커서 매개변수는 항상 OUT 모드만 가능하다",
+        "커서는 매개변수를 아예 가질 수 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "커서는 데이터를 조회만 하는 것이라, 매개변수도 값을 받기만 하는 IN 모드로 제한됩니다.",
+      "concept_tags": ["cursor_parameter_mode"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l2_u3_q004",
+      "type": "concept_matching_item",
+      "code": "CURSOR c_revenue (in_year NUMBER := 2017) IS\n    SELECT SUM(amount) FROM sales WHERE year = in_year;\n-- ...\nOPEN c_revenue; -- 매개변수 없이 호출",
+      "prompt_ko": "매개변수에 기본값(:= 2017)이 지정되어 있을 때, OPEN c_revenue;처럼 값을 전달하지 않고 열면?",
+      "options": [
+        "오류가 발생한다(반드시 값을 전달해야 함)",
+        "기본값(2017)이 사용되어 정상적으로 열린다",
+        "in_year가 NULL로 처리된다",
+        "커서가 열리지 않는다"
+      ],
+      "answer": 1,
+      "explanation_ko": "기본값이 지정된 커서 매개변수는 OPEN 시 값을 생략하면 그 기본값을 사용합니다.",
+      "concept_tags": ["cursor_parameter_default"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l2_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "매개변수화된 커서를 사용하는 근본적인 이점은?",
+      "options": [
+        "같은 커서 정의를 재사용하면서, 호출 시점마다 다른 조건 값으로 다양한 결과를 조회할 수 있어 코드 중복을 줄여준다",
+        "매개변수화된 커서는 항상 실행 속도가 더 빠르다",
+        "매개변수화된 커서는 여러 테이블을 자동으로 조인해준다",
+        "매개변수 없이는 커서를 아예 선언할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "부서마다 별도 커서를 만드는 대신, 부서 ID를 매개변수로 받는 커서 하나로 재사용할 수 있습니다.",
+      "concept_tags": ["parameterized_cursor_benefits"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l2_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "커서 쿼리의 WHERE 절에 있는 변수 값이 실제로 평가(적용)되는 시점은?",
+      "options": [
+        "커서를 선언(DECLARE)하는 시점",
+        "커서를 OPEN하는 시점 — 그 이후 변수 값이 바뀌어도 이미 열린 커서의 결과 집합에는 반영되지 않는다",
+        "FETCH할 때마다 매번 다시 평가된다",
+        "CLOSE하는 시점"
+      ],
+      "answer": 1,
+      "explanation_ko": "OPEN 시점에 결과 집합이 확정되므로, 이후 변수 값 변경은 이미 열린 커서에 영향을 주지 않습니다(다시 반영하려면 CLOSE 후 재OPEN 필요).",
+      "concept_tags": ["cursor_variable_evaluation_timing"],
+      "difficulty": "challenge"
+    }
+  ]
+}

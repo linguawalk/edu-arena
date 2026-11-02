@@ -1,0 +1,102 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "google",
+  "exam": "cloud-digital-leader",
+  "level": 6,
+  "unit": 3,
+  "unit_title": "복원력 있는 인프라와 4가지 골든 시그널",
+  "rule_summary_ko": "Google의 SRE(사이트 신뢰성 엔지니어링) 서적은 시스템 상태를 파악하는 데 필요한 최소한의 4가지 핵심 지표(골든 시그널)를 정의합니다: 지연시간(latency, 요청 처리에 걸리는 시간), 트래픽(traffic, 시스템에 가해지는 수요), 오류(errors, 실패한 요청의 비율), 포화도(saturation, 시스템이 얼마나 가득 찼는지). 복원력 있는 인프라 설계에는 중복성(redundancy, 여러 개의 예비 구성 요소), 복제(replication, 데이터를 여러 위치에 동일하게 유지), 확장 가능한 인프라, 정기적인 백업이 포함됩니다.",
+  "examples": [
+    { "code": "특정 요청이 평소보다 3배 느리게 응답함(응답 자체는 성공)", "note_ko": "지연시간(latency) 지표의 이상 — 요청 자체는 성공(오류 아님)이지만 사용자 경험은 저하됨" },
+    { "code": "CPU 사용률이 지속적으로 95% 이상을 유지함", "note_ko": "포화도(saturation) 지표의 경고 신호 — 시스템이 한계에 가까워지고 있음을 나타냄" }
+  ],
+  "questions": [
+    {
+      "id": "gcp_cdl_l6_u3_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Google의 SRE 서적이 정의한 4가지 골든 시그널은?",
+      "options": [
+        "지연시간(latency), 트래픽(traffic), 오류(errors), 포화도(saturation)",
+        "비용, 보안, 확장성, 속도",
+        "CPU, 메모리, 디스크, 네트워크",
+        "정확성, 완전성, 일관성, 적시성"
+      ],
+      "answer": 0,
+      "explanation_ko": "이 네 가지가 시스템 상태를 파악하는 데 필요한 가장 핵심적인 최소한의 지표로 꼽힙니다.",
+      "concept_tags": ["four_golden_signals"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "gcp_cdl_l6_u3_q002",
+      "type": "concept_matching_item",
+      "code": "특정 요청이 평소보다 훨씬 느리게 응답하지만, 요청 자체는 실패 없이 성공적으로 처리됨",
+      "prompt_ko": "이 상황은 4가지 골든 시그널 중 어느 것과 가장 관련이 있습니까?",
+      "options": ["지연시간(latency) — 요청 처리에 걸리는 시간", "오류(errors, 요청이 실패한 것은 아님)", "포화도", "트래픽"],
+      "answer": 0,
+      "explanation_ko": "요청이 성공했더라도 처리 시간이 비정상적으로 길다면 지연시간 지표의 문제입니다.",
+      "concept_tags": ["latency"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "gcp_cdl_l6_u3_q003",
+      "type": "concept_matching_item",
+      "code": "서버의 CPU 사용률이 지속적으로 95% 이상을 유지해서, 조금만 더 부하가 늘어도 성능이 급격히 저하될 위험이 있음",
+      "prompt_ko": "이 상황은 4가지 골든 시그널 중 어느 것과 가장 관련이 있습니까?",
+      "options": ["지연시간", "트래픽", "오류", "포화도(saturation) — 시스템이 한계 용량에 가까워지고 있음을 나타냄"],
+      "answer": 3,
+      "explanation_ko": "포화도는 시스템이 '얼마나 가득 찼는지'를 나타내며, 한계에 다다르면 성능 저하나 장애로 이어질 수 있습니다.",
+      "concept_tags": ["saturation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "gcp_cdl_l6_u3_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "지연시간을 측정할 때, 성공한 요청과 실패한 요청의 지연시간을 구분해서 봐야 하는 이유는?",
+      "options": [
+        "실패한 요청(예: 오류로 인해 빠르게 실패)이 전체 평균 지연시간을 왜곡시켜, 실제 사용자 경험을 오해하게 만들 수 있기 때문에",
+        "구분할 필요가 전혀 없으며 항상 합쳐서 봐도 무방하다",
+        "실패한 요청은 지연시간과 아무 관련이 없다",
+        "이 구분은 실무에서 사용되지 않는 이론적 개념일 뿐이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "빠르게 실패하는 오류가 평균 지연시간을 오히려 낮춰 보이게 만들 수 있어, 오류와 성공을 구분해서 분석해야 합니다.",
+      "concept_tags": ["latency_error_distinction"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "gcp_cdl_l6_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "복원력 있는 인프라를 설계할 때 중복성(redundancy)이 하는 역할은?",
+      "options": [
+        "하나의 구성 요소에 장애가 생겨도 예비 구성 요소가 대신 작동해서, 전체 서비스가 중단되지 않게 해준다",
+        "중복성은 비용만 늘릴 뿐 실질적인 이점이 없다",
+        "중복성은 보안과 관련된 개념일 뿐 안정성과는 무관하다",
+        "중복성은 시스템을 항상 더 느리게 만든다"
+      ],
+      "answer": 0,
+      "explanation_ko": "중복성은 단일 장애점(single point of failure)을 제거해서 안정성을 높이는 핵심 설계 원칙입니다.",
+      "concept_tags": ["redundancy"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "gcp_cdl_l6_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "정기적인 백업이 복원력 있는 인프라 설계에서 중요한 이유는?",
+      "options": [
+        "데이터 손상, 실수로 인한 삭제, 재해 등의 상황에서도 이전 상태로 데이터를 복구할 수 있게 해주기 때문에",
+        "백업은 실시간 서비스 운영과 무관한 부수적인 작업일 뿐이다",
+        "백업은 오직 대기업에만 필요한 개념이다",
+        "백업이 있으면 다른 복원력 조치는 전혀 필요 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "백업은 다른 복원력 조치(중복성, 복제)로도 막을 수 없는 데이터 손실 시나리오에 대한 최후의 안전망입니다.",
+      "concept_tags": ["backups"],
+      "difficulty": "practice"
+    }
+  ]
+}

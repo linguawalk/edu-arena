@@ -1,0 +1,96 @@
+{
+  "language": "csharp",
+  "category": "oop_enterprise",
+  "level": 4,
+  "unit": 3,
+  "unit_title": "Dictionary<TKey, TValue>",
+  "questions": [
+    {
+      "id": "csharp_l4_u03_q001",
+      "type": "predict_output",
+      "code": "Dictionary<string, int> ages = new Dictionary<string, int>();\nages[\"Kim\"] = 25;\nages[\"Lee\"] = 30;\nConsole.WriteLine(ages[\"Kim\"]);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["25", "30", "Kim", "오류"],
+      "answer": 0,
+      "explanation_en": "Dictionary stores key-value pairs; ages[\"Kim\"] accesses the value associated with the key \"Kim\", which is 25.",
+      "explanation_ko": "Dictionary는 키-값 쌍을 저장합니다. ages[\"Kim\"]은 \"Kim\"이라는 키에 연결된 값을 가져오며, 25입니다.",
+      "concept_tags": ["dictionary"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l4_u03_q002",
+      "type": "predict_output",
+      "code": "Dictionary<string, int> ages = new Dictionary<string, int>();\nages[\"Kim\"] = 25;\nif (ages.ContainsKey(\"Park\"))\n{\n    Console.WriteLine(\"있음\");\n}\nelse\n{\n    Console.WriteLine(\"없음\");\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["있음", "없음", "오류", "Park"],
+      "answer": 1,
+      "explanation_en": "ContainsKey checks whether a key exists without risking an exception; since \"Park\" was never added, it returns false, printing 없음.",
+      "explanation_ko": "ContainsKey는 예외 위험 없이 키가 존재하는지 확인합니다. \"Park\"은 추가된 적이 없으므로 false를 반환해 없음이 출력됩니다.",
+      "concept_tags": ["dictionary", "containskey"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l4_u03_q003",
+      "type": "error_finding",
+      "code": "Dictionary<string, int> ages = new Dictionary<string, int>();\nages[\"Kim\"] = 25;\nConsole.WriteLine(ages[\"Park\"]);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "Dictionary 선언 문법 오류",
+        "\"Park\"이라는 키가 존재하지 않는데 바로 접근하려 해서, 실행 시점에 KeyNotFoundException이 발생함",
+        "ages[\"Kim\"] = 25 대입 문법 오류",
+        "문제 없음, 0이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Accessing a nonexistent key directly throws a KeyNotFoundException at runtime, the same behavior seen in VB's Dictionary.",
+      "explanation_ko": "존재하지 않는 키에 직접 접근하면 실행 시점에 KeyNotFoundException이 발생합니다. VB의 Dictionary에서 봤던 것과 같은 동작입니다.",
+      "concept_tags": ["dictionary", "keynotfoundexception"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l4_u03_q004",
+      "type": "fill_blank",
+      "code": "Dictionary<string, int> scores = new Dictionary<string, int>();\nscores[\"Kim\"] = 90;\n\nforeach (____ pair in scores)\n{\n    Console.WriteLine($\"{pair.Key}: {pair.Value}\");\n}",
+      "prompt_en": "Fill in the blank with the type of each item when iterating a Dictionary.",
+      "prompt_ko": "Dictionary를 순회할 때 각 항목의 타입을 빈칸에 채우세요.",
+      "options": ["KeyValuePair<string, int>", "string", "int", "Dictionary"],
+      "answer": 0,
+      "explanation_en": "Iterating a Dictionary<TKey, TValue> yields KeyValuePair<TKey, TValue> objects, each with .Key and .Value properties.",
+      "explanation_ko": "Dictionary<TKey, TValue>를 순회하면 KeyValuePair<TKey, TValue> 객체가 나오며, 각각 .Key와 .Value 속성을 가집니다.",
+      "concept_tags": ["dictionary", "keyvaluepair"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l4_u03_q005",
+      "type": "predict_output",
+      "code": "Dictionary<string, int> ages = new Dictionary<string, int>();\nages[\"Kim\"] = 25;\nages[\"Kim\"] = 26;\nConsole.WriteLine(ages[\"Kim\"]);\nConsole.WriteLine(ages.Count);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["25 2", "26 1", "25 1", "26 2"],
+      "answer": 1,
+      "explanation_en": "Assigning to an existing key with [] updates its value rather than creating a duplicate entry; Kim's value becomes 26, and Count stays 1.",
+      "explanation_ko": "[]로 이미 존재하는 키에 값을 대입하면 중복 항목을 만드는 게 아니라 기존 값을 갱신합니다. Kim의 값은 26이 되고, Count는 그대로 1입니다.",
+      "concept_tags": ["dictionary"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l4_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "Dictionary<TKey, TValue>", "definition": "키와 값을 짝지어 저장하는 컬렉션" },
+        { "term": "ContainsKey", "definition": "예외 없이 안전하게 키의 존재 여부를 확인하는 메서드" },
+        { "term": "KeyNotFoundException", "definition": "존재하지 않는 키에 직접 접근할 때 발생하는 실행 시점 오류" },
+        { "term": "KeyValuePair<TKey, TValue>", "definition": "foreach로 Dictionary를 순회할 때 얻는, 키와 값을 함께 담은 객체" }
+      ],
+      "explanation_en": "Dictionary<TKey, TValue> is the same class VB's Dictionary(Of TKey, TValue) wraps, so all the behaviors and pitfalls covered there carry over directly to C#.",
+      "explanation_ko": "Dictionary<TKey, TValue>는 VB의 Dictionary(Of TKey, TValue)가 감싸는 것과 같은 클래스이므로, 거기서 다룬 동작과 함정이 C#에도 그대로 적용됩니다.",
+      "concept_tags": ["dictionary", "containskey"],
+      "difficulty": "practice"
+    }
+  ]
+}

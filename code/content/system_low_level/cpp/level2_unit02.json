@@ -1,0 +1,96 @@
+{
+  "language": "cpp",
+  "category": "system_low_level",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "생성자와 소멸자",
+  "questions": [
+    {
+      "id": "cpp_l2_u02_q001",
+      "type": "predict_output",
+      "code": "class Counter {\npublic:\n    int count;\n    Counter() {\n        count = 0;\n        cout << \"생성됨 \";\n    }\n};\n\nCounter c;\ncout << c.count;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "생성됨 0", "생성됨 ", "오류"],
+      "answer": 1,
+      "explanation_en": "The constructor runs automatically the moment the object c is created, printing '생성됨 ' and setting count to 0; the later cout prints that 0.",
+      "explanation_ko": "생성자는 객체 c가 만들어지는 순간 자동으로 실행되어 '생성됨 '을 출력하고 count를 0으로 설정합니다. 이후 cout은 그 0을 출력합니다.",
+      "concept_tags": ["constructor"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l2_u02_q002",
+      "type": "predict_output",
+      "code": "class Counter {\npublic:\n    Counter() {\n        cout << \"생성됨 \";\n    }\n    ~Counter() {\n        cout << \"소멸됨 \";\n    }\n};\n\nint main() {\n    {\n        Counter c;\n    }\n    cout << \"끝\";\n    return 0;\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["생성됨 소멸됨 끝", "생성됨 끝소멸됨 ", "소멸됨 생성됨 끝", "생성됨 끝"],
+      "answer": 0,
+      "explanation_en": "c is created when it's declared (printing 생성됨), and destroyed automatically when the inner block ends (printing 소멸됨), before 끝 is printed afterward.",
+      "explanation_ko": "c는 선언되는 순간 생성되어(생성됨) 출력되고, 안쪽 블록이 끝나는 순간 자동으로 소멸되어(소멸됨) 출력됩니다. 그 이후에 끝이 출력됩니다.",
+      "concept_tags": ["constructor", "destructor"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l2_u02_q003",
+      "type": "fill_blank",
+      "code": "class BankAccount {\npublic:\n    double balance;\n    ____(double initial) {\n        balance = initial;\n    }\n};\n\nBankAccount acc(1000);",
+      "prompt_en": "Fill in the blank with the constructor's name, matching the class name.",
+      "prompt_ko": "클래스 이름과 일치하는 생성자의 이름을 빈칸에 채우세요.",
+      "options": ["BankAccount", "Constructor", "init", "new"],
+      "answer": 0,
+      "explanation_en": "A constructor must have exactly the same name as its class, with no return type — that's how C++ recognizes it as the constructor.",
+      "explanation_ko": "생성자는 반드시 클래스 이름과 정확히 같아야 하고 반환형이 없습니다. 이렇게 해야 C++가 이를 생성자로 인식합니다.",
+      "concept_tags": ["constructor"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cpp_l2_u02_q004",
+      "type": "predict_output",
+      "code": "class BankAccount {\npublic:\n    double balance;\n    BankAccount(double initial) {\n        balance = initial;\n    }\n    void deposit(double amount) {\n        balance += amount;\n    }\n};\n\nBankAccount acc(1000);\nacc.deposit(500);\ncout << acc.balance;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1000", "500", "1500", "오류"],
+      "answer": 2,
+      "explanation_en": "The constructor initializes balance to 1000; deposit adds 500 to it, making balance 1500.",
+      "explanation_ko": "생성자가 balance를 1000으로 초기화하고, deposit이 여기에 500을 더해 balance는 1500이 됩니다.",
+      "concept_tags": ["constructor"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l2_u02_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "생성자", "definition": "객체가 만들어지는 순간 자동으로 호출되어 초기화를 담당하는 함수" },
+        { "term": "소멸자 (~클래스이름)", "definition": "객체가 사라지는 순간 자동으로 호출되어 정리를 담당하는 함수" },
+        { "term": "매개변수 있는 생성자", "definition": "객체 생성 시 초깃값을 전달받아 필드를 설정하는 생성자" },
+        { "term": "스코프와 소멸 시점", "definition": "블록이 끝나면 그 안에서 선언된 객체가 자동으로 소멸자를 호출하며 사라지는 원리" }
+      ],
+      "explanation_en": "Constructors and destructors give C++ objects a predictable lifecycle, ensuring setup and cleanup happen automatically without the programmer remembering to call them.",
+      "explanation_ko": "생성자와 소멸자는 C++ 객체에 예측 가능한 생명주기를 부여해서, 프로그래머가 일일이 호출을 기억하지 않아도 초기화와 정리가 자동으로 이루어지게 합니다.",
+      "concept_tags": ["constructor", "destructor"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cpp_l2_u02_q006",
+      "type": "error_finding",
+      "code": "class Counter {\npublic:\n    int count;\n    void Counter() {\n        count = 0;\n    }\n};",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "count 선언 문법 오류",
+        "생성자는 반환형을 가질 수 없는데, 클래스와 이름이 같은 함수에 void를 붙여서 '생성자에 반환형을 지정할 수 없다'는 컴파일 오류가 발생함",
+        "class 선언 문법 오류",
+        "문제 없음, 정상적으로 생성자로 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Any function sharing the class's exact name is treated as a constructor by the compiler, and constructors cannot have a return type; adding void here causes a compile error rather than silently becoming an ordinary function.",
+      "explanation_ko": "클래스와 이름이 정확히 같은 함수는 컴파일러가 생성자로 취급합니다. 생성자는 반환형을 가질 수 없기 때문에, 여기에 void를 붙이면 조용히 일반 함수가 되는 게 아니라 '생성자에 반환형을 지정할 수 없다'는 컴파일 오류로 이어집니다.",
+      "concept_tags": ["constructor"],
+      "difficulty": "challenge"
+    }
+  ]
+}

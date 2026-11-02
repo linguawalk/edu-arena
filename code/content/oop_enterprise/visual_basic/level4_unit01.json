@@ -1,0 +1,96 @@
+{
+  "language": "visual_basic",
+  "category": "oop_enterprise",
+  "level": 4,
+  "unit": 1,
+  "unit_title": "배열 심화",
+  "questions": [
+    {
+      "id": "visual_basic_l4_u01_q001",
+      "type": "predict_output",
+      "code": "Dim nums(4) As Integer\nConsole.WriteLine(nums.Length)",
+      "prompt_en": "What is printed? (This is a well-known VB array declaration quirk.)",
+      "prompt_ko": "출력 결과는? (VB 배열 선언의 잘 알려진 특징입니다.)",
+      "options": ["4", "5", "3", "오류"],
+      "answer": 1,
+      "explanation_en": "In VB, the number in Dim nums(4) specifies the highest valid index, not the count of elements; indices 0 through 4 means 5 elements total.",
+      "explanation_ko": "VB에서 Dim nums(4)의 숫자는 요소 개수가 아니라 가장 큰 유효 인덱스를 나타냅니다. 인덱스 0부터 4까지이므로 총 5개의 요소입니다.",
+      "concept_tags": ["array", "array_declaration"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "visual_basic_l4_u01_q002",
+      "type": "predict_output",
+      "code": "Dim nums(4) As Integer\nnums(0) = 10\nnums(1) = 20\nConsole.WriteLine(nums(1))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "20", "오류", "0"],
+      "answer": 1,
+      "explanation_en": "nums(1) refers to the second element, which was set to 20.",
+      "explanation_ko": "nums(1)은 두 번째 요소를 가리키며, 20으로 설정되어 있습니다.",
+      "concept_tags": ["array"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l4_u01_q003",
+      "type": "predict_output",
+      "code": "Dim nums() As Integer = {1, 2, 3}\nReDim Preserve nums(4)\nnums(3) = 40\nConsole.WriteLine(nums.Length)\nConsole.WriteLine(nums(0))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5 1", "4 0", "3 1", "5 0"],
+      "answer": 0,
+      "explanation_en": "ReDim Preserve nums(4) resizes the array to hold indices 0-4 (5 elements) while keeping existing values; the original nums(0)=1 survives the resize.",
+      "explanation_ko": "ReDim Preserve nums(4)는 배열을 인덱스 0~4(5개 요소)까지 담도록 크기를 조정하면서 기존 값을 보존합니다. 원래 nums(0)=1은 크기 조정 후에도 그대로 유지됩니다.",
+      "concept_tags": ["array", "redim_preserve"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l4_u01_q004",
+      "type": "error_finding",
+      "code": "Dim nums() As Integer = {1, 2, 3}\nReDim nums(4)\nConsole.WriteLine(nums(0))",
+      "prompt_en": "What is printed, and why might this surprise someone expecting 1?",
+      "prompt_ko": "출력 결과는 무엇이며, 1을 기대한 사람에게는 왜 놀라운 결과일까요?",
+      "options": [
+        "1 — 기존 값이 그대로 유지됨",
+        "0 — Preserve 없이 ReDim만 쓰면 기존 값이 모두 사라지고 배열이 초기화됨",
+        "오류 발생",
+        "3 — 배열이 거꾸로 채워짐"
+      ],
+      "answer": 1,
+      "explanation_en": "ReDim without Preserve discards all existing values and creates a fresh array filled with default values (0 for Integer); nums(0) becomes 0, not 1.",
+      "explanation_ko": "Preserve 없이 ReDim만 쓰면 기존 값이 모두 사라지고 기본값(Integer의 경우 0)으로 채워진 새 배열이 만들어집니다. nums(0)은 1이 아니라 0이 됩니다.",
+      "concept_tags": ["array", "redim_preserve"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "visual_basic_l4_u01_q005",
+      "type": "predict_output",
+      "code": "Dim matrix(1, 2) As Integer\nmatrix(0, 0) = 1\nmatrix(1, 2) = 6\nConsole.WriteLine(matrix(1, 2))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1", "6", "12", "오류"],
+      "answer": 1,
+      "explanation_en": "matrix(1, 2) refers to the last row/column position (since Dim matrix(1, 2) means 2 rows, 3 columns), which was set to 6.",
+      "explanation_ko": "matrix(1, 2)는 마지막 행/열 위치를 가리키며(Dim matrix(1, 2)는 2행 3열을 의미), 6으로 설정되어 있습니다.",
+      "concept_tags": ["array", "2d_array"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l4_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "Dim nums(4)", "definition": "가장 큰 인덱스가 4임을 뜻하며, 실제로는 5개의 요소를 만듦" },
+        { "term": "ReDim", "definition": "배열의 크기를 다시 지정 — 기본적으로 기존 값을 모두 잃음" },
+        { "term": "ReDim Preserve", "definition": "배열 크기를 조정하면서 기존 값을 유지" },
+        { "term": ".Length", "definition": "배열에 담긴 요소의 총 개수를 반환하는 속성" }
+      ],
+      "explanation_en": "VB's index-based array sizing (rather than count-based, as in C) is one of the most commonly confused aspects for newcomers from other languages.",
+      "explanation_ko": "VB의 인덱스 기반 배열 크기 지정(C처럼 개수 기반이 아님)은 다른 언어에서 넘어온 초보자들이 가장 흔히 혼동하는 부분 중 하나입니다.",
+      "concept_tags": ["array", "array_declaration", "redim_preserve"],
+      "difficulty": "practice"
+    }
+  ]
+}

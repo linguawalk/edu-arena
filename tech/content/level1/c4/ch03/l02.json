@@ -1,0 +1,382 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch03",
+  "no": 3,
+  "title": "CPU 구조"
+ },
+ "lesson": {
+  "id": "c4-ch03-l02",
+  "no": 2,
+  "title": "ALU와 플래그",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "계산하는 회로",
+   "body": [
+    "ALU(산술 논리 장치)는 두 입력 값과 연산 종류를 받아 결과를 냅니다. 산술 연산(덧셈, 뺄셈, 1 증가 등)과 논리 연산(AND, OR, NOT, XOR), 비교, 시프트를 합니다. 안에는 전기전자 챕터 9의 가산기와 게이트들이 들어 있습니다.",
+    "ALU는 조합회로라서 입력이 들어오면 곧바로 결과가 나오고, 결과는 레지스터에 저장됩니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "fill_blank",
+   "prompt": "ALU가 하는 AND, OR, XOR 같은 연산을 {{1}} 연산이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "논리"
+     ]
+    }
+   ],
+   "hint": "산술 연산과 짝을 이루는 말입니다.",
+   "explanation": "논리 연산은 비트마다 따로 계산합니다.\n덧셈, 뺄셈은 산술 연산입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "비트 단위 논리 연산",
+   "body": [
+    "논리 연산은 같은 자리의 비트끼리 계산합니다. 1100 AND 1010 = 1000(둘 다 1일 때만 1), 1100 OR 1010 = 1110(하나라도 1이면 1), 1100 XOR 1010 = 0110(서로 다르면 1)입니다.",
+    "AND는 특정 비트만 남기는 데(마스크), OR는 특정 비트를 켜는 데, XOR는 특정 비트를 뒤집는 데 씁니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "1011 0110 AND 0000 1111은?",
+   "steps": [
+    "아래 4비트만 1인 마스크와 AND하면 아래 4비트만 남습니다.",
+    "위 4비트는 모두 0이 됩니다.",
+    "결과 0000 0110입니다."
+   ],
+   "answer": "0000 0110"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "두 비트가 서로 다를 때만 1이 되는 연산은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "XOR"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "XOR는 배타적 OR입니다.\n같은 값과 두 번 XOR하면 원래대로 돌아옵니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "1010 OR 0101 = {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "1111"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "같은 자리에 하나라도 1이면 1이 됩니다.\n모든 자리가 1입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "1110 AND 0111 = {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "0110"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "둘 다 1인 자리만 1이 됩니다.\n가운데 두 자리만 남습니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "1111 XOR 1010 = {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "0101"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "1과 XOR하면 비트가 뒤집힙니다.\n1010을 뒤집으면 0101입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "플래그",
+   "body": [
+    "ALU는 결과와 함께 결과의 성질을 알려 주는 표시 비트(플래그)를 상태 레지스터에 적습니다. 결과가 0이면 제로(Z) 플래그, 맨 위 자리에서 올림이 나가면 캐리(C) 플래그, 결과의 맨 왼쪽 비트가 1(음수)이면 부호(N) 플래그가 켜집니다.",
+    "8비트에서 200 + 100 = 300은 255를 넘어, 올림은 캐리 플래그로 가고 레지스터에는 300 − 256 = 44만 남습니다. 두 값을 비교할 때도 ALU가 빼기를 해 보고 제로 플래그로 같은지를 판단합니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "8비트 레지스터에서 250 + 10을 계산하면 결과와 캐리 플래그는?",
+   "steps": [
+    "250 + 10 = 260으로 255를 넘습니다.",
+    "레지스터에는 260 − 256 = 4가 남습니다.",
+    "올림이 나가 캐리 플래그가 1이 됩니다."
+   ],
+   "answer": "결과 4, C = 1"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "ALU 결과가 0일 때 켜지는 플래그는 {{1}} 플래그입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "제로",
+      "Z",
+      "zero"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "제로 플래그는 비교(같은지)와 반복의 끝을 판단하는 데 씁니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "8비트에서 180 + 100을 계산하면 레지스터에 남는 값은 얼마일까요?",
+   "answer": "24",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "180 + 100 = 280입니다.\n280 − 256 = 24가 남고 캐리가 나갑니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 계산에서 캐리 플래그는 얼마일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "결과가 255를 넘어 올림이 나갔습니다.\n캐리 플래그는 1입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "두 수가 같은지 비교할 때 ALU는 빼기를 해 보고 {{1}} 플래그를 봅니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "제로",
+      "Z",
+      "zero"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "같은 두 수를 빼면 0이므로 제로 플래그가 켜집니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "레지스터와 ALU의 짝",
+   "body": [
+    "ALU는 레지스터에서 두 값을 받아 계산하고 결과를 다시 레지스터에 씁니다. 메모리에 있는 값은 먼저 레지스터로 가져와야 계산할 수 있습니다. 레지스터는 CPU 안에 있어 한 클럭 안에 읽고 쓸 수 있을 만큼 빠릅니다.",
+    "정리: ALU(산술·논리·비교·시프트, 조합회로), AND(남기기)·OR(켜기)·XOR(뒤집기), 플래그(Z, C, N), 8비트 넘침은 캐리, 레지스터에서 가져와 레지스터에 저장"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "메모리의 값을 계산하려면 먼저 {{1}}로 가져와야 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "레지스터"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "ALU는 레지스터의 값으로 계산합니다.\n레지스터는 CPU 안의 가장 빠른 저장소입니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "8비트 값 0100 1010의 맨 위 비트만 1로 켜려면 어떤 연산을 할까요?",
+   "steps": [
+    "특정 비트를 켜는 데는 OR를 씁니다.",
+    "1000 0000과 OR합니다.",
+    "결과 1100 1010입니다."
+   ],
+   "answer": "1000 0000과 OR"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "0011 1100의 아래 4비트를 모두 뒤집으려면 0000 1111과 {{1}} 연산을 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "XOR"
+     ]
+    }
+   ],
+   "hint": "뒤집기에 쓰는 연산입니다.",
+   "explanation": "1과 XOR하면 뒤집히고 0과 XOR하면 그대로입니다.\n결과 0011 0011입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "1101 0110에서 위 4비트만 남기고 아래는 0으로 만들려면 1111 0000과 {{1}} 연산을 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "AND"
+     ]
+    }
+   ],
+   "hint": "마스크에 쓰는 연산입니다.",
+   "explanation": "0과 AND하면 0, 1과 AND하면 그대로입니다.\n결과 1101 0000입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "8비트에서 255 + 1을 계산하면 레지스터에 남는 값은 얼마일까요?",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "256 − 256입니다.",
+   "explanation": "256은 8비트를 넘어 모든 비트가 0이 되고 캐리가 나갑니다.\n그래서 0이 남습니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "앞 계산에서 결과가 0이므로 {{1}} 플래그도 켜집니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "제로",
+      "Z",
+      "zero"
+     ]
+    }
+   ],
+   "hint": "결과가 0일 때 켜지는 플래그입니다.",
+   "explanation": "결과가 0이면 제로 플래그가 켜집니다.\n캐리 플래그와 함께 켜진 상태입니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "어떤 값을 같은 키로 두 번 XOR하면 원래 값이 됩니다. 0110 1001을 키 1111 0000으로 한 번 XOR한 결과를 10진수로 쓰면 얼마일까요?",
+   "answer": "153",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "위 4비트만 뒤집힙니다.",
+   "explanation": "0110 1001 XOR 1111 0000 = 1001 1001입니다.\n128 + 16 + 8 + 1 = 153입니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "8비트 덧셈 결과가 255를 넘을 때 CPU가 그것을 알아챌 수 있는 방법을 설명해 보세요.",
+   "hint": "ALU가 결과와 함께 적는 표시 비트를 쓰세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "캐리",
+      "올림"
+     ],
+     [
+      "플래그",
+      "상태 레지스터"
+     ],
+     [
+      "255",
+      "넘",
+      "8비트"
+     ],
+     [
+      "확인",
+      "검사",
+      "보"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "8비트 덧셈 결과가 255를 넘으면 맨 위 자리에서 올림이 나가는데, ALU는 이 올림을 상태 레지스터의 캐리 플래그에 1로 적습니다. 프로그램은 덧셈 뒤 캐리 플래그를 검사해 넘침을 알아채고 처리할 수 있습니다."
+  }
+ ]
+}

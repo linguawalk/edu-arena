@@ -1,0 +1,108 @@
+{
+ "no": 1,
+ "title": "성능과 그 측정",
+ "hours": 5,
+ "after": [],
+ "objectives": [
+  "실행 시간 = 명령어 수 × CPI ÷ 클럭으로 성능을 비교할 수 있다.",
+  "암달의 법칙으로 개선 효과의 한계를 계산할 수 있다.",
+  "전력 벽과 멀티코어 전환의 이유를 설명할 수 있다."
+ ],
+ "checklist": [
+  "응답 시간과 처리량",
+  "CPU 시간 = 명령어 수 × CPI × 클럭 주기",
+  "성능에 영향을 주는 요소: 알고리즘, 언어·컴파일러, ISA, 구현",
+  "벤치마크(SPEC)와 기하 평균",
+  "암달의 법칙: 전체 속도 향상 = 1/[(1 − p) + p/s]",
+  "동적 전력 ∝ CV²f, 전력 벽",
+  "MIPS의 함정"
+ ],
+ "advice": [
+  "성능 단원은 이 과목 전체에서 쓰는 '계산의 틀'을 줍니다. 무엇을 바꾸든(컴파일러 최적화, 파이프라인, 캐시) 결국 명령어 수, CPI, 클럭 셋 가운데 하나를 줄이는 일이라는 점을 기억하면, 뒤 단원의 기법들이 어디에 효과를 내는지 바로 분류할 수 있습니다.",
+  "암달의 법칙은 '일부만 빨라지면 전체는 그만큼 빨라지지 않는다'는 단순하지만 강력한 결론입니다. 레벨1 컴퓨터 챕터 3의 멀티코어 계산과 같은 식이니, 개선 비율 p와 속도 향상 s를 바꿔 가며 한계값을 직접 계산해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Patterson · Hennessy, Computer Organization and Design RISC-V Edition (번역본 『컴퓨터 구조 및 설계』, 장 제목으로 표기)",
+   "part": "Computer Abstractions and Technology 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "performance 관련 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 3 CPU 구조",
+   "url": "browse.html?c=c4#ch03",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "명령어 20억 개, CPI 1.5, 클럭 3 GHz인 프로그램의 실행 시간은 몇 초일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2 × 10⁹ × 1.5/(3 × 10⁹) = 1 s",
+   "hint": "명령어 수 × CPI ÷ 클럭입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "실행 시간의 80%를 차지하는 부분을 4배 빠르게 하면 전체는 몇 배 빨라질까요?",
+   "answer": "2.5",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "1/(0.2 + 0.8/4) = 1/0.4 = 2.5배",
+   "hint": "암달의 법칙입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "주파수와 커패시턴스는 그대로 두고 전압만 10% 낮추면 동적 전력은 몇 배가 될까요?",
+   "answer": "0.81",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "P ∝ V²이므로 0.9² = 0.81배",
+   "hint": "전압의 제곱에 비례합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "전체 중 일부만 개선했을 때 전체 속도 향상에 한계가 있다는 법칙을 {{1}}의 법칙이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "암달",
+      "Amdahl"
+     ]
+    }
+   ],
+   "explanation": "개선하지 않은 부분의 비율이 속도 향상의 상한을 정합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "computer-architecture",
+ "id": "l2-computer-computer-architecture-u01"
+}

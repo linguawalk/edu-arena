@@ -1,0 +1,109 @@
+{
+ "no": 9,
+ "title": "조건부 기댓값",
+ "hours": 5,
+ "after": [
+  7
+ ],
+ "objectives": [
+  "조건부 기댓값 E(X|Y)를 확률변수로 이해하고 계산할 수 있다.",
+  "반복기댓값 법칙(아담의 법칙)과 전분산 법칙(이브의 법칙)을 적용할 수 있다."
+ ],
+ "checklist": [
+  "E(X|Y = y)와 확률변수 E(X|Y)",
+  "반복기댓값 법칙 E(E(X|Y)) = E(X)",
+  "전분산 법칙 Var(X) = E(Var(X|Y)) + Var(E(X|Y))",
+  "랜덤한 개수의 합(복합분포)의 기댓값과 분산",
+  "첫 단계 분석(first-step analysis)",
+  "조건부 기댓값은 최적 예측(최소제곱)"
+ ],
+ "advice": [
+  "조건부 기댓값이 '수'가 아니라 'Y에 따라 달라지는 확률변수'라는 점이 이 단원의 핵심 전환입니다. 반복기댓값 법칙은 '경우를 나눠 평균을 내고 다시 평균을 낸다'는 전확률 공식의 기댓값 버전이라, 복잡한 기댓값 문제를 경우로 쪼개 푸는 가장 강력한 방법입니다.",
+  "첫 단계 분석(처음 한 단계 뒤의 상황으로 나누어 방정식 세우기)은 레벨3 확률과정의 마르코프 연쇄에서 계속 쓰입니다. 동전을 HH가 나올 때까지 던지는 기대 횟수(6번) 같은 문제를 이 방법으로 풀어 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "lecture",
+   "provider": "Harvard",
+   "title": "Statistics 110: Probability (Joe Blitzstein) 강의 영상",
+   "url": "https://stat110.hsites.harvard.edu/",
+   "lang": "영어",
+   "part": "25~27강 (조건부 기댓값, 아담의 법칙과 이브의 법칙)"
+  },
+  {
+   "kind": "book",
+   "provider": "CRC Press (온라인 무료판)",
+   "title": "Blitzstein · Hwang, Introduction to Probability (2판)",
+   "url": "http://probabilitybook.net",
+   "lang": "영어",
+   "part": "9장 Conditional expectation"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "N ~ 포아송(10)이고 N이 주어지면 X ~ B(N, 1/2)일 때 E(X)는?",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "E(X) = E(E(X|N)) = E(N/2) = 5",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "하루 손님 수의 평균이 3명이고 각 손님의 지출 평균이 20일 때(서로 독립) 하루 매출의 기댓값은?",
+   "answer": "60",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "복합분포: E(N)E(X) = 3 × 20 = 60",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "공정한 동전을 HH(연속 앞면 두 번)가 나올 때까지 던지는 횟수의 기댓값은?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "첫 단계 분석: x = 1 + (1/2)y + (1/2)x, y = 1 + (1/2)·0 + (1/2)x\n풀면 y = 4, x = 6",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "전분산 법칙 Var(X) = E(Var(X|Y)) + Var(E(X|Y))의 두 항이 각각 무엇을 뜻하는지 설명해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "그룹 안",
+      "집단 내",
+      "안에서",
+      "조건부 분산"
+     ],
+     [
+      "그룹 사이",
+      "집단 간",
+      "사이",
+      "평균의 변동"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "첫째 항은 Y로 나눈 각 그룹 안에서의 흩어짐의 평균이고, 둘째 항은 그룹마다 다른 평균들이 서로 얼마나 흩어져 있는지(그룹 사이의 변동)입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "probability",
+ "subject": "statistics",
+ "id": "l2-probability-statistics-u09"
+}

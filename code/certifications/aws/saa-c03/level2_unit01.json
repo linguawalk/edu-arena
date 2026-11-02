@@ -1,0 +1,108 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "saa-c03",
+  "level": 2,
+  "unit": 1,
+  "unit_title": "재해복구 전략: RTO·RPO",
+  "rule_summary_ko": "RTO(복구 시간 목표)는 '서비스가 얼마나 오래 중단되어도 괜찮은가'를, RPO(복구 시점 목표)는 '얼마나 오래된 데이터까지 잃어도 괜찮은가'를 나타냅니다. AWS의 4가지 재해복구 전략은 비용·복잡도가 커질수록 RTO·RPO가 짧아지는 순서로 나열됩니다: 백업 및 복원(가장 저렴, RPO=시간 단위·RTO=24시간 이내), 파일럿 라이트(핵심 인프라만 최소한으로 상시 가동, RPO=분 단위·RTO=시간 단위), 웜 스탠바이(축소된 규모로나마 완전히 작동하는 환경을 상시 가동, RPO=초 단위·RTO=분 단위), 멀티사이트 활성-활성(여러 리전에서 동시에 완전한 운영 규모로 서비스, 거의 0에 가까운 RTO·RPO, 가장 비쌈).",
+  "examples": [
+    { "code": "테스트/개발 환경, 다운타임에 관대한 워크로드", "note_ko": "백업 및 복원이 적합 — 비용이 가장 낮지만 복구에 최대 24시간까지 걸릴 수 있음" },
+    { "code": "금융 거래 시스템처럼 몇 초의 데이터 손실도 허용 안 되고 몇 분 이상 멈추면 안 되는 워크로드", "note_ko": "멀티사이트 활성-활성이 적합 — 비용은 가장 높지만 거의 즉각적인 복구가 가능함" }
+  ],
+  "questions": [
+    {
+      "id": "aws_saa_l2_u1_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "RTO(복구 시간 목표)와 RPO(복구 시점 목표)의 차이는?",
+      "options": [
+        "RTO는 서비스가 얼마나 오래 중단되어도 되는지(다운타임 허용치)를, RPO는 얼마나 오래된 데이터까지 잃어도 되는지(데이터 손실 허용치)를 나타낸다",
+        "RTO와 RPO는 완전히 동일한 개념이다",
+        "RTO는 데이터 손실을, RPO는 다운타임을 나타낸다(설명이 반대)",
+        "RTO·RPO는 비용과 전혀 무관한 개념이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "RTO는 시간(다운타임) 축, RPO는 데이터(손실 허용 범위) 축이라는 서로 다른 두 지표입니다.",
+      "concept_tags": ["rto_rpo_definition"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "aws_saa_l2_u1_q002",
+      "type": "concept_matching_item",
+      "code": "비용에 민감한 테스트 환경으로, 재해 발생 시 최대 24시간의 다운타임과 몇 시간치 데이터 손실까지도 감내할 수 있음",
+      "prompt_ko": "이 요구사항에 가장 적합한 재해복구 전략은?",
+      "options": [
+        "백업 및 복원(Backup and Restore) — 가장 저렴하지만 RTO·RPO가 가장 긴 전략",
+        "멀티사이트 활성-활성(가장 비싸고 과도한 전략)",
+        "웜 스탠바이", "파일럿 라이트"
+      ],
+      "answer": 0,
+      "explanation_ko": "다운타임·데이터 손실에 관대한 워크로드에는 가장 저렴한 백업 및 복원이 적합합니다.",
+      "concept_tags": ["backup_restore_strategy"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l2_u1_q003",
+      "type": "concept_matching_item",
+      "code": "핵심 인프라(데이터베이스 복제 등)는 보조 리전에 최소한으로 항상 가동해두고, 실제 재해 시에만 나머지 컴퓨팅 자원을 빠르게 확장하고 싶어함(RTO는 시간 단위까지 허용)",
+      "prompt_ko": "이 요구사항에 가장 적합한 재해복구 전략은?",
+      "options": [
+        "파일럿 라이트(Pilot Light) — 핵심만 최소로 상시 가동, 재해 시 나머지를 빠르게 확장", "백업 및 복원(핵심 인프라 상시 가동이 없어 부적합)", "멀티사이트 활성-활성(과도한 비용)", "웜 스탠바이(이미 완전히 작동하는 환경을 유지하므로 과함)"
+      ],
+      "answer": 0,
+      "explanation_ko": "파일럿 라이트는 '핵심만 켜두고, 필요할 때 확장'하는 중간 단계 전략입니다.",
+      "concept_tags": ["pilot_light_strategy"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l2_u1_q004",
+      "type": "concept_matching_item",
+      "code": "금융 거래 시스템으로, 몇 초 이상의 데이터 손실이나 몇 분 이상의 다운타임도 용납할 수 없음",
+      "prompt_ko": "이 요구사항에 가장 적합한 재해복구 전략은?",
+      "options": [
+        "멀티사이트 활성-활성(Multi-Site Active/Active) — 여러 리전에서 동시에 완전한 규모로 서비스해서 거의 즉각적인 복구를 제공",
+        "백업 및 복원(다운타임이 너무 길어 부적합)",
+        "파일럿 라이트(RTO가 시간 단위라 부적합)",
+        "이 요구사항을 만족하는 전략은 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "가장 엄격한 RTO·RPO 요구사항에는 가장 비싸지만 가장 빠른 멀티사이트 활성-활성이 필요합니다.",
+      "concept_tags": ["multi_site_active_active"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l2_u1_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "웜 스탠바이(Warm Standby)가 파일럿 라이트와 다른 점은?",
+      "options": [
+        "웜 스탠바이는 축소된 규모로나마 이미 '완전히 작동하는' 환경을 상시 가동하지만, 파일럿 라이트는 핵심 요소만 최소한으로 가동하고 나머지는 재해 시에야 배포한다",
+        "웜 스탠바이와 파일럿 라이트는 완전히 동일한 전략이다",
+        "파일럿 라이트가 웜 스탠바이보다 항상 더 비싸다(설명이 반대)",
+        "웜 스탠바이는 백업 자체를 하지 않는 전략이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "'최소한만 켜둠(파일럿 라이트)' vs '축소된 규모로 이미 완전히 작동함(웜 스탠바이)'이라는 차이가 핵심입니다.",
+      "concept_tags": ["pilot_light_vs_warm_standby"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l2_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "4가지 재해복구 전략을 비용이 낮은 것부터 높은 순서로 나열하면?",
+      "options": [
+        "백업 및 복원 < 파일럿 라이트 < 웜 스탠바이 < 멀티사이트 활성-활성",
+        "멀티사이트 활성-활성이 가장 저렴하다(설명이 반대)",
+        "네 전략의 비용은 모두 동일하다",
+        "파일럿 라이트가 항상 가장 비싸다"
+      ],
+      "answer": 0,
+      "explanation_ko": "일반적으로 복구 속도가 빨라질수록(RTO·RPO가 짧아질수록) 상시 가동해야 할 자원이 많아져 비용도 함께 증가합니다.",
+      "concept_tags": ["dr_strategy_cost_order"],
+      "difficulty": "practice"
+    }
+  ]
+}

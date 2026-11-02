@@ -1,0 +1,91 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 4,
+  "unit": 2,
+  "unit_title": "배열 함수 심화",
+  "questions": [
+    {
+      "id": "php_l4_u02_q001",
+      "type": "predict_output",
+      "code": "$nums = [1, 2, 3];\n$doubled = array_map(fn($n) => $n * 2, $nums);\nprint_r($doubled);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["[1, 2, 3]", "[2, 4, 6]", "오류", "[1, 4, 9]"],
+      "answer": 1,
+      "explanation_en": "array_map applies the callback to every element, doubling each: 2, 4, 6.",
+      "explanation_ko": "array_map은 콜백을 모든 요소에 적용해서, 각각을 두 배로 만듭니다: 2, 4, 6.",
+      "concept_tags": ["array_map"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l4_u02_q002",
+      "type": "predict_output",
+      "code": "$nums = [1, 2, 3, 4, 5, 6];\n$evens = array_filter($nums, fn($n) => $n % 2 === 0);\nprint_r(array_keys($evens));",
+      "prompt_en": "What is printed? (This reveals a well-known array_filter quirk.)",
+      "prompt_ko": "출력 결과는? (array_filter의 잘 알려진 특징을 드러냅니다.)",
+      "options": ["[0, 1, 2]", "[1, 3, 5]", "[2, 4, 6]", "오류"],
+      "answer": 1,
+      "explanation_en": "Unlike most languages' filter, PHP's array_filter preserves the ORIGINAL keys of matching elements rather than reindexing from 0; the even numbers (2, 4, 6) keep their original indices 1, 3, 5.",
+      "explanation_ko": "대부분 언어의 filter와 달리, PHP의 array_filter는 통과한 요소의 원본 키를 그대로 유지하며 0부터 재인덱싱하지 않습니다. 짝수(2, 4, 6)는 원래 인덱스인 1, 3, 5를 그대로 유지합니다.",
+      "concept_tags": ["array_filter", "key_preservation"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l4_u02_q003",
+      "type": "fill_blank",
+      "code": "$nums = [1, 2, 3, 4, 5, 6];\n$evens = array_filter($nums, fn($n) => $n % 2 === 0);\n$reindexed = ____($evens);\nprint_r($reindexed);\n// [0 => 2, 1 => 4, 2 => 6]으로 재인덱싱해야 함",
+      "prompt_en": "Fill in the blank with the function that renumbers array keys starting from 0.",
+      "prompt_ko": "배열 키를 0부터 다시 번호 매기는 함수를 빈칸에 채우세요.",
+      "options": ["array_values", "array_reindex", "array_reset", "sort"],
+      "answer": 0,
+      "explanation_en": "array_values() discards the existing keys and returns a new array with sequential integer keys starting from 0, the standard fix for array_filter's key-preserving behavior.",
+      "explanation_ko": "array_values()는 기존 키를 버리고 0부터 시작하는 순차적인 정수 키를 가진 새 배열을 반환합니다. array_filter의 키 유지 동작을 고치는 표준적인 방법입니다.",
+      "concept_tags": ["array_values"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l4_u02_q004",
+      "type": "predict_output",
+      "code": "$nums = [1, 2, 3, 4, 5];\n$sum = array_reduce($nums, fn($carry, $n) => $carry + $n, 0);\necho $sum;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["15", "5", "0", "오류"],
+      "answer": 0,
+      "explanation_en": "array_reduce accumulates a single value by repeatedly applying the callback, starting from 0; it sums all elements: 1+2+3+4+5=15.",
+      "explanation_ko": "array_reduce는 콜백을 반복 적용해 하나의 값으로 누적하며, 0부터 시작합니다. 모든 요소를 더합니다: 1+2+3+4+5=15.",
+      "concept_tags": ["array_reduce"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l4_u02_q005",
+      "type": "predict_output",
+      "code": "$nums = [1, 2, 3, 4, 5];\n$result = array_map(fn($n) => $n * 2, array_filter($nums, fn($n) => $n > 3));\nprint_r(array_values($result));",
+      "prompt_en": "What is printed? (Chaining array_filter and array_map, then fixing the keys.)",
+      "prompt_ko": "출력 결과는? (array_filter와 array_map을 연결한 뒤, 키를 정리합니다.)",
+      "options": ["[8, 10]", "[6, 8, 10]", "[2, 4, 6, 8, 10]", "오류"],
+      "answer": 0,
+      "explanation_en": "array_filter first keeps numbers greater than 3 (4, 5), then array_map doubles each (8, 10); array_values cleans up the preserved keys.",
+      "explanation_ko": "array_filter가 먼저 3보다 큰 수(4, 5)를 남기고, array_map이 각각을 두 배로 만듭니다(8, 10). array_values는 유지된 키를 정리합니다.",
+      "concept_tags": ["array_filter", "array_map"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l4_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "array_map", "definition": "각 요소를 변환한 새 배열을 반환" },
+        { "term": "array_filter", "definition": "조건을 만족하는 요소만 남기되, 원본 키를 그대로 유지" },
+        { "term": "array_reduce", "definition": "모든 요소를 하나의 값으로 누적" },
+        { "term": "array_values", "definition": "array_filter 이후 키를 0부터 다시 매기는 표준적인 정리 방법" }
+      ],
+      "explanation_en": "array_filter's key-preserving behavior is a frequent source of subtle bugs — code that assumes sequential 0-based indices after filtering (like accessing $result[0]) can silently fail, making array_values a habit worth forming.",
+      "explanation_ko": "array_filter의 키 유지 동작은 미묘한 버그의 흔한 원인입니다 — 필터링 후 순차적인 0 기반 인덱스를 가정하는 코드(예: $result[0] 접근)는 조용히 실패할 수 있어, array_values를 습관화할 만합니다.",
+      "concept_tags": ["array_map", "array_filter", "array_reduce", "array_values"],
+      "difficulty": "practice"
+    }
+  ]
+}

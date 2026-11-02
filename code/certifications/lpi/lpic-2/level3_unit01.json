@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-2-202",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "DNS 존 파일과 BIND",
+  "rule_summary_ko": "DNS 존 파일에서 도메인 이름 끝에 점(.)이 있으면 완전한(절대) 도메인 이름(FQDN)이고, 점이 없으면 그 존의 이름이 자동으로 뒤에 덧붙는 상대 이름으로 해석됩니다. 이 규칙을 모르고 점을 빠뜨리면, 의도한 것과 완전히 다른(존 이름이 이어붙은) 잘못된 이름이 만들어지는 실수로 이어집니다. SOA(권한 시작) 레코드의 시리얼(serial) 번호는 존 파일이 변경될 때마다 반드시 증가시켜야 하며, 그래야 보조(슬레이브) 네임서버가 변경 사항을 인식하고 존 전송(zone transfer)을 받아갑니다.",
+  "examples": [
+    { "code": "missingdot IN CNAME somehost.example.com   (끝에 점 없음, 존 이름이 broken.com)", "note_ko": "실제 해석 결과: somehost.example.com.broken.com. — 의도(example.com을 가리키려 함)와 다르게 broken.com의 하위 이름으로 잘못 해석됨" },
+    { "code": "missingdot IN CNAME somehost.example.com.   (끝에 점 있음)", "note_ko": "올바른 절대 경로 — somehost.example.com을 정확히 가리킴" }
+  ],
+  "questions": [
+    {
+      "id": "lpic2_l3_u1_q001",
+      "type": "concept_matching_item",
+      "code": "zone: broken.com\nmissingdot IN CNAME somehost.example.com   (끝에 점 없음)",
+      "prompt_ko": "이 CNAME 레코드는 실제로 어떻게 해석됩니까?",
+      "options": [
+        "somehost.example.com.broken.com. — 점이 없어 상대 이름으로 취급되어, 존 이름(broken.com)이 뒤에 자동으로 덧붙는다",
+        "somehost.example.com. — 의도한 대로 정확히 해석된다",
+        "이 레코드는 오류를 일으켜 존 로딩 자체가 실패한다",
+        "점의 유무는 결과에 아무 영향을 주지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "점이 없는 이름은 항상 그 존의 이름이 자동으로 뒤에 붙는 상대 이름으로 처리됩니다.",
+      "concept_tags": ["dns_trailing_dot"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic2_l3_u1_q002",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "존 파일에서 도메인 이름 끝에 점(.)을 붙이는 것의 의미는?",
+      "options": [
+        "그 이름이 이미 완전한(절대) 도메인 이름(FQDN)이라 더 이상 아무것도 덧붙이지 말라는 표시",
+        "점은 단순한 장식일 뿐 아무 의미가 없다",
+        "점을 붙이면 그 레코드가 자동으로 삭제된다",
+        "점은 오직 IP 주소에만 사용되는 문자다"
+      ],
+      "answer": 0,
+      "explanation_ko": "이 점 하나의 유무가 이름 해석 결과를 완전히 바꿔놓을 수 있습니다.",
+      "concept_tags": ["fqdn_trailing_dot_meaning"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l3_u1_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "SOA(권한 시작) 레코드의 시리얼(serial) 번호를 존 파일을 수정할 때마다 증가시켜야 하는 이유는?",
+      "options": [
+        "보조(슬레이브) 네임서버가 이 값을 보고 존이 변경됐는지 판단해서, 값이 커지지 않으면 변경된 내용을 가져가지(존 전송) 않기 때문에",
+        "시리얼 번호는 실질적인 기능이 없는 장식용 필드일 뿐이기 때문에",
+        "시리얼 번호를 늘리지 않으면 DNS 서버 자체가 시작되지 않기 때문에",
+        "시리얼 번호는 IP 주소를 대신 나타내는 값이기 때문에"
+      ],
+      "answer": 0,
+      "explanation_ko": "시리얼 번호는 마스터-슬레이브 간 동기화 여부를 판단하는 핵심 지표입니다.",
+      "concept_tags": ["soa_serial_number"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l3_u1_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "BIND에서 존 파일의 문법 오류를 실제로 서버를 재시작하지 않고도 미리 검사할 수 있는 명령어는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["named-checkzone"],
+      "explanation_ko": "named-checkzone은 존 파일을 실제로 로드하는 것처럼 검사해서 문법 오류를 미리 잡아줍니다.",
+      "concept_tags": ["named_checkzone"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l3_u1_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "MX 레코드가 하는 역할은?",
+      "options": [
+        "그 도메인으로 전송되는 이메일을 처리할 메일 서버를 지정한다",
+        "그 도메인의 웹 서버 IP 주소를 지정한다(A 레코드와 혼동)",
+        "그 도메인의 네임서버를 지정한다(NS 레코드와 혼동)",
+        "MX 레코드는 DNS와 무관한 개념이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "MX(Mail eXchange) 레코드는 이메일 라우팅에 특화된 레코드 타입입니다.",
+      "concept_tags": ["mx_record"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic2_l3_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "named-checkzone으로 존 파일의 문법 오류를 미리 검증하는 습관이 실무에서 중요한 이유는?",
+      "options": [
+        "잘못된 존 파일을 실제 운영 중인 DNS 서버에 적용하기 전에 문제를 발견해서, 서비스 중단이나 잘못된 이름 해석 같은 사고를 예방할 수 있기 때문에",
+        "이 검증 단계는 실제로는 아무 의미가 없다",
+        "named-checkzone은 존 파일을 자동으로 수정해주는 도구다(검증이 아니라 수정)",
+        "이 명령어는 BIND가 아닌 다른 DNS 소프트웨어에만 사용된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "배포 전 검증은 프로덕션 DNS 서비스의 안정성을 지키는 표준적인 관행입니다.",
+      "concept_tags": ["zone_validation_importance"],
+      "difficulty": "practice"
+    }
+  ]
+}

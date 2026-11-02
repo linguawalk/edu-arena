@@ -1,0 +1,90 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "java-ocp-17",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "연산자와 제어 흐름",
+  "rule_summary_ko": "후위 증가(x++)는 현재 값을 먼저 사용한 뒤 증가시키고, 전위 증가(++x)는 먼저 증가시킨 뒤 그 값을 사용합니다. Java 14부터 도입된 화살표(->) switch 표현식은 값을 직접 반환할 수 있고, 콤마로 여러 case를 한 줄에 묶을 수 있습니다. 삼항 연산자(?:)는 두 분기의 타입이 다르면 더 넓은 공통 타입으로 승격됩니다. &&와 ||는 단락 평가(short-circuit)를 하므로, 왼쪽 조건에서 이미 결과가 결정되면 오른쪽은 평가하지 않습니다.",
+  "examples": [
+    { "code": "int x = 5;\nint y = x++ + ++x;", "note_ko": "x++는 5를 반환 후 x=6, ++x는 x=7로 만든 뒤 7 반환 → y = 5+7 = 12, 최종 x=7" },
+    { "code": "double result = (a > 5) ? 1 : 2.0;", "note_ko": "조건이 참이라 1을 선택하지만, 다른 분기가 double이라 전체 타입이 double로 승격되어 1.0이 출력됨" }
+  ],
+  "questions": [
+    {
+      "id": "java_ocp_l1_u2_q001",
+      "type": "fill_blank",
+      "code": "int x = 5;\nint y = x++ + ++x;",
+      "prompt_ko": "y의 값은 얼마입니까? (숫자만 입력)",
+      "expected_answers": ["12"],
+      "explanation_ko": "x++는 현재 값 5를 먼저 사용하고 x를 6으로 만듭니다. ++x는 x를 7로 먼저 만들고 그 값 7을 사용합니다. 5+7=12.",
+      "concept_tags": ["increment_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l1_u2_q002",
+      "type": "fill_blank",
+      "code": "int x = 5;\nint y = x++ + ++x;",
+      "prompt_ko": "위 코드 실행 후, x의 최종 값은 얼마입니까? (숫자만 입력)",
+      "expected_answers": ["7"],
+      "explanation_ko": "x++로 6이 되고, ++x로 다시 7이 됩니다.",
+      "concept_tags": ["increment_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l1_u2_q003",
+      "type": "concept_matching_item",
+      "code": "double result = (10 > 5) ? 1 : 2.0;\nSystem.out.println(result);",
+      "prompt_ko": "이 코드의 출력 결과는?",
+      "options": ["1", "1.0", "2.0", "컴파일 오류"],
+      "answer": 1,
+      "explanation_ko": "조건은 참이라 1(int)을 선택하지만, 다른 분기가 double이므로 삼항 연산자 전체의 타입이 double로 승격되어 1.0이 출력됩니다.",
+      "concept_tags": ["ternary_operator", "type_promotion"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_ocp_l1_u2_q004",
+      "type": "concept_matching_item",
+      "code": "int[] arr = null;\nif (arr != null && arr.length > 0) {\n    System.out.println(\"있음\");\n}",
+      "prompt_ko": "arr이 null일 때 이 코드는 어떻게 동작합니까?",
+      "options": [
+        "NullPointerException이 발생한다",
+        "&&의 단락 평가(short-circuit) 덕분에 첫 조건이 거짓이면 arr.length는 평가되지 않아 예외 없이 넘어간다",
+        "무한 루프에 빠진다",
+        "컴파일 오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "&&는 왼쪽이 거짓이면 오른쪽을 평가하지 않는 단락 평가를 하므로, arr.length에서 NPE가 발생하지 않습니다.",
+      "concept_tags": ["short_circuit_evaluation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l1_u2_q005",
+      "type": "concept_matching_item",
+      "code": "int day = 3;\nString name = switch (day) {\n    case 1, 7 -> \"주말\";\n    case 2, 3, 4, 5, 6 -> \"평일\";\n    default -> \"알수없음\";\n};",
+      "prompt_ko": "name의 값은 무엇입니까?",
+      "options": ["\"주말\"", "\"평일\"", "\"알수없음\"", "컴파일 오류(switch는 값을 반환할 수 없음)"],
+      "answer": 1,
+      "explanation_ko": "Java 14부터 도입된 화살표(->) switch 표현식은 값을 직접 반환할 수 있으며, day=3은 case 2,3,4,5,6에 해당해 \"평일\"이 선택됩니다.",
+      "concept_tags": ["switch_expression"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_ocp_l1_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "기존 콜론(:) 방식의 switch문과 비교했을 때, 화살표(->) switch 표현식의 특징으로 옳은 것은?",
+      "options": [
+        "화살표 방식은 각 case에서 break를 명시하지 않아도 다음 case로 넘어가지 않는다(fall-through가 없음)",
+        "화살표 방식도 기존 콜론 방식과 동일하게 break가 없으면 항상 다음 case로 넘어간다",
+        "화살표 방식은 값을 반환할 수 없다",
+        "화살표 방식은 default를 사용할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "화살표 switch는 각 case가 독립적으로 실행되고 자동으로 끝나, 콜론 방식의 fall-through 문제(break 누락으로 인한 실수)가 없습니다.",
+      "concept_tags": ["switch_expression", "fall_through"],
+      "difficulty": "challenge"
+    }
+  ]
+}

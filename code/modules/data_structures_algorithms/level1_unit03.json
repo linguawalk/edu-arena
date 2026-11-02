@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 1,
+  "unit": 3,
+  "unit_title": "연결 리스트",
+  "questions": [
+    {
+      "id": "dsa_l1_u03_q001",
+      "type": "predict_output",
+      "code": "class Node:\n    def __init__(self, value):\n        self.value = value\n        self.next = None\n\nfirst = Node(1)\nsecond = Node(2)\nfirst.next = second\nprint(first.value)\nprint(first.next.value)",
+      "prompt_en": "What is printed? (Building a linked list manually with Node objects.)",
+      "prompt_ko": "출력 결과는? (Node 객체로 연결 리스트를 직접 만듭니다.)",
+      "options": ["1\\n2", "2\\n1", "오류", "1\\n1"],
+      "answer": 0,
+      "explanation_en": "Each Node holds a value and a reference to the next node; first.next points to second, so first.next.value reads second's value, 2.",
+      "explanation_ko": "각 Node는 값과 다음 노드에 대한 참조를 가집니다. first.next는 second를 가리키므로, first.next.value는 second의 값인 2를 읽습니다.",
+      "concept_tags": ["linked_list", "node"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l1_u03_q002",
+      "type": "predict_output",
+      "code": "class Node:\n    def __init__(self, value):\n        self.value = value\n        self.next = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n\n    def prepend(self, value):\n        new_node = Node(value)\n        new_node.next = self.head\n        self.head = new_node\n\n    def to_list(self):\n        result = []\n        current = self.head\n        while current:\n            result.append(current.value)\n            current = current.next\n        return result\n\nll = LinkedList()\nll.prepend(3)\nll.prepend(2)\nll.prepend(1)\nprint(ll.to_list())",
+      "prompt_en": "What is printed? (prepend adds a new head node.)",
+      "prompt_ko": "출력 결과는? (prepend는 새 head 노드를 추가합니다.)",
+      "options": ["[1, 2, 3]", "[3, 2, 1]", "오류", "[1, 3]"],
+      "answer": 0,
+      "explanation_en": "Each prepend makes the new node the head, pointing to the old head; prepending 3, then 2, then 1 results in the order 1, 2, 3.",
+      "explanation_ko": "prepend할 때마다 새 노드가 head가 되며, 이전 head를 가리킵니다. 3, 2, 1 순서로 prepend하면 1, 2, 3 순서가 됩니다.",
+      "concept_tags": ["linked_list", "prepend_operation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l1_u03_q003",
+      "type": "fill_blank",
+      "code": "def prepend(self, value):\n    new_node = Node(value)\n    new_node.next = self.head\n    self.head = new_node\n# 이 연산의 복잡도는? (배열의 insert(0, x)와 비교해보세요)",
+      "prompt_en": "Fill in the blank with the Big-O complexity of prepending to a linked list.",
+      "prompt_ko": "연결 리스트 맨 앞에 삽입하는 연산의 Big-O 복잡도를 빈칸에 채우세요.",
+      "options": ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+      "answer": 0,
+      "explanation_en": "Unlike an array's front-insertion (which must shift every element), a linked list's prepend only needs to update two pointers, regardless of the list's length — O(1).",
+      "explanation_ko": "모든 요소를 밀어야 하는 배열의 앞쪽 삽입과 달리, 연결 리스트의 prepend는 리스트 길이와 상관없이 포인터 두 개만 갱신하면 됩니다 — O(1)입니다.",
+      "concept_tags": ["linked_list", "prepend_operation"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l1_u03_q004",
+      "type": "predict_output",
+      "code": "class Node:\n    def __init__(self, value):\n        self.value = value\n        self.next = None\n\nfirst = Node(1)\nsecond = Node(2)\nthird = Node(3)\nfirst.next = second\nsecond.next = third\ncurrent = first\ncount = 0\nwhile current:\n    count += 1\n    current = current.next\nprint(count)",
+      "prompt_en": "What is printed? (Traversing to count nodes.)",
+      "prompt_ko": "출력 결과는? (노드 개수를 세기 위해 순회합니다.)",
+      "options": ["3", "2", "1", "오류"],
+      "answer": 0,
+      "explanation_en": "The loop follows .next links from first until reaching None, visiting all 3 nodes; unlike an array, there's no way to know the length without traversing — this itself is O(n).",
+      "explanation_ko": "반복문은 first부터 .next 링크를 따라 None에 도달할 때까지 진행하며, 3개 노드 모두를 방문합니다. 배열과 달리 순회하지 않고는 길이를 알 방법이 없습니다 — 이 자체가 O(n)입니다.",
+      "concept_tags": ["linked_list", "traversal"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l1_u03_q005",
+      "type": "error_finding",
+      "code": "class Node:\n    def __init__(self, value):\n        self.value = value\n        self.next = None\n\nfirst = Node(1)\nsecond = Node(2)\nfirst.next = second\nprint(first[1])",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "Node 클래스 정의 오류",
+        "연결 리스트는 배열과 달리 인덱스로 직접 접근(first[1])할 수 없어서, TypeError가 발생함 — .next를 따라 순회해야만 접근 가능",
+        "first.next = second 문법 오류",
+        "문제 없음, second.value가 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike an array, a linked list has no indexed access at all — there's no built-in [] operator on a plain Node; you must traverse via .next links one at a time to reach a given position, making random access O(n) instead of array's O(1).",
+      "explanation_ko": "배열과 달리 연결 리스트는 인덱스 접근이 전혀 없습니다 — 일반 Node에는 내장된 [] 연산자가 없습니다. 특정 위치에 도달하려면 .next 링크를 하나씩 따라가야 하며, 이는 배열의 O(1)과 달리 임의 접근을 O(n)으로 만듭니다.",
+      "concept_tags": ["linked_list", "no_indexed_access"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l1_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "각 용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "Node", "definition": "값과 다음 노드에 대한 참조를 담는 연결 리스트의 기본 단위" },
+        { "term": "head", "definition": "연결 리스트의 첫 번째 노드에 대한 참조" },
+        { "term": "prepend가 O(1)인 이유", "definition": "포인터 몇 개만 바꾸면 되고, 기존 요소를 옮길 필요가 없음" },
+        { "term": "인덱스 접근이 O(n)인 이유", "definition": "배열과 달리 원하는 위치까지 노드를 하나씩 따라가야 함" }
+      ],
+      "explanation_en": "Linked lists and arrays trade off opposite strengths: arrays excel at indexed access but struggle with front-insertion, while linked lists excel at front-insertion but lack indexed access entirely.",
+      "explanation_ko": "연결 리스트와 배열은 서로 반대되는 장점을 주고받습니다: 배열은 인덱스 접근에 뛰어나지만 앞쪽 삽입이 어렵고, 연결 리스트는 앞쪽 삽입에 뛰어나지만 인덱스 접근 자체가 없습니다.",
+      "concept_tags": ["linked_list", "node", "prepend_operation", "no_indexed_access"],
+      "difficulty": "practice"
+    }
+  ]
+}

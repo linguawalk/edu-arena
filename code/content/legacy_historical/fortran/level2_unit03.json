@@ -1,0 +1,91 @@
+{
+  "language": "fortran",
+  "category": "legacy_historical",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "FUNCTION",
+  "questions": [
+    {
+      "id": "fortran_l2_u03_q001",
+      "type": "predict_output",
+      "code": "integer :: result\nresult = Square(5)\nprint *, result\ncontains\n    function Square(x) result(res)\n        integer :: x, res\n        res = x * x\n    end function Square",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["25", "5", "res", "오류"],
+      "answer": 0,
+      "explanation_en": "result(res) names the variable that holds the function's return value; Square(5) sets res := 5*5=25, which is then returned and printed.",
+      "explanation_ko": "result(res)는 함수의 반환값을 담을 변수 이름을 지정합니다. Square(5)는 res := 5*5=25로 설정하고, 이것이 반환되어 출력됩니다.",
+      "concept_tags": ["function", "result_clause"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "fortran_l2_u03_q002",
+      "type": "fill_blank",
+      "code": "____ Double(x) result(res)\n    integer :: x, res\n    res = x * 2\nend function Double",
+      "prompt_en": "Fill in the blank with the keyword that begins a value-returning routine.",
+      "prompt_ko": "값을 반환하는 루틴을 시작하는 키워드를 빈칸에 채우세요.",
+      "options": ["function", "subroutine", "def", "proc"],
+      "answer": 0,
+      "explanation_en": "function defines a routine that computes and returns a value, callable directly in expressions unlike subroutine.",
+      "explanation_ko": "function은 값을 계산해 반환하는 루틴을 정의합니다. subroutine과 달리 표현식 안에서 직접 호출할 수 있습니다.",
+      "concept_tags": ["function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "fortran_l2_u03_q003",
+      "type": "predict_output",
+      "code": "integer :: Square\ninteger :: r\nr = Square(4)\nprint *, r\ncontains\n    function Square(x)\n        integer :: x\n        Square = x * x\n    end function Square",
+      "prompt_en": "What is printed? (Older style: assigning to the function's own name, like Pascal.)",
+      "prompt_ko": "출력 결과는? (예전 방식: Pascal처럼 함수 자신의 이름에 대입합니다.)",
+      "options": ["16", "4", "Square", "오류"],
+      "answer": 0,
+      "explanation_en": "Without result(), the function's return value is set by assigning to its own name, Square := x * x, the same idiom seen in Pascal; Square(4) computes 16.",
+      "explanation_ko": "result() 없이는 함수의 반환값을 자신의 이름에 대입해 설정합니다. Square := x * x는 Pascal에서 봤던 것과 같은 관용구입니다. Square(4)는 16을 계산합니다.",
+      "concept_tags": ["function", "return_by_name"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "fortran_l2_u03_q004",
+      "type": "predict_output",
+      "code": "print *, Add(3, 4) + Add(1, 1)\ncontains\n    function Add(a, b) result(res)\n        integer :: a, b, res\n        res = a + b\n    end function Add",
+      "prompt_en": "What is printed? (A function called directly inside an expression.)",
+      "prompt_ko": "출력 결과는? (표현식 안에서 함수를 직접 호출합니다.)",
+      "options": ["9", "7", "2", "오류"],
+      "answer": 0,
+      "explanation_en": "Unlike subroutine, function can be used directly in expressions without call; Add(3,4)=7 and Add(1,1)=2, and 7+2=9.",
+      "explanation_ko": "subroutine과 달리 function은 call 없이 표현식 안에서 직접 쓸 수 있습니다. Add(3,4)=7이고 Add(1,1)=2이며, 7+2=9입니다.",
+      "concept_tags": ["function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "fortran_l2_u03_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "function ... result(res)", "definition": "명시적인 이름(res)에 반환값을 설정하는 최신 방식" },
+        { "term": "함수 이름에 직접 대입", "definition": "result() 없이, 함수 자신의 이름을 특수 변수처럼 써서 반환값을 설정하는 예전 방식" },
+        { "term": "call 없이 직접 호출", "definition": "function은 subroutine과 달리 표현식 안에서 바로 쓸 수 있음" },
+        { "term": "Pascal function과의 연결", "definition": "함수 이름에 대입하는 방식은 Pascal의 관용구를 그대로 물려받음" }
+      ],
+      "explanation_en": "The result() clause was added to reduce confusion in the older assign-to-function-name style, especially with recursive functions where referring to the function's own name mid-computation could be ambiguous.",
+      "explanation_ko": "result() 절은 함수 자신의 이름에 대입하는 예전 방식의 혼란을 줄이기 위해 추가됐습니다. 특히 재귀 함수에서 계산 중간에 함수 자신의 이름을 참조하는 것이 모호할 수 있는 경우에 그렇습니다.",
+      "concept_tags": ["function", "result_clause", "return_by_name"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "fortran_l2_u03_q006",
+      "type": "predict_output",
+      "code": "logical :: b\nb = IsEven(4)\nprint *, b\ncontains\n    function IsEven(n) result(res)\n        integer :: n\n        logical :: res\n        res = (mod(n, 2) == 0)\n    end function IsEven",
+      "prompt_en": "What is printed? (A function returning a logical/boolean value.)",
+      "prompt_ko": "출력 결과는? (logical/boolean 값을 반환하는 함수입니다.)",
+      "options": ["T", "F", "true", "4"],
+      "answer": 0,
+      "explanation_en": "mod(4, 2) is 0, so the equality check is true; Fortran prints logical values as T (true) or F (false), so T is printed.",
+      "explanation_ko": "mod(4, 2)는 0이므로 동등 검사는 참입니다. Fortran은 logical 값을 T(참) 또는 F(거짓)로 출력하므로 T가 출력됩니다.",
+      "concept_tags": ["function", "logical_type"],
+      "difficulty": "challenge"
+    }
+  ]
+}

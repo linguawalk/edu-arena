@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "saa-c03",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "EC2 배치 그룹: Cluster·Spread·Partition",
+  "rule_summary_ko": "클러스터(Cluster) 배치 그룹은 인스턴스들을 하나의 가용 영역 안에서 물리적으로 서로 가깝게 모아서, 낮은 지연시간과 높은 네트워크 처리량을 제공합니다(HPC 등에 적합, 여러 AZ에 걸칠 수 없음). 스프레드(Spread) 배치 그룹은 소수의 중요한 인스턴스 각각을 완전히 별개의 하드웨어(랙·전원·네트워크)에 배치해서 동시 장애 위험을 줄이지만, AZ당 최대 7개 인스턴스로 제한됩니다. 파티션(Partition) 배치 그룹은 인스턴스들을 여러 논리적 파티션으로 나누고 각 파티션이 서로 다른 랙 집합을 쓰게 해서, 한 파티션의 하드웨어 장애가 다른 파티션에 영향을 주지 않게 하며, Hadoop·Cassandra·Kafka 같은 대규모 분산 시스템에 적합합니다.",
+  "examples": [
+    { "code": "고성능 컴퓨팅(HPC) 클러스터로, 노드 간 초저지연 통신이 핵심 성능 요소임", "note_ko": "클러스터 배치 그룹이 적합 — 물리적으로 가깝게 배치해서 네트워크 지연을 최소화" },
+    { "code": "100개 노드로 구성된 대규모 Cassandra 클러스터로, 일부 하드웨어 장애가 전체에 퍼지지 않아야 함", "note_ko": "파티션 배치 그룹이 적합 — 스프레드는 최대 7개 제한이라 부적합, 파티션은 훨씬 큰 규모를 지원" }
+  ],
+  "questions": [
+    {
+      "id": "aws_saa_l3_u4_q001",
+      "type": "concept_matching_item",
+      "code": "고성능 컴퓨팅(HPC) 클러스터로, 노드 간 통신 지연시간을 최대한 줄이는 것이 핵심 성능 요소임",
+      "prompt_ko": "이 요구사항에 가장 적합한 배치 그룹은?",
+      "options": [
+        "클러스터(Cluster) 배치 그룹 — 인스턴스들을 물리적으로 가깝게 모아 낮은 지연시간과 높은 처리량을 제공",
+        "스프레드(Spread) 배치 그룹(오히려 서로 떨어뜨려 배치해서 지연시간에는 불리)",
+        "파티션(Partition) 배치 그룹(대규모 분산 시스템용이라 초저지연 목적과는 다름)",
+        "배치 그룹은 지연시간과 전혀 무관하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "클러스터 배치 그룹의 핵심 목적은 물리적 근접성을 통한 네트워크 성능 극대화입니다.",
+      "concept_tags": ["cluster_placement_group"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l3_u4_q002",
+      "type": "concept_matching_item",
+      "code": "소수(5개)의 매우 중요한 개별 인스턴스가 있고, 이들이 절대 동시에(같은 하드웨어 장애로) 함께 죽으면 안 됨",
+      "prompt_ko": "이 요구사항에 가장 적합한 배치 그룹은?",
+      "options": [
+        "스프레드(Spread) 배치 그룹 — 각 인스턴스를 완전히 별개의 랙·전원·네트워크에 배치해서 동시 장애 위험을 최소화",
+        "클러스터 배치 그룹(오히려 물리적으로 가깝게 모아서 동시 장애 위험이 커짐)",
+        "파티션 배치 그룹(대규모 분산 워크로드에 더 적합하며, 소수 핵심 인스턴스에는 스프레드가 더 직관적)",
+        "이런 요구사항에는 배치 그룹이 도움이 되지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "소수의 핵심 인스턴스를 서로 완전히 격리시키는 것이 스프레드 배치 그룹의 목적입니다.",
+      "concept_tags": ["spread_placement_group"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l3_u4_q003",
+      "type": "concept_matching_item",
+      "code": "100개 노드로 구성된 대규모 Cassandra 클러스터를 운영하며, 일부 랙의 하드웨어 장애가 전체 클러스터에 퍼지지 않아야 함",
+      "prompt_ko": "이 요구사항에 가장 적합한 배치 그룹은?",
+      "options": [
+        "파티션(Partition) 배치 그룹 — 여러 논리적 파티션으로 나눠 각각 다른 랙을 사용하게 해서, 훨씬 큰 규모에서도 하드웨어 장애 격리를 제공",
+        "스프레드 배치 그룹(AZ당 최대 7개 인스턴스로 제한되어 100개 노드에는 부적합)",
+        "클러스터 배치 그룹(물리적으로 밀집시켜서 오히려 장애 격리에 불리)",
+        "이런 대규모 요구사항에는 배치 그룹을 사용할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "파티션 배치 그룹은 스프레드보다 훨씬 큰 규모에서 하드웨어 장애 격리를 제공하도록 설계되었습니다.",
+      "concept_tags": ["partition_placement_group"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l3_u4_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "스프레드(Spread) 배치 그룹은 하나의 가용 영역(AZ)당 최대 몇 개의 인스턴스로 제한됩니까? (숫자만 입력)",
+      "expected_answers": ["7"],
+      "explanation_ko": "이 제한이 스프레드 배치 그룹을 '소수의 핵심 인스턴스'용으로 만드는 이유입니다.",
+      "concept_tags": ["spread_placement_group_limit"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l3_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "클러스터 배치 그룹이 여러 가용 영역(AZ)에 걸쳐 구성될 수 있습니까?",
+      "options": [
+        "아니다 — 클러스터 배치 그룹은 반드시 단일 AZ 안에서만 구성되며, 여러 AZ에 걸칠 수 없다",
+        "그렇다. 클러스터 배치 그룹은 항상 여러 AZ에 걸쳐 구성된다",
+        "클러스터 배치 그룹은 AZ 개념과 전혀 무관하다",
+        "클러스터 배치 그룹은 리전 전체에 걸쳐 구성된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "물리적 근접성이 목적이라, 클러스터 배치 그룹은 하나의 AZ 안으로 제한됩니다(스프레드·파티션은 여러 AZ에 걸칠 수 있음).",
+      "concept_tags": ["cluster_placement_group_single_az"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l3_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "세 가지 배치 그룹(클러스터, 스프레드, 파티션)이 공통적으로 다루는 근본적인 질문은?",
+      "options": [
+        "인스턴스들이 물리적 하드웨어(랙·전원·네트워크)에 어떻게 배치되는가 — 성능(가까이 모음)과 장애 격리(멀리 떨어뜨림)라는 상반된 목표 사이의 트레이드오프를 다룬다",
+        "배치 그룹은 인스턴스의 소프트웨어 설정과만 관련이 있다",
+        "배치 그룹은 비용에만 영향을 줄 뿐 성능·가용성과는 무관하다",
+        "세 배치 그룹은 서로 완전히 동일한 목적을 가진다"
+      ],
+      "answer": 0,
+      "explanation_ko": "'물리적 근접성'이라는 하나의 축을 성능 쪽으로(클러스터) 또는 격리 쪽으로(스프레드·파티션) 조정하는 것이 배치 그룹의 본질입니다.",
+      "concept_tags": ["placement_group_tradeoff"],
+      "difficulty": "challenge"
+    }
+  ]
+}

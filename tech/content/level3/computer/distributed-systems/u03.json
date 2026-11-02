@@ -1,0 +1,93 @@
+{
+ "no": 3,
+ "title": "시간과 순서",
+ "hours": 4,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "물리 시계의 차이와 시계 동기화(NTP)의 한계를 설명할 수 있다.",
+  "램포트 논리 시계로 사건의 순서를 매길 수 있다.",
+  "벡터 시계로 인과 관계와 동시 사건을 구분할 수 있다."
+ ],
+ "checklist": [
+  "시계 오차(드리프트)와 NTP",
+  "물리 시각으로 순서를 정할 때의 위험",
+  "사건 사이의 '먼저 일어남' 관계",
+  "램포트 시계: 보낼 때 +1, 받을 때 max(내 시계, 메시지 시계) + 1",
+  "벡터 시계와 동시 사건 판별",
+  "전체 순서와 인과적 순서",
+  "구글 TrueTime 같은 시각 불확실성 관리(개념)"
+ ],
+ "advice": [
+  "분산 시스템에는 모두가 믿는 하나의 시계가 없어서 '어느 쪽이 먼저인가'가 의외로 어려운 문제가 됩니다. 램포트 시계는 실제 시각 대신 '이 사건이 저 사건에 영향을 줄 수 있었는가'만 지키는 숫자를 매기는 영리한 방법입니다. 세 프로세스가 메시지를 주고받는 그림을 그리고 각 사건에 램포트 시계 값을 직접 붙여 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "O'Reilly",
+   "title": "Kleppmann, Designing Data-Intensive Applications (번역본 『데이터 중심 애플리케이션 설계』)",
+   "part": "The Trouble with Distributed Systems 장(시계)"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT 6.5840 (구 6.824, 공개 강의 자료)",
+   "title": "Distributed Systems",
+   "url": "https://pdos.csail.mit.edu/6.824/",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "램포트 시계가 4인 프로세스가 시계 값 7이 붙은 메시지를 받으면, 받은 사건의 시계 값은 얼마가 될까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "max(4, 7) + 1 = 8",
+   "hint": "max(내 시계, 메시지 시계) + 1입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "실제 시각 대신 사건의 인과 순서를 지키는 정수를 매기는 논리 시계를 {{1}} 시계라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "램포트",
+      "Lamport"
+     ]
+    }
+   ],
+   "explanation": "인과 관계가 없는 동시 사건까지 구분하려면 벡터 시계를 씁니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "인터넷을 통해 컴퓨터의 시계를 기준 시각에 맞추는 프로토콜을 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "NTP"
+     ]
+    }
+   ],
+   "explanation": "Network Time Protocol의 줄임말이며, 수 ms 정도의 오차가 남습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "distributed-systems",
+ "id": "l3-computer-distributed-systems-u03"
+}

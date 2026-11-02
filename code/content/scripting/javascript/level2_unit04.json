@@ -1,0 +1,91 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 2,
+  "unit": 4,
+  "unit_title": "for...of와 for...in",
+  "questions": [
+    {
+      "id": "javascript_l2_u04_q001",
+      "type": "predict_output",
+      "code": "const arr = [10, 20, 30];\nlet total = 0;\nfor (const val of arr) {\n    total += val;\n}\nconsole.log(total);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["30", "60", "3", "오류"],
+      "answer": 1,
+      "explanation_en": "for...of iterates over the values of an array directly; it sums 10+20+30=60.",
+      "explanation_ko": "for...of는 배열의 값을 직접 순회합니다. 10+20+30=60을 합산합니다.",
+      "concept_tags": ["for_of"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l2_u04_q002",
+      "type": "predict_output",
+      "code": "const arr = [10, 20, 30];\nfor (const idx in arr) {\n    console.log(idx);\n}",
+      "prompt_en": "What is printed? (Note: for...in on an array, not for...of.)",
+      "prompt_ko": "출력 결과는? (for...of가 아니라 배열에 대한 for...in인 점에 주의하세요.)",
+      "options": ["10\\n20\\n30", "0\\n1\\n2", "\"0\"\\n\"1\"\\n\"2\"", "오류"],
+      "answer": 1,
+      "explanation_en": "for...in iterates over the array's keys (indices), not values; it prints 0, 1, 2 — a common source of confusion with for...of.",
+      "explanation_ko": "for...in은 배열의 값이 아니라 키(인덱스)를 순회합니다. 0, 1, 2를 출력합니다 — for...of와 흔히 혼동되는 부분입니다.",
+      "concept_tags": ["for_in"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l2_u04_q003",
+      "type": "predict_output",
+      "code": "const person = { name: \"Kim\", age: 25 };\nfor (const key in person) {\n    console.log(key + \": \" + person[key]);\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["name: Kim\\nage: 25", "Kim\\n25", "key: person[key]", "오류"],
+      "answer": 0,
+      "explanation_en": "for...in on an object iterates over its keys (name, age); person[key] then looks up each corresponding value.",
+      "explanation_ko": "객체에 대한 for...in은 그 키(name, age)를 순회합니다. person[key]는 이후 각각에 해당하는 값을 조회합니다.",
+      "concept_tags": ["for_in"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l2_u04_q004",
+      "type": "fill_blank",
+      "code": "const fruits = [\"사과\", \"바나나\", \"체리\"];\nfor (____ fruit ____ fruits) {\n    console.log(fruit);\n}\n// 값(과일 이름) 자체를 순회해야 함",
+      "prompt_en": "Fill in the blanks to iterate over the array's values, not its indices.",
+      "prompt_ko": "배열의 인덱스가 아니라 값을 순회하도록 빈칸을 채우세요.",
+      "options": ["const / of", "const / in", "let / in", "var / of"],
+      "answer": 0,
+      "explanation_en": "for (const fruit of fruits) iterates directly over each value; of is the correct keyword for value-based iteration.",
+      "explanation_ko": "for (const fruit of fruits)는 각 값을 직접 순회합니다. of가 값 기반 순회에 올바른 키워드입니다.",
+      "concept_tags": ["for_of"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l2_u04_q005",
+      "type": "predict_output",
+      "code": "const arr = [10, 20, 30];\nfor (const i of arr) {\n    if (i === 20) {\n        break;\n    }\n    console.log(i);\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "10\\n20", "10\\n20\\n30", "오류"],
+      "answer": 0,
+      "explanation_en": "break works the same in for...of as in any other loop; it stops before printing 20, so only 10 is printed.",
+      "explanation_ko": "break는 for...of에서도 다른 반복문과 똑같이 동작합니다. 20을 출력하기 전에 멈춰서 10만 출력됩니다.",
+      "concept_tags": ["for_of", "break"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l2_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "for...of", "definition": "배열이나 다른 iterable의 값을 직접 순회 — for-each에 해당" },
+        { "term": "for...in", "definition": "객체의 키, 또는 배열의 인덱스를 순회" },
+        { "term": "배열에 for...in 사용 시 함정", "definition": "값이 아니라 문자열 형태의 인덱스가 나와 혼동을 일으키는 흔한 실수" },
+        { "term": "객체에 for...of를 못 쓰는 이유", "definition": "일반 객체는 기본적으로 iterable이 아니라서 for...of를 바로 쓸 수 없음" }
+      ],
+      "explanation_en": "The of/in naming is easy to mix up, but the rule is simple: of gives values (arrays, strings, and other iterables), in gives keys (object properties or array indices).",
+      "explanation_ko": "of/in 이름은 혼동하기 쉽지만 규칙은 간단합니다: of는 값(배열, 문자열 등 iterable)을, in은 키(객체 속성이나 배열 인덱스)를 줍니다.",
+      "concept_tags": ["for_of", "for_in"],
+      "difficulty": "practice"
+    }
+  ]
+}

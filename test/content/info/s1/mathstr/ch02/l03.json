@@ -1,0 +1,285 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "mathstr",
+  "work": "풀이",
+  "track_title": "수학·문자열",
+  "chapter": {
+    "id": "info-s1-mathstr-ch02",
+    "no": 2,
+    "title": "GCD와 모듈러 연산"
+  },
+  "lesson": {
+    "id": "info-s1-mathstr-ch02-l03",
+    "no": 3,
+    "title": "모듈러 연산",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "수학·문자열",
+      "GCD와 모듈러 연산"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "나머지만 들고 다니기",
+      "body": [
+        "답이 매우 큰 문제는 보통 '1000000007로 나눈 나머지'를 묻습니다. 덧셈·뺄셈·곱셈은 중간에 나머지를 취해도 최종 나머지가 같으므로, 계산할 때마다 % m을 해 값을 작게 유지합니다.",
+        "(a + b) mod m = ((a mod m) + (b mod m)) mod m, (a × b) mod m = ((a mod m) × (b mod m)) mod m입니다.",
+        "123456789 × 987654321을 1000으로 나눈 나머지는 끝 세 자리끼리 곱한 789 × 321 = 253269의 끝 세 자리 269입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "123456789 × 987654321을 1000으로 나눈 나머지는?",
+      "answer": "269",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "789 × 321의 끝 세 자리입니다.",
+      "explanation": "곱셈의 나머지는 각 수의 나머지끼리 곱한 뒤 다시 나머지를 취해도 같습니다.\n789 × 321 = 253269입니다.\n1000으로 나눈 나머지는 269입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "정수를 m으로 나눈 나머지만으로 계산하는 것을 {{1}} 연산이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "모듈러",
+            "modular",
+            "나머지"
+          ]
+        }
+      ],
+      "hint": "mod의 형용사형입니다.",
+      "explanation": "큰 수 대신 m으로 나눈 나머지만 들고 다니며 계산합니다.\n덧셈·뺄셈·곱셈은 이렇게 해도 결과의 나머지가 같습니다.\n이것을 모듈러 연산이라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "음수의 나머지",
+      "body": [
+        "C++의 %는 몫을 0 쪽으로 버리므로 음수에서 음의 나머지가 나옵니다. −7 % 3은 −1입니다(−7 = 3 × (−2) − 1).",
+        "나머지를 0 이상 m 미만으로 맞추려면 (x % m + m) % m을 씁니다. −7이면 (−1 + 3) % 3 = 2입니다.",
+        "뺄셈 (a − b) % m은 음수가 될 수 있으므로 특히 주의합니다. (5 − 8) mod 7은 4입니다."
+      ],
+      "code": "int x = -7, m = 3;\nint r1 = x % m;                    // C++에서는 몫을 0 쪽으로 버림\nint r2 = (x % m + m) % m;          // 항상 0 이상 m 미만으로 맞춘다"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "아래 코드에서 r1과 r2를 구하세요.",
+      "steps": [
+        "−7 = 3 × (−2) + (−1)이므로 C++에서 −7 % 3 = −1입니다.",
+        "r1 = −1입니다.",
+        "r2 = (−1 + 3) % 3 = 2입니다."
+      ],
+      "answer": "r1 = −1, r2 = 2",
+      "code": "int x = -7, m = 3;\nint r1 = x % m;                    // C++에서는 몫을 0 쪽으로 버림\nint r2 = (x % m + m) % m;          // 항상 0 이상 m 미만으로 맞춘다"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 r2는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(−1 + 3) % 3입니다.",
+      "explanation": "음수의 나머지를 0 이상 m 미만으로 맞추려면 m을 더한 뒤 다시 나머지를 취합니다.\nx % m = −1이므로 (−1 + 3) % 3입니다.\n= 2입니다.",
+      "code": "int x = -7, m = 3;\nint r1 = x % m;                    // C++에서는 몫을 0 쪽으로 버림\nint r2 = (x % m + m) % m;          // 항상 0 이상 m 미만으로 맞춘다"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 r1은?",
+      "answer": "-1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "C++은 몫을 0 쪽으로 버립니다.",
+      "explanation": "C++의 나눗셈은 몫을 0 쪽으로 버리므로 −7 / 3 = −2입니다.\n나머지는 −7 − 3 × (−2) = −1입니다.\n그래서 r1 = −1입니다.",
+      "code": "int x = -7, m = 3;\nint r1 = x % m;                    // C++에서는 몫을 0 쪽으로 버림\nint r2 = (x % m + m) % m;          // 항상 0 이상 m 미만으로 맞춘다"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "주기 찾기",
+      "body": [
+        "거듭제곱의 나머지는 주기를 가집니다. 7의 거듭제곱의 일의 자리는 7, 9, 3, 1, 7, 9, …로 4마다 되풀이되므로 7¹⁰⁰의 일의 자리는 100 mod 4 = 0에 해당하는 1입니다.",
+        "시계나 요일 같은 순환도 모듈러 연산입니다. 12시간 시계에서 3시부터 100시간 뒤는 (3 + 100) mod 12 = 7시입니다.",
+        "오늘이 0번 요일이면 100일 뒤는 100 mod 7 = 2번 요일입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "7¹⁰⁰의 일의 자리 숫자는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "일의 자리는 7, 9, 3, 1을 되풀이합니다.",
+      "explanation": "7의 거듭제곱의 일의 자리는 7, 9, 3, 1로 4마다 되풀이합니다.\n100 mod 4 = 0이므로 네 번째인 1에 해당합니다.\n그래서 1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "12시간 시계에서 3시부터 100시간 뒤는 몇 시인가요?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(3 + 100) mod 12입니다.",
+      "explanation": "시계는 12시간마다 되풀이하므로 시각은 12로 나눈 나머지로 셉니다.\n(3 + 100) mod 12 = 103 mod 12입니다.\n= 7이므로 7시입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "합을 나머지로",
+      "body": [
+        "1부터 100까지의 합 5050을 7로 나눈 나머지는 3입니다. 수를 하나씩 더하며 매번 % 7을 해도 같은 결과가 나옵니다.",
+        "뺄셈도 (5 − 8) mod 7 = −3 mod 7 = 4처럼 음수를 맞춰 주면 됩니다.",
+        "나눗셈은 이 성질이 성립하지 않아, 나머지끼리 나누면 틀립니다. 나눗셈이 필요하면 S2에서 배우는 모듈러 역원을 씁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1부터 100까지의 합을 7로 나눈 나머지는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "5050 mod 7입니다.",
+      "explanation": "1부터 100까지의 합은 100 × 101/2 = 5050입니다.\n5050 = 7 × 721 + 3입니다.\n그래서 나머지는 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "(5 − 8)을 7로 나눈 나머지를 0 이상 7 미만으로 나타내면?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "−3 + 7입니다.",
+      "explanation": "뺄셈의 결과가 음수이면 m을 더해 0 이상 m 미만으로 맞춥니다.\n5 − 8 = −3이고 −3 + 7 = 4입니다.\n그래서 4입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "덧셈·뺄셈·곱셈은 중간에 나머지를 취해도 최종 나머지가 같으므로, 큰 답은 매 단계 % m으로 작게 유지합니다.",
+        "C++의 %는 음수에서 음의 나머지를 내므로 (x % m + m) % m으로 맞춥니다.",
+        "거듭제곱의 나머지, 시계, 요일처럼 되풀이되는 것은 주기를 찾아 나머지로 계산합니다. 나눗셈은 그대로 할 수 없습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "3¹⁰⁰의 일의 자리 숫자는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "일의 자리는 3, 9, 7, 1을 되풀이합니다.",
+      "explanation": "3의 거듭제곱의 일의 자리는 3, 9, 7, 1로 4마다 되풀이합니다.\n100 mod 4 = 0이므로 네 번째인 1에 해당합니다.\n그래서 1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "오늘이 0번 요일(0~6)일 때 100일 뒤는 몇 번 요일인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "100 mod 7입니다.",
+      "explanation": "요일은 7일마다 되풀이하므로 날수를 7로 나눈 나머지만큼 나아갑니다.\n100 = 7 × 14 + 2입니다.\n그래서 2번 요일입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "곱셈에서 중간에 나머지를 취해도 최종 나머지가 같은 이유를 설명하세요.",
+      "model_answer": [
+        "a = mq₁ + r₁, b = mq₂ + r₂(r₁, r₂는 나머지)로 쓴다.",
+        "a × b = m²q₁q₂ + m(q₁r₂ + q₂r₁) + r₁r₂이다.",
+        "앞의 두 항은 m의 배수이므로 a × b를 m으로 나눈 나머지는 r₁r₂를 m으로 나눈 나머지와 같다.",
+        "그래서 (a × b) mod m = ((a mod m) × (b mod m)) mod m이다."
+      ],
+      "criteria": [
+        {
+          "text": "a, b를 몫과 나머지로 썼다",
+          "points": 2
+        },
+        {
+          "text": "곱을 전개했다",
+          "points": 2
+        },
+        {
+          "text": "m의 배수를 버려 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "a × b를 전개해 보세요."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "C++에서 음수의 나머지를 0 이상 m 미만으로 맞추는 방법과 그 이유를 설명하세요.",
+      "model_answer": [
+        "C++의 나눗셈은 몫을 0 쪽으로 버리므로 x가 음수이면 x % m이 −(m − 1)부터 0 사이의 음수가 될 수 있다.",
+        "x % m에 m을 더하면 1부터 2m − 1 사이의 양수가 된다(0이었다면 m).",
+        "여기에 다시 % m을 하면 0 이상 m 미만이 된다.",
+        "m을 더해도 나머지의 의미(m으로 나눈 나머지)는 바뀌지 않으므로 (x % m + m) % m을 쓴다."
+      ],
+      "criteria": [
+        {
+          "text": "음수 나머지가 생기는 이유를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "m을 더한 뒤 다시 나머지를 취함을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "값의 의미가 같음을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "−7 % 3을 예로 따라가 보세요."
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+ "no": 4,
+ "title": "동기화",
+ "hours": 6,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "경쟁 조건과 임계 구역 문제의 세 가지 요구 조건을 설명할 수 있다.",
+  "뮤텍스·세마포어·모니터로 상호 배제를 구현하는 원리를 설명할 수 있다.",
+  "생산자–소비자, 읽기–쓰기 문제를 세마포어로 풀 수 있다."
+ ],
+ "checklist": [
+  "경쟁 조건(레벨1 컴퓨터 챕터 6)",
+  "임계 구역의 조건: 상호 배제, 진행, 한정 대기",
+  "하드웨어 지원: 원자적 명령어(test-and-set, compare-and-swap)",
+  "뮤텍스(잠금)와 스핀락",
+  "세마포어: wait(P)·signal(V), 계수·이진 세마포어",
+  "모니터와 조건 변수",
+  "고전 문제: 생산자–소비자(유한 버퍼), 읽기–쓰기, 식사하는 철학자"
+ ],
+ "advice": [
+  "동기화는 운영체제에서 가장 어렵고 가장 중요한 주제입니다. count++ 한 줄이 실제로는 '읽기–더하기–쓰기' 세 단계라서 두 스레드가 끼어들면 값이 사라진다는 예를 먼저 정확히 이해하세요. 그다음 세마포어의 wait와 signal을 '빈자리 세기'로 생각하면 생산자–소비자 문제의 풀이가 자연스럽게 나옵니다.",
+  "잠금을 너무 넓게 걸면 느려지고, 너무 좁게 걸면 경쟁 조건이 남고, 순서를 잘못 잡으면 다음 단원의 교착 상태가 생깁니다. 이 세 가지 실패를 각각 하나씩 예로 만들어 보는 것이 이해를 굳히는 데 좋습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Arpaci-Dusseau (무료 공개 교재)",
+   "title": "Operating Systems: Three Easy Pieces",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "lang": "영어",
+   "part": "Locks, Condition Variables, Semaphores 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Silberschatz · Galvin · Gagne, Operating System Concepts (번역본 『운영체제』, 장 제목으로 표기)",
+   "part": "Synchronization Tools, Synchronization Examples 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 6 운영체제의 역할",
+   "url": "browse.html?c=c4#ch06",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "초기값 3인 계수 세마포어로 보호하는 자원에는 최대 몇 개의 프로세스가 동시에 들어갈 수 있을까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "세마포어 초기값만큼 동시에 들어갈 수 있습니다.",
+   "hint": "초기값이 허용 개수입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "여러 프로세스가 공유 데이터를 고치는 코드 부분으로, 한 번에 하나만 실행해야 하는 구간을 {{1}} 구역이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "임계"
+     ]
+    }
+   ],
+   "explanation": "임계 구역 해결책은 상호 배제, 진행, 한정 대기를 만족해야 합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "임계 구역 문제의 첫째 조건으로, 한 프로세스가 임계 구역에 있으면 다른 프로세스는 들어갈 수 없다는 조건을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "상호 배제",
+      "상호배제"
+     ]
+    }
+   ],
+   "explanation": "나머지 두 조건은 진행과 한정 대기입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "유한 버퍼에 데이터를 넣는 쪽과 꺼내는 쪽이 버퍼가 가득 차거나 빌 때 기다리도록 하는 고전 동기화 문제를 생산자–{{1}} 문제라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "소비자"
+     ]
+    }
+   ],
+   "explanation": "빈 칸 수, 찬 칸 수, 상호 배제용 세마포어 세 개로 풉니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "operating-systems",
+ "id": "l2-computer-operating-systems-u04"
+}

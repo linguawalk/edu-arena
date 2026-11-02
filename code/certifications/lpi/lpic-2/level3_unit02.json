@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-2-202",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "Apache 가상 호스트",
+  "rule_summary_ko": "Debian/Ubuntu 계열의 Apache는 sites-available(정의된 모든 사이트 설정 파일 보관)과 sites-enabled(실제로 활성화된 사이트만) 두 디렉터리를 구분합니다. a2ensite는 sites-available의 설정 파일을 가리키는 심볼릭 링크를 sites-enabled 안에 만들어서 활성화하고, a2dissite는 그 링크를 제거해서 비활성화합니다(원본 설정 파일 자체는 삭제되지 않음). apache2ctl configtest(또는 apachectl -t)는 실제 서버를 재시작하지 않고도 설정 문법을 미리 검사하며, 문법 오류(예: 닫는 태그 누락)는 'Syntax error'로 검사가 실패하지만, DocumentRoot 디렉터리 부재 같은 경고는 'Syntax OK'로 통과하면서 별도로 표시됩니다.",
+  "examples": [
+    { "code": "a2ensite mysite.conf\nls -la sites-enabled/\n결과: mysite.conf -> ../sites-available/mysite.conf", "note_ko": "a2ensite는 실제로 파일을 복사하는 게 아니라 심볼릭 링크를 만드는 것" },
+    { "code": "<VirtualHost *:80>\n    ...\n(닫는 태그 </VirtualHost> 누락)\napache2ctl configtest", "note_ko": "결과: \"Syntax error ... <VirtualHost> was not closed\" — 반환 코드 1로 실패" }
+  ],
+  "questions": [
+    {
+      "id": "lpic2_l3_u2_q001",
+      "type": "concept_matching_item",
+      "code": "a2ensite mysite.conf\nls -la /etc/apache2/sites-enabled/\n결과: mysite.conf -> ../sites-available/mysite.conf",
+      "prompt_ko": "a2ensite가 실제로 수행하는 작업은?",
+      "options": [
+        "sites-available의 설정 파일을 sites-enabled 안에 그 파일을 가리키는 심볼릭 링크로 만든다(파일을 복사하지 않음)",
+        "설정 파일을 sites-available에서 sites-enabled로 완전히 이동(삭제 후 재생성)시킨다",
+        "설정 파일의 내용을 새로 작성한다",
+        "Apache 서비스를 즉시 재시작시킨다"
+      ],
+      "answer": 0,
+      "explanation_ko": "심볼릭 링크 방식이라, 원본은 sites-available에 그대로 남고 sites-enabled에는 링크만 생깁니다.",
+      "concept_tags": ["a2ensite_symlink"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic2_l3_u2_q002",
+      "type": "concept_matching_item",
+      "code": "<VirtualHost *:80>\n    ServerName broken.example.com\n    DocumentRoot /var/www/broken\n(닫는 태그 </VirtualHost> 누락)\napache2ctl configtest",
+      "prompt_ko": "이 결과는?",
+      "options": [
+        "\"Syntax error ... <VirtualHost> was not closed\"라는 명확한 오류와 함께 검사가 실패한다",
+        "\"Syntax OK\"로 정상 통과된다",
+        "아무 메시지도 없이 조용히 성공한다",
+        "Apache가 자동으로 닫는 태그를 추가해준다"
+      ],
+      "answer": 0,
+      "explanation_ko": "닫히지 않은 태그는 문법 자체가 깨진 것이라, 명확한 오류로 검사가 실패합니다.",
+      "concept_tags": ["apache_syntax_error"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l3_u2_q003",
+      "type": "concept_matching_item",
+      "code": "<VirtualHost *:80>\n    ServerName mysite.example.com\n    DocumentRoot /var/www/mysite   (이 디렉터리가 실제로 존재하지 않음)\n</VirtualHost>\napache2ctl configtest",
+      "prompt_ko": "DocumentRoot 디렉터리가 실제로 존재하지 않을 때 configtest 결과는?",
+      "options": [
+        "\"Syntax OK\"로 통과하되, DocumentRoot가 존재하지 않는다는 경고(Warning)를 별도로 표시한다 — 문법 자체는 유효하기 때문",
+        "\"Syntax error\"로 검사 자체가 실패한다(닫는 태그 누락과 동일하게 취급됨)",
+        "아무 메시지도 표시되지 않는다",
+        "이 문제는 configtest로 감지할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "문법(구조)이 맞으면 통과하고, 실제 파일시스템 문제는 경고로 별도 표시되는 것이 핵심 차이입니다.",
+      "concept_tags": ["apache_warning_vs_error"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic2_l3_u2_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "Apache 사이트를 비활성화(sites-enabled에서 심볼릭 링크 제거)하는 명령어는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["a2dissite"],
+      "explanation_ko": "a2dissite는 a2ensite의 반대 동작을 수행하며, 원본 설정 파일은 sites-available에 그대로 남습니다.",
+      "concept_tags": ["a2dissite"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic2_l3_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "설정을 바꾼 뒤, Apache 서비스를 즉시 재시작하지 않고 먼저 apache2ctl configtest를 실행하는 것이 좋은 습관인 이유는?",
+      "options": [
+        "잘못된 설정으로 서비스를 재시작하면 웹서버 전체가 시작 실패로 다운될 수 있는데, 이를 미리 방지할 수 있기 때문에",
+        "configtest는 설정 검사와 아무 관련이 없다",
+        "재시작 전 검사는 오히려 시간 낭비일 뿐이다",
+        "configtest를 실행하면 자동으로 서비스가 재시작된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "프로덕션 서비스에서 다운타임을 방지하는 표준적인 안전 절차입니다.",
+      "concept_tags": ["configtest_before_restart"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l3_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "sites-available과 sites-enabled를 분리하는 설계가 주는 이점은?",
+      "options": [
+        "여러 사이트 설정을 미리 준비해두고, 실제로 서비스할 사이트만 심볼릭 링크로 간단히 켜고 끌 수 있어 관리가 용이하다",
+        "이 분리는 실질적인 이점이 없는 불필요한 복잡함이다",
+        "sites-available에 있는 파일은 절대 활성화할 수 없다",
+        "이 구조는 오직 Apache에서만 존재하고 다른 웹서버는 사용하지 않는 독자적인 방식이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "설정을 준비하는 것과 실제로 켜는 것을 분리해서, 안전하고 유연하게 사이트를 관리할 수 있게 해줍니다.",
+      "concept_tags": ["sites_available_enabled_design"],
+      "difficulty": "practice"
+    }
+  ]
+}

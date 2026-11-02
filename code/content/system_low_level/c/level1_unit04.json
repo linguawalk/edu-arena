@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 1,
+  "unit": 4,
+  "unit_title": "구조체와 동적 메모리",
+  "questions": [
+    {
+      "id": "c_l1_u04_q001",
+      "type": "predict_output",
+      "code": "struct Point {\n    int x;\n    int y;\n};\n\nstruct Point p = {3, 4};\nprintf(\"%d\", p.x);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "4", "x", "오류"],
+      "answer": 0,
+      "explanation_en": "The dot operator accesses a struct's member; p.x refers to the x field, which was initialized to 3.",
+      "explanation_ko": "점(.) 연산자는 구조체의 멤버에 접근합니다. p.x는 3으로 초기화된 x 필드를 가리킵니다.",
+      "concept_tags": ["struct", "member_access"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l1_u04_q002",
+      "type": "fill_blank",
+      "code": "struct Point {\n    int x;\n    int y;\n};\n\nstruct Point p = {3, 4};\nprintf(\"%d\", p.____);  // 4가 출력되어야 함",
+      "prompt_en": "Fill in the blank so that 4 is printed.",
+      "prompt_ko": "4가 출력되도록 빈칸에 들어갈 필드 이름은?",
+      "options": ["x", "y", "z", "point"],
+      "answer": 1,
+      "explanation_en": "p was initialized as {3, 4}, so x is 3 and y is 4; accessing p.y prints 4.",
+      "explanation_ko": "p는 {3, 4}로 초기화되었으므로 x는 3, y는 4입니다. p.y에 접근하면 4가 출력됩니다.",
+      "concept_tags": ["struct", "member_access"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l1_u04_q003",
+      "type": "predict_output",
+      "code": "int *arr = malloc(3 * sizeof(int));\narr[0] = 10;\narr[1] = 20;\narr[2] = 30;\nprintf(\"%d\", arr[1]);\nfree(arr);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "20", "30", "오류"],
+      "answer": 1,
+      "explanation_en": "malloc allocates space for 3 integers on the heap; arr[1] refers to the second element, which was set to 20.",
+      "explanation_ko": "malloc은 힙 메모리에 정수 3개가 들어갈 공간을 할당합니다. arr[1]은 두 번째 요소로, 20이 저장되어 있습니다.",
+      "concept_tags": ["dynamic_memory", "malloc"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l1_u04_q004",
+      "type": "error_finding",
+      "code": "void process() {\n    int *data = malloc(sizeof(int) * 100);\n    data[0] = 1;\n}\n\nint main() {\n    process();\n    return 0;\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "malloc 사용법 자체가 잘못됨",
+        "할당한 메모리를 free()로 해제하지 않아 메모리 누수(memory leak)가 발생함",
+        "data[0]에 값을 저장하는 문법이 틀림",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "The memory allocated by malloc is never freed before process() ends, so that memory becomes unreachable and leaked for the rest of the program's run.",
+      "explanation_ko": "malloc으로 할당한 메모리를 process()가 끝나기 전에 free()로 해제하지 않았습니다. 함수가 끝나면 data라는 포인터 자체는 사라지지만 할당된 메모리는 그대로 남아, 프로그램이 실행되는 동안 회수할 수 없는 메모리 누수가 됩니다.",
+      "concept_tags": ["dynamic_memory", "memory_leak", "free"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l1_u04_q005",
+      "type": "fill_blank",
+      "code": "struct Point {\n    int x;\n    int y;\n};\n\nstruct Point p = {3, 4};\nstruct Point *ptr = &p;\nprintf(\"%d\", ptr____x);",
+      "prompt_en": "Fill in the blank with the operator used to access a struct member through a pointer.",
+      "prompt_ko": "포인터를 통해 구조체 멤버에 접근할 때 쓰는 연산자를 빈칸에 채우세요.",
+      "options": ["->", ".", "*", "&"],
+      "answer": 0,
+      "explanation_en": "When accessing a struct member via a pointer, the arrow operator (->) is used instead of the dot operator.",
+      "explanation_ko": "포인터를 통해 구조체 멤버에 접근할 때는 점(.) 대신 화살표 연산자(->)를 사용합니다. ptr->x는 (*ptr).x와 같은 의미입니다.",
+      "concept_tags": ["struct", "pointer", "arrow_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l1_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "구조체 (struct)", "definition": "서로 다른 자료형의 데이터를 하나로 묶는 사용자 정의 자료형" },
+        { "term": "malloc", "definition": "힙 메모리에 지정한 크기만큼 공간을 동적으로 할당하는 함수" },
+        { "term": "free", "definition": "malloc으로 할당한 메모리를 명시적으로 반납하는 함수" },
+        { "term": "-> (화살표 연산자)", "definition": "포인터를 통해 구조체 멤버에 접근하는 연산자" }
+      ],
+      "explanation_en": "These four concepts extend beyond what the foundation stage covers, forming the basis for C's approach to organizing and managing memory manually.",
+      "explanation_ko": "이 네 가지 개념은 기초 1단계에서 다루지 않은 부분으로, C가 데이터를 조직하고 메모리를 직접 관리하는 방식의 기반이 됩니다.",
+      "concept_tags": ["struct", "dynamic_memory", "malloc", "free"],
+      "difficulty": "practice"
+    }
+  ]
+}

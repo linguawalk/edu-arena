@@ -1,0 +1,98 @@
+{
+ "no": 3,
+ "title": "시간 응답과 정상 상태 오차",
+ "hours": 7,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "1차·2차 시스템의 계단 응답을 시정수, 감쇠비, 고유 진동수로 설명할 수 있다.",
+  "오버슈트, 피크 시간, 정착 시간을 계산할 수 있다.",
+  "시스템의 형(type)과 오차 상수로 정상 상태 오차를 구할 수 있다."
+ ],
+ "checklist": [
+  "1차 시스템: 시정수 τ에서 최종값의 63.2%",
+  "2차 표준형 ω_n²/(s² + 2ζω_n s + ω_n²): 감쇠비 ζ, 고유 진동수 ω_n",
+  "부족 감쇠(0 < ζ < 1), 임계 감쇠(ζ = 1), 과감쇠(ζ > 1)",
+  "최대 오버슈트 = exp(−πζ/√(1 − ζ²))",
+  "피크 시간 t_p = π/(ω_n√(1 − ζ²)), 정착 시간 t_s ≈ 4/(ζω_n) (2% 기준)",
+  "시스템의 형 = 개루프의 원점 극점 수",
+  "정상 상태 오차: 계단 1/(1 + K_p), 경사 1/K_v, 포물선 1/K_a"
+ ],
+ "advice": [
+  "이 단원의 공식들은 모두 2차 시스템의 극점 위치 하나에서 나옵니다. 극점의 실수부(−ζω_n)가 정착 시간을, 허수부와 실수부의 비(감쇠비)가 오버슈트를 정한다는 그림을 s평면에 그려 두면, 공식을 외우지 않아도 '극점을 왼쪽으로 옮기면 빨리 안정된다'는 설계 감각이 생깁니다. 정상 상태 오차는 형과 입력의 짝을 표로 만들어 '0형은 계단에 유한 오차, 1형은 계단에 오차 0'처럼 정리하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Ogata, Modern Control Engineering (번역본 『현대제어공학』, 장 제목으로 표기)",
+   "part": "Transient and Steady-State Response Analyses 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Nise, Control Systems Engineering (장 제목으로 표기)",
+   "part": "Time Response, Steady-State Errors 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "16.06 Principles of Automatic Control (2012년 가을)",
+   "url": "https://ocw.mit.edu/courses/16-06-principles-of-automatic-control-fall-2012/",
+   "lang": "영어",
+   "part": "second-order systems, steady-state error 관련 강의 노트"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "회로이론 7단원 2차 회로(RLC)의 과도 응답",
+   "url": "guide.html?lv=2&t=electrical&s=circuit-theory&u=7",
+   "part": "감쇠비 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "T(s) = 25/(s² + 6s + 25)의 단위 계단 응답에서 최대 오버슈트는 약 몇 %일까요?",
+   "answer": "9.5",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "ω_n = 5, 2ζω_n = 6이므로 ζ = 0.6\nexp(−π × 0.6/0.8) ≈ 0.0948 → 약 9.5%",
+   "hint": "먼저 ω_n과 ζ를 구하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "같은 시스템의 2% 기준 정착 시간은 약 몇 초일까요?",
+   "answer": "1.33",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "t_s ≈ 4/(ζω_n) = 4/(0.6 × 5) ≈ 1.33 s",
+   "hint": "t_s ≈ 4/(ζω_n)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "위치 오차 상수 K_p = 9인 0형 단위 부궤환 시스템에 단위 계단을 넣으면 정상 상태 오차는 얼마일까요?",
+   "answer": "0.1",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "e_ss = 1/(1 + K_p) = 1/10 = 0.1",
+   "hint": "e_ss = 1/(1 + K_p)입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "control",
+ "id": "l3-electrical-control-u03"
+}

@@ -1,0 +1,108 @@
+{
+ "no": 3,
+ "title": "급전선과 임피던스 정합",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "전송선로의 특성 임피던스와 반사 계수를 계산할 수 있다.",
+  "VSWR과 반사 손실(return loss)을 계산하고 해석할 수 있다.",
+  "임피던스 정합의 필요성과 대표 정합 방법을 설명할 수 있다."
+ ],
+ "checklist": [
+  "급전선: 동축 케이블(50 Ω, 75 Ω), 도파관, 마이크로스트립",
+  "반사 계수 Γ = (Z_L − Z₀)/(Z_L + Z₀)",
+  "VSWR = (1 + |Γ|)/(1 − |Γ|)",
+  "반사 손실 RL = −20 log₁₀|Γ| [dB]",
+  "부정합 손실: 반사 전력 비율 |Γ|²",
+  "λ/4 변환기, 스텁 정합, L형 정합 회로",
+  "스미스 차트(소개)"
+ ],
+ "advice": [
+  "급전선 단원은 레벨2 전력공학 기초의 진행파 반사와 같은 식을 고주파에 적용한 것입니다. 부하가 선로와 맞지 않으면 전력이 되돌아오고, 그 정도를 반사 계수, VSWR, 반사 손실 세 가지로 표현한다는 점을 정리하고, 같은 부정합을 세 숫자로 각각 바꿔 보는 연습을 하세요. VSWR 1.5, 반사 손실 14 dB 정도가 실무에서 흔히 보는 기준값입니다.",
+  "스미스 차트는 처음에는 낯설지만, 정합 회로를 설계할 때 계산을 그림으로 바꿔 주는 강력한 도구입니다. 레벨2에서는 차트의 중심이 완전 정합, 바깥 원이 전반사라는 의미만 이해하고, 자세한 사용법은 RF 설계를 깊이 공부할 때 익히면 됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Pozar, Microwave Engineering (장 제목으로 표기)",
+   "part": "Transmission Line Theory, Impedance Matching and Tuning 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Balanis, Antenna Theory: Analysis and Design (장 제목으로 표기)",
+   "part": "임피던스 정합 관련 절"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "전력공학 기초 7단원 이상 전압과 보호 장치(진행파 반사)",
+   "url": "guide.html?lv=2&t=electrical&s=power-basics&u=7"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "특성 임피던스 50 Ω인 선로에 75 Ω 부하를 연결하면 반사 계수의 크기는 얼마일까요?",
+   "answer": "0.2",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "Γ = (75 − 50)/(75 + 50) = 0.2",
+   "hint": "(Z_L − Z₀)/(Z_L + Z₀)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 경우의 VSWR은 얼마일까요?",
+   "answer": "1.5",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "VSWR = (1 + 0.2)/(1 − 0.2) = 1.5",
+   "hint": "(1 + |Γ|)/(1 − |Γ|)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "위 경우의 반사 손실(return loss)은 약 몇 dB일까요?",
+   "answer": "14",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "explanation": "RL = −20 log₁₀0.2 ≈ 13.98 dB",
+   "hint": "−20 log₁₀|Γ|입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "선로와 부하 사이에 길이 λ/4, 특성 임피던스 √(Z₀Z_L)인 선로를 넣어 정합시키는 방법을 λ/4 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "변환기",
+      "임피던스 변환기",
+      "트랜스포머"
+     ]
+    }
+   ],
+   "explanation": "단일 주파수에서 실수 부하를 정합할 때 간단하게 씁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "ict",
+ "subject": "wireless",
+ "id": "l2-ict-wireless-u03"
+}

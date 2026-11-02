@@ -1,0 +1,261 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "mathstr",
+  "work": "풀이",
+  "track_title": "수학·문자열",
+  "chapter": {
+    "id": "info-s2-mathstr-ch02",
+    "no": 2,
+    "title": "KMP"
+  },
+  "lesson": {
+    "id": "info-s2-mathstr-ch02-l04",
+    "no": 4,
+    "title": "실패 함수 활용",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "수학·문자열",
+      "KMP"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "가장 짧은 주기",
+      "body": [
+        "길이 m인 문자열 s에서 s[i] = s[i + k]가 모든 i에 대해 성립하면 k를 주기라 합니다. \"abcabcab\"는 주기 3을 가집니다.",
+        "가장 짧은 주기는 m − pi[m − 1]입니다. 길이 L인 경계가 있다는 것은 s를 m − L칸 밀어도 겹치는 부분이 같다는 뜻이기 때문입니다. 가장 긴 경계일수록 주기가 짧습니다.",
+        "m이 주기 k로 나누어떨어지면 s는 길이 k인 문자열을 m/k번 반복한 것입니다. 예를 들어 \"abcabcabc\"는 \"abc\"를 3번 반복한 것입니다."
+      ],
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "\"abcabcab\"(pi[7] = 5)의 가장 짧은 주기는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "m − pi[m − 1]입니다.",
+      "explanation": "가장 짧은 주기는 m − pi[m − 1]입니다.\nm = 8, pi[7] = 5입니다.\n8 − 5 = 3입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "\"ABABABA\"의 가장 짧은 주기는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "pi[6]을 먼저 구하세요.",
+      "explanation": "\"ABABABA\"의 가장 긴 경계는 \"ABABA\"라 pi[6] = 5입니다.\n가장 짧은 주기는 m − pi[m − 1] = 7 − 5입니다.\n= 2입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "반복 문자열 판정",
+      "body": [
+        "문자열 s가 어떤 문자열 u를 k번(k ≥ 2) 이어 붙인 것인지 알아보려면, 주기 p = m − pi[m − 1]을 구하고 m이 p로 나누어떨어지는지 봅니다. 나누어떨어지면 s는 s[0..p − 1]을 m/p번 반복한 것이고, 이것이 가장 많이 반복한 표현입니다.",
+        "나누어떨어지지 않으면 s는 반복 문자열이 아닙니다. 예를 들어 \"abcabcab\"는 주기 3이지만 8이 3으로 나누어떨어지지 않아 반복 문자열이 아닙니다.",
+        "pi를 한 번 구하면 O(m)에 판정합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "\"ABCABCABC\"가 몇 번 반복한 문자열인지 구하세요.",
+      "steps": [
+        "pi[8] = 6이므로 가장 짧은 주기는 9 − 6 = 3입니다.",
+        "9가 3으로 나누어떨어집니다.",
+        "그래서 \"ABC\"를 9/3 = 3번 반복한 문자열입니다."
+      ],
+      "answer": "3번",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "\"ABABABAB\"는 길이 2인 문자열을 몇 번 반복한 것인가요? (pi[7] = 6)",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "주기는 8 − 6입니다.",
+      "explanation": "가장 짧은 주기는 m − pi[m − 1] = 8 − 6 = 2입니다.\n8이 2로 나누어떨어지므로 \"AB\"를 반복한 문자열입니다.\n8/2 = 4번입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "\"AABAAB\"의 가장 짧은 주기는? (pi[5] = 3)",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "m − pi[m − 1]입니다.",
+      "explanation": "가장 짧은 주기는 m − pi[m − 1]입니다.\nm = 6, pi[5] = 3입니다.\n6 − 3 = 3이고, 6이 3으로 나누어떨어져 \"AAB\"를 2번 반복한 것입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "패턴 + 구분자 + 텍스트",
+      "body": [
+        "패턴 p와 텍스트 t 사이에 두 문자열에 없는 글자 #을 넣어 s = p + \"#\" + t를 만들고 s의 실패 함수를 구하면, t 부분에서 pi 값이 m이 되는 곳이 패턴이 끝나는 위치입니다.",
+        "#이 있어 경계가 m보다 길어질 수 없으므로 pi 값이 m이면 그 앞 m글자가 정확히 p입니다. 매칭 코드를 따로 짜지 않고 실패 함수 하나로 해결하는 방법입니다.",
+        "전체 길이가 n + m + 1이므로 O(n + m)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "p = \"AB\", t = \"ABAB\"로 s = \"AB#ABAB\"를 만들 때, s의 pi 값 가운데 2인 것은 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "t 부분에서 \"AB\"가 끝나는 곳을 세세요.",
+      "explanation": "s = A, B, #, A, B, A, B의 pi는 0, 0, 0, 1, 2, 1, 2입니다.\npi 값이 m = 2인 곳은 t 안에서 \"AB\"가 끝나는 두 곳입니다.\n그래서 2개이며 p는 t에 두 번 나타납니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "문자열이 어떤 문자열의 반복인지 판정할 때, 길이 12인 문자열의 pi[11]이 8이면 판정 결과로 알맞은 것은? ① 길이 4인 문자열을 3번 반복한 것이다 ② 길이 8인 문자열을 반복한 것이다 ③ 반복 문자열이 아니다 ④ 길이 3인 문자열을 4번 반복한 것이다",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "주기는 12 − 8입니다.",
+      "explanation": "가장 짧은 주기는 12 − 8 = 4입니다.\n12가 4로 나누어떨어지므로 길이 4인 문자열을 12/4 = 3번 반복한 것입니다.\n답은 1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "\"abcabcab\"는 어떤 문자열을 정확히 여러 번(2번 이상) 이어 붙인 것인가요? 그렇다면 반복 횟수를, 아니면 0을 쓰세요. (pi[7] = 5)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "주기 3으로 길이 8이 나누어떨어지나요?",
+      "explanation": "가장 짧은 주기는 8 − 5 = 3입니다.\n8은 3으로 나누어떨어지지 않으므로 반복 문자열이 아닙니다.\n그래서 0입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "가장 짧은 주기는 m − pi[m − 1]이고, m이 이 값으로 나누어떨어지면 문자열은 그 길이의 문자열을 반복한 것입니다.",
+        "모든 경계는 pi[m − 1], pi[pi[m − 1] − 1], …의 사슬로 차례로 구할 수 있습니다.",
+        "p + \"#\" + t의 실패 함수에서 값이 m인 곳을 찾으면 매칭 코드 없이도 패턴을 찾을 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "\"AAAA\"의 가장 짧은 주기는? (pi[3] = 3)",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "m − pi[m − 1]입니다.",
+      "explanation": "가장 짧은 주기는 m − pi[m − 1]입니다.\nm = 4, pi[3] = 3입니다.\n4 − 3 = 1이고, \"A\"를 4번 반복한 것입니다.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "\"ABCDE\"의 가장 짧은 주기는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "pi[4]는 0입니다.",
+      "explanation": "\"ABCDE\"는 경계가 없어 pi[4] = 0입니다.\n가장 짧은 주기는 5 − 0입니다.\n= 5로, 문자열 자신의 길이입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "문자열 s(길이 m)에 길이 L인 경계가 있으면 m − L이 s의 주기임을 증명하세요.",
+      "model_answer": [
+        "길이 L인 경계가 있다는 것은 s[0..L − 1] = s[m − L..m − 1]이라는 뜻이다.",
+        "k = m − L이라 두면, 0 ≤ i < L인 모든 i에 대해 s[i] = s[i + k]이다.",
+        "i + k ≤ m − 1인 i는 정확히 0 ≤ i < L이므로, 비교할 수 있는 모든 자리에서 s[i] = s[i + k]가 성립한다.",
+        "그래서 k = m − L은 s의 주기이고, L이 가장 클 때 주기가 가장 짧다."
+      ],
+      "criteria": [
+        {
+          "text": "경계를 식으로 썼다",
+          "points": 2
+        },
+        {
+          "text": "s[i] = s[i + k]를 이끌었다",
+          "points": 2
+        },
+        {
+          "text": "모든 자리에서 성립함과 최소 주기를 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "경계 조건을 첨자로 써 보세요.",
+      "code": "// pi[i]: p[0..i]의 접두사이면서 접미사인 것(자기 자신 제외) 중 가장 긴 길이\nvector<int> pi(m, 0);\nfor (int i = 1, j = 0; i < m; i++) {\n    while (j > 0 && p[i] != p[j]) j = pi[j - 1];   // 더 짧은 경계로\n    if (p[i] == p[j]) j++;\n    pi[i] = j;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "p + \"#\" + t의 실패 함수에서 t 부분의 값이 m인 곳이 정확히 p가 끝나는 위치임을 설명하세요. (#은 p와 t에 없는 글자)",
+      "model_answer": [
+        "s = p + \"#\" + t의 어떤 위치에서 pi 값은 그 위치까지의 접두사의 가장 긴 경계 길이다.",
+        "#은 s에 한 번만 있으므로 경계는 #을 포함할 수 없고, 따라서 길이가 m을 넘을 수 없다.",
+        "t 부분의 위치에서 pi 값이 m이면 그 앞 m글자가 s의 접두사 m글자, 즉 p와 같다. 그래서 p가 그 위치에서 끝난다.",
+        "반대로 p가 그 위치에서 끝나면 길이 m인 경계가 있고, m보다 긴 경계는 없으므로 pi 값이 정확히 m이다."
+      ],
+      "criteria": [
+        {
+          "text": "경계가 m을 넘지 못함을 보였다",
+          "points": 2
+        },
+        {
+          "text": "값이 m이면 p가 끝남을 보였다",
+          "points": 2
+        },
+        {
+          "text": "p가 끝나면 값이 m임을 보였다",
+          "points": 2
+        }
+      ],
+      "hint": "#이 경계에 들어갈 수 있는지 생각하세요."
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+ "no": 6,
+ "title": "라우팅",
+ "hours": 5,
+ "after": [
+  5
+ ],
+ "objectives": [
+  "최장 접두어 일치로 전달 표를 조회할 수 있다.",
+  "링크 상태(다익스트라)와 거리 벡터(벨만–포드) 알고리즘을 적용할 수 있다.",
+  "자율 시스템 내부(OSPF)와 사이(BGP) 라우팅의 차이를 설명할 수 있다."
+ ],
+ "checklist": [
+  "전달 표와 최장 접두어 일치",
+  "링크 상태 알고리즘(다익스트라), 거리 벡터(벨만–포드)",
+  "무한 계수 문제와 독성 역전",
+  "자율 시스템(AS), 내부 라우팅(OSPF)과 외부 라우팅(BGP)",
+  "BGP 경로 선택과 정책",
+  "SDN: 제어 평면을 중앙 컨트롤러로",
+  "ICMP와 traceroute"
+ ],
+ "advice": [
+  "라우팅 알고리즘은 정보통신 통신망 7단원에서도 다뤘으니, 여기서는 '한 패킷이 라우터에 들어왔을 때 실제로 어떤 줄을 고르는가(최장 접두어 일치)'와 '인터넷 전체는 왜 OSPF 하나로 돌 수 없는가(BGP)'에 집중하세요. 작은 전달 표를 직접 만들고 주소 몇 개를 넣어 어느 줄이 선택되는지 확인하는 연습이 효과적입니다.",
+  "BGP는 최단 경로보다 사업자 사이의 계약과 정책을 따르는 프로토콜이라 기술만으로는 설명되지 않는 부분이 있습니다. 대형 인터넷 장애가 BGP 설정 실수에서 시작된 사례를 하나 찾아 읽어 보면 중요성이 실감 납니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Kurose · Ross, Computer Networking: A Top-Down Approach (번역본 『컴퓨터 네트워킹 하향식 접근』, 장 제목으로 표기)",
+   "part": "The Network Layer: Control Plane 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "정보통신 통신망 7단원 IP 망과 라우팅",
+   "url": "guide.html?lv=2&t=ict&s=comm-networks&u=7"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "전달 표에 10.1.0.0/16과 10.1.2.0/24가 있을 때 목적지 10.1.2.5는 접두어 길이 몇의 항목을 따를까요?",
+   "answer": "24",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "둘 다 일치하지만 더 긴 접두어 /24를 따릅니다(최장 접두어 일치).",
+   "hint": "더 구체적인 쪽입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "링크 비용이 A–B 2, A–C 5, B–C 1, C–D 3, B–D 7일 때 A에서 D까지 최단 경로 비용은 얼마일까요?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "A–B–C–D = 2 + 1 + 3 = 6이 가장 짧습니다.",
+   "hint": "여러 경로를 비교하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "인터넷 서비스 사업자 같은 자율 시스템 사이에서 경로 정보를 교환하는 프로토콜은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "BGP"
+     ]
+    }
+   ],
+   "explanation": "자율 시스템 안에서는 OSPF 같은 내부 라우팅 프로토콜을 씁니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "라우터의 경로 계산(제어 평면)을 중앙의 컨트롤러로 분리해 소프트웨어로 망을 제어하는 방식을 영문 약어로 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "SDN"
+     ]
+    }
+   ],
+   "explanation": "Software-Defined Networking의 줄임말로, 데이터 센터 망에서 널리 씁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "networks",
+ "id": "l2-computer-networks-u06"
+}

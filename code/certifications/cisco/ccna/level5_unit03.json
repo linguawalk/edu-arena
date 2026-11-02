@@ -1,0 +1,111 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "cisco",
+  "exam": "ccna-200-301",
+  "level": 5,
+  "unit": 3,
+  "unit_title": "계층 2 보안: 포트 보안과 DHCP 스누핑",
+  "rule_summary_ko": "포트 보안(Port Security)은 스위치 포트에 연결될 수 있는 MAC 주소의 개수·종류를 제한해서, 허가되지 않은 장치의 연결이나 MAC 플러딩 공격을 막습니다. DHCP 스누핑(DHCP Snooping)은 포트를 신뢰(trusted)와 비신뢰(untrusted)로 구분해서, 비신뢰 포트에서는 DHCP 서버 메시지(OFFER·ACK·NAK)를 차단하고 클라이언트 메시지(DISCOVER·REQUEST)만 허용합니다 — 이를 통해 일반 사용자 포트에 연결된 부정 DHCP 서버(rogue DHCP server)가 잘못된 IP 정보를 나눠주는 것을 막습니다. 기본적으로 모든 포트는 비신뢰 상태이며, 정당한 DHCP 서버로 이어지는 업링크만 신뢰 포트로 명시적으로 설정해야 합니다.",
+  "examples": [
+    { "code": "직원이 개인 무선 공유기를 사내 네트워크 포트에 연결해서 의도치 않게 DHCP 서버 역할을 하게 됨", "note_ko": "이 포트가 비신뢰 상태라면, DHCP 스누핑이 이 부정 DHCP 서버의 응답 메시지를 차단해줌" }
+  ],
+  "questions": [
+    {
+      "id": "ccna_l5_u3_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "포트 보안(Port Security)의 핵심 역할은?",
+      "options": [
+        "스위치 포트에 연결될 수 있는 MAC 주소의 개수·종류를 제한해서, 허가되지 않은 장치 연결을 막는다",
+        "IP 주소를 자동으로 할당한다(DHCP와 혼동)",
+        "VLAN 트래픽을 태깅한다(802.1Q와 혼동)",
+        "라우팅 경로를 결정한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "포트 보안은 물리적 접근 계층에서의 대표적인 보안 통제입니다.",
+      "concept_tags": ["port_security"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "ccna_l5_u3_q002",
+      "type": "concept_matching_item",
+      "code": "직원이 개인 무선 공유기를 사내 액세스 포트에 연결해서, 의도치 않게 부정(rogue) DHCP 서버가 되어 잘못된 IP 정보를 나눠주기 시작함",
+      "prompt_ko": "이 문제를 예방하는 데 적합한 기능은?",
+      "options": [
+        "DHCP 스누핑 — 비신뢰 포트에서 오는 DHCP 서버 메시지(OFFER 등)를 차단해서, 부정 DHCP 서버의 응답이 클라이언트에게 전달되지 못하게 한다",
+        "포트 보안(MAC 주소 제한과는 무관한 문제)",
+        "802.1Q 트렁킹", "STP"
+      ],
+      "answer": 0,
+      "explanation_ko": "DHCP 스누핑은 정확히 이런 부정 DHCP 서버 문제를 막기 위해 설계되었습니다.",
+      "concept_tags": ["dhcp_snooping_rogue_server"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l5_u3_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "DHCP 스누핑에서 비신뢰(untrusted) 포트가 허용하는 DHCP 메시지 종류는?",
+      "options": [
+        "클라이언트 메시지(DISCOVER, REQUEST 등)만 허용하고, 서버 메시지(OFFER, ACK, NAK)는 차단한다",
+        "서버 메시지만 허용하고 클라이언트 메시지는 차단한다(설명이 반대)",
+        "모든 DHCP 메시지를 허용한다",
+        "모든 DHCP 메시지를 차단한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "일반 사용자 포트(비신뢰)에서 DHCP 서버 역할을 하는 메시지가 나오는 것 자체가 비정상이라 차단됩니다.",
+      "concept_tags": ["dhcp_snooping_untrusted"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l5_u3_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "DHCP 스누핑을 처음 활성화했을 때, 스위치의 모든 포트는 기본적으로 어떤 상태입니까?",
+      "options": [
+        "비신뢰(untrusted) — 정당한 DHCP 서버로 이어지는 업링크만 관리자가 명시적으로 신뢰 포트로 설정해야 한다",
+        "신뢰(trusted) — 모든 포트가 기본적으로 서버 메시지를 허용한다(설명이 반대)",
+        "포트 상태는 DHCP 스누핑과 무관하다",
+        "DHCP 스누핑은 포트 상태 개념 자체가 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "안전한 기본값(모두 비신뢰)에서 시작해서, 필요한 곳만 예외적으로 신뢰하도록 설정하는 것이 안전한 설계입니다.",
+      "concept_tags": ["dhcp_snooping_default_untrusted"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l5_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "포트 보안에서 허용된 MAC 주소 개수를 초과하는 장치가 연결됐을 때 발생할 수 있는 조치(위반 모드)로 옳은 것은?",
+      "options": [
+        "위반 시 해당 트래픽을 조용히 버리거나(protect), 버리면서 로그를 남기거나(restrict), 포트 자체를 완전히 차단(shutdown)하는 등 여러 모드 중 선택할 수 있다",
+        "포트 보안 위반은 항상 스위치 전체를 재부팅시킨다",
+        "포트 보안에는 위반 시 조치 옵션이 전혀 없다",
+        "위반 시 항상 아무 조치 없이 무시된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "protect, restrict, shutdown은 포트 보안의 대표적인 위반 모드입니다.",
+      "concept_tags": ["port_security_violation_modes"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l5_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "parameter_note": "",
+      "prompt_ko": "포트 보안과 DHCP 스누핑을 함께 사용하는 것이 유용한 이유는?",
+      "options": [
+        "각각 서로 다른 계층 2 위협(허가되지 않은 장치 연결, 부정 DHCP 서버)에 대응하므로, 함께 사용하면 더 폭넓은 계층 2 보안을 확보할 수 있다",
+        "둘은 완전히 동일한 기능이라 하나만 사용해도 충분하다",
+        "포트 보안과 DHCP 스누핑은 함께 사용할 수 없다",
+        "DHCP 스누핑만으로 모든 계층 2 위협을 막을 수 있어 포트 보안은 불필요하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "서로 다른 위협 벡터를 다루는 보완적인 도구들을 함께 사용하는 것이 심층 방어의 원칙입니다.",
+      "concept_tags": ["layer2_security_combination"],
+      "difficulty": "challenge"
+    }
+  ]
+}

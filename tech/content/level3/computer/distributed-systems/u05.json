@@ -1,0 +1,103 @@
+{
+ "no": 5,
+ "title": "합의와 Raft",
+ "hours": 5,
+ "after": [
+  4
+ ],
+ "objectives": [
+  "분산 합의 문제와 과반수(정족수)의 역할을 설명할 수 있다.",
+  "Raft의 리더 선출과 로그 복제 과정을 설명할 수 있다.",
+  "노드 수와 견딜 수 있는 장애 수의 관계를 계산할 수 있다."
+ ],
+ "checklist": [
+  "합의: 여러 노드가 하나의 값(순서)에 동의",
+  "FLP 불가능성(비동기 + 장애에서 보장 불가)과 실용적 해법",
+  "과반수 정족수: N = 2f + 1이면 f개 장애를 견딤",
+  "Raft: 임기, 리더 선출(투표), 로그 복제, 커밋",
+  "Paxos(개념)",
+  "분산 잠금·설정 저장소(etcd, ZooKeeper)",
+  "분할 뇌(split-brain) 방지"
+ ],
+ "advice": [
+  "합의 알고리즘은 분산 데이터베이스, 쿠버네티스(etcd), 블록체인의 심장입니다. Raft 공식 사이트의 시각화를 보며 리더가 죽었을 때 새 리더가 뽑히는 과정을 단계별로 따라가 보세요. '과반수가 동의해야 한다'는 규칙 하나가 네트워크가 둘로 갈라져도 리더가 둘 생기지 않게 막는다는 점이 핵심입니다."
+ ],
+ "resources": [
+  {
+   "kind": "web",
+   "provider": "Raft 공식 사이트",
+   "title": "The Raft Consensus Algorithm (논문·시각화)",
+   "url": "https://raft.github.io/",
+   "lang": "영어"
+  },
+  {
+   "kind": "book",
+   "provider": "O'Reilly",
+   "title": "Kleppmann, Designing Data-Intensive Applications (번역본 『데이터 중심 애플리케이션 설계』)",
+   "part": "Consistency and Consensus 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT 6.5840 (구 6.824, 공개 강의 자료)",
+   "title": "Distributed Systems",
+   "url": "https://pdos.csail.mit.edu/6.824/",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "노드 5개로 Raft 클러스터를 만들면 동시에 최대 몇 개의 노드 장애까지 견딜 수 있을까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "과반수 3개가 살아 있어야 하므로 5 − 3 = 2개까지 견딥니다.",
+   "hint": "N = 2f + 1입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "Raft에서 리더가 되려면 클러스터 노드의 {{1}}로부터 표를 받아야 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "과반수",
+      "과반",
+      "절반 이상"
+     ]
+    }
+   ],
+   "explanation": "과반수끼리는 반드시 겹치므로 같은 임기에 리더가 둘 생기지 않습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "리더 선출과 로그 복제를 이해하기 쉽게 설계한 합의 알고리즘으로, etcd 등에서 쓰는 것은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "Raft",
+      "래프트",
+      "raft"
+     ]
+    }
+   ],
+   "explanation": "더 오래된 합의 알고리즘으로 Paxos가 있습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "distributed-systems",
+ "id": "l3-computer-distributed-systems-u05"
+}

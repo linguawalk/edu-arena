@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 5,
+  "unit": 3,
+  "unit_title": "포인터 산술",
+  "questions": [
+    {
+      "id": "c_l5_u03_q001",
+      "type": "predict_output",
+      "code": "int arr[4] = {10, 20, 30, 40};\nint *ptr = arr;\nprintf(\"%d\", *(ptr + 2));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "20", "30", "2"],
+      "answer": 2,
+      "explanation_en": "ptr + 2 moves the pointer forward by 2 elements (not 2 bytes), landing on arr[2]; dereferencing gives 30.",
+      "explanation_ko": "ptr + 2는 포인터를 2바이트가 아니라 2개의 요소만큼 앞으로 이동시켜 arr[2]에 도달합니다. 역참조하면 30이 됩니다.",
+      "concept_tags": ["pointer_arithmetic"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l5_u03_q002",
+      "type": "predict_output",
+      "code": "int arr[4] = {10, 20, 30, 40};\nint *ptr = arr;\nptr++;\nprintf(\"%d\", *ptr);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "20", "30", "오류"],
+      "answer": 1,
+      "explanation_en": "ptr++ advances the pointer by one int-sized step, moving from arr[0] to arr[1], which holds 20.",
+      "explanation_ko": "ptr++는 포인터를 int 하나 크기만큼 이동시켜 arr[0]에서 arr[1]로 옮깁니다. arr[1]에는 20이 저장되어 있습니다.",
+      "concept_tags": ["pointer_arithmetic"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l5_u03_q003",
+      "type": "predict_output",
+      "code": "int arr[4] = {10, 20, 30, 40};\nint *p1 = &arr[3];\nint *p2 = &arr[0];\nprintf(\"%ld\", p1 - p2);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["3", "12", "30", "10"],
+      "answer": 0,
+      "explanation_en": "Subtracting two pointers into the same array gives the number of elements between them, not the byte difference; arr[3] - arr[0] is 3 elements apart.",
+      "explanation_ko": "같은 배열을 가리키는 두 포인터를 빼면 바이트 차이가 아니라 그 사이에 있는 요소의 개수가 나옵니다. arr[3]과 arr[0]은 3개 요소만큼 떨어져 있습니다.",
+      "concept_tags": ["pointer_arithmetic", "pointer_subtraction"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l5_u03_q004",
+      "type": "fill_blank",
+      "code": "int arr[5] = {1, 2, 3, 4, 5};\nint *ptr = arr;\nfor (int i = 0; i < 5; i++) {\n    printf(\"%d\", *(ptr + ____));\n}",
+      "prompt_en": "Fill in the blank so the loop prints all 5 elements in order using pointer arithmetic.",
+      "prompt_ko": "포인터 산술로 5개 요소를 순서대로 모두 출력하려면 빈칸에 무엇이 들어가야 할까요?",
+      "options": ["i", "1", "ptr", "5"],
+      "answer": 0,
+      "explanation_en": "Using the loop variable i as the offset means *(ptr + i) accesses each element in turn, equivalent to arr[i].",
+      "explanation_ko": "반복 변수 i를 오프셋으로 사용하면 *(ptr + i)가 arr[i]와 동일하게 각 요소를 순서대로 접근합니다.",
+      "concept_tags": ["pointer_arithmetic"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l5_u03_q005",
+      "type": "error_finding",
+      "code": "int arr[3] = {1, 2, 3};\nint *ptr = arr;\nfor (int i = 0; i <= 3; i++) {\n    printf(\"%d\", *(ptr + i));\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "ptr 선언 문법 오류",
+        "i <= 3 조건 때문에 i가 3일 때 배열 범위를 벗어난 *(ptr + 3)에 접근해 예측 불가능한 값을 읽음",
+        "printf 형식 지정자 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "The array has only 3 valid elements (indices 0-2), but i <= 3 allows i to reach 3, accessing memory just past the array's end.",
+      "explanation_ko": "배열은 유효한 요소가 3개(인덱스 0~2)뿐인데, i <= 3 조건 때문에 i가 3까지 도달해 배열 바로 뒤의 메모리에 접근하게 됩니다. 포인터 산술을 쓸 때도 배열 인덱싱과 똑같이 범위 초과에 주의해야 합니다.",
+      "concept_tags": ["pointer_arithmetic", "out_of_bounds"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l5_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "포인터 산술", "definition": "포인터에 정수를 더하거나 빼서 요소 단위로 이동하는 연산" },
+        { "term": "*(ptr + i)", "definition": "포인터 산술로 배열 인덱싱을 표현하는 방식 — arr[i]와 동일" },
+        { "term": "포인터 뺄셈", "definition": "같은 배열 안의 두 포인터를 빼서 요소 개수 차이를 구하는 연산" },
+        { "term": "요소 단위 이동", "definition": "포인터 산술이 바이트가 아니라 가리키는 자료형의 크기만큼 이동하는 원리" }
+      ],
+      "explanation_en": "Pointer arithmetic is what makes *(ptr + i) and arr[i] interchangeable in C, revealing that array indexing is itself built on pointer arithmetic.",
+      "explanation_ko": "포인터 산술 덕분에 C에서는 *(ptr + i)와 arr[i]가 서로 바꿔 쓸 수 있으며, 이는 배열 인덱싱 자체가 포인터 산술 위에 만들어졌다는 것을 보여줍니다.",
+      "concept_tags": ["pointer_arithmetic"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+ "level": 3,
+ "track": "electrical",
+ "id": "control",
+ "title": "제어공학",
+ "tagline": "원하는 대로 움직이게 — 전달함수와 피드백으로 시스템의 응답·안정도·성능을 설계하는 법",
+ "overview": [
+  "제어공학은 모터의 속도, 발전기의 전압, 로봇 팔의 위치, 공정의 온도처럼 움직이는 대상을 원하는 값으로 정확하고 빠르게, 그리고 안정하게 맞추는 방법을 다룹니다. 핵심 도구는 피드백입니다. 출력을 재서 목표와 비교하고 그 차이로 입력을 고치면, 대상의 특성이 조금 달라지거나 외란이 들어와도 원하는 동작을 유지할 수 있습니다.",
+  "과목은 라플라스 변환과 전달함수 → 블록선도와 신호흐름선도 → 시간 응답과 정상 상태 오차 → 루스 안정도 판별 → 근궤적 → 주파수 응답(보드·나이퀴스트) → 보상기와 PID 설계 → 상태 공간·디지털·시퀀스 제어의 순서입니다. 앞 절반은 '해석', 뒤 절반은 '설계'에 해당하며, 회로이론의 라플라스 변환이 출발점입니다.",
+  "전기기사 필기 '회로이론 및 제어공학'의 제어공학 부분이 모두 여기에 있습니다. 전동기 구동, 전력계통의 조속기·여자기, 전력전자 컨버터 제어의 공통 언어이며, 융합 과정의 로보틱스, 전기차·자율주행, 스마트팩토리와 화공 트랙의 공정제어로 이어집니다."
+ ],
+ "level_note": "레벨 3 (심화, 대졸·기사 수준). 목차 검증 기준: 전기기사 필기 '회로이론 및 제어공학' 중 제어공학 부분과 Ogata, Nise 교재 목차. 레벨3은 단원당 자가점검 3문항, 학습 조언 1문단의 가벼운 형식입니다.",
+ "prereq": {
+  "text": "레벨2 회로이론의 라플라스 변환(12단원)과 2차 회로 과도 응답(7단원)이 직접적인 선수입니다. 미분방정식과 복소수 계산에 익숙해야 하므로 math-arena 상미분방정식과 공학수학을 함께 보세요. 8단원 상태 공간은 선형대수의 고유값을 씁니다.",
+  "links": [
+   {
+    "title": "레벨2 회로이론 · 12단원 라플라스 변환과 회로 해석",
+    "href": "guide.html?lv=2&t=electrical&s=circuit-theory&u=12"
+   },
+   {
+    "title": "레벨2 회로이론 · 7단원 2차 회로(RLC)의 과도 응답",
+    "href": "guide.html?lv=2&t=electrical&s=circuit-theory&u=7"
+   },
+   {
+    "title": "레벨2 회로이론 · 11단원 주파수 응답, 공진, 필터",
+    "href": "guide.html?lv=2&t=electrical&s=circuit-theory&u=11"
+   },
+   {
+    "title": "math-arena 레벨2 · 상미분방정식",
+    "href": "https://math-arena.org/guide.html?lv=2&t=analysis&s=ode"
+   },
+   {
+    "title": "math-arena 레벨2 · 공학수학 (라플라스 변환)",
+    "href": "https://math-arena.org/guide.html?lv=2&t=applied&s=engineering-math"
+   },
+   {
+    "title": "math-arena 레벨2 · 선형대수 (고유값)",
+    "href": "https://math-arena.org/guide.html?lv=2&t=algebra&s=linear-algebra"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "p1",
+    "qtype": "fill_blank",
+    "prompt": "단위 계단 함수 u(t)의 라플라스 변환은 {{1}}입니다.",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "1/s"
+      ]
+     }
+    ],
+    "explanation": "L{u(t)} = 1/s, L{e^(−at)} = 1/(s + a)입니다 (회로이론 12단원).",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p2",
+    "qtype": "numeric",
+    "prompt": "RC 직렬 회로의 R = 10 kΩ, C = 100 μF일 때 시정수는 몇 초일까요?",
+    "answer": "1",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "τ = RC = 10⁴ × 10⁻⁴ = 1 s (회로이론 6단원)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p3",
+    "qtype": "numeric",
+    "prompt": "20 log₁₀ 100은 몇 dB일까요?",
+    "answer": "40",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "20 × 2 = 40 dB (회로이론 11단원)",
+    "stage": "prereq"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "레벨3 · 전력전자",
+   "note": "컨버터의 전압·전류 제어 루프와 전동기 벡터 제어"
+  },
+  {
+   "title": "레벨3 · 전력계통",
+   "note": "조속기·AGC·여자기 제어와 안정도"
+  },
+  {
+   "title": "융합 · 로보틱스·휴머노이드, 전기차·자율주행",
+   "note": "다자유도 시스템의 운동 제어"
+  },
+  {
+   "title": "화공 트랙 · 공정제어",
+   "note": "같은 이론을 온도·압력·유량 제어에 적용"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "units": [
+  {
+   "no": 1,
+   "title": "제어계와 라플라스 변환",
+   "hours": 5,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "전달함수, 블록선도, 신호흐름선도",
+   "hours": 6,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "시간 응답과 정상 상태 오차",
+   "hours": 7,
+   "after": [
+    2
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "안정도 판별",
+   "hours": 5,
+   "after": [
+    3
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "근궤적",
+   "hours": 6,
+   "after": [
+    4
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "주파수 응답",
+   "hours": 7,
+   "after": [
+    3
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "보상기와 PID 제어",
+   "hours": 6,
+   "after": [
+    5,
+    6
+   ],
+   "file": "u07.json"
+  },
+  {
+   "no": 8,
+   "title": "상태 공간, 디지털 제어, 시퀀스 제어",
+   "hours": 6,
+   "after": [
+    2,
+    4
+   ],
+   "file": "u08.json"
+  }
+ ],
+ "total_hours": 48
+}

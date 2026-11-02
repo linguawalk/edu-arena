@@ -1,0 +1,153 @@
+{
+ "level": 2,
+ "track": "convergence",
+ "id": "ai-chip-intro",
+ "title": "AI 반도체 입문 (브리지)",
+ "tagline": "AI는 왜 특별한 칩이 필요한가 — 행렬 연산, CPU·GPU·NPU, 정밀도와 양자화, 메모리 병목과 HBM, 데이터센터 전력, 엣지 AI, 산업 생태계",
+ "overview": [
+  "AI 모델은 엄청난 양의 곱셈과 덧셈(행렬 연산)을 반복하고, 그 데이터를 메모리에서 끊임없이 가져와야 합니다. 그래서 범용 CPU보다 수천 개의 연산기를 병렬로 돌리는 GPU와 AI 전용 칩(NPU)이 필요해졌습니다. 이 브리지 과목은 레벨1 컴퓨터를 마친 학습자가 AI 반도체의 핵심 개념을 숫자 감각과 함께 익혀 레벨3 'AI 반도체'로 넘어가도록 돕습니다.",
+  "과목은 AI 연산의 정체(행렬 곱) → CPU·GPU·NPU 비교 → 정밀도와 양자화 → 메모리 병목과 HBM → 데이터센터 AI와 전력 → 엣지·온디바이스 AI → 산업 생태계와 진로 순서입니다.",
+  "더 깊이 공부하려면 컴퓨터 트랙 레벨2 컴퓨터 구조(특히 7단원 캐시, 10단원 병렬 처리)와 레벨3 분산시스템·클라우드 8단원(AI·LLM 서빙 인프라)으로 이어 가면 됩니다. 칩 세대와 시장은 몇 달 단위로 바뀌므로 동향 단원에는 점검 정보를 붙였습니다."
+ ],
+ "level_note": "레벨 2 브리지 (응용, 전문대졸 수준). 레벨1을 마친 학습자가 해당 레벨3 융합 과정으로 바로 넘어갈 수 있게 다리를 놓는 입문 과목입니다. 목차 검증 기준: Sze 외 『Efficient Processing of Deep Neural Networks』와 컴퓨터 구조 교재의 도메인 특화 구조 장. 산업 동향 단원은 점검 정보로 관리합니다.",
+ "prereq": {
+  "text": "레벨1 컴퓨터 챕터 1~5(정보의 표현, 플립플롭과 메모리, CPU 구조, 명령어 실행, 메모리 계층)를 마쳤으면 충분합니다. math-arena의 행렬 곱셈을 알면 1단원이 쉽습니다.",
+  "links": [
+   {
+    "title": "레벨1 · CPU 구조",
+    "href": "browse.html?c=c4#ch03"
+   },
+   {
+    "title": "레벨1 · 메모리 계층",
+    "href": "browse.html?c=c4#ch05"
+   },
+   {
+    "title": "math-arena 레벨2 · 선형대수 (행렬 곱)",
+    "href": "https://math-arena.org/guide.html?lv=2&t=algebra&s=linear-algebra"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "p1",
+    "qtype": "numeric",
+    "prompt": "2 × 3 행렬과 3 × 4 행렬을 곱하면 결과 행렬의 원소는 몇 개일까요?",
+    "answer": "8",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "결과는 2 × 4 행렬이므로 8개입니다 (math-arena 선형대수).",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p2",
+    "qtype": "numeric",
+    "prompt": "8비트로 나타낼 수 있는 서로 다른 값은 몇 가지일까요?",
+    "answer": "256",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "2⁸ = 256 (레벨1 컴퓨터 챕터 1)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p3",
+    "qtype": "fill_blank",
+    "prompt": "CPU 가까이에서 자주 쓰는 데이터를 빠르게 꺼내 주는 작은 고속 메모리를 {{1}}라고 합니다.",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "캐시"
+      ]
+     }
+    ],
+    "explanation": "레벨1 컴퓨터 챕터 5에서 다룬 메모리 계층입니다.",
+    "stage": "prereq"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "레벨3 융합 · AI 반도체",
+   "note": "가속기 구조, 데이터 흐름, 메모리 계층, 저전력 설계"
+  },
+  {
+   "title": "레벨2 · 컴퓨터 구조 (컴퓨터 트랙)",
+   "note": "파이프라인·캐시·병렬 처리의 원리"
+  },
+  {
+   "title": "레벨3 융합 · AI 공학",
+   "note": "AI 모델과 학습·배포의 원리"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "units": [
+  {
+   "no": 1,
+   "title": "AI 연산의 정체: 행렬 곱",
+   "hours": 4,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "CPU, GPU, NPU",
+   "hours": 4,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "정밀도와 양자화",
+   "hours": 4,
+   "after": [
+    1
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "메모리 병목과 HBM",
+   "hours": 4,
+   "after": [
+    2,
+    3
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "데이터센터 AI와 전력",
+   "hours": 4,
+   "after": [
+    2
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "엣지·온디바이스 AI",
+   "hours": 4,
+   "after": [
+    3
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "AI 반도체 생태계와 진로",
+   "hours": 3,
+   "after": [
+    5,
+    6
+   ],
+   "file": "u07.json",
+   "review": true
+  }
+ ],
+ "total_hours": 27
+}

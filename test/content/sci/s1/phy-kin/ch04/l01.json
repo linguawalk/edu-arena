@@ -1,0 +1,388 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s1",
+  "track": "phy-kin",
+  "work": "풀이",
+  "track_title": "운동과 물리 수학",
+  "chapter": {
+    "id": "sci-s1-phy-kin-ch04",
+    "no": 4,
+    "title": "벡터와 포물선 운동"
+  },
+  "lesson": {
+    "id": "sci-s1-phy-kin-ch04-l01",
+    "no": 1,
+    "title": "벡터와 성분",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "역학",
+      "운동학"
+    ],
+    "competition": "KPhO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "크기와 방향을 가진 양",
+      "body": [
+        "변위, 속도, 가속도, 힘처럼 크기와 방향을 함께 가진 양을 벡터라고 합니다. 질량, 시간, 에너지처럼 크기만 있는 양은 스칼라입니다.",
+        "평면 벡터는 성분 A = (Aₓ, Aᵧ)으로 씁니다. x축과 이루는 각이 θ이면 Aₓ = A cos θ, Aᵧ = A sin θ이고, 크기는 A = √(Aₓ² + Aᵧ²)입니다.",
+        "그림의 A = (4, 3)은 크기가 5이고 cos θ = 4/5, sin θ = 3/5입니다. 이 3-4-5 직각삼각형의 각을 약 37°로 보고 sin 37° = 0.6, cos 37° = 0.8로 계산하는 것이 이 과정의 약속입니다."
+      ],
+      "figure": {
+        "widget": "geo",
+        "config": {
+          "elements": [
+            {
+              "t": "vec",
+              "a": [
+                0,
+                0
+              ],
+              "b": [
+                4,
+                3
+              ],
+              "label": "A",
+              "hl": true
+            },
+            {
+              "t": "seg",
+              "a": [
+                0,
+                0
+              ],
+              "b": [
+                4,
+                0
+              ],
+              "dash": true
+            },
+            {
+              "t": "seg",
+              "a": [
+                4,
+                0
+              ],
+              "b": [
+                4,
+                3
+              ],
+              "dash": true
+            },
+            {
+              "t": "right",
+              "p": [
+                4,
+                0
+              ],
+              "a": [
+                0,
+                0
+              ],
+              "b": [
+                4,
+                3
+              ]
+            },
+            {
+              "t": "arc",
+              "p": [
+                0,
+                0
+              ],
+              "a": [
+                4,
+                0
+              ],
+              "b": [
+                4,
+                3
+              ],
+              "r": 30,
+              "label": "θ"
+            },
+            {
+              "t": "text",
+              "p": [
+                2,
+                -0.45
+              ],
+              "s": "Aₓ = 4"
+            },
+            {
+              "t": "text",
+              "p": [
+                4.75,
+                1.5
+              ],
+              "s": "Aᵧ = 3"
+            },
+            {
+              "t": "pt",
+              "p": [
+                0,
+                0
+              ],
+              "label": "O",
+              "pos": "sw"
+            }
+          ],
+          "alt": "벡터 A와 그 x, y 성분 (A = (4, 3), 크기 5)",
+          "maxh": 180
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "A = (3, 4)인 벡터의 크기는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "√(Aₓ² + Aᵧ²)입니다.",
+      "explanation": "A = √(3² + 4²)입니다.\n= √25입니다.\n= 5이고, 3-4-5 직각삼각형의 빗변입니다. x축과 이루는 각은 약 53°입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "벡터는 크기와 {{1}}을 함께 가진 양입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "방향"
+          ]
+        }
+      ],
+      "hint": "속도와 속력의 차이를 떠올리세요.",
+      "explanation": "속력은 얼마나 빠른지만 말해 줍니다.\n속도는 빠르기에 더해 어느 쪽으로 가는지도 말해 줍니다.\n이처럼 크기와 방향을 함께 가진 양이 벡터입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "벡터의 덧셈",
+      "body": [
+        "벡터는 성분끼리 더합니다: A + B = (Aₓ + Bₓ, Aᵧ + Bᵧ). 그림으로는 A의 끝에 B의 시작을 이어 붙인 화살표입니다(삼각형법).",
+        "크기는 단순히 더해지지 않습니다. 동쪽 5 N과 북쪽 12 N의 합력은 17 N이 아니라 √(25 + 144) = 13 N입니다.",
+        "여러 힘이 작용하면 x 성분끼리, y 성분끼리 따로 더한 다음 크기를 구합니다. 경시 문제의 힘 계산은 대부분 이 순서로 풉니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "A = (3, 1), B = (1, 2)일 때 A + B와 그 크기를 구하세요.",
+      "steps": [
+        "x 성분: 3 + 1 = 4입니다.",
+        "y 성분: 1 + 2 = 3입니다.",
+        "A + B = (4, 3)입니다.",
+        "크기는 √(16 + 9) = 5입니다."
+      ],
+      "answer": "(4, 3), 크기 5"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "동쪽으로 5 N, 북쪽으로 12 N의 두 힘이 작용할 때 합력의 크기는 몇 N인가요?",
+      "answer": "13",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 힘이 수직입니다.",
+      "explanation": "합력은 (5, 12) N입니다.\n크기는 √(25 + 144) = √169입니다.\n= 13 N이고, 17 N이 아닙니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "10 m/s로 수평에서 37° 위로 날아가는 공의 수평 속도 성분은 몇 m/s인가요? (cos 37° = 0.8)",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "vₓ = v cos θ입니다.",
+      "explanation": "수평 성분은 vₓ = v cos θ입니다.\nvₓ = 10 × 0.8입니다.\n= 8 m/s이고, 연직 성분은 10 × 0.6 = 6 m/s입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "성분으로 나누는 이유",
+      "body": [
+        "벡터를 성분으로 나누면 x 방향과 y 방향을 서로 독립인 두 개의 일차원 문제로 다룰 수 있습니다. 다음 레슨의 포물선 운동이 바로 이 방법입니다.",
+        "크기가 v이고 수평과 θ의 각을 이루는 속도는 (v cos θ, v sin θ)입니다. θ = 30°이면 (v√3/2, v/2), θ = 45°이면 (v/√2, v/√2)입니다.",
+        "변위 (6, −8)의 크기는 10이고, 이것이 두 지점 사이의 직선 거리입니다. 좌표 차이로 거리를 구하는 것도 벡터의 크기 계산입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "20 m/s로 수평에서 30° 위로 던진 공의 연직 속도 성분은 몇 m/s인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "vᵧ = v sin θ이고 sin 30° = 1/2입니다.",
+      "explanation": "연직 성분은 vᵧ = v sin 30°입니다.\nvᵧ = 20 × 1/2입니다.\n= 10 m/s이고, 수평 성분은 10√3 m/s입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "변위가 (6, −8) m일 때 처음 위치와 나중 위치 사이의 거리는 몇 m인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "변위의 크기를 구하세요.",
+      "explanation": "두 위치 사이의 직선 거리는 변위 벡터의 크기입니다.\n√(36 + 64) = √100입니다.\n= 10 m입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "내적",
+      "body": [
+        "두 벡터의 내적은 A·B = AₓBₓ + AᵧBᵧ = |A||B| cos θ입니다(θ는 두 벡터 사이의 각). 결과는 스칼라입니다.",
+        "물리에서는 일이 대표적인 내적입니다: W = F·d. 힘과 변위가 수직이면 cos 90° = 0이라 일은 0입니다. 원운동하는 물체에 구심력이 일을 하지 않는 이유입니다.",
+        "내적으로 두 벡터 사이의 각도 구할 수 있습니다: cos θ = A·B/(|A||B|). (1, 0)과 (1, 1)이면 cos θ = 1/√2이므로 θ = 45°입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "힘 F = (3, 4) N이 물체를 d = (2, 1) m만큼 옮겼을 때 한 일은 몇 J인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "W = F·d = FₓDₓ + FᵧDᵧ입니다.",
+      "explanation": "W = 3 × 2 + 4 × 1입니다.\n= 6 + 4입니다.\n= 10 J이고, 일은 방향이 없는 스칼라입니다. 성분끼리 곱해 더하면 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "두 벡터 (1, 0)과 (1, 1) 사이의 각은 몇 도인가요?",
+      "answer": "45",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "cos θ = A·B/(|A||B|)입니다.",
+      "explanation": "A·B = 1 × 1 + 0 × 1 = 1이고, |A| = 1, |B| = √2입니다.\ncos θ = 1/√2입니다.\n따라서 θ = 45°입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "벡터는 성분 (Aₓ, Aᵧ) = (A cos θ, A sin θ)로 쓰고, 크기는 √(Aₓ² + Aᵧ²)입니다. sin 37° = 0.6, cos 37° = 0.8로 계산합니다.",
+        "벡터의 합은 성분끼리 더합니다. 크기는 일반적으로 더해지지 않습니다.",
+        "내적 A·B = AₓBₓ + AᵧBᵧ = |A||B| cos θ이고, 일 W = F·d가 대표적인 예입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "동쪽으로 4 km, 북쪽으로 3 km, 서쪽으로 8 km를 걸었습니다. 출발점에서 몇 km 떨어져 있나요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "변위를 성분으로 더하세요.",
+      "explanation": "x 성분: 4 − 8 = −4 km, y 성분: 3 km입니다.\n변위 (−4, 3)의 크기는 √(16 + 9)입니다.\n= 5 km입니다. 걸은 거리 15 km와 다릅니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "F₁ = (2, 3) N과 F₂ = (−5, 1) N의 합력의 크기는 몇 N인가요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "성분끼리 더하세요.",
+      "explanation": "합력은 (2 − 5, 3 + 1) = (−3, 4) N입니다.\n크기는 √(9 + 16)입니다.\n= 5 N입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "두 벡터 A, B에 대해 |A + B|² = |A|² + |B|² + 2A·B임을 성분으로 보이세요.",
+      "model_answer": [
+        "A = (a₁, a₂), B = (b₁, b₂)라 하면 A + B = (a₁ + b₁, a₂ + b₂)이다.",
+        "|A + B|² = (a₁ + b₁)² + (a₂ + b₂)²이다.",
+        "전개하면 (a₁² + a₂²) + (b₁² + b₂²) + 2(a₁b₁ + a₂b₂)이다.",
+        "= |A|² + |B|² + 2A·B이다."
+      ],
+      "criteria": [
+        {
+          "text": "성분으로 A + B를 썼다",
+          "points": 1
+        },
+        {
+          "text": "크기의 제곱을 전개했다",
+          "points": 3
+        },
+        {
+          "text": "내적의 정의로 정리했다",
+          "points": 2
+        }
+      ],
+      "hint": "성분으로 놓고 전개하세요."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "두 벡터 사이의 각이 θ일 때 A·B = |A||B| cos θ임을 코사인 법칙으로 보이세요. (A·B = AₓBₓ + AᵧBᵧ로 정의)",
+      "model_answer": [
+        "A, B를 같은 점에서 그리면 두 끝을 잇는 벡터는 A − B이다.",
+        "코사인 법칙에 의해 |A − B|² = |A|² + |B|² − 2|A||B| cos θ이다.",
+        "성분으로 전개하면 |A − B|² = |A|² + |B|² − 2(AₓBₓ + AᵧBᵧ)이다.",
+        "두 식을 비교하면 AₓBₓ + AᵧBᵧ = |A||B| cos θ이다."
+      ],
+      "criteria": [
+        {
+          "text": "A − B로 삼각형을 만들었다",
+          "points": 1
+        },
+        {
+          "text": "코사인 법칙을 썼다",
+          "points": 2
+        },
+        {
+          "text": "성분으로 전개했다",
+          "points": 2
+        },
+        {
+          "text": "비교해 결론지었다",
+          "points": 1
+        }
+      ],
+      "hint": "A, B, A − B가 이루는 삼각형에 코사인 법칙을 쓰세요."
+    }
+  ]
+}

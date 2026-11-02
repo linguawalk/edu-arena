@@ -1,0 +1,116 @@
+{
+ "no": 4,
+ "title": "ER 모델링",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "요구 사항에서 개체·속성·관계를 찾아 ER 다이어그램을 그릴 수 있다.",
+  "관계의 대응 수(1:1, 1:N, M:N)와 참여 제약을 표현할 수 있다.",
+  "ER 모델을 관계 스키마(테이블)로 변환할 수 있다."
+ ],
+ "checklist": [
+  "개체, 속성(단순·복합·다중값·유도), 관계",
+  "대응 수: 1:1, 1:N, M:N",
+  "전체 참여와 부분 참여",
+  "약한 개체와 식별 관계",
+  "ER → 테이블 변환: 1:N은 N 쪽에 외래 키, M:N은 별도 테이블",
+  "다중값 속성은 별도 테이블",
+  "개념 설계 → 논리 설계 → 물리 설계"
+ ],
+ "advice": [
+  "ER 모델링은 정답이 하나가 아닌 설계 작업이라 연습량이 중요합니다. 학교 수강 신청, 도서관 대출처럼 익숙한 상황을 골라 개체와 관계를 찾고, 학생–과목처럼 M:N 관계가 왜 별도의 '수강' 테이블이 되는지 직접 그려 보세요.",
+  "ER 다이어그램을 테이블로 바꾸는 규칙은 몇 가지뿐이지만, 틀리면 나중에 정규화로 고쳐야 할 문제가 생깁니다. 이 단원의 결과물을 5단원 정규화의 입력으로 써서 두 단원을 이어 연습하면 효과적입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Silberschatz · Korth · Sudarshan",
+   "title": "Database System Concepts (교재 사이트, 장 제목으로 표기)",
+   "url": "https://www.db-book.com/",
+   "lang": "영어",
+   "part": "Database Design Using the E-R Model 장"
+  },
+  {
+   "kind": "web",
+   "provider": "code-arena (실습)",
+   "title": "DB 이론 모듈",
+   "url": "https://code-arena.org/browse.html?type=module&key=db_theory",
+   "lang": "한국어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "학생과 과목이 M:N 관계인 ER 모델을 관계 스키마로 바꾸면 테이블은 최소 몇 개가 될까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "학생, 과목, 그리고 관계를 나타내는 수강 테이블로 3개입니다.",
+   "hint": "M:N 관계는 별도 테이블이 됩니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "1:N 관계를 테이블로 바꿀 때 외래 키는 {{1}} 쪽 테이블에 둡니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "N",
+      "다",
+      "많은"
+     ]
+    }
+   ],
+   "explanation": "예를 들어 부서(1)–직원(N)이면 직원 테이블에 부서 번호를 둡니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "스스로는 키를 갖지 못하고 다른 개체에 의존해 식별되는 개체를 {{1}} 개체라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "약한",
+      "약"
+     ]
+    }
+   ],
+   "explanation": "예: 주문(강한 개체)에 딸린 주문 항목",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "한 속성이 여러 값을 가질 수 있는(예: 한 사람의 여러 전화번호) 속성을 {{1}} 속성이라고 하며, 테이블로 바꿀 때 별도 테이블로 뺍니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "다중값",
+      "다중 값",
+      "다치"
+     ]
+    }
+   ],
+   "explanation": "제1정규형을 지키기 위해서입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "databases",
+ "id": "l2-computer-databases-u04"
+}

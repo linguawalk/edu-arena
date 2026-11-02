@@ -1,0 +1,372 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch07",
+  "no": 7,
+  "title": "네트워크 기초"
+ },
+ "lesson": {
+  "id": "c4-ch07-l02",
+  "no": 2,
+  "title": "계층과 패킷",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "일을 층으로 나누기",
+   "body": [
+    "네트워크 통신은 할 일이 많습니다. 신호를 보내고, 옆 장치에 전달하고, 먼 곳까지 길을 찾고, 빠짐없이 순서대로 받고, 웹 페이지 같은 서비스를 제공해야 합니다. 이를 층(계층)으로 나누어 각 층이 자기 일만 맡게 합니다.",
+    "인터넷은 TCP/IP 모델의 4계층을 씁니다. 아래부터 링크 계층(이웃 장치에 전달, 이더넷·Wi-Fi), 인터넷 계층(먼 곳까지 길 찾기, IP), 전송 계층(프로그램 사이의 믿을 만한 전달, TCP·UDP), 응용 계층(서비스, HTTP·DNS)입니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "ordering",
+   "prompt": "TCP/IP 4계층을 아래(하드웨어 쪽)부터 배열하세요.",
+   "items": [
+    {
+     "id": "a",
+     "text": "응용 계층"
+    },
+    {
+     "id": "b",
+     "text": "인터넷 계층"
+    },
+    {
+     "id": "c",
+     "text": "링크 계층"
+    },
+    {
+     "id": "d",
+     "text": "전송 계층"
+    }
+   ],
+   "answer_order": [
+    "c",
+    "b",
+    "d",
+    "a"
+   ],
+   "hint": null,
+   "explanation": "링크 → 인터넷 → 전송 → 응용 순입니다.\n위로 갈수록 사용자의 서비스에 가깝습니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "패킷",
+   "body": [
+    "큰 데이터는 작은 조각(패킷)으로 나누어 보냅니다. 조각마다 따로 길을 찾아가므로 한 길이 막혀도 다른 길로 갈 수 있고, 여러 사람이 선을 나누어 쓸 수 있습니다. 받는 쪽에서 조각을 다시 맞춥니다.",
+    "이더넷에서 한 번에 보낼 수 있는 데이터는 보통 1500바이트 정도입니다. 그래서 1 MB 파일은 수백 개의 패킷으로 나뉘어 갑니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "15 000바이트 데이터를 패킷 하나에 1500바이트씩 담으면 패킷 몇 개가 필요할까요?",
+   "steps": [
+    "15 000 ÷ 1500 = 10개입니다."
+   ],
+   "answer": "10개"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "데이터를 작은 조각으로 나누어 보낼 때 그 조각을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "패킷"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "패킷은 조각마다 따로 길을 찾아갑니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "6000바이트 데이터를 패킷 하나에 1500바이트씩 담으면 패킷 몇 개가 필요할까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "6000 ÷ 1500 = 4개입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "4000바이트 데이터를 패킷 하나에 1500바이트씩 담으면 패킷 몇 개가 필요할까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "4000 ÷ 1500 ≈ 2.67이므로 올림해 3개입니다.\n마지막 패킷은 덜 찹니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "먼 곳까지 길을 찾아 패킷을 전달하는 계층은 {{1}} 계층입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "인터넷"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "인터넷 계층의 대표 규약이 IP입니다(챕터 8)."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "캡슐화",
+   "body": [
+    "보내는 쪽에서는 위 계층의 데이터에 각 계층이 자기 정보를 담은 머리말(헤더)을 붙여 아래로 내려보냅니다. 응용 데이터 + TCP 헤더 + IP 헤더 + 이더넷 헤더 순으로 겹겹이 싸이는데, 이를 캡슐화라고 합니다. 받는 쪽은 아래 계층부터 헤더를 하나씩 벗겨 위로 올립니다.",
+    "헤더도 선을 통해 보내야 하므로 실제 데이터보다 많은 바이트가 오갑니다. 예를 들어 TCP 헤더 20바이트, IP 헤더 20바이트면 패킷마다 40바이트가 더 붙습니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "데이터 1460바이트에 TCP 헤더 20바이트, IP 헤더 20바이트를 붙이면 IP 패킷은 몇 바이트일까요?",
+   "steps": [
+    "1460 + 20 + 20 = 1500바이트입니다.",
+    "이더넷 한 프레임에 꼭 맞는 크기입니다."
+   ],
+   "answer": "1500바이트"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "각 계층이 헤더를 붙여 데이터를 겹겹이 싸는 것을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "캡슐화"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "받는 쪽은 반대로 헤더를 하나씩 벗깁니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "데이터 1000바이트에 TCP 헤더 20바이트, IP 헤더 20바이트를 붙이면 몇 바이트일까요?",
+   "answer": "1040",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1000 + 20 + 20 = 1040바이트입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 패킷에서 실제 데이터가 차지하는 비율은 약 몇 %일까요? (소수 첫째 자리까지)",
+   "answer": "96.2",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "hint": null,
+   "explanation": "1000 ÷ 1040 ≈ 0.962입니다.\n약 96.2 %입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "받는 쪽은 {{1}} 계층부터 헤더를 하나씩 벗겨 위로 올립니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "아래",
+      "링크",
+      "가장 아래"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "보낼 때 마지막에 붙인 헤더를 받을 때 가장 먼저 벗깁니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "OSI 7계층",
+   "body": [
+    "교과서에서는 네트워크를 7계층으로 나눈 OSI 모델도 자주 봅니다. 아래부터 물리, 데이터 링크, 네트워크, 전송, 세션, 표현, 응용 계층입니다. TCP/IP의 링크 계층이 OSI의 1~2계층, 인터넷 계층이 3계층, 전송 계층이 4계층, 응용 계층이 5~7계층에 대응합니다. 스위치를 'L2 장치', 라우터를 'L3 장치'라고 부르는 것도 이 번호에서 왔습니다.",
+    "정리: TCP/IP 4계층(링크·인터넷·전송·응용), 패킷(약 1500 B)과 올림 계산, 캡슐화와 헤더, 헤더 오버헤드, OSI 7계층과의 대응(스위치 L2, 라우터 L3)"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "numeric",
+   "prompt": "OSI 모델에서 라우터가 주로 일하는 네트워크 계층은 몇 계층일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "라우터는 IP 주소로 길을 찾는 네트워크 계층(3계층) 장치입니다.\n그래서 L3 장치라고 부릅니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "데이터 1 460 000바이트를 패킷마다 데이터 1460바이트, 헤더 40바이트로 보내면 실제로 오가는 바이트는?",
+   "steps": [
+    "패킷 수 = 1 460 000 ÷ 1460 = 1000개입니다.",
+    "헤더 = 1000 × 40 = 40 000바이트입니다.",
+    "합계 1 500 000바이트입니다."
+   ],
+   "answer": "1 500 000바이트"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "데이터 14 600바이트를 패킷마다 데이터 1460바이트, 헤더 40바이트로 보내면 헤더는 모두 몇 바이트일까요?",
+   "answer": "400",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "패킷 수부터 구하세요.",
+   "explanation": "패킷 수 = 14 600 ÷ 1460 = 10개입니다.\n10 × 40 = 400바이트입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "패킷마다 데이터 1460바이트, 헤더 40바이트라면 선의 대역폭 가운데 실제 데이터에 쓰이는 비율은 약 몇 %일까요? (소수 첫째 자리까지)",
+   "answer": "97.3",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "hint": "데이터 ÷ 패킷 전체입니다.",
+   "explanation": "1460 ÷ 1500 ≈ 0.973입니다.\n약 97.3 %입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "패킷마다 데이터가 100바이트뿐이고 헤더가 40바이트라면 데이터 비율은 약 몇 %일까요? (소수 첫째 자리까지)",
+   "answer": "71.4",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "hint": "데이터 ÷ (데이터 + 헤더)입니다.",
+   "explanation": "100 ÷ 140 ≈ 0.714입니다.\n작은 패킷은 헤더 부담이 큽니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "웹 페이지를 주고받는 HTTP는 TCP/IP의 {{1}} 계층 규약입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "응용"
+     ]
+    }
+   ],
+   "hint": "가장 위 계층입니다.",
+   "explanation": "HTTP와 DNS는 서비스를 제공하는 응용 계층입니다(챕터 8)."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "Wi-Fi와 이더넷은 TCP/IP의 {{1}} 계층에 속합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "링크"
+     ]
+    }
+   ],
+   "hint": "이웃과 잇는 계층입니다.",
+   "explanation": "이웃 장치까지 전달하는 가장 아래 계층입니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "네트워크 통신을 여러 계층으로 나누는 장점을 설명해 보세요.",
+   "hint": "한 계층을 바꿀 때 다른 계층이 어떻게 되는지 생각하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "계층",
+      "층"
+     ],
+     [
+      "자기 일",
+      "역할",
+      "나누"
+     ],
+     [
+      "바꾸",
+      "교체",
+      "독립"
+     ],
+     [
+      "다른 계층",
+      "영향",
+      "그대로"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "계층마다 맡은 일이 정해져 있어 각 계층은 자기 일만 하면 됩니다. 그래서 한 계층의 기술을 바꿔도(예: 유선 이더넷을 Wi-Fi로) 다른 계층은 그대로 쓸 수 있고, 복잡한 통신을 나누어 만들고 고치기 쉽습니다."
+  }
+ ]
+}

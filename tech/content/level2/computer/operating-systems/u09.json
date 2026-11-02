@@ -1,0 +1,115 @@
+{
+ "no": 9,
+ "title": "입출력과 디스크 스케줄링",
+ "hours": 4,
+ "after": [
+  8
+ ],
+ "objectives": [
+  "입출력 계층(장치 드라이버, 버퍼링, 스풀링)을 설명할 수 있다.",
+  "FCFS·SSTF·SCAN·C-SCAN 디스크 스케줄링의 헤드 이동 거리를 계산할 수 있다.",
+  "SSD 시대에 입출력 스케줄링이 어떻게 달라졌는지 설명할 수 있다."
+ ],
+ "checklist": [
+  "입출력 계층: 응용 → 커널 입출력 → 장치 드라이버 → 장치",
+  "버퍼링, 캐싱, 스풀링",
+  "블로킹·논블로킹·비동기 입출력",
+  "디스크 스케줄링: FCFS, SSTF, SCAN(엘리베이터), C-SCAN, LOOK",
+  "SSTF의 기아 문제",
+  "SSD와 NVMe의 다중 큐",
+  "입출력 성능 측정(IOPS, 처리량, 지연)"
+ ],
+ "advice": [
+  "디스크 스케줄링 계산은 헤드 위치에서 요청 순서대로 이동 거리를 더하는 단순한 작업이지만, 알고리즘마다 순서를 정하는 규칙만 정확히 지키면 됩니다. 같은 요청 큐에 네 알고리즘을 모두 적용해 수직선 위에 헤드 경로를 그려 보면 차이가 한눈에 보입니다.",
+  "SSD는 탐색 시간이 없어 이런 알고리즘의 의미가 크게 줄었고, 대신 수많은 요청을 병렬로 처리하는 다중 큐가 중요해졌습니다. 기술 변화에 따라 운영체제 알고리즘의 중요도가 바뀌는 좋은 예입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Arpaci-Dusseau (무료 공개 교재)",
+   "title": "Operating Systems: Three Easy Pieces",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "lang": "영어",
+   "part": "I/O Devices, Hard Disk Drives 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Silberschatz · Galvin · Gagne, Operating System Concepts (번역본 『운영체제』, 장 제목으로 표기)",
+   "part": "Mass-Storage Structure, I/O Systems 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "컴퓨터 구조 11단원 저장 장치와 RAID",
+   "url": "guide.html?lv=2&t=computer&s=computer-architecture&u=11"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "헤드가 53에 있고 요청이 98, 183, 37, 122, 14, 124, 65, 67 순으로 와 있습니다. FCFS의 총 헤드 이동 거리는 얼마일까요?",
+   "answer": "640",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "53→98→183→37→122→14→124→65→67의 이동 거리를 더하면 640입니다.",
+   "hint": "순서대로 차이의 절댓값을 더하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "같은 요청을 SSTF로 처리하면 총 헤드 이동 거리는 얼마일까요?",
+   "answer": "236",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "53→65→67→37→14→98→122→124→183\n12 + 2 + 30 + 23 + 84 + 24 + 2 + 59 = 236",
+   "hint": "매번 가장 가까운 요청을 고릅니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "헤드가 한쪽 끝까지 가며 요청을 처리하고 방향을 바꿔 돌아오는 디스크 스케줄링을 {{1}}이라고 하며, 엘리베이터 알고리즘이라고도 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "SCAN",
+      "스캔"
+     ]
+    }
+   ],
+   "explanation": "돌아올 때 처리하지 않고 처음으로 바로 돌아가는 변형은 C-SCAN입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "인쇄할 문서들을 디스크에 모아 두었다가 프린터 속도에 맞춰 차례로 내보내는 기법을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "스풀링",
+      "spooling",
+      "스풀"
+     ]
+    }
+   ],
+   "explanation": "느린 장치와 빠른 CPU 사이의 속도 차이를 메웁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "operating-systems",
+ "id": "l2-computer-operating-systems-u09"
+}

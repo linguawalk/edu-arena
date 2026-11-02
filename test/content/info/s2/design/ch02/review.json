@@ -1,0 +1,173 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "design",
+  "work": "풀이",
+  "chapter": {
+    "id": "info-s2-design-ch02",
+    "no": 2,
+    "title": "DP 최적화"
+  },
+  "review": {
+    "id": "info-s2-design-ch02-review",
+    "title": "DP 최적화 복습",
+    "minutes": 15
+  },
+  "questions": [
+    {
+      "type": "question",
+      "id": "r1",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "물건 (3, 5), (4, 6), (2, 3)과 W = 6으로 아래 코드를 실행한 뒤 dp[6]은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(4, 6)과 (2, 3)을 함께 넣어 보세요.",
+      "explanation": "(4, 6)과 (2, 3)을 넣으면 무게 6, 가치 9입니다.\n(3, 5)와 (2, 3)은 가치 8, (3, 5)와 (4, 6)은 무게 7로 넣을 수 없습니다.\n그래서 dp[6] = 9입니다.",
+      "code": "// 1차원 배열 하나로 0/1 배낭 (각 물건은 한 번만)\nfor (int i = 1; i <= n; i++)\n    for (int c = W; c >= w[i]; c--)          // 뒤에서부터\n        dp[c] = max(dp[c], dp[c - w[i]] + v[i]);",
+      "source_lesson": "info-s2-design-ch02-l01"
+    },
+    {
+      "type": "question",
+      "id": "r2",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "물건 (3, 5) 하나와 W = 9로 앞에서부터 도는 코드를 실행하면 dp[9]는?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "같은 물건을 여러 번 쓰게 됩니다.",
+      "explanation": "앞에서부터 돌면 dp[3] = 5, dp[6] = 10, dp[9] = 15로 같은 물건이 거듭 들어갑니다.\n이는 개수 제한이 없는 배낭의 답입니다.\n그래서 dp[9] = 15입니다.",
+      "code": "// 앞에서부터 돌면? (같은 물건을 여러 번 쓸 수 있게 된다)\nfor (int i = 1; i <= n; i++)\n    for (int c = w[i]; c <= W; c++)          // 앞에서부터\n        dp[c] = max(dp[c], dp[c - w[i]] + v[i]);",
+      "source_lesson": "info-s2-design-ch02-l01"
+    },
+    {
+      "type": "question",
+      "id": "r3",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "k = 2일 때 아래 코드로 구한 dp[8]은?",
+      "answer": "34",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "피보나치 수와 같은 꼴입니다.",
+      "explanation": "k = 2이면 dp[i] = dp[i − 1] + dp[i − 2]입니다.\ndp는 1, 1, 2, 3, 5, 8, 13, 21, 34로 이어집니다.\n그래서 dp[8] = 34입니다.",
+      "code": "// 한 번에 1~k칸 오를 때 n칸에 이르는 방법의 수\n// S[i] = dp[0] + … + dp[i-1] (누적 합)\ndp[0] = 1; S[0] = 0; S[1] = 1;\nfor (int i = 1; i <= n; i++) {\n    dp[i] = S[i] - S[max(0, i - k)];         // dp[i-k] + … + dp[i-1]\n    S[i + 1] = S[i] + dp[i];\n}",
+      "source_lesson": "info-s2-design-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r4",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "아이 2명에게 한 명당 0~3개씩, 사탕 4개를 나눠 주는 방법의 수는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(1, 3), (2, 2), (3, 1)입니다.",
+      "explanation": "dp[2][4] = dp[1][4] + dp[1][3] + dp[1][2] + dp[1][1]이고 dp[1][4] = 0, 나머지는 1입니다.\n더하면 0 + 1 + 1 + 1입니다.\n= 3가지입니다.",
+      "code": "// 사탕 j개를 아이 i명에게 나눠 주는 방법의 수 (한 명당 0~c개)\n// dp[i][j] = dp[i-1][j] + dp[i-1][j-1] + … + dp[i-1][j-c]\nfor (int i = 1; i <= kids; i++) {\n    P[0] = 0;\n    for (int j = 0; j <= tot; j++) P[j + 1] = P[j] + dp[i - 1][j];   // 이전 줄의 누적 합\n    for (int j = 0; j <= tot; j++) dp[i][j] = P[j + 1] - P[max(0, j - c)];\n}",
+      "source_lesson": "info-s2-design-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r5",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "a = {1, −3, −3, 5, −1, 2}, k = 2일 때 아래 코드로 구한 dp[5]는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "−3 두 칸 중 하나는 밟아야 합니다.",
+      "explanation": "k = 2이므로 연속한 −3, −3 가운데 하나는 밟아야 합니다.\n1 → −3 → 5 → 2로 가면 1 − 3 + 5 + 2입니다.\n= 5가 최대입니다.",
+      "code": "// 0번 칸에서 출발해 한 번에 1~k칸 앞으로 뛰어 n-1번 칸에 도착할 때, 밟은 칸 값의 합의 최댓값\n// dp[i] = max(dp[i-k], …, dp[i-1]) + a[i]  — 덱으로 구간 최댓값을 유지\ndeque<int> dq; dp[0] = a[0]; dq.push_back(0);\nfor (int i = 1; i < n; i++) {\n    while (dq.front() < i - k) dq.pop_front();           // 범위를 벗어난 칸\n    dp[i] = dp[dq.front()] + a[i];\n    while (!dq.empty() && dp[dq.back()] <= dp[i]) dq.pop_back();\n    dq.push_back(i);\n}",
+      "source_lesson": "info-s2-design-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r6",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "a = {7, 7, 1, 2, 8, 3, 4}의 LIS 길이는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1, 2, 3, 4가 있습니다.",
+      "explanation": "tails는 {7} → {7} → {1} → {1, 2} → {1, 2, 8} → {1, 2, 3} → {1, 2, 3, 4}로 바뀝니다.\n크기가 4입니다.\n그래서 LIS의 길이는 4입니다.",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()",
+      "source_lesson": "info-s2-design-ch02-l03"
+    },
+    {
+      "type": "question",
+      "id": "r7",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "a = {6, 2, 9, 4, 7}로 코드를 실행한 뒤 tails의 마지막 칸 값은?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "tails는 {2, 4, 7}이 됩니다.",
+      "explanation": "tails는 {6} → {2} → {2, 9} → {2, 4} → {2, 4, 7}로 바뀝니다.\n마지막 칸은 길이 3인 증가 부분 수열의 가장 작은 끝값입니다.\n그래서 7입니다.",
+      "code": "// tails[L]: 길이 L+1인 증가 부분 수열의 끝값 가운데 가장 작은 값\nvector<int> tails;\nfor (int x : a) {\n    auto it = lower_bound(tails.begin(), tails.end(), x);   // x 이상인 첫 위치\n    if (it == tails.end()) tails.push_back(x);\n    else *it = x;\n}\n// LIS의 길이는 tails.size()",
+      "source_lesson": "info-s2-design-ch02-l03"
+    },
+    {
+      "type": "question",
+      "id": "r8",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "집합 {1, 4}를 마스크로 나타낸 정수는?",
+      "answer": "18",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2¹ + 2⁴입니다.",
+      "explanation": "집합을 마스크로 나타낼 때는 i번 원소가 있으면 i번째 비트를 1로 둡니다.\n마스크는 2¹ + 2⁴입니다.\n2 + 16 = 18입니다.",
+      "source_lesson": "info-s2-design-ch02-l04"
+    },
+    {
+      "type": "question",
+      "id": "r9",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "도시 5개일 때 외판원 DP의 상태(마스크와 도시의 조합)는 모두 몇 개인가요?",
+      "answer": "160",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2⁵ × 5입니다.",
+      "explanation": "방문한 도시의 집합을 나타내는 마스크는 2⁵ = 32가지, 현재 도시는 5가지입니다.\n두 수를 곱합니다.\n32 × 5 = 160개입니다.",
+      "source_lesson": "info-s2-design-ch02-l04"
+    },
+    {
+      "type": "question",
+      "id": "r10",
+      "stage": "review",
+      "qtype": "proof",
+      "prompt": "점화식의 전이가 '연속한 구간의 합'일 때와 '연속한 구간의 최댓값'일 때 각각 전이를 빠르게 하는 방법을 설명하세요.",
+      "model_answer": [
+        "구간의 합이면 dp의 누적 합 S를 함께 유지해 dp[l] + … + dp[r] = S[r + 1] − S[l]로 O(1)에 구한다.",
+        "구간의 최댓값이면 구간이 한 칸씩 밀리는 슬라이딩 윈도이므로, dp 값이 감소하는 순서로 번호를 담은 단조 덱을 유지한다.",
+        "덱에서는 구간을 벗어난 번호를 앞에서 빼고, 새 값 이하인 번호를 뒤에서 뺀 뒤 넣는다. 맨 앞이 최댓값이다.",
+        "두 방법 모두 전체 시간을 O(nk)에서 O(n)으로 줄인다."
+      ],
+      "criteria": [
+        {
+          "text": "누적 합 방법을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "단조 덱 방법을 설명했다",
+          "points": 3
+        },
+        {
+          "text": "복잡도 개선을 밝혔다",
+          "points": 1
+        }
+      ],
+      "hint": "두 경우를 나눠 쓰세요.",
+      "source_lesson": "info-s2-design-ch02-l02"
+    }
+  ]
+}

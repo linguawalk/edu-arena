@@ -1,0 +1,113 @@
+{
+ "no": 2,
+ "title": "선형 시스템과 필터",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "선형 시불변 시스템의 임펄스 응답과 전달함수를 설명할 수 있다.",
+  "저역·고역·대역 통과 필터의 특성과 차단 주파수를 계산할 수 있다.",
+  "왜곡 없는 전송의 조건을 설명할 수 있다."
+ ],
+ "checklist": [
+  "선형 시불변(LTI) 시스템, 임펄스 응답 h(t)",
+  "출력 = 입력과 임펄스 응답의 컨볼루션, 주파수 영역에서는 곱 Y(f) = H(f)X(f)",
+  "정현파 입력 → 같은 주파수의 정현파 출력(크기·위상만 변함)",
+  "필터 종류: LPF, HPF, BPF, BSF",
+  "RC 저역 통과 필터 f_c = 1/(2πRC)",
+  "무왜곡 전송: 크기 일정, 위상이 주파수에 비례(군지연 일정)",
+  "실제 필터: 버터워스, 체비셰프"
+ ],
+ "advice": [
+  "이 단원은 회로이론 11단원의 주파수 응답을 '신호를 통과시키는 시스템'의 관점으로 다시 보는 것입니다. 시간 영역의 컨볼루션이 주파수 영역에서는 곱셈이 된다는 사실 하나 덕분에, 통신 시스템을 블록마다 전달함수를 곱해 분석할 수 있습니다. 복잡한 컨볼루션 계산보다 이 관계를 그림으로 이해하는 데 시간을 쓰세요.",
+  "무왜곡 전송의 조건(크기가 일정하고 모든 주파수 성분이 같은 시간만큼 늦게 도착)은 채널과 필터를 평가하는 기준입니다. 군지연이 주파수마다 달라지면 펄스가 퍼져 디지털 신호끼리 겹치는데, 이것이 레벨3 디지털통신의 심볼 간 간섭(ISI)으로 이어집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Haykin, Communication Systems (번역본 『통신 시스템』, 장 제목으로 표기)",
+   "part": "Fourier Analysis 장의 선형 시스템·필터 절"
+  },
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Lathi · Ding, Modern Digital and Analog Communication Systems (장 제목으로 표기)",
+   "part": "Analysis and Transmission of Signals 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.02 Introduction to EECS II: Digital Communication Systems (2012년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/",
+   "lang": "영어",
+   "part": "LTI systems, frequency response 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "R = 1 kΩ, C = 0.1 μF인 RC 저역 통과 필터의 차단 주파수는 약 몇 Hz일까요?",
+   "answer": "1592",
+   "answer_format": "integer",
+   "tolerance": 2,
+   "explanation": "f_c = 1/(2π × 10³ × 10⁻⁷) ≈ 1592 Hz",
+   "hint": "f_c = 1/(2πRC)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "선형 시불변 시스템에 정현파를 넣으면 출력은 크기와 위상만 바뀌고 {{1}}는 같은 정현파입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "주파수"
+     ]
+    }
+   ],
+   "explanation": "그래서 정현파(복소 지수)가 LTI 시스템 해석의 기본 신호가 됩니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "차단 주파수에서 필터 출력 전력은 통과 대역의 몇 배일까요?",
+   "answer": "0.5",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "차단 주파수는 −3 dB 지점이므로 전력은 약 절반입니다.",
+   "hint": "−3 dB입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "모든 주파수 성분이 같은 시간만큼 늦게 도착해야 왜곡이 없으며, 이 지연을 {{1}} 지연이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "군",
+      "그룹"
+     ]
+    }
+   ],
+   "explanation": "군지연이 주파수마다 다르면 펄스가 퍼지는 분산 왜곡이 생깁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "ict",
+ "subject": "comm-theory",
+ "id": "l2-ict-comm-theory-u02"
+}

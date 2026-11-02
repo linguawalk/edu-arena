@@ -1,0 +1,96 @@
+{
+  "language": "pascal",
+  "category": "legacy_historical",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "procedure와 function",
+  "questions": [
+    {
+      "id": "pascal_l2_u02_q001",
+      "type": "predict_output",
+      "code": "procedure Greet(name: string);\nbegin\n  writeln('Hello, ', name);\nend;\n\nbegin\n  Greet('Kim');\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["Hello, Kim", "Hello, name", "오류", "Kim"],
+      "answer": 0,
+      "explanation_en": "procedure defines a routine that performs an action but returns no value; Greet('Kim') prints Hello, Kim.",
+      "explanation_ko": "procedure는 동작은 수행하지만 값을 반환하지 않는 루틴을 정의합니다. Greet('Kim')은 Hello, Kim을 출력합니다.",
+      "concept_tags": ["procedure"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l2_u02_q002",
+      "type": "predict_output",
+      "code": "function Square(x: Integer): Integer;\nbegin\n  Square := x * x;\nend;\n\nbegin\n  writeln(Square(5));\nend.",
+      "prompt_en": "What is printed? (Note how the return value is set — by assigning to the function's own name.)",
+      "prompt_ko": "출력 결과는? (반환값이 어떻게 설정되는지 주의하세요 — 함수 자신의 이름에 대입합니다.)",
+      "options": ["25", "5", "Square", "오류"],
+      "answer": 0,
+      "explanation_en": "Classic Pascal sets a function's return value by assigning to the function's own name, like a special variable; Square := x * x makes the function return 25 for input 5.",
+      "explanation_ko": "초기 Pascal은 함수의 반환값을 함수 자신의 이름에(특수 변수처럼) 대입해서 설정합니다. Square := x * x는 입력 5에 대해 함수가 25를 반환하게 만듭니다.",
+      "concept_tags": ["function", "return_value"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "pascal_l2_u02_q003",
+      "type": "fill_blank",
+      "code": "____ IsEven(n: Integer): Boolean;\nbegin\n  IsEven := (n mod 2) = 0;\nend;",
+      "prompt_en": "Fill in the blank with the keyword that defines a value-returning routine.",
+      "prompt_ko": "값을 반환하는 루틴을 정의하는 키워드를 빈칸에 채우세요.",
+      "options": ["function", "procedure", "def", "sub"],
+      "answer": 0,
+      "explanation_en": "function defines a routine that returns a value (indicated by the : Boolean return type), unlike procedure which returns nothing.",
+      "explanation_ko": "function은 값을 반환하는 루틴을 정의합니다(: Boolean 반환 타입으로 표시). 아무것도 반환하지 않는 procedure와 다릅니다.",
+      "concept_tags": ["function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l2_u02_q004",
+      "type": "error_finding",
+      "code": "procedure Greet(name: string);\nbegin\n  writeln('Hello, ', name);\nend;\n\nvar\n  result: string;\nbegin\n  result := Greet('Kim');\nend.",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "Greet 정의 오류",
+        "Greet는 procedure라서 값을 반환하지 않는데, 그 결과를 result에 대입하려 해서 컴파일 오류가 발생함",
+        "string 선언 문법 오류",
+        "문제 없음, result에 \"Hello, Kim\"이 저장됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Since a procedure returns nothing, trying to assign the result of a procedure call to a variable is a compile error; a function would be needed instead, just as VB distinguishes Sub from Function.",
+      "explanation_ko": "procedure는 아무것도 반환하지 않으므로, procedure 호출의 결과를 변수에 대입하려 하면 컴파일 오류가 발생합니다. VB가 Sub와 Function을 구분하는 것처럼, 값을 반환하려면 function이 필요합니다.",
+      "concept_tags": ["procedure", "function"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "pascal_l2_u02_q005",
+      "type": "predict_output",
+      "code": "function Add(a, b: Integer): Integer;\nbegin\n  Add := a + b;\nend;\n\nbegin\n  writeln(Add(3, 4));\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["7", "34", "Add", "오류"],
+      "answer": 0,
+      "explanation_en": "Add(3, 4) sets Add := a + b, computing 3+4=7, which is then returned and printed.",
+      "explanation_ko": "Add(3, 4)는 Add := a + b를 설정해서 3+4=7을 계산하고, 이것이 반환되어 출력됩니다.",
+      "concept_tags": ["function"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l2_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "procedure", "definition": "값을 반환하지 않고 동작만 수행하는 루틴" },
+        { "term": "function", "definition": "값을 계산해 반환하는 루틴" },
+        { "term": "함수 이름 = 반환값", "definition": "함수 자신의 이름에 대입해서 반환값을 설정하는 Pascal 고유의 관용구" },
+        { "term": "VB Sub/Function과의 유사성", "definition": "Pascal의 procedure/function 구분은 VB의 Sub/Function에 직접 대응" }
+      ],
+      "explanation_en": "Pascal's explicit procedure/function distinction directly influenced Visual Basic's Sub/Function split decades later — a clear historical thread through this curriculum's languages.",
+      "explanation_ko": "Pascal의 명시적인 procedure/function 구분은 수십 년 뒤 Visual Basic의 Sub/Function 분리에 직접적인 영향을 미쳤습니다 — 이 커리큘럼의 언어들을 관통하는 뚜렷한 역사적 흐름입니다.",
+      "concept_tags": ["procedure", "function", "return_value"],
+      "difficulty": "practice"
+    }
+  ]
+}

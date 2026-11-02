@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 5,
+  "unit": 1,
+  "unit_title": "Class 기초",
+  "questions": [
+    {
+      "id": "python_l5_u01_q001",
+      "type": "predict_output",
+      "code": "class Dog:\n    def __init__(self, name):\n        self.name = name\n\n    def bark(self):\n        print(f\"{self.name}: 멍멍!\")\n\nd = Dog(\"바둑이\")\nd.bark()",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이: 멍멍!", "Dog: 멍멍!", "오류", "name: 멍멍!"],
+      "answer": 0,
+      "explanation_en": "__init__ is the constructor, called automatically when Dog(\"바둑이\") creates an object; d.bark() then uses that object's own name.",
+      "explanation_ko": "__init__은 생성자로, Dog(\"바둑이\")가 객체를 만들 때 자동으로 호출됩니다. d.bark()는 이후 그 객체 자신의 name을 사용합니다.",
+      "concept_tags": ["class", "init"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l5_u01_q002",
+      "type": "fill_blank",
+      "code": "class Dog:\n    def bark(____):\n        print(\"멍멍!\")\n\nd = Dog()\nd.bark()",
+      "prompt_en": "Fill in the blank with the parameter every instance method needs as its first argument.",
+      "prompt_ko": "모든 인스턴스 메서드가 첫 번째 매개변수로 필요로 하는 것을 빈칸에 채우세요.",
+      "options": ["self", "this", "Me", "(없음)"],
+      "answer": 0,
+      "explanation_en": "self explicitly represents the calling instance and must be the first parameter of every instance method — unlike Java/C#'s this, which is implicit and never written in the parameter list.",
+      "explanation_ko": "self는 호출한 인스턴스를 명시적으로 나타내며 모든 인스턴스 메서드의 첫 번째 매개변수여야 합니다. 암묵적이라 매개변수 목록에 절대 쓰지 않는 Java/C#의 this와 다른 점입니다.",
+      "concept_tags": ["self"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l5_u01_q003",
+      "type": "predict_output",
+      "code": "class Dog:\n    def __init__(self, name):\n        self.name = name\n\nd1 = Dog(\"바둑이\")\nd1.name = \"뽀삐\"\nd2 = Dog(\"초코\")\nprint(d1.name, d2.name)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이 초코", "뽀삐 초코", "뽀삐 뽀삐", "오류"],
+      "answer": 1,
+      "explanation_en": "d1 and d2 are separate objects with independent name attributes; changing d1.name doesn't affect d2, which keeps its own value, 초코.",
+      "explanation_ko": "d1과 d2는 독립적인 name 속성을 가진 서로 다른 객체입니다. d1.name을 바꿔도 d2에는 영향이 없어 자신의 값인 초코를 그대로 유지합니다.",
+      "concept_tags": ["class", "object"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l5_u01_q004",
+      "type": "error_finding",
+      "code": "class Dog:\n    def __init__(name):\n        self.name = name\n\nd = Dog(\"바둑이\")",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "__init__ 자체가 잘못된 이름임",
+        "self가 빠져서 name이 첫 번째 위치(원래 self 자리)를 차지하게 되는데, Dog(\"바둑이\") 호출은 인스턴스와 \"바둑이\" 두 인자를 넘겨서, 매개변수 1개(name)만 받는 __init__과 개수가 맞지 않아 TypeError가 발생함",
+        "name 매개변수 이름이 잘못됨",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Without self as the first parameter, name takes that slot instead; when Dog(\"바둑이\") is called, Python automatically passes the instance plus \"바둑이\" (2 arguments), but __init__ only declares 1 parameter, raising a TypeError about argument count.",
+      "explanation_ko": "첫 번째 매개변수로 self가 없으면 name이 그 자리를 대신 차지합니다. Dog(\"바둑이\")를 호출하면 Python은 자동으로 인스턴스와 \"바둑이\" 두 개의 인자를 전달하는데, __init__은 매개변수를 1개(name)만 선언했으므로 인자 개수 불일치로 TypeError가 발생합니다.",
+      "concept_tags": ["self"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l5_u01_q005",
+      "type": "predict_output",
+      "code": "class Rectangle:\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n\n    def area(self):\n        return self.width * self.height\n\nr = Rectangle(4, 5)\nprint(r.area())",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["9", "20", "45", "오류"],
+      "answer": 1,
+      "explanation_en": "area() uses self.width and self.height to compute 4 * 5 = 20.",
+      "explanation_ko": "area()는 self.width와 self.height를 사용해 4 * 5 = 20을 계산합니다.",
+      "concept_tags": ["class", "method"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l5_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "class", "definition": "속성과 메서드를 하나로 묶는 설계도" },
+        { "term": "__init__", "definition": "객체가 생성될 때 자동으로 호출되는 생성자 메서드" },
+        { "term": "self", "definition": "인스턴스 메서드의 첫 매개변수로, 호출한 객체 자신을 명시적으로 나타냄" },
+        { "term": "명시적 self vs 암묵적 this", "definition": "Python은 self를 매번 써야 하지만, Java/C#의 this는 쓰지 않아도 자동으로 존재함" }
+      ],
+      "explanation_en": "Python's explicit self is a direct consequence of its philosophy that 'explicit is better than implicit' — every instance method call is really just syntax sugar for calling the function with the instance as the first argument.",
+      "explanation_ko": "Python의 명시적인 self는 '명시적인 것이 암묵적인 것보다 낫다'는 철학의 직접적인 결과입니다. 모든 인스턴스 메서드 호출은 사실 인스턴스를 첫 번째 인자로 넘겨 함수를 호출하는 문법 설탕일 뿐입니다.",
+      "concept_tags": ["class", "init", "self"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "design",
+  "work": "풀이",
+  "track_title": "알고리즘 설계",
+  "chapter": {
+    "id": "info-s2-design-ch01",
+    "no": 1,
+    "title": "분할 정복"
+  },
+  "lesson": {
+    "id": "info-s2-design-ch01-l02",
+    "no": 2,
+    "title": "병합 정렬과 역순 쌍",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "알고리즘 설계",
+      "분할 정복"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "두 정렬된 배열 합치기",
+      "body": [
+        "병합 정렬은 배열을 반으로 나눠 각각 정렬한 뒤, 두 정렬된 배열을 합칩니다. 합칠 때는 두 배열의 맨 앞 원소를 비교해 작은 것을 꺼내는 일을 반복합니다.",
+        "한쪽 배열이 다 떨어지면 나머지는 비교 없이 그대로 붙입니다. 그래서 길이 p와 q인 배열을 합칠 때 비교는 많아야 p + q − 1번입니다.",
+        "아래 코드는 합치면서 역순 쌍도 셉니다. 이 레슨의 뒷부분에서 그 원리를 봅니다."
+      ],
+      "code": "// 정렬된 a[l..m-1]과 a[m..r-1]을 합치며 역순 쌍을 센다\nlong long merge(int l, int m, int r) {\n    long long inv = 0; int i = l, j = m, k = 0;\n    while (i < m && j < r) {\n        if (a[i] <= a[j]) tmp[k++] = a[i++];   // 비교 한 번\n        else {\n            tmp[k++] = a[j++];\n            inv += m - i;              // 왼쪽에 남은 원소는 모두 a[j]보다 크다\n        }\n    }\n    while (i < m) tmp[k++] = a[i++];\n    while (j < r) tmp[k++] = a[j++];\n    for (int t = 0; t < k; t++) a[l + t] = tmp[t];\n    return inv;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "{1, 4, 7}과 {2, 3, 9}를 아래 코드로 합칠 때 비교는 몇 번 일어나나요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "왼쪽이 먼저 다 떨어집니다.",
+      "explanation": "1과 2, 4와 2, 4와 3, 4와 9, 7과 9를 차례로 비교해 1, 2, 3, 4, 7을 꺼냅니다.\n이때 왼쪽이 다 떨어져 9는 비교 없이 붙습니다.\n그래서 비교는 5번입니다.",
+      "code": "// 정렬된 a[l..m-1]과 a[m..r-1]을 합치며 역순 쌍을 센다\nlong long merge(int l, int m, int r) {\n    long long inv = 0; int i = l, j = m, k = 0;\n    while (i < m && j < r) {\n        if (a[i] <= a[j]) tmp[k++] = a[i++];   // 비교 한 번\n        else {\n            tmp[k++] = a[j++];\n            inv += m - i;              // 왼쪽에 남은 원소는 모두 a[j]보다 크다\n        }\n    }\n    while (i < m) tmp[k++] = a[i++];\n    while (j < r) tmp[k++] = a[j++];\n    for (int t = 0; t < k; t++) a[l + t] = tmp[t];\n    return inv;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "길이 4인 정렬된 배열 두 개를 합칠 때 비교는 최대 몇 번인가요?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "p + q − 1입니다.",
+      "explanation": "비교 한 번마다 원소 하나를 꺼내고, 한쪽이 떨어지면 남은 것은 비교 없이 붙입니다.\n마지막 원소 하나는 반드시 비교 없이 붙으므로 많아야 4 + 4 − 1번입니다.\n= 7번입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "합치면서 역순 쌍 세기",
+      "body": [
+        "역순 쌍 (i, j)는 i < j인데 a[i] > a[j]인 쌍입니다. 배열을 반으로 나누면 역순 쌍은 왼쪽 안의 쌍, 오른쪽 안의 쌍, 왼쪽과 오른쪽에 걸친 쌍으로 나뉩니다.",
+        "앞의 둘은 재귀로 셉니다. 걸친 쌍은 합칠 때 셉니다. 오른쪽 원소 a[j]를 꺼내는 순간, 왼쪽에 아직 남은 원소들은 모두 a[j]보다 크므로 각각 a[j]와 역순 쌍을 이룹니다. 그래서 왼쪽에 남은 개수 m − i를 더합니다.",
+        "합치기가 O(n)이므로 역순 쌍 세기도 병합 정렬과 같은 O(n log n)입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "{2, 4, 1, 3}의 역순 쌍을 병합 정렬로 세세요.",
+      "steps": [
+        "{2, 4}와 {1, 3}은 각각 정렬되어 있어 안쪽 역순 쌍은 0개입니다.",
+        "합칠 때 1을 꺼내는 순간 왼쪽에 2, 4가 남아 2를 더하고, 2를 꺼낸 뒤 3을 꺼내는 순간 왼쪽에 4가 남아 1을 더합니다.",
+        "역순 쌍은 0 + 2 + 1 = 3개입니다."
+      ],
+      "answer": "3",
+      "code": "// 정렬된 a[l..m-1]과 a[m..r-1]을 합치며 역순 쌍을 센다\nlong long merge(int l, int m, int r) {\n    long long inv = 0; int i = l, j = m, k = 0;\n    while (i < m && j < r) {\n        if (a[i] <= a[j]) tmp[k++] = a[i++];   // 비교 한 번\n        else {\n            tmp[k++] = a[j++];\n            inv += m - i;              // 왼쪽에 남은 원소는 모두 a[j]보다 크다\n        }\n    }\n    while (i < m) tmp[k++] = a[i++];\n    while (j < r) tmp[k++] = a[j++];\n    for (int t = 0; t < k; t++) a[l + t] = tmp[t];\n    return inv;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "{1, 4, 7}과 {2, 3, 9}를 아래 코드로 합칠 때 inv에 더해지는 값의 합은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2와 3을 꺼낼 때 왼쪽에 무엇이 남아 있나요?",
+      "explanation": "2를 꺼낼 때 왼쪽에 4, 7이 남아 2를 더하고, 3을 꺼낼 때도 4, 7이 남아 2를 더합니다.\n9를 꺼내기 전에 왼쪽이 다 떨어지므로 더할 것이 없습니다.\n그래서 2 + 2 = 4입니다.",
+      "code": "// 정렬된 a[l..m-1]과 a[m..r-1]을 합치며 역순 쌍을 센다\nlong long merge(int l, int m, int r) {\n    long long inv = 0; int i = l, j = m, k = 0;\n    while (i < m && j < r) {\n        if (a[i] <= a[j]) tmp[k++] = a[i++];   // 비교 한 번\n        else {\n            tmp[k++] = a[j++];\n            inv += m - i;              // 왼쪽에 남은 원소는 모두 a[j]보다 크다\n        }\n    }\n    while (i < m) tmp[k++] = a[i++];\n    while (j < r) tmp[k++] = a[j++];\n    for (int t = 0; t < k; t++) a[l + t] = tmp[t];\n    return inv;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "{5, 1, 4, 2, 8, 3, 7, 6}의 역순 쌍은 모두 몇 개인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "원소마다 뒤에 있는 더 작은 원소를 세어도 됩니다.",
+      "explanation": "각 원소 뒤에 있는 더 작은 원소의 수는 5: 4개, 1: 0개, 4: 2개, 2: 0개, 8: 3개, 3: 0개, 7: 1개, 6: 0개입니다.\n이 값들을 모두 더합니다.\n4 + 2 + 3 + 1 = 10개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "길이 8인 배열을 병합 정렬할 때 비교는 최대 몇 번인가요? (W(1) = 0, W(n) = 2W(n/2) + n − 1)",
+      "answer": "17",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "W(2) = 1, W(4) = 5입니다.",
+      "explanation": "합치기 한 번의 비교는 많아야 (두 길이의 합) − 1입니다.\nW(2) = 1, W(4) = 2 × 1 + 3 = 5, W(8) = 2 × 5 + 7입니다.\n= 17번입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "왜 맞고 왜 빠른가",
+      "body": [
+        "왼쪽과 오른쪽은 각각 정렬되어 있으므로, 오른쪽의 a[j]를 꺼내는 순간 왼쪽에 남은 원소들은 이미 꺼낸 원소들보다 크고, 꺼내는 순서상 a[j]보다도 큽니다. 반대로 이미 꺼낸 왼쪽 원소들은 a[j] 이하입니다.",
+        "그래서 a[j]와 걸친 역순 쌍을 이루는 왼쪽 원소는 정확히 '남은 원소들'이고, 걸친 쌍은 오른쪽 원소를 꺼낼 때 한 번씩만 세어집니다.",
+        "재귀 트리의 층마다 합치기가 모두 O(n)이고 층이 log₂ n개이므로 전체 O(n log n)입니다. 모든 쌍을 비교하는 O(n²)보다 훨씬 빠릅니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "합치기에서 오른쪽 원소 a[j]를 꺼낼 때 inv에 더하는 값은? ① 왼쪽에 남은 원소의 수 ② 오른쪽에 남은 원소의 수 ③ 이미 꺼낸 원소의 수 ④ 항상 1",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "a[j]보다 큰 왼쪽 원소는 어느 것인가요?",
+      "explanation": "왼쪽에 남은 원소들은 모두 a[j]보다 크고 a[j]보다 앞에 있었으므로 a[j]와 역순 쌍을 이룹니다.\n이미 꺼낸 왼쪽 원소는 a[j] 이하라 역순 쌍이 아닙니다.\n답은 1입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "{8, 7, 6, 5, 4, 3, 2, 1}의 역순 쌍은 모두 몇 개인가요?",
+      "answer": "28",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "모든 쌍이 거꾸로 놓여 있습니다.",
+      "explanation": "내림차순으로 놓인 배열에서는 앞의 원소가 늘 뒤의 원소보다 크므로 모든 쌍이 역순 쌍입니다.\n원소 8개의 쌍은 8 × 7/2개입니다.\n= 28개입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "병합 정렬은 반으로 나눠 정렬한 뒤 합칩니다. 길이 p, q인 배열을 합칠 때 비교는 많아야 p + q − 1번입니다.",
+        "역순 쌍은 왼쪽 안, 오른쪽 안, 걸친 쌍으로 나누고, 걸친 쌍은 오른쪽 원소를 꺼낼 때 왼쪽에 남은 개수를 더해 셉니다.",
+        "전체 시간은 T(n) = 2T(n/2) + O(n)이므로 O(n log n)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "{3, 5}와 {1, 2, 4, 6}을 아래 코드로 합칠 때 비교는 몇 번 일어나나요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "어느 쪽이 먼저 다 떨어지나요?",
+      "explanation": "3과 1, 3과 2, 3과 4, 5와 4, 5와 6을 비교해 1, 2, 3, 4, 5를 꺼냅니다.\n그러면 왼쪽이 다 떨어져 6은 비교 없이 붙습니다.\n그래서 비교는 5번입니다.",
+      "code": "// 정렬된 a[l..m-1]과 a[m..r-1]을 합치며 역순 쌍을 센다\nlong long merge(int l, int m, int r) {\n    long long inv = 0; int i = l, j = m, k = 0;\n    while (i < m && j < r) {\n        if (a[i] <= a[j]) tmp[k++] = a[i++];   // 비교 한 번\n        else {\n            tmp[k++] = a[j++];\n            inv += m - i;              // 왼쪽에 남은 원소는 모두 a[j]보다 크다\n        }\n    }\n    while (i < m) tmp[k++] = a[i++];\n    while (j < r) tmp[k++] = a[j++];\n    for (int t = 0; t < k; t++) a[l + t] = tmp[t];\n    return inv;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "{3, 1, 2, 5, 4, 8, 6, 7}의 역순 쌍은 모두 몇 개인가요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "원소마다 뒤에 있는 더 작은 원소를 세세요.",
+      "explanation": "뒤에 있는 더 작은 원소의 수는 3: 2개, 1: 0개, 2: 0개, 5: 1개, 4: 0개, 8: 2개, 6: 0개, 7: 0개입니다.\n이 값들을 모두 더합니다.\n2 + 1 + 2 = 5개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "합치기에서 오른쪽 원소를 꺼낼 때마다 왼쪽에 남은 개수를 더하면, 왼쪽과 오른쪽에 걸친 역순 쌍의 수가 정확히 세어짐을 증명하세요.",
+      "model_answer": [
+        "걸친 쌍은 왼쪽 원소 x와 오른쪽 원소 y로 이루어지며, x > y이면 역순 쌍이다.",
+        "y를 꺼내는 순간 왼쪽에 남은 원소들은 정렬되어 있고 맨 앞 원소가 y보다 크므로 모두 y보다 크다. 이미 꺼낸 왼쪽 원소들은 y 이하다.",
+        "그래서 y와 역순 쌍을 이루는 왼쪽 원소는 정확히 그때 남은 원소들이다.",
+        "오른쪽 원소마다 한 번씩만 꺼내므로 걸친 역순 쌍은 빠짐도 겹침도 없이 정확히 한 번씩 세어진다."
+      ],
+      "criteria": [
+        {
+          "text": "남은 원소가 모두 y보다 큼을 보였다",
+          "points": 2
+        },
+        {
+          "text": "꺼낸 원소는 y 이하임을 보였다",
+          "points": 2
+        },
+        {
+          "text": "각 쌍이 정확히 한 번 세어짐을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "오른쪽 원소 y를 꺼내는 순간을 보세요.",
+      "code": "// 정렬된 a[l..m-1]과 a[m..r-1]을 합치며 역순 쌍을 센다\nlong long merge(int l, int m, int r) {\n    long long inv = 0; int i = l, j = m, k = 0;\n    while (i < m && j < r) {\n        if (a[i] <= a[j]) tmp[k++] = a[i++];   // 비교 한 번\n        else {\n            tmp[k++] = a[j++];\n            inv += m - i;              // 왼쪽에 남은 원소는 모두 a[j]보다 크다\n        }\n    }\n    while (i < m) tmp[k++] = a[i++];\n    while (j < r) tmp[k++] = a[j++];\n    for (int t = 0; t < k; t++) a[l + t] = tmp[t];\n    return inv;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "병합 정렬로 역순 쌍을 세는 전체 시간이 O(n log n)임을 설명하세요.",
+      "model_answer": [
+        "길이 n인 구간에서 하는 일은 두 반을 재귀로 처리하는 것과, 합치면서 세는 O(n)이다.",
+        "그래서 T(n) = 2T(n/2) + O(n)이다.",
+        "재귀 트리의 층마다 합치기 비용의 합은 O(n)이고 층은 log₂ n개다.",
+        "따라서 전체는 O(n log n)이다."
+      ],
+      "criteria": [
+        {
+          "text": "점화식을 세웠다",
+          "points": 2
+        },
+        {
+          "text": "층마다 O(n)임을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "층 수를 곱해 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "점화식을 먼저 세우세요."
+    }
+  ]
+}

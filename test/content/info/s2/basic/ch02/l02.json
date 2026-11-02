@@ -1,0 +1,267 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "basic",
+  "work": "풀이",
+  "track_title": "기초",
+  "chapter": {
+    "id": "info-s2-basic-ch02",
+    "no": 2,
+    "title": "불변식과 귀납"
+  },
+  "lesson": {
+    "id": "info-s2-basic-ch02-l02",
+    "no": 2,
+    "title": "불변식으로 보는 유클리드 호제법",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "기초",
+      "불변식과 귀납"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "최대공약수를 빠르게",
+      "body": [
+        "두 수의 최대공약수는 a를 b로 나눈 나머지 r을 이용해 gcd(a, b) = gcd(b, r)로 줄여 구할 수 있습니다. 이것을 유클리드 호제법이라 합니다.",
+        "아래 코드의 불변식은 'gcd(a, b)는 처음 두 수의 최대공약수와 같다'입니다. b가 0이 되면 gcd(a, 0) = a이므로 a가 답입니다.",
+        "반복마다 b가 더 작은 음이 아닌 정수 r로 바뀌므로 반복은 반드시 끝납니다. 정당성은 불변식이, 종료는 줄어드는 양이 보장합니다."
+      ],
+      "code": "int cnt = 0;\nwhile (b != 0) {          // 불변식: gcd(a, b)는 처음 값의 최대공약수와 같다\n    int r = a % b;\n    a = b; b = r;\n    cnt++;\n}\n// 답은 a"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "a = 252, b = 105로 시작하면 마지막에 a의 값은?",
+      "answer": "21",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "252 = 2 × 105 + 42입니다.",
+      "explanation": "gcd(252, 105) = gcd(105, 42) = gcd(42, 21) = gcd(21, 0)입니다.\n반복이 끝나면 b = 0이고 a에 최대공약수가 남습니다.\n그래서 a = 21입니다.",
+      "code": "int cnt = 0;\nwhile (b != 0) {          // 불변식: gcd(a, b)는 처음 값의 최대공약수와 같다\n    int r = a % b;\n    a = b; b = r;\n    cnt++;\n}\n// 답은 a"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "a = 252, b = 105로 시작하면 cnt의 최종 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(252, 105) → (105, 42) → …",
+      "explanation": "반복마다 (a, b)가 (b, a % b)로 바뀝니다.\n(252, 105) → (105, 42) → (42, 21) → (21, 0)으로 세 번 바뀝니다.\n그래서 cnt = 3입니다.",
+      "code": "int cnt = 0;\nwhile (b != 0) {          // 불변식: gcd(a, b)는 처음 값의 최대공약수와 같다\n    int r = a % b;\n    a = b; b = r;\n    cnt++;\n}\n// 답은 a"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "불변식이 유지되는 이유",
+      "body": [
+        "a = qb + r이라 합시다. d가 a와 b를 모두 나누면 r = a − qb도 나눕니다. 반대로 d가 b와 r을 나누면 a = qb + r도 나눕니다.",
+        "그래서 (a, b)의 공약수와 (b, r)의 공약수는 정확히 같고, 최대공약수도 같습니다. 반복 한 번이 (a, b)를 (b, r)로 바꾸므로 불변식이 유지됩니다.",
+        "종료할 때 b = 0이고, 0은 모든 수의 배수이므로 gcd(a, 0) = a입니다. 이렇게 초기화, 유지, 종료가 모두 보여집니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "a = 48, b = 18일 때 반복을 따라가 최대공약수와 cnt를 구하세요.",
+      "steps": [
+        "48 = 2 × 18 + 12이므로 (18, 12)가 됩니다.",
+        "18 = 1 × 12 + 6이므로 (12, 6), 12 = 2 × 6 + 0이므로 (6, 0)이 됩니다.",
+        "세 번 반복했으므로 cnt = 3이고, 최대공약수는 6입니다."
+      ],
+      "answer": "최대공약수 6, cnt = 3",
+      "code": "int cnt = 0;\nwhile (b != 0) {          // 불변식: gcd(a, b)는 처음 값의 최대공약수와 같다\n    int r = a % b;\n    a = b; b = r;\n    cnt++;\n}\n// 답은 a"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = 100, b = 36으로 시작하면 cnt의 최종 값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "100 = 2 × 36 + 28입니다.",
+      "explanation": "반복마다 (a, b)가 (b, a % b)로 바뀝니다.\n(100, 36) → (36, 28) → (28, 8) → (8, 4) → (4, 0)으로 네 번 바뀝니다.\n그래서 cnt = 4이고 최대공약수는 4입니다.",
+      "code": "int cnt = 0;\nwhile (b != 0) {          // 불변식: gcd(a, b)는 처음 값의 최대공약수와 같다\n    int r = a % b;\n    a = b; b = r;\n    cnt++;\n}\n// 답은 a"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = 89, b = 55(연속한 피보나치 수)로 시작하면 cnt의 최종 값은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "나머지가 55, 34, 21, …처럼 피보나치 수를 따라 내려갑니다.",
+      "explanation": "연속한 피보나치 수는 몫이 늘 1이라 한 단계씩만 줄어듭니다.\n(89, 55) → (55, 34) → (34, 21) → (21, 13) → (13, 8) → (8, 5) → (5, 3) → (3, 2) → (2, 1) → (1, 0)입니다.\n그래서 cnt = 9입니다.",
+      "code": "int cnt = 0;\nwhile (b != 0) {          // 불변식: gcd(a, b)는 처음 값의 최대공약수와 같다\n    int r = a % b;\n    a = b; b = r;\n    cnt++;\n}\n// 답은 a"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "빠른 거듭제곱의 불변식",
+      "body": [
+        "aⁿ을 n번 곱하지 않고 구하는 방법이 있습니다. 아래 코드는 e를 반씩 줄이며 x를 제곱합니다. 불변식은 'r · xᵉ = aⁿ'입니다.",
+        "처음에 r = 1, x = a, e = n이므로 성립합니다. e가 짝수이면 x를 제곱하고 e를 반으로 해도 xᵉ는 그대로입니다. e가 홀수이면 x 하나를 r에 곱해 둔 뒤 같은 일을 합니다.",
+        "e가 0이 되면 xᵉ = 1이므로 r = aⁿ입니다. e는 반복마다 절반 이하로 줄어 약 log₂ n번 만에 끝납니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = 3, n = 13으로 시작하면 cnt의 최종 값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "e는 13, 6, 3, 1, 0으로 바뀝니다.",
+      "explanation": "반복마다 e를 2로 나눈 몫으로 바꿉니다.\ne는 13 → 6 → 3 → 1 → 0으로 네 번 바뀝니다.\n그래서 cnt = 4입니다.",
+      "code": "long long r = 1, x = a, e = n;\nint cnt = 0;\nwhile (e > 0) {           // 불변식: r · xᵉ = aⁿ\n    if (e % 2 == 1) r *= x;\n    x *= x; e /= 2;\n    cnt++;\n}\n// 답은 r"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "빠른 거듭제곱 코드의 불변식으로 알맞은 것은? ① r = aⁿ ② r · xᵉ = aⁿ ③ x = aᵉ ④ r · e = n",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "처음 r = 1, x = a, e = n에서 성립하는 식을 고르세요.",
+      "explanation": "처음에 r · xᵉ = 1 · aⁿ = aⁿ이므로 성립합니다.\n반복 뒤에도 이 값이 유지되고, e = 0이 되면 r = aⁿ을 알려 줍니다.\n답은 2입니다.",
+      "code": "long long r = 1, x = a, e = n;\nint cnt = 0;\nwhile (e > 0) {           // 불변식: r · xᵉ = aⁿ\n    if (e % 2 == 1) r *= x;\n    x *= x; e /= 2;\n    cnt++;\n}\n// 답은 r"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = 2, n = 10으로 시작할 때 첫 번째 반복이 끝난 직후 r · xᵉ의 값은?",
+      "answer": "1024",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "불변식을 이용하세요.",
+      "explanation": "불변식에 따르면 반복 전후로 r · xᵉ는 처음 값인 aⁿ과 항상 같으므로, 중간 상태를 따라가지 않아도 값을 알 수 있습니다.\naⁿ = 2¹⁰입니다.\n= 1024입니다.",
+      "code": "long long r = 1, x = a, e = n;\nint cnt = 0;\nwhile (e > 0) {           // 불변식: r · xᵉ = aⁿ\n    if (e % 2 == 1) r *= x;\n    x *= x; e /= 2;\n    cnt++;\n}\n// 답은 r"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "유클리드 호제법의 불변식은 'gcd(a, b)가 처음과 같다'이고, a = qb + r에서 공약수가 같다는 사실로 유지됩니다. b가 줄어드므로 반드시 끝납니다.",
+        "빠른 거듭제곱의 불변식은 'r · xᵉ = aⁿ'입니다. e가 반씩 줄어 반복은 약 log₂ n번입니다.",
+        "반복문의 정당성은 불변식으로, 종료는 계속 줄어드는 음이 아닌 정수로 보이는 것이 기본 방법입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a = 1071, b = 462로 시작하면 마지막에 a의 값은?",
+      "answer": "21",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1071 = 2 × 462 + 147입니다.",
+      "explanation": "gcd(1071, 462) = gcd(462, 147) = gcd(147, 21) = gcd(21, 0)입니다.\n반복이 끝나면 a에 최대공약수가 남습니다.\n그래서 a = 21입니다.",
+      "code": "int cnt = 0;\nwhile (b != 0) {          // 불변식: gcd(a, b)는 처음 값의 최대공약수와 같다\n    int r = a % b;\n    a = b; b = r;\n    cnt++;\n}\n// 답은 a"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a = 2, n = 100으로 시작하면 cnt의 최종 값은?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "e는 100, 50, 25, 12, 6, 3, 1, 0으로 바뀝니다.",
+      "explanation": "반복마다 e를 2로 나눈 몫으로 바꾸므로 반복 횟수는 n의 이진수 자릿수와 같습니다.\n100 → 50 → 25 → 12 → 6 → 3 → 1 → 0으로 일곱 번 바뀝니다.\n그래서 cnt = 7입니다.",
+      "code": "long long r = 1, x = a, e = n;\nint cnt = 0;\nwhile (e > 0) {           // 불변식: r · xᵉ = aⁿ\n    if (e % 2 == 1) r *= x;\n    x *= x; e /= 2;\n    cnt++;\n}\n// 답은 r"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "a = qb + r(0 ≤ r < b)일 때 gcd(a, b) = gcd(b, r)임을 증명하세요.",
+      "model_answer": [
+        "d가 a와 b의 공약수이면 r = a − qb이므로 d는 r도 나눈다. 그래서 d는 b와 r의 공약수다.",
+        "d가 b와 r의 공약수이면 a = qb + r이므로 d는 a도 나눈다. 그래서 d는 a와 b의 공약수다.",
+        "두 쌍의 공약수 집합이 같으므로 그중 가장 큰 수도 같다. 즉 gcd(a, b) = gcd(b, r)이다."
+      ],
+      "criteria": [
+        {
+          "text": "(a, b)의 공약수가 (b, r)의 공약수임을 보였다",
+          "points": 2
+        },
+        {
+          "text": "반대 방향을 보였다",
+          "points": 2
+        },
+        {
+          "text": "공약수 집합이 같아 최대공약수가 같음을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "공약수 집합이 같음을 보이세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "빠른 거듭제곱 코드가 aⁿ을 구함을 불변식 r · xᵉ = aⁿ으로 증명하세요.",
+      "model_answer": [
+        "초기화: r = 1, x = a, e = n이므로 r · xᵉ = aⁿ이다.",
+        "유지(e가 짝수): e = 2k이면 새 값은 r · (x²)ᵏ = r · xᵉ로 그대로다.",
+        "유지(e가 홀수): e = 2k + 1이면 r을 r · x로 바꾼 뒤 (r · x) · (x²)ᵏ = r · xᵉ로 그대로다.",
+        "종료: e는 반복마다 줄어드는 음이 아닌 정수라 0이 되어 끝나고, 그때 r · x⁰ = r = aⁿ이다."
+      ],
+      "criteria": [
+        {
+          "text": "초기화를 보였다",
+          "points": 1
+        },
+        {
+          "text": "e가 짝수일 때 유지를 보였다",
+          "points": 2
+        },
+        {
+          "text": "e가 홀수일 때 유지를 보였다",
+          "points": 2
+        },
+        {
+          "text": "종료와 결론을 썼다",
+          "points": 1
+        }
+      ],
+      "hint": "e가 짝수일 때와 홀수일 때를 나누세요.",
+      "code": "long long r = 1, x = a, e = n;\nint cnt = 0;\nwhile (e > 0) {           // 불변식: r · xᵉ = aⁿ\n    if (e % 2 == 1) r *= x;\n    x *= x; e /= 2;\n    cnt++;\n}\n// 답은 r"
+    }
+  ]
+}

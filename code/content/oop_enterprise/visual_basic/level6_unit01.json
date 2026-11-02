@@ -1,0 +1,96 @@
+{
+  "language": "visual_basic",
+  "category": "oop_enterprise",
+  "level": 6,
+  "unit": 1,
+  "unit_title": "파일 입출력",
+  "questions": [
+    {
+      "id": "visual_basic_l6_u01_q001",
+      "type": "predict_output",
+      "code": "Imports System.IO\n\nFile.WriteAllText(\"test.txt\", \"42\")\nDim content As String = File.ReadAllText(\"test.txt\")\nConsole.WriteLine(content)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["42", "test.txt", "오류", "빈 문자열"],
+      "answer": 0,
+      "explanation_en": "File.WriteAllText writes the given text to the file in one call, and File.ReadAllText reads it back as a single string, printing 42.",
+      "explanation_ko": "File.WriteAllText는 한 번의 호출로 텍스트를 파일에 씁니다. File.ReadAllText는 이를 하나의 문자열로 다시 읽어와 42를 출력합니다.",
+      "concept_tags": ["file_io"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l6_u01_q002",
+      "type": "predict_output",
+      "code": "Imports System.IO\n\nIf File.Exists(\"nonexistent.txt\") Then\n    Console.WriteLine(\"있음\")\nElse\n    Console.WriteLine(\"없음\")\nEnd If",
+      "prompt_en": "What is printed, assuming the file doesn't exist?",
+      "prompt_ko": "파일이 존재하지 않는다고 가정할 때 출력 결과는?",
+      "options": ["있음", "없음", "오류", "nonexistent.txt"],
+      "answer": 1,
+      "explanation_en": "File.Exists safely checks for a file's presence without throwing an exception, returning False here.",
+      "explanation_ko": "File.Exists는 예외를 던지지 않고 안전하게 파일 존재 여부를 확인합니다. 여기서는 False를 반환합니다.",
+      "concept_tags": ["file_io", "file_exists"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "visual_basic_l6_u01_q003",
+      "type": "fill_blank",
+      "code": "Imports System.IO\n\nDim lines As String() = File.____(\"data.txt\")\nFor Each line In lines\n    Console.WriteLine(line)\nNext",
+      "prompt_en": "Fill in the blank with the method that reads a file as an array of lines.",
+      "prompt_ko": "파일을 줄 단위 배열로 읽는 메서드를 빈칸에 채우세요.",
+      "options": ["ReadAllLines", "ReadAllText", "ReadLine", "OpenText"],
+      "answer": 0,
+      "explanation_en": "ReadAllLines returns each line of the file as a separate element in a String array, useful for line-by-line processing.",
+      "explanation_ko": "ReadAllLines는 파일의 각 줄을 String 배열의 개별 요소로 반환합니다. 줄 단위 처리에 유용합니다.",
+      "concept_tags": ["file_io"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l6_u01_q004",
+      "type": "predict_output",
+      "code": "Imports System.IO\n\nUsing writer As New StreamWriter(\"log.txt\")\n    writer.WriteLine(\"기록 1\")\n    writer.WriteLine(\"기록 2\")\nEnd Using\n\nDim content As String = File.ReadAllText(\"log.txt\")\nConsole.WriteLine(content.Contains(\"기록 1\"))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["True", "False", "오류", "기록 1"],
+      "answer": 0,
+      "explanation_en": "The Using block ensures the StreamWriter is properly closed after writing; the file then contains 기록 1, so Contains returns True.",
+      "explanation_ko": "Using 블록은 쓰기가 끝나면 StreamWriter가 확실히 닫히도록 보장합니다. 파일에는 기록 1이 들어있으므로 Contains는 True를 반환합니다.",
+      "concept_tags": ["file_io", "streamwriter", "using"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l6_u01_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "File.WriteAllText / ReadAllText", "definition": "파일 전체를 한 번에 쓰거나 읽는 간단한 방법" },
+        { "term": "File.Exists", "definition": "예외 없이 안전하게 파일 존재 여부를 확인하는 메서드" },
+        { "term": "StreamWriter / StreamReader", "definition": "파일을 스트림 방식으로 열어 세밀하게 제어하며 쓰거나 읽는 클래스" },
+        { "term": "Using 블록", "definition": "블록이 끝나면 자원(파일 핸들 등)을 자동으로 정리해주는 문법" }
+      ],
+      "explanation_en": "File I/O in VB uses the same System.IO namespace as C#, offering both simple all-at-once methods and more granular stream-based control.",
+      "explanation_ko": "VB의 파일 입출력은 C#과 같은 System.IO 네임스페이스를 사용해서, 한 번에 처리하는 간단한 메서드와 스트림 기반의 더 세밀한 제어를 모두 제공합니다.",
+      "concept_tags": ["file_io", "streamwriter", "using"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "visual_basic_l6_u01_q006",
+      "type": "error_finding",
+      "code": "Imports System.IO\n\nDim content As String = File.ReadAllText(\"missing_file.txt\")\nConsole.WriteLine(content)",
+      "prompt_en": "What problem does this code have if missing_file.txt doesn't exist?",
+      "prompt_ko": "missing_file.txt가 존재하지 않을 경우 이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "ReadAllText 사용법 자체가 잘못됨",
+        "파일 존재 여부를 확인하지 않고 바로 읽으려 해서, 실행 시점에 FileNotFoundException이 발생함",
+        "content 선언 문법 오류",
+        "문제 없음, 빈 문자열이 반환됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Without checking File.Exists first, reading a nonexistent file throws a FileNotFoundException at runtime, crashing the program if not caught.",
+      "explanation_ko": "먼저 File.Exists로 확인하지 않고 존재하지 않는 파일을 읽으려 하면 실행 시점에 FileNotFoundException이 발생합니다. 잡아내지 않으면 프로그램이 비정상 종료됩니다.",
+      "concept_tags": ["file_io", "filenotfoundexception"],
+      "difficulty": "challenge"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "plsql-associate-1z0-149",
+  "level": 2,
+  "unit": 1,
+  "unit_title": "명시적 커서 기초",
+  "rule_summary_ko": "명시적 커서는 OPEN(열기)→FETCH(한 행씩 가져오기)→CLOSE(닫기) 과정을 개발자가 직접 제어합니다. 커서 속성 %FOUND·%NOTFOUND·%ROWCOUNT는 OPEN 직후·첫 FETCH 전에는 %FOUND·%NOTFOUND가 NULL이고 %ROWCOUNT는 0입니다. 첫 FETCH 성공 후 %FOUND는 TRUE, %NOTFOUND는 FALSE가 되며, 더 이상 가져올 행이 없을 때 FETCH하면 %FOUND는 FALSE, %NOTFOUND는 TRUE가 됩니다. 열려있지 않은 커서에 이 속성들을 사용하면 INVALID_CURSOR 예외가 발생합니다.",
+  "examples": [
+    { "code": "OPEN emp_cursor;\n-- 첫 FETCH 전\nIF emp_cursor%FOUND THEN ...", "note_ko": "OPEN 직후, 첫 FETCH를 하기 전이라 %FOUND는 NULL(TRUE도 FALSE도 아님)" },
+    { "code": "FETCH emp_cursor INTO v_emp;\n-- 마지막 행 이후 한 번 더 FETCH", "note_ko": "더 가져올 행이 없으면 %NOTFOUND가 TRUE가 되어 루프를 종료할 신호로 사용됨" }
+  ],
+  "questions": [
+    {
+      "id": "plsql_l2_u1_q001",
+      "type": "concept_matching_item",
+      "code": "OPEN emp_cursor;\nIF emp_cursor%FOUND THEN\n    DBMS_OUTPUT.PUT_LINE('찾음');\nEND IF;\n-- 아직 FETCH를 한 번도 안 한 상태",
+      "prompt_ko": "OPEN 직후, 첫 FETCH를 하기 전에 emp_cursor%FOUND의 값은?",
+      "options": [
+        "TRUE", "FALSE", "NULL — 첫 FETCH 이전에는 %FOUND가 아직 결정되지 않아 NULL이다", "컴파일 오류"
+      ],
+      "answer": 2,
+      "explanation_ko": "%FOUND는 최소 한 번의 FETCH가 있어야 TRUE/FALSE 값을 가지며, 그 전에는 NULL입니다.",
+      "concept_tags": ["percent_found"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l2_u1_q002",
+      "type": "concept_matching_item",
+      "code": "DECLARE\n    CURSOR emp_cursor IS SELECT last_name FROM employees;\n    v_name employees.last_name%TYPE;\nBEGIN\n    LOOP\n        FETCH emp_cursor INTO v_name;\n        EXIT WHEN emp_cursor%NOTFOUND;\n        DBMS_OUTPUT.PUT_LINE(v_name);\n    END LOOP;\nEND;",
+      "prompt_ko": "이 코드에는 결정적인 문제가 있습니다. 무엇입니까?",
+      "options": [
+        "커서를 OPEN하지 않고 바로 FETCH를 시도해서, 커서가 열려있지 않다는 오류(예: INVALID_CURSOR 계열)가 발생한다",
+        "아무 문제도 없다",
+        "CLOSE를 두 번 호출해서 오류가 발생한다",
+        "EXIT WHEN 조건이 잘못되어 무한 루프에 빠진다"
+      ],
+      "answer": 0,
+      "explanation_ko": "명시적 커서는 사용 전에 반드시 OPEN emp_cursor; 를 먼저 호출해야 합니다. 이 코드는 OPEN이 누락되어 있습니다.",
+      "concept_tags": ["cursor_open_required"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l2_u1_q003",
+      "type": "fill_blank",
+      "code": "OPEN emp_cursor;\n-- 첫 FETCH 전\nDBMS_OUTPUT.PUT_LINE(emp_cursor%ROWCOUNT);",
+      "prompt_ko": "OPEN 직후, 첫 FETCH를 하기 전에 %ROWCOUNT의 값은? (숫자만 입력)",
+      "expected_answers": ["0"],
+      "explanation_ko": "OPEN 시점에 %ROWCOUNT는 0으로 초기화되며, FETCH가 성공할 때마다 1씩 증가합니다.",
+      "concept_tags": ["percent_rowcount"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "plsql_l2_u1_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "커서가 열려있는지 확인하는 데 사용하는 속성은?",
+      "options": ["%FOUND", "%NOTFOUND", "%ISOPEN — 커서가 열려있으면 TRUE, 아니면 FALSE를 반환", "%ROWCOUNT"],
+      "answer": 2,
+      "explanation_ko": "%ISOPEN은 커서의 열림·닫힘 상태를 boolean으로 알려줍니다.",
+      "concept_tags": ["percent_isopen"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "plsql_l2_u1_q005",
+      "type": "concept_matching_item",
+      "code": "CLOSE emp_cursor;\nDBMS_OUTPUT.PUT_LINE(emp_cursor%ROWCOUNT);",
+      "prompt_ko": "이미 CLOSE한 커서에 대해 %ROWCOUNT를 참조하면?",
+      "options": [
+        "마지막으로 열려있었을 때의 값을 그대로 보여준다",
+        "INVALID_CURSOR 예외가 발생한다 — 닫힌 커서의 속성을 참조할 수 없다",
+        "항상 0이 반환된다",
+        "NULL이 반환된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "커서가 열려있지 않은 상태에서 %FOUND, %NOTFOUND, %ROWCOUNT를 참조하면 INVALID_CURSOR 예외가 발생합니다.",
+      "concept_tags": ["invalid_cursor"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "plsql_l2_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "명시적 커서를 사용하는 근본적인 이유는?",
+      "options": [
+        "SELECT INTO처럼 정확히 한 행만 가능한 경우와 달리, 여러 행의 결과를 하나씩 순차적으로 제어하며 처리하기 위해",
+        "테이블을 생성하기 위해",
+        "트랜잭션을 커밋하기 위해",
+        "변수의 타입을 선언하기 위해"
+      ],
+      "answer": 0,
+      "explanation_ko": "커서는 다중 행 결과를 한 행씩 가져오며 세밀하게 제어할 수 있게 해주는 도구입니다.",
+      "concept_tags": ["cursor_purpose"],
+      "difficulty": "intro"
+    }
+  ]
+}

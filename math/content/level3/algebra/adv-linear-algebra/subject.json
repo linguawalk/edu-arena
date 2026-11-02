@@ -1,0 +1,223 @@
+{
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "level": 3,
+ "track": "algebra",
+ "id": "adv-linear-algebra",
+ "title": "고급 선형대수",
+ "tagline": "행렬 계산을 넘어 벡터공간 위의 선형사상과 작용소의 구조로",
+ "overview": [
+  "레벨2 선형대수가 ℝⁿ과 행렬의 계산을 중심으로 했다면, 고급 선형대수는 같은 내용을 '임의의 체 위의 추상 벡터공간'과 '선형사상'의 언어로 다시 세웁니다. 다항식 공간, 함수 공간, 행렬 공간도 모두 벡터공간이 되고, 미분 같은 연산도 선형사상으로 다룰 수 있게 됩니다.",
+  "핵심 질문은 '선형 작용소의 구조를 가장 단순하게 보여 주는 기저는 무엇인가'입니다. 대각화할 수 없는 작용소도 상삼각화와 조르당 표준형으로 이해할 수 있고, 내적공간에서는 스펙트럼 정리와 특이값 분해가 작용소를 완전히 분해해 줍니다. 쌍대공간과 다중선형대수는 해석학, 미분기하, 물리의 텐서로 이어집니다.",
+  "이 가이드는 Axler의 Linear Algebra Done Right 4판을 따릅니다. 행렬식을 마지막까지 미루고 최소다항식으로 고유값 이론을 세우는 접근이라 개념이 깔끔하게 보이며, 교재와 저자의 강의 영상이 모두 무료로 공개되어 있어 독학에 가장 적합합니다."
+ ],
+ "level_note": "레벨 3 (학부 전공 수준, 1~2학기 분량). 목차 검증 기준: Axler, Friedberg–Insel–Spence, Hoffman–Kunze 등 전공 선형대수 교재와 중등 수학 임용시험 선형대수 범위.",
+ "prereq": {
+  "text": "레벨2 선형대수 전체(특히 벡터공간, 네 부분공간, 고유값, 직교성)가 선수입니다. 증명을 읽고 쓰는 데 익숙하지 않다면 레벨2 '수학적 증명과 집합'을 함께 공부하세요. 아래 점검에서 틀린 문항은 연결된 레벨2 단원을 다시 보세요.",
+  "links": [
+   {
+    "title": "레벨2 · 수학적 증명과 집합",
+    "href": "guide.html?lv=2&t=logic&s=proof"
+   },
+   {
+    "title": "레벨2 선형대수 · 단원 5 네 부분공간",
+    "href": "guide.html?lv=2&t=algebra&s=linear-algebra&u=5"
+   },
+   {
+    "title": "레벨2 선형대수 · 단원 9 고유값",
+    "href": "guide.html?lv=2&t=algebra&s=linear-algebra&u=9"
+   },
+   {
+    "title": "레벨2 선형대수 · 단원 6 직교성",
+    "href": "guide.html?lv=2&t=algebra&s=linear-algebra&u=6"
+   },
+   {
+    "title": "레벨2 선형대수 · 단원 11 선형변환",
+    "href": "guide.html?lv=2&t=algebra&s=linear-algebra&u=11"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "q1",
+    "qtype": "numeric",
+    "prompt": "4 × 6 행렬의 계수가 3일 때 영공간의 차원은?",
+    "answer": "3",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "dim N(A) = n − r = 6 − 3 = 3\n(레벨2 선형대수 단원 5)"
+   },
+   {
+    "type": "question",
+    "id": "q2",
+    "qtype": "fill_blank",
+    "prompt": "A = [[2, 1], [1, 2]]의 고유값은 큰 값 {{1}}, 작은 값 {{2}}",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "3"
+      ]
+     },
+     {
+      "id": 2,
+      "answers": [
+       "1"
+      ]
+     }
+    ],
+    "explanation": "λ² − 4λ + 3 = 0에서 λ = 3, 1\n(레벨2 선형대수 단원 9·10)"
+   },
+   {
+    "type": "question",
+    "id": "q3",
+    "qtype": "numeric",
+    "prompt": "고유값이 2, 3, 5인 3 × 3 행렬의 행렬식은?",
+    "answer": "30",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "행렬식 = 고유값의 곱 = 2 × 3 × 5 = 30 (단원 9)"
+   },
+   {
+    "type": "question",
+    "id": "q4",
+    "qtype": "numeric",
+    "prompt": "(1, 2, 2)와 (2, −2, 1)의 내적은?",
+    "answer": "0",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "2 − 4 + 2 = 0\n두 벡터는 직교 (단원 6)"
+   },
+   {
+    "type": "question",
+    "id": "q5",
+    "qtype": "numeric",
+    "prompt": "행렬 [[1, 1], [0, 1]]은 대각화할 수 있을까요? (그렇다 1, 아니다 0)",
+    "answer": "0",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "고유값 1(중근)에 대한 고유벡터가 (1, 0) 방향 하나뿐\n대각화 불가 → 조르당 표준형이 필요한 이유 (단원 9)"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "레벨3 · 해석학",
+   "note": "노름공간과 내적공간의 무한차원 버전으로"
+  },
+  {
+   "title": "레벨3 · 수치해석",
+   "note": "고유값·특이값을 컴퓨터로 계산하는 알고리즘"
+  },
+  {
+   "title": "레벨3 · 미분기하",
+   "note": "쌍대공간과 다중선형형식이 미분형식으로"
+  },
+  {
+   "title": "sci-arena 레벨3 · 양자역학",
+   "note": "에르미트 작용소와 스펙트럼 정리"
+  }
+ ],
+ "units": [
+  {
+   "no": 1,
+   "title": "체 위의 벡터공간과 부분공간",
+   "hours": 5,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "유한차원 벡터공간: 기저와 차원",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "선형사상, 영공간과 치역, 행렬",
+   "hours": 6,
+   "after": [
+    2
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "곱공간, 몫공간, 쌍대공간",
+   "hours": 6,
+   "after": [
+    3
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "고유값, 불변부분공간, 최소다항식",
+   "hours": 6,
+   "after": [
+    3
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "상삼각화와 대각화 가능성",
+   "hours": 5,
+   "after": [
+    5
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "내적공간",
+   "hours": 6,
+   "after": [
+    3
+   ],
+   "file": "u07.json"
+  },
+  {
+   "no": 8,
+   "title": "수반 작용소와 스펙트럼 정리",
+   "hours": 6,
+   "after": [
+    6,
+    7
+   ],
+   "file": "u08.json"
+  },
+  {
+   "no": 9,
+   "title": "양의 작용소, 등거리 작용소, 특이값 분해",
+   "hours": 6,
+   "after": [
+    8
+   ],
+   "file": "u09.json"
+  },
+  {
+   "no": 10,
+   "title": "일반화된 고유벡터와 조르당 표준형",
+   "hours": 7,
+   "after": [
+    6
+   ],
+   "file": "u10.json"
+  },
+  {
+   "no": 11,
+   "title": "대각합, 행렬식, 다중선형대수",
+   "hours": 6,
+   "after": [
+    10,
+    4
+   ],
+   "file": "u11.json"
+  }
+ ],
+ "total_hours": 64
+}

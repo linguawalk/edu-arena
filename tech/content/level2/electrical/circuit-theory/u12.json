@@ -1,0 +1,107 @@
+{
+ "no": 12,
+ "title": "라플라스 변환과 회로 해석",
+ "hours": 7,
+ "after": [
+  7,
+  11
+ ],
+ "objectives": [
+  "주요 함수의 라플라스 변환과 역변환(부분 분수)을 할 수 있다.",
+  "회로를 s 영역으로 바꾸어 초기 조건까지 포함해 풀 수 있다.",
+  "전달함수의 극점·영점으로 응답의 모양을 예측할 수 있다."
+ ],
+ "checklist": [
+  "라플라스 변환 정의와 주요 변환표(계단, 지수, 정현파)",
+  "미분 성질 L{f′} = sF(s) − f(0⁻)",
+  "부분 분수 전개로 역변환",
+  "s 영역 소자: Z_R = R, Z_L = sL, Z_C = 1/(sC), 초기 조건은 전원으로",
+  "전달함수 H(s)와 임펄스 응답",
+  "극점의 위치와 안정성(좌반평면)",
+  "초기값 정리와 최종값 정리",
+  "합성곱(컨볼루션)의 의미"
+ ],
+ "advice": [
+  "라플라스 변환은 6·7단원의 과도 응답과 8·11단원의 정상 상태 응답을 하나의 방법으로 묶어 줍니다. 처음에는 변환표와 부분 분수 계산이 부담스럽지만, 결국 '회로를 s 영역 임피던스로 바꾸고 직류 회로처럼 푼 뒤 역변환'하는 절차라는 것을 잡으면 단순해집니다.",
+  "전달함수의 극점이 응답의 모양(감쇠, 진동, 발산)을 결정한다는 생각은 레벨3 제어공학의 핵심입니다. 7단원의 α, ω₀가 극점 위치와 어떻게 대응하는지 직접 확인해 두세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Nilsson · Riedel, Electric Circuits (번역본 『전기회로』, 장 번호는 원서 10판 기준)",
+   "part": "12장 Introduction to the Laplace Transform, 13장 The Laplace Transform in Circuit Analysis"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Alexander · Sadiku, Fundamentals of Electric Circuits (번역본 『회로이론』)",
+   "part": "15장 Introduction to the Laplace Transform, 16장 Applications of the Laplace Transform"
+  },
+  {
+   "title": "math-arena 레벨2 · 공학수학 (라플라스 변환)",
+   "href": "https://math-arena.org/guide.html?lv=2&t=applied&s=engineering-math"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "s 영역에서 인덕터의 임피던스는 sL, 커패시터의 임피던스는 1/({{1}})입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "sC",
+      "Cs"
+     ]
+    }
+   ],
+   "explanation": "초기 조건이 0이 아니면 직렬 전압원(인덕터는 Li(0), 커패시터는 v(0)/s)을 추가합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "전달함수 H(s) = 1/(s + 2)의 극점은 s = ?",
+   "answer": "-2",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "분모 s + 2 = 0\ns = −2 (좌반평면이므로 안정)",
+   "hint": "분모를 0으로 놓으세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "V(s) = 10/(s(s + 5))인 응답의 최종값 v(∞)는?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "최종값 정리: v(∞) = lim(s→0) sV(s) = 10/5 = 2",
+   "hint": "lim(s→0) sV(s)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "V(s) = 4/(s + 2)인 응답의 초기값 v(0⁺)는?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "초기값 정리: v(0⁺) = lim(s→∞) sV(s) = lim 4s/(s + 2) = 4\n역변환 4e^(−2t)에 t = 0을 넣어도 4입니다.",
+   "hint": "lim(s→∞) sV(s)입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electrical",
+ "subject": "circuit-theory",
+ "id": "l2-electrical-circuit-theory-u12"
+}

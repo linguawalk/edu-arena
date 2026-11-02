@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "mathstr",
+  "work": "풀이",
+  "chapter": {
+    "id": "info-s1-mathstr-ch02",
+    "no": 2,
+    "title": "GCD와 모듈러 연산"
+  },
+  "review": {
+    "id": "info-s1-mathstr-ch02-review",
+    "title": "GCD와 모듈러 연산 복습",
+    "minutes": 15
+  },
+  "questions": [
+    {
+      "type": "question",
+      "id": "r1",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "gcd(56, 98)은?",
+      "answer": "14",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "98 = 56 + 42, 56 = 42 + 14입니다.",
+      "explanation": "유클리드 호제법은 gcd(a, b) = gcd(b, a mod b)를 나머지가 0이 될 때까지 되풀이합니다.\n(98, 56) → (56, 42) → (42, 14) → (14, 0)입니다.\n그래서 14입니다.",
+      "source_lesson": "info-s1-mathstr-ch02-l01"
+    },
+    {
+      "type": "question",
+      "id": "r2",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "a = 8, b = 5일 때 아래 코드의 while 반복은 몇 번 도나요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "나머지가 3, 2, 1, 0입니다.",
+      "explanation": "반복 한 번마다 (a, b)가 (b, a % b)로 바뀌고 b가 0이 되면 끝납니다.\n(8, 5) → (5, 3) → (3, 2) → (2, 1) → (1, 0)입니다.\n그래서 4번입니다.",
+      "code": "long long gcd(long long a, long long b) {\n    while (b != 0) {               // 이 반복이 몇 번 도는가\n        long long r = a % b;\n        a = b; b = r;\n    }\n    return a;\n}",
+      "source_lesson": "info-s1-mathstr-ch02-l01"
+    },
+    {
+      "type": "question",
+      "id": "r3",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "lcm(9, 12)는?",
+      "answer": "36",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "9 / 3 × 12입니다.",
+      "explanation": "최소공배수는 lcm(a, b) = a / gcd(a, b) × b로 구합니다.\ngcd(9, 12) = 3이므로 9/3 × 12입니다.\n= 36입니다.",
+      "source_lesson": "info-s1-mathstr-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r4",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "1/4 + 1/6을 기약분수로 쓰세요.",
+      "answer": "5/12",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "분모를 12로 통분합니다.",
+      "explanation": "분모가 다른 분수는 최소공배수로 통분해 더합니다.\nlcm(4, 6) = 12이므로 3/12 + 2/12입니다.\n= 5/12입니다.",
+      "source_lesson": "info-s1-mathstr-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r5",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "(−10)을 4로 나눈 나머지를 0 이상 4 미만으로 나타내면?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(−10 % 4 + 4) % 4입니다.",
+      "explanation": "음수의 나머지는 m을 더한 뒤 다시 나머지를 취해 0 이상 m 미만으로 맞춥니다.\nC++에서 −10 % 4 = −2이고 (−2 + 4) % 4입니다.\n= 2입니다.",
+      "source_lesson": "info-s1-mathstr-ch02-l03"
+    },
+    {
+      "type": "question",
+      "id": "r6",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "2¹⁰⁰의 일의 자리 숫자는?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "일의 자리는 2, 4, 8, 6을 되풀이합니다.",
+      "explanation": "2의 거듭제곱의 일의 자리는 2, 4, 8, 6으로 4마다 되풀이합니다.\n100 mod 4 = 0이므로 네 번째인 6에 해당합니다.\n그래서 6입니다.",
+      "source_lesson": "info-s1-mathstr-ch02-l03"
+    },
+    {
+      "type": "question",
+      "id": "r7",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "12시간 시계에서 9시부터 50시간 뒤는 몇 시인가요?",
+      "answer": "11",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(9 + 50) mod 12입니다.",
+      "explanation": "시계는 12시간마다 되풀이하므로 시각은 12로 나눈 나머지로 셉니다.\n(9 + 50) mod 12 = 59 mod 12입니다.\n= 11이므로 11시입니다.",
+      "source_lesson": "info-s1-mathstr-ch02-l03"
+    },
+    {
+      "type": "question",
+      "id": "r8",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "e = 20일 때 아래 코드의 while 반복은 몇 번 도나요?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "20 = 10100(2)입니다.",
+      "explanation": "반복 한 번마다 e를 오른쪽으로 한 비트 밀고 e가 0이 되면 끝납니다.\n20은 이진수 10100으로 다섯 자리입니다.\n그래서 5번입니다.",
+      "code": "// a^e mod m을 빠르게 구한다\nlong long power(long long a, long long e, long long m) {\n    long long r = 1, b = a % m;\n    while (e > 0) {                // 이 반복이 몇 번 도는가\n        if (e & 1) r = r * b % m;  // e의 현재 비트가 1이면 곱한다\n        b = b * b % m;             // b를 제곱해 다음 비트로\n        e >>= 1;\n    }\n    return r;\n}",
+      "source_lesson": "info-s1-mathstr-ch02-l04"
+    },
+    {
+      "type": "question",
+      "id": "r9",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "3⁴를 5로 나눈 나머지는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "81 mod 5입니다.",
+      "explanation": "거듭제곱의 나머지는 값을 직접 구해 나누거나, 곱할 때마다 나머지를 취해 구합니다. 3⁴ = 81이고 이를 5로 나눕니다.\n81 = 5 × 16 + 1입니다.\n그래서 1입니다.",
+      "source_lesson": "info-s1-mathstr-ch02-l04"
+    },
+    {
+      "type": "question",
+      "id": "r10",
+      "stage": "review",
+      "qtype": "proof",
+      "prompt": "유클리드 호제법으로 gcd(a, b)를 구하는 과정을 설명하세요.",
+      "model_answer": [
+        "b가 0이면 gcd(a, 0) = a이므로 a가 답이다.",
+        "아니면 a를 b로 나눈 나머지 r을 구해 (a, b)를 (b, r)로 바꾼다. gcd(a, b) = gcd(b, r)이기 때문이다.",
+        "나머지는 계속 작아지므로 언젠가 b가 0이 되고, 그때의 a가 최대공약수이다.",
+        "두 번 반복할 때마다 큰 수가 절반 이하로 줄어 O(log min(a, b))이다."
+      ],
+      "criteria": [
+        {
+          "text": "종료 조건을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "바꾸는 규칙과 근거를 설명했다",
+          "points": 2
+        },
+        {
+          "text": "끝나는 이유와 복잡도를 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "언제 멈추고, 매번 무엇을 바꾸나요?",
+      "source_lesson": "info-s1-mathstr-ch02-l01"
+    }
+  ]
+}

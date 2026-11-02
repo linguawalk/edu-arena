@@ -1,0 +1,288 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "basic",
+  "work": "풀이",
+  "track_title": "기초",
+  "chapter": {
+    "id": "info-s1-basic-ch03",
+    "no": 3,
+    "title": "이분 탐색"
+  },
+  "lesson": {
+    "id": "info-s1-basic-ch03-l01",
+    "no": 1,
+    "title": "이분 탐색의 원리",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "기초",
+      "이분 탐색"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "업다운 게임",
+      "body": [
+        "1부터 100 사이의 수를 맞히는 게임에서 매번 가운데 수를 부르고 '업' 또는 '다운'을 들으면 후보가 절반씩 줄어듭니다. 이렇게 하면 많아야 7번이면 맞힙니다.",
+        "후보가 k번 절반이 되면 100/2ᵏ개가 남으므로, 2ᵏ이 100을 넘는 가장 작은 k = 7번이면 충분합니다.",
+        "정렬된 배열에서 가운데 원소와 비교해 탐색 범위를 반씩 줄이는 방법을 이분 탐색이라 합니다. 시간 복잡도는 O(log n)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "1부터 100 사이의 수를 맞히는 업다운 게임에서 가운데 수를 부르는 전략으로 최대 몇 번 만에 맞히나요?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2⁷ = 128 > 100입니다.",
+      "explanation": "매번 가운데 수를 부르면 후보가 절반 가까이 줄어 k번째 질문으로 2ᵏ − 1개 안의 수를 맞힐 수 있습니다.\n2⁶ − 1 = 63 < 100 ≤ 2⁷ − 1 = 127입니다.\n그래서 최대 7번입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "정렬된 배열에서 가운데 원소와 비교해 탐색 범위를 반씩 줄이는 방법을 {{1}}이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "이분 탐색",
+            "이분탐색",
+            "이진 탐색",
+            "이진탐색"
+          ]
+        }
+      ],
+      "hint": "둘로 나누는 탐색입니다.",
+      "explanation": "정렬된 배열에서 가운데 원소와 찾는 값을 비교합니다.\n찾는 값이 더 크면 오른쪽 절반, 작으면 왼쪽 절반만 남깁니다.\n이 방법을 이분 탐색이라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "코드로 보기",
+      "body": [
+        "lo와 hi는 아직 후보로 남은 범위의 양 끝입니다. 가운데 mid의 값이 x보다 작으면 x는 오른쪽에 있으므로 lo = mid + 1, 크면 hi = mid − 1로 범위를 줄입니다.",
+        "lo > hi가 되면 후보가 하나도 없으므로 x가 배열에 없습니다.",
+        "반복할 때마다 후보가 절반 이하로 줄므로, 원소 n개에서 반복은 많아야 ⌊log₂ n⌋ + 1번입니다."
+      ],
+      "code": "// 오름차순으로 정렬된 a[0..n-1]에서 x의 위치를 찾는다\nint lo = 0, hi = n - 1;\nwhile (lo <= hi) {                 // 이 반복이 몇 번 도는가\n    int mid = (lo + hi) / 2;\n    if (a[mid] == x) return mid;\n    if (a[mid] < x) lo = mid + 1;\n    else hi = mid - 1;\n}\nreturn -1;                         // 없음"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "a = [1, 3, 5, 7, 9, 11, 13]에서 x = 11을 아래 코드로 찾을 때 while 반복은 몇 번 도나요?",
+      "steps": [
+        "lo = 0, hi = 6, mid = 3: a[3] = 7 < 11이므로 lo = 4입니다.",
+        "lo = 4, hi = 6, mid = 5: a[5] = 11이므로 찾았습니다.",
+        "반복은 2번입니다."
+      ],
+      "answer": "2번",
+      "code": "// 오름차순으로 정렬된 a[0..n-1]에서 x의 위치를 찾는다\nint lo = 0, hi = n - 1;\nwhile (lo <= hi) {                 // 이 반복이 몇 번 도는가\n    int mid = (lo + hi) / 2;\n    if (a[mid] == x) return mid;\n    if (a[mid] < x) lo = mid + 1;\n    else hi = mid - 1;\n}\nreturn -1;                         // 없음"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 while 반복은 몇 번 도나요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "mid = 3, 5입니다.",
+      "explanation": "이분 탐색은 가운데 원소와 비교해 범위를 반씩 줄이며, 찾으면 바로 끝납니다.\nmid = 3에서 7 < 11이라 오른쪽으로 가고, mid = 5에서 11을 찾습니다.\n그래서 2번입니다.",
+      "code": "// 오름차순으로 정렬된 a[0..n-1]에서 x의 위치를 찾는다\nint lo = 0, hi = n - 1;\nwhile (lo <= hi) {                 // 이 반복이 몇 번 도는가\n    int mid = (lo + hi) / 2;\n    if (a[mid] == x) return mid;\n    if (a[mid] < x) lo = mid + 1;\n    else hi = mid - 1;\n}\nreturn -1;                         // 없음"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = [1, 3, 5, 7, 9, 11, 13]에서 x = 4(배열에 없음)를 아래 코드로 찾을 때 while 반복은 몇 번 도나요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "mid = 3, 1, 2를 따라가 보세요.",
+      "explanation": "이분 탐색은 가운데 원소와 비교해 범위를 줄이고, lo > hi가 되면 없다고 판단합니다.\nmid = 3(7 > 4, hi = 2), mid = 1(3 < 4, lo = 2), mid = 2(5 > 4, hi = 1)에서 lo > hi가 됩니다.\n그래서 3번입니다.",
+      "code": "// 오름차순으로 정렬된 a[0..n-1]에서 x의 위치를 찾는다\nint lo = 0, hi = n - 1;\nwhile (lo <= hi) {                 // 이 반복이 몇 번 도는가\n    int mid = (lo + hi) / 2;\n    if (a[mid] == x) return mid;\n    if (a[mid] < x) lo = mid + 1;\n    else hi = mid - 1;\n}\nreturn -1;                         // 없음"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "최대 반복 횟수",
+      "body": [
+        "원소 n개에서 이분 탐색의 반복은 많아야 ⌊log₂ n⌋ + 1번입니다. n = 1000이면 ⌊log₂ 1000⌋ = 9이므로 10번입니다.",
+        "n = 10⁶이어도 20번, n = 10⁹이어도 30번이면 됩니다. 선형 탐색이 최대 n번인 것과 비교하면 엄청난 차이입니다.",
+        "대신 배열이 정렬되어 있어야 합니다. 정렬에 O(n log n)이 들지만, 같은 배열에서 여러 번 찾는다면 한 번 정렬해 두고 매번 O(log n)에 찾는 것이 유리합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "원소 1000개인 정렬된 배열에서 이분 탐색의 최대 반복 횟수는?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "⌊log₂ 1000⌋ + 1입니다.",
+      "explanation": "원소 n개에서 이분 탐색의 반복은 많아야 ⌊log₂ n⌋ + 1번입니다.\n2⁹ = 512 ≤ 1000 < 1024이므로 ⌊log₂ 1000⌋ = 9입니다.\n9 + 1 = 10번입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "원소 10⁶개인 정렬된 배열에서 이분 탐색의 최대 반복 횟수는?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2¹⁹ ≤ 10⁶ < 2²⁰입니다.",
+      "explanation": "원소 n개에서 이분 탐색의 반복은 많아야 ⌊log₂ n⌋ + 1번입니다.\n2¹⁹ = 524288 ≤ 10⁶ < 2²⁰이므로 ⌊log₂ 10⁶⌋ = 19입니다.\n19 + 1 = 20번입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "가운데 계산의 함정",
+      "body": [
+        "int의 최댓값은 2147483647(약 2.1 × 10⁹)입니다. lo와 hi가 모두 15억이면 lo + hi = 30억이 int 범위를 넘어 엉뚱한 값이 됩니다(오버플로).",
+        "그래서 범위가 큰 이분 탐색에서는 mid = lo + (hi − lo) / 2로 계산하거나 long long을 씁니다.",
+        "배열 첨자처럼 범위가 작으면 (lo + hi) / 2로도 충분합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "lo = hi = 1500000000일 때 lo + hi는 int 최댓값 2147483647보다 얼마나 큰가요?",
+      "answer": "852516353",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3000000000 − 2147483647입니다.",
+      "explanation": "두 수를 더한 값이 int 최댓값을 넘으면 오버플로가 일어납니다.\nlo + hi = 3000000000입니다.\n3000000000 − 2147483647 = 852516353만큼 넘습니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = [1, 3, 5, 7, 9, 11, 13]에서 x = 13을 아래 코드로 찾을 때 while 반복은 몇 번 도나요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "mid = 3, 5, 6입니다.",
+      "explanation": "이분 탐색은 가운데 원소와 비교해 범위를 반씩 줄이며, 찾으면 바로 끝납니다.\nmid = 3(7 < 13, lo = 4), mid = 5(11 < 13, lo = 6), mid = 6에서 13을 찾습니다.\n그래서 3번입니다.",
+      "code": "// 오름차순으로 정렬된 a[0..n-1]에서 x의 위치를 찾는다\nint lo = 0, hi = n - 1;\nwhile (lo <= hi) {                 // 이 반복이 몇 번 도는가\n    int mid = (lo + hi) / 2;\n    if (a[mid] == x) return mid;\n    if (a[mid] < x) lo = mid + 1;\n    else hi = mid - 1;\n}\nreturn -1;                         // 없음"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "이분 탐색은 정렬된 배열에서 가운데 원소와 비교해 범위를 반씩 줄이는 방법으로 O(log n)입니다.",
+        "원소 n개에서 반복은 많아야 ⌊log₂ n⌋ + 1번으로, n = 10⁶이어도 20번입니다.",
+        "배열이 정렬되어 있어야 하며, 범위가 크면 mid = lo + (hi − lo) / 2로 오버플로를 피합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "1부터 1000 사이의 수를 맞히는 업다운 게임에서 가운데 수를 부르는 전략으로 최대 몇 번 만에 맞히나요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2¹⁰ − 1 = 1023입니다.",
+      "explanation": "매번 가운데 수를 부르면 k번째 질문으로 2ᵏ − 1개 안의 수를 맞힐 수 있습니다.\n2⁹ − 1 = 511 < 1000 ≤ 2¹⁰ − 1 = 1023입니다.\n그래서 최대 10번입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a = [2, 4, 6, 8, 10, 12, 14, 16]에서 x = 2를 아래 코드로 찾을 때 while 반복은 몇 번 도나요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "mid = 3, 1, 0입니다.",
+      "explanation": "이분 탐색은 가운데 원소와 비교해 범위를 반씩 줄이며, 찾으면 바로 끝납니다.\nmid = 3(8 > 2, hi = 2), mid = 1(4 > 2, hi = 0), mid = 0에서 2를 찾습니다.\n그래서 3번입니다.",
+      "code": "// 오름차순으로 정렬된 a[0..n-1]에서 x의 위치를 찾는다\nint lo = 0, hi = n - 1;\nwhile (lo <= hi) {                 // 이 반복이 몇 번 도는가\n    int mid = (lo + hi) / 2;\n    if (a[mid] == x) return mid;\n    if (a[mid] < x) lo = mid + 1;\n    else hi = mid - 1;\n}\nreturn -1;                         // 없음"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "이분 탐색의 반복 횟수가 O(log n)인 이유를 설명하세요.",
+      "model_answer": [
+        "반복할 때마다 mid를 기준으로 후보 범위의 한쪽 절반을 버린다.",
+        "그래서 후보의 개수는 n, n/2, n/4, …로 줄어든다.",
+        "k번 반복한 뒤 남은 후보는 n/2ᵏ개 이하이고, 이것이 1보다 작아지면 끝난다.",
+        "따라서 반복은 약 log₂ n번이고 시간 복잡도는 O(log n)이다."
+      ],
+      "criteria": [
+        {
+          "text": "매번 절반을 버림을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "후보 개수의 변화를 식으로 썼다",
+          "points": 2
+        },
+        {
+          "text": "log₂ n을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "k번 뒤 후보는 몇 개인가요?"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "정렬되지 않은 배열에서는 이분 탐색을 쓸 수 없는 이유를 예를 들어 설명하세요.",
+      "model_answer": [
+        "이분 탐색은 a[mid] < x이면 x가 mid 오른쪽에만 있다고 보고 왼쪽 절반을 버린다.",
+        "이 판단은 왼쪽 원소가 모두 a[mid] 이하라는 정렬 조건이 있어야 옳다.",
+        "예를 들어 [5, 1, 3]에서 x = 5를 찾으면 mid = 1의 값 1 < 5라서 왼쪽을 버리는데, 5는 왼쪽에 있다.",
+        "그래서 정렬되지 않은 배열에서는 답을 놓칠 수 있다."
+      ],
+      "criteria": [
+        {
+          "text": "절반을 버리는 근거를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "정렬 조건이 필요함을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "반례를 들었다",
+          "points": 2
+        }
+      ],
+      "hint": "정렬되지 않은 작은 배열로 직접 따라가 보세요."
+    }
+  ]
+}

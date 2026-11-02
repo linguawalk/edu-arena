@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "sql-associate-1z0-071",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "서브쿼리",
+  "rule_summary_ko": "단일행 서브쿼리는 =, >, < 같은 단일행 비교 연산자와 함께 쓰며, 정확히 한 행만 반환해야 합니다(여러 행을 반환하면 ORA-01427 오류). 다중행 서브쿼리는 여러 행을 반환할 수 있으며, IN·ANY·ALL 같은 다중행 연산자와 함께 사용합니다. 상관 서브쿼리(correlated subquery)는 바깥 쿼리의 각 행마다 안쪽 서브쿼리가 그 행을 참조해서 다시 실행되는 서브쿼리입니다.",
+  "examples": [
+    { "code": "WHERE salary > (SELECT AVG(salary) FROM employees)", "note_ko": "단일행 서브쿼리 — AVG는 항상 값 하나만 반환하므로 > 연산자와 문제없이 사용 가능" },
+    { "code": "WHERE salary IN (SELECT MAX(salary) FROM employees GROUP BY dept)", "note_ko": "다중행 서브쿼리 — 부서별 최고 급여들(여러 값)을 IN으로 비교" }
+  ],
+  "questions": [
+    {
+      "id": "sql_oracle_l2_u3_q001",
+      "type": "concept_matching_item",
+      "code": "SELECT name FROM employees WHERE salary = (SELECT salary FROM employees);\n-- 이 서브쿼리가 여러 행을 반환하는 경우",
+      "prompt_ko": "단일행 비교 연산자(=)를 사용했는데 서브쿼리가 실제로 여러 행을 반환하면?",
+      "options": [
+        "첫 번째 값만 사용해서 정상 처리된다",
+        "ORA-01427(\"single-row subquery returns more than one row\") 오류가 발생한다",
+        "모든 값과 비교해서 하나라도 맞으면 참으로 처리된다",
+        "결과가 항상 빈 집합으로 반환된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "=, >, < 같은 단일행 연산자는 서브쿼리가 정확히 한 행만 반환할 것을 전제로 하며, 어기면 ORA-01427 오류가 납니다.",
+      "concept_tags": ["single_row_subquery", "ora_01427"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l2_u3_q002",
+      "type": "concept_matching_item",
+      "code": "SELECT name FROM employees\nWHERE salary IN (SELECT MAX(salary) FROM employees GROUP BY dept);",
+      "prompt_ko": "IN을 사용한 이 서브쿼리에 대한 설명으로 옳은 것은?",
+      "options": [
+        "IN은 단일행 서브쿼리에만 사용할 수 있다",
+        "IN은 다중행 연산자라서, 서브쿼리가 여러 값(부서별 최고 급여들)을 반환해도 문제없이 그중 하나와 일치하는지 확인한다",
+        "이 쿼리는 항상 오류를 일으킨다",
+        "IN은 정확히 2개의 값만 반환하는 서브쿼리에만 사용할 수 있다"
+      ],
+      "answer": 1,
+      "explanation_ko": "IN, ANY, ALL은 다중행 서브쿼리와 함께 사용할 수 있는 연산자입니다.",
+      "concept_tags": ["multi_row_subquery", "in_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l2_u3_q003",
+      "type": "concept_matching_item",
+      "code": "SELECT e1.name, e1.dept, e1.salary FROM employees e1\nWHERE e1.salary = (SELECT MAX(e2.salary) FROM employees e2 WHERE e2.dept = e1.dept);",
+      "prompt_ko": "이 쿼리(각 부서에서 최고 급여를 받는 직원 찾기)의 서브쿼리가 상관 서브쿼리인 이유는?",
+      "options": [
+        "서브쿼리 안에서 바깥 쿼리의 e1.dept를 참조해서, 바깥 쿼리의 각 행(직원)마다 서브쿼리가 그 행의 부서 기준으로 다시 계산되기 때문에",
+        "이 서브쿼리는 상관관계와 아무 상관이 없다",
+        "서브쿼리에 WHERE 절이 있으면 무조건 상관 서브쿼리다",
+        "이 쿼리는 컴파일 오류를 일으킨다"
+      ],
+      "answer": 0,
+      "explanation_ko": "상관 서브쿼리는 바깥 쿼리의 값(e1.dept)을 안쪽에서 참조하기 때문에, 바깥 쿼리의 행마다 독립적으로 재실행됩니다.",
+      "concept_tags": ["correlated_subquery"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l2_u3_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "정확히 한 행, 한 값만 반환할 것이 보장된 서브쿼리를 무엇이라 합니까? (한글로 입력, 예: OO행 서브쿼리)",
+      "expected_answers": ["단일행 서브쿼리", "단일행서브쿼리"],
+      "explanation_ko": "단일행 서브쿼리는 =, >, < 같은 단일행 비교 연산자와 짝을 이룹니다.",
+      "concept_tags": ["single_row_subquery"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l2_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "일반(비상관) 서브쿼리와 상관 서브쿼리의 실행 방식 차이는?",
+      "options": [
+        "일반 서브쿼리는 독립적으로 한 번만 실행되지만, 상관 서브쿼리는 바깥 쿼리의 각 행마다 반복해서 실행된다",
+        "둘은 실행 방식이 완전히 동일하다",
+        "상관 서브쿼리가 항상 일반 서브쿼리보다 빠르다",
+        "일반 서브쿼리는 오라클에서 지원되지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "이 차이 때문에 상관 서브쿼리는 일반적으로 바깥 쿼리의 행 수만큼 반복 실행되어 성능에 더 신경 써야 합니다.",
+      "concept_tags": ["correlated_subquery", "execution_model"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l2_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "서브쿼리를 사용하는 대표적인 목적은?",
+      "options": [
+        "테이블을 삭제하기 위해",
+        "다른 쿼리의 결과를 조건이나 계산의 일부로 활용해서, 복잡한 데이터 요구사항을 하나의 SQL 문으로 표현하기 위해",
+        "서브쿼리는 실질적인 용도가 없는 문법 장식이다",
+        "테이블 구조를 변경하기 위해"
+      ],
+      "answer": 1,
+      "explanation_ko": "서브쿼리는 '평균보다 높은 급여', '각 부서 최고 급여' 같은, 미리 계산된 값이 필요한 복잡한 조건을 표현하는 핵심 도구입니다.",
+      "concept_tags": ["subquery_purpose"],
+      "difficulty": "intro"
+    }
+  ]
+}

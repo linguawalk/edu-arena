@@ -1,0 +1,87 @@
+{
+ "no": 2,
+ "title": "트래픽 공학과 용량 산정",
+ "hours": 6,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "이용률 목표로 링크 용량을 정할 수 있다.",
+  "얼랑 B로 음성 회선·채널 수를 정할 수 있다.",
+  "M/M/1 큐 모델로 이용률과 지연의 관계를 계산할 수 있다."
+ ],
+ "checklist": [
+  "링크 이용률 목표(예: 최번시 70% 이하)로 용량 산정",
+  "버스트성과 최번시, 95퍼센타일 측정",
+  "얼랑 B: 호손율 목표(예: 1%)를 만족하는 회선 수",
+  "M/M/1 큐: 평균 체류 시간 T = 1/(μ − λ), 이용률 ρ = λ/μ",
+  "이용률이 1에 가까우면 지연이 급증",
+  "과설계와 과소 설계의 비용",
+  "용량 계획 주기와 증설 기준"
+ ],
+ "advice": [
+  "용량 산정의 핵심 감각은 '이용률이 높아질수록 지연이 선형이 아니라 폭발적으로 늘어난다'는 것입니다. M/M/1 식 T = 1/(μ − λ)에 이용률 50%, 80%, 90%, 95%를 차례로 넣어 보면 왜 링크를 100%까지 채우지 않고 70% 정도에서 증설하는지 바로 납득됩니다. 음성처럼 회선 단위로 나누는 서비스는 레벨2 통신망의 얼랑 B로, 데이터는 이용률과 큐 모델로 산정한다는 두 가지 도구를 구분해 쓰세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cisco Press",
+   "title": "Oppenheimer, Top-Down Network Design (장 제목으로 표기)",
+   "part": "Characterizing Network Traffic 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "통신망 3단원 트래픽 이론",
+   "url": "guide.html?lv=2&t=ict&s=comm-networks&u=3"
+  },
+  {
+   "title": "math-arena 레벨3 · 확률과정 입문 (대기열)",
+   "href": "https://math-arena.org/guide.html?lv=3&t=probability&s=stochastic"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "최번시 피크가 700 Mbps이고 이용률을 70% 이하로 유지하려면 링크 용량은 최소 몇 Mbps여야 할까요?",
+   "answer": "1000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "700/0.7 = 1000 Mbps",
+   "hint": "피크 ÷ 목표 이용률입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "트래픽 1얼랑이 회선 3개에 들어오는 즉시 손실 시스템의 호손율은 약 얼마일까요? (얼랑 B)",
+   "answer": "0.0625",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "B = (1/3!)/(1 + 1 + 1/2 + 1/6) = 0.1667/2.6667 = 0.0625",
+   "hint": "k = 0~3 항의 합으로 나눕니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "처리율 μ = 100 패킷/초인 링크에 λ = 80 패킷/초가 들어오면 M/M/1 평균 체류 시간은 몇 ms일까요?",
+   "answer": "50",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "T = 1/(100 − 80) = 0.05 s = 50 ms",
+   "hint": "T = 1/(μ − λ)입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "network-design",
+ "id": "l3-ict-network-design-u02"
+}

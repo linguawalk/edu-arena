@@ -1,0 +1,100 @@
+{
+ "no": 5,
+ "title": "QoS와 트래픽 관리",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "서비스별 QoS 요구를 분류하고 우선순위를 정할 수 있다.",
+  "DiffServ 표시와 큐잉·폴리싱·셰이핑의 역할을 설명할 수 있다.",
+  "이용률 변화에 따른 지연을 큐 모델로 계산할 수 있다."
+ ],
+ "checklist": [
+  "서비스 분류: 음성(EF), 영상, 업무 데이터, 일반 데이터(BE)",
+  "IntServ와 DiffServ(DSCP 표시)",
+  "큐잉: 우선순위 큐, 가중 공정 큐(WFQ)",
+  "폴리싱(초과분 버림)과 셰이핑(버퍼에 담아 평탄화)",
+  "혼잡 회피(RED)",
+  "M/M/1: 이용률 50% → 90%에서 지연 5배",
+  "SLA와 QoS 측정"
+ ],
+ "advice": [
+  "QoS는 대역폭을 늘리지 않고 '중요한 트래픽을 먼저 보내는' 기술입니다. 하지만 링크 자체가 모자라면 QoS로도 해결되지 않으니, 2단원의 용량 산정이 먼저이고 QoS는 순간적인 혼잡을 다루는 도구라는 순서를 기억하세요. 음성·영상·업무 데이터에 각각 어떤 표시와 큐를 줄지 표로 만들어 보면 설계서의 QoS 장이 그대로 완성됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cisco Press",
+   "title": "Oppenheimer, Top-Down Network Design (장 제목으로 표기)",
+   "part": "Optimizing Your Network Design 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Kurose · Ross, Computer Networking: A Top-Down Approach (장 제목으로 표기)",
+   "part": "Multimedia Networking 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "통신망 8단원 망 품질과 신뢰성",
+   "url": "guide.html?lv=2&t=ict&s=comm-networks&u=8"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "처리율 μ = 100 패킷/초인 링크에 λ = 90 패킷/초가 들어오면 M/M/1 평균 체류 시간은 몇 ms일까요?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "T = 1/(100 − 90) = 0.1 s = 100 ms\n이용률 50%(20 ms)일 때의 5배입니다.",
+   "hint": "T = 1/(μ − λ)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "패킷 헤더의 DSCP 값으로 등급을 표시하고 홉마다 등급별로 처리하는 확장성 있는 QoS 구조를 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "DiffServ",
+      "디프서브"
+     ]
+    }
+   ],
+   "explanation": "음성에는 보통 EF(Expedited Forwarding) 등급을 줍니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "약속한 속도를 넘는 트래픽을 버리지 않고 버퍼에 담았다가 고르게 내보내는 기능을 트래픽 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "셰이핑",
+      "쉐이핑",
+      "세이핑"
+     ]
+    }
+   ],
+   "explanation": "초과분을 버리거나 표시를 낮추는 것은 폴리싱입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "network-design",
+ "id": "l3-ict-network-design-u05"
+}

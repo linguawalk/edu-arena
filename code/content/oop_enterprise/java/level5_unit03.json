@@ -1,0 +1,96 @@
+{
+  "language": "java",
+  "category": "oop_enterprise",
+  "level": 5,
+  "unit": 3,
+  "unit_title": "상속과 다형성",
+  "questions": [
+    {
+      "id": "java_l5_u03_q001",
+      "type": "predict_output",
+      "code": "class Animal {\n    void speak() {\n        System.out.println(\"동물이 소리를 낸다\");\n    }\n}\n\nclass Dog extends Animal {\n    @Override\n    void speak() {\n        System.out.println(\"멍멍!\");\n    }\n}\n\nAnimal a = new Dog();\na.speak();",
+      "prompt_en": "What is printed? (Note: Animal.speak() has no special keyword at all — no virtual, no Overridable.)",
+      "prompt_ko": "출력 결과는? (Animal.speak()에 virtual이나 Overridable 같은 특별한 키워드가 전혀 없는 점에 주의하세요.)",
+      "options": ["동물이 소리를 낸다", "멍멍!", "오류", "둘 다 출력됨"],
+      "answer": 1,
+      "explanation_en": "Unlike C# (virtual/override) and VB (Overridable/Overrides), Java methods are overridable by default — no keyword is needed on the base method; a.speak() resolves to Dog's version at runtime, printing 멍멍!.",
+      "explanation_ko": "C#(virtual/override)이나 VB(Overridable/Overrides)와 달리, Java의 메서드는 기본적으로 오버라이드 가능합니다 — 부모 메서드에 어떤 키워드도 필요 없습니다. a.speak()는 실행 시점에 Dog의 버전으로 결정되어 멍멍!이 출력됩니다.",
+      "concept_tags": ["inheritance", "polymorphism", "default_virtual"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l5_u03_q002",
+      "type": "fill_blank",
+      "code": "class Animal {\n    ____ void speak() {\n        System.out.println(\"동물이 소리를 낸다\");\n    }\n}\n\nclass Dog extends Animal {\n    @Override\n    void speak() {\n        System.out.println(\"멍멍!\");\n    }\n}\n// 자식이 재정의하지 못하게 막아야 함",
+      "prompt_en": "Fill in the blank with the keyword that would prevent Dog from overriding speak().",
+      "prompt_ko": "Dog가 speak()를 재정의하지 못하게 막는 키워드를 빈칸에 채우세요.",
+      "options": ["final", "static", "private", "sealed"],
+      "answer": 0,
+      "explanation_en": "final prevents a method from being overridden by subclasses — the inverse of C#/VB's approach, where you need a special keyword to allow overriding rather than to forbid it.",
+      "explanation_ko": "final은 메서드가 자식 클래스에서 재정의되지 못하게 막습니다. 오버라이드를 허용하려면 특별한 키워드가 필요한 C#/VB와 반대로, Java는 막으려면 특별한 키워드가 필요합니다.",
+      "concept_tags": ["final", "polymorphism"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l5_u03_q003",
+      "type": "error_finding",
+      "code": "class Animal {\n    final void speak() {\n        System.out.println(\"동물이 소리를 낸다\");\n    }\n}\n\nclass Dog extends Animal {\n    void speak() {\n        System.out.println(\"멍멍!\");\n    }\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "extends 문법 오류",
+        "Animal의 speak가 final로 선언되어 재정의가 금지되어 있는데, Dog가 이를 재정의하려 해서 컴파일 오류가 발생함",
+        "Dog 클래스 이름이 잘못됨",
+        "문제 없음, 정상적으로 오버라이드됨"
+      ],
+      "answer": 1,
+      "explanation_en": "final explicitly forbids overriding; attempting to override a final method causes a compile error, the exact opposite scenario from C#/VB where forgetting virtual/Overridable causes the error.",
+      "explanation_ko": "final은 오버라이드를 명시적으로 금지합니다. final 메서드를 오버라이드하려 하면 컴파일 오류가 발생합니다. virtual/Overridable을 빠뜨렸을 때 오류가 나는 C#/VB와는 정반대 상황입니다.",
+      "concept_tags": ["final", "polymorphism"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l5_u03_q004",
+      "type": "fill_blank",
+      "code": "class Cat ____ Animal {\n    @Override\n    void speak() {\n        System.out.println(\"야옹!\");\n    }\n}",
+      "prompt_en": "Fill in the blank with the keyword that makes Cat inherit from Animal.",
+      "prompt_ko": "Cat이 Animal을 상속받도록 빈칸에 들어갈 키워드는?",
+      "options": ["extends", ":", "Inherits", "implements"],
+      "answer": 0,
+      "explanation_en": "Java uses extends for class inheritance, distinct from C#/C++'s colon syntax and VB's Inherits keyword.",
+      "explanation_ko": "Java는 클래스 상속에 extends를 사용합니다. C#/C++의 콜론 문법이나 VB의 Inherits 키워드와는 다릅니다.",
+      "concept_tags": ["inheritance"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l5_u03_q005",
+      "type": "predict_output",
+      "code": "class Animal {\n    String name;\n    Animal(String name) {\n        this.name = name;\n    }\n}\n\nclass Dog extends Animal {\n    Dog(String name) {\n        super(name);\n    }\n    void printName() {\n        System.out.println(name);\n    }\n}\n\nDog d = new Dog(\"바둑이\");\nd.printName();",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이", "오류", "빈 문자열", "Animal"],
+      "answer": 0,
+      "explanation_en": "super(name) calls the parent's constructor, initializing the inherited name field; printName then reads that field, printing 바둑이.",
+      "explanation_ko": "super(name)는 부모의 생성자를 호출해서 상속받은 name 필드를 초기화합니다. printName은 이후 그 필드를 읽어 바둑이를 출력합니다.",
+      "concept_tags": ["inheritance", "super"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l5_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "extends", "definition": "한 클래스가 다른 클래스를 상속받게 하는 키워드" },
+        { "term": "기본적으로 오버라이드 가능", "definition": "Java 메서드는 virtual 같은 키워드 없이도 기본적으로 재정의 가능하다는 규칙" },
+        { "term": "final", "definition": "메서드가 자식 클래스에서 재정의되지 못하게 막는 키워드" },
+        { "term": "super(...)", "definition": "자식 생성자에서 부모의 생성자를 명시적으로 호출하는 문법" }
+      ],
+      "explanation_en": "Java's default-virtual philosophy is the polar opposite of C#/VB's default-sealed approach — this single design choice affects how every class hierarchy in Java behaves compared to the .NET languages.",
+      "explanation_ko": "Java의 '기본적으로 오버라이드 가능' 철학은 C#/VB의 '기본적으로 봉인' 접근 방식과 정반대입니다 — 이 하나의 설계 선택이 .NET 언어들과 비교했을 때 Java의 모든 클래스 계층 동작 방식에 영향을 미칩니다.",
+      "concept_tags": ["inheritance", "polymorphism", "final", "super"],
+      "difficulty": "practice"
+    }
+  ]
+}

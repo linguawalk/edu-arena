@@ -1,0 +1,116 @@
+{
+ "no": 10,
+ "title": "논리 소자의 전기적 특성과 하드웨어 기술 언어",
+ "hours": 4,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "TTL·CMOS 논리 소자의 전압 레벨, 잡음 여유, 팬아웃을 계산할 수 있다.",
+  "전파 지연과 CMOS 동적 전력을 계산할 수 있다.",
+  "하드웨어 기술 언어(HDL)로 회로를 기술하는 이유와 기본 구조를 설명할 수 있다."
+ ],
+ "checklist": [
+  "논리 레벨 V_OH, V_OL, V_IH, V_IL",
+  "잡음 여유 NM_H = V_OH − V_IH, NM_L = V_IL − V_OL",
+  "팬아웃: 출력 하나가 구동할 수 있는 입력 수",
+  "전파 지연 t_pd와 상승·하강 시간",
+  "CMOS 동적 전력 P = αCV²f",
+  "오픈 드레인 출력과 풀업 저항, 3상태 버퍼",
+  "HDL(Verilog, VHDL): 모듈, 조합·순차 기술, 시뮬레이션과 합성"
+ ],
+ "advice": [
+  "지금까지 0과 1을 이상적인 기호로 다뤘다면, 이 단원은 실제 칩이 전압과 시간으로 동작한다는 현실을 다룹니다. 잡음 여유는 '출력이 보장하는 전압'과 '입력이 요구하는 전압'의 차이이고, 팬아웃은 출력 전류 능력을 입력 하나가 먹는 전류로 나눈 값이라는 정의만 정확히 쓰면 계산은 간단합니다. 전압 레벨이 다른 소자(5 V와 3.3 V)를 연결할 때 이 값들을 확인하는 것이 실무의 기본입니다.",
+  "CMOS 동적 전력 P = αCV²f는 전압을 낮추는 것이 전력을 줄이는 가장 효과적인 방법(제곱)이라는 점을 보여 주며, 레벨3 집적회로의 저전력 설계로 그대로 이어집니다. HDL은 이 과목에서 배운 회로를 그림 대신 코드로 적는 방법이니, 간단한 가산기와 카운터를 Verilog로 적어 시뮬레이션해 보면 좋습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Mano · Ciletti, Digital Design (장 제목으로 표기)",
+   "part": "Hardware Description Language 관련 절, 부록의 논리 소자 특성"
+  },
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Harris · Harris, Digital Design and Computer Architecture (장 제목으로 표기)",
+   "part": "Hardware Description Languages 장, From Zero to One 장의 논리 레벨 절"
+  },
+  {
+   "kind": "book",
+   "provider": "All About Circuits (무료 온라인 교재)",
+   "title": "Lessons in Electric Circuits, Volume IV — Digital",
+   "url": "https://www.allaboutcircuits.com/textbook/digital/",
+   "lang": "영어",
+   "part": "Logic Gates 장의 TTL·CMOS 절"
+  },
+  {
+   "kind": "web",
+   "provider": "Nand2Tetris (무료 공개 과정)",
+   "title": "From Nand to Tetris — 게이트부터 컴퓨터까지 직접 만들기",
+   "url": "https://www.nand2tetris.org/",
+   "lang": "영어",
+   "part": "Hardware Description Language 부록"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "출력 저레벨 전류 능력이 16 mA, 입력 하나의 저레벨 전류가 1.6 mA이면 팬아웃은 얼마일까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "팬아웃 = 16/1.6 = 10",
+   "hint": "출력 능력 ÷ 입력 하나의 전류입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "V_OH = 2.4 V, V_IH = 2.0 V인 논리 소자의 고레벨 잡음 여유는 몇 V일까요?",
+   "answer": "0.4",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "NM_H = V_OH − V_IH = 2.4 − 2.0 = 0.4 V",
+   "hint": "V_OH − V_IH입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "활동 계수 0.1, 전체 스위칭 커패시턴스 1 nF, 전원 1 V, 클럭 1 GHz인 CMOS 칩의 동적 전력은 몇 W일까요?",
+   "answer": "0.1",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "P = αCV²f = 0.1 × 10⁻⁹ × 1² × 10⁹ = 0.1 W",
+   "hint": "P = αCV²f입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "디지털 회로를 그림 대신 코드로 기술하고 시뮬레이션·합성하는 언어를 하드웨어 기술 언어, 영문 약어로 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "HDL"
+     ]
+    }
+   ],
+   "explanation": "대표적인 HDL로 Verilog와 VHDL이 있습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "digital-circuits",
+ "id": "l2-electronics-digital-circuits-u10"
+}

@@ -1,0 +1,124 @@
+{
+ "no": 4,
+ "title": "흡수 확률과 도박꾼의 파산",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "흡수 상태에 도달할 확률과 기대 시간을 계산할 수 있다.",
+  "도박꾼의 파산 문제를 풀고 공정·불공정 게임을 비교할 수 있다."
+ ],
+ "checklist": [
+  "흡수 상태와 흡수 연쇄",
+  "흡수 확률: 첫 단계 분석과 점화식",
+  "흡수까지의 기대 시간",
+  "기본행렬 N = (I − Q)⁻¹",
+  "도박꾼의 파산: 공정하면 i/N, 불공정하면 (1 − (q/p)ⁱ)/(1 − (q/p)ᴺ)",
+  "공정한 게임의 기대 지속 시간 i(N − i)"
+ ],
+ "advice": [
+  "도박꾼의 파산은 이 과목의 대표 문제입니다. 첫 단계 분석으로 점화식을 세우고, 레벨1에서 배운 수열(점화식)의 풀이로 답을 구합니다. 공정한 게임이라도 상대가 훨씬 부유하면 결국 파산할 확률이 1에 가깝다는 결과를 직접 계산해 보세요.",
+  "기본행렬 N = (I − Q)⁻¹은 '각 일시 상태를 흡수 전까지 평균 몇 번 방문하는가'를 알려 주며, 선형대수의 역행렬 계산으로 모든 흡수 문제를 한 번에 풀 수 있게 해 줍니다. 작은 예로 점화식 방법과 행렬 방법이 같은 답을 주는지 확인하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Academic Press",
+   "title": "Sheldon M. Ross, Introduction to Probability Models (12판)",
+   "part": "4.5절 Some Applications (도박꾼의 파산), 4.6절 Mean Time Spent in Transient States"
+  },
+  {
+   "kind": "lecture",
+   "provider": "Harvard",
+   "title": "Statistics 110 (Joe Blitzstein) 마르코프 연쇄 강의",
+   "url": "https://stat110.hsites.harvard.edu/",
+   "lang": "영어",
+   "part": "도박꾼의 파산 강의"
+  },
+  {
+   "kind": "lecture",
+   "provider": "KOCW",
+   "title": "확률과정모형 (영남대학교 이지연)",
+   "url": "http://www.kocw.net/home/cview.do?cid=9fbbd35998370dc9",
+   "lang": "한국어",
+   "part": "흡수 마코브 연쇄"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "공정한 게임에서 3원으로 시작해 10원이 되면 멈출 때 10원에 도달할 확률은 {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "3/10",
+      "0.3"
+     ]
+    }
+   ],
+   "explanation": "공정한 게임: i/N = 3/10",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "같은 게임이 끝날 때까지의 기대 횟수는?",
+   "answer": "21",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "i(N − i) = 3 × 7 = 21",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "이길 확률 2/3인 게임에서 1원으로 시작해 2원이 되면 멈출 때 2원에 도달할 확률은 {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "2/3"
+     ]
+    }
+   ],
+   "explanation": "q/p = 1/2: (1 − 1/2)/(1 − 1/4) = (1/2)/(3/4) = 2/3\n(한 판에 끝나므로 직관과도 일치)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "공정한 게임이라도 상대의 자금이 훨씬 많으면 파산할 확률이 1에 가까운 이유를 설명해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "i/N",
+      "N이 크",
+      "N이 매우"
+     ],
+     [
+      "0",
+      "작아",
+      "1에 가까"
+     ]
+    ],
+    "min_groups_matched": 2
+   },
+   "model_answer": "공정한 게임에서 목표에 도달할 확률은 i/N인데, 상대 자금이 크면 N이 매우 커져 이 확률이 0에 가까워지므로 파산할 확률은 1에 가까워집니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "probability",
+ "subject": "stochastic",
+ "id": "l3-probability-stochastic-u04"
+}

@@ -1,0 +1,95 @@
+{
+ "no": 3,
+ "title": "토폴로지와 생존성",
+ "hours": 6,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "계층형(코어–분배–액세스) 설계와 그 장점을 설명할 수 있다.",
+  "직렬·병렬 가용도로 이중화 효과를 계산할 수 있다.",
+  "단일 장애점을 찾아 없애는 생존성 설계 방법을 설명할 수 있다."
+ ],
+ "checklist": [
+  "계층형 설계: 코어, 분배(집선), 액세스",
+  "단일 장애점(SPOF) 찾기",
+  "이중화: 장비·링크·전원·경로, 이중 홈 연결",
+  "병렬 가용도 A = 1 − (1 − A₁)(1 − A₂)",
+  "직렬 가용도 A = A₁ × A₂ × …",
+  "보호 절체: 링 보호, 링크 집성(LAG), 동적 라우팅 재수렴",
+  "재해 복구(DR) 센터와 지리적 분산"
+ ],
+ "advice": [
+  "생존성 설계는 '어디가 끊어지면 서비스가 멈추는가'를 하나씩 찾아 없애는 작업입니다. 설계도 위에 장비와 링크를 하나씩 지워 가며 서비스가 살아 있는지 확인하는 방식으로 단일 장애점을 찾아보세요. 이중화는 가용도를 크게 올리지만 비용과 복잡성도 늘리므로, 1단원에서 정한 가용도 목표를 만족하는 최소한의 이중화가 좋은 설계라는 점을 계산으로 확인하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cisco Press",
+   "title": "Oppenheimer, Top-Down Network Design (장 제목으로 표기)",
+   "part": "Designing a Network Topology 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "통신망 1단원 통신망의 구성과 위상",
+   "url": "guide.html?lv=2&t=ict&s=comm-networks&u=1"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "통신망 8단원 망 품질과 신뢰성",
+   "url": "guide.html?lv=2&t=ict&s=comm-networks&u=8"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "가용도 99%인 링크 두 개를 병렬로 이중화하면 전체 가용도는 몇 %일까요?",
+   "answer": "99.99",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "1 − 0.01² = 0.9999 = 99.99%",
+   "hint": "1 − (둘 다 고장날 확률)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "가용도 99.9%인 장비 3대를 직렬로 연결하면 전체 가용도는 약 몇 %일까요?",
+   "answer": "99.7",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "0.999³ ≈ 0.997 = 99.7%",
+   "hint": "직렬은 곱합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "고장 나면 전체 서비스가 멈추는, 대체 경로가 없는 장비나 링크를 단일 {{1}}이라고 합니다. (영문 약어 SPOF)",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "장애점",
+      "고장점",
+      "실패점"
+     ]
+    }
+   ],
+   "explanation": "Single Point of Failure의 줄임말이며, 생존성 설계에서 가장 먼저 없애야 할 대상입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "network-design",
+ "id": "l3-ict-network-design-u03"
+}

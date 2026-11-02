@@ -1,0 +1,349 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c1",
+    "title": "수학의 기초"
+  },
+  "chapter": {
+    "id": "c1-ch07",
+    "no": 7,
+    "title": "행렬"
+  },
+  "lesson": {
+    "id": "c1-ch07-l03",
+    "no": 3,
+    "title": "행렬의 곱셈",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "대수"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "행과 열의 곱",
+      "body": [
+        "행렬의 곱 AB의 (i, j) 성분은 A의 i행과 B의 j열에서 같은 순서의 성분끼리 곱해 더한 값입니다.",
+        "A의 열 개수와 B의 행 개수가 같아야 곱할 수 있습니다.",
+        "왜 이렇게 곱할까요? 수량 [3 2]와 가격 [500 ; 1000]을 곱하면 3 × 500 + 2 × 1000으로 총액이 나옵니다. '행의 각 수 × 열의 각 수를 차례로 곱해 더하기'가 실제 계산에서 자연스럽게 필요한 연산이기 때문입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "[1 2]와 [3 ; 4]의 곱은? (1 × 1 행렬의 성분)",
+      "answer": "11",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "행과 열에서 같은 순서의 성분끼리 곱해 더합니다.\n1 × 3 + 2 × 4\n= 11"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "(m × n 행렬) × (n × p 행렬)은 m × {{1}} 행렬입니다.",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "p"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "곱할 수 있으려면 앞 행렬의 열 수 n과 뒤 행렬의 행 수 n이 같아야 합니다.\n결과는 앞의 행 수 m, 뒤의 열 수 p를 가진 m × p 행렬"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "2 × 2 행렬의 곱",
+      "body": [
+        "[a b ; c d][p q ; r s] = [ap + br  aq + bs ; cp + dr  cq + ds]",
+        "(i, j) 성분을 구할 때는 A의 i행을 손가락으로 가로로, B의 j열을 세로로 짚으며 순서대로 곱해 더합니다. 네 성분을 하나씩 따로 계산하면 실수가 줄어듭니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "[2 1 ; 0 3][1 4 ; 2 −1]을 계산하세요.",
+      "steps": [
+        "(1,1): 2 × 1 + 1 × 2 = 4, (1,2): 2 × 4 + 1 × (−1) = 7",
+        "(2,1): 0 × 1 + 3 × 2 = 6, (2,2): 0 × 4 + 3 × (−1) = −3",
+        "[4 7 ; 6 −3]"
+      ],
+      "answer": "[4 7 ; 6 −3]"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "[1 2 ; 3 4][1 0 ; 1 1] = [3 {{1}} ; 7 4]",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "(1, 2) 성분은 1행 [1 2]와 2열 [0 ; 1]의 곱\n1 × 0 + 2 × 1\n= 2"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "[2 0 ; 1 3][1 −1 ; 2 0] = [2 −2 ; {{1}} −1]",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "7"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "(2, 1) 성분은 2행 [1 3]과 1열 [1 ; 2]의 곱\n1 × 1 + 3 × 2\n= 7"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "[1 1 ; 0 1]²의 (1, 2) 성분은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "[1 1 ; 0 1][1 1 ; 0 1]의 (1, 2) 성분은 1행 [1 1]과 2열 [1 ; 1]의 곱\n1 × 1 + 1 × 1\n= 2"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "곱셈의 성질",
+      "body": [
+        "단위행렬은 수의 1처럼 AE = EA = A입니다.",
+        "하지만 일반적으로 AB ≠ BA입니다. 곱하는 순서를 바꾸면 결과가 달라질 수 있습니다.",
+        "왜 AB ≠ BA일까요? AB는 A의 행과 B의 열을, BA는 B의 행과 A의 열을 곱하므로 계산에 쓰이는 수의 짝이 다릅니다. 그래서 (A + B)² 같은 곱셈공식도 수와 다르게 전개됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "AE = {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "A"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "단위행렬 E는 수의 1처럼 곱해도 행렬을 바꾸지 않습니다.\nAE = EA = A"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "A = [1 1 ; 0 1], B = [1 0 ; 1 1]일 때 AB의 (1, 1) 성분은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "AB의 (1, 1) 성분은 A의 1행 [1 1]과 B의 1열 [1 ; 1]의 곱\n1 × 1 + 1 × 1\n= 2"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 A, B에서 BA의 (1, 1) 성분은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "BA의 (1, 1) 성분은 B의 1행 [1 0]과 A의 1열 [1 ; 0]의 곱\n1 × 1 + 0 × 0\n= 1"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "이때 AB = BA일까요?  (그렇다 1, 아니다 0)",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "AB의 (1, 1) 성분은 2, BA의 (1, 1) 성분은 1로 다릅니다.\n한 성분이라도 다르면 두 행렬은 다르므로 AB ≠ BA\n0"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "거듭제곱의 규칙",
+      "body": [
+        "A², A³을 직접 계산해 규칙을 찾으면 Aⁿ을 구할 수 있습니다.",
+        "A² = E이면 짝수 제곱은 E, 홀수 제곱은 A입니다.",
+        "거듭제곱을 직접 여러 번 곱하기는 번거롭습니다. A², A³ 정도만 계산하면 성분이 일정하게 늘어나거나 E로 돌아오는 규칙이 보여 큰 거듭제곱도 쉽게 구할 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "A = [1 0 ; 2 1]일 때 A², A³을 구하고 Aⁿ의 규칙을 찾으세요.",
+      "steps": [
+        "A² = [1 0 ; 4 1]",
+        "A³ = A²A = [1 0 ; 6 1]",
+        "(2, 1) 성분이 2씩 늘어나므로 Aⁿ = [1 0 ; 2n 1]"
+      ],
+      "answer": "Aⁿ = [1 0 ; 2n 1]"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "[1 1 ; 0 1]ⁿ의 (1, 2) 성분은 n입니다. n = 10일 때 이 성분은?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "주어진 규칙에 n = 10을 넣으세요.",
+      "explanation": "[1 1 ; 0 1]ⁿ = [1 n ; 0 1]이 되는 규칙입니다(곱할 때마다 (1, 2) 성분이 1씩 늘어남).\nn = 10이면 (1, 2) 성분은\n10"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "[2 0 ; 0 3]³의 (2, 2) 성분은?",
+      "answer": "27",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "대각선 성분만 거듭제곱하세요.",
+      "explanation": "대각선만 있는 행렬의 거듭제곱은 대각선 성분을 각각 거듭제곱합니다.\n(2, 2) 성분: 3³\n= 27"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "A = [0 1 ; 1 0]일 때 A²의 (1, 1) 성분은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1행과 1열을 곱하세요.",
+      "explanation": "A²의 (1, 1) 성분은 1행 [0 1]과 1열 [0 ; 1]의 곱\n0 × 0 + 1 × 1\n= 1 (실제로 A² = E)"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 A에서 A¹⁰⁰의 (1, 2) 성분은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "A² = E를 이용하세요.",
+      "explanation": "A² = E이므로 A¹⁰⁰ = (A²)⁵⁰ = E⁵⁰ = E\nE = [1 0 ; 0 1]의 (1, 2) 성분은\n0"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "활용",
+      "body": [
+        "수량 행렬과 가격 행렬을 곱하면 총액이 나옵니다.",
+        "(A + B)² = A² + AB + BA + B²이고, AB ≠ BA이면 A² + 2AB + B²과 다릅니다.",
+        "(A + B)² = (A + B)(A + B)를 전개하면 A², AB, BA, B²이 나옵니다. AB와 BA가 다르면 합쳐서 2AB로 쓸 수 없으므로 수의 곱셈공식과 결과가 달라집니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "A = [1 2 ; 0 1], B = [1 0 ; 3 1]일 때 AB와 BA의 (1, 1) 성분을 비교하세요.",
+      "steps": [
+        "AB의 (1, 1): 1 × 1 + 2 × 3 = 7",
+        "BA의 (1, 1): 1 × 1 + 0 × 0 = 1",
+        "7 ≠ 1이므로 AB ≠ BA"
+      ],
+      "answer": "AB는 7, BA는 1 (AB ≠ BA)"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "사과 3개, 배 2개를 사는 수량 [3 2]와 가격 [500 ; 1000]을 곱한 총액은?",
+      "answer": "3500",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "행렬의 곱으로 계산하세요.",
+      "explanation": "수량과 가격을 곱하면 총액입니다.\n3 × 500 + 2 × 1000\n= 1500 + 2000 = 3500원"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "A = [1 1 ; 0 1], B = [1 0 ; 1 1]일 때 (A + B)²의 (1, 1) 성분은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "A + B를 먼저 구한 뒤 제곱하세요.",
+      "explanation": "A + B = [2 1 ; 1 2]\n(A + B)²의 (1, 1) 성분은 1행 [2 1]과 1열 [2 ; 1]의 곱\n2 × 2 + 1 × 1 = 5"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "행렬의 곱셈에서 교환법칙이 성립하지 않는다는 것을 예를 들어 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "AB"
+          ],
+          [
+            "BA"
+          ],
+          [
+            "다르",
+            "달라",
+            "다릅",
+            "같지 않"
+          ]
+        ],
+        "min_groups_matched": 3
+      },
+      "model_answer": "A = [1 1 ; 0 1], B = [1 0 ; 1 1]이면 AB의 (1, 1) 성분은 2, BA의 (1, 1) 성분은 1로 AB와 BA가 다릅니다. 행렬의 곱은 곱하는 순서에 따라 결과가 달라질 수 있습니다."
+    }
+  ]
+}

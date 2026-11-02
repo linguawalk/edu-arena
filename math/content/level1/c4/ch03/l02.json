@@ -1,0 +1,365 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch03",
+    "no": 3,
+    "title": "도함수의 활용"
+  },
+  "lesson": {
+    "id": "c4-ch03-l02",
+    "no": 2,
+    "title": "함수의 증가와 감소",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "도함수의 부호",
+      "body": [
+        "어떤 구간에서 f′(x) > 0이면 f는 증가하고, f′(x) < 0이면 감소합니다.",
+        "왜 도함수의 부호로 알 수 있을까요? f′(x) > 0이면 그 근처에서 접선이 오른쪽 위로 향하므로, x가 조금 커질 때 f(x)도 커집니다. 이것이 구간 전체에서 성립하면 증가함수입니다. 엄밀하게는 평균값 정리로 증명합니다: x₁ < x₂이면 f(x₂) − f(x₁) = f′(c)(x₂ − x₁) > 0."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": -3,
+          "xmax": 3,
+          "ymin": -3,
+          "ymax": 3,
+          "xstep": 1,
+          "ystep": 1,
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                0,
+                -3,
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "f(x) = x²이 감소하는 범위가 x < a일 때 a의 값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "f′(x) = 2x < 0이면 x < 0\n이 범위에서 f(x) = x²은 감소합니다.\na = 0\n원리: 도함수가 음수인 구간에서 감소\n확인: 포물선 y = x²은 꼭짓점 왼쪽에서 내려갑니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³은 실수 전체에서 증가할까요?  (그렇다 1, 아니다 0)",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "f′(x) = 3x² ≥ 0이고 x = 0에서만 0\n0이 되는 한 점에서도 부호가 바뀌지 않으므로 계속 증가\n그렇다 → 1"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "증감표",
+      "body": [
+        "f′(x) = 0이 되는 x를 찾고, 그 사이 구간마다 f′의 부호를 조사해 표로 정리합니다.",
+        "증감표를 만드는 순서: ① f′(x)를 구해 인수분해 ② f′(x) = 0인 x를 수직선에 표시 ③ 각 구간에 아무 값이나 넣어 f′의 부호 확인 ④ +이면 ↗, −이면 ↘로 표시. 이 표 하나로 그래프의 대략적인 모양이 나옵니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "f(x) = x³ − 6x² + 9x + 1의 증감표를 만드세요.",
+      "steps": [
+        "f′(x) = 3x² − 12x + 9 = 3(x − 1)(x − 3)",
+        "x < 1: f′ > 0 ↗ / 1 < x < 3: f′ < 0 ↘ / x > 3: f′ > 0 ↗",
+        "증가: x < 1 또는 x > 3, 감소: 1 < x < 3",
+        "확인: x = 2이면 f′(2) = −3 < 0"
+      ],
+      "answer": "x < 1, x > 3에서 증가 / 1 < x < 3에서 감소"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "f(x) = x³ − 3x가 증가하는 구간은 x < −1 또는 x > {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "1"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "f′(x) = 3x² − 3 = 3(x + 1)(x − 1)\nx < −1 또는 x > 1에서 f′ > 0 (증가)\n빈칸은 1"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "같은 함수가 감소하는 구간은 {{1}} < x < 1",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "−1",
+            "-1"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "f′(x) = 3(x + 1)(x − 1) < 0\n−1 < x < 1에서 감소\n빈칸은 −1\n확인: x = 0이면 f′(0) = −3 < 0"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "f(x) = −x² + 4x가 증가하는 구간은 x < {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "f′(x) = −2x + 4 > 0\nx < 2에서 증가\n빈칸은 2 (포물선의 꼭짓점 x = 2까지 올라감)\n확인: x = 0이면 f′(0) = 4 > 0"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "항상 증가할 조건",
+      "body": [
+        "삼차함수가 실수 전체에서 증가하려면 모든 x에서 f′(x) ≥ 0, 즉 이차식 f′(x)의 판별식이 0 이하여야 합니다.",
+        "왜 판별식일까요? 삼차함수의 도함수는 이차함수입니다. 이 이차함수가 모든 x에서 0 이상이려면 그래프가 x축 아래로 내려가지 않아야 하므로, 이차방정식 f′(x) = 0이 서로 다른 두 실근을 가지면 안 됩니다. D ≤ 0이 조건입니다. D = 0이면 한 점에서만 f′ = 0이라 여전히 증가합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "f(x) = x³ + ax² + 3x가 실수 전체에서 증가하는 a의 범위를 구하세요.",
+      "steps": [
+        "f′(x) = 3x² + 2ax + 3 ≥ 0 (모든 x)",
+        "D/4 = a² − 9 ≤ 0",
+        "−3 ≤ a ≤ 3",
+        "주의: D = 0이어도 한 점에서만 f′ = 0이라 증가"
+      ],
+      "answer": "−3 ≤ a ≤ 3"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³ + ax가 실수 전체에서 증가하는 a의 최솟값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "f′(x) = 3x² + a ≥ 0이 모든 x에서 성립해야 합니다.\n3x²의 최솟값은 0이므로 a ≥ 0\na의 최솟값 0"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³ − 3x² + kx가 실수 전체에서 증가하는 k의 최솟값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "f′(x) = 3x² − 6x + k ≥ 0 (모든 x)\nD/4 = 9 − 3k ≤ 0\nk ≥ 3이므로 최솟값 3"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "구간에서의 증가·감소",
+      "body": [
+        "주어진 구간 전체에서 f′(x)의 부호 조건이 성립하도록 계수를 정합니다.",
+        "구간이 주어진 조건은 '그 구간의 모든 x에서 f′(x) ≥ 0(또는 ≤ 0)'입니다. 계수를 분리해 a ≥ g(x) 꼴로 만들면, a가 구간에서 g(x)의 최댓값 이상이어야 한다는 조건이 됩니다. 구간의 끝점이 포함되는지에 따라 등호를 조심합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "f(x) = x³ − ax가 구간 (1, 2)에서 감소하는 a의 최솟값을 구하세요.",
+      "steps": [
+        "f′(x) = 3x² − a ≤ 0 (1 < x < 2)",
+        "a ≥ 3x²이 구간의 모든 x에서 성립해야 함",
+        "3x²은 구간에서 12에 한없이 가까워지므로 a ≥ 12",
+        "a의 최솟값 12"
+      ],
+      "answer": "12"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³ − 6x²이 감소하는 구간의 길이는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f′(x) < 0을 푸세요.",
+      "explanation": "f′(x) = 3x² − 12x = 3x(x − 4) < 0\n0 < x < 4에서 감소\n구간의 길이 4\n원리: 도함수가 음수인 구간(두 근 사이)에서 감소합니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = −x³ + ax²이 구간 (0, 2)에서 증가하는 a의 최솟값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f′(x) ≥ 0이 구간 전체에서 성립해야 합니다.",
+      "explanation": "f′(x) = −3x² + 2ax = x(2a − 3x) ≥ 0 (0 < x < 2)\nx > 0이므로 2a ≥ 3x가 구간 전체에서 성립: 2a ≥ 6\na ≥ 3이므로 최솟값 3"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "f′(x) = 0인 점은 증가와 감소가 바뀔 수 있는 후보입니다. 부호가 실제로 바뀌는지 확인합니다.",
+        "f′(x) = 0이라고 해서 증가·감소가 반드시 바뀌는 것은 아닙니다. f′(x) = 3x²처럼 x = 0에서 0이지만 양쪽 모두 양수이면 계속 증가합니다. 그래서 f′ = 0인 점 양쪽의 부호를 꼭 확인해야 합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = x⁴ − 2x²이 증가하는 구간은 몇 개로 나뉘어 있을까요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f′(x)의 부호를 조사하세요.",
+      "explanation": "f′(x) = 4x³ − 4x = 4x(x − 1)(x + 1)\nf′ > 0인 구간: −1 < x < 0, x > 1\n증가 구간은 2개로 나뉨"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³ − 12x는 −2 < x < 2에서 감소합니다. 이 구간에 있는 정수는 몇 개일까요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "구간의 끝점은 포함하지 않습니다.",
+      "explanation": "−2 < x < 2의 정수: −1, 0, 1\n3개\n확인: f′(x) = 3x² − 12 = 3(x − 2)(x + 2) < 0인 구간\n원리: 감소 구간은 f′(x) < 0인 범위입니다."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = 2x³ − 3x²이 x > a에서 증가할 때 a의 최솟값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f′(x) > 0인 범위를 찾으세요.",
+      "explanation": "f′(x) = 6x² − 6x = 6x(x − 1)\nx > 1에서 f′ > 0 (증가)\na의 최솟값 1\n원리: 도함수가 양수인 구간에서 증가합니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³ + 3x² + 3x는 실수 전체에서 증가할까요?  (그렇다 1, 아니다 0)",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f′(x)를 완전제곱식으로 바꾸세요.",
+      "explanation": "f′(x) = 3x² + 6x + 3 = 3(x + 1)² ≥ 0\nx = −1에서만 0이고 부호가 바뀌지 않음\n실수 전체에서 증가 → 1"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = −x³ − x는 실수 전체에서 감소할까요?  (그렇다 1, 아니다 0)",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f′(x)의 부호를 보세요.",
+      "explanation": "f′(x) = −3x² − 1\n모든 x에서 −1 이하로 음수\n실수 전체에서 감소 → 1\n원리: 도함수가 항상 음수이면 실수 전체에서 감소합니다."
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "f(x) = x³ − 3ax (a > 0)가 감소하는 구간이 −2 < x < 2일 때 a의 값은?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "f′(x) < 0의 해를 a로 나타내세요.",
+      "explanation": "f′(x) = 3x² − 3a < 0에서 x² < a\n−√a < x < √a가 −2 < x < 2와 같으려면 √a = 2\na = 4"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "f′(x) > 0인 구간에서 함수가 증가하는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "접선"
+          ],
+          [
+            "기울기"
+          ],
+          [
+            "양수",
+            "오른쪽 위"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "f′(x)는 그 점에서의 접선의 기울기입니다. 구간의 모든 점에서 기울기가 양수이면 그래프가 어디서나 오른쪽 위로 향하므로 x가 커질수록 f(x)도 커집니다."
+    }
+  ]
+}

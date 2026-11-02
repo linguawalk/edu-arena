@@ -1,0 +1,352 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch01",
+  "no": 1,
+  "title": "정보의 표현"
+ },
+ "lesson": {
+  "id": "c4-ch01-l04",
+  "no": 4,
+  "title": "이미지와 소리",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "그림을 점으로",
+   "body": [
+    "디지털 이미지는 작은 점(픽셀)의 격자입니다. 픽셀마다 색을 숫자로 저장합니다. 가로 1920, 세로 1080 픽셀 화면은 1920 × 1080 = 2 073 600개, 약 207만 개의 픽셀로 되어 있습니다.",
+    "흔히 픽셀 하나에 빨강·초록·파랑을 각 8비트, 모두 24비트(3바이트)로 저장합니다. 이렇게 하면 256³ = 16 777 216가지, 약 1677만 색을 나타냅니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "numeric",
+   "prompt": "가로 100, 세로 50 픽셀 이미지의 픽셀 수는 몇 개일까요?",
+   "answer": "5000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "가로 × 세로입니다.",
+   "explanation": "100 × 50 = 5000개입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "이미지 크기 계산",
+   "body": [
+    "압축하지 않은 이미지 크기 = 가로 픽셀 × 세로 픽셀 × 픽셀당 바이트입니다. 1920 × 1080 × 3바이트 ≈ 6 220 800바이트, 약 5.9 MB입니다.",
+    "흑백(회색조) 이미지는 픽셀당 1바이트(256단계 밝기), 흰색과 검정뿐인 이미지는 픽셀당 1비트면 됩니다. 색이 적을수록 크기가 작습니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "가로 800, 세로 600 픽셀 24비트 컬러 이미지의 압축하지 않은 크기는?",
+   "steps": [
+    "픽셀 = 800 × 600 = 480 000개입니다.",
+    "× 3바이트 = 1 440 000바이트입니다.",
+    "약 1.44 MB(1000 단위)입니다."
+   ],
+   "answer": "1 440 000바이트"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "디지털 이미지를 이루는 작은 색 점 하나를 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "픽셀",
+      "화소"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "픽셀은 picture element의 줄임말입니다.\n픽셀이 많을수록 해상도가 높습니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "픽셀당 24비트는 몇 바이트일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "24 ÷ 8 = 3바이트입니다.\n빨강·초록·파랑 각 1바이트입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "가로 200, 세로 100 픽셀 24비트 컬러 이미지의 압축하지 않은 크기는 몇 바이트일까요?",
+   "answer": "60000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "200 × 100 × 3 = 60 000바이트입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "같은 크기의 회색조(픽셀당 1바이트) 이미지는 몇 바이트일까요?",
+   "answer": "20000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "200 × 100 × 1 = 20 000바이트입니다.\n컬러의 1/3입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "소리를 숫자로",
+   "body": [
+    "소리는 공기의 떨림으로 이어진 파동입니다. 이를 디지털로 바꾸려면 일정한 간격으로 파동의 높이를 재어(표본화, 샘플링) 숫자로 적습니다(양자화).",
+    "1초에 재는 횟수를 샘플링 주파수라고 합니다. CD는 초당 44 100번(44.1 kHz), 한 번에 16비트로 재고, 왼쪽·오른쪽 2채널(스테레오)입니다. 그래서 1초에 44 100 × 16 × 2 = 1 411 200비트, 약 1411 kbps입니다.",
+    "샘플링 주파수와 비트 수가 클수록 원래 소리에 가깝지만 파일이 커집니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "CD 음질로 1분을 압축 없이 저장하면 몇 바이트일까요?",
+   "steps": [
+    "1초에 1 411 200비트 = 176 400바이트입니다.",
+    "60초면 176 400 × 60 = 10 584 000바이트입니다.",
+    "약 10.6 MB(1000 단위)입니다."
+   ],
+   "answer": "10 584 000바이트"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "소리 파동의 높이를 일정한 간격으로 재는 것을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "표본화",
+      "샘플링"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "1초에 재는 횟수가 샘플링 주파수입니다.\nCD는 44.1 kHz입니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "샘플링 8000 Hz, 8비트, 1채널 음성은 1초에 몇 비트일까요?",
+   "answer": "64000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "8000 × 8 × 1 = 64 000비트입니다.\n전화 음성 수준(64 kbps)입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 음성 1초는 몇 바이트일까요?",
+   "answer": "8000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "64 000 ÷ 8 = 8000바이트입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "샘플링 주파수를 높이면 원래 소리에 가까워지지만 파일 크기는 {{1}}.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "커진다",
+      "늘어난다",
+      "커집니다"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "1초에 더 많이 재므로 저장할 숫자가 늘어납니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "압축",
+   "body": [
+    "원래 데이터를 그대로 되살릴 수 있는 압축을 무손실 압축(ZIP, PNG, FLAC), 사람이 잘 알아채지 못하는 정보를 버려 훨씬 작게 만드는 압축을 손실 압축(JPEG, MP3, 대부분의 동영상)이라고 합니다. 원래 크기 ÷ 압축 크기를 압축률(배)로 나타냅니다.",
+    "정리: 픽셀과 해상도, 24비트 컬러(약 1677만 색), 이미지 크기 = 가로 × 세로 × 픽셀당 바이트, 표본화·양자화, CD 44.1 kHz·16비트·2채널, 무손실·손실 압축"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "원래 데이터를 그대로 되살릴 수 있는 압축을 {{1}} 압축이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "무손실"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "ZIP이나 PNG가 무손실 압축입니다.\n프로그램 파일은 반드시 무손실로 압축합니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "CD 음질 1411 kbps 음악을 128 kbps MP3로 만들면 약 몇 배 작아질까요?",
+   "steps": [
+    "1411 ÷ 128 ≈ 11입니다.",
+    "약 11배 작아집니다(손실 압축)."
+   ],
+   "answer": "약 11배"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "원래 6 MB 사진을 JPEG로 저장해 0.6 MB가 되었다면 압축률은 몇 배일까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "원래 크기 ÷ 압축 크기입니다.",
+   "explanation": "압축률 = 원래 크기 ÷ 압축 크기입니다.\n6 ÷ 0.6 = 10배입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "가로 1000, 세로 1000 픽셀 24비트 이미지를 압축 없이 저장하면 몇 MB일까요? (1 MB = 1 000 000 B)",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "가로 × 세로 × 3바이트입니다.",
+   "explanation": "1000 × 1000 × 3 = 3 000 000바이트입니다.\n3 MB입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "초당 30장, 가로 1000·세로 1000 픽셀 24비트 영상을 압축 없이 1초 저장하면 몇 MB일까요? (1 MB = 1 000 000 B)",
+   "answer": "90",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "한 장의 크기부터 구하세요.",
+   "explanation": "한 장 3 MB × 30장 = 90 MB입니다.\n그래서 동영상은 반드시 압축합니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "샘플링 48 000 Hz, 16비트, 2채널 소리는 1초에 몇 kbps일까요? (1 kbps = 1000 bps)",
+   "answer": "1536",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "주파수 × 비트 × 채널입니다.",
+   "explanation": "48 000 × 16 × 2 = 1 536 000비트입니다.\n1536 kbps입니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "실행 프로그램 파일을 압축할 때는 한 비트도 바뀌면 안 되므로 {{1}} 압축을 씁니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "무손실"
+     ]
+    }
+   ],
+   "hint": "원래대로 되살릴 수 있는 압축입니다.",
+   "explanation": "손실 압축은 원래 데이터를 되살릴 수 없습니다.\n프로그램은 무손실로 압축해야 합니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "사진과 음악에는 손실 압축을 많이 쓰지만 문서와 프로그램에는 쓰지 않는 이유를 설명해 보세요.",
+   "hint": "무엇을 버려도 되는지 생각하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "손실",
+      "버리"
+     ],
+     [
+      "사람",
+      "알아채",
+      "눈",
+      "귀"
+     ],
+     [
+      "문서",
+      "프로그램"
+     ],
+     [
+      "그대로",
+      "정확",
+      "되살",
+      "바뀌"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "손실 압축은 사람의 눈과 귀가 잘 알아채지 못하는 정보를 버려 크기를 크게 줄이므로 사진과 음악에 알맞습니다. 하지만 문서와 프로그램은 한 글자나 한 비트만 바뀌어도 뜻이 달라지거나 실행되지 않아, 원래대로 정확히 되살릴 수 있는 무손실 압축을 써야 합니다."
+  }
+ ]
+}

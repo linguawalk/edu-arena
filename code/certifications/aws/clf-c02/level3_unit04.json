@@ -1,0 +1,94 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "clf-c02",
+  "level": 3,
+  "unit": 4,
+  "unit_title": "네트워킹 서비스: VPC·Route 53·ELB",
+  "rule_summary_ko": "Amazon VPC(Virtual Private Cloud)는 AWS 클라우드 안에 논리적으로 격리된 자신만의 가상 네트워크입니다. Amazon Route 53은 도메인 이름(예: example.com)을 IP 주소로 변환해주는 DNS 서비스입니다. Elastic Load Balancing(ELB)은 들어오는 트래픽을 여러 대상(EC2 인스턴스 등)에 자동으로 분산시켜 가용성과 장애 대응력을 높여주며, 애플리케이션 로드 밸런서(ALB, 계층7 HTTP)와 네트워크 로드 밸런서(NLB, 계층4 TCP/UDP)로 나뉩니다.",
+  "examples": [
+    { "code": "www.example.com 접속", "note_ko": "Route 53이 도메인 이름을 실제 서버의 IP 주소로 변환해줌 → ELB가 여러 EC2 인스턴스 중 정상 작동하는 곳으로 트래픽을 분산" }
+  ],
+  "questions": [
+    {
+      "id": "aws_clf_l3_u4_q001",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "AWS 클라우드 안에 논리적으로 격리된 자신만의 가상 네트워크를 만들 수 있는 서비스는 무엇입니까? (영문 약자로 입력)",
+      "expected_answers": ["VPC"],
+      "explanation_ko": "VPC(Virtual Private Cloud)는 사용자가 정의한 가상 네트워크 환경을 제공합니다.",
+      "concept_tags": ["vpc"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "aws_clf_l3_u4_q002",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "도메인 이름(예: example.com)을 실제 서버가 사용하는 IP 주소로 변환해주는 AWS의 DNS 서비스는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["Route 53", "Route53"],
+      "explanation_ko": "Amazon Route 53은 확장성과 가용성이 뛰어난 DNS 웹 서비스입니다.",
+      "concept_tags": ["route53"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "aws_clf_l3_u4_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Elastic Load Balancing(ELB)의 핵심 역할은?",
+      "options": [
+        "데이터를 영구적으로 저장하는 것",
+        "들어오는 트래픽을 여러 대상(EC2 인스턴스 등)에 자동으로 분산시켜, 가용성과 장애 대응력을 높이는 것",
+        "도메인 이름을 등록하는 것",
+        "암호화 키를 관리하는 것"
+      ],
+      "answer": 1,
+      "explanation_ko": "ELB는 트래픽을 여러 대상에 분산해서, 한 대상에 장애가 생겨도 서비스가 계속되도록 돕습니다.",
+      "concept_tags": ["elb"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "aws_clf_l3_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "HTTP/HTTPS 요청의 URL 경로(path)에 따라 서로 다른 서버로 라우팅하고 싶습니다. 어떤 로드 밸런서 유형이 적합합니까?",
+      "options": [
+        "애플리케이션 로드 밸런서(ALB) — 계층 7(HTTP)에서 경로 기반 라우팅 등 세밀한 제어 가능",
+        "네트워크 로드 밸런서(NLB) — 계층 4에서만 동작해 HTTP 경로를 인식하지 못함",
+        "둘 다 경로 기반 라우팅을 지원하지 않는다",
+        "S3가 로드 밸런싱을 담당한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "ALB는 계층 7에서 동작해 URL 경로·호스트 이름 등 HTTP 콘텐츠 기반의 세밀한 라우팅이 가능합니다.",
+      "concept_tags": ["alb", "layer7"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_clf_l3_u4_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "초당 수백만 건의 TCP/UDP 연결을 초저지연으로 처리해야 하는 게임 서버에 적합한 로드 밸런서 유형은?",
+      "options": ["애플리케이션 로드 밸런서(ALB)", "네트워크 로드 밸런서(NLB) — 계층 4에서 초고성능·초저지연 처리", "게이트웨이 로드 밸런서만 사용 가능", "로드 밸런서로는 처리할 수 없다"],
+      "answer": 1,
+      "explanation_ko": "NLB는 계층 4(TCP/UDP)에서 동작해 초당 수백만 요청을 초저지연으로 처리하도록 최적화되어 있습니다.",
+      "concept_tags": ["nlb", "layer4"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_clf_l3_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Route 53과 ELB가 함께 작동하는 방식을 가장 정확히 설명한 것은?",
+      "options": [
+        "Route 53이 도메인 이름을 ELB로 연결(별칭 레코드)해주고, ELB는 그 뒤에서 실제 트래픽을 여러 EC2 인스턴스로 분산시킨다",
+        "Route 53과 ELB는 서로 전혀 연동되지 않는 별개의 서비스다",
+        "ELB가 도메인 이름을 등록하고 Route 53이 트래픽을 분산한다(역할이 반대)",
+        "둘 중 하나만 있으면 웹사이트를 운영할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "사용자가 도메인으로 접속하면 Route 53이 이를 ELB로 안내하고, ELB가 정상 작동하는 인스턴스로 트래픽을 분산하는 것이 전형적인 구조입니다.",
+      "concept_tags": ["route53", "elb", "synthesis"],
+      "difficulty": "challenge"
+    }
+  ]
+}

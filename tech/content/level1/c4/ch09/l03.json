@@ -1,0 +1,378 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch09",
+  "no": 9,
+  "title": "보안 기초"
+ },
+ "lesson": {
+  "id": "c4-ch09-l03",
+  "no": 3,
+  "title": "암호의 원리",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "평문과 암호문",
+   "body": [
+    "암호화는 누구나 읽을 수 있는 평문을 키가 없으면 읽을 수 없는 암호문으로 바꾸는 것이고, 복호화는 그 반대입니다. 가장 오래된 예는 알파벳을 정해진 칸만큼 밀어 쓰는 카이사르 암호입니다. 세 칸 밀면 A → D, B → E가 되어 CAT은 FDW가 됩니다.",
+    "카이사르 암호는 키(미는 칸 수)가 25가지뿐이라 모두 시도해 보면 곧 풀립니다. 오늘날의 암호는 키가 128비트 이상이라 2¹²⁸가지를 모두 시도하는 것은 사실상 불가능합니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "fill_blank",
+   "prompt": "카이사르 암호로 세 칸 밀면 DOG는 {{1}}이 됩니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "GRJ",
+      "grj"
+     ]
+    }
+   ],
+   "hint": "알파벳을 세 칸씩 뒤로 미세요.",
+   "explanation": "D → G, O → R, G → J입니다.\nGRJ입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "대칭키 암호",
+   "body": [
+    "암호화와 복호화에 같은 키를 쓰는 방식을 대칭키 암호라고 합니다. 오늘날 가장 널리 쓰는 AES가 대표적이며, 빠르고 튼튼해서 파일, 디스크, 통신 내용 암호화에 씁니다.",
+    "문제는 키를 어떻게 안전하게 나누어 가지느냐입니다. 처음 보는 웹 서버와 같은 키를 나누려면, 그 키를 보내는 순간 엿들을 수 있기 때문입니다. 이를 키 배송 문제라고 합니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "키가 128비트인 암호를 초당 10¹⁸번 시도할 수 있는 컴퓨터로 모두 시도하면 대략 몇 년일까요? (2¹²⁸ ≈ 3.4 × 10³⁸, 1년 ≈ 3.2 × 10⁷초)",
+   "steps": [
+    "걸리는 초 = 3.4 × 10³⁸ ÷ 10¹⁸ = 3.4 × 10²⁰초입니다.",
+    "÷ 3.2 × 10⁷ ≈ 10¹³년입니다.",
+    "우주의 나이(약 1.4 × 10¹⁰년)의 700배가 넘습니다."
+   ],
+   "answer": "약 10조 년"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "암호화와 복호화에 같은 키를 쓰는 방식을 {{1}}키 암호라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "대칭"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "대칭키 암호는 빠르지만 키를 안전하게 나누는 것이 문제입니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "카이사르 암호(알파벳 26자)에서 쓸 수 있는 키(0칸 밀기 제외)는 몇 가지일까요?",
+   "answer": "25",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1~25칸 밀기가 가능합니다.\n26칸은 제자리이므로 25가지입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "키가 10비트인 암호는 키가 몇 가지일까요?",
+   "answer": "1024",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "2¹⁰ = 1024가지입니다.\n컴퓨터로 순식간에 모두 시도할 수 있습니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "키를 1비트 늘리면 모두 시도하는 데 걸리는 시간은 몇 배가 될까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "키 가짓수가 2배가 되므로 시간도 2배입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "공개키 암호",
+   "body": [
+    "공개키 암호는 짝을 이루는 두 키를 씁니다. 공개키는 누구에게나 알려도 되고, 개인키는 주인만 가집니다. 공개키로 잠근(암호화한) 것은 짝인 개인키로만 열 수 있습니다. 누구나 잠글 수 있지만 주인만 열 수 있는 우편함과 같습니다.",
+    "그래서 HTTPS에서는 서버의 공개키를 이용해 대칭키를 안전하게 나누어 가진 뒤, 실제 대화는 빠른 대칭키 암호로 합니다. 공개키 암호로 키 배송 문제를 풀고, 대칭키 암호로 속도를 얻는 것입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "민수가 지은에게 비밀 메시지를 보내려면 누구의 어떤 키로 암호화해야 할까요?",
+   "steps": [
+    "지은만 열 수 있어야 합니다.",
+    "지은의 개인키로만 열리려면 지은의 공개키로 잠가야 합니다.",
+    "지은의 공개키로 암호화합니다."
+   ],
+   "answer": "지은의 공개키"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "공개키 암호에서 주인만 가지고 있는 키를 {{1}}키라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "개인"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "개인키는 절대 남에게 알려서는 안 됩니다.\n공개키는 누구에게나 알려도 됩니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "공개키로 암호화한 것은 짝인 {{1}}키로만 열 수 있습니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "개인"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "그래서 누구나 보낼 수 있지만 주인만 읽을 수 있습니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "HTTPS에서 실제 대화 내용은 빠른 {{1}}키 암호로 암호화합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "대칭"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "공개키 암호는 느려서 키를 나누는 데만 씁니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "대칭키를 처음 보는 상대와 안전하게 나누기 어려운 문제를 키 {{1}} 문제라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "배송"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "공개키 암호가 이 문제를 풀었습니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "전자 서명과 인증서",
+   "body": [
+    "반대로 개인키로 서명한 것은 누구나 공개키로 확인할 수 있습니다. 이를 전자 서명이라고 하며, 정말 그 사람이 보냈고 중간에 바뀌지 않았음(무결성)을 증명합니다. 문서의 해시에 서명하므로 한 글자만 바뀌어도 확인이 실패합니다.",
+    "그런데 공개키가 정말 그 서버의 것인지는 어떻게 알까요? 믿을 만한 인증 기관이 '이 공개키는 tech-arena.org의 것'이라고 서명한 인증서로 확인합니다. 브라우저의 자물쇠 표시는 인증서 확인에 성공했다는 뜻입니다.",
+    "정리: 평문·암호문·키, 카이사르 암호, 키 길이와 2ⁿ, 대칭키(AES, 빠름, 키 배송 문제), 공개키(공개키로 잠그고 개인키로 엶), HTTPS는 둘을 함께, 전자 서명(개인키로 서명, 공개키로 확인), 인증서"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "개인키로 서명하고 누구나 공개키로 확인하는 것을 전자 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "서명"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "전자 서명은 보낸 사람과 무결성을 함께 증명합니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "소프트웨어 회사가 업데이트 파일에 전자 서명을 붙이는 까닭은?",
+   "steps": [
+    "회사는 개인키로 파일(의 해시)에 서명합니다.",
+    "컴퓨터는 회사의 공개키로 서명을 확인합니다.",
+    "가짜 파일이나 중간에 악성 코드가 섞인 파일은 확인에 실패해 설치되지 않습니다."
+   ],
+   "answer": "진짜이고 바뀌지 않았음을 확인하려고"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "카이사르 암호로 세 칸 민 암호문 KHOOR의 평문은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "HELLO",
+      "hello"
+     ]
+    }
+   ],
+   "hint": "세 칸씩 앞으로 되돌리세요.",
+   "explanation": "세 칸씩 앞으로 되돌리면 K → H, H → E, O → L, R → O입니다.\nHELLO입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "지은이 보낸 계약서가 정말 지은의 것인지 확인하려면 지은의 {{1}}키로 서명을 확인합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "공개"
+     ]
+    }
+   ],
+   "hint": "누구나 가진 키입니다.",
+   "explanation": "지은은 개인키로 서명하고, 누구나 지은의 공개키로 확인합니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "키가 64비트에서 128비트로 늘면 키 가짓수는 2의 몇 제곱 배가 될까요?",
+   "answer": "64",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "지수를 빼세요.",
+   "explanation": "2¹²⁸ ÷ 2⁶⁴ = 2⁶⁴배입니다.\n약 1800경 배입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "브라우저 주소창의 자물쇠 표시는 서버의 {{1}} 확인에 성공했다는 뜻입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "인증서"
+     ]
+    }
+   ],
+   "hint": "인증 기관이 발급합니다.",
+   "explanation": "인증 기관이 서명한 인증서로 서버의 공개키가 진짜임을 확인했습니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "내려받은 파일의 해시 값이 공식 사이트에 적힌 값과 같다면 파일의 {{1}}이 확인된 것입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "무결성"
+     ]
+    }
+   ],
+   "hint": "바뀌지 않았다는 성질입니다.",
+   "explanation": "한 비트라도 바뀌면 해시 값이 완전히 달라집니다.\n그래서 바뀌지 않았음을 알 수 있습니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "HTTPS가 공개키 암호와 대칭키 암호를 함께 쓰는 이유를 설명해 보세요.",
+   "hint": "각 방식의 장점과 약점을 짝지어 쓰세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "공개키"
+     ],
+     [
+      "키",
+      "나누",
+      "배송",
+      "교환"
+     ],
+     [
+      "대칭키"
+     ],
+     [
+      "빠르",
+      "속도",
+      "느리"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "대칭키 암호는 빠르지만 처음 보는 서버와 같은 키를 안전하게 나누기 어렵습니다. 공개키 암호는 키를 안전하게 나눌 수 있지만 느립니다. 그래서 HTTPS는 공개키 암호로 대칭키를 안전하게 나눈 뒤, 실제 대화는 빠른 대칭키 암호로 암호화합니다."
+  }
+ ]
+}

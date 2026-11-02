@@ -1,0 +1,278 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s1",
+  "track": "phy-kin",
+  "work": "풀이",
+  "track_title": "운동과 물리 수학",
+  "chapter": {
+    "id": "sci-s1-phy-kin-ch03",
+    "no": 3,
+    "title": "적분으로 보는 운동"
+  },
+  "lesson": {
+    "id": "sci-s1-phy-kin-ch03-l02",
+    "no": 2,
+    "title": "부정적분과 초기 조건",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "역학",
+      "운동학"
+    ],
+    "competition": "KPhO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "미분을 거꾸로",
+      "body": [
+        "v(t)를 알 때 x(t)를 구하는 것은 '미분하면 v가 되는 함수'를 찾는 일입니다. 이것을 원시함수 또는 부정적분이라 하고 ∫v dt로 씁니다.",
+        "∫tⁿ dt = tⁿ⁺¹/(n + 1) + C (n ≠ −1)입니다. 상수 C는 미분하면 사라지므로 어떤 값이든 될 수 있습니다.",
+        "C는 초기 조건으로 정합니다. v = 6t이고 x(0) = 2이면 x = 3t² + C에서 C = 2이므로 x = 3t² + 2입니다. 물리 문제에서 '처음 위치', '처음 속도'가 주어지는 이유입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "v = 6t(m/s)이고 x(0) = 2 m인 물체의 t = 2 s에서의 위치는 몇 m인가요?",
+      "answer": "14",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = 3t² + C이고 C = 2입니다.",
+      "explanation": "v = 6t를 적분하면 x = 3t² + C입니다.\nx(0) = 2이므로 C = 2이고 x = 3t² + 2입니다.\nx(2) = 12 + 2 = 14 m입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "적분 상수 C는 {{1}} 조건으로 정합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "초기",
+            "처음",
+            "초깃값"
+          ]
+        }
+      ],
+      "hint": "t = 0에서의 값을 생각하세요.",
+      "explanation": "원시함수에는 상수 C만큼의 자유가 있습니다.\nt = 0일 때의 위치나 속도를 알면 C가 하나로 정해집니다.\n이것을 초기 조건이라고 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "가속도에서 위치까지",
+      "body": [
+        "가속도 a(t)가 주어지면 두 번 적분합니다. 처음 적분에서 v = ∫a dt + C₁, 두 번째 적분에서 x = ∫v dt + C₂가 나오고, 두 상수는 v(0) = v₀, x(0) = x₀으로 정합니다.",
+        "a가 상수이면 v = v₀ + at, x = x₀ + v₀t + (1/2)at²으로 등가속도 공식이 그대로 나옵니다.",
+        "운동 방정식 F = ma에서 힘을 알면 가속도를 알고, 적분하면 운동 전체를 알 수 있습니다. 이것이 뉴턴 역학의 기본 계산 방법입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "a = 6t(m/s²), v(0) = 2 m/s, x(0) = 0인 물체의 t = 2 s에서의 위치를 구하세요.",
+      "steps": [
+        "v = ∫6t dt = 3t² + C₁이고 v(0) = 2이므로 v = 3t² + 2입니다.",
+        "x = ∫(3t² + 2) dt = t³ + 2t + C₂이고 x(0) = 0이므로 C₂ = 0입니다.",
+        "x(2) = 8 + 4입니다.",
+        "= 12 m입니다."
+      ],
+      "answer": "12 m"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = 12t²(m/s²)이고 v(0) = 0, x(0) = 0인 물체의 t = 2 s에서의 위치는 몇 m인가요?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "v = 4t³, x = t⁴입니다.",
+      "explanation": "a를 적분하면 v = 4t³ + C₁이고 v(0) = 0이므로 v = 4t³입니다.\nv를 적분하면 x = t⁴ + C₂이고 x(0) = 0이므로 x = t⁴입니다.\nx(2) = 16 m입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = 2 m/s²(일정), v(0) = −4 m/s, x(0) = 0인 물체가 출발점으로 다시 돌아오는 시각은 몇 s인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = −4t + t²입니다.",
+      "explanation": "x = v₀t + (1/2)at² = −4t + t²입니다.\nx = 0이면 t(t − 4) = 0입니다.\n출발 후 돌아오는 시각은 t = 4 s이고, t = 2 s에 가장 멀리(−4 m) 갑니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "삼각함수의 적분",
+      "body": [
+        "∫cos(ωt) dt = sin(ωt)/ω + C, ∫sin(ωt) dt = −cos(ωt)/ω + C입니다. 미분할 때 곱해졌던 ω로 이번에는 나눕니다.",
+        "v = Aω cos(ωt)이고 x(0) = 0이면 x = A sin(ωt)입니다. 진폭은 최대 속력을 ω로 나눈 값입니다.",
+        "적분 결과는 미분해서 원래 함수가 나오는지 확인하는 것이 가장 확실한 검산입니다. 계수 ω를 곱할지 나눌지 헷갈릴 때 특히 유용합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "v = 6 cos(3t)(m/s)이고 x(0) = 0인 물체의 진동 진폭은 몇 m인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = (6/3) sin(3t)입니다.",
+      "explanation": "v를 적분하면 x = 6 sin(3t)/3 + C = 2 sin(3t) + C입니다.\nx(0) = 0이므로 C = 0입니다.\n따라서 x = 2 sin(3t)이고 진폭은 2 m입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = −8 sin(2t)(m/s²)이고 v(0) = 4 m/s인 물체의 최대 속력은 몇 m/s인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "v = 4 cos(2t) + C입니다.",
+      "explanation": "a를 적분하면 v = −8 × (−cos(2t)/2) + C = 4 cos(2t) + C입니다.\nv(0) = 4이므로 C = 0이고 v = 4 cos(2t)입니다.\n따라서 최대 속력은 4 m/s입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "힘이 시간에 따라 변할 때",
+      "body": [
+        "질량 m인 물체에 시간에 따라 변하는 힘 F(t)가 작용하면 a(t) = F(t)/m이고, 이것을 적분해 속도와 위치를 구합니다.",
+        "예를 들어 2 kg인 물체에 F = 6t(N)가 작용하면 a = 3t, 정지에서 출발하면 v = 1.5t², x = 0.5t³입니다.",
+        "힘이 일정할 때만 등가속도 공식을 쓸 수 있다는 점에 주의하세요. 힘이 변하면 반드시 적분해야 합니다. 등가속도 공식을 습관처럼 쓰는 것이 경시 문제에서 가장 흔한 실수입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "2 kg인 물체가 정지 상태에서 F = 6t(N)를 받습니다. t = 2 s에서의 속력은 몇 m/s인가요?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "a = F/m = 3t입니다.",
+      "explanation": "a = 6t/2 = 3t이고, 적분하면 v = 1.5t²입니다. (v(0) = 0)\nt = 2를 넣으면 v = 1.5 × 4입니다.\n= 6 m/s입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 문제에서 t = 2 s까지 이동한 거리는 몇 m인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = 0.5t³입니다.",
+      "explanation": "v = 1.5t²를 적분하면 x = 0.5t³입니다. (x(0) = 0)\nt = 2를 넣으면 0.5 × 8입니다.\n= 4 m입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "∫tⁿ dt = tⁿ⁺¹/(n + 1) + C이고, ∫cos(ωt) dt = sin(ωt)/ω + C입니다.",
+        "가속도에서 위치를 구하려면 두 번 적분하고, 두 적분 상수는 v₀, x₀으로 정합니다.",
+        "힘이 변하면 a = F(t)/m을 적분해야 합니다. 등가속도 공식은 힘이 일정할 때만 씁니다. 적분한 결과는 다시 미분해서 검산합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a = 4 − 2t(m/s²)이고 v(0) = 0인 물체의 최대 속력은 몇 m/s인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "a = 0일 때 속력이 최대입니다.",
+      "explanation": "v = 4t − t²입니다. (v(0) = 0)\nv가 최대인 순간은 a = 4 − 2t = 0, 곧 t = 2 s입니다.\nv(2) = 8 − 4 = 4 m/s입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "앞 문제에서 x(0) = 0일 때 t = 2 s의 위치를 분수로 쓰세요.",
+      "answer": "16/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "x = 2t² − t³/3입니다.",
+      "explanation": "v = 4t − t²를 적분하면 x = 2t² − t³/3입니다.\nx(2) = 8 − 8/3입니다.\n= 16/3 m입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "가속도가 a로 일정하고 v(0) = v₀, x(0) = x₀일 때 적분으로 x = x₀ + v₀t + (1/2)at²임을 보이세요.",
+      "model_answer": [
+        "v = ∫a dt = at + C₁이고 v(0) = v₀이므로 C₁ = v₀, 곧 v = v₀ + at이다.",
+        "x = ∫(v₀ + at) dt = v₀t + (1/2)at² + C₂이다.",
+        "x(0) = x₀이므로 C₂ = x₀이다.",
+        "따라서 x = x₀ + v₀t + (1/2)at²이다."
+      ],
+      "criteria": [
+        {
+          "text": "한 번 적분해 v를 구하고 C₁을 정했다",
+          "points": 3
+        },
+        {
+          "text": "두 번 적분하고 C₂를 정했다",
+          "points": 3
+        }
+      ],
+      "hint": "두 번 적분하고 상수를 하나씩 정하세요."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "v = Aω cos(ωt)이고 x(0) = 0인 물체의 위치가 x = A sin(ωt)임을 보이세요.",
+      "model_answer": [
+        "x = ∫Aω cos(ωt) dt이다.",
+        "∫cos(ωt) dt = sin(ωt)/ω + C이므로 x = A sin(ωt) + C이다.",
+        "x(0) = 0이고 sin 0 = 0이므로 C = 0이다.",
+        "따라서 x = A sin(ωt)이다. (미분하면 Aω cos(ωt)로 원래 속도가 나온다)"
+      ],
+      "criteria": [
+        {
+          "text": "cos의 적분에서 ω로 나누었다",
+          "points": 3
+        },
+        {
+          "text": "초기 조건으로 C를 정했다",
+          "points": 2
+        },
+        {
+          "text": "결론을 썼다",
+          "points": 1
+        }
+      ],
+      "hint": "미분할 때 곱해졌던 ω로 나누세요."
+    }
+  ]
+}

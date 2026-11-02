@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "basic",
+  "work": "풀이",
+  "track_title": "기초",
+  "chapter": {
+    "id": "info-s1-basic-ch02",
+    "no": 2,
+    "title": "정렬"
+  },
+  "lesson": {
+    "id": "info-s1-basic-ch02-l03",
+    "no": 3,
+    "title": "계수 정렬과 안정 정렬",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "기초",
+      "정렬"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "세어서 정렬하기",
+      "body": [
+        "값의 범위가 0부터 K까지로 작다면 비교하지 않고도 정렬할 수 있습니다. 값마다 몇 번 나오는지 세어 cnt 배열에 적은 뒤, 작은 값부터 센 개수만큼 다시 늘어놓습니다. 이것을 계수 정렬이라 합니다.",
+        "세는 데 O(n), 늘어놓는 데 O(n + K)가 들어 전체 O(n + K)입니다. K가 작으면 O(n log n)보다 빠릅니다.",
+        "cnt 배열은 0부터 K까지 K + 1칸이 필요합니다."
+      ],
+      "code": "// 값의 범위가 0 ~ K인 a[0..n-1]을 정렬한다\nvector<int> cnt(K + 1, 0);\nfor (int i = 0; i < n; i++) cnt[a[i]]++;\nint k = 0;\nfor (int v = 0; v <= K; v++)\n    while (cnt[v]--) a[k++] = v;"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "값의 범위가 0부터 100까지일 때 아래 코드의 cnt 배열은 몇 칸인가요?",
+      "answer": "101",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "0도 한 칸입니다.",
+      "explanation": "cnt 배열은 나올 수 있는 값마다 한 칸씩 필요합니다.\n0부터 100까지의 정수는 101개입니다.\n그래서 101칸입니다.",
+      "code": "// 값의 범위가 0 ~ K인 a[0..n-1]을 정렬한다\nvector<int> cnt(K + 1, 0);\nfor (int i = 0; i < n; i++) cnt[a[i]]++;\nint k = 0;\nfor (int v = 0; v <= K; v++)\n    while (cnt[v]--) a[k++] = v;"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "값이 같은 원소들의 원래 순서가 정렬 뒤에도 유지되는 정렬을 {{1}} 정렬이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "안정"
+          ]
+        }
+      ],
+      "hint": "흔들리지 않는다는 뜻입니다.",
+      "explanation": "같은 값을 가진 원소가 여럿이면 정렬 뒤 그들 사이의 순서가 바뀔 수 있습니다.\n원래 순서가 그대로 유지되는 정렬이 있습니다.\n이런 정렬을 안정 정렬이라 합니다."
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "[3, 1, 3, 0, 2, 3]을 아래 계수 정렬로 정렬할 때 cnt 배열을 구하세요. (K = 3)",
+      "steps": [
+        "0은 1번, 1은 1번, 2는 1번, 3은 3번 나옵니다.",
+        "cnt = [1, 1, 1, 3]입니다.",
+        "0을 1개, 1을 1개, 2를 1개, 3을 3개 늘어놓으면 [0, 1, 2, 3, 3, 3]입니다."
+      ],
+      "answer": "cnt = [1, 1, 1, 3]",
+      "code": "// 값의 범위가 0 ~ K인 a[0..n-1]을 정렬한다\nvector<int> cnt(K + 1, 0);\nfor (int i = 0; i < n; i++) cnt[a[i]]++;\nint k = 0;\nfor (int v = 0; v <= K; v++)\n    while (cnt[v]--) a[k++] = v;"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 cnt[3]의 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3이 몇 번 나오나요?",
+      "explanation": "cnt[v]는 배열에서 값 v가 나오는 횟수입니다.\n[3, 1, 3, 0, 2, 3]에서 3은 1번째, 3번째, 6번째에 나옵니다.\n그래서 cnt[3] = 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 2 이하인 원소는 모두 몇 개인가요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "cnt[0] + cnt[1] + cnt[2]입니다.",
+      "explanation": "어떤 값 이하인 원소의 개수는 cnt를 앞에서부터 누적해 더한 값입니다.\ncnt[0] + cnt[1] + cnt[2] = 1 + 1 + 1입니다.\n= 3개입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "계수 정렬의 한계",
+      "body": [
+        "값의 범위 K가 크면 cnt 배열이 너무 커집니다. 값이 10⁹까지라면 cnt 배열에 int 10⁹개, 약 4000 MB가 필요해 메모리 제한을 훌쩍 넘습니다.",
+        "또 O(n + K)에서 K가 n보다 훨씬 크면 오히려 느립니다.",
+        "그래서 계수 정렬은 시험 점수(0~100), 나이, 알파벳처럼 값의 범위가 작을 때만 씁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "값이 0부터 10⁹까지일 때 계수 정렬의 cnt 배열(int, 4바이트)은 약 몇 MB인가요? (1 MB = 10⁶바이트, 10⁹ + 1칸을 10⁹칸으로 어림)",
+      "answer": "4000",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "4 × 10⁹바이트입니다.",
+      "explanation": "필요한 메모리는 칸 수에 칸 하나의 크기 4바이트를 곱한 값입니다.\n10⁹ × 4 = 4 × 10⁹바이트입니다.\n4 × 10⁹/10⁶ = 4000 MB입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "안정 정렬이 필요한 때",
+      "body": [
+        "학생 기록을 이름순으로 정렬해 둔 뒤 점수순으로 다시 정렬하면, 안정 정렬일 때 점수가 같은 학생들은 이름순이 유지됩니다.",
+        "예를 들어 (A, 80), (B, 90), (C, 80), (D, 90)을 점수 내림차순으로 안정 정렬하면 B, D, A, C 순서가 됩니다. 90점인 B와 D, 80점인 A와 C는 원래 순서를 지킵니다.",
+        "C++의 sort는 안정 정렬이 아닐 수 있으므로, 순서를 지켜야 하면 stable_sort를 씁니다. 병합 정렬과 삽입 정렬은 안정 정렬입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "(A, 80), (B, 90), (C, 80), (D, 90)을 점수 내림차순으로 안정 정렬하면 C는 몇 번째에 오나요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "B, D, A, C입니다.",
+      "explanation": "점수 내림차순으로 정렬하면 90점 둘이 앞에, 80점 둘이 뒤에 옵니다.\n안정 정렬이므로 같은 점수끼리는 원래 순서 B, D와 A, C를 지킵니다.\nB, D, A, C이므로 C는 4번째입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 10⁶, K = 10⁶일 때 계수 정렬의 연산 횟수 n + K는?",
+      "answer": "2000000",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "10⁶ + 10⁶입니다.",
+      "explanation": "계수 정렬은 세는 데 n번, 값마다 늘어놓는 데 K번 정도가 들어 O(n + K)입니다.\n10⁶ + 10⁶입니다.\n= 2000000번입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "계수 정렬은 값마다 개수를 세어 늘어놓는 정렬로 O(n + K)이며, cnt 배열이 K + 1칸 필요합니다.",
+        "값의 범위 K가 작을 때만 쓸 수 있고, K가 크면 메모리와 시간이 너무 많이 듭니다.",
+        "안정 정렬은 같은 값의 원래 순서를 지키며, 여러 기준으로 차례로 정렬할 때 필요합니다. C++에서는 stable_sort를 씁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "[2, 0, 2, 1, 2, 0]을 아래 계수 정렬로 정렬할 때 cnt[2]의 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2가 몇 번 나오나요?",
+      "explanation": "cnt[v]는 배열에서 값 v가 나오는 횟수입니다.\n[2, 0, 2, 1, 2, 0]에서 2는 1번째, 3번째, 5번째에 나옵니다.\n그래서 cnt[2] = 3입니다.",
+      "code": "// 값의 범위가 0 ~ K인 a[0..n-1]을 정렬한다\nvector<int> cnt(K + 1, 0);\nfor (int i = 0; i < n; i++) cnt[a[i]]++;\nint k = 0;\nfor (int v = 0; v <= K; v++)\n    while (cnt[v]--) a[k++] = v;"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(A, 3), (B, 1), (C, 3), (D, 2)를 값의 오름차순으로 안정 정렬하면 A는 몇 번째에 오나요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "B, D, A, C입니다.",
+      "explanation": "값의 오름차순으로 정렬하면 1인 B, 2인 D, 3인 A와 C 순서가 됩니다.\n안정 정렬이므로 값이 같은 A와 C는 원래 순서를 지킵니다.\nB, D, A, C이므로 A는 3번째입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "계수 정렬이 O(n + K)인 이유와 K가 클 때 쓰기 어려운 이유를 설명하세요.",
+      "model_answer": [
+        "원소 n개를 한 번씩 보며 cnt[a[i]]를 1씩 늘리는 데 O(n)이 든다.",
+        "값 0부터 K까지 차례로 보며 센 개수만큼 늘어놓는 데 O(n + K)가 든다.",
+        "그래서 전체 시간은 O(n + K)이고, cnt 배열에 K + 1칸의 메모리가 필요하다.",
+        "K가 10⁹처럼 크면 메모리가 수천 MB 필요하고 시간도 n log n보다 오래 걸려 쓸 수 없다."
+      ],
+      "criteria": [
+        {
+          "text": "세는 단계의 시간을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "늘어놓는 단계의 시간을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "K가 클 때 메모리·시간 문제를 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "cnt 배열의 크기를 생각하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "학생 기록을 이름순으로 정렬한 뒤 점수순으로 다시 정렬할 때 안정 정렬을 써야 하는 이유를 설명하세요.",
+      "model_answer": [
+        "목표는 점수순으로 정렬하되 점수가 같으면 이름순이 되게 하는 것이다.",
+        "먼저 이름순으로 정렬하면 점수가 같은 학생들도 이름순으로 놓인다.",
+        "안정 정렬로 점수순 정렬을 하면 점수가 같은 학생들의 기존 순서, 즉 이름순이 유지된다.",
+        "안정 정렬이 아니면 점수가 같은 학생들의 순서가 뒤섞여 이름순이 깨질 수 있다."
+      ],
+      "criteria": [
+        {
+          "text": "원하는 결과를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "안정 정렬이 이름순을 지킴을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "안정이 아닐 때의 문제를 지적했다",
+          "points": 2
+        }
+      ],
+      "hint": "같은 점수인 학생들의 순서는 무엇이 정하나요?"
+    }
+  ]
+}

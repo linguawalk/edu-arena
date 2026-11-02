@@ -1,0 +1,110 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "saa-c03",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "S3 성능 최적화",
+  "rule_summary_ko": "멀티파트 업로드(Multipart Upload)는 큰 객체를 여러 부분으로 나눠 병렬로 업로드해서, 네트워크가 끊겨도 전체를 처음부터 다시 올릴 필요 없이 실패한 부분만 재시도할 수 있게 해줍니다(AWS는 100MB 이상 파일에 권장). Transfer Acceleration은 CloudFront의 전 세계 엣지 로케이션을 활용해서, 사용자와 지리적으로 먼 S3 버킷으로의 전송 속도를 높여줍니다. 바이트 범위 페치(Byte-Range Fetch)는 HTTP Range 헤더로 객체의 일부분만 요청해서, 큰 객체를 여러 조각으로 나눠 병렬로 받거나 필요한 부분만 효율적으로 가져올 수 있게 해줍니다.",
+  "examples": [
+    { "code": "500MB 크기의 대용량 백업 파일을 업로드하는 도중 네트워크가 끊김", "note_ko": "멀티파트 업로드를 사용했다면, 이미 완료된 부분은 그대로 두고 실패한 부분만 다시 업로드하면 됨(처음부터 재시작 불필요)" },
+    { "code": "전 세계 각지의 사용자가 한국 리전의 S3 버킷에 파일을 업로드해야 함(먼 거리로 인한 지연 발생)", "note_ko": "Transfer Acceleration이 적합 — 가까운 CloudFront 엣지 로케이션을 거쳐 전송 속도를 높임" }
+  ],
+  "questions": [
+    {
+      "id": "aws_saa_l3_u3_q001",
+      "type": "concept_matching_item",
+      "code": "500MB 대용량 파일 업로드 도중 네트워크가 끊겨서 업로드가 중단됨",
+      "prompt_ko": "멀티파트 업로드를 사용하고 있었다면, 이 상황에서 어떻게 복구할 수 있습니까?",
+      "options": [
+        "이미 성공적으로 업로드된 부분(파트)들은 그대로 두고, 실패한 부분만 다시 업로드하면 된다 — 파일 전체를 처음부터 재업로드할 필요가 없다",
+        "무조건 파일 전체를 처음부터 다시 업로드해야 한다",
+        "멀티파트 업로드는 네트워크 중단에 대한 어떤 이점도 제공하지 않는다",
+        "이미 업로드된 부분들이 모두 자동으로 삭제된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "부분별 재시도가 가능하다는 것이 멀티파트 업로드의 핵심 이점 중 하나입니다.",
+      "concept_tags": ["multipart_upload_resilience"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l3_u3_q002",
+      "type": "concept_matching_item",
+      "code": "전 세계 각지의 사용자가 한국 리전의 S3 버킷에 대용량 파일을 업로드해야 하는데, 지리적 거리로 인한 지연이 문제가 됨",
+      "prompt_ko": "이 문제를 해결하는 데 적합한 S3 기능은?",
+      "options": [
+        "Transfer Acceleration — CloudFront의 전 세계 엣지 로케이션을 거쳐 전송 속도를 높여줌",
+        "멀티파트 업로드만으로 지리적 거리 문제를 완전히 해결할 수 있다(속도 향상과는 다른 이점)",
+        "이런 지연 문제는 S3의 어떤 기능으로도 해결할 수 없다",
+        "버킷 정책을 바꾸는 것만으로 해결된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "Transfer Acceleration은 지리적으로 먼 사용자와 버킷 사이의 전송을 최적화된 경로로 안내합니다.",
+      "concept_tags": ["transfer_acceleration"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l3_u3_q003",
+      "type": "concept_matching_item",
+      "code": "대용량 로그 파일에서 특정 시간대에 해당하는 일부 구간만 필요함(전체 파일을 다운로드할 필요 없음)",
+      "prompt_ko": "이런 요구사항에 적합한 S3 기능은?",
+      "options": [
+        "바이트 범위 페치(Byte-Range Fetch) — HTTP Range 헤더로 객체의 특정 부분만 선택적으로 가져올 수 있음",
+        "Transfer Acceleration(전체 전송 속도 향상이 목적이라 부분 조회와는 다름)",
+        "멀티파트 업로드(다운로드가 아니라 업로드 최적화 기능)",
+        "이런 요구사항은 S3에서 지원되지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "필요한 부분만 가져오는 것은 대역폭 절약과 응답 속도 향상에 모두 도움이 됩니다.",
+      "concept_tags": ["byte_range_fetch"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l3_u3_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "대용량 객체를 여러 바이트 범위로 나눠서 동시에(병렬로) 여러 커넥션으로 다운로드하는 것의 이점은?",
+      "options": [
+        "단일 커넥션으로 전체를 한 번에 받는 것보다 전체적인 처리량(throughput)을 높일 수 있고, 일부 요청이 실패해도 그 부분만 재시도하면 된다",
+        "병렬 다운로드는 항상 단일 다운로드보다 느리다",
+        "병렬 다운로드는 S3에서 지원되지 않는 기능이다",
+        "병렬로 받으면 파일이 손상될 위험만 커질 뿐 이점이 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "S3는 분산 시스템이라, 여러 커넥션에 요청을 분산시키는 것이 처리량 극대화의 핵심 전략입니다.",
+      "concept_tags": ["parallel_byte_range_benefit"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l3_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "AWS가 멀티파트 업로드 사용을 권장하는 대표적인 파일 크기 기준은?",
+      "options": [
+        "약 100MB 이상의 파일", "1KB 이상의 모든 파일(너무 작은 기준)", "10TB 이상의 파일만(너무 큰 기준)", "파일 크기와 무관하게 항상 사용해야 한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "일정 크기 이상부터는 멀티파트의 병렬성·복원력 이점이 두드러지기 시작합니다.",
+      "concept_tags": ["multipart_upload_size_threshold"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l3_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "parameter_note": "",
+      "prompt_ko": "멀티파트 업로드, Transfer Acceleration, 바이트 범위 페치를 함께 고려할 때, 이들이 공통적으로 지향하는 목표는?",
+      "options": [
+        "S3가 분산 시스템이라는 특성을 활용해서, 병렬성과 지리적 최적화를 통해 대용량 데이터 전송의 속도와 안정성을 높이는 것",
+        "이 기능들은 서로 완전히 무관한 목적을 가진다",
+        "세 기능 모두 오직 비용 절감만을 목적으로 한다",
+        "세 기능은 오직 소규모 파일에만 적용된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "'병렬화'와 '지리적 근접성 활용'이라는 공통된 전략이 이 세 기능을 관통합니다.",
+      "concept_tags": ["s3_performance_common_theme"],
+      "difficulty": "challenge"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-1-102",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "사용자와 그룹 관리: /etc/passwd",
+  "rule_summary_ko": "/etc/passwd는 콜론(:)으로 구분된 7개 필드로 각 사용자 계정 정보를 담습니다: 사용자명:x(실제 비밀번호 해시는 /etc/shadow에 저장됨을 나타내는 자리표시자):UID:GID:설명(GECOS):홈 디렉터리:로그인 셸. root 사용자는 항상 UID와 GID가 0입니다. 로그인이 허용되지 않는 시스템 계정(daemon 등)은 흔히 로그인 셸 자리에 /usr/sbin/nologin이 지정되어, 실제 대화형 로그인을 할 수 없습니다.",
+  "examples": [
+    { "code": "root:x:0:0:root:/root:/bin/bash", "note_ko": "root 계정 — UID=0, GID=0, 홈 디렉터리 /root, 로그인 셸은 정상적인 /bin/bash" },
+    { "code": "daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin", "note_ko": "시스템 계정 — 로그인 셸이 /usr/sbin/nologin이라 실제로 대화형 로그인이 불가능함" }
+  ],
+  "questions": [
+    {
+      "id": "lpic1_l3_u3_q001",
+      "type": "fill_blank",
+      "code": "root:x:0:0:root:/root:/bin/bash",
+      "prompt_ko": "root 사용자의 UID(세 번째 필드)는 무엇입니까? (숫자만 입력)",
+      "expected_answers": ["0"],
+      "explanation_ko": "root는 항상 UID 0을 가지는 최고 권한 계정입니다.",
+      "concept_tags": ["root_uid"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic1_l3_u3_q002",
+      "type": "concept_matching_item",
+      "code": "root:x:0:0:root:/root:/bin/bash",
+      "prompt_ko": "두 번째 필드('x')가 의미하는 것은?",
+      "options": [
+        "실제 비밀번호 해시가 이 파일이 아니라 /etc/shadow 파일에 저장되어 있음을 나타내는 자리표시자",
+        "이 사용자의 실제 비밀번호가 'x'라는 뜻",
+        "이 계정이 비활성화되어 있다는 뜻",
+        "이 필드는 아무 의미도 없는 임의의 문자다"
+      ],
+      "answer": 0,
+      "explanation_ko": "보안을 위해 실제 비밀번호 해시는 접근 권한이 더 제한된 /etc/shadow에 별도로 보관됩니다.",
+      "concept_tags": ["passwd_x_field"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l3_u3_q003",
+      "type": "concept_matching_item",
+      "code": "daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin",
+      "prompt_ko": "마지막 필드가 /usr/sbin/nologin인 것의 의미는?",
+      "options": [
+        "이 계정은 시스템 서비스 실행 등에 사용되며, 실제 대화형 로그인(셸 접속)이 허용되지 않는다",
+        "이 계정은 로그인 시 항상 오류가 나서 시스템이 멈춘다",
+        "이 필드는 사용자의 홈 디렉터리 경로다(설명이 틀림)",
+        "nologin은 실제로 사용 가능한 완전한 셸이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "nologin 셸은 로그인 시도를 정중히 거부하는 특수한 '셸'로, 서비스 계정에 흔히 사용됩니다.",
+      "concept_tags": ["nologin_shell"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic1_l3_u3_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "/etc/passwd 파일에서 필드를 구분하는 데 사용되는 문자는?",
+      "options": ["콜론(:)", "쉼표(,)", "탭(\\t)", "세미콜론(;)"],
+      "answer": 0,
+      "explanation_ko": "/etc/passwd의 각 줄은 콜론으로 구분된 7개 필드로 구성됩니다.",
+      "concept_tags": ["passwd_delimiter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic1_l3_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "실제 비밀번호 해시를 /etc/passwd가 아니라 별도의 /etc/shadow 파일에 보관하는 이유는?",
+      "options": [
+        "/etc/passwd는 모든 사용자가 읽을 수 있어야 하는 반면, /etc/shadow는 접근 권한을 root 등으로 엄격히 제한해서 비밀번호 해시가 일반 사용자에게 노출되지 않도록 보호하기 위해",
+        "두 파일을 나누는 것에는 특별한 이유가 없다",
+        "/etc/shadow는 성능 향상만을 위해 존재한다",
+        "/etc/passwd에는 애초에 비밀번호를 저장할 공간이 없어서다"
+      ],
+      "answer": 0,
+      "explanation_ko": "이 분리(shadow password 방식)는 오프라인 비밀번호 크래킹 공격을 어렵게 만드는 보안 설계입니다.",
+      "concept_tags": ["shadow_password_rationale"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic1_l3_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "/etc/passwd의 다섯 번째 필드(GECOS)에 일반적으로 담기는 정보는?",
+      "options": [
+        "사용자의 실제 이름이나 설명 같은 부가 정보",
+        "사용자의 비밀번호 해시(두 번째 필드와 혼동)",
+        "사용자의 그룹 목록",
+        "사용자의 마지막 로그인 시각"
+      ],
+      "answer": 0,
+      "explanation_ko": "GECOS 필드는 흔히 사용자의 전체 이름 등 설명적인 정보를 담는 자유 형식 필드입니다.",
+      "concept_tags": ["gecos_field"],
+      "difficulty": "practice"
+    }
+  ]
+}

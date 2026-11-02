@@ -1,0 +1,100 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "sql-associate-1z0-071",
+  "level": 1,
+  "unit": 1,
+  "unit_title": "SELECT 기초와 DUAL 테이블",
+  "rule_summary_ko": "DUAL은 오라클이 제공하는 특수한 테이블로, 딱 한 행 한 열('X')만 가지고 있어 실제 테이블 없이 표현식이나 함수 결과만 확인하고 싶을 때 사용합니다(예: SELECT SYSDATE FROM DUAL). 문자열을 이어붙일 때는 || 연결 연산자를 사용합니다. 컬럼에 별칭(alias)을 줄 때 AS는 생략 가능하지만, 별칭에 공백이나 대소문자를 그대로 유지하려면 큰따옴표로 감싸야 합니다.",
+  "examples": [
+    { "code": "SELECT 1+1 FROM DUAL;", "note_ko": "실제 테이블 없이 단순 계산 결과(2)만 확인 — DUAL은 이런 용도에 특화된 더미 테이블" },
+    { "code": "SELECT last_name || ' ' || first_name AS full_name FROM employees;", "note_ko": "||로 성과 이름을 공백을 두고 이어붙여 하나의 컬럼으로 만듦" }
+  ],
+  "questions": [
+    {
+      "id": "sql_oracle_l1_u1_q001",
+      "type": "concept_matching_item",
+      "code": "SELECT SYSDATE FROM DUAL;",
+      "prompt_ko": "DUAL 테이블을 사용하는 이유로 가장 적절한 것은?",
+      "options": [
+        "DUAL은 실제 업무 데이터를 저장하는 핵심 테이블이다",
+        "특정 실제 테이블 없이도, 단순 계산이나 함수 결과만 확인하고 싶을 때 사용하는 한 행짜리 더미 테이블이다",
+        "DUAL은 오라클에만 존재하지 않고 모든 데이터베이스의 표준 문법이다",
+        "DUAL 없이는 어떤 SELECT 문도 실행할 수 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "DUAL은 FROM 절이 문법적으로 필요하지만 실제 테이블 데이터는 필요 없을 때 쓰는 오라클 특유의 편의 테이블입니다.",
+      "concept_tags": ["dual_table"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l1_u1_q002",
+      "type": "fill_blank",
+      "code": "SELECT 'Kim' || ' ' || 'Chulsu' FROM DUAL;",
+      "prompt_ko": "이 쿼리의 결과는 무엇입니까? (그대로 입력)",
+      "expected_answers": ["Kim Chulsu"],
+      "explanation_ko": "||는 오라클에서 문자열을 이어붙이는 연결 연산자입니다.",
+      "concept_tags": ["concatenation_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l1_u1_q003",
+      "type": "concept_matching_item",
+      "code": "SELECT salary * 12 AS \"Annual Salary\" FROM employees;",
+      "prompt_ko": "별칭 \"Annual Salary\"를 큰따옴표로 감싼 이유는?",
+      "options": [
+        "큰따옴표는 아무 의미 없이 장식일 뿐이다",
+        "별칭에 공백이 포함되어 있어, 대소문자와 공백을 그대로 유지하려면 큰따옴표로 감싸야 하기 때문에",
+        "오라클은 별칭에 큰따옴표를 반드시 사용해야 한다는 규칙이 있다",
+        "큰따옴표가 없으면 컴파일 오류가 발생한다"
+      ],
+      "answer": 1,
+      "explanation_ko": "큰따옴표 없이 별칭에 공백을 쓰면 문법 오류가 나거나 의도와 다르게 해석되므로, 공백 포함 별칭은 큰따옴표가 필요합니다.",
+      "concept_tags": ["column_alias"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l1_u1_q004",
+      "type": "concept_matching_item",
+      "code": "SELECT last_name AS name FROM employees;\nSELECT last_name name FROM employees;",
+      "prompt_ko": "두 쿼리의 결과 차이는?",
+      "options": [
+        "결과가 다르다 — 두 번째 쿼리는 오류가 발생한다",
+        "결과가 동일하다 — 별칭 앞의 AS 키워드는 선택 사항(생략 가능)이다",
+        "첫 번째만 정상 작동하고 두 번째는 무시된다",
+        "AS가 있으면 오름차순, 없으면 내림차순으로 정렬된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "AS는 별칭 지정 시 가독성을 위한 선택적 키워드이며, 생략해도 동일하게 동작합니다.",
+      "concept_tags": ["column_alias", "as_keyword"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l1_u1_q005",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "오라클에서 두 문자열이나 컬럼 값을 이어붙일 때 사용하는 연산자는 무엇입니까? (기호 두 개, 예: ++)",
+      "expected_answers": ["||"],
+      "explanation_ko": "||(파이프 두 개)는 오라클의 문자열 연결 연산자입니다.",
+      "concept_tags": ["concatenation_operator"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l1_u1_q006",
+      "type": "concept_matching_item",
+      "code": "SELECT DISTINCT department_id FROM employees;",
+      "prompt_ko": "DISTINCT 키워드의 역할은?",
+      "options": [
+        "결과에서 중복된 행을 제거하고 고유한 값만 보여준다",
+        "결과를 알파벳순으로 정렬한다",
+        "결과의 행 개수를 센다",
+        "특정 컬럼만 숨긴다"
+      ],
+      "answer": 0,
+      "explanation_ko": "DISTINCT는 조회 결과에서 중복 행을 제거해서 고유한 값들만 반환합니다.",
+      "concept_tags": ["distinct"],
+      "difficulty": "intro"
+    }
+  ]
+}

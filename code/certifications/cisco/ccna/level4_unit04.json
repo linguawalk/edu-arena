@@ -1,0 +1,113 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "cisco",
+  "exam": "ccna-200-301",
+  "level": 4,
+  "unit": 4,
+  "unit_title": "QoS 기초",
+  "rule_summary_ko": "QoS(서비스 품질)는 네트워크가 혼잡(congestion)할 때, 음성·영상처럼 지연에 민감한 트래픽을 대용량 파일 전송 같은 덜 민감한 트래픽보다 우선 처리하기 위해 존재합니다. 혼잡이 없는 링크에서는 모든 트래픽이 정상적으로 흐르므로 QoS가 실질적으로 개입할 필요가 없습니다. 일반적인 QoS 흐름은 분류(classify)→마킹(mark)→큐잉(queue)→폴리싱(police)→쉐이핑(shape) 순서를 따르며, 폴리싱은 초과 트래픽을 즉시 드롭(또는 재마킹)하고, 쉐이핑은 초과분을 버퍼에 담아 지연시켜 나중에 내보냅니다(드롭하지 않음).",
+  "examples": [
+    { "code": "화상회의 트래픽이 대용량 파일 다운로드와 같은 링크를 공유함(혼잡 발생)", "note_ko": "QoS로 화상회의(지연 민감)를 우선 큐에 배치해서, 파일 다운로드로 인한 지연·끊김을 방지" },
+    { "code": "링크에 트래픽이 거의 없어 혼잡이 전혀 없는 상황", "note_ko": "QoS 큐잉 정책이 있어도 실질적인 우선순위 조정이 필요 없음 — 혼잡이 있어야 QoS가 의미를 가짐" }
+  ],
+  "questions": [
+    {
+      "id": "ccna_l4_u4_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "QoS가 존재하는 근본적인 이유는?",
+      "options": [
+        "네트워크가 혼잡할 때, 음성·영상처럼 지연에 민감한 트래픽을 그렇지 않은 트래픽보다 우선 처리하기 위해",
+        "네트워크 대역폭 자체를 늘려주기 위해",
+        "IP 주소를 자동으로 할당하기 위해",
+        "모든 트래픽을 동일한 우선순위로 처리하도록 강제하기 위해"
+      ],
+      "answer": 0,
+      "explanation_ko": "QoS는 제한된 대역폭을 트래픽의 중요도·민감도에 따라 차등 배분하는 기술입니다.",
+      "concept_tags": ["qos_purpose"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "ccna_l4_u4_q002",
+      "type": "concept_matching_item",
+      "code": "링크에 트래픽이 거의 없어 혼잡이 전혀 발생하지 않는 상황",
+      "prompt_ko": "이 상황에서 QoS 큐잉 정책은 실질적으로 어떤 영향을 미칩니까?",
+      "options": [
+        "혼잡이 없으므로 모든 트래픽이 정상적으로 흘러, QoS 큐잉이 실질적인 차이를 만들지 않는다",
+        "혼잡 여부와 무관하게 QoS는 항상 트래픽 순서를 강제로 바꾼다",
+        "QoS가 없으면 혼잡이 없어도 트래픽이 무조건 드롭된다",
+        "이 상황에서는 QoS가 오히려 트래픽을 지연시킨다"
+      ],
+      "answer": 0,
+      "explanation_ko": "QoS의 우선순위 조정은 '경쟁이 있을 때(혼잡 시)'에만 의미를 가집니다.",
+      "concept_tags": ["qos_congestion_dependency"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l4_u4_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "일반적인 QoS 처리 순서로 옳은 것은?",
+      "options": [
+        "분류(classify) → 마킹(mark) → 큐잉(queue) → 폴리싱/쉐이핑",
+        "폴리싱 → 분류 → 마킹 → 큐잉(순서가 뒤바뀜)",
+        "QoS에는 정해진 처리 순서가 없다",
+        "마킹 → 폴리싱 → 분류 → 큐잉"
+      ],
+      "answer": 0,
+      "explanation_ko": "먼저 트래픽 종류를 식별(분류)하고, 우선순위 표시(마킹)를 한 뒤, 실제로 큐에서 순서를 정하고 필요하면 속도를 제한합니다.",
+      "concept_tags": ["qos_process_order"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l4_u4_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "트래픽 폴리싱(policing)과 트래픽 쉐이핑(shaping)의 핵심 차이는?",
+      "options": [
+        "폴리싱은 설정된 속도를 초과하는 트래픽을 즉시 드롭(또는 재마킹)하지만, 쉐이핑은 초과분을 버퍼에 담아 지연시켜 나중에 내보낸다(드롭하지 않음)",
+        "폴리싱과 쉐이핑은 완전히 동일한 기능이다",
+        "쉐이핑이 항상 폴리싱보다 트래픽을 더 많이 드롭시킨다",
+        "폴리싱은 트래픽을 버퍼에 담아두고, 쉐이핑은 즉시 드롭한다(설명이 반대)"
+      ],
+      "answer": 0,
+      "explanation_ko": "폴리싱은 즉각적인 드롭(하드 리밋), 쉐이핑은 완충(버퍼링을 통한 평탄화)이라는 차이가 있습니다.",
+      "concept_tags": ["policing_vs_shaping"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "ccna_l4_u4_q005",
+      "type": "concept_matching_item",
+      "code": "화상회의(음성/영상)와 대용량 파일 다운로드가 같은 WAN 링크를 두고 경쟁함",
+      "prompt_ko": "화상회의 품질을 보호하기 위한 적절한 QoS 접근은?",
+      "options": [
+        "화상회의 트래픽을 낮은 지연시간이 보장되는 우선순위 큐(priority queue)에 배치해서 먼저 처리되게 한다",
+        "모든 트래픽을 동일한 큐에 무작위 순서로 넣는다",
+        "파일 다운로드에 항상 절대적인 우선순위를 준다",
+        "QoS는 이런 상황에서 아무 도움이 되지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "지연·지터에 민감한 실시간 트래픽에는 우선순위 큐잉이 표준적인 해법입니다.",
+      "concept_tags": ["priority_queue_voice_video"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "ccna_l4_u4_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "parameter_note": "",
+      "prompt_ko": "QoS 마킹(marking)이 하는 역할은?",
+      "options": [
+        "패킷에 우선순위 정보를 표시해서, 이후 거쳐가는 여러 장치들이 그 표시를 보고 일관되게 우선순위를 판단할 수 있게 해준다",
+        "패킷의 목적지 주소를 변경한다(NAT와 혼동)",
+        "패킷을 암호화한다",
+        "마킹은 큐잉·폴리싱과 전혀 무관한 개념이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "마킹은 트래픽의 '신분증' 역할을 해서, 경로상의 여러 장치가 일관된 QoS 처리를 할 수 있게 해줍니다.",
+      "concept_tags": ["qos_marking"],
+      "difficulty": "practice"
+    }
+  ]
+}

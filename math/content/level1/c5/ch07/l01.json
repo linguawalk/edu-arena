@@ -1,0 +1,332 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch07",
+    "no": 7,
+    "title": "통계적 추정"
+  },
+  "lesson": {
+    "id": "c5-ch07-l01",
+    "no": 1,
+    "title": "모집단과 표본",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "확률통계"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "전수조사와 표본조사",
+      "body": [
+        "조사 대상 전체를 모두 조사하는 것을 전수조사, 일부만 뽑아 조사하는 것을 표본조사라고 합니다.",
+        "전체를 모집단, 뽑은 일부를 표본이라고 합니다. 제품을 부숴야 하는 검사나 대상이 너무 많은 경우에는 표본조사를 합니다.",
+        "전수조사가 가장 정확하지만 늘 가능하지는 않습니다. 전구의 수명을 재려면 전구가 꺼질 때까지 켜 두어야 하므로 모두 조사하면 팔 전구가 남지 않고, 전국의 모든 사람에게 묻는 데는 시간과 비용이 너무 많이 듭니다. 그래서 일부를 잘 뽑아 전체를 추측하는 표본조사가 통계의 핵심 방법이 됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "전구의 수명 검사는 어떤 조사가 알맞을까요?  (전수조사 1, 표본조사 2)",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "수명을 재려면 전구를 끝까지 사용해야 해 제품이 남지 않음\n일부만 뽑아 조사하는 표본조사가 알맞음\n2\n원리: 검사가 제품을 소모시키면 표본조사를 합니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "인구 총조사는 어떤 조사일까요?  (전수조사 1, 표본조사 2)",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "인구 총조사는 나라의 모든 사람을 조사함\n전체를 조사하므로 전수조사\n1\n원리: 정확한 전체 자료가 꼭 필요할 때 전수조사를 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "추출 방법",
+      "body": [
+        "모집단의 각 대상이 뽑힐 가능성이 같도록 뽑는 것을 임의추출이라고 합니다.",
+        "뽑은 것을 되돌려 놓으면 복원추출, 되돌려 놓지 않으면 비복원추출입니다.",
+        "임의추출이 중요한 이유는 표본이 모집단을 고르게 대표하게 하기 위해서입니다. 한 학교 학생만 조사해 전국 학생의 의견이라고 하면 결과가 치우칩니다. 복원추출은 뽑을 때마다 조건이 같아 계산이 간단하고, 모집단이 매우 크면 비복원추출도 거의 복원추출과 같게 볼 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "모집단 {a, b, c, d}에서 크기 2인 표본을 순서 있게 뽑을 때 복원추출과 비복원추출의 방법 수를 비교하세요.",
+      "steps": [
+        "복원추출: 매번 4가지 → 4 × 4 = 16",
+        "비복원추출: 4 × 3 = 12",
+        "복원추출에는 (a, a)처럼 같은 것을 두 번 뽑는 경우가 포함됨",
+        "차이 4가지"
+      ],
+      "answer": "16, 12"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1, 2, 3에서 크기 2인 표본을 복원추출로 순서 있게 뽑는 방법은?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "복원추출은 뽑은 것을 되돌려 놓아 매번 3가지\n3 × 3\n= 9 (중복순열 ₃Π₂)\n원리: 복원추출은 매번 같은 조건에서 뽑으므로 중복순열입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 경우 비복원추출로 뽑는 방법은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "비복원추출은 한 번 뽑은 것을 다시 뽑을 수 없음\n3 × 2\n= 6 (순열 ₃P₂)\n원리: 비복원추출은 한 번 뽑은 것을 빼고 뽑으므로 순열입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "모평균과 모분산",
+      "body": [
+        "모집단의 평균을 모평균 m, 분산을 모분산 σ²이라고 합니다.",
+        "모평균과 모분산은 모집단 전체의 평균과 분산으로, 코스 0에서 배운 평균·분산과 계산 방법이 같습니다. 문제는 실제 상황에서 이 값들을 모른다는 것이고, 그래서 표본을 뽑아 추측합니다. 모집단의 값들이 같은 비율로 있으면 모평균은 그 값들의 평균입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "모집단이 {1, 3, 5}일 때(각각 같은 비율) 모평균은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "모평균 = 모집단의 평균\n(1 + 3 + 5)/3\n= 3\n원리: 계산은 보통의 평균과 같습니다.\n확인: 모든 값이 같은 비율이므로 세 값의 평균이 모평균입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 모집단의 모분산은? (기약분수로)",
+      "answer": "8/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "편차: −2, 0, 2\n편차의 제곱의 평균: (4 + 0 + 4)/3\n= 8/3 (모분산은 N으로 나눔)\n비교: 표본분산은 n − 1로 나누지만 모분산은 모집단 전체의 개수로 나눕니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "표본평균과 표본분산",
+      "body": [
+        "표본평균 X̄ = (X₁ + … + Xₙ)/n,  표본분산 S² = Σ(Xᵢ − X̄)²/(n − 1). 표본분산은 n − 1로 나눕니다.",
+        "왜 표본분산은 n − 1로 나눌까요? 표본평균 X̄는 표본 자신에게 맞춰진 값이라, X̄로부터의 편차는 모평균으로부터의 편차보다 평균적으로 조금 작게 나옵니다. n 대신 n − 1로 나누면 이 치우침이 보정되어 표본분산의 평균이 모분산과 같아집니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "표본 4, 6, 8, 10, 12의 표본평균과 표본분산을 구하세요.",
+      "steps": [
+        "표본평균 X̄ = 40/5 = 8",
+        "편차 −4, −2, 0, 2, 4 → 제곱의 합 40",
+        "표본분산 S² = 40/(5 − 1) = 10",
+        "주의: n = 5가 아니라 n − 1 = 4로 나눔"
+      ],
+      "answer": "8, 10"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "표본 2, 4, 6, 8의 표본평균은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "값을 모두 더해 개수로 나누세요.",
+      "explanation": "표본평균 = (2 + 4 + 6 + 8)/4\n= 20/4\n= 5\n원리: 표본의 값들의 평균\n확인: 모평균을 모를 때 이 값이 모평균의 추정값이 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 표본의 표본분산은? (기약분수로)",
+      "answer": "20/3",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "편차의 제곱의 합을 n − 1로 나누세요.",
+      "explanation": "편차 −3, −1, 1, 3 → 제곱의 합 9 + 1 + 1 + 9 = 20\n표본분산 = 20/(4 − 1)\n= 20/3 (n − 1로 나눔)"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "모집단의 값(모수)은 보통 모르는 값이고, 표본에서 계산한 값(통계량)으로 모수를 추측합니다.",
+        "모집단의 특성을 나타내는 값(모평균, 모분산, 모비율)을 모수, 표본에서 계산하는 값(표본평균, 표본분산, 표본비율)을 통계량이라고 합니다. 통계량은 어떤 표본이 뽑히느냐에 따라 달라지는 확률변수라는 점이 다음 레슨의 출발점입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "모집단 {0, 2}에서 크기 2인 표본을 복원추출할 때 표본평균 X̄의 확률분포를 구하세요.",
+      "steps": [
+        "표본: (0,0), (0,2), (2,0), (2,2)",
+        "X̄ = 0, 1, 1, 2",
+        "P(X̄ = 0) = 1/4, P(X̄ = 1) = 1/2, P(X̄ = 2) = 1/4",
+        "E(X̄) = 1 = 모평균"
+      ],
+      "answer": "1/4, 1/2, 1/4"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "표본을 임의추출하는 것은 결과가 한쪽으로 치우치지 않게 하기 위해서일까요?  (그렇다 1, 아니다 0)",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "임의추출의 목적을 떠올리세요.",
+      "explanation": "임의추출은 모든 대상이 뽑힐 가능성을 같게 함\n그래서 표본이 모집단을 치우침 없이 대표하게 됨\n그렇다 → 1"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "원소가 4개인 모집단에서 크기 3인 표본을 복원추출로 순서 있게 뽑는 방법은?",
+      "answer": "64",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "복원추출은 매번 모두 고를 수 있습니다.",
+      "explanation": "복원추출이므로 매번 4가지\n4 × 4 × 4\n= 64 (중복순열 ₄Π₃)\n원리: 뽑은 것을 되돌려 놓으면 매번 같은 조건이라 자리마다 4가지씩 곱합니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "표본 1, 2, 3, 4, 5의 표본평균은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "값을 모두 더해 개수로 나누세요.",
+      "explanation": "(1 + 2 + 3 + 4 + 5)/5\n= 15/5\n= 3\n원리: 표본평균은 표본의 값들의 평균\n확인: 1부터 5까지 대칭이라 가운데 값 3이 평균입니다."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 표본의 표본분산은?",
+      "answer": "2.5",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "n − 1로 나누세요.",
+      "explanation": "편차 −2, −1, 0, 1, 2 → 제곱의 합 10\n표본분산 = 10/(5 − 1)\n= 2.5\n원리: 표본분산은 편차의 제곱의 합을 n − 1로 나눕니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "모집단이 {2, 4}일 때 모평균은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "모집단의 평균입니다.",
+      "explanation": "(2 + 4)/2\n= 3\n원리: 모평균은 모집단 전체의 평균\n확인: 모든 값을 같은 비율로 가지므로 두 값의 평균"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "모집단 {2, 4}에서 크기 2인 표본을 복원추출할 때 표본평균이 가질 수 있는 값은 몇 가지일까요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "모든 표본을 나열하세요.",
+      "explanation": "표본: (2,2), (2,4), (4,2), (4,4)\n표본평균: 2, 3, 3, 4\n가능한 값 2, 3, 4의 3가지"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 경우 표본평균이 4일 확률은? (기약분수로)",
+      "answer": "1/4",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "(4, 4)만 해당합니다.",
+      "explanation": "4가지 표본 중 표본평균이 4인 것은 (4, 4) 하나\n각 표본은 같은 확률 1/4\nP = 1/4\n원리: 복원추출의 표본들은 모두 같은 확률로 나옵니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "표본조사가 필요한 경우를 예를 들어 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "부수",
+            "망가",
+            "파괴",
+            "소모"
+          ],
+          [
+            "많",
+            "비용",
+            "시간"
+          ],
+          [
+            "일부"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "제품의 수명을 재려면 제품을 끝까지 써서 망가뜨려야 하므로 전부 조사할 수 없습니다. 또 대상이 너무 많아 시간과 비용이 많이 들 때도 일부만 뽑아 조사하는 표본조사가 필요합니다."
+    }
+  ]
+}

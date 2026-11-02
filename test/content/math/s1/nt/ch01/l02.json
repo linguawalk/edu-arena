@@ -1,0 +1,299 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s1",
+  "track": "nt",
+  "work": "증명",
+  "track_title": "정수론",
+  "chapter": {
+    "id": "math-s1-nt-ch01",
+    "no": 1,
+    "title": "약수·배수와 최대공약수"
+  },
+  "lesson": {
+    "id": "math-s1-nt-ch01-l02",
+    "no": 2,
+    "title": "유클리드 호제법",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정수론"
+    ],
+    "competition": "KMO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "최대공약수를 빠르게 구하기",
+      "body": [
+        "a = bq + r이면 gcd(a, b) = gcd(b, r)입니다. 그래서 큰 수를 작은 수로 나눈 나머지로 바꾸는 일을 반복하면 최대공약수가 나옵니다. 이것을 유클리드 호제법이라고 합니다.",
+        "gcd(252, 198)은 252 = 198 + 54, 198 = 3 × 54 + 36, 54 = 36 + 18, 36 = 2 × 18이므로 18입니다.",
+        "소인수분해로 최대공약수를 구하는 방법은 수가 크면 매우 어렵습니다. 호제법은 나눗셈만 반복하므로 수가 커도 금방 끝나고, 무엇보다 문자가 들어 있는 식에도 그대로 쓸 수 있다는 장점이 있습니다. 올림피아드에서는 이 두 번째 장점이 더 중요합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "gcd(252, 198)의 값은?",
+      "answer": "18",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "252를 198로 나눈 나머지부터 차례로 구하세요.",
+      "explanation": "252 = 198 × 1 + 54, 198 = 54 × 3 + 36입니다.\n54 = 36 × 1 + 18, 36 = 18 × 2 + 0입니다.\n나머지가 0이 되기 직전의 나머지 18이 최대공약수입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "252 = 198 + 54이므로 gcd(252, 198) = gcd(198, {{1}})입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "54"
+          ]
+        }
+      ],
+      "hint": "큰 수를 작은 수로 나눈 나머지로 바꿉니다.",
+      "explanation": "252를 198로 나눈 나머지는 54입니다.\n호제법에 따라 gcd(252, 198) = gcd(198, 54)입니다.\n이렇게 수를 줄여 가면 최대공약수가 바뀌지 않은 채 계산이 쉬워집니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "왜 성립할까",
+      "body": [
+        "a = bq + r일 때, d가 a와 b를 나누면 d | a − bq = r입니다. 반대로 d가 b와 r을 나누면 d | bq + r = a입니다.",
+        "그래서 (a, b)의 공약수와 (b, r)의 공약수는 정확히 같고, 가장 큰 것도 같습니다.",
+        "이 증명은 레슨 1의 일차결합 성질 하나로 끝납니다. 나눗셈을 할 때마다 나머지는 엄격히 작아지므로 언젠가 0이 되고, 그때 남은 수가 최대공약수입니다. 이 과정은 반드시 끝난다는 점까지 확인해야 알고리즘이 완성됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "ordering",
+      "prompt": "'gcd(a, b) = gcd(b, a − bq)'의 증명을 올바른 순서로 배열하세요.",
+      "items": [
+        {
+          "id": "o4",
+          "text": "따라서 두 쌍의 공약수가 같으므로 최대공약수도 같다."
+        },
+        {
+          "id": "o2",
+          "text": "d가 a와 b를 나누면 d는 일차결합 a − bq = r도 나눈다."
+        },
+        {
+          "id": "o1",
+          "text": "r = a − bq라 하자."
+        },
+        {
+          "id": "o3",
+          "text": "d가 b와 r을 나누면 d는 bq + r = a도 나눈다."
+        }
+      ],
+      "answer_order": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ],
+      "hint": "기호를 정하는 줄이 먼저, 결론이 마지막입니다. 가운데는 양쪽 방향을 하나씩 보입니다.",
+      "explanation": "먼저 r = a − bq로 이름을 붙입니다.\n(a, b)의 공약수가 (b, r)의 공약수이고, 거꾸로 (b, r)의 공약수가 (a, b)의 공약수임을 차례로 보입니다.\n두 집합이 같으므로 최대공약수도 같다고 결론짓습니다."
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "gcd(1071, 462)를 구하세요.",
+      "steps": [
+        "1071 = 462 × 2 + 147입니다.",
+        "462 = 147 × 3 + 21입니다.",
+        "147 = 21 × 7 + 0입니다.",
+        "따라서 gcd(1071, 462) = 21입니다."
+      ],
+      "answer": "21"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "gcd(3289, 1729)의 값은?",
+      "answer": "13",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3289 − 1729 = 1560부터 시작해 나머지를 차례로 구하세요.",
+      "explanation": "3289 = 1729 + 1560, 1729 = 1560 + 169입니다.\n1560 = 169 × 9 + 39, 169 = 39 × 4 + 13, 39 = 13 × 3입니다.\n따라서 최대공약수는 13입니다. (3289 = 11 × 13 × 23, 1729 = 7 × 13 × 19)"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "문자가 든 식에서도",
+      "body": [
+        "gcd(n² + 1, n + 1)을 구해 봅시다. n² + 1 = (n + 1)(n − 1) + 2이므로 gcd(n² + 1, n + 1) = gcd(n + 1, 2)입니다.",
+        "따라서 n이 홀수이면 2, 짝수이면 1입니다. 수가 아니라 식을 나누었지만 호제법은 똑같이 작동합니다.",
+        "연속한 두 정수 n, n + 1은 gcd(n + 1, n) = gcd(n, 1) = 1이므로 항상 서로소입니다. 이 사실은 앞으로 '연속한 두 수는 공통 소인수가 없다'는 형태로 매우 자주 씁니다. 식에서 호제법을 쓸 때는 나머지의 차수가 낮아지도록 몫을 고릅니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "자연수 n에 대해 gcd(n² + 1, n + 1)이 될 수 있는 가장 큰 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n² + 1 = (n + 1)(n − 1) + 2입니다.",
+      "explanation": "호제법으로 gcd(n² + 1, n + 1) = gcd(n + 1, 2)입니다.\n따라서 최대공약수는 2의 약수, 곧 1 또는 2입니다.\nn = 1이면 2와 2로 최대공약수가 2이므로 가장 큰 값은 2입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "모든 자연수 n에 대해 gcd(3n + 2, 5n + 3)의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "큰 식에서 작은 식을 빼는 일을 반복하세요.",
+      "explanation": "gcd(5n + 3, 3n + 2) = gcd(3n + 2, 2n + 1) = gcd(2n + 1, n + 1)입니다.\n= gcd(n + 1, n) = gcd(n, 1) = 1입니다.\n따라서 항상 1입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "거듭제곱과 피보나치 수",
+      "body": [
+        "2ᵃ − 1 = 2ᵃ⁻ᵇ(2ᵇ − 1) + (2ᵃ⁻ᵇ − 1)이므로 gcd(2ᵃ − 1, 2ᵇ − 1) = gcd(2ᵇ − 1, 2ᵃ⁻ᵇ − 1)입니다. 지수만 보면 (a, b)가 (b, a − b)로 바뀌는 호제법과 같습니다.",
+        "그래서 gcd(2ᵃ − 1, 2ᵇ − 1) = 2^gcd(a, b) − 1입니다.",
+        "피보나치 수열에도 같은 성질 gcd(Fₘ, Fₙ) = F_gcd(m, n)이 있습니다. 두 결과 모두 '연산을 하고 나서 최대공약수를 구하는 것'과 '최대공약수를 구하고 나서 연산을 하는 것'이 같다는 뜻입니다. 지수가 큰 수의 최대공약수를 직접 계산하지 않고 지수의 최대공약수로 바로 구할 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "gcd(2¹² − 1, 2¹⁸ − 1)의 값은?",
+      "answer": "63",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "gcd(2ᵃ − 1, 2ᵇ − 1) = 2^gcd(a, b) − 1입니다.",
+      "explanation": "gcd(12, 18) = 6입니다.\n따라서 gcd(2¹² − 1, 2¹⁸ − 1) = 2⁶ − 1입니다.\n= 63입니다. (4095 = 63 × 65, 262143 = 63 × 4161)"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "피보나치 수 F₁₂ = 144, F₁₈ = 2584의 최대공약수는?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "gcd(Fₘ, Fₙ) = F_gcd(m, n)입니다.",
+      "explanation": "gcd(12, 18) = 6이므로 최대공약수는 F₆입니다.\nF₁부터 1, 1, 2, 3, 5, 8이므로 F₆ = 8입니다.\n호제법으로 확인하면 2584 = 144 × 17 + 136, 144 = 136 + 8, 136 = 8 × 17로 8입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "a = bq + r이면 gcd(a, b) = gcd(b, r)입니다. 나머지가 0이 될 때까지 반복하면 마지막 0이 아닌 나머지가 최대공약수입니다.",
+        "호제법은 문자가 든 식에도 그대로 쓰이며, 나머지가 상수가 될 때까지 차수를 낮춥니다. 연속한 두 정수는 항상 서로소입니다.",
+        "gcd(2ᵃ − 1, 2ᵇ − 1) = 2^gcd(a, b) − 1, gcd(Fₘ, Fₙ) = F_gcd(m, n)처럼 구조가 호제법과 맞는 수열은 최대공약수가 지수의 최대공약수로 정해집니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "자연수 n에 대해 gcd(n² + 3n + 5, n + 2)가 될 수 있는 가장 큰 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n² + 3n + 5를 n + 2로 나누어 나머지를 구하세요.",
+      "explanation": "n² + 3n + 5 = (n + 2)(n + 1) + 3이므로 gcd = gcd(n + 2, 3)입니다.\n따라서 최대공약수는 1 또는 3입니다.\nn = 1이면 9와 3으로 최대공약수가 3이므로 가장 큰 값은 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "gcd(2³⁰ − 1, 2⁴⁵ − 1)의 값은?",
+      "answer": "32767",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "gcd(30, 45)를 먼저 구하세요.",
+      "explanation": "gcd(30, 45) = 15입니다.\n따라서 최대공약수는 2¹⁵ − 1입니다.\n2¹⁵ = 32768이므로 32767입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "정수 a, b, q에 대해 gcd(a, b) = gcd(b, a − bq)임을 증명하세요.",
+      "model_answer": [
+        "r = a − bq라 하자.",
+        "d가 a와 b의 공약수이면, d는 일차결합 a − bq = r을 나누므로 b와 r의 공약수이다.",
+        "d가 b와 r의 공약수이면, d는 bq + r = a를 나누므로 a와 b의 공약수이다.",
+        "따라서 (a, b)의 공약수 전체와 (b, r)의 공약수 전체가 같고, 그중 가장 큰 것도 같다."
+      ],
+      "criteria": [
+        {
+          "text": "(a, b)의 공약수가 (b, r)의 공약수임을 보였다",
+          "points": 2
+        },
+        {
+          "text": "거꾸로 (b, r)의 공약수가 (a, b)의 공약수임을 보였다",
+          "points": 2
+        },
+        {
+          "text": "두 공약수 집합이 같아 최대공약수가 같다고 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "양쪽 방향을 모두 보여야 '같다'가 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "모든 자연수 n에 대해 gcd(n² + 1, n + 1)은 1 또는 2임을 증명하세요.",
+      "model_answer": [
+        "n² + 1 = (n + 1)(n − 1) + 2이다.",
+        "호제법(gcd(a, b) = gcd(b, a − bq))에 의해 gcd(n² + 1, n + 1) = gcd(n + 1, 2)이다.",
+        "gcd(n + 1, 2)는 2의 양의 약수이므로 1 또는 2이다.",
+        "따라서 gcd(n² + 1, n + 1)은 1 또는 2이다. (n이 홀수이면 2, 짝수이면 1)"
+      ],
+      "criteria": [
+        {
+          "text": "n² + 1을 n + 1로 나누어 나머지 2를 얻었다",
+          "points": 2
+        },
+        {
+          "text": "호제법을 근거로 gcd(n + 1, 2)로 바꾸었다",
+          "points": 2
+        },
+        {
+          "text": "2의 약수이므로 1 또는 2라고 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "n² + 1을 n + 1로 나눈 나머지를 구하세요."
+    }
+  ]
+}

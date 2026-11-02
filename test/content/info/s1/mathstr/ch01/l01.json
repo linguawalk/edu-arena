@@ -1,0 +1,275 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "mathstr",
+  "work": "풀이",
+  "track_title": "수학·문자열",
+  "chapter": {
+    "id": "info-s1-mathstr-ch01",
+    "no": 1,
+    "title": "소수와 약수"
+  },
+  "lesson": {
+    "id": "info-s1-mathstr-ch01-l01",
+    "no": 1,
+    "title": "소수 판정",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "수학·문자열",
+      "소수와 약수"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "소수란",
+      "body": [
+        "1과 자기 자신만을 약수로 가지는 2 이상의 정수를 소수라 합니다. 2, 3, 5, 7, 11, 13, …이 소수이고, 1은 소수가 아닙니다.",
+        "n이 소수인지 알려면 2부터 n − 1까지 나누어 보면 되지만, 사실 √n까지만 확인하면 충분합니다. n = a × b이면 a와 b 중 하나는 √n 이하이기 때문입니다.",
+        "그래서 소수 판정은 O(√n)입니다. n = 10⁹이어도 약 3만 번이면 됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "1부터 30까지의 자연수 중 소수는 몇 개인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2, 3, 5, 7, 11, 13, 17, 19, 23, 29입니다.",
+      "explanation": "소수는 1과 자기 자신만을 약수로 가지는 2 이상의 정수입니다.\n30 이하의 소수는 2, 3, 5, 7, 11, 13, 17, 19, 23, 29입니다.\n그래서 10개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "1과 자기 자신만을 약수로 가지는 2 이상의 정수를 {{1}}라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "소수",
+            "prime"
+          ]
+        }
+      ],
+      "hint": "2, 3, 5, 7, …입니다.",
+      "explanation": "약수가 1과 자기 자신 두 개뿐인 수가 있습니다.\n이런 수는 더 작은 수의 곱으로 나눌 수 없습니다.\n이것을 소수라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "√n까지만",
+      "body": [
+        "아래 코드는 d를 2부터 d × d ≤ n인 동안만 늘리며 나누어 봅니다. d ≤ √n과 같지만 실수 계산(sqrt)의 오차를 피하려고 d × d ≤ n으로 씁니다.",
+        "n = 97이면 d = 2, 3, …, 9까지 8번 나누어 보고, 하나도 나누어떨어지지 않으므로 소수입니다.",
+        "n = 91은 d = 7에서 91 = 7 × 13으로 나누어떨어져 소수가 아닙니다."
+      ],
+      "code": "bool isPrime(int n) {\n    if (n < 2) return false;\n    for (int d = 2; d * d <= n; d++)     // d는 √n까지만\n        if (n % d == 0) return false;   // 나누어떨어지는지 확인\n    return true;\n}"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "n = 97일 때 아래 코드에서 n % d를 확인하는 횟수를 구하세요.",
+      "steps": [
+        "d × d ≤ 97인 d는 2부터 9까지입니다(10 × 10 = 100 > 97).",
+        "97은 2~9 중 어느 것으로도 나누어떨어지지 않습니다.",
+        "확인은 9 − 2 + 1 = 8번이고, 97은 소수입니다."
+      ],
+      "answer": "8번",
+      "code": "bool isPrime(int n) {\n    if (n < 2) return false;\n    for (int d = 2; d * d <= n; d++)     // d는 √n까지만\n        if (n % d == 0) return false;   // 나누어떨어지는지 확인\n    return true;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 n % d를 확인하는 횟수는?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "d = 2부터 9까지입니다.",
+      "explanation": "아래 코드는 d × d ≤ n인 동안만 나누어 보며, 나누어떨어지면 바로 멈춥니다.\n97은 소수라 d = 2부터 9까지 모두 확인합니다.\n9 − 2 + 1 = 8번입니다.",
+      "code": "bool isPrime(int n) {\n    if (n < 2) return false;\n    for (int d = 2; d * d <= n; d++)     // d는 √n까지만\n        if (n % d == 0) return false;   // 나누어떨어지는지 확인\n    return true;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 91일 때 아래 코드는 d가 얼마일 때 false를 돌려주나요?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "91 = 7 × 13입니다.",
+      "explanation": "아래 코드는 2부터 차례로 나누어 처음 나누어떨어지는 d에서 false를 돌려줍니다.\n91은 2, 3, 4, 5, 6으로 나누어떨어지지 않고 7로 나누어떨어집니다.\n그래서 d = 7입니다.",
+      "code": "bool isPrime(int n) {\n    if (n < 2) return false;\n    for (int d = 2; d * d <= n; d++)     // d는 √n까지만\n        if (n % d == 0) return false;   // 나누어떨어지는지 확인\n    return true;\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "확인 횟수 어림",
+      "body": [
+        "소수 n을 판정할 때 확인 횟수는 약 √n − 1번입니다. n = 10⁹이면 √n ≈ 31623이라 약 3만 번입니다.",
+        "질문이 많으면 문제가 됩니다. 10⁵개의 수를 하나하나 판정하면 약 3 × 10⁹번이 될 수 있습니다. 이럴 때는 다음 레슨의 체를 씁니다.",
+        "n = 10000 이하의 수라면 √n ≤ 100이라 한 번에 많아야 99번 확인합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 10⁶인 수를 아래 방식으로 판정할 때 d가 가질 수 있는 가장 큰 값은?",
+      "answer": "1000",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "d × d ≤ 10⁶입니다.",
+      "explanation": "아래 코드는 d × d ≤ n인 동안만 d를 늘립니다.\n1000 × 1000 = 10⁶ ≤ 10⁶이고 1001 × 1001 > 10⁶입니다.\n그래서 가장 큰 d는 1000입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 221일 때 아래 코드는 d가 얼마일 때 false를 돌려주나요?",
+      "answer": "13",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "221 = 13 × 17입니다.",
+      "explanation": "아래 코드는 2부터 차례로 나누어 처음 나누어떨어지는 d에서 false를 돌려줍니다.\n221은 2부터 12까지로는 나누어떨어지지 않고 13으로 나누어떨어집니다.\n그래서 d = 13입니다.",
+      "code": "bool isPrime(int n) {\n    if (n < 2) return false;\n    for (int d = 2; d * d <= n; d++)     // d는 √n까지만\n        if (n % d == 0) return false;   // 나누어떨어지는지 확인\n    return true;\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "자주 하는 실수",
+      "body": [
+        "n = 1을 소수로 판정하지 않도록 n < 2이면 false를 먼저 돌려줍니다.",
+        "d를 int로 두고 d × d를 계산하면 n이 2 × 10⁹ 가까이일 때 d × d가 int 범위를 넘을 수 있습니다. 그럴 때는 long long을 씁니다.",
+        "또 d < n이 아니라 d × d ≤ n까지만 돌려야 O(√n)입니다. 2부터 n − 1까지 돌면 n = 10⁹에서 10⁹번이 걸립니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1부터 50까지의 자연수 중 소수는 몇 개인가요?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "30 이하 10개에 31, 37, 41, 43, 47을 더합니다.",
+      "explanation": "소수는 1과 자기 자신만을 약수로 가지는 2 이상의 정수입니다.\n30 이하 10개에 31, 37, 41, 43, 47을 더합니다.\n그래서 15개입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "소수는 1과 자기 자신만을 약수로 가지는 2 이상의 정수입니다.",
+        "n이 합성수이면 √n 이하의 약수가 있으므로, d × d ≤ n인 d까지만 나누어 보면 O(√n)에 판정할 수 있습니다.",
+        "n < 2를 먼저 처리하고, d × d가 넘치지 않게 자료형에 주의합니다. 판정할 수가 많으면 하나씩 판정하지 말고 다음 레슨의 에라토스테네스의 체를 씁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "n = 101일 때 아래 코드에서 n % d를 확인하는 횟수는?",
+      "answer": "9",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "d = 2부터 10까지입니다.",
+      "explanation": "아래 코드는 d × d ≤ n인 동안만 나누어 보며, 나누어떨어지면 바로 멈춥니다.\n101은 소수이고 d × d ≤ 101인 d는 2부터 10까지입니다.\n10 − 2 + 1 = 9번입니다.",
+      "code": "bool isPrime(int n) {\n    if (n < 2) return false;\n    for (int d = 2; d * d <= n; d++)     // d는 √n까지만\n        if (n % d == 0) return false;   // 나누어떨어지는지 확인\n    return true;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "n = 143일 때 아래 코드는 d가 얼마일 때 false를 돌려주나요?",
+      "answer": "11",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "143 = 11 × 13입니다.",
+      "explanation": "아래 코드는 2부터 차례로 나누어 처음 나누어떨어지는 d에서 false를 돌려줍니다.\n143은 2부터 10까지로는 나누어떨어지지 않고 11로 나누어떨어집니다.\n그래서 d = 11입니다.",
+      "code": "bool isPrime(int n) {\n    if (n < 2) return false;\n    for (int d = 2; d * d <= n; d++)     // d는 √n까지만\n        if (n % d == 0) return false;   // 나누어떨어지는지 확인\n    return true;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "n이 소수인지 판정할 때 √n까지만 나누어 봐도 되는 이유를 설명하세요.",
+      "model_answer": [
+        "n이 합성수라면 n = a × b(2 ≤ a ≤ b)로 쓸 수 있다.",
+        "a와 b가 모두 √n보다 크면 a × b > n이 되어 모순이므로 a ≤ √n이다.",
+        "그래서 합성수는 반드시 √n 이하의 약수 a를 가진다.",
+        "√n까지 나누어 보아 나누어떨어지는 수가 없으면 합성수가 아니므로 소수이다."
+      ],
+      "criteria": [
+        {
+          "text": "합성수를 두 수의 곱으로 썼다",
+          "points": 2
+        },
+        {
+          "text": "작은 약수가 √n 이하임을 보였다",
+          "points": 2
+        },
+        {
+          "text": "√n까지만 확인해도 됨을 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "n = a × b에서 a와 b가 모두 √n보다 크면 어떻게 되나요?"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "소수 판정 코드에서 d * d <= n 조건을 쓰는 이유와 주의할 점을 설명하세요.",
+      "model_answer": [
+        "d ≤ √n은 d × d ≤ n과 같으므로 √n까지만 확인하는 조건이다.",
+        "sqrt 함수는 실수로 계산해 오차가 생길 수 있으므로 정수 곱셈으로 비교하는 편이 정확하다.",
+        "다만 n이 int 최댓값에 가까우면 d × d가 int 범위를 넘을 수 있다.",
+        "그래서 n이 클 때는 d를 long long으로 두어 넘침을 막는다."
+      ],
+      "criteria": [
+        {
+          "text": "√n과 같은 조건임을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "실수 오차를 피하는 이유를 설명했다",
+          "points": 2
+        },
+        {
+          "text": "넘침 주의를 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "sqrt를 쓰지 않는 이유와 곱셈의 위험을 생각하세요."
+    }
+  ]
+}

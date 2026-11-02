@@ -1,0 +1,331 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c3",
+    "title": "대수"
+  },
+  "chapter": {
+    "id": "c3-ch07",
+    "no": 7,
+    "title": "수학적 귀납법"
+  },
+  "lesson": {
+    "id": "c3-ch07-l01",
+    "no": 1,
+    "title": "수열의 귀납적 정의",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "이산조합",
+      "대수"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "귀납적 정의",
+      "body": [
+        "첫째항 a₁과, 이웃한 항 사이의 관계식(점화식)으로 수열을 정하는 것을 귀납적 정의라고 합니다.",
+        "a₁ = 2, aₙ₊₁ = aₙ + 3이면 2, 5, 8, 11, …입니다.",
+        "일반항이 '몇 번째 항은 얼마'를 바로 알려 주는 식이라면, 귀납적 정의는 '앞 항에서 다음 항을 만드는 규칙'입니다. 첫째항이 정해지고 규칙이 있으면 둘째 항, 셋째 항이 차례로 모두 정해지므로 수열 전체가 하나로 결정됩니다. 컴퓨터 프로그램의 반복문과 같은 생각입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "a₁ = 2, aₙ₊₁ = aₙ + 3일 때 a₄의 값은?",
+      "answer": "11",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "점화식에 차례로 넣습니다: a₂ = 2 + 3 = 5\na₃ = 5 + 3 = 8, a₄ = 8 + 3 = 11\n원리: 공차 3인 등차수열이라 a₄ = 2 + 3 × 3으로도 구할 수 있습니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "a₁ = 1, aₙ₊₁ = 2aₙ일 때 a₅의 값은?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "매번 2배: a₂ = 2, a₃ = 4, a₄ = 8, a₅ = 16\n원리: 공비 2인 등비수열이라 a₅ = 1 × 2⁴\n확인: 제5항까지 공비를 4번 곱합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "등차·등비수열의 점화식",
+      "body": [
+        "aₙ₊₁ − aₙ = d이면 등차수열, aₙ₊₁ = raₙ이면 등비수열입니다.",
+        "2aₙ₊₁ = aₙ + aₙ₊₂이면 등차수열, aₙ₊₁² = aₙaₙ₊₂이면 등비수열입니다.",
+        "2aₙ₊₁ = aₙ + aₙ₊₂는 '가운데 항이 양옆의 평균'이라는 등차중항의 조건이 모든 곳에서 성립한다는 뜻이고, aₙ₊₁² = aₙaₙ₊₂는 등비중항의 조건입니다. 점화식의 모양만 보고 등차·등비수열을 알아보면 일반항 공식을 바로 쓸 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "a₁ = 4, aₙ₊₁ = aₙ − 3으로 정의된 수열의 일반항과 제10항을 구하세요.",
+      "steps": [
+        "aₙ₊₁ − aₙ = −3이므로 공차 −3인 등차수열",
+        "aₙ = 4 + (n − 1)(−3) = 7 − 3n",
+        "a₁₀ = 7 − 30 = −23",
+        "확인: 4, 1, −2, −5, …"
+      ],
+      "answer": "aₙ = 7 − 3n, a₁₀ = −23"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a₁ = 3, aₙ₊₁ − aₙ = 5일 때 a₁₀의 값은?",
+      "answer": "48",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "aₙ₊₁ − aₙ = 5이므로 공차 5인 등차수열\na₁₀ = 3 + 9 × 5\n= 48\n원리: 이웃한 항의 차가 일정하면 등차수열"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a₁ = 2, aₙ₊₁ = 3aₙ일 때 a₄의 값은?",
+      "answer": "54",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "aₙ₊₁ = 3aₙ이므로 공비 3인 등비수열\na₄ = 2 × 3³ = 2 × 27\n= 54\n확인: 2, 6, 18, 54"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a₁ = 1, a₂ = 4이고 2aₙ₊₁ = aₙ + aₙ₊₂일 때 a₆의 값은?",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "2aₙ₊₁ = aₙ + aₙ₊₂는 등차수열의 조건이고 공차 d = a₂ − a₁ = 3\na₆ = 1 + 5 × 3\n= 16\n원리: 모든 항이 양옆의 평균이면 등차수열"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "aₙ₊₁ = aₙ + f(n)",
+      "body": [
+        "n = 1, 2, 3, …을 차례로 넣어 더해 가면 aₙ = a₁ + f(1) + f(2) + … + f(n − 1)입니다.",
+        "a₂ = a₁ + f(1), a₃ = a₂ + f(2) = a₁ + f(1) + f(2)처럼 더해진 것이 쌓여 갑니다. 제n항까지 f(1)부터 f(n − 1)까지 n − 1개가 더해지므로 aₙ = a₁ + Σ(k=1~n−1) f(k)입니다. f(n)이 계차수열의 역할을 합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "a₁ = 2, aₙ₊₁ = aₙ + 2n + 1일 때 a₅를 구하세요.",
+      "steps": [
+        "차례로: a₂ = 2 + 3 = 5",
+        "a₃ = 5 + 5 = 10, a₄ = 10 + 7 = 17",
+        "a₅ = 17 + 9 = 26",
+        "일반항: aₙ = 2 + Σ(k=1~n−1)(2k + 1) = n² + 1"
+      ],
+      "answer": "26"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a₁ = 1, aₙ₊₁ = aₙ + n일 때 a₅의 값은?",
+      "answer": "11",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "aₙ = a₁ + Σ(k=1~n−1) k이므로 a₅ = 1 + (1 + 2 + 3 + 4)\n= 1 + 10\n= 11\n확인: 1, 2, 4, 7, 11"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a₁ = 1, aₙ₊₁ = aₙ + 2n일 때 a₁₀의 값은?",
+      "answer": "91",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "aₙ = a₁ + Σ(k=1~n−1) 2k\na₁₀ = 1 + 2 × (1 + 2 + … + 9) = 1 + 2 × 45\n= 91\n주의: 제10항까지는 k = 9까지만 더합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "aₙ₊₁ = f(n)aₙ",
+      "body": [
+        "차례로 곱해 가면 aₙ = a₁ × f(1) × f(2) × … × f(n − 1)입니다.",
+        "곱의 꼴도 더하기와 같은 원리로 쌓입니다. a₂ = f(1)a₁, a₃ = f(2)a₂ = f(2)f(1)a₁처럼 곱해진 것이 쌓이므로 aₙ = a₁ × f(1) × f(2) × … × f(n − 1)입니다. f(n)이 분수이면 이웃한 분자와 분모가 약분되는 경우가 많습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a₁ = 1, aₙ₊₁ = (n + 1)aₙ일 때 a₅의 값은?",
+      "answer": "120",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "차례로 곱해 보세요.",
+      "explanation": "aₙ = a₁ × 2 × 3 × … × n = n!\na₅ = 5! = 120\n원리: 곱의 꼴은 차례로 곱해 갑니다.\n확인: 1, 2, 6, 24, 120"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a₁ = 1, aₙ₊₁ = 2ⁿaₙ일 때 a₄의 값은?",
+      "answer": "64",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "차례로 곱해 보세요.",
+      "explanation": "a₂ = 2¹ × 1 = 2, a₃ = 2² × 2 = 8, a₄ = 2³ × 8\n= 64\n원리: aₙ = 2^(1 + 2 + … + (n − 1))이므로 a₄ = 2⁶"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "여러 가지 점화식",
+      "body": [
+        "앞의 두 항으로 다음 항을 정하거나, 몇 항 계산해 보면 반복되는 경우도 있습니다.",
+        "피보나치수열처럼 두 항으로 다음 항을 정하는 점화식은 첫 두 항이 모두 주어져야 수열이 정해집니다. 규칙이 복잡해 보이면 처음 몇 항을 직접 계산해 보세요. 같은 값이 다시 나오면 그다음부터는 주기적으로 반복됩니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "a₁ = 2, aₙ₊₁ = 1 − 1/aₙ일 때 a₂₀을 구하세요.",
+      "steps": [
+        "a₂ = 1 − 1/2 = 1/2",
+        "a₃ = 1 − 2 = −1, a₄ = 1 + 1 = 2",
+        "a₄ = a₁이므로 주기 3으로 반복",
+        "20 = 3 × 6 + 2이므로 a₂₀ = a₂ = 1/2"
+      ],
+      "answer": "1/2"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a₁ = a₂ = 1, aₙ₊₂ = aₙ₊₁ + aₙ일 때 a₈의 값은?",
+      "answer": "21",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "앞의 두 항을 더하세요.",
+      "explanation": "앞의 두 항을 더해 다음 항을 만듭니다: 1, 1, 2, 3, 5, 8, 13, 21\na₈ = 21\n원리: 피보나치수열은 첫 두 항이 모두 주어져야 정해집니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a₁ = 2, aₙ₊₁ = aₙ² − 1일 때 a₃의 값은?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "차례로 계산하세요.",
+      "explanation": "a₂ = 2² − 1 = 3\na₃ = 3² − 1 = 8\n원리: 점화식에 앞 항을 넣어 차례로 계산합니다.\n주의: 제곱이 들어 있어 값이 빠르게 커집니다(a₄ = 63)."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a₁ = 3, aₙ₊₁ = 1/(1 − aₙ)일 때 a₁₀의 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "몇 항을 계산해 반복을 찾으세요.",
+      "explanation": "a₂ = 1/(1 − 3) = −1/2, a₃ = 1/(1 + 1/2) = 2/3, a₄ = 1/(1 − 2/3) = 3\na₄ = a₁이므로 주기 3으로 반복\n10 = 3 × 3 + 1이므로 a₁₀ = a₁ = 3"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a₁ = 5, aₙ₊₁ = aₙ − 2일 때 처음으로 음수가 되는 항은 제몇항일까요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "항을 차례로 구하세요.",
+      "explanation": "공차 −2인 등차수열: 5, 3, 1, −1, …\n처음으로 음수가 되는 것은 제4항\n확인: aₙ = 7 − 2n < 0에서 n > 3.5"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "aₙ₊₁ = aₙ + 3이고 a₅ = 20일 때 a₁의 값은?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "a₅와 a₁의 관계를 쓰세요.",
+      "explanation": "공차 3인 등차수열이므로 a₅ = a₁ + 4 × 3\n20 = a₁ + 12\na₁ = 8\n원리: 등차수열에서 네 칸 떨어진 항의 차는 4d"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a₁ = 1, aₙ₊₁ = 2aₙ + 1일 때 a₅의 값은?",
+      "answer": "31",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "차례로 계산하세요.",
+      "explanation": "차례로: a₂ = 3, a₃ = 7, a₄ = 15, a₅ = 31\n규칙: aₙ = 2ⁿ − 1\n원리: aₙ + 1이 2배씩 늘어나는 등비수열입니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "첫째항과 점화식만으로 수열의 모든 항이 정해지는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "첫째항",
+            "a₁"
+          ],
+          [
+            "다음 항",
+            "이웃",
+            "차례로"
+          ],
+          [
+            "모든 항"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "첫째항이 정해지면 점화식으로 둘째 항을, 둘째 항으로 셋째 항을 구할 수 있습니다. 이렇게 차례로 계속 구할 수 있으므로 모든 항이 하나로 정해집니다."
+    }
+  ]
+}

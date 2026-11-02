@@ -1,0 +1,338 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch06",
+    "no": 6,
+    "title": "연속확률분포"
+  },
+  "lesson": {
+    "id": "c5-ch06-l03",
+    "no": 3,
+    "title": "표준화",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "확률통계"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "표준화",
+      "body": [
+        "X ~ N(m, σ²)이면 Z = (X − m)/σ는 평균 0, 표준편차 1인 표준정규분포 N(0, 1)을 따릅니다.",
+        "모든 정규분포를 하나의 표로 계산할 수 있게 됩니다.",
+        "왜 표준화할까요? 평균과 표준편차가 다른 정규분포마다 표를 따로 만들 수는 없습니다. X에서 평균을 빼면 평균이 0이 되고(평행이동), σ로 나누면 표준편차가 1이 됩니다(크기 조절). 앞 챕터의 E(aX + b), σ(aX + b) 공식을 그대로 쓴 것입니다. 이렇게 하면 모든 정규분포를 표준정규분포표 하나로 계산할 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "X ~ N(50, 5²)에서 X = 60을 표준화한 값 Z는?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "Z = (X − m)/σ = (60 − 50)/5\n= 2\n원리: 평균에서 표준편차 2개만큼 위\n확인: 60 = 50 + 2 × 5"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "같은 X에서 X = 45를 표준화한 값 Z는?",
+      "answer": "-1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "Z = (45 − 50)/5\n= −1\n원리: 음수이면 평균보다 아래\n확인: 45 = 50 − 1 × 5로 평균보다 표준편차 하나만큼 아래"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "표 읽기",
+      "body": [
+        "표준정규분포표: P(0 ≤ Z ≤ 0.5) = 0.1915, P(0 ≤ Z ≤ 1) = 0.3413, P(0 ≤ Z ≤ 1.5) = 0.4332, P(0 ≤ Z ≤ 2) = 0.4772, P(0 ≤ Z ≤ 2.5) = 0.4938, P(0 ≤ Z ≤ 3) = 0.4987",
+        "P(Z ≤ 1) = 0.5 + 0.3413처럼 0.5와 표의 값을 더하거나 뺍니다.",
+        "표준정규분포표는 보통 P(0 ≤ Z ≤ z), 즉 평균 0에서 z까지의 넓이를 알려 줍니다. 음수 z는 대칭으로 바꿔 읽고, 평균을 넘어가는 구간은 0.5를 더하거나 빼서 계산합니다. 그림을 그려 색칠하면 실수가 크게 줄어듭니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "P(−0.5 ≤ Z ≤ 1.5)를 구하세요.",
+      "steps": [
+        "평균 0을 사이에 끼므로 두 넓이를 더함",
+        "P(−0.5 ≤ Z ≤ 0) = P(0 ≤ Z ≤ 0.5) = 0.1915",
+        "P(0 ≤ Z ≤ 1.5) = 0.4332",
+        "합 0.6247"
+      ],
+      "answer": "0.6247"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "P(Z ≤ 1)은?",
+      "answer": "0.8413",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": null,
+      "explanation": "평균 왼쪽 절반 0.5에 0부터 1까지의 넓이를 더함\n0.5 + 0.3413\n= 0.8413\n원리: 평균 왼쪽 절반은 0.5, 그 오른쪽은 표의 값"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "P(Z ≥ 2)는?",
+      "answer": "0.0228",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": null,
+      "explanation": "오른쪽 꼬리: 0.5 − P(0 ≤ Z ≤ 2)\n= 0.5 − 0.4772\n= 0.0228\n원리: 꼬리 넓이는 0.5에서 표의 값을 뺍니다."
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "P(−1 ≤ Z ≤ 2)는?",
+      "answer": "0.8185",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": null,
+      "explanation": "평균 0을 사이에 끼므로 두 넓이를 더함\nP(−1 ≤ Z ≤ 0) = 0.3413, P(0 ≤ Z ≤ 2) = 0.4772\n합 0.8185"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "정규분포의 확률 계산",
+      "body": [
+        "X를 Z로 바꾼 뒤 표의 값을 씁니다. 아래는 X ~ N(70, 10²)입니다.",
+        "표준정규분포표: P(0 ≤ Z ≤ 0.5) = 0.1915, P(0 ≤ Z ≤ 1) = 0.3413, P(0 ≤ Z ≤ 1.5) = 0.4332, P(0 ≤ Z ≤ 2) = 0.4772, P(0 ≤ Z ≤ 2.5) = 0.4938, P(0 ≤ Z ≤ 3) = 0.4987",
+        "계산 순서는 항상 같습니다: ① X의 경계값을 Z = (X − m)/σ로 바꾸고 ② 구하는 구간을 표준정규분포 그림에 표시하고 ③ 표의 값에 0.5를 더하거나 빼거나, 두 값을 더하거나 뺍니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "X ~ N(50, 8²)일 때 P(46 ≤ X ≤ 62)를 구하세요.",
+      "steps": [
+        "Z = (46 − 50)/8 = −0.5, Z = (62 − 50)/8 = 1.5",
+        "P(−0.5 ≤ Z ≤ 1.5)",
+        "= 0.1915 + 0.4332",
+        "= 0.6247"
+      ],
+      "answer": "0.6247"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "P(X ≥ 85)는?",
+      "answer": "0.0668",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": null,
+      "explanation": "Z = (85 − 70)/10 = 1.5\nP(Z ≥ 1.5) = 0.5 − 0.4332\n= 0.0668\n원리: 표준화 Z = (X − m)/σ로 바꾼 뒤 표준정규분포표를 씁니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "P(60 ≤ X ≤ 90)은?",
+      "answer": "0.8185",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": null,
+      "explanation": "Z = (60 − 70)/10 = −1, Z = (90 − 70)/10 = 2\n0.3413 + 0.4772\n= 0.8185\n원리: 표준화 Z = (X − m)/σ로 바꾼 뒤 표준정규분포표를 씁니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "P(X ≤ 65)는?",
+      "answer": "0.3085",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": null,
+      "explanation": "Z = (65 − 70)/10 = −0.5\nP(Z ≤ −0.5) = 0.5 − 0.1915\n= 0.3085\n원리: 표준화 Z = (X − m)/σ로 바꾼 뒤 표준정규분포표를 씁니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "확률에서 값 찾기",
+      "body": [
+        "확률이 주어지면 표에서 z를 찾고 x = m + zσ로 되돌립니다.",
+        "거꾸로 가는 문제는 표에서 확률에 맞는 z를 먼저 찾고, 표준화 식 z = (x − m)/σ를 x에 대해 풀어 x = m + zσ로 되돌립니다. P(X ≥ a)처럼 꼬리 쪽 확률이 주어지면 0.5에서 빼서 표의 값을 먼저 만듭니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "점수가 N(72, 8²)을 따를 때 상위 2.28% 안에 들기 위한 최저 점수를 구하세요.",
+      "steps": [
+        "P(Z ≥ z) = 0.0228이면 P(0 ≤ Z ≤ z) = 0.4772, z = 2",
+        "x = m + zσ = 72 + 2 × 8",
+        "= 88",
+        "88점 이상이면 상위 2.28%"
+      ],
+      "answer": "88점"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "X ~ N(70, 10²)에서 P(X ≥ a) = 0.0228일 때 a는?",
+      "answer": "90",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "표에서 z를 먼저 찾으세요.",
+      "explanation": "P(Z ≥ z) = 0.0228이면 P(0 ≤ Z ≤ z) = 0.4772이므로 z = 2\na = 70 + 2 × 10\n= 90"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "X ~ N(m, 4²)에서 P(X ≥ 60) = 0.1587일 때 m은?",
+      "answer": "56",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "z를 찾은 뒤 표준화 식에 넣으세요.",
+      "explanation": "P(Z ≥ z) = 0.1587이면 P(0 ≤ Z ≤ z) = 0.3413이므로 z = 1\n60 = m + 1 × 4\nm = 56"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "비교와 활용",
+      "body": [
+        "평균과 흩어짐이 다른 집단의 값을 비교할 때는 표준화한 값 Z로 비교합니다.",
+        "표준정규분포표: P(0 ≤ Z ≤ 0.5) = 0.1915, P(0 ≤ Z ≤ 1) = 0.3413, P(0 ≤ Z ≤ 1.5) = 0.4332, P(0 ≤ Z ≤ 2) = 0.4772, P(0 ≤ Z ≤ 2.5) = 0.4938, P(0 ≤ Z ≤ 3) = 0.4987",
+        "표준화한 값 Z는 '평균에서 표준편차 몇 개만큼 떨어졌는가'를 나타냅니다. 그래서 평균과 흩어짐이 다른 두 집단의 점수도 Z로 바꾸면 공정하게 비교할 수 있습니다. 학교의 표준점수가 바로 이 원리입니다. 표: P(0 ≤ Z ≤ 0.5) = 0.1915, P(0 ≤ Z ≤ 1) = 0.3413, P(0 ≤ Z ≤ 1.5) = 0.4332, P(0 ≤ Z ≤ 2) = 0.4772."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "점수가 N(65, 10²)을 따르는 시험에 1,000명이 응시했을 때 85점 이상은 약 몇 명일까요?",
+      "answer": "22.8",
+      "answer_format": "decimal",
+      "tolerance": 0.05,
+      "hint": "85점을 표준화하세요.",
+      "explanation": "Z = (85 − 65)/10 = 2, P(Z ≥ 2) = 0.0228\n1000 × 0.0228\n= 22.8명 (약 23명)"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "같은 시험에서 상위 약 15.87% 안에 들기 위한 최저 점수는?",
+      "answer": "75",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "0.5 − 0.1587 = 0.3413에 해당하는 z를 찾으세요.",
+      "explanation": "상위 15.87%: P(Z ≥ z) = 0.1587이므로 z = 1\n점수 = 65 + 1 × 10\n= 75점"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "A반은 N(70, 10²), B반은 N(60, 5²)입니다. A반 80점과 B반 70점 중 반 안에서 상대적으로 더 높은 점수는 {{1}}반 학생의 점수입니다.",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "B"
+          ]
+        }
+      ],
+      "hint": "각 반에서 표준화하세요.",
+      "explanation": "A반 80점: Z = (80 − 70)/10 = 1\nB반 70점: Z = (70 − 60)/5 = 2\nZ가 더 큰 B반 학생의 점수가 상대적으로 높음"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "X ~ N(50, σ²)에서 P(X ≤ 44) = 0.0668일 때 σ는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "표에서 z를 먼저 찾으세요.",
+      "explanation": "P(Z ≤ z) = 0.0668이면 z = −1.5 (0.5 − 0.4332 = 0.0668)\n(44 − 50)/σ = −1.5\nσ = 4"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "P(|Z| ≤ 1.5)는?",
+      "answer": "0.8664",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "|Z| ≤ 1.5는 양쪽으로 1.5까지입니다.",
+      "explanation": "P(−1.5 ≤ Z ≤ 1.5) = 2 × P(0 ≤ Z ≤ 1.5)\n= 2 × 0.4332\n= 0.8664"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "정규분포의 확률을 계산할 때 표준화하는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "표준정규분포",
+            "N(0, 1)",
+            "하나의 표"
+          ],
+          [
+            "평균",
+            "표준편차"
+          ],
+          [
+            "다른",
+            "모든"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "정규분포는 평균과 표준편차에 따라 모양이 다른데, 표준화하면 모두 평균 0, 표준편차 1인 표준정규분포가 됩니다. 그래서 하나의 표준정규분포표로 모든 정규분포의 확률을 계산할 수 있습니다."
+    }
+  ]
+}

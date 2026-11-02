@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "연산자 심화",
+  "questions": [
+    {
+      "id": "python_l1_u02_q001",
+      "type": "predict_output",
+      "code": "print(2 ** 10)",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["20", "1024", "100", "오류"],
+      "answer": 1,
+      "explanation_en": "** is Python's exponentiation operator; 2 ** 10 computes 2 to the 10th power, 1024.",
+      "explanation_ko": "**는 Python의 거듭제곱 연산자입니다. 2 ** 10은 2의 10제곱인 1024를 계산합니다.",
+      "concept_tags": ["exponent_operator"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l1_u02_q002",
+      "type": "predict_output",
+      "code": "print(-7 // 2)",
+      "prompt_en": "What is printed? (Compare with C's -7/2, which is -3.)",
+      "prompt_ko": "출력 결과는? (-3인 C의 -7/2와 비교해보세요.)",
+      "options": ["-3", "-4", "-3.5", "오류"],
+      "answer": 1,
+      "explanation_en": "Python's // is floor division, rounding toward negative infinity, not toward zero; -7/2 = -3.5, and flooring that gives -4, unlike C's truncation-toward-zero result of -3.",
+      "explanation_ko": "Python의 //는 몫 나눗셈이 아니라 내림 나눗셈으로, 0 방향이 아니라 음의 무한대 방향으로 내림합니다. -7/2 = -3.5이고, 이를 내림하면 -4가 됩니다. 0 방향으로 자르는 C의 결과인 -3과 다릅니다.",
+      "concept_tags": ["floor_division"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l1_u02_q003",
+      "type": "error_finding",
+      "code": "message = \"Hello\" + 5",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "message 선언 문법 오류",
+        "Java/C#/VB의 +와 달리 Python은 str과 int를 자동으로 변환해 연결해주지 않아서, TypeError가 발생함",
+        "\"Hello\" 문자열 리터럴 오류",
+        "문제 없음, \"Hello5\"가 정상적으로 만들어짐"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike Java, C#, and VB where + automatically converts numbers to strings for concatenation, Python requires an explicit str(5) conversion; mixing str and int with + raises a TypeError.",
+      "explanation_ko": "+가 자동으로 숫자를 문자열로 변환해주는 Java, C#, VB와 달리, Python은 명시적인 str(5) 변환이 필요합니다. str과 int를 +로 섞으면 TypeError가 발생합니다.",
+      "concept_tags": ["concatenation", "type_error"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l1_u02_q004",
+      "type": "predict_output",
+      "code": "print(True + True)",
+      "prompt_en": "What is printed? (In Python, bool is a subclass of int.)",
+      "prompt_ko": "출력 결과는? (Python에서 bool은 int의 하위 클래스입니다.)",
+      "options": ["True", "2", "TrueTrue", "오류"],
+      "answer": 1,
+      "explanation_en": "Since bool is technically a subclass of int in Python, True behaves as 1 and False as 0 in arithmetic; True + True is 1 + 1 = 2.",
+      "explanation_ko": "Python에서 bool은 사실 int의 하위 클래스라서, 산술 연산에서 True는 1, False는 0으로 동작합니다. True + True는 1 + 1 = 2입니다.",
+      "concept_tags": ["boolean", "type_hierarchy"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l1_u02_q005",
+      "type": "fill_blank",
+      "code": "a = 5\nb = 0\nresult = (a == 5) ____ (b == 1)\nprint(result)\n# 두 조건이 모두 참이어야 result가 True여야 함",
+      "prompt_en": "Fill in the blank so both conditions must be true for result to be True.",
+      "prompt_ko": "두 조건이 모두 참이어야 result가 True가 되도록 빈칸을 채우세요.",
+      "options": ["and", "or", "&", "&&"],
+      "answer": 0,
+      "explanation_en": "Python uses the word and (not &&) for logical AND, requiring both operands to be true.",
+      "explanation_ko": "Python은 논리 AND에 &&가 아니라 and라는 단어를 사용하며, 두 피연산자가 모두 참이어야 합니다.",
+      "concept_tags": ["logical_operator"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l1_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "** (거듭제곱)", "definition": "밑을 지수만큼 곱하는 연산자" },
+        { "term": "// (내림 나눗셈)", "definition": "음의 무한대 방향으로 내림하는 나눗셈 — 0 방향으로 자르는 것과 다름" },
+        { "term": "and / or / not", "definition": "&&, ||, !이 아니라 단어로 표현하는 Python의 논리 연산자" },
+        { "term": "bool은 int의 하위 클래스", "definition": "True/False가 산술 연산에서 1/0처럼 동작하는 이유" }
+      ],
+      "explanation_en": "Python's operator choices favor readability (and/or/not as words) but hide a subtle trap in // for negative numbers, which behaves differently from C-family truncating division.",
+      "explanation_ko": "Python의 연산자 선택은 가독성을 중시하지만(and/or/not을 단어로), 음수에 대한 //에는 미묘한 함정이 숨어있어 C 계열의 잘라내는 나눗셈과 다르게 동작합니다.",
+      "concept_tags": ["exponent_operator", "floor_division", "logical_operator"],
+      "difficulty": "practice"
+    }
+  ]
+}

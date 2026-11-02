@@ -1,0 +1,412 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s1",
+  "track": "phy-kin",
+  "work": "풀이",
+  "track_title": "운동과 물리 수학",
+  "chapter": {
+    "id": "sci-s1-phy-kin-ch02",
+    "no": 2,
+    "title": "미분으로 보는 운동"
+  },
+  "lesson": {
+    "id": "sci-s1-phy-kin-ch02-l01",
+    "no": 1,
+    "title": "위치, 변위, 속도",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "역학",
+      "운동학"
+    ],
+    "competition": "KPhO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "위치와 변위",
+      "body": [
+        "직선 위의 운동은 시각 t에서의 위치 x(t)로 기술합니다. 기준점(원점)과 양의 방향을 먼저 정해야 위치가 숫자로 정해집니다.",
+        "변위는 위치의 변화 Δx = x(나중) − x(처음)입니다. 방향이 있어서 음수일 수 있습니다. 실제로 움직인 길이인 이동 거리와는 다릅니다. 갔다가 돌아오면 변위는 0이지만 이동 거리는 0이 아닙니다.",
+        "x-t 그래프는 운동 전체를 한눈에 보여 줍니다. 그래프가 평평한 구간은 정지, 올라가는 구간은 +방향, 내려가는 구간은 −방향으로 움직이는 구간입니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 7,
+          "ymin": -1,
+          "ymax": 7,
+          "xstep": 1,
+          "ystep": 1,
+          "xlabel": "t(s)",
+          "ylabel": "x(m)",
+          "curves": [
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  2,
+                  6
+                ],
+                [
+                  4,
+                  6
+                ],
+                [
+                  6,
+                  0
+                ]
+              ]
+            }
+          ],
+          "alt": "x-t 그래프: 0~2 s 동안 6 m 전진, 2~4 s 정지, 4~6 s 동안 출발점으로 돌아옴"
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "위치 x = 3 m에서 x = −5 m로 움직였을 때 변위는 몇 m인가요?",
+      "answer": "-8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "Δx = 나중 위치 − 처음 위치입니다.",
+      "explanation": "변위는 Δx = x(나중) − x(처음)입니다.\nΔx = −5 − 3 = −8 m입니다.\n음수이므로 −방향으로 8 m 움직였다는 뜻이고, 이동 거리는 8 m입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "변위를 걸린 시간으로 나눈 값을 평균 {{1}}라고 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "속도"
+          ]
+        }
+      ],
+      "hint": "속력은 이동 거리를 시간으로 나눈 것입니다.",
+      "explanation": "평균 속도는 Δx/Δt로, 변위를 걸린 시간으로 나눈 값입니다.\n방향이 있어서 음수일 수 있습니다.\n이동 거리를 시간으로 나눈 평균 속력과 구분해야 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "순간 속도는 접선의 기울기",
+      "body": [
+        "평균 속도 Δx/Δt는 x-t 그래프에서 두 점을 잇는 할선의 기울기입니다. 시간 간격 Δt를 0에 가깝게 줄이면 할선은 접선이 되고, 그 기울기가 순간 속도입니다.",
+        "이것이 미분입니다: v = dx/dt = lim(Δt→0) Δx/Δt. 예를 들어 x = t²이면 t에서 t + h까지의 평균 속도는 ((t + h)² − t²)/h = 2t + h이고, h → 0이면 v = 2t입니다.",
+        "그림의 직선은 t = 2에서 x = t²에 그은 접선이고 기울기는 4입니다. 경시 물리에서 '속도'라고 하면 특별한 말이 없는 한 순간 속도입니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 4,
+          "ymin": -1,
+          "ymax": 10,
+          "xstep": 1,
+          "ystep": 1,
+          "xlabel": "t(s)",
+          "ylabel": "x(m)",
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                0,
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "poly",
+              "coef": [
+                -4,
+                4
+              ],
+              "from": 1,
+              "to": 3.6
+            }
+          ],
+          "alt": "x = t² 그래프와 t = 2에서의 접선 x = 4t − 4",
+          "points": [
+            [
+              2,
+              4,
+              "t = 2"
+            ]
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "x = t²(단위 m, s)인 물체의 t = 2 s에서의 순간 속도를 극한으로 구하세요.",
+      "steps": [
+        "t = 2에서 2 + h까지의 변위는 (2 + h)² − 4 = 4h + h²입니다.",
+        "평균 속도는 (4h + h²)/h = 4 + h입니다.",
+        "h → 0이면 평균 속도는 4에 가까워집니다.",
+        "따라서 순간 속도는 4 m/s이고, 접선의 기울기와 같습니다."
+      ],
+      "answer": "4 m/s"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x = t²(m)인 물체의 t = 2 s부터 t = 4 s까지의 평균 속도는 몇 m/s인가요?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "Δx/Δt를 계산하세요.",
+      "explanation": "t = 2에서 x = 4 m, t = 4에서 x = 16 m입니다.\n평균 속도 = (16 − 4)/(4 − 2) = 12/2입니다.\n= 6 m/s이고, 두 끝 순간 속도 4와 8의 평균과 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x = 5t²(m)일 때 t = 1에서 1 + h까지의 평균 속도는 10 + 5h입니다. t = 1 s에서의 순간 속도는 몇 m/s인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "h → 0으로 보내세요.",
+      "explanation": "평균 속도 10 + 5h에서 h를 0에 가깝게 하면 10에 가까워집니다.\n이 극한값이 순간 속도입니다.\n따라서 v = 10 m/s이고, dx/dt = 10t에 t = 1을 넣은 값과 같습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "속력과 속도",
+      "body": [
+        "속도는 방향이 있는 양(벡터)이고, 속력은 그 크기입니다. 순간 속력은 순간 속도의 절댓값 |v|입니다.",
+        "평균 속력은 이동 거리 ÷ 시간이고, 평균 속도는 변위 ÷ 시간입니다. 방향을 바꾸는 운동에서는 둘이 크게 다릅니다. 동쪽으로 6 m, 서쪽으로 10 m를 4 s 동안 갔다면 평균 속력은 16/4 = 4 m/s, 평균 속도는 −4/4 = −1 m/s입니다.",
+        "왕복 문제에서 평균 속력을 두 속력의 산술평균으로 계산하는 실수가 많습니다. 걸린 시간을 각각 구해서 전체 거리 ÷ 전체 시간으로 계산하세요."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "동쪽으로 6 m, 이어서 서쪽으로 10 m를 모두 4 s 동안 움직였을 때 평균 속력은 몇 m/s인가요?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "평균 속력 = 이동 거리 ÷ 시간입니다.",
+      "explanation": "이동 거리는 6 + 10 = 16 m입니다.\n평균 속력 = 16 m / 4 s입니다.\n= 4 m/s입니다. 평균 속도의 크기 1 m/s와 다릅니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "그림의 x-t 그래프에서 t = 5 s일 때의 속도는 몇 m/s인가요?",
+      "answer": "-3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "4~6 s 구간의 기울기를 구하세요.",
+      "explanation": "4 s에서 6 s까지 x는 6 m에서 0 m로 줄어듭니다.\n기울기 = (0 − 6)/(6 − 4) = −3입니다.\n따라서 v = −3 m/s이고, −방향으로 3 m/s로 움직입니다.",
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 7,
+          "ymin": -1,
+          "ymax": 7,
+          "xstep": 1,
+          "ystep": 1,
+          "xlabel": "t(s)",
+          "ylabel": "x(m)",
+          "curves": [
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  2,
+                  6
+                ],
+                [
+                  4,
+                  6
+                ],
+                [
+                  6,
+                  0
+                ]
+              ]
+            }
+          ],
+          "alt": "x-t 그래프: 0~2 s 동안 6 m 전진, 2~4 s 정지, 4~6 s 동안 출발점으로 돌아옴"
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "같은 그래프에서 0 s부터 6 s까지의 평균 속력은 몇 m/s인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "갔다 온 거리를 모두 더하세요.",
+      "explanation": "0~2 s에 6 m 전진, 2~4 s 정지, 4~6 s에 6 m 후진했으므로 이동 거리는 12 m입니다.\n평균 속력 = 12/6입니다.\n= 2 m/s이고, 출발점으로 돌아왔으므로 평균 속도는 0입니다.",
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 7,
+          "ymin": -1,
+          "ymax": 7,
+          "xstep": 1,
+          "ystep": 1,
+          "xlabel": "t(s)",
+          "ylabel": "x(m)",
+          "curves": [
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  2,
+                  6
+                ],
+                [
+                  4,
+                  6
+                ],
+                [
+                  6,
+                  0
+                ]
+              ]
+            }
+          ],
+          "alt": "x-t 그래프: 0~2 s 동안 6 m 전진, 2~4 s 정지, 4~6 s 동안 출발점으로 돌아옴"
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "변위 Δx는 위치의 변화이고 방향이 있습니다. 이동 거리는 실제로 움직인 길이입니다.",
+        "평균 속도 Δx/Δt는 할선의 기울기, 순간 속도 v = dx/dt는 접선의 기울기입니다.",
+        "평균 속력은 이동 거리 ÷ 시간입니다. 왕복 문제는 각 구간의 시간을 따로 구하세요. 같은 거리를 다른 속력으로 가면 평균 속력은 산술평균이 아니라 조화평균 2v₁v₂/(v₁ + v₂)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "갈 때는 30 km/h, 같은 길로 돌아올 때는 60 km/h로 달렸습니다. 왕복의 평균 속력은 몇 km/h인가요?",
+      "answer": "40",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "편도 거리를 d로 놓고 시간을 구하세요.",
+      "explanation": "편도 거리를 d라 하면 시간은 d/30 + d/60 = d/20입니다.\n평균 속력 = 2d ÷ (d/20)입니다.\n= 40 km/h이고, 산술평균 45가 아닙니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "x = 2t³(m)인 물체의 t = 1 s부터 t = 2 s까지의 평균 속도는 몇 m/s인가요?",
+      "answer": "14",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x(2)와 x(1)을 구하세요.",
+      "explanation": "x(1) = 2 m, x(2) = 16 m입니다.\n평균 속도 = (16 − 2)/(2 − 1)입니다.\n= 14 m/s입니다. 같은 구간의 순간 속도 6~24 m/s 사이에 있습니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "편도 거리가 같은 왕복에서 갈 때 속력 v₁, 올 때 속력 v₂이면 평균 속력이 2v₁v₂/(v₁ + v₂)임을 보이세요.",
+      "model_answer": [
+        "편도 거리를 d라 하면 갈 때 시간은 d/v₁, 올 때 시간은 d/v₂이다.",
+        "전체 시간은 d/v₁ + d/v₂ = d(v₁ + v₂)/(v₁v₂)이다.",
+        "전체 이동 거리는 2d이다.",
+        "평균 속력 = 2d ÷ [d(v₁ + v₂)/(v₁v₂)] = 2v₁v₂/(v₁ + v₂)이다."
+      ],
+      "criteria": [
+        {
+          "text": "각 구간의 시간을 구했다",
+          "points": 2
+        },
+        {
+          "text": "전체 시간을 통분했다",
+          "points": 2
+        },
+        {
+          "text": "전체 거리 ÷ 전체 시간으로 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "편도 거리를 d로 놓으세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "x = t²인 물체의 순간 속도가 v = 2t임을 극한으로 보이세요.",
+      "model_answer": [
+        "t에서 t + h까지의 변위는 (t + h)² − t² = 2th + h²이다.",
+        "평균 속도는 (2th + h²)/h = 2t + h이다. (h ≠ 0)",
+        "h → 0이면 2t + h → 2t이다.",
+        "따라서 순간 속도는 v = 2t이다."
+      ],
+      "criteria": [
+        {
+          "text": "짧은 시간 동안의 변위를 전개했다",
+          "points": 2
+        },
+        {
+          "text": "평균 속도를 h로 나누어 정리했다",
+          "points": 2
+        },
+        {
+          "text": "극한을 취해 결론지었다",
+          "points": 2
+        }
+      ],
+      "hint": "t에서 t + h까지의 평균 속도를 먼저 구하세요."
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "sql-associate-1z0-071",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "뷰(View)",
+  "rule_summary_ko": "뷰는 SELECT 쿼리를 저장해두고 마치 테이블처럼 조회할 수 있게 해주는 가상 테이블입니다. 단일 테이블을 기반으로 하고 집계 함수·GROUP BY·DISTINCT·조인·UNION이 없는 '단순 뷰(simple view)'는 뷰를 통해 직접 INSERT·UPDATE·DELETE가 가능하며, 이 변경은 실제 기반 테이블에 반영됩니다. 반면 조인이나 집계 함수를 포함한 '복잡한 뷰(complex view)'는 직접 DML이 불가능하며, INSTEAD OF 트리거를 사용해야 우회적으로 처리할 수 있습니다.",
+  "examples": [
+    { "code": "CREATE VIEW high_earners AS\nSELECT name, salary FROM employees WHERE salary >= 5000;", "note_ko": "단일 테이블·집계 없음 → 단순 뷰. UPDATE high_earners SET salary=5500 WHERE name='Kim'; 를 실행하면 실제 employees 테이블의 Kim 급여가 바뀜" },
+    { "code": "CREATE VIEW dept_summary AS\nSELECT dept, COUNT(*) cnt FROM employees GROUP BY dept;", "note_ko": "GROUP BY(집계) 포함 → 복잡한 뷰. 이 뷰에 직접 UPDATE를 시도하면 오류가 발생함" }
+  ],
+  "questions": [
+    {
+      "id": "sql_oracle_l3_u2_q001",
+      "type": "concept_matching_item",
+      "code": "CREATE VIEW high_earners AS\nSELECT name, salary FROM employees WHERE salary >= 5000;\nUPDATE high_earners SET salary = 5500 WHERE name = 'Kim';",
+      "prompt_ko": "이 UPDATE를 실행하면 어떻게 됩니까?",
+      "options": [
+        "뷰는 읽기 전용이라 항상 오류가 발생한다",
+        "단일 테이블 기반의 단순 뷰라 UPDATE가 허용되며, 실제 employees 테이블의 Kim 급여가 5500으로 바뀐다",
+        "뷰 자체의 정의(SELECT 문)가 바뀐다",
+        "high_earners라는 새 테이블이 별도로 생성된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "집계 함수·조인·GROUP BY가 없는 단순 뷰는 업데이트 가능하며, 변경이 기반 테이블에 그대로 반영됩니다.",
+      "concept_tags": ["simple_view", "updatable_view"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l3_u2_q002",
+      "type": "concept_matching_item",
+      "code": "CREATE VIEW dept_summary AS\nSELECT dept, COUNT(*) cnt FROM employees GROUP BY dept;\nUPDATE dept_summary SET cnt = 10 WHERE dept = 'Sales';",
+      "prompt_ko": "이 UPDATE를 실행하면 어떻게 됩니까?",
+      "options": [
+        "정상적으로 실행되어 Sales 그룹의 인원수가 10명으로 늘어난다",
+        "오류가 발생한다 — GROUP BY(집계)를 포함한 복잡한 뷰는 직접 DML이 불가능하다",
+        "실제 employees 테이블에 새 직원이 추가된다",
+        "뷰가 자동으로 삭제된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "COUNT(*)는 집계 결과라 특정 기반 테이블의 행 하나에 대응시킬 수 없어, 이런 복잡한 뷰는 직접 업데이트할 수 없습니다.",
+      "concept_tags": ["complex_view"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l3_u2_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "SELECT 쿼리를 저장해두고 마치 테이블처럼 조회할 수 있게 해주는 오라클 객체를 무엇이라 합니까? (영문으로 입력)",
+      "expected_answers": ["View"],
+      "explanation_ko": "View는 실제 데이터를 저장하지 않고, 정의된 쿼리를 통해 데이터를 보여주는 가상 테이블입니다.",
+      "concept_tags": ["view"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l3_u2_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "복잡한(업데이트 불가능한) 뷰에서도 DML을 가능하게 만들고 싶을 때 사용하는 오라클 기능은?",
+      "options": [
+        "INSTEAD OF 트리거 — INSERT/UPDATE/DELETE 시도를 가로채서, 대신 실행할 로직을 직접 정의할 수 있게 해준다",
+        "SAVEPOINT",
+        "GRANT",
+        "이런 기능은 오라클에 존재하지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "INSTEAD OF 트리거는 뷰에 대한 DML 시도를 가로채서, 개발자가 정의한 대체 로직(예: 여러 기반 테이블에 나눠 반영)을 실행하게 해줍니다.",
+      "concept_tags": ["instead_of_trigger"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l3_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "뷰를 사용하는 대표적인 이점은?",
+      "options": [
+        "실제 데이터를 중복 저장해서 조회 속도를 항상 빠르게 만든다",
+        "복잡한 쿼리를 간단한 이름으로 재사용할 수 있게 하고, 사용자에게 테이블 전체가 아니라 필요한 컬럼·행만 보여줘서 보안을 강화할 수 있다",
+        "뷰는 실제 테이블보다 항상 더 많은 저장 공간을 차지한다",
+        "뷰는 한 번 만들면 절대 삭제할 수 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "뷰는 쿼리 재사용과 접근 제어(민감한 컬럼을 숨기고 필요한 부분만 노출)에 유용합니다.",
+      "concept_tags": ["view_benefits"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l3_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "뷰가 참조하는 기반 테이블의 데이터가 변경되면, 뷰를 다시 만들지 않아도 뷰 조회 결과에 최신 데이터가 반영됩니까?",
+      "options": [
+        "그렇다 — 일반 뷰는 데이터를 저장하지 않고, 조회 시점마다 정의된 쿼리를 다시 실행해서 항상 최신 데이터를 보여준다",
+        "아니다 — 뷰는 생성 시점의 데이터를 고정해서 저장한다",
+        "매주 한 번씩만 자동 갱신된다",
+        "뷰를 매번 DROP하고 다시 만들어야 최신 데이터가 반영된다"
+      ],
+      "answer": 0,
+      "explanation_ko": "일반 뷰는 데이터를 별도로 저장하지 않고 조회 시점에 쿼리를 재실행하므로 항상 최신 데이터를 반영합니다(이 점이 데이터를 실제로 저장하는 구체화 뷰·Materialized View와의 차이입니다).",
+      "concept_tags": ["view_freshness"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+ "no": 3,
+ "title": "타이머와 PWM",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "타이머의 분주와 카운트 값으로 원하는 주기를 설정할 수 있다.",
+  "PWM의 주기와 듀티비를 레지스터 값으로 계산할 수 있다.",
+  "입력 캡처로 펄스 폭과 주파수를 재는 원리를 설명할 수 있다."
+ ],
+ "checklist": [
+  "타이머 = 클럭을 세는 카운터(디지털회로 8단원)",
+  "분주기(prescaler): 타이머 클럭 = 시스템 클럭/분주비",
+  "주기 = (카운트 최댓값 + 1) × 타이머 클럭 주기",
+  "PWM: 비교값/주기로 듀티비 결정, 평균 전압 = 듀티비 × 전원",
+  "PWM 응용: LED 밝기, 모터 속도(전력전자), 서보 각도",
+  "입력 캡처: 에지 사이의 카운트로 시간 측정",
+  "시스템 틱(SysTick)과 소프트웨어 타이머"
+ ],
+ "advice": [
+  "타이머 설정은 '시스템 클럭을 얼마로 나누고, 몇까지 세면 원하는 시간이 되는가'를 계산하는 일입니다. 쓰는 칩의 시스템 클럭에서 1 ms 주기 인터럽트와 1 kHz PWM을 만드는 레지스터 값을 직접 계산해 보면, 데이터시트의 타이머 장이 훨씬 쉽게 읽힙니다. PWM의 평균 전압이 듀티비에 비례한다는 원리는 레벨3 전력전자의 DC–DC 컨버터와 인버터에서 그대로 쓰입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Lee · Seshia (무료 공개 교재)",
+   "title": "Introduction to Embedded Systems: A Cyber-Physical Systems Approach, 2nd ed.",
+   "url": "https://ptolemy.berkeley.edu/books/leeseshia/",
+   "lang": "영어",
+   "part": "Input and Output 장의 PWM 절"
+  },
+  {
+   "kind": "book",
+   "provider": "자가 출판",
+   "title": "Valvano, Embedded Systems: Introduction to ARM Cortex-M Microcontrollers (장 제목으로 표기)",
+   "part": "Timers, PWM 관련 장"
+  },
+  {
+   "kind": "book",
+   "provider": "O'Reilly",
+   "title": "White, Making Embedded Systems (번역본 『임베디드 시스템 만들기』)",
+   "part": "Inputs, Outputs, and Timers 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "디지털회로 8단원 레지스터와 카운터",
+   "url": "guide.html?lv=2&t=electronics&s=digital-circuits&u=8",
+   "part": "카운터 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "48 MHz 시스템 클럭을 48로 분주한 타이머로 1 ms마다 인터럽트를 만들려면 몇 번을 세야 할까요?",
+   "answer": "1000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "타이머 클럭 = 1 MHz(1 μs)\n1 ms/1 μs = 1000번",
+   "hint": "타이머 클럭 주기부터 구하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "PWM 주기가 1000카운트이고 비교값이 250이면 듀티비는 몇 %일까요?",
+   "answer": "25",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "250/1000 = 25%",
+   "hint": "비교값 ÷ 주기입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "5 V 출력 핀에서 듀티비 25% PWM을 RC 필터로 평균내면 약 몇 V가 될까요?",
+   "answer": "1.25",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "평균 전압 = 0.25 × 5 = 1.25 V",
+   "hint": "듀티비 × 전원 전압입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electronics",
+ "subject": "embedded",
+ "id": "l3-electronics-embedded-u03"
+}

@@ -1,0 +1,98 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-2-202",
+  "level": 4,
+  "unit": 1,
+  "unit_title": "이메일 서버: Postfix 기초",
+  "rule_summary_ko": "Postfix의 핵심 설정 파일은 /etc/postfix/main.cf이며, mynetworks는 이 서버를 통해 메일을 중계(relay)할 수 있도록 허용된 네트워크 범위를 지정합니다(기본값은 로컬호스트만 허용해서 오픈 릴레이를 방지). /etc/aliases는 사람이 읽는 텍스트 형식의 별칭 매핑 파일이지만, Postfix는 실제로는 newaliases 명령으로 컴파일된 해시 데이터베이스(aliases.db)를 참조하므로, aliases 파일을 수정한 뒤에는 반드시 newaliases를 실행해야 변경 사항이 실제로 반영됩니다.",
+  "examples": [
+    { "code": "postconf mynetworks\n결과: 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128", "note_ko": "기본값은 로컬호스트만 허용 — 이 범위 밖의 클라이언트는 이 서버를 릴레이로 사용할 수 없음(오픈 릴레이 방지)" },
+    { "code": "vim /etc/aliases  (postmaster: root 수정)\nnewaliases", "note_ko": "aliases 텍스트 파일을 고친 뒤 newaliases를 실행해야, 실제로 참조되는 aliases.db가 갱신됨" }
+  ],
+  "questions": [
+    {
+      "id": "lpic2_l4_u1_q001",
+      "type": "concept_matching_item",
+      "code": "postconf mynetworks\n결과: 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128",
+      "prompt_ko": "mynetworks의 기본값이 로컬호스트로만 제한되어 있는 이유는?",
+      "options": [
+        "아무 제한 없이 모든 네트워크에서 메일 중계를 허용하면, 스팸 발송에 악용되는 '오픈 릴레이' 서버가 되기 때문에",
+        "로컬호스트 제한은 성능 향상만을 위한 것이다",
+        "이 설정은 메일 발송과 전혀 무관하다",
+        "기본값은 항상 모든 네트워크를 허용하도록 설정되어 있다(설명이 틀림)"
+      ],
+      "answer": 0,
+      "explanation_ko": "안전한 기본값으로 오픈 릴레이를 방지하는 것이 mynetworks의 핵심 보안 역할입니다.",
+      "concept_tags": ["mynetworks_default_security"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l4_u1_q002",
+      "type": "concept_matching_item",
+      "code": "vim /etc/aliases  (내용 수정)\n(newaliases 실행하지 않음)",
+      "prompt_ko": "aliases 파일을 텍스트 편집기로 수정만 하고 newaliases를 실행하지 않으면?",
+      "options": [
+        "Postfix가 실제로 참조하는 것은 컴파일된 aliases.db 데이터베이스라서, newaliases를 실행하지 않으면 변경 사항이 실제로 반영되지 않는다",
+        "텍스트 파일을 저장하는 즉시 자동으로 반영된다",
+        "aliases 파일은 Postfix와 전혀 무관하다",
+        "이 파일은 애초에 편집할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "텍스트 파일과 실제로 쓰이는 데이터베이스가 분리되어 있다는 점을 놓치기 쉬운 함정입니다.",
+      "concept_tags": ["aliases_newaliases_compilation"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic2_l4_u1_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "/etc/aliases를 수정한 뒤, 그 내용을 실제 참조되는 데이터베이스로 컴파일하는 명령어는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["newaliases"],
+      "explanation_ko": "newaliases는 텍스트 형식의 aliases를 해시 데이터베이스(aliases.db)로 변환합니다.",
+      "concept_tags": ["newaliases_command"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l4_u1_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "Postfix의 핵심 설정 파일 main.cf에서 다룰 수 있는 대표적인 항목은?",
+      "options": [
+        "메일 중계를 허용할 네트워크 범위(mynetworks), 이 서버의 호스트 이름(myhostname), 메일을 받을 도메인(mydomain) 등",
+        "사용자 비밀번호 해시(/etc/shadow와 혼동)", "DNS 존 레코드(BIND와 혼동)", "웹 서버 가상 호스트 설정(Apache와 혼동)"
+      ],
+      "answer": 0,
+      "explanation_ko": "main.cf는 Postfix 자체의 동작 방식(수신·발신·중계 범위 등)을 정의합니다.",
+      "concept_tags": ["postfix_main_cf"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l4_u1_q005",
+      "type": "fill_blank",
+      "code": "postfix check",
+      "prompt_ko": "이 명령어의 역할을 한글로 간단히 설명하면? (예: 설정 OO)",
+      "expected_answers": ["설정 검사", "설정 확인", "구성 검사"],
+      "explanation_ko": "postfix check는 설정 파일과 디렉터리 권한 등에 문제가 없는지 사전에 점검해줍니다.",
+      "concept_tags": ["postfix_check"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l4_u1_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "메일 서버를 인터넷에 공개하기 전에 mynetworks 설정을 신중하게 검토해야 하는 이유는?",
+      "options": [
+        "설정을 잘못해서 모든 네트워크에서 중계를 허용하게 되면, 스패머들이 이 서버를 악용해 대량의 스팸을 발송하는 오픈 릴레이가 될 위험이 있기 때문에",
+        "mynetworks는 메일 서버의 성능에만 영향을 줄 뿐 보안과는 무관하다",
+        "이 설정은 한 번 정하면 절대 바꿀 수 없다",
+        "오픈 릴레이는 실제로 존재하지 않는 가상의 위협이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "오픈 릴레이는 스팸 발송에 악용될 뿐 아니라, 해당 서버가 블랙리스트에 오르는 심각한 결과로 이어질 수 있습니다.",
+      "concept_tags": ["open_relay_risk"],
+      "difficulty": "practice"
+    }
+  ]
+}

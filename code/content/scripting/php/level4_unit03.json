@@ -1,0 +1,91 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 4,
+  "unit": 3,
+  "unit_title": "예외처리",
+  "questions": [
+    {
+      "id": "php_l4_u03_q001",
+      "type": "predict_output",
+      "code": "try {\n    throw new Exception(\"문제 발생\");\n} catch (Exception $e) {\n    echo $e->getMessage();\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["문제 발생", "Exception", "오류", "빈 문자열"],
+      "answer": 0,
+      "explanation_en": "throw raises an exception with a custom message; the matching catch block accesses that message through getMessage().",
+      "explanation_ko": "throw는 사용자 정의 메시지와 함께 예외를 발생시킵니다. 일치하는 catch 블록은 getMessage()로 그 메시지에 접근합니다.",
+      "concept_tags": ["throw", "try_catch"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l4_u03_q002",
+      "type": "predict_output",
+      "code": "try {\n    throw new Exception(\"문제\");\n} catch (Exception $e) {\n    echo \"잡음\";\n} finally {\n    echo \"항상 실행됨\";\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["잡음항상 실행됨", "항상 실행됨", "오류", "잡음"],
+      "answer": 0,
+      "explanation_en": "finally always runs, whether or not an exception occurred; catch handles the exception first, then finally runs afterward.",
+      "explanation_ko": "finally는 예외 발생 여부와 상관없이 항상 실행됩니다. catch가 먼저 예외를 처리하고, 이어서 finally가 실행됩니다.",
+      "concept_tags": ["try_catch_finally"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l4_u03_q003",
+      "type": "predict_output",
+      "code": "class InvalidAgeException extends Exception {}\n\nfunction checkAge($age) {\n    if ($age < 0) {\n        throw new InvalidAgeException(\"나이는 음수일 수 없습니다\");\n    }\n    return $age;\n}\n\ntry {\n    checkAge(-5);\n} catch (InvalidAgeException $e) {\n    echo $e->getMessage();\n}",
+      "prompt_en": "What is printed? (This defines a custom exception type by extending Exception.)",
+      "prompt_ko": "출력 결과는? (Exception을 상속받아 사용자 정의 예외 타입을 정의합니다.)",
+      "options": ["나이는 음수일 수 없습니다", "InvalidAgeException", "오류", "-5"],
+      "answer": 0,
+      "explanation_en": "extends Exception creates a custom exception class; throwing and catching it works just like the base Exception, printing the custom message.",
+      "explanation_ko": "extends Exception은 사용자 정의 예외 클래스를 만듭니다. 이를 던지고 잡는 것은 기본 Exception과 똑같이 동작해서, 사용자 정의 메시지를 출력합니다.",
+      "concept_tags": ["custom_exception"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l4_u03_q004",
+      "type": "predict_output",
+      "code": "try {\n    $result = 10 / 0;\n} catch (\\DivisionByZeroError $e) {\n    echo \"0으로 나눌 수 없음\";\n}",
+      "prompt_en": "What is printed? (Note: this uses / with two integers, not intdiv.)",
+      "prompt_ko": "출력 결과는? (intdiv가 아니라 정수 두 개에 /를 쓴 점에 주의하세요.)",
+      "options": ["0으로 나눌 수 없음", "Infinity", "NAN", "오류: 예외를 잡을 수 없음"],
+      "answer": 0,
+      "explanation_en": "Unlike JavaScript's 10/0 = Infinity, PHP's / operator throws DivisionByZeroError for integer division by zero, which the catch block handles.",
+      "explanation_ko": "JavaScript의 10/0 = Infinity와 달리, PHP의 / 연산자는 정수를 0으로 나누면 DivisionByZeroError를 던지며, catch 블록이 이를 처리합니다.",
+      "concept_tags": ["divisionbyzeroerror"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l4_u03_q005",
+      "type": "fill_blank",
+      "code": "function checkAge($age) {\n    if ($age < 0) {\n        ____ new Exception(\"나이는 음수일 수 없습니다\");\n    }\n    return $age;\n}",
+      "prompt_en": "Fill in the blank with the keyword that explicitly triggers an exception.",
+      "prompt_ko": "예외를 명시적으로 발생시키는 키워드를 빈칸에 채우세요.",
+      "options": ["throw", "raise", "except", "error"],
+      "answer": 0,
+      "explanation_en": "PHP uses throw (like Java, C#, C++, JavaScript, VB) to explicitly trigger an exception.",
+      "explanation_ko": "PHP는 (Java, C#, C++, JavaScript, VB처럼) throw를 사용해 예외를 명시적으로 발생시킵니다.",
+      "concept_tags": ["throw"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l4_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "try / catch / finally", "definition": "예외가 발생할 수 있는 블록, 처리기, 항상 실행되는 블록" },
+        { "term": "throw", "definition": "예외를 직접 발생시키는 키워드" },
+        { "term": "extends Exception", "definition": "사용자 정의 예외 클래스를 만드는 방법" },
+        { "term": "DivisionByZeroError", "definition": "PHP에서 정수를 0으로 나눌 때 발생하는 예외 — JS의 Infinity와 다름" }
+      ],
+      "explanation_en": "PHP's try/catch/finally/throw syntax is nearly identical to Java, C#, and C++, but its division-by-zero behavior diverges sharply from JavaScript, which never throws for arithmetic.",
+      "explanation_ko": "PHP의 try/catch/finally/throw 문법은 Java, C#, C++와 거의 동일하지만, 0으로 나누기 동작은 산술 연산에 절대 예외를 던지지 않는 JavaScript와 크게 다릅니다.",
+      "concept_tags": ["try_catch_finally", "throw", "custom_exception"],
+      "difficulty": "practice"
+    }
+  ]
+}

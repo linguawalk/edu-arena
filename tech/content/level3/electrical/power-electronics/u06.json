@@ -1,0 +1,97 @@
+{
+ "no": 6,
+ "title": "교류 전력 제어와 고조파·역률",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "교류 전압 제어기와 사이클로컨버터·매트릭스 컨버터의 원리를 설명할 수 있다.",
+  "전류 고조파의 종합 고조파 왜곡률(THD)을 계산할 수 있다.",
+  "비정현파 회로의 역률을 변위 역률과 왜곡 계수로 나누어 계산할 수 있다."
+ ],
+ "checklist": [
+  "교류 전압 제어기(트라이액 위상 제어): 조광기, 히터 제어",
+  "사이클로컨버터: 교류를 직접 낮은 주파수 교류로 변환",
+  "매트릭스 컨버터: 직류 링크 없는 교류–교류 변환",
+  "THD = √(Σ I_h²)/I₁ (h ≥ 2)",
+  "역률 = 변위 역률(cos φ₁) × 왜곡 계수(I₁/I_rms)",
+  "정류기의 고조파 차수: 6펄스 정류기는 5, 7, 11, 13, …차",
+  "능동 역률 개선(PFC, 부스트 컨버터), 수동·능동 필터"
+ ],
+ "advice": [
+  "전력전자 장치는 전류를 정현파가 아닌 모양으로 끌어가기 때문에 고조파와 역률 문제를 만듭니다. 회로이론의 역률은 전압과 전류가 모두 정현파일 때의 cos φ였지만, 여기서는 파형의 일그러짐까지 포함해 역률 = 변위 역률 × 왜곡 계수로 넓어진다는 점이 핵심입니다. THD 계산은 각 고조파 실효값을 제곱해 더하고 기본파로 나누는 것뿐이니 숫자 예로 몇 번 해 보고, 노트북 어댑터 같은 기기에 왜 PFC 회로가 들어가는지 이 관점에서 설명해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Mohan · Undeland · Robbins, Power Electronics: Converters, Applications, and Design (장 제목으로 표기)",
+   "part": "ac Voltage Controllers, Optimizing the Utility Interface with Power Electronic Systems 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Springer",
+   "title": "Erickson · Maksimović, Fundamentals of Power Electronics (장 제목으로 표기)",
+   "part": "Power and Harmonics in Nonsinusoidal Systems, Line-Commutated Rectifiers 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.334 Power Electronics (2007년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-334-power-electronics-spring-2007/",
+   "lang": "영어",
+   "part": "harmonics, power factor 관련 강의 노트"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "기본파 전류 100 A에 5고조파 20 A, 7고조파 15 A가 섞여 있습니다(다른 고조파 없음). 전류 THD는 몇 %일까요?",
+   "answer": "25",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "THD = √(20² + 15²)/100 = 25/100 = 25%",
+   "hint": "고조파 실효값의 제곱합의 제곱근을 기본파로 나눕니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "변위 역률 0.9, 왜곡 계수 0.95인 부하의 역률은 얼마일까요?",
+   "answer": "0.855",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "역률 = 0.9 × 0.95 = 0.855",
+   "hint": "두 값을 곱합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "직류 단계를 거치지 않고 교류를 직접 더 낮은 주파수의 교류로 바꾸는 장치를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "사이클로컨버터",
+      "사이클로 컨버터",
+      "사이클로컨버어터"
+     ]
+    }
+   ],
+   "explanation": "대형 저속 전동기(압연기, 선박 추진 등)에 써 왔습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "power-electronics",
+ "id": "l3-electrical-power-electronics-u06"
+}

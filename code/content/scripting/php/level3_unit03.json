@@ -1,0 +1,91 @@
+{
+  "language": "php",
+  "category": "scripting",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "전역변수와 static",
+  "questions": [
+    {
+      "id": "php_l3_u03_q001",
+      "type": "predict_output",
+      "code": "$count = 0;\nfunction increment() {\n    $count++;\n}\nincrement();\necho $count;",
+      "prompt_en": "What is printed? (Note: no global keyword is used.)",
+      "prompt_ko": "출력 결과는? (global 키워드가 쓰이지 않은 점에 주의하세요.)",
+      "options": ["0", "1", "오류", "null"],
+      "answer": 0,
+      "explanation_en": "Without global, PHP treats $count inside the function as a brand-new local variable (starting undefined), completely separate from the outer $count; the outer one stays 0.",
+      "explanation_ko": "global이 없으면 PHP는 함수 안의 $count를 완전히 새로운(정의되지 않은 상태로 시작하는) 지역 변수로 취급하며, 바깥의 $count와는 완전히 별개입니다. 바깥 것은 0으로 유지됩니다.",
+      "concept_tags": ["scope", "global"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "php_l3_u03_q002",
+      "type": "predict_output",
+      "code": "$count = 0;\nfunction increment() {\n    global $count;\n    $count++;\n}\nincrement();\nincrement();\nincrement();\necho $count;",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["0", "1", "3", "오류"],
+      "answer": 2,
+      "explanation_en": "global $count tells PHP to use the outer $count instead of creating a local one; three calls each add 1, making count 3.",
+      "explanation_ko": "global $count는 PHP에게 지역 변수를 만들지 말고 바깥의 $count를 사용하라고 알려줍니다. 세 번 호출할 때마다 1씩 더해져 count는 3이 됩니다.",
+      "concept_tags": ["scope", "global"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l3_u03_q003",
+      "type": "predict_output",
+      "code": "function counter() {\n    static $count = 0;\n    $count++;\n    echo $count;\n}\ncounter();\ncounter();\ncounter();",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["111", "123", "000", "오류"],
+      "answer": 1,
+      "explanation_en": "static makes a local variable persist across calls instead of being recreated each time; count keeps incrementing: 1, 2, 3.",
+      "explanation_ko": "static은 지역 변수가 매번 새로 생성되는 대신 호출 사이에도 값을 유지하게 만듭니다. count는 계속 증가합니다: 1, 2, 3.",
+      "concept_tags": ["static_variable"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l3_u03_q004",
+      "type": "predict_output",
+      "code": "function counter() {\n    $count = 0;\n    $count++;\n    echo $count;\n}\ncounter();\ncounter();\ncounter();",
+      "prompt_en": "What is printed? (Compare with the static version above.)",
+      "prompt_ko": "출력 결과는? (위의 static 버전과 비교해보세요.)",
+      "options": ["123", "111", "000", "오류"],
+      "answer": 1,
+      "explanation_en": "Without static, $count is a fresh local variable created and reset each call, becoming 1 every time before printing.",
+      "explanation_ko": "static이 없으면 $count는 호출될 때마다 새로 생성되어 초기화됩니다. 매번 1이 된 뒤 출력됩니다.",
+      "concept_tags": ["static_variable"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "php_l3_u03_q005",
+      "type": "fill_blank",
+      "code": "$total = 0;\n\nfunction addToTotal($n) {\n    ____ $total;\n    $total += $n;\n}\n\naddToTotal(5);\necho $total;\n// 5가 출력되어야 함",
+      "prompt_en": "Fill in the blank with the keyword that lets this function modify the outer total.",
+      "prompt_ko": "이 함수가 바깥의 total을 수정할 수 있게 하는 키워드를 빈칸에 채우세요.",
+      "options": ["global", "static", "public", "extern"],
+      "answer": 0,
+      "explanation_en": "global declares that a name refers to the outer-scope variable rather than creating a new local one when assigned inside a function.",
+      "explanation_ko": "global은 함수 안에서 대입할 때 새 지역 변수를 만드는 대신, 그 이름이 바깥 스코프 변수를 가리킨다고 선언합니다.",
+      "concept_tags": ["global"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "php_l3_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "global", "definition": "함수 안에서 바깥 스코프 변수를 수정할 수 있게 선언" },
+        { "term": "static (지역 변수)", "definition": "함수 호출 사이에도 값이 유지되는 지역 변수" },
+        { "term": "global 없는 지역 변수화", "definition": "함수 안에서 같은 이름을 쓰면 자동으로 새 지역 변수가 생기는 규칙" },
+        { "term": "Python과의 유사성", "definition": "PHP의 global 키워드는 Python의 global과 개념적으로 동일" }
+      ],
+      "explanation_en": "PHP's scoping philosophy matches Python's closely — both require an explicit global keyword to modify outer variables — though PHP fails more silently (a warning, not an error) when the keyword is omitted.",
+      "explanation_ko": "PHP의 스코프 철학은 Python과 거의 일치합니다 — 둘 다 바깥 변수를 수정하려면 명시적인 global 키워드가 필요합니다 — 다만 PHP는 키워드를 빠뜨렸을 때 더 조용히 실패합니다(오류가 아니라 경고).",
+      "concept_tags": ["scope", "global", "static_variable"],
+      "difficulty": "practice"
+    }
+  ]
+}

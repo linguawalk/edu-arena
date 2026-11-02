@@ -1,0 +1,103 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-2-201",
+  "level": 1,
+  "unit": 3,
+  "unit_title": "커널과 /proc 가상 파일시스템",
+  "rule_summary_ko": "/proc는 디스크에 실제로 존재하는 파일이 아니라, 커널이 실행 중에 실시간으로 만들어내는 가상 파일시스템으로, 커널·프로세스 정보를 파일처럼 읽을 수 있게 해줍니다. /proc/cpuinfo(CPU 정보), /proc/meminfo(메모리 사용량), /proc/version(커널 버전), /proc/uptime(가동 시간)이 대표적입니다. 커널 모듈은 lsmod(현재 적재된 모듈 목록, /proc/modules를 읽어 보여줌)와 modprobe(모듈을 의존성까지 고려해서 적재·제거)로 관리합니다.",
+  "examples": [
+    { "code": "cat /proc/version", "note_ko": "결과: Linux version 6.18.44... — 현재 실행 중인 커널의 버전 정보를 실시간으로 보여줌" },
+    { "code": "cat /proc/meminfo | head -3", "note_ko": "MemTotal, MemFree, MemAvailable 등 현재 메모리 상태를 실시간으로 보여줌" }
+  ],
+  "questions": [
+    {
+      "id": "lpic2_l1_u3_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "/proc 파일시스템의 정체는?",
+      "options": [
+        "디스크에 실제로 저장된 일반 파일이 아니라, 커널이 실행 중에 실시간으로 생성하는 가상(virtual) 파일시스템",
+        "일반 하드디스크에 저장된 설정 파일들의 모음",
+        "사용자가 직접 편집해서 커널을 재컴파일하는 소스 코드 디렉터리",
+        "/proc는 실제로 존재하지 않는 가상의 개념일 뿐 접근할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "/proc의 파일들은 커널 내부 상태를 그때그때 반영해서 보여주는 인터페이스입니다.",
+      "concept_tags": ["proc_virtual_filesystem"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l1_u3_q002",
+      "type": "concept_matching_item",
+      "code": "cat /proc/cpuinfo",
+      "prompt_ko": "이 명령어로 확인할 수 있는 정보는?",
+      "options": [
+        "시스템에 탑재된 CPU의 모델명·코어 정보 등", "현재 메모리 사용량(/proc/meminfo와 혼동)", "네트워크 인터페이스 목록", "설치된 패키지 목록"
+      ],
+      "answer": 0,
+      "explanation_ko": "/proc/cpuinfo는 프로세서에 대한 상세 정보를 담고 있습니다.",
+      "concept_tags": ["proc_cpuinfo"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic2_l1_u3_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "현재 적재된(로드된) 커널 모듈의 목록을 보여주는 명령어는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["lsmod"],
+      "explanation_ko": "lsmod는 내부적으로 /proc/modules 파일의 내용을 읽어와 보여줍니다.",
+      "concept_tags": ["lsmod_command"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic2_l1_u3_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "modprobe가 insmod(단순 모듈 적재 명령)와 비교해 갖는 이점은?",
+      "options": [
+        "적재하려는 모듈이 의존하는 다른 모듈들까지 자동으로 찾아 함께 적재해준다",
+        "modprobe는 모듈을 적재할 수 없고 오직 제거만 할 수 있다",
+        "modprobe와 insmod는 완전히 동일한 기능을 한다",
+        "modprobe는 /proc 파일시스템과 전혀 무관하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "modprobe는 모듈 간 의존성을 해결해줘서, 수동으로 의존 모듈을 하나씩 적재할 필요가 없습니다.",
+      "concept_tags": ["modprobe_vs_insmod"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic2_l1_u3_q005",
+      "type": "concept_matching_item",
+      "code": "cat /proc/meminfo\nMemTotal: 4096312 kB\nMemFree: 3544580 kB\nMemAvailable: 3741560 kB",
+      "prompt_ko": "이 파일이 보여주는 정보는?",
+      "options": [
+        "시스템의 전체·여유·사용 가능 메모리 등 실시간 메모리 상태",
+        "디스크 파티션 정보(fdisk와 혼동)",
+        "네트워크 트래픽 통계",
+        "CPU 온도 정보"
+      ],
+      "answer": 0,
+      "explanation_ko": "/proc/meminfo는 free 같은 명령어가 내부적으로 참조하는 원시 메모리 통계입니다.",
+      "concept_tags": ["proc_meminfo"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l1_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "/proc의 값을 cat 명령으로 조회하는 대신, 일부 항목에 값을 써서 커널 파라미터를 실시간으로 변경할 수도 있습니다. 이런 방식이 유용한 이유는?",
+      "options": [
+        "시스템을 재부팅하지 않고도 일부 커널 동작(예: IP 포워딩 활성화 등)을 즉시 조정할 수 있게 해주기 때문에",
+        "/proc의 값은 절대 변경할 수 없고 읽기 전용이다",
+        "/proc에 값을 쓰면 시스템이 항상 즉시 종료된다",
+        "이런 기능은 /proc와 무관한 별개의 메커니즘이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "/proc/sys 아래의 많은 항목은 실시간 커널 튜닝 인터페이스로 활용됩니다.",
+      "concept_tags": ["proc_sys_tuning"],
+      "difficulty": "challenge"
+    }
+  ]
+}

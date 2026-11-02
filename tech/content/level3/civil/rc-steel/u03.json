@@ -1,0 +1,87 @@
+{
+ "no": 3,
+ "title": "RC 보의 휨 설계",
+ "hours": 6,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "등가 직사각형 응력 블록으로 단철근 보의 공칭 휨강도를 계산할 수 있다.",
+  "인장지배·압축지배 단면과 철근비 제한을 설명할 수 있다.",
+  "주어진 계수 모멘트로 필요한 철근량을 구하는 절차를 설명할 수 있다."
+ ],
+ "checklist": [
+  "휨 거동: 균열 전 → 균열 후 → 항복 → 파괴",
+  "등가 직사각형 응력 블록(0.85 f_ck, 깊이 a)",
+  "힘의 평형: 0.85 f_ck b a = A_s f_y",
+  "공칭 휨강도 M_n = A_s f_y (d − a/2)",
+  "인장지배(연성 파괴)와 압축지배(취성 파괴)",
+  "최소·최대 철근비",
+  "복철근 보와 T형 보"
+ ],
+ "advice": [
+  "RC 보 설계의 핵심은 단면 하나를 놓고 '콘크리트 압축력 = 철근 인장력'으로 압축 깊이 a를 구한 뒤, 두 힘 사이 거리로 모멘트를 계산하는 절차입니다. 이 계산을 몇 번 반복하면 철근을 너무 많이 넣으면 콘크리트가 먼저 부서져(취성) 위험하고, 적당히 넣어야 철근이 먼저 늘어나며 경고를 준다(연성)는 설계 철학이 숫자로 이해됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "국내 교재",
+   "title": "철근콘크리트 구조설계(KDS 기준 반영 국내 교재, 최신판)",
+   "part": "휨 설계 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Wight · MacGregor, Reinforced Concrete: Mechanics and Design (장 제목으로 표기)",
+   "part": "Flexure: Behavior and Nominal Strength of Beam Sections 장"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "폭 300 mm, f_ck = 24 MPa, f_y = 400 MPa, 인장 철근 1500 mm²인 단철근 보의 등가 응력 블록 깊이 a는 약 몇 mm일까요? (소수 첫째 자리까지)",
+   "answer": "98",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "a = A_s f_y/(0.85 f_ck b) = 600 000/6120 ≈ 98.0 mm",
+   "hint": "A_s f_y/(0.85 f_ck b)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 보의 유효 깊이가 500 mm이면 공칭 휨강도는 약 몇 kN·m일까요? (소수 첫째 자리까지)",
+   "answer": "270.6",
+   "answer_format": "decimal",
+   "tolerance": 0.2,
+   "explanation": "M_n = 600 000 × (500 − 49.0) ≈ 270.6 × 10⁶ N·mm = 270.6 kN·m",
+   "hint": "A_s f_y (d − a/2)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "철근이 콘크리트보다 먼저 항복해 큰 처짐으로 미리 경고하며 파괴되는 단면을 {{1}}지배 단면이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "인장"
+     ]
+    }
+   ],
+   "explanation": "설계에서는 연성 파괴를 유도하도록 철근비를 제한합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "civil",
+ "subject": "rc-steel",
+ "id": "l3-civil-rc-steel-u03"
+}

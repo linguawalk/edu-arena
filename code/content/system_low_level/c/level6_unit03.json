@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 6,
+  "unit": 3,
+  "unit_title": "열거형 (enum)",
+  "questions": [
+    {
+      "id": "c_l6_u03_q001",
+      "type": "predict_output",
+      "code": "enum Day { MON, TUE, WED, THU, FRI, SAT, SUN };\n\nenum Day today = WED;\nprintf(\"%d\", today);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["WED", "2", "3", "오류"],
+      "answer": 1,
+      "explanation_en": "Enum constants are assigned integer values starting from 0 by default; MON=0, TUE=1, WED=2, so today prints as 2.",
+      "explanation_ko": "열거형 상수는 기본적으로 0부터 시작하는 정수 값을 갖습니다. MON=0, TUE=1, WED=2이므로 today는 2로 출력됩니다.",
+      "concept_tags": ["enum"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l6_u03_q002",
+      "type": "predict_output",
+      "code": "enum Status { OK = 200, NOT_FOUND = 404, SERVER_ERROR = 500 };\n\nenum Status s = NOT_FOUND;\nprintf(\"%d\", s);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["1", "404", "NOT_FOUND", "오류"],
+      "answer": 1,
+      "explanation_en": "Enum constants can be given explicit values; NOT_FOUND was set to 404, so that value is what gets stored and printed.",
+      "explanation_ko": "열거형 상수에는 명시적으로 값을 지정할 수 있습니다. NOT_FOUND는 404로 지정되었으므로 그 값이 저장되고 출력됩니다.",
+      "concept_tags": ["enum"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l6_u03_q003",
+      "type": "fill_blank",
+      "code": "enum Color { RED, GREEN, ____ };\n// BLUE는 2번째 값(인덱스 2)이 되어야 함",
+      "prompt_en": "Fill in the blank so BLUE follows RED (0) and GREEN (1) automatically.",
+      "prompt_ko": "RED(0), GREEN(1)에 이어 BLUE가 자동으로 다음 값이 되도록 빈칸을 채우세요.",
+      "options": ["BLUE", "BLUE = 2", "BLUE()", "3 BLUE"],
+      "answer": 0,
+      "explanation_en": "Unless given an explicit value, each enum constant automatically takes the previous constant's value plus one; BLUE alone becomes 2.",
+      "explanation_ko": "명시적으로 값을 지정하지 않으면 각 열거형 상수는 자동으로 이전 값에 1을 더한 값을 갖습니다. BLUE만 써도 자동으로 2가 됩니다.",
+      "concept_tags": ["enum"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l6_u03_q004",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "enum", "definition": "이름 붙은 정수 상수들의 집합을 정의하는 자료형" },
+        { "term": "자동 증가", "definition": "값을 지정하지 않으면 이전 상수보다 1 큰 값을 자동으로 받는 규칙" },
+        { "term": "명시적 값 지정", "definition": "열거형 상수에 원하는 정수 값을 직접 지정하는 것" },
+        { "term": "가독성 향상", "definition": "0, 1, 2 같은 숫자 대신 의미 있는 이름을 코드에 사용해 얻는 이점" }
+      ],
+      "explanation_en": "enum's main purpose is to replace 'magic numbers' with meaningful names, making code easier to read and maintain.",
+      "explanation_ko": "enum의 주된 목적은 의미를 알 수 없는 숫자('매직 넘버') 대신 의미 있는 이름을 코드에 쓰게 해서, 가독성과 유지보수성을 높이는 것입니다.",
+      "concept_tags": ["enum"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l6_u03_q005",
+      "type": "predict_output",
+      "code": "enum Level { LOW, MEDIUM, HIGH };\n\nint main() {\n    enum Level lv = MEDIUM;\n    if (lv == 1) {\n        printf(\"중간 단계\");\n    }\n    return 0;\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["중간 단계", "아무것도 출력되지 않음", "MEDIUM", "오류"],
+      "answer": 0,
+      "explanation_en": "MEDIUM equals 1 (LOW=0, MEDIUM=1), so the condition lv == 1 is true, and '중간 단계' is printed.",
+      "explanation_ko": "MEDIUM은 1입니다(LOW=0, MEDIUM=1). 따라서 lv == 1 조건이 참이 되어 '중간 단계'가 출력됩니다.",
+      "concept_tags": ["enum"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l6_u03_q006",
+      "type": "error_finding",
+      "code": "enum Direction { NORTH, SOUTH, EAST, WEST };\n\nenum Direction dir = 5;\nprintf(\"%d\", dir);",
+      "prompt_en": "What issue does this code raise, even though it compiles and runs?",
+      "prompt_ko": "이 코드는 컴파일도 되고 실행도 되지만, 어떤 문제를 안고 있을까요?",
+      "options": [
+        "enum 선언 문법 자체가 잘못됐다",
+        "5는 NORTH~WEST(0~3) 어디에도 해당하지 않는 값인데도 C는 이를 막지 않아, 의미 없는 값이 dir에 들어감",
+        "printf 형식 지정자 오류",
+        "문제 없음, 완전히 안전한 코드"
+      ],
+      "answer": 1,
+      "explanation_en": "C's enums are essentially just named integers with no built-in range checking, so assigning an out-of-range value like 5 compiles fine but produces a value with no meaningful name.",
+      "explanation_ko": "C의 enum은 사실상 이름이 붙은 정수일 뿐이라 범위 검사를 해주지 않습니다. 5처럼 정의되지 않은 값을 넣어도 컴파일은 되지만, 그 값에는 대응하는 의미 있는 이름이 없습니다. enum을 쓸 때 주의해야 할 대표적인 함정입니다.",
+      "concept_tags": ["enum", "type_safety"],
+      "difficulty": "challenge"
+    }
+  ]
+}

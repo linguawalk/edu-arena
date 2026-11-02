@@ -1,0 +1,113 @@
+{
+ "no": 6,
+ "title": "메모리 관리",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "연속 할당과 단편화(내부·외부)를 설명할 수 있다.",
+  "페이징에서 논리 주소를 페이지 번호와 오프셋으로 나눌 수 있다.",
+  "세그먼테이션과 페이징의 장단점을 비교할 수 있다."
+ ],
+ "checklist": [
+  "논리 주소와 물리 주소, 주소 바인딩",
+  "연속 할당: 최초 적합, 최적 적합, 최악 적합",
+  "외부 단편화와 압축, 내부 단편화",
+  "페이징: 페이지 번호 = 주소 ÷ 페이지 크기, 오프셋 = 나머지",
+  "세그먼테이션: 논리적 단위(코드, 스택)로 나누기",
+  "공유 페이지와 보호 비트",
+  "스와핑"
+ ],
+ "advice": [
+  "메모리 관리의 역사는 '외부 단편화와의 싸움'입니다. 가변 크기로 나누는 연속 할당은 틈이 생기고, 고정 크기 페이지로 나누면 틈은 사라지지만 마지막 페이지 안에 작은 낭비(내부 단편화)가 남습니다. 두 단편화를 그림 한 장으로 비교하세요.",
+  "논리 주소를 페이지 번호와 오프셋으로 나누는 계산은 컴퓨터 구조 8단원과 같습니다. 10진수 주소와 16진수 주소 두 가지 형태로 몇 번 연습해 두면 시험에서 막히지 않습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Arpaci-Dusseau (무료 공개 교재)",
+   "title": "Operating Systems: Three Easy Pieces",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "lang": "영어",
+   "part": "Address Spaces, Segmentation, Free-Space Management, Paging 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Silberschatz · Galvin · Gagne, Operating System Concepts (번역본 『운영체제』, 장 제목으로 표기)",
+   "part": "Main Memory 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "컴퓨터 구조 8단원 가상 메모리와 TLB",
+   "url": "guide.html?lv=2&t=computer&s=computer-architecture&u=8"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "페이지 크기 1 KB(1024 B)에서 논리 주소 2500은 몇 번 페이지일까요? (0번부터)",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2500 ÷ 1024 = 2 나머지 452",
+   "hint": "1024로 나눈 몫입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 주소의 페이지 안 오프셋은 얼마일까요?",
+   "answer": "452",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2500 − 2 × 1024 = 452",
+   "hint": "1024로 나눈 나머지입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "남은 메모리의 합은 충분하지만 조각조각 흩어져 있어 큰 요청을 받지 못하는 현상을 {{1}} 단편화라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "외부"
+     ]
+    }
+   ],
+   "explanation": "페이징은 외부 단편화를 없애지만 내부 단편화가 조금 남습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "요청을 받을 수 있는 빈 공간 가운데 가장 작은 것을 고르는 할당 방법을 {{1}} 적합이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "최적",
+      "best"
+     ]
+    }
+   ],
+   "explanation": "처음 찾은 빈 공간을 쓰면 최초 적합, 가장 큰 것을 쓰면 최악 적합입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "operating-systems",
+ "id": "l2-computer-operating-systems-u06"
+}

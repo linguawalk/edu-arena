@@ -1,0 +1,98 @@
+{
+ "no": 7,
+ "title": "고유값의 수치 계산",
+ "hours": 5,
+ "after": [
+  5
+ ],
+ "objectives": [
+  "거듭제곱법과 역거듭제곱법으로 고유값을 구할 수 있다.",
+  "수렴 속도가 고유값의 비율에 의존함을 설명할 수 있다.",
+  "QR 알고리즘의 아이디어를 설명할 수 있다."
+ ],
+ "checklist": [
+  "특성방정식으로 고유값을 구하면 안 되는 이유",
+  "거듭제곱법: 절댓값이 가장 큰 고유값, 수렴률 |λ₂/λ₁|",
+  "레일리 몫 xᵀAx/xᵀx",
+  "역거듭제곱법과 이동(shift)",
+  "QR 분해와 QR 알고리즘",
+  "헤센베르크 형태와 실제 알고리즘(개요)",
+  "특이값 분해의 계산(개요)"
+ ],
+ "advice": [
+  "고유값은 특성방정식의 근이지만, 수치적으로는 절대 그렇게 구하지 않습니다. 다항식의 근은 계수의 작은 변화에 매우 민감하기 때문입니다(윌킨슨의 다항식). 대신 행렬을 반복적으로 곱하거나 분해하는 방법을 씁니다.",
+  "거듭제곱법은 구글 페이지랭크의 계산 방법이기도 합니다(레벨3 확률과정 3단원의 정상분포). QR 알고리즘은 20세기 10대 알고리즘 중 하나로 꼽히며, MATLAB이나 NumPy의 eig 함수가 내부에서 쓰는 방법입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Burden · Faires · Burden, Numerical Analysis (10판)",
+   "part": "9장 Approximating Eigenvalues"
+  },
+  {
+   "kind": "book",
+   "provider": "SIAM",
+   "title": "Trefethen · Bau, Numerical Linear Algebra (심화)",
+   "part": "Lecture 24~29 (고유값 문제와 QR 알고리즘)"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "[[2, 0], [0, 1]]에 거듭제곱법을 적용하면 어떤 고유값으로 수렴할까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "절댓값이 가장 큰 고유값",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "같은 행렬에서 거듭제곱법의 오차는 매 반복마다 약 {{1}}배로 줄어든다",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "1/2",
+      "0.5"
+     ]
+    }
+   ],
+   "explanation": "|λ₂/λ₁| = 1/2",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "x = (1, 1)에 대한 [[2, 1], [1, 2]]의 레일리 몫은?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "xᵀAx/xᵀx = 6/2 = 3 (x가 고유벡터라 정확한 고유값)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "역거듭제곱법(이동 없음)은 절댓값이 가장 작은 고유값을 찾을까요? (그렇다 1, 아니다 0)",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "A⁻¹의 가장 큰 고유값 = 1/(A의 가장 작은 고유값)",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "applied",
+ "subject": "numerical",
+ "id": "l3-applied-numerical-u07"
+}

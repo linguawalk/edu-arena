@@ -1,0 +1,96 @@
+{
+  "language": "csharp",
+  "category": "oop_enterprise",
+  "level": 5,
+  "unit": 1,
+  "unit_title": "Class 기초",
+  "questions": [
+    {
+      "id": "csharp_l5_u01_q001",
+      "type": "predict_output",
+      "code": "class Dog\n{\n    public string Name;\n\n    public void Bark()\n    {\n        Console.WriteLine($\"{Name}: 멍멍!\");\n    }\n}\n\nDog d = new Dog();\nd.Name = \"바둑이\";\nd.Bark();",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이: 멍멍!", "Dog: 멍멍!", "오류", "Name: 멍멍!"],
+      "answer": 0,
+      "explanation_en": "new Dog() creates an object, and d.Bark() calls the method using that object's own Name field, 바둑이.",
+      "explanation_ko": "new Dog()는 객체를 생성하고, d.Bark()는 그 객체 자신의 Name 필드인 바둑이를 사용해 메서드를 호출합니다.",
+      "concept_tags": ["class", "object"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l5_u01_q002",
+      "type": "predict_output",
+      "code": "class Dog\n{\n    public string Name;\n\n    public Dog(string name)\n    {\n        Name = name;\n    }\n}\n\nDog d = new Dog(\"바둑이\");\nConsole.WriteLine(d.Name);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이", "Dog", "오류", "빈 문자열"],
+      "answer": 0,
+      "explanation_en": "A constructor shares the class's name and no return type; it runs automatically when the object is created, setting Name to 바둑이.",
+      "explanation_ko": "생성자는 클래스와 이름이 같고 반환형이 없습니다. 객체가 생성될 때 자동으로 실행되어 Name을 바둑이로 설정합니다.",
+      "concept_tags": ["class", "constructor"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l5_u01_q003",
+      "type": "predict_output",
+      "code": "class Dog\n{\n    public string Name;\n}\n\nDog d1 = new Dog();\nd1.Name = \"바둑이\";\nDog d2 = new Dog();\nd2.Name = \"뽀삐\";\nConsole.WriteLine(d1.Name + \" \" + d2.Name);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["바둑이 바둑이", "바둑이 뽀삐", "뽀삐 뽀삐", "오류"],
+      "answer": 1,
+      "explanation_en": "d1 and d2 are separate objects, each with an independent Name field; setting d2.Name doesn't affect d1.Name.",
+      "explanation_ko": "d1과 d2는 서로 독립된 객체로, 각자 독립적인 Name 필드를 갖습니다. d2.Name을 설정해도 d1.Name에는 영향이 없습니다.",
+      "concept_tags": ["class", "object", "instance"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l5_u01_q004",
+      "type": "fill_blank",
+      "code": "class Rectangle\n{\n    public int Width;\n    public int Height;\n\n    public int Area()\n    {\n        return Width * ____;\n    }\n}",
+      "prompt_en": "Fill in the blank to complete the area calculation.",
+      "prompt_ko": "넓이 계산을 완성하려면 빈칸에 무엇이 들어가야 할까요?",
+      "options": ["Height", "Width", "Rectangle", "Area"],
+      "answer": 0,
+      "explanation_en": "The method needs to multiply the object's own Width and Height fields.",
+      "explanation_ko": "메서드는 객체 자신의 Width와 Height 필드를 곱해야 합니다.",
+      "concept_tags": ["class", "method"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l5_u01_q005",
+      "type": "error_finding",
+      "code": "class Dog\n{\n    public string Name;\n\n    public Dog(string name)\n    {\n        Name = name;\n    }\n}\n\nDog d = new Dog();",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "Dog 클래스 정의 오류",
+        "Dog에 매개변수 있는 생성자만 있어서, 인자 없이 new Dog()를 호출하면 일치하는 생성자가 없어 컴파일 오류가 발생함",
+        "Name 필드 선언 오류",
+        "문제 없음, Name이 null로 설정된 채 생성됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Once a class defines any constructor explicitly, the compiler no longer provides a free parameterless one; calling new Dog() with no arguments fails to match the single constructor requiring a string.",
+      "explanation_ko": "클래스가 생성자를 하나라도 명시적으로 정의하면, 컴파일러는 더 이상 매개변수 없는 기본 생성자를 공짜로 제공하지 않습니다. 인자 없이 new Dog()를 호출하면 string이 필요한 유일한 생성자와 일치하지 않습니다.",
+      "concept_tags": ["class", "constructor"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l5_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "class", "definition": "필드와 메서드를 하나로 묶는 참조 타입의 설계도" },
+        { "term": "객체 (인스턴스)", "definition": "new 키워드로 클래스로부터 실제로 만들어진 실체" },
+        { "term": "생성자", "definition": "객체가 생성될 때 자동으로 호출되는, 클래스와 이름이 같은 메서드" },
+        { "term": "기본 생성자의 사라짐", "definition": "다른 생성자를 정의하면 매개변수 없는 기본 생성자가 자동으로 제공되지 않는 규칙" }
+      ],
+      "explanation_en": "C#'s class syntax closely mirrors VB's, differing mainly in punctuation — curly braces instead of End Class, and constructors named after the class instead of Sub New.",
+      "explanation_ko": "C#의 class 문법은 VB와 매우 비슷하며, 주로 구두점만 다릅니다 — End Class 대신 중괄호, Sub New 대신 클래스 이름을 딴 생성자를 씁니다.",
+      "concept_tags": ["class", "object", "constructor"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "saa-c03",
+  "level": 1,
+  "unit": 3,
+  "unit_title": "암호화와 KMS",
+  "rule_summary_ko": "AWS KMS의 키는 세 종류입니다: 고객 관리형 키(customer managed key, 고객이 직접 만들고 정책·순환·삭제를 완전히 통제), AWS 관리형 키(AWS managed key, 예: aws/s3 — AWS 서비스가 고객 계정 안에 만들지만 고객이 순환·삭제를 관리할 수 없음), AWS 소유형 키(AWS owned key, AWS 자체 계정에 있어 고객에게 아예 보이지 않음). KMS는 대용량 데이터에 봉투 암호화(envelope encryption)를 사용합니다: KMS 키가 데이터 암호화 키(DEK)를 암호화하고, 그 DEK가 실제 대용량 데이터를 암호화합니다(KMS 키 자체가 대용량 데이터를 직접 암호화하지 않음). KMS 키에 접근하려면 키 정책과 IAM 정책이 모두 허용해야 하며, IAM 정책 하나만으로는 KMS 키 접근을 부여할 수 없습니다.",
+  "examples": [
+    { "code": "S3 버킷을 SSE-KMS로 암호화할 때 aws/s3 키(기본값) 사용", "note_ko": "AWS 관리형 키 — 순환 주기·정책을 고객이 직접 통제할 수 없음. 완전한 통제가 필요하면 고객 관리형 키를 직접 만들어야 함" },
+    { "code": "대용량 파일 암호화: KMS 키 → DEK 암호화 → DEK로 실제 파일 암호화", "note_ko": "봉투 암호화 — KMS 키가 파일 전체를 직접 암호화하는 것이 아니라, 파일을 암호화하는 데 쓰인 DEK만 암호화함" }
+  ],
+  "questions": [
+    {
+      "id": "aws_saa_l1_u3_q001",
+      "type": "concept_matching_item",
+      "code": "규제 산업의 회사가 암호화 키의 순환 주기, 정책, 삭제 시점을 완전히 통제하고 감사 로그까지 상세히 남기고 싶어함",
+      "prompt_ko": "이 요구사항에 적합한 KMS 키 유형은?",
+      "options": [
+        "고객 관리형 키(customer managed key) — 순환·정책·삭제까지 고객이 완전히 통제할 수 있음",
+        "AWS 관리형 키(순환·삭제를 고객이 통제할 수 없어 부적합)",
+        "AWS 소유형 키(고객에게 아예 보이지 않아 부적합)",
+        "이런 요구사항은 KMS로 충족할 수 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "완전한 통제와 상세한 감사 추적이 필요한 규제 워크로드에는 고객 관리형 키가 권장됩니다.",
+      "concept_tags": ["customer_managed_key"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l1_u3_q002",
+      "type": "concept_matching_item",
+      "code": "S3 버킷을 SSE-KMS로 암호화하되 별도 설정 없이 기본값(aws/s3)을 그대로 사용함",
+      "prompt_ko": "이 aws/s3 키에 대해 고객이 직접 할 수 있는 것은?",
+      "options": [
+        "이 키를 직접 순환시키거나 삭제할 수 있다",
+        "이 키의 순환·삭제는 관리할 수 없다 — AWS 관리형 키는 AWS 서비스가 대신 관리하며, 완전한 통제가 필요하면 고객 관리형 키를 별도로 만들어야 한다",
+        "이 키는 고객 계정에 전혀 존재하지 않는다(AWS 소유형 키와 혼동)",
+        "이 키는 완전히 무료이며 어떤 제약도 없다"
+      ],
+      "answer": 1,
+      "explanation_ko": "AWS 관리형 키는 편리하지만, 순환·삭제 등 세부 통제권은 고객에게 없습니다.",
+      "concept_tags": ["aws_managed_key"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l1_u3_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "봉투 암호화(envelope encryption)의 핵심 원리는?",
+      "options": [
+        "KMS 키가 데이터 암호화 키(DEK)를 암호화하고, 그 DEK가 실제 대용량 데이터를 암호화한다 — KMS 키 자체는 대용량 데이터를 직접 암호화하지 않는다",
+        "KMS 키가 데이터를 직접 암호화하며 DEK 같은 중간 단계는 없다",
+        "봉투 암호화는 데이터를 물리적으로 봉투에 넣어 보관하는 방식이다",
+        "봉투 암호화는 KMS와 무관한 별개의 개념이다"
+      ],
+      "answer": 0,
+      "explanation_ko": "봉투 암호화는 대용량 데이터를 매번 KMS API로 직접 보내지 않고도 KMS의 통제를 유지할 수 있게 해주는 효율적인 설계입니다.",
+      "concept_tags": ["envelope_encryption"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l1_u3_q004",
+      "type": "concept_matching_item",
+      "code": "사용자가 특정 KMS 키를 사용할 수 있는 IAM 정책을 가지고 있지만, 그 키의 키 정책(key policy)에는 이 사용자에 대한 허용이 전혀 없음",
+      "prompt_ko": "이 사용자가 그 KMS 키를 사용할 수 있습니까?",
+      "options": [
+        "아니다 — KMS 키에 접근하려면 키 정책과 IAM 정책이 모두 허용해야 하며, IAM 정책 하나만으로는 부여할 수 없다",
+        "그렇다. IAM 정책만 있으면 항상 충분하다",
+        "키 정책은 KMS와 무관한 개념이다",
+        "이 사용자는 관리자이기만 하면 항상 접근할 수 있다"
+      ],
+      "answer": 0,
+      "explanation_ko": "KMS는 다른 대부분의 AWS 리소스와 달리, 키 정책이라는 추가적인 접근 제어 계층을 요구합니다.",
+      "concept_tags": ["kms_key_policy_and_iam"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l1_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "AWS 소유형 키(AWS owned key)의 특징은?",
+      "options": [
+        "AWS 자체 계정에 존재해서 고객에게 전혀 보이지 않으며, 고객은 이 키에 대한 정책 설정이나 감사를 할 수 없지만 무료로 자동 암호화 혜택을 받는다",
+        "AWS 소유형 키는 고객이 완전히 통제할 수 있는 키다(고객 관리형 키와 혼동)",
+        "AWS 소유형 키는 고객 계정에 표시되며 순환 설정이 가능하다",
+        "AWS 소유형 키는 유료로만 사용할 수 있다"
+      ],
+      "answer": 0,
+      "explanation_ko": "AWS 소유형 키는 가장 낮은 수준의 통제·가시성을 갖는 대신, 완전히 투명하고 무료로 기본 암호화를 제공합니다.",
+      "concept_tags": ["aws_owned_key"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l1_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "3가지 KMS 키 유형(고객 관리형, AWS 관리형, AWS 소유형)을 통제 수준이 높은 것부터 낮은 순서로 나열하면?",
+      "options": [
+        "고객 관리형(가장 많은 통제) > AWS 관리형 > AWS 소유형(가장 적은 통제)",
+        "AWS 소유형이 가장 많은 통제를 제공한다(설명이 반대)",
+        "세 유형의 통제 수준은 모두 동일하다",
+        "AWS 관리형이 가장 많은 통제를 제공한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "고객이 직접 만드는 키일수록 더 세밀한 통제가 가능하다는 자연스러운 순서입니다.",
+      "concept_tags": ["kms_key_types_control_level"],
+      "difficulty": "practice"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+ "no": 7,
+ "title": "링크 계층: 이더넷, ARP, VLAN",
+ "hours": 5,
+ "after": [
+  5
+ ],
+ "objectives": [
+  "이더넷 프레임과 스위치의 학습·전달을 설명할 수 있다.",
+  "ARP로 IP 주소를 MAC 주소로 바꾸는 과정을 설명할 수 있다.",
+  "VLAN과 스패닝 트리의 역할을 설명할 수 있다."
+ ],
+ "checklist": [
+  "오류 검출(CRC), 다중 접속(CSMA/CD)",
+  "이더넷 프레임, 최소 프레임 64바이트",
+  "MAC 주소와 스위치 학습(레벨1 컴퓨터 챕터 7)",
+  "ARP: 같은 서브넷 안에서 IP → MAC",
+  "VLAN(802.1Q): 태그 12비트로 논리적 분리",
+  "스패닝 트리 프로토콜(STP): 고리 방지",
+  "데이터 센터 망(리프–스파인)"
+ ],
+ "advice": [
+  "이 단원은 '같은 네트워크 안에서 바로 옆 장치에 어떻게 전달하는가'를 다룹니다. 노트북이 같은 서브넷의 프린터에 처음 패킷을 보낼 때 ARP 요청을 브로드캐스트하고, 응답으로 MAC 주소를 받아 프레임을 만드는 과정을 순서대로 적어 보세요. 다른 서브넷이면 게이트웨이의 MAC 주소를 묻는다는 점까지 이해하면 됩니다.",
+  "VLAN은 스위치 하나를 여러 개처럼 쓰게 해 부서별로 망을 나누는 기술이고, 레벨3 통신망 설계(정보통신 트랙)의 보안 구역 설계로 이어집니다. 스위치를 고리로 연결하면 브로드캐스트가 끝없이 돈다는 문제와 STP의 해결책도 함께 정리하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Kurose · Ross, Computer Networking: A Top-Down Approach (번역본 『컴퓨터 네트워킹 하향식 접근』, 장 제목으로 표기)",
+   "part": "The Link Layer and LANs 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 7 네트워크 기초(이더넷과 MAC)",
+   "url": "browse.html?c=c4#ch07",
+   "part": "레벨1 복습"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "정보통신 통신망 6단원 데이터 링크와 흐름 제어",
+   "url": "guide.html?lv=2&t=ict&s=comm-networks&u=6"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "VLAN 태그의 VLAN ID 필드는 12비트입니다. 표현할 수 있는 값은 모두 몇 개일까요?",
+   "answer": "4096",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2¹² = 4096개(0과 4095는 예약되어 실제 쓸 수 있는 것은 4094개)",
+   "hint": "2¹²입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "같은 서브넷 안에서 IP 주소에 해당하는 MAC 주소를 알아내는 프로토콜은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "ARP"
+     ]
+    }
+   ],
+   "explanation": "Address Resolution Protocol의 줄임말이며, 요청은 브로드캐스트로 보냅니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "이더넷의 최소 프레임 크기는 몇 바이트일까요?",
+   "answer": "64",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "충돌 검출을 위해 최소 64바이트가 필요합니다.",
+   "hint": "CSMA/CD와 관련된 값입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "스위치들이 고리 모양으로 연결되어도 브로드캐스트가 끝없이 돌지 않도록 일부 포트를 막는 프로토콜을 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "STP"
+     ]
+    }
+   ],
+   "explanation": "Spanning Tree Protocol의 줄임말입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "networks",
+ "id": "l2-computer-networks-u07"
+}

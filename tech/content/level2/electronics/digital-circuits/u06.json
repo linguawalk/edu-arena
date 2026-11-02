@@ -1,0 +1,122 @@
+{
+ "no": 6,
+ "title": "래치와 플립플롭",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "SR 래치와 D 래치의 동작을 설명할 수 있다.",
+  "D·JK·T 플립플롭의 특성표와 특성 방정식을 쓸 수 있다.",
+  "셋업·홀드 시간과 최대 클럭 주파수의 관계를 계산할 수 있다."
+ ],
+ "checklist": [
+  "SR 래치(NOR·NAND 구현), 금지 입력",
+  "D 래치(레벨 트리거)와 D 플립플롭(에지 트리거)",
+  "D 플립플롭: Q⁺ = D",
+  "JK 플립플롭: J = K = 1이면 토글, Q⁺ = JQ′ + K′Q",
+  "T 플립플롭: T = 1이면 토글, Q⁺ = T ⊕ Q",
+  "여기표(excitation table): 원하는 상태 변화에 필요한 입력",
+  "셋업·홀드 시간, 클럭–출력 지연, 최대 클럭 주파수"
+ ],
+ "advice": [
+  "레벨1 컴퓨터 챕터 2에서 SR 래치와 D 플립플롭을 보았다면, 여기서는 JK·T 플립플롭과 여기표가 새롭습니다. 특성표는 '입력이 주어졌을 때 다음 상태'를, 여기표는 거꾸로 '원하는 상태 변화를 만들려면 필요한 입력'을 보여 줍니다. 7단원의 순차 회로 설계에서는 여기표를 쓰므로 두 표를 나란히 적어 두세요.",
+  "실제 회로에서는 데이터가 클럭 에지 전후로 일정 시간(셋업·홀드) 안정되어 있어야 올바르게 저장됩니다. 클럭–출력 지연 + 조합 회로 지연 + 셋업 시간이 클럭 주기보다 짧아야 한다는 조건을 숫자로 계산해 보면, CPU의 클럭 주파수가 무엇으로 정해지는지 알 수 있습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Mano · Ciletti, Digital Design (장 제목으로 표기)",
+   "part": "Synchronous Sequential Logic 장의 래치·플립플롭 절"
+  },
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Harris · Harris, Digital Design and Computer Architecture (장 제목으로 표기)",
+   "part": "Sequential Logic Design 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "sequential logic 관련 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 2 플립플롭과 메모리",
+   "url": "browse.html?c=c4#ch02",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "JK 플립플롭에서 J = K = 1이면 클럭마다 출력이 {{1}}됩니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "반전",
+      "토글",
+      "바뀝니다",
+      "뒤집"
+     ]
+    }
+   ],
+   "explanation": "Q⁺ = JQ′ + K′Q에 J = K = 1을 넣으면 Q⁺ = Q′입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "T = 1로 고정된 T 플립플롭이 Q = 0에서 시작해 클럭 4번을 받으면 Q는 얼마일까요?",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "클럭마다 반전되어 1, 0, 1, 0이 됩니다.",
+   "hint": "짝수 번 뒤집으면?",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "D 플립플롭의 특성 방정식은 Q⁺ = {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "D"
+     ]
+    }
+   ],
+   "explanation": "클럭 에지에서 D 입력값이 그대로 다음 상태가 됩니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "클럭–출력 지연 1 ns, 조합 회로 지연 6 ns, 셋업 시간 1 ns인 회로의 최대 클럭 주파수는 몇 MHz일까요?",
+   "answer": "125",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "최소 주기 = 1 + 6 + 1 = 8 ns\n최대 주파수 = 1/8 ns = 125 MHz",
+   "hint": "세 지연을 더한 값이 최소 주기입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "digital-circuits",
+ "id": "l2-electronics-digital-circuits-u06"
+}

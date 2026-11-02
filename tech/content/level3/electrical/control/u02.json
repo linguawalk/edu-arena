@@ -1,0 +1,102 @@
+{
+ "no": 2,
+ "title": "전달함수, 블록선도, 신호흐름선도",
+ "hours": 6,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "직렬·병렬·피드백 결합의 전달함수를 구할 수 있다.",
+  "블록선도를 간소화하고 신호흐름선도에 메이슨 이득 공식을 적용할 수 있다.",
+  "전기·기계 시스템(RLC, 질량–스프링, 직류 전동기)을 전달함수로 모델링할 수 있다."
+ ],
+ "checklist": [
+  "직렬 결합 G₁G₂, 병렬 결합 G₁ ± G₂",
+  "부궤환 폐루프 전달함수 T = G/(1 + GH)",
+  "특성 방정식 1 + G(s)H(s) = 0",
+  "블록선도 등가 변환(인출점·가합점 이동)",
+  "신호흐름선도와 메이슨 이득 공식 T = Σ P_kΔ_k/Δ",
+  "물리계 모델: RLC 회로, 질량–스프링–댐퍼, 직류 전동기의 속도 전달함수"
+ ],
+ "advice": [
+  "블록선도 문제는 결국 T = G/(1 + GH) 한 식을 반복해서 쓰는 것이므로, 복잡한 그림은 안쪽 루프부터 하나씩 묶어 바깥으로 나가는 습관을 들이세요. 메이슨 공식은 루프가 서로 닿는지(접촉) 여부를 판단하는 부분에서 실수가 많으니, 루프와 경로를 모두 목록으로 적은 뒤 계산하면 안전합니다. 같은 시스템을 블록선도와 메이슨 공식 두 방법으로 풀어 답이 같은지 확인하는 연습이 가장 효과적입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Ogata, Modern Control Engineering (번역본 『현대제어공학』, 장 제목으로 표기)",
+   "part": "Mathematical Modeling of Control Systems 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Nise, Control Systems Engineering (장 제목으로 표기)",
+   "part": "Reduction of Multiple Subsystems 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "16.06 Principles of Automatic Control (2012년 가을)",
+   "url": "https://ocw.mit.edu/courses/16-06-principles-of-automatic-control-fall-2012/",
+   "lang": "영어",
+   "part": "block diagram 관련 강의 노트"
+  },
+  {
+   "kind": "book",
+   "provider": "Åström · Murray (무료 공개 교재)",
+   "title": "Feedback Systems: An Introduction for Scientists and Engineers, 2nd ed.",
+   "url": "https://fbsbook.org/",
+   "lang": "영어",
+   "part": "System Modeling, Transfer Functions 장"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "개루프 전달함수 G(s) = 10/(s + 1), 단위 부궤환(H = 1)인 폐루프 시스템의 직류 이득(s = 0일 때 T)은 약 얼마일까요?",
+   "answer": "0.909",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "T(0) = G(0)/(1 + G(0)) = 10/11 ≈ 0.909",
+   "hint": "T = G/(1 + GH)에 s = 0을 넣으세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "전향 이득 G = 4, 피드백 이득 H = 0.5인 부궤환 시스템의 전체 이득은 약 얼마일까요?",
+   "answer": "1.33",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "T = 4/(1 + 4 × 0.5) = 4/3 ≈ 1.33",
+   "hint": "T = G/(1 + GH)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "폐루프 전달함수의 분모를 0으로 놓은 1 + G(s)H(s) = 0을 {{1}} 방정식이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "특성"
+     ]
+    }
+   ],
+   "explanation": "특성 방정식의 근(극점)이 응답의 모양과 안정도를 결정합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electrical",
+ "subject": "control",
+ "id": "l3-electrical-control-u02"
+}

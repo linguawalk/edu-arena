@@ -1,0 +1,91 @@
+{
+  "language": "java",
+  "category": "oop_enterprise",
+  "level": 6,
+  "unit": 4,
+  "unit_title": "Stream API",
+  "questions": [
+    {
+      "id": "java_l6_u04_q001",
+      "type": "predict_output",
+      "code": "import java.util.List;\nimport java.util.stream.Collectors;\n\nList<Integer> nums = List.of(1, 2, 3, 4, 5, 6);\nList<Integer> evens = nums.stream()\n    .filter(n -> n % 2 == 0)\n    .collect(Collectors.toList());\nSystem.out.println(evens);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["[1, 2, 3, 4, 5, 6]", "[2, 4, 6]", "[1, 3, 5]", "오류"],
+      "answer": 1,
+      "explanation_en": "stream().filter() keeps only elements satisfying the condition; even numbers 2, 4, 6 pass the n % 2 == 0 check.",
+      "explanation_ko": "stream().filter()는 조건을 만족하는 요소만 남깁니다. n % 2 == 0 검사를 통과하는 짝수 2, 4, 6이 남습니다.",
+      "concept_tags": ["stream", "filter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l6_u04_q002",
+      "type": "predict_output",
+      "code": "import java.util.List;\nimport java.util.stream.Collectors;\n\nList<Integer> nums = List.of(1, 2, 3, 4, 5);\nList<Integer> doubled = nums.stream()\n    .filter(n -> n > 3)\n    .map(n -> n * 2)\n    .collect(Collectors.toList());\nSystem.out.println(doubled);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["[8, 10]", "[6, 8, 10]", "[2, 4, 6, 8, 10]", "오류"],
+      "answer": 0,
+      "explanation_en": "This chains filter (numbers greater than 3: 4, 5) and map (doubling each): 8, 10.",
+      "explanation_ko": "filter(3보다 큰 수: 4, 5)와 map(각각 두 배로)을 연결합니다: 8, 10.",
+      "concept_tags": ["stream", "filter", "map"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l6_u04_q003",
+      "type": "fill_blank",
+      "code": "List<Integer> nums = List.of(5, 3, 8, 1);\nList<Integer> filtered = nums.stream()\n    .____(n -> n > 3)\n    .collect(Collectors.toList());\n// 3보다 큰 값만 걸러내야 함",
+      "prompt_en": "Fill in the blank with the Stream method that filters elements by a condition.",
+      "prompt_ko": "조건에 따라 요소를 걸러내는 Stream 메서드를 빈칸에 채우세요.",
+      "options": ["filter", "where", "select", "match"],
+      "answer": 0,
+      "explanation_en": "filter keeps only elements satisfying the given lambda condition, the Java Stream equivalent of LINQ's Where.",
+      "explanation_ko": "filter는 주어진 람다 조건을 만족하는 요소만 남깁니다. LINQ의 Where에 대응하는 Java Stream 메서드입니다.",
+      "concept_tags": ["stream", "filter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l6_u04_q004",
+      "type": "predict_output",
+      "code": "import java.util.List;\n\nList<String> names = List.of(\"Kim\", \"Lee\", \"Park\", \"Choi\");\nlong count = names.stream()\n    .filter(n -> n.length() <= 3)\n    .count();\nSystem.out.println(count);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["2", "4", "0", "오류"],
+      "answer": 0,
+      "explanation_en": "Filtering for names with 3 or fewer characters keeps Kim and Lee (both 3 letters), giving a count of 2.",
+      "explanation_ko": "3글자 이하인 이름만 걸러내면 Kim과 Lee(둘 다 3글자)가 남아 개수는 2입니다.",
+      "concept_tags": ["stream", "count"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l6_u04_q005",
+      "type": "predict_output",
+      "code": "import java.util.List;\nimport java.util.stream.Collectors;\n\nList<Integer> nums = List.of(4, 2, 9, 1, 7);\nList<Integer> sorted = nums.stream()\n    .sorted()\n    .collect(Collectors.toList());\nSystem.out.println(sorted.get(0));\nSystem.out.println(sorted.get(4));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["4 7", "1 9", "9 1", "4 9"],
+      "answer": 1,
+      "explanation_en": "sorted() arranges the elements in ascending order (1, 2, 4, 7, 9); get(0) is the smallest (1), and get(4) is the largest (9).",
+      "explanation_ko": "sorted()는 요소를 오름차순으로 정렬합니다(1, 2, 4, 7, 9). get(0)은 가장 작은 값(1), get(4)는 가장 큰 값(9)입니다.",
+      "concept_tags": ["stream", "sorted"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l6_u04_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "stream()", "definition": "컬렉션을 함수형 연산 체인으로 다룰 수 있게 변환하는 메서드" },
+        { "term": "filter", "definition": "조건을 만족하는 요소만 남기는 중간 연산" },
+        { "term": "map", "definition": "각 요소를 변환하는 중간 연산" },
+        { "term": "collect(Collectors.toList())", "definition": "스트림 연산 결과를 다시 List로 모으는 종단 연산" }
+      ],
+      "explanation_en": "Java's Stream API is the closest equivalent to LINQ (C#/VB), providing filter/map/sorted as method-chained lambda operations rather than SQL-like query syntax.",
+      "explanation_ko": "Java의 Stream API는 LINQ(C#/VB)에 가장 가까운 대응물로, SQL과 비슷한 쿼리 문법 대신 filter/map/sorted를 람다 기반 메서드 체이닝으로 제공합니다.",
+      "concept_tags": ["stream", "filter", "map"],
+      "difficulty": "practice"
+    }
+  ]
+}

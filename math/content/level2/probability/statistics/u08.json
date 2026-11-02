@@ -1,0 +1,106 @@
+{
+ "no": 8,
+ "title": "변수변환과 합의 분포",
+ "hours": 4,
+ "after": [
+  6,
+  7
+ ],
+ "objectives": [
+  "변수변환 공식으로 새 확률변수의 밀도를 구할 수 있다.",
+  "합성곱으로 독립 확률변수의 합의 분포를 구할 수 있다.",
+  "순서통계량의 기본 분포를 구할 수 있다."
+ ],
+ "checklist": [
+  "일변수 변환 f_Y(y) = f_X(x)|dx/dy|",
+  "다변수 변환과 야코비안",
+  "합성곱 f_{X+Y}(z) = ∫f_X(x)f_Y(z − x) dx",
+  "균등분포 둘의 합은 삼각형 분포",
+  "선형변환 aX + b의 평균과 분산",
+  "순서통계량: 최댓값·최솟값의 분포"
+ ],
+ "advice": [
+  "변수변환 공식의 |dx/dy|는 대학 미적분학 10단원의 야코비안과 같은 것입니다. 확률은 넓이이므로, 변환으로 구간이 늘어나거나 줄어든 만큼 밀도를 반대로 조정해야 합니다.",
+  "합성곱은 레벨2 상미분방정식의 라플라스 변환에서 이미 만났던 연산입니다. 두 주사위의 합 분포가 삼각형 모양이 되는 것을 이산 합성곱으로 먼저 확인하고, 균등분포 둘의 합으로 연속 버전을 계산해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "lecture",
+   "provider": "Harvard",
+   "title": "Statistics 110: Probability (Joe Blitzstein) 강의 영상",
+   "url": "https://stat110.hsites.harvard.edu/",
+   "lang": "영어",
+   "part": "22~24강 (변환, 합성곱, 순서통계량)"
+  },
+  {
+   "kind": "book",
+   "provider": "CRC Press (온라인 무료판)",
+   "title": "Blitzstein · Hwang, Introduction to Probability (2판)",
+   "url": "http://probabilitybook.net",
+   "lang": "영어",
+   "part": "8장 Transformations"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "독립인 U(0, 1) 두 개의 합 Z의 밀도함수 f_Z(1)은?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "합성곱으로 삼각형 분포: f(z) = z (0 ≤ z ≤ 1), 2 − z (1 ≤ z ≤ 2)\nz = 1에서 최댓값 1",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "X ~ N(1, 4)일 때 Y = 3X − 2의 분산은?",
+   "answer": "36",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "Var(Y) = 9 × 4 = 36 (평균은 3 − 2 = 1)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "독립인 U(0, 1) 두 개의 최댓값의 기댓값은 {{1}}",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "2/3"
+     ]
+    }
+   ],
+   "explanation": "P(max ≤ m) = m²이므로 밀도 2m\nE = ∫₀¹ 2m² dm = 2/3",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "X ~ U(0, 1)일 때 Y = −ln X는 지수분포 Exp({{1}})를 따른다",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "1"
+     ]
+    }
+   ],
+   "explanation": "P(Y > y) = P(X < e^(−y)) = e^(−y)\nExp(1) (보편성을 이용한 난수 생성)",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "probability",
+ "subject": "statistics",
+ "id": "l2-probability-statistics-u08"
+}

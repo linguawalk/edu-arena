@@ -1,0 +1,98 @@
+{
+ "no": 3,
+ "title": "오류 확률과 Eb/N0",
+ "hours": 6,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "BPSK·QPSK의 비트 오류 확률을 Q 함수로 표현할 수 있다.",
+  "Eb/N0와 SNR 사이를 변환할 수 있다.",
+  "변조 방식을 같은 Eb/N0 기준으로 공정하게 비교할 수 있다."
+ ],
+ "checklist": [
+  "Q 함수와 가우시안 꼬리 확률",
+  "BPSK(그리고 그레이 부호 QPSK) 비트 오류율 P_b = Q(√(2E_b/N₀))",
+  "P_b = 10⁻⁵에 E_b/N₀ 약 9.6 dB(BPSK)",
+  "SNR[dB] = E_b/N₀[dB] + 10 log₁₀(R_b/B)",
+  "비코히런트 검파의 성능 손실",
+  "M진 변조의 심볼 오류율과 비트 오류율",
+  "부호 이득: 같은 BER에 필요한 E_b/N₀를 줄인 양"
+ ],
+ "advice": [
+  "Eb/N0는 '비트 하나에 쓰는 에너지가 잡음에 비해 얼마나 큰가'로, 변조 방식과 비트율이 달라도 공정하게 비교할 수 있게 해 주는 기준입니다. BPSK가 BER 10⁻⁵을 얻는 데 약 9.6 dB가 필요하다는 기준값 하나를 외우고, 다른 방식은 이보다 몇 dB 더 필요한가로 비교하는 습관을 들이세요. SNR과 Eb/N0를 바꾸는 식에서 비트율과 대역폭의 비가 들어간다는 점도 자주 출제됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Proakis · Salehi, Digital Communications (장 제목으로 표기)",
+   "part": "Optimum Receivers for AWGN Channels 장의 오류 확률 절"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Haykin, Communication Systems (번역본 『통신 시스템』, 장 제목으로 표기)",
+   "part": "디지털 변조 성능 관련 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.02 Introduction to EECS II: Digital Communication Systems (2012년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/",
+   "lang": "영어",
+   "part": "noise and bit errors 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "E_b/N₀ = 10 dB, 비트율 2 Mbps, 대역폭 1 MHz일 때 SNR은 약 몇 dB일까요?",
+   "answer": "13",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "explanation": "SNR = 10 + 10 log₁₀(2) ≈ 13.0 dB",
+   "hint": "E_b/N₀ + 10 log₁₀(R_b/B)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "E_b/N₀ 9.6 dB는 선형 값으로 약 얼마일까요?",
+   "answer": "9.12",
+   "answer_format": "decimal",
+   "tolerance": 0.02,
+   "explanation": "10^(0.96) ≈ 9.12",
+   "hint": "10^(dB/10)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "그레이 부호를 쓴 QPSK와 BPSK는 같은 E_b/N₀에서 비트 오류율이 {{1}}.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "같다",
+      "같습니다",
+      "동일하다",
+      "동일합니다"
+     ]
+    }
+   ],
+   "explanation": "QPSK는 서로 직교하는 두 BPSK를 합친 것과 같아, 대역폭 효율은 2배이면서 비트 오류율은 같습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "digital-comm",
+ "id": "l3-ict-digital-comm-u03"
+}

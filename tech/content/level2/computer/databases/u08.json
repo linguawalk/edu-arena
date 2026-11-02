@@ -1,0 +1,121 @@
+{
+ "no": 8,
+ "title": "트랜잭션과 ACID",
+ "hours": 4,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "트랜잭션의 개념과 ACID 성질을 설명할 수 있다.",
+  "트랜잭션의 상태 전이와 커밋·롤백을 설명할 수 있다.",
+  "스케줄의 충돌 직렬 가능성을 판단할 수 있다."
+ ],
+ "checklist": [
+  "트랜잭션: 하나의 논리적 작업 단위(예: 계좌 이체)",
+  "ACID: 원자성, 일관성, 고립성, 지속성",
+  "상태: 활동 → 부분 완료 → 완료 / 실패 → 철회",
+  "COMMIT과 ROLLBACK",
+  "스케줄: 직렬, 비직렬",
+  "충돌 직렬 가능성과 선행 그래프(사이클 여부)",
+  "운영체제 동기화와의 비교"
+ ],
+ "advice": [
+  "계좌 이체는 트랜잭션을 이해하는 가장 좋은 예입니다. 'A에서 빼기'와 'B에 더하기' 사이에 정전이 나면 돈이 사라진다는 상황을 떠올리고, ACID 네 성질이 각각 어떤 사고를 막는지 짝지어 보세요.",
+  "직렬 가능성은 '동시에 실행했지만 어떤 순서로 하나씩 실행한 것과 결과가 같은가'를 묻는 개념입니다. 두 트랜잭션의 읽기·쓰기 연산을 시간 순서로 적고 선행 그래프를 그려 사이클이 있는지 확인하는 연습을 몇 번 하면 됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Silberschatz · Korth · Sudarshan",
+   "title": "Database System Concepts (교재 사이트, 장 제목으로 표기)",
+   "url": "https://www.db-book.com/",
+   "lang": "영어",
+   "part": "Transactions 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "CMU 15-445 (공개 강의)",
+   "title": "Intro to Database Systems — 강의 노트·영상",
+   "url": "https://15445.courses.cs.cmu.edu/",
+   "lang": "영어",
+   "part": "Concurrency Control Theory 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "운영체제 4단원 동기화",
+   "url": "guide.html?lv=2&t=computer&s=operating-systems&u=4"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "트랜잭션이 갖춰야 할 성질 ACID는 몇 가지일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "원자성, 일관성, 고립성, 지속성의 4가지입니다.",
+   "hint": "네 글자의 약어입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "트랜잭션의 연산이 모두 반영되거나 하나도 반영되지 않아야 한다는 성질을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "원자성"
+     ]
+    }
+   ],
+   "explanation": "계좌 이체에서 출금만 되고 입금이 안 되는 일을 막습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "동시에 실행되는 트랜잭션이 서로의 중간 결과를 보지 못하게 하는 성질을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "고립성",
+      "격리성",
+      "독립성"
+     ]
+    }
+   ],
+   "explanation": "고립성 수준을 낮추면 성능은 좋아지지만 이상 현상이 생길 수 있습니다(9단원).",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "동시에 실행했지만 어떤 직렬 실행과 결과가 같은 스케줄을 {{1}} 가능한 스케줄이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "직렬",
+      "직렬화"
+     ]
+    }
+   ],
+   "explanation": "선행 그래프에 사이클이 없으면 충돌 직렬 가능합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "databases",
+ "id": "l2-computer-databases-u08"
+}

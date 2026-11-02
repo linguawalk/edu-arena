@@ -1,0 +1,88 @@
+{
+ "no": 3,
+ "title": "메모리 계층과 데이터 재사용",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "행렬 곱의 연산 강도를 계산할 수 있다.",
+  "데이터 이동 에너지와 온칩 버퍼·타일링 전략을 설명할 수 있다."
+ ],
+ "checklist": [
+  "데이터 이동 에너지: DRAM 접근이 MAC보다 수백 배",
+  "레지스터 → 온칩 SRAM → HBM 계층",
+  "타일링: 큰 행렬을 버퍼 크기로 나눠 처리",
+  "행렬 곱 연산 강도 ≈ 2n³ ÷ (데이터 바이트)",
+  "루프라인 모델로 병목 판정"
+ ],
+ "advice": [
+  "AI 가속기에서 에너지 대부분은 연산이 아니라 데이터를 옮기는 데 쓰입니다. 그래서 큰 행렬을 온칩 버퍼에 들어가는 조각으로 잘라(타일링) 한 번 가져온 데이터를 최대한 여러 번 쓰는 것이 설계의 핵심입니다. 정사각 행렬 곱의 연산 강도를 계산해 보면 행렬이 클수록 재사용이 늘어 연산 병목으로 바뀐다는 것을 확인할 수 있습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan & Claypool",
+   "title": "Sze 외, Efficient Processing of Deep Neural Networks (장 제목으로 표기)",
+   "part": "Kernel Computation 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2 융합",
+   "title": "AI 반도체 입문 4단원 메모리 병목과 HBM",
+   "url": "guide.html?lv=2&t=convergence&s=ai-chip-intro&u=4"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "1024 × 1024 FP16 행렬 두 개를 곱해 결과를 쓸 때(2n³ FLOP, 행렬 3개 × n² × 2바이트) 연산 강도는 약 몇 FLOP/B일까요? (소수 첫째 자리까지)",
+   "answer": "341.3",
+   "answer_format": "decimal",
+   "tolerance": 0.2,
+   "explanation": "2 × 1024³/(3 × 1024² × 2) ≈ 341.3 FLOP/B",
+   "hint": "FLOP ÷ 바이트입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "큰 행렬을 온칩 버퍼에 들어가는 작은 조각으로 나눠 처리하는 기법을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "타일링"
+     ]
+    }
+   ],
+   "explanation": "데이터 재사용을 늘리는 기본 기법입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "같은 데이터를 한 번 가져와 여러 연산에 거듭 쓰는 것을 데이터 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "재사용"
+     ]
+    }
+   ],
+   "explanation": "메모리 접근 에너지를 줄이는 핵심입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "ai-chip",
+ "id": "l3-convergence-ai-chip-u03"
+}

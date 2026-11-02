@@ -1,0 +1,90 @@
+{
+ "no": 1,
+ "title": "분산 시스템 모델과 장애",
+ "hours": 5,
+ "after": [],
+ "objectives": [
+  "분산 시스템이 단일 컴퓨터와 다른 점(부분 장애, 비동기 네트워크)을 설명할 수 있다.",
+  "장애 모델(정지, 누락, 비잔틴)을 구분할 수 있다.",
+  "복제로 가용도를 높이는 효과를 계산할 수 있다."
+ ],
+ "checklist": [
+  "분산의 이유: 확장성, 가용성, 지연(사용자 가까이)",
+  "부분 장애: 일부만 고장 나는 상태",
+  "비동기 네트워크: 메시지 지연·손실·순서 바뀜",
+  "장애 모델: 정지(crash), 누락, 비잔틴(임의 동작)",
+  "장애 탐지와 타임아웃의 한계",
+  "분산 컴퓨팅의 잘못된 가정들(네트워크는 믿을 만하다 등)",
+  "복제와 가용도"
+ ],
+ "advice": [
+  "분산 시스템 공부의 출발점은 '응답이 없을 때, 상대가 죽었는지 느린지 알 수 없다'는 불편한 사실을 받아들이는 것입니다. 이 불확실성 때문에 이후 단원의 모든 알고리즘(재시도, 시계, 합의)이 생겨났습니다. 장비 여러 대를 복제했을 때 가용도가 어떻게 올라가는지 계산해 보며, 반대로 모두가 같은 원인(같은 전원, 같은 버그)으로 함께 죽으면 그 계산이 무너진다는 점도 함께 기억하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "O'Reilly",
+   "title": "Kleppmann, Designing Data-Intensive Applications (번역본 『데이터 중심 애플리케이션 설계』)",
+   "part": "Reliable, Scalable, and Maintainable Applications, The Trouble with Distributed Systems 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT 6.5840 (구 6.824, 공개 강의 자료)",
+   "title": "Distributed Systems",
+   "url": "https://pdos.csail.mit.edu/6.824/",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "가용도 99%인 서버 3대 가운데 한 대만 살아 있어도 서비스가 된다면 전체 가용도는 몇 %일까요? (독립 장애 가정)",
+   "answer": "99.9999",
+   "answer_format": "decimal",
+   "tolerance": 0.0001,
+   "explanation": "1 − 0.01³ = 0.999999 = 99.9999%",
+   "hint": "모두 동시에 죽을 확률을 빼세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "시스템의 일부 노드만 고장 나고 나머지는 계속 동작하는 상황을 {{1}} 장애라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "부분"
+     ]
+    }
+   ],
+   "explanation": "단일 컴퓨터에는 없는, 분산 시스템만의 어려움입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "고장 난 노드가 멈추는 대신 잘못되거나 악의적인 메시지를 보내는 가장 까다로운 장애 모델을 {{1}} 장애라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "비잔틴"
+     ]
+    }
+   ],
+   "explanation": "블록체인 합의가 이 장애 모델을 다룹니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "distributed-systems",
+ "id": "l3-computer-distributed-systems-u01"
+}

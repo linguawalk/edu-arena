@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 3,
+  "unit": 1,
+  "unit_title": "함수 기초",
+  "questions": [
+    {
+      "id": "python_l3_u01_q001",
+      "type": "predict_output",
+      "code": "def add(a, b):\n    return a + b\n\nprint(add(3, 4))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["7", "34", "add", "오류"],
+      "answer": 0,
+      "explanation_en": "def defines a function; add(3, 4) returns a + b, which is 7. Note no type declarations are needed for parameters or return value.",
+      "explanation_ko": "def는 함수를 정의합니다. add(3, 4)는 a + b의 결과인 7을 반환합니다. 매개변수나 반환값에 타입 선언이 필요 없는 점에 유의하세요.",
+      "concept_tags": ["function", "def"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l3_u01_q002",
+      "type": "predict_output",
+      "code": "def greet(name):\n    print(\"안녕, \" + name)\n\nresult = greet(\"Kim\")\nprint(result)",
+      "prompt_en": "What is printed? (Note: greet has no return statement.)",
+      "prompt_ko": "출력 결과는? (greet에 return문이 없는 점에 주의하세요.)",
+      "options": ["안녕, Kim\\nNone", "안녕, Kim\\n안녕, Kim", "오류", "안녕, Kim"],
+      "answer": 0,
+      "explanation_en": "Without an explicit return statement, a Python function implicitly returns None; greet prints its message, then result (which holds None) is printed on the next line.",
+      "explanation_ko": "명시적인 return문이 없으면 Python 함수는 암묵적으로 None을 반환합니다. greet가 메시지를 출력한 뒤, None을 담은 result가 다음 줄에 출력됩니다.",
+      "concept_tags": ["function", "none_return"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l3_u01_q003",
+      "type": "fill_blank",
+      "code": "____ is_even(n):\n    return n % 2 == 0\n\nprint(is_even(4))",
+      "prompt_en": "Fill in the blank with the keyword that defines a function.",
+      "prompt_ko": "함수를 정의하는 키워드를 빈칸에 채우세요.",
+      "options": ["def", "function", "func", "fn"],
+      "answer": 0,
+      "explanation_en": "def introduces a function definition in Python, followed by the name, parameters, and a colon.",
+      "explanation_ko": "def는 Python에서 함수 정의를 시작하며, 이름·매개변수·콜론이 이어집니다.",
+      "concept_tags": ["def"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l3_u01_q004",
+      "type": "error_finding",
+      "code": "def add(a: int, b: int) -> int:\n    return a + b\n\nprint(add(\"3\", \"4\"))",
+      "prompt_en": "What actually happens, even though type hints (int) are written?",
+      "prompt_ko": "int라는 타입 힌트를 써놨는데도, 실제로는 어떻게 될까요?",
+      "options": [
+        "컴파일 오류로 실행이 거부됨",
+        "타입 힌트는 강제되지 않아서, 문자열이 그대로 전달되어 '+'가 문자열 연결로 동작해 \"34\"가 출력됨",
+        "자동으로 정수로 변환되어 7이 출력됨",
+        "런타임에 TypeError가 발생함"
+      ],
+      "answer": 1,
+      "explanation_en": "Python's type hints (a: int) are purely documentation/tooling aids and are not enforced at runtime; passing strings still works, and + concatenates them: \"34\".",
+      "explanation_ko": "Python의 타입 힌트(a: int)는 순전히 문서화·도구 지원용일 뿐 실행 시점에 강제되지 않습니다. 문자열을 전달해도 그대로 동작하며, +는 이를 연결해 \"34\"가 됩니다.",
+      "concept_tags": ["type_hint"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l3_u01_q005",
+      "type": "predict_output",
+      "code": "def is_even(n):\n    return n % 2 == 0\n\nprint(is_even(4))\nprint(is_even(7))",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["True False", "False True", "4 7", "1 0"],
+      "answer": 0,
+      "explanation_en": "is_even(4) evaluates 4 % 2 == 0, True; is_even(7) evaluates 7 % 2 == 0, False.",
+      "explanation_ko": "is_even(4)는 4 % 2 == 0을 계산해 True입니다. is_even(7)은 7 % 2 == 0을 계산해 False입니다.",
+      "concept_tags": ["function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l3_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "def", "definition": "함수를 정의하는 키워드" },
+        { "term": "return", "definition": "값을 반환하고 함수 실행을 종료하는 키워드" },
+        { "term": "암묵적 None 반환", "definition": "return이 없으면 함수가 자동으로 None을 반환하는 규칙" },
+        { "term": "타입 힌트 (a: int)", "definition": "타입을 문서화하지만 실행 시점에는 강제되지 않는 선택적 표기" }
+      ],
+      "explanation_en": "Python's dynamic typing extends to functions: type hints exist for readability and tooling (like IDE checks), but the interpreter itself never enforces them at runtime.",
+      "explanation_ko": "Python의 동적 타입 특성은 함수에도 적용됩니다. 타입 힌트는 가독성과 도구 지원(IDE 검사 등)을 위해 존재하지만, 인터프리터 자체는 실행 시점에 이를 강제하지 않습니다.",
+      "concept_tags": ["def", "type_hint", "none_return"],
+      "difficulty": "practice"
+    }
+  ]
+}

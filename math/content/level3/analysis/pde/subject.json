@@ -1,0 +1,193 @@
+{
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "level": 3,
+ "track": "analysis",
+ "id": "pde",
+ "title": "편미분방정식 입문",
+ "tagline": "열, 파동, 평형을 기술하는 세 방정식과 푸리에의 방법",
+ "overview": [
+  "편미분방정식(PDE)은 여러 변수(대개 위치와 시간)에 의존하는 양의 변화 법칙입니다. 막대를 따라 퍼지는 열, 줄의 진동과 소리, 전위와 정상 상태 온도 분포가 각각 열방정식, 파동방정식, 라플라스 방정식이라는 세 가지 대표 방정식으로 기술됩니다. 이 과목은 이 세 방정식을 중심으로 PDE의 기본 성질과 풀이법을 익힙니다.",
+  "풀이법의 중심은 변수분리법과 푸리에 급수입니다. 해를 '공간 모양 × 시간 변화'의 곱으로 가정하면 PDE가 상미분방정식 여러 개로 나뉘고, 초기 조건을 사인·코사인의 합(푸리에 급수)으로 나타내 해를 조립합니다. 여기에 특성곡선법, 달랑베르 공식, 최대원리, 푸리에 변환을 더해 해의 성질을 이해합니다.",
+  "레벨3 입문 과정이며 물리학, 공학(열전달, 유체, 신호처리), 금융수학(블랙–숄스 방정식)으로 이어집니다. 이 가이드는 Strauss 교재의 흐름을 따르고, 공학적 관점의 Farlow 교재를 보조로 권합니다."
+ ],
+ "level_note": "레벨 3 (학부 전공 입문 수준, 1학기 분량). 목차 검증 기준: Strauss·Farlow·Haberman 등 편미분방정식 입문 교재와 공학수학 편미분방정식 단원.",
+ "prereq": {
+  "text": "레벨2 상미분방정식(특히 2계 상수계수 방정식)과 대학 미적분학(편미분, 중적분, 발산정리), 선형대수의 고유값 개념이 필요합니다. 해석학의 함수열 단원을 공부했다면 푸리에 급수의 수렴을 더 깊이 이해할 수 있습니다.",
+  "links": [
+   {
+    "title": "레벨2 상미분방정식 · 단원 5 2계 선형 방정식",
+    "href": "guide.html?lv=2&t=analysis&s=ode&u=5"
+   },
+   {
+    "title": "레벨2 대학 미적분학 · 단원 6 편도함수",
+    "href": "guide.html?lv=2&t=analysis&s=calculus&u=6"
+   },
+   {
+    "title": "레벨2 대학 미적분학 · 단원 12 발산정리",
+    "href": "guide.html?lv=2&t=analysis&s=calculus&u=12"
+   },
+   {
+    "title": "레벨3 해석학 · 단원 11 함수열과 균등수렴",
+    "href": "guide.html?lv=3&t=analysis&s=real-analysis&u=11"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "q1",
+    "qtype": "fill_blank",
+    "prompt": "X″ + 4X = 0의 일반해는 c₁cos {{1}}x + c₂sin {{2}}x",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "2"
+      ]
+     },
+     {
+      "id": 2,
+      "answers": [
+       "2"
+      ]
+     }
+    ],
+    "explanation": "특성근 ±2i (상미분방정식 단원 5)"
+   },
+   {
+    "type": "question",
+    "id": "q2",
+    "qtype": "numeric",
+    "prompt": "u = x²t + t³일 때 ∂u/∂t를 (1, 1)에서 계산하면?",
+    "answer": "4",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "∂u/∂t = x² + 3t² = 1 + 3 = 4"
+   },
+   {
+    "type": "question",
+    "id": "q3",
+    "qtype": "numeric",
+    "prompt": "∫₀^π sin²x dx를 π로 나눈 값은?",
+    "answer": "1/2",
+    "answer_format": "fraction",
+    "tolerance": 0,
+    "explanation": "sin²x = (1 − cos 2x)/2\n적분 = π/2 → π로 나누면 1/2"
+   },
+   {
+    "type": "question",
+    "id": "q4",
+    "qtype": "numeric",
+    "prompt": "∫₀^π sin x sin 2x dx는?",
+    "answer": "0",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "서로 다른 정수 m, n에 대해 sin mx와 sin nx는 [0, π]에서 직교\n푸리에 급수의 핵심 성질"
+   },
+   {
+    "type": "question",
+    "id": "q5",
+    "qtype": "numeric",
+    "prompt": "F = (x, y, z)의 발산은?",
+    "answer": "3",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "1 + 1 + 1 = 3 (대학 미적분학 단원 12)"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "레벨3 · 수치해석",
+   "note": "유한차분법으로 PDE를 컴퓨터로 풀기"
+  },
+  {
+   "title": "대학원 · 편미분방정식 이론",
+   "note": "소볼레프 공간과 약해"
+  },
+  {
+   "title": "레벨3 · 복소해석",
+   "note": "조화함수와 등각사상으로 라플라스 방정식 풀기"
+  },
+  {
+   "title": "sci-arena 레벨3 · 전자기학·양자역학",
+   "note": "맥스웰 방정식과 슈뢰딩거 방정식"
+  }
+ ],
+ "units": [
+  {
+   "no": 1,
+   "title": "편미분방정식의 유래와 분류",
+   "hours": 4,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "1계 방정식과 특성곡선",
+   "hours": 4,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "파동방정식과 달랑베르 공식",
+   "hours": 5,
+   "after": [
+    2
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "열방정식: 최대원리와 기본해",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "푸리에 급수",
+   "hours": 6,
+   "after": [
+    1
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "변수분리법과 경계값 문제",
+   "hours": 6,
+   "after": [
+    3,
+    4,
+    5
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "라플라스 방정식과 조화함수",
+   "hours": 5,
+   "after": [
+    6
+   ],
+   "file": "u07.json"
+  },
+  {
+   "no": 8,
+   "title": "푸리에 변환과 무한 영역",
+   "hours": 5,
+   "after": [
+    4,
+    5
+   ],
+   "file": "u08.json"
+  }
+ ],
+ "total_hours": 40
+}

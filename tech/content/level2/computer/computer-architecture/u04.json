@@ -1,0 +1,112 @@
+{
+ "no": 4,
+ "title": "프로시저 호출과 메모리 배치",
+ "hours": 5,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "스택 프레임과 호출 규약(인자, 반환값, 보존 레지스터)을 설명할 수 있다.",
+  "프로그램의 메모리 배치(코드·데이터·힙·스택)를 설명할 수 있다.",
+  "바이트 주소, 배열 원소 주소, 엔디언을 계산할 수 있다."
+ ],
+ "checklist": [
+  "함수 호출: 반환 주소(ra), 스택 포인터(sp), 인자·반환값 레지스터",
+  "호출자 보존·피호출자 보존 레지스터",
+  "스택 프레임과 재귀 호출",
+  "메모리 배치: 텍스트(코드), 데이터, 힙, 스택",
+  "바이트 주소, 원소 주소 = 시작 주소 + 인덱스 × 원소 크기",
+  "리틀 엔디언과 빅 엔디언",
+  "스택 오버플로와 버퍼 오버플로(정보보안과 연결)"
+ ],
+ "advice": [
+  "이 단원은 C 프로그램이 실행될 때 메모리에서 실제로 무슨 일이 일어나는지 보여 줍니다. 재귀 함수 하나를 골라 호출될 때마다 스택 프레임이 쌓이고 반환될 때 사라지는 모습을 그림으로 그려 보세요. 레벨3 시스템 프로그래밍과 정보보안의 버퍼 오버플로가 모두 이 그림에서 출발합니다.",
+  "배열 원소 주소 계산과 엔디언은 짧지만 시험과 디버깅 모두에서 자주 쓰입니다. 4바이트 정수 0x12345678이 리틀 엔디언 메모리에 어떤 순서로 놓이는지 직접 적어 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Patterson · Hennessy, Computer Organization and Design RISC-V Edition (번역본 『컴퓨터 구조 및 설계』, 장 제목으로 표기)",
+   "part": "Instructions 장의 procedure call 절"
+  },
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Bryant · O'Hallaron, Computer Systems: A Programmer's Perspective (번역본 『컴퓨터 시스템』, 장 제목으로 표기)",
+   "part": "Machine-Level Representation of Programs 장"
+  },
+  {
+   "kind": "web",
+   "provider": "code-arena (실습)",
+   "title": "C 언어 트랙",
+   "url": "https://code-arena.org/browse.html?type=language&track=track_a&lang=c",
+   "lang": "한국어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "시작 주소가 1000인 4바이트 정수 배열에서 a[5]의 주소는 얼마일까요?",
+   "answer": "1020",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "1000 + 5 × 4 = 1020",
+   "hint": "시작 주소 + 인덱스 × 원소 크기입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "가장 낮은 주소에 가장 낮은 자리 바이트를 저장하는 방식을 {{1}} 엔디언이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "리틀",
+      "little"
+     ]
+    }
+   ],
+   "explanation": "x86과 대부분의 RISC-V 시스템이 리틀 엔디언입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "프레임 하나에 64바이트를 쓰는 재귀 함수가 1000번 깊이로 호출되면 스택을 몇 바이트 쓸까요?",
+   "answer": "64000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "64 × 1000 = 64 000바이트",
+   "hint": "프레임 크기 × 깊이입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "함수 호출 때마다 늘었다 줄었다 하며 지역 변수와 반환 주소를 담는 메모리 영역을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "스택"
+     ]
+    }
+   ],
+   "explanation": "동적으로 할당하는 영역은 힙입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "computer-architecture",
+ "id": "l2-computer-computer-architecture-u04"
+}

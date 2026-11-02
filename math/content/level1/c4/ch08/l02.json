@@ -1,0 +1,390 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c4",
+    "title": "미적분"
+  },
+  "chapter": {
+    "id": "c4-ch08",
+    "no": 8,
+    "title": "여러 가지 적분법"
+  },
+  "lesson": {
+    "id": "c4-ch08-l02",
+    "no": 2,
+    "title": "부분적분법",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "부분적분",
+      "body": [
+        "곱의 미분법을 거꾸로 하면 ∫ f(x)g′(x) dx = f(x)g(x) − ∫ f′(x)g(x) dx입니다.",
+        "미분하면 간단해지는 것을 f(다항식, ln x), 적분하기 쉬운 것을 g′(eˣ, sin x, cos x)으로 고릅니다.",
+        "왜 성립할까요? 곱의 미분 (fg)′ = f′g + fg′의 양변을 적분하면 fg = ∫ f′g dx + ∫ fg′ dx이고, 이를 정리하면 공식이 나옵니다. 핵심은 '어려운 적분 ∫ fg′'을 '쉬운 적분 ∫ f′g'로 바꾸는 것입니다. 그래서 미분하면 간단해지는 쪽을 f로 고릅니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "∫ x sin x dx를 구하세요.",
+      "steps": [
+        "f = x (미분하면 1), g′ = sin x (적분하면 −cos x)",
+        "−x cos x − ∫ 1 × (−cos x) dx",
+        "= −x cos x + ∫ cos x dx",
+        "= −x cos x + sin x + C"
+      ],
+      "answer": "−x cos x + sin x + C"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "∫ xeˣ dx = (x − {{1}})eˣ + C",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "1"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "f = x, g′ = eˣ: xeˣ − ∫ 1 × eˣ dx\n= xeˣ − eˣ + C = (x − 1)eˣ + C\n빈칸은 1\n확인: 미분하면 eˣ + (x − 1)eˣ = xeˣ"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "∫ x cos x dx = x sin x + {{1}} x + C",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "cos"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "f = x, g′ = cos x (g = sin x): x sin x − ∫ sin x dx\n= x sin x + cos x + C\n빈칸은 cos"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "로그함수의 적분",
+      "body": [
+        "∫ ln x dx는 ln x × 1로 보고 f = ln x, g′ = 1로 부분적분하면 x ln x − x + C입니다.",
+        "ln x는 적분 공식이 바로 없지만 미분하면 1/x로 간단해집니다. 그래서 곱해진 것이 없어도 1을 곱한 것으로 보고 f = ln x, g′ = 1로 부분적분합니다. 그러면 x ln x − ∫ x × (1/x) dx = x ln x − x + C가 됩니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "∫₁ᵉ x² ln x dx를 구하세요.",
+      "steps": [
+        "f = ln x, g′ = x² (g = x³/3)",
+        "[(x³/3) ln x]₁ᵉ − ∫₁ᵉ (x³/3)(1/x) dx = e³/3 − ∫₁ᵉ x²/3 dx",
+        "∫₁ᵉ x²/3 dx = (e³ − 1)/9",
+        "e³/3 − (e³ − 1)/9 = (2e³ + 1)/9"
+      ],
+      "answer": "(2e³ + 1)/9"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "∫₁ᵉ ln x dx의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "∫ ln x dx = x ln x − x\n[x ln x − x]₁ᵉ = (e − e) − (0 − 1)\n= 1\n원리: ln x의 원시함수는 부분적분으로 구합니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "∫ x ln x dx = (x²/2) ln x − x²/{{1}} + C",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "4"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "f = ln x, g′ = x (g = x²/2): (x²/2) ln x − ∫ (x²/2)(1/x) dx\n= (x²/2) ln x − ∫ x/2 dx = (x²/2) ln x − x²/4 + C\n빈칸은 4"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "정적분의 부분적분",
+      "body": [
+        "∫ₐᵇ fg′ dx = [fg]ₐᵇ − ∫ₐᵇ f′g dx",
+        "정적분에서도 같은 공식을 쓰되, fg 부분은 바로 위끝과 아래끝을 넣어 계산하고, 남은 적분은 따로 계산합니다. 두 부분의 부호를 헷갈리지 않도록 [fg] − ∫ f′g 형태를 그대로 적어 두는 것이 좋습니다. 특히 g가 −cos x처럼 음수 부호를 가질 때 주의합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "∫₀¹ xeˣ dx의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "∫ xeˣ dx = (x − 1)eˣ\n[(x − 1)eˣ]₀¹ = 0 − (−1)\n= 1\n원리: 미분하면 간단해지는 x를 f로, 적분하기 쉬운 eˣ를 g′으로 골랐습니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "∫₀^π x sin x dx = {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "π"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "∫ x sin x dx = −x cos x + sin x\n[ ]₀^π = −π(−1) + 0 − 0\n= π\n빈칸은 π"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "두 번 하는 부분적분",
+      "body": [
+        "x²eˣ처럼 다항식의 차수가 2이면 부분적분을 두 번 합니다.",
+        "다항식은 미분할 때마다 차수가 하나씩 줄어듭니다. x²eˣ는 한 번 부분적분하면 2xeˣ의 적분이 남고, 한 번 더 하면 상수와 eˣ의 적분만 남습니다. 다항식의 차수만큼 반복하면 됩니다. 결과는 (다항식) × eˣ 꼴이 되고, 다항식의 계수는 부호가 번갈아 바뀝니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "∫ x²eˣ dx = (x² − 2x + {{1}})eˣ + C",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": "부분적분을 두 번 하세요.",
+      "explanation": "첫 번째: x²eˣ − ∫ 2xeˣ dx\n두 번째: ∫ 2xeˣ dx = 2(x − 1)eˣ\nx²eˣ − 2(x − 1)eˣ = (x² − 2x + 2)eˣ이므로 빈칸은 2"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "∫₀¹ x²eˣ dx = e − {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": "앞에서 구한 원시함수를 쓰세요.",
+      "explanation": "[(x² − 2x + 2)eˣ]₀¹ = (1 − 2 + 2)e − 2\n= e − 2\n빈칸은 2\n원리: 부분적분으로 구한 원시함수에 위끝, 아래끝을 넣습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "되돌아오는 부분적분",
+      "body": [
+        "eˣ sin x처럼 두 번 부분적분하면 처음 적분이 다시 나오는 경우, 그것을 미지수로 놓고 풉니다.",
+        "eˣ와 sin x는 미분해도 적분해도 사라지지 않아 부분적분을 계속해도 끝나지 않습니다. 대신 두 번 하면 처음과 같은 적분이 다시 나타나므로, I = … − I 꼴의 방정식이 되어 I를 구할 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "∫ eˣ cos x dx를 구하세요.",
+      "steps": [
+        "I = ∫ eˣ cos x dx = eˣ sin x − ∫ eˣ sin x dx",
+        "∫ eˣ sin x dx = −eˣ cos x + ∫ eˣ cos x dx = −eˣ cos x + I",
+        "I = eˣ sin x + eˣ cos x − I",
+        "I = eˣ(sin x + cos x)/2 + C"
+      ],
+      "answer": "eˣ(sin x + cos x)/2 + C"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "∫ eˣ sin x dx = eˣ(sin x − cos x)/{{1}} + C",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": "같은 적분이 다시 나오면 I로 놓으세요.",
+      "explanation": "두 번 부분적분하면 I = −eˣ cos x + eˣ sin x − I\n2I = eˣ(sin x − cos x)\nI = eˣ(sin x − cos x)/2이므로 빈칸은 2"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "∫₀^(π/2) x cos x dx = π/2 − {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "1"
+          ]
+        }
+      ],
+      "hint": "f = x, g′ = cos x",
+      "explanation": "∫ x cos x dx = x sin x + cos x\n[ ]₀^(π/2) = (π/2 + 0) − (0 + 1)\n= π/2 − 1이므로 빈칸은 1"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "∫₁² ln x dx = 2 ln 2 − {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "1"
+          ]
+        }
+      ],
+      "hint": "ln x를 1 × ln x로 보세요.",
+      "explanation": "∫ ln x dx = x ln x − x\n[ ]₁² = (2 ln 2 − 2) − (0 − 1)\n= 2 ln 2 − 1이므로 빈칸은 1"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "∫₀¹ (x + 1)eˣ dx = {{1}}",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "e"
+          ]
+        }
+      ],
+      "hint": "f = x + 1, g′ = eˣ",
+      "explanation": "∫ (x + 1)eˣ dx = (x + 1)eˣ − eˣ = xeˣ\n[xeˣ]₀¹ = e − 0\n= e\n확인: xeˣ를 미분하면 eˣ + xeˣ = (x + 1)eˣ"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "d/dx (x ln x − x)를 x = e에서 계산한 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "곱의 미분을 쓰세요.",
+      "explanation": "d/dx (x ln x − x) = ln x + 1 − 1 = ln x\nx = e이면 ln e\n= 1 (∫ ln x dx의 결과가 맞음을 확인)"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "∫₀¹ xe⁻ˣ dx = 1 − {{1}}/e",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": "g′ = e⁻ˣ의 적분은 −e⁻ˣ입니다.",
+      "explanation": "f = x, g′ = e⁻ˣ (g = −e⁻ˣ): ∫ xe⁻ˣ dx = −xe⁻ˣ − e⁻ˣ = −(x + 1)e⁻ˣ\n[ ]₀¹ = −2/e + 1\n= 1 − 2/e이므로 빈칸은 2"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "fill_blank",
+      "prompt": "∫₋π^π x sin x dx = {{1}}π",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": "짝함수는 대칭 구간에서 한쪽의 2배입니다.",
+      "explanation": "x sin x는 y축 대칭(짝함수)이므로 2∫₀^π x sin x dx\n= 2π\n빈칸은 2\n원리: x와 sin x가 모두 홀함수라 곱은 짝함수(y축 대칭)가 됩니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "부분적분에서 f와 g′을 고르는 기준을 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "미분"
+          ],
+          [
+            "간단"
+          ],
+          [
+            "적분"
+          ],
+          [
+            "쉬운",
+            "쉽게"
+          ]
+        ],
+        "min_groups_matched": 3
+      },
+      "model_answer": "미분하면 더 간단해지는 쪽을 f로, 적분하기 쉬운 쪽을 g′으로 고릅니다. 그래야 남은 적분 ∫ f′g dx가 처음보다 쉬워집니다. 예를 들어 xeˣ에서는 x를 f, eˣ를 g′으로 고릅니다."
+    }
+  ]
+}

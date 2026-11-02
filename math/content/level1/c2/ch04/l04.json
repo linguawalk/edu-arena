@@ -1,0 +1,387 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c2",
+    "title": "함수와 그래프"
+  },
+  "chapter": {
+    "id": "c2-ch04",
+    "no": 4,
+    "title": "이차함수"
+  },
+  "lesson": {
+    "id": "c2-ch04-l04",
+    "no": 4,
+    "title": "이차함수와 직선",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "해석",
+      "대수"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "교점 구하기",
+      "body": [
+        "y = f(x)와 직선 y = mx + n의 교점의 x좌표는 f(x) = mx + n의 실근입니다.",
+        "교점은 두 그래프에 동시에 있는 점이므로 y값이 같습니다. 그래서 f(x) = mx + n으로 놓고 푸는 것이고, 이 방정식의 실근의 개수가 교점의 개수입니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": -5,
+          "xmax": 5,
+          "ymin": -5,
+          "ymax": 5,
+          "xstep": 1,
+          "ystep": 1,
+          "curves": [
+            {
+              "kind": "poly",
+              "coef": [
+                0,
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "poly",
+              "coef": [
+                2,
+                1
+              ]
+            }
+          ]
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "y = x²과 직선 y = x + 2의 교점은 몇 개일까요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x² = x + 2 → x² − x − 2 = 0\nD = 1 + 8 = 9 > 0\n교점 2개 (x = −1, 2)"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "두 교점의 x좌표의 합은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "교점의 x좌표는 x² − x − 2 = 0의 두 근\n근과 계수의 관계: 합 = 1\n(두 근 −1, 2)"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "판별식으로 보는 위치 관계",
+      "body": [
+        "f(x) − (mx + n) = 0의 판별식 D가 양수이면 두 점, 0이면 접하고, 음수이면 만나지 않습니다.",
+        "앞 레슨의 'x축과의 위치 관계'를 넓힌 것입니다. x축은 직선 y = 0이므로, 일반적인 직선 y = mx + n과의 관계도 f(x) − (mx + n) = 0의 판별식으로 똑같이 판단합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "y = x² − 3x + 5와 직선 y = x + k가 접할 때 k를 구하세요.",
+      "steps": [
+        "x² − 3x + 5 = x + k → x² − 4x + 5 − k = 0",
+        "접하려면 D/4 = 4 − (5 − k) = 0",
+        "k = 1"
+      ],
+      "answer": "k = 1"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "y = x² + 1과 직선 y = 2x의 교점은 몇 개일까요?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x² + 1 = 2x → x² − 2x + 1 = (x − 1)² = 0\n중근이므로 접합니다.\n1개"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "y = x²과 직선 y = 2x + k가 접할 때 k의 값은?",
+      "answer": "-1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x² = 2x + k → x² − 2x − k = 0\n접하려면 D/4 = 1 + k = 0\nk = −1"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "y = x² − x와 직선 y = x + k가 만나지 않는 정수 k의 최댓값은?",
+      "answer": "-2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x² − x = x + k → x² − 2x − k = 0\n만나지 않으려면 D/4 = 1 + k < 0에서 k < −1\n정수 k의 최댓값 −2"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "접선의 기울기",
+      "body": [
+        "점 (0, −1)을 지나는 직선 y = mx − 1이 y = x²에 접하려면 x² − mx + 1 = 0의 판별식이 0이어야 합니다.",
+        "접선을 구하는 방법은 '직선의 식을 문자로 놓고 → 포물선과 연립 → 판별식 = 0'입니다. 미적분을 배우면 미분으로도 구할 수 있지만, 이차함수에서는 판별식으로 충분합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "점 (0, −4)를 지나고 y = x²에 접하는 직선 중 기울기가 양수인 것을 구하세요.",
+      "steps": [
+        "직선 y = mx − 4로 놓고 연립: x² − mx + 4 = 0",
+        "접하려면 D = m² − 16 = 0, m = ±4",
+        "양수 m = 4이므로 y = 4x − 4"
+      ],
+      "answer": "y = 4x − 4"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "위 조건을 만족하는 양수 m의 값은?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x² − mx + 1 = 0의 판별식 D = m² − 4 = 0\nm = ±2\n양수 m = 2"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "원점을 지나는 직선 y = mx가 y = x² + 3에 접할 때 양수 m = {{1}}√3",
+      "blanks": [
+        {
+          "id": 1,
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "hint": null,
+      "explanation": "x² + 3 = mx → x² − mx + 3 = 0\nD = m² − 12 = 0에서 m = ±2√3\n양수 m = 2√3"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "포물선과 직선 사이의 거리",
+      "body": [
+        "포물선 위의 점과 직선 사이의 거리가 가장 짧은 곳은, 그 직선과 평행한 접선이 닿는 점입니다.",
+        "왜 평행한 접선일까요? 직선과 평행한 직선들을 포물선 쪽으로 옮겨 가다 처음 닿는 곳이 가장 가까운 점입니다. 그 순간의 직선이 포물선에 접하므로, 기울기가 같은 접선의 접점을 찾으면 됩니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "y = x² 위의 점 중 직선 y = 4x − 10과의 거리가 가장 짧은 점을 구하세요.",
+      "steps": [
+        "기울기 4인 접선 y = 4x + k와 연립: x² − 4x − k = 0",
+        "D/4 = 4 + k = 0에서 k = −4, 중근 x = 2",
+        "접점 (2, 4)"
+      ],
+      "answer": "(2, 4)"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x² 위의 점 중 직선 y = 2x − 3과의 거리가 가장 짧은 점의 x좌표는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "주어진 직선과 기울기가 같은 접선을 찾으세요.",
+      "explanation": "직선 y = 2x − 3과 평행한 접선 y = 2x + k를 찾습니다: x² − 2x − k = 0\nD/4 = 1 + k = 0에서 k = −1, 중근 x = 1\n접점의 x좌표 1"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "그 점의 y좌표는?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "y = x²에 x = 1을 넣으세요.",
+      "explanation": "앞에서 구한 접점의 x좌표 1을 포물선 y = x²에 넣으면\ny = 1\n접점 (1, 1)"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "diagram",
+      "widget": "coordinate_plane",
+      "config": {
+        "xmin": -6,
+        "xmax": 6,
+        "ymin": -6,
+        "ymax": 6,
+        "xstep": 1,
+        "ystep": 1,
+        "curves": [
+          {
+            "kind": "poly",
+            "coef": [
+              5,
+              -4,
+              1
+            ]
+          },
+          {
+            "kind": "poly",
+            "coef": [
+              1,
+              1
+            ]
+          }
+        ]
+      },
+      "prompt": "y = x² − 4x + 5와 직선 y = x + 1의 교점 중 x좌표가 작은 점을 표시하세요.",
+      "answer": {
+        "x": 1,
+        "y": 2,
+        "tolerance": 0
+      },
+      "hint": "두 식을 같게 놓고 푸세요.",
+      "explanation": "x² − 4x + 5 = x + 1 → x² − 5x + 4 = (x − 1)(x − 4) = 0\nx = 1 또는 4, 작은 쪽 x = 1에서 y = 2\n(1, 2)를 표시합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "교점, 접할 조건, 만나지 않을 조건은 모두 '두 식을 같게 놓은 이차방정식'의 판별식으로 판단합니다.",
+        "결국 이차함수와 직선의 모든 문제는 하나의 이차방정식으로 모입니다. 교점의 좌표는 근, 교점의 개수는 판별식, 교점의 x좌표의 합과 곱은 근과 계수의 관계로 구합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x² − 2x + 3과 직선 y = 2x + k가 서로 다른 두 점에서 만나는 정수 k의 최솟값은?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "D > 0이어야 합니다.",
+      "explanation": "x² − 2x + 3 = 2x + k → x² − 4x + 3 − k = 0\n두 점에서 만나려면 D/4 = 4 − 3 + k > 0, k > −1\n정수 k의 최솟값 0"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = −x² + 4와 직선 y = k가 서로 다른 두 점에서 만나는 정수 k의 최댓값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "꼭짓점의 높이보다 아래여야 합니다.",
+      "explanation": "−x² + 4 = k → x² = 4 − k\n서로 다른 두 실근이려면 4 − k > 0, k < 4\n정수 k의 최댓값 3"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x²과 직선 y = 4가 만나는 두 점 사이의 거리는?",
+      "answer": "4",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 교점의 x좌표를 구하세요.",
+      "explanation": "x² = 4에서 x = ±2\n두 교점 (−2, 4), (2, 4)\n거리 2 − (−2) = 4"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x² − 4와 y = −x² + 4의 그래프의 교점은 몇 개일까요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 식을 같게 놓으세요.",
+      "explanation": "x² − 4 = −x² + 4 → 2x² = 8, x² = 4\nx = ±2\n교점 2개"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "y = x²과 직선 y = mx + 1의 두 교점의 x좌표의 곱은?",
+      "answer": "-1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "근과 계수의 관계를 쓰세요.",
+      "explanation": "x² = mx + 1 → x² − mx − 1 = 0\n근과 계수의 관계: 두 근의 곱 = −1\nm과 관계없이 −1"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "포물선과 직선이 접할 조건이 판별식 D = 0인 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "중근"
+          ],
+          [
+            "한 점",
+            "하나"
+          ],
+          [
+            "교점",
+            "만나"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "교점의 x좌표는 두 식을 같게 놓은 이차방정식의 실근입니다. 접한다는 것은 한 점에서만 만난다는 뜻이므로 이 이차방정식이 중근을 가져야 하고, 그 조건이 D = 0입니다."
+    }
+  ]
+}

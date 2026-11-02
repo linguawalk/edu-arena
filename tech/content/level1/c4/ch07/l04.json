@@ -1,0 +1,344 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch07",
+  "no": 7,
+  "title": "네트워크 기초"
+ },
+ "lesson": {
+  "id": "c4-ch07-l04",
+  "no": 4,
+  "title": "전송 시간 계산",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "데이터가 도착하기까지",
+   "body": [
+    "파일 하나를 보내는 데 걸리는 시간은 크게 두 부분입니다. 데이터를 선에 모두 올려놓는 전송 지연(= 데이터 크기 ÷ 대역폭)과, 신호가 선을 따라 목적지까지 가는 전파 지연(= 거리 ÷ 신호 속도)입니다.",
+    "광섬유 안에서 빛은 초속 약 20만 km(2 × 10⁸ m/s)로 갑니다. 1000 km를 가는 데 약 5 ms가 걸립니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "numeric",
+   "prompt": "빛이 광섬유에서 초속 20만 km로 간다면 2000 km를 가는 데 몇 ms 걸릴까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "거리 ÷ 속도입니다.",
+   "explanation": "2000 ÷ 200 000 = 0.01초입니다.\n10 ms입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "전송 지연",
+   "body": [
+    "100 Mbps 선으로 10 MB 파일을 보내면 10 MB = 80 Mb(메가비트)이므로 전송 지연은 80 ÷ 100 = 0.8초입니다. 바이트를 비트로 바꾸는 것을 잊지 말아야 합니다.",
+    "대역폭을 두 배로 늘리면 전송 지연은 절반이 되지만 전파 지연은 그대로입니다. 전파 지연은 빛의 속도로 정해지므로 기술로 줄일 수 없고, 서버를 가까이 두어야 줄어듭니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "1 Gbps 선으로 500 MB 파일을 보내면 전송 지연은?",
+   "steps": [
+    "500 MB = 4000 Mb입니다.",
+    "1 Gbps = 1000 Mbps입니다.",
+    "4000 ÷ 1000 = 4초입니다."
+   ],
+   "answer": "4초"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "데이터 크기를 대역폭으로 나눈 시간을 {{1}} 지연이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "전송"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "전송 지연은 데이터를 선에 모두 올려놓는 시간입니다.\n대역폭이 크면 줄어듭니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "100 Mbps 선으로 25 MB 파일을 보내면 전송 지연은 몇 초일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "25 MB = 200 Mb입니다.\n200 ÷ 100 = 2초입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "50 Mbps 선으로 25 MB 파일을 보내면 전송 지연은 몇 초일까요?",
+   "answer": "4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "200 Mb ÷ 50 = 4초입니다.\n대역폭이 절반이면 시간은 2배입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "거리를 신호 속도로 나눈 시간을 {{1}} 지연이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "전파"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "전파 지연은 신호가 선을 따라 가는 시간입니다.\n대역폭과 관계없습니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "둘을 합치기",
+   "body": [
+    "파일 하나가 도착하는 데 걸리는 시간은 대략 전송 지연 + 전파 지연입니다(라우터에서 기다리는 시간은 빼고). 큰 파일은 전송 지연이, 작은 데이터와 먼 거리는 전파 지연이 대부분을 차지합니다.",
+    "서울과 뉴욕은 광섬유 길이로 대략 1만 km 이상이라 전파 지연만 편도 50 ms, 왕복 100 ms가 넘습니다. 아무리 빠른 선을 깔아도 이보다 줄일 수 없습니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "1000 km 떨어진 서버로 100 Mbps 선을 통해 1 MB를 보내면 도착까지 걸리는 시간은? (빛 2 × 10⁸ m/s)",
+   "steps": [
+    "전송 지연 = 8 Mb ÷ 100 Mbps = 0.08초 = 80 ms입니다.",
+    "전파 지연 = 10⁶ m ÷ (2 × 10⁸ m/s) = 5 ms입니다.",
+    "합계 약 85 ms입니다."
+   ],
+   "answer": "약 85 ms"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "대역폭을 아무리 늘려도 줄지 않는 것은 {{1}} 지연입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "전파"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "전파 지연은 빛의 속도와 거리로 정해집니다.\n서버를 가까이 두어야 줄어듭니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "3000 km 떨어진 곳까지 광섬유 전파 지연은 몇 ms일까요? (빛 초속 20만 km)",
+   "answer": "15",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "3000 ÷ 200 000 = 0.015초 = 15 ms입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 거리에서 왕복 전파 지연은 몇 ms일까요?",
+   "answer": "30",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "갔다가 돌아오므로 2배입니다.\n15 × 2 = 30 ms입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "100 Mbps 선으로 1 kB(1000바이트) 요청을 보내는 전송 지연은 몇 ms일까요? (소수 둘째 자리까지)",
+   "answer": "0.08",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "hint": null,
+   "explanation": "1000바이트 = 8000비트입니다.\n8000 ÷ 10⁸ = 0.00008초 = 0.08 ms입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "가까이 두기",
+   "body": [
+    "그래서 유튜브나 넷플릭스 같은 서비스는 영상 사본을 전 세계 여러 곳의 서버에 나누어 둡니다. 이를 콘텐츠 전송 네트워크(CDN)라고 합니다. 사용자는 가장 가까운 서버에서 받으므로 전파 지연과 먼 길의 혼잡을 함께 줄입니다.",
+    "정리: 전송 지연 = 크기 ÷ 대역폭(바이트를 비트로), 전파 지연 = 거리 ÷ 신호 속도(광섬유 약 2 × 10⁸ m/s, 1000 km에 5 ms), 전체 ≈ 둘의 합, 전파 지연은 거리로만 줄어듦, CDN"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "콘텐츠 사본을 사용자 가까운 여러 서버에 두는 체계를 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "CDN"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "CDN은 Content Delivery Network의 줄임말입니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "서울에서 1만 km 떨어진 서버와 요청·응답을 한 번 주고받는 데 걸리는 최소 시간은? (빛 초속 20만 km, 전송 지연 무시)",
+   "steps": [
+    "편도 전파 지연 = 10 000 ÷ 200 000 = 0.05초 = 50 ms입니다.",
+    "왕복이므로 100 ms입니다.",
+    "실제로는 선이 곧지 않고 장비를 거쳐 더 걸립니다."
+   ],
+   "answer": "100 ms"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "500 Mbps 선으로 1 GB(1000 MB) 파일을 보내면 전송 지연은 몇 초일까요?",
+   "answer": "16",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "바이트를 비트로 바꾸세요.",
+   "explanation": "1000 MB = 8000 Mb입니다.\n8000 ÷ 500 = 16초입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "2000 km 떨어진 서버로 200 Mbps 선을 통해 5 MB를 보내면 도착까지 몇 ms 걸릴까요? (빛 초속 20만 km)",
+   "answer": "210",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "전송 지연과 전파 지연을 따로 구해 더하세요.",
+   "explanation": "전송 = 40 Mb ÷ 200 = 0.2초 = 200 ms입니다.\n전파 = 10 ms, 합계 210 ms입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 문제에서 대역폭을 2000 Mbps로 10배 늘리면 도착까지 몇 ms 걸릴까요?",
+   "answer": "30",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "전파 지연은 그대로입니다.",
+   "explanation": "전송 = 40 ÷ 2000 = 0.02초 = 20 ms입니다.\n전파 10 ms를 더해 30 ms입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "CDN으로 서버가 6000 km에서 300 km로 가까워지면 왕복 전파 지연은 몇 ms 줄어들까요? (빛 초속 20만 km)",
+   "answer": "57",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "왕복 거리로 계산하세요.",
+   "explanation": "전: 왕복 12 000 km ÷ 200 000 = 60 ms입니다.\n후: 600 km → 3 ms, 57 ms 줄어듭니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "작은 메시지를 먼 곳과 자주 주고받는 서비스에서는 대역폭보다 {{1}} 지연을 줄이는 것이 중요합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "전파"
+     ]
+    }
+   ],
+   "hint": "거리로 정해지는 지연입니다.",
+   "explanation": "작은 메시지는 전송 지연이 매우 작아 전파 지연이 대부분을 차지합니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "대역폭을 10배로 늘려도 먼 서버와의 응답 시간이 10배 빨라지지 않는 이유를 설명해 보세요.",
+   "hint": "두 가지 지연을 나누어 생각하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "전송 지연"
+     ],
+     [
+      "전파 지연"
+     ],
+     [
+      "거리",
+      "빛",
+      "속도"
+     ],
+     [
+      "그대로",
+      "줄지",
+      "변하지"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "응답 시간은 전송 지연과 전파 지연의 합입니다. 대역폭을 늘리면 전송 지연만 줄어들고, 거리와 빛의 속도로 정해지는 전파 지연은 그대로 남습니다. 그래서 먼 서버일수록 대역폭을 늘려도 응답 시간이 그만큼 빨라지지 않습니다."
+  }
+ ]
+}

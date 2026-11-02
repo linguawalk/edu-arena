@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "scripting",
+  "level": 5,
+  "unit": 2,
+  "unit_title": "캡슐화 관례",
+  "questions": [
+    {
+      "id": "python_l5_u02_q001",
+      "type": "predict_output",
+      "code": "class Dog:\n    def __init__(self):\n        self._age = 0\n\nd = Dog()\nd._age = -100\nprint(d._age)",
+      "prompt_en": "What is printed? (Compare with Java/C#/VB's private, which would block this.)",
+      "prompt_ko": "출력 결과는? (이를 막았을 Java/C#/VB의 private과 비교해보세요.)",
+      "options": ["-100", "0", "오류", "None"],
+      "answer": 0,
+      "explanation_en": "A single leading underscore (_age) is purely a naming convention meaning 'internal use, please don't touch' — Python doesn't enforce it at all, so d._age = -100 works with no error.",
+      "explanation_ko": "밑줄 하나(_age)는 순전히 '내부용, 건드리지 말아주세요'라는 명명 관례일 뿐입니다. Python은 이를 전혀 강제하지 않아서, d._age = -100은 오류 없이 그대로 동작합니다.",
+      "concept_tags": ["naming_convention", "no_true_privacy"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l5_u02_q002",
+      "type": "error_finding",
+      "code": "class Dog:\n    def __init__(self):\n        self.__secret = \"hidden\"\n\nd = Dog()\nprint(d.__secret)",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "__secret 필드 선언 오류",
+        "이름이 두 밑줄로 시작하면 name mangling이 적용되어 실제로는 _Dog__secret으로 저장되므로, d.__secret으로는 접근할 수 없어 AttributeError가 발생함",
+        "d 객체 생성 문법 오류",
+        "문제 없음, \"hidden\"이 정상 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Double leading underscores trigger name mangling: __secret is internally renamed to _Dog__secret to avoid accidental clashes in subclasses; accessing d.__secret directly fails with AttributeError.",
+      "explanation_ko": "밑줄 두 개로 시작하면 이름 맹글링이 적용됩니다. __secret은 내부적으로 _Dog__secret으로 이름이 바뀌어, 자식 클래스에서의 우연한 충돌을 막습니다. d.__secret으로 직접 접근하면 AttributeError가 발생합니다.",
+      "concept_tags": ["name_mangling"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l5_u02_q003",
+      "type": "predict_output",
+      "code": "class Dog:\n    def __init__(self):\n        self.__secret = \"hidden\"\n\nd = Dog()\nprint(d._Dog__secret)",
+      "prompt_en": "What is printed? (This proves name mangling isn't true privacy.)",
+      "prompt_ko": "출력 결과는? (이름 맹글링이 진짜 private이 아님을 증명합니다.)",
+      "options": ["hidden", "오류", "__secret", "None"],
+      "answer": 0,
+      "explanation_en": "The mangled name _Dog__secret can still be accessed directly from outside the class, proving that name mangling is only an obfuscation mechanism, not real access control.",
+      "explanation_ko": "맹글링된 이름인 _Dog__secret은 클래스 밖에서도 여전히 직접 접근할 수 있습니다. 이름 맹글링이 진짜 접근 제어가 아니라 단순한 난독화 메커니즘일 뿐임을 보여줍니다.",
+      "concept_tags": ["name_mangling", "no_true_privacy"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "python_l5_u02_q004",
+      "type": "predict_output",
+      "code": "class Dog:\n    def __init__(self):\n        self._age = 0\n\n    def set_age(self, age):\n        if age >= 0:\n            self._age = age\n\n    def get_age(self):\n        return self._age\n\nd = Dog()\nd.set_age(5)\nd.set_age(-3)\nprint(d.get_age())",
+      "prompt_en": "What is printed? (Getter/setter methods are still a useful convention even without enforced privacy.)",
+      "prompt_ko": "출력 결과는? (강제되는 private이 없어도 getter/setter 메서드는 여전히 유용한 관례입니다.)",
+      "options": ["5", "-3", "0", "오류"],
+      "answer": 0,
+      "explanation_en": "set_age validates the value before assigning, following the same convention seen in other languages; -3 fails the check, so _age stays 5.",
+      "explanation_ko": "set_age는 대입 전에 값을 검증하며, 다른 언어에서 봤던 것과 같은 관례를 따릅니다. -3은 검사를 통과하지 못해 _age는 5로 유지됩니다.",
+      "concept_tags": ["encapsulation_convention"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "python_l5_u02_q005",
+      "type": "fill_blank",
+      "code": "class Dog:\n    def __init__(self):\n        self.____name = \"바둑이\"\n        self.____age = 3\n# 두 필드 모두 '내부용'이라는 관례를 나타내되, 강제력은 없어야 함",
+      "prompt_en": "Fill in the blanks with the naming convention prefix for 'internal use' fields that Python doesn't enforce.",
+      "prompt_ko": "Python이 강제하지 않는 '내부용' 필드 명명 관례 접두사를 빈칸에 채우세요.",
+      "options": ["_", "__", "private_", "m_"],
+      "answer": 0,
+      "explanation_en": "A single leading underscore is the conventional way to mark a field as intended for internal use, understood by Python developers as 'don't touch this from outside' — but never enforced by the language.",
+      "explanation_ko": "밑줄 하나를 앞에 붙이는 것은 필드를 내부용으로 표시하는 관례적인 방법입니다. Python 개발자들은 이를 '밖에서 건드리지 마세요'로 이해하지만, 언어 차원에서 강제되지는 않습니다.",
+      "concept_tags": ["naming_convention"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "python_l5_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "_var (밑줄 하나)", "definition": "'내부용'이라는 명명 관례 — 아무 강제력 없음" },
+        { "term": "__var (밑줄 둘)", "definition": "name mangling이 적용되어 _ClassName__var로 이름이 바뀜 — 여전히 접근 가능" },
+        { "term": "진짜 private의 부재", "definition": "Python에는 Java/C#/VB의 private처럼 컴파일러가 강제하는 접근 제어가 전혀 없다는 사실" },
+        { "term": "\"우리는 모두 성인\" 철학", "definition": "Python 커뮤니티에서 접근 제한 대신 관례와 신뢰에 의존하는 태도를 부르는 말" }
+      ],
+      "explanation_en": "This is one of the most fundamental OOP philosophy differences in the entire curriculum: every other language covered (C++, VB, C#, Java) enforces access modifiers at compile time, while Python relies entirely on naming convention and community trust.",
+      "explanation_ko": "이는 전체 커리큘럼에서 가장 근본적인 객체지향 철학 차이 중 하나입니다. 지금까지 다룬 다른 모든 언어(C++, VB, C#, Java)는 컴파일 시점에 접근 제어자를 강제하지만, Python은 전적으로 명명 관례와 커뮤니티의 신뢰에 의존합니다.",
+      "concept_tags": ["naming_convention", "name_mangling", "no_true_privacy"],
+      "difficulty": "practice"
+    }
+  ]
+}

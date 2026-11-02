@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s2",
+  "track": "proof",
+  "work": "증명",
+  "track_title": "증명의 기초",
+  "chapter": {
+    "id": "math-s2-proof-ch02",
+    "no": 2,
+    "title": "답안 작성법"
+  },
+  "lesson": {
+    "id": "math-s2-proof-ch02-l03",
+    "no": 3,
+    "title": "경우 나누기와 대칭",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "증명"
+    ],
+    "competition": "KMO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "빠짐없이, 겹침 없이",
+      "body": [
+        "경우를 나눌 때는 모든 경우를 빠짐없이 다루어야 합니다. 정수를 나머지로 나누면 빠짐이 없습니다: n ≡ 0, 1, 2 (mod 3).",
+        "예: n² + 2가 3의 배수인 정수 n은? n ≡ 0이면 n² + 2 ≡ 2, n ≡ 1이면 1 + 2 ≡ 0, n ≡ 2이면 4 + 2 ≡ 0입니다. 그래서 n이 3의 배수가 아닐 때입니다.",
+        "답안에는 '경우 1', '경우 2', … 로 나누고 마지막에 '모든 경우를 다루었으므로'라고 밝힙니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "1부터 30까지의 정수 n 가운데 n² + 2가 3의 배수인 것은 몇 개인가요?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n이 3의 배수가 아닐 때입니다.",
+      "explanation": "n ≡ 1, 2 (mod 3)이면 n² ≡ 1이라 n² + 2 ≡ 0입니다.\n1부터 30까지 3의 배수는 10개이므로 3의 배수가 아닌 수는 20개입니다.\n그래서 답은 20입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "세 변수가 대칭인 식에서 '일반성을 잃지 않고 a ≤ b ≤ c라 하자'처럼 순서를 정해 두는 것을 영어 약자로 {{1}}라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "WLOG",
+            "wlog"
+          ]
+        }
+      ],
+      "hint": "Without Loss Of Generality입니다.",
+      "explanation": "변수의 순서를 바꾸어도 식이 그대로이면, 한 가지 순서만 다루어도 됩니다.\n이때 '일반성을 잃지 않고'라고 밝히고 순서를 정합니다.\n영어로 Without Loss Of Generality, 줄여서 WLOG라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "대칭을 써서 경우 줄이기",
+      "body": [
+        "a, b, c를 서로 바꾸어도 바뀌지 않는 식(대칭식)이라면, 3! = 6가지 순서 가운데 하나만 다루어도 됩니다. 그래서 '일반성을 잃지 않고 a ≤ b ≤ c'라 둡니다.",
+        "단, 식이 정말 대칭인지 확인해야 합니다. a²b + b²c + c²a처럼 순환만 하는(a → b → c → a로 바꿀 때만 같은) 식에서는 a가 가장 크다고는 둘 수 있지만 a ≥ b ≥ c까지 둘 수는 없습니다.",
+        "WLOG를 쓸 때는 왜 일반성을 잃지 않는지(대칭이므로) 한 줄로 밝힙니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "a + b + c = 10, a, b, c는 자연수, abc의 최댓값을 구할 때 경우를 줄이는 방법을 쓰세요.",
+      "steps": [
+        "abc와 조건 a + b + c = 10은 a, b, c에 대해 대칭입니다.",
+        "그래서 일반성을 잃지 않고 a ≤ b ≤ c라 둡니다.",
+        "a ≤ 10/3이므로 a = 1, 2, 3만 보면 되고, 각 경우 b ≤ c로 나눕니다.",
+        "(3, 3, 4)에서 최댓값 36을 얻습니다."
+      ],
+      "answer": "최댓값 36"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a + b + c = 10인 자연수 a, b, c에 대해 abc의 최댓값은?",
+      "answer": "36",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "세 수를 가능한 한 고르게 나누세요.",
+      "explanation": "대칭이므로 a ≤ b ≤ c로 두고, 합이 일정할 때 곱은 수들이 고를수록 큽니다.\n10을 고르게 나누면 3, 3, 4입니다.\n3 × 3 × 4 = 36입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "서로 다른 세 변수 a, b, c를 늘어놓는 순서는 모두 몇 가지인가요?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3!입니다.",
+      "explanation": "서로 다른 세 대상을 한 줄로 늘어놓는 방법의 수는 3!입니다.\n3 × 2 × 1을 계산합니다.\n= 6가지이며, 대칭식에서는 이 가운데 하나(a ≤ b ≤ c)만 다룹니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "홀짝과 나머지로 나누기",
+      "body": [
+        "정수 문제는 홀짝(mod 2)이나 작은 수의 나머지로 경우를 나누는 일이 많습니다. 'n² + n은 언제나 짝수'는 n이 짝수일 때와 홀수일 때로 나누거나, n(n + 1)이 연속한 두 정수의 곱임을 쓰면 됩니다.",
+        "경우가 너무 많으면 대칭이나 다른 성질로 줄일 방법을 먼저 찾습니다.",
+        "경우마다 결론이 같으면 마지막에 묶어서 결론을 쓰고, 다르면 결과를 표로 정리하면 채점자가 확인하기 쉽습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n⁴를 5로 나눈 나머지로 가능한 값은 모두 몇 가지인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n ≡ 0, 1, 2, 3, 4 (mod 5)로 나누세요.",
+      "explanation": "n ≡ 0이면 0, n ≡ 1, 2, 3, 4이면 1, 16, 81, 256 ≡ 1 (mod 5)입니다.\n그래서 n⁴ mod 5는 0 또는 1입니다.\n2가지입니다(페르마 소정리와도 맞습니다)."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "1부터 100까지의 정수 n 가운데 n² + n + 1이 3의 배수인 것은 몇 개인가요?",
+      "answer": "34",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n ≡ 1 (mod 3)일 때입니다.",
+      "explanation": "n ≡ 0이면 1, n ≡ 1이면 1 + 1 + 1 = 3 ≡ 0, n ≡ 2이면 4 + 2 + 1 = 7 ≡ 1 (mod 3)입니다.\n그래서 n ≡ 1 (mod 3)일 때만 3의 배수입니다.\n1부터 100까지 n ≡ 1인 수는 1, 4, …, 100으로 (100 − 1)/3 + 1 = 34개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "순환식 a²b + b²c + c²a에서 '일반성을 잃지 않고 a가 가장 크다'고 둔 뒤에도 따로 다루어야 하는 b, c의 크기 순서는 몇 가지인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "a ≥ b ≥ c와 a ≥ c ≥ b입니다.",
+      "explanation": "순환식은 a → b → c → a로 바꿀 때만 같으므로 가장 큰 변수를 a로 정할 수는 있습니다.\n그러나 b와 c를 바꾸면 식이 달라지므로 b ≥ c와 c ≥ b를 모두 다루어야 합니다.\n그래서 a ≥ b ≥ c와 a ≥ c ≥ b의 2가지입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "경우는 빠짐없이 나눕니다. 정수는 나머지(mod m)로 나누면 빠짐이 없고, 답안에는 '모든 경우를 다루었으므로'를 밝힙니다.",
+        "대칭식은 '일반성을 잃지 않고(WLOG) a ≤ b ≤ c'로 순서를 정해 경우를 줄이며, 순환식에서는 가장 큰 변수만 정할 수 있습니다.",
+        "경우마다의 결과는 표로 정리하면 채점자가 확인하기 쉽습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a + b + c = 12인 자연수 a, b, c에 대해 abc의 최댓값은?",
+      "answer": "64",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "4, 4, 4입니다.",
+      "explanation": "대칭이므로 a ≤ b ≤ c로 두고, 합이 일정하면 수들이 고를수록 곱이 큽니다.\n12를 고르게 나누면 4, 4, 4입니다.\n4 × 4 × 4 = 64입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "1부터 50까지의 정수 n 가운데 n³ − n이 24의 배수가 아닌 홀수 n은 몇 개인가요?",
+      "answer": "0",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "홀수 n이면 (n − 1)(n + 1)이 8의 배수입니다.",
+      "explanation": "n이 홀수이면 n − 1과 n + 1은 연속한 짝수라 하나는 4의 배수이므로 곱이 8의 배수입니다.\n또 (n − 1)n(n + 1)은 3의 배수이므로 n³ − n은 24의 배수입니다.\n그래서 24의 배수가 아닌 홀수 n은 0개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "n이 홀수이면 n² − 1이 8의 배수임을 경우 나누기로 증명하세요.",
+      "model_answer": [
+        "n이 홀수이므로 n = 2k + 1 (k는 정수)로 쓴다.",
+        "n² − 1 = (2k + 1)² − 1 = 4k² + 4k = 4k(k + 1)이다.",
+        "k(k + 1)은 연속한 두 정수의 곱이므로 k가 짝수이든 홀수이든 짝수이다(경우 나누기).",
+        "따라서 n² − 1 = 4 × (짝수)는 8의 배수이다."
+      ],
+      "criteria": [
+        {
+          "text": "홀수를 식으로 나타냈다",
+          "points": 1
+        },
+        {
+          "text": "정리해 4k(k + 1)을 얻었다",
+          "points": 2
+        },
+        {
+          "text": "k(k + 1)이 짝수임을 경우로 보였다",
+          "points": 2
+        },
+        {
+          "text": "결론을 냈다",
+          "points": 1
+        }
+      ],
+      "hint": "n = 2k + 1로 두세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "a + b + c = 10인 자연수 a, b, c에 대해 abc의 최댓값이 36임을 WLOG를 써서 답안 형식으로 증명하세요.",
+      "model_answer": [
+        "abc와 a + b + c는 대칭이므로 일반성을 잃지 않고 a ≤ b ≤ c라 한다. 그러면 3a ≤ 10이라 a ≤ 3이다.",
+        "a = 1이면 b + c = 9, bc ≤ 4 × 5 = 20이라 abc ≤ 20이다.",
+        "a = 2이면 b + c = 8, bc ≤ 16이라 abc ≤ 32이다. a = 3이면 b + c = 7, 3 ≤ b ≤ c에서 bc ≤ 12라 abc ≤ 36이다.",
+        "(a, b, c) = (3, 3, 4)에서 abc = 36이 되므로 최댓값은 36이다."
+      ],
+      "criteria": [
+        {
+          "text": "WLOG의 근거와 a의 범위를 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "경우를 빠짐없이 다루었다",
+          "points": 2
+        },
+        {
+          "text": "최댓값을 이루는 예를 보였다",
+          "points": 2
+        }
+      ],
+      "hint": "a = 1, 2, 3으로 나누세요."
+    }
+  ]
+}

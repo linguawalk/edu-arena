@@ -1,0 +1,91 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 2,
+  "unit": 1,
+  "unit_title": "if/else와 truthy/falsy",
+  "questions": [
+    {
+      "id": "javascript_l2_u01_q001",
+      "type": "predict_output",
+      "code": "if (0) {\n    console.log(\"참\");\n} else {\n    console.log(\"거짓\");\n}",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["참", "거짓", "오류", "0"],
+      "answer": 1,
+      "explanation_en": "0 is one of JavaScript's falsy values; the if condition evaluates it as false, running the else branch.",
+      "explanation_ko": "0은 JavaScript의 falsy 값 중 하나입니다. if 조건은 이를 false로 평가해서 else 분기가 실행됩니다.",
+      "concept_tags": ["falsy"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l2_u01_q002",
+      "type": "predict_output",
+      "code": "if ([]) {\n    console.log(\"참\");\n} else {\n    console.log(\"거짓\");\n}",
+      "prompt_en": "What is printed? (Compare with Python, where an empty list is falsy.)",
+      "prompt_ko": "출력 결과는? (빈 리스트가 falsy인 Python과 비교해보세요.)",
+      "options": ["참", "거짓", "오류", "[]"],
+      "answer": 0,
+      "explanation_en": "Unlike Python where an empty list is falsy, JavaScript treats ALL objects (including empty arrays []) as truthy — only a specific short list of values is falsy.",
+      "explanation_ko": "빈 리스트가 falsy인 Python과 달리, JavaScript는 모든 객체(빈 배열 []도 포함)를 truthy로 취급합니다 — 정해진 짧은 목록의 값만 falsy입니다.",
+      "concept_tags": ["truthy", "falsy"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l2_u01_q003",
+      "type": "predict_output",
+      "code": "if (\"0\") {\n    console.log(\"참\");\n} else {\n    console.log(\"거짓\");\n}",
+      "prompt_en": "What is printed? (Note: this is the string \"0\", not the number 0.)",
+      "prompt_ko": "출력 결과는? (숫자 0이 아니라 문자열 \"0\"인 점에 주의하세요.)",
+      "options": ["참", "거짓", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "The string \"0\" is a non-empty string, and all non-empty strings are truthy — only the empty string \"\" is falsy, regardless of its contents.",
+      "explanation_ko": "문자열 \"0\"은 비어있지 않은 문자열이며, 비어있지 않은 모든 문자열은 truthy입니다 — 내용과 상관없이 빈 문자열 \"\"만 falsy입니다.",
+      "concept_tags": ["truthy", "falsy"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l2_u01_q004",
+      "type": "fill_blank",
+      "code": "// falsy 값 6가지: false, 0, \"\", null, undefined, ____\nif (____) {\n    console.log(\"실행 안 됨\");\n}",
+      "prompt_en": "Fill in the blank with the special numeric value that is also falsy.",
+      "prompt_ko": "역시 falsy인 특수한 숫자 값을 빈칸에 채우세요.",
+      "options": ["NaN", "Infinity", "-1", "null"],
+      "answer": 0,
+      "explanation_en": "NaN (Not a Number) is falsy, completing the core list of six falsy values: false, 0, \"\", null, undefined, NaN.",
+      "explanation_ko": "NaN(Not a Number)은 falsy입니다. false, 0, \"\", null, undefined, NaN이라는 6가지 핵심 falsy 값을 완성합니다.",
+      "concept_tags": ["falsy", "nan"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l2_u01_q005",
+      "type": "predict_output",
+      "code": "let name = \"\";\nlet display = name || \"익명\";\nconsole.log(display);",
+      "prompt_en": "What is printed? (|| returns the first truthy operand, or the last one if all are falsy.)",
+      "prompt_ko": "출력 결과는? (||는 첫 번째 truthy 피연산자를, 모두 falsy면 마지막 것을 반환합니다.)",
+      "options": ["익명", "빈 문자열", "true", "오류"],
+      "answer": 0,
+      "explanation_en": "Since name (empty string) is falsy, || moves on and returns the right operand, 익명 — a common idiom for default values.",
+      "explanation_ko": "name(빈 문자열)이 falsy이므로 ||는 다음으로 넘어가 오른쪽 피연산자인 익명을 반환합니다 — 기본값을 지정하는 흔한 관용구입니다.",
+      "concept_tags": ["logical_or", "falsy"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l2_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "falsy 값", "definition": "false, 0, \"\", null, undefined, NaN — if 조건에서 거짓으로 취급되는 값들" },
+        { "term": "truthy 값", "definition": "falsy 목록에 없는 모든 값 — 빈 배열/객체도 포함" },
+        { "term": "|| 기본값 패턴", "definition": "왼쪽이 falsy일 때 오른쪽 값을 대신 사용하는 관용구" },
+        { "term": "Python과의 차이", "definition": "Python은 빈 컬렉션을 falsy로 취급하지만, JavaScript는 truthy로 취급함" }
+      ],
+      "explanation_en": "JavaScript's truthy/falsy system is a fixed, memorizable list rather than an intuitive 'empty things are false' rule, making it worth learning explicitly rather than guessing by analogy to other languages.",
+      "explanation_ko": "JavaScript의 truthy/falsy 체계는 직관적인 '비어있으면 거짓'이라는 규칙이 아니라 고정된, 외워야 할 목록입니다. 다른 언어와의 유추로 추측하기보다 명시적으로 익혀둘 만합니다.",
+      "concept_tags": ["truthy", "falsy", "logical_or"],
+      "difficulty": "practice"
+    }
+  ]
+}

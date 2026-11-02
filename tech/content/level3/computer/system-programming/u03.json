@@ -1,0 +1,102 @@
+{
+ "no": 3,
+ "title": "프로세스 제어",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "fork·exec·wait로 프로세스를 만들고 기다리는 코드를 이해할 수 있다.",
+  "fork 반복의 결과(프로세스 수, 출력 횟수)를 예측할 수 있다.",
+  "셸이 명령을 실행하는 방식을 설명할 수 있다."
+ ],
+ "checklist": [
+  "fork: 부모와 똑같은 자식 생성, 반환값으로 구분",
+  "exec 계열: 현재 프로세스를 새 프로그램으로 교체",
+  "wait/waitpid와 종료 상태, 좀비 방지",
+  "쓰기 시 복사(copy-on-write)",
+  "환경 변수와 인자 전달",
+  "셸의 동작: fork → exec → wait",
+  "프로세스 그룹과 작업 제어"
+ ],
+ "advice": [
+  "셸이 명령어 하나를 실행하는 과정은 fork, exec, wait 세 호출의 조합입니다. 아주 작은 셸을 직접 만들어 보는 것이 이 단원의 가장 좋은 연습이며, 레벨2 운영체제 2단원의 프로세스 상태도가 코드에서 어떻게 나타나는지 확인할 수 있습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Bryant · O'Hallaron, Computer Systems: A Programmer's Perspective (번역본 『컴퓨터 시스템』, 장 제목으로 표기)",
+   "part": "Exceptional Control Flow 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Arpaci-Dusseau (무료 공개 교재)",
+   "title": "Operating Systems: Three Easy Pieces",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "lang": "영어",
+   "part": "Process API 장"
+  },
+  {
+   "kind": "web",
+   "provider": "code-arena (실습)",
+   "title": "Linux 모듈 (권한·명령어·프로세스·셸)",
+   "url": "https://code-arena.org/browse.html?type=module&key=linux",
+   "lang": "한국어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "for (i = 0; i < 3; i++) fork(); 를 실행하면 프로세스는 처음 것을 포함해 모두 몇 개가 될까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "반복마다 프로세스 수가 2배: 2³ = 8개",
+   "hint": "fork마다 2배입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "현재 프로세스의 메모리를 새 프로그램으로 바꿔 실행하는 시스템 호출 계열을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "exec",
+      "execve"
+     ]
+    }
+   ],
+   "explanation": "성공하면 돌아오지 않고 새 프로그램이 처음부터 실행됩니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "부모 프로세스가 자식의 종료를 기다리고 종료 상태를 거두는 시스템 호출은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "wait",
+      "waitpid"
+     ]
+    }
+   ],
+   "explanation": "거두지 않으면 자식이 좀비로 남습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "system-programming",
+ "id": "l3-computer-system-programming-u03"
+}

@@ -1,0 +1,91 @@
+{
+ "no": 5,
+ "title": "자율주행 센서",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "카메라·레이더·라이다·초음파·GNSS/IMU의 원리와 장단점을 비교할 수 있다.",
+  "비행 시간(ToF)으로 거리 측정을 계산할 수 있다.",
+  "센서 융합이 필요한 이유를 설명할 수 있다."
+ ],
+ "checklist": [
+  "카메라: 색·글자 인식, 날씨·조명에 약함",
+  "레이더: 거리·속도(도플러), 악천후에 강함, 해상도 낮음",
+  "라이다: 정밀 3차원 점군, 비용·악천후 과제",
+  "초음파: 근거리 주차",
+  "GNSS·IMU·정밀 지도로 위치 추정",
+  "거리 = 빛의 속도 × 왕복 시간 ÷ 2",
+  "센서 융합과 이중화"
+ ],
+ "advice": [
+  "어떤 센서도 혼자서는 완벽하지 않습니다. 카메라는 표지판을 읽지만 역광과 안개에 약하고, 레이더는 날씨에 강하지만 모양을 잘 모르고, 라이다는 정밀하지만 비싸고 눈·비에 영향을 받습니다. 그래서 여러 센서를 합쳐 서로의 약점을 메우는 센서 융합이 필수입니다. 센서별 장단점을 표로 만들고, 라이다·레이더 거리 계산이 레벨3 재료분석 7단원의 초음파 두께 측정과 같은 원리라는 점을 연결해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "MIT Press",
+   "title": "Thrun · Burgard · Fox, Probabilistic Robotics (장 제목으로 표기)"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "무선통신 9단원 방송, 레이더, 위성 항법 (정보통신 트랙)",
+   "url": "guide.html?lv=2&t=ict&s=wireless&u=9"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "라이다 빛이 200 m 앞 물체에서 반사되어 돌아오는 데 걸리는 시간은 약 몇 μs일까요? (소수 둘째 자리까지)",
+   "answer": "1.33",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "t = 2 × 200/3 × 10⁸ ≈ 1.33 × 10⁻⁶ s",
+   "hint": "왕복 거리 ÷ 빛의 속도입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "전파를 쏘아 반사파로 거리와 도플러 효과로 상대 속도를 함께 재며 악천후에 강한 센서를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "레이더"
+     ]
+    }
+   ],
+   "explanation": "자율주행과 운전자 보조 시스템에 필수 센서입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "여러 종류 센서의 정보를 합쳐 더 정확하고 믿을 만한 주변 인식을 만드는 기술을 센서 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "융합",
+      "퓨전"
+     ]
+    }
+   ],
+   "explanation": "칼만 필터 같은 확률적 추정 기법을 씁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "ev-autonomous",
+ "id": "l3-convergence-ev-autonomous-u05"
+}

@@ -1,0 +1,101 @@
+{
+  "language": "cobol",
+  "category": "legacy_historical",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "파일 입출력",
+  "questions": [
+    {
+      "id": "cobol_l2_u03_q001",
+      "type": "predict_output",
+      "code": "FILE-CONTROL.\n    SELECT OUT-FILE ASSIGN TO \"data.txt\"\n        ORGANIZATION IS LINE SEQUENTIAL.\n...\nFD OUT-FILE.\n01 OUT-RECORD PIC X(20).\n...\nPROCEDURE DIVISION.\n    OPEN OUTPUT OUT-FILE.\n    MOVE \"HELLO FILE\" TO OUT-RECORD.\n    WRITE OUT-RECORD.\n    CLOSE OUT-FILE.\n\n    OPEN INPUT OUT-FILE.\n    READ OUT-FILE.\n    DISPLAY OUT-RECORD.\n    CLOSE OUT-FILE.",
+      "prompt_en": "What is printed? (Note: OUT-RECORD is PIC X(20).)",
+      "prompt_ko": "출력 결과는? (OUT-RECORD가 PIC X(20)인 점에 주의하세요.)",
+      "options": [
+        "\"HELLO FILE\" + 9칸의 공백 (총 20글자)",
+        "HELLO FILE",
+        "오류",
+        "OUT-RECORD"
+      ],
+      "answer": 0,
+      "explanation_en": "OPEN OUTPUT/WRITE saves the record, and after closing and reopening with INPUT, READ retrieves it; since OUT-RECORD is a fixed PIC X(20) field, the shorter text is padded with trailing spaces to fill all 20 characters.",
+      "explanation_ko": "OPEN OUTPUT/WRITE는 레코드를 저장하고, 닫은 뒤 INPUT으로 다시 열면 READ가 이를 가져옵니다. OUT-RECORD가 고정된 PIC X(20) 필드라서, 더 짧은 텍스트는 후행 공백으로 채워져 20글자를 모두 채웁니다.",
+      "concept_tags": ["file_io", "select_clause"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cobol_l2_u03_q002",
+      "type": "fill_blank",
+      "code": "FILE-CONTROL.\n    ____ MYFILE ASSIGN TO \"data.txt\"\n        ORGANIZATION IS LINE SEQUENTIAL.",
+      "prompt_en": "Fill in the blank with the clause that connects a COBOL file name to a real filename.",
+      "prompt_ko": "COBOL 파일 이름을 실제 파일 이름과 연결하는 절을 빈칸에 채우세요.",
+      "options": ["SELECT", "OPEN", "ASSIGN", "FILE"],
+      "answer": 0,
+      "explanation_en": "SELECT declares a file name for use in the program and links it to a physical filename via ASSIGN TO, done once in FILE-CONTROL before any OPEN.",
+      "explanation_ko": "SELECT은 프로그램에서 쓸 파일 이름을 선언하고 ASSIGN TO를 통해 실제 파일 이름과 연결합니다. 어떤 OPEN보다도 먼저 FILE-CONTROL에서 한 번 이루어집니다.",
+      "concept_tags": ["select_clause"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "cobol_l2_u03_q003",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "SELECT ... ASSIGN TO", "definition": "COBOL 파일 이름을 실제 파일과 연결" },
+        { "term": "FD (File Description)", "definition": "파일의 레코드 구조를 정의하는 구역" },
+        { "term": "OPEN OUTPUT / INPUT", "definition": "파일을 쓰기용 또는 읽기용으로 여는 모드" },
+        { "term": "WRITE / READ / CLOSE", "definition": "레코드를 쓰거나 읽고, 작업을 마치고 자원을 해제" }
+      ],
+      "explanation_en": "COBOL's file handling was designed for business record-processing at scale (payroll, inventory, banking), with FD's explicit record layout reflecting the fixed-format mainframe data files of its era.",
+      "explanation_ko": "COBOL의 파일 처리는 대규모 비즈니스 레코드 처리(급여, 재고, 은행 업무)를 위해 설계됐으며, FD의 명시적인 레코드 레이아웃은 그 시대의 고정 형식 메인프레임 데이터 파일을 반영합니다.",
+      "concept_tags": ["file_io", "select_clause", "fd_clause"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "cobol_l2_u03_q004",
+      "type": "error_finding",
+      "code": "FD OUT-FILE.\n01 OUT-RECORD PIC X(20).\n...\nPROCEDURE DIVISION.\n    MOVE \"HELLO\" TO OUT-RECORD.\n    WRITE OUT-RECORD.",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "OUT-RECORD 선언 문법 오류",
+        "OPEN 없이 WRITE를 시도해서, 파일이 열려있지 않은 상태로 쓰려다 실행 시점 오류가 발생함",
+        "MOVE 문법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Before WRITE (or READ) can be used, the file must first be opened with OPEN OUTPUT (or OPEN INPUT); attempting to write without opening causes a runtime error, the same pattern seen throughout this curriculum's file I/O units.",
+      "explanation_ko": "WRITE(또는 READ)를 쓰기 전에 먼저 OPEN OUTPUT(또는 OPEN INPUT)으로 파일을 열어야 합니다. 열지 않고 쓰려고 하면 실행 시점 오류가 발생합니다. 이 커리큘럼의 파일 입출력 유닛들 전체에서 봤던 같은 패턴입니다.",
+      "concept_tags": ["file_io"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cobol_l2_u03_q005",
+      "type": "predict_output",
+      "code": "01 END-OF-FILE PIC X VALUE \"N\".\n...\nOPEN INPUT MYFILE.\nREAD MYFILE\n    AT END MOVE \"Y\" TO END-OF-FILE\nEND-READ.\nDISPLAY END-OF-FILE.",
+      "prompt_en": "What is printed, assuming MYFILE is completely empty?",
+      "prompt_ko": "MYFILE이 완전히 비어있다고 가정할 때 출력 결과는?",
+      "options": ["Y", "N", "오류", "빈 값"],
+      "answer": 0,
+      "explanation_en": "AT END specifies what to do when READ reaches the end of the file (or, for an empty file, immediately); since the file has nothing to read, END-OF-FILE is set to Y, exactly the safe, exception-free way COBOL signals end-of-data.",
+      "explanation_ko": "AT END는 READ가 파일 끝에 도달했을 때(빈 파일이라면 즉시) 무엇을 할지 지정합니다. 파일에 읽을 것이 없으므로 END-OF-FILE은 Y로 설정됩니다. COBOL이 데이터 끝을 예외 없이 안전하게 알리는 방식입니다.",
+      "concept_tags": ["at_end_clause"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "cobol_l2_u03_q006",
+      "type": "predict_output",
+      "code": "PROCEDURE DIVISION.\n    OPEN OUTPUT MYFILE.\n    MOVE \"A\" TO REC-FIELD.\n    WRITE REC-FIELD.\n    MOVE \"B\" TO REC-FIELD.\n    WRITE REC-FIELD.\n    CLOSE MYFILE.\n\n    OPEN INPUT MYFILE.\n    READ MYFILE.\n    DISPLAY REC-FIELD.\n    READ MYFILE.\n    DISPLAY REC-FIELD.\n    CLOSE MYFILE.",
+      "prompt_en": "What is printed? (Multiple WRITE and READ calls on the same file.)",
+      "prompt_ko": "출력 결과는? (같은 파일에 여러 번 WRITE와 READ를 호출합니다.)",
+      "options": ["A\\nB", "B\\nA", "오류", "A\\nA"],
+      "answer": 0,
+      "explanation_en": "Each READ advances through the file's records in order; the first read retrieves A, the second retrieves B, in the order they were written.",
+      "explanation_ko": "READ를 호출할 때마다 파일의 레코드를 순서대로 진행합니다. 첫 번째 읽기는 A를, 두 번째는 B를 가져오며, 쓰여진 순서대로입니다.",
+      "concept_tags": ["file_io"],
+      "difficulty": "practice"
+    }
+  ]
+}

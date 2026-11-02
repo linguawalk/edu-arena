@@ -1,0 +1,99 @@
+{
+ "no": 7,
+ "title": "소켓 프로그래밍",
+ "hours": 6,
+ "after": [
+  5,
+  6
+ ],
+ "objectives": [
+  "TCP 서버·클라이언트의 소켓 호출 순서를 설명할 수 있다.",
+  "동시 접속을 처리하는 방법(프로세스, 스레드, 입출력 다중화)을 비교할 수 있다.",
+  "바이트 순서와 부분 송수신 같은 함정을 처리할 수 있다."
+ ],
+ "checklist": [
+  "서버: socket → bind → listen → accept → read/write",
+  "클라이언트: socket → connect → read/write",
+  "바이트 순서(네트워크 순서는 빅 엔디언)",
+  "부분 송수신과 반복 처리",
+  "동시성: 프로세스당 연결, 스레드당 연결, select·poll·epoll",
+  "논블로킹 입출력과 이벤트 루프",
+  "포트 번호 범위(잘 알려진 포트 0~1023)"
+ ],
+ "advice": [
+  "레벨2 컴퓨터 네트워크에서 배운 TCP를 이제 코드로 다룹니다. 에코 서버 하나를 만들고, 클라이언트 여러 개를 동시에 붙였을 때 어떻게 되는지 확인한 뒤 스레드와 epoll로 각각 고쳐 보세요. 웹 서버와 데이터베이스 서버가 수만 개의 연결을 처리하는 방식의 출발점이 여기에 있습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Bryant · O'Hallaron, Computer Systems: A Programmer's Perspective (번역본 『컴퓨터 시스템』, 장 제목으로 표기)",
+   "part": "Network Programming 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "컴퓨터 네트워크 3단원 전송 계층",
+   "url": "guide.html?lv=2&t=computer&s=networks&u=3"
+  },
+  {
+   "kind": "web",
+   "provider": "Beej's Guide",
+   "title": "Beej's Guide to Network Programming",
+   "url": "https://beej.us/guide/bgnet/",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "관리자 권한 없이 일반 프로그램이 바인딩할 수 없는 잘 알려진 포트 범위(0부터 시작)의 마지막 번호는 얼마일까요?",
+   "answer": "1023",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "0~1023이 잘 알려진 포트이며 보통 관리자 권한이 필요합니다.",
+   "hint": "1024 바로 앞입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "TCP 서버가 클라이언트의 연결 요청을 받아들여 새 소켓을 돌려받는 호출은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "accept"
+     ]
+    }
+   ],
+   "explanation": "listen으로 대기열을 만든 뒤 accept로 하나씩 꺼냅니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "리눅스에서 많은 소켓 가운데 준비된 것만 효율적으로 알려 주는 입출력 다중화 기능은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "epoll"
+     ]
+    }
+   ],
+   "explanation": "select·poll보다 연결이 많을 때 효율적입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "system-programming",
+ "id": "l3-computer-system-programming-u07"
+}

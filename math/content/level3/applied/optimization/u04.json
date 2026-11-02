@@ -1,0 +1,102 @@
+{
+ "no": 4,
+ "title": "쌍대성과 민감도 분석",
+ "hours": 6,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "선형계획의 쌍대문제를 세울 수 있다.",
+  "약한·강한 쌍대정리와 상보 여유성을 설명하고 적용할 수 있다.",
+  "쌍대변수를 잠재가격으로 해석할 수 있다."
+ ],
+ "checklist": [
+  "쌍대문제 만들기 (최대 ↔ 최소, 제약 ↔ 변수)",
+  "약한 쌍대정리: 쌍대 목적값이 상계",
+  "강한 쌍대정리: 최적값이 같음",
+  "상보 여유성 조건",
+  "쌍대변수 = 잠재가격(자원 한 단위의 가치)",
+  "민감도 분석: 우변과 계수 변화의 허용 범위",
+  "쌍대 심플렉스(개요)"
+ ],
+ "advice": [
+  "모든 선형계획에는 짝이 되는 쌍대문제가 있고, 둘의 최적값은 같습니다. 생산 계획 문제(이익 최대화)의 쌍대는 '각 자원에 값을 매길 때 그 가치의 합을 최소화'하는 문제로, 쌍대변수가 각 자원 한 단위를 더 얻을 때 늘어나는 이익(잠재가격)이 됩니다. 이 경제적 해석을 예제로 꼭 확인하세요.",
+  "쌍대성은 레벨3 그래프 이론의 최대흐름–최소절단 정리와 쾨니그 정리를 모두 포함하는 일반 원리입니다. 8단원의 라그랑주 쌍대성으로 비선형 문제까지 확장되므로, 이 단원을 확실히 이해하면 과목 후반부가 훨씬 쉬워집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Athena Scientific",
+   "title": "Bertsimas · Tsitsiklis, Introduction to Linear Optimization",
+   "part": "4장 Duality Theory, 5장 Sensitivity Analysis"
+  },
+  {
+   "kind": "book",
+   "provider": "Cambridge University Press (저자 무료 PDF)",
+   "title": "Boyd · Vandenberghe, Convex Optimization",
+   "url": "https://web.stanford.edu/~boyd/cvxbook/",
+   "lang": "영어",
+   "part": "5장 Duality (선형계획 부분)"
+  },
+  {
+   "kind": "lecture",
+   "provider": "Stanford Engineering Everywhere",
+   "title": "EE364A Convex Optimization I (Stephen Boyd)",
+   "url": "https://see.stanford.edu/Course/EE364A",
+   "lang": "영어",
+   "part": "8강 이후 Duality"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "max 3x + 2y, x + y ≤ 4, x + 3y ≤ 6, x, y ≥ 0의 최적값은?",
+   "answer": "12",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "꼭짓점 (0, 0), (4, 0), (3, 1), (0, 2)에서 0, 12, 11, 4 → 12",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "위 문제의 쌍대문제 min 4u + 6v (u + v ≥ 3, u + 3v ≥ 2, u, v ≥ 0)의 최적값은?",
+   "answer": "12",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "강한 쌍대정리: 주문제와 같은 12 (u = 3, v = 0)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "위에서 첫째 제약(x + y ≤ 4)의 우변을 1 늘리면 최적값은 얼마나 늘어날까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "잠재가격 u = 3 (허용 범위 안에서)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "위에서 둘째 제약은 최적해 (4, 0)에서 여유가 있습니다. 둘째 제약의 잠재가격 v는?",
+   "answer": "0",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "상보 여유성: 여유가 있는 제약의 쌍대변수는 0 (4 + 0 < 6)",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "applied",
+ "subject": "optimization",
+ "id": "l3-applied-optimization-u04"
+}

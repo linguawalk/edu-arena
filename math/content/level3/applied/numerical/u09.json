@@ -1,0 +1,93 @@
+{
+ "no": 9,
+ "title": "편미분방정식의 수치해 입문",
+ "hours": 6,
+ "after": [
+  6,
+  8
+ ],
+ "objectives": [
+  "유한차분법으로 열방정식과 라플라스 방정식을 이산화할 수 있다.",
+  "명시적·음함수적 방법의 안정성 조건을 설명할 수 있다.",
+  "CFL 조건의 의미를 설명할 수 있다."
+ ],
+ "checklist": [
+  "격자와 유한차분 근사",
+  "열방정식의 명시적(FTCS) 방법과 안정성 조건 r = kΔt/Δx² ≤ 1/2",
+  "음함수적 방법과 크랭크–니콜슨 (무조건 안정)",
+  "파동방정식과 CFL 조건 cΔt/Δx ≤ 1",
+  "라플라스 방정식의 5점 공식과 반복법",
+  "수렴 = 일관성 + 안정성 (랙스 동치 정리)",
+  "유한요소법(개요)"
+ ],
+ "advice": [
+  "이 단원은 이 과목의 모든 내용이 모이는 결론입니다. 편미분방정식을 격자 위의 차분 방정식으로 바꾸고(4단원), 생기는 거대한 연립방정식을 반복법으로 풀며(6단원), 시간에 따라 전진할 때의 안정성(8단원)을 분석합니다.",
+  "열방정식의 명시적 방법에서 공간 간격을 절반으로 줄이면 시간 간격은 1/4로 줄여야 한다는 조건(r ≤ 1/2)을 직접 어겨 보고 해가 폭발하는 것을 관찰해 보세요. 이런 경험이 크랭크–니콜슨 같은 음함수적 방법이 왜 필요한지 알려 줍니다. 레벨3 편미분방정식 입문과 함께 공부하면 이론과 계산이 연결됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cengage",
+   "title": "Burden · Faires · Burden, Numerical Analysis (10판)",
+   "part": "12장 Numerical Solutions to Partial Differential Equations"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Erwin Kreyszig, Advanced Engineering Mathematics (10판) 19~21장 수치해석",
+   "part": "21장 Numerics for ODEs and PDEs"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "u_t = u_xx를 Δx = 0.1로 명시적 방법(FTCS)으로 풀 때 안정한 Δt의 최댓값은?",
+   "answer": "0.005",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "r = Δt/Δx² ≤ 1/2 → Δt ≤ 0.01/2 = 0.005",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "파동 속력 c = 2, Δx = 0.1일 때 CFL 조건을 만족하는 Δt의 최댓값은?",
+   "answer": "0.05",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "cΔt/Δx ≤ 1 → Δt ≤ 0.05",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "라플라스 방정식의 5점 유한차분 공식에서 중심점의 계수는? (이웃 네 점의 계수는 1)",
+   "answer": "-4",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "(u_E + u_W + u_N + u_S − 4u_C)/h² = 0",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "크랭크–니콜슨 방법은 열방정식에서 Δt에 관계없이 안정할까요? (그렇다 1, 아니다 0)",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "무조건 안정 (정확도는 O(Δt² + Δx²))",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "applied",
+ "subject": "numerical",
+ "id": "l3-applied-numerical-u09"
+}

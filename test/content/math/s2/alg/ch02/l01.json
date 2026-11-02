@@ -1,0 +1,264 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "math",
+  "stage": "s2",
+  "track": "alg",
+  "work": "증명",
+  "track_title": "대수",
+  "chapter": {
+    "id": "math-s2-alg-ch02",
+    "no": 2,
+    "title": "재배열·젠센 부등식"
+  },
+  "lesson": {
+    "id": "math-s2-alg-ch02-l01",
+    "no": 1,
+    "title": "재배열 부등식",
+    "minutes": 25
+  },
+  "tags": {
+    "domain": [
+      "대수",
+      "부등식"
+    ],
+    "competition": "KMO",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "큰 것끼리 짝지으면 합이 가장 크다",
+      "body": [
+        "재배열 부등식: a₁ ≤ a₂ ≤ ⋯ ≤ aₙ, b₁ ≤ b₂ ≤ ⋯ ≤ bₙ일 때, b들을 어떻게 다시 늘어놓아 aᵢ와 짝지어 곱의 합을 만들어도, 같은 순서로 짝지은 합 a₁b₁ + ⋯ + aₙbₙ이 가장 크고 반대 순서로 짝지은 합 a₁bₙ + ⋯ + aₙb₁이 가장 작습니다.",
+        "예: (1, 2, 3)과 (4, 5, 6)의 곱의 합은 같은 순서 1 × 4 + 2 × 5 + 3 × 6 = 32가 가장 크고, 반대 순서 1 × 6 + 2 × 5 + 3 × 4 = 28이 가장 작습니다.",
+        "직관: 큰 b를 큰 a에 붙여야 곱이 커집니다. 두 짝을 바꾸어 보는 '교환 논법'으로 증명합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "(1, 2, 3)과 (4, 5, 6)을 짝지은 곱의 합 가운데 가장 큰 값은?",
+      "answer": "32",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "같은 순서로 짝지으세요.",
+      "explanation": "재배열 부등식에 따르면 같은 순서로 짝지은 곱의 합이 가장 큽니다.\n1 × 4 + 2 × 5 + 3 × 6을 계산합니다.\n4 + 10 + 18 = 32입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "같은 순서로 짝지은 곱의 합이 가장 크고 반대 순서로 짝지은 합이 가장 작다는 부등식을 {{1}} 부등식이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "재배열"
+          ]
+        }
+      ],
+      "hint": "다시 늘어놓기입니다.",
+      "explanation": "두 수열의 짝을 바꾸어 늘어놓으면 곱의 합이 달라집니다.\n같은 순서일 때 최대, 반대 순서일 때 최소가 됩니다.\n이것을 재배열 부등식이라 합니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "교환 논법",
+      "body": [
+        "증명의 핵심: a < a', b < b'이면 ab + a'b' − (ab' + a'b) = (a' − a)(b' − b) > 0입니다. 그래서 순서가 어긋난 한 쌍을 바꾸면 합이 커집니다.",
+        "어긋난 쌍이 있는 한 계속 바꾸어 합을 늘릴 수 있고, 어긋난 쌍이 없는 배열(같은 순서)에서 멈추므로 같은 순서가 최대입니다.",
+        "최소도 같은 방법으로, 같은 순서인 쌍을 바꾸어 합을 줄여 반대 순서에 이릅니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "(1, 3, 5, 7)과 (2, 4, 6, 8)을 짝지은 곱의 합의 최댓값과 최솟값을 구하세요.",
+      "steps": [
+        "최댓값은 같은 순서: 1 × 2 + 3 × 4 + 5 × 6 + 7 × 8입니다.",
+        "= 2 + 12 + 30 + 56 = 100입니다.",
+        "최솟값은 반대 순서: 1 × 8 + 3 × 6 + 5 × 4 + 7 × 2입니다.",
+        "= 8 + 18 + 20 + 14 = 60입니다."
+      ],
+      "answer": "100과 60"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "(1, 3, 5, 7)과 (2, 4, 6, 8)을 짝지은 곱의 합의 최솟값은?",
+      "answer": "60",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "반대 순서로 짝지으세요.",
+      "explanation": "재배열 부등식에 따르면 반대 순서로 짝지은 곱의 합이 가장 작습니다.\n1 × 8 + 3 × 6 + 5 × 4 + 7 × 2를 계산합니다.\n8 + 18 + 20 + 14 = 60입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a < a', b < b'일 때 (ab + a'b') − (ab' + a'b)를 인수분해하면 (a' − a)(b' − □)입니다. □는? ① b ② b'",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "전개해 비교하세요.",
+      "explanation": "(a' − a)(b' − b) = a'b' − a'b − ab' + ab입니다.\n이것은 (ab + a'b') − (ab' + a'b)와 같습니다.\n그래서 □ = b이고 답은 1입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "a² + b² + c² ≥ ab + bc + ca",
+      "body": [
+        "(a, b, c)와 (a, b, c)를 같은 순서로 짝지으면 a² + b² + c²이고, (a, b, c)와 (b, c, a)로 짝지으면 ab + bc + ca입니다. 재배열 부등식으로 a² + b² + c² ≥ ab + bc + ca입니다.",
+        "이처럼 재배열 부등식은 '같은 수열을 두 번 쓰는' 방법으로 대칭 부등식을 만들어 냅니다.",
+        "같은 방법으로 (a², b², c²)와 (a, b, c)를 짝지으면 a³ + b³ + c³ ≥ a²b + b²c + c²a입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = 1, b = 2, c = 4일 때 (a² + b² + c²) − (ab + bc + ca)는?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "21 − 14입니다.",
+      "explanation": "a² + b² + c² = 1 + 4 + 16 = 21입니다.\nab + bc + ca = 2 + 8 + 4 = 14입니다.\n21 − 14 = 7이며, 재배열 부등식대로 0 이상입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = 1, b = 2, c = 3일 때 (a³ + b³ + c³) − (a²b + b²c + c²a)는?",
+      "answer": "13",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "36 − 23입니다.",
+      "explanation": "a³ + b³ + c³ = 1 + 8 + 27 = 36입니다.\na²b + b²c + c²a = 1 × 2 + 4 × 3 + 9 × 1 = 23입니다.\n36 − 23 = 13입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "(2, 5, 7)과 (1, 3, 9)를 짝짓는 방법 6가지 가운데 곱의 합이 가장 큰 값은?",
+      "answer": "80",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "같은 순서로 짝지으세요.",
+      "explanation": "재배열 부등식에 따르면 같은 순서로 짝지은 곱의 합이 가장 큽니다.\n2 × 1 + 5 × 3 + 7 × 9를 계산합니다.\n2 + 15 + 63 = 80입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "재배열 부등식: 같은 순서로 짝지은 곱의 합이 최대, 반대 순서가 최소이며, 순서가 어긋난 두 쌍을 바꾸면 합이 (a' − a)(b' − b)만큼 커지는 교환 논법으로 증명합니다.",
+        "같은 수열을 두 번 써서 a² + b² + c² ≥ ab + bc + ca, a³ + b³ + c³ ≥ a²b + b²c + c²a 같은 부등식을 얻습니다.",
+        "재배열 부등식을 쓰려면 두 수열의 크기 순서를 먼저 정해야 하므로, 대칭식에서는 일반성을 잃지 않고 a ≤ b ≤ c라 둡니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(2, 5, 7)과 (1, 3, 9)를 짝지은 곱의 합 가운데 가장 작은 값은?",
+      "answer": "40",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "반대 순서로 짝지으세요.",
+      "explanation": "재배열 부등식에 따르면 반대 순서로 짝지은 곱의 합이 가장 작습니다.\n2 × 9 + 5 × 3 + 7 × 1을 계산합니다.\n18 + 15 + 7 = 40입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(1, 2, 3, 4)와 (1, 2, 3, 4)를 짝지은 곱의 합 가운데 가장 큰 값은?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "같은 순서: 1² + 2² + 3² + 4²입니다.",
+      "explanation": "재배열 부등식에 따르면 같은 순서로 짝지은 곱의 합이 가장 큽니다.\n1 × 1 + 2 × 2 + 3 × 3 + 4 × 4를 계산합니다.\n1 + 4 + 9 + 16 = 30입니다."
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "재배열 부등식(n = 2인 경우)을 증명하세요: a₁ ≤ a₂, b₁ ≤ b₂이면 a₁b₁ + a₂b₂ ≥ a₁b₂ + a₂b₁.",
+      "model_answer": [
+        "두 식의 차를 계산한다: (a₁b₁ + a₂b₂) − (a₁b₂ + a₂b₁).",
+        "정리하면 a₂(b₂ − b₁) − a₁(b₂ − b₁) = (a₂ − a₁)(b₂ − b₁)이다.",
+        "a₂ − a₁ ≥ 0, b₂ − b₁ ≥ 0이므로 곱은 0 이상이다.",
+        "따라서 a₁b₁ + a₂b₂ ≥ a₁b₂ + a₂b₁이고, 등호는 a₁ = a₂ 또는 b₁ = b₂일 때 성립한다."
+      ],
+      "criteria": [
+        {
+          "text": "차를 세웠다",
+          "points": 1
+        },
+        {
+          "text": "인수분해했다",
+          "points": 2
+        },
+        {
+          "text": "부호를 판단했다",
+          "points": 2
+        },
+        {
+          "text": "등호 조건을 밝혔다",
+          "points": 1
+        }
+      ],
+      "hint": "차를 인수분해하세요."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "재배열 부등식으로 양수 a, b, c에 대해 a³ + b³ + c³ ≥ a²b + b²c + c²a를 증명하세요.",
+      "model_answer": [
+        "일반성을 잃지 않고 순서를 정하면, (a, b, c)와 (a², b², c²)는 크기 순서가 같다(x ≤ y이면 x² ≤ y²).",
+        "같은 순서로 짝지은 합은 a² · a + b² · b + c² · c = a³ + b³ + c³이다.",
+        "(a², b², c²)와 (b, c, a)로 짝지은 합은 a²b + b²c + c²a이고, 이는 b들을 다시 늘어놓은 한 가지 짝짓기이다.",
+        "재배열 부등식에 따라 같은 순서의 합이 가장 크므로 a³ + b³ + c³ ≥ a²b + b²c + c²a이다."
+      ],
+      "criteria": [
+        {
+          "text": "두 수열이 같은 순서임을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "같은 순서의 합을 확인했다",
+          "points": 1
+        },
+        {
+          "text": "다른 짝짓기임을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "결론을 냈다",
+          "points": 1
+        }
+      ],
+      "hint": "(a², b², c²)와 (a, b, c)를 짝지으세요."
+    }
+  ]
+}

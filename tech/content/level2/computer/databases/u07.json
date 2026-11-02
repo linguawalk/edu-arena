@@ -1,0 +1,114 @@
+{
+ "no": 7,
+ "title": "질의 처리와 최적화",
+ "hours": 5,
+ "after": [
+  6
+ ],
+ "objectives": [
+  "SQL이 파싱·최적화·실행되는 과정을 설명할 수 있다.",
+  "중첩 루프·정렬 병합·해시 조인의 비용을 비교할 수 있다.",
+  "실행 계획을 읽고 선택 연산 먼저 적용 같은 최적화 규칙을 설명할 수 있다."
+ ],
+ "checklist": [
+  "질의 처리: 파싱 → 관계 대수 트리 → 최적화 → 실행",
+  "비용 = 주로 디스크 블록 입출력",
+  "블록 중첩 루프 조인 비용 ≈ b_R + b_R × b_S",
+  "정렬 병합 조인, 해시 조인",
+  "규칙 기반 최적화: 선택·투영을 먼저(밀어 내리기)",
+  "비용 기반 최적화와 통계 정보",
+  "실행 계획 보기(EXPLAIN)와 인덱스 활용 여부 확인"
+ ],
+ "advice": [
+  "이 단원은 '같은 결과를 내는 SQL이라도 실행 방법에 따라 수천 배 차이가 난다'는 사실을 보여 줍니다. 두 테이블의 블록 수만 가지고 조인 비용을 계산해 보면, 작은 테이블을 바깥에 두거나 조건으로 먼저 줄이는 것이 왜 중요한지 숫자로 보입니다.",
+  "실제 데이터베이스에서 EXPLAIN으로 실행 계획을 출력해 인덱스를 쓰는지, 어떤 조인을 고르는지 확인하는 습관을 들이세요. 느린 질의를 고치는 실무의 출발점입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Silberschatz · Korth · Sudarshan",
+   "title": "Database System Concepts (교재 사이트, 장 제목으로 표기)",
+   "url": "https://www.db-book.com/",
+   "lang": "영어",
+   "part": "Query Processing, Query Optimization 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "CMU 15-445 (공개 강의)",
+   "title": "Intro to Database Systems — 강의 노트·영상",
+   "url": "https://15445.courses.cs.cmu.edu/",
+   "lang": "영어",
+   "part": "Join Algorithms, Query Optimization 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "R이 100블록, S가 50블록일 때 R을 바깥에 둔 블록 중첩 루프 조인의 대략적인 입출력 비용(b_R + b_R × b_S)은 몇 블록일까요?",
+   "answer": "5100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "100 + 100 × 50 = 5100블록",
+   "hint": "b_R + b_R × b_S입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "DBMS가 SQL을 어떤 순서와 방법으로 실행할지 보여 주는 계획을 확인하는 명령은 대부분 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "EXPLAIN",
+      "explain"
+     ]
+    }
+   ],
+   "explanation": "실행 계획에서 전체 검색인지 인덱스 검색인지 확인합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "관계 대수 트리에서 조인보다 {{1}} 연산을 먼저 적용하면 중간 결과가 작아져 비용이 줄어듭니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "선택",
+      "셀렉트"
+     ]
+    }
+   ],
+   "explanation": "조건으로 행을 먼저 줄이는 '선택 밀어 내리기' 규칙입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "작은 쪽 테이블로 메모리에 해시 표를 만들고 큰 쪽을 훑으며 짝을 찾는 조인을 {{1}} 조인이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "해시"
+     ]
+    }
+   ],
+   "explanation": "같음 조인에서 큰 테이블끼리 조인할 때 효율적입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "databases",
+ "id": "l2-computer-databases-u07"
+}

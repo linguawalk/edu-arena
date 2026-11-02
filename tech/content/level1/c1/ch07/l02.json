@@ -1,0 +1,376 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c1",
+  "title": "전기전자"
+ },
+ "chapter": {
+  "id": "c1-ch07",
+  "no": 7,
+  "title": "트랜지스터 스위치 회로"
+ },
+ "lesson": {
+  "id": "c1-ch07-l02",
+  "no": 2,
+  "title": "베이스 저항 설계",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "전기전자"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "베이스에는 저항을 단다",
+   "body": [
+    "BJT의 베이스와 이미터 사이는 다이오드처럼 동작해, 전류가 흐르면 약 0.7 V가 걸립니다. 핀을 베이스에 바로 연결하면 이 다이오드에 큰 전류가 흘러 핀과 트랜지스터가 망가질 수 있습니다.",
+    "그래서 핀과 베이스 사이에 저항을 넣어 베이스 전류를 알맞게 제한합니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "numeric",
+   "prompt": "5 V 핀과 베이스 사이에 저항을 넣었습니다. 베이스-이미터에 0.7 V가 걸리면 저항 양 끝에는 몇 V가 걸릴까요?",
+   "answer": "4.3",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": "전체 전압에서 0.7 V를 빼세요.",
+   "explanation": "핀 전압 5 V 가운데 0.7 V는 베이스-이미터에 걸립니다.\n나머지 5 − 0.7 = 4.3 V가 저항에 걸립니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "설계 순서",
+   "body": [
+    "먼저 부하에 흐를 전류 Ic를 확인합니다. 필요한 베이스 전류는 Ic ÷ β인데, β는 제품마다 차이가 크므로 확실히 포화되도록 몇 배(예: 5배) 넉넉하게 잡습니다.",
+    "베이스 저항은 Rb = (입력 전압 − 0.7) ÷ Ib로 구합니다. 계산값이 표준값 사이에 있으면 조금 작은 표준값을 골라 베이스 전류가 약간 더 흐르게 합니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "5 V 핀으로 100 mA 부하를 켭니다. β = 100, 여유 5배일 때 베이스 저항은?",
+   "steps": [
+    "필요한 Ib = 100 ÷ 100 = 1 mA, 여유 5배로 5 mA입니다.",
+    "Rb = (5 − 0.7) ÷ 0.005 = 860 Ω입니다.",
+    "조금 작은 표준값 820 Ω을 고릅니다."
+   ],
+   "answer": "820 Ω"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "베이스 저항 = (입력 전압 − {{1}} V) ÷ 베이스 전류입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "0.7"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "베이스-이미터 사이에 약 0.7 V가 걸리므로 그만큼 뺀 전압이 저항에 걸립니다.\n이 전압을 원하는 베이스 전류로 나눕니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "5 V 핀으로 베이스 전류 2 mA를 흘리려면 베이스 저항은 몇 Ω이어야 할까요?",
+   "answer": "2150",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "Rb = (5 − 0.7) ÷ 0.002 = 4.3 ÷ 0.002입니다.\n2150 Ω입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "3.3 V 핀으로 베이스 전류 1 mA를 흘리려면 베이스 저항은 몇 Ω이어야 할까요?",
+   "answer": "2600",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "Rb = (3.3 − 0.7) ÷ 0.001 = 2600 Ω입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "부하 전류 200 mA, β = 100, 여유 5배일 때 베이스 전류는 몇 mA로 잡아야 할까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "필요한 Ib = 200 ÷ 100 = 2 mA입니다.\n여유 5배로 10 mA를 잡습니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "부하 쪽 전류와 포화 확인",
+   "body": [
+    "부하가 저항처럼 동작한다면, 포화된 트랜지스터를 지나는 전류는 Ic = (전원 전압 − VCE(sat)) ÷ 부하 저항입니다. VCE(sat)는 약 0.2 V입니다.",
+    "포화되려면 β × Ib가 이 Ic보다 커야 합니다. β × Ib가 모자라면 트랜지스터는 활성 영역에 머물러 뜨거워집니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "12 V 전원과 60 Ω 부하 사이에서 포화된 트랜지스터를 지나는 전류는?",
+   "steps": [
+    "Ic = (12 − 0.2) ÷ 60입니다.",
+    "11.8 ÷ 60 ≈ 0.197 A, 약 197 mA입니다."
+   ],
+   "answer": "약 197 mA"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "트랜지스터가 포화되려면 β × Ib가 부하 전류보다 {{1}}.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "커야 한다",
+      "커야 합니다",
+      "커야",
+      "커야 함"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "β × Ib는 트랜지스터가 흘릴 수 있는 최대 전류입니다.\n이 값이 부하 전류보다 커야 부하가 원하는 만큼 흐르고 포화됩니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "9 V 전원과 44 Ω 부하 사이에서 포화된 트랜지스터를 지나는 전류는 몇 mA일까요?",
+   "answer": "200",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "Ic = (9 − 0.2) ÷ 44 = 8.8 ÷ 44 = 0.2 A입니다.\n0.2 A = 200 mA입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "β = 100, Ib = 1 mA인 트랜지스터로 200 mA 부하를 켜면 트랜지스터는 포화되지 {{1}}.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "않는다",
+      "않습니다",
+      "못한다",
+      "못합니다"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "β × Ib = 100 mA로 부하 전류 200 mA보다 작습니다.\n트랜지스터가 활성 영역에 머물러 열이 많이 납니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "ordering",
+   "prompt": "BJT 스위치의 베이스 저항을 정하는 순서입니다. 차례대로 배열하세요.",
+   "items": [
+    {
+     "id": "a",
+     "text": "Rb = (입력 전압 − 0.7) ÷ Ib를 계산한다"
+    },
+    {
+     "id": "b",
+     "text": "부하 전류 Ic를 구한다"
+    },
+    {
+     "id": "c",
+     "text": "조금 작은 표준값을 고른다"
+    },
+    {
+     "id": "d",
+     "text": "Ic ÷ β에 여유 배수를 곱해 Ib를 정한다"
+    }
+   ],
+   "answer_order": [
+    "b",
+    "d",
+    "a",
+    "c"
+   ],
+   "hint": null,
+   "explanation": "부하 전류에서 출발해 필요한 베이스 전류를 정합니다.\n그 전류로 저항을 계산하고, 포화가 확실하도록 조금 작은 표준값을 고릅니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "핀 전류도 확인한다",
+   "body": [
+    "베이스 저항이 작을수록 베이스 전류가 커져 포화는 확실해지지만, 그 전류는 모두 핀에서 나갑니다. 핀의 한계(보통 20 mA 안팎)를 넘지 않는지 마지막에 확인합니다.",
+    "한계를 넘는다면 β가 큰 트랜지스터나 MOSFET으로 바꿉니다.",
+    "정리: Ic 확인 → Ib = Ic ÷ β × 여유 → Rb = (Vin − 0.7) ÷ Ib → 조금 작은 표준값 → 핀 전류 확인"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "계산한 베이스 저항이 표준값 사이에 있으면 조금 {{1}} 쪽을 고릅니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "작은"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "작은 저항을 고르면 베이스 전류가 조금 더 흘러 포화가 확실해집니다.\n다만 핀 전류 한계는 넘지 않아야 합니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "5 V 핀으로 12 V 릴레이(코일 저항 240 Ω)를 켭니다. β = 100, 여유 5배일 때 베이스 저항은?",
+   "steps": [
+    "코일 전류 = (12 − 0.2) ÷ 240 ≈ 49 mA입니다.",
+    "Ib = 49 ÷ 100 × 5 ≈ 2.5 mA입니다.",
+    "Rb = 4.3 ÷ 0.0025 ≈ 1720 Ω이므로 조금 작은 표준값 1.5 kΩ을 고릅니다."
+   ],
+   "answer": "1.5 kΩ"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "12 V 전원과 코일 저항 120 Ω인 릴레이 사이에서 포화된 트랜지스터를 지나는 전류는 약 몇 mA일까요? (소수 첫째 자리까지)",
+   "answer": "98.3",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "hint": "VCE(sat) 0.2 V를 빼고 코일 저항으로 나누세요.",
+   "explanation": "Ic = (12 − 0.2) ÷ 120 = 11.8 ÷ 120 ≈ 0.0983 A입니다.\n약 98.3 mA입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 문제에서 β = 100, 여유 5배라면 베이스 전류는 약 몇 mA로 잡아야 할까요? (소수 첫째 자리까지)",
+   "answer": "4.9",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "hint": "Ic ÷ β에 5를 곱하세요.",
+   "explanation": "Ib = 98.3 ÷ 100 × 5 ≈ 4.9 mA입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "5 V 핀으로 베이스 전류 4.9 mA를 흘리려면 베이스 저항은 약 몇 Ω일까요? (정수로)",
+   "answer": "878",
+   "answer_format": "integer",
+   "tolerance": 6,
+   "hint": "(5 − 0.7)을 베이스 전류(A)로 나누세요.",
+   "explanation": "Rb = 4.3 ÷ 0.0049 ≈ 878 Ω입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "앞 문제의 계산값에 가장 알맞은 E12 표준값은 820 Ω과 1000 Ω 가운데 {{1}} Ω입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "820"
+     ]
+    }
+   ],
+   "hint": "작은 쪽을 고르는 규칙을 떠올리세요.",
+   "explanation": "계산값 약 878 Ω은 820과 1000 사이에 있습니다.\n포화를 확실히 하려고 조금 작은 820 Ω을 고릅니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "5 V 핀과 820 Ω 베이스 저항을 쓰면 핀에서 나가는 전류는 약 몇 mA일까요? (소수 첫째 자리까지)",
+   "answer": "5.2",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "hint": "4.3 V를 820 Ω으로 나누세요.",
+   "explanation": "Ib = 4.3 ÷ 820 ≈ 0.0052 A입니다.\n약 5.2 mA로 핀 한계 20 mA 안에 들어옵니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "베이스 저항 없이 핀을 베이스에 바로 연결하면 위험한 이유를 설명해 보세요.",
+   "hint": "베이스-이미터가 무엇처럼 동작하는지 떠올려 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "저항"
+     ],
+     [
+      "0.7",
+      "다이오드",
+      "베이스-이미터"
+     ],
+     [
+      "큰 전류",
+      "전류가 커",
+      "과전류",
+      "많은 전류",
+      "제한"
+     ],
+     [
+      "손상",
+      "고장",
+      "타",
+      "망가"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "베이스와 이미터 사이는 다이오드처럼 약 0.7 V만 걸리므로, 저항 없이 5 V 핀을 연결하면 전류를 제한할 것이 없어 큰 전류가 흐릅니다. 그러면 핀과 트랜지스터가 손상될 수 있습니다."
+  }
+ ]
+}

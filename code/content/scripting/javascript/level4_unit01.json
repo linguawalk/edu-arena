@@ -1,0 +1,96 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 4,
+  "unit": 1,
+  "unit_title": "배열 메서드",
+  "questions": [
+    {
+      "id": "javascript_l4_u01_q001",
+      "type": "predict_output",
+      "code": "const nums = [1, 2, 3, 4, 5, 6];\nconst evens = nums.filter(n => n % 2 === 0);\nconsole.log(evens);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["[1, 2, 3, 4, 5, 6]", "[2, 4, 6]", "[1, 3, 5]", "오류"],
+      "answer": 1,
+      "explanation_en": "filter keeps only elements for which the callback returns true; even numbers 2, 4, 6 pass the n % 2 === 0 check.",
+      "explanation_ko": "filter는 콜백이 true를 반환하는 요소만 남깁니다. n % 2 === 0 검사를 통과하는 짝수 2, 4, 6이 남습니다.",
+      "concept_tags": ["filter_method"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l4_u01_q002",
+      "type": "predict_output",
+      "code": "const nums = [1, 2, 3];\nconst doubled = nums.map(n => n * 2);\nconsole.log(doubled);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["[1, 2, 3]", "[2, 4, 6]", "오류", "[1, 4, 9]"],
+      "answer": 1,
+      "explanation_en": "map transforms every element using the callback, doubling each: 2, 4, 6.",
+      "explanation_ko": "map은 콜백을 사용해 모든 요소를 변환합니다. 각각을 두 배로 만듭니다: 2, 4, 6.",
+      "concept_tags": ["map_method"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l4_u01_q003",
+      "type": "predict_output",
+      "code": "const nums = [1, 2, 3, 4, 5];\nconst sum = nums.reduce((total, n) => total + n, 0);\nconsole.log(sum);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["15", "5", "0", "오류"],
+      "answer": 0,
+      "explanation_en": "reduce accumulates a single value by repeatedly applying the callback; starting from 0, it sums all elements: 1+2+3+4+5=15.",
+      "explanation_ko": "reduce는 콜백을 반복 적용해 하나의 값으로 누적합니다. 0부터 시작해 모든 요소를 더합니다: 1+2+3+4+5=15.",
+      "concept_tags": ["reduce_method"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l4_u01_q004",
+      "type": "predict_output",
+      "code": "const nums = [1, 2, 3, 4, 5];\nconst result = nums.filter(n => n > 3).map(n => n * 2);\nconsole.log(result);",
+      "prompt_en": "What is printed? (Chained filter and map.)",
+      "prompt_ko": "출력 결과는? (filter와 map을 연결했습니다.)",
+      "options": ["[8, 10]", "[6, 8, 10]", "[2, 4, 6, 8, 10]", "오류"],
+      "answer": 0,
+      "explanation_en": "filter first keeps numbers greater than 3 (4, 5), then map doubles each: 8, 10.",
+      "explanation_ko": "filter가 먼저 3보다 큰 수(4, 5)를 남기고, map이 각각을 두 배로 만듭니다: 8, 10.",
+      "concept_tags": ["filter_method", "map_method"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l4_u01_q005",
+      "type": "error_finding",
+      "code": "const nums = [1, 2, 3];\nconst result = nums.map(n => n * 2);\nnums.map(n => console.log(n));",
+      "prompt_en": "What's a common misconception about this code (assuming the goal was just to print each element)?",
+      "prompt_ko": "이 코드에 대한 흔한 오해는 무엇일까요? (목표가 각 요소를 출력하는 것뿐이었다고 가정)",
+      "options": [
+        "map은 존재하지 않는 메서드임",
+        "map은 값을 반환할 목적으로 쓰는 메서드인데, 여기서는 반환값을 쓰지 않고 그냥 출력에만 사용해서, forEach가 더 적절한 선택임",
+        "console.log는 map 안에서 쓸 수 없음",
+        "문제 없음, 완벽하게 적절한 사용법임"
+      ],
+      "answer": 1,
+      "explanation_en": "map is meant to transform elements and produce a new array; using it purely for its side effect (printing) without using the returned array is a misuse — forEach exists specifically for side-effect-only iteration.",
+      "explanation_ko": "map은 요소를 변환해 새 배열을 만드는 용도입니다. 반환된 배열을 쓰지 않고 순전히 부수 효과(출력)만을 위해 쓰는 것은 잘못된 사용입니다 — forEach가 바로 부수 효과 전용 순회를 위해 존재합니다.",
+      "concept_tags": ["map_method", "foreach_method"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l4_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "filter", "definition": "조건을 만족하는 요소만 남긴 새 배열을 반환" },
+        { "term": "map", "definition": "각 요소를 변환한 새 배열을 반환" },
+        { "term": "reduce", "definition": "모든 요소를 하나의 값으로 누적" },
+        { "term": "forEach", "definition": "배열을 순회하되 값을 반환하지 않는, 부수 효과 전용 메서드" }
+      ],
+      "explanation_en": "These functional array methods correspond directly to Python's filter/map/functools.reduce and Java's Stream API, forming a consistent pattern across the languages in this curriculum.",
+      "explanation_ko": "이 함수형 배열 메서드들은 Python의 filter/map/functools.reduce, Java의 Stream API에 직접 대응하며, 이 커리큘럼의 여러 언어에 걸쳐 일관된 패턴을 이룹니다.",
+      "concept_tags": ["filter_method", "map_method", "reduce_method"],
+      "difficulty": "practice"
+    }
+  ]
+}

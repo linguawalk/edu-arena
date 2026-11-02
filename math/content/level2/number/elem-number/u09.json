@@ -1,0 +1,101 @@
+{
+ "no": 9,
+ "title": "공개키 암호와 소수판정",
+ "hours": 5,
+ "after": [
+  5,
+  7
+ ],
+ "objectives": [
+  "RSA의 키 생성, 암호화, 복호화를 수행하고 정당성을 증명할 수 있다.",
+  "디피–헬만 키 교환과 엘가말 암호의 원리를 설명할 수 있다.",
+  "페르마 판정과 밀러–라빈 판정의 원리를 설명할 수 있다."
+ ],
+ "checklist": [
+  "공개키 암호의 개념과 일방향 함수",
+  "RSA: n = pq, ed ≡ 1 (mod φ(n)), 복호화의 정당성(오일러 정리)",
+  "RSA의 안전성과 소인수분해",
+  "디피–헬만 키 교환과 이산로그 문제",
+  "엘가말 암호(개요)",
+  "페르마 판정, 카마이클 수(561)",
+  "밀러–라빈 판정(확률적), AKS(결정적, 개요)"
+ ],
+ "advice": [
+  "이 단원에서 앞의 모든 내용이 실제 기술로 모입니다. RSA는 유클리드 호제법(키 생성), 반복 제곱법(암호화), 오일러 정리(복호화의 정당성)를 쓰고, 디피–헬만은 원시근과 이산로그를 씁니다. 작은 소수로 직접 암호화·복호화를 해 보고, 왜 복호화하면 원래 메시지가 나오는지 증명해 보세요.",
+  "소수판정에서는 페르마 소정리의 역이 성립하지 않는다는 점(카마이클 수 561은 모든 서로소인 밑에 대해 페르마 판정을 통과)이 중요합니다. 밀러–라빈 판정은 이 문제를 해결한 확률적 알고리즘으로, 오늘날 암호 키를 만들 때 실제로 쓰입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson (한국어판: 친절한 수론 길라잡이)",
+   "title": "Joseph H. Silverman, A Friendly Introduction to Number Theory (4판)",
+   "part": "거듭제곱·근·'깨지지 않는' 암호, 소수판정과 카마이클 수 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "KOCW",
+   "title": "정수론 (세종대학교 오장헌, Rosen 교재)",
+   "url": "http://www.kocw.net/home/cview.do?mty=p&kemId=1206844",
+   "lang": "한국어",
+   "part": "RSA 암호, ElGamal 암호, 소수판정법"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill (한국어판: 기초정수론)",
+   "title": "David M. Burton, Elementary Number Theory (7판)",
+   "part": "10장 Introduction to Cryptography"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "가장 작은 카마이클 수는?",
+   "answer": "561",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "561 = 3 × 11 × 17, 서로소인 모든 a에 대해 a⁵⁶⁰ ≡ 1 (mod 561)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "p = 5, q = 11, e = 3인 RSA에서 개인키 d(1 < d < φ(n))는?",
+   "answer": "27",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "φ(n) = 4 × 10 = 40\n3d ≡ 1 (mod 40) → d = 27 (81 = 2 × 40 + 1)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "디피–헬만에서 p = 23, g = 5, 앨리스의 비밀 a = 6일 때 공개값 A = gᵃ mod p는?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "5² = 25 ≡ 2, 5⁴ ≡ 4, 5⁶ ≡ 8 (mod 23)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "위에서 밥의 공개값이 B = 19일 때 앨리스가 계산하는 공유 비밀 Bᵃ mod 23은?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "19⁶ mod 23 = 2\n(밥도 Aᵇ = 8¹⁵ mod 23 = 2로 같은 값을 얻음)",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "number",
+ "subject": "elem-number",
+ "id": "l2-number-elem-number-u09"
+}

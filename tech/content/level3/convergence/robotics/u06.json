@@ -1,0 +1,94 @@
+{
+ "no": 6,
+ "title": "로봇 제어",
+ "hours": 5,
+ "after": [
+  3,
+  5
+ ],
+ "objectives": [
+  "관절 위치 제어(PID)와 계산 토크 제어의 원리를 설명할 수 있다.",
+  "힘 제어·임피던스 제어가 필요한 상황을 설명할 수 있다.",
+  "비례 제어 출력과 제어 주기의 의미를 계산·설명할 수 있다."
+ ],
+ "checklist": [
+  "관절 공간 PID 위치 제어(제어공학 7단원)",
+  "중력 보상과 계산 토크 제어",
+  "작업 공간 제어",
+  "힘 제어와 임피던스(유연성) 제어: 조립, 연마, 사람과 접촉",
+  "제어 주기(수백 Hz~수 kHz)와 지연",
+  "실시간 운영체제와 통신(EtherCAT 등)",
+  "학습 기반 제어(강화 학습, 모방 학습)와 고전 제어의 결합"
+ ],
+ "advice": [
+  "로봇 제어는 '정확한 위치로 가기'와 '부드럽게 힘을 주기' 두 가지로 나뉩니다. 용접·도장은 정확한 위치가, 부품 끼우기나 사람과의 협업은 적당한 힘과 유연성이 중요해서 임피던스 제어가 쓰입니다. 비례 제어 출력을 간단히 계산해 보고, 제어 주기가 너무 느리면 로봇이 떨리거나 불안정해지는 이유를 전기 트랙 제어공학의 안정도와 연결해 이해하세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Craig, Introduction to Robotics: Mechanics and Control (장 제목으로 표기)"
+  },
+  {
+   "kind": "book",
+   "provider": "Lynch · Park (무료 공개 교재와 강의)",
+   "title": "Modern Robotics: Mechanics, Planning, and Control",
+   "url": "https://hades.mech.northwestern.edu/index.php/Modern_Robotics",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "제어공학 4단원 안정도 판별 (전기 트랙)",
+   "url": "guide.html?lv=3&t=electrical&s=control&u=4"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "비례 이득 10 N·m/rad인 관절 위치 제어기에서 위치 오차가 0.05 rad이면 비례 제어 토크는 몇 N·m일까요?",
+   "answer": "0.5",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "explanation": "τ = K_p × e = 10 × 0.05 = 0.5 N·m",
+   "hint": "K_p × 오차입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "제어 주파수가 1 kHz이면 제어 주기는 몇 ms일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "1/1000 s = 1 ms",
+   "hint": "주기 = 1 ÷ 주파수입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "로봇이 스프링–댐퍼처럼 유연하게 반응하도록 힘과 움직임의 관계를 제어하는 방식을 {{1}} 제어라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "임피던스"
+     ]
+    }
+   ],
+   "explanation": "사람과 접촉하거나 부품을 끼우는 작업에 씁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "robotics",
+ "id": "l3-convergence-robotics-u06"
+}

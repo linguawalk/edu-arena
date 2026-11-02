@@ -1,0 +1,89 @@
+{
+ "no": 2,
+ "title": "데이터 흐름 아키텍처",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "시스톨릭 배열의 동작과 최대 성능을 계산할 수 있다.",
+  "가중치·출력·행 고정 데이터 흐름을 비교할 수 있다."
+ ],
+ "checklist": [
+  "PE(처리 요소) 배열",
+  "시스톨릭 배열: 데이터가 박동처럼 이웃 PE로 흐름",
+  "최대 성능 = PE 수 × 클럭 × 2",
+  "가중치 고정, 출력 고정, 행 고정 데이터 흐름",
+  "배열 이용률과 매핑"
+ ],
+ "advice": [
+  "AI 가속기의 핵심 아이디어는 데이터를 한 번 읽어 와 이웃 연산기로 넘겨주며 여러 번 쓰게 하는 것이고, 그 대표 구조가 시스톨릭 배열입니다. 128 × 128 배열의 최대 성능을 계산한 뒤, 작은 행렬을 올리면 배열의 일부만 쓰여 실제 성능이 크게 떨어진다는 이용률 문제도 함께 생각해 보세요. 어떤 값을 PE에 고정해 두느냐(데이터 흐름)에 따라 에너지와 메모리 접근이 달라집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan & Claypool",
+   "title": "Sze 외, Efficient Processing of Deep Neural Networks (장 제목으로 표기)",
+   "part": "Designing DNN Accelerators 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Hennessy · Patterson, Computer Architecture: A Quantitative Approach (도메인 특화 구조 장)",
+   "part": "Domain-Specific Architectures 장"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "128 × 128 MAC 배열이 1 GHz로 동작하면 최대 성능은 약 몇 TFLOPS일까요? (소수 첫째 자리까지)",
+   "answer": "32.8",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "16 384 × 10⁹ × 2 ≈ 32.8 × 10¹² FLOPS",
+   "hint": "PE 수 × 클럭 × 2입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "데이터가 심장 박동처럼 규칙적으로 이웃 처리 요소로 흘러가며 행렬 곱을 계산하는 배열을 {{1}} 배열이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "시스톨릭"
+     ]
+    }
+   ],
+   "explanation": "TPU 같은 AI 가속기의 핵심 구조입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "가중치를 처리 요소에 붙잡아 두고 입력과 부분합을 흘려보내는 데이터 흐름을 가중치 {{1}} 방식이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "고정",
+      "정지"
+     ]
+    }
+   ],
+   "explanation": "Weight Stationary라고 부릅니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "ai-chip",
+ "id": "l3-convergence-ai-chip-u02"
+}

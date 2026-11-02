@@ -1,0 +1,114 @@
+{
+ "no": 3,
+ "title": "명령어 집합 구조",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "RISC-V의 레지스터, 명령어 형식, 주소 지정 방식을 설명할 수 있다.",
+  "간단한 C 문장을 어셈블리 명령어로 옮길 수 있다.",
+  "RISC와 CISC의 설계 철학을 비교할 수 있다."
+ ],
+ "checklist": [
+  "RISC-V: 레지스터 32개(x0은 항상 0), 명령어 길이 32비트",
+  "명령어 형식 R·I·S·B·U·J",
+  "산술·논리, 적재·저장(로드-스토어), 분기·점프",
+  "즉시값과 주소 지정 방식(레지스터, 즉시, 베이스+변위, PC 상대)",
+  "12비트 즉시값 범위 −2048 ~ 2047",
+  "RISC(단순·고정 길이)와 CISC(x86, 가변 길이)",
+  "ARM과 RISC-V의 확산"
+ ],
+ "advice": [
+  "명령어 집합은 하드웨어가 소프트웨어에 약속하는 '계약서'입니다. 레벨1 컴퓨터 챕터 4의 가상 CPU를 실제 RISC-V로 바꾸는 단원이라고 생각하면, 새로 익힐 것은 레지스터 이름과 명령어 형식 정도입니다. a = b + c; 같은 C 문장을 두세 줄의 어셈블리로 옮겨 보는 연습이 가장 효과적입니다.",
+  "레지스터 32개면 레지스터 번호에 5비트가 필요하고, 그만큼 명령어 안의 다른 필드가 줄어든다는 식으로 '명령어 32비트를 어떻게 나눠 쓰는가'를 따라가 보면 형식이 왜 여러 개인지 이해됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Morgan Kaufmann",
+   "title": "Patterson · Hennessy, Computer Organization and Design RISC-V Edition (번역본 『컴퓨터 구조 및 설계』, 장 제목으로 표기)",
+   "part": "Instructions: Language of the Computer 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "assembly language, RISC-V 관련 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "RISC-V International",
+   "title": "RISC-V 명령어 집합 규격",
+   "url": "https://riscv.org/",
+   "lang": "영어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "레지스터가 32개인 ISA에서 명령어의 레지스터 필드 하나는 몇 비트일까요?",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "2⁵ = 32이므로 5비트입니다.",
+   "hint": "2ⁿ = 32인 n입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "12비트 부호 있는 즉시값이 나타낼 수 있는 가장 큰 값은 얼마일까요?",
+   "answer": "2047",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "범위 −2048 ~ 2047이므로 최댓값은 2047입니다.",
+   "hint": "2¹¹ − 1입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "RISC-V의 레지스터 x0은 언제 읽어도 값이 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "0",
+      "영"
+     ]
+    }
+   ],
+   "explanation": "0이 자주 쓰여서 하드웨어로 고정해 두면 명령어를 줄일 수 있습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "명령어 길이를 고정하고 단순한 명령어 위주로 설계해 파이프라인에 유리한 설계 철학을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "RISC"
+     ]
+    }
+   ],
+   "explanation": "x86처럼 복잡하고 가변 길이 명령어를 쓰는 쪽은 CISC입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "computer-architecture",
+ "id": "l2-computer-computer-architecture-u03"
+}

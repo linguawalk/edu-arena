@@ -1,0 +1,169 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "basic",
+  "work": "풀이",
+  "chapter": {
+    "id": "info-s2-basic-ch02",
+    "no": 2,
+    "title": "불변식과 귀납"
+  },
+  "review": {
+    "id": "info-s2-basic-ch02-review",
+    "title": "불변식과 귀납 복습",
+    "minutes": 15
+  },
+  "questions": [
+    {
+      "type": "question",
+      "id": "r1",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "a = {2, 7, 1, 8, 2, 8}일 때 반복 i = 4가 시작하는 순간 s의 값은?",
+      "answer": "18",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "a[0]부터 a[3]까지의 합입니다.",
+      "explanation": "불변식에 따르면 반복 i가 시작할 때 s = a[0] + … + a[i − 1]입니다.\ni = 4이면 a[0] + a[1] + a[2] + a[3]입니다.\n2 + 7 + 1 + 8 = 18입니다.",
+      "code": "int s = 0;\nfor (int i = 0; i < n; i++)\n    s += a[i];        // 불변식: 반복 i가 시작할 때 s = a[0] + … + a[i-1]",
+      "source_lesson": "info-s2-basic-ch02-l01"
+    },
+    {
+      "type": "question",
+      "id": "r2",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "a = {3, 1, 2}를 삽입 정렬할 때 '한 칸 밀기'는 모두 몇 번 실행되나요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "역순 쌍을 세세요.",
+      "explanation": "한 칸 밀기는 key보다 큰 원소를 넘길 때마다 일어나므로 그 횟수는 역순 쌍의 수와 같습니다.\n역순 쌍은 (3,1), (3,2)입니다.\n그래서 2번입니다.",
+      "code": "for (int i = 1; i < n; i++) {        // 불변식: a[0..i-1]은 정렬되어 있다\n    int key = a[i], j = i - 1;\n    while (j >= 0 && a[j] > key) {\n        a[j + 1] = a[j];             // 한 칸 밀기\n        j--;\n    }\n    a[j + 1] = key;\n}",
+      "source_lesson": "info-s2-basic-ch02-l01"
+    },
+    {
+      "type": "question",
+      "id": "r3",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "a = 75, b = 45로 시작하면 cnt의 최종 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "(75, 45) → (45, 30) → …",
+      "explanation": "반복마다 (a, b)가 (b, a % b)로 바뀝니다.\n(75, 45) → (45, 30) → (30, 15) → (15, 0)으로 세 번 바뀝니다.\n그래서 cnt = 3이고 최대공약수는 15입니다.",
+      "code": "int cnt = 0;\nwhile (b != 0) {          // 불변식: gcd(a, b)는 처음 값의 최대공약수와 같다\n    int r = a % b;\n    a = b; b = r;\n    cnt++;\n}\n// 답은 a",
+      "source_lesson": "info-s2-basic-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r4",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "a = 5, n = 31로 시작하면 cnt의 최종 값은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "31 = 11111₂입니다.",
+      "explanation": "반복 횟수는 e가 0이 될 때까지 2로 나누는 횟수, 즉 n의 이진수 자릿수입니다.\ne는 31 → 15 → 7 → 3 → 1 → 0으로 바뀝니다.\n그래서 cnt = 5입니다.",
+      "code": "long long r = 1, x = a, e = n;\nint cnt = 0;\nwhile (e > 0) {           // 불변식: r · xᵉ = aⁿ\n    if (e % 2 == 1) r *= x;\n    x *= x; e /= 2;\n    cnt++;\n}\n// 답은 r",
+      "source_lesson": "info-s2-basic-ch02-l02"
+    },
+    {
+      "type": "question",
+      "id": "r5",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "원판이 8개일 때 move는 모두 몇 번 실행되나요?",
+      "answer": "255",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2⁸ − 1입니다.",
+      "explanation": "원판 n개를 옮기는 횟수는 귀납법으로 2ⁿ − 1임을 보였습니다.\nn = 8이면 2⁸ − 1입니다.\n= 255번입니다.",
+      "code": "// n개의 원판을 from에서 to로 옮긴다 (via를 거쳐서)\nvoid hanoi(int n, int from, int via, int to) {\n    if (n == 0) return;\n    hanoi(n - 1, from, to, via);\n    move(from, to);                  // 가장 큰 원판 하나 옮기기\n    hanoi(n - 1, via, from, to);\n}",
+      "source_lesson": "info-s2-basic-ch02-l03"
+    },
+    {
+      "type": "question",
+      "id": "r6",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "길이 13인 배열에 msort를 실행하면 merge는 모두 몇 번 호출되나요?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n − 1입니다.",
+      "explanation": "merge 한 번은 구간 두 개를 하나로 합쳐 구간 수를 1 줄입니다.\n길이 1인 구간 13개가 하나가 될 때까지 합칩니다.\n그래서 13 − 1 = 12번입니다.",
+      "code": "void msort(int l, int r) {           // a[l..r-1]을 정렬\n    if (r - l <= 1) return;\n    int m = (l + r) / 2;\n    msort(l, m); msort(m, r);\n    merge(l, m, r);                  // 정렬된 두 부분을 합친다\n}",
+      "source_lesson": "info-s2-basic-ch02-l03"
+    },
+    {
+      "type": "question",
+      "id": "r7",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "pw(x, 100)을 호출하면 pw는 모두 몇 번 호출되나요? (처음 호출 포함)",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "n은 100, 50, 25, 12, 6, 3, 1, 0으로 바뀝니다.",
+      "explanation": "pw는 자기 자신을 n/2로 한 번만 부릅니다.\nn이 100, 50, 25, 12, 6, 3, 1, 0일 때 한 번씩 호출됩니다.\n그래서 8번입니다.",
+      "code": "long long pw(long long x, int n) {\n    if (n == 0) return 1;\n    long long h = pw(x, n / 2);\n    return (n % 2 == 0) ? h * h : h * h * x;\n}",
+      "source_lesson": "info-s2-basic-ch02-l03"
+    },
+    {
+      "type": "question",
+      "id": "r8",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "5 × 8 초콜릿을 1 × 1 조각으로 나누려면 쪼개기를 몇 번 해야 하나요?",
+      "answer": "39",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "조각 수가 1에서 40이 되어야 합니다.",
+      "explanation": "쪼갤 때마다 조각 수가 정확히 1 늘어납니다.\n1조각에서 5 × 8 = 40조각이 되어야 합니다.\n그래서 40 − 1 = 39번입니다.",
+      "source_lesson": "info-s2-basic-ch02-l04"
+    },
+    {
+      "type": "question",
+      "id": "r9",
+      "stage": "review",
+      "qtype": "numeric",
+      "prompt": "선수 100명이 참가한 토너먼트(경기마다 진 사람은 탈락)에서 우승자가 정해질 때까지 경기는 모두 몇 번 열리나요?",
+      "answer": "99",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "경기마다 한 명이 탈락합니다.",
+      "explanation": "경기 한 번마다 정확히 한 명이 탈락합니다.\n우승자 한 명을 빼고 99명이 탈락해야 합니다.\n그래서 경기는 99번입니다.",
+      "source_lesson": "info-s2-basic-ch02-l04"
+    },
+    {
+      "type": "question",
+      "id": "r10",
+      "stage": "review",
+      "qtype": "proof",
+      "prompt": "반복문 불변식으로 증명할 때의 세 단계를 쓰고, 이것이 수학적 귀납법과 어떻게 대응하는지 설명하세요.",
+      "model_answer": [
+        "초기화: 첫 반복 전에 불변식이 성립함을 보인다. 귀납법의 기저 단계에 해당한다.",
+        "유지: 어떤 반복 전에 불변식이 성립하면 그 반복 뒤에도 성립함을 보인다. 귀납 단계에 해당한다.",
+        "종료: 반복이 끝날 때 불변식과 종료 조건을 합쳐 원하는 결과를 얻는다.",
+        "반복이 반드시 끝난다는 사실은 줄어드는 음이 아닌 정수 같은 양으로 따로 보인다."
+      ],
+      "criteria": [
+        {
+          "text": "세 단계를 바르게 썼다",
+          "points": 3
+        },
+        {
+          "text": "기저 단계와 귀납 단계에 대응시켰다",
+          "points": 3
+        }
+      ],
+      "hint": "합 코드의 불변식을 떠올리세요.",
+      "source_lesson": "info-s2-basic-ch02-l01"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+ "no": 4,
+ "title": "디지털 IC의 타이밍과 파이프라인",
+ "hours": 6,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "셋업·홀드 조건으로 동기 회로의 최대 클럭 주파수를 계산할 수 있다.",
+  "클럭 스큐와 홀드 위반의 원인을 설명할 수 있다.",
+  "파이프라인으로 처리량을 높일 때 지연과 처리량의 관계를 계산할 수 있다."
+ ],
+ "checklist": [
+  "최소 클럭 주기 T ≥ t_cq + t_logic + t_setup",
+  "홀드 조건: t_cq + t_logic(최소) ≥ t_hold",
+  "클럭 스큐와 클럭 분배(클럭 트리)",
+  "임계 경로와 정적 타이밍 분석(STA)",
+  "파이프라인: 처리량 증가, 지연(레이턴시) 증가",
+  "게이트 크기 조정과 버퍼 삽입",
+  "준안정(metastability)과 동기화기"
+ ],
+ "advice": [
+  "디지털 IC 설계에서 '정답이 나오는 회로'를 넘어 '목표 클럭에서 정답이 나오는 회로'를 만드는 것이 타이밍 설계입니다. 셋업 조건은 가장 느린 경로가, 홀드 조건은 가장 빠른 경로가 문제라는 대비를 기억하세요. 파이프라인은 레벨1 컴퓨터 챕터 4에서 본 CPU 파이프라인과 같은 아이디어를 회로 단위로 적용한 것이며, 레지스터 오버헤드 때문에 단을 무한히 늘릴 수는 없다는 점을 숫자로 확인해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Weste · Harris, CMOS VLSI Design: A Circuits and Systems Perspective (장 제목으로 표기)",
+   "part": "Sequential Circuit Design, Delay 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Rabaey · Chandrakasan · Nikolić, Digital Integrated Circuits (장 제목으로 표기)",
+   "part": "Timing Issues in Digital Circuits 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.004 Computation Structures (2017년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+   "lang": "영어",
+   "part": "pipelining 관련 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "디지털회로 6단원 래치와 플립플롭",
+   "url": "guide.html?lv=2&t=electronics&s=digital-circuits&u=6",
+   "part": "셋업·홀드 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "t_cq = 50 ps, 조합 회로 지연 300 ps, t_setup = 50 ps인 회로의 최대 클럭 주파수는 몇 GHz일까요?",
+   "answer": "2.5",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "최소 주기 = 50 + 300 + 50 = 400 ps\n1/400 ps = 2.5 GHz",
+   "hint": "세 지연을 더하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "클럭 에지 뒤에도 데이터가 일정 시간 바뀌지 않고 유지되어야 하는 조건을 {{1}} 시간 조건이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "홀드",
+      "hold",
+      "유지"
+     ]
+    }
+   ],
+   "explanation": "가장 빠른 경로가 너무 빨리 다음 값을 보내면 위반됩니다.\n버퍼를 넣어 지연을 늘려 고칩니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "조합 회로 900 ps를 3단 파이프라인으로 나누고 단마다 레지스터 오버헤드가 100 ps라면, 데이터 하나가 들어가서 나오기까지의 지연(레이턴시)은 몇 ps일까요?",
+   "answer": "1200",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "단마다 300 + 100 = 400 ps\n레이턴시 = 3 × 400 = 1200 ps (원래 1000 ps보다 길어짐)",
+   "hint": "단당 시간 × 단 수입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "electronics",
+ "subject": "integrated-circuits",
+ "id": "l3-electronics-integrated-circuits-u04"
+}

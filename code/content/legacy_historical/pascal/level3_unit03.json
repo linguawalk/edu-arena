@@ -1,0 +1,91 @@
+{
+  "language": "pascal",
+  "category": "legacy_historical",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "열거형과 집합",
+  "questions": [
+    {
+      "id": "pascal_l3_u03_q001",
+      "type": "predict_output",
+      "code": "type\n  TColor = (Red, Green, Blue);\nvar\n  c: TColor;\nbegin\n  c := Green;\n  writeln(Ord(c));\nend.",
+      "prompt_en": "What is printed? (Ord returns the numeric position of an enum value.)",
+      "prompt_ko": "출력 결과는? (Ord는 열거형 값의 숫자 위치를 반환합니다.)",
+      "options": ["Green", "0", "1", "2"],
+      "answer": 2,
+      "explanation_en": "Enum values are numbered from 0 in declaration order: Red=0, Green=1, Blue=2; Ord(Green) returns 1.",
+      "explanation_ko": "열거형 값은 선언 순서대로 0부터 번호가 매겨집니다: Red=0, Green=1, Blue=2. Ord(Green)은 1을 반환합니다.",
+      "concept_tags": ["enum_type", "ord_function"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l3_u03_q002",
+      "type": "fill_blank",
+      "code": "type\n  TDay = ____Monday, Tuesday, Wednesday);\nvar\n  d: TDay;\nbegin\n  d := Tuesday;\nend.",
+      "prompt_en": "Fill in the blank with the opening symbol for an enum type declaration.",
+      "prompt_ko": "열거형 타입 선언을 시작하는 기호를 빈칸에 채우세요.",
+      "options": ["(", "[", "{", "<"],
+      "answer": 0,
+      "explanation_en": "Enum types are declared with a parenthesized, comma-separated list of named values.",
+      "explanation_ko": "열거형 타입은 괄호 안에 쉼표로 구분된 이름 붙은 값 목록으로 선언됩니다.",
+      "concept_tags": ["enum_type"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "pascal_l3_u03_q003",
+      "type": "predict_output",
+      "code": "type\n  TColor = (Red, Green, Blue);\nvar\n  s: set of TColor;\nbegin\n  s := [Red, Blue];\n  if Red in s then\n    writeln('RED IN SET');\nend.",
+      "prompt_en": "What is printed? (Note the built-in set type.)",
+      "prompt_ko": "출력 결과는? (내장된 set 타입에 주의하세요.)",
+      "options": ["RED IN SET", "오류", "아무것도 출력되지 않음", "Red"],
+      "answer": 0,
+      "explanation_en": "set of TColor declares a set that can hold a combination of TColor values; the in operator checks membership, and Red is indeed in [Red, Blue].",
+      "explanation_ko": "set of TColor는 TColor 값의 조합을 담을 수 있는 집합을 선언합니다. in 연산자는 소속 여부를 확인하며, Red는 실제로 [Red, Blue] 안에 있습니다.",
+      "concept_tags": ["set_type", "in_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l3_u03_q004",
+      "type": "predict_output",
+      "code": "type\n  TColor = (Red, Green, Blue);\nvar\n  s: set of TColor;\nbegin\n  s := [Red, Blue];\n  if Green in s then\n    writeln('GREEN IN SET')\n  else\n    writeln('GREEN NOT IN SET');\nend.",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["GREEN IN SET", "GREEN NOT IN SET", "오류", "아무것도 출력되지 않음"],
+      "answer": 1,
+      "explanation_en": "s contains only Red and Blue; Green isn't a member, so the in check is false, printing GREEN NOT IN SET.",
+      "explanation_ko": "s는 Red와 Blue만 담고 있습니다. Green은 속하지 않으므로 in 검사가 거짓이 되어 GREEN NOT IN SET이 출력됩니다.",
+      "concept_tags": ["set_type", "in_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l3_u03_q005",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "(값1, 값2, ...) 열거형", "definition": "이름 붙은 상수들의 집합을 정의 — Ord()로 위치를 확인 가능" },
+        { "term": "set of 타입", "definition": "특정 타입의 값들의 조합을 담는 Pascal 내장 집합 타입" },
+        { "term": "in 연산자", "definition": "값이 집합에 속하는지 확인" },
+        { "term": "[값1, 값2] (집합 리터럴)", "definition": "대괄호로 값들을 나열해 집합을 만드는 문법" }
+      ],
+      "explanation_en": "Pascal's built-in set type is a genuinely distinctive feature — none of the C-family or scripting languages in this curriculum have a comparably first-class set literal syntax baked directly into the language.",
+      "explanation_ko": "Pascal의 내장 집합 타입은 진정으로 독특한 기능입니다 — 이 커리큘럼의 C 계열이나 스크립트 언어 중 언어 자체에 이 정도로 일급 시민급 집합 리터럴 문법이 내장된 것은 없습니다.",
+      "concept_tags": ["enum_type", "set_type", "in_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "pascal_l3_u03_q006",
+      "type": "predict_output",
+      "code": "type\n  TColor = (Red, Green, Blue);\nvar\n  s: set of TColor;\nbegin\n  s := [Red, Green, Blue];\n  s := s - [Green];\n  if Green in s then\n    writeln('STILL THERE')\n  else\n    writeln('REMOVED');\nend.",
+      "prompt_en": "What is printed? (Set difference with -.)",
+      "prompt_ko": "출력 결과는? (- 로 집합 차집합을 구합니다.)",
+      "options": ["STILL THERE", "REMOVED", "오류", "아무것도 출력되지 않음"],
+      "answer": 1,
+      "explanation_en": "- computes set difference; s - [Green] removes Green from s, so the subsequent in check is false, printing REMOVED.",
+      "explanation_ko": "-는 차집합을 계산합니다. s - [Green]은 s에서 Green을 제거해서, 이후 in 검사가 거짓이 되어 REMOVED가 출력됩니다.",
+      "concept_tags": ["set_type"],
+      "difficulty": "challenge"
+    }
+  ]
+}

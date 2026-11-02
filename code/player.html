@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODE ARENA — 문제 풀이</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #f4f7fc;
+    --panel: #ffffff;
+    --panel-2: #eef2fa;
+    --border: rgba(30,50,90,0.12);
+    --text: #172038;
+    --text-dim: #5c6680;
+    --text-dimmer: #93a0b8;
+    --accent: #0284c7;
+    --good: #15803d;
+    --bad: #dc2626;
+    --warn: #b45309;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(2,132,199,0.06), transparent 45%),
+      radial-gradient(circle at 90% 10%, rgba(21,128,61,0.05), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family:'IBM Plex Sans KR', sans-serif;
+    line-height:1.6;
+  }
+  code, .mono, pre { font-family:'IBM Plex Mono', monospace; }
+  a { color: inherit; }
+
+  .wrap{ max-width: 760px; margin:0 auto; padding: 36px 22px 100px; }
+
+  .topbar{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom: 28px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .topbar a.back{
+    color: var(--text-dim);
+    text-decoration:none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 12px;
+  }
+  .topbar a.back:hover{ border-color: var(--accent); color: var(--text); }
+
+  .meta{
+    margin-bottom: 22px;
+  }
+  .meta .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 11.5px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .meta h1{
+    font-size: 22px;
+    margin: 0;
+    font-weight:600;
+  }
+
+  .progress-track{
+    height: 6px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow:hidden;
+    margin-bottom: 30px;
+  }
+  .progress-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--accent), var(--good));
+    width:0%;
+    transition: width 0.25s ease;
+  }
+
+  .qcard{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 26px 22px;
+  }
+  .qhead{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom: 16px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 12px;
+    color: var(--text-dimmer);
+  }
+  .badge{
+    display:inline-block;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 11px;
+    border: 1px solid var(--border);
+  }
+  .badge.intro{ color: var(--good); border-color: rgba(21,128,61,0.35); }
+  .badge.practice{ color: var(--accent); border-color: rgba(2,132,199,0.35); }
+  .badge.challenge{ color: var(--warn); border-color: rgba(180,83,9,0.35); }
+
+  pre.code-block{
+    background: #060911;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    font-size: 13.5px;
+    overflow-x: auto;
+    margin: 0 0 18px;
+    color: #cfe3ff;
+    white-space: pre;
+  }
+  .prompt{
+    font-size: 15.5px;
+    margin-bottom: 18px;
+  }
+
+  .options{ display:flex; flex-direction:column; gap: 10px; margin-bottom: 6px; }
+  .opt{
+    text-align:left;
+    background: rgba(23,32,56,0.02);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14.5px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.12s ease, background 0.12s ease;
+    display:flex;
+    gap: 10px;
+    align-items:flex-start;
+  }
+  .opt:hover:not(:disabled){ border-color: var(--accent); }
+  .opt .letter{
+    font-family:'IBM Plex Mono',monospace;
+    color: var(--text-dimmer);
+    flex-shrink:0;
+  }
+  .opt:disabled{ cursor:default; }
+  .opt.correct{ border-color: var(--good); background: rgba(21,128,61,0.08); }
+  .opt.correct .letter{ color: var(--good); }
+  .opt.wrong{ border-color: var(--bad); background: rgba(220,38,38,0.08); }
+  .opt.wrong .letter{ color: var(--bad); }
+  .opt.dim{ opacity: 0.45; }
+
+  /* ---------- fill-in-the-blank (typed answer) ---------- */
+  .fillblank-row{
+    display:flex;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .fillblank-input{
+    flex: 1;
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 14.5px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(23,32,56,0.02);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.12s ease;
+  }
+  .fillblank-input:focus{ border-color: var(--accent); }
+  .fillblank-input:disabled{ opacity: 0.7; cursor:default; }
+  .fillblank-input.correct{ border-color: var(--good); background: rgba(21,128,61,0.08); }
+  .fillblank-input.wrong{ border-color: var(--bad); background: rgba(220,38,38,0.08); }
+  button.submit-answer{
+    font-family:'IBM Plex Mono',monospace;
+    background: var(--accent);
+    color:#ffffff;
+    border:none;
+    border-radius: 9px;
+    padding: 0 20px;
+    font-size: 13.5px;
+    font-weight:600;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  button.submit-answer:hover:not(:disabled){ filter: brightness(1.08); }
+  button.submit-answer:disabled{ opacity:0.35; cursor:default; }
+  .correct-answer-line{
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+  .correct-answer-line b{ color: var(--good); font-family:'IBM Plex Mono',monospace; }
+
+  .explain{
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--border);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    display:none;
+  }
+  .explain.show{ display:block; }
+  .explain .verdict{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  .explain .verdict.ok{ color: var(--good); }
+  .explain .verdict.no{ color: var(--bad); }
+
+  .tags{ margin-top:14px; display:flex; flex-wrap:wrap; gap:6px; }
+  .tags span{
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 10.5px;
+    color: var(--text-dimmer);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2px 9px;
+  }
+
+  .nextbar{
+    display:flex; justify-content:flex-end;
+    margin-top: 22px;
+  }
+  button.primary{
+    font-family:'IBM Plex Mono',monospace;
+    background: var(--accent);
+    color: #ffffff;
+    border:none;
+    border-radius: 9px;
+    padding: 11px 22px;
+    font-size: 13.5px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  button.primary:hover{ filter: brightness(1.08); }
+  button.primary:disabled{ opacity:0.35; cursor:default; }
+
+  /* ---------- result screen ---------- */
+  .result{
+    text-align:center;
+    padding: 50px 20px 20px;
+  }
+  .result .score{
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 56px;
+    font-weight:700;
+  }
+  .result .score small{
+    font-size: 20px;
+    color: var(--text-dimmer);
+    font-weight:500;
+  }
+  .result .msg{ color: var(--text-dim); margin: 10px 0 34px; }
+  .result-actions{
+    display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+  }
+  .result-actions a, .result-actions button{
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 13px;
+    text-decoration:none;
+    border-radius: 9px;
+    padding: 11px 20px;
+    cursor:pointer;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+  }
+  .result-actions .go-next{ background: var(--accent); color:#ffffff; border:none; font-weight:600; }
+
+  .loading, .error-state{
+    text-align:center;
+    padding: 80px 20px;
+    color: var(--text-dim);
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 14px;
+  }
+  .error-state .big{ font-size: 32px; margin-bottom: 14px; }
+
+  @media (max-width: 560px){
+    .qcard{ padding: 20px 18px 18px; }
+    .fillblank-row{ flex-direction:column; }
+    button.submit-answer{ padding: 12px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" id="backLink" href="index.html">← 돌아가기</a>
+    <span id="fileTag"></span>
+  </div>
+
+  <div id="app">
+    <div class="loading">문제를 불러오는 중…</div>
+  </div>
+</div>
+
+<script>
+const params = new URLSearchParams(location.search);
+const FILE  = params.get('file');
+const TITLE = params.get('title');
+const NEXT  = params.get('next');
+const BACK  = params.get('back');
+
+if (BACK) document.getElementById('backLink').href = BACK;
+if (FILE) document.getElementById('fileTag').textContent = FILE;
+
+const app = document.getElementById('app');
+
+function shuffle(arr){
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// concept_matching 문제 하나를 pairs 개수만큼의 미니 객관식으로 변환
+function expandConceptMatching(q) {
+  const allDefs = q.pairs.map(p => p.definition);
+  return q.pairs.map((pair, idx) => {
+    const distractors = shuffle(allDefs.filter((_, j) => j !== idx)).slice(0, 3);
+    const options = shuffle([pair.definition, ...distractors]);
+    const answer = options.indexOf(pair.definition);
+    return {
+      id: q.id + '_' + idx,
+      type: 'concept_matching_item',
+      code: null,
+      prompt_ko: `다음 용어의 정의로 알맞은 것은? — "${pair.term}"`,
+      prompt_en: `Which definition matches the term "${pair.term}"?`,
+      options,
+      answer,
+      explanation_ko: q.explanation_ko,
+      explanation_en: q.explanation_en,
+      concept_tags: q.concept_tags || [],
+      difficulty: q.difficulty || 'practice'
+    };
+  });
+}
+
+function buildQueue(questions) {
+  const queue = [];
+  questions.forEach(q => {
+    if (q.type === 'concept_matching' && Array.isArray(q.pairs)) {
+      queue.push(...expandConceptMatching(q));
+    } else {
+      queue.push(q);
+    }
+  });
+  return queue;
+}
+
+// 이 문제가 "진짜 단답형(타이핑 입력)"인지 판별.
+// expected_answers(배열) 또는 expected_answer(문자열) 필드가 있으면 단답형,
+// 없으면(기존 콘텐츠 전부) 기존 방식대로 객관식(options/answer)으로 처리.
+function isShortAnswer(q) {
+  return Array.isArray(q.expected_answers) || typeof q.expected_answer === 'string';
+}
+
+function getAcceptedAnswers(q) {
+  if (Array.isArray(q.expected_answers)) return q.expected_answers;
+  if (typeof q.expected_answer === 'string') return [q.expected_answer];
+  return [];
+}
+
+// 채점용 정규화: 앞뒤 공백 제거, 대소문자 무시, 연속 공백을 하나로.
+// (숫자/영단어/짧은 구절 위주의 단답형에 적합한 관대한 비교 기준)
+function normalizeAnswer(s) {
+  return String(s).trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+function checkShortAnswer(userInput, q) {
+  const norm = normalizeAnswer(userInput);
+  return getAcceptedAnswers(q).some(a => normalizeAnswer(a) === norm);
+}
+
+let queue = [];
+let idx = 0;
+let score = 0;
+let unitTitle = '';
+
+async function init() {
+  if (!FILE) {
+    app.innerHTML = `<div class="error-state"><div class="big">⚠</div>파일 경로가 지정되지 않았습니다.<br><span style="opacity:.6">player.html?file=경로/파일.json</span></div>`;
+    return;
+  }
+  try {
+    const res = await fetch(FILE);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    unitTitle = TITLE || data.unit_title || `${data.language} · Level ${data.level} Unit ${data.unit}`;
+    queue = buildQueue(data.questions || []);
+    if (queue.length === 0) throw new Error('문제가 비어 있습니다.');
+    renderQuestion();
+  } catch (err) {
+    app.innerHTML = `<div class="error-state"><div class="big">⚠</div>불러오지 못했습니다.<br><span style="opacity:.6">${err.message}</span><br><br><span style="opacity:.5;font-size:12px">경로: ${FILE}</span></div>`;
+  }
+}
+
+function renderQuestion() {
+  const q = queue[idx];
+  const pct = Math.round((idx / queue.length) * 100);
+
+  const codeHtml = q.code ? `<pre class="code-block">${escapeHtml(q.code)}</pre>` : '';
+  const promptText = q.prompt_ko || q.prompt_en || '';
+  const tags = (q.concept_tags || []).map(t => `<span>${t}</span>`).join('');
+  const letters = ['A', 'B', 'C', 'D', 'E'];
+  const shortAnswer = isShortAnswer(q);
+
+  const answerAreaHtml = shortAnswer
+    ? `
+      <div class="fillblank-row">
+        <input type="text" class="fillblank-input" id="fbInput" placeholder="정답을 입력하세요" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <button class="submit-answer" id="fbSubmit">확인</button>
+      </div>
+    `
+    : `
+      <div class="options">
+        ${q.options.map((opt, i) => `
+          <button class="opt" data-i="${i}">
+            <span class="letter">${letters[i] || i}</span><span>${escapeHtml(opt)}</span>
+          </button>
+        `).join('')}
+      </div>
+    `;
+
+  app.innerHTML = `
+    <div class="meta">
+      <div class="eyebrow">${unitTitle}</div>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="qcard">
+      <div class="qhead">
+        <span>문제 ${idx + 1} / ${queue.length}</span>
+        <span class="badge ${q.difficulty || 'practice'}">${q.difficulty || 'practice'}</span>
+      </div>
+      ${codeHtml}
+      <div class="prompt">${escapeHtml(promptText)}</div>
+      ${answerAreaHtml}
+      <div class="explain" id="explain">
+        <div class="verdict" id="verdict"></div>
+        <div class="correct-answer-line" id="correctAnswerLine" style="display:none;"></div>
+        <div id="explainText"></div>
+        <div class="tags">${tags}</div>
+      </div>
+      <div class="nextbar">
+        <button class="primary" id="nextBtn" disabled>다음</button>
+      </div>
+    </div>
+  `;
+
+  if (shortAnswer) {
+    wireShortAnswer(q);
+  } else {
+    wireMultipleChoice(q);
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    idx++;
+    if (idx < queue.length) {
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      renderResult();
+    }
+  });
+}
+
+function wireMultipleChoice(q) {
+  const buttons = app.querySelectorAll('.opt');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+      const chosen = parseInt(btn.dataset.i, 10);
+      const isCorrect = chosen === q.answer;
+      if (isCorrect) score++;
+
+      buttons.forEach(b => {
+        b.disabled = true;
+        const bi = parseInt(b.dataset.i, 10);
+        if (bi === q.answer) b.classList.add('correct');
+        else if (bi === chosen) b.classList.add('wrong');
+        else b.classList.add('dim');
+      });
+
+      finishAnswer(isCorrect, q);
+    });
+  });
+}
+
+function wireShortAnswer(q) {
+  const input = document.getElementById('fbInput');
+  const submitBtn = document.getElementById('fbSubmit');
+  let submitted = false;
+
+  function submit() {
+    if (submitted) return;
+    const val = input.value;
+    if (val.trim() === '') { input.focus(); return; }
+    submitted = true;
+
+    const isCorrect = checkShortAnswer(val, q);
+    if (isCorrect) score++;
+
+    input.disabled = true;
+    submitBtn.disabled = true;
+    input.classList.add(isCorrect ? 'correct' : 'wrong');
+
+    if (!isCorrect) {
+      const accepted = getAcceptedAnswers(q);
+      const line = document.getElementById('correctAnswerLine');
+      line.style.display = 'block';
+      line.innerHTML = '정답: <b>' + escapeHtml(accepted[0] || '') + '</b>';
+    }
+
+    finishAnswer(isCorrect, q);
+  }
+
+  submitBtn.addEventListener('click', submit);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') submit();
+  });
+  input.focus();
+}
+
+function finishAnswer(isCorrect, q) {
+  const verdict = document.getElementById('verdict');
+  verdict.textContent = isCorrect ? '정답입니다' : '오답입니다';
+  verdict.className = 'verdict ' + (isCorrect ? 'ok' : 'no');
+  document.getElementById('explainText').textContent = q.explanation_ko || q.explanation_en || '';
+  document.getElementById('explain').classList.add('show');
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function renderResult() {
+  const pct = Math.round((score / queue.length) * 100);
+  let msg = '조금 더 연습해봐요.';
+  if (pct === 100) msg = '완벽합니다. 모든 문제를 맞혔어요.';
+  else if (pct >= 80) msg = '아주 잘했어요.';
+  else if (pct >= 50) msg = '절반 이상 맞혔어요. 틀린 부분만 다시 보세요.';
+
+  app.innerHTML = `
+    <div class="qcard result">
+      <div class="score">${score}<small> / ${queue.length}</small></div>
+      <div class="msg">${msg}</div>
+      <div class="result-actions">
+        <button onclick="location.reload()">다시 풀기</button>
+        <a href="${BACK || 'index.html'}">목록으로</a>
+        ${NEXT ? `<a class="go-next" href="${NEXT}">다음 유닛 →</a>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+init();
+</script>
+<script src="../assets/family-bar.js" defer></script>
+</body>
+</html>

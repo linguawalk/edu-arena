@@ -1,0 +1,99 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "sql-associate-1z0-071",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "시퀀스(Sequence)",
+  "rule_summary_ko": "시퀀스는 고유한 순차 번호(주로 기본키 값)를 자동으로 생성해주는 오라클 객체입니다. NEXTVAL은 호출할 때마다 다음 번호를 생성해서 반환하며, CURRVAL은 현재 세션에서 마지막으로 NEXTVAL이 반환한 값을 다시 보여줍니다. 한 세션에서 CURRVAL을 사용하려면 반드시 그 전에 NEXTVAL을 한 번 이상 호출해야 하며, 그러지 않으면 오류가 발생합니다. 트랜잭션이 ROLLBACK되어도 이미 발급된 시퀀스 번호는 되돌아가지 않아, 번호에 '구멍(gap)'이 생길 수 있습니다.",
+  "examples": [
+    { "code": "CREATE SEQUENCE emp_seq START WITH 1 INCREMENT BY 1;\nSELECT emp_seq.NEXTVAL FROM DUAL; -- 1\nSELECT emp_seq.NEXTVAL FROM DUAL; -- 2\nSELECT emp_seq.CURRVAL FROM DUAL; -- 2(마지막 NEXTVAL 값)", "note_ko": "NEXTVAL을 부를 때마다 값이 증가하고, CURRVAL은 그 증가된 값을 반복해서 보여줌(증가시키지 않음)" }
+  ],
+  "questions": [
+    {
+      "id": "sql_oracle_l3_u3_q001",
+      "type": "concept_matching_item",
+      "code": "-- 새 세션에서, NEXTVAL을 한 번도 호출하지 않은 상태에서\nSELECT emp_seq.CURRVAL FROM DUAL;",
+      "prompt_ko": "이 쿼리를 실행하면 어떻게 됩니까?",
+      "options": [
+        "정상적으로 0이 반환된다",
+        "오류가 발생한다 — 그 세션에서 CURRVAL을 사용하려면 반드시 먼저 NEXTVAL을 한 번 이상 호출해야 한다",
+        "자동으로 NEXTVAL이 대신 호출되어 1이 반환된다",
+        "NULL이 반환된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "CURRVAL은 '마지막으로 NEXTVAL이 반환한 값'을 보여주는 것이라, 그 세션에서 NEXTVAL을 한 번도 부르지 않았다면 참조할 값 자체가 없어 오류가 납니다.",
+      "concept_tags": ["currval", "nextval"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l3_u3_q002",
+      "type": "fill_blank",
+      "code": "CREATE SEQUENCE emp_seq START WITH 1 INCREMENT BY 1;\nSELECT emp_seq.NEXTVAL FROM DUAL;\nSELECT emp_seq.NEXTVAL FROM DUAL;\nSELECT emp_seq.CURRVAL FROM DUAL;",
+      "prompt_ko": "마지막 SELECT(CURRVAL)의 결과는 얼마입니까? (숫자만 입력)",
+      "expected_answers": ["2"],
+      "explanation_ko": "NEXTVAL을 두 번 호출해서 1, 2가 순서대로 반환되었고, CURRVAL은 마지막 NEXTVAL 값인 2를 그대로 보여줍니다.",
+      "concept_tags": ["nextval", "currval"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l3_u3_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "NEXTVAL을 여러 번 호출해서 값을 발급받은 뒤, 그 값을 사용한 트랜잭션이 ROLLBACK되면 시퀀스는 어떻게 됩니까?",
+      "options": [
+        "이미 발급된 값도 자동으로 되돌아가서 다시 사용할 수 있다",
+        "이미 발급된 시퀀스 값은 되돌아가지 않는다 — ROLLBACK을 해도 시퀀스는 계속 증가한 상태로 남아, 번호에 구멍(gap)이 생길 수 있다",
+        "시퀀스 자체가 삭제된다",
+        "ROLLBACK은 시퀀스에 아무 영향도 주지 않고 이전 값 그대로 유지된다(사실이 아님, 함정 선택지)"
+      ],
+      "answer": 1,
+      "explanation_ko": "시퀀스는 트랜잭션과 독립적으로 동작해서, ROLLBACK해도 이미 발급한 번호는 회수되지 않습니다. 이는 시퀀스 값에 연속성이 100% 보장되지 않는다는 뜻입니다.",
+      "concept_tags": ["sequence_gap", "rollback"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l3_u3_q004",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "시퀀스에서 다음 값을 생성해서 반환하는 의사 컬럼(pseudo-column)은 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["NEXTVAL"],
+      "explanation_ko": "NEXTVAL은 호출할 때마다 시퀀스를 증가시키고 그 새 값을 반환합니다.",
+      "concept_tags": ["nextval"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l3_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "시퀀스를 사용하는 대표적인 용도는?",
+      "options": [
+        "테이블의 기본키(primary key)처럼 고유한 순차 번호를 자동으로 생성하기 위해",
+        "테이블의 데이터를 정렬하기 위해",
+        "SELECT 결과의 중복을 제거하기 위해",
+        "문자열을 숫자로 변환하기 위해"
+      ],
+      "answer": 0,
+      "explanation_ko": "시퀀스는 주문번호, 회원ID 같은 기본키 값을 자동으로, 안전하게 생성해주는 표준적인 방법입니다.",
+      "concept_tags": ["sequence_use_case"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l3_u3_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "여러 사용자(세션)가 동시에 같은 시퀀스에서 NEXTVAL을 호출하면?",
+      "options": [
+        "항상 충돌이 발생해서 오류가 난다",
+        "각 세션은 대기나 잠금 없이 서로 다른 고유한 값을 받는다 — 시퀀스는 동시 접근에 안전하도록 설계되었다",
+        "모든 세션이 항상 똑같은 값을 받는다",
+        "가장 먼저 호출한 세션만 값을 받고 나머지는 무시된다"
+      ],
+      "answer": 1,
+      "explanation_ko": "시퀀스는 여러 세션이 동시에 접근해도 각자 고유한 값을 안전하게 받을 수 있도록(락 경합 없이) 설계되어 있습니다.",
+      "concept_tags": ["sequence_concurrency"],
+      "difficulty": "practice"
+    }
+  ]
+}

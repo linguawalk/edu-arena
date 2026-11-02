@@ -1,0 +1,96 @@
+{
+  "language": "basic_early",
+  "category": "legacy_historical",
+  "level": 2,
+  "unit": 3,
+  "unit_title": "DATA/READ문",
+  "questions": [
+    {
+      "id": "basic_early_l2_u03_q001",
+      "type": "predict_output",
+      "code": "10 DATA 10, 20, 30\n20 READ A\n30 READ B\n40 READ C\n50 PRINT A\n60 PRINT B\n70 PRINT C\n80 END",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10 20 30 (각 줄에)", "30 20 10 (각 줄에)", "오류", "A B C"],
+      "answer": 0,
+      "explanation_en": "DATA declares a fixed list of values; each READ pulls the next one in order, so A=10, B=20, C=30.",
+      "explanation_ko": "DATA는 고정된 값 목록을 선언합니다. READ할 때마다 순서대로 다음 값을 가져옵니다. A=10, B=20, C=30입니다.",
+      "concept_tags": ["data_read"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "basic_early_l2_u03_q002",
+      "type": "predict_output",
+      "code": "10 DATA 10, 20, 30\n20 FOR I = 1 TO 3\n30 READ N\n40 PRINT N\n50 NEXT I\n60 END",
+      "prompt_en": "What is printed? (Combining DATA/READ with a loop.)",
+      "prompt_ko": "출력 결과는? (DATA/READ와 반복문을 결합합니다.)",
+      "options": [
+        "10 20 30 (각 줄에)",
+        "10 10 10",
+        "오류",
+        "1 2 3"
+      ],
+      "answer": 0,
+      "explanation_en": "Each loop iteration calls READ once, pulling the next DATA value in sequence: 10, 20, 30.",
+      "explanation_ko": "반복마다 READ를 한 번씩 호출해서, 순서대로 다음 DATA 값을 가져옵니다: 10, 20, 30.",
+      "concept_tags": ["data_read", "for_next"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "basic_early_l2_u03_q003",
+      "type": "predict_output",
+      "code": "10 DATA \"KIM\", \"LEE\"\n20 READ A$\n30 READ B$\n40 PRINT A$\n50 PRINT B$\n60 END",
+      "prompt_en": "What is printed? (DATA can hold strings, too.)",
+      "prompt_ko": "출력 결과는? (DATA는 문자열도 담을 수 있습니다.)",
+      "options": ["KIM LEE (각 줄에)", "A$ B$", "오류", "LEE KIM"],
+      "answer": 0,
+      "explanation_en": "DATA can hold quoted string literals just as easily as numbers; READ pulls them into A$ and B$ in order.",
+      "explanation_ko": "DATA는 숫자만큼이나 쉽게 따옴표로 묶은 문자열 리터럴도 담을 수 있습니다. READ는 순서대로 A$와 B$에 이를 가져옵니다.",
+      "concept_tags": ["data_read", "string_variable"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "basic_early_l2_u03_q004",
+      "type": "predict_output",
+      "code": "10 DATA 10, 20\n20 READ A\n30 READ B\n40 RESTORE\n50 READ C\n60 PRINT C\n70 END",
+      "prompt_en": "What is printed? (Note the RESTORE statement.)",
+      "prompt_ko": "출력 결과는? (RESTORE문에 주의하세요.)",
+      "options": ["10", "20", "오류: DATA 부족", "0"],
+      "answer": 0,
+      "explanation_en": "RESTORE resets the DATA pointer back to the very first value; after A and B consume 10 and 20, RESTORE rewinds, so C reads 10 again from the start.",
+      "explanation_ko": "RESTORE는 DATA 포인터를 맨 처음 값으로 되돌립니다. A와 B가 10과 20을 소비한 뒤, RESTORE가 되감아서 C는 처음부터 다시 10을 읽습니다.",
+      "concept_tags": ["restore"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "basic_early_l2_u03_q005",
+      "type": "fill_blank",
+      "code": "10 DATA 100, 200, 300\n20 ____ X\n30 PRINT X\n40 END",
+      "prompt_en": "Fill in the blank with the keyword that pulls the next value from DATA.",
+      "prompt_ko": "DATA에서 다음 값을 가져오는 키워드를 빈칸에 채우세요.",
+      "options": ["READ", "GET", "PULL", "FETCH"],
+      "answer": 0,
+      "explanation_en": "READ retrieves the next unread value from the program's DATA statements, assigning it to the given variable.",
+      "explanation_ko": "READ는 프로그램의 DATA문에서 아직 읽지 않은 다음 값을 가져와, 지정한 변수에 대입합니다.",
+      "concept_tags": ["data_read"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "basic_early_l2_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "DATA", "definition": "프로그램 안에 고정된 값 목록을 선언하는 문" },
+        { "term": "READ", "definition": "DATA에서 아직 읽지 않은 다음 값을 변수로 가져옴" },
+        { "term": "RESTORE", "definition": "DATA 포인터를 맨 처음으로 되돌려, 값을 다시 읽을 수 있게 함" },
+        { "term": "순차적 소비", "definition": "READ는 항상 DATA 목록을 순서대로 하나씩 가져간다는 규칙" }
+      ],
+      "explanation_en": "DATA/READ was an early way to embed static data directly in source code before file I/O was commonly used — a precursor to today's constants, config arrays, or embedded resources.",
+      "explanation_ko": "DATA/READ는 파일 입출력이 흔히 쓰이기 전, 소스 코드에 정적 데이터를 직접 담는 초기 방식이었습니다 — 오늘날의 상수, 설정 배열, 내장 리소스의 선구자입니다.",
+      "concept_tags": ["data_read", "restore"],
+      "difficulty": "practice"
+    }
+  ]
+}

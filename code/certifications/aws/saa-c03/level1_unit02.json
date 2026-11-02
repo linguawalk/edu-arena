@@ -1,0 +1,110 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "aws",
+  "exam": "saa-c03",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "VPC 보안: Bastion Host·NAT Gateway·VPC 엔드포인트",
+  "rule_summary_ko": "베스천 호스트(bastion host, 점프 서버)는 공용 서브넷에 두고 관리자가 SSH/RDP로 접속해서, 그곳을 거쳐 프라이빗 서브넷의 인스턴스에 인바운드로 접근하기 위한 용도입니다. NAT 게이트웨이는 그 반대로, 프라이빗 서브넷의 인스턴스가 아웃바운드로 인터넷에 나갈 수 있게 해주면서 인터넷發 인바운드 접속은 차단합니다 — 이 둘은 트래픽 방향이 정반대라 서로 대체할 수 없습니다(NAT 게이트웨이를 베스천 호스트로 쓸 수 없음). VPC 엔드포인트는 인터넷 게이트웨이나 NAT 없이도 VPC에서 S3·DynamoDB 등 AWS 서비스로 프라이빗하게 직접 연결해줍니다.",
+  "examples": [
+    { "code": "관리자가 프라이빗 서브넷의 DB 서버에 SSH로 점검하러 접속", "note_ko": "베스천 호스트(공용 서브넷)에 먼저 SSH 접속한 뒤, 그곳에서 다시 프라이빗 DB 서버로 접속(인바운드 접근용)" },
+    { "code": "프라이빗 서브넷의 서버가 OS 패치를 위해 외부 저장소에 접속해야 함", "note_ko": "NAT 게이트웨이를 통해 아웃바운드로 인터넷에 나감(인바운드 접근용이 아님)" }
+  ],
+  "questions": [
+    {
+      "id": "aws_saa_l1_u2_q001",
+      "type": "concept_matching_item",
+      "code": "관리자가 프라이빗 서브넷에 있는 DB 서버를 SSH로 직접 점검하고 싶어함",
+      "prompt_ko": "이 요구사항(인바운드 관리 접근)에 적합한 구성 요소는?",
+      "options": [
+        "베스천 호스트(bastion host) — 공용 서브넷에 두고 이를 거쳐 프라이빗 인스턴스로 인바운드 접속",
+        "NAT 게이트웨이 — 이건 아웃바운드 트래픽용이라 이 요구사항에 부적합",
+        "인터넷 게이트웨이만으로 충분하다",
+        "이런 접근은 AWS에서 지원되지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "베스천 호스트는 프라이빗 리소스에 대한 인바운드 관리 접근의 표준 패턴입니다.",
+      "concept_tags": ["bastion_host"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l1_u2_q002",
+      "type": "concept_matching_item",
+      "code": "프라이빗 서브넷의 웹 서버들이 보안 패치를 다운로드하기 위해 인터넷에 아웃바운드로 나가야 하지만, 인터넷에서 이 서버들로 들어오는 접속은 절대 허용되면 안 됨",
+      "prompt_ko": "이 요구사항에 적합한 구성 요소는?",
+      "options": [
+        "NAT 게이트웨이 — 아웃바운드는 허용하고 인바운드는 차단하는 정확히 이 목적을 위한 서비스",
+        "베스천 호스트(이건 인바운드 접근용이라 부적합)",
+        "이런 요구사항은 AWS에서 구현할 수 없다",
+        "보안 그룹만으로 이 문제를 해결할 수 있다(NAT 없이 인터넷 자체에 나갈 방법이 없음)"
+      ],
+      "answer": 0,
+      "explanation_ko": "NAT 게이트웨이는 정확히 '아웃바운드만 허용, 인바운드는 차단'하는 방향성을 가지고 있습니다.",
+      "concept_tags": ["nat_gateway"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l1_u2_q003",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "NAT 게이트웨이를 베스천 호스트 대신 사용할 수 있습니까?",
+      "options": [
+        "아니다 — 둘은 트래픽 방향이 정반대(NAT는 아웃바운드, 베스천은 인바운드)라 서로 대체할 수 없다",
+        "그렇다. NAT 게이트웨이는 베스천 호스트의 모든 기능을 대신할 수 있다",
+        "베스천 호스트와 NAT 게이트웨이는 완전히 동일한 서비스다",
+        "NAT 게이트웨이가 베스천 호스트보다 항상 더 많은 기능을 제공한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "이 둘을 혼동하는 것은 SAA 시험에서 자주 나오는 함정입니다.",
+      "concept_tags": ["nat_gateway_not_bastion"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l1_u2_q004",
+      "type": "concept_matching_item",
+      "code": "프라이빗 서브넷의 애플리케이션이 S3에 자주 접근해야 하는데, 인터넷 게이트웨이나 NAT 없이 AWS 네트워크 안에서만 통신하고 싶어함",
+      "prompt_ko": "이 요구사항에 적합한 구성 요소는?",
+      "options": [
+        "VPC 엔드포인트(게이트웨이 엔드포인트) — 인터넷 게이트웨이·NAT 없이도 S3에 프라이빗하게 직접 연결",
+        "베스천 호스트", "NAT 게이트웨이만으로 충분하다(여전히 인터넷 경유가 필요함)", "이런 구성은 불가능하다"
+      ],
+      "answer": 0,
+      "explanation_ko": "VPC 엔드포인트는 트래픽이 AWS 네트워크를 벗어나지 않게 해서 보안과 비용 모두에 이점이 있습니다.",
+      "concept_tags": ["vpc_endpoint"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "aws_saa_l1_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "베스천 호스트를 관리하는 것 대신, AWS Systems Manager Session Manager를 사용하는 것의 이점은?",
+      "options": [
+        "SSH 키·인바운드 포트 개방 없이도 안전하게 인스턴스에 접속할 수 있어, 베스천 호스트 자체의 관리 부담과 공격 표면을 없앨 수 있다",
+        "Session Manager는 베스천 호스트보다 항상 느리다",
+        "Session Manager는 프라이빗 서브넷 인스턴스에는 사용할 수 없다",
+        "Session Manager는 실질적인 이점이 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "베스천 호스트 자체가 하나의 공격 대상이 될 수 있어, Session Manager 같은 에이전트 기반 접근이 더 안전한 대안으로 권장됩니다.",
+      "concept_tags": ["session_manager_alternative"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "aws_saa_l1_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "여러 가용 영역에 걸쳐 서비스를 운영할 때, 베스천 호스트를 하나의 가용 영역에만 두는 것의 위험은?",
+      "options": [
+        "그 가용 영역에 장애가 생기면, 다른 가용 영역에 있는 프라이빗 인스턴스에도 관리 접근을 할 수 없게 될 수 있다",
+        "베스천 호스트는 가용 영역 개념과 전혀 무관하다",
+        "베스천 호스트는 항상 모든 가용 영역에 자동으로 복제된다",
+        "이런 구성에는 아무 위험이 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "고가용성을 위해서는 베스천 호스트도 여러 가용 영역에 분산 배치하는 것이 권장됩니다.",
+      "concept_tags": ["bastion_single_az_risk"],
+      "difficulty": "challenge"
+    }
+  ]
+}

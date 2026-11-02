@@ -1,0 +1,165 @@
+{
+ "level": 3,
+ "track": "computer",
+ "id": "distributed-systems",
+ "title": "분산시스템·클라우드",
+ "tagline": "여러 컴퓨터를 하나처럼 — 장애와 통신, 시간과 순서, 복제와 일관성, 합의, 클라우드와 컨테이너, AI·LLM 서빙 인프라",
+ "overview": [
+  "분산시스템은 네트워크로 연결된 여러 컴퓨터가 협력해 하나의 서비스를 제공하는 시스템입니다. 검색, 쇼핑몰, 메신저, 그리고 대규모 AI 서비스가 모두 수천 대의 서버로 동작합니다. 컴퓨터가 많아지면 일부는 언제나 고장 나 있고, 메시지는 늦거나 사라지며, 시계도 서로 다릅니다. 이런 조건에서도 올바르게 동작하게 만드는 것이 이 과목의 주제입니다.",
+  "과목은 분산 시스템 모델과 장애 → 통신(RPC, 메시지 큐) → 시간과 순서 → 복제와 일관성 → 합의(Raft) → 클라우드 서비스 모델 → 컨테이너와 쿠버네티스 → AI·LLM 서빙 인프라 순서입니다. 앞 다섯 단원이 이론, 뒤 세 단원이 실제 클라우드 환경입니다.",
+  "숨겨진 클라우드 자격증(AWS·Azure·GCP)이 다루던 내용의 원리를 이 과목이 이어받습니다. 특정 회사의 서비스 이름보다 어느 클라우드에서나 통하는 원리에 집중하고, 융합 과정 AI 공학의 학습·추론 인프라로 이어집니다."
+ ],
+ "level_note": "레벨 3 (심화, 대졸·기사 수준). 목차 검증 기준: 정보처리기사·정보보안기사 필기 과목 구성과 Kleppmann, MIT 6.5840(구 6.824) 강의. 레벨3은 단원당 자가점검 3문항, 학습 조언 1문단의 가벼운 형식입니다.",
+ "prereq": {
+  "text": "레벨2 운영체제(동기화, 가상화와 컨테이너), 컴퓨터 네트워크(전송 계층), 데이터베이스 시스템(트랜잭션, NoSQL) 단원이 선수입니다.",
+  "links": [
+   {
+    "title": "레벨2 운영체제 · 10단원 가상화와 컨테이너",
+    "href": "guide.html?lv=2&t=computer&s=operating-systems&u=10"
+   },
+   {
+    "title": "레벨2 컴퓨터 네트워크 · 3단원 전송 계층",
+    "href": "guide.html?lv=2&t=computer&s=networks&u=3"
+   },
+   {
+    "title": "레벨2 데이터베이스 시스템 · 9단원 동시성 제어와 회복",
+    "href": "guide.html?lv=2&t=computer&s=databases&u=9"
+   },
+   {
+    "title": "레벨2 데이터베이스 시스템 · 10단원 NoSQL과 데이터 웨어하우스",
+    "href": "guide.html?lv=2&t=computer&s=databases&u=10"
+   }
+  ],
+  "questions": [
+   {
+    "type": "question",
+    "id": "p1",
+    "qtype": "numeric",
+    "prompt": "가용도 99%인 장비 두 대를 병렬로 이중화하면 전체 가용도는 몇 %일까요?",
+    "answer": "99.99",
+    "answer_format": "decimal",
+    "tolerance": 0.001,
+    "explanation": "1 − 0.01² = 99.99% (정보통신 통신망 8단원)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p2",
+    "qtype": "numeric",
+    "prompt": "분산 시스템에서 동시에 모두 보장할 수 없다는 CAP의 성질은 몇 가지일까요?",
+    "answer": "3",
+    "answer_format": "integer",
+    "tolerance": 0,
+    "explanation": "일관성, 가용성, 분할 내성 (데이터베이스 시스템 10단원)",
+    "stage": "prereq"
+   },
+   {
+    "type": "question",
+    "id": "p3",
+    "qtype": "fill_blank",
+    "prompt": "호스트 커널을 공유하며 프로세스 묶음을 격리하는 가벼운 가상화를 {{1}}라고 합니다.",
+    "blanks": [
+     {
+      "id": 1,
+      "answers": [
+       "컨테이너"
+      ]
+     }
+    ],
+    "explanation": "운영체제 10단원에서 다룬 개념입니다.",
+    "stage": "prereq"
+   }
+  ]
+ },
+ "next": [
+  {
+   "title": "융합 · AI 공학",
+   "note": "대규모 학습·추론 시스템과 LLM 응용 아키텍처"
+  },
+  {
+   "title": "레벨3 · 정보보안",
+   "note": "클라우드 보안과 LLM 응용 보안"
+  },
+  {
+   "title": "레벨3 · 통신망 설계 (정보통신 트랙)",
+   "note": "데이터 센터와 기업망의 물리적 설계"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_subject",
+ "units": [
+  {
+   "no": 1,
+   "title": "분산 시스템 모델과 장애",
+   "hours": 5,
+   "after": [],
+   "file": "u01.json"
+  },
+  {
+   "no": 2,
+   "title": "통신: RPC와 메시지 큐",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u02.json"
+  },
+  {
+   "no": 3,
+   "title": "시간과 순서",
+   "hours": 4,
+   "after": [
+    2
+   ],
+   "file": "u03.json"
+  },
+  {
+   "no": 4,
+   "title": "복제와 일관성",
+   "hours": 5,
+   "after": [
+    3
+   ],
+   "file": "u04.json"
+  },
+  {
+   "no": 5,
+   "title": "합의와 Raft",
+   "hours": 5,
+   "after": [
+    4
+   ],
+   "file": "u05.json"
+  },
+  {
+   "no": 6,
+   "title": "클라우드 서비스 모델",
+   "hours": 5,
+   "after": [
+    1
+   ],
+   "file": "u06.json"
+  },
+  {
+   "no": 7,
+   "title": "컨테이너와 쿠버네티스",
+   "hours": 5,
+   "after": [
+    6
+   ],
+   "file": "u07.json"
+  },
+  {
+   "no": 8,
+   "title": "AI·LLM 서빙 인프라",
+   "hours": 5,
+   "after": [
+    6,
+    7
+   ],
+   "file": "u08.json",
+   "review": true
+  }
+ ],
+ "total_hours": 39
+}

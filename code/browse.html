@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODE ARENA — 목록</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #f4f7fc;
+    --panel: #ffffff;
+    --panel-2: #eef2fa;
+    --border: rgba(30,50,90,0.12);
+    --text: #172038;
+    --text-dim: #5c6680;
+    --text-dimmer: #93a0b8;
+
+    --c-system: #0284c7;
+    --c-oop:    #d97706;
+    --c-script: #15803d;
+    --c-legacy: #dc2626;
+    --c-module: #7c3aed;
+    --c-found:  #b45309;
+    --accent:   #0284c7;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(2,132,199,0.06), transparent 45%),
+      var(--bg);
+    color: var(--text);
+    font-family:'IBM Plex Sans KR', sans-serif;
+    line-height:1.6;
+  }
+  .mono{ font-family:'IBM Plex Mono',monospace; }
+  a{ color:inherit; }
+
+  .wrap{ max-width: 900px; margin:0 auto; padding: 36px 22px 100px; }
+
+  .topbar{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom: 30px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .topbar a{
+    color: var(--text-dim);
+    text-decoration:none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 12px;
+  }
+  .topbar a:hover{ border-color: var(--accent, #0284c7); color: var(--text); }
+
+  header.pagehead{ margin-bottom: 34px; }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  h1{ font-size: 30px; margin: 0 0 8px; }
+  .sub{ color: var(--text-dim); font-size: 14.5px; max-width: 560px; }
+
+  .level-block{
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--panel);
+    margin-bottom: 16px;
+    padding: 18px 20px 20px;
+  }
+  .level-head{
+    display:flex; align-items:baseline; gap:10px;
+    margin-bottom: 14px;
+  }
+  .level-head .num{
+    font-family:'IBM Plex Mono',monospace;
+    color: var(--accent);
+    font-weight:700;
+    font-size: 15px;
+  }
+  .level-head .name{ font-weight:600; font-size: 15px; }
+
+  .unit-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  .unit-link{
+    display:block;
+    text-decoration:none;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 12px 14px;
+    background: rgba(23,32,56,0.02);
+    transition: border-color 0.12s ease, transform 0.12s ease;
+  }
+  .unit-link:hover{ border-color: var(--accent); transform: translateY(-1px); }
+  .unit-link .u-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size: 12px;
+    color: var(--text-dimmer);
+    margin-bottom: 3px;
+  }
+  .unit-link .u-name{ font-size: 13.5px; }
+
+  .loading, .error-state{
+    text-align:center;
+    padding: 80px 20px;
+    color: var(--text-dim);
+    font-family:'IBM Plex Mono',monospace;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a href="index.html">← 인덱스로</a>
+    <span id="crumb" class="mono"></span>
+  </div>
+  <div id="app"><div class="loading">불러오는 중…</div></div>
+</div>
+
+<script src="curriculum-data.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+const TYPE  = params.get('type');   // 'language' | 'foundation' | 'module'
+const TRACK = params.get('track');  // track key (language 타입일 때)
+const LANG  = params.get('lang');   // language key
+const STAGE = params.get('stage');  // foundation stage key
+const MKEY  = params.get('key');    // module key
+
+const app = document.getElementById('app');
+const crumb = document.getElementById('crumb');
+
+// unit_title은 각 JSON 안에 있지만, 목록 화면에서는 매번 fetch하지 않고
+// "레벨 N · 유닛 M"으로 표시합니다 (플레이어에 들어가면 실제 제목이 보입니다).
+
+function unitFile(basePath, level, unit) {
+  const uu = String(unit).padStart(2, '0');
+  return `${basePath}/level${level}_unit${uu}.json`;
+}
+function stageFile(basePath, unit) {
+  const uu = String(unit).padStart(2, '0');
+  return `${basePath}/unit${uu}.json`;
+}
+function nextParams(basePath, level, unit, totalLevels) {
+  let nl = level, nu = unit + 1;
+  if (nu > CURRICULUM.UNITS_PER_LEVEL) { nl = level + 1; nu = 1; }
+  if (nl > totalLevels) return '';
+  return `&next=player.html%3Ffile%3D${encodeURIComponent(unitFile(basePath, nl, nu))}%26title%3DLevel%2520${nl}%2520Unit%2520${nu}%26back%3D${encodeURIComponent(location.href)}`;
+}
+
+function renderLanguage() {
+  const track = CURRICULUM.tracks.find(t => t.key === TRACK);
+  if (!track) { renderError('트랙 정보를 찾을 수 없습니다: ' + TRACK); return; }
+  const lang = track.languages.find(l => l.key === LANG);
+  if (!lang) { renderError('언어 정보를 찾을 수 없습니다: ' + LANG); return; }
+
+  crumb.textContent = `${track.title} / ${lang.name}`;
+
+  let html = `
+    <header class="pagehead">
+      <div class="eyebrow" style="color:${track.accent}">${track.title}</div>
+      <h1>${lang.name}</h1>
+      <p class="sub">레벨을 펼쳐 유닛을 선택하세요. 각 유닛은 6문항 내외의 퀴즈로 구성되어 있습니다.</p>
+    </header>
+  `;
+
+  for (let level = 1; level <= lang.levels; level++) {
+    html += `<div class="level-block"><div class="level-head"><span class="num">LV.${level}</span><span class="name">Level ${level}</span></div><div class="unit-grid">`;
+    for (let unit = 1; unit <= CURRICULUM.UNITS_PER_LEVEL; unit++) {
+      const file = unitFile(lang.path, level, unit);
+      const backUrl = encodeURIComponent(location.href);
+      const np = nextParams(lang.path, level, unit, lang.levels);
+      const href = `player.html?file=${encodeURIComponent(file)}&title=${encodeURIComponent(lang.name + ' · Level ' + level + ' Unit ' + unit)}&back=${backUrl}${np}`;
+      html += `
+        <a class="unit-link" href="${href}">
+          <div class="u-label">UNIT ${String(unit).padStart(2,'0')}</div>
+          <div class="u-name">Level ${level} · Unit ${unit}</div>
+        </a>`;
+    }
+    html += `</div></div>`;
+  }
+  app.innerHTML = html;
+}
+
+function renderFoundation() {
+  const stage = CURRICULUM.foundation.stages.find(s => s.key === STAGE);
+  if (!stage) { renderError('스테이지 정보를 찾을 수 없습니다: ' + STAGE); return; }
+
+  crumb.textContent = `Foundation / ${stage.title}`;
+
+  let html = `
+    <header class="pagehead">
+      <div class="eyebrow" style="color:${CURRICULUM.foundation.accent}">Foundation</div>
+      <h1>${stage.title}</h1>
+      <p class="sub">특정 언어 문법 이전에, 컴퓨터적 사고와 기초 개념을 다지는 구간입니다.</p>
+    </header>
+    <div class="level-block"><div class="unit-grid">
+  `;
+  for (let unit = 1; unit <= stage.units; unit++) {
+    const file = stageFile(stage.path, unit);
+    const backUrl = encodeURIComponent(location.href);
+    let nextQ = '';
+    if (unit < stage.units) {
+      const nfile = stageFile(stage.path, unit + 1);
+      nextQ = `&next=${encodeURIComponent('player.html?file=' + nfile + '&back=' + location.href)}`;
+    }
+    const href = `player.html?file=${encodeURIComponent(file)}&title=${encodeURIComponent(stage.title + ' · Unit ' + unit)}&back=${backUrl}${nextQ}`;
+    html += `
+      <a class="unit-link" href="${href}">
+        <div class="u-label">UNIT ${String(unit).padStart(2,'0')}</div>
+        <div class="u-name">Unit ${unit}</div>
+      </a>`;
+  }
+  html += `</div></div>`;
+  app.innerHTML = html;
+}
+
+function renderPractice() {
+  const lang = CURRICULUM.practice.find(p => p.key === LANG);
+  if (!lang) { renderError('실습 언어 정보를 찾을 수 없습니다: ' + LANG); return; }
+
+  crumb.textContent = `실습(코드 작성) / ${lang.name}`;
+
+  let html = `
+    <header class="pagehead">
+      <div class="eyebrow" style="color:var(--c-module)">실습(코드 작성)</div>
+      <h1>${lang.name}</h1>
+      <p class="sub">직접 코드를 작성하고 실제 실행 결과로 채점받는 실습형 문제입니다. 레벨을 펼쳐 유닛을 선택하세요.</p>
+    </header>
+  `;
+
+  for (let level = 1; level <= lang.levels; level++) {
+    html += `<div class="level-block"><div class="level-head"><span class="num">LV.${level}</span><span class="name">Level ${level}</span></div><div class="unit-grid">`;
+    for (let unit = 1; unit <= CURRICULUM.UNITS_PER_LEVEL; unit++) {
+      const file = unitFile(lang.path, level, unit);
+      const backUrl = encodeURIComponent(location.href);
+      let nu = unit + 1, nl = level;
+      if (nu > CURRICULUM.UNITS_PER_LEVEL) { nl = level + 1; nu = 1; }
+      let np = '';
+      if (nl <= lang.levels) {
+        np = `&next=${encodeURIComponent('practice-player.html?file=' + unitFile(lang.path, nl, nu) + '&back=' + location.href)}`;
+      }
+      const href = `practice-player.html?file=${encodeURIComponent(file)}&title=${encodeURIComponent(lang.name + ' · Level ' + level + ' Unit ' + unit)}&back=${backUrl}${np}`;
+      html += `
+        <a class="unit-link" href="${href}">
+          <div class="u-label">UNIT ${String(unit).padStart(2,'0')}</div>
+          <div class="u-name">Level ${level} · Unit ${unit}</div>
+        </a>`;
+    }
+    html += `</div></div>`;
+  }
+  app.innerHTML = html;
+}
+
+function renderModule() {
+  const mod = CURRICULUM.modules.find(m => m.key === MKEY);
+  if (!mod) { renderError('모듈 정보를 찾을 수 없습니다: ' + MKEY); return; }
+
+  crumb.textContent = `Module / ${mod.title}`;
+
+  let html = `
+    <header class="pagehead">
+      <div class="eyebrow" style="color:${mod.accent}">Module</div>
+      <h1>${mod.title}</h1>
+      <p class="sub">${mod.subtitle}</p>
+    </header>
+  `;
+  for (let level = 1; level <= mod.levels; level++) {
+    html += `<div class="level-block"><div class="level-head"><span class="num">LV.${level}</span><span class="name">Level ${level}</span></div><div class="unit-grid">`;
+    for (let unit = 1; unit <= CURRICULUM.UNITS_PER_LEVEL; unit++) {
+      const file = unitFile(mod.path, level, unit);
+      const backUrl = encodeURIComponent(location.href);
+      const np = nextParams(mod.path, level, unit, mod.levels);
+      const href = `player.html?file=${encodeURIComponent(file)}&title=${encodeURIComponent(mod.title + ' · Level ' + level + ' Unit ' + unit)}&back=${backUrl}${np}`;
+      html += `
+        <a class="unit-link" href="${href}">
+          <div class="u-label">UNIT ${String(unit).padStart(2,'0')}</div>
+          <div class="u-name">Level ${level} · Unit ${unit}</div>
+        </a>`;
+    }
+    html += `</div></div>`;
+  }
+  app.innerHTML = html;
+}
+
+function renderCertVendor() {
+  const CKEY = params.get('cert');
+  const vendor = CURRICULUM.certifications.find(c => c.key === CKEY);
+  if (!vendor) { renderError('자격증 정보를 찾을 수 없습니다: ' + CKEY); return; }
+
+  crumb.textContent = `글로벌 자격증 / ${vendor.title}`;
+
+  let html = `
+    <header class="pagehead">
+      <div class="eyebrow" style="color:${vendor.accent}">글로벌 자격증</div>
+      <h1>${vendor.title}</h1>
+      <p class="sub">${vendor.subtitle}</p>
+    </header>
+  `;
+
+  if (vendor.exams.length === 0) {
+    html += `<div class="error-state">이 벤더의 자격증 콘텐츠는 아직 준비 중입니다.</div>`;
+  } else {
+    html += `<div class="level-block"><div class="unit-grid">`;
+    vendor.exams.forEach(exam => {
+      const href = `browse.html?type=certexam&cert=${vendor.key}&exam=${exam.key}`;
+      html += `
+        <a class="unit-link" href="${href}">
+          <div class="u-label">EXAM</div>
+          <div class="u-name">${exam.name}</div>
+        </a>`;
+    });
+    html += `</div></div>`;
+  }
+  app.innerHTML = html;
+}
+
+function renderCertExam() {
+  const CKEY = params.get('cert');
+  const EKEY = params.get('exam');
+  const vendor = CURRICULUM.certifications.find(c => c.key === CKEY);
+  if (!vendor) { renderError('자격증 정보를 찾을 수 없습니다: ' + CKEY); return; }
+  const exam = vendor.exams.find(e => e.key === EKEY);
+  if (!exam) { renderError('시험 정보를 찾을 수 없습니다: ' + EKEY); return; }
+
+  crumb.textContent = `${vendor.title} / ${exam.name}`;
+
+  let html = `
+    <header class="pagehead">
+      <div class="eyebrow" style="color:${vendor.accent}">${vendor.title}</div>
+      <h1>${exam.name}</h1>
+      <p class="sub">실제 시험 영역 구성 기준으로 레벨을 나눴습니다. 객관식 위주이며, 실제 컴파일/실행이 아니라 공식 문서 기준으로 검증한 문제입니다.</p>
+    </header>
+  `;
+  for (let level = 1; level <= exam.levels; level++) {
+    const levelName = (exam.levelNames && exam.levelNames[level - 1]) ? exam.levelNames[level - 1] : `Level ${level}`;
+    html += `<div class="level-block"><div class="level-head"><span class="num">LV.${level}</span><span class="name">${levelName}</span></div><div class="unit-grid">`;
+    for (let unit = 1; unit <= CURRICULUM.UNITS_PER_LEVEL; unit++) {
+      const file = unitFile(exam.path, level, unit);
+      const backUrl = encodeURIComponent(location.href);
+      const np = nextParams(exam.path, level, unit, exam.levels);
+      const href = `player.html?file=${encodeURIComponent(file)}&title=${encodeURIComponent(exam.name + ' · ' + levelName + ' Unit ' + unit)}&back=${backUrl}${np}`;
+      html += `
+        <a class="unit-link" href="${href}">
+          <div class="u-label">UNIT ${String(unit).padStart(2,'0')}</div>
+          <div class="u-name">${levelName} · Unit ${unit}</div>
+        </a>`;
+    }
+    html += `</div></div>`;
+  }
+  app.innerHTML = html;
+}
+
+function renderError(msg) {
+  app.innerHTML = `<div class="error-state">⚠ ${msg}</div>`;
+}
+
+if (typeof CURRICULUM === 'undefined') {
+  renderError('curriculum-data.js를 불러오지 못했습니다. 같은 폴더에 있는지 확인하세요.');
+} else if (TYPE === 'language') {
+  renderLanguage();
+} else if (TYPE === 'foundation') {
+  renderFoundation();
+} else if (TYPE === 'module') {
+  renderModule();
+} else if (TYPE === 'practice') {
+  renderPractice();
+} else if (TYPE === 'certvendor') {
+  renderCertVendor();
+} else if (TYPE === 'certexam') {
+  renderCertExam();
+} else {
+  renderError('알 수 없는 유형입니다: ' + TYPE);
+}
+</script>
+<script src="../assets/family-bar.js" defer></script>
+</body>
+</html>

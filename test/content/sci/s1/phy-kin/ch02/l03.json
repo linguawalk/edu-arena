@@ -1,0 +1,355 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "sci",
+  "stage": "s1",
+  "track": "phy-kin",
+  "work": "풀이",
+  "track_title": "운동과 물리 수학",
+  "chapter": {
+    "id": "sci-s1-phy-kin-ch02",
+    "no": 2,
+    "title": "미분으로 보는 운동"
+  },
+  "lesson": {
+    "id": "sci-s1-phy-kin-ch02-l03",
+    "no": 3,
+    "title": "가속도",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "물리",
+      "역학",
+      "운동학"
+    ],
+    "competition": "KPhO",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "가속도는 속도의 변화율",
+      "body": [
+        "가속도는 속도가 변하는 빠르기 a = dv/dt = d²x/dt²입니다. 단위는 m/s²입니다.",
+        "v-t 그래프에서 접선의 기울기가 가속도입니다. 그림에서 0~4 s 구간의 기울기는 8/4 = 2 m/s²이고, 4 s 이후에는 속도가 일정하므로 가속도가 0입니다.",
+        "x-t 그래프에서는 가속도가 곡선이 휘는 방향으로 나타납니다. 아래로 볼록(위로 열린 모양)이면 a > 0, 위로 볼록이면 a < 0입니다."
+      ],
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 11,
+          "ymin": -1,
+          "ymax": 10,
+          "xstep": 1,
+          "ystep": 1,
+          "xlabel": "t(s)",
+          "ylabel": "v(m/s)",
+          "curves": [
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  8
+                ],
+                [
+                  10,
+                  8
+                ]
+              ]
+            }
+          ],
+          "alt": "v-t 그래프: 0~4 s 동안 0에서 8 m/s로 증가, 4~10 s 동안 8 m/s로 일정"
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "v = 3t²(m/s)인 물체의 t = 2 s에서의 가속도는 몇 m/s²인가요?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "a = dv/dt = 6t입니다.",
+      "explanation": "v = 3t²을 미분하면 a = 6t입니다.\nt = 2를 넣으면 a = 12입니다.\n따라서 가속도는 12 m/s²입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "v-t 그래프의 접선의 기울기는 {{1}}입니다.",
+      "blanks": [
+        {
+          "answers": [
+            "가속도"
+          ]
+        }
+      ],
+      "hint": "a = dv/dt입니다.",
+      "explanation": "v-t 그래프에서 기울기는 Δv/Δt입니다.\n이것을 순간으로 줄이면 dv/dt입니다.\n이는 가속도의 정의이므로 기울기는 가속도입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "빨라지는가, 느려지는가",
+      "body": [
+        "가속도의 부호만으로는 빨라지는지 알 수 없습니다. 속도와 가속도의 부호가 같으면 속력이 커지고, 다르면 속력이 작아집니다.",
+        "예를 들어 v < 0이고 a > 0이면 물체는 −방향으로 움직이면서 점점 느려집니다. '음의 가속도 = 감속'이라는 생각은 틀릴 수 있습니다.",
+        "속력의 변화는 d|v|/dt의 부호이고, 이것은 v와 a의 곱 va의 부호와 같습니다. 경시 문제에서 '속력이 증가하는 구간'을 물으면 va > 0인 구간을 찾으세요."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "x = t³ − 3t(m)인 물체가 t = 0.5 s에서 빨라지는지 느려지는지 판단하세요.",
+      "steps": [
+        "v = 3t² − 3이므로 v(0.5) = 0.75 − 3 = −2.25 m/s입니다.",
+        "a = 6t이므로 a(0.5) = 3 m/s²입니다.",
+        "v < 0, a > 0으로 부호가 다릅니다.",
+        "따라서 물체는 −방향으로 움직이며 느려지고 있습니다."
+      ],
+      "answer": "느려진다"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "fill_blank",
+      "prompt": "속도가 음수이고 가속도가 양수이면 물체의 속력은 {{1}}.",
+      "blanks": [
+        {
+          "answers": [
+            "느려진다",
+            "줄어든다",
+            "감소한다",
+            "작아진다"
+          ]
+        }
+      ],
+      "hint": "v와 a의 부호를 비교하세요.",
+      "explanation": "속도와 가속도의 부호가 다르면 가속도가 운동 방향과 반대로 작용합니다.\n그래서 속력의 크기가 줄어듭니다.\n따라서 물체는 느려집니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x = 2t³ − 12t² + 5(m)인 물체의 가속도가 0이 되는 시각은 몇 s인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "두 번 미분하세요.",
+      "explanation": "v = 6t² − 24t이고 a = 12t − 24입니다.\na = 0이면 12t = 24입니다.\n따라서 t = 2 s이고, 이때 x-t 그래프의 휘는 방향이 바뀝니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "등가속도 운동의 세 공식",
+      "body": [
+        "가속도 a가 일정하면 v = v₀ + at, x − x₀ = v₀t + (1/2)at², v² − v₀² = 2a(x − x₀)입니다. 세 번째 식은 앞의 두 식에서 t를 없앤 것입니다.",
+        "문제에 시간이 없으면 세 번째 식이 가장 빠릅니다. 예를 들어 20 m/s로 달리던 차가 4 m/s²로 감속해 멈추는 거리는 0 − 400 = 2(−4)d에서 d = 50 m입니다.",
+        "부호에 주의하세요. 양의 방향을 하나 정하고 v₀, a, 변위를 모두 그 기준으로 씁니다. 감속은 a의 부호가 v와 반대라는 뜻입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "정지 상태에서 2 m/s²로 가속하는 물체의 5 s 후 속력은 몇 m/s인가요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "v = v₀ + at입니다.",
+      "explanation": "v₀ = 0, a = 2 m/s², t = 5 s입니다.\nv = 0 + 2 × 5입니다.\n= 10 m/s입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 문제에서 5 s 동안 이동한 거리는 몇 m인가요?",
+      "answer": "25",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = (1/2)at²입니다.",
+      "explanation": "v₀ = 0이므로 x = (1/2)at²입니다.\nx = (1/2) × 2 × 25입니다.\n= 25 m이고, 평균 속력 5 m/s × 5 s로도 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "20 m/s로 달리던 차가 크기 4 m/s²의 가속도로 감속할 때 멈출 때까지 가는 거리는 몇 m인가요?",
+      "answer": "50",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "v² − v₀² = 2ad입니다.",
+      "explanation": "v = 0, v₀ = 20 m/s, a = −4 m/s²입니다.\n0 − 400 = 2 × (−4) × d입니다.\nd = 400/8 = 50 m입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "자유낙하와 연직 투사",
+      "body": [
+        "공기 저항이 없으면 지표 근처의 모든 물체는 같은 가속도 g ≈ 9.8 m/s²로 떨어집니다. 이 과정에서는 계산을 간단히 하려고 g = 10 m/s²로 씁니다.",
+        "위쪽을 +로 잡으면 a = −g입니다. 처음 속력 v₀로 위로 던진 공은 v = v₀ − gt이므로 t = v₀/g에 최고점에 도달하고, 최고 높이는 v₀²/(2g)입니다.",
+        "올라가는 시간과 내려오는 시간은 같고, 같은 높이를 지날 때의 속력도 같습니다. 이 대칭성을 쓰면 계산을 많이 줄일 수 있습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "공을 20 m/s로 연직 위로 던졌습니다. 최고 높이는 몇 m인가요? (g = 10 m/s²)",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "최고 높이 = v₀²/(2g)입니다.",
+      "explanation": "최고점에서 v = 0이므로 0 − v₀² = 2(−g)h입니다.\nv₀ = 20 m/s, g = 10 m/s²를 넣으면 h = 400/20입니다.\n= 20 m입니다. 공의 질량과는 관계가 없습니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 문제에서 공이 최고점에 도달하는 데 걸리는 시간은 몇 s인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "v = v₀ − gt = 0입니다.",
+      "explanation": "최고점에서 속도가 0이므로 20 − 10t = 0입니다.\nt = 2 s입니다.\n내려오는 데도 2 s가 걸려서 4 s 뒤에 손으로 돌아옵니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "가속도 a = dv/dt = d²x/dt²이고 v-t 그래프의 기울기입니다.",
+        "v와 a의 부호가 같으면 빨라지고, 다르면 느려집니다.",
+        "등가속도에서 v = v₀ + at, x = v₀t + at²/2, v² − v₀² = 2aΔx입니다. 시간이 주어지지 않은 문제는 세 번째 식이 빠릅니다. 연직 운동은 위쪽을 +로 잡고 a = −g를 씁니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "그림의 v-t 그래프에서 0 s부터 10 s까지 이동한 거리는 몇 m인가요?",
+      "answer": "64",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "0~4 s는 삼각형, 4~10 s는 직사각형 넓이입니다.",
+      "explanation": "0~4 s 동안 평균 속력 4 m/s로 4 s 움직여 16 m입니다.\n4~10 s 동안 8 m/s로 6 s 움직여 48 m입니다.\n합은 16 + 48 = 64 m입니다. (넓이는 다음 챕터에서 자세히 다룹니다)",
+      "figure": {
+        "widget": "graph",
+        "config": {
+          "xmin": 0,
+          "xmax": 11,
+          "ymin": -1,
+          "ymax": 10,
+          "xstep": 1,
+          "ystep": 1,
+          "xlabel": "t(s)",
+          "ylabel": "v(m/s)",
+          "curves": [
+            {
+              "kind": "pw",
+              "pts": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  8
+                ],
+                [
+                  10,
+                  8
+                ]
+              ]
+            }
+          ],
+          "alt": "v-t 그래프: 0~4 s 동안 0에서 8 m/s로 증가, 4~10 s 동안 8 m/s로 일정"
+        },
+        "static": true
+      }
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "등가속도 운동에서 v² − v₀² = 2a(x − x₀)임을 보이세요.",
+      "model_answer": [
+        "v = v₀ + at에서 t = (v − v₀)/a이다. (a ≠ 0)",
+        "x − x₀ = v₀t + (1/2)at²에 대입하면 x − x₀ = v₀(v − v₀)/a + (v − v₀)²/(2a)이다.",
+        "통분하면 x − x₀ = [2v₀(v − v₀) + (v − v₀)²]/(2a) = (v² − v₀²)/(2a)이다.",
+        "따라서 v² − v₀² = 2a(x − x₀)이다."
+      ],
+      "criteria": [
+        {
+          "text": "속도식에서 t를 구했다",
+          "points": 2
+        },
+        {
+          "text": "위치식에 대입했다",
+          "points": 2
+        },
+        {
+          "text": "정리해 결론을 얻었다",
+          "points": 2
+        }
+      ],
+      "hint": "두 식에서 t를 없애세요."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "처음 속력 v₀로 연직 위로 던진 공의 최고 높이가 v₀²/(2g)임을 보이세요.",
+      "model_answer": [
+        "위쪽을 +로 잡으면 가속도는 −g로 일정하다.",
+        "최고점에서 속도는 0이다.",
+        "v² − v₀² = 2aΔx에 v = 0, a = −g를 넣으면 −v₀² = −2gh이다.",
+        "따라서 h = v₀²/(2g)이다."
+      ],
+      "criteria": [
+        {
+          "text": "가속도가 −g임을 밝혔다",
+          "points": 1
+        },
+        {
+          "text": "최고점에서 v = 0임을 썼다",
+          "points": 2
+        },
+        {
+          "text": "공식에 대입해 결론을 얻었다",
+          "points": 3
+        }
+      ],
+      "hint": "최고점에서의 속도를 생각하세요."
+    }
+  ]
+}

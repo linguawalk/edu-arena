@@ -1,0 +1,328 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c1",
+    "title": "수학의 기초"
+  },
+  "chapter": {
+    "id": "c1-ch06",
+    "no": 6,
+    "title": "경우의 수"
+  },
+  "lesson": {
+    "id": "c1-ch06-l02",
+    "no": 2,
+    "title": "순열",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "이산조합"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "순열",
+      "body": [
+        "서로 다른 n개에서 r개를 골라 일렬로 늘어놓는 경우의 수를 nPr로 씁니다.",
+        "nPr = n(n − 1)(n − 2) … (n − r + 1)",
+        "왜 n부터 하나씩 줄어들까요? 첫 번째 자리에는 n명 중 아무나 올 수 있지만, 두 번째 자리에는 이미 선 사람을 뺀 n − 1명만 올 수 있기 때문입니다. 곱의 법칙을 r번 쓴 것입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "5명 중 3명을 뽑아 일렬로 세우는 방법은?",
+      "answer": "60",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "5명 중 3명을 골라 순서대로 세우므로 순열 ₅P₃\n= 5 × 4 × 3\n= 60"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "₄P₂의 값은?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "ₙPᵣ은 n부터 1씩 줄여 r개를 곱한 것입니다.\n₄P₂ = 4 × 3\n= 12"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "계승",
+      "body": [
+        "n! = n × (n − 1) × … × 1이고 0! = 1로 약속합니다.",
+        "nPr = n!/(n − r)!",
+        "0! = 1로 약속하는 이유는 nPn = n!/0!이 n!과 같아지게 하기 위해서입니다. 이렇게 정해 두면 순열의 공식이 r = n일 때도 그대로 쓸 수 있습니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "ₙP₃ = 60을 만족하는 n을 구하세요.",
+      "steps": [
+        "ₙP₃ = n(n − 1)(n − 2)",
+        "연속한 세 자연수의 곱이 60: 5 × 4 × 3 = 60",
+        "n = 5"
+      ],
+      "answer": "5"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "5!의 값은?",
+      "answer": "120",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "5! = 5 × 4 × 3 × 2 × 1\n= 120\n5명을 모두 일렬로 세우는 방법의 수와 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "0!의 값은?",
+      "answer": "1",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "0! = 1로 약속합니다.\nnPn = n!/(n − n)! = n!/0!이 n!과 같아야 하기 때문입니다."
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "ₙP₂ = 30일 때 n의 값은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "ₙP₂ = n(n − 1) = 30\n연속한 두 자연수의 곱이 30: 6 × 5\nn = 6"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "이웃하는 경우와 이웃하지 않는 경우",
+      "body": [
+        "이웃해야 하는 것은 한 묶음으로 보고 늘어놓은 뒤, 묶음 안의 순서를 곱합니다.",
+        "이웃하지 않아야 하는 것은 나머지를 먼저 세우고 그 사이사이와 양 끝에 끼워 넣습니다.",
+        "묶음으로 보는 이유: 이웃한 두 사람을 한 덩어리로 생각하면 이웃 조건이 저절로 지켜집니다. 이웃하지 않는 경우는 '전체 − 이웃하는 경우'로 구해도 같은 답이 나옵니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "A, B, C를 포함한 6명을 일렬로 세울 때 A, B, C가 모두 이웃하는 방법은?",
+      "steps": [
+        "A, B, C를 한 묶음으로 보면 늘어놓을 것은 4개: 4! = 24",
+        "묶음 안에서 A, B, C의 순서: 3! = 6",
+        "곱의 법칙: 24 × 6 = 144"
+      ],
+      "answer": "144"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "A, B를 포함한 5명을 일렬로 세울 때 A와 B가 이웃하는 방법은?",
+      "answer": "48",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "A, B를 한 묶음으로 보면 늘어놓을 것은 4개: 4! = 24\n묶음 안의 순서 AB, BA: 2! = 2\n24 × 2 = 48"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "A와 B가 이웃하지 않는 방법은?",
+      "answer": "72",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "전체 방법 5! = 120에서 이웃하는 방법 48을 뺍니다(여사건).\n120 − 48\n= 72"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "남자 3명, 여자 2명을 일렬로 세울 때 여자끼리 이웃하지 않는 방법은?",
+      "answer": "72",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "남자 3명을 먼저 세웁니다: 3! = 6\n남자 사이사이와 양 끝의 자리 4곳 중 2곳에 여자를 세웁니다: ₄P₂ = 12\n6 × 12 = 72"
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "자리가 정해진 경우",
+      "body": [
+        "특정한 자리에 올 것을 먼저 세우고, 나머지를 남은 자리에 늘어놓습니다.",
+        "자리가 정해진 사람은 선택의 여지가 없어 경우의 수가 1이거나 작습니다. 제약이 있는 것부터 먼저 배치하고 남은 것을 자유롭게 늘어놓는 것이 기본 전략입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "5명을 일렬로 세울 때 A가 맨 앞에 서는 방법은?",
+      "answer": "24",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "A의 자리는 이미 정해졌습니다.",
+      "explanation": "A를 맨 앞에 세우면 나머지 4명을 남은 4자리에 세웁니다.\n4! = 24"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "5명을 일렬로 세울 때 양 끝에 A와 B가 서는 방법은?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "양 끝부터 정하세요.",
+      "explanation": "양 끝에 A, B를 세우는 방법: AB, BA의 2가지\n가운데 3자리에 나머지 3명: 3! = 6\n2 × 6 = 12"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "1부터 5까지 숫자를 한 번씩 써서 만드는 다섯 자리 짝수는 몇 개일까요?",
+      "answer": "48",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "일의 자리부터 정하세요.",
+      "explanation": "짝수이려면 일의 자리가 2 또는 4: 2가지\n나머지 4개 숫자를 앞의 4자리에 늘어놓기: 4! = 24\n2 × 24 = 48"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "0이 있는 수 만들기",
+      "body": [
+        "맨 앞자리에는 0이 올 수 없습니다. 짝수 조건이 있으면 일의 자리가 0인 경우와 아닌 경우를 나눕니다.",
+        "왜 일의 자리가 0인 경우를 나눌까요? 일의 자리에 0을 쓰면 맨 앞자리 선택지가 줄지 않지만, 0이 아닌 짝수를 쓰면 0이 남아 있어 맨 앞자리 조건이 달라지기 때문입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "0, 1, 2, 3으로 만드는 세 자리 짝수(같은 숫자 사용 불가)는 몇 개일까요?",
+      "steps": [
+        "일의 자리가 0: 백의 자리 3가지, 십의 자리 2가지 → 6개",
+        "일의 자리가 2: 백의 자리는 0, 2를 뺀 2가지, 십의 자리 2가지 → 4개",
+        "합의 법칙: 6 + 4 = 10"
+      ],
+      "answer": "10개"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "0, 1, 2, 3, 4로 만드는 세 자리 수(같은 숫자 사용 불가)는 몇 개일까요?",
+      "answer": "48",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "맨 앞자리 조건부터 처리하세요.",
+      "explanation": "백의 자리에는 0이 올 수 없으므로 1~4의 4가지\n십의 자리 4가지(0 포함, 백의 자리 제외), 일의 자리 3가지\n4 × 4 × 3 = 48"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "그중 짝수는 몇 개일까요?",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "일의 자리가 0인 경우와 아닌 경우로 나누세요.",
+      "explanation": "일의 자리가 0: 백 4가지 × 십 3가지 = 12\n일의 자리가 2 또는 4: 각각 백 3가지(0과 일의 자리 숫자 제외) × 십 3가지 = 9 → 18\n12 + 18 = 30"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "MATH의 네 글자를 일렬로 늘어놓는 방법은?",
+      "answer": "24",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "서로 다른 4개의 순열입니다.",
+      "explanation": "M, A, T, H는 모두 다른 글자입니다.\n4개를 일렬로 늘어놓는 방법\n4! = 24"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "MATH를 늘어놓을 때 M이 T보다 앞에 오는 방법은?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "M과 T의 순서만 생각해 보세요.",
+      "explanation": "모든 배열에서 M이 T보다 앞인 경우와 뒤인 경우가 반반입니다.\nM과 T의 자리만 바꾸면 짝이 맞기 때문입니다.\n24 ÷ 2 = 12"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "이웃하는 경우를 셀 때 두 사람을 한 묶음으로 보고, 마지막에 2를 곱하는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "묶",
+            "한 사람"
+          ],
+          [
+            "자리를 바꾸",
+            "순서",
+            "바꿔"
+          ],
+          [
+            "2"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "이웃하는 두 사람을 한 사람처럼 묶으면 나머지와 함께 늘어놓는 경우를 셀 수 있습니다. 묶음 안에서 두 사람이 자리를 바꿀 수 있으므로 2를 곱합니다."
+    }
+  ]
+}

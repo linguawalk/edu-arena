@@ -1,0 +1,89 @@
+{
+ "no": 3,
+ "title": "위성 링크 버짓",
+ "hours": 6,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "EIRP와 지구국 G/T의 의미를 설명할 수 있다.",
+  "C/N₀와 C/N을 링크 버짓으로 계산할 수 있다.",
+  "상향·하향 링크를 합친 전체 C/N의 원리를 설명할 수 있다."
+ ],
+ "checklist": [
+  "EIRP = 송신 전력 + 송신 안테나 이득 [dBW]",
+  "수신 성능 지수 G/T [dB/K] = 안테나 이득 − 10 log₁₀(시스템 잡음 온도)",
+  "볼츠만 상수 k = −228.6 dBW/(K·Hz)",
+  "C/N₀ = EIRP − 경로 손실 − 기타 손실 + G/T − k",
+  "C/N = C/N₀ − 10 log₁₀B",
+  "상향·하향 합성: (C/N)⁻¹ = (C/N)_up⁻¹ + (C/N)_down⁻¹",
+  "필요 Eb/N0와 링크 마진"
+ ],
+ "advice": [
+  "위성 링크 버짓은 레벨2 무선통신의 링크 버짓을 위성 업계의 표준 용어(EIRP, G/T, C/N₀)로 다시 쓴 것입니다. 수신 쪽 성능을 안테나 이득과 잡음 온도의 비(G/T) 하나로 묶고, 잡음을 볼츠만 상수 −228.6으로 계산한다는 점이 다릅니다. 표 한 장에 EIRP부터 C/N까지 차례로 적어 내려가는 연습을 두세 번 하면 공식이 저절로 손에 익습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Pratt · Allnutt, Satellite Communications (장 제목으로 표기)",
+   "part": "Satellite Link Design 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "무선통신 5단원 링크 버짓",
+   "url": "guide.html?lv=2&t=ict&s=wireless&u=5"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "통신이론 기초 7단원 잡음과 잡음 지수",
+   "url": "guide.html?lv=2&t=ict&s=comm-theory&u=7"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "위성 EIRP 50 dBW, 경로 손실 205 dB, 지구국 G/T 15 dB/K일 때 C/N₀는 몇 dB·Hz일까요? (기타 손실 없음, k = −228.6 dBW/K/Hz)",
+   "answer": "88.6",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "explanation": "C/N₀ = 50 − 205 + 15 + 228.6 = 88.6 dB·Hz",
+   "hint": "EIRP − L + G/T − k입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "안테나 이득 40 dBi, 시스템 잡음 온도 200 K인 지구국의 G/T는 약 몇 dB/K일까요?",
+   "answer": "17",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "explanation": "G/T = 40 − 10 log₁₀200 ≈ 40 − 23.0 = 17.0 dB/K",
+   "hint": "G − 10 log₁₀T입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "C/N₀ = 88.6 dB·Hz인 링크를 대역폭 36 MHz로 쓰면 C/N은 약 몇 dB일까요?",
+   "answer": "13",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "C/N = 88.6 − 10 log₁₀(36 × 10⁶) ≈ 88.6 − 75.6 = 13.0 dB",
+   "hint": "C/N₀ − 10 log₁₀B입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "ict",
+ "subject": "satellite-comm",
+ "id": "l3-ict-satellite-comm-u03"
+}

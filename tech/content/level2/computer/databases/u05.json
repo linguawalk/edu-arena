@@ -1,0 +1,117 @@
+{
+ "no": 5,
+ "title": "정규화",
+ "hours": 5,
+ "after": [
+  3,
+  4
+ ],
+ "objectives": [
+  "함수 종속을 찾고 이상 현상(삽입·삭제·갱신)을 설명할 수 있다.",
+  "제1·2·3정규형과 BCNF의 조건을 적용해 테이블을 분해할 수 있다.",
+  "반정규화가 필요한 경우를 설명할 수 있다."
+ ],
+ "checklist": [
+  "함수 종속 X → Y",
+  "이상 현상: 삽입 이상, 삭제 이상, 갱신 이상",
+  "제1정규형: 모든 속성이 원자값",
+  "제2정규형: 부분 함수 종속 제거",
+  "제3정규형: 이행 함수 종속 제거",
+  "BCNF: 모든 결정자가 후보 키",
+  "무손실 분해, 반정규화(성능을 위한 의도적 중복)"
+ ],
+ "advice": [
+  "정규화는 '하나의 사실은 한 곳에만 적는다'는 원칙을 단계별로 적용하는 절차입니다. 학번–이름–과목–교수 같은 하나의 큰 표에서 출발해, 학생 이름이 바뀌면 여러 행을 고쳐야 하는 갱신 이상을 직접 확인한 뒤 표를 나누어 보세요. 이상 현상을 먼저 느껴 봐야 정규형의 조건이 외울 대상이 아니라 당연한 규칙으로 보입니다.",
+  "실무에서는 조회 속도 때문에 일부러 중복을 두는 반정규화도 합니다. 정규화를 먼저 제대로 한 뒤 근거를 가지고 반정규화를 결정해야 한다는 순서가 중요합니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Silberschatz · Korth · Sudarshan",
+   "title": "Database System Concepts (교재 사이트, 장 제목으로 표기)",
+   "url": "https://www.db-book.com/",
+   "lang": "영어",
+   "part": "Relational Database Design 장"
+  },
+  {
+   "kind": "web",
+   "provider": "code-arena (실습)",
+   "title": "DB 이론 모듈",
+   "url": "https://code-arena.org/browse.html?type=module&key=db_theory",
+   "lang": "한국어"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "fill_blank",
+   "prompt": "기본 키의 일부에만 종속하는 속성을 없애 얻는 정규형은 제{{1}}정규형입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "2"
+     ]
+    }
+   ],
+   "explanation": "부분 함수 종속을 제거하면 제2정규형이 됩니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "A → B, B → C처럼 기본 키가 아닌 속성을 거쳐 종속하는 이행 함수 종속을 없애면 제{{1}}정규형이 됩니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "3"
+     ]
+    }
+   ],
+   "explanation": "이행 종속을 제거한 것이 제3정규형입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "같은 정보가 여러 행에 중복되어 일부만 고쳐지면서 데이터가 어긋나는 문제를 {{1}} 이상이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "갱신",
+      "수정"
+     ]
+    }
+   ],
+   "explanation": "그 밖에 삽입 이상과 삭제 이상이 있습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "모든 결정자가 후보 키여야 한다는, 제3정규형보다 강한 정규형을 영문 약어로 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "BCNF"
+     ]
+    }
+   ],
+   "explanation": "Boyce–Codd Normal Form의 줄임말입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "computer",
+ "subject": "databases",
+ "id": "l2-computer-databases-u05"
+}

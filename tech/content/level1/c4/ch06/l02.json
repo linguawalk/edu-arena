@@ -1,0 +1,358 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch06",
+  "no": 6,
+  "title": "운영체제의 역할"
+ },
+ "lesson": {
+  "id": "c4-ch06-l02",
+  "no": 2,
+  "title": "프로세스와 스케줄링",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "프로그램과 프로세스",
+   "body": [
+    "프로그램은 저장 장치에 있는 명령어 파일이고, 프로세스는 그 프로그램이 메모리에 올라와 실행 중인 상태입니다. 같은 브라우저 프로그램을 두 번 실행하면 프로세스가 두 개가 됩니다.",
+    "운영체제는 프로세스마다 PC와 레지스터 값, 메모리 정보, 열어 둔 파일 등을 담은 기록(프로세스 제어 블록)을 관리합니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "fill_blank",
+   "prompt": "메모리에 올라와 실행 중인 프로그램을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "프로세스"
+     ]
+    }
+   ],
+   "hint": "작업 관리자에서 볼 수 있습니다.",
+   "explanation": "프로그램은 파일, 프로세스는 실행 중인 상태입니다.\n한 프로그램으로 여러 프로세스를 만들 수 있습니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "시분할",
+   "body": [
+    "CPU 코어 하나는 한 순간에 프로세스 하나만 실행합니다. 운영체제는 아주 짧은 시간(타임 슬라이스, 수 ms)마다 CPU를 다른 프로세스로 넘겨, 여러 프로세스가 동시에 도는 것처럼 보이게 합니다. 이를 시분할이라고 합니다.",
+    "프로세스를 바꿀 때는 지금 프로세스의 PC와 레지스터를 저장하고 다음 프로세스의 것을 되살립니다. 이를 문맥 교환이라고 하며, 이 동안은 쓸모 있는 일을 못 하므로 너무 자주 바꾸면 손해입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "타임 슬라이스가 10 ms이면 1초에 문맥 교환이 최대 몇 번 일어날까요?",
+   "steps": [
+    "1초 = 1000 ms입니다.",
+    "1000 ÷ 10 = 100번입니다."
+   ],
+   "answer": "100번"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "프로세스를 바꿀 때 레지스터를 저장하고 되살리는 것을 {{1}} 교환이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "문맥"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "문맥 교환은 인터럽트 처리(챕터 4)와 비슷하게 상태를 저장하고 되살립니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "타임 슬라이스가 4 ms이면 1초에 문맥 교환이 최대 몇 번 일어날까요?",
+   "answer": "250",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1초 = 1000 ms를 타임 슬라이스로 나눕니다.\n1000 ÷ 4 = 250번입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "문맥 교환에 0.01 ms가 들고 1초에 250번 일어나면, 1초 가운데 몇 ms를 교환에 쓸까요?",
+   "answer": "2.5",
+   "answer_format": "decimal",
+   "tolerance": 0.001,
+   "hint": null,
+   "explanation": "250 × 0.01 = 2.5 ms입니다.\n전체의 0.25 %입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "CPU를 짧은 시간씩 번갈아 나누어 주어 동시에 도는 것처럼 보이게 하는 방식을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "시분할"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "시분할 덕분에 코어 하나로도 여러 프로그램을 함께 쓸 수 있습니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "프로세스의 상태와 스케줄링",
+   "body": [
+    "프로세스는 실행(지금 CPU를 씀), 준비(CPU를 기다림), 대기(입출력 같은 일을 기다림) 상태를 오갑니다. 파일을 읽으려고 기다리는 프로세스는 대기 상태로 가서 CPU를 다른 프로세스에 양보합니다.",
+    "준비 상태의 프로세스 가운데 누구에게 CPU를 줄지 정하는 것을 스케줄링이라고 합니다. 도착한 순서대로 끝까지 실행하는 선입선출(FCFS), 타임 슬라이스마다 돌아가며 실행하는 라운드 로빈이 기본 방식입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "실행 시간이 각각 30, 10, 20 ms인 프로세스 A, B, C가 이 순서로 도착했습니다. 선입선출이면 각자 언제 끝날까요?",
+   "steps": [
+    "A는 0~30 ms, 30 ms에 끝납니다.",
+    "B는 30~40 ms, 40 ms에 끝납니다.",
+    "C는 40~60 ms, 60 ms에 끝납니다."
+   ],
+   "answer": "A 30, B 40, C 60 ms"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "준비 상태의 프로세스 가운데 누구에게 CPU를 줄지 정하는 것을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "스케줄링"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "스케줄링 방식에 따라 기다리는 시간과 반응 속도가 달라집니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "파일 읽기가 끝나기를 기다리는 프로세스는 {{1}} 상태입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "대기"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "대기 상태의 프로세스는 CPU를 쓰지 않으므로 다른 프로세스에 양보합니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 예제(선입선출)에서 세 프로세스가 끝나는 시각의 평균은 몇 ms일까요? (소수 첫째 자리까지)",
+   "answer": "43.3",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "hint": null,
+   "explanation": "(30 + 40 + 60) ÷ 3 ≈ 43.3 ms입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "같은 세 프로세스를 짧은 것부터(B, C, A) 실행하면 끝나는 시각의 평균은 몇 ms일까요? (소수 첫째 자리까지)",
+   "answer": "36.7",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "hint": null,
+   "explanation": "B 10, C 30, A 60 ms에 끝납니다.\n(10 + 30 + 60) ÷ 3 ≈ 36.7 ms입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "라운드 로빈",
+   "body": [
+    "라운드 로빈은 준비 상태의 프로세스들이 타임 슬라이스만큼씩 돌아가며 CPU를 씁니다. 긴 프로세스가 CPU를 독차지하지 못해, 키보드 입력처럼 짧은 일에 빨리 반응합니다. 요즘 운영체제는 이를 바탕으로 우선순위를 더한 방식을 씁니다.",
+    "정리: 프로그램과 프로세스, 시분할과 타임 슬라이스, 문맥 교환, 실행·준비·대기 상태, 스케줄링(선입선출, 짧은 것 먼저, 라운드 로빈)"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "프로세스들이 타임 슬라이스만큼씩 돌아가며 CPU를 쓰는 스케줄링을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "라운드 로빈",
+      "라운드로빈"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "라운드 로빈은 공평하고 반응이 빠릅니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "실행 시간 A 20 ms, B 10 ms가 함께 도착했고 타임 슬라이스 10 ms로 라운드 로빈(A 먼저)하면 각자 언제 끝날까요?",
+   "steps": [
+    "0~10: A(남은 10), 10~20: B(끝)입니다.",
+    "20~30: A(끝)입니다.",
+    "B는 20 ms, A는 30 ms에 끝납니다."
+   ],
+   "answer": "B 20 ms, A 30 ms"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "실행 시간 A 30 ms, B 20 ms가 함께 도착했고 타임 슬라이스 10 ms로 라운드 로빈(A 먼저)하면 B는 몇 ms에 끝날까요?",
+   "answer": "40",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "10 ms씩 번갈아 적어 보세요.",
+   "explanation": "A(0~10), B(10~20), A(20~30), B(30~40)에서 B가 끝납니다.\n40 ms입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 문제에서 A는 몇 ms에 끝날까요?",
+   "answer": "50",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "B가 끝난 뒤 A만 남습니다.",
+   "explanation": "B가 끝난 뒤 A가 40~50 ms에 남은 10 ms를 실행합니다.\n50 ms입니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "실행 시간이 각각 50, 5, 5 ms인 세 프로세스를 선입선출로 이 순서대로 실행하면 끝나는 시각의 평균은 몇 ms일까요?",
+   "answer": "55",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "앞 프로세스가 끝나야 다음이 시작합니다.",
+   "explanation": "50, 55, 60 ms에 끝납니다.\n(50 + 55 + 60) ÷ 3 = 55 ms입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "같은 세 프로세스를 짧은 것부터 실행하면 끝나는 시각의 평균은 몇 ms일까요?",
+   "answer": "25",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "5, 5, 50 순으로 실행하세요.",
+   "explanation": "5, 10, 60 ms에 끝납니다.\n(5 + 10 + 60) ÷ 3 = 25 ms입니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "타임 슬라이스를 너무 짧게 하면 {{1}} 교환이 잦아져 쓸모 있는 일을 하는 시간이 줄어듭니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "문맥"
+     ]
+    }
+   ],
+   "hint": "프로세스를 바꾸는 작업입니다.",
+   "explanation": "교환하는 동안은 프로그램이 진행되지 않습니다.\n그래서 알맞은 길이를 고릅니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "CPU 코어가 하나뿐인데도 여러 프로그램이 동시에 실행되는 것처럼 보이는 이유를 설명해 보세요.",
+   "hint": "시분할과 문맥 교환으로 설명하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "시분할",
+      "번갈아",
+      "돌아가며"
+     ],
+     [
+      "타임 슬라이스",
+      "짧은 시간",
+      "ms"
+     ],
+     [
+      "문맥 교환",
+      "저장",
+      "되살"
+     ],
+     [
+      "사람",
+      "느끼",
+      "동시에"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "운영체제는 CPU를 수 ms 정도의 짧은 타임 슬라이스로 나누어 여러 프로세스에 번갈아 줍니다. 바꿀 때마다 문맥 교환으로 상태를 저장하고 되살려 이어서 실행하는데, 바꾸는 간격이 매우 짧아 사람에게는 모두 동시에 실행되는 것처럼 느껴집니다."
+  }
+ ]
+}

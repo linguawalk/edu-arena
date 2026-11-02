@@ -1,0 +1,395 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch05",
+  "no": 5,
+  "title": "메모리 계층"
+ },
+ "lesson": {
+  "id": "c4-ch05-l01",
+  "no": 1,
+  "title": "빠른 것은 작고 비싸다",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "책상, 책장, 도서관",
+   "body": [
+    "공부할 때 지금 보는 책은 책상 위에, 자주 보는 책은 책장에, 가끔 보는 책은 도서관에 둡니다. 가까울수록 빨리 꺼내지만 자리가 좁습니다. 컴퓨터의 기억 장치도 이렇게 층을 이룹니다. 이를 메모리 계층이라고 합니다.",
+    "위에서부터 레지스터 → 캐시(L1, L2, L3) → 주기억장치(DRAM) → 보조 기억 장치(SSD, 하드 디스크) 순입니다. 위로 갈수록 빠르고 작고 비싸며, 아래로 갈수록 느리고 크고 쌉니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "ordering",
+   "prompt": "메모리 계층을 빠른 것부터 배열하세요.",
+   "items": [
+    {
+     "id": "a",
+     "text": "주기억장치(DRAM)"
+    },
+    {
+     "id": "b",
+     "text": "레지스터"
+    },
+    {
+     "id": "c",
+     "text": "SSD"
+    },
+    {
+     "id": "d",
+     "text": "캐시"
+    }
+   ],
+   "answer_order": [
+    "b",
+    "d",
+    "a",
+    "c"
+   ],
+   "hint": null,
+   "explanation": "CPU에 가까울수록 빠릅니다.\n레지스터 → 캐시 → DRAM → SSD 순입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "얼마나 차이 날까",
+   "body": [
+    "대략의 접근 시간은 레지스터가 한 클럭(1 ns 미만), L1 캐시가 1 ns 안팎, DRAM이 100 ns 안팎, SSD가 수십~100 μs(마이크로초), 하드 디스크가 수 ms(밀리초)입니다. 제품마다 다르지만 단계마다 수십~수천 배씩 차이 납니다.",
+    "DRAM 한 번 읽는 100 ns 동안 3 GHz CPU는 300클럭을 기다려야 합니다. 그래서 CPU가 DRAM까지 가는 일을 최대한 줄이는 것이 성능의 핵심입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "3 GHz CPU가 DRAM을 한 번 읽는 데 100 ns가 걸리면 몇 클럭을 기다릴까요?",
+   "steps": [
+    "클럭 주기는 1/3 ns입니다.",
+    "100 ÷ (1/3) = 300클럭입니다."
+   ],
+   "answer": "300클럭"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "기억 장치를 속도와 크기에 따라 층으로 나눈 구조를 메모리 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "계층"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "빠르고 작은 것부터 느리고 큰 것까지 층을 이룹니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "4 GHz CPU가 DRAM을 한 번 읽는 데 80 ns가 걸리면 몇 클럭을 기다릴까요?",
+   "answer": "320",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "클럭 주기는 0.25 ns입니다.\n80 ÷ 0.25 = 320클럭입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "DRAM 접근이 100 ns, SSD 접근이 100 μs이면 SSD가 몇 배 느릴까요? (1 μs = 1000 ns)",
+   "answer": "1000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "100 μs = 100 000 ns입니다.\n100 000 ÷ 100 = 1000배입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "메모리 계층에서 아래로 갈수록 용량은 커지고 1바이트당 값은 {{1}}.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "싸진다",
+      "낮아진다",
+      "싸집니다"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "느린 장치일수록 싸서 큰 용량을 만들 수 있습니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "캐시",
+   "body": [
+    "캐시는 CPU 안에 있는 작고 빠른 SRAM 메모리로, DRAM에서 최근에 가져온 데이터의 사본을 둡니다. 같은 데이터가 다시 필요하면 DRAM까지 가지 않고 캐시에서 바로 꺼냅니다.",
+    "요즘 CPU는 코어마다 작은 L1(수십 KB)과 L2(수백 KB~수 MB), 여러 코어가 함께 쓰는 L3(수~수십 MB) 캐시를 둡니다. 숫자가 작을수록 CPU에 가깝고 빠릅니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "L1, L2, L3 가운데 가장 크고 여러 코어가 함께 쓰는 캐시는?",
+   "steps": [
+    "L1과 L2는 보통 코어마다 따로 있습니다.",
+    "L3는 가장 크고 여러 코어가 함께 씁니다.",
+    "대신 L1, L2보다 느립니다."
+   ],
+   "answer": "L3"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "DRAM에서 가져온 데이터의 사본을 CPU 가까이 두는 작고 빠른 메모리를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "캐시"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "캐시는 SRAM으로 만듭니다.\n같은 데이터를 다시 쓸 때 빨라집니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "캐시 가운데 CPU에 가장 가깝고 빠른 것은 {{1}} 캐시입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "L1"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "L1은 CPU 코어 바로 옆에 있어 가장 작지만 가장 빠릅니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "캐시는 주로 {{1}}으로 만듭니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "SRAM"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "SRAM은 플립플롭으로 만들어 빠릅니다(챕터 2)."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "L1 캐시가 64 KB, L2가 1 MB이면 L2는 L1의 몇 배일까요? (1 MB = 1024 KB)",
+   "answer": "16",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "1 MB = 1024 KB이므로 KB로 맞춰 나눕니다.\n1024 ÷ 64 = 16배입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "계층이 통하는 이유",
+   "body": [
+    "모든 데이터를 가장 빠른 메모리에 둘 수는 없지만, 프로그램은 한 번에 적은 양의 데이터만 집중해서 씁니다. 그래서 자주 쓰는 것만 위층에 두면 대부분의 접근이 빠른 층에서 끝납니다. 다음 레슨에서 이 성질(지역성)을 봅니다.",
+    "정리: 레지스터 → L1 → L2 → L3 → DRAM → SSD·HDD, 위로 빠르고 작고 비쌈, 단계마다 수십~수천 배 차이, 캐시는 DRAM 데이터의 사본"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "캐시가 효과를 내는 까닭은 프로그램이 적은 양의 데이터를 집중해서 쓰는 {{1}} 때문입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "지역성"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "지역성 덕분에 작은 캐시로도 대부분의 접근을 처리합니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "하드 디스크 접근 10 ms 동안 3 GHz CPU는 몇 클럭을 기다릴까요?",
+   "steps": [
+    "10 ms = 10 000 000 ns입니다.",
+    "1 ns에 3클럭이므로 3000만 클럭입니다.",
+    "그래서 디스크를 기다리는 동안 다른 일을 해야 합니다."
+   ],
+   "answer": "3000만 클럭"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "SSD 접근 50 μs 동안 2 GHz CPU는 몇 클럭을 기다릴까요?",
+   "answer": "100000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "μs를 ns로 바꾸세요.",
+   "explanation": "50 μs = 50 000 ns입니다.\n1 ns에 2클럭이므로 100 000클럭입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "캐시 1 MB 값이 DRAM 1 GB 값과 같다면, 바이트당 캐시는 DRAM보다 몇 배 비쌀까요? (1 GB = 1024 MB)",
+   "answer": "1024",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "용량 차이만큼입니다.",
+   "explanation": "같은 값에 용량이 1024배 차이 납니다.\n바이트당 1024배 비쌉니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "컴퓨터를 켜 둔 동안 실행 중인 프로그램은 주로 {{1}}에 올라가 있습니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "주기억장치",
+      "DRAM",
+      "램",
+      "RAM"
+     ]
+    }
+   ],
+   "hint": "흔히 램이라고 부르는 곳입니다.",
+   "explanation": "프로그램은 SSD에 저장되어 있다가 실행할 때 주기억장치로 올라옵니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "전원을 꺼도 사진 파일이 남아 있는 곳은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "SSD",
+      "보조 기억 장치",
+      "하드 디스크",
+      "보조기억장치"
+     ]
+    }
+   ],
+   "hint": "비휘발성 저장 장치입니다.",
+   "explanation": "보조 기억 장치는 비휘발성이라 전원이 없어도 내용이 남습니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "DRAM을 기다리는 시간을 줄이려고 CPU 안에 두는 것은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "캐시"
+     ]
+    }
+   ],
+   "hint": "작고 빠른 사본 저장소입니다.",
+   "explanation": "캐시에서 찾으면 DRAM까지 가지 않아도 됩니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "모든 메모리를 가장 빠른 SRAM으로 만들지 않고 계층을 두는 이유를 설명해 보세요.",
+   "hint": "비용과 지역성을 함께 쓰세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "SRAM",
+      "빠른"
+     ],
+     [
+      "비싸",
+      "비용",
+      "값"
+     ],
+     [
+      "용량",
+      "크",
+      "작"
+     ],
+     [
+      "자주",
+      "지역성",
+      "위층"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "SRAM은 빠르지만 비싸고 자리를 많이 차지해 큰 용량을 만들기 어렵습니다. 프로그램은 적은 양의 데이터를 집중해서 쓰므로, 자주 쓰는 것만 작고 빠른 위층에 두고 나머지는 싸고 큰 아래층에 두면 적은 비용으로 빠른 속도와 큰 용량을 함께 얻을 수 있습니다."
+  }
+ ]
+}

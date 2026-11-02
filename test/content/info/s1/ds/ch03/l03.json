@@ -1,0 +1,284 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "ds",
+  "work": "풀이",
+  "track_title": "자료구조",
+  "chapter": {
+    "id": "info-s1-ds-ch03",
+    "no": 3,
+    "title": "우선순위 큐"
+  },
+  "lesson": {
+    "id": "info-s1-ds-ch03-l03",
+    "no": 3,
+    "title": "우선순위 큐 활용",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "자료구조",
+      "우선순위 큐"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "C++의 priority_queue",
+      "body": [
+        "C++의 priority_queue<int>는 최대 힙으로, top이 가장 큰 값입니다. push와 pop은 O(log n), top은 O(1)입니다.",
+        "가장 작은 값을 먼저 꺼내려면 priority_queue<int, vector<int>, greater<int>>처럼 비교 기준으로 greater를 줍니다. 또는 값에 −1을 곱해 넣는 방법도 씁니다.",
+        "5, 1, 8, 3을 priority_queue<int>에 넣으면 top은 8입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "priority_queue<int>에 5, 1, 8, 3을 넣으면 top은?",
+      "answer": "8",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "기본은 최대 힙입니다.",
+      "explanation": "C++의 priority_queue<int>는 기본적으로 최대 힙이라 top이 가장 큰 값입니다.\n넣은 값 5, 1, 8, 3 중 가장 큰 값은 8입니다.\n그래서 8입니다."
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "C++의 priority_queue에서 가장 작은 값이 먼저 나오게 하려면 비교 기준으로 {{1}}<int>를 줍니다.",
+      "blanks": [
+        {
+          "answers": [
+            "greater"
+          ]
+        }
+      ],
+      "hint": "'더 큰'이라는 뜻의 비교 함수입니다.",
+      "explanation": "priority_queue는 기본으로 큰 값이 top에 옵니다.\n비교 기준을 뒤집으면 작은 값이 top에 옵니다.\n그 비교 기준이 greater<int>입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "카드 묶음 합치기",
+      "body": [
+        "크기가 a, b인 카드 묶음 둘을 합치는 데 a + b번 비교한다고 할 때, 여러 묶음을 하나로 합치는 총비용을 최소로 하려면 매번 가장 작은 두 묶음을 합치면 됩니다.",
+        "작은 묶음이 여러 번 합쳐질수록 비용이 덜 들기 때문입니다. 가장 작은 두 개를 매번 꺼내야 하므로 최소 힙이 알맞습니다.",
+        "[10, 20, 40]이면 10 + 20 = 30을 먼저 합치고 30 + 40 = 70을 합쳐 총 100입니다."
+      ],
+      "code": "// 카드 묶음을 둘씩 합치는 비용(두 묶음 크기의 합)의 총합을 최소로\npriority_queue<long long, vector<long long>, greater<long long>> pq;  // 최소 힙\nfor (int i = 0; i < n; i++) pq.push(a[i]);\nlong long total = 0;\nwhile (pq.size() > 1) {\n    long long x = pq.top(); pq.pop();\n    long long y = pq.top(); pq.pop();\n    total += x + y;\n    pq.push(x + y);\n}"
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "a = [10, 20, 40]일 때 아래 코드가 끝난 뒤 total을 구하세요.",
+      "steps": [
+        "가장 작은 10과 20을 합칩니다: 비용 30, 힙 {30, 40}입니다.",
+        "30과 40을 합칩니다: 비용 70, 힙 {70}입니다.",
+        "total = 30 + 70 = 100입니다."
+      ],
+      "answer": "100",
+      "code": "// 카드 묶음을 둘씩 합치는 비용(두 묶음 크기의 합)의 총합을 최소로\npriority_queue<long long, vector<long long>, greater<long long>> pq;  // 최소 힙\nfor (int i = 0; i < n; i++) pq.push(a[i]);\nlong long total = 0;\nwhile (pq.size() > 1) {\n    long long x = pq.top(); pq.pop();\n    long long y = pq.top(); pq.pop();\n    total += x + y;\n    pq.push(x + y);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 total은?",
+      "answer": "100",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "30 + 70입니다.",
+      "explanation": "매번 가장 작은 두 묶음을 합치고 그 크기의 합을 비용으로 더합니다.\n10 + 20 = 30, 30 + 40 = 70입니다.\n총비용은 30 + 70 = 100입니다.",
+      "code": "// 카드 묶음을 둘씩 합치는 비용(두 묶음 크기의 합)의 총합을 최소로\npriority_queue<long long, vector<long long>, greater<long long>> pq;  // 최소 힙\nfor (int i = 0; i < n; i++) pq.push(a[i]);\nlong long total = 0;\nwhile (pq.size() > 1) {\n    long long x = pq.top(); pq.pop();\n    long long y = pq.top(); pq.pop();\n    total += x + y;\n    pq.push(x + y);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "a = [1, 2, 3, 4]일 때 아래 코드가 끝난 뒤 total은?",
+      "answer": "19",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "3, 6, 10을 더합니다.",
+      "explanation": "매번 가장 작은 두 묶음을 합치고 그 크기의 합을 비용으로 더합니다.\n1 + 2 = 3, 3 + 3 = 6, 4 + 6 = 10입니다.\n총비용은 3 + 6 + 10 = 19입니다.",
+      "code": "// 카드 묶음을 둘씩 합치는 비용(두 묶음 크기의 합)의 총합을 최소로\npriority_queue<long long, vector<long long>, greater<long long>> pq;  // 최소 힙\nfor (int i = 0; i < n; i++) pq.push(a[i]);\nlong long total = 0;\nwhile (pq.size() > 1) {\n    long long x = pq.top(); pq.pop();\n    long long y = pq.top(); pq.pop();\n    total += x + y;\n    pq.push(x + y);\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "k번째로 큰 수",
+      "body": [
+        "수가 하나씩 들어올 때 지금까지의 k번째로 큰 수를 알고 싶으면, 크기 k인 최소 힙에 가장 큰 k개만 유지합니다. 새 수가 힙의 top보다 크면 top을 꺼내고 새 수를 넣습니다.",
+        "그러면 힙의 top이 k번째로 큰 수이고, 수 하나마다 O(log k)이므로 전체 O(n log k)입니다.",
+        "[5, 1, 9, 3, 7, 2]에서 세 번째로 큰 수는 힙에 {5, 7, 9}가 남아 top인 5입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "[5, 1, 9, 3, 7, 2]에서 세 번째로 큰 수는?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "큰 순서로 9, 7, 5입니다.",
+      "explanation": "크기 3인 최소 힙에 가장 큰 3개만 남기면 top이 세 번째로 큰 수입니다.\n가장 큰 3개는 9, 7, 5입니다.\n그중 가장 작은 5가 답입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 10⁶, k = 8일 때 크기 k인 힙을 쓰는 방법의 연산을 n log₂ k로 어림하면?",
+      "answer": "3000000",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "10⁶ × 3입니다.",
+      "explanation": "수 하나마다 크기 k인 힙에서 O(log k)만큼 연산하므로 전체는 n log₂ k입니다.\nlog₂ 8 = 3이므로 10⁶ × 3입니다.\n= 3000000번입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "discover",
+      "title": "회의실 배정",
+      "body": [
+        "회의들의 [시작, 끝] 시각이 주어질 때 필요한 회의실 수의 최솟값을 구하려면, 시작 시각 순으로 보며 사용 중인 회의실의 끝나는 시각들을 최소 힙에 넣습니다.",
+        "새 회의의 시작 시각이 힙의 top(가장 일찍 끝나는 시각) 이상이면 그 회의실을 이어 쓰므로 top을 꺼냅니다. 그다음 새 회의의 끝 시각을 넣습니다. 마지막 힙의 크기가 답입니다.",
+        "[1, 4], [2, 5], [4, 6], [5, 7]이면 회의실 2개면 됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "회의 [1, 4], [2, 5], [4, 6], [5, 7]에 필요한 회의실은 최소 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "끝난 회의실을 이어 쓸 수 있습니다.",
+      "explanation": "시작 시각 순으로 보며 가장 일찍 끝나는 회의실이 비어 있으면 이어 씁니다.\n[1, 4], [2, 5]에 2개가 필요하고, [4, 6]은 4에 끝난 방을, [5, 7]은 5에 끝난 방을 이어 씁니다.\n그래서 2개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "회의 [0, 5], [1, 2], [1, 3], [4, 6]에 필요한 회의실은 최소 몇 개인가요?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "시각 1에 몇 개의 회의가 동시에 열리나요?",
+      "explanation": "시작 시각 순으로 보며 가장 일찍 끝나는 회의실이 비어 있으면 이어 씁니다.\n시각 1에 [0, 5], [1, 2], [1, 3]이 동시에 열려 3개가 필요합니다.\n[4, 6]은 2에 끝난 방을 이어 써서 3개면 됩니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "C++의 priority_queue는 기본이 최대 힙이고, greater를 주면 최소 힙이 됩니다. push·pop은 O(log n)입니다.",
+        "가장 작은(큰) 것을 반복해서 꺼내야 하는 문제, 예를 들어 카드 묶음 합치기, k번째로 큰 수, 회의실 배정에 쓰입니다.",
+        "카드 묶음은 매번 가장 작은 두 개를 합치고, k번째로 큰 수는 크기 k인 최소 힙으로 O(n log k)에 구합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "a = [5, 5, 5, 5]일 때 아래 코드가 끝난 뒤 total은?",
+      "answer": "40",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "10, 10, 20을 더합니다.",
+      "explanation": "매번 가장 작은 두 묶음을 합치고 그 크기의 합을 비용으로 더합니다.\n5 + 5 = 10, 5 + 5 = 10, 10 + 10 = 20입니다.\n총비용은 10 + 10 + 20 = 40입니다.",
+      "code": "// 카드 묶음을 둘씩 합치는 비용(두 묶음 크기의 합)의 총합을 최소로\npriority_queue<long long, vector<long long>, greater<long long>> pq;  // 최소 힙\nfor (int i = 0; i < n; i++) pq.push(a[i]);\nlong long total = 0;\nwhile (pq.size() > 1) {\n    long long x = pq.top(); pq.pop();\n    long long y = pq.top(); pq.pop();\n    total += x + y;\n    pq.push(x + y);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "최소 힙에 8, 3, 6, 1을 넣은 뒤 두 번 꺼낼 때 두 번째로 꺼내는 값은?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "작은 값부터 나옵니다.",
+      "explanation": "최소 힙에서 꺼내기는 항상 그 순간 가장 작은 값을 돌려줍니다.\n첫 번째로 1, 두 번째로 3이 나옵니다.\n그래서 3입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "카드 묶음 합치기에서 매번 가장 작은 두 묶음을 합치는 것이 유리한 이유를 설명하세요.",
+      "model_answer": [
+        "어떤 묶음의 크기는 그 묶음이 합쳐질 때마다 비용에 한 번씩 더해진다.",
+        "그래서 일찍 합쳐진 묶음일수록 이후의 합치기에 계속 포함되어 여러 번 더해진다.",
+        "여러 번 더해질 자리에는 작은 값이 오는 것이 총비용을 줄인다.",
+        "따라서 매번 가장 작은 두 묶음을 먼저 합치고, 이를 빠르게 하려고 최소 힙을 쓴다."
+      ],
+      "criteria": [
+        {
+          "text": "크기가 합칠 때마다 더해짐을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "일찍 합친 묶음이 여러 번 더해짐을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "작은 것을 먼저 합치는 결론과 힙을 연결했다",
+          "points": 2
+        }
+      ],
+      "hint": "한 묶음의 크기는 총비용에 몇 번 더해지나요?"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "수가 하나씩 들어올 때 지금까지의 k번째로 큰 수를 크기 k인 최소 힙으로 구하는 방법을 설명하세요.",
+      "model_answer": [
+        "힙에는 지금까지 본 수 중 가장 큰 k개만 유지한다.",
+        "새 수가 들어오면 힙의 크기가 k보다 작으면 넣고, 아니면 top(k개 중 가장 작은 수)과 비교한다.",
+        "새 수가 top보다 크면 top을 꺼내고 새 수를 넣는다. 그래야 가장 큰 k개가 유지된다.",
+        "그러면 top이 k번째로 큰 수이고, 수 하나마다 O(log k)이므로 전체 O(n log k)이다."
+      ],
+      "criteria": [
+        {
+          "text": "가장 큰 k개를 유지함을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "새 수를 처리하는 규칙을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "top이 답인 이유와 복잡도를 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "힙에 무엇을 남겨 두어야 하나요?"
+    }
+  ]
+}

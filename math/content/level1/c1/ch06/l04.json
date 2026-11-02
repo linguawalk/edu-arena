@@ -1,0 +1,328 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c1",
+    "title": "수학의 기초"
+  },
+  "chapter": {
+    "id": "c1-ch06",
+    "no": 6,
+    "title": "경우의 수"
+  },
+  "lesson": {
+    "id": "c1-ch06-l04",
+    "no": 4,
+    "title": "순열과 조합의 활용",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "이산조합"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "원순열",
+      "body": [
+        "원형으로 늘어놓으면 회전해서 같은 것은 한 가지로 봅니다.",
+        "서로 다른 n개를 원형으로 늘어놓는 방법은 n!/n = (n − 1)!입니다.",
+        "왜 n으로 나눌까요? 일렬로 세운 n!가지 중 원탁에서 돌렸을 때 같아지는 배열이 n개씩 있습니다. 한 사람의 자리를 고정하고 나머지 (n − 1)명을 늘어놓는다고 생각해도 됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "5명이 원탁에 앉는 방법은?",
+      "answer": "24",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "원순열: 서로 다른 n개를 원형으로 늘어놓는 방법은 (n − 1)!\n(5 − 1)! = 4!\n= 24"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "6명이 원탁에 앉을 때 특정한 2명이 이웃하는 방법은?",
+      "answer": "48",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "두 사람을 한 묶음으로 보면 원형으로 늘어놓을 것은 5개: (5 − 1)! = 24\n묶음 안의 순서 2가지\n24 × 2 = 48"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "같은 것이 있는 순열",
+      "body": [
+        "n개 중 같은 것이 각각 p개, q개 있으면 늘어놓는 방법은 n!/(p! q!)입니다.",
+        "격자에서 최단 경로는 → 와 ↑ 를 늘어놓는 방법과 같습니다.",
+        "같은 것끼리 자리를 바꿔도 배열은 같으므로, 모두 다르다고 보고 센 n!에서 같은 것의 배열 수 p!, q!만큼 중복해 센 것을 나눠 줍니다. 최단 경로는 → 몇 개, ↑ 몇 개의 배열이라 같은 방법이 적용됩니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "SEOUL을 원형으로 배열하는 방법과 LEVEL을 일렬로 배열하는 방법을 구하세요.",
+      "steps": [
+        "SEOUL은 5개가 모두 다르므로 원순열 (5 − 1)! = 24",
+        "LEVEL은 L 2개, E 2개, V 1개",
+        "5!/(2! × 2!) = 120/4 = 30"
+      ],
+      "answer": "24가지, 30가지"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "A, A, B, B를 일렬로 늘어놓는 방법은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "A 2개, B 2개로 같은 것이 있는 순열\n4!/(2! × 2!) = 24/4\n= 6"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "BANANA의 여섯 글자를 일렬로 늘어놓는 방법은?",
+      "answer": "60",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "B 1개, A 3개, N 2개\n6!/(3! × 2!) = 720/12\n= 60"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "가로로 3칸, 세로로 2칸 가는 격자 최단 경로는 몇 가지일까요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "최단 경로는 → 3개와 ↑ 2개를 늘어놓는 방법과 같습니다.\n5!/(3! × 2!) = 10\n(또는 5개 중 ↑ 자리 2개를 고르는 ₅C₂ = 10)"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "중복순열",
+      "body": [
+        "서로 다른 n개에서 중복을 허락해 r개를 늘어놓는 방법은 nʳ입니다.",
+        "중복순열은 자리마다 n가지를 고를 수 있어 곱의 법칙으로 n × n × … × n = nʳ이 됩니다. '서로 다른 것을 사람(상자)에게 나눠 준다'는 문제가 대표적입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "0과 1로 만들 수 있는 네 자리 신호는 몇 가지일까요? (맨 앞 0 가능)",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "각 자리에 0 또는 1의 2가지가 올 수 있습니다(중복 허용).\n2 × 2 × 2 × 2 = 2⁴\n= 16"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "서로 다른 편지 4통을 3명에게 나눠 주는 방법은? (한 통도 못 받는 사람이 있어도 됨)",
+      "answer": "81",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "편지마다 받을 사람을 3명 중 한 명 고릅니다(중복 허용).\n3⁴ = 81\n편지가 서로 다르므로 편지 기준으로 셉니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "중복조합",
+      "body": [
+        "서로 다른 n종류에서 중복을 허락해 r개를 고르는 방법은 nHr = n+r−1Cr입니다.",
+        "x + y + z = r의 음이 아닌 정수해의 개수는 ₃Hᵣ입니다.",
+        "왜 n+r−1Cr일까요? 고를 r개를 ○로, 종류 사이의 칸막이 n − 1개를 |로 나타내면, ○와 |를 일렬로 늘어놓는 방법이 곧 고르는 방법입니다. n + r − 1자리 중 ○ 자리 r개를 고르면 됩니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "x + y + z = 7을 만족하는 자연수해의 개수를 구하세요.",
+      "steps": [
+        "자연수해이므로 x, y, z에 1씩 먼저 줍니다: x′ + y′ + z′ = 4 (음이 아닌 정수)",
+        "₃H₄ = ₆C₄",
+        "= 15"
+      ],
+      "answer": "15"
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "3종류의 음료 중에서 중복을 허락해 5잔을 고르는 방법은?",
+      "answer": "21",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "₃H₅ = ₃₊₅₋₁C₅",
+      "explanation": "3종류에서 중복을 허락해 5개를 고르는 중복조합\n₃H₅ = ₇C₅ = ₇C₂\n= 21"
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "x + y + z = 4를 만족하는 음이 아닌 정수해는 몇 쌍일까요?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "₃H₄를 계산하세요.",
+      "explanation": "x, y, z에 합이 4가 되게 나눠 주는 것은 3종류에서 중복을 허락해 4개를 고르는 것과 같습니다.\n₃H₄ = ₆C₄ = ₆C₂\n= 15"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "x + y + z = 6을 만족하는 자연수해는 몇 쌍일까요?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "각 변수에 1씩 먼저 주세요.",
+      "explanation": "자연수해이므로 x, y, z에 1씩 먼저 주면 x′ + y′ + z′ = 3 (음이 아닌 정수)\n₃H₃ = ₅C₃\n= 10"
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "이항정리",
+      "body": [
+        "(a + b)ⁿ의 전개식에서 aⁿ⁻ʳbʳ의 계수는 nCr입니다.",
+        "왜 nCr일까요? (a + b)ⁿ은 괄호 n개를 곱한 것이고, 각 괄호에서 a나 b 중 하나를 골라 곱합니다. b를 r개의 괄호에서 고르는 방법이 nCr가지이므로 aⁿ⁻ʳbʳ이 nCr번 나옵니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "(x − 2)⁵의 전개식에서 x³의 계수를 구하세요.",
+      "steps": [
+        "일반항: ₅Cᵣ x⁵⁻ʳ(−2)ʳ",
+        "x³이 되려면 5 − r = 3, r = 2",
+        "₅C₂ × (−2)² = 10 × 4 = 40"
+      ],
+      "answer": "40"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(x + 1)⁵의 전개식에서 x²의 계수는?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "일반항을 쓰세요.",
+      "explanation": "(x + 1)⁵의 일반항은 ₅Cᵣ x⁵⁻ʳ × 1ʳ\nx²이 되려면 5 − r = 2, r = 3\n₅C₃ = 10"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(2x + 1)⁴의 전개식에서 x³의 계수는?",
+      "answer": "32",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "2x 전체를 거듭제곱하는 것에 주의하세요.",
+      "explanation": "(2x + 1)⁴의 일반항은 ₄Cᵣ (2x)⁴⁻ʳ\nx³이 되려면 4 − r = 3, r = 1\n₄C₁ × 2³ = 4 × 8 = 32"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "똑같은 사과 5개를 3명에게 나눠 주는 방법은? (못 받는 사람이 있어도 됨)",
+      "answer": "21",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "똑같은 물건 나누기는 중복조합입니다.",
+      "explanation": "똑같은 사과이므로 누가 몇 개 받는지만 정하면 됩니다: x + y + z = 5\n음이 아닌 정수해의 개수 ₃H₅ = ₇C₅\n= 21"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "서로 다른 공 4개를 서로 다른 상자 2개에 넣는 방법은? (빈 상자 허용)",
+      "answer": "16",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "서로 다른 공은 공 기준으로 셉니다.",
+      "explanation": "서로 다른 공 4개 각각에 대해 넣을 상자를 2개 중 하나 고릅니다(중복 허용).\n2 × 2 × 2 × 2 = 2⁴\n= 16"
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "가로로 4칸, 세로로 3칸 가는 격자 최단 경로는 몇 가지일까요?",
+      "answer": "35",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "→와 ↑를 늘어놓는 방법의 수입니다.",
+      "explanation": "→ 4개와 ↑ 3개를 늘어놓는 방법\n7!/(4! × 3!) = ₇C₃\n= 35"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "원순열의 수가 (n − 1)!인 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "회전"
+          ],
+          [
+            "같은",
+            "같게"
+          ],
+          [
+            "n으로 나누",
+            "한 명을 고정",
+            "고정"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "일렬로 늘어놓는 n!가지 중 회전해서 같아지는 것이 n가지씩 있으므로 n으로 나눠 (n − 1)!입니다. 한 사람의 자리를 고정하고 나머지를 늘어놓는다고 봐도 됩니다."
+    }
+  ]
+}

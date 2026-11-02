@@ -1,0 +1,115 @@
+{
+ "no": 5,
+ "title": "표본화와 펄스 부호 변조(PCM)",
+ "hours": 5,
+ "after": [
+  2
+ ],
+ "objectives": [
+  "표본화 정리와 에일리어싱을 설명할 수 있다.",
+  "PCM의 표본화·양자화·부호화 과정과 비트율을 계산할 수 있다.",
+  "양자화 잡음과 비트 수의 관계, 압신(companding)을 설명할 수 있다."
+ ],
+ "checklist": [
+  "표본화 정리: f_s ≥ 2W(나이퀴스트 율)",
+  "에일리어싱과 안티에일리어싱 필터",
+  "PAM, PWM, PPM",
+  "PCM: 표본화 → 양자화 → 부호화",
+  "비트율 = 표본화 주파수 × 표본당 비트 수",
+  "양자화 SNR ≈ 6.02n + 1.76 dB",
+  "압신(μ-law, A-law), DPCM, 델타 변조"
+ ],
+ "advice": [
+  "PCM은 아날로그 신호를 디지털로 바꾸는 표준 절차이며, 전화망의 64 kbps(8 kHz × 8비트)가 대표 예입니다. 표본화 → 양자화 → 부호화 세 단계 가운데 정보를 실제로 잃는 것은 양자화뿐이라는 점, 그래서 비트 하나를 늘릴 때마다 SQNR이 약 6 dB 좋아진다는 점을 연결해 두세요.",
+  "레벨1 컴퓨터 챕터 1의 소리 디지털화(44.1 kHz, 16비트)와 레벨3 집적회로의 ADC가 같은 원리입니다. 서로 다른 과목의 같은 개념을 이어서 보면 공부량이 줄고 이해는 깊어집니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Haykin, Communication Systems (번역본 『통신 시스템』, 장 제목으로 표기)",
+   "part": "Sampling and Pulse Modulation, Pulse-Code Modulation 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Lathi · Ding, Modern Digital and Analog Communication Systems (장 제목으로 표기)",
+   "part": "Sampling and Analog-to-Digital Conversion 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.450 Principles of Digital Communications I (2006년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-450-principles-of-digital-communications-i-fall-2006/",
+   "lang": "영어",
+   "part": "sampling and quantization 관련 강의"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 1 정보의 표현",
+   "url": "browse.html?c=c4#ch01",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "최고 주파수 4 kHz인 음성을 나이퀴스트 율로 표본화하면 표본화 주파수는 몇 kHz일까요?",
+   "answer": "8",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "f_s = 2 × 4 = 8 kHz",
+   "hint": "최고 주파수의 2배입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "8 kHz로 표본화하고 표본당 8비트로 부호화하면 비트율은 몇 kbps일까요?",
+   "answer": "64",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "8000 × 8 = 64 000 bps = 64 kbps",
+   "hint": "f_s × n입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "8비트 PCM의 이론적 양자화 SNR은 약 몇 dB일까요?",
+   "answer": "49.9",
+   "answer_format": "decimal",
+   "tolerance": 0.1,
+   "explanation": "6.02 × 8 + 1.76 ≈ 49.9 dB",
+   "hint": "6.02n + 1.76입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "연속적인 표본값을 정해진 몇 개의 값 가운데 가장 가까운 것으로 바꿀 때 생기는 오차를 {{1}} 잡음이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "양자화"
+     ]
+    }
+   ],
+   "explanation": "비트 수를 늘리면 줄어들지만 비트율이 늘어납니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "ict",
+ "subject": "comm-theory",
+ "id": "l2-ict-comm-theory-u05"
+}

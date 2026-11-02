@@ -1,0 +1,101 @@
+{
+  "language": "csharp",
+  "category": "oop_enterprise",
+  "level": 3,
+  "unit": 2,
+  "unit_title": "ref와 out 매개변수",
+  "questions": [
+    {
+      "id": "csharp_l3_u02_q001",
+      "type": "predict_output",
+      "code": "void ModifyByValue(int x)\n{\n    x = 100;\n}\n\nint a = 5;\nModifyByValue(a);\nConsole.WriteLine(a);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "100", "오류", "0"],
+      "answer": 0,
+      "explanation_en": "By default, C# passes parameters by value; changing x inside the method doesn't affect the original a, which stays 5.",
+      "explanation_ko": "기본적으로 C#은 매개변수를 값으로 전달합니다. 메서드 안에서 x를 바꿔도 원본 a에는 영향이 없어 5로 유지됩니다.",
+      "concept_tags": ["pass_by_value"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "csharp_l3_u02_q002",
+      "type": "predict_output",
+      "code": "void ModifyByRef(ref int x)\n{\n    x = 100;\n}\n\nint b = 5;\nModifyByRef(ref b);\nConsole.WriteLine(b);",
+      "prompt_en": "What is printed? (Compare with the pass-by-value example above.)",
+      "prompt_ko": "출력 결과는? (위의 값 전달 예제와 비교해보세요.)",
+      "options": ["5", "100", "오류", "0"],
+      "answer": 1,
+      "explanation_en": "ref passes a reference to the original variable; changing x directly modifies b, making it 100.",
+      "explanation_ko": "ref는 원본 변수에 대한 참조를 전달합니다. x를 바꾸면 b가 직접 수정되어 100이 됩니다.",
+      "concept_tags": ["ref"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l3_u02_q003",
+      "type": "error_finding",
+      "code": "void ModifyByRef(ref int x)\n{\n    x = 100;\n}\n\nint b = 5;\nModifyByRef(b);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "ModifyByRef 정의 문법 오류",
+        "매개변수를 ref로 선언했으면 호출할 때도 ref b처럼 명시해야 하는데, 그냥 b만 써서 컴파일 오류가 발생함",
+        "b 선언 문법 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike VB's ByRef which requires no keyword at the call site, C#'s ref must be written both at the method definition and at every call site — omitting it is a compile error.",
+      "explanation_ko": "호출 시점에 키워드가 필요 없는 VB의 ByRef와 달리, C#의 ref는 메서드 정의와 모든 호출 지점 양쪽에 써야 합니다. 빠뜨리면 컴파일 오류가 발생합니다.",
+      "concept_tags": ["ref"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l3_u02_q004",
+      "type": "predict_output",
+      "code": "void GetValues(out int a, out int b)\n{\n    a = 10;\n    b = 20;\n}\n\nGetValues(out int x, out int y);\nConsole.WriteLine($\"{x} {y}\");",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10 20", "0 0", "오류", "x y"],
+      "answer": 0,
+      "explanation_en": "out parameters let a method return multiple values; GetValues assigns 10 and 20 to a and b, which appear back at the caller as x and y.",
+      "explanation_ko": "out 매개변수는 메서드가 여러 값을 반환할 수 있게 해줍니다. GetValues는 a와 b에 10과 20을 대입하고, 이는 호출한 쪽의 x와 y로 나타납니다.",
+      "concept_tags": ["out"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "csharp_l3_u02_q005",
+      "type": "error_finding",
+      "code": "void GetValue(out int a)\n{\n}\n\nGetValue(out int x);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "호출 문법 오류",
+        "out 매개변수는 메서드가 끝나기 전에 반드시 값을 대입해야 하는데, a에 아무 값도 대입하지 않아 컴파일 오류가 발생함",
+        "GetValue 이름이 잘못됨",
+        "문제 없음, a는 기본값 0으로 자동 설정됨"
+      ],
+      "answer": 1,
+      "explanation_en": "out parameters guarantee the caller a value will be set; the compiler enforces this by requiring every out parameter to be assigned before the method returns.",
+      "explanation_ko": "out 매개변수는 호출한 쪽에 반드시 값이 설정될 것을 보장합니다. 컴파일러는 메서드가 끝나기 전에 모든 out 매개변수가 대입되도록 강제합니다.",
+      "concept_tags": ["out"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "csharp_l3_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "값 전달 (기본값)", "definition": "복사본을 전달해, 메서드 안에서 바꿔도 원본에 영향이 없는 방식" },
+        { "term": "ref", "definition": "원본 변수의 참조를 전달 — 호출 시에도 ref를 명시해야 함" },
+        { "term": "out", "definition": "메서드가 값을 반드시 설정해서 돌려주도록 강제하는 매개변수 — 여러 값 반환에 유용" },
+        { "term": "VB ByRef와의 차이", "definition": "VB는 호출 시 키워드가 필요 없지만, C#은 호출 지점에도 ref/out을 명시해야 함" }
+      ],
+      "explanation_en": "Requiring the keyword at both definition and call site is a deliberate C# design choice — it makes ref/out passing visible at the call site, unlike VB where it can be easy to miss.",
+      "explanation_ko": "정의와 호출 지점 양쪽에 키워드를 요구하는 것은 C#의 의도적인 설계입니다. 호출 지점에서도 ref/out 전달이 눈에 보이게 만들어, 놓치기 쉬운 VB와 대비됩니다.",
+      "concept_tags": ["ref", "out", "pass_by_value"],
+      "difficulty": "practice"
+    }
+  ]
+}

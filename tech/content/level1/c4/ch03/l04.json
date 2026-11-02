@@ -1,0 +1,348 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch03",
+  "no": 3,
+  "title": "CPU 구조"
+ },
+ "lesson": {
+  "id": "c4-ch03-l04",
+  "no": 4,
+  "title": "CPU 성능",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "빠른 CPU란",
+   "body": [
+    "CPU 성능은 클럭 주파수만으로 정해지지 않습니다. 프로그램 실행 시간 = 명령어 수 × 명령어당 평균 클럭 수(CPI) ÷ 클럭 주파수입니다.",
+    "같은 프로그램이라도 CPI가 작거나(한 클럭에 더 많은 일을 하거나) 클럭이 높으면 빨리 끝납니다. 명령어 체계가 달라 명령어 수 자체가 달라지기도 합니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "numeric",
+   "prompt": "명령어 10억 개, CPI 2, 클럭 2 GHz이면 실행 시간은 몇 초일까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "명령어 수 × CPI ÷ 주파수입니다.",
+   "explanation": "10⁹ × 2 ÷ (2 × 10⁹) = 1초입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "CPI와 IPC",
+   "body": [
+    "CPI(Cycles Per Instruction)는 명령어 하나에 평균 몇 클럭이 드는지, IPC(Instructions Per Cycle)는 한 클럭에 평균 몇 개의 명령어를 끝내는지입니다. IPC = 1 ÷ CPI입니다.",
+    "요즘 CPU는 파이프라인과 여러 개의 실행 장치로 한 클럭에 명령어를 여러 개 끝내기도 해서 IPC가 1보다 큽니다(챕터 4). 초당 명령어 수 = 클럭 × IPC입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "클럭 3 GHz, IPC 2인 CPU는 초당 명령어를 몇 개 실행할까요?",
+   "steps": [
+    "초당 명령어 = 3 × 10⁹ × 2입니다.",
+    "= 6 × 10⁹, 60억 개입니다."
+   ],
+   "answer": "60억 개"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "명령어 하나에 평균 드는 클럭 수를 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "CPI"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "CPI가 작을수록 같은 클럭에서 빠릅니다.\n역수는 IPC입니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "CPI가 0.5이면 IPC는 얼마일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "IPC = 1 ÷ 0.5 = 2입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "클럭 2 GHz, IPC 4인 CPU는 초당 명령어를 몇 억 개 실행할까요?",
+   "answer": "80",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "2 × 10⁹ × 4 = 8 × 10⁹입니다.\n80억 개입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "명령어 60억 개, CPI 1.5, 클럭 3 GHz이면 실행 시간은 몇 초일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "6 × 10⁹ × 1.5 ÷ (3 × 10⁹) = 3초입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "멀티코어",
+   "body": [
+    "클럭을 높이면 전력과 열이 크게 늘어 2000년대 중반부터 클럭 상승이 둔해졌습니다. 대신 CPU 하나에 실행 장치 묶음(코어)을 여러 개 넣는 멀티코어가 널리 쓰입니다.",
+    "하지만 코어가 4개라고 모든 프로그램이 4배 빨라지지는 않습니다. 일을 나눌 수 있는 부분만 빨라지고, 차례로 해야 하는 부분은 코어 하나가 맡아야 하기 때문입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "10초 걸리는 프로그램 가운데 8초 분량은 나눌 수 있고 2초 분량은 나눌 수 없습니다. 코어 4개로 돌리면?",
+   "steps": [
+    "나눌 수 있는 8초는 4코어로 2초가 됩니다.",
+    "나눌 수 없는 2초는 그대로입니다.",
+    "합계 4초, 2.5배 빨라집니다(4배가 아님)."
+   ],
+   "answer": "4초"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "CPU 하나에 실행 장치 묶음을 여러 개 넣은 것을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "멀티코어",
+      "다중 코어"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "멀티코어는 여러 일을 동시에 처리합니다.\n나눌 수 있는 일만 빨라집니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "20초 걸리는 프로그램에서 16초 분량을 코어 8개로 나누면 전체 시간은 몇 초일까요? (나머지 4초는 나눌 수 없음)",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "16 ÷ 8 = 2초, 나눌 수 없는 4초를 더해 6초입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 문제에서 몇 배 빨라졌을까요? (소수 첫째 자리까지)",
+   "answer": "3.3",
+   "answer_format": "decimal",
+   "tolerance": 0.05,
+   "hint": null,
+   "explanation": "20 ÷ 6 ≈ 3.3배입니다.\n코어는 8개지만 8배가 되지 않습니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "클럭을 계속 높이기 어려워진 가장 큰 까닭은 전력과 {{1}}이 크게 늘기 때문입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "열"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "칩이 너무 뜨거워지면 식히기 어렵고 고장이 납니다.\n그래서 멀티코어로 방향을 바꿨습니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "성능 비교의 함정",
+   "body": [
+    "클럭이 높은 CPU가 언제나 빠른 것은 아닙니다. CPI(또는 IPC), 코어 수, 캐시 크기(챕터 5), 그리고 프로그램이 여러 코어를 잘 쓰는지에 따라 결과가 달라집니다. 그래서 CPU를 비교할 때는 실제 프로그램으로 잰 벤치마크를 봅니다.",
+    "정리: 실행 시간 = 명령어 수 × CPI ÷ 클럭, IPC = 1 ÷ CPI, 초당 명령어 = 클럭 × IPC, 멀티코어는 나눌 수 있는 부분만 빨라짐, 벤치마크"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "fill_blank",
+   "prompt": "실제 프로그램을 돌려 성능을 재어 비교하는 것을 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "벤치마크"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "클럭 숫자만으로는 실제 성능을 알 수 없어 벤치마크로 비교합니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "CPU A는 4 GHz·CPI 2, CPU B는 3 GHz·CPI 1입니다. 같은 명령어 30억 개를 실행하면 어느 쪽이 빠를까요?",
+   "steps": [
+    "A: 3 × 10⁹ × 2 ÷ (4 × 10⁹) = 1.5초입니다.",
+    "B: 3 × 10⁹ × 1 ÷ (3 × 10⁹) = 1초입니다.",
+    "클럭이 낮은 B가 더 빠릅니다."
+   ],
+   "answer": "B (1초 대 1.5초)"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "CPU A는 2 GHz·CPI 1, CPU B는 4 GHz·CPI 3입니다. 명령어 12억 개를 실행할 때 B의 실행 시간은 몇 초일까요?",
+   "answer": "0.9",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": "명령어 수 × CPI ÷ 클럭입니다.",
+   "explanation": "1.2 × 10⁹ × 3 ÷ (4 × 10⁹) = 0.9초입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 문제에서 A의 실행 시간은 몇 초일까요?",
+   "answer": "0.6",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "hint": "같은 식에 A의 값을 넣으세요.",
+   "explanation": "1.2 × 10⁹ × 1 ÷ (2 × 10⁹) = 0.6초입니다.\n클럭이 낮은 A가 더 빠릅니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "나눌 수 없는 부분이 전체의 20 %인 프로그램은 코어를 아무리 늘려도 최대 몇 배까지만 빨라질까요?",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "나눌 수 없는 부분만 남는다고 생각하세요.",
+   "explanation": "나눌 수 있는 80 %가 0에 가까워져도 20 %는 남습니다.\n1 ÷ 0.2 = 5배가 한계입니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "클럭 3 GHz, IPC 2, 코어 8개인 CPU가 모든 코어를 다 쓰면 초당 명령어를 몇 억 개 실행할까요?",
+   "answer": "480",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "코어 하나의 값에 코어 수를 곱하세요.",
+   "explanation": "코어 하나 = 3 × 10⁹ × 2 = 60억 개입니다.\n8개면 480억 개입니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "한 줄씩 차례로 계산해야 하는 프로그램은 코어가 많아도 거의 빨라지지 않고, 코어 하나의 {{1}}이 중요합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "성능",
+      "속도",
+      "클럭"
+     ]
+    }
+   ],
+   "hint": "코어 하나가 얼마나 빠른지입니다.",
+   "explanation": "나눌 수 없는 일은 코어 하나가 맡기 때문입니다.\n그래서 단일 코어 성능도 중요합니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "코어 수가 두 배인 CPU로 바꿔도 프로그램이 두 배 빨라지지 않는 이유를 설명해 보세요.",
+   "hint": "나눌 수 있는 부분과 없는 부분을 나누어 생각하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "나눌 수 없는",
+      "차례",
+      "순서",
+      "순차"
+     ],
+     [
+      "부분"
+     ],
+     [
+      "코어 하나",
+      "그대로",
+      "남"
+     ],
+     [
+      "나눌 수 있는",
+      "병렬"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "코어를 늘리면 여러 코어에 나눌 수 있는 병렬 부분만 빨라집니다. 차례로 해야 하는 나눌 수 없는 부분은 여전히 코어 하나가 맡아 시간이 그대로 남으므로, 전체 실행 시간은 두 배만큼 줄지 않습니다."
+  }
+ ]
+}

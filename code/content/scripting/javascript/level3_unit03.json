@@ -1,0 +1,96 @@
+{
+  "language": "javascript",
+  "category": "scripting",
+  "level": 3,
+  "unit": 3,
+  "unit_title": "기본값과 나머지 매개변수",
+  "questions": [
+    {
+      "id": "javascript_l3_u03_q001",
+      "type": "predict_output",
+      "code": "function greet(name, greeting = \"안녕\") {\n    console.log(greeting + \", \" + name);\n}\n\ngreet(\"Kim\");",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["안녕, Kim", "오류: greeting이 없음", "Kim", ", Kim"],
+      "answer": 0,
+      "explanation_en": "greeting has a default value, so omitting it in the call still works, using 안녕.",
+      "explanation_ko": "greeting에는 기본값이 있으므로 호출 시 생략해도 안녕을 사용합니다.",
+      "concept_tags": ["default_parameter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l3_u03_q002",
+      "type": "predict_output",
+      "code": "function greet(name, greeting = \"안녕\") {\n    console.log(greeting + \", \" + name);\n}\n\ngreet(\"Kim\", undefined);",
+      "prompt_en": "What is printed? (Note: undefined is explicitly passed for greeting.)",
+      "prompt_ko": "출력 결과는? (greeting에 명시적으로 undefined를 전달한 점에 주의하세요.)",
+      "options": ["안녕, Kim", "undefined, Kim", "오류", ", Kim"],
+      "answer": 0,
+      "explanation_en": "Default parameters trigger not just when an argument is omitted, but also when it's explicitly undefined — a subtlety different from checking null.",
+      "explanation_ko": "기본값 매개변수는 인자를 생략했을 때뿐 아니라, 명시적으로 undefined를 전달했을 때도 적용됩니다 — null을 확인하는 것과는 다른 미묘한 차이입니다.",
+      "concept_tags": ["default_parameter"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l3_u03_q003",
+      "type": "predict_output",
+      "code": "function sumAll(...nums) {\n    return nums.reduce((total, n) => total + n, 0);\n}\n\nconsole.log(sumAll(1, 2, 3));\nconsole.log(sumAll(1, 2, 3, 4, 5));",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["6\\n15", "3\\n5", "오류", "6\\n5"],
+      "answer": 0,
+      "explanation_en": "...nums collects any number of arguments into a real array (unlike Python's tuple); sumAll(1,2,3)=6 and sumAll(1,2,3,4,5)=15.",
+      "explanation_ko": "...nums는 몇 개든 인자를 (Python의 튜플과 달리) 실제 배열로 모읍니다. sumAll(1,2,3)=6이고 sumAll(1,2,3,4,5)=15입니다.",
+      "concept_tags": ["rest_parameter"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "javascript_l3_u03_q004",
+      "type": "fill_blank",
+      "code": "function logAll(____nums) {\n    console.log(nums);\n}\nlogAll(1, 2, 3);\n// [1, 2, 3]이 출력되어야 함",
+      "prompt_en": "Fill in the blank with the syntax that collects remaining arguments into an array.",
+      "prompt_ko": "나머지 인자들을 배열로 모으는 문법을 빈칸에 채우세요.",
+      "options": ["...", "*", "&", "params"],
+      "answer": 0,
+      "explanation_en": "The rest parameter syntax (...nums) gathers all remaining arguments into a real array, similar in purpose to Python's *args.",
+      "explanation_ko": "나머지 매개변수 문법(...nums)은 나머지 모든 인자를 진짜 배열로 모읍니다. Python의 *args와 목적이 비슷합니다.",
+      "concept_tags": ["rest_parameter"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "javascript_l3_u03_q005",
+      "type": "error_finding",
+      "code": "function greet(greeting = \"안녕\", name) {\n    console.log(greeting + \", \" + name);\n}\n\ngreet(\"Kim\");",
+      "prompt_en": "What is actually printed, given the parameter order might surprise the caller?",
+      "prompt_ko": "매개변수 순서가 호출하는 쪽을 놀라게 할 수 있는데, 실제로 무엇이 출력될까요?",
+      "options": [
+        "안녕, Kim",
+        "Kim, undefined — greeting에 기본값이 있어도, 첫 번째 위치 인자인 \"Kim\"이 greeting에 대입되고 name은 생략되어 undefined가 됨",
+        "오류",
+        "Kim, 안녕"
+      ],
+      "answer": 1,
+      "explanation_en": "Unlike Python's keyword arguments, JavaScript's default parameters are still purely positional; \"Kim\" fills the first parameter (greeting), and name is left undefined, producing Kim, undefined.",
+      "explanation_ko": "Python의 키워드 인자와 달리, JavaScript의 기본값 매개변수도 순전히 위치 기반입니다. \"Kim\"은 첫 번째 매개변수인 greeting을 채우고, name은 생략되어 undefined가 되어 Kim, undefined가 됩니다.",
+      "concept_tags": ["default_parameter", "positional_argument"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "javascript_l3_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "기본값 매개변수", "definition": "생략되거나 undefined일 때 자동으로 적용되는 값" },
+        { "term": "나머지 매개변수 (...nums)", "definition": "몇 개든 남은 인자를 진짜 배열로 모으는 문법" },
+        { "term": "순전히 위치 기반", "definition": "기본값이 있어도 매개변수 순서는 여전히 위치로만 결정됨 — Python의 키워드 인자와 다름" },
+        { "term": "undefined도 기본값을 트리거함", "definition": "인자를 생략한 것뿐 아니라 명시적으로 undefined를 전달해도 기본값이 적용됨" }
+      ],
+      "explanation_en": "JavaScript's default and rest parameters cover similar ground to Python's defaults and *args, but the strictly positional nature (no keyword arguments) is an important difference to remember.",
+      "explanation_ko": "JavaScript의 기본값·나머지 매개변수는 Python의 기본값·*args와 비슷한 영역을 다루지만, 엄격하게 위치 기반이라는 점(키워드 인자 없음)은 기억해둘 중요한 차이입니다.",
+      "concept_tags": ["default_parameter", "rest_parameter"],
+      "difficulty": "practice"
+    }
+  ]
+}

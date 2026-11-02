@@ -1,0 +1,102 @@
+{
+ "no": 8,
+ "title": "영상 처리와 토지 피복 분류",
+ "hours": 5,
+ "after": [
+  6,
+  7
+ ],
+ "objectives": [
+  "식생 지수를 계산하고 해석할 수 있다.",
+  "감독·무감독 분류를 수행하고 정확도를 평가할 수 있다."
+ ],
+ "checklist": [
+  "전처리: 기하 보정, 방사 보정, 대기 보정",
+  "밴드 합성과 식생 지수 NDVI = (NIR − Red) ÷ (NIR + Red)",
+  "무감독 분류(군집화)와 감독 분류(최대 우도·랜덤 포레스트)",
+  "정확도 평가: 오차 행렬, 전체 정확도, 카파 계수",
+  "변화 탐지: 도시 확장·산불·홍수 피해"
+ ],
+ "advice": [
+  "NDVI는 -1에서 1 사이 값을 가지며 식생이 무성할수록 1에 가까워집니다. 랜샛 영상 두 시기를 내려받아 NDVI를 계산하고 차이를 구하면 신도시 개발로 사라진 녹지를 지도로 볼 수 있습니다. 분류 결과는 반드시 현장 자료나 고해상도 영상으로 정확도를 평가해야 하며, 오차 행렬에서 어떤 피복끼리 자주 혼동되는지 살펴보세요."
+ ],
+ "resources": [
+  {
+   "kind": "web",
+   "provider": "미국 지질조사국(USGS)",
+   "title": "EarthExplorer (랜샛 위성 영상 무료 내려받기)",
+   "url": "https://earthexplorer.usgs.gov/",
+   "lang": "영어",
+   "part": "랜샛 영상 검색·내려받기"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Lillesand 외, Remote Sensing and Image Interpretation (장 제목으로 표기)",
+   "part": "영상 분류·변화 탐지 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "QGIS 프로젝트",
+   "title": "QGIS Training Manual (무료 실습 교재)",
+   "url": "https://docs.qgis.org/latest/en/docs/training_manual/",
+   "lang": "영어(일부 한국어)",
+   "part": "Raster 모듈"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "근적외선 반사율이 0.5, 적색 반사율이 0.1일 때 NDVI는 얼마인가요? 소수 둘째 자리까지 쓰세요.",
+   "answer": "0.67",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "(0.5 − 0.1) ÷ (0.5 + 0.1) = 0.4 ÷ 0.6 ≈ 0.67입니다.",
+   "hint": "(NIR − Red) ÷ (NIR + Red)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "훈련 표본을 지정해 분류 기준을 학습시키는 영상 분류는 {{1}} 분류입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "감독"
+     ]
+    }
+   ],
+   "explanation": "supervised classification의 번역어입니다.",
+   "hint": "'supervise'의 번역어입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "분류 결과와 참조 자료를 교차표로 비교해 정확도를 평가하는 표는 {{1}} 행렬입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "오차",
+      "혼동"
+     ]
+    }
+   ],
+   "explanation": "error matrix 또는 confusion matrix입니다.",
+   "hint": "'error'의 번역어입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "geography",
+ "subject": "gis-remote-sensing",
+ "id": "l3-geography-gis-remote-sensing-u08"
+}

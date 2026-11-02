@@ -1,0 +1,96 @@
+{
+  "language": "rust",
+  "category": "system_low_level",
+  "level": 1,
+  "unit": 3,
+  "unit_title": "제어 흐름",
+  "questions": [
+    {
+      "id": "rust_l1_u03_q001",
+      "type": "predict_output",
+      "code": "let condition = true;\nlet number = if condition { 5 } else { 6 };\nprintln!(\"{}\", number);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["5", "6", "true", "오류"],
+      "answer": 0,
+      "explanation_en": "In Rust, if is an expression, not just a statement; it directly produces a value that can be assigned. Since condition is true, number becomes 5.",
+      "explanation_ko": "Rust에서 if는 단순한 문이 아니라 식(expression)입니다. 값을 직접 만들어내 변수에 대입할 수 있습니다. condition이 true이므로 number는 5가 됩니다.",
+      "concept_tags": ["if_expression"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l1_u03_q002",
+      "type": "error_finding",
+      "code": "let condition = true;\nlet number = if condition { 5 } else { \"six\" };",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "if 문법 자체가 틀림",
+        "if의 두 분기(5와 \"six\")가 서로 다른 타입(정수 vs 문자열)을 반환해서, number의 타입을 하나로 정할 수 없어 컴파일 오류가 발생함",
+        "condition 선언 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "Since if is an expression that must produce a single type, both branches need to return the same type; mixing an integer and a string literal causes a type mismatch error.",
+      "explanation_ko": "if는 하나의 타입을 만들어내야 하는 식이므로, 두 분기 모두 같은 타입을 반환해야 합니다. 정수와 문자열 리터럴을 섞으면 타입 불일치 오류가 발생합니다.",
+      "concept_tags": ["if_expression", "type_mismatch"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l1_u03_q003",
+      "type": "predict_output",
+      "code": "let mut counter = 0;\nlet result = loop {\n    counter += 1;\n    if counter == 10 {\n        break counter * 2;\n    }\n};\nprintln!(\"{}\", result);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "20", "0", "오류"],
+      "answer": 1,
+      "explanation_en": "loop repeats until break, and break can carry a value out of the loop; when counter reaches 10, break counter * 2 makes the loop evaluate to 20.",
+      "explanation_ko": "loop는 break를 만날 때까지 반복하며, break는 반복문 밖으로 값을 전달할 수 있습니다. counter가 10이 되면 break counter * 2가 실행되어 반복문 전체의 값이 20이 됩니다.",
+      "concept_tags": ["loop", "break_value"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "rust_l1_u03_q004",
+      "type": "predict_output",
+      "code": "for i in 1..4 {\n    print!(\"{}\", i);\n}",
+      "prompt_en": "What is printed? (Note: the range is exclusive of the end.)",
+      "prompt_ko": "출력 결과는? (범위가 끝값을 포함하지 않는 점에 주의하세요.)",
+      "options": ["1234", "123", "234", "1233"],
+      "answer": 1,
+      "explanation_en": "1..4 is a half-open range including 1, 2, 3 but not 4; the loop prints each in turn: 123.",
+      "explanation_ko": "1..4는 1, 2, 3은 포함하지만 4는 포함하지 않는 반열린 범위입니다. 반복문은 이를 차례로 출력해 123이 됩니다.",
+      "concept_tags": ["for_loop", "range"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "rust_l1_u03_q005",
+      "type": "fill_blank",
+      "code": "for i in 1____5 {\n    print!(\"{}\", i);\n}\n// 1부터 5까지 모두 포함해서 출력해야 함 (12345)",
+      "prompt_en": "Fill in the blank to make the range inclusive of both 1 and 5.",
+      "prompt_ko": "1과 5를 모두 포함하는 범위가 되도록 빈칸을 채우세요.",
+      "options": ["..=", "..", "...", "->"],
+      "answer": 0,
+      "explanation_en": "The ..= syntax creates an inclusive range, including both endpoints, unlike .. which excludes the upper bound.",
+      "explanation_ko": "..= 문법은 양 끝을 모두 포함하는 범위를 만듭니다. 상한을 제외하는 ..와는 다릅니다.",
+      "concept_tags": ["for_loop", "range"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "rust_l1_u03_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "if 표현식", "definition": "값을 만들어내는 조건문 — 변수에 바로 대입할 수 있음" },
+        { "term": "loop", "definition": "명시적으로 break해야 멈추는 무한 반복문" },
+        { "term": "break 값 전달", "definition": "break 뒤에 값을 붙여 loop 전체의 결과값으로 내보내는 기능" },
+        { "term": "범위 (Range)", "definition": "1..4(끝 제외), 1..=4(끝 포함)처럼 반복할 구간을 표현하는 문법" }
+      ],
+      "explanation_en": "Treating if and loop as expressions that produce values is one of Rust's distinguishing features compared to C-family control flow.",
+      "explanation_ko": "if와 loop를 값을 만들어내는 식으로 다루는 것은 C 계열 언어의 제어 흐름과 구분되는 Rust의 특징적인 부분입니다.",
+      "concept_tags": ["if_expression", "loop", "for_loop"],
+      "difficulty": "practice"
+    }
+  ]
+}

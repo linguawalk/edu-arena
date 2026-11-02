@@ -1,0 +1,331 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch02",
+    "no": 2,
+    "title": "중복조합과 이항정리"
+  },
+  "lesson": {
+    "id": "c5-ch02-l01",
+    "no": 1,
+    "title": "중복조합",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "이산조합"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "중복조합",
+      "body": [
+        "서로 다른 n종류에서 중복을 허락해 r개를 고르는 방법은 nHr = n+r−1Cr입니다.",
+        "고른 r개와 칸막이 n − 1개를 일렬로 늘어놓는 것과 같기 때문입니다.",
+        "왜 n+r−1Cr일까요? 과일 3종류에서 5개를 고르는 상황을 ●●|●|●●처럼 나타내면, 칸막이 2개로 나뉜 세 칸이 각 종류의 개수가 됩니다. 결국 ● 5개와 | 2개, 모두 7자리 중 ●의 자리 5곳을 고르는 문제이므로 7C5입니다. 일반적으로 n종류면 칸막이 n − 1개가 필요해 n+r−1Cr가 됩니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "₃H₂의 값은?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "₃H₂ = ₃₊₂₋₁C₂ = ₄C₂\n= 6\n원리: 3종류에서 중복을 허락해 2개 고르기(aa, ab, ac, bb, bc, cc)"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "₄H₃의 값은?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "₄H₃ = ₆C₃\n= 20\n원리: ● 3개와 칸막이 3개를 늘어놓는 방법의 수\n확인: 4종류에서 3개를 고르는 모든 경우를 세는 것과 같습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "방정식의 정수해",
+      "body": [
+        "x + y + z = r의 음이 아닌 정수해는 ₃Hᵣ개입니다. 자연수해는 각 변수에 1씩 먼저 주고 나머지를 나눕니다.",
+        "x + y + z = r의 음이 아닌 정수해는 '똑같은 1을 r개, x, y, z 세 칸에 나눠 담는 방법'과 같습니다. 그래서 ₃Hᵣ입니다. 자연수해는 각 칸이 적어도 1이어야 하므로 먼저 1씩 담아 두고 남은 r − 3을 자유롭게 나눕니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "x + y + z = 9를 만족하는 자연수해의 개수를 구하세요.",
+      "steps": [
+        "x, y, z에 1씩 먼저 줌: x′ + y′ + z′ = 6 (음이 아닌 정수)",
+        "₃H₆ = ₈C₆",
+        "= ₈C₂ = 28",
+        "원리: 하한을 먼저 채우고 남은 양을 나눕니다."
+      ],
+      "answer": "28"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x + y + z = 5를 만족하는 음이 아닌 정수해는 몇 쌍일까요?",
+      "answer": "21",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "1 다섯 개를 x, y, z 세 칸에 나눠 담기\n₃H₅ = ₇C₅ = ₇C₂\n= 21\n원리: 음이 아닌 정수해 = 똑같은 1을 세 칸에 나눠 담는 방법"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x + y + z + w = 4를 만족하는 음이 아닌 정수해는 몇 쌍일까요?",
+      "answer": "35",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "네 변수에 4를 나눠 담기\n₄H₄ = ₇C₄\n= 35\n원리: 네 변수이므로 칸막이 3개, ● 4개를 늘어놓는 방법"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x + y + z = 7을 만족하는 자연수해는 몇 쌍일까요?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "자연수해이므로 1씩 먼저 주면 x′ + y′ + z′ = 4\n₃H₄ = ₆C₄ = 15\n원리: 하한 조건은 먼저 채우고 남은 양을 나눕니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "부등식과 하한 조건",
+      "body": [
+        "x + y + z ≤ 3은 남는 양을 w로 두어 x + y + z + w = 3으로 바꿉니다.",
+        "x ≥ 1, y ≥ 2 같은 조건은 먼저 그만큼 빼고 셉니다.",
+        "부등식을 등식으로 바꾸는 요령: x + y + z ≤ 3이면 3에서 부족한 양을 새 변수 w(≥ 0)로 두어 x + y + z + w = 3으로 만듭니다. 하한이 있으면 x = x′ + 1처럼 바꿔 새 변수가 0 이상이 되게 합니다. 모두 '음이 아닌 정수해' 꼴로 만드는 것이 목표입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "x + y + z ≤ 5를 만족하는 자연수해의 개수를 구하세요.",
+      "steps": [
+        "자연수이므로 1씩 빼면 x′ + y′ + z′ ≤ 2",
+        "남는 양 w를 두면 x′ + y′ + z′ + w = 2",
+        "₄H₂ = ₅C₂",
+        "= 10"
+      ],
+      "answer": "10"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x + y + z ≤ 3을 만족하는 음이 아닌 정수해는 몇 쌍일까요?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "남는 양 w를 두면 x + y + z + w = 3 (w ≥ 0)\n₄H₃ = ₆C₃\n= 20\n원리: 부등식은 남는 양을 새 변수로 두어 등식으로 바꿉니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "x ≥ 1, y ≥ 2, z ≥ 0이고 x + y + z = 8인 정수해는 몇 쌍일까요?",
+      "answer": "21",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "x = x′ + 1, y = y′ + 2로 바꾸면 x′ + y′ + z = 5\n₃H₅ = ₇C₅\n= 21\n원리: 하한만큼 먼저 빼고 음이 아닌 정수해로 셉니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "같은 물건 나누기",
+      "body": [
+        "똑같은 물건 r개를 n명에게 나누는 방법은 nHr입니다. 모두 1개 이상 받으려면 1개씩 먼저 나눠 줍니다.",
+        "사람은 서로 다르고 물건은 똑같으면 '누가 몇 개 받는가'만 정하면 됩니다. 이는 사람 수만큼의 변수의 합이 물건 수가 되는 방정식의 음이 아닌 정수해와 같습니다. 물건이 서로 다르면 중복순열이 되니 구별해야 합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "똑같은 공 6개를 3명에게 모두 1개 이상 나눠 주는 방법은?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "1개씩 먼저 나눠 주세요.",
+      "explanation": "3명에게 1개씩 먼저 주면 남은 공 3개\n₃H₃ = ₅C₃\n= 10\n원리: 똑같은 물건을 사람에게 나누면 중복조합입니다."
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "똑같은 사탕 5개를 4명에게 나눠 주는 방법은? (못 받는 사람이 있어도 됨)",
+      "answer": "56",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "사람이 4명, 사탕이 5개입니다.",
+      "explanation": "4명에게 5개를 자유롭게: ₄H₅\n= ₈C₅ = ₈C₃\n= 56\n원리: 못 받는 사람이 있어도 되면 먼저 나눠 줄 필요가 없습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "중복조합의 활용",
+      "body": [
+        "(a + b + c)ⁿ을 전개한 항의 개수, a ≤ b ≤ c 같은 순서쌍의 개수도 중복조합입니다.",
+        "(a + b + c)⁴의 각 항은 aᵖbᵠcʳ (p + q + r = 4) 꼴이므로 항의 개수는 방정식의 해의 개수 ₃H₄입니다. a ≤ b ≤ c인 순서쌍도 크기순이 정해져 있으므로 '중복을 허락해 고르기'만 하면 되어 중복조합입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "1 ≤ a ≤ b ≤ c ≤ 5인 자연수 순서쌍 (a, b, c)의 개수를 구하세요.",
+      "steps": [
+        "1부터 5까지 5종류에서 중복을 허락해 3개를 고름",
+        "고른 뒤 작은 것부터 a, b, c로 배정하면 순서쌍이 하나로 정해짐",
+        "₅H₃ = ₇C₃",
+        "= 35"
+      ],
+      "answer": "35"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(a + b + c)⁴을 전개했을 때 서로 다른 항은 몇 개일까요?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "지수의 합이 4인 경우를 세세요.",
+      "explanation": "각 항은 aᵖbᵠcʳ (p + q + r = 4)\n항의 개수 = 해의 개수 ₃H₄ = ₆C₄\n= 15\n확인: a⁴, a³b, … 처럼 지수의 합이 4인 조합의 수"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "(x + y)⁵을 전개했을 때 서로 다른 항은 몇 개일까요?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "지수의 합이 5입니다.",
+      "explanation": "각 항은 xᵖyᵠ (p + q = 5)\n₂H₅ = ₆C₅\n= 6 (이항정리의 항 개수 n + 1과 같음)\n원리: 두 문자이면 지수 (p, q)가 (5, 0)부터 (0, 5)까지"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "1 ≤ a ≤ b ≤ c ≤ 4를 만족하는 자연수 순서쌍 (a, b, c)는 몇 개일까요?",
+      "answer": "20",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "크기순이 정해져 있으면 고르기만 하면 됩니다.",
+      "explanation": "1~4의 4종류에서 중복을 허락해 3개를 고르면 크기순으로 한 가지로 배정됨\n₄H₃ = ₆C₃\n= 20\n원리: 크기순이 정해진 순서쌍은 중복을 허락해 고르는 것과 같습니다."
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "음료 4종류에서 중복을 허락해 6잔을 고를 때 각 종류를 1잔 이상 고르는 방법은?",
+      "answer": "10",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "각 종류에서 1잔씩 먼저 고르세요.",
+      "explanation": "4종류에 1잔씩 먼저 고르면 남은 2잔\n₄H₂ = ₅C₂\n= 10\n원리: 각 종류를 1잔 이상 고르는 조건은 1잔씩 먼저 골라 두고 나머지를 중복조합으로 셉니다."
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "x + y + z = 10을 만족하는 음이 아닌 짝수해는 몇 쌍일까요?",
+      "answer": "21",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "짝수를 2a 꼴로 놓으세요.",
+      "explanation": "x = 2a, y = 2b, z = 2c로 놓으면 a + b + c = 5 (음이 아닌 정수)\n₃H₅ = ₇C₅\n= 21\n원리: 짝수 조건은 2a 꼴로 바꿔 음이 아닌 정수해로 셉니다."
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "x + y + z = 10을 만족하는 자연수해 중 x = 2인 것은 몇 쌍일까요?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "x = 2를 넣으세요.",
+      "explanation": "x = 2이면 y + z = 8 (자연수)\n1씩 먼저 주면 y′ + z′ = 6: ₂H₆ = ₇C₆\n= 7\n확인: (y, z) = (1, 7), (2, 6), …, (7, 1)의 7쌍"
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "x + y + z = 5의 음이 아닌 정수해의 개수가 ₇C₂인 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "칸막이",
+            "막대"
+          ],
+          [
+            "○",
+            "공",
+            "5개"
+          ],
+          [
+            "늘어놓",
+            "자리"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "공 5개와 칸막이 2개를 일렬로 늘어놓으면 칸막이로 나뉜 세 부분의 공 개수가 x, y, z가 됩니다. 7자리 중 칸막이 2개의 자리를 고르는 방법이 ₇C₂이므로 해의 개수도 ₇C₂입니다."
+    }
+  ]
+}

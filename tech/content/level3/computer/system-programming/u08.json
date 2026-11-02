@@ -1,0 +1,100 @@
+{
+ "no": 8,
+ "title": "성능 분석과 디버깅",
+ "hours": 4,
+ "after": [
+  6
+ ],
+ "objectives": [
+  "프로파일러로 병목을 찾고 암달의 법칙으로 개선 효과를 예측할 수 있다.",
+  "디버거와 메모리 검사 도구로 버그를 찾는 절차를 설명할 수 있다.",
+  "캐시 친화적 코드와 측정 기반 최적화의 원칙을 설명할 수 있다."
+ ],
+ "checklist": [
+  "측정 먼저: 추측으로 최적화하지 않기",
+  "프로파일러(perf, gprof)와 핫스팟",
+  "암달의 법칙으로 개선 효과 예측",
+  "디버거(gdb): 중단점, 역추적, 코어 덤프",
+  "메모리 검사: Valgrind, AddressSanitizer",
+  "캐시 친화적 접근(컴퓨터 구조 7단원)",
+  "벤치마크의 함정: 워밍업, 변동"
+ ],
+ "advice": [
+  "성능 개선은 '측정 → 가장 큰 병목 하나 → 개선 → 다시 측정'의 반복입니다. 전체 시간의 대부분을 쓰는 함수 하나를 찾지 않고 이곳저곳 손대는 것은 레벨2 컴퓨터 구조 1단원의 암달의 법칙이 경고하는 실수입니다. 행렬 곱셈 코드 하나를 루프 순서만 바꿔 몇 배 빨라지는지 재 보면 캐시가 성능을 좌우한다는 것을 체감할 수 있습니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Bryant · O'Hallaron, Computer Systems: A Programmer's Perspective (번역본 『컴퓨터 시스템』, 장 제목으로 표기)",
+   "part": "Optimizing Program Performance, The Memory Hierarchy 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "CMU 15-213 (공개 강의 자료)",
+   "title": "Introduction to Computer Systems",
+   "url": "https://www.cs.cmu.edu/~213/",
+   "lang": "영어"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2",
+   "title": "컴퓨터 구조 1단원 성능과 그 측정",
+   "url": "guide.html?lv=2&t=computer&s=computer-architecture&u=1"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "실행 시간의 80%를 차지하는 함수를 2배 빠르게 하면 전체는 약 몇 배 빨라질까요? (소수 둘째 자리까지)",
+   "answer": "1.67",
+   "answer_format": "decimal",
+   "tolerance": 0.01,
+   "explanation": "1/(0.2 + 0.8/2) = 1/0.6 ≈ 1.67배",
+   "hint": "암달의 법칙입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "프로그램을 한 줄씩 실행하며 변수 값과 호출 스택을 살펴보는 GNU 디버거의 이름은 {{1}}입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "gdb",
+      "GDB"
+     ]
+    }
+   ],
+   "explanation": "코어 덤프로 죽은 순간의 상태를 분석할 수도 있습니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "할당하고 해제하지 않은 메모리나 잘못된 메모리 접근을 실행 중에 찾아 주는 대표 도구로 Valgrind와 Address{{1}}가 있습니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "Sanitizer",
+      "sanitizer"
+     ]
+    }
+   ],
+   "explanation": "컴파일 옵션 -fsanitize=address로 켭니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "system-programming",
+ "id": "l3-computer-system-programming-u08"
+}

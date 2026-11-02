@@ -1,0 +1,90 @@
+{
+ "no": 7,
+ "title": "컴파일러와 소프트웨어 스택",
+ "hours": 4,
+ "after": [
+  2,
+  3
+ ],
+ "objectives": [
+  "모델이 가속기 명령으로 바뀌는 소프트웨어 스택을 설명할 수 있다.",
+  "연산자 융합이 메모리 접근을 줄이는 효과를 계산할 수 있다."
+ ],
+ "checklist": [
+  "프레임워크 → 그래프 → 컴파일러 → 런타임 → 드라이버",
+  "연산자 융합(fusion)",
+  "자동 튜닝과 커널 라이브러리",
+  "표준 중간 표현과 생태계",
+  "컴퓨터 트랙 컴파일러와 언어 원리 5·7단원과 연결"
+ ],
+ "advice": [
+  "좋은 칩도 소프트웨어가 받쳐 주지 않으면 쓰이지 않습니다. 모델의 여러 연산을 하나로 합쳐 중간 결과를 메모리에 쓰고 다시 읽는 일을 없애는 연산자 융합처럼, 컴파일러 최적화가 실제 성능을 크게 좌우합니다. 컴퓨터 트랙 컴파일러와 언어 원리의 중간 표현·최적화 개념이 AI 칩에서 어떻게 쓰이는지 연결하고, 생태계가 칩 선택을 좌우한다는 산업적 의미도 함께 생각해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "컴파일러와 언어 원리 7단원 최적화와 코드 생성 (컴퓨터 트랙)",
+   "url": "guide.html?lv=3&t=computer&s=compilers&u=7"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨2 융합",
+   "title": "AI 반도체 입문 7단원 AI 반도체 생태계와 진로",
+   "url": "guide.html?lv=2&t=convergence&s=ai-chip-intro&u=7"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "연산 3개가 각각 1 GB를 읽고 1 GB를 쓰면 총 6 GB를 옮깁니다. 하나로 융합해 처음 1 GB만 읽고 마지막 1 GB만 쓰면 메모리 이동량은 몇 분의 1이 될까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "6 GB → 2 GB이므로 1/3입니다.",
+   "hint": "융합 전후 이동량의 비입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "fill_blank",
+   "prompt": "여러 연산을 하나의 커널로 합쳐 중간 결과의 메모리 쓰기·읽기를 없애는 최적화를 연산자 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "융합",
+      "퓨전"
+     ]
+    }
+   ],
+   "explanation": "AI 컴파일러의 가장 기본적인 최적화입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "AI 모델의 계산 그래프를 하드웨어 명령으로 바꾸는 소프트웨어를 AI(그래프) {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "컴파일러"
+     ]
+    }
+   ],
+   "explanation": "하드웨어별 최적화를 자동으로 수행합니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "ai-chip",
+ "id": "l3-convergence-ai-chip-u07"
+}

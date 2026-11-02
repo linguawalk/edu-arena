@@ -1,0 +1,373 @@
+{
+ "schema_version": "1.0",
+ "site": "tech-arena",
+ "level": 1,
+ "course": {
+  "id": "c4",
+  "title": "컴퓨터"
+ },
+ "chapter": {
+  "id": "c4-ch04",
+  "no": 4,
+  "title": "명령어 실행 사이클"
+ },
+ "lesson": {
+  "id": "c4-ch04-l04",
+  "no": 4,
+  "title": "파이프라인과 인터럽트",
+  "minutes": 15
+ },
+ "tags": {
+  "domain": [
+   "컴퓨터"
+  ],
+  "region": "KR",
+  "curriculum": "tech-level1"
+ },
+ "screens": [
+  {
+   "type": "explain",
+   "id": "s1",
+   "stage": "intro",
+   "title": "빨래처럼 겹치기",
+   "body": [
+    "빨래를 세탁 → 건조 → 개기 순서로 한다면, 첫 빨래를 건조하는 동안 둘째 빨래를 세탁기에 넣을 수 있습니다. CPU도 명령어의 단계를 겹쳐서 실행합니다. 이를 파이프라인이라고 합니다.",
+    "5단계 파이프라인에서는 매 클럭 새 명령어가 들어오고, 첫 명령어가 5클럭 뒤 끝난 다음부터는 매 클럭 명령어 하나씩 끝납니다."
+   ]
+  },
+  {
+   "type": "question",
+   "id": "q1",
+   "stage": "intro",
+   "qtype": "fill_blank",
+   "prompt": "명령어의 단계를 겹쳐서 실행하는 기법을 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "파이프라인"
+     ]
+    }
+   ],
+   "hint": "관(pipe)에 줄지어 흐르는 모습입니다.",
+   "explanation": "파이프라인은 한 명령어의 시간을 줄이지는 않지만, 같은 시간에 끝나는 명령어 수를 늘립니다."
+  },
+  {
+   "type": "explain",
+   "id": "s2",
+   "stage": "discover",
+   "title": "파이프라인 계산",
+   "body": [
+    "k단계 파이프라인에서 명령어 n개를 실행하는 데는 k + (n − 1) 클럭이 걸립니다. 첫 명령어가 k클럭 걸리고, 그 뒤로 한 클럭마다 하나씩 끝나기 때문입니다.",
+    "파이프라인이 없으면 k × n 클럭입니다. 5단계, 명령어 100개라면 파이프라인 없이 500클럭, 있으면 104클럭으로 약 4.8배 빠릅니다. 명령어가 많을수록 단계 수 k배에 가까워집니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e1",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "4단계 파이프라인에서 명령어 10개는 몇 클럭 걸릴까요? 파이프라인이 없다면?",
+   "steps": [
+    "파이프라인: 4 + (10 − 1) = 13클럭입니다.",
+    "파이프라인 없음: 4 × 10 = 40클럭입니다.",
+    "약 3.1배 빠릅니다."
+   ],
+   "answer": "13클럭 (없으면 40클럭)"
+  },
+  {
+   "type": "question",
+   "id": "k1",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "k단계 파이프라인에서 명령어 n개는 k + (n − {{1}}) 클럭이 걸립니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "1"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "첫 명령어가 k클럭, 나머지 n − 1개가 한 클럭씩입니다."
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "5단계 파이프라인에서 명령어 20개는 몇 클럭 걸릴까요?",
+   "answer": "24",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "5 + (20 − 1) = 24클럭입니다."
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 문제를 파이프라인 없이 실행하면 몇 클럭 걸릴까요?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "파이프라인이 없으면 k × n 클럭입니다.\n5 × 20 = 100클럭입니다."
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "5단계 파이프라인에서 명령어가 아주 많으면 속도는 파이프라인이 없을 때의 최대 몇 배에 가까워질까요?",
+   "answer": "5",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "명령어가 많으면 한 클럭에 하나씩 끝나므로 단계 수만큼 빨라집니다.\n최대 5배입니다."
+  },
+  {
+   "type": "explain",
+   "id": "s3",
+   "stage": "discover",
+   "title": "파이프라인의 방해물",
+   "body": [
+    "분기 명령어는 실행해 봐야 어디로 갈지 알 수 있는데, 그 사이 파이프라인에는 이미 다음 줄의 명령어들이 들어와 있습니다. 분기로 다른 곳에 가게 되면 이 명령어들을 버리고 다시 채워야 해 클럭을 잃습니다.",
+    "그래서 CPU는 분기가 어느 쪽으로 갈지 미리 짐작하는 분기 예측을 합니다. 반복문은 대부분 되돌아가므로 맞히기 쉽습니다. 앞 명령어의 결과를 뒤 명령어가 바로 써야 할 때 기다려야 하는 것도 방해물입니다."
+   ]
+  },
+  {
+   "type": "example",
+   "id": "e2",
+   "stage": "discover",
+   "title": "예제",
+   "problem": "5단계 파이프라인에서 분기 예측이 틀리면 명령어 몇 개 분량을 버릴 수 있을까요? (분기가 셋째 단계에서 결정된다고 가정)",
+   "steps": [
+    "분기가 셋째 단계에 이를 때 뒤로 두 명령어가 들어와 있습니다.",
+    "예측이 틀리면 이 두 명령어를 버립니다.",
+    "2클럭을 잃습니다."
+   ],
+   "answer": "2개"
+  },
+  {
+   "type": "question",
+   "id": "k2",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "분기가 어느 쪽으로 갈지 미리 짐작하는 것을 분기 {{1}}이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "예측"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "분기 예측이 맞으면 파이프라인이 멈추지 않습니다.\n틀리면 들어온 명령어를 버립니다."
+  },
+  {
+   "type": "question",
+   "id": "q5",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "분기 예측이 틀릴 때마다 3클럭을 잃습니다. 분기 1000번 가운데 5 %가 틀리면 잃는 클럭은 몇 개일까요?",
+   "answer": "150",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "틀린 분기 = 50번입니다.\n50 × 3 = 150클럭입니다."
+  },
+  {
+   "type": "question",
+   "id": "q6",
+   "stage": "discover",
+   "qtype": "numeric",
+   "prompt": "앞 CPU의 예측 정확도가 99 %로 오르면 잃는 클럭은 몇 개일까요?",
+   "answer": "30",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": null,
+   "explanation": "틀린 분기 = 10번입니다.\n10 × 3 = 30클럭입니다."
+  },
+  {
+   "type": "question",
+   "id": "q7",
+   "stage": "discover",
+   "qtype": "fill_blank",
+   "prompt": "반복문의 끝에 있는 분기는 대부분 처음으로 {{1}} 쪽이라 예측하기 쉽습니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "돌아가는",
+      "되돌아가는"
+     ]
+    }
+   ],
+   "hint": null,
+   "explanation": "반복은 마지막 한 번을 빼고 모두 되돌아갑니다."
+  },
+  {
+   "type": "explain",
+   "id": "s4",
+   "stage": "summary",
+   "title": "인터럽트",
+   "body": [
+    "키보드를 누르거나, 네트워크로 데이터가 도착하거나, 타이머가 울리면 CPU는 하던 일을 잠시 멈추고 그 일을 처리해야 합니다. 장치가 CPU에게 보내는 이런 알림을 인터럽트라고 합니다.",
+    "인터럽트가 오면 CPU는 지금의 PC와 레지스터 값을 저장하고, 정해진 처리 프로그램(인터럽트 처리 루틴)으로 건너뛰어 일을 처리한 뒤, 저장해 둔 값을 되살려 하던 일로 돌아갑니다. CPU가 장치를 계속 확인하지 않아도 되어 효율적입니다.",
+    "정리: 파이프라인(단계 겹치기, k + n − 1 클럭, 최대 k배), 분기와 분기 예측, 인터럽트(상태 저장 → 처리 루틴 → 복귀)"
+   ]
+  },
+  {
+   "type": "question",
+   "id": "k3",
+   "stage": "summary",
+   "qtype": "ordering",
+   "prompt": "인터럽트가 왔을 때 CPU가 하는 일을 차례대로 배열하세요.",
+   "items": [
+    {
+     "id": "a",
+     "text": "저장한 값을 되살린다"
+    },
+    {
+     "id": "b",
+     "text": "지금의 PC와 레지스터를 저장한다"
+    },
+    {
+     "id": "c",
+     "text": "하던 일로 돌아간다"
+    },
+    {
+     "id": "d",
+     "text": "인터럽트 처리 루틴을 실행한다"
+    }
+   ],
+   "answer_order": [
+    "b",
+    "d",
+    "a",
+    "c"
+   ],
+   "hint": null,
+   "explanation": "상태를 저장해야 나중에 정확히 이어서 할 수 있습니다.\n처리 뒤 되살려 복귀합니다."
+  },
+  {
+   "type": "example",
+   "id": "e3",
+   "stage": "apply",
+   "title": "예제",
+   "problem": "CPU가 키보드가 눌렸는지 1초에 1000번 계속 확인하는 방식(폴링)과 인터럽트 방식의 차이는?",
+   "steps": [
+    "폴링은 키가 눌리지 않아도 계속 확인하느라 CPU 시간을 씁니다.",
+    "인터럽트는 키가 눌렸을 때만 알려 줍니다.",
+    "그 사이 CPU는 다른 일을 할 수 있습니다."
+   ],
+   "answer": "인터럽트가 CPU 시간을 아낀다"
+  },
+  {
+   "type": "question",
+   "id": "q8",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "4단계 파이프라인에서 명령어 1000개는 몇 클럭 걸릴까요?",
+   "answer": "1003",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "k + (n − 1)입니다.",
+   "explanation": "4 + (1000 − 1) = 1003클럭입니다."
+  },
+  {
+   "type": "question",
+   "id": "q9",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "앞 문제를 파이프라인 없이 실행하면 몇 클럭 걸릴까요?",
+   "answer": "4000",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "k × n입니다.",
+   "explanation": "4 × 1000 = 4000클럭입니다.\n파이프라인이 약 4배 빠릅니다."
+  },
+  {
+   "type": "question",
+   "id": "q10",
+   "stage": "apply",
+   "qtype": "numeric",
+   "prompt": "10단계 파이프라인에서 명령어 1개만 실행하면 몇 클럭 걸릴까요?",
+   "answer": "10",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "hint": "n = 1을 넣으세요.",
+   "explanation": "10 + (1 − 1) = 10클럭입니다.\n명령어 하나의 시간은 줄지 않습니다."
+  },
+  {
+   "type": "question",
+   "id": "q11",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "타이핑하는 동안 CPU가 다른 일을 하다가 키가 눌릴 때만 처리할 수 있는 것은 {{1}} 덕분입니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "인터럽트"
+     ]
+    }
+   ],
+   "hint": "장치가 CPU에게 보내는 알림입니다.",
+   "explanation": "키보드가 인터럽트로 알려 줄 때만 처리하면 됩니다."
+  },
+  {
+   "type": "question",
+   "id": "q12",
+   "stage": "apply",
+   "qtype": "fill_blank",
+   "prompt": "인터럽트 처리 뒤 하던 일로 정확히 돌아가려면 처리 전에 PC와 레지스터를 {{1}}해야 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "저장"
+     ]
+    }
+   ],
+   "hint": "나중에 되살리려면?",
+   "explanation": "저장해 둔 값을 되살려야 멈춘 곳부터 이어서 할 수 있습니다."
+  },
+  {
+   "type": "question",
+   "id": "q13",
+   "stage": "apply",
+   "qtype": "written",
+   "prompt": "파이프라인이 명령어 하나의 실행 시간은 줄이지 못하는데도 프로그램 전체를 빠르게 하는 이유를 설명해 보세요.",
+   "hint": "같은 시간에 끝나는 명령어 수를 생각하세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "겹",
+      "동시에"
+     ],
+     [
+      "단계"
+     ],
+     [
+      "매 클럭",
+      "한 클럭",
+      "하나씩"
+     ],
+     [
+      "끝나",
+      "처리량",
+      "많"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "파이프라인은 한 명령어가 거치는 단계 수는 그대로라 한 명령어의 시간은 줄지 않습니다. 하지만 여러 명령어의 서로 다른 단계를 겹쳐 실행해 파이프라인이 찬 뒤에는 매 클럭 명령어가 하나씩 끝나므로, 같은 시간에 처리하는 명령어 수가 늘어 전체가 빨라집니다."
+  }
+ ]
+}

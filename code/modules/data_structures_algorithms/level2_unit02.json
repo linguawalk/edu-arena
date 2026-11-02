@@ -1,0 +1,96 @@
+{
+  "language": "python",
+  "category": "data_structures_algorithms",
+  "level": 2,
+  "unit": 2,
+  "unit_title": "스택 활용 (괄호 검사)",
+  "questions": [
+    {
+      "id": "dsa_l2_u02_q001",
+      "type": "predict_output",
+      "code": "def is_balanced(s):\n    stack = []\n    pairs = {')': '(', ']': '[', '}': '{'}\n    for char in s:\n        if char in '([{':\n            stack.append(char)\n        elif char in ')]}':\n            if not stack or stack.pop() != pairs[char]:\n                return False\n    return len(stack) == 0\n\nprint(is_balanced('({[]})'))",
+      "prompt_en": "What is printed? (A classic stack application: checking balanced brackets.)",
+      "prompt_ko": "출력 결과는? (스택의 대표적인 활용: 괄호 균형 검사입니다.)",
+      "options": ["True", "False", "오류", "None"],
+      "answer": 0,
+      "explanation_en": "Each opening bracket is pushed, and each closing bracket must match the most recently pushed (unclosed) opener; '({[]})' closes every bracket in the correct nested order, so it's balanced.",
+      "explanation_ko": "여는 괄호는 각각 push되고, 닫는 괄호는 가장 최근에 push된(아직 닫히지 않은) 여는 괄호와 일치해야 합니다. '({[]})'는 모든 괄호를 올바른 중첩 순서로 닫아서 균형이 맞습니다.",
+      "concept_tags": ["stack", "balanced_parentheses"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "dsa_l2_u02_q002",
+      "type": "predict_output",
+      "code": "def is_balanced(s):\n    stack = []\n    pairs = {')': '(', ']': '[', '}': '{'}\n    for char in s:\n        if char in '([{':\n            stack.append(char)\n        elif char in ')]}':\n            if not stack or stack.pop() != pairs[char]:\n                return False\n    return len(stack) == 0\n\nprint(is_balanced('([)]'))",
+      "prompt_en": "What is printed? (Note: the brackets are crossed, not properly nested.)",
+      "prompt_ko": "출력 결과는? (괄호가 제대로 중첩되지 않고 교차한 점에 주의하세요.)",
+      "options": ["True", "False", "오류", "None"],
+      "answer": 1,
+      "explanation_en": "When ) appears, the top of the stack is [ (from the crossed bracket), not the matching (; this mismatch immediately returns False, correctly detecting the improperly nested brackets.",
+      "explanation_ko": ")가 나타났을 때 스택 맨 위는 (교차된 괄호로 인해) [이지, 짝이 맞는 (가 아닙니다. 이 불일치로 즉시 False를 반환해서, 제대로 중첩되지 않은 괄호를 올바르게 감지합니다.",
+      "concept_tags": ["stack", "balanced_parentheses"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l2_u02_q003",
+      "type": "predict_output",
+      "code": "def is_balanced(s):\n    stack = []\n    pairs = {')': '(', ']': '[', '}': '{'}\n    for char in s:\n        if char in '([{':\n            stack.append(char)\n        elif char in ')]}':\n            if not stack or stack.pop() != pairs[char]:\n                return False\n    return len(stack) == 0\n\nprint(is_balanced('(('))",
+      "prompt_en": "What is printed? (Note: both brackets open, but neither closes.)",
+      "prompt_ko": "출력 결과는? (괄호 둘 다 열리지만 하나도 닫히지 않는 점에 주의하세요.)",
+      "options": ["True", "False", "오류", "None"],
+      "answer": 1,
+      "explanation_en": "No closing brackets ever trigger the False-returning check, but the loop ends with 2 unclosed openers still on the stack; the final len(stack) == 0 check catches this, returning False.",
+      "explanation_ko": "닫는 괄호가 전혀 없어서 False를 반환하는 검사가 실행되지 않지만, 반복문이 끝나도 닫히지 않은 여는 괄호 2개가 스택에 남습니다. 마지막의 len(stack) == 0 검사가 이를 잡아내서 False를 반환합니다.",
+      "concept_tags": ["stack", "balanced_parentheses"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l2_u02_q004",
+      "type": "fill_blank",
+      "code": "def is_balanced(s):\n    stack = []\n    pairs = {')': '(', ']': '[', '}': '{'}\n    for char in s:\n        if char in '([{':\n            ____.append(char)\n        elif char in ')]}':\n            if not stack or stack.pop() != pairs[char]:\n                return False\n    return len(stack) == 0",
+      "prompt_en": "Fill in the blank with the variable that opening brackets are pushed onto.",
+      "prompt_ko": "여는 괄호가 push되는 변수를 빈칸에 채우세요.",
+      "options": ["stack", "pairs", "char", "s"],
+      "answer": 0,
+      "explanation_en": "Every opening bracket is pushed onto stack, remembering the order they need to be closed in — this is the core role a stack plays in this algorithm.",
+      "explanation_ko": "모든 여는 괄호는 stack에 push되어, 닫혀야 할 순서를 기억합니다 — 이것이 이 알고리즘에서 스택이 하는 핵심 역할입니다.",
+      "concept_tags": ["stack", "balanced_parentheses"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "dsa_l2_u02_q005",
+      "type": "error_finding",
+      "code": "def is_balanced(s):\n    stack = []\n    pairs = {')': '(', ']': '[', '}': '{'}\n    for char in s:\n        if char in '([{':\n            stack.append(char)\n        elif char in ')]}':\n            if stack.pop() != pairs[char]:\n                return False\n    return len(stack) == 0\n\nprint(is_balanced(')'))",
+      "prompt_en": "What problem does this simplified code have? (Note: the 'not stack or' check was removed.)",
+      "prompt_ko": "이 단순화된 코드는 어떤 문제가 있을까요? ('not stack or' 검사가 빠진 점에 주의하세요.)",
+      "options": [
+        "함수 정의 자체가 잘못됨",
+        "닫는 괄호만 있고 스택이 비어있는 상태에서 stack.pop()을 호출해서, IndexError가 발생함 — 빈 스택 검사가 빠짐",
+        "pairs 딕셔너리 정의 오류",
+        "문제 없음, False가 정상 반환됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Without checking if the stack is empty first, calling stack.pop() when there's nothing to match (an unmatched closing bracket) raises IndexError; the original 'not stack or' check exists precisely to catch this case gracefully.",
+      "explanation_ko": "먼저 스택이 비어있는지 확인하지 않으면, 짝지을 것이 없는 상태(짝이 없는 닫는 괄호)에서 stack.pop()을 호출해 IndexError가 발생합니다. 원래의 'not stack or' 검사는 바로 이 경우를 우아하게 잡아내기 위해 존재합니다.",
+      "concept_tags": ["stack", "balanced_parentheses", "indexerror"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "dsa_l2_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its role in the balanced-parentheses algorithm.",
+      "prompt_ko": "각 용어와 괄호 균형 검사 알고리즘에서의 역할을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "여는 괄호를 만났을 때", "definition": "스택에 push해서 나중에 짝을 맞출 수 있게 기억함" },
+        { "term": "닫는 괄호를 만났을 때", "definition": "스택 맨 위와 짝이 맞는지 확인 — 안 맞으면 즉시 실패" },
+        { "term": "빈 스택에서 닫는 괄호를 만났을 때", "definition": "짝이 없는 닫는 괄호이므로 즉시 실패 처리" },
+        { "term": "끝까지 처리한 뒤 스택이 비어있지 않으면", "definition": "닫히지 않은 여는 괄호가 남아있다는 뜻이므로 실패" }
+      ],
+      "explanation_en": "This bracket-matching pattern generalizes to many real problems: parsing nested expressions, validating HTML/XML tags, and even the call stack tracking function calls as they nest and return.",
+      "explanation_ko": "이 괄호 매칭 패턴은 많은 실제 문제로 일반화됩니다: 중첩된 표현식 파싱, HTML/XML 태그 검증, 그리고 함수 호출이 중첩되고 반환될 때 이를 추적하는 콜 스택까지도요.",
+      "concept_tags": ["stack", "balanced_parentheses"],
+      "difficulty": "practice"
+    }
+  ]
+}

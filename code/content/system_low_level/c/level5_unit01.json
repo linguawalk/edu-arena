@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 5,
+  "unit": 1,
+  "unit_title": "이중 포인터",
+  "questions": [
+    {
+      "id": "c_l5_u01_q001",
+      "type": "predict_output",
+      "code": "int x = 10;\nint *p = &x;\nint **pp = &p;\nprintf(\"%d\", **pp);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "&x의 주소", "&p의 주소", "오류"],
+      "answer": 0,
+      "explanation_en": "pp points to p, and p points to x; dereferencing twice (**pp) follows both links to reach x's value, 10.",
+      "explanation_ko": "pp는 p를 가리키고, p는 x를 가리킵니다. 두 번 역참조(**pp)하면 두 단계를 모두 따라가 x의 값인 10에 도달합니다.",
+      "concept_tags": ["double_pointer"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l5_u01_q002",
+      "type": "predict_output",
+      "code": "int x = 10;\nint *p = &x;\nint **pp = &p;\n**pp = 20;\nprintf(\"%d\", x);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["10", "20", "&x", "오류"],
+      "answer": 1,
+      "explanation_en": "Assigning through **pp writes to the memory that pp ultimately points to (x itself), changing x to 20.",
+      "explanation_ko": "**pp에 값을 대입하면 pp가 최종적으로 가리키는 메모리(x 자신)에 값이 쓰입니다. 따라서 x는 20으로 바뀝니다.",
+      "concept_tags": ["double_pointer", "dereference"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l5_u01_q003",
+      "type": "fill_blank",
+      "code": "int x = 5;\nint *p = &x;\nint ____pp = &p;",
+      "prompt_en": "Fill in the blank to declare pp as a pointer to an int pointer.",
+      "prompt_ko": "pp가 int 포인터를 가리키는 포인터가 되도록 빈칸을 채우세요.",
+      "options": ["**", "*", "&", "&&"],
+      "answer": 0,
+      "explanation_en": "A pointer to a pointer is declared with two asterisks, indicating one extra level of indirection.",
+      "explanation_ko": "포인터를 가리키는 포인터는 별표(*) 두 개로 선언하며, 한 단계 더 간접적인 참조를 나타냅니다.",
+      "concept_tags": ["double_pointer"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "c_l5_u01_q004",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "이중 포인터 (**)", "definition": "포인터를 가리키는 포인터" },
+        { "term": "*pp", "definition": "이중 포인터를 한 번 역참조한 결과 — 원래 포인터(p)의 값" },
+        { "term": "**pp", "definition": "이중 포인터를 두 번 역참조한 결과 — 최종 변수(x)의 값" },
+        { "term": "간접 참조 단계", "definition": "포인터가 몇 단계를 거쳐 실제 값에 도달하는지를 나타내는 개념" }
+      ],
+      "explanation_en": "Double pointers are commonly used when a function needs to modify a pointer itself, not just the value it points to.",
+      "explanation_ko": "이중 포인터는 함수가 포인터가 가리키는 값뿐 아니라 포인터 자체를 바꿔야 할 때 흔히 사용됩니다.",
+      "concept_tags": ["double_pointer", "dereference"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l5_u01_q005",
+      "type": "error_finding",
+      "code": "void allocate(int *p) {\n    int x = 100;\n    p = &x;\n}\n\nint main() {\n    int *ptr = NULL;\n    allocate(ptr);\n    printf(\"%d\", *ptr);\n    return 0;\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "allocate 함수 이름이 잘못됨",
+        "ptr은 값으로 전달되어 allocate 안에서 p를 바꿔도 main의 ptr은 그대로 NULL이라, *ptr은 NULL 포인터 역참조로 오류가 남",
+        "printf 형식 지정자 오류",
+        "문제 없음, ptr이 x를 가리키게 되어 100이 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "Because pointers are passed by value just like any other variable, p inside allocate is a copy; reassigning p doesn't change main's ptr, which remains NULL and crashes when dereferenced. This is exactly the scenario where a double pointer (int **p) is needed.",
+      "explanation_ko": "포인터도 다른 변수와 마찬가지로 값으로 전달되기 때문에, allocate 안의 p는 ptr의 복사본입니다. p를 재할당해도 main의 ptr은 그대로 NULL로 남아, *ptr에서 NULL 포인터 역참조 오류가 발생합니다. 이런 상황이 바로 이중 포인터(int **p)가 필요한 대표적인 경우입니다.",
+      "concept_tags": ["double_pointer", "pass_by_value"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l5_u01_q006",
+      "type": "fill_blank",
+      "code": "void allocate(int ____p) {\n    int x = 100;\n    *p = x;  // *p가 아니라 p가 가리키는 포인터 자체를 바꾸려면 이중 포인터로 받아야 함\n}",
+      "prompt_en": "Fill in the blank so allocate can modify the caller's pointer itself.",
+      "prompt_ko": "allocate가 호출한 쪽의 포인터 자체를 바꿀 수 있도록 빈칸을 채우세요.",
+      "options": ["**", "*", "&", "*&"],
+      "answer": 0,
+      "explanation_en": "Receiving a double pointer (int **p) lets the function dereference once to reach the caller's actual pointer variable and modify it directly.",
+      "explanation_ko": "이중 포인터(int **p)로 받으면 함수가 한 번 역참조해서 호출한 쪽의 실제 포인터 변수에 도달해 직접 수정할 수 있습니다.",
+      "concept_tags": ["double_pointer"],
+      "difficulty": "challenge"
+    }
+  ]
+}

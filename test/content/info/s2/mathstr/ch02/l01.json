@@ -1,0 +1,263 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s2",
+  "track": "mathstr",
+  "work": "풀이",
+  "track_title": "수학·문자열",
+  "chapter": {
+    "id": "info-s2-mathstr-ch02",
+    "no": 2,
+    "title": "KMP"
+  },
+  "lesson": {
+    "id": "info-s2-mathstr-ch02-l01",
+    "no": 1,
+    "title": "문자열 찾기의 비용",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "수학·문자열",
+      "KMP"
+    ],
+    "competition": "KOI",
+    "stage": "s2"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "모든 위치에서 비교하기",
+      "body": [
+        "텍스트 t(길이 n)에서 패턴 p(길이 m)가 나타나는 위치를 모두 찾으려 합니다. 가장 단순한 방법은 시작 위치 i마다 p[0]부터 차례로 비교하다 다르면 다음 위치로 넘어가는 것입니다.",
+        "대부분의 텍스트에서는 첫 글자나 둘째 글자에서 바로 달라져 빠르지만, t = \"AAAA…AB\", p = \"AA…AB\"처럼 거의 끝까지 같다가 마지막에 달라지면 위치마다 m번씩 비교해 O(nm)이 됩니다.",
+        "KMP 알고리즘은 이미 비교해 같다고 확인한 정보를 버리지 않고 써서, 언제나 O(n + m)에 끝냅니다."
+      ],
+      "code": "int cmp = 0;                                    // 문자 비교 횟수\nfor (int i = 0; i + m <= n; i++) {              // 시작 위치 i마다\n    int j = 0;\n    while (j < m) {\n        cmp++;\n        if (t[i + j] != p[j]) break;            // 다르면 이 위치는 실패\n        j++;\n    }\n    if (j == m) found(i);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "t = \"AAAAAB\", p = \"AAB\"에 아래 코드를 실행하면 문자 비교(cmp)는 모두 몇 번인가요?",
+      "answer": "12",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "시작 위치는 0~3의 네 곳입니다.",
+      "explanation": "시작 위치 0, 1, 2에서는 \"AA\"까지 같고 셋째 글자에서 달라져 3번씩 비교합니다.\n위치 3에서는 \"AAB\"를 모두 비교해 찾으므로 3번입니다.\n3 × 4 = 12번입니다.",
+      "code": "int cmp = 0;                                    // 문자 비교 횟수\nfor (int i = 0; i + m <= n; i++) {              // 시작 위치 i마다\n    int j = 0;\n    while (j < m) {\n        cmp++;\n        if (t[i + j] != p[j]) break;            // 다르면 이 위치는 실패\n        j++;\n    }\n    if (j == m) found(i);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "t = \"ABABABA\"에서 p = \"ABA\"가 나타나는 위치는 몇 개인가요? (겹쳐도 셈)",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "시작 위치 0, 2, 4를 확인하세요.",
+      "explanation": "t의 0~2, 2~4, 4~6번 글자가 모두 \"ABA\"입니다.\n겹쳐서 나타나는 것도 세므로 모두 셉니다.\n그래서 3개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "텍스트에서 패턴을 찾는 KMP 알고리즘의 시간 복잡도는 O(n + {{1}})입니다. (n은 텍스트, m은 패턴의 길이)",
+      "blanks": [
+        {
+          "answers": [
+            "m"
+          ]
+        }
+      ],
+      "hint": "패턴의 길이를 나타내는 문자입니다.",
+      "explanation": "KMP는 패턴을 한 번 전처리하는 데 O(m)을 씁니다.\n텍스트를 한 번 훑는 데 O(n)을 씁니다.\n그래서 전체는 O(n + m)입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "버리는 정보",
+      "body": [
+        "단순한 방법은 위치 i에서 j글자가 같다가 실패하면 위치 i + 1에서 처음부터 다시 비교합니다. 그런데 방금 t[i..i + j − 1] = p[0..j − 1]임을 확인했으므로, 다음 위치에서 비교할 글자 일부는 이미 알고 있습니다.",
+        "예를 들어 p = \"ABCABD\"에서 \"ABCAB\"까지 맞고 마지막에 실패했다면, 텍스트의 끝부분 \"AB\"는 p의 앞부분 \"AB\"와 같습니다. 그래서 p를 3칸 밀어 \"AB\"가 맞춰진 상태에서 다음 글자부터 비교하면 됩니다.",
+        "얼마나 밀어야 하는지는 패턴만 보고 미리 계산할 수 있습니다. 다음 레슨의 실패 함수가 그것입니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "t = \"AAAAAAAAAB\"(A 9개, B 1개), p = \"AAAAB\"에 단순한 방법을 쓸 때 비교 횟수를 구하세요.",
+      "steps": [
+        "시작 위치는 0~5의 6곳입니다.",
+        "위치 0~4에서는 \"AAAA\"까지 같고 다섯째 글자에서 달라져 5번씩, 위치 5에서는 모두 같아 5번 비교합니다.",
+        "6 × 5 = 30번으로, 대략 (n − m + 1) × m입니다."
+      ],
+      "answer": "30",
+      "code": "int cmp = 0;                                    // 문자 비교 횟수\nfor (int i = 0; i + m <= n; i++) {              // 시작 위치 i마다\n    int j = 0;\n    while (j < m) {\n        cmp++;\n        if (t[i + j] != p[j]) break;            // 다르면 이 위치는 실패\n        j++;\n    }\n    if (j == m) found(i);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "t = \"ABCABCABD\", p = \"ABCABD\"에 아래 코드를 실행하면 문자 비교(cmp)는 모두 몇 번인가요?",
+      "answer": "14",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "시작 위치는 0~3입니다.",
+      "explanation": "위치 0에서는 \"ABCAB\"까지 같고 여섯째에서 달라져 6번, 위치 1과 2에서는 첫 글자에서 달라져 1번씩 비교합니다.\n위치 3에서는 \"ABCABD\"를 모두 비교해 6번입니다.\n6 + 1 + 1 + 6 = 14번입니다.",
+      "code": "int cmp = 0;                                    // 문자 비교 횟수\nfor (int i = 0; i + m <= n; i++) {              // 시작 위치 i마다\n    int j = 0;\n    while (j < m) {\n        cmp++;\n        if (t[i + j] != p[j]) break;            // 다르면 이 위치는 실패\n        j++;\n    }\n    if (j == m) found(i);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "길이 n = 10⁶인 텍스트에서 길이 m = 10³인 패턴을 단순한 방법으로 찾을 때, 최악의 비교 횟수는 대략 몇 번인가요? (n × m으로 어림)",
+      "answer": "1000000000",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "10⁶ × 10³입니다.",
+      "explanation": "최악의 경우 시작 위치 약 n곳마다 m번씩 비교합니다.\n10⁶ × 10³ = 10⁹입니다.\n1초에 10⁸번 정도라 너무 느립니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "t = \"ABABCABAB\"에서 p = \"ABAB\"가 나타나는 위치는 몇 개인가요?",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "시작 위치 0과 5를 확인하세요.",
+      "explanation": "t의 0~3번 글자 \"ABAB\"와 5~8번 글자 \"ABAB\"가 p와 같습니다.\n다른 시작 위치에서는 중간에 글자가 다릅니다.\n그래서 2개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "단순한 문자열 찾기의 최악 시간 복잡도는? ① O(n + m) ② O(nm) ③ O(n log m) ④ O(m²)",
+      "answer": "2",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "위치마다 몇 번 비교할 수 있나요?",
+      "explanation": "단순한 방법은 실패해도 이미 비교한 내용을 쓰지 않아, 시작 위치 약 n곳마다 최대 m번씩 비교합니다.\n그래서 최악 O(nm)입니다.\n답은 2입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "t = \"ABCABCABD\"에서 p = \"ABCABD\"가 나타나는 시작 위치는?",
+      "answer": "3",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "t의 끝 여섯 글자를 보세요.",
+      "explanation": "t의 길이는 9, p의 길이는 6이라 시작 위치 후보는 0~3입니다.\n위치 0은 여섯째 글자 C ≠ D로, 위치 1과 2는 첫 글자부터 다릅니다.\nt[3..8] = \"ABCABD\"이므로 시작 위치는 3입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "정리",
+      "body": [
+        "단순한 문자열 찾기는 시작 위치마다 패턴을 처음부터 비교하므로 최악 O(nm)입니다.",
+        "실패할 때 이미 같다고 확인한 텍스트 부분을 버리는 것이 낭비의 원인입니다.",
+        "KMP는 패턴의 '접두사이면서 접미사인 부분'을 미리 구해 두고, 실패하면 그만큼 맞춰진 상태에서 계속 비교해 O(n + m)에 찾습니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "t = \"AABAACAABAA\", p = \"AABA\"에 아래 코드를 실행하면 문자 비교(cmp)는 모두 몇 번인가요?",
+      "answer": "19",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "시작 위치는 0~7입니다.",
+      "explanation": "위치 0~7에서의 비교 횟수는 차례로 4, 2, 1, 4, 2, 1, 4, 1입니다(위치 0과 6에서 찾음).\n이 값들을 모두 더합니다.\n4 + 2 + 1 + 4 + 2 + 1 + 4 + 1 = 19번입니다.",
+      "code": "int cmp = 0;                                    // 문자 비교 횟수\nfor (int i = 0; i + m <= n; i++) {              // 시작 위치 i마다\n    int j = 0;\n    while (j < m) {\n        cmp++;\n        if (t[i + j] != p[j]) break;            // 다르면 이 위치는 실패\n        j++;\n    }\n    if (j == m) found(i);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "t = \"AABAACAABAA\"에서 p = \"AABA\"가 나타나는 위치들의 시작 첨자를 모두 더하면?",
+      "answer": "6",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "시작 위치는 0과 6입니다.",
+      "explanation": "t의 0~3번 글자와 6~9번 글자가 \"AABA\"입니다.\n다른 위치에서는 중간에 글자가 다릅니다.\n0 + 6 = 6입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "단순한 문자열 찾기가 최악 Θ(nm)이 되는 텍스트와 패턴의 예를 들고 이유를 설명하세요.",
+      "model_answer": [
+        "t를 A만 n개, p를 A가 m − 1개 뒤에 B가 하나인 문자열로 둔다.",
+        "시작 위치 i마다 p의 앞 m − 1글자는 모두 같아 비교가 계속되고, 마지막 B에서야 달라진다.",
+        "그래서 위치마다 m번 비교하고 위치가 n − m + 1곳이므로 (n − m + 1)m번 비교한다.",
+        "m이 n의 절반 정도면 이는 Θ(nm)이다."
+      ],
+      "criteria": [
+        {
+          "text": "구체적인 예를 들었다",
+          "points": 2
+        },
+        {
+          "text": "위치마다 m번 비교함을 보였다",
+          "points": 2
+        },
+        {
+          "text": "전체 횟수를 구했다",
+          "points": 2
+        }
+      ],
+      "hint": "거의 끝까지 같다가 마지막에 달라지게 만드세요.",
+      "code": "int cmp = 0;                                    // 문자 비교 횟수\nfor (int i = 0; i + m <= n; i++) {              // 시작 위치 i마다\n    int j = 0;\n    while (j < m) {\n        cmp++;\n        if (t[i + j] != p[j]) break;            // 다르면 이 위치는 실패\n        j++;\n    }\n    if (j == m) found(i);\n}"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "p = \"ABCABD\"에서 \"ABCAB\"까지 맞고 마지막 글자에서 실패했을 때, 패턴을 3칸 밀어 \"AB\"가 맞춰진 상태에서 이어가도 되는 이유를 설명하세요.",
+      "model_answer": [
+        "실패 직전에 텍스트의 그 부분은 \"ABCAB\"와 같다.",
+        "패턴을 1칸 또는 2칸 밀면 \"ABCAB\"의 접미사 \"BCAB\", \"CAB\"가 패턴의 접두사와 맞아야 하는데 맞지 않으므로 그 위치에서는 찾을 수 없다.",
+        "3칸 밀면 \"ABCAB\"의 접미사 \"AB\"가 패턴의 접두사 \"AB\"와 같으므로 이 두 글자는 다시 비교할 필요가 없다.",
+        "그래서 3칸 밀고 패턴의 세 번째 글자부터 비교를 이어가면 된다."
+      ],
+      "criteria": [
+        {
+          "text": "이미 맞은 텍스트 부분을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "1, 2칸 밀기가 불가능함을 보였다",
+          "points": 2
+        },
+        {
+          "text": "3칸 밀면 \"AB\"가 맞음을 설명했다",
+          "points": 2
+        }
+      ],
+      "hint": "\"ABCAB\"의 접미사와 패턴의 접두사를 비교하세요."
+    }
+  ]
+}

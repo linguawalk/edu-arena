@@ -1,0 +1,112 @@
+{
+ "no": 8,
+ "title": "푸리에 변환과 신호처리 입문",
+ "hours": 5,
+ "after": [
+  7
+ ],
+ "objectives": [
+  "푸리에 변환의 정의와 기본 성질을 사용할 수 있다.",
+  "합성곱 정리를 설명할 수 있다.",
+  "표본화 정리와 이산 푸리에 변환(DFT, FFT)의 개념을 설명할 수 있다."
+ ],
+ "checklist": [
+  "주기가 없는 신호의 푸리에 변환",
+  "시간 이동, 주파수 이동, 미분의 성질",
+  "합성곱 정리: 시간 영역의 합성곱 = 주파수 영역의 곱",
+  "필터와 주파수 응답",
+  "나이퀴스트–섀넌 표본화 정리 (최대 주파수의 2배 이상으로 표본화)",
+  "에일리어싱",
+  "이산 푸리에 변환과 FFT (연산량 N log N)"
+ ],
+ "advice": [
+  "푸리에 변환은 푸리에 급수를 주기가 무한히 긴 경우로 확장한 것이며, 휴대전화, MP3, JPEG, MRI 등 현대 디지털 기술의 수학적 바탕입니다. 합성곱 정리 덕분에 복잡한 필터링이 주파수 영역의 단순한 곱셈이 된다는 점이 핵심입니다.",
+  "표본화 정리(신호를 최대 주파수의 두 배 이상으로 표본화하면 완벽히 복원 가능)는 CD의 표본화 주파수가 44.1kHz인 이유를 설명합니다(사람의 가청 한계 약 20kHz의 두 배 이상). FFT가 N²을 N log N으로 줄인 것은 20세기 가장 중요한 알고리즘 중 하나로 꼽힙니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley (한국어판: 범한서적)",
+   "title": "Erwin Kreyszig, Advanced Engineering Mathematics (10판)",
+   "part": "11.7~11.9절 Fourier Integral, Fourier Transform, DFT와 FFT"
+  },
+  {
+   "kind": "video",
+   "provider": "3Blue1Brown",
+   "title": "Differential equations 시리즈 (푸리에 급수, 열방정식 편)",
+   "url": "https://www.3blue1brown.com/topics/differential-equations",
+   "lang": "영어(한국어 자막 제공)",
+   "part": "푸리에 변환 관련 영상"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "최대 주파수가 100Hz인 신호를 복원하려면 최소 몇 Hz로 표본화해야 할까요?",
+   "answer": "200",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "나이퀴스트 주파수: 2 × 100 = 200Hz",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "크기 8인 FFT(기수 2)는 몇 단계의 나비(butterfly) 연산으로 이루어질까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "log₂ 8 = 3",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "N = 1024일 때 직접 DFT의 연산량(N²)은 FFT(N log₂ N)의 몇 배일까요?",
+   "answer": "102.4",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "1024² / (1024 × 10) = 102.4",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "written",
+   "prompt": "합성곱 정리가 신호처리에서 유용한 이유를 설명해 보세요.",
+   "rubric": {
+    "visibility": "hidden",
+    "keyword_groups": [
+     [
+      "합성곱"
+     ],
+     [
+      "곱"
+     ],
+     [
+      "주파수"
+     ],
+     [
+      "간단",
+      "쉽",
+      "빠르",
+      "FFT"
+     ]
+    ],
+    "min_groups_matched": 3
+   },
+   "model_answer": "시간 영역에서 계산이 많은 합성곱(필터링)이 주파수 영역에서는 단순한 곱셈이 되므로, FFT로 변환해 곱한 뒤 역변환하면 훨씬 빠르고 간단하게 계산할 수 있습니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "applied",
+ "subject": "engineering-math",
+ "id": "l2-applied-engineering-math-u08"
+}

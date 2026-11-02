@@ -1,0 +1,275 @@
+{
+  "schema_version": "1.0",
+  "site": "test-arena",
+  "subject": "info",
+  "stage": "s1",
+  "track": "basic",
+  "work": "풀이",
+  "track_title": "기초",
+  "chapter": {
+    "id": "info-s1-basic-ch03",
+    "no": 3,
+    "title": "이분 탐색"
+  },
+  "lesson": {
+    "id": "info-s1-basic-ch03-l03",
+    "no": 3,
+    "title": "매개변수 탐색",
+    "minutes": 20
+  },
+  "tags": {
+    "domain": [
+      "정보",
+      "기초",
+      "이분 탐색"
+    ],
+    "competition": "KOI",
+    "stage": "s1"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "답을 이분 탐색하기",
+      "body": [
+        "최댓값이나 최솟값을 묻는 문제 가운데 '답이 x일 수 있는가?'에 쉽게 답할 수 있고, 그 답이 x에 따라 한쪽으로만 바뀌는 문제가 있습니다. 이때 x를 이분 탐색하면 답을 찾을 수 있습니다. 이것을 매개변수 탐색이라 합니다.",
+        "나무 높이가 [20, 15, 10, 17]이고 절단기 높이 H보다 위쪽만 가져갈 때, 나무를 7 이상 얻는 가장 큰 H를 구해 봅시다. H가 낮을수록 많이 얻으므로 조건은 H가 작을 때 참, 클 때 거짓입니다.",
+        "H = 15이면 5 + 0 + 0 + 2 = 7로 충분하고, H = 16이면 4 + 0 + 0 + 1 = 5로 부족합니다."
+      ],
+      "code": "// 높이 H로 잘랐을 때 얻는 나무의 양\nlong long got(int H) {\n    long long s = 0;\n    for (int i = 0; i < n; i++)\n        if (h[i] > H) s += h[i] - H;\n    return s;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "나무 높이가 [20, 15, 10, 17]일 때 got(15)의 값은?",
+      "answer": "7",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "20 − 15와 17 − 15를 더합니다.",
+      "explanation": "got(H)는 높이가 H보다 큰 나무마다 h − H를 더한 값입니다.\n20과 17만 15보다 크므로 (20 − 15) + (17 − 15)입니다.\n= 7입니다.",
+      "code": "// 높이 H로 잘랐을 때 얻는 나무의 양\nlong long got(int H) {\n    long long s = 0;\n    for (int i = 0; i < n; i++)\n        if (h[i] > H) s += h[i] - H;\n    return s;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "fill_blank",
+      "prompt": "'답이 x일 수 있는가?'를 판단하며 x를 이분 탐색해 최적의 답을 찾는 방법을 {{1}}이라 합니다.",
+      "blanks": [
+        {
+          "answers": [
+            "매개변수 탐색",
+            "매개변수탐색",
+            "parametric search"
+          ]
+        }
+      ],
+      "hint": "답(매개변수)을 탐색합니다.",
+      "explanation": "최적화 문제를 '답이 x 이하(이상)일 수 있는가?'라는 판정 문제로 바꿉니다.\n판정 결과가 x에 따라 한 번만 바뀌면 x를 이분 탐색할 수 있습니다.\n이것을 매개변수 탐색이라 합니다."
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "나무 높이가 [20, 15, 10, 17]일 때 나무를 7 이상 얻는 가장 큰 H를 구하세요.",
+      "steps": [
+        "got(H)는 H가 커질수록 줄어드므로 got(H) ≥ 7은 H가 작을 때 참입니다.",
+        "got(15) = 7 ≥ 7로 참입니다.",
+        "got(16) = 4 + 1 = 5 < 7로 거짓입니다.",
+        "참인 가장 큰 H는 15입니다."
+      ],
+      "answer": "15"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "앞 예제에서 나무를 7 이상 얻는 가장 큰 H는?",
+      "answer": "15",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "got(15)와 got(16)을 비교하세요.",
+      "explanation": "got(H)는 H가 커질수록 줄어들므로 got(H) ≥ 7이 참인 가장 큰 H를 찾으면 됩니다.\ngot(15) = 7로 참, got(16) = 5로 거짓입니다.\n그래서 답은 15입니다."
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "나무 높이가 [20, 15, 10, 17]일 때 got(10)의 값은?",
+      "answer": "22",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "10, 5, 0, 7을 더합니다.",
+      "explanation": "got(H)는 높이가 H보다 큰 나무마다 h − H를 더한 값입니다.\n(20 − 10) + (15 − 10) + 0 + (17 − 10)입니다.\n= 22입니다.",
+      "code": "// 높이 H로 잘랐을 때 얻는 나무의 양\nlong long got(int H) {\n    long long s = 0;\n    for (int i = 0; i < n; i++)\n        if (h[i] > H) s += h[i] - H;\n    return s;\n}"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "랜선 자르기",
+      "body": [
+        "길이가 [802, 743, 457, 539]인 랜선을 같은 길이 L로 잘라 11개 이상 만들 때 L의 최댓값을 구해 봅시다. 길이 L로 만들 수 있는 개수는 각 랜선 길이를 L로 나눈 몫의 합입니다.",
+        "L이 길수록 개수는 줄어드므로 '11개 이상인가'는 L이 작을 때 참입니다. L = 200이면 4 + 3 + 2 + 2 = 11개, L = 201이면 3 + 3 + 2 + 2 = 10개입니다.",
+        "그래서 답은 200입니다. 실제로는 L을 1부터 가장 긴 랜선 길이까지 이분 탐색합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "길이 [802, 743, 457, 539]인 랜선을 길이 200으로 자르면 몇 개를 만드나요?",
+      "answer": "11",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "각 몫을 더합니다.",
+      "explanation": "길이 L로 만들 수 있는 개수는 랜선마다 길이를 L로 나눈 몫의 합입니다.\n802/200, 743/200, 457/200, 539/200의 몫은 4, 3, 2, 2입니다.\n4 + 3 + 2 + 2 = 11개입니다."
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "길이 [802, 743, 457, 539]인 랜선으로 같은 길이의 조각을 11개 이상 만들 때 조각 길이의 최댓값은?",
+      "answer": "200",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "L = 200과 201을 비교하세요.",
+      "explanation": "조각 길이 L이 길수록 개수가 줄어들므로 11개 이상이 되는 가장 큰 L을 찾습니다.\nL = 200이면 11개로 충분하고 L = 201이면 3 + 3 + 2 + 2 = 10개로 부족합니다.\n그래서 답은 200입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "얼마나 빠른가",
+      "body": [
+        "답의 범위가 1부터 M까지이면 이분 탐색은 약 log₂ M번 판정합니다. M = 10⁹이어도 약 30번입니다.",
+        "판정 한 번에 O(n)이 들면 전체 O(n log M)입니다. n = 10⁶이면 약 3 × 10⁷번으로 충분히 빠릅니다.",
+        "답을 1부터 하나씩 늘려 가며 판정하면 O(nM)이라 불가능합니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "답의 범위가 1부터 10⁹까지일 때 매개변수 탐색의 판정 횟수는 약 몇 번인가요? (log₂ 10⁹ ≈ 30)",
+      "answer": "30",
+      "answer_format": "integer",
+      "tolerance": 1,
+      "hint": "log₂ 10⁹입니다.",
+      "explanation": "이분 탐색은 판정할 때마다 답의 후보 범위를 절반으로 줄입니다.\n범위 10⁹가 1이 될 때까지 약 log₂ 10⁹번 판정합니다.\n약 30번입니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "n = 10⁶이고 판정 한 번에 n번 연산, 판정을 30번 하면 전체 연산은 몇 번인가요?",
+      "answer": "30000000",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "10⁶ × 30입니다.",
+      "explanation": "매개변수 탐색의 전체 연산은 판정 한 번의 비용에 판정 횟수를 곱한 값입니다.\n10⁶ × 30입니다.\n= 3 × 10⁷ = 30000000번입니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "매개변수 탐색은 최적화 문제를 '답이 x일 수 있는가?'라는 판정 문제로 바꾸고, x를 이분 탐색합니다.",
+        "판정 결과가 x에 따라 한 번만(참 → 거짓 또는 거짓 → 참) 바뀌어야 이분 탐색할 수 있습니다.",
+        "답의 범위가 M이면 판정은 약 log₂ M번이고, 판정이 O(n)이면 전체 O(n log M)입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "나무 높이가 [4, 42, 40, 26, 46]일 때 나무를 20 이상 얻는 가장 큰 H는?",
+      "answer": "36",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "got(36)과 got(37)을 비교하세요.",
+      "explanation": "got(H)는 H가 커질수록 줄어들므로 got(H) ≥ 20이 참인 가장 큰 H를 찾습니다.\ngot(36) = 6 + 4 + 10 = 20으로 참, got(37) = 5 + 3 + 9 = 17로 거짓입니다.\n그래서 답은 36입니다.",
+      "code": "// 높이 H로 잘랐을 때 얻는 나무의 양\nlong long got(int H) {\n    long long s = 0;\n    for (int i = 0; i < n; i++)\n        if (h[i] > H) s += h[i] - H;\n    return s;\n}"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "길이 [10, 15, 20]인 랜선으로 같은 길이의 조각을 9개 이상 만들 때 조각 길이의 최댓값은?",
+      "answer": "5",
+      "answer_format": "integer",
+      "tolerance": 0,
+      "hint": "L = 5와 6을 비교하세요.",
+      "explanation": "조각 길이 L이 길수록 개수가 줄어들므로 9개 이상이 되는 가장 큰 L을 찾습니다.\nL = 5이면 2 + 3 + 4 = 9개, L = 6이면 1 + 2 + 3 = 6개입니다.\n그래서 답은 5입니다."
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "매개변수 탐색을 쓰려면 판정 결과가 x에 대해 한 번만 바뀌어야 하는 이유를 설명하세요.",
+      "model_answer": [
+        "이분 탐색은 mid에서의 판정 결과만 보고 답이 mid의 어느 쪽에 있는지 결정해 한쪽을 버린다.",
+        "판정이 x가 작을 때 참, 클 때 거짓처럼 한 번만 바뀌면, mid에서 참이면 답은 mid 이상, 거짓이면 mid 미만이라고 확신할 수 있다.",
+        "판정이 여러 번 바뀌면 mid에서 거짓이어도 더 큰 x에서 다시 참일 수 있어 버린 쪽에 답이 있을 수 있다.",
+        "그래서 판정의 단조성이 있어야 이분 탐색이 올바른 답을 준다."
+      ],
+      "criteria": [
+        {
+          "text": "이분 탐색이 한쪽을 버림을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "한 번만 바뀔 때 판단이 옳음을 설명했다",
+          "points": 2
+        },
+        {
+          "text": "여러 번 바뀔 때의 문제를 지적했다",
+          "points": 2
+        }
+      ],
+      "hint": "mid에서 거짓이 나왔을 때 어느 쪽을 버리나요?"
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "proof",
+      "prompt": "나무 자르기 문제에서 H를 0부터 하나씩 늘려 가며 확인하는 방법과 매개변수 탐색을 비교하세요. (나무 n = 10⁶그루, 높이 최대 10⁹)",
+      "model_answer": [
+        "H를 하나씩 늘리면 H 후보가 최대 10⁹개이고, 후보마다 got(H)를 계산하는 데 O(n)이 들어 10¹⁵번이 필요하다.",
+        "got(H)는 H가 커질수록 줄어들므로 'got(H) ≥ 목표'는 한 번만 바뀐다.",
+        "그래서 H를 이분 탐색하면 판정을 약 30번만 하면 된다.",
+        "전체 30 × 10⁶ = 3 × 10⁷번으로 제한 시간 안에 끝난다."
+      ],
+      "criteria": [
+        {
+          "text": "하나씩 확인하는 방법의 비용을 구했다",
+          "points": 2
+        },
+        {
+          "text": "판정의 단조성을 밝혔다",
+          "points": 2
+        },
+        {
+          "text": "이분 탐색의 비용을 구해 비교했다",
+          "points": 2
+        }
+      ],
+      "hint": "후보의 수와 판정 한 번의 비용을 곱해 보세요."
+    }
+  ]
+}

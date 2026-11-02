@@ -1,0 +1,110 @@
+{
+ "no": 7,
+ "title": "다단 증폭기와 차동 증폭기",
+ "hours": 5,
+ "after": [
+  4,
+  6
+ ],
+ "objectives": [
+  "다단 증폭기의 전체 이득을 배수와 dB로 계산할 수 있다.",
+  "차동 증폭기의 차동 이득·공통 모드 이득·CMRR을 설명할 수 있다.",
+  "전류 미러로 바이어스 전류를 복사하는 원리를 설명할 수 있다."
+ ],
+ "checklist": [
+  "다단 증폭기: 전체 이득 = 단별 이득의 곱(부하 효과 포함), dB는 합",
+  "단간 결합: 커패시터 결합, 직접 결합",
+  "차동 증폭기: 두 입력의 차이만 증폭",
+  "차동 이득 A_d, 공통 모드 이득 A_cm, CMRR = |A_d/A_cm| (dB로 20 log)",
+  "꼬리 전류원이 이상적일수록 CMRR이 큼",
+  "전류 미러: 기준 전류를 복사, 크기 비는 W/L 비",
+  "연산 증폭기 내부 구조: 차동단 → 이득단 → 출력단"
+ ],
+ "advice": [
+  "다단 증폭기 계산에서 가장 흔한 실수는 각 단의 이득을 따로 구한 뒤 그냥 곱하는 것입니다. 앞단의 출력 저항과 뒷단의 입력 저항이 전압 분배를 일으키므로, 뒷단의 입력 저항을 앞단의 부하로 넣어 이득을 구해야 합니다. 이득은 배수로 곱하고 dB로 더한다는 관계도 함께 익혀 두세요.",
+  "차동 증폭기는 연산 증폭기의 입력단이자, 잡음이 두 입력에 똑같이 섞여 들어올 때 이를 지워 주는 회로입니다. 공통 모드 신호를 얼마나 잘 지우는지가 CMRR이고, 이를 좌우하는 것이 꼬리 전류원이라는 연결을 잡으면 9단원 연산 증폭기의 실제 한계가 이해됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Oxford University Press",
+   "title": "Sedra · Smith, Microelectronic Circuits (번역본 『마이크로 전자회로』, 장 제목으로 표기)",
+   "part": "Differential and Multistage Amplifiers, Building Blocks of Integrated-Circuit Amplifiers 장"
+  },
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Razavi, Fundamentals of Microelectronics (장 제목으로 표기)",
+   "part": "Differential Amplifiers, Current Mirrors 장"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.012 Microelectronic Devices and Circuits (2009년 가을)",
+   "url": "https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-fall-2009/",
+   "lang": "영어",
+   "part": "differential amplifier 관련 강의"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "전압 이득이 각각 20배와 30배인 두 증폭단을 이으면(부하 효과는 이미 반영) 전체 이득은 몇 배일까요?",
+   "answer": "600",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "전체 이득 = 20 × 30 = 600배\ndB로는 26 + 29.5 ≈ 55.6 dB입니다.",
+   "hint": "배수는 곱합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "이득 20 dB인 증폭단과 26 dB인 증폭단을 이으면 전체 이득은 몇 dB일까요?",
+   "answer": "46",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "dB는 더합니다: 20 + 26 = 46 dB",
+   "hint": "dB 단위 이득은 더합니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "차동 이득 1000, 공통 모드 이득 0.1인 차동 증폭기의 CMRR은 몇 dB일까요?",
+   "answer": "80",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "CMRR = 1000/0.1 = 10⁴ → 20 log₁₀10⁴ = 80 dB",
+   "hint": "20 log₁₀|A_d/A_cm|입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "fill_blank",
+   "prompt": "한 트랜지스터에 흐르는 기준 전류를 다른 트랜지스터에 같은 크기(또는 비례한 크기)로 복사하는 회로를 전류 {{1}}라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "미러",
+      "거울"
+     ]
+    }
+   ],
+   "explanation": "집적회로에서 바이어스 전류를 나누어 주는 기본 블록입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electronics",
+ "subject": "electronic-circuits",
+ "id": "l2-electronics-electronic-circuits-u07"
+}

@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0",
+  "site": "math-arena",
+  "level": 1,
+  "course": {
+    "id": "c5",
+    "title": "확률과 통계"
+  },
+  "chapter": {
+    "id": "c5-ch04",
+    "no": 4,
+    "title": "조건부확률"
+  },
+  "lesson": {
+    "id": "c5-ch04-l04",
+    "no": 4,
+    "title": "독립시행",
+    "minutes": 15
+  },
+  "tags": {
+    "domain": [
+      "확률통계"
+    ],
+    "region": "KR",
+    "curriculum": "2022-high"
+  },
+  "screens": [
+    {
+      "type": "explain",
+      "id": "s1",
+      "stage": "intro",
+      "title": "독립시행의 확률",
+      "body": [
+        "한 번 할 때 사건 A의 확률이 p인 시행을 서로 영향 없이 n번 할 때, A가 정확히 r번 일어날 확률은 nCr pʳ(1 − p)ⁿ⁻ʳ입니다.",
+        "왜 nCr이 곱해질까요? 예를 들어 동전 4번에서 앞면이 2번인 결과는 HHTT, HTHT, HTTH, THHT, THTH, TTHH처럼 여러 순서로 나올 수 있고, 각각의 확률은 모두 p²(1 − p)²입니다. 앞면이 나올 2번의 자리를 고르는 방법이 ₄C₂가지이므로 확률은 ₄C₂ p²(1 − p)²입니다. 순서마다의 확률 × 순서의 개수입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q1",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "동전을 4번 던질 때 앞면이 정확히 2번 나올 확률은? (기약분수로)",
+      "answer": "3/8",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "p = 1/2, n = 4, r = 2\n₄C₂(1/2)²(1/2)² = 6/16\n= 3/8\n원리: 앞면이 나올 2번의 자리를 고르는 방법 ₄C₂"
+    },
+    {
+      "type": "question",
+      "id": "q2",
+      "stage": "intro",
+      "qtype": "numeric",
+      "prompt": "주사위를 3번 던질 때 1의 눈이 정확히 한 번 나올 확률은? (기약분수로)",
+      "answer": "25/72",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "p = 1/6, n = 3, r = 1\n₃C₁(1/6)(5/6)² = 3 × 25/216\n= 75/216 = 25/72"
+    },
+    {
+      "type": "explain",
+      "id": "s2",
+      "stage": "discover",
+      "title": "'이상', '적어도'",
+      "body": [
+        "'r번 이상'은 r번, r + 1번, …의 확률을 더하거나, 여사건으로 구합니다.",
+        "'r번 이상'은 r번, r + 1번, …, n번의 확률을 모두 더해야 하므로 경우가 많으면 번거롭습니다. 이럴 때 여사건 '0번, 1번, …, r − 1번'이 더 적으면 그쪽을 구해 1에서 뺍니다. '적어도 한 번'은 여사건이 '한 번도 없음'이라 특히 간단합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e1",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "주사위를 4번 던질 때 3의 배수의 눈이 2번 이상 나올 확률을 구하세요.",
+      "steps": [
+        "p = 1/3, 여사건은 0번 또는 1번",
+        "0번: (2/3)⁴ = 16/81",
+        "1번: ₄C₁(1/3)(2/3)³ = 32/81",
+        "1 − 48/81 = 33/81 = 11/27"
+      ],
+      "answer": "11/27"
+    },
+    {
+      "type": "question",
+      "id": "q3",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "명중률이 1/2인 사수가 4번 쏠 때 3번 이상 명중할 확률은? (기약분수로)",
+      "answer": "5/16",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "3번: ₄C₃(1/2)⁴ = 4/16, 4번: ₄C₄(1/2)⁴ = 1/16\n합 5/16\n원리: '이상'은 각 경우를 더함"
+    },
+    {
+      "type": "question",
+      "id": "q4",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "주사위를 4번 던질 때 6의 눈이 적어도 한 번 나올 확률은? (기약분수로)",
+      "answer": "671/1296",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "여사건: 4번 모두 6이 아님, (5/6)⁴ = 625/1296\n1 − 625/1296\n= 671/1296\n원리: '적어도 한 번'은 '한 번도 없음'의 여사건"
+    },
+    {
+      "type": "explain",
+      "id": "s3",
+      "stage": "discover",
+      "title": "먼저 이기는 게임",
+      "body": [
+        "마지막 판은 반드시 이긴 사람이 가져가므로, 그 전까지의 판에서 필요한 승수를 독립시행으로 셉니다. A와 B가 이길 확률은 각각 1/2이고, 먼저 3번 이기면 우승입니다.",
+        "먼저 3번 이기는 게임에서 A가 4번째 판에 우승하려면, 4번째 판은 반드시 A가 이기고 앞의 3판 중 정확히 2판을 이겨야 합니다. 마지막 판을 따로 떼어 생각하지 않고 4판 중 3판을 이긴 경우를 모두 세면, 앞의 3판에서 이미 3승을 해 4번째 판을 하지 않는 경우까지 잘못 포함됩니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e2",
+      "stage": "discover",
+      "title": "예제",
+      "problem": "A, B가 이길 확률이 각각 1/2이고 먼저 3번 이기면 우승일 때, 5번째 판에서 우승자가 정해질 확률은?",
+      "steps": [
+        "A가 5번째에 우승: 앞 4판 중 2승 2패, 5번째 승 → ₄C₂(1/2)⁴ × 1/2 = 6/32",
+        "B도 같은 확률 6/32",
+        "합 12/32",
+        "= 3/8"
+      ],
+      "answer": "3/8"
+    },
+    {
+      "type": "question",
+      "id": "q5",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "A가 4번째 판에서 3승 1패로 우승할 확률은? (기약분수로)",
+      "answer": "3/16",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "앞의 3판에서 2승 1패: ₃C₂(1/2)²(1/2) = 3/8\n4번째 판에 승: 1/2\n3/8 × 1/2 = 3/16"
+    },
+    {
+      "type": "question",
+      "id": "q6",
+      "stage": "discover",
+      "qtype": "numeric",
+      "prompt": "A가 우승할 확률은? (기약분수로)",
+      "answer": "1/2",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": null,
+      "explanation": "두 사람의 실력이 같고 규칙이 대칭\nA가 우승할 확률 = B가 우승할 확률\n1/2\n원리: 대칭인 상황은 계산하지 않아도 확률이 같습니다."
+    },
+    {
+      "type": "explain",
+      "id": "s4",
+      "stage": "summary",
+      "title": "점의 이동",
+      "body": [
+        "동전 앞면이면 +1, 뒷면이면 −1만큼 움직이는 점의 위치는 앞면의 횟수로 정해집니다.",
+        "앞면이 k번, 뒷면이 n − k번 나오면 위치는 k − (n − k) = 2k − n입니다. 그래서 위치를 묻는 문제는 앞면의 횟수를 묻는 문제로 바꿀 수 있고, 그 확률은 독립시행의 확률로 구합니다."
+      ]
+    },
+    {
+      "type": "example",
+      "id": "e3",
+      "stage": "apply",
+      "title": "예제",
+      "problem": "원점에서 출발해 동전 앞면이면 +1, 뒷면이면 −1 움직일 때, 6번 던진 뒤 위치가 2 이상일 확률은?",
+      "steps": [
+        "위치 = 2(앞면 수) − 6 ≥ 2이면 앞면 4번 이상",
+        "앞면 4번: ₆C₄ = 15, 5번: 6, 6번: 1",
+        "합 22가지",
+        "확률 22/64 = 11/32"
+      ],
+      "answer": "11/32"
+    },
+    {
+      "type": "question",
+      "id": "q7",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "원점에서 출발해 동전을 4번 던졌을 때 다시 원점에 있을 확률은? (기약분수로)",
+      "answer": "3/8",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "앞면과 뒷면의 횟수가 같아야 합니다.",
+      "explanation": "원점이려면 앞면 2번, 뒷면 2번\n₄C₂(1/2)⁴ = 6/16\n= 3/8\n원리: 독립시행에서는 성공이 일어나는 자리를 고르는 방법 nCr을 곱합니다."
+    },
+    {
+      "type": "question",
+      "id": "q8",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "4번 던진 뒤 점의 위치가 2일 확률은? (기약분수로)",
+      "answer": "1/4",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "위치를 앞면의 횟수로 바꾸세요.",
+      "explanation": "위치 2 = 2k − 4에서 앞면 k = 3번\n₄C₃(1/2)⁴ = 4/16\n= 1/4\n원리: 위치 = (앞면 수) − (뒷면 수)이므로 앞면의 횟수로 바꿔 셉니다."
+    },
+    {
+      "type": "explain",
+      "id": "s5",
+      "stage": "summary",
+      "title": "정리",
+      "body": [
+        "성공 확률 p, 시행 횟수 n, 성공 횟수 r을 먼저 찾고 nCr을 곱하는 것을 잊지 않습니다.",
+        "독립시행 문제는 세 가지를 먼저 적어 두면 실수가 줄어듭니다: 한 번의 성공 확률 p, 시행 횟수 n, 원하는 성공 횟수 r. 그리고 nCr을 빠뜨리지 않았는지 확인합니다. nCr은 '성공이 몇 번째에 일어나는가'의 경우의 수입니다."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "q9",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "성공 확률이 1/3인 시행을 3번 할 때 정확히 2번 성공할 확률은? (기약분수로)",
+      "answer": "2/9",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "nCr pʳ(1 − p)ⁿ⁻ʳ",
+      "explanation": "₃C₂(1/3)²(2/3)\n= 3 × (1/9) × (2/3)\n= 2/9\n확인: 성공 두 번의 순서 SSF, SFS, FSS의 3가지"
+    },
+    {
+      "type": "question",
+      "id": "q10",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "불량률이 0.1인 제품 3개를 고를 때 정확히 1개가 불량일 확률은?",
+      "answer": "0.243",
+      "answer_format": "decimal",
+      "tolerance": 0.0001,
+      "hint": "nCr pʳ(1 − p)ⁿ⁻ʳ",
+      "explanation": "p = 0.1, n = 3, r = 1\n₃C₁(0.1)(0.9)² = 3 × 0.1 × 0.81\n= 0.243"
+    },
+    {
+      "type": "question",
+      "id": "q11",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "주사위를 5번 던질 때 짝수의 눈이 정확히 3번 나올 확률은? (기약분수로)",
+      "answer": "5/16",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "p = 1/2입니다.",
+      "explanation": "짝수 확률 p = 1/2\n₅C₃(1/2)⁵ = 10/32\n= 5/16\n원리: 독립시행에서는 성공이 일어나는 자리를 고르는 방법 nCr을 곱합니다."
+    },
+    {
+      "type": "question",
+      "id": "q12",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "동전을 6번 던질 때 앞면이 정확히 3번 나올 확률은? (기약분수로)",
+      "answer": "5/16",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "₆C₃ = 20",
+      "explanation": "p = 1/2, n = 6, r = 3\n₆C₃(1/2)⁶ = 20/64\n= 5/16\n원리: 6번 중 앞면이 나올 3번의 자리를 고름"
+    },
+    {
+      "type": "question",
+      "id": "q13",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "성공 확률이 1/2인 시행을 5번 해 모두 성공할 확률은? (기약분수로)",
+      "answer": "1/32",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "r = n인 경우입니다.",
+      "explanation": "5번 모두 성공: ₅C₅(1/2)⁵\n= 1/32\n원리: 모두 성공하는 순서는 한 가지뿐\n확인: (1/2)⁵ = 1/32"
+    },
+    {
+      "type": "question",
+      "id": "q14",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "성공 확률이 1/4인 시행을 2번 할 때 적어도 한 번 성공할 확률은? (기약분수로)",
+      "answer": "7/16",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "여사건으로 구하세요.",
+      "explanation": "여사건: 2번 모두 실패, (3/4)² = 9/16\n1 − 9/16\n= 7/16\n원리: '적어도 한 번'은 '한 번도 없음'의 여사건입니다."
+    },
+    {
+      "type": "question",
+      "id": "q15",
+      "stage": "apply",
+      "qtype": "numeric",
+      "prompt": "주사위를 2번 던질 때 두 번 모두 3의 배수가 나올 확률은? (기약분수로)",
+      "answer": "1/9",
+      "answer_format": "fraction",
+      "tolerance": 0,
+      "hint": "3의 배수의 눈은 3과 6입니다.",
+      "explanation": "3의 배수 확률 2/6 = 1/3\n두 번 모두: (1/3)²\n= 1/9\n원리: 두 번의 던지기는 독립이라 확률을 곱합니다."
+    },
+    {
+      "type": "question",
+      "id": "q16",
+      "stage": "apply",
+      "qtype": "written",
+      "prompt": "독립시행의 확률에서 nCr을 곱하는 이유를 설명해 보세요.",
+      "hint": null,
+      "rubric": {
+        "visibility": "hidden",
+        "keyword_groups": [
+          [
+            "순서",
+            "어느",
+            "몇 번째"
+          ],
+          [
+            "경우",
+            "가지"
+          ],
+          [
+            "같",
+            "nCr"
+          ]
+        ],
+        "min_groups_matched": 2
+      },
+      "model_answer": "n번 중 어느 r번에 성공하는지에 따라 서로 다른 경우가 nCr가지 생깁니다. 각 경우의 확률은 모두 pʳ(1 − p)ⁿ⁻ʳ로 같으므로 경우의 수 nCr을 곱합니다."
+    }
+  ]
+}

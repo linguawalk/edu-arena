@@ -1,0 +1,96 @@
+{
+  "language": "java",
+  "category": "oop_enterprise",
+  "level": 6,
+  "unit": 1,
+  "unit_title": "파일 입출력",
+  "questions": [
+    {
+      "id": "java_l6_u01_q001",
+      "type": "predict_output",
+      "code": "import java.nio.file.Files;\nimport java.nio.file.Path;\n\nPath path = Path.of(\"test.txt\");\nFiles.writeString(path, \"42\");\nString content = Files.readString(path);\nSystem.out.println(content);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["42", "test.txt", "오류", "빈 문자열"],
+      "answer": 0,
+      "explanation_en": "Files.writeString writes the given text to the file in one call, and Files.readString reads it back, printing 42.",
+      "explanation_ko": "Files.writeString은 한 번의 호출로 텍스트를 파일에 씁니다. Files.readString은 이를 다시 읽어와 42를 출력합니다.",
+      "concept_tags": ["file_io"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l6_u01_q002",
+      "type": "predict_output",
+      "code": "import java.nio.file.Files;\nimport java.nio.file.Path;\n\nSystem.out.println(Files.exists(Path.of(\"nonexistent.txt\")));",
+      "prompt_en": "What is printed, assuming the file doesn't exist?",
+      "prompt_ko": "파일이 존재하지 않는다고 가정할 때 출력 결과는?",
+      "options": ["true", "false", "오류", "nonexistent.txt"],
+      "answer": 1,
+      "explanation_en": "Files.exists safely checks for a file's presence without throwing an exception, returning false here.",
+      "explanation_ko": "Files.exists는 예외를 던지지 않고 안전하게 파일 존재 여부를 확인합니다. 여기서는 false를 반환합니다.",
+      "concept_tags": ["file_io", "files_exists"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "java_l6_u01_q003",
+      "type": "error_finding",
+      "code": "import java.io.FileReader;\n\nstatic void readFile() {\n    FileReader reader = new FileReader(\"test.txt\");\n}",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "FileReader 사용법 자체가 잘못됨",
+        "FileReader 생성자가 던질 수 있는 FileNotFoundException(checked exception)을 처리하거나 선언하지 않아서 컴파일 오류가 발생함",
+        "readFile 메서드 정의 오류",
+        "문제 없음, 정상 동작함"
+      ],
+      "answer": 1,
+      "explanation_en": "FileNotFoundException is a checked exception; Java's compiler requires it to be either caught with try/catch or declared with throws — simply ignoring it is a compile error, unlike C#/VB where no exception ever requires this.",
+      "explanation_ko": "FileNotFoundException은 checked exception입니다. Java 컴파일러는 이를 try/catch로 잡거나 throws로 선언하도록 요구합니다. 그냥 무시하면 컴파일 오류가 됩니다. C#/VB에서는 어떤 예외도 이런 강제가 없는 것과 다른 점입니다.",
+      "concept_tags": ["checked_exception", "file_io"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "java_l6_u01_q004",
+      "type": "fill_blank",
+      "code": "import java.io.IOException;\nimport java.io.FileReader;\n\nstatic void readFile() ____ IOException {\n    FileReader reader = new FileReader(\"test.txt\");\n}\n// 예외를 처리하지 않고 호출한 쪽으로 전달해야 함",
+      "prompt_en": "Fill in the blank with the keyword that declares a checked exception may propagate out of this method.",
+      "prompt_ko": "checked exception이 이 메서드 밖으로 전파될 수 있음을 선언하는 키워드를 빈칸에 채우세요.",
+      "options": ["throws", "throw", "catch", "except"],
+      "answer": 0,
+      "explanation_en": "throws in a method signature declares that the method may propagate a checked exception, shifting the responsibility to handle it onto the caller.",
+      "explanation_ko": "메서드 시그니처의 throws는 그 메서드가 checked exception을 전파할 수 있음을 선언해서, 처리 책임을 호출하는 쪽으로 넘깁니다.",
+      "concept_tags": ["checked_exception", "throws"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l6_u01_q005",
+      "type": "predict_output",
+      "code": "import java.io.IOException;\nimport java.io.FileReader;\n\nstatic void readFile() throws IOException {\n    FileReader reader = new FileReader(\"test.txt\");\n}\n\npublic static void main(String[] args) {\n    try {\n        readFile();\n    } catch (IOException e) {\n        System.out.println(\"파일 읽기 실패\");\n    }\n}",
+      "prompt_en": "What is printed, assuming test.txt doesn't exist?",
+      "prompt_ko": "test.txt가 존재하지 않는다고 가정할 때 출력 결과는?",
+      "options": ["파일 읽기 실패", "프로그램이 비정상 종료됨", "오류", "아무것도 출력되지 않음"],
+      "answer": 0,
+      "explanation_en": "The checked exception is caught by main's try/catch, handling it gracefully instead of crashing.",
+      "explanation_ko": "checked exception은 main의 try/catch로 잡혀, 죽지 않고 안전하게 처리됩니다.",
+      "concept_tags": ["checked_exception", "try_catch"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "java_l6_u01_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "Files.writeString / readString", "definition": "파일 전체를 한 번에 쓰거나 읽는 간단한 방법" },
+        { "term": "Files.exists", "definition": "예외 없이 안전하게 파일 존재 여부를 확인하는 메서드" },
+        { "term": "checked exception", "definition": "컴파일러가 처리(try/catch) 또는 선언(throws)을 강제하는 예외" },
+        { "term": "C#/VB와의 차이", "definition": "C#/VB는 checked exception 개념이 아예 없어, 어떤 예외도 처리를 강제하지 않음" }
+      ],
+      "explanation_en": "File I/O in Java frequently involves checked exceptions like IOException, making explicit exception handling far more common here than in the .NET languages covered earlier.",
+      "explanation_ko": "Java의 파일 입출력은 IOException 같은 checked exception을 자주 동반해서, 앞서 다룬 .NET 언어들보다 명시적인 예외 처리가 훨씬 흔합니다.",
+      "concept_tags": ["file_io", "checked_exception"],
+      "difficulty": "practice"
+    }
+  ]
+}

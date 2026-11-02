@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>진입 진단 · math-arena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/*__PLAYER_CSS__*/
+/* ---------- 진단 전용 ---------- */
+.lede{font-size:18px;line-height:1.75;color:var(--ink-soft);margin:0 0 22px}
+.facts{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:8px}
+.facts li{font-size:16px;line-height:1.6;padding-left:22px;position:relative}
+.facts li::before{content:"";position:absolute;left:4px;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+fieldset{border:none;margin:0;padding:0}
+legend{font-size:18px;font-weight:700;margin:0 0 12px}
+.choice{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:2px solid var(--grid-strong);border-radius:var(--radius-m);background:#fff;margin-bottom:10px;cursor:pointer}
+.choice:hover{border-color:var(--blue)}
+.choice input{margin-top:4px;accent-color:var(--blue);width:18px;height:18px;flex:0 0 auto}
+.choice b{display:block;font-size:17px}
+.choice span{font-size:15px;color:var(--ink-soft);line-height:1.5}
+.choice:has(input:checked){border-color:var(--blue);background:var(--blue-soft)}
+.course-tag{display:inline-block;font-size:13px;font-weight:700;color:var(--blue);background:var(--blue-soft);border-radius:999px;padding:3px 10px;margin:0 0 10px}
+.result-hero{border:2px solid var(--ink);border-radius:var(--radius-m);padding:20px;background:#fff;margin:0 0 26px}
+.result-hero .kicker{font-size:14px;color:var(--ink-soft);margin:0 0 4px}
+.result-hero h1{margin:0 0 10px}
+.result-hero p{margin:0 0 16px;font-size:16px;line-height:1.6;color:var(--ink-soft)}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px}
+a.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+h2.sec{font-size:19px;margin:30px 0 12px}
+.clist{list-style:none;margin:0;padding:0;border-top:1px solid var(--grid)}
+.clist li{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 4px;border-bottom:1px solid var(--grid);font-size:16px}
+.clist .sub{display:block;font-size:14px;color:var(--ink-soft);margin-top:2px}
+.chip{font-size:13px;font-weight:700;border-radius:999px;padding:4px 10px;white-space:nowrap}
+.chip.pass{background:var(--ok-soft);color:var(--ok)}
+.chip.assumed{background:var(--ok-soft);color:var(--ok);opacity:.8}
+.chip.start{background:var(--marker);color:var(--ink)}
+.chip.later{background:var(--grid);color:var(--ink-soft)}
+.chip.fail{background:var(--bad-soft);color:var(--bad)}
+.chip.untested{background:transparent;color:var(--ink-soft);border:1px solid var(--grid-strong)}
+.weak a{color:var(--blue)}
+details.miss{border:1px solid var(--grid);border-radius:var(--radius-m);background:#fff;margin:0 0 10px}
+details.miss summary{cursor:pointer;padding:12px 14px;font-size:16px;line-height:1.5}
+details.miss summary small{color:var(--ink-soft)}
+details.miss .inner{padding:0 14px 14px;font-size:16px;line-height:1.6}
+.elect{display:grid;gap:10px;margin-top:6px}
+.elect .card{border:1px solid var(--grid);border-radius:var(--radius-m);background:#fff;padding:14px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.elect .card p{margin:0;font-size:15px;color:var(--ink-soft)}
+.note{font-size:14px;color:var(--ink-soft);line-height:1.6}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-inner">
+  <button class="close" id="close" aria-label="진단 나가기">✕</button>
+  <div class="bar" role="progressbar" aria-label="진단 진행률" aria-valuemin="0" aria-valuemax="100"><i id="barFill"></i></div>
+  <span class="where" id="where">진입 진단</span>
+</div></header>
+<main id="main" aria-live="polite"></main>
+<div class="feedback" id="fb" hidden><div class="fb-inner">
+  <div class="fb-text" id="fbText"></div>
+  <button class="btn ghost" id="skipBtn">모르겠어요</button>
+  <button class="btn" id="mainBtn">다음</button>
+</div></div>
+
+<script>
+"use strict";
+const $ = s => document.querySelector(s);
+/*__KIT__*/
+
+/* ---------- 진단 ---------- */
+const KEY = "math-arena:placement";
+const main = $("#main"), fb = $("#fb"), fbText = $("#fbText"), mainBtn = $("#mainBtn"), skipBtn = $("#skipBtn");
+let POOL, byId = {}, S = null;           // S: 진행 상태
+const pad2 = n => String(n).padStart(2, "0");
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
+const START_OPTIONS = [
+  {c:"c0", t:"중학 수학이 아직 자신 없어요", d:"수와 식, 방정식, 함수, 도형의 기초부터 확인합니다."},
+  {c:"c1", t:"중학 수학은 마쳤어요", d:"고등 수학의 첫 코스(수학의 기초)부터 확인합니다."},
+  {c:"c3", t:"고1 공통수학을 공부했어요", d:"대수(지수·로그·삼각함수·수열)부터 확인합니다."},
+  {c:"c4", t:"대수까지 공부했어요", d:"미적분부터 확인합니다. 부족하면 아래 코스로 내려갑니다."}
+];
+
+function progressTo(p){ $("#barFill").style.width = p + "%"; document.querySelector(".bar").setAttribute("aria-valuenow", Math.round(p)); }
+
+function intro(){
+  fb.hidden = true; progressTo(0);
+  const saved = loadSaved();
+  main.innerHTML = `<p class="stage">진입 진단</p>
+    <h1>어디서부터 시작하면 좋을지 찾아 봅니다</h1>
+    <p class="lede">챕터마다 한 문제씩 풀면 이미 아는 내용은 건너뛰고, 필요한 곳부터 시작할 수 있게 추천해 드립니다.</p>
+    <ul class="facts">
+      <li>한 코스에 6~8문항, 모두 합쳐 보통 15~30분 걸립니다.</li>
+      <li>푸는 동안에는 정답을 알려 주지 않습니다. 틀린 문제의 풀이는 끝에 모아서 보여 드립니다.</li>
+      <li>모르는 문제는 찍지 말고 <b>모르겠어요</b>를 눌러 주세요. 그래야 추천이 정확해집니다.</li>
+      <li>종이와 연필이 있으면 편합니다. 계산기는 필요 없습니다.</li>
+    </ul>
+    <fieldset><legend>지금까지 어디까지 공부했나요?</legend>
+      ${START_OPTIONS.map((o, k) => `<label class="choice"><input type="radio" name="start" value="${o.c}"${k === 1 ? " checked" : ""}>
+        <div><b>${esc(o.t)}</b><span>${esc(o.d)}</span></div></label>`).join("")}
+    </fieldset>
+    <div class="cta-row" style="margin-top:18px"><button class="btn" id="go">진단 시작</button>
+      ${saved ? `<a class="btn ghost" href="#" id="last">지난 결과 보기</a>` : ""}</div>`;
+  $("#go").onclick = () => begin(document.querySelector("input[name=start]:checked").value);
+  if (saved) $("#last").onclick = e => { e.preventDefault(); S = saved.state; result(); };
+}
+
+function begin(first){
+  S = {first, tested:{}, order:[], answers:[], at:Date.now()};
+  runCourse(first);
+}
+
+/* 한 코스 블록: 챕터마다 한 문항 */
+let block = null;
+function runCourse(cid){
+  const c = byId[cid];
+  const need = Math.ceil(c.chapters.length * POOL.pass_rate - 1e-9);
+  block = {cid, need, allowWrong:c.chapters.length - need, i:0, right:0, wrong:0,
+           qs:c.chapters.map(ch => ({ch, q:pick(ch.questions.slice(0, Math.min(3, ch.questions.length)))}))};
+  S.order.push(cid); S.tested[cid] = {status:"running", right:0, wrong:0, asked:0, chapters:{}};
+  askNext();
+}
+
+let api = null;
+function askNext(){
+  const b = block, c = byId[b.cid];
+  if (b.i >= b.qs.length) return endCourse();
+  const {ch, q} = b.qs[b.i];
+  const done = S.answers.length, est = done + (b.qs.length - b.i) + 2;
+  progressTo(Math.min(95, done / est * 100));
+  $("#where").textContent = `진단 · ${c.title}`;
+  main.innerHTML = `<span class="course-tag">${esc(c.title)} · ${b.i + 1} / ${b.qs.length}</span>`;
+  window.scrollTo(0, 0);
+  const host = document.createElement("div"); main.appendChild(host);
+  api = buildQuestion(q, host);
+  if (q.figure){ const pr = host.querySelector(".prompt"); if (pr) pr.after(figure(q.figure)); }
+  fb.hidden = false; fbText.innerHTML = ""; skipBtn.hidden = false;
+  mainBtn.textContent = "다음"; mainBtn.disabled = !api.ready;
+  api.onChange = () => { mainBtn.disabled = !api.ready; };
+  (api.enter || []).forEach(inp => inp.addEventListener("keydown", e => { if (e.key === "Enter" && !mainBtn.disabled){ e.preventDefault(); mainBtn.click(); } }));
+  { const a = api; if (a.focus && matchMedia("(pointer:fine)").matches) setTimeout(() => { if (api === a) a.focus(); }, 50); }
+}
+
+function record(correct, skipped){
+  const b = block, {ch, q} = b.qs[b.i];
+  S.answers.push({c:b.cid, ch:ch.dir, chTitle:ch.title, qid:q.id, correct, skipped, q});
+  const t = S.tested[b.cid]; t.asked++; t.chapters[ch.dir] = correct ? "ok" : "miss";
+  if (correct){ b.right++; t.right++; } else { b.wrong++; t.wrong++; }
+  b.i++;
+  if (b.wrong > b.allowWrong) return endCourse();   // 탈락이 확정되면 바로 멈춤
+  askNext();
+}
+mainBtn.addEventListener("click", () => { if (!api || !api.ready) return; api.lock(); record(!!api.check(), false); });
+skipBtn.addEventListener("click", () => { if (api) api.lock(); record(false, true); });
+
+function endCourse(){
+  const b = block, t = S.tested[b.cid];
+  t.status = b.right >= b.need ? "pass" : "fail";
+  t.severe = t.status === "fail" && b.right < b.wrong;
+  block = null;
+  const core = POOL.core, k = core.indexOf(b.cid);
+  if (k >= 0){
+    if (t.status === "pass"){
+      const nx = core[k + 1];
+      if (nx && !S.tested[nx]) return runCourse(nx);
+    } else {
+      const pv = core[k - 1];
+      if (t.severe && pv && !S.tested[pv]) return runCourse(pv);
+    }
+  }
+  result();
+}
+
+/* 판정 */
+function placement(){
+  const core = POOL.core;
+  let startIdx = core.findIndex(c => S.tested[c] && S.tested[c].status === "fail");
+  const status = {};
+  core.forEach((c, i) => {
+    const t = S.tested[c];
+    if (startIdx < 0 || i < startIdx) status[c] = t ? "pass" : "assumed";
+    else if (i === startIdx) status[c] = "start";
+    else status[c] = "later";
+  });
+  POOL.elective.forEach(c => { const t = S.tested[c]; status[c] = t ? (t.status === "pass" ? "pass" : "fail") : "untested"; });
+  let start = null;
+  if (startIdx >= 0){
+    const c = core[startIdx], t = S.tested[c];
+    const firstMiss = byId[c].chapters.find(ch => t.chapters[ch.dir] === "miss");
+    start = {c, ch:firstMiss.dir, chTitle:firstMiss.title, chNo:firstMiss.no};
+  } else {
+    const el = POOL.elective.find(c => S.tested[c] && S.tested[c].status === "fail");
+    if (el){ const t = S.tested[el], m = byId[el].chapters.find(ch => t.chapters[ch.dir] === "miss");
+      start = {c:el, ch:m.dir, chTitle:m.title, chNo:m.no}; }
+  }
+  const coreDone = startIdx < 0;
+  const electiveOpen = coreDone || startIdx >= 3;
+  const weak = S.answers.filter(a => !a.correct && (status[a.c] === "pass" || status[a.c] === "assumed"));
+  const chapters = {};
+  S.answers.forEach(a => { const st = status[a.c]; chapters[`${a.c}-${a.ch}`] = a.correct ? "ok" : (st === "pass" || st === "assumed" ? "weak" : "miss"); });
+  if (start) chapters[`${start.c}-${start.ch}`] = "start";
+  return {status, start, coreDone, electiveOpen, weak, chapters};
+}
+
+function save(pl){
+  try{ localStorage.setItem(KEY, JSON.stringify({version:1, at:Date.now(), start:pl.start, status:pl.status, chapters:pl.chapters, state:S})); }catch(e){}
+}
+function loadSaved(){ try{ const v = JSON.parse(localStorage.getItem(KEY)); return v && v.state ? v : null; }catch(e){ return null; } }
+
+const LABEL = {pass:"진단 통과", assumed:"건너뛰어도 됨", start:"여기서 시작", later:"이후 과정", fail:"보충 필요", untested:"진단 안 함"};
+
+function result(){
+  fb.hidden = true; progressTo(100); $("#where").textContent = "진단 결과";
+  const pl = placement(); save(pl);
+  const all = POOL.core.concat(POOL.elective);
+  let hero;
+  if (pl.start){
+    const c = byId[pl.start.c], k = all.indexOf(pl.start.c);
+    hero = `<div class="result-hero"><p class="kicker">추천 시작 위치</p>
+      <h1>코스 ${k} ${esc(c.title)}<br>챕터 ${pl.start.chNo} ${esc(pl.start.chTitle)}</h1>
+      <p>${pl.start.chNo > 1 ? `앞의 챕터 ${pl.start.chNo - 1}개는 진단을 통과했습니다. ` : ""}이 챕터의 첫 레슨부터 시작하세요.</p>
+      <div class="cta-row"><a class="btn" href="player.html?c=${pl.start.c}&ch=${pl.start.ch.slice(2)}&l=01">여기서 시작하기</a>
+        <a class="btn ghost" href="browse.html?c=${pl.start.c}">코스 둘러보기</a></div></div>`;
+  } else {
+    hero = `<div class="result-hero"><p class="kicker">진단 결과</p><h1>레벨 1의 공통 과정을 모두 통과했습니다</h1>
+      <p>확률과 통계, 기하 가운데 아직 진단하지 않은 코스가 있다면 아래에서 확인해 보세요. 모두 통과했다면 레벨 2로 넘어갈 준비가 된 것입니다.</p>
+      <div class="cta-row"><a class="btn ghost" href="browse.html?c=c5">확률과 통계 둘러보기</a><a class="btn ghost" href="browse.html?c=c6">기하 둘러보기</a></div></div>`;
+  }
+  const rows = all.map((cid, k) => {
+    const c = byId[cid], st = pl.status[cid], t = S.tested[cid];
+    const sub = t ? `${t.right} / ${t.asked}문항 정답` : (st === "assumed" ? "윗 코스를 통과해 진단을 생략했습니다" : "");
+    return `<li><div>코스 ${k} ${esc(c.title)}${sub ? `<span class="sub">${sub}</span>` : ""}</div><span class="chip ${st}">${LABEL[st]}</span></li>`;
+  }).join("");
+  const weak = pl.weak.length ? `<h2 class="sec">복습하면 좋은 챕터</h2>
+    <p class="note">통과한 코스 안에서 틀린 챕터입니다. 챕터 복습(10문항)으로 빈 곳을 채우세요.</p>
+    <ul class="clist weak">${pl.weak.map(a => { const k = all.indexOf(a.c);
+      return `<li><div>코스 ${k} · 챕터 ${+a.ch.slice(2)} ${esc(a.chTitle)}</div><a href="player.html?c=${a.c}&ch=${a.ch.slice(2)}&review=1">챕터 복습</a></li>`; }).join("")}</ul>` : "";
+  const misses = S.answers.filter(a => !a.correct);
+  const missHtml = misses.length ? `<h2 class="sec">틀린 문항 다시 보기</h2>${misses.map(a => `<details class="miss">
+      <summary>${esc(byId[a.c].title)} · ${esc(a.chTitle)} ${a.skipped ? "<small>(모르겠어요)</small>" : ""}</summary>
+      <div class="inner"><p>${esc(a.q.prompt.replace(/\{\{\d+\}\}/g, "□"))}</p><p class="answerline">정답: ${esc(answerText(a.q))}</p>${a.q.explanation ? solHtml(a.q.explanation) : ""}</div></details>`).join("")}` : "";
+  const openEl = pl.electiveOpen ? POOL.elective.filter(c => !S.tested[c]) : [];
+  const elHtml = openEl.length ? `<h2 class="sec">선택 코스 진단</h2><div class="elect">${openEl.map(cid => {
+      const c = byId[cid], k = all.indexOf(cid);
+      return `<div class="card"><div><b>코스 ${k} ${esc(c.title)}</b><p>${c.chapters.length}문항 · ${esc(c.description)}</p></div>
+        <button class="btn ghost" data-el="${cid}">진단하기</button></div>`; }).join("")}</div>`
+    : (!pl.electiveOpen ? `<p class="note" style="margin-top:26px">확률과 통계, 기하는 공통 과정(코스 0~2)을 마친 뒤 진단할 수 있습니다.</p>` : "");
+  main.innerHTML = hero + `<h2 class="sec">코스별 결과</h2><ul class="clist">${rows}</ul>` + weak + elHtml + missHtml +
+    `<div class="cta-row" style="margin-top:28px"><button class="btn ghost" id="again">처음부터 다시 진단</button><a class="btn link" href="index.html">첫 화면</a></div>`;
+  main.querySelectorAll("[data-el]").forEach(b => b.onclick = () => runCourse(b.dataset.el));
+  $("#again").onclick = () => { S = null; intro(); };
+  window.scrollTo(0, 0);
+}
+
+$("#close").addEventListener("click", () => {
+  if (block && !confirm("진단을 그만둘까요? 지금까지 푼 내용은 저장되지 않습니다.")) return;
+  location.href = "index.html";
+});
+
+(async () => {
+  try{
+    const r = await fetch("content/level1/placement.json"); if (!r.ok) throw new Error("content/level1/placement.json");
+    POOL = await r.json(); POOL.courses.forEach(c => byId[c.id] = c);
+    intro();
+  }catch(e){ main.innerHTML = `<div class="error">진단 문항을 불러오지 못했습니다. <code>${esc(e.message)}</code></div>`; }
+})();
+</script>
+<script src="../assets/family-bar.js" defer></script>
+</body>
+</html>

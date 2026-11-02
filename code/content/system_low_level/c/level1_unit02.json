@@ -1,0 +1,96 @@
+{
+  "language": "c",
+  "category": "system_low_level",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "연산자 심화",
+  "questions": [
+    {
+      "id": "c_l1_u02_q001",
+      "type": "predict_output",
+      "code": "int a = 5, b = 3;\nprintf(\"%d\", a & b);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["8", "1", "7", "오류"],
+      "answer": 1,
+      "explanation_en": "The bitwise AND operator compares each bit: 5 is 101, 3 is 011 in binary, and 101 & 011 = 001, which is 1.",
+      "explanation_ko": "비트 AND 연산자는 각 비트를 비교합니다. 5는 이진수로 101, 3은 011이며, 101 & 011 = 001, 즉 1입니다.",
+      "concept_tags": ["bitwise_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l1_u02_q002",
+      "type": "predict_output",
+      "code": "int i = 5;\nprintf(\"%d\", i++);\nprintf(\"%d\", i);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["56", "66", "55", "65"],
+      "answer": 0,
+      "explanation_en": "Post-increment (i++) uses the current value of i (5) first, then increments it; the next printf then shows the updated value, 6.",
+      "explanation_ko": "후위 증가(i++)는 먼저 현재 값(5)을 사용한 뒤 증가시킵니다. 이후 두 번째 printf에서는 증가된 값인 6이 출력됩니다.",
+      "concept_tags": ["increment_operator", "post_increment"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l1_u02_q003",
+      "type": "predict_output",
+      "code": "int i = 5;\nprintf(\"%d\", ++i);\nprintf(\"%d\", i);",
+      "prompt_en": "What is printed?",
+      "prompt_ko": "출력 결과는?",
+      "options": ["56", "66", "55", "65"],
+      "answer": 1,
+      "explanation_en": "Pre-increment (++i) increments i first, so the first printf already shows 6; the second printf shows 6 again since no further change occurred.",
+      "explanation_ko": "전위 증가(++i)는 먼저 i를 증가시킨 뒤 사용합니다. 첫 번째 printf부터 이미 6이 출력되고, 이후 값도 그대로 6입니다.",
+      "concept_tags": ["increment_operator", "pre_increment"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l1_u02_q004",
+      "type": "fill_blank",
+      "code": "int age = 15;\nchar *result = (age >= 18) ? ____ : \"미성년자\";\nprintf(\"%s\", result);",
+      "prompt_en": "Fill in the blank so the ternary operator correctly handles the 'adult' case.",
+      "prompt_ko": "삼항 연산자가 '성인' 경우를 올바르게 처리하도록 빈칸을 채우세요.",
+      "options": ["\"성인\"", "성인", "18", "age"],
+      "answer": 0,
+      "explanation_en": "The ternary operator (condition) ? value_if_true : value_if_false requires a matching string literal for the true branch, just like the false branch.",
+      "explanation_ko": "삼항 연산자 (조건) ? 참일때값 : 거짓일때값 구조에서, 거짓 분기와 마찬가지로 참 분기에도 문자열 리터럴이 필요합니다.",
+      "concept_tags": ["ternary_operator"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "c_l1_u02_q005",
+      "type": "error_finding",
+      "code": "int total = 10;\ntotal =+ 5;\nprintf(\"%d\", total);",
+      "prompt_en": "What problem does this code have?",
+      "prompt_ko": "이 코드는 어떤 문제가 있을까요?",
+      "options": [
+        "total 선언 문법 오류",
+        "=+ 는 복합 대입 연산자 += 가 아니라 '='과 단항 '+'로 해석되어, 의도와 달리 total이 그냥 5가 됨",
+        "printf 형식 지정자 오류",
+        "문제 없음, 정상적으로 15가 출력됨"
+      ],
+      "answer": 1,
+      "explanation_en": "=+ is parsed as assignment followed by unary plus, not as the += operator; total is simply reassigned to +5, losing the previous value.",
+      "explanation_ko": "=+는 += 복합 대입 연산자가 아니라 '=' 대입과 단항 '+' 연산자로 해석됩니다. 결과적으로 total은 그냥 5가 되어버리고, 원래 값 10은 사라집니다. 의도한 total += 5;와는 다른 결과입니다.",
+      "concept_tags": ["compound_assignment", "syntax"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "c_l1_u02_q006",
+      "type": "concept_matching",
+      "code": null,
+      "prompt_en": "Match each term to its description.",
+      "prompt_ko": "용어와 설명을 올바르게 연결하세요.",
+      "pairs": [
+        { "term": "비트 연산자 (&, |, ^)", "definition": "값을 이진수 비트 단위로 연산하는 연산자" },
+        { "term": "증감 연산자 (++, --)", "definition": "변수의 값을 1 증가 또는 감소시키는 연산자" },
+        { "term": "삼항 연산자 (?:)", "definition": "조건에 따라 두 값 중 하나를 선택하는 축약형 조건 연산자" },
+        { "term": "복합 대입 연산자 (+=, -=)", "definition": "연산과 대입을 한 번에 수행하는 연산자" }
+      ],
+      "explanation_en": "These operators are more specialized than the basic ones covered in the foundation stage, and are commonly used to write concise C code.",
+      "explanation_ko": "이 연산자들은 기초 구간에서 다룬 기본 연산자보다 더 특화되어 있으며, 간결한 C 코드를 작성할 때 자주 사용됩니다.",
+      "concept_tags": ["bitwise_operator", "increment_operator", "ternary_operator", "compound_assignment"],
+      "difficulty": "practice"
+    }
+  ]
+}

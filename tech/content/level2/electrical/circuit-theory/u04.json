@@ -1,0 +1,111 @@
+{
+ "no": 4,
+ "title": "회로 정리: 중첩·테브난·노턴·최대 전력",
+ "hours": 6,
+ "after": [
+  3
+ ],
+ "objectives": [
+  "중첩의 원리로 여러 전원이 있는 선형 회로를 풀 수 있다.",
+  "테브난·노턴 등가 회로를 구하고 서로 바꿀 수 있다.",
+  "최대 전력 전달 조건과 그때의 전력을 구할 수 있다."
+ ],
+ "checklist": [
+  "선형성과 중첩의 원리(전압원은 단락, 전류원은 개방)",
+  "전원 변환: 전압원+직렬 R ↔ 전류원+병렬 R",
+  "테브난 전압 V_th = 개방 전압",
+  "테브난 저항 R_th(전원을 끄고 본 저항, 종속 전원이 있으면 시험 전원법)",
+  "노턴 전류 I_N = 단락 전류, I_N = V_th/R_th",
+  "최대 전력 전달 R_L = R_th, P_max = V_th²/(4R_th)"
+ ],
+ "advice": [
+  "테브난 정리는 회로이론에서 가장 실용적인 도구입니다. '부하 쪽에서 보면 아무리 복잡한 회로도 전압원 하나와 저항 하나'라는 생각은 전자회로의 입출력 저항, 전력 시스템의 단락 계산까지 모든 곳에 쓰입니다. 개방 전압, 단락 전류, 등가 저항 중 두 개를 구하면 나머지 하나는 자동으로 정해진다는 관계를 먼저 잡으세요.",
+  "종속 전원이 있는 회로에서는 전원을 꺼서 R_th를 구할 수 없습니다. 이때는 단자에 1 V 시험 전원을 걸고 흐르는 전류를 구하는 방법을 쓰는데, 처음에는 낯설지만 3단원의 마디 해석을 그대로 쓰는 것뿐입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Nilsson · Riedel, Electric Circuits (번역본 『전기회로』, 장 번호는 원서 10판 기준)",
+   "part": "4장 4.9~4.13 Thévenin and Norton Equivalents, Maximum Power Transfer, Superposition"
+  },
+  {
+   "kind": "book",
+   "provider": "McGraw-Hill",
+   "title": "Alexander · Sadiku, Fundamentals of Electric Circuits (번역본 『회로이론』)",
+   "part": "4장 Circuit Theorems"
+  },
+  {
+   "kind": "lecture",
+   "provider": "MIT OpenCourseWare",
+   "title": "6.002 Circuits and Electronics (Anant Agarwal, 2007년 봄)",
+   "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+   "lang": "영어",
+   "part": "Lecture 3 Superposition, Thévenin and Norton"
+  },
+  {
+   "kind": "video",
+   "provider": "Khan Academy",
+   "title": "Electrical engineering — Circuit analysis",
+   "url": "https://www.khanacademy.org/science/electrical-engineering",
+   "lang": "영어(일부 한국어)",
+   "part": "Circuit analysis: Thévenin and Norton"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "12 V 전원과 4 Ω이 직렬로 있고, 그 뒤에 4 Ω이 단자 a–b에 병렬로 걸려 있습니다. a–b에서 본 테브난 전압은 몇 V일까요?",
+   "answer": "6",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "개방 전압 = 12 × 4/(4 + 4) = 6 V",
+   "hint": "부하를 떼고 a–b 전압을 구하세요.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "같은 회로에서 테브난 저항은 몇 Ω일까요?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "전압원을 단락하면 4 Ω ∥ 4 Ω = 2 Ω",
+   "hint": "전압원은 단락으로 바꿉니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "이 회로의 a–b에 연결한 부하가 받을 수 있는 최대 전력은 몇 W일까요?",
+   "answer": "4.5",
+   "answer_format": "decimal",
+   "tolerance": 0,
+   "explanation": "R_L = R_th = 2 Ω일 때\nP_max = V_th²/(4R_th) = 36/8 = 4.5 W",
+   "hint": "P_max = V_th²/(4R_th)입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "이 회로의 노턴 전류는 몇 A일까요?",
+   "answer": "3",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "I_N = V_th/R_th = 6/2 = 3 A\na–b를 단락했을 때의 전류와 같습니다.",
+   "hint": "I_N = V_th/R_th입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 2,
+ "track": "electrical",
+ "subject": "circuit-theory",
+ "id": "l2-electrical-circuit-theory-u04"
+}

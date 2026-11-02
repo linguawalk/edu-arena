@@ -1,0 +1,105 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "lpi",
+  "exam": "lpic-2-201",
+  "level": 1,
+  "unit": 2,
+  "unit_title": "LVM: PV·VG·LV 계층 구조",
+  "rule_summary_ko": "LVM(논리 볼륨 관리자)은 물리 디스크를 물리 볼륨(PV, pvcreate로 생성)으로 초기화하고, 여러 PV를 하나의 볼륨 그룹(VG, vgcreate)으로 묶은 뒤, 그 VG 안에서 원하는 크기의 논리 볼륨(LV, lvcreate)을 유연하게 만들어 파일시스템을 올립니다. VG는 여러 PV의 용량을 합치되, LVM 메타데이터 저장을 위한 약간의 오버헤드가 있어 원본 디스크 용량의 합보다 실제 VG 크기가 약간 작습니다. LVM의 핵심 이점은 파티션을 새로 나누지 않고도 온라인 상태에서 논리 볼륨의 크기를 유연하게 늘리거나 줄일 수 있다는 것입니다.",
+  "examples": [
+    { "code": "pvcreate /dev/loop0 /dev/loop1  (각 100MB)\nvgcreate myvg /dev/loop0 /dev/loop1\nvgdisplay myvg → VG Size 192.00 MiB", "note_ko": "100MB+100MB=200MB이지만, LVM 메타데이터 오버헤드 때문에 실제 VG 크기는 192MB로 약간 작게 나옴" }
+  ],
+  "questions": [
+    {
+      "id": "lpic2_l1_u2_q001",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "LVM의 계층 구조를 올바른 순서로 나열하면?",
+      "options": [
+        "물리 볼륨(PV) → 볼륨 그룹(VG) → 논리 볼륨(LV)",
+        "논리 볼륨(LV) → 볼륨 그룹(VG) → 물리 볼륨(PV)(순서가 반대)",
+        "볼륨 그룹(VG) → 물리 볼륨(PV) → 논리 볼륨(LV)",
+        "LVM에는 계층 구조가 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "PV(물리 디스크 초기화) → VG(여러 PV를 하나의 저장 풀로 통합) → LV(그 풀에서 원하는 크기로 잘라낸 논리 볼륨) 순서입니다.",
+      "concept_tags": ["lvm_hierarchy"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic2_l1_u2_q002",
+      "type": "concept_matching_item",
+      "code": "pvcreate /dev/loop0 /dev/loop1  (각 100MB)\nvgcreate myvg /dev/loop0 /dev/loop1\nvgdisplay myvg → VG Size 192.00 MiB",
+      "prompt_ko": "합치면 200MB가 되어야 할 두 디스크의 VG 크기가 192MB로 나온 이유는?",
+      "options": [
+        "LVM이 자체 메타데이터(볼륨 그룹 정보 등)를 저장하기 위해 각 PV에서 약간의 공간을 사용하기 때문에",
+        "LVM은 항상 디스크 용량의 절반만 인식한다",
+        "이것은 명령어 실행 오류다",
+        "vgcreate는 두 번째 디스크를 무시한다"
+      ],
+      "answer": 0,
+      "explanation_ko": "PV마다 LVM 메타데이터 영역이 예약되어, 순수하게 데이터에 쓸 수 있는 공간은 원본보다 약간 줄어듭니다.",
+      "concept_tags": ["lvm_metadata_overhead"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "lpic2_l1_u2_q003",
+      "type": "fill_blank",
+      "code": null,
+      "prompt_ko": "물리 디스크(파티션)를 LVM이 사용할 수 있는 물리 볼륨(PV)으로 초기화하는 명령어는 무엇입니까? (영문으로 입력)",
+      "expected_answers": ["pvcreate"],
+      "explanation_ko": "pvcreate는 LVM 계층 구조의 첫 단계인 PV를 만듭니다.",
+      "concept_tags": ["pvcreate_command"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "lpic2_l1_u2_q004",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "LVM을 사용하는 것이 전통적인 고정 파티션 방식과 비교해 갖는 핵심 이점은?",
+      "options": [
+        "디스크를 새로 파티셔닝하지 않고도, 온라인 상태에서 논리 볼륨의 크기를 유연하게 늘리거나 줄일 수 있다",
+        "LVM은 항상 전통적인 파티션보다 더 빠른 속도를 보장한다",
+        "LVM은 파티션 개념을 완전히 대체해서 디스크 자체가 필요 없게 만든다",
+        "LVM은 크기 조정 기능을 전혀 제공하지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "유연한 크기 조정이 LVM을 채택하는 가장 큰 이유 중 하나입니다.",
+      "concept_tags": ["lvm_flexibility_benefit"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l1_u2_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "여러 개의 PV를 하나의 VG로 묶는 것이 유용한 이유는?",
+      "options": [
+        "여러 개의 물리 디스크의 용량을 하나의 저장 풀로 통합해서, 그 풀 안에서 논리 볼륨을 자유롭게 만들고 필요하면 여러 디스크에 걸쳐 확장할 수 있게 해주기 때문에",
+        "VG로 묶으면 디스크 개수와 무관하게 항상 정확히 1GB가 된다",
+        "VG는 물리 디스크 하나당 하나씩만 만들 수 있어 의미가 없다",
+        "여러 PV를 묶는 것은 실무에서 거의 쓰이지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "VG는 여러 물리 디스크를 하나의 유연한 저장 자원 풀로 추상화해줍니다.",
+      "concept_tags": ["vg_purpose"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "lpic2_l1_u2_q006",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "실제 데이터를 저장하기 위한 파일시스템(예: ext4)을 만들고 마운트하는 대상은 LVM 계층 중 어느 것입니까?",
+      "options": [
+        "논리 볼륨(LV) — 이 위에 파일시스템을 생성하고 마운트해서 실제로 사용한다",
+        "물리 볼륨(PV)에 직접 파일시스템을 만든다(설명이 다름)",
+        "볼륨 그룹(VG)에 직접 파일시스템을 만든다(설명이 다름)",
+        "LVM에서는 파일시스템 개념 자체를 사용하지 않는다"
+      ],
+      "answer": 0,
+      "explanation_ko": "PV와 VG는 저장 공간을 관리하는 추상 계층이고, 실제로 파일을 담는 것은 LV입니다.",
+      "concept_tags": ["lv_filesystem"],
+      "difficulty": "practice"
+    }
+  ]
+}

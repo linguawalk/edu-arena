@@ -1,0 +1,91 @@
+{
+ "no": 2,
+ "title": "암호학",
+ "hours": 6,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "대칭키·공개키·해시의 용도와 대표 알고리즘을 구분할 수 있다.",
+  "키 관리 문제와 키 교환(디피–헬만)의 원리를 설명할 수 있다.",
+  "전자 서명과 인증서(PKI)로 무결성과 인증을 제공하는 과정을 설명할 수 있다."
+ ],
+ "checklist": [
+  "대칭키 암호: AES(128·256비트 키), 운영 모드(GCM 등)",
+  "공개키 암호: RSA, 타원 곡선(ECC)",
+  "해시: SHA-256(출력 256비트), 무결성과 비밀번호 저장(솔트·느린 해시)",
+  "메시지 인증 코드(MAC, HMAC)",
+  "디피–헬만 키 교환",
+  "전자 서명과 인증서, 인증 기관, 인증서 폐기",
+  "양자 내성 암호(PQC)의 필요성"
+ ],
+ "advice": [
+  "암호학 공부에서 가장 중요한 원칙은 '직접 만들지 말고 검증된 라이브러리를 올바르게 쓰라'는 것입니다. 이 단원에서는 각 도구가 무엇을 지키는가(기밀성은 암호화, 무결성은 해시·MAC, 인증은 서명)를 짝짓는 데 집중하세요. 사용자 100명이 서로 대칭키를 나누려면 키가 몇 개 필요한지 계산해 보면, 공개키 암호와 키 교환이 왜 필요한지 바로 이해됩니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Pearson",
+   "title": "Stallings · Brown, Computer Security: Principles and Practice (장 제목으로 표기)",
+   "part": "Cryptographic Tools, Symmetric Encryption, Public-Key Cryptography 장"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨1",
+   "title": "컴퓨터 챕터 9 보안 기초(암호의 원리)",
+   "url": "browse.html?c=c4#ch09",
+   "part": "레벨1 복습"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "SHA-256 해시 값의 길이는 몇 바이트일까요?",
+   "answer": "32",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "256비트 = 32바이트",
+   "hint": "256 ÷ 8입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "사용자 100명이 서로 다른 모든 쌍마다 대칭키를 하나씩 나누려면 키가 몇 개 필요할까요?",
+   "answer": "4950",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "n(n − 1)/2 = 100 × 99/2 = 4950개",
+   "hint": "n(n − 1)/2입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "공개된 통신로에서 도청자가 있어도 두 사람이 같은 비밀 키를 만들어 내는 키 교환 방법을 {{1}} 키 교환이라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "디피–헬만",
+      "디피-헬만",
+      "디피헬만",
+      "Diffie-Hellman"
+     ]
+    }
+   ],
+   "explanation": "TLS 핸드셰이크에서 타원 곡선 버전(ECDHE)을 씁니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "computer",
+ "subject": "security",
+ "id": "l3-computer-security-u02"
+}

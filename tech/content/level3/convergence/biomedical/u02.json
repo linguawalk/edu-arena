@@ -1,0 +1,83 @@
+{
+ "no": 2,
+ "title": "생체 신호 측정과 처리",
+ "hours": 5,
+ "after": [
+  1
+ ],
+ "objectives": [
+  "계측 증폭기·필터·A/D 변환으로 측정 체인을 설계할 수 있다.",
+  "표본화 주파수와 심박수를 계산할 수 있다."
+ ],
+ "checklist": [
+  "전극과 피부 접촉 임피던스",
+  "계측 증폭기와 공통 모드 제거비(CMRR)",
+  "필터: 대역 통과, 60 Hz 노치(전력선 잡음)",
+  "표본화와 나이퀴스트 주파수",
+  "특징 추출: R피크 검출, 심박수 = 60 ÷ RR 간격"
+ ],
+ "advice": [
+  "생체 신호 측정 체인은 '전극 → 계측 증폭기 → 필터 → A/D 변환 → 디지털 처리'로, 전자 트랙 전자회로와 임베디드 4단원(ADC), 정보통신 트랙 표본화가 그대로 쓰입니다. 우리 몸이 전력선 잡음을 받는 안테나가 되므로 60 Hz 잡음을 없애는 노치 필터와 공통 모드 제거가 특히 중요합니다. 심전도 R피크 간격으로 심박수를 계산하는 간단한 처리부터 직접 해 보세요."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Wiley",
+   "title": "Webster, Medical Instrumentation: Application and Design (장 제목으로 표기)"
+  },
+  {
+   "kind": "web",
+   "provider": "tech-arena 레벨3",
+   "title": "임베디드 시스템 4단원 ADC와 센서 인터페이스 (전자 트랙)",
+   "url": "guide.html?lv=3&t=electronics&s=embedded&u=4"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "심전도 R피크 사이 간격(RR)이 0.8초이면 심박수는 분당 몇 회일까요?",
+   "answer": "75",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "60/0.8 = 75회/분",
+   "hint": "60 ÷ RR 간격입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "관심 신호 성분이 250 Hz까지 있으면 최소 표본화 주파수는 몇 Hz일까요?",
+   "answer": "500",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "나이퀴스트: 2 × 250 = 500 Hz",
+   "hint": "최고 주파수의 2배입니다.",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "fill_blank",
+   "prompt": "전력선에서 들어오는 60 Hz 잡음만 좁게 없애는 필터를 {{1}} 필터라고 합니다.",
+   "blanks": [
+    {
+     "id": 1,
+     "answers": [
+      "노치"
+     ]
+    }
+   ],
+   "explanation": "대역 제거 필터의 일종입니다.",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "convergence",
+ "subject": "biomedical",
+ "id": "l3-convergence-biomedical-u02"
+}

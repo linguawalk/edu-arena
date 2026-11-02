@@ -1,0 +1,86 @@
+{
+  "language": "n/a",
+  "category": "global_certification",
+  "vendor": "oracle",
+  "exam": "sql-associate-1z0-071",
+  "level": 1,
+  "unit": 3,
+  "unit_title": "단일행 함수: NVL·NVL2·DECODE·CASE",
+  "rule_summary_ko": "NVL(expr1, expr2)는 expr1이 NULL이면 expr2를, 아니면 expr1을 그대로 반환합니다. NVL2(expr1, expr2, expr3)는 expr1이 NULL이 아니면 expr2를, NULL이면 expr3을 반환합니다. DECODE(값, 비교1, 결과1, 비교2, 결과2, ..., 기본값)는 값을 각 비교값과 순서대로 비교해서 일치하는 결과를 반환하는 오라클 고유의 IF-THEN-ELSE 함수입니다. CASE 식은 표준 SQL의 조건문으로 DECODE보다 더 유연합니다(부등호 조건 등도 가능).",
+  "examples": [
+    { "code": "NVL(commission, 0)", "note_ko": "commission이 NULL이면 0으로 대체, 아니면 원래 값 그대로" },
+    { "code": "NVL2(commission, '있음', '없음')", "note_ko": "commission이 NULL이 아니면 '있음', NULL이면 '없음' 반환" },
+    { "code": "DECODE(grade, 'A', '우수', 'B', '보통', '개선필요')", "note_ko": "grade가 'A'면 '우수', 'B'면 '보통', 그 외엔 '개선필요'" }
+  ],
+  "questions": [
+    {
+      "id": "sql_oracle_l1_u3_q001",
+      "type": "fill_blank",
+      "code": "SELECT NVL(NULL, 0) FROM DUAL;",
+      "prompt_ko": "결과값은 얼마입니까? (숫자만 입력)",
+      "expected_answers": ["0"],
+      "explanation_ko": "NVL(expr1, expr2)는 expr1이 NULL이면 expr2를 반환합니다.",
+      "concept_tags": ["nvl"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l1_u3_q002",
+      "type": "fill_blank",
+      "code": "SELECT NVL(5, 0) FROM DUAL;",
+      "prompt_ko": "결과값은 얼마입니까? (숫자만 입력)",
+      "expected_answers": ["5"],
+      "explanation_ko": "expr1(5)이 NULL이 아니므로 그대로 5가 반환됩니다.",
+      "concept_tags": ["nvl"],
+      "difficulty": "intro"
+    },
+    {
+      "id": "sql_oracle_l1_u3_q003",
+      "type": "concept_matching_item",
+      "code": "SELECT last_name, NVL2(commission_pct, 'SAL+COMM', 'SAL') income\nFROM employees;",
+      "prompt_ko": "commission_pct가 NULL인 직원의 income 결과는?",
+      "options": ["'SAL+COMM'", "'SAL'", "NULL", "0"],
+      "answer": 1,
+      "explanation_ko": "NVL2는 첫 인자가 NULL이면 세 번째 인자('SAL')를 반환합니다(NVL과 반대로, NULL이 아닐 때 두 번째 인자를 반환).",
+      "concept_tags": ["nvl2"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l1_u3_q004",
+      "type": "concept_matching_item",
+      "code": "SELECT DECODE(grade, 'A', '우수', 'B', '보통', '개선필요') FROM students WHERE grade = 'C';",
+      "prompt_ko": "결과값은?",
+      "options": ["'우수'", "'보통'", "'개선필요' — 'C'는 어떤 비교값과도 일치하지 않아 기본값이 반환됨", "NULL"],
+      "answer": 2,
+      "explanation_ko": "DECODE는 값을 순서대로 비교값들과 비교하다가, 일치하는 게 없으면 마지막 기본값을 반환합니다.",
+      "concept_tags": ["decode"],
+      "difficulty": "practice"
+    },
+    {
+      "id": "sql_oracle_l1_u3_q005",
+      "type": "concept_matching_item",
+      "code": null,
+      "prompt_ko": "DECODE와 표준 SQL의 CASE 식을 비교했을 때, CASE가 더 유연한 이유는?",
+      "options": [
+        "DECODE는 오직 등가 비교(=)만 가능하지만, CASE는 부등호(>, < 등)나 범위 조건도 표현할 수 있기 때문에",
+        "CASE는 오라클에서 사용할 수 없기 때문에",
+        "DECODE가 항상 CASE보다 강력하기 때문에",
+        "둘은 기능적으로 완전히 동일해서 차이가 없다"
+      ],
+      "answer": 0,
+      "explanation_ko": "DECODE는 값이 정확히 같은지만 비교할 수 있지만, CASE WHEN condition THEN는 임의의 조건식을 쓸 수 있어 더 범용적입니다.",
+      "concept_tags": ["decode", "case", "comparison"],
+      "difficulty": "challenge"
+    },
+    {
+      "id": "sql_oracle_l1_u3_q006",
+      "type": "concept_matching_item",
+      "code": "SELECT CASE\n    WHEN salary >= 5000 THEN '고소득'\n    WHEN salary >= 3000 THEN '중간'\n    ELSE '저소득'\nEND\nFROM employees WHERE salary = 4000;",
+      "prompt_ko": "salary가 4000일 때 결과는?",
+      "options": ["'고소득'", "'중간' — 첫 조건(>=5000)은 거짓, 두 번째 조건(>=3000)이 참", "'저소득'", "NULL"],
+      "answer": 1,
+      "explanation_ko": "CASE는 WHEN 조건을 순서대로 평가해서 처음으로 참이 되는 조건의 결과를 반환합니다. 4000은 5000 미만이지만 3000 이상이라 '중간'이 반환됩니다.",
+      "concept_tags": ["case"],
+      "difficulty": "practice"
+    }
+  ]
+}

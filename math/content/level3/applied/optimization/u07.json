@@ -1,0 +1,102 @@
+{
+ "no": 7,
+ "title": "비제약 최적화 알고리즘",
+ "hours": 5,
+ "after": [
+  6
+ ],
+ "objectives": [
+  "경사하강법과 뉴턴법을 구현하고 수렴 속도를 비교할 수 있다.",
+  "선탐색과 스텝 크기 선택을 설명할 수 있다.",
+  "조건수가 경사하강법의 수렴에 미치는 영향을 설명할 수 있다."
+ ],
+ "checklist": [
+  "최적성 조건 ∇f = 0 (볼록이면 충분)",
+  "경사하강법 xₖ₊₁ = xₖ − t∇f(xₖ)",
+  "고정 스텝, 정확 선탐색, 백트래킹(아르미호)",
+  "수렴률과 헤세 행렬의 조건수",
+  "뉴턴법: 헤세 행렬로 이차 근사, 이차 수렴",
+  "준뉴턴법(BFGS)과 켤레기울기법",
+  "모멘텀과 가속 경사법(개요)"
+ ],
+ "advice": [
+  "경사하강법은 '가장 가파른 내리막으로 조금씩 걷기'로, 기계학습의 학습 알고리즘의 기본입니다. 간단하지만 등고선이 길쭉한 타원(조건수가 큰 경우)에서는 지그재그로 느리게 수렴합니다. f = x² + 100y²에 경사하강법을 돌려 경로를 그려 보면 이 문제가 눈에 보입니다.",
+  "뉴턴법은 헤세 행렬로 곡률을 고려해 한 번에 최솟값 방향으로 가므로 이차함수는 한 걸음에 풀립니다. 레벨3 수치해석 2단원의 근 찾기 뉴턴법을 ∇f = 0에 적용한 것과 같습니다. 대신 헤세 행렬 계산이 비싸서, 이를 근사하는 준뉴턴법이 실제로 많이 쓰입니다."
+ ],
+ "resources": [
+  {
+   "kind": "book",
+   "provider": "Cambridge University Press (저자 무료 PDF)",
+   "title": "Boyd · Vandenberghe, Convex Optimization",
+   "url": "https://web.stanford.edu/~boyd/cvxbook/",
+   "lang": "영어",
+   "part": "9장 Unconstrained minimization"
+  },
+  {
+   "kind": "lecture",
+   "provider": "Stanford Engineering Everywhere",
+   "title": "EE364A Convex Optimization I (Stephen Boyd)",
+   "url": "https://see.stanford.edu/Course/EE364A",
+   "lang": "영어",
+   "part": "15~16강 Unconstrained Minimization"
+  },
+  {
+   "kind": "book",
+   "provider": "Springer",
+   "title": "Nocedal · Wright, Numerical Optimization (2판)",
+   "part": "2~3장 (Fundamentals, Line Search Methods), 6장 Quasi-Newton Methods"
+  }
+ ],
+ "selfcheck": [
+  {
+   "type": "question",
+   "id": "q1",
+   "qtype": "numeric",
+   "prompt": "f(x) = x²에 스텝 0.25로 경사하강법을 x₀ = 4에서 시작하면 x₁은?",
+   "answer": "2",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "x₁ = 4 − 0.25 × 2 × 4 = 2",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q2",
+   "qtype": "numeric",
+   "prompt": "같은 경사하강법에서 x₂는?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "x₂ = 2 − 0.25 × 4 = 1 (매번 절반)",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q3",
+   "qtype": "numeric",
+   "prompt": "이차함수에 뉴턴법을 적용하면 최솟값까지 몇 걸음이 걸릴까요?",
+   "answer": "1",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "뉴턴법은 이차 근사를 정확히 최소화하므로 한 걸음",
+   "stage": "selfcheck"
+  },
+  {
+   "type": "question",
+   "id": "q4",
+   "qtype": "numeric",
+   "prompt": "헤세 행렬이 diag(1, 100)인 이차함수의 조건수는?",
+   "answer": "100",
+   "answer_format": "integer",
+   "tolerance": 0,
+   "explanation": "최대 고유값 / 최소 고유값 = 100 (경사하강법이 느려짐)",
+   "stage": "selfcheck"
+  }
+ ],
+ "schema_version": "1.0",
+ "type": "guide_unit",
+ "level": 3,
+ "track": "applied",
+ "subject": "optimization",
+ "id": "l3-applied-optimization-u07"
+}
