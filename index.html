@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>edu-arena · 풀면서 배우는 모든 과목</title>
-<meta name="description" content="읽기 전에 먼저 풀어 보는 15분 레슨. 사회와 역사, 경제와 경영, 국어와 문학, 수학, 과학, 공학, 코딩, 올림피아드까지 한곳에서.">
+<meta name="description" content="읽기 전에 먼저 풀어 보는 15분 레슨. 사회와 역사, 경제와 경영, 국어와 문학, 수학, 과학, 공학, 코딩까지 한곳에서. 과목별 올림피아드 심화 과정 포함.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,7 +22,14 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 .logo span{background:linear-gradient(transparent 58%,var(--marker) 58%)}
 header nav a{font-size:16px;color:var(--ink-soft);text-decoration:none;padding:8px 10px;border-radius:8px}
 header nav a:hover{background:var(--blue-soft);color:var(--blue)}
-.hero{padding:56px 0 48px;max-width:760px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:56px 0 64px}
+.plot{background:#fff;border:1px solid var(--grid);border-radius:14px;padding:14px;margin:0}
+.plot svg{display:block;width:100%;height:auto}
+.plot figcaption{font-size:15px;color:var(--ink-soft);padding:10px 6px 2px;line-height:1.5}
+.step{opacity:0;animation:pop .35s ease-out forwards}.s1{animation-delay:.2s}.s2{animation-delay:.5s}.s3{animation-delay:.8s}.s4{animation-delay:1.1s}
+#route{stroke-dasharray:520;stroke-dashoffset:520;animation:draw 1.4s 1.3s ease-out forwards}#me{opacity:0;animation:pop .3s 2.6s ease-out forwards}
+@keyframes pop{to{opacity:1}}@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.step,#me{animation:none;opacity:1}#route{animation:none;stroke-dashoffset:0}}
 h1{font-size:clamp(36px,5.5vw,60px);line-height:1.15;letter-spacing:-.035em;margin:0 0 20px;font-weight:700}
 .lede{font-size:19px;line-height:1.75;color:var(--ink-soft);margin:0}
 .group{border-top:2px solid var(--ink);padding:26px 0 40px}
@@ -46,15 +53,47 @@ h1{font-size:clamp(36px,5.5vw,60px);line-height:1.15;letter-spacing:-.035em;marg
 .family strong{color:var(--ink)}
 .family a{color:var(--blue);font-weight:700;text-decoration:none}
 .family a:hover{text-decoration:underline}
-@media (max-width:820px){.hero{padding-top:28px}.levels{grid-template-columns:1fr;gap:18px}}
+@media (max-width:820px){.hero{grid-template-columns:1fr;padding-top:28px}.levels{grid-template-columns:1fr;gap:18px}}
 </style>
 </head>
 <body>
 <header><div class="wrap"><a class="logo" href="./"><span>edu-arena</span></a><nav><a href="#subjects">과목</a><a href="#levels">레벨</a></nav></div></header>
 <main class="wrap">
   <section class="hero">
+    <div>
     <h1>읽기 전에<br>먼저 풀어 봅니다</h1>
     <p class="lede">짧은 설명 하나, 곧바로 문제 하나. 15분짜리 레슨으로 고교 교과부터 대학 수준까지 차례로 올라갑니다. 인문사회와 수학·과학의 모든 과목을 한곳에서 공부하세요.</p>
+    </div>
+    <figure class="plot">
+      <svg viewBox="0 0 400 320" role="img" aria-label="레벨1 고교, 레벨2 전문대, 레벨3 대학, 심화로 올라가는 계단과 그 위를 오르는 학습 경로">
+        <g stroke="#DCE4F0"><path d="M20 290H380"/></g>
+        <g class="step s1"><rect x="24" y="230" width="84" height="60" rx="6" fill="#E7ECFA" stroke="#1D3FA8" stroke-width="1.5"/>
+          <text x="66" y="256" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="14" font-weight="700" fill="#172033">레벨1</text>
+          <text x="66" y="276" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="12" fill="#4A5670">고교</text></g>
+        <g class="step s2"><rect x="112" y="180" width="84" height="110" rx="6" fill="#E7ECFA" stroke="#1D3FA8" stroke-width="1.5"/>
+          <text x="154" y="206" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="14" font-weight="700" fill="#172033">레벨2</text>
+          <text x="154" y="226" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="12" fill="#4A5670">전문대</text></g>
+        <g class="step s3"><rect x="200" y="130" width="84" height="160" rx="6" fill="#E7ECFA" stroke="#1D3FA8" stroke-width="1.5"/>
+          <text x="242" y="156" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="14" font-weight="700" fill="#172033">레벨3</text>
+          <text x="242" y="176" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="12" fill="#4A5670">대학</text></g>
+        <g class="step s4"><rect x="288" y="70" width="84" height="220" rx="6" fill="#F1E6F4" stroke="#6B2E7A" stroke-width="1.5"/>
+          <text x="330" y="96" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="14" font-weight="700" fill="#172033">심화</text>
+          <text x="330" y="116" text-anchor="middle" font-family="IBM Plex Sans KR, sans-serif" font-size="12" fill="#4A5670">올림피아드</text></g>
+        <path id="route" d="M40 216 L92 216 Q110 216 116 196 L128 166 L180 166 Q198 166 204 146 L216 116 L268 116 Q286 116 292 96 L304 56 L352 56" stroke="#1D3FA8" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <g id="me"><circle cx="352" cy="56" r="9" fill="#FFD84D" stroke="#172033" stroke-width="2"/></g>
+        <g font-family="IBM Plex Sans KR, sans-serif" font-size="12" fill="#4A5670"><text x="24" y="40">7과목 · 같은 계단</text></g>
+        <g font-family="IBM Plex Sans KR, sans-serif" font-size="11" font-weight="700">
+          <rect x="24" y="50" width="38" height="20" rx="5" fill="#F6ECE1"/><text x="43" y="64" text-anchor="middle" fill="#7A4B1E">사회</text>
+          <rect x="66" y="50" width="38" height="20" rx="5" fill="#F6ECE1"/><text x="85" y="64" text-anchor="middle" fill="#7A4B1E">경제</text>
+          <rect x="108" y="50" width="38" height="20" rx="5" fill="#F6ECE1"/><text x="127" y="64" text-anchor="middle" fill="#7A4B1E">국어</text>
+          <rect x="24" y="76" width="38" height="20" rx="5" fill="#E7ECFA"/><text x="43" y="90" text-anchor="middle" fill="#1D3FA8">수학</text>
+          <rect x="66" y="76" width="38" height="20" rx="5" fill="#E7ECFA"/><text x="85" y="90" text-anchor="middle" fill="#1D3FA8">과학</text>
+          <rect x="108" y="76" width="38" height="20" rx="5" fill="#E7ECFA"/><text x="127" y="90" text-anchor="middle" fill="#1D3FA8">공학</text>
+          <rect x="150" y="76" width="38" height="20" rx="5" fill="#E7ECFA"/><text x="169" y="90" text-anchor="middle" fill="#1D3FA8">코딩</text>
+        </g>
+      </svg>
+      <figcaption>모든 과목이 같은 계단을 오릅니다. 고교 수준에서 시작해 대학 수준을 거쳐 올림피아드 심화까지.</figcaption>
+    </figure>
   </section>
 
   <section class="group" id="subjects" aria-labelledby="g-hum">
@@ -76,17 +115,12 @@ h1{font-size:clamp(36px,5.5vw,60px);line-height:1.15;letter-spacing:-.035em;marg
     </div>
   </section>
 
-  <section class="group" aria-labelledby="g-adv">
-    <div class="group-head"><h2 id="g-adv">심화</h2><p>교과 과정을 넘어서는 도전</p></div>
-    <div class="grid">
-      <a class="card adv" href="test/"><span class="tag">test</span><h3>올림피아드·경시</h3><p>수학·과학·정보 올림피아드와 인문·사회 경시대회. 증명을 쓰고 모범 답안과 채점 기준으로 스스로 채점합니다.</p><span class="go">도전하기 →</span></a>
-    </div>
-  </section>
+
 
   <section class="levels" id="levels" aria-label="레벨 구성">
     <div><h2>레벨1 · 고교 수준</h2><p>설명과 문제가 번갈아 나오는 레슨으로 배웁니다. 기초가 불안하면 과목별 진입 진단으로 시작 위치를 찾으세요.</p></div>
     <div><h2>레벨2 · 전문대 수준</h2><p>응용과 해외 비교를 다루는 독학 가이드로 스스로 공부합니다.</p></div>
-    <div><h2>레벨3 · 대학 수준</h2><p>전공 수준의 심화 주제를 트랙별 독학 가이드로 안내합니다.</p></div>
+    <div><h2>레벨3 · 대학 수준</h2><p>전공 수준의 심화 주제를 트랙별 독학 가이드로 안내합니다. 과목마다 올림피아드·경시를 준비하는 심화 과정도 있습니다.</p></div>
   </section>
 
   <section class="family" aria-label="Arena 패밀리">

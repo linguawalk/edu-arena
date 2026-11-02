@@ -2,7 +2,7 @@
 (function () {
   var SECTIONS = {
     socio: "사회와 역사", biz: "경제와 경영", lit: "국어와 문학",
-    math: "수학", sci: "과학", tech: "공학", code: "코딩", test: "올림피아드·경시"
+    math: "수학", sci: "과학", tech: "공학", code: "코딩", 
   };
   // 레슨·진단 화면은 몰입형이라 상단 바를 넣지 않음
   if (/(player|practice-player|placement)\.html$/.test(location.pathname)) return;
@@ -25,7 +25,8 @@
   bar.className = "ea-bar";
   bar.innerHTML =
     '<div class="ea-in"><a href="' + home + '">edu-arena</a>' +
-    (key ? '<span class="ea-sep">›</span><span>' + SECTIONS[key] + "</span>" : "") +
+    (key ? '<span class="ea-sep">›</span><a href="' + home + key + '/">' + SECTIONS[key] + "</a>" : "") +
+    (/\/olympiad\//.test(location.pathname) ? '<span class="ea-sep">›</span><span>심화</span>' : "") +
     '<a class="ea-all" href="' + home + '#subjects">전체 과목</a></div>';
   document.body.insertBefore(bar, document.body.firstChild);
 })();
