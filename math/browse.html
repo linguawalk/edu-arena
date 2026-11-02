@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>코스 · math-arena</title>
+<title>코스 · 수학 · edu-arena</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -64,7 +64,7 @@ nav .soon em{font-style:normal;font-size:13px;margin-left:auto;color:#7C889E}
 </style>
 </head>
 <body>
-<header><div class="wrap"><a class="logo" href="./"><span>math-arena</span></a><span><a href="placement.html" style="font-size:15px;color:var(--blue);margin-right:12px">진입 진단</a><a href="guide.html" style="font-size:15px;color:var(--blue)">레벨2·3 가이드</a></span></div></header>
+<header><div class="wrap"><span style="display:flex;align-items:center;gap:10px"><a class="logo" href="../"><span>edu-arena</span></a><a href="../?s=math" style="font-size:15px;color:var(--ink-soft);text-decoration:none">수학</a></span><span><a href="placement.html" style="font-size:15px;color:var(--blue);margin-right:12px">진입 진단</a><a href="guide.html" style="font-size:15px;color:var(--blue)">레벨2·3 가이드</a><a href="olympiad/browse.html" style="font-size:15px;color:var(--blue)">심화</a></span></div></header>
 <div class="wrap layout">
   <nav aria-label="레벨1 코스"><h2>레벨1 코스</h2><ol id="courses"></ol></nav>
   <main id="main"></main>
@@ -116,12 +116,11 @@ async function j(u){ const r = await fetch(u); if (!r.ok) throw new Error(u); re
     } else banner = `<div class="plbox">어디서 시작할지 모르겠다면 <a href="placement.html">진입 진단</a>을 먼저 해 보세요.</div>`;
     main.innerHTML = banner + `<div class="course-head"><h1>${esc(course.course.title)}</h1><p>${esc(course.course.description)}. 레슨 ${course.totals.lessons}개, ${course.totals.questions}문항입니다.${course.totals.practice_questions ? ` 연습 문제 은행 ${course.totals.practice_questions}문항이 더 있습니다.` : ""}</p></div>
       <div class="meter"><div class="track" role="progressbar" aria-label="코스 진행률" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div><span>${done} / ${total} 완료</span></div>${html}`;
-    document.title = `${course.course.title} · math-arena`;
+    document.title = `${course.course.title} · 수학 · edu-arena`;
   }catch(e){
     main.innerHTML = `<div class="empty">코스 정보를 불러오지 못했습니다. <code>${esc(e.message)}</code> 파일이 저장소에 있는지 확인하세요.</div>`;
   }
 })();
 </script>
-<script src="../assets/family-bar.js" defer></script>
 </body>
 </html>
