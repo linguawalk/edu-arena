@@ -28,6 +28,8 @@ SUBJECTS = [
      [("레벨2·3 가이드", "guide.html")]),
     ("code", "코딩", "stem", "컴퓨팅 사고부터 언어별 과정, 실습, 자격증까지",
      [("전체 코스", "courses.html"), ("심화 · 정보 올림피아드", "olympiad/browse.html")]),
+    ("arts", "예체능", "arts", "음악 이론과 감상, 음악사, 미술, 미술사, 스포츠와 건강",
+     [("레벨2·3 가이드", "guide.html")]),
 ]
 
 # 코딩은 courses.json 대신 트랙 단위로 보여 줍니다.
@@ -44,9 +46,9 @@ CODE_COURSES = [
 
 # 카드에 보이는 영어 표기 (폴더 이름은 그대로)
 TAGS = {"socio": "social studies", "biz": "biz", "lit": "literature", "math": "mathematics",
-        "sci": "science", "tech": "engineering", "code": "code"}
+        "sci": "science", "tech": "engineering", "code": "code", "arts": "arts & PE"}
 
-GROUPS = [("hum", "인문사회"), ("stem", "수학·과학")]
+GROUPS = [("hum", "인문사회"), ("stem", "수학·과학"), ("arts", "예체능")]
 
 e = html.escape
 
@@ -99,13 +101,13 @@ TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>edu-arena · 풀면서 배우는 모든 과목</title>
-<meta name="description" content="읽기 전에 먼저 풀어 보는 15분 레슨. 사회와 역사, 경제와 경영, 언어와 문학, 수학, 과학, 공학, 코딩까지 {{TOTAL}}개 코스를 한곳에서. 과목별 올림피아드 심화 과정 포함.">
+<meta name="description" content="읽기 전에 먼저 풀어 보는 15분 레슨. 사회와 역사, 경제와 경영, 언어와 문학, 수학, 과학, 공학, 코딩, 예체능까지 {{TOTAL}}개 코스를 한곳에서. 과목별 올림피아드 심화 과정 포함.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{--paper:#FAFBFD;--ink:#172033;--ink-soft:#4A5670;--grid:#DCE4F0;--grid-strong:#B9C7DD;--blue:#1D3FA8;--blue-soft:#E7ECFA;--marker:#FFD84D;
-  --hum:#7A4B1E;--hum-soft:#F6ECE1;--stem:#1D3FA8;--stem-soft:#E7ECFA;
+  --hum:#7A4B1E;--hum-soft:#F6ECE1;--stem:#1D3FA8;--stem-soft:#E7ECFA;--arts:#1E6B5C;--arts-soft:#E2F2EE;
   --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
 *{box-sizing:border-box}
 html,body{margin:0;word-break:keep-all;overflow-wrap:anywhere;background:var(--paper);color:var(--ink);font-family:var(--font)}
@@ -139,6 +141,7 @@ h1{font-size:clamp(36px,5.5vw,60px);line-height:1.15;letter-spacing:-.035em;marg
 .card .go{margin-top:auto;padding-top:6px;font-size:15px;font-weight:700;color:var(--c)}
 .hum{--c:var(--hum);--cs:var(--hum-soft)}
 .stem{--c:var(--stem);--cs:var(--stem-soft)}
+.arts{--c:var(--arts);--cs:var(--arts-soft)}
 .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;border-top:2px solid var(--ink);padding:26px 0 40px;margin-top:24px}
 .levels h2{font-size:18px;margin:0 0 6px}
 .levels p{margin:0;font-size:15px;line-height:1.7;color:var(--ink-soft)}
