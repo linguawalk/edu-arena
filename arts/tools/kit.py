@@ -193,3 +193,20 @@ def REST(kind, label=None, hl=False):
 
 BAR = {"bar": True}
 END = {"bar": "end"}
+
+
+# ---------- 연표 (음악사) ----------
+def timeline(alt, spans, marks=(), unit=50, maxh=150):
+    """spans: [(이름, 시작해, 끝해, 강조)], marks: [(해, 글)]. unit: 1칸 = 몇 년"""
+    y0 = min(s[1] for s in spans)
+    X = lambda y: (y - y0) / unit
+    els = []
+    for name, a, b, h in spans:
+        els += [rect(X(a), 0, X(b) - X(a) - 0.05, 1.3, hl=h), text([(X(a) + X(b)) / 2, 0.65], name, hl=h),
+                text([X(a), -0.55], str(a))]
+    end = max(s[2] for s in spans)
+    els.append(text([X(end), -0.55], str(end)))
+    for k, (y, lab) in enumerate(marks):
+        lift = 2.0 + (k % 2) * 0.9
+        els += [seg([X(y), 1.3], [X(y), lift - 0.35], dash=True), text([X(y), lift], lab, hl=True)]
+    return fig(alt, els, maxh=maxh)
