@@ -4,7 +4,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gk import *
 
 T = "harmony"
-KOSTKA = book("McGraw-Hill", "Kostka·Payne·Almén, Tonal Harmony (번역본 『조성음악의 화성』, 장 제목으로 표기)")
+KOSTKA = book("McGraw-Hill", "Kostka·Payne·Almén, Tonal Harmony (장 제목으로 표기)")
 ALDWELL = book("Cengage", "Aldwell·Schachter·Cadwallader, Harmony and Voice Leading (장 제목으로 표기)")
 PISTON = book("W. W. Norton", "Piston·DeVoto, Harmony (번역본 『화성학』, 장 제목으로 표기)")
 
