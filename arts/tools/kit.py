@@ -160,3 +160,36 @@ def save_course(course_id):
            "chapters": chs}
     json.dump(doc, open(os.path.join(ROOT, course_id, "course.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print(f"{course_id}/course.json: 레슨 {L}개, {LQ + RQ}문항")
+
+
+# ---------- 오선 악보 (staff 위젯, player.html의 staffFig) ----------
+def staff(alt, notes, clef="treble", key=0, time=None, noclef=False, minw=0):
+    cfg = {"alt": alt, "clef": clef, "notes": notes}
+    if key: cfg["key"] = key
+    if time: cfg["time"] = time
+    if noclef: cfg["noclef"] = True
+    if minw: cfg["minw"] = minw
+    return {"widget": "staff", "static": True, "config": cfg}
+
+
+def N(p, d="q", label=None, hl=False, acc=None, dot=False, above=None, w=None):
+    """p: 'C4', 'F#4'처럼 쓰거나 화음은 ['C4','E4','G4']. acc: '#','b','n' (화음이면 목록)."""
+    n = {"p": p, "d": d}
+    if label: n["label"] = label
+    if hl: n["hl"] = True
+    if acc: n["acc"] = acc
+    if dot: n["dot"] = True
+    if above: n["above"] = above
+    if w: n["w"] = w
+    return n
+
+
+def REST(kind, label=None, hl=False):
+    n = {"rest": kind}
+    if label: n["label"] = label
+    if hl: n["hl"] = True
+    return n
+
+
+BAR = {"bar": True}
+END = {"bar": "end"}
