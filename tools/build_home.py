@@ -42,6 +42,10 @@ CODE_COURSES = [
     ("자격증", "Oracle·Microsoft·AWS·Google·Cisco·LPI", "courses.html#certs"),
 ]
 
+# 카드에 보이는 영어 표기 (폴더 이름은 그대로)
+TAGS = {"socio": "society", "biz": "biz", "lit": "literature", "math": "mathematics",
+        "sci": "science", "tech": "technology", "code": "code"}
+
 GROUPS = [("hum", "인문사회"), ("stem", "수학·과학")]
 
 e = html.escape
@@ -78,7 +82,7 @@ def build():
             n = len(load_courses(folder))
             total += n
             cards.append(
-                f'<a class="card {group}" href="{folder}/browse.html"><span class="tag">{folder}</span>'
+                f'<a class="card {group}" href="{folder}/browse.html"><span class="tag">{TAGS[folder]}</span>'
                 f'<h3>{e(name)}</h3><p>{e(desc)}</p><span class="go">{n}개 코스 →</span></a>')
         blocks.append(f'<section class="group" aria-labelledby="g-{gid}"><div class="group-head">'
                       f'<h2 id="g-{gid}">{gname}</h2></div><div class="grid">{"".join(cards)}</div></section>')
