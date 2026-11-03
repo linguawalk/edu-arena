@@ -43,8 +43,8 @@ CODE_COURSES = [
 ]
 
 # 카드에 보이는 영어 표기 (폴더 이름은 그대로)
-TAGS = {"socio": "society", "biz": "biz", "lit": "literature", "math": "mathematics",
-        "sci": "science", "tech": "technology", "code": "code"}
+TAGS = {"socio": "social studies", "biz": "biz", "lit": "literature", "math": "mathematics",
+        "sci": "science", "tech": "engineering", "code": "code"}
 
 GROUPS = [("hum", "인문사회"), ("stem", "수학·과학")]
 
