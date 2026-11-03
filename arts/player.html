@@ -339,7 +339,7 @@ function geoFig(cfg){
     const col = e.hl ? hl : ink;
     if (e.t === "poly") el("polygon", {points: e.pts.map(q => X(q[0]) + "," + Y(q[1])).join(" "), fill: e.fill === false ? "none" : (e.color || (e.hl ? "#DCE4F8" : "#EEF2FA")), stroke: col, "stroke-width": 1.8, "stroke-dasharray": e.dash ? "5 4" : "none", "fill-opacity": e.fill === false ? 0 : 0.9}, svg);
     else if (e.t === "seg") el("line", {x1:X(e.a[0]), y1:Y(e.a[1]), x2:X(e.b[0]), y2:Y(e.b[1]), stroke: e.dash ? soft : col, "stroke-width": e.hl ? 2.6 : 1.8, "stroke-dasharray": e.dash ? "5 4" : "none"}, svg);
-    else if (e.t === "circle") el("circle", {cx:X(e.c[0]), cy:Y(e.c[1]), r:e.r * sc, fill:"none", stroke:col, "stroke-width":1.8, "stroke-dasharray": e.dash ? "5 4" : "none"}, svg);
+    else if (e.t === "circle") el("circle", {cx:X(e.c[0]), cy:Y(e.c[1]), r:e.r * sc, fill:e.color || "none", stroke:col, "stroke-width":1.8, "stroke-dasharray": e.dash ? "5 4" : "none"}, svg);
     else if (e.t === "right"){ const v = e.p, u1 = [e.a[0] - v[0], e.a[1] - v[1]], u2 = [e.b[0] - v[0], e.b[1] - v[1]];
       const n1 = Math.hypot(...u1), n2 = Math.hypot(...u2), s = 11 / sc;
       const pA = [v[0] + u1[0] / n1 * s, v[1] + u1[1] / n1 * s], pB = [v[0] + u2[0] / n2 * s, v[1] + u2[1] / n2 * s], pC = [pA[0] + u2[0] / n2 * s, pA[1] + u2[1] / n2 * s];

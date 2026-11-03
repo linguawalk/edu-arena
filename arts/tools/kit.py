@@ -210,3 +210,23 @@ def timeline(alt, spans, marks=(), unit=50, maxh=150):
         lift = 2.0 + (k % 2) * 0.9
         els += [seg([X(y), 1.3], [X(y), lift - 0.35], dash=True), text([X(y), lift], lab, hl=True)]
     return fig(alt, els, maxh=maxh)
+
+
+# ---------- 색 채운 도형 (미술) ----------
+def swatch(x, y, w, h, color):
+    return {"t": "poly", "pts": [[x, y], [x + w, y], [x + w, y + h], [x, y + h]], "color": color}
+
+
+def disc(c, r, color=None, hl=False):
+    e = {"t": "circle", "c": list(c), "r": r}
+    if color: e["color"] = color
+    if hl: e["hl"] = True
+    return e
+
+
+def poly(pts, color=None, hl=False, open_=False):
+    e = {"t": "poly", "pts": [list(p) for p in pts]}
+    if color: e["color"] = color
+    if hl: e["hl"] = True
+    if open_: e["fill"] = False
+    return e
