@@ -150,8 +150,7 @@
 <script>
   var LANG_NAMES = {
     en:{en:"English", ko:"영어"}, ja:{en:"Japanese", ko:"일본어"}, zh:{en:"Chinese", ko:"중국어"},
-    fr:{en:"French", ko:"프랑스어"}, de:{en:"German", ko:"독일어"}, es:{en:"Spanish", ko:"스페인어"},
-    ko:{en:"Korean", ko:"한국어"}
+    fr:{en:"French", ko:"프랑스어"}, de:{en:"German", ko:"독일어"}, es:{en:"Spanish", ko:"스페인어"}
   };
   var LEVEL_INFO = {
     a1:{en:"First words", ko:"첫 단어"}, a2:{en:"Everyday chat", ko:"일상 대화"},
@@ -167,7 +166,7 @@
   var lang = (params.get('lang') || 'en').toLowerCase();
   if(!LANG_NAMES[lang]) lang = 'en';
 
-  var uiLang = 'en';
+  var uiLang = 'ko';
   var levelIdx = 0;
   var taskIdx = 0;
   var levelTasks = [];       // tasks for the current level, loaded lazily
@@ -410,7 +409,7 @@
 
   (function init(){
     var saved; try { saved = localStorage.getItem('la-lang'); } catch(e){}
-    uiLang = saved || (navigator.language && navigator.language.startsWith('ko') ? 'ko' : 'en');
+    uiLang = saved || 'ko';
     document.getElementById('btn-en').classList.toggle('act', uiLang === 'en');
     document.getElementById('btn-ko').classList.toggle('act', uiLang === 'ko');
     document.getElementById('backLink').href = 'languages/' + lang + '/index.html';

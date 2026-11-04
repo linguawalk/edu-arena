@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>코스 · 외국어 · edu-arena</title>
-<meta name="description" content="영어, 일본어, 중국어, 프랑스어, 독일어, 스페인어, 외국인을 위한 한국어. CEFR A1부터 C2까지 언어별 300유닛의 쓰기·말하기 과제와 기존 객관식 과정.">
+<meta name="description" content="영어, 일본어, 중국어, 프랑스어, 독일어, 스페인어. CEFR A1부터 C2까지 언어별 300유닛의 쓰기·말하기 과제와 기존 객관식 과정.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -72,18 +72,18 @@ const nav = document.getElementById("nav"), main = document.getElementById("main
 
 const LANGS = [
   ["en", "영어", "English"], ["ja", "일본어", "日本語"], ["zh", "중국어", "中文"], ["fr", "프랑스어", "Français"],
-  ["de", "독일어", "Deutsch"], ["es", "스페인어", "Español"], ["ko", "한국어 (외국인용)", "Korean for learners"]];
+  ["de", "독일어", "Deutsch"], ["es", "스페인어", "Español"]];
 const LEVELS = [["a1", "첫 단어"], ["a2", "일상 대화"], ["b1", "실전 대화"], ["b2", "자신 있는 유창함"], ["c1", "섬세한 구사력"], ["c2", "원어민 감각"]];
 const FMT = { new: "쓰기 · 말하기", classic: "객관식 (기존 형식)" };
 
 let LANG = (P.get("lang") || "en").toLowerCase();
 if (!LANGS.some(l => l[0] === LANG)) LANG = "en";
-let F = P.get("fmt") === "classic" && LANG !== "ko" ? "classic" : "new";
+let F = P.get("fmt") === "classic" ? "classic" : "new";
 document.getElementById("navPlace").href = `placement.html?lang=${LANG}`;
 
 function buildNav() {
   nav.innerHTML = LANGS.map(([k, name]) => {
-    const items = Object.keys(FMT).filter(f => !(k === "ko" && f === "classic")).map(f => {
+    const items = Object.keys(FMT).map(f => {
       const on = k === LANG && f === F;
       return `<li><a href="?lang=${k}${f === "classic" ? "&fmt=classic" : ""}"${on ? ' aria-current="page"' : ""}>${esc(FMT[f])}</a></li>`;
     }).join("");
@@ -98,8 +98,7 @@ function row(href, label, sub, meta, cls) {
 function render(cat) {
   const L = LANGS.find(l => l[0] === LANG), data = cat[LANG];
   document.title = `${L[1]} · ${FMT[F]} · 외국어 · edu-arena`;
-  const tabs = Object.keys(FMT).filter(f => !(LANG === "ko" && f === "classic"))
-    .map(f => `<a href="?lang=${LANG}${f === "classic" ? "&fmt=classic" : ""}"${f === F ? ' aria-current="page"' : ""}>${esc(FMT[f])}</a>`).join("");
+  const tabs = Object.keys(FMT).map(f => `<a href="?lang=${LANG}${f === "classic" ? "&fmt=classic" : ""}"${f === F ? ' aria-current="page"' : ""}>${esc(FMT[f])}</a>`).join("");
   const desc = F === "new"
     ? "CEFR A1부터 C2까지 레벨마다 50유닛입니다. 유닛마다 짧은 핵심 표현 설명을 읽고 쓰기 2문항, 말하기 2문항을 풉니다. 레벨을 마치면 체크포인트로 확인하세요."
     : "레벨마다 20유닛, 유닛마다 25문항의 객관식 문제입니다. 설명 레슨을 읽고 바로 풀어 볼 수 있습니다.";

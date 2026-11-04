@@ -20,7 +20,7 @@ SUBJECTS = [
      [("레벨2·3 가이드", "guide.html"), ("심화 · 경제 올림피아드", "olympiad/browse.html")]),
     ("lit", "언어와 문학", "hum", "국어, 한자, 영어, 국문학, 세계문학",
      [("레벨2·3 가이드", "guide.html"), ("심화 · 언어학 올림피아드", "olympiad/browse.html")]),
-    ("lingua", "외국어", "hum", "영어, 일본어, 중국어, 프랑스어, 독일어, 스페인어, 외국인을 위한 한국어 · CEFR A1–C2",
+    ("lingua", "외국어", "hum", "영어, 일본어, 중국어, 프랑스어, 독일어, 스페인어 · CEFR A1–C2",
      [("배치고사", "placement.html")]),
     ("math", "수학", "stem", "중학 핵심부터 고등 수학까지",
      [("진입 진단", "placement.html"), ("레벨2·3 가이드", "guide.html"), ("심화 · 수학 올림피아드", "olympiad/browse.html")]),
@@ -49,7 +49,7 @@ CODE_COURSES = [
 # 외국어도 courses.json 대신 언어 단위로 보여 줍니다.
 LINGUA_COURSES = [
     ("영어", "English", "en"), ("일본어", "日本語", "ja"), ("중국어", "中文", "zh"), ("프랑스어", "Français", "fr"),
-    ("독일어", "Deutsch", "de"), ("스페인어", "Español", "es"), ("한국어 (외국인용)", "Korean for learners", "ko"),
+    ("독일어", "Deutsch", "de"), ("스페인어", "Español", "es"),
 ]
 
 # 카드에 보이는 영어 표기 (폴더 이름은 그대로)
