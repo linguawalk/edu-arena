@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>에세이 · {{SUBJ}} · edu-arena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- 이 파일은 tools/essay_tpl.html에서 만듭니다. 직접 고치지 말고 python3 tools/build_essay_pages.py를 실행하세요. -->
+<style>
+:root{
+  --paper:#FAFBFD; --ink:#172033; --ink-soft:#4A5670; --grid:#DCE4F0; --grid-strong:#B9C7DD;
+  --blue:#1D3FA8; --blue-soft:#E7ECFA; --marker:#FFD84D; --marker-soft:#FFF4C2;
+  --ok:#1E7A50; --ok-soft:#E3F3EA; --bad:#B83434; --bad-soft:#FBE7E7;
+  --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;word-break:keep-all;overflow-wrap:anywhere;background:var(--paper);color:var(--ink);font-family:var(--font)}
+body{padding-bottom:env(safe-area-inset-bottom,0px)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding:28px 20px 80px}
+.crumb{font-size:15px;color:var(--ink-soft);margin:0 0 6px}
+.crumb a{color:var(--blue);text-decoration:none;font-weight:700}
+h1{font-size:30px;letter-spacing:-.02em;margin:0 0 6px}
+.lede{margin:0 0 22px;color:var(--ink-soft);font-size:16px;line-height:1.6}
+.steps{display:flex;gap:8px;margin:0 0 26px;flex-wrap:wrap}
+.steps button{font:inherit;font-size:15px;padding:8px 14px;border:1px solid var(--grid-strong);border-radius:999px;background:#fff;color:var(--ink-soft);cursor:pointer}
+.steps button[aria-current]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
+.steps button.done::after{content:" ✓";color:var(--ok);font-weight:700}
+.steps button[aria-current].done::after{color:#9EE0BE}
+.src{background:#fff;border:1px solid var(--grid);border-radius:12px;padding:18px 20px;margin:0 0 14px}
+.src h3{margin:0 0 8px;font-size:15px;color:var(--ink-soft)}
+.src h3 b{color:var(--ink)}
+.src p{margin:0 0 8px;font-size:17px;line-height:1.75}
+.src p:last-child{margin:0}
+.src table{border-collapse:collapse;font-size:16px;margin:4px 0}
+.src td,.src th{border:1px solid var(--grid);padding:6px 10px;text-align:left}
+.src th{background:var(--blue-soft)}
+.task{border-top:2px solid var(--ink);padding:18px 0 0;margin:24px 0 0}
+.task .q{font-size:19px;font-weight:700;line-height:1.6;margin:0 0 12px}
+.task ul{margin:0 0 16px;padding-left:20px;color:var(--ink-soft);font-size:16px;line-height:1.7}
+textarea{width:100%;min-height:260px;font:inherit;font-size:17px;line-height:1.75;padding:14px 16px;border:1px solid var(--grid-strong);border-radius:10px;background:#fff;color:var(--ink);resize:vertical}
+textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+textarea[readonly]{background:#F3F5F9}
+.count{display:flex;justify-content:space-between;font-size:14px;color:var(--ink-soft);margin:6px 2px 16px;font-variant-numeric:tabular-nums}
+.count .warn{color:var(--bad);font-weight:700}
+.count .good{color:var(--ok);font-weight:700}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{font:inherit;font-size:16px;font-weight:700;padding:12px 20px;border-radius:10px;border:1px solid var(--blue);background:var(--blue);color:#fff;cursor:pointer;text-decoration:none}
+.btn.ghost{background:#fff;color:var(--blue)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.panel{border:1px solid var(--grid);background:#fff;border-radius:12px;padding:18px 20px;margin:22px 0 0}
+.panel h2{font-size:18px;margin:0 0 12px}
+.panel .sub{font-size:15px;color:var(--ink-soft);margin:-6px 0 12px;line-height:1.6}
+.checks{list-style:none;margin:0;padding:0}
+.checks li{display:grid;grid-template-columns:26px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid var(--grid);font-size:16px;line-height:1.55}
+.checks li:last-child{border-bottom:0}
+.checks .m{font-weight:700}
+.checks .pass .m{color:var(--ok)} .checks .fail .m{color:var(--bad)}
+.checks small{display:block;color:var(--ink-soft);font-size:14px}
+.self{display:grid;gap:12px}
+.self .it{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border-bottom:1px solid var(--grid);padding:0 0 12px}
+.self .it:last-child{border-bottom:0;padding:0}
+.self .it b{display:block;font-size:16px}
+.self .it span{font-size:14px;color:var(--ink-soft);line-height:1.5}
+.seg{display:flex;border:1px solid var(--grid-strong);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-size:15px;border:0;background:#fff;padding:8px 12px;cursor:pointer;color:var(--ink-soft)}
+.seg button+button{border-left:1px solid var(--grid-strong)}
+.seg button[aria-pressed="true"]{background:var(--blue);color:#fff;font-weight:700}
+.score{display:flex;gap:28px;flex-wrap:wrap;font-size:15px;color:var(--ink-soft)}
+.score b{display:block;font-size:26px;color:var(--ink)}
+.model ol{margin:0 0 14px;padding-left:22px;line-height:1.7;font-size:16px}
+.model p{font-size:17px;line-height:1.8;margin:0 0 10px}
+.model .note{font-size:14px;color:var(--ink-soft)}
+.empty{padding:24px;border:2px dashed var(--grid-strong);border-radius:10px;color:var(--ink-soft);line-height:1.6}
+[hidden]{display:none!important}
+@media (max-width:520px){h1{font-size:24px}.self .it{grid-template-columns:1fr}.btn{flex:1;text-align:center}}
+</style>
+<link rel="stylesheet" href="../assets/ea-header.css">
+</head>
+<body>
+<header class="ea-head"><div class="ea-in"><div class="ea-brand"><a class="ea-logo" href="../"><span>edu-arena</span></a><a class="ea-subj" href="browse.html">{{SUBJ}}</a></div><div class="ea-links"><a href="browse.html" id="backCourse">레벨1 코스</a></div></div></header>
+<div class="wrap" id="app"><div class="empty">에세이를 불러오는 중입니다.</div></div>
+<script>
+"use strict";
+const STORE = "{{STORE}}";
+const P = new URLSearchParams(location.search);
+const COURSE = P.get("c") || "c0", CH = (P.get("ch") || "01").padStart(2, "0"), LES = (P.get("l") || "01").padStart(2, "0");
+const app = document.getElementById("app");
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const load = k => { try { return JSON.parse(localStorage.getItem(k)) || {}; } catch (e) { return {}; } };
+const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+const LEVELS = [["상", 2], ["중", 1], ["하", 0]];
+document.getElementById("backCourse").href = `browse.html?c=${COURSE}#ch${CH}`;
+
+let DATA, idx = 0;
+const drafts = load(STORE + ":essays");   // { "<essay id>": {text, done, auto:[p,t], self:{...}} }
+
+function norm(s){ return s.replace(/\s+/g, " "); }
+function charCount(s){ return s.trim().length; }
+function paraCount(s){ return s.split(/\n+/).map(x => x.trim()).filter(x => x.length >= 20).length; }
+
+function autoCheck(e, text){
+  const t = norm(text), res = [];
+  const n = charCount(text), L = e.length;
+  res.push({ ok: n >= L.min && n <= L.max, label: `분량 ${L.min}~${L.max}자`, note: `지금 ${n}자` });
+  if (e.paragraphs) { const p = paraCount(text); res.push({ ok: p >= e.paragraphs, label: `${e.paragraphs}문단 이상으로 나누어 썼다`, note: `문단 ${p}개 (줄을 바꾸면 문단으로 셉니다)` }); }
+  e.checks.forEach(c => {
+    const hit = c.groups.filter(g => g.some(w => t.includes(w))).length;
+    res.push({ ok: hit >= (c.need || c.groups.length), label: c.label });
+  });
+  return res;
+}
+
+function render(){
+  const e = DATA.essays[idx], d = drafts[e.id] || {};
+  document.title = `${DATA.title} 에세이 ${idx + 1} · {{SUBJ}} · edu-arena`;
+  const steps = DATA.essays.map((x, k) => `<button type="button" data-k="${k}"${k === idx ? ' aria-current="step"' : ""} class="${(drafts[x.id] || {}).done ? "done" : ""}">에세이 ${k + 1}</button>`).join("");
+  const srcs = (e.sources || []).map(s => `<div class="src"><h3><b>${esc(s.label)}</b>${s.title ? " " + esc(s.title) : ""}</h3>${
+    s.table ? `<table>${s.table.map((r, i) => `<tr>${r.map(c => i ? `<td>${esc(c)}</td>` : `<th>${esc(c)}</th>`).join("")}</tr>`).join("")}</table>` : ""}${
+    (s.text || []).map(p => `<p>${esc(p)}</p>`).join("")}</div>`).join("");
+  app.innerHTML = `<p class="crumb"><a href="browse.html?c=${COURSE}#ch${CH}">${esc(DATA.course_title)}</a> · ${esc(DATA.chapter_title)}</p>
+    <h1>${esc(DATA.title)} · 에세이</h1>
+    <p class="lede">레슨 내용을 바탕으로 짧은 논술을 씁니다. 제출하면 기본 요건을 자동으로 점검하고, 평가 기준에 따라 스스로 평가한 뒤 예시 답안과 비교합니다.</p>
+    <div class="steps" role="tablist" aria-label="에세이 선택">${steps}</div>
+    ${srcs}
+    <section class="task"><p class="q">${esc(e.prompt)}</p>
+      <ul>${e.conditions.map(c => `<li>${esc(c)}</li>`).join("")}</ul>
+      <label for="ans" class="sr" hidden>답안</label>
+      <textarea id="ans" placeholder="여기에 답안을 쓰세요. 문단을 나눌 때는 줄을 바꾸세요."${d.done ? " readonly" : ""}>${esc(d.text || "")}</textarea>
+      <div class="count"><span id="cnt"></span><span>띄어쓰기 포함</span></div>
+      <div class="btns" id="btns"></div>
+    </section>
+    <div id="result"></div>`;
+  app.querySelectorAll(".steps button").forEach(b => b.onclick = () => { idx = +b.dataset.k; render(); window.scrollTo(0, 0); });
+  const ta = document.getElementById("ans");
+  const upd = () => {
+    const n = charCount(ta.value), L = e.length;
+    document.getElementById("cnt").innerHTML = `<span class="${n < L.min ? "" : n > L.max ? "warn" : "good"}">${n}자</span> / ${L.min}~${L.max}자`;
+    if (!d.done) { drafts[e.id] = Object.assign(drafts[e.id] || {}, { text: ta.value }); save(STORE + ":essays", drafts); }
+    const sb = document.getElementById("submit"); if (sb) sb.disabled = n < Math.round(L.min * 0.5);
+  };
+  ta.addEventListener("input", upd);
+  const btns = document.getElementById("btns");
+  if (d.done) {
+    btns.innerHTML = `<button class="btn ghost" id="rewrite" type="button">다시 쓰기</button>`;
+    document.getElementById("rewrite").onclick = () => { drafts[e.id] = { text: d.text }; save(STORE + ":essays", drafts); record(); render(); };
+    showResult(e, drafts[e.id]);
+  } else {
+    btns.innerHTML = `<button class="btn" id="submit" type="button">제출하고 점검하기</button>`;
+    document.getElementById("submit").onclick = () => {
+      const r = autoCheck(e, ta.value);
+      drafts[e.id] = { text: ta.value, done: true, auto: [r.filter(x => x.ok).length, r.length], self: {} };
+      save(STORE + ":essays", drafts); record(); render();
+      document.getElementById("result").scrollIntoView({ behavior: "smooth" });
+    };
+  }
+  upd();
+}
+
+function showResult(e, d){
+  const r = autoCheck(e, d.text);
+  const self = d.self || {};
+  const selfMax = e.self.length * 2, selfSum = e.self.reduce((a, s, k) => a + (self[k] ?? 0), 0), selfDone = e.self.every((s, k) => self[k] !== undefined);
+  const next = idx < DATA.essays.length - 1
+    ? `<button class="btn" id="next" type="button">다음 에세이 →</button>`
+    : `<a class="btn" href="browse.html?c=${COURSE}#ch${CH}">코스 목록으로</a>`;
+  document.getElementById("result").innerHTML = `
+    <section class="panel"><h2>1. 자동 점검</h2><p class="sub">분량, 문단, 꼭 다뤄야 할 내용이 들어 있는지만 기계적으로 확인합니다. 글의 논리와 설득력은 아래 자기 평가로 판단하세요.</p>
+      <ul class="checks">${r.map(x => `<li class="${x.ok ? "pass" : "fail"}"><span class="m">${x.ok ? "✓" : "✗"}</span><span>${esc(x.label)}${x.note ? `<small>${esc(x.note)}</small>` : ""}</span></li>`).join("")}</ul></section>
+    <section class="panel"><h2>2. 자기 평가</h2><p class="sub">예시 답안을 보기 전에 평가 기준마다 내 글을 상·중·하로 매겨 보세요.</p>
+      <div class="self">${e.self.map((s, k) => `<div class="it"><div><b>${esc(s.label)}</b><span>${esc(s.desc)}</span></div>
+        <div class="seg" role="group" aria-label="${esc(s.label)}">${LEVELS.map(([nm, v]) => `<button type="button" data-k="${k}" data-v="${v}" aria-pressed="${self[k] === v}">${nm}</button>`).join("")}</div></div>`).join("")}</div></section>
+    <section class="panel"><h2>3. 결과</h2><div class="score"><div><b>${r.filter(x => x.ok).length} / ${r.length}</b>자동 점검</div><div><b>${selfDone ? `${selfSum} / ${selfMax}` : "–"}</b>자기 평가</div></div></section>
+    <section class="panel model"${selfDone ? "" : " hidden"} id="model"><h2>4. 예시 개요와 답안</h2>
+      <ol>${e.model.outline.map(o => `<li>${esc(o)}</li>`).join("")}</ol>
+      ${e.model.answer.map(p => `<p>${esc(p)}</p>`).join("")}
+      <p class="note">예시 답안은 여러 좋은 답 가운데 하나입니다. 같은 결론이 아니어도 근거가 분명하면 좋은 글입니다.</p></section>
+    <p class="sub" id="modelHint"${selfDone ? " hidden" : ""} style="margin:14px 2px 0;color:var(--ink-soft)">자기 평가를 모두 고르면 예시 답안이 열립니다.</p>
+    <div class="btns" style="margin-top:20px">${next}</div>`;
+  document.querySelectorAll(".seg button").forEach(b => b.onclick = () => {
+    const dd = drafts[e.id]; dd.self = dd.self || {}; dd.self[b.dataset.k] = +b.dataset.v; save(STORE + ":essays", drafts); record(); showResult(e, dd);
+  });
+  const nb = document.getElementById("next"); if (nb) nb.onclick = () => { idx++; render(); window.scrollTo(0, 0); };
+}
+
+// 코스 목록의 진행 표시용: "<lesson id>-essay" = {first: 제출 편수, total: 편수}
+function record(){
+  const all = load(STORE + ":progress");
+  const n = DATA.essays.filter(x => (drafts[x.id] || {}).done).length;
+  if (n) all[DATA.id] = { first: n, total: DATA.essays.length, at: Date.now() }; else delete all[DATA.id];
+  save(STORE + ":progress", all);
+}
+
+fetch(`content/level1/${COURSE}/ch${CH}/e${LES}.json`).then(r => { if (!r.ok) throw new Error("e" + LES + ".json"); return r.json(); })
+  .then(d => { DATA = d; const q = +(P.get("n") || 1) - 1; idx = Math.min(Math.max(q, 0), d.essays.length - 1); render(); })
+  .catch(err => { app.innerHTML = `<div class="empty">에세이를 불러오지 못했습니다. <code>${esc(err.message)}</code></div>`; });
+</script>
+</body>
+</html>

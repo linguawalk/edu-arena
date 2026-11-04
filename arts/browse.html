@@ -59,6 +59,7 @@ nav .soon em{font-style:normal;font-size:13px;margin-left:auto;color:#7C889E}
 .pl.miss{background:var(--grid);color:var(--ink-soft)}
 .chapter.pending h2{color:var(--ink-soft)}
 .pend{margin:0;color:var(--ink-soft);font-size:16px;line-height:1.7}
+.items .essay{padding-left:36px;font-size:16px;color:var(--ink-soft)}.items .essay .state{width:14px;height:14px;border-radius:3px}
 </style>
 <link rel="stylesheet" href="../assets/ea-header.css">
 </head>
@@ -96,10 +97,14 @@ async function j(u){ const r = await fetch(u); if (!r.ok) throw new Error(u); re
     const html = chapters.map(ch => {
       const n = pad(ch.chapter.no);
       if (ch.pending) return `<section class="chapter pending" id="ch${n}"><h2><span class="no">${ch.chapter.no}</span>${esc(ch.chapter.title)}<span class="pl miss">준비 중</span></h2><p class="pend">${ch.lessons.map(esc).join(" · ")}</p></section>`;
-      const rows = ch.lessons.map(l => { total++; const p = progress[l.id]; if (p) done++;
-        return `<li><a class="${p ? "done" : ""}" href="player.html?c=${COURSE}&ch=${n}&l=${pad(l.no)}">
+      /*essay-row*/ const essayRow = (l, n) => { if (!l.essay) return ""; const id = `${l.id}-essay`, p = progress[id];
+        return `<li><a class="essay ${p && p.first >= p.total ? "done" : ""}" href="essay.html?c=${COURSE}&ch=${n}&l=${pad(l.no)}">
+          <span class="state" aria-hidden="true"></span><span class="t">에세이 · ${esc(l.title)}</span>
+          <span class="meta">${p ? `${p.first}/${p.total}편` : `${l.essay.count}편`}</span></a></li>`; };
+      const rows = ch.lessons.flatMap(l => { total++; const p = progress[l.id]; if (p) done++;
+        return [`<li><a class="${p ? "done" : ""}" href="player.html?c=${COURSE}&ch=${n}&l=${pad(l.no)}">
           <span class="state" aria-hidden="true"></span><span class="t">${esc(l.title)}</span>
-          <span class="meta">${p ? `${p.first}/${p.total}` : `${l.questions}문항`}</span></a></li>`; });
+          <span class="meta">${p ? `${p.first}/${p.total}` : `${l.questions}문항`}</span></a></li>`, essayRow(l, n)].filter(Boolean); });
       if (ch.review){ total++; const p = progress[ch.review.id]; if (p) done++;
         rows.push(`<li><a class="review ${p ? "done" : ""}" href="player.html?c=${COURSE}&ch=${n}&review=1">
           <span class="state" aria-hidden="true"></span><span class="t">챕터 복습</span>
