@@ -4,19 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>외국어 · edu-arena</title>
-<meta name="theme-color" content="#16224A">
+<meta name="theme-color" content="#FAFBFD">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#16224A; --surface:#1E2E5C; --surface-hi:#263768; --line:#33447F;
-    --ink:#F3F1EA; --ink-dim:#93A0AA;
-    --amber:#F2A65A; --amber-dim:#7A5A34;
-    --teal:#3FBFA6; --teal-dim:#2C6E62;
-    --rose:#E8637A; --rose-dim:#7A3542;
+    /* edu-arena 공통 밝은 색 (예전 lingua-arena 남색 테마를 대체) */
+    --bg:#FAFBFD; --surface:#FFFFFF; --surface-hi:#EEF2FA; --line:#DCE4F0;
+    --ink:#172033; --ink-dim:#4A5670;
+    --amber:#1D3FA8; --amber-dim:#9FB2E0;
+    --teal:#1E7A50; --teal-dim:#9CCFB5;
+    --rose:#B4233C; --rose-dim:#E5A3AF;
     --radius:14px; --wrap:800px;
-    --serif-display:'Space Grotesk',sans-serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+    --serif-display:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif; --sans:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif; --mono:'IBM Plex Mono',monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   @media (prefers-reduced-motion: reduce){*{animation-duration:0.001ms !important;transition-duration:0.001ms !important;}}
@@ -25,16 +26,16 @@
   button{font-family:inherit;}
   .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
   :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px;}
-  body::before{content:"";position:fixed;inset:0;background:radial-gradient(1100px 600px at 15% -10%, rgba(242,166,90,0.08), transparent 60%),radial-gradient(900px 500px at 110% 10%, rgba(63,191,166,0.07), transparent 60%);pointer-events:none;z-index:0;}
+  body::before{content:none;}
 
-  header.nav{position:sticky;top:0;z-index:100;background:rgba(22,34,74,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  header.nav{position:sticky;top:0;z-index:100;background:rgba(250,251,253,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
   .nav-row{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px;}
   .back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-dim);white-space:nowrap;}
   .back:hover{color:var(--ink);}
   .nav-mid{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);text-align:center;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .lang-toggle{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:3px;font-family:var(--mono);font-size:11.5px;flex-shrink:0;}
   .lang-toggle button{border:none;background:transparent;color:var(--ink-dim);padding:5px 10px;border-radius:100px;cursor:pointer;font-family:var(--mono);font-size:11.5px;}
-  .lang-toggle button.act{background:var(--amber);color:#1a1206;font-weight:500;}
+  .lang-toggle button.act{background:var(--amber);color:#fff;font-weight:500;}
 
   main{position:relative;z-index:1;padding:36px 0 90px;}
   .hero{text-align:center;margin-bottom:36px;}
@@ -66,7 +67,7 @@
   .dline.b{align-self:flex-end;flex-direction:row-reverse;}
   .dline .avatar{width:26px;height:26px;border-radius:50%;background:var(--surface-hi);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;flex-shrink:0;}
   .dline .bubble{background:var(--surface-hi);border-radius:10px;padding:9px 13px;}
-  .dline.b .bubble{background:rgba(242,166,90,0.14);}
+  .dline.b .bubble{background:rgba(29,63,168,0.14);}
   .dline .native{font-size:14px;}
   .dline .ko{font-size:12px;color:var(--ink-dim);margin-top:3px;}
 
@@ -84,9 +85,9 @@
   .rq-choices{display:flex;flex-direction:column;gap:8px;}
   .rq-choice{display:flex;align-items:flex-start;gap:10px;text-align:left;background:var(--surface-hi);border:1px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer;font-size:13.5px;color:var(--ink);}
   .rq-choice .letter{font-family:var(--mono);font-size:11px;color:var(--ink-dim);border:1px solid var(--line);border-radius:6px;width:19px;height:19px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .rq-choice.correct{border-color:var(--teal);background:rgba(63,191,166,0.14);}
+  .rq-choice.correct{border-color:var(--teal);background:rgba(30,122,80,0.14);}
   .rq-choice.correct .letter{border-color:var(--teal);color:var(--teal);}
-  .rq-choice.incorrect{border-color:var(--rose);background:rgba(232,99,122,0.12);}
+  .rq-choice.incorrect{border-color:var(--rose);background:rgba(180,35,60,0.12);}
   .rq-choice.incorrect .letter{border-color:var(--rose);color:var(--rose);}
   .rq-choice:disabled:not(.correct):not(.incorrect){opacity:.5;}
   .rq-explain{margin-top:10px;font-size:12.5px;color:var(--ink-dim);display:none;}
@@ -96,7 +97,7 @@
   .rq-explain .verdict.no{color:var(--rose);}
 
   .cta-row{margin-top:48px;text-align:center;}
-  .btn-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:14px;font-weight:500;background:var(--amber);color:#1a1206;border-radius:10px;padding:14px 28px;}
+  .btn-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:14px;font-weight:500;background:var(--amber);color:#fff;border-radius:10px;padding:14px 28px;}
   .btn-cta:hover{opacity:.92;}
 
   .loading, .fallback{text-align:center;color:var(--ink-dim);padding:60px 0;font-size:14px;line-height:1.7;}
