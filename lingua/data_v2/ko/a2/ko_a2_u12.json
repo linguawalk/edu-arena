@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "ko_a2_u12",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a2",
+    "unit": 12,
+    "title": "Shopping / Price Comparison (-보다 더/덜)",
+    "title_ko": "쇼핑·가격 비교",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To compare prices, use « ~이/가 ~보다 더/덜 비싸요 » (~ is more/less expensive than ~). For example, « 이게 저것보다 더 싸요 » (This is cheaper than that).",
+    "explanation_ko": "가격을 비교할 때는 '~이/가 ~보다 더/덜 비싸요'를 씁니다. 예: '이게 저것보다 더 싸요'.",
+    "key_expressions": [
+      {
+        "en": "This is cheaper than that.",
+        "ko": "이게 저것보다 더 싸요."
+      },
+      {
+        "en": "This brand is more expensive than that one.",
+        "ko": "이 브랜드가 저것보다 더 비싸요."
+      },
+      {
+        "en": "Is there a cheaper option?",
+        "ko": "더 싼 거 있어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a2_u12_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a price comparison using «~이/가 ~보다 더/덜».",
+        "ko": "'~이/가 ~보다 더/덜'을 사용해서 가격 비교 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_compare",
+          "label_ko": "가격 비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '보다' (than)?",
+          "type": "keyword_match",
+          "target": [
+            "보다"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u12_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«더 싼 거 있어요?» (Is there a cheaper option?) Answer this question.",
+        "ko": "'더 싼 거 있어요?'(더 저렴한 옵션이 있는지 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cheaper_option",
+          "label_ko": "더 저렴한 옵션 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u12_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say out loud a price comparison using «~보다 더».",
+        "ko": "'~보다 더'를 사용해서 소리 내어 가격을 비교해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_compare",
+          "label_ko": "가격 비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '보다' (than)?",
+          "type": "keyword_match",
+          "target": [
+            "보다"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a2_u12_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«이 브랜드가 더 비싸요?» (Is this brand more expensive?) Answer out loud.",
+        "ko": "'이 브랜드가 더 비싸요?'(브랜드 가격을 비교하는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_compare",
+          "label_ko": "가격 비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

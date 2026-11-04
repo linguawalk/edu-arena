@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_a1_u23",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 23,
+    "title": "Anniversaires",
+    "title_ko": "생일",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour dire son anniversaire, on utilise « Mon anniversaire est le... ». Pour souhaiter, on utilise « Joyeux anniversaire ! ».",
+    "explanation_ko": "생일을 말할 때는 'Mon anniversaire est le...'(제 생일은 ~예요), 축하할 때는 'Joyeux anniversaire !'(생일 축하해요!)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Mon anniversaire est le 5 mai.",
+        "ko": "제 생일은 5월 5일이에요."
+      },
+      {
+        "en": "Joyeux anniversaire !",
+        "ko": "생일 축하해요!"
+      },
+      {
+        "en": "On va faire une fête.",
+        "ko": "파티를 열 거예요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u23_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez votre date d'anniversaire en utilisant « Mon anniversaire est le... ».",
+        "ko": "자신의 생일을 'Mon anniversaire est le...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday",
+          "label_ko": "생일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'anniversaire'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "anniversaire"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u23_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous allez faire une fête ? » Répondez à cette question.",
+        "ko": "'Vous allez faire une fête ?'(파티 열 거예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "party",
+          "label_ko": "파티 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u23_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites votre anniversaire à voix haute.",
+        "ko": "소리 내어 자신의 생일을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday",
+          "label_ko": "생일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'anniversaire'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "anniversaire"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u23_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Joyeux anniversaire ! » On vous dit cela. Répondez à voix haute.",
+        "ko": "'Joyeux anniversaire !'(생일 축하해요!)라는 말을 들었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday_response",
+          "label_ko": "생일 축하 답변",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Merci'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Merci",
+            "merci"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "en_b1_u27",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 27,
+    "title": "Wish / If Only",
+    "title_ko": "Wish / If Only (아쉬움 표현)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "'Wish/if only + past simple' expresses a wish about the present ('I wish I had more time' = I don't). 'Wish/if only + past perfect' expresses regret about the past ('I wish I had called her' = I didn't). 'If only' is stronger/more emotional than 'wish'.",
+    "explanation_ko": "'wish/if only + 과거시제'는 현재에 대한 아쉬움을 나타냅니다('I wish I had more time' = 실제로는 없음). 'wish/if only + 과거완료'는 과거에 대한 후회를 나타냅니다('I wish I had called her' = 실제로 전화 안 함). 'if only'가 'wish'보다 감정이 더 강합니다.",
+    "key_expressions": [
+      {
+        "en": "I wish I lived closer to my family.",
+        "ko": "가족과 더 가까이 살았으면 좋겠어요."
+      },
+      {
+        "en": "If only I had brought an umbrella.",
+        "ko": "우산을 가져왔으면 좋았을 텐데요."
+      },
+      {
+        "en": "I wish I hadn't said that.",
+        "ko": "그 말을 안 했으면 좋았을 텐데요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u27_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about something you wish were different about your current life, using 'I wish + past simple'.",
+        "ko": "'I wish + 과거시제'를 사용해서, 지금 삶에서 달랐으면 하는 것에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "wish_present",
+          "label_ko": "wish(현재)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I wish' + 과거시제를 사용했는가",
+          "type": "pattern_regex",
+          "target": "i wish\\s+i\\s+\\w+ed\\b|i wish\\s+i\\s+(had|lived|was|were|could)",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u27_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Do you regret anything from your past?' Write your answer using 'I wish I had' or 'if only'.",
+        "ko": "'Do you regret anything from your past?'라는 질문에 'I wish I had' 또는 'if only'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "wish_past",
+          "label_ko": "wish(과거)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'wish I had' 또는 'if only I had'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "wish i had",
+            "if only i had"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u27_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about something you wish you had done differently in the past, using 'I wish I had' or 'if only'.",
+        "ko": "과거에 다르게 했으면 좋았을 일을 'I wish I had' 또는 'if only'를 사용해서 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "wish_past",
+          "label_ko": "wish(과거)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'wish I had' 또는 'if only'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "wish i had",
+            "if only"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u27_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Is there a skill you wish you had learned earlier in life?'",
+        "ko": "소리 내어 답해 보세요: 'Is there a skill you wish you had learned earlier in life?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "wish_past",
+          "label_ko": "wish(과거)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'wish' 또는 'if only'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "wish",
+            "if only"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

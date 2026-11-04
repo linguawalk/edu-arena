@@ -1,0 +1,294 @@
+{
+  "meta": {
+    "id": "en_a2_u50",
+    "domain": "language",
+    "lang": "en",
+    "level": "a2",
+    "unit": 50,
+    "title": "A2 Review",
+    "title_ko": "A2 종합 복습",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This review unit brings together A2's key expression areas: past experiences, comparisons, future plans, and giving advice or opinions.",
+    "explanation_ko": "이번 복습 유닛은 A2의 핵심 표현 영역을 종합합니다: 과거 경험, 비교, 미래 계획, 조언·의견 말하기",
+    "key_expressions": [
+      {
+        "en": "I've been to ~, and it was more ~ than I expected.",
+        "ko": "저는 ~에 가본 적 있는데, 예상보다 더 ~했어요."
+      },
+      {
+        "en": "I'm planning to ~, but I haven't decided yet.",
+        "ko": "저는 ~할 계획이지만 아직 결정 못 했어요."
+      },
+      {
+        "en": "If I were you, I would ~.",
+        "ko": "제가 당신이라면 ~할 것 같아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a2_u50_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a short paragraph about a memorable past experience, comparing it to what you expected beforehand.",
+        "ko": "기억에 남는 과거 경험에 대해, 사전에 예상했던 것과 비교하며 짧은 문단을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "past_experience",
+          "label_ko": "경험 표현",
+          "min_occurrences": 1
+        },
+        {
+          "type": "expression",
+          "id": "comparative",
+          "label_ko": "비교급 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "과거시제 동사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(went|saw|had|did|tried)\\b",
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "비교급(-er/more)을 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\w+er\\b|more\\s+\\w+",
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "'than'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "than"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        },
+        {
+          "id": "r4",
+          "criterion_ko": "분량이 충분한가 (최소 25단어)",
+          "type": "length_check",
+          "unit": "words",
+          "min": 25,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u50_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "A friend is deciding between two job offers and asks for your advice. Write your response using 'if I were you'.",
+        "ko": "친구가 두 개의 취업 제안 사이에서 고민하며 조언을 구합니다. 'if I were you'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "if_i_were_you",
+          "label_ko": "if I were you 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'If I were you'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "if i were you"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'would'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "would"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u50_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud for 30 seconds: describe a past trip, compare it to another trip, and mention a future travel plan.",
+        "ko": "30초 동안 소리 내어 말해 보세요: 과거 여행을 설명하고, 다른 여행과 비교하고, 앞으로의 여행 계획을 언급하세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "past_experience",
+          "label_ko": "경험 표현",
+          "min_occurrences": 1
+        },
+        {
+          "type": "expression",
+          "id": "going_to",
+          "label_ko": "going to 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "과거시제 동사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(went|saw|had|visited)\\b",
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "비교급을 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\w+er\\b|more\\s+\\w+",
+          "min_matches": 1,
+          "points": 25,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "'going to'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "going to"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": true
+        },
+        {
+          "id": "r4",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a2_u50_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What advice would you give to someone visiting your country for the first time?'",
+        "ko": "소리 내어 답해 보세요: 'What advice would you give to someone visiting your country for the first time?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'should' 또는 'would'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "should",
+            "would"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

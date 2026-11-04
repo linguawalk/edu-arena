@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a2_u09",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 9,
+    "title": "在餐厅点菜",
+    "title_ko": "식당 주문",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说明忌口用「不要放...」，说过敏用「我对...过敏」。",
+    "explanation_ko": "못 먹는 것을 말할 때는 '不要放...'(~빼주세요), 알레르기가 있음을 말할 때는 '我对...过敏'(~에 알레르기가 있어요)을 씁니다.",
+    "key_expressions": [
+      {
+        "en": "请不要放洋葱。",
+        "ko": "양파 빼주세요."
+      },
+      {
+        "en": "我对花生过敏。",
+        "ko": "저는 땅콩 알레르기가 있어요."
+      },
+      {
+        "en": "可以少辣一点吗？",
+        "ko": "덜 맵게 해줄 수 있어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u09_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「不要放...」写出你不想吃的东西。",
+        "ko": "못 먹는 것을 '不要放...'을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "order_detail",
+          "label_ko": "주문 세부사항 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'不要放'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "不要放"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u09_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你对什么过敏吗？」请回答这个问题。",
+        "ko": "'你对什么过敏吗？'(뭐에 알레르기 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "allergy",
+          "label_ko": "알레르기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'过敏'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "过敏"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u09_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请在餐厅大声告诉服务员你的过敏情况。",
+        "ko": "식당에서 알레르기에 대해 소리 내어 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "allergy",
+          "label_ko": "알레르기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'过敏'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "过敏"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u09_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「要辣的还是不辣的？」服务员问你。请大声回答。",
+        "ko": "'要辣的还是不辣的？'(매운 걸로 드릴까요, 안 매운 걸로 드릴까요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "spice_level",
+          "label_ko": "맵기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'辣' 또는 '不辣'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "辣",
+            "不辣"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

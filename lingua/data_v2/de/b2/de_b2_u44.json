@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "de_b2_u44",
+    "domain": "language",
+    "lang": "de",
+    "level": "b2",
+    "unit": 44,
+    "title": "Zeitenfolge in komplexen Sätzen",
+    "title_ko": "복문 시제일치",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "In complex sentences, tenses must align correctly, e.g. using Plusquamperfekt for an action before another past action described in Präteritum/Perfekt.",
+    "explanation_ko": "복문에서는 시제를 올바르게 맞춰야 합니다. 예를 들어 과거/완료로 서술된 다른 과거 행동보다 앞선 행동에는 과거완료를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Nachdem sie gegessen hatte, ging sie spazieren.",
+        "ko": "그녀는 식사를 마친 후 산책을 갔어요."
+      },
+      {
+        "en": "Als er ankam, hatten wir schon angefangen.",
+        "ko": "그가 도착했을 때 저희는 이미 시작한 상태였어요."
+      },
+      {
+        "en": "Bevor ich es wusste, war es schon passiert.",
+        "ko": "제가 알기도 전에 이미 일어난 일이었어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b2_u44_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen komplexen Satz mit korrekter Zeitenfolge (Plusquamperfekt + Präteritum).",
+        "ko": "올바른 시제일치(과거완료+과거)를 사용해서 복문을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zeitenfolge",
+          "label_ko": "시제일치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'hatte' 또는 'war'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "hatte",
+            "war"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u44_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Hatten Sie schon angefangen, als er ankam?“ Beantworten Sie diese Frage.",
+        "ko": "'Hatten Sie schon angefangen, als er ankam?'(그가 도착했을 때 이미 시작한 상태였어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zeitenfolge",
+          "label_ko": "시제일치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u44_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen komplexen Satz mit korrekter Zeitenfolge.",
+        "ko": "소리 내어 올바른 시제일치의 복문을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zeitenfolge",
+          "label_ko": "시제일치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 12자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 12,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b2_u44_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„War es schon passiert, bevor Sie es wussten?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'War es schon passiert, bevor Sie es wussten?'(당신이 알기도 전에 이미 일어난 일이었어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zeitenfolge",
+          "label_ko": "시제일치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

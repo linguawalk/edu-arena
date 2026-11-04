@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>외국어 · edu-arena</title>
+<meta name="theme-color" content="#16224A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#16224A; --surface:#1E2E5C; --surface-hi:#263768; --line:#33447F;
+    --ink:#F3F1EA; --ink-dim:#93A0AA;
+    --amber:#F2A65A; --amber-dim:#7A5A34;
+    --teal:#3FBFA6; --teal-dim:#2C6E62;
+    --rose:#E8637A; --rose-dim:#7A3542;
+    --radius:14px; --wrap:760px;
+    --serif-display:'Space Grotesk',sans-serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  button, textarea{font-family:inherit;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px;}
+  body::before{content:"";position:fixed;inset:0;background:radial-gradient(1100px 600px at 15% -10%, rgba(242,166,90,0.08), transparent 60%),radial-gradient(900px 500px at 110% 10%, rgba(63,191,166,0.07), transparent 60%);pointer-events:none;z-index:0;}
+
+  header.nav{position:sticky;top:0;z-index:100;background:rgba(22,34,74,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav-row{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px;}
+  .back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-dim);white-space:nowrap;}
+  .back:hover{color:var(--ink);}
+  .nav-mid{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);text-align:center;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .lang-toggle{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:3px;font-family:var(--mono);font-size:11.5px;flex-shrink:0;}
+  .lang-toggle button{border:none;background:transparent;color:var(--ink-dim);padding:5px 10px;border-radius:100px;cursor:pointer;font-family:var(--mono);font-size:11.5px;}
+  .lang-toggle button.act{background:var(--amber);color:#1a1206;font-weight:500;}
+
+  .progress-track{height:3px;background:var(--line);}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--teal));transition:width .3s ease;width:0%;}
+
+  main{position:relative;z-index:1;padding:30px 0 80px;}
+
+  .context-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin-bottom:22px;}
+  .context-card h2{font-family:var(--serif-display);font-size:15px;font-weight:600;margin-bottom:8px;}
+  .context-card .expl{font-size:13px;color:var(--ink-dim);line-height:1.6;margin-bottom:12px;}
+  .expr-list{display:flex;flex-direction:column;gap:6px;}
+  .expr-item{font-size:13px;background:var(--surface-hi);border-radius:8px;padding:8px 12px;}
+  .expr-item .native{font-weight:500;}
+  .expr-item .ko{color:var(--ink-dim);font-size:12px;margin-top:2px;}
+  .context-toggle{font-family:var(--mono);font-size:11px;color:var(--teal);background:none;border:none;cursor:pointer;margin-top:10px;}
+
+  .qcount{font-family:var(--mono);font-size:12px;color:var(--ink-dim);text-align:center;margin-bottom:6px;}
+  .skill-badge{display:block;width:fit-content;margin:0 auto 18px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;border-radius:6px;padding:3px 9px;}
+  .skill-badge.writing{color:var(--teal);border:1px solid var(--teal-dim);}
+  .skill-badge.speaking{color:var(--amber);border:1px solid var(--amber-dim);}
+
+  .qcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;}
+  .prompt{font-size:16px;line-height:1.55;margin-bottom:18px;}
+
+  textarea.answer-input{
+    width:100%;min-height:110px;background:var(--surface-hi);border:1px solid var(--line);border-radius:10px;
+    padding:12px 14px;color:var(--ink);font-size:14.5px;resize:vertical;line-height:1.5;
+  }
+  textarea.answer-input:focus{border-color:var(--amber-dim);}
+
+  .mic-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+  .mic-btn{
+    width:52px;height:52px;border-radius:50%;border:2px solid var(--teal-dim);background:var(--surface-hi);
+    color:var(--teal);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .mic-btn.recording{border-color:var(--rose);color:var(--rose);animation:pulse 1.2s infinite;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(232,99,122,0.4);}50%{box-shadow:0 0 0 10px rgba(232,99,122,0);}}
+  .mic-status{font-size:13px;color:var(--ink-dim);}
+  .transcript-box{
+    min-height:60px;background:var(--surface-hi);border:1px dashed var(--line);border-radius:10px;
+    padding:12px 14px;font-size:14px;color:var(--ink);margin-bottom:12px;
+  }
+  .transcript-box .placeholder{color:var(--ink-dim);font-family:var(--mono);font-size:12.5px;}
+  .fallback-note{font-size:12px;color:var(--ink-dim);margin-bottom:10px;line-height:1.5;}
+
+  .btn-row{display:flex;gap:10px;margin-top:16px;}
+  .btn{font-family:var(--mono);font-size:13px;border-radius:8px;padding:10px 18px;cursor:pointer;border:1px solid var(--line);background:var(--surface-hi);color:var(--ink);}
+  .btn:hover{border-color:var(--amber-dim);}
+  .btn.primary{background:var(--amber);color:#1a1206;border-color:var(--amber);font-weight:500;}
+  .btn.primary:disabled{opacity:.4;cursor:default;}
+
+  .result-box{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);}
+  .result-score{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;}
+  .result-score .num{font-family:var(--serif-display);font-size:32px;font-weight:700;}
+  .result-score .badge{font-family:var(--mono);font-size:11px;border-radius:6px;padding:3px 9px;}
+  .badge.pass{color:var(--teal);border:1px solid var(--teal-dim);}
+  .badge.fail{color:var(--rose);border:1px solid var(--rose-dim);}
+  .rubric-list{display:flex;flex-direction:column;gap:8px;}
+  .rubric-item{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:var(--ink-dim);}
+  .rubric-item .mark{flex-shrink:0;font-family:var(--mono);width:16px;}
+  .rubric-item .mark.ok{color:var(--teal);}
+  .rubric-item .mark.no{color:var(--rose);}
+  .rubric-item .pts{margin-left:auto;font-family:var(--mono);flex-shrink:0;}
+
+  .next-row{margin-top:22px;display:flex;justify-content:flex-end;}
+
+  .loading, .error-state{text-align:center;color:var(--ink-dim);padding:60px 0;font-size:14px;}
+  .error-state a{color:var(--amber);}
+
+  .final-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:44px 30px;text-align:center;}
+  .final-card .avg{font-family:var(--serif-display);font-weight:700;font-size:44px;margin:12px 0 6px;}
+  .final-card .sub{font-family:var(--mono);color:var(--ink-dim);font-size:13px;margin-bottom:26px;}
+  .final-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="back" id="backLink" href="units_v2.html"><span aria-hidden="true">←</span><span id="backLabel">Back</span></a>
+    <div class="nav-mid" id="navMid">—</div>
+    <div class="lang-toggle" role="group" aria-label="Interface language">
+      <button type="button" id="btn-en" class="act">EN</button>
+      <button type="button" id="btn-ko">KO</button>
+    </div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+</header>
+
+<main class="wrap">
+  <div id="loadingState" class="loading">Loading tasks…</div>
+  <div id="errorState" class="error-state" style="display:none;"></div>
+
+  <div id="playArea" style="display:none;">
+    <div class="context-card" id="contextCard"></div>
+    <div class="qcount" id="qcount"></div>
+    <div class="skill-badge" id="skillBadge"></div>
+    <div class="qcard" id="qcard"></div>
+    <div class="next-row" id="nextRow" style="display:none;">
+      <button class="btn primary" id="nextBtn"></button>
+    </div>
+  </div>
+
+  <div id="resultArea" style="display:none;"></div>
+</main>
+
+<script>
+  var LANG_NAMES = {
+    en:{en:"English", ko:"영어"}, ja:{en:"Japanese", ko:"일본어"}, zh:{en:"Chinese", ko:"중국어"},
+    fr:{en:"French", ko:"프랑스어"}, de:{en:"German", ko:"독일어"}, es:{en:"Spanish", ko:"스페인어"},
+    ko:{en:"Korean", ko:"한국어"}
+  };
+  var LANG_LOCALE = {
+    en:'en-US', ja:'ja-JP', zh:'zh-CN', fr:'fr-FR', de:'de-DE', es:'es-ES', ko:'ko-KR'
+  };
+
+  var params = new URLSearchParams(location.search);
+  var lang = (params.get('lang') || '').toLowerCase();
+  var level = (params.get('level') || '').toLowerCase();
+  var unitRaw = params.get('unit') || '';
+  var unitNum = parseInt(unitRaw, 10);
+  var unit = (isNaN(unitNum) ? '' : (unitNum < 10 ? '0' + unitNum : '' + unitNum));
+
+  var uiLang = 'en';
+  var unitData = null;
+  var current = 0;
+  var scores = [];
+
+  function t(en, ko){ return uiLang === 'ko' ? ko : en; }
+  function esc(s){ var d=document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+  function setUiLang(l){
+    uiLang = l;
+    document.getElementById('btn-en').classList.toggle('act', l === 'en');
+    document.getElementById('btn-ko').classList.toggle('act', l === 'ko');
+    try { localStorage.setItem('la-lang', l); } catch(e){}
+    document.getElementById('backLabel').textContent = t('Back', '뒤로');
+    if(unitData){ updateNav(); renderContext(); renderTask(); }
+  }
+  document.getElementById('btn-en').addEventListener('click', function(){ setUiLang('en'); });
+  document.getElementById('btn-ko').addEventListener('click', function(){ setUiLang('ko'); });
+
+  function updateNav(){
+    document.getElementById('backLink').href = 'units_v2.html?lang=' + encodeURIComponent(lang) + '&level=' + encodeURIComponent(level);
+    var langLabel = LANG_NAMES[lang] ? LANG_NAMES[lang][uiLang] : lang.toUpperCase();
+    document.getElementById('navMid').textContent = langLabel + ' · ' + level.toUpperCase() + ' · ' + t('Unit ', '유닛 ') + unit;
+  }
+
+  function fetchJson(url){
+    return fetch(url).then(function(res){
+      if(!res.ok) throw new Error('not ok');
+      return res.json();
+    });
+  }
+  function loadUnitData(){
+    var url = 'data_v2/' + lang + '/' + level + '/' + lang + '_' + level + '_u' + unit + '.json';
+    return fetchJson(url);
+  }
+
+  // ---------------- context (collapsible) ----------------
+  var contextExpanded = true;
+  function renderContext(){
+    var c = unitData.context;
+    var box = document.getElementById('contextCard');
+    var exprHtml = c.key_expressions.map(function(e){
+      return '<div class="expr-item"><div class="native">' + esc(e.en) + '</div><div class="ko">' + esc(e.ko) + '</div></div>';
+    }).join('');
+    box.innerHTML =
+      '<h2>' + t('Key expressions', '핵심 표현') + '</h2>' +
+      '<div class="expl">' + esc(uiLang === 'ko' ? c.explanation_ko : c.explanation_en) + '</div>' +
+      '<div class="expr-list" id="exprList" style="' + (contextExpanded ? '' : 'display:none;') + '">' + exprHtml + '</div>' +
+      '<button class="context-toggle" id="ctxToggle">' + (contextExpanded ? t('Hide','접기') : t('Show','펼치기')) + '</button>';
+    document.getElementById('ctxToggle').addEventListener('click', function(){
+      contextExpanded = !contextExpanded;
+      renderContext();
+    });
+  }
+
+  // ---------------- rubric scoring engine ----------------
+  function escapeRegex(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  function countMatches(text, rubricItem){
+    var lower = text.toLowerCase();
+    if(rubricItem.type === 'keyword_match'){
+      var pattern = rubricItem.target.map(escapeRegex).join('|');
+      var re = new RegExp(pattern, 'gi');
+      var m = text.match(re);
+      return m ? m.length : 0;
+    }
+    if(rubricItem.type === 'pattern_regex'){
+      try {
+        var re2 = new RegExp(rubricItem.target, 'gi');
+        var m2 = text.match(re2);
+        return m2 ? m2.length : 0;
+      } catch(e){ return 0; }
+    }
+    return 0;
+  }
+
+  function scoreTask(task, text, sttConfidence){
+    var breakdown = [];
+    var total = 0;
+    task.rubric.forEach(function(r){
+      var met = false;
+      var count = 0;
+      if(r.type === 'keyword_match' || r.type === 'pattern_regex'){
+        count = countMatches(text, r);
+        var minReq = r.min_matches || 1;
+        met = count >= minReq;
+        if(!met && minReq > 0 && (count / minReq) >= 0.8){ met = true; } // tie_break_rule
+      } else if(r.type === 'length_check'){
+        var words = text.trim().length ? text.trim().split(/\s+/) : [];
+        met = words.length >= r.min;
+      } else if(r.type === 'stt_confidence'){
+        met = (sttConfidence != null) && (sttConfidence >= r.min);
+      }
+      if(met) total += r.points;
+      breakdown.push({criterion_ko: r.criterion_ko, points: r.points, met: met, required: !!r.required});
+    });
+    return {total: total, breakdown: breakdown};
+  }
+
+  // ---------------- rendering a task ----------------
+  function renderProgress(){
+    var pct = Math.round((current / unitData.tasks.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('qcount').textContent = t('Task ', '문항 ') + (current + 1) + t(' of ', ' / ') + unitData.tasks.length;
+  }
+
+  var recognition = null;
+  var recognizing = false;
+  var sttSupported = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+
+  function renderTask(){
+    var task = unitData.tasks[current];
+    renderProgress();
+    var badge = document.getElementById('skillBadge');
+    badge.className = 'skill-badge ' + task.skill;
+    badge.textContent = task.skill === 'writing' ? t('WRITING','쓰기') : t('SPEAKING','말하기');
+    document.getElementById('nextRow').style.display = 'none';
+
+    var card = document.getElementById('qcard');
+    var promptText = uiLang === 'ko' ? task.prompt.ko : task.prompt.en;
+
+    if(task.skill === 'writing'){
+      card.innerHTML =
+        '<div class="prompt">' + esc(promptText) + '</div>' +
+        '<textarea class="answer-input" id="answerInput" placeholder="' + t('Type your answer here...','여기에 답을 입력하세요...') + '"></textarea>' +
+        '<div class="btn-row"><button class="btn primary" id="submitBtn">' + t('Submit','제출') + '</button></div>' +
+        '<div id="resultBox"></div>';
+      document.getElementById('submitBtn').addEventListener('click', function(){
+        var text = document.getElementById('answerInput').value;
+        if(!text.trim()) return;
+        submitAnswer(task, text, null);
+      });
+    } else {
+      var micHtml = '';
+      if(sttSupported){
+        micHtml =
+          '<div class="mic-row"><button class="mic-btn" id="micBtn" aria-label="record">🎤</button><span class="mic-status" id="micStatus">' + t('Tap to speak','탭해서 말하기') + '</span></div>' +
+          '<div class="transcript-box" id="transcriptBox"><span class="placeholder">' + t('Your speech will appear here','여기에 음성이 텍스트로 표시됩니다') + '</span></div>' +
+          '<div class="btn-row"><button class="btn primary" id="submitBtn" disabled>' + t('Submit','제출') + '</button></div>';
+      } else {
+        micHtml =
+          '<div class="fallback-note">' + t('Your browser does not support speech recognition. Please type what you would say instead (Chrome is recommended for speaking tasks).','이 브라우저는 음성 인식을 지원하지 않습니다. 말할 내용을 대신 텍스트로 입력해주세요 (말하기 문항은 Chrome 브라우저를 권장합니다).') + '</div>' +
+          '<textarea class="answer-input" id="answerInput" placeholder="' + t('Type what you would say...','말할 내용을 입력하세요...') + '"></textarea>' +
+          '<div class="btn-row"><button class="btn primary" id="submitBtn">' + t('Submit','제출') + '</button></div>';
+      }
+      card.innerHTML = '<div class="prompt">' + esc(promptText) + '</div>' + micHtml + '<div id="resultBox"></div>';
+
+      if(sttSupported){
+        var transcriptFinal = '';
+        var lastConfidence = null;
+        document.getElementById('micBtn').addEventListener('click', function(){
+          var btn = this;
+          if(recognizing){ recognition && recognition.stop(); return; }
+          var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+          recognition = new SR();
+          recognition.lang = LANG_LOCALE[lang] || 'en-US'; // recognize speech in the target language being learned
+          recognition.interimResults = true;
+          recognition.continuous = true;
+          transcriptFinal = '';
+          recognition.onstart = function(){
+            recognizing = true;
+            btn.classList.add('recording');
+            document.getElementById('micStatus').textContent = t('Listening... tap again to stop','듣고 있어요... 다시 탭하면 멈춰요');
+          };
+          recognition.onresult = function(event){
+            var interim = '';
+            for(var i = event.resultIndex; i < event.results.length; i++){
+              var res = event.results[i];
+              if(res.isFinal){
+                transcriptFinal += res[0].transcript + ' ';
+                lastConfidence = res[0].confidence;
+              } else {
+                interim += res[0].transcript;
+              }
+            }
+            var box = document.getElementById('transcriptBox');
+            box.textContent = (transcriptFinal + interim).trim() || '';
+            var submitBtn = document.getElementById('submitBtn');
+            if(submitBtn) submitBtn.disabled = !transcriptFinal.trim();
+          };
+          recognition.onerror = function(){
+            recognizing = false;
+            btn.classList.remove('recording');
+            document.getElementById('micStatus').textContent = t('Error — tap to try again','오류 — 다시 탭해주세요');
+          };
+          recognition.onend = function(){
+            recognizing = false;
+            btn.classList.remove('recording');
+            document.getElementById('micStatus').textContent = t('Tap to speak again','다시 탭해서 말하기');
+          };
+          recognition.start();
+        });
+        document.getElementById('submitBtn').addEventListener('click', function(){
+          if(!transcriptFinal.trim()) return;
+          submitAnswer(task, transcriptFinal.trim(), lastConfidence);
+        });
+      } else {
+        document.getElementById('submitBtn').addEventListener('click', function(){
+          var text = document.getElementById('answerInput').value;
+          if(!text.trim()) return;
+          submitAnswer(task, text, 0.9); // assume good confidence for typed fallback
+        });
+      }
+    }
+  }
+
+  function submitAnswer(task, text, sttConfidence){
+    var result = scoreTask(task, text, sttConfidence);
+    scores.push(result.total);
+    var passed = result.total >= 60;
+
+    var box = document.getElementById('resultBox');
+    var rubricHtml = result.breakdown.map(function(r){
+      return '<div class="rubric-item"><span class="mark ' + (r.met ? 'ok' : 'no') + '">' + (r.met ? '✓' : '✗') + '</span><span>' + esc(r.criterion_ko) + '</span><span class="pts">' + (r.met ? '+' : '') + (r.met ? r.points : 0) + '/' + r.points + '</span></div>';
+    }).join('');
+    box.innerHTML =
+      '<div class="result-box">' +
+        '<div class="result-score"><span class="num">' + result.total + '</span><span class="badge ' + (passed ? 'pass' : 'fail') + '">' + (passed ? t('PASS','합격') : t('BELOW THRESHOLD','기준 미달')) + '</span></div>' +
+        '<div class="rubric-list">' + rubricHtml + '</div>' +
+      '</div>';
+
+    // disable further input
+    var submitBtn = document.getElementById('submitBtn');
+    if(submitBtn) submitBtn.disabled = true;
+    var input = document.getElementById('answerInput');
+    if(input) input.disabled = true;
+    var micBtn = document.getElementById('micBtn');
+    if(micBtn) micBtn.disabled = true;
+
+    var nextRow = document.getElementById('nextRow');
+    var nextBtn = document.getElementById('nextBtn');
+    nextBtn.textContent = (current + 1 < unitData.tasks.length) ? t('Next task →','다음 문항 →') : t('See results →','결과 보기 →');
+    nextRow.style.display = 'flex';
+    nextBtn.onclick = function(){
+      current++;
+      if(current < unitData.tasks.length){ renderTask(); }
+      else { showResults(); }
+    };
+  }
+
+  function showResults(){
+    document.getElementById('playArea').style.display = 'none';
+    document.getElementById('progressFill').style.width = '100%';
+    var avg = Math.round(scores.reduce(function(a,b){return a+b;},0) / scores.length);
+    var passCount = scores.filter(function(s){ return s >= 60; }).length;
+    var area = document.getElementById('resultArea');
+    area.style.display = 'block';
+    area.innerHTML =
+      '<div class="final-card">' +
+        '<div style="font-family:var(--mono);font-size:12px;color:var(--ink-dim);letter-spacing:.08em;text-transform:uppercase;">' + t('Unit complete','유닛 완료') + '</div>' +
+        '<div class="avg">' + avg + ' / 100</div>' +
+        '<div class="sub">' + passCount + ' / ' + scores.length + ' ' + t('tasks passed','문항 통과') + '</div>' +
+        '<div class="final-actions">' +
+          '<button class="btn" id="retryBtn">' + t('Retry unit','다시 풀기') + '</button>' +
+          '<a class="btn primary" href="units_v2.html?lang=' + encodeURIComponent(lang) + '&level=' + encodeURIComponent(level) + '">' + t('Back to units','유닛 목록으로') + '</a>' +
+        '</div>' +
+      '</div>';
+    document.getElementById('retryBtn').addEventListener('click', function(){ location.reload(); });
+  }
+
+  function showError(msg){
+    document.getElementById('loadingState').style.display = 'none';
+    var err = document.getElementById('errorState');
+    err.style.display = 'block';
+    err.innerHTML = msg;
+  }
+
+  (function init(){
+    var saved; try { saved = localStorage.getItem('la-lang'); } catch(e){}
+    uiLang = saved || (navigator.language && navigator.language.startsWith('ko') ? 'ko' : 'en');
+    document.getElementById('btn-en').classList.toggle('act', uiLang === 'en');
+    document.getElementById('btn-ko').classList.toggle('act', uiLang === 'ko');
+    document.getElementById('backLabel').textContent = t('Back', '뒤로');
+
+    if(!lang || !level || !unit || !LANG_NAMES[lang]){
+      showError(t('Missing or invalid task link. ', '잘못된 링크입니다. ') + '<a href="index.html">' + t('← Back to courses', '← 외국어 코스로 돌아가기') + '</a>');
+      return;
+    }
+    updateNav();
+
+    loadUnitData().then(function(data){
+      if(!data.tasks || !data.tasks.length){ throw new Error('empty'); }
+      unitData = data;
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('playArea').style.display = 'block';
+      renderContext();
+      renderTask();
+    }).catch(function(){
+      showError(t('This unit isn\'t available yet. ', '아직 준비되지 않은 유닛입니다. ') + '<a href="units_v2.html?lang=' + encodeURIComponent(lang) + '&level=' + encodeURIComponent(level) + '">' + t('← Back to units', '← 유닛 목록으로') + '</a>');
+    });
+  })();
+</script>
+<script src="../assets/family-bar.js" defer></script>
+</body>
+</html>

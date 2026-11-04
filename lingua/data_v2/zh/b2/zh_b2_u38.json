@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "zh_b2_u38",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b2",
+    "unit": 38,
+    "title": "与其说...不如说...",
+    "title_ko": "与其说...不如说... (~라기보다는 ~라고 하는 게 맞다)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「与其说...不如说...」用于纠正或更准确地表达一个说法。「与其说他懒，不如说他不感兴趣」。",
+    "explanation_ko": "'与其说...不如说...'는 어떤 표현을 정정하거나 더 정확하게 말할 때 씁니다. '与其说他懒，不如说他不感兴趣'(그가 게으르다기보다는 관심이 없다고 하는 게 맞아요).",
+    "key_expressions": [
+      {
+        "en": "与其说他懒，不如说他不感兴趣。",
+        "ko": "그가 게으르다기보다는 관심이 없다고 하는 게 맞아요."
+      },
+      {
+        "en": "与其说是运气，不如说是努力的结果。",
+        "ko": "운이라기보다는 노력의 결과라고 하는 게 맞아요."
+      },
+      {
+        "en": "与其说这是问题，不如说这是机会。",
+        "ko": "이게 문제라기보다는 기회라고 하는 게 맞아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b2_u38_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「与其说...不如说...」纠正一个说法。",
+        "ko": "어떤 표현을 정정하는 문장을 '与其说...不如说...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yuqishuo_burushuo",
+          "label_ko": "与其说...不如说...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'与其说'와 '不如说'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "与其说.{0,15}不如说",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u38_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「他成功是运气吗？」请用「与其说...不如说...」回答。",
+        "ko": "'他成功是运气吗？'(그가 성공한 건 운이에요?)라는 질문에 '与其说...不如说...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yuqishuo_burushuo",
+          "label_ko": "与其说...不如说...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'与其说'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "与其说"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u38_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「与其说...不如说...」纠正一个说法。",
+        "ko": "'与其说...不如说...'를 사용해서 소리 내어 어떤 표현을 정정해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yuqishuo_burushuo",
+          "label_ko": "与其说...不如说...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'与其说' 또는 '不如说'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "与其说",
+            "不如说"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b2_u38_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「这是问题吗？」有人问你。请用「与其说...不如说...」大声回答。",
+        "ko": "'这是问题吗？'(이게 문제예요?)라는 질문을 받았습니다. '与其说...不如说...'를 사용해서 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yuqishuo_burushuo",
+          "label_ko": "与其说...不如说...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'与其说'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "与其说"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

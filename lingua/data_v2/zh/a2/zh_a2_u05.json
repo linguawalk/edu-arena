@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "zh_a2_u05",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 5,
+    "title": "日常习惯(深入)",
+    "title_ko": "매일 습관 (심화)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说习惯的频率用「常常」「有时候」「从不」。",
+    "explanation_ko": "습관의 빈도를 말할 때는 '常常'(자주), '有时候'(가끔), '从不'(전혀 안)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我常常吃早饭。",
+        "ko": "저는 자주 아침을 먹어요."
+      },
+      {
+        "en": "我有时候迟到。",
+        "ko": "저는 가끔 지각해요."
+      },
+      {
+        "en": "我从不抽烟。",
+        "ko": "저는 전혀 담배를 안 피워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u05_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「常常」或「有时候」写出自己的习惯。",
+        "ko": "자신의 습관을 '常常' 또는 '有时候'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "frequency_habit",
+          "label_ko": "빈도 습관 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'常常' 또는 '有时候'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "常常",
+            "有时候"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u05_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你抽烟吗？」请回答这个问题。",
+        "ko": "'你抽烟吗？'(담배 피워요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "smoking",
+          "label_ko": "흡연 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'从不' 또는 '是/不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "从不",
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u05_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你的习惯。",
+        "ko": "소리 내어 자신의 습관을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "frequency_habit",
+          "label_ko": "빈도 습관 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'常常' 또는 '有时候'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "常常",
+            "有时候"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u05_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你常常迟到吗？」有人问你。请大声回答。",
+        "ko": "'你常常迟到吗？'(자주 지각해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "late",
+          "label_ko": "지각 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'常常' 또는 '是/不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "常常",
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

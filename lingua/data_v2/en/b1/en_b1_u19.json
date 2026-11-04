@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "en_b1_u19",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 19,
+    "title": "Phrasal Verbs (Separable)",
+    "title_ko": "구동사 (분리형)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Separable phrasal verbs (turn off, pick up, fill out) can split around a noun object, and MUST split around a pronoun: 'Turn off the light' or 'Turn the light off', but only 'Turn it off' (not 'Turn off it').",
+    "explanation_ko": "분리형 구동사(turn off, pick up, fill out)는 명사 목적어와는 나눠 써도 붙여 써도 되지만, 대명사 목적어와는 반드시 나눠 써야 합니다: 'Turn off the light' 또는 'Turn the light off'는 둘 다 가능하지만, 'Turn it off'만 가능('Turn off it'은 틀림).",
+    "key_expressions": [
+      {
+        "en": "Can you fill out this form?",
+        "ko": "이 양식 작성해 주시겠어요?"
+      },
+      {
+        "en": "I'll pick you up at seven.",
+        "ko": "일곱 시에 데리러 갈게요."
+      },
+      {
+        "en": "Please turn it off before you leave.",
+        "ko": "나가기 전에 그거 꺼주세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u19_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write two sentences using separable phrasal verbs (turn off/on, pick up, fill out, put away), including one with a pronoun object.",
+        "ko": "분리형 구동사(turn off/on, pick up, fill out, put away)를 사용한 문장 두 개를 써 보세요. 하나는 대명사 목적어를 사용하세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "phrasal_separable",
+          "label_ko": "분리형 구동사",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분리형 구동사를 2회 이상 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(turn|pick|fill|put|take|throw)\\s+(\\w+\\s+)?(off|on|up|out|away|down)\\b",
+          "min_matches": 2,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.!]",
+          "min_matches": 2,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u19_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Could you turn off the TV?' Write your reply using a pronoun ('it').",
+        "ko": "'Could you turn off the TV?'라는 질문에 대명사('it')를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "phrasal_separable",
+          "label_ko": "분리형 구동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'turn it off' 구조를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "turn it off"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u19_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about your morning routine using at least two separable phrasal verbs.",
+        "ko": "분리형 구동사를 두 개 이상 사용해서 아침 루틴을 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "phrasal_separable",
+          "label_ko": "분리형 구동사",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분리형 구동사를 2회 이상 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(turn|pick|fill|put|take|wake)\\s+(\\w+\\s+)?(off|on|up|out|away|down)\\b",
+          "min_matches": 2,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u19_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What time do you usually pick up your kids or friends?'",
+        "ko": "소리 내어 답해 보세요: 'What time do you usually pick up your kids or friends?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "phrasal_separable",
+          "label_ko": "분리형 구동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'pick up' 또는 'pick ... up'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "pick up",
+            "pick them up",
+            "pick him up",
+            "pick her up"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

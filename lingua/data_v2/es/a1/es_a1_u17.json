@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "es_a1_u17",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 17,
+    "title": "En casa 1",
+    "title_ko": "집 1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe your home, we use « Vivo en... ». To describe rooms, we use « Hay un/una... ».",
+    "explanation_ko": "집을 묘사할 때는 'Vivo en...'(저는 ~에 살아요), 방을 묘사할 때는 'Hay un/una...'(~이 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Vivo en un apartamento.",
+        "ko": "저는 아파트에 살아요."
+      },
+      {
+        "en": "Hay una cocina grande.",
+        "ko": "큰 부엌이 있어요."
+      },
+      {
+        "en": "Mi casa tiene tres habitaciones.",
+        "ko": "제 집은 방이 세 개예요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u17_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba sobre su vivienda usando «Vivo en...».",
+        "ko": "'Vivo en...'를 사용해서 사는 곳에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing",
+          "label_ko": "주거 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Vivo en'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Vivo en",
+            "vivo en"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u17_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Cuántas habitaciones tiene tu casa?» Responda a esta pregunta.",
+        "ko": "'¿Cuántas habitaciones tiene tu casa?'(집에 방이 몇 개예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rooms",
+          "label_ko": "방 개수 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u17_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describa en voz alta una habitación usando «Hay un/una...».",
+        "ko": "'Hay un/una...'를 사용해서 소리 내어 방을 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "room_description",
+          "label_ko": "방 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Hay'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Hay",
+            "hay"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u17_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Vives en un apartamento?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Vives en un apartamento?'(아파트에 살아요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing",
+          "label_ko": "주거 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "ko_a1_u30",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 30,
+    "title": "Accepting/Declining (수락·거절)",
+    "title_ko": "수락·거절",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To accept an invitation, use « 네, 좋아요 » (Yes, I'd love to). To decline, use « 죄송해요, 못 가요 » (Sorry, I can't go).",
+    "explanation_ko": "초대를 수락할 때는 '네, 좋아요', 거절할 때는 '죄송해요, 못 가요'를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Yes, I'd love to go.",
+        "ko": "네, 가고 싶어요."
+      },
+      {
+        "en": "Sorry, I can't go.",
+        "ko": "죄송해요, 못 가요."
+      },
+      {
+        "en": "Maybe another day.",
+        "ko": "아마 다른 날에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u30_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Accept an invitation using «네, 좋아요».",
+        "ko": "'네, 좋아요'를 사용해서 초대를 수락해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "accept",
+          "label_ko": "수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' (yes)?",
+          "type": "keyword_match",
+          "target": [
+            "네"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u30_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«파티에 올 수 있어요?» (Can you come to the party?) Decline using «죄송해요, 못 가요».",
+        "ko": "'파티에 올 수 있어요?'(파티 참석을 묻는 질문)에 '죄송해요, 못 가요'를 사용해서 거절하는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "decline",
+          "label_ko": "거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '못 가요' (can't go)?",
+          "type": "keyword_match",
+          "target": [
+            "못 가요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u30_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Decline an invitation out loud using «아마 다른 날에요».",
+        "ko": "'아마 다른 날에요'를 사용해서 소리 내어 초대를 거절해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "decline_soft",
+          "label_ko": "부드러운 거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '다른 날' (another day)?",
+          "type": "keyword_match",
+          "target": [
+            "다른 날"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u30_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«가고 싶어요?» (Do you want to go?) Answer out loud.",
+        "ko": "'가고 싶어요?'(가고 싶은지 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "accept",
+          "label_ko": "수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

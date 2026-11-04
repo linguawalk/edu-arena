@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "id": "en_b1_u24",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 24,
+    "title": "Future Forms Review",
+    "title_ko": "미래시제 총정리",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "English has several future forms with different uses: 'will' for predictions/decisions, 'going to' for plans already decided, and present continuous for fixed arrangements ('I'm meeting her at 6'). Choosing the right one depends on how certain or planned the future event is.",
+    "explanation_ko": "영어는 여러 미래 표현이 있으며 용도가 다릅니다: 예측·즉흥 결정에는 'will', 이미 정한 계획에는 'going to', 확정된 약속에는 현재진행형('I'm meeting her at 6')을 씁니다. 어느 것을 쓸지는 미래 일이 얼마나 확실하거나 계획되었는지에 달려 있습니다.",
+    "key_expressions": [
+      {
+        "en": "I'm meeting a client at 3pm tomorrow.",
+        "ko": "저는 내일 오후 3시에 고객을 만나요."
+      },
+      {
+        "en": "I think it will be sunny this weekend.",
+        "ko": "이번 주말은 화창할 것 같아요."
+      },
+      {
+        "en": "I'm going to start a new course next month.",
+        "ko": "저는 다음 달에 새 강좌를 시작할 예정이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u24_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about your schedule for tomorrow using present continuous for a fixed arrangement, and 'will' for a prediction about how the day will go.",
+        "ko": "확정된 약속은 현재진행형으로, 하루가 어떻게 될지에 대한 예측은 'will'로, 내일 일정을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "present_continuous_future",
+          "label_ko": "현재진행형(미래)",
+          "min_occurrences": 1
+        },
+        {
+          "type": "grammar",
+          "id": "will_prediction",
+          "label_ko": "will 예측",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "현재진행형(am/is/are + -ing)으로 확정된 일정을 표현했는가",
+          "type": "pattern_regex",
+          "target": "(am|is|are|'m)\\s+\\w+ing",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'will'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "will",
+            "i'll"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u24_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What are you doing this Saturday?' Write your answer using present continuous for a fixed plan.",
+        "ko": "'What are you doing this Saturday?'라는 질문에 확정된 계획을 현재진행형으로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "present_continuous_future",
+          "label_ko": "현재진행형(미래)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "현재진행형을 사용했는가",
+          "type": "pattern_regex",
+          "target": "(am|is|are|'m)\\s+\\w+ing",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u24_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about your plans for next month, using 'going to' for decided plans and 'will' for less certain predictions.",
+        "ko": "결정된 계획은 'going to'로, 덜 확실한 예측은 'will'로, 다음 달 계획을 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "going_to",
+          "label_ko": "going to",
+          "min_occurrences": 1
+        },
+        {
+          "type": "grammar",
+          "id": "will_prediction",
+          "label_ko": "will 예측",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'going to'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "going to"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'will'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "will",
+            "i'll"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u24_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Do you have any fixed plans for this weekend?'",
+        "ko": "소리 내어 답해 보세요: 'Do you have any fixed plans for this weekend?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "present_continuous_future",
+          "label_ko": "현재진행형(미래)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes' 또는 'No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "현재진행형을 사용했는가",
+          "type": "pattern_regex",
+          "target": "(am|is|are|'m)\\s+\\w+ing",
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

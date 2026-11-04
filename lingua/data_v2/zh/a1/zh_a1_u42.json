@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "zh_a1_u42",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 42,
+    "title": "医院、药店",
+    "title_ko": "병원·약국",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "在医院说症状用「我...」，在药店买药用「我要买...药」。",
+    "explanation_ko": "병원에서 증상을 말할 때는 '我...'를, 약국에서 약을 살 때는 '我要买...药'(~약을 살게요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我发烧了。",
+        "ko": "저 열이 나요."
+      },
+      {
+        "en": "我要买感冒药。",
+        "ko": "감기약을 살게요."
+      },
+      {
+        "en": "一天吃几次？",
+        "ko": "하루에 몇 번 먹어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u42_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我...」写出你的症状。",
+        "ko": "'我...'를 사용해서 증상을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom",
+          "label_ko": "증상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u42_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你需要什么药？」请用「我要买...药」回答。",
+        "ko": "'你需要什么药？'(무슨 약이 필요해요?)라는 질문에 '我要买...药'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "buying_medicine",
+          "label_ko": "약 구매 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'药'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "药"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u42_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你的症状。",
+        "ko": "소리 내어 증상을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom",
+          "label_ko": "증상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u42_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「一天吃三次」药剂师这样说。请大声回答。",
+        "ko": "'一天吃三次'(하루에 세 번 드세요)라는 말을 들었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "acknowledging",
+          "label_ko": "확인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'好' 또는 '谢谢'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "好",
+            "谢谢"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

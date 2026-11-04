@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a1_u16",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 16,
+    "title": "心情",
+    "title_ko": "기분",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说心情用「我很...」，比如「我很高兴」「我很累」。",
+    "explanation_ko": "기분을 말할 때는 '我很...'(저는 정말 ~해요)를 씁니다. 예: '我很高兴'(저는 정말 기뻐요), '我很累'(저는 정말 피곤해요).",
+    "key_expressions": [
+      {
+        "en": "我很高兴。",
+        "ko": "저는 정말 기뻐요."
+      },
+      {
+        "en": "我今天很累。",
+        "ko": "저는 오늘 정말 피곤해요."
+      },
+      {
+        "en": "你怎么了？",
+        "ko": "무슨 일이에요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u16_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我很...」写出你现在的心情。",
+        "ko": "'我很...'을 사용해서 지금 기분을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "feeling",
+          "label_ko": "기분 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我很'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我很"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u16_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你今天累吗？」请回答这个问题。",
+        "ko": "'你今天累吗？'(오늘 피곤해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tired",
+          "label_ko": "피곤함 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'累' 또는 '不累'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "累",
+            "不累"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u16_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你现在的心情。",
+        "ko": "소리 내어 지금 기분을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "feeling",
+          "label_ko": "기분 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我很'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我很"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u16_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你怎么了？」有人关心地问你。请大声回答。",
+        "ko": "'你怎么了？'(무슨 일이에요?)라고 걱정하며 물었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "feeling",
+          "label_ko": "기분 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我很'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我很"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

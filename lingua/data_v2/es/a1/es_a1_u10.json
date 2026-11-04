@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "es_a1_u10",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 10,
+    "title": "Animales/Mascotas",
+    "title_ko": "동물·반려동물",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about pets, we use « Tengo un/una... ». To describe them, we use « Es... ».",
+    "explanation_ko": "반려동물에 대해 말할 때는 'Tengo un/una...'(저는 ~이 있어요), 묘사할 때는 'Es...'(~예요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Tengo un perro.",
+        "ko": "저는 강아지가 있어요."
+      },
+      {
+        "en": "Mi gato es muy cariñoso.",
+        "ko": "제 고양이는 정말 다정해요."
+      },
+      {
+        "en": "Me gustan los animales.",
+        "ko": "저는 동물을 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u10_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba sobre una mascota usando «Tengo un/una...».",
+        "ko": "'Tengo un/una...'를 사용해서 반려동물에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pet",
+          "label_ko": "반려동물 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Tengo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Tengo",
+            "tengo"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u10_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Te gustan los animales?» Responda a esta pregunta.",
+        "ko": "'¿Te gustan los animales?'(동물 좋아해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "animal_preference",
+          "label_ko": "동물 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u10_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describa una mascota en voz alta usando «Es...».",
+        "ko": "'Es...'를 사용해서 소리 내어 반려동물을 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pet_description",
+          "label_ko": "반려동물 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u10_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Tienes un perro?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Tienes un perro?'(강아지 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pet",
+          "label_ko": "반려동물 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

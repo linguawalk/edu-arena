@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "ja_a2_u29",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 29,
+    "title": "勉強",
+    "title_ko": "공부",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "勉強の計画を話すときは「〜前に〜します」を使います。「しけんのまえにふくしゅうします」のように使います。",
+    "explanation_ko": "공부 계획을 말할 때는 '〜前に〜します'(~전에 ~해요)를 씁니다. 'しけんのまえにふくしゅうします'(시험 전에 복습해요)처럼 씁니다.",
+    "key_expressions": [
+      {
+        "en": "しけんのまえにふくしゅうします。",
+        "ko": "시험 전에 복습해요."
+      },
+      {
+        "en": "まいばんべんきょうしています。",
+        "ko": "매일 밤 공부하고 있어요."
+      },
+      {
+        "en": "たんごをおぼえるのがむずかしいです。",
+        "ko": "단어를 외우는 게 어려워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u29_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "試験前の勉強計画を「〜前に〜します」を使って書いてください。",
+        "ko": "시험 전 공부 계획을 '〜前に〜します'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "study_plan",
+          "label_ko": "공부 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'まえに'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "まえに"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u29_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「にほんごのべんきょうでなにがむずかしいですか」という質問に答えを書いてください。",
+        "ko": "'にほんごのべんきょうでなにがむずかしいですか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "study_difficulty",
+          "label_ko": "공부 어려움 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'むずかしいです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "むずかしいです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u29_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "試験前の勉強計画について声に出して話してください。",
+        "ko": "시험 전 공부 계획에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "study_plan",
+          "label_ko": "공부 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'べんきょう'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "べんきょう"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u29_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「たんごをおぼえるのがすきですか」と聞かれました。声に出して答えてください。",
+        "ko": "'たんごをおぼえるのがすきですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "vocab_study",
+          "label_ko": "단어 학습 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'はい' 또는 'いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

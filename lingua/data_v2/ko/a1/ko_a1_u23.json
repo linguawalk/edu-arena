@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "ko_a1_u23",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 23,
+    "title": "Birthday (생일)",
+    "title_ko": "생일",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about your birthday, use « 제 생일은 ~예요 » (My birthday is ~). To celebrate, use « 생일 축하해요! » (Happy birthday!).",
+    "explanation_ko": "생일을 말할 때는 '제 생일은 ~예요', 축하할 때는 '생일 축하해요!'를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "My birthday is in April.",
+        "ko": "제 생일은 4월이에요."
+      },
+      {
+        "en": "Happy birthday!",
+        "ko": "생일 축하해요!"
+      },
+      {
+        "en": "Let's celebrate your birthday.",
+        "ko": "생일을 축하해줄게요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u23_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about your birthday using «제 생일은 ~예요».",
+        "ko": "'제 생일은 ~예요'를 사용해서 자신의 생일에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday",
+          "label_ko": "생일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '생일' (birthday)?",
+          "type": "keyword_match",
+          "target": [
+            "생일"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u23_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«생일이 언제예요?» (When is your birthday?) Answer this question.",
+        "ko": "'생일이 언제예요?'(생일을 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday_date",
+          "label_ko": "생일 날짜 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Did you write at least 5 characters?",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u23_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say «생일 축하해요!» (Happy birthday!) out loud to a friend.",
+        "ko": "친구에게 '생일 축하해요!'를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "happy_birthday",
+          "label_ko": "생일 축하 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '생일' (birthday)?",
+          "type": "keyword_match",
+          "target": [
+            "생일"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u23_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«생일을 축하해줄 거예요?» (Are you going to celebrate their birthday?) Answer out loud.",
+        "ko": "'생일을 축하해줄 거예요?'(생일 축하 계획을 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday",
+          "label_ko": "생일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

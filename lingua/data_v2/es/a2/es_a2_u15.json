@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "es_a2_u15",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 15,
+    "title": "Entrevista de trabajo",
+    "title_ko": "면접",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about your strengths, we use « Mi punto fuerte es... ». To ask about experience, we use « ¿Tiene experiencia con...? ».",
+    "explanation_ko": "장점을 말할 때는 'Mi punto fuerte es...'(제 장점은 ~예요), 경험을 물을 때는 '¿Tiene experiencia con...?'(~경험 있으세요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Mi punto fuerte es el trabajo en equipo.",
+        "ko": "제 장점은 팀워크예요."
+      },
+      {
+        "en": "¿Tiene experiencia con atención al cliente?",
+        "ko": "고객 서비스 경험 있으세요?"
+      },
+      {
+        "en": "Tengo tres años de experiencia.",
+        "ko": "저는 3년의 경력이 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u15_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba su punto fuerte usando «Mi punto fuerte es...».",
+        "ko": "'Mi punto fuerte es...'를 사용해서 자신의 장점을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "strength",
+          "label_ko": "장점 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'punto fuerte'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "punto fuerte"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u15_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Tiene experiencia con atención al cliente?» Responda a esta pregunta.",
+        "ko": "'¿Tiene experiencia con atención al cliente?'(고객 서비스 경험 있으세요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "experience",
+          "label_ko": "경험 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u15_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta su punto fuerte.",
+        "ko": "소리 내어 자신의 장점을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "strength",
+          "label_ko": "장점 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'fuerte'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "fuerte"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u15_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Tiene tres años de experiencia?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Tiene tres años de experiencia?'(3년의 경력이 있으세요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "years_experience",
+          "label_ko": "경력 연수 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

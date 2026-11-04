@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "id": "en_a2_u44",
+    "domain": "language",
+    "lang": "en",
+    "level": "a2",
+    "unit": 44,
+    "title": "Banking Basics",
+    "title_ko": "은행 업무",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: common banking transactions and questions.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 흔한 은행 업무와 질문",
+    "key_expressions": [
+      {
+        "en": "I'd like to transfer some money.",
+        "ko": "돈을 좀 이체하고 싶어요."
+      },
+      {
+        "en": "What's the exchange rate today?",
+        "ko": "오늘 환율이 어떻게 되나요?"
+      },
+      {
+        "en": "I need to check my balance.",
+        "ko": "잔액을 확인해야 해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a2_u44_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write what you would say at the bank to transfer money to a friend.",
+        "ko": "친구에게 돈을 이체하기 위해 은행에서 할 말을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bank_transaction",
+          "label_ko": "은행 거래 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I'd like to transfer'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i'd like to transfer",
+            "transfer money",
+            "i want to transfer"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "'please'를 포함했는가",
+          "type": "keyword_match",
+          "target": [
+            "please"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u44_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "A bank teller asks: 'Would you like to check your account balance?' Write your reply.",
+        "ko": "은행 직원이 'Would you like to check your account balance?'라고 묻습니다. 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "balance_check",
+          "label_ko": "잔액 확인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes' 또는 'No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'balance'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "balance"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u44_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Role-play asking a bank teller about the exchange rate, out loud.",
+        "ko": "은행 직원에게 환율을 묻는 상황을 소리 내어 연기해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "exchange_rate",
+          "label_ko": "환율 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'exchange rate'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "exchange rate"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a2_u44_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Do you check your bank account often?'",
+        "ko": "소리 내어 답해 보세요: 'Do you check your bank account often?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "habit",
+          "label_ko": "습관 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes' 또는 'No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

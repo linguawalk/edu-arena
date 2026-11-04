@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "id": "de_a1_u41",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 41,
+    "title": "Lebensmitteleinkauf",
+    "title_ko": "장보기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To ask if a store has something, we use « Haben Sie...? ». To say what you need to buy, we use « Ich brauche... ».",
+    "explanation_ko": "가게에 물건이 있는지 물을 때는 'Haben Sie...?'(~있어요?), 살 것을 말할 때는 'Ich brauche...'(~이 필요해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Haben Sie frisches Obst?",
+        "ko": "신선한 과일 있어요?"
+      },
+      {
+        "en": "Ich brauche Milch und Eier.",
+        "ko": "우유와 계란이 필요해요."
+      },
+      {
+        "en": "Wo finde ich das Brot?",
+        "ko": "빵은 어디 있어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u41_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie, was Sie brauchen, und benutzen Sie dabei „Ich brauche...“.",
+        "ko": "'Ich brauche...'를 사용해서 필요한 것을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "need",
+          "label_ko": "필요 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich brauche'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich brauche",
+            "ich brauche"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u41_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Haben Sie frisches Obst?“ Beantworten Sie diese Frage.",
+        "ko": "'Haben Sie frisches Obst?'(신선한 과일 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "store_availability",
+          "label_ko": "재고 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u41_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Fragen Sie laut, wo Sie das Brot finden.",
+        "ko": "소리 내어 빵이 어디 있는지 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "find_item",
+          "label_ko": "물건 찾기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'finde' 또는 'Wo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "finde",
+            "Wo",
+            "wo"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u41_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Brauchen Sie Milch und Eier?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Brauchen Sie Milch und Eier?'(우유랑 계란 필요해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "need_confirm",
+          "label_ko": "필요 확인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

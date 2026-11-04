@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "id": "ko_a2_u16",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a2",
+    "unit": 16,
+    "title": "Technology Skills (-을 수 있어요 계속)",
+    "title_ko": "기술 활용",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe tech skills, continue using « -을/ㄹ 수 있어요 » (I can ~). For example, « 코딩할 수 있어요 » (I can code).",
+    "explanation_ko": "기술 능력을 말할 때는 계속해서 '-을/ㄹ 수 있어요'를 씁니다. 예: '코딩할 수 있어요'.",
+    "key_expressions": [
+      {
+        "en": "I can code.",
+        "ko": "저는 코딩할 수 있어요."
+      },
+      {
+        "en": "I can edit videos.",
+        "ko": "저는 영상 편집을 할 수 있어요."
+      },
+      {
+        "en": "Can you use this program?",
+        "ko": "이 프로그램을 사용할 수 있어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a2_u16_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe a tech skill using «-을/ㄹ 수 있어요».",
+        "ko": "'-을/ㄹ 수 있어요'를 사용해서 기술 능력을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_skill",
+          "label_ko": "기술 능력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Does it end with 수 있어요?",
+          "type": "pattern_regex",
+          "target": "수 있어요[.]?$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u16_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«이 프로그램을 사용할 수 있어요?» (Can you use this program?) Answer this question.",
+        "ko": "'이 프로그램을 사용할 수 있어요?'(프로그램 사용 능력을 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_skill",
+          "label_ko": "기술 능력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u16_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say a tech skill out loud using «-을/ㄹ 수 있어요».",
+        "ko": "'-을/ㄹ 수 있어요'를 사용해서 소리 내어 기술 능력을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_skill",
+          "label_ko": "기술 능력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Does it end with 수 있어요?",
+          "type": "pattern_regex",
+          "target": "수 있어요[.]?$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a2_u16_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«코딩할 수 있어요?» (Can you code?) Answer out loud.",
+        "ko": "'코딩할 수 있어요?'(코딩 능력을 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_skill",
+          "label_ko": "기술 능력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

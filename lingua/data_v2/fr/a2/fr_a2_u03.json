@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_a2_u03",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 3,
+    "title": "Projets futurs",
+    "title_ko": "미래 계획",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler de projets futurs, on utilise « Je vais... » (futur proche) ou « J'ai l'intention de... ».",
+    "explanation_ko": "미래 계획을 말할 때는 'Je vais...'(가까운 미래) 또는 'J'ai l'intention de...'(~할 생각이에요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je vais voyager en Italie l'année prochaine.",
+        "ko": "내년에 이탈리아로 여행 갈 거예요."
+      },
+      {
+        "en": "J'ai l'intention d'apprendre le français.",
+        "ko": "프랑스어를 배울 생각이에요."
+      },
+      {
+        "en": "Qu'est-ce que vous allez faire ce soir ?",
+        "ko": "오늘 저녁에 뭐 할 거예요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u03_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez un projet futur en utilisant « Je vais... ».",
+        "ko": "미래 계획을 'Je vais...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "future_plan",
+          "label_ko": "미래 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je vais'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je vais",
+            "je vais"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u03_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Qu'est-ce que vous allez faire ce soir ? » Répondez à cette question.",
+        "ko": "'Qu'est-ce que vous allez faire ce soir ?'(오늘 저녁에 뭐 할 거예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tonight_plan",
+          "label_ko": "오늘 저녁 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'vais'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "vais"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u03_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez d'un projet futur à voix haute en utilisant « J'ai l'intention de... ».",
+        "ko": "'J'ai l'intention de...'를 사용해서 소리 내어 미래 계획을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "intention",
+          "label_ko": "의도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'l'intention'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "l'intention"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u03_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous allez voyager l'année prochaine ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous allez voyager l'année prochaine ?'(내년에 여행 갈 거예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "future_plan",
+          "label_ko": "미래 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

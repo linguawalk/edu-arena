@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_b2_u07",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b2",
+    "unit": 7,
+    "title": "不管...都...",
+    "title_ko": "不管...都... (~에 상관없이)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「不管...都...」和「无论...都...」意思相近，「不管」更口语化。「不管你说什么，我都不会改变主意」。",
+    "explanation_ko": "'不管...都...'는 '无论...都...'와 의미가 비슷하며, '不管'가 더 구어체입니다. '不管你说什么，我都不会改变主意'(당신이 뭐라고 하든 저는 마음을 안 바꿔요).",
+    "key_expressions": [
+      {
+        "en": "不管你说什么，我都不会改变主意。",
+        "ko": "당신이 뭐라고 하든 저는 마음을 안 바꿔요."
+      },
+      {
+        "en": "不管多难，我都要试试。",
+        "ko": "아무리 어려워도 시도해볼 거예요."
+      },
+      {
+        "en": "不管谁来，我都会开门。",
+        "ko": "누가 오든 문을 열어줄 거예요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b2_u07_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「不管...都...」写出无论如何都不变的态度。",
+        "ko": "어떤 상황이든 변하지 않는 태도를 '不管...都...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "buguan_dou",
+          "label_ko": "不管...都...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'不管'과 '都'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "不管.{0,15}都",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u07_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你会改变主意吗？」请用「不管...都...」回答。",
+        "ko": "'你会改变主意吗？'(마음을 바꿀 거예요?)라는 질문에 '不管...都...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "buguan_dou",
+          "label_ko": "不管...都...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'不管'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "不管"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u07_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「不管...都...」说出不变的态度。",
+        "ko": "'不管...都...'를 사용해서 소리 내어 변하지 않는 태도를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "buguan_dou",
+          "label_ko": "不管...都...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'不管' 또는 '都'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "不管",
+            "都"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b2_u07_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「不管多难，你都会试试吗？」有人问你。请大声回答。",
+        "ko": "'不管多难，你都会试试吗？'(아무리 어려워도 시도해볼 거예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "buguan_dou",
+          "label_ko": "不管...都...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'会' 또는 '不会'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "会",
+            "不会"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

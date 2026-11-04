@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "zh_a1_u27",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 27,
+    "title": "运动2",
+    "title_ko": "운동2",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说运动频率用「我每...锻炼」，说健身用「我去健身房」。",
+    "explanation_ko": "운동 빈도를 말할 때는 '我每...锻炼'(저는 ~마다 운동해요), 헬스를 말할 때는 '我去健身房'(저는 헬스장에 가요)을 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我每天锻炼。",
+        "ko": "저는 매일 운동해요."
+      },
+      {
+        "en": "我去健身房。",
+        "ko": "저는 헬스장에 가요."
+      },
+      {
+        "en": "运动对身体好。",
+        "ko": "운동은 몸에 좋아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u27_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我每...锻炼」写出你的运动频率。",
+        "ko": "'我每...锻炼'을 사용해서 운동 빈도를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "exercise_freq",
+          "label_ko": "운동 빈도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'锻炼'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "锻炼"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u27_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你去健身房吗？」请回答这个问题。",
+        "ko": "'你去健身房吗？'(헬스장 가요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "gym",
+          "label_ko": "헬스장 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'健身房'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "健身房"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u27_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你的运动习惯。",
+        "ko": "소리 내어 운동 습관을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "exercise_freq",
+          "label_ko": "운동 빈도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'锻炼' 또는 '健身房'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "锻炼",
+            "健身房"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u27_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「运动对身体好吗？」有人问你。请大声回答。",
+        "ko": "'运动对身体好吗？'(운동이 몸에 좋아요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "exercise_good",
+          "label_ko": "운동 효과 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '好'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "好"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

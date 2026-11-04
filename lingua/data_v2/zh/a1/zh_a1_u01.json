@@ -1,0 +1,243 @@
+{
+  "meta": {
+    "id": "zh_a1_u01",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 1,
+    "title": "打招呼、自我介绍",
+    "title_ko": "인사·자기소개",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "见面时用「你好」打招呼，用「我叫...」介绍自己的名字。",
+    "explanation_ko": "만났을 때는 '你好'(안녕하세요)로 인사하고, '我叫...'(저는 ~라고 해요)로 자신의 이름을 소개합니다.",
+    "key_expressions": [
+      {
+        "en": "你好，我叫金城。",
+        "ko": "안녕하세요, 저는 김성이라고 해요."
+      },
+      {
+        "en": "很高兴认识你。",
+        "ko": "만나서 반가워요."
+      },
+      {
+        "en": "你叫什么名字？",
+        "ko": "이름이 뭐예요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u01_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「你好」和「我叫」自我介绍。",
+        "ko": "'你好'와 '我叫'를 사용해서 자기소개를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "greeting_intro",
+          "label_ko": "인사·자기소개 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'你好'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "你好"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'我叫'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我叫"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u01_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你叫什么名字？」请回答这个问题。",
+        "ko": "'你叫什么名字？'(이름이 뭐예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "name_intro",
+          "label_ko": "이름 소개 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我叫'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我叫"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u01_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出自我介绍。",
+        "ko": "소리 내어 자기소개를 해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "greeting_intro",
+          "label_ko": "인사·자기소개 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'你好' 또는 '我叫'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "你好",
+            "我叫"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u01_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「很高兴认识你」有人对你这样说。请大声回答。",
+        "ko": "'很高兴认识你'(만나서 반가워요)라는 말을 들었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "nice_to_meet",
+          "label_ko": "반가움 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我也是' 또는 '高兴'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我也是",
+            "高兴"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

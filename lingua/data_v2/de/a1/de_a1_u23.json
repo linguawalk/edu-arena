@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "de_a1_u23",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 23,
+    "title": "Geburtstage",
+    "title_ko": "생일",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To say when your birthday is, we use « Mein Geburtstag ist am... ». To wish someone happy birthday, we use « Alles Gute zum Geburtstag! ».",
+    "explanation_ko": "생일을 말할 때는 'Mein Geburtstag ist am...'(제 생일은 ~예요), 생일 축하할 때는 'Alles Gute zum Geburtstag!'(생일 축하해요!)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Mein Geburtstag ist am dritten März.",
+        "ko": "제 생일은 3월 3일이에요."
+      },
+      {
+        "en": "Alles Gute zum Geburtstag!",
+        "ko": "생일 축하해요!"
+      },
+      {
+        "en": "Ich feiere meinen Geburtstag mit Freunden.",
+        "ko": "저는 친구들과 생일을 축하해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u23_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie Ihr Geburtsdatum und benutzen Sie dabei „Mein Geburtstag ist am...“.",
+        "ko": "'Mein Geburtstag ist am...'를 사용해서 생일을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday",
+          "label_ko": "생일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Geburtstag ist'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Geburtstag ist"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u23_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Heute ist der Geburtstag Ihres Freundes. Schreiben Sie ihm einen Glückwunsch.",
+        "ko": "오늘은 친구의 생일입니다. 친구에게 생일 축하 메시지를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday_wish",
+          "label_ko": "생일 축하 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Alles Gute'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Alles Gute"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u23_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie Ihr Geburtsdatum laut.",
+        "ko": "소리 내어 자신의 생일을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday",
+          "label_ko": "생일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Geburtstag'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Geburtstag"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u23_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Heute ist Ihr Geburtstag. Ein Freund sagt „Alles Gute zum Geburtstag!“. Antworten Sie laut.",
+        "ko": "오늘은 당신의 생일입니다. 친구가 'Alles Gute zum Geburtstag!'(생일 축하해요!)라고 말했습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday_thanks",
+          "label_ko": "생일 감사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Danke'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Danke",
+            "danke"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

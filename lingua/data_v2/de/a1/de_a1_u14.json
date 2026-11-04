@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "de_a1_u14",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 14,
+    "title": "Wetter 1",
+    "title_ko": "날씨 1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about the weather, we use « Es ist... ». To say it's raining, we use « Es regnet ».",
+    "explanation_ko": "날씨를 말할 때는 'Es ist...'(날씨가 ~해요), 비가 온다고 말할 때는 'Es regnet'(비가 와요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Heute ist es schön.",
+        "ko": "오늘 날씨가 좋아요."
+      },
+      {
+        "en": "Es regnet.",
+        "ko": "비가 와요."
+      },
+      {
+        "en": "Es ist kalt.",
+        "ko": "날씨가 추워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u14_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie das heutige Wetter und benutzen Sie dabei „Es ist...“.",
+        "ko": "오늘 날씨를 'Es ist...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather",
+          "label_ko": "날씨 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Es ist'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Es ist",
+            "es ist"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u14_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Regnet es heute?“ Beantworten Sie diese Frage.",
+        "ko": "'Regnet es heute?'(오늘 비 와요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rain",
+          "label_ko": "비 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'regnet' 또는 'Ja/Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "regnet",
+            "Ja",
+            "Nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u14_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie das Wetter laut.",
+        "ko": "소리 내어 오늘 날씨를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather",
+          "label_ko": "날씨 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Es ist'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Es ist",
+            "es ist"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u14_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist es kalt?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist es kalt?'(추워요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cold",
+          "label_ko": "추위 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

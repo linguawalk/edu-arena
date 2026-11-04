@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "zh_a1_u41",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 41,
+    "title": "买食品",
+    "title_ko": "식료품 쇼핑",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "买食品用「我要买...」，问新鲜度用「新鲜吗？」。",
+    "explanation_ko": "식료품을 살 때는 '我要买...'(~을 살게요), 신선도를 물을 때는 '新鲜吗？'(신선해요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我要买一些水果。",
+        "ko": "과일을 좀 살게요."
+      },
+      {
+        "en": "这个新鲜吗？",
+        "ko": "이거 신선해요?"
+      },
+      {
+        "en": "我需要一斤苹果。",
+        "ko": "사과 한 근이 필요해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u41_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我要买...」写出你要买的食品。",
+        "ko": "'我要买...'를 사용해서 사고 싶은 식품을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "grocery",
+          "label_ko": "식료품 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我要买'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我要买"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u41_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「这个新鲜吗？」请回答这个问题。",
+        "ko": "'这个新鲜吗？'(이거 신선해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "freshness",
+          "label_ko": "신선도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'新鲜'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "新鲜"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u41_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你要买的食品。",
+        "ko": "소리 내어 사고 싶은 식품을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "grocery",
+          "label_ko": "식료품 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我要买'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我要买"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u41_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你需要多少？」有人问你。请大声回答。",
+        "ko": "'你需要多少？'(얼마나 필요하세요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "quantity",
+          "label_ko": "수량 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 3자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 3,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

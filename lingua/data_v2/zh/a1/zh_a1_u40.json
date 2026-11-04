@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "zh_a1_u40",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 40,
+    "title": "家人的活动",
+    "title_ko": "가족 활동",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说家人一起做的事用「我们一起...」，比如「我们一起吃饭」。",
+    "explanation_ko": "가족이 함께 하는 것을 말할 때는 '我们一起...'(우리는 같이 ~해요)를 씁니다. 예: '我们一起吃饭'(우리는 같이 밥을 먹어요).",
+    "key_expressions": [
+      {
+        "en": "我们一起吃饭。",
+        "ko": "우리는 같이 밥을 먹어요."
+      },
+      {
+        "en": "周末我们一起去公园。",
+        "ko": "주말에 우리는 같이 공원에 가요."
+      },
+      {
+        "en": "我们常常一起看电视。",
+        "ko": "우리는 자주 같이 TV를 봐요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u40_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我们一起...」写出你家人一起做的事。",
+        "ko": "'我们一起...'를 사용해서 가족이 함께 하는 일을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "family_activity",
+          "label_ko": "가족 활동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我们一起'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我们一起"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u40_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「周末你和家人做什么？」请回答这个问题。",
+        "ko": "'周末你和家人做什么？'(주말에 가족과 뭐 해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "family_activity",
+          "label_ko": "가족 활동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u40_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你家人一起做的事。",
+        "ko": "소리 내어 가족이 함께 하는 일을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "family_activity",
+          "label_ko": "가족 활동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我们一起'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我们一起"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u40_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你们常常一起看电视吗？」有人问你。请大声回答。",
+        "ko": "'你们常常一起看电视吗？'(자주 같이 TV 봐요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "family_activity",
+          "label_ko": "가족 활동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

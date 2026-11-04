@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "zh_a2_u12",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 12,
+    "title": "健康建议",
+    "title_ko": "건강 조언",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "给健康建议用「你最好...」，比如「你最好去医院」。",
+    "explanation_ko": "건강 조언을 할 때는 '你最好...'(~하는 게 좋겠어요)를 씁니다. 예: '你最好去医院'(병원에 가는 게 좋겠어요).",
+    "key_expressions": [
+      {
+        "en": "你最好去医院。",
+        "ko": "병원에 가는 게 좋겠어요."
+      },
+      {
+        "en": "你应该好好休息。",
+        "ko": "푹 쉬는 게 좋겠어요."
+      },
+      {
+        "en": "多喝水。",
+        "ko": "물을 많이 마셔요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u12_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「你最好...」给不舒服的朋友建议。",
+        "ko": "컨디션이 안 좋은 친구에게 조언을 '你最好...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'你最好'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "你最好"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u12_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「感冒了该怎么办？」请回答这个问题。",
+        "ko": "'感冒了该怎么办？'(감기 걸렸을 때 어떻게 해야 해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cold_advice",
+          "label_ko": "감기 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'最好' 또는 '应该'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "最好",
+            "应该"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u12_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声给不舒服的朋友建议。",
+        "ko": "컨디션이 안 좋은 친구에게 소리 내어 조언을 해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'最好'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "最好"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u12_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「我应该休息吗？」有人问你。请大声回答。",
+        "ko": "'我应该休息吗？'(쉬는 게 좋을까요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rest_advice",
+          "label_ko": "휴식 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

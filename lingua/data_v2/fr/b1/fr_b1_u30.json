@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_b1_u30",
+    "domain": "language",
+    "lang": "fr",
+    "level": "b1",
+    "unit": 30,
+    "title": "Accord du participe passé avec avoir",
+    "title_ko": "avoir 동사 과거분사 일치",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Avec « avoir », le participe passé s'accorde avec le COD si celui-ci est placé avant le verbe. Par exemple : « La pomme que j'ai mangée ».",
+    "explanation_ko": "'avoir'와 함께 쓸 때, 직접목적어가 동사 앞에 오면 과거분사가 그와 일치합니다. 예: 'La pomme que j'ai mangée'(제가 먹은 사과, 여성형 일치).",
+    "key_expressions": [
+      {
+        "en": "La pomme que j'ai mangée était bonne.",
+        "ko": "제가 먹은 사과는 맛있었어요."
+      },
+      {
+        "en": "Les lettres que j'ai écrites sont longues.",
+        "ko": "제가 쓴 편지들은 길어요."
+      },
+      {
+        "en": "J'ai mangé une pomme.",
+        "ko": "저는 사과를 먹었어요 (일치 없음, COD가 뒤에 옴)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_b1_u30_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase avec un COD placé avant le verbe avoir (utilisez « que » pour introduire le COD).",
+        "ko": "COD가 동사 앞에 오는 문장을 써 보세요('que'를 사용해서 COD를 도입하세요)."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "accord_avoir",
+          "label_ko": "avoir 과거분사 일치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'que'와 'ai'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "que.{0,15}ai\\s",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b1_u30_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Avez-vous mangé la pomme ? » Répondez à cette question.",
+        "ko": "'Avez-vous mangé la pomme ?'(사과 먹었어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "accord_avoir",
+          "label_ko": "avoir 과거분사 일치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b1_u30_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute une phrase avec « que...ai... » (COD avant le verbe).",
+        "ko": "소리 내어 'que...ai...'(COD가 동사 앞에 옴)를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "accord_avoir",
+          "label_ko": "avoir 과거분사 일치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'que'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "que"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_b1_u30_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Les lettres que vous avez écrites sont longues ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Les lettres que vous avez écrites sont longues ?'(쓰신 편지들이 길어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "accord_avoir",
+          "label_ko": "avoir 과거분사 일치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

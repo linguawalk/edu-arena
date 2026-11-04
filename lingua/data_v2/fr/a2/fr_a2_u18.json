@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "fr_a2_u18",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 18,
+    "title": "Problèmes techniques",
+    "title_ko": "기술적 문제",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour signaler un problème, on utilise « ... est en panne ». Par exemple : « Mon ordinateur est en panne ».",
+    "explanation_ko": "기기 문제를 말할 때는 '...est en panne'(~이 고장 났어요)를 씁니다. 예: 'Mon ordinateur est en panne'(컴퓨터가 고장 났어요).",
+    "key_expressions": [
+      {
+        "en": "Mon ordinateur est en panne.",
+        "ko": "제 컴퓨터가 고장 났어요."
+      },
+      {
+        "en": "Internet ne fonctionne pas.",
+        "ko": "인터넷이 안 돼요."
+      },
+      {
+        "en": "L'application plante souvent.",
+        "ko": "앱이 자주 다운돼요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u18_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez un problème technique en utilisant « ... est en panne ».",
+        "ko": "기기 문제를 '...est en panne'을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_problem",
+          "label_ko": "기기 문제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'en panne'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "en panne"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u18_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Internet fonctionne bien ? » Répondez à cette question.",
+        "ko": "'Internet fonctionne bien ?'(인터넷 잘 돼요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "internet_status",
+          "label_ko": "인터넷 상태 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'fonctionne' 또는 'ne fonctionne pas'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "fonctionne",
+            "ne fonctionne pas"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u18_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Décrivez à voix haute un problème avec votre ordinateur.",
+        "ko": "컴퓨터 문제에 대해 소리 내어 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_problem",
+          "label_ko": "기기 문제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'en panne'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "en panne"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u18_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Qu'est-ce qui ne va pas ? » On vous pose cette question. Décrivez à voix haute un problème avec votre ordinateur.",
+        "ko": "'Qu'est-ce qui ne va pas ?'(무슨 일이에요?)라는 질문을 받았습니다. 컴퓨터 문제를 소리 내어 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_problem",
+          "label_ko": "기기 문제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'en panne'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "en panne"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

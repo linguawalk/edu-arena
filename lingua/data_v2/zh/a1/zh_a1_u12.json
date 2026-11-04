@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a1_u12",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 12,
+    "title": "购物",
+    "title_ko": "쇼핑",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "购物时说想买用「我想买...」，问有没有用「有没有...？」。",
+    "explanation_ko": "쇼핑할 때 사고 싶은 것을 말할 때는 '我想买...'(~사고 싶어요), 있는지 물을 때는 '有没有...？'(~있어요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我想买一件衣服。",
+        "ko": "옷을 한 벌 사고 싶어요."
+      },
+      {
+        "en": "有没有大一点的？",
+        "ko": "좀 더 큰 사이즈 있어요?"
+      },
+      {
+        "en": "我可以试试吗？",
+        "ko": "입어봐도 돼요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u12_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我想买...」写出你想买的东西。",
+        "ko": "'我想买...'를 사용해서 사고 싶은 것을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "want_to_buy",
+          "label_ko": "구매 희망 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我想买'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我想买"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u12_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你想买什么？」请回答这个问题。",
+        "ko": "'你想买什么？'(뭐 사고 싶어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "want_to_buy",
+          "label_ko": "구매 희망 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我想买'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我想买"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u12_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请在商店大声问有没有大一点的尺码。",
+        "ko": "가게에서 소리 내어 큰 사이즈가 있는지 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "asking_size",
+          "label_ko": "사이즈 문의 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'有没有'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "有没有"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u12_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「可以试穿吗？」店员这样说。请大声回答。",
+        "ko": "'可以试穿吗？'(입어보실 수 있어요)라는 말을 들었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "trying_on",
+          "label_ko": "착용 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'谢谢' 또는 '好'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "谢谢",
+            "好"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

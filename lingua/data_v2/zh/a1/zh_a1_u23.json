@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_a1_u23",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 23,
+    "title": "生日",
+    "title_ko": "생일",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说生日用「我的生日是...月...号」。",
+    "explanation_ko": "생일을 말할 때는 '我的生日是...月...号'(제 생일은 ~월 ~일이에요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我的生日是五月十号。",
+        "ko": "제 생일은 5월 10일이에요."
+      },
+      {
+        "en": "生日快乐！",
+        "ko": "생일 축하해요!"
+      },
+      {
+        "en": "你的生日是什么时候？",
+        "ko": "생일이 언제예요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u23_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我的生日是...月...号」写出你的生日。",
+        "ko": "'我的生日是...月...号'를 사용해서 생일을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday",
+          "label_ko": "생일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我的生日是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我的生日是"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u23_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你的生日是什么时候？」请回答这个问题。",
+        "ko": "'你的生日是什么时候？'(생일이 언제예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday",
+          "label_ko": "생일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我的生日是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我的生日是"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u23_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你的生日。",
+        "ko": "소리 내어 생일을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday",
+          "label_ko": "생일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我的生日是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我的生日是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u23_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「生日快乐！」有人对你说。请大声回答。",
+        "ko": "'生日快乐！'(생일 축하해요!)라는 말을 들었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "thanks",
+          "label_ko": "감사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'谢谢'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "谢谢"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "fr_a1_u09",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 9,
+    "title": "Corps, santé",
+    "title_ko": "신체·건강",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour dire qu'on a mal, on utilise « J'ai mal à... ». Pour parler d'une maladie, on utilise « Je suis malade ».",
+    "explanation_ko": "아픈 곳을 말할 때는 'J'ai mal à...'(~이 아파요), 아프다는 것을 말할 때는 'Je suis malade'(저 아파요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "J'ai mal à la tête.",
+        "ko": "머리가 아파요."
+      },
+      {
+        "en": "Je suis malade aujourd'hui.",
+        "ko": "오늘 아파요."
+      },
+      {
+        "en": "J'ai mal au ventre.",
+        "ko": "배가 아파요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u09_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez où vous avez mal en utilisant « J'ai mal à... ».",
+        "ko": "아픈 곳을 'J'ai mal à...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pain",
+          "label_ko": "통증 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'J'ai mal'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "J'ai mal",
+            "j'ai mal"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u09_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Ça va ? » Répondez en utilisant « Je suis malade ».",
+        "ko": "'Ça va ?'(괜찮아요?)라는 질문에 'Je suis malade'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sick",
+          "label_ko": "아픔 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'malade'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "malade"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u09_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites où vous avez mal à voix haute.",
+        "ko": "소리 내어 아픈 곳을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pain",
+          "label_ko": "통증 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'J'ai mal'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "J'ai mal",
+            "j'ai mal"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u09_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous êtes malade ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous êtes malade ?'(아파요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sick",
+          "label_ko": "아픔 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_a1_u28",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 28,
+    "title": "衣服",
+    "title_ko": "옷",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说穿的衣服用「我穿...」，比如「我穿蓝色的衬衫」。",
+    "explanation_ko": "입는 옷을 말할 때는 '我穿...'(저는 ~을 입어요)를 씁니다. 예: '我穿蓝色的衬衫'(저는 파란색 셔츠를 입어요).",
+    "key_expressions": [
+      {
+        "en": "我穿蓝色的衬衫。",
+        "ko": "저는 파란색 셔츠를 입어요."
+      },
+      {
+        "en": "这件衣服很漂亮。",
+        "ko": "이 옷 정말 예뻐요."
+      },
+      {
+        "en": "你穿什么号的？",
+        "ko": "무슨 사이즈 입으세요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u28_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我穿...」写出你今天穿的衣服。",
+        "ko": "'我穿...'을 사용해서 오늘 입은 옷을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "clothing",
+          "label_ko": "옷차림 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我穿'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我穿"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u28_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「这件衣服怎么样？」请回答这个问题。",
+        "ko": "'这件衣服怎么样？'(이 옷 어때요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "clothing_opinion",
+          "label_ko": "옷 평가 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'漂亮' 또는 '好看'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "漂亮",
+            "好看"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u28_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你今天穿的衣服。",
+        "ko": "소리 내어 오늘 입은 옷을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "clothing",
+          "label_ko": "옷차림 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我穿'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我穿"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u28_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你穿什么号的？」店员问你。请大声回答。",
+        "ko": "'你穿什么号的？'(무슨 사이즈 입으세요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "size",
+          "label_ko": "사이즈 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 3자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 3,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

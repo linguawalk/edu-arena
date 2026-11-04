@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "de_a1_u39",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 39,
+    "title": "Ein typischer Tag",
+    "title_ko": "하루 일과",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe a typical day sequence, we use « Zuerst..., dann..., danach... ».",
+    "explanation_ko": "하루 일과의 순서를 말할 때는 'Zuerst..., dann..., danach...'(먼저 ~하고, 그다음 ~하고, 그 후에 ~해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Zuerst frühstücke ich, dann gehe ich zur Arbeit.",
+        "ko": "먼저 아침을 먹고, 그다음 출근해요."
+      },
+      {
+        "en": "Danach esse ich zu Mittag.",
+        "ko": "그 후에 점심을 먹어요."
+      },
+      {
+        "en": "Am Ende gehe ich ins Bett.",
+        "ko": "마지막으로 잠자리에 들어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u39_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschreiben Sie Ihren typischen Tagesablauf und benutzen Sie dabei „Zuerst..., dann...“.",
+        "ko": "'Zuerst..., dann...'를 사용해서 하루 일과를 순서대로 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sequence",
+          "label_ko": "순서 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Zuerst'와 'dann'을 사용했는가",
+          "type": "pattern_regex",
+          "target": "Zuerst.{0,30}dann",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u39_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Was machen Sie nach der Arbeit?“ Beantworten Sie diese Frage.",
+        "ko": "'Was machen Sie nach der Arbeit?'(퇴근 후에 뭐 해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "after_work",
+          "label_ko": "퇴근 후 활동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u39_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschreiben Sie laut Ihren typischen Tagesablauf.",
+        "ko": "소리 내어 하루 일과를 순서대로 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sequence",
+          "label_ko": "순서 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Zuerst' 또는 'dann'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Zuerst",
+            "zuerst",
+            "dann"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u39_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Gehen Sie am Ende ins Bett?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Gehen Sie am Ende ins Bett?'(마지막으로 잠자리에 드나요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bedtime",
+          "label_ko": "취침 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "es_b2_u16",
+    "domain": "language",
+    "lang": "es",
+    "level": "b2",
+    "unit": 16,
+    "title": "Atributos extendidos",
+    "title_ko": "확장 수식어",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Extended attributes place a participial phrase before the noun, common in formal writing: « El, muy discutido, proyecto ».",
+    "explanation_ko": "확장 수식어는 명사 앞에 분사구를 놓으며, 격식 있는 글에서 흔합니다: 'El, muy discutido, proyecto'(매우 논의된 프로젝트).",
+    "key_expressions": [
+      {
+        "en": "El proyecto, muy discutido en los medios, fue aprobado.",
+        "ko": "언론에서 많이 논의된 그 프로젝트가 승인됐어요."
+      },
+      {
+        "en": "La decisión, tomada tras largas negociaciones, sorprendió a todos.",
+        "ko": "긴 협상 끝에 내려진 결정이 모두를 놀라게 했어요."
+      },
+      {
+        "en": "El libro, escrito hace décadas, sigue siendo relevante.",
+        "ko": "수십 년 전에 쓰인 책이 여전히 유효해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_b2_u16_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una frase con un atributo extendido (p.ej. «El proyecto, muy discutido,...»).",
+        "ko": "확장 수식어(예: 'El proyecto, muy discutido,...')를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "atributo_extendido",
+          "label_ko": "확장 수식어",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "쉼표로 구분된 삽입구를 사용했는가",
+          "type": "pattern_regex",
+          "target": ",\\s*\\w+.{0,20},",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u16_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Sorprendió a todos la decisión?» Responda a esta pregunta.",
+        "ko": "'¿Sorprendió a todos la decisión?'(결정이 모두를 놀라게 했어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "atributo_extendido",
+          "label_ko": "확장 수식어",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u16_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una frase con un atributo extendido.",
+        "ko": "소리 내어 확장 수식어 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "atributo_extendido",
+          "label_ko": "확장 수식어",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 15자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 15,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_b2_u16_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Sigue siendo relevante el libro escrito hace décadas?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Sigue siendo relevante el libro escrito hace décadas?'(수십 년 전 책이 여전히 유효해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "atributo_extendido",
+          "label_ko": "확장 수식어",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

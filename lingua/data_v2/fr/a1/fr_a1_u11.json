@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_a1_u11",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 11,
+    "title": "École",
+    "title_ko": "학교",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler de son école, on utilise « Je vais à... ». Pour parler d'un cours, on utilise « J'ai cours de... ».",
+    "explanation_ko": "학교에 대해 말할 때는 'Je vais à...'(저는 ~에 다녀요), 수업에 대해 말할 때는 'J'ai cours de...'(저는 ~수업이 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je vais à l'université.",
+        "ko": "저는 대학교에 다녀요."
+      },
+      {
+        "en": "J'ai cours de français.",
+        "ko": "저는 프랑스어 수업이 있어요."
+      },
+      {
+        "en": "Le cours commence à neuf heures.",
+        "ko": "수업은 9시에 시작해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u11_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez où vous étudiez en utilisant « Je vais à... ».",
+        "ko": "어디서 공부하는지 'Je vais à...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "school",
+          "label_ko": "학교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je vais'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je vais",
+            "je vais"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u11_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Quel cours avez-vous aujourd'hui ? » Répondez à cette question.",
+        "ko": "'Quel cours avez-vous aujourd'hui ?'(오늘 무슨 수업 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "class",
+          "label_ko": "수업 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'cours'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "cours"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u11_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de votre école à voix haute.",
+        "ko": "소리 내어 자신의 학교에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "school",
+          "label_ko": "학교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je vais' 또는 'école'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je vais",
+            "je vais",
+            "école"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u11_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Le cours commence à quelle heure ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Le cours commence à quelle heure ?'(수업이 몇 시에 시작해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "class_time",
+          "label_ko": "수업 시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'heure' 또는 'heures'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "heure",
+            "heures"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

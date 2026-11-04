@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "fr_a2_u35",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 35,
+    "title": "Se plaindre",
+    "title_ko": "불만",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour exprimer une gêne, on utilise « ... me dérange ». Par exemple : « Le bruit me dérange ».",
+    "explanation_ko": "곤란함을 전할 때는 '...me dérange'(~때문에 곤란해요)를 씁니다. 예: 'Le bruit me dérange'(소음이 저를 곤란하게 해요).",
+    "key_expressions": [
+      {
+        "en": "Le bruit du voisin me dérange.",
+        "ko": "옆방 소음 때문에 곤란해요."
+      },
+      {
+        "en": "Je ne suis pas satisfait du service.",
+        "ko": "서비스에 불만이 있어요."
+      },
+      {
+        "en": "Pouvez-vous faire quelque chose ?",
+        "ko": "어떻게든 해주시겠어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u35_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez ce qui vous dérange en utilisant « ... me dérange ».",
+        "ko": "곤란한 것을 '...me dérange'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "complaint",
+          "label_ko": "불만 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'me dérange'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "me dérange"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u35_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Il y a un problème ? » Répondez à cette question.",
+        "ko": "'Il y a un problème ?'(뭔가 문제 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "problem",
+          "label_ko": "문제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'problème' 또는 'dérange'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "problème",
+            "dérange"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u35_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute ce qui vous dérange.",
+        "ko": "곤란한 것에 대해 소리 내어 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "complaint",
+          "label_ko": "불만 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'dérange'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "dérange"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u35_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Qu'est-ce qui ne va pas ? » On vous pose cette question. Dites à voix haute ce qui vous dérange.",
+        "ko": "'Qu'est-ce qui ne va pas ?'(무슨 일이에요?)라는 질문을 받았습니다. 곤란한 것을 소리 내어 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "complaint",
+          "label_ko": "불만 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'dérange'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "dérange"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

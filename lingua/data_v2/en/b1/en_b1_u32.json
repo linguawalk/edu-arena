@@ -1,0 +1,253 @@
+{
+  "meta": {
+    "id": "en_b1_u32",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 32,
+    "title": "Narrative Tenses Combined",
+    "title_ko": "서사 시제 종합",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Good storytelling mixes past tenses: past simple for the main events, past continuous for background scenes, and past perfect for things that happened even earlier. Combining all three makes a story clear and vivid.",
+    "explanation_ko": "좋은 이야기는 과거 시제를 섞어 씁니다: 주요 사건은 과거시제, 배경 장면은 과거진행형, 그보다 더 이전 일은 과거완료로. 세 가지를 함께 쓰면 이야기가 명확하고 생생해집니다.",
+    "key_expressions": [
+      {
+        "en": "It was raining, and I had forgotten my umbrella.",
+        "ko": "비가 오고 있었고, 저는 우산을 두고 왔었어요."
+      },
+      {
+        "en": "I was walking to work when I saw him.",
+        "ko": "출근하는 길에 그를 봤어요."
+      },
+      {
+        "en": "By the time I got home, everyone had already left.",
+        "ko": "집에 도착했을 때는 다들 이미 떠난 후였어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Tell a short story about a memorable day, using past simple, past continuous, and past perfect together.",
+        "ko": "기억에 남는 하루에 대해, 과거시제·과거진행형·과거완료를 함께 사용해서 짧은 이야기를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "narrative_tenses",
+          "label_ko": "서사 시제",
+          "min_occurrences": 3
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "과거시제를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b\\w+ed\\b|\\b(went|saw|had|was|were)\\b",
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "과거진행형을 사용했는가",
+          "type": "pattern_regex",
+          "target": "(was|were)\\s+\\w+ing",
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "과거완료를 사용했는가",
+          "type": "pattern_regex",
+          "target": "had\\s+\\w+ed\\b|had\\s+(been|gone|left|finished)",
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Can you tell me about the day you started your current job?' Write your answer using at least two past tenses.",
+        "ko": "'Can you tell me about the day you started your current job?'라는 질문에, 과거 시제 두 가지 이상을 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "narrative_tenses",
+          "label_ko": "서사 시제",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "과거시제를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b\\w+ed\\b|\\b(went|saw|felt|was|were)\\b",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "과거진행형 또는 과거완료를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(was|were)\\s+\\w+ing|had\\s+\\w+",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Tell a short story out loud about a surprising event, mixing at least two past tenses.",
+        "ko": "놀라운 사건에 대해, 과거 시제 두 가지 이상을 섞어서 소리 내어 짧은 이야기를 해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "narrative_tenses",
+          "label_ko": "서사 시제",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "과거시제를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b\\w+ed\\b|\\b(went|saw|had|was|were)\\b",
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "과거진행형 또는 과거완료를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(was|were)\\s+\\w+ing|had\\s+\\w+",
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What's the most dramatic story you can tell about your childhood?'",
+        "ko": "소리 내어 답해 보세요: 'What's the most dramatic story you can tell about your childhood?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "narrative_tenses",
+          "label_ko": "서사 시제",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "과거시제를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b\\w+ed\\b|\\b(went|saw|had|was|were)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "de_a2_u21",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 21,
+    "title": "Filme/Fernsehen (Ich finde, dass)",
+    "title_ko": "영화·TV (~라고 생각해요)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To give an opinion about a film, we use « Ich finde, dass... ». To recommend a film, we use « Ich empfehle diesen Film ».",
+    "explanation_ko": "영화에 대한 의견을 말할 때는 'Ich finde, dass...'(~라고 생각해요), 영화를 추천할 때는 'Ich empfehle diesen Film'(이 영화를 추천해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich finde, dass der Film langweilig war.",
+        "ko": "그 영화는 지루했다고 생각해요."
+      },
+      {
+        "en": "Ich empfehle diesen Film sehr.",
+        "ko": "이 영화를 정말 추천해요."
+      },
+      {
+        "en": "Diese Serie ist sehr spannend.",
+        "ko": "이 드라마는 정말 흥미진진해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u21_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Geben Sie Ihre Meinung zu einem Film und benutzen Sie dabei „Ich finde, dass...“.",
+        "ko": "'Ich finde, dass...'를 사용해서 영화에 대한 의견을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "opinion",
+          "label_ko": "의견 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich finde, dass'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich finde, dass",
+            "ich finde, dass"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u21_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Welchen Film empfehlen Sie?“ Beantworten Sie diese Frage.",
+        "ko": "'Welchen Film empfehlen Sie?'(어떤 영화 추천해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "recommend_film",
+          "label_ko": "영화 추천 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'empfehle'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "empfehle"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u21_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sprechen Sie laut über Ihre Meinung zu einem Film mit „Ich finde, dass...“.",
+        "ko": "'Ich finde, dass...'를 사용해서 소리 내어 영화에 대한 의견을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "opinion",
+          "label_ko": "의견 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich finde'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich finde",
+            "ich finde"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u21_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist diese Serie spannend?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist diese Serie spannend?'(이 드라마 흥미진진해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "series",
+          "label_ko": "드라마 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

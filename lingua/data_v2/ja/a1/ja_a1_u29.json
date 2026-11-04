@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "ja_a1_u29",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 29,
+    "title": "約束をする",
+    "title_ko": "약속하기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "予定を提案するときは「〜しませんか」を使います。「いっしょにたべませんか」のように誘います。",
+    "explanation_ko": "일정을 제안할 때는 '〜しませんか'(~하지 않을래요?)를 씁니다. 'いっしょにたべませんか'(같이 먹지 않을래요?)처럼 초대합니다.",
+    "key_expressions": [
+      {
+        "en": "いっしょにえいがをみませんか。",
+        "ko": "같이 영화 보지 않을래요?"
+      },
+      {
+        "en": "あしたひまですか。",
+        "ko": "내일 시간 있어요?"
+      },
+      {
+        "en": "3じにあいましょう。",
+        "ko": "3시에 만나요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u29_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "友だちを何かに誘う文を「〜しませんか」を使って書いてください。",
+        "ko": "친구를 무언가에 초대하는 문장을 '〜しませんか'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "invite",
+          "label_ko": "제안 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ませんか'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ませんか"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가(물음표 포함)",
+          "type": "pattern_regex",
+          "target": "[。？]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u29_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「あしたひまですか」という質問に答えを書いてください。",
+        "ko": "'あしたひまですか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "availability",
+          "label_ko": "시간 여부 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ひま' 또는 'はい/いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ひま",
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u29_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "友だちを何かに、声に出して誘ってください。",
+        "ko": "친구를 무언가에 소리 내어 초대해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "invite",
+          "label_ko": "제안 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ませんか'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ませんか"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u29_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「なんじにあいましょうか」と聞かれました。声に出して答えてください。",
+        "ko": "'なんじにあいましょうか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "meeting_time",
+          "label_ko": "만남 시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'じ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "じ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

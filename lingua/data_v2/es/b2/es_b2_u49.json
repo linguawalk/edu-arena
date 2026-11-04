@@ -1,0 +1,245 @@
+{
+  "meta": {
+    "id": "es_b2_u49",
+    "domain": "language",
+    "lang": "es",
+    "level": "b2",
+    "unit": 49,
+    "title": "Variantes estilísticas (pasiva vs. se vs. dejarse)",
+    "title_ko": "문체 변형 (수동태 vs se vs dejarse)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "The same idea can be expressed with different registers: passive (formal), « se » (neutral/spoken), or « dejarse » (possibility/passivity-focused).",
+    "explanation_ko": "같은 아이디어를 다른 언어역으로 표현할 수 있습니다: 수동태(격식체), 'se'(중립적/구어체), 'dejarse'(가능성·수동성 중심).",
+    "key_expressions": [
+      {
+        "en": "El problema es resuelto. (Pasiva)",
+        "ko": "그 문제가 해결돼요 (수동태)."
+      },
+      {
+        "en": "Se resuelve el problema. (se)",
+        "ko": "그 문제를 해결해요 (se)."
+      },
+      {
+        "en": "Se deja resolver el problema fácilmente. (dejarse)",
+        "ko": "그 문제는 쉽게 해결될 수 있어요 (dejarse)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_b2_u49_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba el mismo contenido en tres variantes: pasiva, «se», y «dejarse».",
+        "ko": "같은 내용을 수동태, 'se', 'dejarse' 세 가지 방식으로 각각 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "variantes_estilisticas",
+          "label_ko": "문체 변형",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'es' 또는 'fue'(수동)를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "es",
+            "fue"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'se' 또는 'dejarse'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "se",
+            "dejarse"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.]",
+          "min_matches": 2,
+          "points": 40,
+          "required": true
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u49_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Se deja resolver el problema fácilmente?» Responda a esta pregunta.",
+        "ko": "'¿Se deja resolver el problema fácilmente?'(그 문제가 쉽게 해결될 수 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "variantes_estilisticas",
+          "label_ko": "문체 변형",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u49_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta el mismo contenido primero en pasiva, luego con «se».",
+        "ko": "같은 내용을 먼저 수동태로, 그다음 'se'로 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "variantes_estilisticas",
+          "label_ko": "문체 변형",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_b2_u49_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Prefiere la pasiva o «se» en el día a día?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Prefiere la pasiva o «se» en el día a día?'(일상에서 수동태와 'se' 중 뭘 더 선호해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "variantes_estilisticas",
+          "label_ko": "문체 변형",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'pasiva' 또는 'se'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "pasiva",
+            "se"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "de_a1_u07",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 7,
+    "title": "Orte und Wegbeschreibung",
+    "title_ko": "장소·길 찾기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To ask for directions, we use « Wo ist...? ». To give directions, we use « Geradeaus » or « Biegen Sie links/rechts ab ».",
+    "explanation_ko": "길을 물을 때는 'Wo ist...?'(~은 어디예요?), 길을 안내할 때는 'Geradeaus'(직진하세요), 'Biegen Sie links/rechts ab'(왼쪽/오른쪽으로 도세요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Wo ist die Toilette?",
+        "ko": "화장실이 어디예요?"
+      },
+      {
+        "en": "Gehen Sie geradeaus, dann biegen Sie rechts ab.",
+        "ko": "직진해서 오른쪽으로 도세요."
+      },
+      {
+        "en": "Die Bank ist neben dem Supermarkt.",
+        "ko": "은행은 슈퍼마켓 옆에 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u07_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Fragen Sie nach dem Weg und benutzen Sie dabei „Wo ist...?“.",
+        "ko": "'Wo ist...?'를 사용해서 길을 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "asking_directions",
+          "label_ko": "길 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Wo ist' 또는 'Wo sind'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Wo ist",
+            "Wo sind",
+            "wo ist",
+            "wo sind"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u07_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Wie komme ich zur Bank?“ Antworten Sie und benutzen Sie dabei „Geradeaus“.",
+        "ko": "'Wie komme ich zur Bank?'(은행 어떻게 가요?)라는 질문에 'Geradeaus'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "giving_directions",
+          "label_ko": "길 안내 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Geradeaus'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Geradeaus",
+            "geradeaus"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u07_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Fragen Sie laut nach dem Weg.",
+        "ko": "소리 내어 길을 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "asking_directions",
+          "label_ko": "길 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Wo ist'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Wo ist",
+            "wo ist"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u07_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Biegen Sie links ab?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Biegen Sie links ab?'(왼쪽으로 도나요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "direction_answer",
+          "label_ko": "방향 답변 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

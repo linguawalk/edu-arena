@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "zh_a1_u19",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 19,
+    "title": "交通工具",
+    "title_ko": "교통수단",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说交通方式用「我坐...去...」，比如「我坐公交车去学校」。",
+    "explanation_ko": "교통수단을 말할 때는 '我坐...去...'(저는 ~을 타고 ~에 가요)를 씁니다. 예: '我坐公交车去学校'(저는 버스를 타고 학교에 가요).",
+    "key_expressions": [
+      {
+        "en": "我坐公交车去学校。",
+        "ko": "저는 버스를 타고 학교에 가요."
+      },
+      {
+        "en": "我开车上班。",
+        "ko": "저는 운전해서 출근해요."
+      },
+      {
+        "en": "地铁很方便。",
+        "ko": "지하철이 편리해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u19_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我坐...去...」写出你的交通方式。",
+        "ko": "'我坐...去...'를 사용해서 교통수단을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "transport",
+          "label_ko": "교통수단 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我坐'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我坐"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u19_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你怎么去学校？」请回答这个问题。",
+        "ko": "'你怎么去学校？'(학교 어떻게 가요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "transport",
+          "label_ko": "교통수단 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'坐' 또는 '开车'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "坐",
+            "开车"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u19_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你的交通方式。",
+        "ko": "소리 내어 자신의 교통수단을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "transport",
+          "label_ko": "교통수단 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我坐'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我坐"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u19_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「地铁方便吗？」有人问你。请大声回答。",
+        "ko": "'地铁方便吗？'(지하철이 편리해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "convenient",
+          "label_ko": "편리함 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'方便' 또는 '不方便'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "方便",
+            "不方便"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

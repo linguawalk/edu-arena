@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "ja_a1_u23",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 23,
+    "title": "誕生日",
+    "title_ko": "생일",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "誕生日を祝うときは「おたんじょうびおめでとうございます」を使います。誕生日パーティーについても話せます。",
+    "explanation_ko": "생일을 축하할 때는 'おたんじょうびおめでとうございます'(생일 축하해요)를 씁니다. 생일 파티에 대해서도 말할 수 있어요.",
+    "key_expressions": [
+      {
+        "en": "おたんじょうびおめでとうございます。",
+        "ko": "생일 축하해요."
+      },
+      {
+        "en": "たんじょうびパーティーをします。",
+        "ko": "생일 파티를 해요."
+      },
+      {
+        "en": "ケーキをたべます。",
+        "ko": "케이크를 먹어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u23_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "友だちの誕生日に、お祝いの言葉を書いてください。",
+        "ko": "친구의 생일에 축하 인사말을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday_greeting",
+          "label_ko": "생일 축하 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'おめでとう'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "おめでとう"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。！]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u23_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「たんじょうびに何をしますか」という質問に答えを書いてください。",
+        "ko": "'たんじょうびに何をしますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday_activity",
+          "label_ko": "생일 활동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'パーティー' 또는 'ケーキ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "パーティー",
+            "ケーキ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u23_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "友だちの誕生日に、声に出してお祝いを言ってください。",
+        "ko": "친구의 생일에 소리 내어 축하 인사를 해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday_greeting",
+          "label_ko": "생일 축하 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'おめでとう'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "おめでとう"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u23_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「たんじょうびパーティーをしますか」と聞かれました。声に出して答えてください。",
+        "ko": "'たんじょうびパーティーをしますか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday_party",
+          "label_ko": "생일파티 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'はい' 또는 'いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

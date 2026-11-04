@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "de_b1_u05",
+    "domain": "language",
+    "lang": "de",
+    "level": "b1",
+    "unit": 5,
+    "title": "Relativsätze (der/die/das)",
+    "title_ko": "관계문 (der/die/das)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Relative clauses use « der/die/das » to describe a noun. The relative pronoun agrees in gender and number with the noun.",
+    "explanation_ko": "관계문은 명사를 설명하기 위해 'der/die/das'를 사용합니다. 관계대명사는 명사의 성과 수에 일치합니다.",
+    "key_expressions": [
+      {
+        "en": "Das ist der Mann, der neben mir wohnt.",
+        "ko": "이분은 제 옆에 사는 남자예요."
+      },
+      {
+        "en": "Das ist die Frau, die mir geholfen hat.",
+        "ko": "이분은 저를 도와준 여자예요."
+      },
+      {
+        "en": "Das ist das Buch, das ich gelesen habe.",
+        "ko": "이건 제가 읽은 책이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b1_u05_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit einem Relativsatz (der/die/das).",
+        "ko": "관계문(der/die/das)을 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "relativsatz",
+          "label_ko": "관계문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'der' 'die' 또는 'das'를 관계대명사로 사용했는가",
+          "type": "pattern_regex",
+          "target": ",\\s*(der|die|das)\\s",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u05_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Wer ist der Mann, der neben Ihnen wohnt?“ Beantworten Sie diese Frage.",
+        "ko": "'Wer ist der Mann, der neben Ihnen wohnt?'(옆집에 사는 남자가 누구예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "relativsatz",
+          "label_ko": "관계문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u05_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit einem Relativsatz.",
+        "ko": "소리 내어 관계문을 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "relativsatz",
+          "label_ko": "관계문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'der' 'die' 또는 'das'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "der",
+            "die",
+            "das"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b1_u05_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist das die Frau, die Ihnen geholfen hat?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist das die Frau, die Ihnen geholfen hat?'(이분이 당신을 도와준 여자예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "relativsatz",
+          "label_ko": "관계문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

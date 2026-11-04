@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "es_a2_u28",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 28,
+    "title": "Desacuerdo",
+    "title_ko": "의견 차이",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To disagree politely, we use « No estoy de acuerdo ». To express your own view, we use « En mi opinión... ».",
+    "explanation_ko": "정중하게 반대할 때는 'No estoy de acuerdo'(저는 의견이 달라요), 자신의 의견을 말할 때는 'En mi opinión...'(제 생각에는...)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "No estoy de acuerdo contigo.",
+        "ko": "저는 당신과 의견이 달라요."
+      },
+      {
+        "en": "En mi opinión, eso no es correcto.",
+        "ko": "제 생각에는 그건 맞지 않아요."
+      },
+      {
+        "en": "Entiendo tu punto, pero...",
+        "ko": "당신 입장은 이해하지만..."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u28_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Exprese un desacuerdo usando «No estoy de acuerdo».",
+        "ko": "'No estoy de acuerdo'를 사용해서 다른 의견을 표현해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "disagree",
+          "label_ko": "반대 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'de acuerdo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "de acuerdo"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u28_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Qué piensas sobre esto?» Responda con «En mi opinión».",
+        "ko": "'¿Qué piensas sobre esto?'(이것에 대해 어떻게 생각해요?)라는 질문에 'En mi opinión'을 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "my_opinion",
+          "label_ko": "내 의견 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'En mi opinión'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "En mi opinión",
+            "en mi opinión"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u28_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Exprese en voz alta un desacuerdo.",
+        "ko": "소리 내어 다른 의견을 표현해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "disagree",
+          "label_ko": "반대 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'de acuerdo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "de acuerdo"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u28_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Entiende mi punto de vista?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Entiende mi punto de vista?'(제 입장 이해해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "understand",
+          "label_ko": "이해 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

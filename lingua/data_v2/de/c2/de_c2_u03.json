@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "id": "de_c2_u03",
+    "domain": "language",
+    "lang": "de",
+    "level": "c2",
+    "unit": 3,
+    "title": "Literarisches Register: gehobene Syntax",
+    "title_ko": "문학체: 정교한 통사",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "Literary register uses structures like inversion after « kaum » (« Kaum war er angekommen, da... ») for a more elegant style.",
+    "explanation_ko": "문학체는 'kaum'(~하자마자) 뒤의 도치 같은 구조('Kaum war er angekommen, da...')를 사용해서 더 우아한 문체를 만듭니다.",
+    "key_expressions": [
+      {
+        "en": "Kaum war er angekommen, da musste er schon wieder gehen.",
+        "ko": "그가 도착하자마자 그는 이미 다시 떠나야 했다."
+      },
+      {
+        "en": "So mancher hätte anders gehandelt.",
+        "ko": "많은 사람이 다르게 행동했을 것이다."
+      },
+      {
+        "en": "Selten hat man solch eine Leistung gesehen.",
+        "ko": "이런 성과는 좀처럼 볼 수 없었다."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_c2_u03_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit „Kaum... da...“ und Inversion in einem literarischen Stil.",
+        "ko": "문학체로 'Kaum...da...'와 도치를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "kaum_da",
+          "label_ko": "Kaum...da",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Kaum'과 'da'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "Kaum.{0,25}da",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_c2_u03_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Hat man selten solch eine Leistung gesehen?“ Antworten Sie im literarischen Stil.",
+        "ko": "'Hat man selten solch eine Leistung gesehen?'(이런 성과는 좀처럼 볼 수 없었어요?)라는 질문에 문학체로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "selten_inversion",
+          "label_ko": "selten+도치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 8자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 8,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_c2_u03_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz in einem gehobenen literarischen Stil.",
+        "ko": "소리 내어 정교한 문학체 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "literarisches_register",
+          "label_ko": "문학체",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_c2_u03_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist das literarische Register eleganter als das Standardregister?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist das literarische Register eleganter als das Standardregister?'(문학체가 표준체보다 우아한가요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "literarisches_register",
+          "label_ko": "문학체",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

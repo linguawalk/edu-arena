@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_b2_u13",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b2",
+    "unit": 13,
+    "title": "除非...否则...",
+    "title_ko": "除非...否则... (~하지 않는 한 ~하다)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「除非...否则...」表示唯一的例外条件，否则会有某种结果。「除非你道歉，否则我不会原谅你」。",
+    "explanation_ko": "'除非...否则...'는 유일한 예외 조건을 나타내며, 그렇지 않으면 어떤 결과가 있음을 나타냅니다. '除非你道歉，否则我不会原谅你'(사과하지 않는 한 용서 안 해요).",
+    "key_expressions": [
+      {
+        "en": "除非你道歉，否则我不会原谅你。",
+        "ko": "사과하지 않는 한 용서 안 해요."
+      },
+      {
+        "en": "除非下雨，否则我们都会去爬山。",
+        "ko": "비가 오지 않는 한 등산 갈 거예요."
+      },
+      {
+        "en": "除非有特殊情况，否则准时上班。",
+        "ko": "특별한 사정이 없는 한 제시간에 출근해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b2_u13_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「除非...否则...」写出唯一的例外条件。",
+        "ko": "유일한 예외 조건을 '除非...否则...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "chufei_fouze",
+          "label_ko": "除非...否则...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'除非'와 '否则'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "除非.{0,15}否则",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u13_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你会原谅他吗？」请用「除非...否则...」回答。",
+        "ko": "'你会原谅他吗？'(그를 용서할 거예요?)라는 질문에 '除非...否则...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "chufei_fouze",
+          "label_ko": "除非...否则...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'除非'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "除非"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u13_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「除非...否则...」说出唯一的例外条件。",
+        "ko": "'除非...否则...'를 사용해서 소리 내어 유일한 예외 조건을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "chufei_fouze",
+          "label_ko": "除非...否则...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'除非' 또는 '否则'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "除非",
+            "否则"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b2_u13_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「除非下雨，否则你们都会去吗？」有人问你。请大声回答。",
+        "ko": "'除非下雨，否则你们都会去吗？'(비가 안 오면 갈 거예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "chufei_fouze",
+          "label_ko": "除非...否则...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'会' 또는 '不会'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "会",
+            "不会"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

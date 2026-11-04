@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "es_a1_u32",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 32,
+    "title": "Peticiones",
+    "title_ko": "부탁",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To make a request, we use « ¿Puedes...? ». To ask for a favor, we use « ¿Me haces un favor? ».",
+    "explanation_ko": "부탁할 때는 '¿Puedes...?'(~해 줄 수 있어요?), 도움을 요청할 때는 '¿Me haces un favor?'(부탁 하나 들어줄래요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "¿Puedes ayudarme?",
+        "ko": "저 좀 도와줄 수 있어요?"
+      },
+      {
+        "en": "¿Me haces un favor?",
+        "ko": "부탁 하나 들어줄래요?"
+      },
+      {
+        "en": "¿Puedes pasarme la sal?",
+        "ko": "소금 좀 건네줄 수 있어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una petición usando «¿Puedes...?».",
+        "ko": "'¿Puedes...?'를 사용해서 부탁을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "request",
+          "label_ko": "부탁 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Puedes'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Puedes",
+            "puedes"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Me haces un favor?» Responda a esta pregunta.",
+        "ko": "'¿Me haces un favor?'(부탁 하나 들어줄래요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "favor_response",
+          "label_ko": "부탁 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pida algo en voz alta usando «¿Puedes pasarme...?».",
+        "ko": "'¿Puedes pasarme...?'를 사용해서 소리 내어 물건을 부탁해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "request_item",
+          "label_ko": "물건 부탁 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'pasarme'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "pasarme"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Puedes ayudarme?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Puedes ayudarme?'(도와줄 수 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "request",
+          "label_ko": "부탁 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

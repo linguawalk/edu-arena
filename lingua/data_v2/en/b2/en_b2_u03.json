@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "en_b2_u03",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 3,
+    "title": "Participle Clauses (Past)",
+    "title_ko": "분사구문 (과거분사, 축약 관계절)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Past participle clauses reduce passive relative clauses, dropping 'who/which was/were': 'The report written by Sarah was excellent' (= that was written). This is common in formal and written English.",
+    "explanation_ko": "과거분사구문은 수동태 관계절에서 'who/which was/were'를 생략해 축약합니다: 'The report written by Sarah was excellent'(that was written 생략). 격식체·문어체 영어에서 흔합니다.",
+    "key_expressions": [
+      {
+        "en": "The email sent yesterday hasn't been answered.",
+        "ko": "어제 보낸 이메일은 아직 답장이 없어요."
+      },
+      {
+        "en": "Products made in this factory are exported worldwide.",
+        "ko": "이 공장에서 만들어진 제품은 전 세계로 수출돼요."
+      },
+      {
+        "en": "The book recommended by my teacher was excellent.",
+        "ko": "선생님이 추천해주신 책은 훌륭했어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u03_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe something (a document, a product, a gift) using a reduced past participle clause instead of 'which was/that was'.",
+        "ko": "'which was/that was' 대신 과거분사구문으로 축약해서 무언가(문서, 제품, 선물)를 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "participle_past",
+          "label_ko": "과거분사구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "명사 뒤에 바로 과거분사가 이어지는 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b\\w+\\s+(written|made|sent|given|created|designed|built)\\s+by\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u03_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Was the proposal approved by your manager?' Write your answer using a reduced participle clause.",
+        "ko": "'Was the proposal approved by your manager?'라는 질문에 축약 분사구문을 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "participle_past",
+          "label_ko": "과거분사구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'approved by' 구조를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "approved by"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u03_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe out loud a gift you received, using a reduced past participle clause (e.g., 'the gift given to me by...').",
+        "ko": "받은 선물을 축약 과거분사구문(예: 'the gift given to me by...')을 사용해서 소리 내어 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "participle_past",
+          "label_ko": "과거분사구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "과거분사 구조(given/made/sent by)를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(given|made|sent|written)\\s+(to|by)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u03_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What's a piece of advice given to you that you still remember?'",
+        "ko": "소리 내어 답해 보세요: 'What's a piece of advice given to you that you still remember?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "participle_past",
+          "label_ko": "과거분사구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'given' 또는 과거분사를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "given",
+            "told"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

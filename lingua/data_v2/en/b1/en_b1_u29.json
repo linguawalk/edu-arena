@@ -1,0 +1,241 @@
+{
+  "meta": {
+    "id": "en_b1_u29",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 29,
+    "title": "Defining vs Non-defining Relative Clauses",
+    "title_ko": "한정적 vs 비한정적 관계절",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Defining relative clauses give essential information (no commas): 'The teacher who taught me math was strict.' Non-defining clauses add extra, non-essential information (with commas): 'My mother, who is 65, still works full-time.' Non-defining clauses cannot use 'that'.",
+    "explanation_ko": "한정적 관계절은 필수 정보를 줍니다(콤마 없음): 'The teacher who taught me math was strict.' 비한정적 관계절은 부가적이고 필수는 아닌 정보를 더합니다(콤마 있음): 'My mother, who is 65, still works full-time.' 비한정적 관계절에는 'that'을 쓸 수 없습니다.",
+    "key_expressions": [
+      {
+        "en": "The book that I recommended is on sale.",
+        "ko": "제가 추천한 책이 세일 중이에요."
+      },
+      {
+        "en": "My brother, who lives in Busan, is visiting this week.",
+        "ko": "부산에 사는 제 남동생이 이번 주에 방문해요."
+      },
+      {
+        "en": "This is the restaurant where we had our first date.",
+        "ko": "여기가 우리가 첫 데이트를 한 식당이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u29_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write one sentence with a defining relative clause (no commas) and one with a non-defining relative clause (with commas), about people you know.",
+        "ko": "아는 사람들에 대해, 한정적 관계절(콤마 없음) 문장 하나와 비한정적 관계절(콤마 있음) 문장 하나를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "defining_clause",
+          "label_ko": "한정적 관계절",
+          "min_occurrences": 1
+        },
+        {
+          "type": "grammar",
+          "id": "nondefining_clause",
+          "label_ko": "비한정적 관계절",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "콤마 없는 관계절을 사용했는가",
+          "type": "pattern_regex",
+          "target": "[a-z]\\s+(who|which|that)\\s+\\w+",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "콤마로 구분된 관계절을 사용했는가",
+          "type": "pattern_regex",
+          "target": ",\\s+(who|which)\\s+\\w+.{0,40},",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.!]",
+          "min_matches": 2,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u29_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Describe a family member using a non-defining relative clause with commas (e.g., 'My sister, who ~, ...').",
+        "ko": "콤마가 있는 비한정적 관계절을 사용해서 가족을 묘사해 보세요 (예: 'My sister, who ~, ...')."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "nondefining_clause",
+          "label_ko": "비한정적 관계절",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "콤마로 구분된 관계절 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": ",\\s+(who|which)\\s+",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u29_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe out loud a specific type of person you admire, using a defining relative clause without pausing (no comma).",
+        "ko": "존경하는 특정 유형의 사람을 한정적 관계절(콤마 없이)을 사용해서 소리 내어 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "defining_clause",
+          "label_ko": "한정적 관계절",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'who' 또는 'that' 관계절을 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(who|that)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u29_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Tell me about a city, which you've visited, that left a strong impression on you.'",
+        "ko": "소리 내어 답해 보세요: 'Tell me about a city, which you've visited, that left a strong impression on you.'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "relative_clause",
+          "label_ko": "관계절",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "관계대명사(who/which/that)를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(who|which|that)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "meta": {
+    "id": "zh_a2_u02",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 2,
+    "title": "昨天",
+    "title_ko": "어제",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "按顺序说昨天做的事用「先...，然后...」。",
+    "explanation_ko": "어제 있었던 일을 순서대로 말할 때는 '先...，然后...'(먼저 ~하고, 그다음에 ~했어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "昨天我先去购物，然后和朋友见面了。",
+        "ko": "어제는 먼저 쇼핑하러 갔고, 그다음에 친구를 만났어요."
+      },
+      {
+        "en": "我吃了早饭，然后去上班了。",
+        "ko": "아침을 먹고 출근했어요."
+      },
+      {
+        "en": "晚上我看了电影。",
+        "ko": "밤에는 영화를 봤어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u02_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「先...，然后...」按顺序写出昨天做的事。",
+        "ko": "어제 했던 일을 '先...，然后...'를 사용해서 순서대로 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "yesterday_sequence",
+          "label_ko": "어제 순서 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'先'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "先"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'然后'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "然后"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u02_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你昨天晚上做什么了？」请回答这个问题。",
+        "ko": "'你昨天晚上做什么了？'(어제 저녁에 뭐 했어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "last_night",
+          "label_ko": "어젯밤 활동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'了'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "了"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u02_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声按顺序说出昨天做的事。",
+        "ko": "어제 했던 일을 소리 내어 순서대로 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "yesterday_sequence",
+          "label_ko": "어제 순서 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'先' 또는 '然后'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "先",
+            "然后"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u02_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你昨天忙吗？」有人问你。请大声回答。",
+        "ko": "'你昨天忙吗？'(어제 바빴어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "yesterday_busy",
+          "label_ko": "어제 상태 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'忙' 또는 '不忙'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "忙",
+            "不忙"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

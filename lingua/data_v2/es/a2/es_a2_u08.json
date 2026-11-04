@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "es_a2_u08",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 8,
+    "title": "Experiencia de viaje (Fue...)",
+    "title_ko": "여행 경험 (~였어요)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe a past trip, we use « Fue... ». To share highlights, we use « Lo mejor fue... ».",
+    "explanation_ko": "과거 여행을 묘사할 때는 'Fue...'(~였어요), 하이라이트를 공유할 때는 'Lo mejor fue...'(가장 좋았던 건 ~였어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Fue un viaje increíble.",
+        "ko": "정말 놀라운 여행이었어요."
+      },
+      {
+        "en": "Lo mejor fue la comida.",
+        "ko": "가장 좋았던 건 음식이었어요."
+      },
+      {
+        "en": "Fue un poco cansado, pero valió la pena.",
+        "ko": "좀 피곤했지만 그럴 만한 가치가 있었어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u08_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describa un viaje pasado usando «Fue...».",
+        "ko": "'Fue...'를 사용해서 과거 여행을 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "trip_description",
+          "label_ko": "여행 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Fue'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Fue",
+            "fue"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u08_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Qué fue lo mejor de tu viaje?» Responda a esta pregunta.",
+        "ko": "'¿Qué fue lo mejor de tu viaje?'(여행에서 가장 좋았던 건 뭐였어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "best_part",
+          "label_ko": "하이라이트 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u08_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Hable en voz alta sobre un viaje usando «Fue un poco cansado, pero...».",
+        "ko": "'Fue un poco cansado, pero...'를 사용해서 소리 내어 여행에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "trip_description",
+          "label_ko": "여행 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Fue'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Fue",
+            "fue"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u08_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Fue increíble el viaje?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Fue increíble el viaje?'(여행이 놀라웠어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "trip_description",
+          "label_ko": "여행 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

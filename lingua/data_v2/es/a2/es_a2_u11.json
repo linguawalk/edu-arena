@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "es_a2_u11",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 11,
+    "title": "Síntomas (desde)",
+    "title_ko": "증상 (~부터)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To say how long you've had symptoms, we use « Tengo... desde... ». To ask when it started, we use « ¿Desde cuándo...? ».",
+    "explanation_ko": "증상이 얼마나 됐는지 말할 때는 'Tengo...desde...'(저는 ~부터 ~해요), 시작 시점을 물을 때는 '¿Desde cuándo...?'(언제부터...?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Tengo fiebre desde ayer.",
+        "ko": "저는 어제부터 열이 나요."
+      },
+      {
+        "en": "Tengo dolor de espalda desde la semana pasada.",
+        "ko": "저는 지난주부터 허리가 아파요."
+      },
+      {
+        "en": "¿Desde cuándo tiene estos síntomas?",
+        "ko": "언제부터 이 증상이 있었어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u11_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describa un síntoma usando «Tengo... desde...».",
+        "ko": "'Tengo...desde...'를 사용해서 증상을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom_since",
+          "label_ko": "증상 지속 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'desde'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "desde"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u11_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Desde cuándo tiene fiebre?» Responda a esta pregunta.",
+        "ko": "'¿Desde cuándo tiene fiebre?'(언제부터 열이 났어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "fever_since",
+          "label_ko": "열 지속 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'desde'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "desde"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u11_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describa en voz alta un síntoma usando «desde».",
+        "ko": "'desde'를 사용해서 소리 내어 증상을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom_since",
+          "label_ko": "증상 지속 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'desde'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "desde"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u11_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Tiene dolor de espalda desde la semana pasada?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Tiene dolor de espalda desde la semana pasada?'(지난주부터 허리가 아파요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "back_pain",
+          "label_ko": "허리 통증 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

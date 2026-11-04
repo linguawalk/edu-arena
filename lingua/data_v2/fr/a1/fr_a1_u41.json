@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "fr_a1_u41",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 41,
+    "title": "Faire les courses (Alimentation)",
+    "title_ko": "장보기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour demander où trouver un article, on utilise « Où puis-je trouver... ? ». Pour parler de la liste de courses, on utilise « Il me faut... ».",
+    "explanation_ko": "물건 위치를 물을 때는 'Où puis-je trouver... ?'(~은 어디서 찾을 수 있어요?), 장보기 목록을 말할 때는 'Il me faut...'(~이 필요해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Où puis-je trouver du lait ?",
+        "ko": "우유는 어디서 찾을 수 있어요?"
+      },
+      {
+        "en": "Il me faut des œufs.",
+        "ko": "달걀이 필요해요."
+      },
+      {
+        "en": "Le pain est dans l'allée trois.",
+        "ko": "빵은 3번 통로에 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u41_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Demandez où trouver un article en utilisant « Où puis-je trouver... ? ».",
+        "ko": "'Où puis-je trouver...?'를 사용해서 물건 위치를 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "finding_item",
+          "label_ko": "물건 찾기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Où puis-je trouver'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Où puis-je trouver",
+            "où puis-je trouver"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u41_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Qu'est-ce qu'il vous faut ? » Répondez en utilisant « Il me faut... ».",
+        "ko": "'Qu'est-ce qu'il vous faut ?'(뭐가 필요하세요?)라는 질문에 'Il me faut...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "needing_item",
+          "label_ko": "필요 물건 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Il me faut'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Il me faut",
+            "il me faut"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u41_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Demandez où trouver un article à voix haute au supermarché.",
+        "ko": "슈퍼마켓에서 소리 내어 물건 위치를 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "finding_item",
+          "label_ko": "물건 찾기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Où' 또는 'trouver'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Où",
+            "où",
+            "trouver"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u41_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Le pain est dans l'allée trois ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Le pain est dans l'allée trois ?'(빵이 3번 통로에 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "item_location",
+          "label_ko": "물건 위치 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

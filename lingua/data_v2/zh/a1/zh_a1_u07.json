@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a1_u07",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 7,
+    "title": "地点、问路",
+    "title_ko": "장소·길 찾기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "问路用「...在哪儿？」，指路用「一直走」「往左/右拐」。",
+    "explanation_ko": "길을 물을 때는 '...在哪儿？'(~은 어디예요?), 길을 안내할 때는 '一直走'(직진하세요), '往左/右拐'(왼쪽/오른쪽으로 도세요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "洗手间在哪儿？",
+        "ko": "화장실이 어디예요?"
+      },
+      {
+        "en": "一直走，然后往右拐。",
+        "ko": "직진해서 오른쪽으로 도세요."
+      },
+      {
+        "en": "银行在超市旁边。",
+        "ko": "은행은 슈퍼마켓 옆에 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u07_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「...在哪儿？」问路。",
+        "ko": "'...在哪儿？'을 사용해서 길을 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "asking_directions",
+          "label_ko": "길 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'在哪儿'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "在哪儿"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[？?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u07_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「银行怎么走？」请用「一直走」指路。",
+        "ko": "'银行怎么走？'(은행 어떻게 가요?)라는 질문에 '一直走'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "giving_directions",
+          "label_ko": "길 안내 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'一直走'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "一直走"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u07_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声问路。",
+        "ko": "소리 내어 길을 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "asking_directions",
+          "label_ko": "길 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'在哪儿'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "在哪儿"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u07_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「往左拐吗？」有人问你。请大声回答。",
+        "ko": "'往左拐吗？'(왼쪽으로 도나요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "direction_answer",
+          "label_ko": "방향 답변 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

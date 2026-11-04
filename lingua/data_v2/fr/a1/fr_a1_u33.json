@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "fr_a1_u33",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 33,
+    "title": "Voyage/aéroport",
+    "title_ko": "여행·공항",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour dire où on va, on utilise « Je vais à... ». Pour parler d'une réservation, on utilise « J'ai une réservation ».",
+    "explanation_ko": "가는 곳을 말할 때는 'Je vais à...'(저는 ~에 가요), 예약에 대해 말할 때는 'J'ai une réservation'(예약이 있어요)을 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je vais à Paris.",
+        "ko": "저는 파리에 가요."
+      },
+      {
+        "en": "J'ai une réservation pour deux personnes.",
+        "ko": "두 명 예약이 있어요."
+      },
+      {
+        "en": "Où est la porte d'embarquement ?",
+        "ko": "탑승구가 어디예요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u33_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez où vous allez en voyage en utilisant « Je vais à... ».",
+        "ko": "여행 가는 곳을 'Je vais à...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel_destination",
+          "label_ko": "여행지 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je vais'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je vais",
+            "je vais"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u33_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Où est la porte d'embarquement ? » On vous pose cette question dans le contexte d'un aéroport - écrivez comment vous demanderiez ceci vous-même.",
+        "ko": "공항에서 탑승구를 찾고 있습니다. 직접 물어보는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "airport_question",
+          "label_ko": "공항 질문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Où est'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Où est",
+            "où est"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u33_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites où vous allez en voyage à voix haute.",
+        "ko": "소리 내어 여행 가는 곳을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel_destination",
+          "label_ko": "여행지 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je vais'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je vais",
+            "je vais"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u33_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous avez une réservation ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous avez une réservation ?'(예약하셨어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "reservation",
+          "label_ko": "예약 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

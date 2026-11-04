@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "zh_a2_u26",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 26,
+    "title": "谈比赛",
+    "title_ko": "경기 이야기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说比赛结果用「...赢了/输了」。",
+    "explanation_ko": "경기 결과를 말할 때는 '...赢了/输了'(~이겼어요/졌어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "昨天的比赛我们赢了。",
+        "ko": "어제 경기에서 우리가 이겼어요."
+      },
+      {
+        "en": "比赛很激烈。",
+        "ko": "경기가 정말 치열했어요."
+      },
+      {
+        "en": "非常精彩。",
+        "ko": "정말 흥미진진했어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u26_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「赢了」或「输了」写出最近看过或参加过的比赛结果。",
+        "ko": "최근에 보거나 참가한 경기 결과를 '赢了' 또는 '输了'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "game_result",
+          "label_ko": "경기 결과 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'赢了' 또는 '输了'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "赢了",
+            "输了"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u26_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「比赛怎么样？」请回答这个问题。",
+        "ko": "'比赛怎么样？'(경기 어땠어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "game_review",
+          "label_ko": "경기 후기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'精彩' 또는 '激烈'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "精彩",
+            "激烈"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u26_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出最近看过或参加过的比赛。",
+        "ko": "최근에 보거나 참가한 경기에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "game_result",
+          "label_ko": "경기 결과 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'赢了' 또는 '输了'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "赢了",
+            "输了"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u26_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「比赛很激烈吗？」有人问你。请大声回答。",
+        "ko": "'比赛很激烈吗？'(경기 치열했어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "close_game",
+          "label_ko": "접전 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

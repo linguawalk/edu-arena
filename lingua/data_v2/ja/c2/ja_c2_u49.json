@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "id": "ja_c2_u49",
+    "domain": "language",
+    "lang": "ja",
+    "level": "c2",
+    "unit": 49,
+    "title": "格式マスター: 公私のコードスイッチ",
+    "title_ko": "격식 마스터: 공적·사적 코드스위칭",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "同じ内容でも、職場（敬語・漢語）と友人（タメ口・和語）では言い方を完全に切り替えます。ネイティブはこの切り替えを自然に行います。",
+    "explanation_ko": "같은 내용이라도, 직장(경어·한자어)과 친구(반말·고유어)에서는 말투를 완전히 바꿉니다. 네이티브는 이 전환을 자연스럽게 합니다.",
+    "key_expressions": [
+      {
+        "en": "かしこまりました、すぐたいおういたします。（しょくば）",
+        "ko": "알겠습니다, 바로 대응하겠습니다 (직장)."
+      },
+      {
+        "en": "わかった、すぐやるよ。（ともだち）",
+        "ko": "알았어, 바로 할게 (친구)."
+      },
+      {
+        "en": "こうしてけっこうです。（しょくば）",
+        "ko": "이렇게 하시면 됩니다 (직장)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_c2_u49_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "上司への返事を敬語で、友だちへの返事をタメ口で、同じ内容を二回書いてください。",
+        "ko": "상사에게의 답변을 경어로, 친구에게의 답변을 반말로, 같은 내용을 두 번 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "codeswitch",
+          "label_ko": "공사 전환",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'かしこまりました' 또는 'いたします'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "かしこまりました",
+            "いたします"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "タメ口(だ/よ/ね로 끝나는 문장)을 사용했는가",
+          "type": "pattern_regex",
+          "target": "(だ。|よ。|ね。)",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[。]",
+          "min_matches": 2,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ja_c2_u49_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「じょうしとともだちで、はなしかたをかえますか」という質問に答えを書いてください。",
+        "ko": "'じょうしとともだちで、はなしかたをかえますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "codeswitch",
+          "label_ko": "공사 전환",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'はい' 또는 'いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ja_c2_u49_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "同じお願いを、まず敬語で、次にタメ口で声に出して言ってください。",
+        "ko": "같은 부탁을, 먼저 경어로, 다음에 반말로 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "codeswitch",
+          "label_ko": "공사 전환",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_c2_u49_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「けいごとタメぐち、どちらがとくいですか」と聞かれました。声に出して答えてください。",
+        "ko": "'けいごとタメぐち、どちらがとくいですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "codeswitch",
+          "label_ko": "공사 전환",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'けいご' 또는 'タメぐち'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "けいご",
+            "タメぐち"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "ko_a2_u17",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a2",
+    "unit": 17,
+    "title": "Tech Problems (고장, -지 않아요)",
+    "title_ko": "기기 고장",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To report a tech problem, use « ~이/가 고장 났어요 » (~ is broken) or « ~이/가 작동하지 않아요 » (~ doesn't work).",
+    "explanation_ko": "기기 고장을 알릴 때는 '~이/가 고장 났어요' 또는 '~이/가 작동하지 않아요'를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "My phone is broken.",
+        "ko": "제 휴대폰이 고장 났어요."
+      },
+      {
+        "en": "The printer doesn't work.",
+        "ko": "프린터가 작동하지 않아요."
+      },
+      {
+        "en": "Can you fix this?",
+        "ko": "이거 고칠 수 있어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a2_u17_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Report a broken device using «~이/가 고장 났어요».",
+        "ko": "'~이/가 고장 났어요'를 사용해서 기기 고장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "broken_device",
+          "label_ko": "기기 고장 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '고장 났어요' (broken)?",
+          "type": "keyword_match",
+          "target": [
+            "고장 났어요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u17_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«프린터가 작동해요?» (Does the printer work?) Answer using «-지 않아요».",
+        "ko": "'프린터가 작동해요?'(작동 여부를 묻는 질문)에 '-지 않아요'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "not_working",
+          "label_ko": "작동 안 함 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '지 않아요' (doesn't/not)?",
+          "type": "keyword_match",
+          "target": [
+            "지 않아요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u17_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Ask out loud «이거 고칠 수 있어요?» (Can you fix this?).",
+        "ko": "'이거 고칠 수 있어요?'를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "fix_request",
+          "label_ko": "수리 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '고칠' or '수 있어요'?",
+          "type": "keyword_match",
+          "target": [
+            "고칠",
+            "수 있어요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a2_u17_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«휴대폰이 고장 났어요?» (Is your phone broken?) Answer out loud.",
+        "ko": "'휴대폰이 고장 났어요?'(휴대폰 고장 여부를 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "broken_device",
+          "label_ko": "기기 고장 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

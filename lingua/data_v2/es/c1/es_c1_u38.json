@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "es_c1_u38",
+    "domain": "language",
+    "lang": "es",
+    "level": "c1",
+    "unit": 38,
+    "title": "Cambio de registro",
+    "title_ko": "언어역 전환",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "The same idea can be expressed at different registers: « pillar » (colloquial, to catch/get) vs. « comprender » (formal, to understand).",
+    "explanation_ko": "같은 아이디어를 다른 언어역으로 표현할 수 있습니다: 'pillar'(구어체, 이해하다/잡다) vs 'comprender'(격식체, 이해하다).",
+    "key_expressions": [
+      {
+        "en": "¿Lo pillas? (coloquial)",
+        "ko": "이해돼? (구어체)"
+      },
+      {
+        "en": "¿Comprende usted la situación? (formal)",
+        "ko": "상황을 이해하시나요? (격식체)"
+      },
+      {
+        "en": "Es un curro duro. (coloquial) vs. Es un trabajo exigente. (formal)",
+        "ko": "힘든 일이야 (구어체) vs 힘든 업무예요 (격식체)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_c1_u38_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba la misma idea primero de forma coloquial («pillar»), luego formal («comprender»).",
+        "ko": "같은 생각을 먼저 구어체('pillar')로, 그다음 격식체('comprender')로 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "registro",
+          "label_ko": "언어역",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'pillar' 또는 'comprender'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "pillar",
+            "pilla",
+            "comprender",
+            "comprende"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_c1_u38_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Comprende usted la situación?» Es formal. Escriba la versión coloquial.",
+        "ko": "'¿Comprende usted la situación?'은 격식체입니다. 구어체 버전을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "pillar",
+          "label_ko": "pillar",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'pillas' 또는 'pillar'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "pillas",
+            "pillar"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_c1_u38_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta la versión formal de «Es un curro duro» usando «trabajo exigente».",
+        "ko": "'Es un curro duro'의 격식체 버전을 'trabajo exigente'를 사용해서 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "trabajo_exigente",
+          "label_ko": "trabajo exigente",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'exigente'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "exigente"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_c1_u38_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Es 'pillar' más coloquial que 'comprender'?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Es 'pillar' más coloquial que 'comprender'?'('pillar'가 'comprender'보다 구어체적인가요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "registro",
+          "label_ko": "언어역",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

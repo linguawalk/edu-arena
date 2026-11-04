@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "de_b2_u16",
+    "domain": "language",
+    "lang": "de",
+    "level": "b2",
+    "unit": 16,
+    "title": "Erweiterte Attribute",
+    "title_ko": "확장 수식어",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Extended attributes place a whole phrase before a noun instead of after it, like « die seit Jahren geplante Reise » (the trip planned for years).",
+    "explanation_ko": "확장 수식어는 명사 뒤가 아닌 앞에 구 전체를 배치합니다. 예: 'die seit Jahren geplante Reise'(수년간 계획된 여행).",
+    "key_expressions": [
+      {
+        "en": "Die seit Jahren geplante Reise beginnt morgen.",
+        "ko": "수년간 계획된 여행이 내일 시작돼요."
+      },
+      {
+        "en": "Der gestern gekaufte Laptop funktioniert gut.",
+        "ko": "어제 산 노트북이 잘 작동해요."
+      },
+      {
+        "en": "Das vor Kurzem eröffnete Restaurant ist sehr beliebt.",
+        "ko": "최근에 문을 연 식당이 정말 인기 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b2_u16_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit einem erweiterten Attribut (z.B. „die seit Jahren geplante...“).",
+        "ko": "확장 수식어(예: 'die seit Jahren geplante...')를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "erweitertes_attribut",
+          "label_ko": "확장 수식어",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "수식 구+분사+명사 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(seit|gestern|vor)\\s+\\w+\\s+\\w+(e|en|te|ten)\\s",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u16_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Funktioniert der gestern gekaufte Laptop gut?“ Beantworten Sie diese Frage.",
+        "ko": "'Funktioniert der gestern gekaufte Laptop gut?'(어제 산 노트북이 잘 작동해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "erweitertes_attribut",
+          "label_ko": "확장 수식어",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u16_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit einem erweiterten Attribut.",
+        "ko": "소리 내어 확장 수식어를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "erweitertes_attribut",
+          "label_ko": "확장 수식어",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b2_u16_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist das vor Kurzem eröffnete Restaurant beliebt?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist das vor Kurzem eröffnete Restaurant beliebt?'(최근에 문을 연 식당이 인기 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "erweitertes_attribut",
+          "label_ko": "확장 수식어",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

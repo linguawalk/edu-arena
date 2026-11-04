@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "ja_a2_u13",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 13,
+    "title": "買い物・値段(応用)",
+    "title_ko": "쇼핑·가격 (심화)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "値段について詳しく話すときは「〜より〜ほうがやすいです」や「わりびきしています」を使います。",
+    "explanation_ko": "가격에 대해 자세히 말할 때는 '〜より〜ほうがやすいです'(~보다 ~쪽이 싸요)나 'わりびきしています'(할인하고 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "このみせはあのみせよりやすいです。",
+        "ko": "이 가게는 저 가게보다 싸요."
+      },
+      {
+        "en": "20パーセントわりびきしています。",
+        "ko": "20퍼센트 할인하고 있어요."
+      },
+      {
+        "en": "もうすこしやすくなりませんか。",
+        "ko": "조금 더 싸게 안 될까요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u13_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "二つの店の値段を「〜より〜ほうがやすいです」を使って比べる文を書いてください。",
+        "ko": "두 가게의 가격을 '〜より〜ほうがやすいです'를 사용해서 비교하는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_comparison",
+          "label_ko": "가격 비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'より'와 'やすいです'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "より.{0,10}やすいです",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u13_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「わりびきしていますか」という質問に答えを書いてください。",
+        "ko": "'わりびきしていますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "discount",
+          "label_ko": "할인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'わりびき'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "わりびき"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u13_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "お店でもうすこし安くしてほしいと、声に出してお願いしてください。",
+        "ko": "가게에서 조금 더 싸게 해달라고 소리 내어 부탁해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bargain",
+          "label_ko": "흥정 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'やすく'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "やすく"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u13_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「このみせのほうがやすいですか」と聞かれました。声に出して答えてください。",
+        "ko": "'このみせのほうがやすいですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_comparison_answer",
+          "label_ko": "가격 비교 답변 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'やすい' 또는 'はい/いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "やすい",
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

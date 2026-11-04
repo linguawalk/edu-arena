@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "fr_b2_u13",
+    "domain": "language",
+    "lang": "fr",
+    "level": "b2",
+    "unit": 13,
+    "title": "Plus... plus... (corrélation)",
+    "title_ko": "Plus...plus... (상관구문)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "« Plus... plus... » exprime une corrélation croissante. Par exemple : « Plus j'étudie, plus je comprends ».",
+    "explanation_ko": "'Plus...plus...'는 증가하는 상관관계를 나타냅니다. 예: 'Plus j'étudie, plus je comprends'(공부할수록 더 이해해요).",
+    "key_expressions": [
+      {
+        "en": "Plus j'étudie, plus je comprends.",
+        "ko": "공부할수록 더 이해해요."
+      },
+      {
+        "en": "Plus on est nombreux, plus c'est amusant.",
+        "ko": "사람이 많을수록 더 재미있어요."
+      },
+      {
+        "en": "Plus je le connais, plus je l'apprécie.",
+        "ko": "그를 알수록 더 좋아하게 돼요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_b2_u13_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase avec « Plus... plus... » exprimant une corrélation.",
+        "ko": "상관관계를 'Plus... plus...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "plus_plus",
+          "label_ko": "plus...plus...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Plus'가 2번 이상 사용됐는가",
+          "type": "pattern_regex",
+          "target": "[Pp]lus.{0,20}plus",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b2_u13_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Est-ce que vous comprenez mieux en étudiant plus ? » Répondez en utilisant « Plus... plus... ».",
+        "ko": "'Est-ce que vous comprenez mieux en étudiant plus ?'(더 공부하면 더 이해해요?)라는 질문에 'Plus... plus...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "plus_plus",
+          "label_ko": "plus...plus...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Plus'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Plus",
+            "plus"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b2_u13_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute une phrase avec « Plus... plus... ».",
+        "ko": "소리 내어 'Plus... plus...'를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "plus_plus",
+          "label_ko": "plus...plus...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Plus'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Plus",
+            "plus"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_b2_u13_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Plus on est nombreux, plus c'est amusant ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Plus on est nombreux, plus c'est amusant ?'(사람이 많을수록 더 재미있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "plus_plus",
+          "label_ko": "plus...plus...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

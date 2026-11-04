@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "de_b1_u16",
+    "domain": "language",
+    "lang": "de",
+    "level": "b1",
+    "unit": 16,
+    "title": "Adjektivdeklination (unbestimmter Artikel)",
+    "title_ko": "형용사어미변화 (부정관사)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "After an indefinite article (ein/eine), the adjective ending changes according to gender and case, such as « ein großer Mann » (masculine nominative).",
+    "explanation_ko": "부정관사(ein/eine) 뒤에서 형용사 어미는 성과 격에 따라 바뀝니다. 예: 'ein großer Mann'(남성 주격).",
+    "key_expressions": [
+      {
+        "en": "Ein großer Mann steht dort.",
+        "ko": "키 큰 남자 한 명이 저기 서 있어요."
+      },
+      {
+        "en": "Ich habe eine kleine Katze.",
+        "ko": "저는 작은 고양이가 한 마리 있어요."
+      },
+      {
+        "en": "Das ist ein interessantes Buch.",
+        "ko": "이건 흥미로운 책이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b1_u16_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit einem Adjektiv nach einem unbestimmten Artikel (z.B. „ein großer...“).",
+        "ko": "부정관사 뒤에 형용사가 오는 문장(예: 'ein großer...')을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "adj_unbestimmt",
+          "label_ko": "형용사어미(부정관사)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ein' 또는 'eine'와 형용사 어미를 사용했는가",
+          "type": "pattern_regex",
+          "target": "ein[e]?\\s+\\w+(er|es|e)\\s",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u16_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Haben Sie eine kleine Katze?“ Beantworten Sie diese Frage.",
+        "ko": "'Haben Sie eine kleine Katze?'(작은 고양이가 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "adj_unbestimmt",
+          "label_ko": "형용사어미(부정관사)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u16_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit „ein interessantes...“.",
+        "ko": "소리 내어 'ein interessantes...'를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "adj_unbestimmt",
+          "label_ko": "형용사어미(부정관사)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b1_u16_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist das ein interessantes Buch?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist das ein interessantes Buch?'(이거 흥미로운 책이에요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "adj_unbestimmt",
+          "label_ko": "형용사어미(부정관사)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

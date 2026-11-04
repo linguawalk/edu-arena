@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "ja_a2_u41",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 41,
+    "title": "文化の違い",
+    "title_ko": "문화 차이",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "文化の違いを話すときは「〜くにでは〜がふつうです」を使います。",
+    "explanation_ko": "문화 차이를 말할 때는 '〜くにでは〜がふつうです'(~나라에서는 ~이 보통이에요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "わたしのくにではくつをぬぎません。",
+        "ko": "저희 나라에서는 신발을 안 벗어요."
+      },
+      {
+        "en": "にほんではおじぎをします。",
+        "ko": "일본에서는 인사할 때 절을 해요."
+      },
+      {
+        "en": "びっくりしました。",
+        "ko": "놀랐어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u41_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "自分の国と日本の違いを「わたしのくにでは〜」を使って書いてください。",
+        "ko": "자신의 나라와 일본의 차이를 'わたしのくにでは〜'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cultural_difference",
+          "label_ko": "문화 차이 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'わたしのくにでは'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "わたしのくにでは"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u41_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「にほんでびっくりしたことがありますか」という質問に答えを書いてください。",
+        "ko": "'にほんでびっくりしたことがありますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "surprise",
+          "label_ko": "놀람 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'びっくりしました' 또는 'はい/いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "びっくりしました",
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u41_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "自分の国と日本の文化の違いについて声に出して話してください。",
+        "ko": "자신의 나라와 일본의 문화 차이에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cultural_difference",
+          "label_ko": "문화 차이 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'くに' 또는 'にほん'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "くに",
+            "にほん"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u41_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「にほんのぶんかでおどろいたことがありますか」と聞かれました。声に出して答えてください。",
+        "ko": "'にほんのぶんかでおどろいたことがありますか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "culture_surprise",
+          "label_ko": "문화 놀람 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'はい' 또는 'いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

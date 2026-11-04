@@ -1,0 +1,279 @@
+{
+  "meta": {
+    "id": "en_a2_u19",
+    "domain": "language",
+    "lang": "en",
+    "level": "a2",
+    "unit": 19,
+    "title": "Housing & Apartments",
+    "title_ko": "주거와 아파트",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: describing housing features and rental conditions.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 주거 특징과 임대 조건 설명하기",
+    "key_expressions": [
+      {
+        "en": "The rent includes utilities.",
+        "ko": "월세에 공과금이 포함돼요."
+      },
+      {
+        "en": "It's on the third floor.",
+        "ko": "3층에 있어요."
+      },
+      {
+        "en": "The lease is for one year.",
+        "ko": "임대 계약은 1년이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a2_u19_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe your ideal apartment: location, size, and one important feature.",
+        "ko": "이상적인 아파트를 묘사해 보세요: 위치, 크기, 중요한 특징 하나."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing_feature",
+          "label_ko": "주거 특징 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "위치 표현을 사용했는가 (near/downtown 등)",
+          "type": "keyword_match",
+          "target": [
+            "near",
+            "downtown",
+            "close to"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "크기 표현을 사용했는가 (bedroom/floor 등)",
+          "type": "keyword_match",
+          "target": [
+            "bedroom",
+            "floor",
+            "square meters",
+            "big",
+            "small"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "분량이 충분한가 (최소 18단어)",
+          "type": "length_check",
+          "unit": "words",
+          "min": 18,
+          "points": 35,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u19_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Does your rent include utilities?' Write your answer.",
+        "ko": "'Does your rent include utilities?'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rent_info",
+          "label_ko": "월세 정보 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes' 또는 'No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'rent' 또는 'utilities'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "rent",
+            "utilities"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u19_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe your current home out loud: how many rooms, and what floor it's on.",
+        "ko": "현재 사는 집을 소리 내어 묘사해 보세요: 방 개수, 몇 층인지."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing_feature",
+          "label_ko": "주거 특징 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "방/층 관련 표현을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "bedroom",
+            "floor",
+            "room"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a2_u19_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Would you rather rent or own a home?'",
+        "ko": "소리 내어 답해 보세요: 'Would you rather rent or own a home?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "preference",
+          "label_ko": "선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'rent' 또는 'own'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "rent",
+            "own"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'I'd rather' 또는 'I prefer'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i'd rather",
+            "i prefer"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

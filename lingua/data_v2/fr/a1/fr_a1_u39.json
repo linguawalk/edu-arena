@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "fr_a1_u39",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 39,
+    "title": "Une journée typique",
+    "title_ko": "전형적인 하루",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour décrire une journée typique, on enchaîne plusieurs activités avec « D'abord..., ensuite..., puis... ».",
+    "explanation_ko": "전형적인 하루를 묘사할 때는 'D'abord..., ensuite..., puis...'(먼저 ~, 그다음 ~, 그리고 ~)로 활동을 이어서 말합니다.",
+    "key_expressions": [
+      {
+        "en": "D'abord, je prends le petit-déjeuner.",
+        "ko": "먼저, 저는 아침을 먹어요."
+      },
+      {
+        "en": "Ensuite, je vais au travail.",
+        "ko": "그다음, 저는 출근해요."
+      },
+      {
+        "en": "Puis, je rentre à la maison.",
+        "ko": "그리고, 저는 집에 돌아와요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u39_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Décrivez votre journée typique en utilisant « D'abord..., ensuite... ».",
+        "ko": "'D'abord..., ensuite...'를 사용해서 전형적인 하루를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_sequence",
+          "label_ko": "하루 순서 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'D'abord'와 'ensuite'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "D'abord.{0,30}ensuite",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u39_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Que faites-vous après le travail ? » Répondez à cette question.",
+        "ko": "'Que faites-vous après le travail ?'(퇴근 후 뭐 해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "after_work",
+          "label_ko": "퇴근 후 활동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u39_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Décrivez votre journée typique à voix haute.",
+        "ko": "소리 내어 전형적인 하루를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_sequence",
+          "label_ko": "하루 순서 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'D'abord' 또는 'ensuite'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "D'abord",
+            "d'abord",
+            "ensuite"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u39_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous rentrez à la maison après le travail ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous rentrez à la maison après le travail ?'(퇴근 후 집에 가요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "going_home",
+          "label_ko": "귀가 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "fr_a1_u35",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 35,
+    "title": "Goûts/dégoûts",
+    "title_ko": "좋아함·싫어함",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour dire qu'on n'aime pas, on utilise « Je n'aime pas... ». Pour dire ce qu'on préfère, on utilise « Je préfère... ».",
+    "explanation_ko": "싫어하는 것을 말할 때는 'Je n'aime pas...'(저는 ~을 안 좋아해요), 선호하는 것을 말할 때는 'Je préfère...'(저는 ~을 더 좋아해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je n'aime pas le café.",
+        "ko": "저는 커피를 안 좋아해요."
+      },
+      {
+        "en": "Je préfère le thé au café.",
+        "ko": "저는 커피보다 차를 더 좋아해요."
+      },
+      {
+        "en": "J'adore le chocolat.",
+        "ko": "저는 초콜릿을 정말 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u35_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez quelque chose que vous n'aimez pas en utilisant « Je n'aime pas... ».",
+        "ko": "싫어하는 것을 'Je n'aime pas...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "dislike",
+          "label_ko": "싫어함 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'n'aime pas'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "n'aime pas"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u35_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Préférez-vous le thé ou le café ? » Répondez à cette question.",
+        "ko": "'Préférez-vous le thé ou le café ?'(차와 커피 중 뭘 더 좋아해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "preference",
+          "label_ko": "선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'préfère'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "préfère"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u35_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites ce que vous n'aimez pas à voix haute.",
+        "ko": "소리 내어 싫어하는 것을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "dislike",
+          "label_ko": "싫어함 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'n'aime pas'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "n'aime pas"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u35_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous adorez le chocolat ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous adorez le chocolat ?'(초콜릿 정말 좋아해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "like_strong",
+          "label_ko": "강한 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

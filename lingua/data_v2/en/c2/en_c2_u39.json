@@ -1,0 +1,249 @@
+{
+  "meta": {
+    "id": "en_c2_u39",
+    "domain": "language",
+    "lang": "en",
+    "level": "c2",
+    "unit": 39,
+    "title": "Latinate vs Anglo-Saxon Vocabulary Register",
+    "title_ko": "라틴계 vs 앵글로색슨계 어휘 격식",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "English has two vocabulary layers: Anglo-Saxon words (short, plain, everyday: 'ask', 'start', 'get') and Latinate words (longer, formal, often used in writing: 'inquire', 'commence', 'obtain'). Native speakers instinctively switch — using Latinate words too much in casual speech sounds stiff.",
+    "explanation_ko": "영어는 두 개의 어휘 층을 가지고 있습니다: 앵글로색슨계 단어(짧고 평범하고 일상적: 'ask', 'start', 'get')와 라틴계 단어(길고 격식적이며 글에서 자주 쓰임: 'inquire', 'commence', 'obtain'). 원어민은 본능적으로 전환합니다 — 캐주얼한 대화에서 라틴계 단어를 너무 많이 쓰면 딱딱하게 들립니다.",
+    "key_expressions": [
+      {
+        "en": "Can you start the meeting? (Anglo-Saxon, casual)",
+        "ko": "회의 시작할 수 있어요? (앵글로색슨계, 캐주얼)"
+      },
+      {
+        "en": "The ceremony will commence shortly. (Latinate, formal)",
+        "ko": "행사가 곧 시작됩니다 (라틴계, 격식체)."
+      },
+      {
+        "en": "I need to get more information. (Anglo-Saxon) vs I need to obtain further information. (Latinate)",
+        "ko": "정보가 더 필요해요 (앵글로색슨계) vs 추가 정보를 취득해야 합니다 (라틴계)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_c2_u39_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write the same request twice: once using plain Anglo-Saxon vocabulary ('ask', 'get') and once using formal Latinate vocabulary ('inquire', 'obtain').",
+        "ko": "같은 요청을 두 번 써 보세요: 한 번은 평범한 앵글로색슨계 어휘('ask', 'get')로, 한 번은 격식체 라틴계 어휘('inquire', 'obtain')로."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "latinate_vocabulary",
+          "label_ko": "라틴계 어휘",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'inquire' 또는 'obtain'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "inquire",
+            "obtain"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'ask' 또는 'get'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ask",
+            "get"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "두 문장 이상인가",
+          "type": "pattern_regex",
+          "target": "[.!?]",
+          "min_matches": 2,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_c2_u39_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'When will the ceremony start?' Write a formal answer using the Latinate word 'commence'.",
+        "ko": "'When will the ceremony start?'라는 질문에 라틴계 단어 'commence'를 사용해서 격식체로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "commence",
+          "label_ko": "commence",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'commence'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "commence"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_c2_u39_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say the same idea out loud twice: casually using 'get' or 'ask', then formally using 'obtain' or 'inquire'.",
+        "ko": "같은 내용을 두 번 소리 내어 말해 보세요: 캐주얼하게 'get'이나 'ask'로, 격식체로 'obtain'이나 'inquire'로."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "latinate_vocabulary",
+          "label_ko": "라틴계 어휘",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'obtain' 또는 'inquire'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "obtain",
+            "inquire"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_c2_u39_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Does using very formal, Latin-based words in casual conversation ever sound strange to you?'",
+        "ko": "소리 내어 답해 보세요: 'Does using very formal, Latin-based words in casual conversation ever sound strange to you?'"
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "formal_register",
+          "label_ko": "격식체 어휘",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes' 또는 'No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

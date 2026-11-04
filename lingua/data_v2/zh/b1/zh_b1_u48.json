@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_b1_u48",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b1",
+    "unit": 48,
+    "title": "一...也/都不...",
+    "title_ko": "一...也/都不... (하나도 ~않다)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「一...也/都不...」强调完全否定。「我一点儿也不累」「一个人都没来」。",
+    "explanation_ko": "'一...也/都不...'는 완전한 부정을 강조합니다. '我一点儿也不累'(저는 하나도 안 피곤해요), '一个人都没来'(한 명도 안 왔어요).",
+    "key_expressions": [
+      {
+        "en": "我一点儿也不累。",
+        "ko": "저는 하나도 안 피곤해요."
+      },
+      {
+        "en": "一个人都没来。",
+        "ko": "한 명도 안 왔어요."
+      },
+      {
+        "en": "我一句话都没说。",
+        "ko": "저는 한마디도 안 했어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b1_u48_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「一...也不...」或「一...都不...」写出完全否定的句子。",
+        "ko": "완전한 부정을 '一...也不...' 또는 '一...都不...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yi_yebu",
+          "label_ko": "一...也/都不...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'一'과 '也不' 또는 '都不'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "一.{0,10}(也不|都不)",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u48_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你累不累？」请用「一点儿也不」回答。",
+        "ko": "'你累不累？'(피곤해요?)라는 질문에 '一点儿也不'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yi_yebu",
+          "label_ko": "一...也/都不...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'一点儿也不'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "一点儿也不"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u48_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出一个完全否定的句子。",
+        "ko": "완전한 부정의 문장을 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yi_yebu",
+          "label_ko": "一...也/都不...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'也不' 또는 '都不'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "也不",
+            "都不"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b1_u48_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「一个人都没来吗？」有人问你。请大声回答。",
+        "ko": "'一个人都没来吗？'(한 명도 안 왔어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yi_yebu",
+          "label_ko": "一...也/都不...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

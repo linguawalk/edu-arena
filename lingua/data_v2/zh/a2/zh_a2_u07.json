@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_a2_u07",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 7,
+    "title": "旅行计划",
+    "title_ko": "여행 계획",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说旅行计划用「我想去...旅游」，说订好了用「我已经订了...」。",
+    "explanation_ko": "여행 계획을 말할 때는 '我想去...旅游'(~로 여행 가고 싶어요), 예약 완료를 말할 때는 '我已经订了...'(이미 ~을 예약했어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "暑假我想去海南旅游。",
+        "ko": "여름 방학에 하이난으로 여행 가고 싶어요."
+      },
+      {
+        "en": "我已经订了酒店。",
+        "ko": "이미 호텔을 예약했어요."
+      },
+      {
+        "en": "我买了机票。",
+        "ko": "비행기 티켓을 샀어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u07_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我想去...旅游」写出想去的旅行地。",
+        "ko": "가고 싶은 여행지를 '我想去...旅游'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel_plan",
+          "label_ko": "여행 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我想去'와 '旅游'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "我想去.{0,10}旅游",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u07_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你订酒店了吗？」请回答这个问题。",
+        "ko": "'你订酒店了吗？'(호텔 예약했어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "reservation",
+          "label_ko": "예약 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'订'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "订"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u07_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出想去的旅行地。",
+        "ko": "가고 싶은 여행지에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel_plan",
+          "label_ko": "여행 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'旅游' 또는 '想去'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "旅游",
+            "想去"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u07_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你买机票了吗？」有人问你。请大声回答。",
+        "ko": "'你买机票了吗？'(비행기 티켓 샀어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ticket",
+          "label_ko": "티켓 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

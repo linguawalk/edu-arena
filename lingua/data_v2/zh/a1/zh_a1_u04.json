@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a1_u04",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 4,
+    "title": "颜色、形状",
+    "title_ko": "색깔·모양",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "描述颜色用「...是...色的」，描述喜欢的颜色用「我喜欢...色」。",
+    "explanation_ko": "색깔을 묘사할 때는 '...是...色的'(~은 ~색이에요), 좋아하는 색을 말할 때는 '我喜欢...色'(저는 ~색을 좋아해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我的书包是蓝色的。",
+        "ko": "제 책가방은 파란색이에요."
+      },
+      {
+        "en": "我喜欢红色。",
+        "ko": "저는 빨간색을 좋아해요."
+      },
+      {
+        "en": "这个是圆形的。",
+        "ko": "이건 동그란 모양이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u04_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我喜欢...色」写出你喜欢的颜色。",
+        "ko": "'我喜欢...色'를 사용해서 좋아하는 색을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "color_pref",
+          "label_ko": "색깔 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我喜欢'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我喜欢"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u04_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你的书包是什么颜色的？」请回答这个问题。",
+        "ko": "'你的书包是什么颜色的？'(책가방이 무슨 색이에요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "color_desc",
+          "label_ko": "색깔 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'色的'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "色的"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u04_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你喜欢的颜色。",
+        "ko": "소리 내어 좋아하는 색을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "color_pref",
+          "label_ko": "색깔 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我喜欢'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我喜欢"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u04_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「这个是圆形的吗？」有人问你。请大声回答。",
+        "ko": "'这个是圆形的吗？'(이거 동그란 모양이에요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "shape_desc",
+          "label_ko": "모양 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "de_a1_u21",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 21,
+    "title": "Freizeit",
+    "title_ko": "여가시간",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about weekend plans, we use « Am Wochenende... ». To invite someone, we use « Möchtest du...? ».",
+    "explanation_ko": "주말 계획을 말할 때는 'Am Wochenende...'(주말에는 ~해요), 초대할 때는 'Möchtest du...?'(~할래요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Am Wochenende gehe ich ins Kino.",
+        "ko": "주말에는 영화관에 가요."
+      },
+      {
+        "en": "Möchtest du mit mir spazieren gehen?",
+        "ko": "저랑 산책할래요?"
+      },
+      {
+        "en": "Ich treffe mich mit Freunden.",
+        "ko": "저는 친구들을 만나요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u21_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie Ihre Wochenendpläne und benutzen Sie dabei „Am Wochenende...“.",
+        "ko": "'Am Wochenende...'를 사용해서 주말 계획을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weekend_plan",
+          "label_ko": "주말 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Am Wochenende'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Am Wochenende",
+            "am Wochenende"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u21_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Möchtest du mit mir spazieren gehen?“ Antworten Sie auf diese Einladung.",
+        "ko": "'Möchtest du mit mir spazieren gehen?'(저랑 산책할래요?)라는 초대에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "invitation_response",
+          "label_ko": "초대 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u21_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sprechen Sie laut über Ihre Wochenendpläne.",
+        "ko": "소리 내어 자신의 주말 계획에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weekend_plan",
+          "label_ko": "주말 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Wochenende'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Wochenende"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u21_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Triffst du dich oft mit Freunden?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Triffst du dich oft mit Freunden?'(친구들 자주 만나요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "friends",
+          "label_ko": "친구 만남 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

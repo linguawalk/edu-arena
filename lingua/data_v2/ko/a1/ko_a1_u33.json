@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "ko_a1_u33",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 33,
+    "title": "Travel/Airport (여행·공항)",
+    "title_ko": "여행·공항",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about travel, use « ~에 여행 가요 » (I travel to ~). At the airport, use « 여권 여기 있어요 » (Here is my passport).",
+    "explanation_ko": "여행을 말할 때는 '~에 여행 가요', 공항에서는 '여권 여기 있어요'를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "I'm traveling to Japan.",
+        "ko": "저는 일본에 여행 가요."
+      },
+      {
+        "en": "Here is my passport.",
+        "ko": "여권 여기 있어요."
+      },
+      {
+        "en": "Where is the departure gate?",
+        "ko": "출국장이 어디예요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u33_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about a travel destination using «~에 여행 가요».",
+        "ko": "'~에 여행 가요'를 사용해서 여행지에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel",
+          "label_ko": "여행 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '여행' (travel)?",
+          "type": "keyword_match",
+          "target": [
+            "여행"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u33_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«출국장이 어디예요?» (Where is the departure gate?) Answer this question.",
+        "ko": "'출국장이 어디예요?'(출국장 위치를 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "airport_location",
+          "label_ko": "공항 위치 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Did you write at least 5 characters?",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u33_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say out loud «여권 여기 있어요» (Here is my passport) at the airport.",
+        "ko": "공항에서 '여권 여기 있어요'를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "passport",
+          "label_ko": "여권 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '여권' (passport)?",
+          "type": "keyword_match",
+          "target": [
+            "여권"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u33_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«일본에 여행 가요?» (Are you traveling to Japan?) Answer out loud.",
+        "ko": "'일본에 여행 가요?'(일본 여행 여부를 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel",
+          "label_ko": "여행 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

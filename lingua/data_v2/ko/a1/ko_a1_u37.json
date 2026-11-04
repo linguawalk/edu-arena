@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "ko_a1_u37",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 37,
+    "title": "Permission (허락, -아/어도 돼요?)",
+    "title_ko": "허락",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To ask for permission, use « -아/어도 돼요? » (Is it okay if I ~?). To give permission, use « 네, 돼요 » (Yes, it's okay).",
+    "explanation_ko": "허락을 구할 때는 '-아/어도 돼요?', 허락할 때는 '네, 돼요'를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "May I sit here?",
+        "ko": "여기 앉아도 돼요?"
+      },
+      {
+        "en": "Yes, that's fine.",
+        "ko": "네, 돼요."
+      },
+      {
+        "en": "May I take a photo?",
+        "ko": "사진 찍어도 돼요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u37_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Ask for permission using «-아/어도 돼요?».",
+        "ko": "'-아/어도 돼요?'를 사용해서 허락을 구하는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ask_permission",
+          "label_ko": "허락 구하기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Does it end with 돼요?",
+          "type": "pattern_regex",
+          "target": "돼요[?]?$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Does the sentence end with a question mark?",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u37_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«사진 찍어도 돼요?» (May I take a photo?) Give permission in your answer.",
+        "ko": "'사진 찍어도 돼요?'(사진 촬영 허락을 구하는 질문)에 허락하는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "give_permission",
+          "label_ko": "허락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' (yes)?",
+          "type": "keyword_match",
+          "target": [
+            "네"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u37_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Ask out loud «여기 앉아도 돼요?» (May I sit here?).",
+        "ko": "'여기 앉아도 돼요?'를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ask_permission",
+          "label_ko": "허락 구하기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '앉아도 돼요' (may I sit)?",
+          "type": "keyword_match",
+          "target": [
+            "앉아도 돼요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u37_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«여기 앉아도 돼요?» (May I sit here?) You are asked this. Answer out loud.",
+        "ko": "'여기 앉아도 돼요?'(자리 착석 허락을 구하는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "give_permission",
+          "label_ko": "허락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

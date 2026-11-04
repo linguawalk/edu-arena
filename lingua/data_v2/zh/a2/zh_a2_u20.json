@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "zh_a2_u20",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 20,
+    "title": "社区",
+    "title_ko": "동네",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说社区用「附近有...」，比如「附近有公园」。",
+    "explanation_ko": "동네에 대해 말할 때는 '附近有...'(근처에 ~이 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "附近有公园。",
+        "ko": "근처에 공원이 있어요."
+      },
+      {
+        "en": "走路五分钟到超市。",
+        "ko": "슈퍼마켓까지 걸어서 5분이에요."
+      },
+      {
+        "en": "这个地方很安静。",
+        "ko": "이 근처는 조용해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u20_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「附近有...」写出住的地方附近有什么。",
+        "ko": "사는 곳 근처에 있는 것을 '附近有...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "neighborhood",
+          "label_ko": "동네 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'附近有'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "附近有"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u20_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「这个地方怎么样？」请回答这个问题。",
+        "ko": "'这个地方怎么样？'(이 근처 어때요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "area_description",
+          "label_ko": "지역 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'安静' 또는 '热闹'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "安静",
+            "热闹"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u20_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出住的社区。",
+        "ko": "사는 동네에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "neighborhood",
+          "label_ko": "동네 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'附近' 또는 '有'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "附近",
+            "有"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u20_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「走路到超市要多久？」有人问你。请大声回答。",
+        "ko": "'走路到超市要多久？'(슈퍼마켓까지 걸어서 얼마나 걸려요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "distance",
+          "label_ko": "거리 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'分钟' 또는 '走路'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "分钟",
+            "走路"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

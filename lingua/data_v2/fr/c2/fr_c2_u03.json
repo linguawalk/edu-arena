@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "fr_c2_u03",
+    "domain": "language",
+    "lang": "fr",
+    "level": "c2",
+    "unit": 3,
+    "title": "Registre littéraire: syntaxe recherchée",
+    "title_ko": "문학체: 정교한 통사",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "Le registre littéraire utilise des structures comme « à peine... que » ou « aussi... » avec inversion pour un style plus élégant. Par exemple : « À peine était-il arrivé qu'il repartait déjà ».",
+    "explanation_ko": "문학체는 'à peine...que'(~하자마자)나 도치를 동반한 'aussi...'(그러므로) 같은 구조를 사용해서 더 우아한 문체를 만듭니다. 예: 'À peine était-il arrivé qu'il repartait déjà'(그가 도착하자마자 그는 이미 다시 떠나고 있었다).",
+    "key_expressions": [
+      {
+        "en": "À peine était-il arrivé qu'il repartait déjà.",
+        "ko": "그가 도착하자마자 그는 이미 다시 떠나고 있었다."
+      },
+      {
+        "en": "Aussi devons-nous agir avec prudence.",
+        "ko": "그러므로 저희는 신중하게 행동해야 해요."
+      },
+      {
+        "en": "Peut-être eût-il fallu attendre.",
+        "ko": "아마 기다렸어야 했을지도 모른다."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_c2_u03_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase avec « à peine... que » et l'inversion dans un style littéraire.",
+        "ko": "문학체로 'à peine...que'와 도치를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "a_peine_que",
+          "label_ko": "à peine...que",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'à peine'와 'que'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "à peine.{0,20}que",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_c2_u03_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Devrions-nous agir avec prudence ? » Répondez en style littéraire avec « Aussi devons-nous... ».",
+        "ko": "'Devrions-nous agir avec prudence ?'(저희가 신중하게 행동해야 할까요?)라는 질문에 문학체로 'Aussi devons-nous...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "aussi_inversion",
+          "label_ko": "aussi+도치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Aussi'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Aussi",
+            "aussi"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_c2_u03_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute une phrase dans un style littéraire recherché.",
+        "ko": "소리 내어 정교한 문학체 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "registre_litteraire",
+          "label_ko": "문학체",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_c2_u03_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Le style littéraire est-il plus élégant que le style courant ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Le style littéraire est-il plus élégant que le style courant ?'(문학체가 일상체보다 우아한가요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "registre_litteraire",
+          "label_ko": "문학체",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

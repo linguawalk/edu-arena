@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "de_a2_u01",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 1,
+    "title": "Vergangene Erfahrungen (schon/noch nie)",
+    "title_ko": "과거 경험 (이미/아직 한 번도)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To say you have already done something, we use « Ich habe schon... ». To say you have never done something, we use « Ich habe noch nie... ».",
+    "explanation_ko": "이미 해본 것을 말할 때는 'Ich habe schon...'(저는 이미 ~해봤어요), 아직 한 번도 안 해본 것을 말할 때는 'Ich habe noch nie...'(저는 아직 한 번도 ~해본 적 없어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich habe schon Deutschland besucht.",
+        "ko": "저는 이미 독일에 가봤어요."
+      },
+      {
+        "en": "Ich habe noch nie Sushi gegessen.",
+        "ko": "저는 아직 한 번도 초밥을 먹어본 적 없어요."
+      },
+      {
+        "en": "Haben Sie schon einmal geangelt?",
+        "ko": "낚시해본 적 있어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u01_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie eine Erfahrung, die Sie schon gemacht haben, und benutzen Sie dabei „Ich habe schon...“.",
+        "ko": "'Ich habe schon...'를 사용해서 이미 해본 경험을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "already_done",
+          "label_ko": "이미 경험 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'habe schon'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "habe schon"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u01_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Haben Sie schon einmal geangelt?“ Antworten Sie verneinend und benutzen Sie dabei „noch nie“.",
+        "ko": "'Haben Sie schon einmal geangelt?'(낚시해본 적 있어요?)라는 질문에 'noch nie'를 사용해서 부정 답변을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "never_done",
+          "label_ko": "경험 없음 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'noch nie'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "noch nie"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u01_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sprechen Sie laut über eine Erfahrung, die Sie schon gemacht haben.",
+        "ko": "소리 내어 이미 해본 경험에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "already_done",
+          "label_ko": "이미 경험 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'habe schon'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "habe schon"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u01_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Haben Sie noch nie Sushi gegessen?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Haben Sie noch nie Sushi gegessen?'(초밥 한 번도 안 먹어봤어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "experience_answer",
+          "label_ko": "경험 답변 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

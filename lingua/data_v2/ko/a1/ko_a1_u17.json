@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "ko_a1_u17",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 17,
+    "title": "At Home 1 (집)",
+    "title_ko": "집 1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe your home, use « 저는 ~에 살아요 » (I live in ~). To describe a room, use « ~이/가 있어요 » (there is ~).",
+    "explanation_ko": "사는 곳을 말할 때는 '저는 ~에 살아요', 방을 묘사할 때는 '~이/가 있어요'를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "I live in an apartment.",
+        "ko": "저는 아파트에 살아요."
+      },
+      {
+        "en": "There is a big kitchen.",
+        "ko": "큰 부엌이 있어요."
+      },
+      {
+        "en": "My house has three rooms.",
+        "ko": "제 집은 방이 세 개예요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u17_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about where you live using «저는 ~에 살아요».",
+        "ko": "'저는 ~에 살아요'를 사용해서 사는 곳에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing",
+          "label_ko": "주거 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '살아요' (I live)?",
+          "type": "keyword_match",
+          "target": [
+            "살아요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u17_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«집에 방이 몇 개예요?» (How many rooms does your house have?) Answer this question.",
+        "ko": "'집에 방이 몇 개예요?'(방 개수를 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rooms",
+          "label_ko": "방 개수 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Did you write at least 5 characters?",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u17_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe a room out loud using «~이/가 있어요».",
+        "ko": "'~이/가 있어요'를 사용해서 소리 내어 방을 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "room_desc",
+          "label_ko": "방 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '있어요' (there is)?",
+          "type": "keyword_match",
+          "target": [
+            "있어요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u17_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«아파트에 살아요?» (Do you live in an apartment?) Answer out loud.",
+        "ko": "'아파트에 살아요?'(아파트에 사는지 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing",
+          "label_ko": "주거 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

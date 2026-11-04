@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "id": "en_b1_u01",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 1,
+    "title": "Present Perfect vs Past Simple",
+    "title_ko": "현재완료 vs 과거시제",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Use past simple for a finished action at a specific past time ('I visited Paris in 2019'). Use present perfect for an experience with no specific time, or a result that matters now ('I have visited Paris'). Adding a specific time word (yesterday, in 2019, last week) forces past simple.",
+    "explanation_ko": "특정 과거 시점에 끝난 행동에는 과거시제('I visited Paris in 2019'), 특정 시점 없는 경험이나 지금 중요한 결과에는 현재완료('I have visited Paris')를 씁니다. yesterday, in 2019, last week 같은 구체적 시간 표현이 있으면 반드시 과거시제를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "I have visited three countries this year.",
+        "ko": "저는 올해 세 나라를 방문했어요."
+      },
+      {
+        "en": "I visited Japan in 2022.",
+        "ko": "저는 2022년에 일본을 방문했어요."
+      },
+      {
+        "en": "Have you ever tried sushi?",
+        "ko": "초밥 먹어본 적 있어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u01_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about your life experiences, using present perfect for general experience and past simple for one specific event with a date or time.",
+        "ko": "인생 경험에 대해 써 보세요. 일반적 경험은 현재완료로, 구체적 시점이 있는 사건 하나는 과거시제로 쓰세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "present_perfect",
+          "label_ko": "현재완료",
+          "min_occurrences": 1
+        },
+        {
+          "type": "grammar",
+          "id": "past_simple",
+          "label_ko": "과거시제",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "현재완료(have/has + 과거분사)를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(have|has)\\s+\\w+ed\\b|\\b(have|has)\\s+(been|done|seen|gone|had|made|taken)\\b",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "구체적 시간 표현과 함께 과거시제를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(in|on|last)\\s+\\w+.{0,20}\\b(ed)\\b|\\b\\w+ed\\b.{0,20}(ago|last|in \\d{4})",
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "분량이 충분한가 (최소 20단어)",
+          "type": "length_check",
+          "unit": "words",
+          "min": 20,
+          "points": 25,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u01_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Have you ever lost something important? What happened?' Write your answer using both present perfect and past simple.",
+        "ko": "'Have you ever lost something important? What happened?'라는 질문에 현재완료와 과거시제를 모두 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "present_perfect",
+          "label_ko": "현재완료",
+          "min_occurrences": 1
+        },
+        {
+          "type": "grammar",
+          "id": "past_simple",
+          "label_ko": "과거시제",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes, I have' 또는 'No, I haven't'로 시작했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes, i have",
+            "no, i haven't",
+            "yes i have",
+            "no i haven't"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "과거시제로 구체적 상황을 설명했는가",
+          "type": "pattern_regex",
+          "target": "\\b(was|were|lost|found|happened)\\b",
+          "min_matches": 1,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "분량이 충분한가 (최소 18단어)",
+          "type": "length_check",
+          "unit": "words",
+          "min": 18,
+          "points": 25,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u01_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about your travel experiences overall, then describe one specific trip in detail with a time reference.",
+        "ko": "전반적인 여행 경험을 소리 내어 말하고, 시간 표현과 함께 특정 여행 하나를 자세히 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "present_perfect",
+          "label_ko": "현재완료",
+          "min_occurrences": 1
+        },
+        {
+          "type": "grammar",
+          "id": "past_simple",
+          "label_ko": "과거시제",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "현재완료를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(have|has)\\s+(been|visited|traveled|seen)\\b",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "과거시제로 구체적 경험을 설명했는가",
+          "type": "pattern_regex",
+          "target": "\\b(went|visited|stayed|saw)\\b",
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u01_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What's something you did last year that you've never done before?'",
+        "ko": "소리 내어 답해 보세요: 'What's something you did last year that you've never done before?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "present_perfect",
+          "label_ko": "현재완료",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "현재완료(never done 등)를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "never done",
+            "have never",
+            "i've never"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

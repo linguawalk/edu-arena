@@ -1,0 +1,226 @@
+{
+  "meta": {
+    "id": "ko_a2_u43",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a2",
+    "unit": 43,
+    "title": "Banking Requests (formal -아/어 주시겠어요?)",
+    "title_ko": "은행 요청",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To make a formal request at the bank, use « -아/어 주시겠어요? » (Could you please ~?). For example, « 이거 확인해 주시겠어요? » (Could you please check this?).",
+    "explanation_ko": "은행에서 정중하게 요청할 때는 '-아/어 주시겠어요?'를 씁니다. 예: '이거 확인해 주시겠어요?'.",
+    "key_expressions": [
+      {
+        "en": "Could you please check this?",
+        "ko": "이거 확인해 주시겠어요?"
+      },
+      {
+        "en": "Could you please explain this to me?",
+        "ko": "이거 설명해 주시겠어요?"
+      },
+      {
+        "en": "Could you please wait a moment?",
+        "ko": "잠깐만 기다려 주시겠어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a2_u43_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Make a formal request at the bank using «-아/어 주시겠어요?».",
+        "ko": "'-아/어 주시겠어요?'를 사용해서 은행에서의 정중한 요청 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "formal_request",
+          "label_ko": "정중한 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Does it end with 주시겠어요?",
+          "type": "pattern_regex",
+          "target": "주시겠어요[?]?$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Does the sentence end with a question mark?",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u43_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«이거 설명해 주시겠어요?» (Could you please explain this to me?) Write the bank clerk's likely response.",
+        "ko": "'이거 설명해 주시겠어요?'라고 요청했습니다. 은행 직원의 예상 답변을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bank_response",
+          "label_ko": "은행 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Did you write at least 5 characters?",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u43_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say out loud «잠깐만 기다려 주시겠어요?» (Could you please wait a moment?).",
+        "ko": "'잠깐만 기다려 주시겠어요?'를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "formal_request",
+          "label_ko": "정중한 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '주시겠어요' (could you please)?",
+          "type": "keyword_match",
+          "target": [
+            "주시겠어요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a2_u43_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«이거 확인해 주시겠어요?» (Could you please check this?) You are asked this. Answer out loud.",
+        "ko": "'이거 확인해 주시겠어요?'(정중한 요청)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bank_response",
+          "label_ko": "은행 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' (yes)?",
+          "type": "keyword_match",
+          "target": [
+            "네"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

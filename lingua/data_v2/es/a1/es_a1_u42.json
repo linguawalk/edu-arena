@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "es_a1_u42",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 42,
+    "title": "Médico/Farmacia",
+    "title_ko": "병원·약국",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe symptoms, we use « Tengo... » (Tengo tos, Tengo dolor). To ask for medicine, we use « ¿Tiene algo para...? ».",
+    "explanation_ko": "증상을 묘사할 때는 'Tengo...'(Tengo tos, 기침이 있어요), 약을 요청할 때는 '¿Tiene algo para...?'(~에 좋은 게 있어요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Tengo tos y dolor de garganta.",
+        "ko": "저는 기침이랑 목이 아파요."
+      },
+      {
+        "en": "¿Tiene algo para el dolor de cabeza?",
+        "ko": "두통에 좋은 게 있어요?"
+      },
+      {
+        "en": "Necesito ver a un médico.",
+        "ko": "저는 의사를 만나야 해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u42_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describa un síntoma usando «Tengo...».",
+        "ko": "'Tengo...'를 사용해서 증상을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom",
+          "label_ko": "증상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Tengo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Tengo",
+            "tengo"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u42_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Necesita ver a un médico?» Responda a esta pregunta.",
+        "ko": "'¿Necesita ver a un médico?'(의사를 만나야 해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "need_doctor",
+          "label_ko": "의사 필요 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u42_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pregunte en voz alta por medicina usando «¿Tiene algo para...?».",
+        "ko": "'¿Tiene algo para...?'를 사용해서 소리 내어 약을 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ask_medicine",
+          "label_ko": "약 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Tiene algo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Tiene algo",
+            "tiene algo"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u42_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Tiene tos?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Tiene tos?'(기침이 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom",
+          "label_ko": "증상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

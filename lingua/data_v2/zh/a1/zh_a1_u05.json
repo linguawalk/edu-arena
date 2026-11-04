@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a1_u05",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 5,
+    "title": "食物、饮料",
+    "title_ko": "음식·음료",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说喜欢的食物用「我喜欢吃...」，点饮料用「我要...」。",
+    "explanation_ko": "좋아하는 음식을 말할 때는 '我喜欢吃...'(저는 ~먹는 걸 좋아해요), 음료를 주문할 때는 '我要...'(~주세요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我喜欢吃米饭。",
+        "ko": "저는 밥 먹는 걸 좋아해요."
+      },
+      {
+        "en": "我要一杯咖啡。",
+        "ko": "커피 한 잔 주세요."
+      },
+      {
+        "en": "这个很好吃。",
+        "ko": "이거 정말 맛있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u05_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我喜欢吃...」写出你喜欢的食物。",
+        "ko": "'我喜欢吃...'를 사용해서 좋아하는 음식을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "food_pref",
+          "label_ko": "음식 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我喜欢吃'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我喜欢吃"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u05_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你要喝什么？」请回答这个问题。",
+        "ko": "'你要喝什么？'(뭐 마실래요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "drink_order",
+          "label_ko": "음료 주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我要'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我要"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u05_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你喜欢的食物。",
+        "ko": "소리 내어 좋아하는 음식을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "food_pref",
+          "label_ko": "음식 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我喜欢吃'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我喜欢吃"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u05_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「这个好吃吗？」有人问你。请大声回答。",
+        "ko": "'这个好吃吗？'(이거 맛있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "taste_response",
+          "label_ko": "맛 평가 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'好吃' 또는 '不好吃'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "好吃",
+            "不好吃"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

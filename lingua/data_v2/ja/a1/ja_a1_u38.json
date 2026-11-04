@@ -1,0 +1,247 @@
+{
+  "meta": {
+    "id": "ja_a1_u38",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 38,
+    "title": "説明・指示",
+    "title_ko": "설명·지시",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "指示をするときは「〜てください」を使います。順番を説明するときは「まず」「つぎに」を使います。",
+    "explanation_ko": "지시할 때는 '〜てください'를 씁니다. 순서를 설명할 때는 'まず'(먼저), 'つぎに'(다음으로)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "まずここをおしてください。",
+        "ko": "먼저 여기를 눌러 주세요."
+      },
+      {
+        "en": "つぎにボタンをおします。",
+        "ko": "다음으로 버튼을 눌러요."
+      },
+      {
+        "en": "ここにかいてください。",
+        "ko": "여기에 써 주세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u38_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "何かのやり方を「まず」「つぎに」を使って説明する文を書いてください。",
+        "ko": "무언가를 하는 방법을 'まず', 'つぎに'를 사용해서 설명하는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "instruction",
+          "label_ko": "지시 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'まず'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "まず"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'つぎに'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "つぎに"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u38_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「ここに何をかきますか」という質問に「〜てください」を使って指示を書いてください。",
+        "ko": "'ここに何をかきますか'라는 질문에 '〜てください'를 사용해서 지시를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "instruction",
+          "label_ko": "지시 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'てください'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "てください"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u38_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "何かのやり方について声に出して説明してください。",
+        "ko": "무언가를 하는 방법에 대해 소리 내어 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "instruction",
+          "label_ko": "지시 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'まず' 또는 'てください'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "まず",
+            "てください"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u38_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「どうやってつかいますか」と聞かれました。声に出して説明してください。",
+        "ko": "'どうやってつかいますか'라는 질문을 받았습니다. 소리 내어 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "instruction",
+          "label_ko": "지시 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'まず' 또는 'てください'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "まず",
+            "てください"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

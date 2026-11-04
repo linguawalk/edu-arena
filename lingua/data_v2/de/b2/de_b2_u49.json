@@ -1,0 +1,245 @@
+{
+  "meta": {
+    "id": "de_b2_u49",
+    "domain": "language",
+    "lang": "de",
+    "level": "b2",
+    "unit": 49,
+    "title": "Stilistische Varianten (Passiv vs. man vs. sich lassen)",
+    "title_ko": "문체 변형 (수동태 vs man vs sich lassen)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "The same idea can be expressed with different registers: passive (formal), « man » (neutral/spoken), or « sich lassen » (possibility-focused).",
+    "explanation_ko": "같은 아이디어를 다른 언어역으로 표현할 수 있습니다: 수동태(격식체), 'man'(중립적/구어체), 'sich lassen'(가능성 중심).",
+    "key_expressions": [
+      {
+        "en": "Das Problem wird gelöst. (Passiv)",
+        "ko": "그 문제가 해결돼요 (수동태)."
+      },
+      {
+        "en": "Man löst das Problem. (man)",
+        "ko": "그 문제를 해결해요 (man)."
+      },
+      {
+        "en": "Das Problem lässt sich lösen. (sich lassen)",
+        "ko": "그 문제는 해결될 수 있어요 (sich lassen)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b2_u49_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie den gleichen Inhalt in drei Varianten: Passiv, „man“, und „sich lassen“.",
+        "ko": "같은 내용을 수동태, 'man', 'sich lassen' 세 가지 방식으로 각각 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "stilistische_varianten",
+          "label_ko": "문체 변형",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'wird/wurde'(수동)를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "wird",
+            "wurde"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'man' 또는 'lässt sich'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "man",
+            "lässt sich"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.]",
+          "min_matches": 2,
+          "points": 40,
+          "required": true
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u49_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Lässt sich das Problem lösen?“ Beantworten Sie diese Frage.",
+        "ko": "'Lässt sich das Problem lösen?'(그 문제가 해결될 수 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "stilistische_varianten",
+          "label_ko": "문체 변형",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u49_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut den gleichen Inhalt zuerst im Passiv, dann mit „man“.",
+        "ko": "같은 내용을 먼저 수동태로, 그다음 'man'으로 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "stilistische_varianten",
+          "label_ko": "문체 변형",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b2_u49_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Bevorzugen Sie Passiv oder 'man' im Alltag?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Bevorzugen Sie Passiv oder 'man' im Alltag?'(일상에서 수동태와 'man' 중 뭘 더 선호해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "stilistische_varianten",
+          "label_ko": "문체 변형",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Passiv' 또는 'man'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Passiv",
+            "man"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

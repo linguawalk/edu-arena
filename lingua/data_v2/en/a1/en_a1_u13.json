@@ -1,0 +1,290 @@
+{
+  "meta": {
+    "id": "en_a1_u13",
+    "domain": "language",
+    "lang": "en",
+    "level": "a1",
+    "unit": 13,
+    "title": "Asking Prices",
+    "title_ko": "가격 묻기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: asking and stating prices, and comparing cheap/expensive.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 가격 묻고 말하기, 싸다/비싸다 비교하기",
+    "key_expressions": [
+      {
+        "en": "How much is this?",
+        "ko": "이거 얼마예요?"
+      },
+      {
+        "en": "It's ~ dollars.",
+        "ko": "~ 달러예요."
+      },
+      {
+        "en": "This is cheaper/more expensive than that.",
+        "ko": "이게 저것보다 더 싸요/비싸요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a1_u13_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a short conversation (2-3 lines) asking the price of a hat and getting an answer.",
+        "ko": "모자 가격을 묻고 답을 받는 짧은 대화(2~3줄)를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_question",
+          "label_ko": "가격 질문",
+          "min_occurrences": 1
+        },
+        {
+          "type": "expression",
+          "id": "price_answer",
+          "label_ko": "가격 답변",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'How much'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "how much"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "숫자(가격)가 포함되어 있는가",
+          "type": "pattern_regex",
+          "target": "\\d+",
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "'dollars' 또는 화폐 단위를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "dollars",
+            "dollar",
+            "won"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u13_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Compare two items using cheap/expensive. Example: 'This bag is more expensive than that one.'",
+        "ko": "cheap/expensive를 사용해 두 물건을 비교하는 문장을 써 보세요. 예: 'This bag is more expensive than that one.'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "comparison",
+          "label_ko": "비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "비교급(cheaper/more expensive)을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "cheaper",
+            "more expensive"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'than'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "than"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 15,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u13_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Ask out loud how much three different items cost, as if you are in a store.",
+        "ko": "가게에 있다고 생각하고 서로 다른 물건 세 가지의 가격을 소리 내어 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_question",
+          "label_ko": "가격 질문",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'How much'를 2회 이상 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "how much"
+          ],
+          "min_matches": 2,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "물건 단어를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "shirt",
+            "hat",
+            "bag",
+            "shoes",
+            "jacket"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a1_u13_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Is it expensive to live in your city?'",
+        "ko": "소리 내어 답해 보세요: 'Is it expensive to live in your city?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_opinion",
+          "label_ko": "가격 의견 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "cheap/expensive 중 하나를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "cheap",
+            "expensive"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'Yes' 또는 'No'로 시작했는가",
+          "type": "pattern_regex",
+          "target": "^(Yes|No)",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

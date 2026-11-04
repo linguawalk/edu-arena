@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "zh_a2_u10",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 10,
+    "title": "食物喜好",
+    "title_ko": "음식 취향",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说更喜欢用「...比...更喜欢」，说不擅长吃用「我不太能吃...」。",
+    "explanation_ko": "더 좋아함을 말할 때는 '...比...更喜欢'(~보다 ~을 더 좋아해요), 잘 못 먹음을 말할 때는 '我不太能吃...'(~을 잘 못 먹어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "比起日本菜，我更喜欢西餐。",
+        "ko": "일식보다 양식을 더 좋아해요."
+      },
+      {
+        "en": "我不太能吃納豆。",
+        "ko": "저는 낫토를 잘 못 먹어요."
+      },
+      {
+        "en": "我很喜欢甜食。",
+        "ko": "저는 단 음식을 정말 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u10_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「比起...，我更喜欢...」写出你的食物喜好。",
+        "ko": "음식 취향을 '比起...，我更喜欢...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "food_preference",
+          "label_ko": "음식 취향 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'更喜欢'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "更喜欢"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u10_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「有你不敢吃的东西吗？」请回答这个问题。",
+        "ko": "'有你不敢吃的东西吗？'(못 먹는 음식 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "dislike_food",
+          "label_ko": "못 먹는 음식 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'不太能吃' 또는 '不敢吃'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "不太能吃",
+            "不敢吃"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u10_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你的食物喜好。",
+        "ko": "음식 취향에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "food_preference",
+          "label_ko": "음식 취향 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'更喜欢' 또는 '不太能吃'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "更喜欢",
+            "不太能吃"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u10_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你喜欢纳豆吗？」有人问你。请大声回答。",
+        "ko": "'你喜欢纳豆吗？'(낫토 좋아해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "natto",
+          "label_ko": "낫토 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'喜欢' 또는 '不喜欢'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "喜欢",
+            "不喜欢"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

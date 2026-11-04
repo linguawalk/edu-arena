@@ -1,0 +1,318 @@
+{
+  "meta": {
+    "id": "en_a1_u14",
+    "domain": "language",
+    "lang": "en",
+    "level": "a1",
+    "unit": 14,
+    "title": "Weather",
+    "title_ko": "날씨",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: describing weather with 'It is'.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 'It is'로 날씨 설명하기",
+    "key_expressions": [
+      {
+        "en": "It is sunny/rainy/cloudy.",
+        "ko": "화창해요/비가 와요/흐려요."
+      },
+      {
+        "en": "It is hot/cold today.",
+        "ko": "오늘 더워요/추워요."
+      },
+      {
+        "en": "How is the weather?",
+        "ko": "날씨가 어때요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a1_u14_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe today's weather in two sentences, including temperature.",
+        "ko": "오늘의 날씨를 두 문장으로 설명해 보세요. 기온도 포함하세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_word",
+          "label_ko": "날씨 표현",
+          "min_occurrences": 1
+        },
+        {
+          "type": "expression",
+          "id": "temperature",
+          "label_ko": "기온 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'It is'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "it is",
+            "it's"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "날씨 단어를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "sunny",
+            "rainy",
+            "cloudy",
+            "snowy",
+            "windy"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "기온 단어(hot/cold/warm/cool)를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "hot",
+            "cold",
+            "warm",
+            "cool"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u14_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "A friend texts you: 'How's the weather where you are?' Write your reply.",
+        "ko": "친구가 'How's the weather where you are?'라고 문자를 보냅니다. 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_word",
+          "label_ko": "날씨 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'It is'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "it is",
+            "it's"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "날씨 단어를 포함했는가",
+          "type": "keyword_match",
+          "target": [
+            "sunny",
+            "rainy",
+            "cloudy",
+            "snowy",
+            "windy",
+            "hot",
+            "cold"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u14_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe the weather in each of the four seasons out loud, one sentence each.",
+        "ko": "사계절 각각의 날씨를 소리 내어 한 문장씩 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_word",
+          "label_ko": "날씨 표현",
+          "min_occurrences": 2
+        },
+        {
+          "type": "expression",
+          "id": "season",
+          "label_ko": "계절 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "계절 단어를 2개 이상 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "spring",
+            "summer",
+            "fall",
+            "autumn",
+            "winter"
+          ],
+          "min_matches": 2,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "날씨/기온 단어를 2개 이상 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "hot",
+            "cold",
+            "warm",
+            "cool",
+            "sunny",
+            "rainy",
+            "snowy"
+          ],
+          "min_matches": 2,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a1_u14_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Do you like rainy days?'",
+        "ko": "소리 내어 답해 보세요: 'Do you like rainy days?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "opinion",
+          "label_ko": "의견 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes' 또는 'No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "이유(because)를 포함했는가",
+          "type": "keyword_match",
+          "target": [
+            "because"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

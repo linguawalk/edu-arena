@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "es_a1_u36",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 36,
+    "title": "Comparaciones",
+    "title_ko": "비교",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To make comparisons, we use « más...que » and « menos...que ».",
+    "explanation_ko": "비교할 때는 'más...que'(~보다 더)와 'menos...que'(~보다 덜)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Este libro es más interesante que ese.",
+        "ko": "이 책이 저것보다 더 흥미로워요."
+      },
+      {
+        "en": "Soy menos alto que mi hermano.",
+        "ko": "저는 제 형제보다 키가 작아요."
+      },
+      {
+        "en": "Este café es tan bueno como aquel.",
+        "ko": "이 커피는 저것만큼 좋아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u36_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una comparación usando «más...que».",
+        "ko": "'más...que'를 사용해서 비교 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "comparison",
+          "label_ko": "비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'más'와 'que'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "más.{0,20}que",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u36_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Eres más alto que tu hermano?» Responda a esta pregunta.",
+        "ko": "'¿Eres más alto que tu hermano?'(형제보다 키가 커요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "comparison",
+          "label_ko": "비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u36_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una comparación usando «tan...como».",
+        "ko": "'tan...como'를 사용해서 소리 내어 비교 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "comparison_equal",
+          "label_ko": "동등 비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'tan'과 'como'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "tan.{0,20}como",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u36_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Es este libro más interesante?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Es este libro más interesante?'(이 책이 더 흥미로워요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "comparison",
+          "label_ko": "비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "de_a2_u17",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 17,
+    "title": "Technologie",
+    "title_ko": "기술",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about a device you use, we use « Ich benutze... ». To ask about an app, we use « Kennen Sie diese App? ».",
+    "explanation_ko": "사용하는 기기를 말할 때는 'Ich benutze...'(저는 ~을 사용해요), 앱에 대해 물을 때는 'Kennen Sie diese App?'(이 앱 아세요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich benutze mein Handy jeden Tag.",
+        "ko": "저는 매일 휴대폰을 사용해요."
+      },
+      {
+        "en": "Kennen Sie diese App?",
+        "ko": "이 앱 아세요?"
+      },
+      {
+        "en": "Ich lade oft neue Apps herunter.",
+        "ko": "저는 새 앱을 자주 다운로드해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u17_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie, was Sie oft benutzen, und benutzen Sie dabei „Ich benutze...“.",
+        "ko": "'Ich benutze...'를 사용해서 자주 쓰는 것을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "use_device",
+          "label_ko": "기기 사용 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich benutze'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich benutze",
+            "ich benutze"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u17_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Kennen Sie diese App?“ Beantworten Sie diese Frage.",
+        "ko": "'Kennen Sie diese App?'(이 앱 아세요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "know_app",
+          "label_ko": "앱 인지 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u17_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sprechen Sie laut über ein Gerät, das Sie oft benutzen.",
+        "ko": "소리 내어 자주 사용하는 기기에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "use_device",
+          "label_ko": "기기 사용 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'benutze'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "benutze"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u17_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Laden Sie oft neue Apps herunter?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Laden Sie oft neue Apps herunter?'(새 앱을 자주 다운로드해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "download_app",
+          "label_ko": "앱 다운로드 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

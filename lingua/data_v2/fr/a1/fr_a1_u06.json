@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "fr_a1_u06",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 6,
+    "title": "Au restaurant",
+    "title_ko": "식당에서",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour commander au restaurant, on utilise « Je voudrais... ». Pour demander le prix, on utilise « Combien ça coûte ? ».",
+    "explanation_ko": "식당에서 주문할 때는 'Je voudrais...'(~주문할게요), 가격을 물을 때는 'Combien ça coûte ?'(얼마예요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je voudrais une pizza.",
+        "ko": "피자 하나 주문할게요."
+      },
+      {
+        "en": "La carte, s'il vous plaît.",
+        "ko": "메뉴판 주세요."
+      },
+      {
+        "en": "L'addition, s'il vous plaît.",
+        "ko": "계산서 주세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u06_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Commandez un plat en utilisant « Je voudrais... ».",
+        "ko": "'Je voudrais...'를 사용해서 음식을 주문해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "order",
+          "label_ko": "주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je voudrais'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je voudrais",
+            "je voudrais"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u06_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Combien ça coûte au total ? » Répondez à cette question.",
+        "ko": "'Combien ça coûte au total ?'(전부 얼마예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price",
+          "label_ko": "가격 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'euro' 또는 'euros'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "euro",
+            "euros"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u06_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Commandez un plat à voix haute au restaurant.",
+        "ko": "식당에서 소리 내어 음식을 주문해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "order",
+          "label_ko": "주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je voudrais'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je voudrais",
+            "je voudrais"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u06_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Voulez-vous autre chose ? » Le serveur vous demande. Répondez à voix haute.",
+        "ko": "'Voulez-vous autre chose ?'(더 시키실래요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "order_more",
+          "label_ko": "추가 주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Non merci' 또는 'Oui'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Non merci",
+            "Oui",
+            "oui"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

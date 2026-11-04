@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "zh_a1_u15",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 15,
+    "title": "天气2",
+    "title_ko": "날씨2",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说喜欢的天气用「我喜欢...天」，比如「我喜欢晴天」。",
+    "explanation_ko": "좋아하는 날씨를 말할 때는 '我喜欢...天'(저는 ~한 날을 좋아해요)을 씁니다. 예: '我喜欢晴天'(저는 맑은 날을 좋아해요).",
+    "key_expressions": [
+      {
+        "en": "我喜欢晴天。",
+        "ko": "저는 맑은 날을 좋아해요."
+      },
+      {
+        "en": "我不喜欢下雪。",
+        "ko": "저는 눈 오는 걸 안 좋아해요."
+      },
+      {
+        "en": "夏天很热，冬天很冷。",
+        "ko": "여름은 덥고 겨울은 추워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u15_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我喜欢...天」写出你喜欢的天气。",
+        "ko": "'我喜欢...天'을 사용해서 좋아하는 날씨를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_pref",
+          "label_ko": "날씨 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我喜欢'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我喜欢"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u15_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你喜欢下雪吗？」请回答这个问题。",
+        "ko": "'你喜欢下雪吗？'(눈 오는 거 좋아해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "snow_pref",
+          "label_ko": "눈 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'喜欢' 또는 '不喜欢'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "喜欢",
+            "不喜欢"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u15_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你喜欢的天气。",
+        "ko": "소리 내어 좋아하는 날씨를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_pref",
+          "label_ko": "날씨 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我喜欢'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我喜欢"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u15_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「夏天热吗？」有人问你。请大声回答。",
+        "ko": "'夏天热吗？'(여름은 더워요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "summer_hot",
+          "label_ko": "여름 더위 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'热' 또는 '不热'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "热",
+            "不热"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

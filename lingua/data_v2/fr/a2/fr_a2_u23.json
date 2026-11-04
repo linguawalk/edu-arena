@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "fr_a2_u23",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 23,
+    "title": "Problèmes environnementaux",
+    "title_ko": "환경 문제",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler d'un problème environnemental, on utilise « ... est mauvais pour l'environnement ». Pour parler de ce qu'on devrait faire, on utilise « On devrait... ».",
+    "explanation_ko": "환경 문제에 대해 말할 때는 '...est mauvais pour l'environnement'(~은 환경에 안 좋아요), 해야 할 일을 말할 때는 'On devrait...'(우리는 ~해야 해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Le plastique est mauvais pour l'environnement.",
+        "ko": "플라스틱은 환경에 안 좋아요."
+      },
+      {
+        "en": "On devrait réduire les déchets.",
+        "ko": "우리는 쓰레기를 줄여야 해요."
+      },
+      {
+        "en": "J'utilise un sac réutilisable.",
+        "ko": "저는 에코백을 사용해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u23_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez ce qu'on devrait faire pour l'environnement en utilisant « On devrait... ».",
+        "ko": "환경을 위해 해야 할 것을 'On devrait...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "environment",
+          "label_ko": "환경 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'devrait'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "devrait"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u23_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Utilisez-vous un sac réutilisable ? » Répondez à cette question.",
+        "ko": "'Utilisez-vous un sac réutilisable ?'(에코백 사용해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "eco_bag",
+          "label_ko": "에코백 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u23_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez d'un problème environnemental à voix haute.",
+        "ko": "환경 문제에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "environment",
+          "label_ko": "환경 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'environnement' 또는 'devrait'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "environnement",
+            "devrait"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u23_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Pensez-vous qu'on devrait réduire le plastique ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Pensez-vous qu'on devrait réduire le plastique ?'(플라스틱을 줄여야 한다고 생각해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "plastic_reduce",
+          "label_ko": "플라스틱 감축 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

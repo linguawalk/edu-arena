@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "en_c2_u19",
+    "domain": "language",
+    "lang": "en",
+    "level": "c2",
+    "unit": 19,
+    "title": "Hedging in Academic Disagreement",
+    "title_ko": "학술 논쟁의 완곡법",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "Academic disagreement uses careful hedges to stay professional: 'While I appreciate the argument, I would push back on...', 'This claim seems to overlook...', 'It's worth questioning whether...'. These phrases disagree firmly while preserving collegiality.",
+    "explanation_ko": "학술적 반대는 전문성을 유지하기 위해 신중한 완곡 표현을 씁니다: 'While I appreciate the argument, I would push back on...', 'This claim seems to overlook...', 'It's worth questioning whether...'. 이런 표현은 동료애를 지키면서도 단호하게 반대합니다.",
+    "key_expressions": [
+      {
+        "en": "While I appreciate the argument, I would push back on the data.",
+        "ko": "논지는 이해하지만 데이터에 대해서는 반박하고 싶어요."
+      },
+      {
+        "en": "This claim seems to overlook an important factor.",
+        "ko": "이 주장은 중요한 요인을 간과한 것 같아요."
+      },
+      {
+        "en": "It's worth questioning whether this method is reliable.",
+        "ko": "이 방법이 신뢰할 만한지 물어볼 필요가 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_c2_u19_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a polite academic disagreement with an argument, using 'While I appreciate ..., I would push back on ...'.",
+        "ko": "어떤 주장에 대해 'While I appreciate ..., I would push back on ...'을 사용해서 정중한 학술적 반대 의견을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "academic_hedge",
+          "label_ko": "학술 완곡법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'While I appreciate' 또는 'I would push back'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "while i appreciate",
+            "i would push back",
+            "push back on"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_c2_u19_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Is there a flaw in this study's methodology?' Write a hedge-style academic answer using 'seems to overlook'.",
+        "ko": "'Is there a flaw in this study's methodology?'라는 질문에 'seems to overlook'을 사용해서 완곡한 학술적 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "seems_to_overlook",
+          "label_ko": "seems to overlook",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'seems to overlook'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "seems to overlook"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_c2_u19_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Present out loud, formally, a polite pushback on an idea you disagree with, using 'I would push back on'.",
+        "ko": "동의하지 않는 아이디어에 대해 'I would push back on'을 사용해서 정중하게 소리 내어 반박해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "academic_hedge",
+          "label_ko": "학술 완곡법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'push back on'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "push back on"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_c2_u19_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Is it worth questioning whether social media truly connects people?'",
+        "ko": "소리 내어 답해 보세요: 'Is it worth questioning whether social media truly connects people?'"
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "worth_questioning",
+          "label_ko": "worth questioning",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'worth questioning' 또는 'Yes/No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "worth questioning",
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

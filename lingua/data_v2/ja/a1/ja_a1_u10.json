@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "ja_a1_u10",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 10,
+    "title": "動物・ペット",
+    "title_ko": "동물·반려동물",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "動物がいるかどうかは「〜をかっています」を使います。「いぬをかっています」「ねこがすきです」のように使います。",
+    "explanation_ko": "동물을 키우는지는 '〜をかっています'(키우고 있어요)를 씁니다. 'いぬをかっています'(강아지를 키워요), 'ねこがすきです'(고양이를 좋아해요)처럼 씁니다.",
+    "key_expressions": [
+      {
+        "en": "いぬをかっています。",
+        "ko": "강아지를 키우고 있어요."
+      },
+      {
+        "en": "ねこがすきです。",
+        "ko": "고양이를 좋아해요."
+      },
+      {
+        "en": "どうぶつえんへいきます。",
+        "ko": "동물원에 가요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u10_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "好きな動物を「〜がすきです」を使って書いてください。",
+        "ko": "좋아하는 동물을 '〜がすきです'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "like_animal",
+          "label_ko": "좋아하는 동물 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'がすきです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "がすきです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u10_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「ペットをかっていますか」という質問に答えを書いてください。",
+        "ko": "'ペットをかっていますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pet",
+          "label_ko": "반려동물 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'かっています' 또는 'かっていません'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "かっています",
+            "かっていません"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u10_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "好きな動物について声に出して話してください。",
+        "ko": "좋아하는 동물에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "like_animal",
+          "label_ko": "좋아하는 동물 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'すき'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "すき"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u10_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「いぬとねこ、どちらがすきですか」と聞かれました。声に出して答えてください。",
+        "ko": "'いぬとねこ、どちらがすきですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "like_animal",
+          "label_ko": "좋아하는 동물 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'いぬ' 또는 'ねこ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "いぬ",
+            "ねこ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

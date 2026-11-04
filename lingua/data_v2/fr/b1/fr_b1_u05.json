@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_b1_u05",
+    "domain": "language",
+    "lang": "fr",
+    "level": "b1",
+    "unit": 5,
+    "title": "Plus-que-parfait",
+    "title_ko": "대과거",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Le plus-que-parfait exprime une action antérieure à une autre action passée. Par exemple : « Quand je suis arrivé, il était déjà parti ».",
+    "explanation_ko": "대과거는 다른 과거 행동보다 앞선 행동을 나타냅니다. 예: 'Quand je suis arrivé, il était déjà parti'(제가 도착했을 때, 그는 이미 떠났었어요).",
+    "key_expressions": [
+      {
+        "en": "Quand je suis arrivé, il était déjà parti.",
+        "ko": "제가 도착했을 때, 그는 이미 떠났었어요."
+      },
+      {
+        "en": "J'avais déjà mangé quand tu es arrivé.",
+        "ko": "당신이 도착했을 때 저는 이미 밥을 먹었었어요."
+      },
+      {
+        "en": "Elle n'avait jamais vu la mer avant ce voyage.",
+        "ko": "그녀는 이번 여행 전에는 바다를 본 적이 없었어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_b1_u05_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase avec le plus-que-parfait en utilisant « ... était déjà... » ou « ... avait déjà... ».",
+        "ko": "'...était déjà...' 또는 '...avait déjà...'를 사용해서 대과거 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "plus_que_parfait",
+          "label_ko": "대과거",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'avait' 또는 'était'와 'déjà'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(avait|était).{0,15}déjà",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b1_u05_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Aviez-vous déjà mangé quand il est arrivé ? » Répondez à cette question.",
+        "ko": "'Aviez-vous déjà mangé quand il est arrivé ?'(그가 도착했을 때 이미 식사했었어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "plus_que_parfait",
+          "label_ko": "대과거",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'avais' 또는 'Oui/Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "avais",
+            "Oui",
+            "Non"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b1_u05_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute une phrase avec le plus-que-parfait.",
+        "ko": "소리 내어 대과거 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "plus_que_parfait",
+          "label_ko": "대과거",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'avait' 또는 'était'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "avait",
+            "était"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_b1_u05_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Il était déjà parti quand vous êtes arrivé ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Il était déjà parti quand vous êtes arrivé ?'(당신이 도착했을 때 그는 이미 떠났었어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "plus_que_parfait",
+          "label_ko": "대과거",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

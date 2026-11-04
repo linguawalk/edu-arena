@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "id": "en_c2_u20",
+    "domain": "language",
+    "lang": "en",
+    "level": "c2",
+    "unit": 20,
+    "title": "Diplomatic Refusal Language",
+    "title_ko": "외교적 거절 표현",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "Refusing gracefully uses softening structures: 'I'm afraid that won't be possible at this time', 'That's not something we're able to accommodate', 'I'd rather not commit to that just yet'. These decline clearly while preserving the relationship.",
+    "explanation_ko": "우아하게 거절할 때는 완화하는 구조를 씁니다: 'I'm afraid that won't be possible at this time', 'That's not something we're able to accommodate', 'I'd rather not commit to that just yet'. 관계를 지키면서도 명확하게 거절합니다.",
+    "key_expressions": [
+      {
+        "en": "I'm afraid that won't be possible at this time.",
+        "ko": "죄송하지만 지금은 그게 어려울 것 같아요."
+      },
+      {
+        "en": "That's not something we're able to accommodate.",
+        "ko": "그건 저희가 수용할 수 없는 부분이에요."
+      },
+      {
+        "en": "I'd rather not commit to that just yet.",
+        "ko": "아직은 그것에 대해 확답을 드리고 싶지 않아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_c2_u20_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a diplomatic refusal of a request at work, using 'I'm afraid that won't be possible' or a similar softening phrase.",
+        "ko": "직장에서 어떤 요청을 외교적으로 거절하는 문장을 'I'm afraid that won't be possible' 또는 유사한 완화 표현을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "diplomatic_refusal",
+          "label_ko": "외교적 거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I'm afraid' 또는 'not something we're able to'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i'm afraid",
+            "not something we're able to",
+            "won't be possible"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_c2_u20_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks you to commit to a project timeline you're unsure about. Write a diplomatic answer using 'I'd rather not commit to that just yet'.",
+        "ko": "확신이 없는 프로젝트 일정에 대해 확답을 요청받았습니다. 'I'd rather not commit to that just yet'를 사용해서 외교적인 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "rather_not_commit",
+          "label_ko": "I'd rather not commit",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'rather not commit'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "rather not commit"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_c2_u20_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Practice out loud diplomatically declining an invitation you can't accept, using a softening phrase.",
+        "ko": "받아들일 수 없는 초대를 완화 표현을 사용해서 외교적으로 거절하는 상황을 소리 내어 연습해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "diplomatic_refusal",
+          "label_ko": "외교적 거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I'm afraid' 또는 완화 표현을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i'm afraid",
+            "unfortunately",
+            "won't be able to"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_c2_u20_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'How would you politely turn down a request you can't fulfill at work?'",
+        "ko": "소리 내어 답해 보세요: 'How would you politely turn down a request you can't fulfill at work?'"
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "diplomatic_refusal",
+          "label_ko": "외교적 거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I'm afraid' 또는 완화 표현을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i'm afraid",
+            "unfortunately"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

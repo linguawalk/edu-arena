@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "en_b2_u45",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 45,
+    "title": "Advanced Passive with Get",
+    "title_ko": "Get 수동태",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "'Get + past participle' is an informal passive alternative to 'be + past participle', often implying something sudden, unexpected, or the subject's involvement: 'I got promoted!' (more dynamic than 'I was promoted') 'The window got broken during the storm.'",
+    "explanation_ko": "'get + 과거분사'는 'be + 과거분사'의 비격식적 대안이며, 갑작스럽거나 예상치 못한 일, 또는 주어의 관여를 암시합니다: 'I got promoted!'('I was promoted'보다 더 역동적) 'The window got broken during the storm.'",
+    "key_expressions": [
+      {
+        "en": "I got promoted last month!",
+        "ko": "저 지난달에 승진했어요!"
+      },
+      {
+        "en": "My phone got stolen on the subway.",
+        "ko": "제 휴대폰을 지하철에서 도둑맞았어요."
+      },
+      {
+        "en": "We got invited to the wedding.",
+        "ko": "우리는 결혼식에 초대받았어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u45_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about something sudden or unexpected that happened to you, using 'get/got + past participle'.",
+        "ko": "당신에게 일어난 갑작스럽거나 예상치 못한 일을 'get/got + 과거분사'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "get_passive",
+          "label_ko": "get 수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'got + 과거분사'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "got\\s+\\w+ed\\b|got\\s+(stolen|invited|promoted|hurt|fired)",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u45_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What happened to your bike?' Write your answer using 'got stolen' or a similar get-passive.",
+        "ko": "'What happened to your bike?'라는 질문에 'got stolen' 같은 get 수동태를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "get_passive",
+          "label_ko": "get 수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'got stolen' 또는 유사 get 수동태를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "got stolen",
+            "got broken",
+            "got damaged"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u45_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about a piece of good news, using 'got + past participle' (e.g., 'got accepted', 'got promoted').",
+        "ko": "좋은 소식에 대해 'get + 과거분사'(예: 'got accepted', 'got promoted')를 사용해서 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "get_passive",
+          "label_ko": "get 수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'got + 과거분사'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "got\\s+(accepted|promoted|hired|invited|selected)",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u45_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Have you ever gotten invited somewhere unexpectedly?'",
+        "ko": "소리 내어 답해 보세요: 'Have you ever gotten invited somewhere unexpectedly?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "get_passive",
+          "label_ko": "get 수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes, I have' 또는 'No, I haven't'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes, i have",
+            "no, i haven't",
+            "yes i have",
+            "no i haven't"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "fr_b1_u47",
+    "domain": "language",
+    "lang": "fr",
+    "level": "b1",
+    "unit": 47,
+    "title": "Le discours rapporté au passé",
+    "title_ko": "과거 인용화법",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Le discours rapporté au passé change les temps: présent→imparfait, passé composé→plus-que-parfait, futur→conditionnel. Par exemple : « Il a dit qu'il viendrait » (futur→conditionnel).",
+    "explanation_ko": "과거 인용화법은 시제가 바뀝니다: 현재→반과거, 복합과거→대과거, 미래→조건법. 예: 'Il a dit qu'il viendrait'(미래→조건법, 그는 올 거라고 말했어요).",
+    "key_expressions": [
+      {
+        "en": "Il a dit qu'il viendrait.",
+        "ko": "그는 올 거라고 말했어요."
+      },
+      {
+        "en": "Elle a dit qu'elle avait fini.",
+        "ko": "그녀는 끝냈다고 말했어요."
+      },
+      {
+        "en": "Ils ont dit qu'ils étaient fatigués.",
+        "ko": "그들은 피곤하다고 말했어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_b1_u47_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Rapportez au passé ce que quelqu'un a dit à propos du futur, en utilisant le conditionnel (« Il a dit qu'il... -rait »).",
+        "ko": "미래에 대해 누군가 했던 말을, 과거 인용화법의 조건법('Il a dit qu'il... -rait')을 사용해서 전달해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "discours_rapporte_passe",
+          "label_ko": "과거 인용화법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'a dit que'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "a dit que"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b1_u47_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Qu'a-t-elle dit à propos de son travail ? » Répondez à cette question.",
+        "ko": "'Qu'a-t-elle dit à propos de son travail ?'(그녀가 일에 대해 뭐라고 말했어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "discours_rapporte_passe",
+          "label_ko": "과거 인용화법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'a dit'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "a dit"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b1_u47_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Rapportez à voix haute ce que quelqu'un vous a dit hier.",
+        "ko": "어제 누군가 했던 말을 소리 내어 전달해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "discours_rapporte_passe",
+          "label_ko": "과거 인용화법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'a dit'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "a dit"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_b1_u47_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Ils ont dit qu'ils étaient fatigués ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Ils ont dit qu'ils étaient fatigués ?'(그들이 피곤하다고 말했어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "discours_rapporte_passe",
+          "label_ko": "과거 인용화법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "de_a1_u06",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 6,
+    "title": "Im Restaurant",
+    "title_ko": "식당에서",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To order at a restaurant, we use « Ich möchte... ». To ask for the price, we use « Was kostet das? ».",
+    "explanation_ko": "식당에서 주문할 때는 'Ich möchte...'(~주문할게요), 가격을 물을 때는 'Was kostet das?'(얼마예요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich möchte eine Pizza.",
+        "ko": "피자 하나 주문할게요."
+      },
+      {
+        "en": "Die Speisekarte, bitte.",
+        "ko": "메뉴판 주세요."
+      },
+      {
+        "en": "Die Rechnung, bitte.",
+        "ko": "계산서 주세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u06_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Bestellen Sie ein Gericht und benutzen Sie dabei „Ich möchte...“.",
+        "ko": "'Ich möchte...'를 사용해서 음식을 주문해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "order",
+          "label_ko": "주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich möchte'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich möchte",
+            "ich möchte"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u06_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Was kostet das insgesamt?“ Beantworten Sie diese Frage.",
+        "ko": "'Was kostet das insgesamt?'(전부 얼마예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price",
+          "label_ko": "가격 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Euro'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Euro"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u06_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Bestellen Sie ein Gericht laut im Restaurant.",
+        "ko": "식당에서 소리 내어 음식을 주문해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "order",
+          "label_ko": "주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich möchte'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich möchte",
+            "ich möchte"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u06_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Möchten Sie noch etwas?“ Der Kellner fragt Sie. Antworten Sie laut.",
+        "ko": "'Möchten Sie noch etwas?'(더 시키실래요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "order_more",
+          "label_ko": "추가 주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Nein danke' 또는 'Ja'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Nein danke",
+            "Ja",
+            "ja"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

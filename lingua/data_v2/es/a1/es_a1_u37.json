@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "es_a1_u37",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 37,
+    "title": "Permiso",
+    "title_ko": "허락",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To ask for permission, we use « ¿Puedo...? ». To grant permission, we use « Claro, adelante ».",
+    "explanation_ko": "허락을 구할 때는 '¿Puedo...?'(~해도 돼요?), 허락할 때는 'Claro, adelante'(물론이죠, 하세요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "¿Puedo abrir la ventana?",
+        "ko": "창문 열어도 돼요?"
+      },
+      {
+        "en": "Claro, adelante.",
+        "ko": "물론이죠, 하세요."
+      },
+      {
+        "en": "¿Puedo salir antes hoy?",
+        "ko": "오늘 일찍 나가도 돼요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u37_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pida permiso usando «¿Puedo...?».",
+        "ko": "'¿Puedo...?'를 사용해서 허락을 구해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ask_permission",
+          "label_ko": "허락 구하기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Puedo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Puedo",
+            "puedo"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u37_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Puedo abrir la ventana?» Responda concediendo permiso.",
+        "ko": "'¿Puedo abrir la ventana?'(창문 열어도 돼요?)라는 질문에 허락하는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "grant_permission",
+          "label_ko": "허락 승인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'Claro'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "Claro",
+            "claro"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u37_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pida permiso en voz alta usando «¿Puedo salir antes hoy?».",
+        "ko": "'¿Puedo salir antes hoy?'를 사용해서 소리 내어 허락을 구해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ask_permission",
+          "label_ko": "허락 구하기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Puedo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Puedo",
+            "puedo"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u37_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Puedo usar tu teléfono?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Puedo usar tu teléfono?'(전화 써도 돼요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "grant_permission",
+          "label_ko": "허락 승인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

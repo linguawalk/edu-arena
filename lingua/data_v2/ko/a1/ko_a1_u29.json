@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "id": "ko_a1_u29",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 29,
+    "title": "Making Plans (약속, -을 거예요)",
+    "title_ko": "계획 세우기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To make plans, use the near future « -을/ㄹ 거예요 ». To suggest a time, use « 몇 시에 만날까요? » (What time shall we meet?).",
+    "explanation_ko": "계획을 세울 때는 근접 미래 '-을/ㄹ 거예요'를 씁니다. 시간을 제안할 때는 '몇 시에 만날까요?'를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "I'm going to travel next month.",
+        "ko": "저는 다음 달에 여행 갈 거예요."
+      },
+      {
+        "en": "What time shall we meet?",
+        "ko": "몇 시에 만날까요?"
+      },
+      {
+        "en": "Let's have dinner together.",
+        "ko": "같이 저녁 먹어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u29_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a future plan using «-을/ㄹ 거예요».",
+        "ko": "'-을/ㄹ 거예요'를 사용해서 미래 계획을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "future_plan",
+          "label_ko": "미래 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Does it end with 거예요?",
+          "type": "pattern_regex",
+          "target": "거예요[.]?$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u29_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«몇 시에 만날까요?» (What time shall we meet?) Answer this question.",
+        "ko": "'몇 시에 만날까요?'(만날 시간을 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "meeting_time",
+          "label_ko": "만남 시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Did you write at least 5 characters?",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u29_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Suggest a plan out loud using «같이 ~해요» (let's ~ together).",
+        "ko": "'같이 ~해요'를 사용해서 소리 내어 계획을 제안해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "propose_plan",
+          "label_ko": "계획 제안 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '같이' (together)?",
+          "type": "keyword_match",
+          "target": [
+            "같이"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u29_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«다음 달에 여행 갈 거예요?» (Are you going to travel next month?) Answer out loud.",
+        "ko": "'다음 달에 여행 갈 거예요?'(여행 계획을 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "future_plan",
+          "label_ko": "미래 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

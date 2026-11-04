@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a1_u30",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 30,
+    "title": "接受、拒绝邀请",
+    "title_ko": "초대 수락·거절",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "接受邀请用「好啊，我去」，拒绝用「对不起，我不能去」。",
+    "explanation_ko": "초대를 수락할 때는 '好啊，我去'(좋아요, 갈게요), 거절할 때는 '对不起，我不能去'(죄송해요, 못 가요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "好啊，我去。",
+        "ko": "좋아요, 갈게요."
+      },
+      {
+        "en": "对不起，我不能去。",
+        "ko": "죄송해요, 못 가요."
+      },
+      {
+        "en": "下次一起去吧。",
+        "ko": "다음에 같이 가요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u30_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "朋友邀请你去看电影，请用「好啊」接受邀请。",
+        "ko": "친구가 영화 보러 가자고 초대했습니다. '好啊'를 사용해서 수락하는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "accepting",
+          "label_ko": "수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'好啊'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "好啊"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u30_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你能来我的生日聚会吗？」请用「对不起，我不能去」拒绝。",
+        "ko": "'你能来我的生日聚会吗？'(제 생일 파티에 올 수 있어요?)라는 질문에 '对不起，我不能去'를 사용해서 거절해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "declining",
+          "label_ko": "거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'对不起'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "对不起"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u30_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声接受朋友的邀请。",
+        "ko": "소리 내어 친구의 초대를 수락해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "accepting",
+          "label_ko": "수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'好啊' 또는 '我去'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "好啊",
+            "我去"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u30_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「明天能一起吃饭吗？」有人问你。请大声婉拒。",
+        "ko": "'明天能一起吃饭吗？'(내일 같이 밥 먹을 수 있어요?)라는 질문을 받았습니다. 소리 내어 정중히 거절해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "declining",
+          "label_ko": "거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'对不起'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "对不起"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

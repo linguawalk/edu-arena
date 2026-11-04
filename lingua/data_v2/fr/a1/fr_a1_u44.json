@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_a1_u44",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 44,
+    "title": "Voisins",
+    "title_ko": "이웃",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour se présenter à un voisin, on utilise « Je suis votre nouveau voisin ». Pour demander un service, on utilise « Pourriez-vous m'aider ? ».",
+    "explanation_ko": "이웃에게 자기소개할 때는 'Je suis votre nouveau voisin'(제가 새로 이사 온 이웃이에요), 도움을 요청할 때는 'Pourriez-vous m'aider ?'(도와주실 수 있어요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je suis votre nouveau voisin.",
+        "ko": "제가 새로 이사 온 이웃이에요."
+      },
+      {
+        "en": "Pourriez-vous m'aider avec ça ?",
+        "ko": "이거 좀 도와주실 수 있어요?"
+      },
+      {
+        "en": "Mes voisins sont très gentils.",
+        "ko": "저희 이웃분들은 정말 친절해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u44_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Présentez-vous à un nouveau voisin en utilisant « Je suis votre nouveau voisin ».",
+        "ko": "'Je suis votre nouveau voisin'을 사용해서 새 이웃에게 자기소개를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "neighbor_intro",
+          "label_ko": "이웃 소개 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'voisin'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "voisin",
+            "voisine"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u44_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vos voisins sont gentils ? » Répondez à cette question.",
+        "ko": "'Vos voisins sont gentils ?'(이웃분들이 친절해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "neighbor_opinion",
+          "label_ko": "이웃 평가 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'voisins'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "voisins"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u44_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Présentez-vous à un voisin à voix haute.",
+        "ko": "소리 내어 이웃에게 자기소개를 해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "neighbor_intro",
+          "label_ko": "이웃 소개 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'voisin'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "voisin",
+            "voisine"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u44_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Pourriez-vous m'aider avec ça ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Pourriez-vous m'aider avec ça ?'(이거 좀 도와주실 수 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "helping",
+          "label_ko": "도움 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Bien sûr'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Bien sûr"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

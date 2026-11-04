@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "id": "fr_a1_u45",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 45,
+    "title": "Cuisiner",
+    "title_ko": "요리",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler de la cuisine, on utilise « Je fais la cuisine ». Pour décrire une recette, on utilise « D'abord, ..., puis... ».",
+    "explanation_ko": "요리에 대해 말할 때는 'Je fais la cuisine'(저는 요리를 해요), 레시피를 설명할 때는 'D'abord..., puis...'(먼저 ~, 그다음 ~)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je fais la cuisine tous les soirs.",
+        "ko": "저는 매일 저녁 요리를 해요."
+      },
+      {
+        "en": "D'abord, coupez les légumes.",
+        "ko": "먼저, 채소를 자르세요."
+      },
+      {
+        "en": "J'aime cuisiner des pâtes.",
+        "ko": "저는 파스타 요리하는 걸 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u45_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez si vous aimez cuisiner en utilisant « J'aime cuisiner... ».",
+        "ko": "'J'aime cuisiner...'를 사용해서 요리를 좋아하는지 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cooking_pref",
+          "label_ko": "요리 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'cuisiner' 또는 'cuisine'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "cuisiner",
+            "cuisine"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u45_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous faites la cuisine tous les jours ? » Répondez à cette question.",
+        "ko": "'Vous faites la cuisine tous les jours ?'(매일 요리해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cooking_frequency",
+          "label_ko": "요리 빈도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u45_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de votre plat préféré à cuisiner à voix haute.",
+        "ko": "소리 내어 좋아하는 요리에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cooking_pref",
+          "label_ko": "요리 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'cuisiner' 또는 'J'aime'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "cuisiner",
+            "J'aime",
+            "j'aime"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u45_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous aimez cuisiner des pâtes ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous aimez cuisiner des pâtes ?'(파스타 요리하는 거 좋아해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pasta_cooking",
+          "label_ko": "파스타 요리 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "de_a1_u34",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 34,
+    "title": "Vergangene Erfahrungen",
+    "title_ko": "과거 경험",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about past experiences, we use « Ich habe... gemacht ». To ask about experience, we use « Haben Sie schon... gemacht? ».",
+    "explanation_ko": "과거 경험을 말할 때는 'Ich habe... gemacht'(저는 ~했어요), 경험을 물을 때는 'Haben Sie schon... gemacht?'(~해본 적 있어요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich habe letztes Jahr Deutschland besucht.",
+        "ko": "작년에 독일을 방문했어요."
+      },
+      {
+        "en": "Haben Sie schon Sushi gegessen?",
+        "ko": "초밥 먹어본 적 있어요?"
+      },
+      {
+        "en": "Ich habe das noch nie gemacht.",
+        "ko": "저는 그거 아직 해본 적 없어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u34_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie eine vergangene Erfahrung und benutzen Sie dabei „Ich habe... gemacht“.",
+        "ko": "'Ich habe... gemacht'를 사용해서 과거 경험을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "past_experience",
+          "label_ko": "과거 경험 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'habe'와 'gemacht'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "habe.{0,25}(gemacht|besucht|gegessen|gesehen)",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u34_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Haben Sie schon Sushi gegessen?“ Beantworten Sie diese Frage.",
+        "ko": "'Haben Sie schon Sushi gegessen?'(초밥 먹어본 적 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "experience_answer",
+          "label_ko": "경험 답변 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u34_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sprechen Sie laut über eine vergangene Erfahrung.",
+        "ko": "소리 내어 과거 경험에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "past_experience",
+          "label_ko": "과거 경험 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich habe'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich habe",
+            "ich habe"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u34_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Haben Sie schon Deutschland besucht?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Haben Sie schon Deutschland besucht?'(독일 방문해본 적 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "visit_experience",
+          "label_ko": "방문 경험 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

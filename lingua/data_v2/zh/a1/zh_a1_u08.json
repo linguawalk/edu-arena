@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a1_u08",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 8,
+    "title": "日常生活",
+    "title_ko": "일상생활",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说日常习惯用「我每天...」，说起床/睡觉时间用「我...点起床/睡觉」。",
+    "explanation_ko": "일상 습관을 말할 때는 '我每天...'(저는 매일 ~해요), 기상/취침 시간을 말할 때는 '我...点起床/睡觉'(저는 ~시에 일어나요/자요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我每天七点起床。",
+        "ko": "저는 매일 7시에 일어나요."
+      },
+      {
+        "en": "我晚上十一点睡觉。",
+        "ko": "저는 밤 11시에 자요."
+      },
+      {
+        "en": "我每天上班。",
+        "ko": "저는 매일 출근해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u08_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我每天...点起床」写出你的起床时间。",
+        "ko": "'我每天...点起床'을 사용해서 기상 시간을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_routine",
+          "label_ko": "일상 습관 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'起床'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "起床"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u08_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你几点睡觉？」请回答这个问题。",
+        "ko": "'你几点睡觉？'(몇 시에 자요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sleep_time",
+          "label_ko": "취침 시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'睡觉'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "睡觉"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u08_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你的日常生活。",
+        "ko": "소리 내어 자신의 일상생활을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_routine",
+          "label_ko": "일상 습관 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我每天'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我每天"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u08_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你每天上班吗？」有人问你。请大声回答。",
+        "ko": "'你每天上班吗？'(매일 출근해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "work_routine",
+          "label_ko": "출근 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

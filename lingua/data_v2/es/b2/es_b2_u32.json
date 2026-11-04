@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "id": "es_b2_u32",
+    "domain": "language",
+    "lang": "es",
+    "level": "b2",
+    "unit": 32,
+    "title": "Elipsis en el habla",
+    "title_ko": "구어체 생략",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Spoken Spanish often omits words understood from context: « ¿Vienes? » « Claro » (instead of a full sentence).",
+    "explanation_ko": "구어체 스페인어는 맥락에서 이해되는 단어를 흔히 생략합니다: '¿Vienes?' 'Claro'(완전한 문장 대신).",
+    "key_expressions": [
+      {
+        "en": "¿Vienes? Claro.",
+        "ko": "올 거야? 물론이지."
+      },
+      {
+        "en": "¿Café o té? Café.",
+        "ko": "커피 아니면 차? 커피."
+      },
+      {
+        "en": "¿Y tú? Bien.",
+        "ko": "너는? 잘 지내."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_b2_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una respuesta elíptica breve (p.ej. «Claro» o «Bien»).",
+        "ko": "짧은 생략형 답변(예: 'Claro' 또는 'Bien')을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "elipsis",
+          "label_ko": "구어체 생략",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 적절한가 (최대 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "max": 10,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Café o té?» Responda de forma elíptica.",
+        "ko": "'¿Café o té?'(커피 아니면 차?)라는 질문에 생략형으로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "elipsis",
+          "label_ko": "구어체 생략",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Café' 또는 'Té'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Café",
+            "café",
+            "Té",
+            "té"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 짧은가 (최대 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "max": 10,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una respuesta elíptica breve.",
+        "ko": "소리 내어 짧은 생략형 답변을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "elipsis",
+          "label_ko": "구어체 생략",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 짧은가 (최대 15자)",
+          "type": "length_check",
+          "unit": "chars",
+          "max": 15,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_b2_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Y tú?» Le preguntan esto. Responda en voz alta de forma elíptica.",
+        "ko": "'¿Y tú?'(너는?)라는 질문을 받았습니다. 생략형으로 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "elipsis",
+          "label_ko": "구어체 생략",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 짧은가 (최대 15자)",
+          "type": "length_check",
+          "unit": "chars",
+          "max": 15,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

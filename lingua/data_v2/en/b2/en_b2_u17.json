@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "en_b2_u17",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 17,
+    "title": "Advanced Reported Speech",
+    "title_ko": "고급 간접화법 동사",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Advanced reporting verbs carry precise meaning beyond 'said': 'suggest that' (propose), 'insist that' (state firmly), 'deny' (reject a claim, + -ing), 'admit' (confess, + -ing): 'He denied taking the money.' 'She admitted making a mistake.'",
+    "explanation_ko": "고급 보고 동사는 'said'보다 정확한 의미를 전달합니다: 'suggest that'(제안하다), 'insist that'(강하게 주장하다), 'deny'(주장을 부인하다, + -ing), 'admit'(인정하다, + -ing): 'He denied taking the money.' 'She admitted making a mistake.'",
+    "key_expressions": [
+      {
+        "en": "She insisted that she was right.",
+        "ko": "그녀는 자신이 옳다고 강하게 주장했어요."
+      },
+      {
+        "en": "He denied breaking the vase.",
+        "ko": "그는 꽃병을 깬 것을 부인했어요."
+      },
+      {
+        "en": "They admitted making a mistake.",
+        "ko": "그들은 실수를 인정했어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u17_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about a situation where someone denied or admitted doing something, using 'deny' or 'admit' + -ing.",
+        "ko": "누군가 무언가를 부인하거나 인정했던 상황을, 'deny' 또는 'admit' + -ing를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "deny_admit",
+          "label_ko": "deny/admit + -ing",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'denied + -ing' 또는 'admitted + -ing'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(denied|admitted)\\s+\\w+ing",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u17_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What did your coworker insist on during the meeting?' Write your answer using 'insisted that'.",
+        "ko": "'What did your coworker insist on during the meeting?'라는 질문에 'insisted that'을 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "insist_that",
+          "label_ko": "insist that",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'insisted that'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "insisted that"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u17_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Tell out loud about a time someone suggested a change at work, using 'suggested that'.",
+        "ko": "직장에서 누군가 변화를 제안했던 경험을 'suggested that'을 사용해서 소리 내어 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "suggest_that",
+          "label_ko": "suggest that",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'suggested that'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "suggested that"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u17_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Have you ever had to admit making a mistake at work?'",
+        "ko": "소리 내어 답해 보세요: 'Have you ever had to admit making a mistake at work?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "deny_admit",
+          "label_ko": "deny/admit + -ing",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes, I have' 또는 'No, I haven't'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes, i have",
+            "no, i haven't",
+            "yes i have",
+            "no i haven't"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

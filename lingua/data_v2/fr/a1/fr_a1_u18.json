@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "fr_a1_u18",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 18,
+    "title": "La maison 2",
+    "title_ko": "집 2",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler des tâches ménagères, on utilise « Je fais... ». Pour dire où se trouve un objet, on utilise « ... est dans/sur... ».",
+    "explanation_ko": "집안일을 말할 때는 'Je fais...'(저는 ~을 해요), 물건 위치를 말할 때는 '...est dans/sur...'(~은 ~안/위에 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je fais la vaisselle.",
+        "ko": "저는 설거지를 해요."
+      },
+      {
+        "en": "Le livre est sur la table.",
+        "ko": "책은 탁자 위에 있어요."
+      },
+      {
+        "en": "Je fais le ménage le week-end.",
+        "ko": "저는 주말에 청소해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u18_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une tâche ménagère que vous faites en utilisant « Je fais... ».",
+        "ko": "하는 집안일을 'Je fais...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "chores",
+          "label_ko": "집안일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je fais'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je fais",
+            "je fais"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u18_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Où est le livre ? » Répondez à cette question.",
+        "ko": "'Où est le livre ?'(책이 어디 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "object_location",
+          "label_ko": "물건 위치 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'est'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "est"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u18_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez d'une tâche ménagère que vous faites à voix haute.",
+        "ko": "소리 내어 자신이 하는 집안일에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "chores",
+          "label_ko": "집안일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je fais'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je fais",
+            "je fais"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u18_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous faites le ménage le week-end ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous faites le ménage le week-end ?'(주말에 청소해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cleaning",
+          "label_ko": "청소 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_a2_u34",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 34,
+    "title": "Ville vs campagne",
+    "title_ko": "도시와 시골",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour comparer la ville et la campagne, on utilise « La ville est plus... » et « La campagne est plus... ».",
+    "explanation_ko": "도시와 시골을 비교할 때는 'La ville est plus...'(도시는 더 ~해요), 'La campagne est plus...'(시골은 더 ~해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "La ville est plus pratique.",
+        "ko": "도시가 더 편리해요."
+      },
+      {
+        "en": "La campagne est plus calme.",
+        "ko": "시골이 더 조용해요."
+      },
+      {
+        "en": "J'ai grandi à la campagne.",
+        "ko": "저는 시골에서 자랐어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u34_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Comparez la ville et la campagne en utilisant « ... est plus pratique ».",
+        "ko": "도시와 시골을 '...est plus pratique'를 사용해서 비교해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "city_country",
+          "label_ko": "도시·시골 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'plus pratique'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "plus pratique"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u34_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous préférez la ville ou la campagne ? » Répondez à cette question.",
+        "ko": "'Vous préférez la ville ou la campagne ?'(도시와 시골 중 어디를 좋아해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "preference",
+          "label_ko": "선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'préfère'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "préfère"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u34_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Comparez la ville et la campagne à voix haute.",
+        "ko": "도시와 시골에 대해 소리 내어 비교해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "city_country",
+          "label_ko": "도시·시골 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ville' 또는 'campagne'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ville",
+            "campagne"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u34_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous avez grandi à la campagne ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous avez grandi à la campagne ?'(시골에서 자랐어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "upbringing",
+          "label_ko": "성장 환경 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

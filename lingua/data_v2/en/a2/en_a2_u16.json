@@ -1,0 +1,269 @@
+{
+  "meta": {
+    "id": "en_a2_u16",
+    "domain": "language",
+    "lang": "en",
+    "level": "a2",
+    "unit": 16,
+    "title": "Talking About Your Career",
+    "title_ko": "커리어 이야기하기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: describing career history and goals.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 커리어 이력과 목표 설명하기",
+    "key_expressions": [
+      {
+        "en": "I started working here in 2022.",
+        "ko": "저는 2022년에 이곳에서 일을 시작했어요."
+      },
+      {
+        "en": "My goal is to become a manager.",
+        "ko": "제 목표는 매니저가 되는 거예요."
+      },
+      {
+        "en": "I switched careers last year.",
+        "ko": "저는 작년에 직종을 바꿨어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a2_u16_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about your career so far, including when you started your current job.",
+        "ko": "지금까지의 커리어에 대해, 현재 일을 언제 시작했는지 포함해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "career_start",
+          "label_ko": "경력 시작 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I started'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i started"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "연도가 포함되어 있는가",
+          "type": "pattern_regex",
+          "target": "\\b(19|20)\\d{2}\\b",
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "분량이 충분한가 (최소 15단어)",
+          "type": "length_check",
+          "unit": "words",
+          "min": 15,
+          "points": 25,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u16_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What is your career goal for the next five years?' Write your answer.",
+        "ko": "'What is your career goal for the next five years?'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "goal",
+          "label_ko": "목표 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'My goal is'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "my goal is",
+            "i want to"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "직업/직급 단어를 포함했는가",
+          "type": "keyword_match",
+          "target": [
+            "manager",
+            "director",
+            "own business",
+            "expert"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u16_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about how your career has changed over the years.",
+        "ko": "시간이 지나면서 커리어가 어떻게 변했는지 소리 내어 이야기해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "career_change",
+          "label_ko": "경력 변화 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "과거시제 동사를 사용했는가 (started/changed/worked)",
+          "type": "pattern_regex",
+          "target": "\\b(started|changed|worked|switched|became)\\b",
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a2_u16_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Would you consider changing careers in the future?'",
+        "ko": "소리 내어 답해 보세요: 'Would you consider changing careers in the future?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "consideration",
+          "label_ko": "고려 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes' 또는 'No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'maybe' 또는 'because'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "maybe",
+            "because"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

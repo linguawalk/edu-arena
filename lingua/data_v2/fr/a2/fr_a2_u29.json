@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "fr_a2_u29",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 29,
+    "title": "Étudier",
+    "title_ko": "공부",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler d'un plan d'étude, on utilise « Avant..., je dois... ». Par exemple : « Avant l'examen, je dois réviser ».",
+    "explanation_ko": "공부 계획을 말할 때는 'Avant..., je dois...'(~전에 ~해야 해요)를 씁니다. 예: 'Avant l'examen, je dois réviser'(시험 전에 복습해야 해요).",
+    "key_expressions": [
+      {
+        "en": "Avant l'examen, je dois réviser.",
+        "ko": "시험 전에 복습해야 해요."
+      },
+      {
+        "en": "J'étudie tous les soirs.",
+        "ko": "저는 매일 밤 공부하고 있어요."
+      },
+      {
+        "en": "C'est difficile de retenir les nouveaux mots.",
+        "ko": "단어를 외우는 게 어려워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u29_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez votre plan d'étude en utilisant « Avant..., je dois... ».",
+        "ko": "시험 전 공부 계획을 'Avant..., je dois...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "study_plan",
+          "label_ko": "공부 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Avant'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Avant",
+            "avant"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u29_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Qu'est-ce qui est le plus difficile en français ? » Répondez à cette question.",
+        "ko": "'Qu'est-ce qui est le plus difficile en français ?'(프랑스어에서 뭐가 가장 어려워요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "study_difficulty",
+          "label_ko": "공부 어려움 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'difficile'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "difficile"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u29_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de votre plan d'étude avant un examen à voix haute.",
+        "ko": "시험 전 공부 계획에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "study_plan",
+          "label_ko": "공부 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'réviser' 또는 'étudier'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "réviser",
+            "étudier"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u29_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous aimez retenir de nouveaux mots ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous aimez retenir de nouveaux mots ?'(단어 외우는 거 좋아해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "vocab_study",
+          "label_ko": "단어 학습 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

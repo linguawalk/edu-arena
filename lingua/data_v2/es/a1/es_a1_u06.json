@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "es_a1_u06",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 6,
+    "title": "En el restaurante",
+    "title_ko": "식당에서",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To order at a restaurant, we use « Para mí, ... ». To ask for the check, we use « La cuenta, por favor ».",
+    "explanation_ko": "식당에서 주문할 때는 'Para mí, ...'(저는 ~로 할게요), 계산서를 요청할 때는 'La cuenta, por favor'(계산서 주세요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Para mí, la sopa.",
+        "ko": "저는 수프로 할게요."
+      },
+      {
+        "en": "La cuenta, por favor.",
+        "ko": "계산서 주세요."
+      },
+      {
+        "en": "¿Está lista para pedir?",
+        "ko": "주문하시겠어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u06_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pida algo en un restaurante usando «Para mí,...».",
+        "ko": "'Para mí,...'를 사용해서 식당에서 주문해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "restaurant_order",
+          "label_ko": "식당 주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Para mí'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Para mí",
+            "para mí"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u06_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Está lista para pedir?» Responda a esta pregunta.",
+        "ko": "'¿Está lista para pedir?'(주문하시겠어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ready_to_order",
+          "label_ko": "주문 준비 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u06_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pida la cuenta en voz alta.",
+        "ko": "소리 내어 계산서를 요청해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "check",
+          "label_ko": "계산서 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'cuenta'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "cuenta"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u06_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Qué quiere para comer?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Qué quiere para comer?'(뭘 드시겠어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "restaurant_order",
+          "label_ko": "식당 주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

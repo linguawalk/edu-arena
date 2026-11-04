@@ -1,0 +1,290 @@
+{
+  "meta": {
+    "id": "en_a1_u44",
+    "domain": "language",
+    "lang": "en",
+    "level": "a1",
+    "unit": 44,
+    "title": "At the Doctor's / Pharmacy",
+    "title_ko": "병원·약국에서",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: describing symptoms to a doctor and asking for medicine at a pharmacy.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 의사에게 증상 설명하기, 약국에서 약 요청하기",
+    "key_expressions": [
+      {
+        "en": "I have a fever and a sore throat.",
+        "ko": "저는 열이 있고 목이 아파요."
+      },
+      {
+        "en": "Do you have anything for a headache?",
+        "ko": "두통에 좋은 약 있나요?"
+      },
+      {
+        "en": "How many times a day should I take this?",
+        "ko": "이거 하루에 몇 번 먹어야 하나요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a1_u44_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "You are at the doctor's office. Write what you would say to describe two symptoms.",
+        "ko": "당신은 병원에 있습니다. 증상 두 가지를 설명할 때 할 말을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom",
+          "label_ko": "증상 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I have a'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i have a",
+            "i have"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "증상 단어를 2개 이상 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "fever",
+            "headache",
+            "cough",
+            "sore throat",
+            "stomachache"
+          ],
+          "min_matches": 2,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u44_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "A pharmacist asks: 'What symptoms do you have?' Write your answer.",
+        "ko": "약사가 'What symptoms do you have?'라고 묻습니다. 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom",
+          "label_ko": "증상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I have'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i have"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "증상 단어를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "fever",
+            "headache",
+            "cough",
+            "sore throat",
+            "stomachache"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u44_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Role-play talking to a pharmacist out loud. Ask for medicine for a headache.",
+        "ko": "약사에게 말하는 상황을 소리 내어 연기해 보세요. 두통약을 요청해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "medicine_request",
+          "label_ko": "약 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Do you have anything for'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "do you have anything for",
+            "do you have"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'headache'를 언급했는가",
+          "type": "keyword_match",
+          "target": [
+            "headache"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a1_u44_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'How long have you had this cough?'",
+        "ko": "소리 내어 답해 보세요: 'How long have you had this cough?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "duration",
+          "label_ko": "기간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "기간 표현(days/week)을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "days",
+            "day",
+            "week"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'for'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "for"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

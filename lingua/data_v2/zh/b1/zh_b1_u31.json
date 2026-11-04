@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_b1_u31",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b1",
+    "unit": 31,
+    "title": "尽管...但是...",
+    "title_ko": "尽管...但是... (비록 ~일지라도)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「尽管...但是...」比「虽然...但是...」语气更强，强调让步。「尽管很难，但是我们坚持了」。",
+    "explanation_ko": "'尽管...但是...'는 '虽然...但是...'보다 어조가 더 강하며, 양보를 강조합니다. '尽管很难，但是我们坚持了'(비록 어려웠지만 우리는 견뎌냈어요).",
+    "key_expressions": [
+      {
+        "en": "尽管很难，但是我们坚持了。",
+        "ko": "비록 어려웠지만 우리는 견뎌냈어요."
+      },
+      {
+        "en": "尽管失败了，但是我不后悔。",
+        "ko": "비록 실패했지만 후회하지 않아요."
+      },
+      {
+        "en": "尽管很累，但是很值得。",
+        "ko": "비록 힘들지만 가치가 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b1_u31_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「尽管...但是...」写出坚持做某事的经历。",
+        "ko": "어떤 일을 견뎌낸 경험을 '尽管...但是...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "jinguan_danshi",
+          "label_ko": "尽管...但是...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'尽管'과 '但是'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "尽管.{0,15}但是",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u31_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你后悔失败了吗？」请用「尽管...但是...」回答。",
+        "ko": "'你后悔失败了吗？'(실패한 게 후회돼요?)라는 질문에 '尽管...但是...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "jinguan_danshi",
+          "label_ko": "尽管...但是...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'尽管'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "尽管"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u31_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「尽管...但是...」说出坚持做某事的经历。",
+        "ko": "'尽管...但是...'를 사용해서 소리 내어 견뎌낸 경험을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "jinguan_danshi",
+          "label_ko": "尽管...但是...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'尽管' 또는 '但是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "尽管",
+            "但是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b1_u31_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「尽管很累，但是值得吗？」有人问你。请大声回答。",
+        "ko": "'尽管很累，但是值得吗？'(비록 힘들지만 가치가 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "jinguan_danshi",
+          "label_ko": "尽管...但是...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

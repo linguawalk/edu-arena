@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "id": "ko_a1_u39",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 39,
+    "title": "A Typical Day (하루 일과 종합)",
+    "title_ko": "하루 일과 종합",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe a full day, connect several routine sentences using « -고 » (and then). For example, « 일어나고, 밥을 먹고, 학교에 가요 ».",
+    "explanation_ko": "하루 전체를 묘사할 때는 '-고'(그리고)로 여러 일과 문장을 연결합니다. 예: '일어나고, 밥을 먹고, 학교에 가요'.",
+    "key_expressions": [
+      {
+        "en": "I wake up, eat, and go to school.",
+        "ko": "저는 일어나고, 밥을 먹고, 학교에 가요."
+      },
+      {
+        "en": "I study and then rest.",
+        "ko": "저는 공부하고 쉬어요."
+      },
+      {
+        "en": "I work and then go home.",
+        "ko": "저는 일하고 집에 가요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u39_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe your day connecting two actions with «-고» (and then).",
+        "ko": "'-고'(그리고)를 사용해서 두 가지 행동을 연결한 하루 일과를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_connect",
+          "label_ko": "일과 연결 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '고' (and then)?",
+          "type": "keyword_match",
+          "target": [
+            "고"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u39_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«하루 일과가 어떻게 돼요?» (What's your daily routine?) Answer this question.",
+        "ko": "'하루 일과가 어떻게 돼요?'(하루 일과를 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_routine",
+          "label_ko": "일과 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Did you write at least 8 characters?",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 8,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u39_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say your daily routine out loud, connecting actions with «-고».",
+        "ko": "'-고'를 사용해서 소리 내어 하루 일과를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_connect",
+          "label_ko": "일과 연결 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you write at least 8 characters?",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 8,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u39_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«일하고 집에 가요?» (Do you work and then go home?) Answer out loud.",
+        "ko": "'일하고 집에 가요?'(일과 순서를 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_connect",
+          "label_ko": "일과 연결 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

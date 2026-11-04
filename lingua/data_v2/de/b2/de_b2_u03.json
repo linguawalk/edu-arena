@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "de_b2_u03",
+    "domain": "language",
+    "lang": "de",
+    "level": "b2",
+    "unit": 3,
+    "title": "Erweiterte Partizipialkonstruktionen",
+    "title_ko": "확장된 분사구문",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Extended participial constructions (« der von allen geliebte Lehrer ») compress a relative clause into a pre-noun phrase, typical of formal written German.",
+    "explanation_ko": "확장된 분사구문('der von allen geliebte Lehrer')은 관계문을 명사 앞 구문으로 압축하며, 격식 있는 문어체 독일어의 전형입니다.",
+    "key_expressions": [
+      {
+        "en": "Der von allen geliebte Lehrer ist in Rente gegangen.",
+        "ko": "모두에게 사랑받는 선생님이 은퇴했어요."
+      },
+      {
+        "en": "Das lange erwartete Ergebnis kam endlich.",
+        "ko": "오랫동안 기다려온 결과가 드디어 나왔어요."
+      },
+      {
+        "en": "Die schnell wachsende Stadt braucht mehr Wohnungen.",
+        "ko": "빠르게 성장하는 도시는 더 많은 주택이 필요해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b2_u03_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit einer erweiterten Partizipialkonstruktion (z.B. „der von allen geliebte...“).",
+        "ko": "확장된 분사구문(예: 'der von allen geliebte...')을 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "erweiterte_partizip",
+          "label_ko": "확장된 분사구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "전치사구+분사+명사 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(von|schnell|lange)\\s+\\w+\\s+\\w+(e|en|te|ten)\\s",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u03_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist der Lehrer in Rente gegangen?“ Beantworten Sie diese Frage.",
+        "ko": "'Ist der Lehrer in Rente gegangen?'(선생님이 은퇴했어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "erweiterte_partizip",
+          "label_ko": "확장된 분사구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u03_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit einer erweiterten Partizipialkonstruktion.",
+        "ko": "소리 내어 확장된 분사구문을 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "erweiterte_partizip",
+          "label_ko": "확장된 분사구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b2_u03_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Braucht die schnell wachsende Stadt mehr Wohnungen?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Braucht die schnell wachsende Stadt mehr Wohnungen?'(빠르게 성장하는 도시가 더 많은 주택이 필요해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "erweiterte_partizip",
+          "label_ko": "확장된 분사구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

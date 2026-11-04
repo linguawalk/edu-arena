@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "de_a1_u17",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 17,
+    "title": "Zuhause 1",
+    "title_ko": "집 1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe your home, we use « Meine Wohnung hat... ». To say where something is, we use « ... ist in... ».",
+    "explanation_ko": "집을 묘사할 때는 'Meine Wohnung hat...'(저희 집에는 ~이 있어요), 위치를 말할 때는 '...ist in...'(~은 ~에 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Meine Wohnung hat zwei Zimmer.",
+        "ko": "저희 집에는 방이 두 개 있어요."
+      },
+      {
+        "en": "Das Bett ist im Schlafzimmer.",
+        "ko": "침대는 침실에 있어요."
+      },
+      {
+        "en": "Ich wohne in einer Wohnung.",
+        "ko": "저는 아파트에 살아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u17_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschreiben Sie Ihre Wohnung und benutzen Sie dabei „Meine Wohnung hat...“.",
+        "ko": "'Meine Wohnung hat...'를 사용해서 자신의 집을 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "home_desc",
+          "label_ko": "집 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Wohnung hat'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Wohnung hat"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u17_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Wo ist das Bett?“ Beantworten Sie diese Frage.",
+        "ko": "'Wo ist das Bett?'(침대가 어디 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "location",
+          "label_ko": "위치 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ist'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ist"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u17_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschreiben Sie Ihre Wohnung laut.",
+        "ko": "소리 내어 자신의 집을 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "home_desc",
+          "label_ko": "집 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Wohnung'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Wohnung"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u17_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Wohnen Sie in einer Wohnung?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Wohnen Sie in einer Wohnung?'(아파트에 사세요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "home_type",
+          "label_ko": "거주 형태 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

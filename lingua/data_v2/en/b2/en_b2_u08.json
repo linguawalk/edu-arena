@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "en_b2_u08",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 8,
+    "title": "Cleft Sentences",
+    "title_ko": "분열문 (강조 구문)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Cleft sentences split a simple sentence into two parts to add emphasis. 'It was ... that ...' emphasizes a specific detail: 'It was John who called, not Mary.' 'What ... is/was ...' emphasizes an idea: 'What surprised me was the price.'",
+    "explanation_ko": "분열문은 단순한 문장을 두 부분으로 나눠서 강조합니다. 'It was ... that ...'는 특정 세부사항을 강조합니다: 'It was John who called, not Mary.' 'What ... is/was ...'는 하나의 생각을 강조합니다: 'What surprised me was the price.'",
+    "key_expressions": [
+      {
+        "en": "It was the manager who made the final decision.",
+        "ko": "최종 결정을 내린 사람은 매니저였어요."
+      },
+      {
+        "en": "What bothers me most is the noise.",
+        "ko": "저를 가장 신경 쓰이게 하는 건 소음이에요."
+      },
+      {
+        "en": "It wasn't until last year that I understood.",
+        "ko": "작년이 되어서야 저는 이해했어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u08_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about a specific person or detail that made a difference in a situation, using 'It was ... that/who ...'.",
+        "ko": "어떤 상황에서 차이를 만들었던 특정 인물이나 세부사항을 'It was ... that/who ...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "cleft_it",
+          "label_ko": "It was...that 강조",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'It was ... that/who' 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "it\\s+was\\s+\\w+.{0,20}(that|who)",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u08_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What bothers you most about your commute?' Write your answer using 'What ... is/was ...'.",
+        "ko": "'What bothers you most about your commute?'라는 질문에 'What ... is/was ...' 구조를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "cleft_what",
+          "label_ko": "What...is 강조",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'What ... is/was' 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "what\\s+\\w+.{0,25}\\s+is\\b|what\\s+\\w+.{0,25}\\s+was\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u08_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about who or what really made a project successful, using cleft sentences for emphasis.",
+        "ko": "누가(또는 무엇이) 프로젝트를 성공시켰는지 분열문으로 강조하며 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "cleft_it",
+          "label_ko": "It was...that 강조",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'It was ... that/who' 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "it\\s+was\\s+\\w+.{0,20}(that|who)",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u08_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What is it that motivates you most at work?'",
+        "ko": "소리 내어 답해 보세요: 'What is it that motivates you most at work?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "cleft_what",
+          "label_ko": "What...is 강조",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'What motivates me' 구조를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "what motivates me",
+            "what really motivates"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

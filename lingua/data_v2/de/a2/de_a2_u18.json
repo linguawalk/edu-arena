@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "de_a2_u18",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 18,
+    "title": "Technische Probleme (kaputt)",
+    "title_ko": "기술적 문제 (고장)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To say something is broken, we use « ... ist kaputt ». To ask for help fixing it, we use « Können Sie das reparieren? ».",
+    "explanation_ko": "고장 났다고 말할 때는 '...ist kaputt'(~이 고장 났어요), 수리 도움을 요청할 때는 'Können Sie das reparieren?'(이거 고쳐 주실 수 있어요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Mein Laptop ist kaputt.",
+        "ko": "제 노트북이 고장 났어요."
+      },
+      {
+        "en": "Können Sie das reparieren?",
+        "ko": "이거 고쳐 주실 수 있어요?"
+      },
+      {
+        "en": "Der Bildschirm funktioniert nicht mehr.",
+        "ko": "화면이 더 이상 작동 안 해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u18_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschreiben Sie ein kaputtes Gerät und benutzen Sie dabei „... ist kaputt“.",
+        "ko": "'...ist kaputt'를 사용해서 고장 난 기기를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "broken",
+          "label_ko": "고장 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'kaputt'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "kaputt"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u18_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Können Sie das reparieren?“ Beantworten Sie diese Frage.",
+        "ko": "'Können Sie das reparieren?'(이거 고칠 수 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "repair",
+          "label_ko": "수리 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u18_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschreiben Sie laut ein kaputtes Gerät.",
+        "ko": "소리 내어 고장 난 기기에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "broken",
+          "label_ko": "고장 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'kaputt'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "kaputt"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u18_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Funktioniert der Bildschirm nicht mehr?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Funktioniert der Bildschirm nicht mehr?'(화면이 더 이상 작동 안 해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "screen",
+          "label_ko": "화면 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

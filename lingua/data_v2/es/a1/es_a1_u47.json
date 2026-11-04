@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "es_a1_u47",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 47,
+    "title": "Emergencias",
+    "title_ko": "응급상황",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "In an emergency, we use « ¡Ayuda! » or « Necesito ayuda ». To call for help, we use « Llame a una ambulancia ».",
+    "explanation_ko": "응급상황에서는 '¡Ayuda!'(도와주세요!) 또는 'Necesito ayuda'(도움이 필요해요)를 씁니다. 도움을 요청할 때는 'Llame a una ambulancia'(구급차를 불러주세요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "¡Ayuda! ¡Es una emergencia!",
+        "ko": "도와주세요! 응급상황이에요!"
+      },
+      {
+        "en": "Llame a una ambulancia, por favor.",
+        "ko": "구급차를 불러주세요."
+      },
+      {
+        "en": "Necesito ayuda ahora mismo.",
+        "ko": "지금 당장 도움이 필요해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u47_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una petición de ayuda urgente usando «Necesito ayuda».",
+        "ko": "'Necesito ayuda'를 사용해서 긴급 도움 요청을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "emergency_help",
+          "label_ko": "응급 도움 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ayuda'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ayuda"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u47_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Es una emergencia?» Responda a esta pregunta.",
+        "ko": "'¿Es una emergencia?'(응급상황이에요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "emergency",
+          "label_ko": "응급상황 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u47_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pida ayuda en voz alta usando «¡Ayuda!».",
+        "ko": "'¡Ayuda!'를 사용해서 소리 내어 도움을 요청해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "call_help",
+          "label_ko": "도움 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ayuda'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ayuda",
+            "ayuda"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u47_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Necesita que llame a una ambulancia?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Necesita que llame a una ambulancia?'(구급차를 불러드릴까요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "emergency_help",
+          "label_ko": "응급 도움 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,264 @@
+{
+  "meta": {
+    "id": "en_a2_u15",
+    "domain": "language",
+    "lang": "en",
+    "level": "a2",
+    "unit": 15,
+    "title": "Job Interviews",
+    "title_ko": "면접",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: answering common job interview questions about strengths and experience.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 강점·경력에 대한 흔한 면접 질문에 답하기",
+    "key_expressions": [
+      {
+        "en": "My biggest strength is ~.",
+        "ko": "제 가장 큰 강점은 ~예요."
+      },
+      {
+        "en": "I have experience in ~.",
+        "ko": "저는 ~ 경력이 있어요."
+      },
+      {
+        "en": "Why do you want this job?",
+        "ko": "왜 이 일을 하고 싶으세요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a2_u15_w1",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "A job interviewer asks: 'What is your biggest strength?' Write your answer.",
+        "ko": "면접관이 'What is your biggest strength?'라고 묻습니다. 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "strength",
+          "label_ko": "강점 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'My biggest strength is'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "my biggest strength",
+            "my strength"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "성격/능력 형용사를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "hardworking",
+            "organized",
+            "creative",
+            "reliable",
+            "patient"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u15_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "A job interviewer asks: 'Why do you want to work here?' Write your answer.",
+        "ko": "면접관이 'Why do you want to work here?'라고 묻습니다. 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "motivation",
+          "label_ko": "지원 동기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I want to' 또는 'because'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i want to",
+            "because"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 12단어)",
+          "type": "length_check",
+          "unit": "words",
+          "min": 12,
+          "points": 35,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u15_s1",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud, as if in an interview: 'Tell me about your work experience.'",
+        "ko": "면접이라고 생각하고 소리 내어 답해 보세요: 'Tell me about your work experience.'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "experience_expression",
+          "label_ko": "경력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I have experience' 또는 'I worked'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i have experience",
+            "i worked",
+            "i have"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a2_u15_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What is one weakness you are working to improve?'",
+        "ko": "소리 내어 답해 보세요: 'What is one weakness you are working to improve?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weakness",
+          "label_ko": "약점 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "약점 관련 표현을 사용했는가 (weakness/working on/improve)",
+          "type": "keyword_match",
+          "target": [
+            "weakness",
+            "working on",
+            "improve"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

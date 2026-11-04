@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "ko_c1_u42",
+    "domain": "language",
+    "lang": "ko",
+    "level": "c1",
+    "unit": 42,
+    "title": "Easily Confused Words",
+    "title_ko": "헷갈리기 쉬운 단어",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "« 다르다 » (different) vs « 틀리다 » (wrong) are often confused; « 다르다 » compares, « 틀리다 » judges correctness.",
+    "explanation_ko": "'다르다'(different)와 '틀리다'(wrong)는 자주 혼동됩니다. '다르다'는 비교, '틀리다'는 정확성을 판단합니다.",
+    "key_expressions": [
+      {
+        "en": "Our opinions are different.",
+        "ko": "저희 의견이 달라요."
+      },
+      {
+        "en": "This answer is wrong.",
+        "ko": "이 답이 틀려요."
+      },
+      {
+        "an": "x",
+        "en": "It's not wrong, it's just different.",
+        "ko": "틀린 게 아니라 다른 거예요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_c1_u42_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a sentence using «다르다» (different) correctly.",
+        "ko": "'다르다'를 올바르게 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "dareuda",
+          "label_ko": "다르다",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '다르' (different)?",
+          "type": "keyword_match",
+          "target": [
+            "다르"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_c1_u42_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«이 답이 정확해요?» (Is this answer correct?) Answer using «틀리다» if it's incorrect.",
+        "ko": "'이 답이 정확해요?'(정확성을 묻는 질문)에 틀렸다면 '틀리다'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "teullida",
+          "label_ko": "틀리다",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_c1_u42_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say out loud «틀린 게 아니라 다른 거예요» (It's not wrong, it's just different).",
+        "ko": "'틀린 게 아니라 다른 거예요'를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "teullin_ge_anira_dareun_geoyeyo",
+          "label_ko": "틀린 게 아니라 다른 거예요",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say both '틀' and '다르'?",
+          "type": "pattern_regex",
+          "target": "(틀).{0,20}(다르)",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_c1_u42_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«저희 의견이 달라요?» (Are our opinions different?) Answer out loud.",
+        "ko": "'저희 의견이 달라요?'(의견 차이를 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "dareuda",
+          "label_ko": "다르다",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

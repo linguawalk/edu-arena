@@ -1,0 +1,303 @@
+{
+  "meta": {
+    "id": "en_a1_u17",
+    "domain": "language",
+    "lang": "en",
+    "level": "a1",
+    "unit": 17,
+    "title": "My Home",
+    "title_ko": "우리 집",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: naming rooms and saying what a home has using 'have/has'.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 방 이름 말하기, have/has로 집이 가진 것 말하기",
+    "key_expressions": [
+      {
+        "en": "My house has ~ bedrooms.",
+        "ko": "저희 집은 침실이 ~개예요."
+      },
+      {
+        "en": "There is a sofa in the living room.",
+        "ko": "거실에 소파가 있어요."
+      },
+      {
+        "en": "I live in an apartment/house.",
+        "ko": "저는 아파트/주택에 살아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a1_u17_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe your home. Mention how many rooms it has and one piece of furniture.",
+        "ko": "당신의 집을 묘사해 보세요. 방이 몇 개인지, 가구 하나를 언급하세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "has_rooms",
+          "label_ko": "방 개수 표현",
+          "min_occurrences": 1
+        },
+        {
+          "type": "expression",
+          "id": "furniture",
+          "label_ko": "가구 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'has' 또는 'There is/are'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "has",
+            "there is",
+            "there are"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "방 이름을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "bedroom",
+            "kitchen",
+            "living room",
+            "bathroom"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "가구 단어를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "sofa",
+            "bed",
+            "table",
+            "fridge",
+            "chair"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u17_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Do you live in an apartment or a house?' Write your answer.",
+        "ko": "'Do you live in an apartment or a house?'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing_type",
+          "label_ko": "주거 형태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I live in'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i live in"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "apartment 또는 house를 언급했는가",
+          "type": "keyword_match",
+          "target": [
+            "apartment",
+            "house"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u17_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Give a short tour of your home out loud. Mention at least two rooms.",
+        "ko": "소리 내어 우리 집을 간단히 소개해 보세요. 방을 두 개 이상 언급하세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "room_name",
+          "label_ko": "방 이름",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "방 이름을 2개 이상 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "bedroom",
+            "kitchen",
+            "living room",
+            "bathroom"
+          ],
+          "min_matches": 2,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'There is/are'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "there is",
+            "there are"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a1_u17_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What is your favorite room in your house?'",
+        "ko": "소리 내어 답해 보세요: 'What is your favorite room in your house?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "room_name",
+          "label_ko": "방 이름",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "방 이름을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "bedroom",
+            "kitchen",
+            "living room",
+            "bathroom"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "이유(because)를 포함했는가",
+          "type": "keyword_match",
+          "target": [
+            "because"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

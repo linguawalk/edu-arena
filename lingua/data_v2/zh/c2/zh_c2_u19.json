@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_c2_u19",
+    "domain": "language",
+    "lang": "zh",
+    "level": "c2",
+    "unit": 19,
+    "title": "学术反驳的婉转表达",
+    "title_ko": "학술 논쟁의 완곡법",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "「这一观点固然有一定道理，但是...」在承认对方观点的同时提出异议，「有待商榷」表示需要进一步讨论，语气委婉。",
+    "explanation_ko": "'这一观点固然有一定道理，但是...'(그 견해는 물론 일리가 있지만...)는 상대의 관점을 인정하면서 이의를 제기하고, '有待商榷'(더 논의가 필요하다)는 어조가 완곡하게 추가 논의가 필요함을 나타냅니다.",
+    "key_expressions": [
+      {
+        "en": "这一观点固然有一定道理，但是还需要更多证据。",
+        "ko": "그 견해는 물론 일리가 있지만, 더 많은 증거가 필요해요."
+      },
+      {
+        "en": "这个结论有待商榷。",
+        "ko": "이 결론은 더 논의가 필요해요."
+      },
+      {
+        "en": "这项数据似乎被忽略了。",
+        "ko": "이 데이터는 간과된 것 같아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_c2_u19_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「固然...但是...」对某个观点提出委婉的反驳。",
+        "ko": "어떤 견해에 대해, '固然...但是...'를 사용해서 정중하게 반론하는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "guran_danshi",
+          "label_ko": "固然...但是...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'固然'과 '但是'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "固然.{0,15}但是",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_c2_u19_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「这个研究有问题吗？」请用「有待商榷」回答。",
+        "ko": "'这个研究有问题吗？'(이 연구에 문제가 있어요?)라는 질문에 '有待商榷'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "youdaishangque",
+          "label_ko": "有待商榷",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'有待商榷'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "有待商榷"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_c2_u19_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「固然...但是...」对一个想法委婉地表达反对。",
+        "ko": "어떤 아이디어에 정중하게 반대하는 의견을 '固然...但是...'를 사용해서 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "guran_danshi",
+          "label_ko": "固然...但是...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'固然' 또는 '但是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "固然",
+            "但是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_c2_u19_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「这个结论有待商榷吗？」有人问你。请大声回答。",
+        "ko": "'这个结论有待商榷吗？'(이 결론이 더 논의가 필요해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "youdaishangque",
+          "label_ko": "有待商榷",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

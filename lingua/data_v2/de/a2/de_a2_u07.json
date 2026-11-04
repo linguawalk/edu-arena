@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "de_a2_u07",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 7,
+    "title": "Reisepläne",
+    "title_ko": "여행 계획",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about travel plans, we use « Ich plane, ... zu... ». To ask about a trip, we use « Wohin fahren Sie? ».",
+    "explanation_ko": "여행 계획을 말할 때는 'Ich plane, ...zu...'(저는 ~할 계획이에요), 여행지를 물을 때는 'Wohin fahren Sie?'(어디로 가세요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich plane, nach Italien zu reisen.",
+        "ko": "저는 이탈리아로 여행 갈 계획이에요."
+      },
+      {
+        "en": "Wohin fahren Sie im Sommer?",
+        "ko": "여름에 어디로 가세요?"
+      },
+      {
+        "en": "Ich möchte die Alpen besuchen.",
+        "ko": "저는 알프스를 방문하고 싶어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u07_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Reiseplan und benutzen Sie dabei „Ich plane, ... zu...“.",
+        "ko": "'Ich plane, ...zu...'를 사용해서 여행 계획을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel_plan",
+          "label_ko": "여행 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'plane'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "plane"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u07_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Wohin fahren Sie im Sommer?“ Beantworten Sie diese Frage.",
+        "ko": "'Wohin fahren Sie im Sommer?'(여름에 어디로 가세요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "destination",
+          "label_ko": "여행지 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u07_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sprechen Sie laut über einen Reiseplan.",
+        "ko": "소리 내어 여행 계획에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel_plan",
+          "label_ko": "여행 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'plane' 또는 'möchte'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "plane",
+            "möchte"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u07_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Möchten Sie die Alpen besuchen?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Möchten Sie die Alpen besuchen?'(알프스 방문하고 싶어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "alps",
+          "label_ko": "알프스 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

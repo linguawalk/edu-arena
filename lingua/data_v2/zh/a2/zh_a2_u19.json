@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "zh_a2_u19",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 19,
+    "title": "住房、公寓",
+    "title_ko": "주거",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "找房子说条件用「这个房间有...」，比如「这个房间有空调」。",
+    "explanation_ko": "집 찾기에서는 '这个房间有...'(이 방은 ~이 있어요)를 씁니다. 예: '这个房间有空调'(이 방은 에어컨이 있어요).",
+    "key_expressions": [
+      {
+        "en": "这个房间有空调。",
+        "ko": "이 방은 에어컨이 딸려 있어요."
+      },
+      {
+        "en": "房租一个月八千块。",
+        "ko": "월세는 한 달에 8천 위안이에요."
+      },
+      {
+        "en": "我在找离地铁站近的房子。",
+        "ko": "지하철역에서 가까운 방을 찾고 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u19_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「这个房间有...」写出想住的房间条件。",
+        "ko": "살고 싶은 방의 조건을 '这个房间有...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing_feature",
+          "label_ko": "주거 시설 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'房间有'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "房间有"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u19_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「房租多少钱？」请回答这个问题。",
+        "ko": "'房租多少钱？'(월세 얼마예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rent",
+          "label_ko": "월세 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'块' 또는 '元'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "块",
+            "元"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u19_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出想住的房间条件。",
+        "ko": "살고 싶은 방의 조건에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing_feature",
+          "label_ko": "주거 시설 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'房间' 또는 '找'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "房间",
+            "找"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u19_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「离地铁站近吗？」有人问你。请大声回答。",
+        "ko": "'离地铁站近吗？'(지하철역에서 가까워요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "station_distance",
+          "label_ko": "역 거리 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

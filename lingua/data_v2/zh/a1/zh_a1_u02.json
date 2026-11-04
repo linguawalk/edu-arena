@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_a1_u02",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 2,
+    "title": "数字、年龄、时间",
+    "title_ko": "숫자·나이·시간",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说年龄用「我...岁」，说时间用「现在...点」。",
+    "explanation_ko": "나이를 말할 때는 '我...岁'(저는 ~살이에요), 시간을 말할 때는 '现在...点'(지금 ~시예요)을 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我今年二十岁。",
+        "ko": "저는 올해 스무 살이에요."
+      },
+      {
+        "en": "现在三点。",
+        "ko": "지금 3시예요."
+      },
+      {
+        "en": "你多大了？",
+        "ko": "몇 살이에요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u02_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我...岁」写出你的年龄。",
+        "ko": "'我...岁'를 사용해서 자신의 나이를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "age",
+          "label_ko": "나이 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'岁'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "岁"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u02_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「现在几点？」请回答这个问题。",
+        "ko": "'现在几点？'(지금 몇 시예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "time",
+          "label_ko": "시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'点'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "点"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u02_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你的年龄。",
+        "ko": "소리 내어 자신의 나이를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "age",
+          "label_ko": "나이 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'岁'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "岁"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u02_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你多大了？」有人问你。请大声回答。",
+        "ko": "'你多大了？'(몇 살이에요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "age",
+          "label_ko": "나이 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'岁'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "岁"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

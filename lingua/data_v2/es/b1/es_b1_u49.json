@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "es_b1_u49",
+    "domain": "language",
+    "lang": "es",
+    "level": "b1",
+    "unit": 49,
+    "title": "Estructuras enfáticas (lo que... es)",
+    "title_ko": "강조 구문 (lo que...es)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "The emphatic structure « lo que... es » highlights a specific part of a sentence: « Lo que necesito es descansar ».",
+    "explanation_ko": "강조 구문 'lo que...es'는 문장의 특정 부분을 강조합니다: 'Lo que necesito es descansar'(제가 필요한 건 쉬는 거예요).",
+    "key_expressions": [
+      {
+        "en": "Lo que necesito es descansar.",
+        "ko": "제가 필요한 건 쉬는 거예요."
+      },
+      {
+        "en": "Lo que más me gusta es viajar.",
+        "ko": "제가 가장 좋아하는 건 여행이에요."
+      },
+      {
+        "en": "Lo que quiero decir es que tienes razón.",
+        "ko": "제가 말하고 싶은 건 당신이 옳다는 거예요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_b1_u49_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una frase enfática con «Lo que... es».",
+        "ko": "'Lo que...es' 강조 구문을 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "lo_que_es",
+          "label_ko": "lo que...es",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Lo que'와 'es'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "[Ll]o que.{0,20}es",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b1_u49_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Qué es lo que más te gusta?» Responda usando «Lo que más me gusta es».",
+        "ko": "'¿Qué es lo que más te gusta?'(가장 좋아하는 게 뭐예요?)라는 질문에 'Lo que más me gusta es'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "lo_que_es",
+          "label_ko": "lo que...es",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Lo que'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Lo que",
+            "lo que"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b1_u49_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una frase enfática con «Lo que... es».",
+        "ko": "소리 내어 'Lo que...es' 강조 구문을 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "lo_que_es",
+          "label_ko": "lo que...es",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Lo que'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Lo que",
+            "lo que"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_b1_u49_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Es lo que necesita descansar?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Es lo que necesita descansar?'(필요한 게 쉬는 거예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "lo_que_es",
+          "label_ko": "lo que...es",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

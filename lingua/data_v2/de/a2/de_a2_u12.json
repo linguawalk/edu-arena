@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "de_a2_u12",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 12,
+    "title": "Gesundheitsratschläge (sollte)",
+    "title_ko": "건강 조언 (~하는 게 좋겠어요)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To give health advice, we use « Sie sollten... ». To ask for advice, we use « Was sollte ich tun? ».",
+    "explanation_ko": "건강 조언을 할 때는 'Sie sollten...'(~하는 게 좋겠어요), 조언을 구할 때는 'Was sollte ich tun?'(뭘 해야 할까요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Sie sollten mehr Wasser trinken.",
+        "ko": "물을 더 마시는 게 좋겠어요."
+      },
+      {
+        "en": "Was sollte ich gegen Kopfschmerzen tun?",
+        "ko": "두통에는 뭘 해야 할까요?"
+      },
+      {
+        "en": "Sie sollten sich ausruhen.",
+        "ko": "쉬는 게 좋겠어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u12_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Geben Sie einen Gesundheitsratschlag und benutzen Sie dabei „Sie sollten...“.",
+        "ko": "'Sie sollten...'를 사용해서 건강 조언을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "health_advice",
+          "label_ko": "건강 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'sollten'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "sollten"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u12_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Was sollte ich gegen Kopfschmerzen tun?“ Beantworten Sie diese Frage.",
+        "ko": "'Was sollte ich gegen Kopfschmerzen tun?'(두통에는 뭘 해야 할까요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice_response",
+          "label_ko": "조언 답변 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'sollten' 또는 'sollte'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "sollten",
+            "sollte"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u12_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Geben Sie laut einen Gesundheitsratschlag.",
+        "ko": "소리 내어 건강 조언을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "health_advice",
+          "label_ko": "건강 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'sollten'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "sollten"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u12_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Sollte ich mich ausruhen?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Sollte ich mich ausruhen?'(쉬는 게 좋을까요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rest_advice",
+          "label_ko": "휴식 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

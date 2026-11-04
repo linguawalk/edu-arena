@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_b2_u40",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b2",
+    "unit": 40,
+    "title": "再...也...",
+    "title_ko": "再...也... (아무리 ~해도)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「再...也...」表示无论程度多高，结果都不变。「再累，也要坚持」。",
+    "explanation_ko": "'再...也...'는 정도가 아무리 높아도 결과가 변하지 않음을 나타냅니다. '再累，也要坚持'(아무리 피곤해도 버텨야 해요).",
+    "key_expressions": [
+      {
+        "en": "再累，也要坚持。",
+        "ko": "아무리 피곤해도 버텨야 해요."
+      },
+      {
+        "en": "再贵，我也要买。",
+        "ko": "아무리 비싸도 살 거예요."
+      },
+      {
+        "en": "再难，我也不会放弃。",
+        "ko": "아무리 어려워도 포기 안 할 거예요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b2_u40_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「再...也...」写出一个不变的决心。",
+        "ko": "변하지 않는 결심을 '再...也...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zai_ye",
+          "label_ko": "再...也...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'再'와 '也'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "再.{0,10}也",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u40_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「累了会放弃吗？」请用「再...也...」回答。",
+        "ko": "'累了会放弃吗？'(피곤하면 포기할 거예요?)라는 질문에 '再...也...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zai_ye",
+          "label_ko": "再...也...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'再'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "再"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u40_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「再...也...」说出一个不变的决心。",
+        "ko": "'再...也...'를 사용해서 소리 내어 변하지 않는 결심을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zai_ye",
+          "label_ko": "再...也...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'再' 또는 '也'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "再",
+            "也"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b2_u40_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「再贵，你也会买吗？」有人问你。请大声回答。",
+        "ko": "'再贵，你也会买吗？'(아무리 비싸도 살 거예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zai_ye",
+          "label_ko": "再...也...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'会' 또는 '不会'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "会",
+            "不会"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

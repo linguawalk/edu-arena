@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "ja_a2_u33",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 33,
+    "title": "公共交通機関",
+    "title_ko": "대중교통",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "電車の乗り換えを話すときは「〜でのりかえます」を使います。「しんじゅくでのりかえます」のように使います。",
+    "explanation_ko": "전철 환승을 말할 때는 '〜でのりかえます'(~에서 환승해요)를 씁니다. 'しんじゅくでのりかえます'(신주쿠에서 환승해요)처럼 씁니다.",
+    "key_expressions": [
+      {
+        "en": "しんじゅくでのりかえます。",
+        "ko": "신주쿠에서 환승해요."
+      },
+      {
+        "en": "でんしゃがおくれています。",
+        "ko": "전철이 지연되고 있어요."
+      },
+      {
+        "en": "つぎのえきでおります。",
+        "ko": "다음 역에서 내려요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u33_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "よく使う電車の乗り換えを「〜でのりかえます」を使って書いてください。",
+        "ko": "자주 이용하는 전철 환승을 '〜でのりかえます'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "transfer",
+          "label_ko": "환승 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'でのりかえます'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "でのりかえます"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u33_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「でんしゃはおくれていますか」という質問に答えを書いてください。",
+        "ko": "'でんしゃはおくれていますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "delay",
+          "label_ko": "지연 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'おくれて' 또는 'はい/いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "おくれて",
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u33_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "よく使う電車のルートについて声に出して話してください。",
+        "ko": "자주 이용하는 전철 노선에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "transfer",
+          "label_ko": "환승 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'のりかえます'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "のりかえます"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u33_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「どこでおりますか」と聞かれました。声に出して答えてください。",
+        "ko": "'どこでおりますか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "get_off",
+          "label_ko": "하차 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'おります'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "おります"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

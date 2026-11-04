@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a2_u44",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 44,
+    "title": "银行(深入)",
+    "title_ko": "은행 (심화)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "在银行说事务用「我想...」，比如「我想取钱」。",
+    "explanation_ko": "은행에서의 용건을 말할 때는 '我想...'(~하고 싶은데요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我想取钱。",
+        "ko": "돈을 인출하고 싶은데요."
+      },
+      {
+        "en": "我想汇款。",
+        "ko": "송금하고 싶어요."
+      },
+      {
+        "en": "我想开一个账户。",
+        "ko": "통장을 만들고 싶어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u44_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我想...」写出在银行的事务。",
+        "ko": "은행에서의 용건을 '我想...'을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bank_request",
+          "label_ko": "은행 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我想'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我想"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u44_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你汇过款吗？」请回答这个问题。",
+        "ko": "'你汇过款吗？'(송금해본 적 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "transfer_money",
+          "label_ko": "송금 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u44_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请在银行柜台大声说出你想取钱。",
+        "ko": "은행 창구에서 돈을 인출하고 싶다고 소리 내어 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bank_request",
+          "label_ko": "은행 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'取钱'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "取钱"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u44_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「您需要办理什么业务？」有人问你。请大声回答。",
+        "ko": "'您需要办理什么业务？'(무슨 업무 보러 오셨어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bank_purpose",
+          "label_ko": "은행 용건 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我想'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我想"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

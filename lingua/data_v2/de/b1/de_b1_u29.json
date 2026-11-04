@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "de_b1_u29",
+    "domain": "language",
+    "lang": "de",
+    "level": "b1",
+    "unit": 29,
+    "title": "Finalsätze (damit/um...zu)",
+    "title_ko": "목적문 (damit/um...zu)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "« Um...zu » is used when the subject of both clauses is the same, « damit » is used when the subjects differ.",
+    "explanation_ko": "'um...zu'는 두 절의 주어가 같을 때, 'damit'는 주어가 다를 때 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich lerne Deutsch, um in Deutschland zu arbeiten.",
+        "ko": "저는 독일에서 일하기 위해 독일어를 배워요."
+      },
+      {
+        "en": "Ich spreche langsam, damit du mich verstehst.",
+        "ko": "당신이 이해하도록 저는 천천히 말해요."
+      },
+      {
+        "en": "Sie übt jeden Tag, um besser zu werden.",
+        "ko": "그녀는 더 나아지기 위해 매일 연습해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b1_u29_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit „um... zu“ (gleiches Subjekt).",
+        "ko": "주어가 같은 경우의 'um...zu'를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "um_zu",
+          "label_ko": "um...zu",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'um'과 'zu'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "um.{0,25}zu\\s",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u29_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Warum sprechen Sie langsam?“ Antworten Sie mit „damit“ (unterschiedliches Subjekt).",
+        "ko": "'Warum sprechen Sie langsam?'(왜 천천히 말해요?)라는 질문에, 주어가 다른 경우의 'damit'을 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "damit",
+          "label_ko": "damit",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'damit'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "damit"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u29_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit „um... zu“.",
+        "ko": "소리 내어 'um...zu'를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "um_zu",
+          "label_ko": "um...zu",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'um'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "um"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b1_u29_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Übt sie jeden Tag, um besser zu werden?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Übt sie jeden Tag, um besser zu werden?'(더 나아지기 위해 매일 연습해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "um_zu",
+          "label_ko": "um...zu",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

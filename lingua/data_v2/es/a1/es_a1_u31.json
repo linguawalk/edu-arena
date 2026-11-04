@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "es_a1_u31",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 31,
+    "title": "Teléfono/SMS",
+    "title_ko": "전화·문자",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To answer the phone, we use « ¿Diga? » or « ¿Aló? ». To ask for someone, we use « ¿Está...? ».",
+    "explanation_ko": "전화를 받을 때는 '¿Diga?' 또는 '¿Aló?'(여보세요?)를 씁니다. 누군가를 찾을 때는 '¿Está...?'(~있어요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "¿Diga? ¿Quién habla?",
+        "ko": "여보세요? 누구세요?"
+      },
+      {
+        "en": "¿Está Juan?",
+        "ko": "후안 있어요?"
+      },
+      {
+        "en": "Te mando un mensaje después.",
+        "ko": "나중에 문자 보낼게요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u31_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba cómo contestar el teléfono usando «¿Diga?».",
+        "ko": "'¿Diga?'를 사용해서 전화 받는 방법을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "answer_phone",
+          "label_ko": "전화 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Diga' 또는 'Aló'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Diga",
+            "diga",
+            "Aló",
+            "aló"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u31_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Está Juan?» Responda a esta pregunta.",
+        "ko": "'¿Está Juan?'(후안 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ask_for_someone",
+          "label_ko": "사람 찾기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u31_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta que va a mandar un mensaje usando «Te mando un mensaje...».",
+        "ko": "'Te mando un mensaje...'를 사용해서 소리 내어 문자를 보내겠다고 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "send_message",
+          "label_ko": "문자 발송 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'mensaje'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "mensaje"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u31_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Quién habla?» Le preguntan esto por teléfono. Responda en voz alta.",
+        "ko": "전화로 '¿Quién habla?'(누구세요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "identify_self",
+          "label_ko": "신원 확인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

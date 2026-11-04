@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "en_b1_u46",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 46,
+    "title": "Tag Questions in Conversation",
+    "title_ko": "대화체 부가의문문",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Beyond simple grammar, tag questions in real conversation carry tone: a rising intonation genuinely asks, while a falling intonation just seeks agreement. Using them naturally makes speech sound more fluent and engaged: 'That's crazy, isn't it?' 'You're not serious, are you?'",
+    "explanation_ko": "단순 문법을 넘어, 실제 대화에서 부가의문문은 어조를 담습니다: 억양이 올라가면 진짜 질문, 내려가면 동의를 구하는 것입니다. 자연스럽게 쓰면 말이 더 유창하고 몰입감 있게 들립니다: 'That's crazy, isn't it?' 'You're not serious, are you?'",
+    "key_expressions": [
+      {
+        "en": "That's amazing, isn't it?",
+        "ko": "그거 대단하죠, 그렇죠?"
+      },
+      {
+        "en": "You're not really quitting, are you?",
+        "ko": "진짜 그만두는 건 아니죠, 그렇죠?"
+      },
+      {
+        "en": "We've met before, haven't we?",
+        "ko": "우리 전에 만난 적 있죠, 그렇죠?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u46_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a short conversational exchange (2-3 lines) that includes a question tag expressing surprise or disbelief.",
+        "ko": "놀람이나 못 믿겠다는 감정을 담은 부가의문문이 포함된 짧은 대화(2~3줄)를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "question_tag_tone",
+          "label_ko": "부가의문문 (감정)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "부가의문문 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": ",\\s*(isn't|aren't|don't|doesn't|didn't|is|are|do)\\s+\\w+\\?",
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "두 줄 이상인가",
+          "type": "pattern_regex",
+          "target": "[.!?]",
+          "min_matches": 2,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u46_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Write a question tag you would use to express disbelief if a friend told you they were moving abroad tomorrow.",
+        "ko": "친구가 내일 해외로 이주한다고 말했을 때, 못 믿겠다는 감정을 담아 쓸 부가의문문을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "question_tag_tone",
+          "label_ko": "부가의문문 (감정)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "부가의문문 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": ",\\s*(aren't|are|isn't)\\s+you\\?",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "물음표로 끝났는가",
+          "type": "pattern_regex",
+          "target": "\\?$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u46_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "React out loud to surprising news using two question tags to express disbelief or confirmation.",
+        "ko": "놀라운 소식에 대해, 못 믿겠다는 반응이나 확인하는 부가의문문 두 개를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "question_tag_tone",
+          "label_ko": "부가의문문 (감정)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "부가의문문 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(isn't it|aren't you|didn't you|don't you)",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u46_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'We've talked about this before, haven't we?'",
+        "ko": "소리 내어 답해 보세요: 'We've talked about this before, haven't we?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "agreement",
+          "label_ko": "동의 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes' 또는 'No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

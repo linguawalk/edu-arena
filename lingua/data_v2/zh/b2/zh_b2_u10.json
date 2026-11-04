@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_b2_u10",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b2",
+    "unit": 10,
+    "title": "与其...不如...",
+    "title_ko": "与其...不如... (~하느니 ~하는 게 낫다)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「与其...不如...」表示比较两个选择，后者更好。「与其等着，不如自己去做」。",
+    "explanation_ko": "'与其...不如...'는 두 선택지를 비교하며, 후자가 더 낫다는 것을 나타냅니다. '与其等着，不如自己去做'(기다리느니 직접 하는 게 나아요).",
+    "key_expressions": [
+      {
+        "en": "与其等着，不如自己去做。",
+        "ko": "기다리느니 직접 하는 게 나아요."
+      },
+      {
+        "en": "与其抱怨，不如想办法解决。",
+        "ko": "불평하느니 해결책을 생각하는 게 나아요."
+      },
+      {
+        "en": "与其在家看电视，不如出去运动。",
+        "ko": "집에서 TV 보느니 나가서 운동하는 게 나아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b2_u10_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「与其...不如...」比较两个选择。",
+        "ko": "두 선택지를 '与其...不如...'를 사용해서 비교해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yuqi_buru",
+          "label_ko": "与其...不如...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'与其'와 '不如'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "与其.{0,15}不如",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u10_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「周末在家还是出去？」请用「与其...不如...」回答。",
+        "ko": "'周末在家还是出去？'(주말에 집에 있어요, 아니면 나가요?)라는 질문에 '与其...不如...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yuqi_buru",
+          "label_ko": "与其...不如...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'与其'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "与其"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u10_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「与其...不如...」比较两个选择。",
+        "ko": "'与其...不如...'를 사용해서 소리 내어 두 선택지를 비교해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yuqi_buru",
+          "label_ko": "与其...不如...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'与其' 또는 '不如'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "与其",
+            "不如"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b2_u10_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「与其抱怨，不如想办法解决，对吗？」有人问你。请大声回答。",
+        "ko": "'与其抱怨，不如想办法解决，对吗？'(불평하느니 해결책을 생각하는 게 맞죠?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yuqi_buru",
+          "label_ko": "与其...不如...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'对' 또는 '不对'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "对",
+            "不对"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

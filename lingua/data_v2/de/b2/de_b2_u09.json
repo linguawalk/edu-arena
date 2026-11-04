@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "de_b2_u09",
+    "domain": "language",
+    "lang": "de",
+    "level": "b2",
+    "unit": 9,
+    "title": "Relativsätze mit was/wo",
+    "title_ko": "was/wo 관계문",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "« Was » is used as a relative pronoun after indefinite pronouns (alles, etwas, nichts) or a whole clause. « Wo » refers to places.",
+    "explanation_ko": "'was'는 부정대명사(alles, etwas, nichts) 뒤나 전체 절 뒤에서 관계대명사로 쓰입니다. 'wo'는 장소를 가리킵니다.",
+    "key_expressions": [
+      {
+        "en": "Das ist alles, was ich weiß.",
+        "ko": "이게 제가 아는 전부예요."
+      },
+      {
+        "en": "Er kam zu spät, was mich ärgerte.",
+        "ko": "그가 늦게 왔는데, 그게 저를 짜증나게 했어요."
+      },
+      {
+        "en": "Das ist die Stadt, wo ich geboren wurde.",
+        "ko": "이곳이 제가 태어난 도시예요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b2_u09_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit „was“ als Relativpronomen (nach „alles“ oder „etwas“).",
+        "ko": "'alles' 또는 'etwas' 뒤에서 관계대명사 'was'를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "relativ_was",
+          "label_ko": "관계대명사 was",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'was'를 관계대명사로 사용했는가",
+          "type": "pattern_regex",
+          "target": "(alles|etwas|nichts),?\\s+was\\s",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u09_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist das die Stadt, wo Sie geboren wurden?“ Beantworten Sie diese Frage.",
+        "ko": "'Ist das die Stadt, wo Sie geboren wurden?'(여기가 태어난 도시예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "relativ_wo",
+          "label_ko": "관계대명사 wo",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u09_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit „was“ nach einem ganzen Satz (z.B. „..., was mich ärgerte“).",
+        "ko": "전체 절 뒤의 'was'(예: '..., was mich ärgerte')를 사용해서 소리 내어 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "relativ_was",
+          "label_ko": "관계대명사 was",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'was'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "was"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b2_u09_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist das alles, was Sie wissen?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist das alles, was Sie wissen?'(이게 아는 전부예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "relativ_was",
+          "label_ko": "관계대명사 was",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

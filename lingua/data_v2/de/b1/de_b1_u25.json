@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "de_b1_u25",
+    "domain": "language",
+    "lang": "de",
+    "level": "b1",
+    "unit": 25,
+    "title": "Genitiv",
+    "title_ko": "2격 (Genitiv)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "The genitive case (des/der) expresses possession, similar to « 's » in English, and is used mainly in formal/written German.",
+    "explanation_ko": "2격(des/der)은 영어의 's'와 비슷하게 소유를 나타내며, 주로 격식체·문어체에서 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Das ist das Auto des Lehrers.",
+        "ko": "이건 선생님의 차예요."
+      },
+      {
+        "en": "Die Farbe der Wand gefällt mir.",
+        "ko": "벽 색깔이 마음에 들어요."
+      },
+      {
+        "en": "Das ist das Ende des Films.",
+        "ko": "이건 영화의 결말이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b1_u25_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit dem Genitiv (z.B. „des Lehrers“).",
+        "ko": "2격(예: 'des Lehrers')을 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "genitiv",
+          "label_ko": "2격",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'des' 또는 'der'를 소유격으로 사용했는가",
+          "type": "pattern_regex",
+          "target": "(des|der)\\s+\\w+s\\b",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u25_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Gefällt Ihnen die Farbe der Wand?“ Beantworten Sie diese Frage.",
+        "ko": "'Gefällt Ihnen die Farbe der Wand?'(벽 색깔이 마음에 들어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "genitiv",
+          "label_ko": "2격",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u25_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit dem Genitiv.",
+        "ko": "소리 내어 2격을 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "genitiv",
+          "label_ko": "2격",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'des' 또는 'der'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "des",
+            "der"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b1_u25_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist das das Auto des Lehrers?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist das das Auto des Lehrers?'(이게 선생님 차예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "genitiv",
+          "label_ko": "2격",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

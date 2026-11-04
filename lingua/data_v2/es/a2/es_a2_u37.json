@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "es_a2_u37",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 37,
+    "title": "Estado de ánimo/Estrés (me estresa)",
+    "title_ko": "기분·스트레스 (~이 스트레스예요)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To say something stresses you, we use « ... me estresa ». To talk about managing stress, we use « Me relajo... ».",
+    "explanation_ko": "스트레스를 말할 때는 '...me estresa'(~이 스트레스예요), 스트레스 관리를 말할 때는 'Me relajo...'(저는 ~함으로써 긴장을 풀어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "El trabajo me estresa mucho.",
+        "ko": "일이 정말 스트레스예요."
+      },
+      {
+        "en": "Me relajo dando un paseo.",
+        "ko": "저는 산책하면서 긴장을 풀어요."
+      },
+      {
+        "en": "Estoy un poco estresado hoy.",
+        "ko": "저는 오늘 좀 스트레스받아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u37_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba qué le estresa usando «... me estresa».",
+        "ko": "'...me estresa'를 사용해서 스트레스 요인을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "stress",
+          "label_ko": "스트레스 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'estresa'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "estresa"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u37_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Cómo se relaja?» Responda a esta pregunta.",
+        "ko": "'¿Cómo se relaja?'(어떻게 긴장을 풀어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "relax",
+          "label_ko": "긴장 완화 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'relajo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "relajo"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u37_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Hable en voz alta sobre lo que le estresa.",
+        "ko": "소리 내어 스트레스 요인에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "stress",
+          "label_ko": "스트레스 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'estresa'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "estresa"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u37_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Está estresado hoy?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Está estresado hoy?'(오늘 스트레스받아요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "stressed_today",
+          "label_ko": "오늘 스트레스 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

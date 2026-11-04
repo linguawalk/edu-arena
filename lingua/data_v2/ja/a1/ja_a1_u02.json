@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "ja_a1_u02",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 2,
+    "title": "数字・年齢・時間",
+    "title_ko": "숫자·나이·시간",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "年齢を言うときは「〜さいです」を使います。時間を言うときは「〜じです」を使います。数字は1（いち）、2（に）、3（さん）のように読みます。",
+    "explanation_ko": "나이를 말할 때는 '〜さいです'를 씁니다. 시간을 말할 때는 '〜じです'를 씁니다. 숫자는 1(いち), 2(に), 3(さん)처럼 읽습니다.",
+    "key_expressions": [
+      {
+        "en": "わたしは25さいです。",
+        "ko": "저는 25살이에요."
+      },
+      {
+        "en": "いま3じです。",
+        "ko": "지금 3시예요."
+      },
+      {
+        "en": "たんじょうびは5月です。",
+        "ko": "생일은 5월이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u02_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "自分の年齢を「〜さいです」を使って書いてください。",
+        "ko": "자신의 나이를 '〜さいです'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "age",
+          "label_ko": "나이 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'さいです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "さいです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u02_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「いま何じですか」という質問に、時間を使って答えを書いてください。",
+        "ko": "'いま何じですか'라는 질문에 시간을 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "time",
+          "label_ko": "시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'じです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "じです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u02_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "自分の年齢を声に出して言ってください。",
+        "ko": "자신의 나이를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "age",
+          "label_ko": "나이 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'さい'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "さい"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u02_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「いま何じですか」と聞かれました。声に出して答えてください。",
+        "ko": "'いま何じですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "time",
+          "label_ko": "시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'じ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "じ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "ja_a2_u34",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 34,
+    "title": "都会と田舎",
+    "title_ko": "도시와 시골",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "都会と田舎を比べるときは「〜ほうがべんりです」「〜ほうがしずかです」を使います。",
+    "explanation_ko": "도시와 시골을 비교할 때는 '〜ほうがべんりです'(~쪽이 편리해요), '〜ほうがしずかです'(~쪽이 조용해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "とかいのほうがべんりです。",
+        "ko": "도시 쪽이 편리해요."
+      },
+      {
+        "en": "いなかのほうがしずかです。",
+        "ko": "시골 쪽이 조용해요."
+      },
+      {
+        "en": "いなかでそだちました。",
+        "ko": "시골에서 자랐어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u34_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "都会と田舎を「〜ほうがべんりです」を使って比べてください。",
+        "ko": "도시와 시골을 '〜ほうがべんりです'를 사용해서 비교해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "city_country",
+          "label_ko": "도시·시골 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ほうがべんり'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ほうがべんり"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u34_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「とかいといなか、どちらがすきですか」という質問に答えを書いてください。",
+        "ko": "'とかいといなか、どちらがすきですか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "preference",
+          "label_ko": "선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'とかい' 또는 'いなか'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "とかい",
+            "いなか"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u34_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "都会と田舎について声に出して比べてください。",
+        "ko": "도시와 시골에 대해 소리 내어 비교해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "city_country",
+          "label_ko": "도시·시골 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'とかい' 또는 'いなか'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "とかい",
+            "いなか"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u34_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「いなかでそだちましたか」と聞かれました。声に出して答えてください。",
+        "ko": "'いなかでそだちましたか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "upbringing",
+          "label_ko": "성장 환경 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'はい' 또는 'いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

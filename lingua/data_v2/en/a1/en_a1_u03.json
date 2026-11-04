@@ -1,0 +1,317 @@
+{
+  "meta": {
+    "id": "en_a1_u03",
+    "domain": "language",
+    "lang": "en",
+    "level": "a1",
+    "unit": 3,
+    "title": "Family",
+    "title_ko": "가족",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: introducing family members and describing their basic traits using possessive adjectives (my, his, her).",
+    "explanation_ko": "이번 유닛의 핵심 표현: 소유 형용사(my, his, her)를 사용해 가족 구성원을 소개하고 특징을 설명하기",
+    "key_expressions": [
+      {
+        "en": "This is my mother/father.",
+        "ko": "이분은 제 어머니/아버지입니다."
+      },
+      {
+        "en": "I have ~ brother(s)/sister(s).",
+        "ko": "저는 형제/자매가 ~명 있습니다."
+      },
+      {
+        "en": "My ~ is + adjective (kind, tall...).",
+        "ko": "제 ~는 (친절해요, 키가 커요 등)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a1_u03_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a short paragraph introducing your family. Mention how many people are in your family and describe one family member.",
+        "ko": "가족을 소개하는 짧은 글을 써 보세요. 가족이 몇 명인지 말하고, 가족 구성원 한 명을 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "family_member",
+          "label_ko": "가족 구성원 명칭",
+          "min_occurrences": 1
+        },
+        {
+          "type": "expression",
+          "id": "possessive",
+          "label_ko": "소유 형용사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "가족 구성원 명칭을 사용했는가 (mother/father/brother/sister 등)",
+          "type": "keyword_match",
+          "target": [
+            "mother",
+            "father",
+            "brother",
+            "sister",
+            "grandmother",
+            "grandfather"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "소유 형용사(my)를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "my "
+          ],
+          "min_matches": 2,
+          "points": 25,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "성격·외모를 나타내는 형용사를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "kind",
+            "tall",
+            "short",
+            "friendly",
+            "funny"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": false
+        },
+        {
+          "id": "r4",
+          "criterion_ko": "분량이 충분한가 (최소 20단어)",
+          "type": "length_check",
+          "unit": "words",
+          "min": 20,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u03_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "A friend asks: 'How many people are in your family?' Write your answer.",
+        "ko": "친구가 'How many people are in your family?'라고 묻습니다. 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "family_count",
+          "label_ko": "가족 수 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "가족 수를 나타내는 숫자가 포함되어 있는가",
+          "type": "pattern_regex",
+          "target": "\\d+|one|two|three|four|five|six",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'There are' 또는 'I have' 구조를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "there are",
+            "i have"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장 형태인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u03_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk about your family out loud for about 20 seconds. Mention how many people are in your family and describe one of them.",
+        "ko": "가족에 대해 약 20초간 소리 내어 이야기해 보세요. 가족 수와 한 명의 특징을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "family_member",
+          "label_ko": "가족 구성원 명칭",
+          "min_occurrences": 1
+        },
+        {
+          "type": "expression",
+          "id": "possessive",
+          "label_ko": "소유 형용사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "가족 구성원 명칭을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "mother",
+            "father",
+            "brother",
+            "sister",
+            "grandmother",
+            "grandfather"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "소유 형용사(my)를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "my "
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a1_u03_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Do you have any brothers or sisters?'",
+        "ko": "소리 내어 답해 보세요: 'Do you have any brothers or sisters?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sibling_expression",
+          "label_ko": "형제자매 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I have' 또는 'I don't have' 구조를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i have",
+            "i don't have",
+            "i do not have"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "brother/sister 단어를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "brother",
+            "sister"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

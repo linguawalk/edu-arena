@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "id": "en_b2_u26",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 26,
+    "title": "Advanced Question Forms",
+    "title_ko": "고급 정중 의문문",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Very polite or tentative questions: 'I wonder if you could help me' (softer than 'Can you help me?'), 'Would you mind if I opened the window?' (asking permission very politely, followed by past simple).",
+    "explanation_ko": "매우 정중하거나 조심스러운 질문: 'I wonder if you could help me'('Can you help me?'보다 부드러움), 'Would you mind if I opened the window?'(아주 정중하게 허락을 구함, 뒤에 과거시제).",
+    "key_expressions": [
+      {
+        "en": "I wonder if you could send me the file.",
+        "ko": "혹시 파일을 보내주실 수 있을까 해서요."
+      },
+      {
+        "en": "Would you mind if I asked a question?",
+        "ko": "질문 하나 드려도 될까요?"
+      },
+      {
+        "en": "I was wondering whether you'd have time this week.",
+        "ko": "혹시 이번 주에 시간이 있으실까 해서요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u26_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a very polite request to a superior at work, using 'I wonder if you could' or 'I was wondering whether'.",
+        "ko": "직장 상사에게 아주 정중한 요청을, 'I wonder if you could' 또는 'I was wondering whether'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "i_wonder_if",
+          "label_ko": "I wonder if",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I wonder if' 또는 'I was wondering whether'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i wonder if",
+            "i was wondering whether",
+            "i was wondering if"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!?]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u26_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Write a very polite question asking permission to leave a meeting early, using 'Would you mind if'.",
+        "ko": "'Would you mind if'를 사용해서, 회의를 일찍 나가도 되는지 아주 정중하게 묻는 질문을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "would_you_mind",
+          "label_ko": "would you mind if",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Would you mind if'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "would you mind if"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "과거시제(뒤 절)를 사용했는가",
+          "type": "pattern_regex",
+          "target": "if\\s+i\\s+\\w+ed\\b|if\\s+i\\s+(left|went)",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u26_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Practice out loud making a very polite request to a stranger, using 'I wonder if you could'.",
+        "ko": "낯선 사람에게 아주 정중한 부탁을 'I wonder if you could'를 사용해서 소리 내어 연습해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "i_wonder_if",
+          "label_ko": "I wonder if",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I wonder if'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i wonder if"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u26_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Would you mind if I recorded this conversation for practice?'",
+        "ko": "소리 내어 답해 보세요: 'Would you mind if I recorded this conversation for practice?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "would_you_mind",
+          "label_ko": "would you mind",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Not at all' 또는 'No, I wouldn't mind'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "not at all",
+            "i wouldn't mind",
+            "that's fine",
+            "sure"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

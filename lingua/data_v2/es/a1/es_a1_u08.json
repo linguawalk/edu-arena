@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "es_a1_u08",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 8,
+    "title": "Rutina diaria",
+    "title_ko": "일과",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe your daily routine, we use present tense verbs like « Me levanto... » and « Voy a... ».",
+    "explanation_ko": "일과를 묘사할 때는 'Me levanto...'(저는 ~에 일어나요)와 'Voy a...'(저는 ~에 가요) 같은 현재시제 동사를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Me levanto a las siete.",
+        "ko": "저는 7시에 일어나요."
+      },
+      {
+        "en": "Voy al trabajo en autobús.",
+        "ko": "저는 버스로 출근해요."
+      },
+      {
+        "en": "Ceno a las ocho.",
+        "ko": "저는 8시에 저녁을 먹어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u08_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba sobre su rutina matutina usando «Me levanto...».",
+        "ko": "'Me levanto...'를 사용해서 아침 일과를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "morning_routine",
+          "label_ko": "아침 일과 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Me levanto'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Me levanto",
+            "me levanto"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u08_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Cómo vas al trabajo?» Responda a esta pregunta.",
+        "ko": "'¿Cómo vas al trabajo?'(출근은 어떻게 해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "commute",
+          "label_ko": "통근 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Voy'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Voy",
+            "voy"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u08_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Hable en voz alta sobre su rutina diaria.",
+        "ko": "소리 내어 자신의 일과에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_routine",
+          "label_ko": "일과 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u08_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Cenas a las ocho?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Cenas a las ocho?'(8시에 저녁 먹어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_routine",
+          "label_ko": "일과 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

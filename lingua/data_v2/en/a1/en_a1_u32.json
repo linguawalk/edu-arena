@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "id": "en_a1_u32",
+    "domain": "language",
+    "lang": "en",
+    "level": "a1",
+    "unit": 32,
+    "title": "Phone Calls & Texting",
+    "title_ko": "전화·문자",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: basic phone call and text message language.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 기본 전화·문자 표현",
+    "key_expressions": [
+      {
+        "en": "Hello, this is ~ speaking.",
+        "ko": "여보세요, 저는 ~입니다."
+      },
+      {
+        "en": "Can I speak to ~?",
+        "ko": "~와 통화할 수 있을까요?"
+      },
+      {
+        "en": "I'll call you back later.",
+        "ko": "나중에 다시 전화할게요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a1_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a short phone conversation opening: greeting, saying who you are, and asking for someone.",
+        "ko": "전화 통화 시작 부분(인사, 자기 소개, 상대방 찾기)을 짧게 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "phone_greeting",
+          "label_ko": "전화 인사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Hello, this is'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "hello, this is",
+            "hi, this is"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'Can I speak to'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "can i speak to",
+            "is ... there"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!?]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "A friend texts: 'Are you free to talk?' Write your reply, saying you'll call later.",
+        "ko": "친구가 'Are you free to talk?'이라고 문자를 보냅니다. 나중에 전화하겠다는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "call_back",
+          "label_ko": "재통화 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'call you back' 또는 'call later'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "call you back",
+            "call later",
+            "call you later"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 25,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "'sorry'를 포함했는가",
+          "type": "keyword_match",
+          "target": [
+            "sorry"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Role-play answering the phone out loud: greet the caller and introduce yourself.",
+        "ko": "전화를 받는 상황을 소리 내어 연기해 보세요: 발신자에게 인사하고 자기소개를 하세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "phone_greeting",
+          "label_ko": "전화 인사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Hello'로 시작했는가",
+          "type": "keyword_match",
+          "target": [
+            "hello"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'this is'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "this is"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a1_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Do you prefer calling or texting?'",
+        "ko": "소리 내어 답해 보세요: 'Do you prefer calling or texting?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "preference",
+          "label_ko": "선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I prefer'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i prefer",
+            "i like"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'calling' 또는 'texting'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "calling",
+            "texting"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

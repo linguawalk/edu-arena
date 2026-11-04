@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "fr_a1_u10",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 10,
+    "title": "Animaux, animaux domestiques",
+    "title_ko": "동물·반려동물",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour dire qu'on a un animal, on utilise « J'ai un/une... ». Pour dire qu'on aime les animaux, on utilise « J'aime les... ».",
+    "explanation_ko": "반려동물이 있다고 말할 때는 'J'ai un/une...'(저는 ~이 있어요), 동물을 좋아한다고 말할 때는 'J'aime les...'(저는 ~을 좋아해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "J'ai un chien.",
+        "ko": "저는 강아지가 있어요."
+      },
+      {
+        "en": "J'aime les chats.",
+        "ko": "저는 고양이를 좋아해요."
+      },
+      {
+        "en": "Mon chien s'appelle Coco.",
+        "ko": "제 강아지 이름은 코코예요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u10_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez si vous avez un animal en utilisant « J'ai un/une... ».",
+        "ko": "반려동물이 있는지 'J'ai un/une...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pet",
+          "label_ko": "반려동물 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'J'ai'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "J'ai",
+            "j'ai"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u10_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Aimez-vous les chats ? » Répondez à cette question.",
+        "ko": "'Aimez-vous les chats ?'(고양이 좋아해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "animal_pref",
+          "label_ko": "동물 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'aime' 또는 'n'aime pas'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "aime",
+            "n'aime pas"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u10_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de votre animal préféré à voix haute.",
+        "ko": "소리 내어 좋아하는 동물에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "animal_pref",
+          "label_ko": "동물 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'J'aime'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "J'aime",
+            "j'aime"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u10_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Avez-vous un chien ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Avez-vous un chien ?'(강아지 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pet",
+          "label_ko": "반려동물 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

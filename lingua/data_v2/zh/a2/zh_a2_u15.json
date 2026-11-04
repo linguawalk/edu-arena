@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "zh_a2_u15",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 15,
+    "title": "面试",
+    "title_ko": "면접",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "面试中说经验用「我有...经验」，说擅长用「我擅长...」。",
+    "explanation_ko": "면접에서는 '我有...经验'(~경험이 있어요), '我擅长...'(~을 잘해요)를 사용해서 자신을 어필합니다.",
+    "key_expressions": [
+      {
+        "en": "我有销售经验。",
+        "ko": "영업 경험이 있어요."
+      },
+      {
+        "en": "我擅长团队合作。",
+        "ko": "팀 협업을 잘해요."
+      },
+      {
+        "en": "我想在这家公司工作。",
+        "ko": "이 회사에서 일하고 싶어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u15_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我有...经验」写出你的经验。",
+        "ko": "자신의 경험을 '我有...经验'을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "experience",
+          "label_ko": "경력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'经验'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "经验"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u15_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你为什么想在这家公司工作？」请回答这个问题。",
+        "ko": "'你为什么想在这家公司工作？'(왜 이 회사에서 일하고 싶으세요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "motivation",
+          "label_ko": "지원 동기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'想'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "想"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u15_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请在面试中大声说出你的优势。",
+        "ko": "면접에서 자신의 강점에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "strength",
+          "label_ko": "강점 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'擅长' 또는 '经验'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "擅长",
+            "经验"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u15_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你为什么选择这个工作？」有人问你。请大声回答。",
+        "ko": "'你为什么选择这个工作？'(왜 이 직업을 선택했어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job_reason",
+          "label_ko": "직업 선택 이유 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'喜欢' 또는 '想'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "喜欢",
+            "想"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "fr_a2_u40",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 40,
+    "title": "Achats en ligne",
+    "title_ko": "온라인 쇼핑",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler d'un achat en ligne, on utilise « J'ai commandé... en ligne ». Pour parler de la livraison, on utilise « Ce n'est pas encore arrivé ».",
+    "explanation_ko": "온라인 쇼핑에 대해 말할 때는 'J'ai commandé... en ligne'(~을 온라인으로 주문했어요), 배송에 대해서는 'Ce n'est pas encore arrivé'(아직 도착 안 했어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "J'ai commandé des chaussures en ligne.",
+        "ko": "온라인으로 신발을 주문했어요."
+      },
+      {
+        "en": "Ce n'est pas encore arrivé.",
+        "ko": "아직 도착 안 했어요."
+      },
+      {
+        "en": "La livraison est rapide.",
+        "ko": "배송이 빨라요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u40_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez ce que vous avez acheté en ligne en utilisant « J'ai commandé... en ligne ».",
+        "ko": "온라인으로 산 물건을 'J'ai commandé... en ligne'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "online_order",
+          "label_ko": "온라인 주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'commandé'와 'en ligne'을 사용했는가",
+          "type": "pattern_regex",
+          "target": "commandé.{0,20}en ligne",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u40_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« C'est arrivé ? » Répondez à cette question.",
+        "ko": "'C'est arrivé ?'(도착했어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "delivery",
+          "label_ko": "배송 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'arrivé' 또는 'pas encore'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "arrivé",
+            "pas encore"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u40_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de ce que vous avez acheté en ligne récemment à voix haute.",
+        "ko": "최근에 온라인으로 산 물건에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "online_order",
+          "label_ko": "온라인 주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'en ligne'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "en ligne"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u40_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« La livraison est rapide ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'La livraison est rapide ?'(배송 빨라요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "shipping_speed",
+          "label_ko": "배송 속도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

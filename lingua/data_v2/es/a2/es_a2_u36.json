@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "es_a2_u36",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 36,
+    "title": "Cumplidos (de verdad)",
+    "title_ko": "칭찬 (정말)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To give a compliment, we use « Eso es de verdad... ». To respond to a compliment, we use « Muchas gracias, me alegra ».",
+    "explanation_ko": "칭찬할 때는 'Eso es de verdad...'(정말 ~하네요), 칭찬에 답할 때는 'Muchas gracias, me alegra'(감사해요, 기쁘네요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "¡Eso es de verdad genial!",
+        "ko": "이거 정말 멋지네요!"
+      },
+      {
+        "en": "Muchas gracias, me alegra oír eso.",
+        "ko": "감사해요, 그 말을 들으니 기쁘네요."
+      },
+      {
+        "en": "Cocinas de verdad bien.",
+        "ko": "정말 요리를 잘하시네요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u36_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dé un cumplido usando «Eso es de verdad...».",
+        "ko": "'Eso es de verdad...'를 사용해서 칭찬을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "compliment",
+          "label_ko": "칭찬 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'de verdad'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "de verdad"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u36_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¡Cocinas de verdad bien!» Le dicen esto. Responda.",
+        "ko": "'¡Cocinas de verdad bien!'(정말 요리를 잘하시네요!)라는 칭찬을 받았습니다. 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "compliment_response",
+          "label_ko": "칭찬 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Gracias'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Gracias",
+            "gracias"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u36_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dé un cumplido en voz alta.",
+        "ko": "소리 내어 칭찬을 해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "compliment",
+          "label_ko": "칭찬 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'de verdad'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "de verdad"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u36_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¡Eso es de verdad genial!» Le dicen esto. Responda en voz alta.",
+        "ko": "'¡Eso es de verdad genial!'(정말 멋지네요!)라는 칭찬을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "compliment_response",
+          "label_ko": "칭찬 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Gracias'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Gracias",
+            "gracias"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

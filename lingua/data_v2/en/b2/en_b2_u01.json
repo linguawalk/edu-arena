@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "en_b2_u01",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 1,
+    "title": "Inversion for Emphasis",
+    "title_ko": "강조를 위한 도치",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Starting a sentence with a negative or limiting adverb (never, rarely, not only, no sooner) triggers inversion — the auxiliary verb moves before the subject, like in a question: 'Never have I seen such chaos.' 'Not only did she win, but she also broke the record.'",
+    "explanation_ko": "부정·제한 부사(never, rarely, not only, no sooner)로 문장을 시작하면 도치가 일어납니다 — 조동사가 의문문처럼 주어 앞으로 옵니다: 'Never have I seen such chaos.' 'Not only did she win, but she also broke the record.'",
+    "key_expressions": [
+      {
+        "en": "Never have I felt so proud.",
+        "ko": "이렇게 자랑스러웠던 적이 없어요."
+      },
+      {
+        "en": "Not only was it expensive, but it also broke quickly.",
+        "ko": "비쌌을 뿐 아니라 금방 고장 났어요."
+      },
+      {
+        "en": "Rarely do we get a chance like this.",
+        "ko": "이런 기회는 좀처럼 없어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u01_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about an intense experience using inversion with 'Never have I' or 'Rarely do I'.",
+        "ko": "강렬했던 경험을 'Never have I' 또는 'Rarely do I' 도치 구문을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "inversion",
+          "label_ko": "도치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "도치 구조(Never have I / Rarely do I 등)를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(never|rarely|seldom)\\s+(have|has|do|does|did)\\s+i",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u01_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'How did the presentation go?' Write your answer using 'Not only ... but also' with inversion.",
+        "ko": "'How did the presentation go?'라는 질문에 도치를 포함한 'Not only ... but also'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "inversion",
+          "label_ko": "도치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Not only' 도치 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "not only\\s+(did|was|were|has|have)",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'but also'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "but also"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u01_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about a rare experience in your life, using inversion for emphasis.",
+        "ko": "인생에서 드물었던 경험에 대해 도치를 사용해서 강조하며 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "inversion",
+          "label_ko": "도치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "도치 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(never|rarely|seldom|not only)\\s+(have|has|do|does|did|was|were)",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u01_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Has anything ever completely surprised you at work?'",
+        "ko": "소리 내어 답해 보세요: 'Has anything ever completely surprised you at work?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "inversion",
+          "label_ko": "도치",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "도치 구조 또는 'Yes/No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "never have i",
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

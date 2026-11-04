@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "fr_a2_u43",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 43,
+    "title": "Argent/budget",
+    "title_ko": "돈·예산",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler d'un objectif d'épargne, on utilise « J'économise pour... ». Pour dire qu'on veut moins dépenser, on utilise « Je veux dépenser moins ».",
+    "explanation_ko": "저축 목적을 말할 때는 'J'économise pour...'(~을 위해 저축하고 있어요), 낭비를 줄이고 싶을 때는 'Je veux dépenser moins'(돈을 덜 쓰고 싶어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "J'économise pour un voyage.",
+        "ko": "여행을 위해 저축하고 있어요."
+      },
+      {
+        "en": "Je veux dépenser moins.",
+        "ko": "낭비를 줄이고 싶어요."
+      },
+      {
+        "en": "Je fais un budget chaque mois.",
+        "ko": "매달 예산을 세워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u43_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez le but de votre épargne en utilisant « J'économise pour... ».",
+        "ko": "저축의 목적을 'J'économise pour...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "saving",
+          "label_ko": "저축 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'économise'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "économise"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u43_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Faites-vous un budget ? » Répondez à cette question.",
+        "ko": "'Faites-vous un budget ?'(예산을 세우나요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "budget",
+          "label_ko": "예산 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u43_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez du but de votre épargne à voix haute.",
+        "ko": "저축의 목적에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "saving",
+          "label_ko": "저축 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'économise'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "économise"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u43_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous voulez dépenser moins ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous voulez dépenser moins ?'(돈을 덜 쓰고 싶어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "spending",
+          "label_ko": "지출 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

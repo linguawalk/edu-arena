@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "de_b1_u36",
+    "domain": "language",
+    "lang": "de",
+    "level": "b1",
+    "unit": 36,
+    "title": "Konditionalsätze (wenn... dann)",
+    "title_ko": "조건문 (wenn...dann)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "« Wenn... dann » expresses a real condition. « Dann » is optional but adds clarity in speech.",
+    "explanation_ko": "'wenn...dann'은 현실적인 조건을 나타냅니다. 'dann'은 선택 사항이지만 말할 때 명확성을 더합니다.",
+    "key_expressions": [
+      {
+        "en": "Wenn du Zeit hast, dann komm vorbei.",
+        "ko": "시간 있으면 들러요."
+      },
+      {
+        "en": "Wenn es regnet, dann bleibe ich zu Hause.",
+        "ko": "비가 오면 집에 있을 거예요."
+      },
+      {
+        "en": "Wenn ich Geld spare, dann kann ich reisen.",
+        "ko": "돈을 모으면 여행 갈 수 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b1_u36_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie eine Bedingung mit „wenn... dann...“.",
+        "ko": "'wenn...dann...'을 사용해서 조건문을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "wenn_dann",
+          "label_ko": "wenn...dann",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'wenn'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "wenn",
+            "Wenn"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u36_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Was machen Sie, wenn Sie Zeit haben?“ Beantworten Sie diese Frage.",
+        "ko": "'Was machen Sie, wenn Sie Zeit haben?'(시간 있으면 뭐 해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "wenn_dann",
+          "label_ko": "wenn...dann",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u36_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut eine Bedingung mit „wenn... dann...“.",
+        "ko": "소리 내어 'wenn...dann...'을 사용한 조건문을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "wenn_dann",
+          "label_ko": "wenn...dann",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'wenn'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "wenn",
+            "Wenn"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b1_u36_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Wenn Sie Geld sparen, können Sie reisen?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Wenn Sie Geld sparen, können Sie reisen?'(돈을 모으면 여행 갈 수 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "wenn_dann",
+          "label_ko": "wenn...dann",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

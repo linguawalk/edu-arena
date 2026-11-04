@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_a1_u45",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 45,
+    "title": "做饭",
+    "title_ko": "요리",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说做菜用「我会做...」，比如「我会做炒饭」。",
+    "explanation_ko": "요리할 수 있음을 말할 때는 '我会做...'(저는 ~을 만들 수 있어요)를 씁니다. 예: '我会做炒饭'(저는 볶음밥을 만들 수 있어요).",
+    "key_expressions": [
+      {
+        "en": "我会做炒饭。",
+        "ko": "저는 볶음밥을 만들 수 있어요."
+      },
+      {
+        "en": "我不太会做饭。",
+        "ko": "저는 요리를 잘 못해요."
+      },
+      {
+        "en": "这个菜怎么做？",
+        "ko": "이 요리 어떻게 만들어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u45_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我会做...」写出你会做的菜。",
+        "ko": "'我会做...'를 사용해서 만들 수 있는 요리를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cooking",
+          "label_ko": "요리 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我会做'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我会做"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u45_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你会做饭吗？」请回答这个问题。",
+        "ko": "'你会做饭吗？'(요리할 수 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cooking_ability",
+          "label_ko": "요리 능력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'会' 또는 '不会'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "会",
+            "不会"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u45_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你会做的菜。",
+        "ko": "소리 내어 만들 수 있는 요리를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cooking",
+          "label_ko": "요리 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我会做'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我会做"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u45_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「这个菜怎么做？」有人问你。请大声回答。",
+        "ko": "'这个菜怎么做？'(이 요리 어떻게 만들어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cooking_method",
+          "label_ko": "조리법 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 4자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 4,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

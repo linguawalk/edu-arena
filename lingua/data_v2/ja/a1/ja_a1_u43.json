@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "ja_a1_u43",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 43,
+    "title": "郵便局・銀行",
+    "title_ko": "우체국·은행",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "郵便局や銀行では「〜をおねがいします」を使います。「これをおくりたいです」のように使います。",
+    "explanation_ko": "우체국이나 은행에서는 '〜をおねがいします'(~부탁드려요)를 씁니다. 'これをおくりたいです'(이걸 보내고 싶어요)처럼 씁니다.",
+    "key_expressions": [
+      {
+        "en": "これをおくりたいです。",
+        "ko": "이걸 보내고 싶어요."
+      },
+      {
+        "en": "こうざをひらきたいです。",
+        "ko": "계좌를 개설하고 싶어요."
+      },
+      {
+        "en": "きってをください。",
+        "ko": "우표를 주세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u43_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "郵便局で荷物を送りたいとき、「〜をおくりたいです」を使って書いてください。",
+        "ko": "우체국에서 짐을 보내고 싶을 때, '〜をおくりたいです'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "send",
+          "label_ko": "발송 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'おくりたいです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "おくりたいです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u43_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "銀行で口座を開きたいときの文を書いてください。",
+        "ko": "은행에서 계좌를 개설하고 싶을 때의 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bank_account",
+          "label_ko": "계좌 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'こうざ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "こうざ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u43_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "郵便局で荷物を送りたいと、声に出して伝えてください。",
+        "ko": "우체국에서 짐을 보내고 싶다고 소리 내어 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "send",
+          "label_ko": "발송 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'おくりたい'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "おくりたい"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u43_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「なにかごようですか」と聞かれました。声に出して答えてください。",
+        "ko": "'なにかごようですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "purpose",
+          "label_ko": "용건 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'おねがいします' 또는 'たいです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "おねがいします",
+            "たいです"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

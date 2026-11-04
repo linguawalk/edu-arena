@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "ja_a1_u07",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 7,
+    "title": "場所・道案内",
+    "title_ko": "장소·길 안내",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "場所を聞くときは「〜はどこですか」を使います。道を教えるときは「まっすぐ」「みぎ」「ひだり」を使います。",
+    "explanation_ko": "장소를 물을 때는 '〜はどこですか'(어디예요?)를 씁니다. 길을 알려줄 때는 'まっすぐ'(직진), 'みぎ'(오른쪽), 'ひだり'(왼쪽)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "えきはどこですか。",
+        "ko": "역은 어디예요?"
+      },
+      {
+        "en": "まっすぐいってください。",
+        "ko": "직진해 주세요."
+      },
+      {
+        "en": "みぎにまがってください。",
+        "ko": "오른쪽으로 돌아 주세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u07_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "駅の場所を「〜はどこですか」を使って聞く文を書いてください。",
+        "ko": "역의 위치를 '〜はどこですか'를 사용해서 묻는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "where",
+          "label_ko": "장소 질문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'はどこですか'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はどこですか"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가(물음표 포함)",
+          "type": "pattern_regex",
+          "target": "[。？]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u07_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「トイレはどこですか」という質問に、道案内の答えを書いてください。",
+        "ko": "'トイレはどこですか'라는 질문에 길 안내 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "directions",
+          "label_ko": "길 안내 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'まっすぐ', 'みぎ', 'ひだり' 중 하나를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "まっすぐ",
+            "みぎ",
+            "ひだり"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u07_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "駅の場所を声に出して聞いてください。",
+        "ko": "역의 위치를 소리 내어 물어 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "where",
+          "label_ko": "장소 질문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'どこですか'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "どこですか"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u07_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「コンビニはどこですか」と聞かれました。声に出して道案内をしてください。",
+        "ko": "'コンビニはどこですか'라는 질문을 받았습니다. 소리 내어 길을 안내해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "directions",
+          "label_ko": "길 안내 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'まっすぐ', 'みぎ', 'ひだり' 중 하나를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "まっすぐ",
+            "みぎ",
+            "ひだり"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

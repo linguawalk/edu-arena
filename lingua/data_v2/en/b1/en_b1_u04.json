@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "en_b1_u04",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 4,
+    "title": "Passive Voice (Present)",
+    "title_ko": "수동태 (현재)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Passive voice (am/is/are + past participle) shifts focus from who does an action to the action or the receiver. It's common for describing processes and general facts: 'Coffee is grown in many countries' rather than naming who grows it.",
+    "explanation_ko": "수동태(am/is/are + 과거분사)는 행동을 누가 하는지보다 행동 자체나 대상에 초점을 맞춥니다. 과정이나 일반적 사실을 설명할 때 자주 씁니다: 'Coffee is grown in many countries'(누가 재배하는지는 언급 안 함).",
+    "key_expressions": [
+      {
+        "en": "This product is made in Korea.",
+        "ko": "이 제품은 한국에서 만들어져요."
+      },
+      {
+        "en": "The report is reviewed every week.",
+        "ko": "그 보고서는 매주 검토돼요."
+      },
+      {
+        "en": "English is spoken in many countries.",
+        "ko": "영어는 많은 나라에서 사용돼요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u04_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe a process at your workplace or school using passive voice (e.g., how something is done or made).",
+        "ko": "직장이나 학교의 어떤 과정을(무언가가 어떻게 처리되거나 만들어지는지) 수동태로 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "passive_present",
+          "label_ko": "현재 수동태",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'is/are + 과거분사' 수동태를 2회 이상 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(is|are)\\s+\\w+ed\\b|\\b(is|are)\\s+(made|sent|reviewed|checked|done|used)\\b",
+          "min_matches": 2,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 18단어)",
+          "type": "length_check",
+          "unit": "words",
+          "min": 18,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u04_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Where is this product manufactured?' Write your answer using passive voice.",
+        "ko": "'Where is this product manufactured?'라는 질문에 수동태를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "passive_present",
+          "label_ko": "현재 수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'is/are + 과거분사' 수동태를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(is|are)\\s+(made|manufactured|produced)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u04_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Explain out loud how a common food or drink (coffee, bread, etc.) is made, using passive voice.",
+        "ko": "흔한 음식이나 음료(커피, 빵 등)가 어떻게 만들어지는지 수동태를 사용해서 소리 내어 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "passive_present",
+          "label_ko": "현재 수동태",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "수동태를 2회 이상 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(is|are)\\s+\\w+ed\\b|\\b(is|are)\\s+(made|grown|roasted|mixed)\\b",
+          "min_matches": 2,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u04_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Is English widely spoken in your country?'",
+        "ko": "소리 내어 답해 보세요: 'Is English widely spoken in your country?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "passive_present",
+          "label_ko": "현재 수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'is spoken' 수동태 구조를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "is spoken",
+            "isn't spoken",
+            "is not spoken"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

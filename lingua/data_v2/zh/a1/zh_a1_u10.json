@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a1_u10",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 10,
+    "title": "动物、宠物",
+    "title_ko": "동물·반려동물",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说有宠物用「我有一只...」，说喜欢的动物用「我喜欢...」。",
+    "explanation_ko": "반려동물이 있음을 말할 때는 '我有一只...'(저는 ~을 한 마리 키워요), 좋아하는 동물을 말할 때는 '我喜欢...'(저는 ~을 좋아해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我有一只猫。",
+        "ko": "저는 고양이를 한 마리 키워요."
+      },
+      {
+        "en": "我喜欢狗。",
+        "ko": "저는 개를 좋아해요."
+      },
+      {
+        "en": "它很可爱。",
+        "ko": "얘 정말 귀여워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u10_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我有一只...」写出你的宠物。",
+        "ko": "'我有一只...'를 사용해서 반려동물을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pet",
+          "label_ko": "반려동물 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我有一只'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我有一只"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u10_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你喜欢什么动物？」请回答这个问题。",
+        "ko": "'你喜欢什么动物？'(무슨 동물을 좋아해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "animal_pref",
+          "label_ko": "동물 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我喜欢'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我喜欢"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u10_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你喜欢的动物。",
+        "ko": "소리 내어 좋아하는 동물을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "animal_pref",
+          "label_ko": "동물 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我喜欢'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我喜欢"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u10_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你有宠物吗？」有人问你。请大声回答。",
+        "ko": "'你有宠物吗？'(반려동물 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pet",
+          "label_ko": "반려동물 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'有' 또는 '没有'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "有",
+            "没有"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

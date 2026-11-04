@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "de_b2_u24",
+    "domain": "language",
+    "lang": "de",
+    "level": "b2",
+    "unit": 24,
+    "title": "Substantivierte Infinitive",
+    "title_ko": "명사화된 부정사",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Infinitives can be nominalized as neuter nouns, like « das Lernen » (learning) or « das Reisen » (traveling).",
+    "explanation_ko": "부정사는 중성 명사로 명사화될 수 있습니다. 예: 'das Lernen'(배우는 것), 'das Reisen'(여행하는 것).",
+    "key_expressions": [
+      {
+        "en": "Das Lernen macht mir Spaß.",
+        "ko": "배우는 게 재미있어요."
+      },
+      {
+        "en": "Das Reisen ist mein größtes Hobby.",
+        "ko": "여행하는 건 제 가장 큰 취미예요."
+      },
+      {
+        "en": "Das Warten fällt mir schwer.",
+        "ko": "기다리는 게 저에게는 힘들어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b2_u24_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit einem substantivierten Infinitiv (z.B. „das Lernen“).",
+        "ko": "명사화된 부정사(예: 'das Lernen')를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "substantivierter_infinitiv",
+          "label_ko": "명사화된 부정사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'das'와 '-en'으로 끝나는 명사화된 동사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "[Dd]as\\s+\\w+en\\b",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u24_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Macht Ihnen das Lernen Spaß?“ Beantworten Sie diese Frage.",
+        "ko": "'Macht Ihnen das Lernen Spaß?'(배우는 게 재미있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "substantivierter_infinitiv",
+          "label_ko": "명사화된 부정사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u24_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit „das Reisen“.",
+        "ko": "소리 내어 'das Reisen'을 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "substantivierter_infinitiv",
+          "label_ko": "명사화된 부정사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Reisen'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Reisen"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b2_u24_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Fällt Ihnen das Warten schwer?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Fällt Ihnen das Warten schwer?'(기다리는 게 당신에게 힘들어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "substantivierter_infinitiv",
+          "label_ko": "명사화된 부정사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

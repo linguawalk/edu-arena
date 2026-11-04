@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "es_a1_u41",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 41,
+    "title": "Compra de comida",
+    "title_ko": "장보기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To go grocery shopping, we use « Necesito comprar... ». To ask about freshness, we use « ¿Está fresco? ».",
+    "explanation_ko": "장을 볼 때는 'Necesito comprar...'(저는 ~을 사야 해요), 신선도를 물을 때는 '¿Está fresco?'(신선해요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Necesito comprar leche y huevos.",
+        "ko": "저는 우유랑 계란을 사야 해요."
+      },
+      {
+        "en": "¿Está fresco el pescado?",
+        "ko": "생선이 신선해요?"
+      },
+      {
+        "en": "¿Dónde están las verduras?",
+        "ko": "채소가 어디 있어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u41_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una lista de compras usando «Necesito comprar...».",
+        "ko": "'Necesito comprar...'를 사용해서 장보기 목록을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "shopping_list",
+          "label_ko": "장보기 목록 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Necesito comprar'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Necesito comprar",
+            "necesito comprar"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u41_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Está fresco el pescado?» Responda a esta pregunta.",
+        "ko": "'¿Está fresco el pescado?'(생선이 신선해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "freshness",
+          "label_ko": "신선도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u41_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pregunte en voz alta dónde están las verduras.",
+        "ko": "소리 내어 채소가 어디 있는지 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ask_location",
+          "label_ko": "위치 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'verduras' 또는 'dónde'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "verduras",
+            "dónde"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u41_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Necesita comprar leche?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Necesita comprar leche?'(우유 사야 해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "shopping_list",
+          "label_ko": "장보기 목록 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

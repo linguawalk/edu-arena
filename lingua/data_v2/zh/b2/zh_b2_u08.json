@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_b2_u08",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b2",
+    "unit": 8,
+    "title": "即使...也...",
+    "title_ko": "即使...也... (설령 ~하더라도)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「即使...也...」表示假设的让步，即使某种极端情况发生，结果也不变。「即使失败了，也不要放弃」。",
+    "explanation_ko": "'即使...也...'는 가정의 양보를 나타내며, 극단적인 상황이 일어나도 결과가 변하지 않음을 나타냅니다. '即使失败了，也不要放弃'(설령 실패하더라도 포기하지 마세요).",
+    "key_expressions": [
+      {
+        "en": "即使失败了，也不要放弃。",
+        "ko": "설령 실패하더라도 포기하지 마세요."
+      },
+      {
+        "en": "即使很忙，我也会去。",
+        "ko": "설령 바쁘더라도 갈 거예요."
+      },
+      {
+        "en": "即使下雨，比赛也照常进行。",
+        "ko": "설령 비가 오더라도 경기는 예정대로 진행돼요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b2_u08_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「即使...也...」写出一个假设的让步。",
+        "ko": "가정의 양보를 '即使...也...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "jishi_ye",
+          "label_ko": "即使...也...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'即使'와 '也'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "即使.{0,15}也",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u08_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「很忙的话，你还去吗？」请用「即使...也...」回答。",
+        "ko": "'很忙的话，你还去吗？'(바쁘면 그래도 가요?)라는 질문에 '即使...也...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "jishi_ye",
+          "label_ko": "即使...也...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'即使'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "即使"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u08_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「即使...也...」说出一个假设的让步。",
+        "ko": "'即使...也...'를 사용해서 소리 내어 가정의 양보를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "jishi_ye",
+          "label_ko": "即使...也...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'即使' 또는 '也'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "即使",
+            "也"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b2_u08_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「即使失败了，你也不会放弃吗？」有人问你。请大声回答。",
+        "ko": "'即使失败了，你也不会放弃吗？'(설령 실패하더라도 포기 안 할 거예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "jishi_ye",
+          "label_ko": "即使...也...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'会' 또는 '不会'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "会",
+            "不会"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

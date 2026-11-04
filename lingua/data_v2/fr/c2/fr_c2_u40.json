@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "id": "fr_c2_u40",
+    "domain": "language",
+    "lang": "fr",
+    "level": "c2",
+    "unit": 40,
+    "title": "Registre classique vs moderne",
+    "title_ko": "고전체 vs 현대체",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "Le registre classique utilise « nonobstant » (malgré) et « céans » (ici), le registre moderne utilise « malgré » et « ici ». Les deux existent en français mais avec des contextes très différents.",
+    "explanation_ko": "고전체는 'nonobstant'(~에도 불구하고)와 'céans'(여기)를 사용하고, 현대체는 'malgré'와 'ici'를 사용합니다. 둘 다 프랑스어에 존재하지만 맥락이 매우 다릅니다.",
+    "key_expressions": [
+      {
+        "en": "Nonobstant les difficultés, il persévère. (classique)",
+        "ko": "어려움에도 불구하고 그는 끈기 있게 해요 (고전체)."
+      },
+      {
+        "en": "Malgré les difficultés, il persévère. (moderne)",
+        "ko": "어려움에도 불구하고 그는 끈기 있게 해요 (현대체)."
+      },
+      {
+        "en": "Le maître de céans vous accueille. (classique/littéraire)",
+        "ko": "이곳의 주인이 당신을 맞이합니다 (고전체/문학체)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_c2_u40_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase en registre classique avec « nonobstant », puis la même en registre moderne avec « malgré ».",
+        "ko": "'nonobstant'을 사용한 고전체 문장과, 같은 내용을 현대체 'malgré'로 각각 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "nonobstant_malgre",
+          "label_ko": "nonobstant/malgré",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'nonobstant'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "nonobstant"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'malgré'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "malgré"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_c2_u40_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Nonobstant les difficultés, persévère-t-il ? » est en registre classique. Écrivez la version moderne.",
+        "ko": "'Nonobstant les difficultés, persévère-t-il ?'는 고전체입니다. 현대체 버전을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "malgre",
+          "label_ko": "malgré",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'malgré'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "malgré"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_c2_u40_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute la même phrase en registre classique, puis en registre moderne.",
+        "ko": "같은 문장을 고전체로, 그다음 현대체로 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "registre_classique_moderne",
+          "label_ko": "고전체/현대체",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_c2_u40_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Le registre classique est-il utilisé aujourd'hui ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Le registre classique est-il utilisé aujourd'hui ?'(고전체가 오늘날 사용되나요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "registre_classique_moderne",
+          "label_ko": "고전체/현대체",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,264 @@
+{
+  "meta": {
+    "id": "ja_a1_u04",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 4,
+    "title": "色・形",
+    "title_ko": "색·모양",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "色を言うときは「〜いろです」または形容詞の形（あかい、あおい）を使います。「これは〜です」で物を説明できます。",
+    "explanation_ko": "색을 말할 때는 '〜いろです' 또는 형용사 형태(あかい, あおい)를 씁니다. 'これは〜です'로 사물을 설명할 수 있어요.",
+    "key_expressions": [
+      {
+        "en": "これはあかいくつです。",
+        "ko": "이건 빨간 신발이에요."
+      },
+      {
+        "en": "空はあおいろです。",
+        "ko": "하늘은 파란색이에요."
+      },
+      {
+        "en": "この形はまるいです。",
+        "ko": "이 모양은 둥글어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u04_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "好きな物の色を「これは〜です」を使って書いてください。",
+        "ko": "좋아하는 물건의 색을 'これは〜です'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "color",
+          "label_ko": "색 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'これは'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "これは"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "색 이름(あかい/あおい/しろい/くろい 등)을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "あかい",
+            "あおい",
+            "しろい",
+            "くろい",
+            "きいろ",
+            "みどり"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u04_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「すきな色は何ですか」という質問に答えを書いてください。",
+        "ko": "'すきな色は何ですか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "favorite_color",
+          "label_ko": "좋아하는 색 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'色です' 또는 색 이름을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "色です",
+            "あか",
+            "あお",
+            "しろ",
+            "くろ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u04_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "今きている服の色を声に出して説明してください。",
+        "ko": "지금 입고 있는 옷의 색을 소리 내어 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "color",
+          "label_ko": "색 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "색 이름을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "あか",
+            "あお",
+            "しろ",
+            "くろ",
+            "きいろ",
+            "みどり"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u04_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「すきな色は何ですか」と聞かれました。声に出して答えてください。",
+        "ko": "'すきな色は何ですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "favorite_color",
+          "label_ko": "좋아하는 색 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "색 이름을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "あか",
+            "あお",
+            "しろ",
+            "くろ",
+            "きいろ",
+            "みどり"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

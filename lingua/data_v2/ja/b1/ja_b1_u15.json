@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "id": "ja_b1_u15",
+    "domain": "language",
+    "lang": "ja",
+    "level": "b1",
+    "unit": 15,
+    "title": "条件形の使い分け",
+    "title_ko": "조건형 구분 사용",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "ば・たら・なら・とは似ていますが、使い方が違います。この課ではそれぞれの違いを確認しながら練習します。",
+    "explanation_ko": "ば・たら・なら・と는 비슷하지만 사용법이 다릅니다. 이번 과에서는 각각의 차이를 확인하며 연습합니다.",
+    "key_expressions": [
+      {
+        "en": "べんきょうすれば、じょうずになります。（いっぱんてき）",
+        "ko": "공부하면 잘하게 돼요 (일반적)."
+      },
+      {
+        "en": "うちにかえったら、でんわします。（とくていのじょうきょう）",
+        "ko": "집에 돌아가면 전화할게요 (특정 상황)."
+      },
+      {
+        "en": "にほんへいくなら、はるがいいです。（あいてのはなしをうけて）",
+        "ko": "일본에 간다면 봄이 좋아요 (상대 이야기를 받아서)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_b1_u15_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "「ば」と「たら」を両方使って、それぞれ違う文を書いてください。",
+        "ko": "'ば'와 'たら'를 둘 다 사용해서 각각 다른 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "conditional_mix",
+          "label_ko": "조건형 혼합",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ば'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "ば、",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'たら'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "たら"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[。]",
+          "min_matches": 2,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_b1_u15_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「にほんごをじょうずになりたいなら、どうしたらいいですか」という質問に答えを書いてください。",
+        "ko": "'にほんごをじょうずになりたいなら、どうしたらいいですか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "conditional_mix",
+          "label_ko": "조건형 혼합",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "조건형(ば/たら/なら/と) 중 하나를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(ば、|たら|なら|と、)",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_b1_u15_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "「なら」を使って、友だちへのアドバイスを声に出して話してください。",
+        "ko": "'なら'를 사용해서 친구에게 줄 조언을 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "nara_conditional",
+          "label_ko": "なら조건형",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'なら'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "なら"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_b1_u15_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「じかんがあったらなにをしますか」と聞かれました。声に出して答えてください。",
+        "ko": "'じかんがあったらなにをしますか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "tara_conditional",
+          "label_ko": "たら조건형",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'たら' 또는 'します'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "たら",
+            "します"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

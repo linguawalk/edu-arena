@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "es_a2_u12",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 12,
+    "title": "Consejos de salud (deberías)",
+    "title_ko": "건강 조언 (~하는 게 좋겠어요)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To give health advice, we use « Deberías... ». To ask for advice, we use « ¿Qué debería hacer? ».",
+    "explanation_ko": "건강 조언을 할 때는 'Deberías...'(~하는 게 좋겠어요), 조언을 구할 때는 '¿Qué debería hacer?'(뭘 해야 할까요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Deberías beber más agua.",
+        "ko": "물을 더 마시는 게 좋겠어요."
+      },
+      {
+        "en": "¿Qué debería hacer contra el dolor de cabeza?",
+        "ko": "두통에는 뭘 해야 할까요?"
+      },
+      {
+        "en": "Deberías descansar.",
+        "ko": "쉬는 게 좋겠어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u12_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dé un consejo de salud usando «Deberías...».",
+        "ko": "'Deberías...'를 사용해서 건강 조언을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "health_advice",
+          "label_ko": "건강 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Deberías'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Deberías",
+            "deberías"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u12_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Qué debería hacer contra el dolor de cabeza?» Responda a esta pregunta.",
+        "ko": "'¿Qué debería hacer contra el dolor de cabeza?'(두통에는 뭘 해야 할까요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice_response",
+          "label_ko": "조언 답변 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'debería' 또는 'deberías'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "debería",
+            "deberías"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u12_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dé en voz alta un consejo de salud.",
+        "ko": "소리 내어 건강 조언을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "health_advice",
+          "label_ko": "건강 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Deberías'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Deberías",
+            "deberías"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u12_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Debería descansar?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Debería descansar?'(쉬는 게 좋을까요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rest_advice",
+          "label_ko": "휴식 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

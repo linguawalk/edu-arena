@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "id": "ko_a1_u49",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 49,
+    "title": "Integrated Conversation 2",
+    "title_ko": "통합 회화 2",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit combines shopping, food preferences, and making plans in one natural conversation flow.",
+    "explanation_ko": "이번 유닛은 쇼핑, 음식 선호, 계획 세우기 표현을 하나의 자연스러운 대화 흐름으로 결합합니다.",
+    "key_expressions": [
+      {
+        "en": "This is expensive. Do you have a cheaper one?",
+        "ko": "이거 비싸요. 더 싼 거 있어요?"
+      },
+      {
+        "en": "I like Korean food, so let's eat bibimbap.",
+        "ko": "저는 한국 음식을 좋아해서 비빔밥 먹어요."
+      },
+      {
+        "en": "Let's meet at six tomorrow.",
+        "ko": "내일 여섯 시에 만나요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u49_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a short shopping conversation including a price question and a food preference (at least two sentences).",
+        "ko": "가격 질문과 음식 선호를 포함한 짧은 쇼핑 대화를 두 문장 이상으로 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "integrated",
+          "label_ko": "통합 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '얼마' or '좋아해요'?",
+          "type": "keyword_match",
+          "target": [
+            "얼마",
+            "좋아해요"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Are there two or more sentences?",
+          "type": "pattern_regex",
+          "target": "[.?]",
+          "min_matches": 2,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "Did you write at least 10 characters?",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u49_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«내일 몇 시에 만날까요?» (What time shall we meet tomorrow?) Answer this question.",
+        "ko": "'내일 몇 시에 만날까요?'(약속 시간을 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "meeting_time",
+          "label_ko": "약속 시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Did you write at least 5 characters?",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u49_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say out loud that something is expensive and ask for a cheaper one.",
+        "ko": "비싸다고 말하고 더 싼 것을 요청하는 문장을 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "shopping",
+          "label_ko": "쇼핑 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '비싸요' or '싸요'?",
+          "type": "keyword_match",
+          "target": [
+            "비싸요",
+            "싸요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u49_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«한국 음식을 좋아해요?» (Do you like Korean food?) Answer out loud.",
+        "ko": "'한국 음식을 좋아해요?'(한국 음식 선호를 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "food_pref",
+          "label_ko": "음식 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

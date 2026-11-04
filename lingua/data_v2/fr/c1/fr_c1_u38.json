@@ -1,0 +1,245 @@
+{
+  "meta": {
+    "id": "fr_c1_u38",
+    "domain": "language",
+    "lang": "fr",
+    "level": "c1",
+    "unit": 38,
+    "title": "Changement de registre",
+    "title_ko": "언어역 전환",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "« Bosser » (familier) vs « travailler » (courant) vs « œuvrer » (soutenu) expriment le même sens à différents registres.",
+    "explanation_ko": "'Bosser'(구어체) vs 'travailler'(일상어) vs 'œuvrer'(격식체)는 같은 의미를 다른 언어역으로 표현합니다.",
+    "key_expressions": [
+      {
+        "en": "Je bosse dur en ce moment. (familier)",
+        "ko": "요즘 열심히 일하고 있어요 (구어체)."
+      },
+      {
+        "en": "Je travaille dur en ce moment. (courant)",
+        "ko": "요즘 열심히 일하고 있어요 (일상어)."
+      },
+      {
+        "en": "Il œuvre pour la paix. (soutenu)",
+        "ko": "그는 평화를 위해 힘써요 (격식체)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_c1_u38_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase familière avec « bosser », puis la même en registre courant avec « travailler ».",
+        "ko": "'bosser'를 사용한 구어체 문장과, 같은 내용을 일상어 'travailler'로 각각 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "bosser_travailler",
+          "label_ko": "bosser/travailler",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'bosse' 또는 'bosser'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "bosse",
+            "bosser"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'travaille' 또는 'travailler'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "travaille",
+            "travailler"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_c1_u38_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Il œuvre pour la paix » est en registre soutenu. Écrivez la version courante.",
+        "ko": "'Il œuvre pour la paix'는 격식체입니다. 일상적인 버전을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "oeuvrer",
+          "label_ko": "œuvrer",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'travaille' 또는 'travailler'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "travaille",
+            "travailler"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_c1_u38_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute la même phrase en registre familier avec « bosser », puis en registre soutenu avec « œuvrer ».",
+        "ko": "같은 문장을 구어체 'bosser'로, 그다음 격식체 'œuvrer'로 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "bosser_oeuvrer",
+          "label_ko": "bosser/œuvrer",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 8자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 8,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_c1_u38_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Bossez-vous dur en ce moment ? » On vous pose cette question en registre familier. Répondez à voix haute.",
+        "ko": "'Bossez-vous dur en ce moment ?'(요즘 열심히 일해요?)라는 구어체 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "bosser",
+          "label_ko": "bosser",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

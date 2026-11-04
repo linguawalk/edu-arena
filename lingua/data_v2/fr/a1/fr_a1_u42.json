@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_a1_u42",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 42,
+    "title": "Médecin/pharmacie",
+    "title_ko": "병원·약국",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour prendre rendez-vous chez le médecin, on utilise « Je voudrais prendre rendez-vous ». Pour demander un médicament, on utilise « Avez-vous... ? ».",
+    "explanation_ko": "병원 예약을 잡을 때는 'Je voudrais prendre rendez-vous'(예약하고 싶어요), 약을 요청할 때는 'Avez-vous...?'(~있어요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je voudrais prendre rendez-vous.",
+        "ko": "예약하고 싶어요."
+      },
+      {
+        "en": "Avez-vous quelque chose pour le mal de tête ?",
+        "ko": "두통약 있어요?"
+      },
+      {
+        "en": "Je dois voir un médecin.",
+        "ko": "의사를 만나야 해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u42_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez comment prendre rendez-vous en utilisant « Je voudrais prendre rendez-vous ».",
+        "ko": "'Je voudrais prendre rendez-vous'를 사용해서 병원 예약을 요청해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "appointment",
+          "label_ko": "예약 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'rendez-vous'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "rendez-vous"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u42_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Qu'est-ce qui ne va pas ? » Répondez à cette question.",
+        "ko": "'Qu'est-ce qui ne va pas ?'(어디가 안 좋으세요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom",
+          "label_ko": "증상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'mal'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "mal"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u42_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Demandez un médicament à voix haute à la pharmacie.",
+        "ko": "약국에서 소리 내어 약을 요청해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "asking_medicine",
+          "label_ko": "약 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Avez-vous'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Avez-vous",
+            "avez-vous"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u42_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous devez voir un médecin ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous devez voir un médecin ?'(의사를 만나야 해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "needing_doctor",
+          "label_ko": "의사 필요 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

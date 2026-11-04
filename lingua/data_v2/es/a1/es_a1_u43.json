@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "es_a1_u43",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 43,
+    "title": "Correos/Banco",
+    "title_ko": "우체국·은행",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "At the post office, we use « Quiero enviar... ». At the bank, we use « Quiero abrir una cuenta ».",
+    "explanation_ko": "우체국에서는 'Quiero enviar...'(~을 보내고 싶어요), 은행에서는 'Quiero abrir una cuenta'(계좌를 개설하고 싶어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Quiero enviar un paquete.",
+        "ko": "저는 소포를 보내고 싶어요."
+      },
+      {
+        "en": "Quiero abrir una cuenta.",
+        "ko": "저는 계좌를 개설하고 싶어요."
+      },
+      {
+        "en": "¿Cuánto cuesta enviar esto?",
+        "ko": "이거 보내는 데 얼마예요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u43_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba en el correo usando «Quiero enviar...».",
+        "ko": "'Quiero enviar...'를 사용해서 우체국에서 할 말을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "send_package",
+          "label_ko": "소포 발송 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Quiero enviar'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Quiero enviar",
+            "quiero enviar"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u43_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Quiere abrir una cuenta?» Responda a esta pregunta.",
+        "ko": "'¿Quiere abrir una cuenta?'(계좌를 개설하고 싶으세요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "open_account",
+          "label_ko": "계좌 개설 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u43_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pregunte en voz alta el costo de enviar algo.",
+        "ko": "소리 내어 뭔가를 보내는 비용을 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ask_cost",
+          "label_ko": "비용 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'cuesta' 또는 'cuánto'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "cuesta",
+            "cuánto"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u43_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Quiere enviar un paquete?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Quiere enviar un paquete?'(소포 보내실 거예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "send_package",
+          "label_ko": "소포 발송 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

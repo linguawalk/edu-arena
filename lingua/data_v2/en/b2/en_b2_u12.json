@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "en_b2_u12",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 12,
+    "title": "Modals of Criticism",
+    "title_ko": "비판을 나타내는 조동사",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "'Should have/shouldn't have + past participle' criticizes a past action that was wrong: 'You should have called me' (you didn't, and that was wrong). 'Needn't have + past participle' means an action was unnecessary but was done anyway: 'You needn't have brought a gift.'",
+    "explanation_ko": "'should have/shouldn't have + 과거분사'는 잘못됐던 과거 행동을 비판합니다: 'You should have called me'(안 했고, 그게 잘못이었음). 'needn't have + 과거분사'는 불필요했지만 실제로 한 행동을 나타냅니다: 'You needn't have brought a gift.'",
+    "key_expressions": [
+      {
+        "en": "You should have told me earlier.",
+        "ko": "더 일찍 말해줬어야죠."
+      },
+      {
+        "en": "I shouldn't have said that.",
+        "ko": "그 말을 하지 말았어야 했어요."
+      },
+      {
+        "en": "You needn't have worried; everything was fine.",
+        "ko": "걱정 안 해도 됐는데, 다 괜찮았어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u12_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about a past mistake you or someone else made, using 'should have' or 'shouldn't have' to express criticism.",
+        "ko": "당신이나 다른 사람이 저질렀던 실수에 대해 'should have' 또는 'shouldn't have'로 비판을 표현해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "should_have",
+          "label_ko": "should have 비판",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'should have' 또는 'shouldn't have + 과거분사'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "should(n't| not)?\\s+have\\s+\\w+",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u12_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "A friend brought an expensive gift you didn't expect. Write what you would say using 'You needn't have'.",
+        "ko": "친구가 예상 못한 비싼 선물을 가져왔습니다. 'You needn't have'를 사용해서 할 말을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "neednt_have",
+          "label_ko": "needn't have",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'needn't have'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "needn't have"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u12_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about a decision you regret, using 'should have' or 'shouldn't have'.",
+        "ko": "후회하는 결정에 대해 'should have' 또는 'shouldn't have'를 사용해서 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "should_have",
+          "label_ko": "should have 비판",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'should have' 또는 'shouldn't have'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "should(n't| not)?\\s+have\\s+\\w+",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u12_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Have you ever prepared way too much for something that turned out to be simple?'",
+        "ko": "소리 내어 답해 보세요: 'Have you ever prepared way too much for something that turned out to be simple?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "neednt_have",
+          "label_ko": "needn't have",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'needn't have' 또는 'Yes/No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "needn't have",
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

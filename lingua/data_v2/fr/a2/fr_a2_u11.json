@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "fr_a2_u11",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 11,
+    "title": "Symptômes",
+    "title_ko": "증상",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour dire depuis quand on a un symptôme, on utilise « Depuis..., j'ai... ». Pour faire une supposition, on utilise « Je pense que... ».",
+    "explanation_ko": "증상의 시작 시점을 말할 때는 'Depuis..., j'ai...'(~부터 ~해요), 추측을 말할 때는 'Je pense que...'(~인 것 같아요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Depuis hier, j'ai mal à la gorge.",
+        "ko": "어제부터 목이 아파요."
+      },
+      {
+        "en": "Je pense que j'ai un rhume.",
+        "ko": "감기에 걸린 것 같아요."
+      },
+      {
+        "en": "J'ai mal au ventre depuis ce matin.",
+        "ko": "오늘 아침부터 배가 아파요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u11_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez depuis quand vous avez un symptôme en utilisant « Depuis... ».",
+        "ko": "증상이 시작된 시점을 'Depuis...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom_since",
+          "label_ko": "증상 시점 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Depuis'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Depuis",
+            "depuis"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u11_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous avez un rhume ? » Répondez en utilisant « Je pense que... ».",
+        "ko": "'Vous avez un rhume ?'(감기 걸린 것 같아요?)라는 질문에 'Je pense que...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cold_guess",
+          "label_ko": "감기 추측 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je pense'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je pense",
+            "je pense"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u11_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Décrivez votre symptôme à voix haute.",
+        "ko": "소리 내어 증상에 대해 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom",
+          "label_ko": "증상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'mal' 또는 'Depuis'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "mal",
+            "Depuis",
+            "depuis"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u11_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Depuis quand avez-vous mal ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Depuis quand avez-vous mal ?'(언제부터 아팠어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom_since",
+          "label_ko": "증상 시점 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Depuis'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Depuis",
+            "depuis"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

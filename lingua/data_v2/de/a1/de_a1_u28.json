@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "de_a1_u28",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 28,
+    "title": "Kleidung",
+    "title_ko": "옷",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe clothing, we use « Ich trage... ». To ask for an opinion, we use « Wie sieht es aus? ».",
+    "explanation_ko": "옷을 묘사할 때는 'Ich trage...'(저는 ~을 입어요), 의견을 물을 때는 'Wie sieht es aus?'(어때 보여요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich trage ein blaues Hemd.",
+        "ko": "저는 파란 셔츠를 입어요."
+      },
+      {
+        "en": "Wie sieht dieses Kleid aus?",
+        "ko": "이 원피스 어때 보여요?"
+      },
+      {
+        "en": "Diese Hose passt gut.",
+        "ko": "이 바지가 잘 맞아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u28_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie, was Sie heute tragen, und benutzen Sie dabei „Ich trage...“.",
+        "ko": "'Ich trage...'를 사용해서 오늘 입은 옷을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "clothing",
+          "label_ko": "옷 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich trage'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich trage",
+            "ich trage"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u28_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Wie sieht dieses Kleid aus?“ Beantworten Sie diese Frage.",
+        "ko": "'Wie sieht dieses Kleid aus?'(이 원피스 어때 보여요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "opinion",
+          "label_ko": "의견 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u28_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut, was Sie heute tragen.",
+        "ko": "소리 내어 오늘 입은 옷을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "clothing",
+          "label_ko": "옷 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich trage'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich trage",
+            "ich trage"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u28_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Passt diese Hose gut?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Passt diese Hose gut?'(이 바지 잘 맞아요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "fit",
+          "label_ko": "맞음 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

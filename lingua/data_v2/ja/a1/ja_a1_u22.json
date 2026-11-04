@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "ja_a1_u22",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 22,
+    "title": "月・季節",
+    "title_ko": "월·계절",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "月を言うときは「〜がつ」を使います。「1がつ」「12がつ」のように使います。季節は「はる」「なつ」「あき」「ふゆ」です。",
+    "explanation_ko": "월을 말할 때는 '〜がつ'를 씁니다. '1がつ'(1월), '12がつ'(12월)처럼 씁니다. 계절은 'はる'(봄), 'なつ'(여름), 'あき'(가을), 'ふゆ'(겨울)입니다.",
+    "key_expressions": [
+      {
+        "en": "たんじょうびは4がつです。",
+        "ko": "생일은 4월이에요."
+      },
+      {
+        "en": "はるがすきです。",
+        "ko": "봄을 좋아해요."
+      },
+      {
+        "en": "8がつはなつです。",
+        "ko": "8월은 여름이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u22_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "自分の誕生日の月を「〜がつです」を使って書いてください。",
+        "ko": "자신의 생일 달을 '〜がつです'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "month",
+          "label_ko": "월 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'がつです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "がつです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u22_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「いま何がつですか」という質問に答えを書いてください。",
+        "ko": "'いま何がつですか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "current_month",
+          "label_ko": "현재 월 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'がつです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "がつです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u22_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "好きな季節について声に出して話してください。",
+        "ko": "좋아하는 계절에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "season",
+          "label_ko": "계절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "계절 단어(はる/なつ/あき/ふゆ)를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はる",
+            "なつ",
+            "あき",
+            "ふゆ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u22_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「たんじょうびは何がつですか」と聞かれました。声に出して答えてください。",
+        "ko": "'たんじょうびは何がつですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "birthday_month",
+          "label_ko": "생일 월 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'がつ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "がつ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

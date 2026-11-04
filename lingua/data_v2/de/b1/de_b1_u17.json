@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "de_b1_u17",
+    "domain": "language",
+    "lang": "de",
+    "level": "b1",
+    "unit": 17,
+    "title": "Komparativ und Superlativ (vertieft)",
+    "title_ko": "비교급·최상급 심화",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "The superlative in front of a noun uses « der/die/das + -ste/-ste ». Some adjectives have irregular forms like « gut, besser, am besten ».",
+    "explanation_ko": "명사 앞의 최상급은 'der/die/das + -ste/-ste'를 사용합니다. 일부 형용사는 'gut, besser, am besten'처럼 불규칙 형태를 가집니다.",
+    "key_expressions": [
+      {
+        "en": "Das ist der schnellste Zug.",
+        "ko": "이건 가장 빠른 기차예요."
+      },
+      {
+        "en": "Dieses Restaurant ist am besten.",
+        "ko": "이 식당이 가장 좋아요."
+      },
+      {
+        "en": "Er ist der älteste in der Familie.",
+        "ko": "그는 가족 중 가장 나이가 많아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b1_u17_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit dem Superlativ vor einem Nomen (z.B. „der schnellste...“).",
+        "ko": "명사 앞에 오는 최상급(예: 'der schnellste...')을 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "superlativ_nomen",
+          "label_ko": "명사 앞 최상급",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'-ste' 또는 '-este'로 끝나는 최상급을 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\w+(ste|este)\\b",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u17_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Welches Restaurant ist am besten?“ Beantworten Sie diese Frage.",
+        "ko": "'Welches Restaurant ist am besten?'(어느 식당이 가장 좋아요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "am_besten",
+          "label_ko": "am besten",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u17_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit „am besten“.",
+        "ko": "소리 내어 'am besten'을 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "am_besten",
+          "label_ko": "am besten",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'am besten'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "am besten"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b1_u17_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist er der älteste in der Familie?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist er der älteste in der Familie?'(그가 가족 중 가장 나이가 많아요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "superlativ_nomen",
+          "label_ko": "명사 앞 최상급",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "es_a2_u35",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 35,
+    "title": "Queja (me molesta)",
+    "title_ko": "불평 (~이 거슬려요)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To complain about something, we use « ... me molesta ». To ask someone to stop, we use « ¿Podría...? ».",
+    "explanation_ko": "불평할 때는 '...me molesta'(~이 거슬려요), 그만해달라고 부탁할 때는 '¿Podría...?'(~해 주실 수 있어요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "El ruido me molesta.",
+        "ko": "이 소음이 거슬려요."
+      },
+      {
+        "en": "¿Podría bajar la voz, por favor?",
+        "ko": "좀 더 조용히 해 주실 수 있어요?"
+      },
+      {
+        "en": "Eso me molesta de verdad.",
+        "ko": "그거 정말 거슬려요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u35_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una queja usando «... me molesta».",
+        "ko": "'...me molesta'를 사용해서 불평을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "complaint",
+          "label_ko": "불평 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'molesta'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "molesta"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u35_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Pida educadamente silencio usando «¿Podría...?».",
+        "ko": "'¿Podría...?'를 사용해서 정중하게 조용히 해달라고 부탁해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "polite_request",
+          "label_ko": "정중한 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Podría'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Podría",
+            "podría"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u35_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Exprese en voz alta una queja.",
+        "ko": "소리 내어 불평해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "complaint",
+          "label_ko": "불평 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'molesta'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "molesta"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u35_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Le molesta el ruido?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Le molesta el ruido?'(소음이 거슬려요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "noise",
+          "label_ko": "소음 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

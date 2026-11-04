@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "de_b2_u11",
+    "domain": "language",
+    "lang": "de",
+    "level": "b2",
+    "unit": 11,
+    "title": "Verschachtelte Nebensätze",
+    "title_ko": "중첩 종속절",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Complex sentences can contain a subordinate clause within another subordinate clause, common in formal German.",
+    "explanation_ko": "복문은 하나의 종속절 안에 또 다른 종속절을 포함할 수 있으며, 격식 있는 독일어에서 흔합니다.",
+    "key_expressions": [
+      {
+        "en": "Ich glaube, dass er sagte, dass er kommt.",
+        "ko": "저는 그가 온다고 말했다고 생각해요."
+      },
+      {
+        "en": "Sie weiß, dass wir hoffen, dass es klappt.",
+        "ko": "그녀는 저희가 잘되길 바란다는 걸 알아요."
+      },
+      {
+        "en": "Er erklärte, warum er dachte, dass es wichtig sei.",
+        "ko": "그는 왜 그게 중요하다고 생각했는지 설명했어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b2_u11_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit einem verschachtelten Nebensatz (z.B. „Ich glaube, dass er sagte, dass...“).",
+        "ko": "중첩 종속절(예: 'Ich glaube, dass er sagte, dass...')을 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verschachtelt",
+          "label_ko": "중첩 종속절",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'dass'가 두 번 이상 사용됐는가",
+          "type": "pattern_regex",
+          "target": "dass",
+          "min_matches": 2,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u11_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Weiß sie, dass wir hoffen, dass es klappt?“ Beantworten Sie diese Frage.",
+        "ko": "'Weiß sie, dass wir hoffen, dass es klappt?'(저희가 잘되길 바란다는 걸 그녀가 알아요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verschachtelt",
+          "label_ko": "중첩 종속절",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u11_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit einem verschachtelten Nebensatz.",
+        "ko": "소리 내어 중첩 종속절을 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verschachtelt",
+          "label_ko": "중첩 종속절",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 15자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 15,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b2_u11_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Erklärte er, warum er dachte, dass es wichtig sei?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Erklärte er, warum er dachte, dass es wichtig sei?'(그가 왜 중요하다고 생각했는지 설명했어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verschachtelt",
+          "label_ko": "중첩 종속절",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

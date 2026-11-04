@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_b1_u25",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b1",
+    "unit": 25,
+    "title": "只要...就...",
+    "title_ko": "只要...就... (~하기만 하면 ~하다)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「只要...就...」表示充分条件，比「只有...才...」的条件更宽松。「只要努力，就能进步」。",
+    "explanation_ko": "'只要...就...'는 충분조건을 나타내며, '只有...才...'보다 조건이 덜 엄격합니다. '只要努力，就能进步'(노력하기만 하면 발전할 수 있어요).",
+    "key_expressions": [
+      {
+        "en": "只要努力，就能进步。",
+        "ko": "노력하기만 하면 발전할 수 있어요."
+      },
+      {
+        "en": "只要你需要，我就来帮你。",
+        "ko": "필요하기만 하면 도와드릴게요."
+      },
+      {
+        "en": "只要天气好，我们就去爬山。",
+        "ko": "날씨만 좋으면 등산 가요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b1_u25_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「只要...就...」写出充分条件。",
+        "ko": "충분조건을 '只要...就...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zhiyao_jiu",
+          "label_ko": "只要...就...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'只要'와 '就'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "只要.{0,15}就",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u25_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「什么时候你们去爬山？」请用「只要...就...」回答。",
+        "ko": "'什么时候你们去爬山？'(언제 등산 가요?)라는 질문에 '只要...就...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zhiyao_jiu",
+          "label_ko": "只要...就...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'只要'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "只要"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u25_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「只要...就...」说出充分条件。",
+        "ko": "'只要...就...'를 사용해서 소리 내어 충분조건을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zhiyao_jiu",
+          "label_ko": "只要...就...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'只要' 또는 '就'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "只要",
+            "就"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b1_u25_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「只要我需要，你就会来帮我吗？」有人问你。请大声回答。",
+        "ko": "'只要我需要，你就会来帮我吗？'(제가 필요하기만 하면 도와주실 거예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zhiyao_jiu",
+          "label_ko": "只要...就...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'会' 또는 '不会'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "会",
+            "不会"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

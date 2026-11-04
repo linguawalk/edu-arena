@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "zh_a1_u24",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 24,
+    "title": "工作1",
+    "title_ko": "직업1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说职业用「我是...」，比如「我是老师」。",
+    "explanation_ko": "직업을 말할 때는 '我是...'(저는 ~예요)를 씁니다. 예: '我是老师'(저는 선생님이에요).",
+    "key_expressions": [
+      {
+        "en": "我是老师。",
+        "ko": "저는 선생님이에요."
+      },
+      {
+        "en": "我在公司工作。",
+        "ko": "저는 회사에서 일해요."
+      },
+      {
+        "en": "你做什么工作？",
+        "ko": "무슨 일을 하세요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u24_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我是...」写出你的职业。",
+        "ko": "'我是...'를 사용해서 직업을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job",
+          "label_ko": "직업 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我是"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u24_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你做什么工作？」请回答这个问题。",
+        "ko": "'你做什么工作？'(무슨 일을 하세요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job",
+          "label_ko": "직업 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我是' 또는 '我在'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我是",
+            "我在"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u24_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你的职业。",
+        "ko": "소리 내어 자신의 직업을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job",
+          "label_ko": "직업 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u24_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你在公司工作吗？」有人问你。请大声回答。",
+        "ko": "'你在公司工作吗？'(회사에서 일해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job",
+          "label_ko": "직업 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

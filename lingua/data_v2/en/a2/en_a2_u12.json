@@ -1,0 +1,269 @@
+{
+  "meta": {
+    "id": "en_a2_u12",
+    "domain": "language",
+    "lang": "en",
+    "level": "a2",
+    "unit": 12,
+    "title": "Giving Health Advice",
+    "title_ko": "건강 조언하기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: giving health advice using 'should' and 'had better'.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 'should'와 'had better'로 건강 조언하기",
+    "key_expressions": [
+      {
+        "en": "You should see a doctor.",
+        "ko": "병원에 가는 게 좋겠어요."
+      },
+      {
+        "en": "You'd better rest today.",
+        "ko": "오늘은 쉬는 게 나을 거예요."
+      },
+      {
+        "en": "Try drinking more water.",
+        "ko": "물을 더 많이 마셔보세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a2_u12_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "A friend has a bad cold. Write two pieces of advice for them, using 'should' and 'try'.",
+        "ko": "친구가 심한 감기에 걸렸습니다. 'should'와 'try'를 사용해서 조언 두 가지를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "should_advice",
+          "label_ko": "should 조언",
+          "min_occurrences": 1
+        },
+        {
+          "type": "expression",
+          "id": "try_advice",
+          "label_ko": "try 조언",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'should'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "should"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'try'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "try"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.!]",
+          "min_matches": 2,
+          "points": 25,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u12_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What should I do if I can't sleep at night?' Write your advice.",
+        "ko": "'What should I do if I can't sleep at night?'라는 질문에 조언을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'You should' 또는 'try'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "you should",
+            "try"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "수면 관련 단어를 언급했는가",
+          "type": "keyword_match",
+          "target": [
+            "sleep",
+            "phone",
+            "caffeine",
+            "exercise"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u12_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Give a friend advice out loud about how to reduce stress.",
+        "ko": "스트레스를 줄이는 방법에 대해 친구에게 소리 내어 조언해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "should_advice",
+          "label_ko": "should 조언",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'should' 또는 'try'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "should",
+            "try"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a2_u12_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What's the best advice you've ever received about health?'",
+        "ko": "소리 내어 답해 보세요: 'What's the best advice you've ever received about health?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice_recall",
+          "label_ko": "조언 회상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'should' 또는 조언 관련 표현을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "should",
+            "told me",
+            "advice"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

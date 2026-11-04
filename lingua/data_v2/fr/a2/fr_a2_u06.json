@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "fr_a2_u06",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 6,
+    "title": "Décrire une personne",
+    "title_ko": "사람 묘사",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour décrire le caractère de quelqu'un, on utilise « Il/Elle est... ». Pour décrire l'apparence, on utilise « Il/Elle a... ».",
+    "explanation_ko": "누군가의 성격을 묘사할 때는 'Il/Elle est...'(그/그녀는 ~해요), 외모를 묘사할 때는 'Il/Elle a...'(그/그녀는 ~을 가지고 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Elle est très gentille.",
+        "ko": "그녀는 정말 친절해요."
+      },
+      {
+        "en": "Il a les cheveux courts.",
+        "ko": "그는 머리가 짧아요."
+      },
+      {
+        "en": "Mon ami est drôle et intelligent.",
+        "ko": "제 친구는 재미있고 똑똑해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u06_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Décrivez le caractère d'un ami en utilisant « Il/Elle est... ».",
+        "ko": "친구의 성격을 'Il/Elle est...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "personality_desc",
+          "label_ko": "성격 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Il est' 또는 'Elle est'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Il est",
+            "Elle est",
+            "il est",
+            "elle est"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u06_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Comment est votre meilleur ami ? » Répondez à cette question.",
+        "ko": "'Comment est votre meilleur ami ?'(가장 친한 친구는 어때요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "friend_desc",
+          "label_ko": "친구 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'est'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "est"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u06_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Décrivez l'apparence de quelqu'un à voix haute en utilisant « Il/Elle a... ».",
+        "ko": "'Il/Elle a...'를 사용해서 소리 내어 누군가의 외모를 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "appearance_desc",
+          "label_ko": "외모 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'a'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "a les",
+            "a des"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u06_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Votre ami est drôle ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Votre ami est drôle ?'(친구가 재미있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "friend_desc",
+          "label_ko": "친구 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

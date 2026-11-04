@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "ko_a1_u18",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 18,
+    "title": "At Home 2 (집안일)",
+    "title_ko": "집 2",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about chores, use « ~을/를 해야 해요 » (I have to do ~). To describe furniture location, use « ~에 있어요 » (it's at/in ~).",
+    "explanation_ko": "집안일을 말할 때는 '~을/를 해야 해요', 가구 위치를 말할 때는 '~에 있어요'를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "I have to clean the house.",
+        "ko": "집을 청소해야 해요."
+      },
+      {
+        "en": "The sofa is in the living room.",
+        "ko": "소파는 거실에 있어요."
+      },
+      {
+        "en": "I have to do the dishes.",
+        "ko": "설거지를 해야 해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u18_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about a chore using «~을/를 해야 해요» (I have to do ~).",
+        "ko": "'~을/를 해야 해요'를 사용해서 집안일에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "chore",
+          "label_ko": "집안일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '해야 해요' (have to do)?",
+          "type": "keyword_match",
+          "target": [
+            "해야 해요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u18_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«소파가 어디에 있어요?» (Where is the sofa?) Answer this question.",
+        "ko": "'소파가 어디에 있어요?'(소파의 위치를 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "furniture_loc",
+          "label_ko": "가구 위치 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '있어요' (there is)?",
+          "type": "keyword_match",
+          "target": [
+            "있어요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u18_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say out loud a chore using «해야 해요».",
+        "ko": "'해야 해요'를 사용해서 소리 내어 집안일을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "chore",
+          "label_ko": "집안일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '해야 해요' (have to do)?",
+          "type": "keyword_match",
+          "target": [
+            "해야 해요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u18_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«설거지해야 해요?» (Do you have to do the dishes?) Answer out loud.",
+        "ko": "'설거지해야 해요?'(설거지 여부를 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "chore",
+          "label_ko": "집안일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

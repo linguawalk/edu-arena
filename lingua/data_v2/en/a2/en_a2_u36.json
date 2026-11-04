@@ -1,0 +1,266 @@
+{
+  "meta": {
+    "id": "en_a2_u36",
+    "domain": "language",
+    "lang": "en",
+    "level": "a2",
+    "unit": 36,
+    "title": "Giving Compliments",
+    "title_ko": "칭찬하기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: giving genuine compliments and responding to them.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 진심 어린 칭찬하기, 칭찬에 답하기",
+    "key_expressions": [
+      {
+        "en": "I really like your new haircut.",
+        "ko": "새 헤어스타일 정말 마음에 들어요."
+      },
+      {
+        "en": "You did a great job on this project.",
+        "ko": "이 프로젝트 정말 잘하셨어요."
+      },
+      {
+        "en": "Thank you, that means a lot.",
+        "ko": "감사해요, 큰 의미가 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a2_u36_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a genuine compliment to a coworker about a presentation they gave.",
+        "ko": "동료가 한 발표에 대해 진심 어린 칭찬을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "compliment",
+          "label_ko": "칭찬 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'great job' 또는 'really liked'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "great job",
+            "really liked",
+            "impressive",
+            "well done"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "'presentation'을 언급했는가",
+          "type": "keyword_match",
+          "target": [
+            "presentation"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u36_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "A friend says: 'Your English has really improved!' Write a polite response.",
+        "ko": "친구가 'Your English has really improved!'라고 말합니다. 정중한 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "compliment_response",
+          "label_ko": "칭찬 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Thank you'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "thank you",
+            "thanks"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "겸손 표현을 포함했는가 (that means a lot 등)",
+          "type": "keyword_match",
+          "target": [
+            "that means a lot",
+            "i've been practicing"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u36_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Give a compliment out loud to a friend about something they made or did recently.",
+        "ko": "친구가 최근에 만들었거나 한 일에 대해 소리 내어 칭찬해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "compliment",
+          "label_ko": "칭찬 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "칭찬 표현을 사용했는가 (great/amazing/love)",
+          "type": "keyword_match",
+          "target": [
+            "great",
+            "amazing",
+            "love",
+            "impressive"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a2_u36_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Do you find it easy or hard to accept compliments?'",
+        "ko": "소리 내어 답해 보세요: 'Do you find it easy or hard to accept compliments?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "opinion",
+          "label_ko": "의견 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "easy 또는 hard를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "easy",
+            "hard",
+            "difficult"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

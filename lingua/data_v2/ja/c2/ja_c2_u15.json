@@ -1,0 +1,226 @@
+{
+  "meta": {
+    "id": "ja_c2_u15",
+    "domain": "language",
+    "lang": "ja",
+    "level": "c2",
+    "unit": 15,
+    "title": "言葉遊びと駄洒落",
+    "title_ko": "언어유희와 다자레",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "駄洒落は同音異義語を使った言葉遊びです。「ふとんがふっとんだ」「アルミかんのうえにあるみかん」のように、音の類似を利用します。",
+    "explanation_ko": "다자레는 동음이의어를 사용한 말장난입니다. 'ふとんがふっとんだ'(이불이 날아갔다), 'アルミかんのうえにあるみかん'(알루미늄 캔 위에 있는 귤)처럼, 소리의 유사성을 활용합니다.",
+    "key_expressions": [
+      {
+        "en": "ふとんがふっとんだ。",
+        "ko": "이불이 날아갔다 (말장난)."
+      },
+      {
+        "en": "アルミかんのうえにあるみかん。",
+        "ko": "알루미늄 캔 위에 있는 귤 (말장난)."
+      },
+      {
+        "en": "だじゃれをいうのがすきです。",
+        "ko": "다자레(말장난)를 하는 걸 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_c2_u15_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "自分で考えた駄洒落を書いて、なぜそれが成り立つのか簡単に説明してください。",
+        "ko": "스스로 생각한 다자레(말장난)를 쓰고, 왜 그게 성립하는지 간단히 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "dajare",
+          "label_ko": "駄洒落",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "문장이 2개 이상인가 (말장난+설명)",
+          "type": "pattern_regex",
+          "target": "[。]",
+          "min_matches": 2,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 12자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 12,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ja_c2_u15_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「だじゃれがすきですか」という質問に正直に答えを書いてください。",
+        "ko": "'だじゃれがすきですか'라는 질문에 솔직하게 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "dajare",
+          "label_ko": "駄洒落",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'だじゃれ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "だじゃれ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ja_c2_u15_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "簡単な駄洒落を声に出して言って、自分で反応してください。",
+        "ko": "간단한 다자레(말장난)를 소리 내어 말하고, 스스로 반응해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "dajare",
+          "label_ko": "駄洒落",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 8자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 8,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_c2_u15_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「きいたなかでいちばんおもしろいだじゃれはなんですか」と聞かれました。声に出して答えてください。",
+        "ko": "'きいたなかでいちばんおもしろいだじゃれはなんですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "dajare",
+          "label_ko": "駄洒落",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'だじゃれ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "だじゃれ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

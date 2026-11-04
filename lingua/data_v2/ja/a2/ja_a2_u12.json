@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "ja_a2_u12",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 12,
+    "title": "健康アドバイス",
+    "title_ko": "건강 조언",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "健康のアドバイスをするときは「〜たほうがいいです」を使います。「びょういんへいったほうがいいです」のように使います。",
+    "explanation_ko": "건강 조언을 할 때는 '〜たほうがいいです'(~하는 게 좋아요)를 씁니다. 'びょういんへいったほうがいいです'(병원에 가는 게 좋아요)처럼 씁니다.",
+    "key_expressions": [
+      {
+        "en": "びょういんへいったほうがいいです。",
+        "ko": "병원에 가는 게 좋아요."
+      },
+      {
+        "en": "ゆっくりやすんだほうがいいです。",
+        "ko": "푹 쉬는 게 좋아요."
+      },
+      {
+        "en": "みずをたくさんのんでください。",
+        "ko": "물을 많이 마셔 주세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u12_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "体調が悪い友だちへのアドバイスを「〜たほうがいいです」を使って書いてください。",
+        "ko": "컨디션이 안 좋은 친구에게 조언을 '〜たほうがいいです'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'たほうがいいです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "たほうがいいです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u12_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「かぜのときどうしたらいいですか」という質問に答えを書いてください。",
+        "ko": "'かぜのときどうしたらいいですか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cold_advice",
+          "label_ko": "감기 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'たほうがいいです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "たほうがいいです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u12_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "体調が悪い友だちへ、声に出してアドバイスをしてください。",
+        "ko": "컨디션이 안 좋은 친구에게 소리 내어 조언을 해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'たほうがいい'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "たほうがいい"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u12_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「やすんだほうがいいですか」と聞かれました。声に出して答えてください。",
+        "ko": "'やすんだほうがいいですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rest_advice",
+          "label_ko": "휴식 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'はい' 또는 'いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

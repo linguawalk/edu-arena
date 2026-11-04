@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "id": "zh_a1_u29",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 29,
+    "title": "约时间",
+    "title_ko": "약속 잡기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "约时间用「我们...见面吧」，比如「我们明天见面吧」。",
+    "explanation_ko": "약속을 잡을 때는 '我们...见面吧'(우리 ~에 만나요)를 씁니다. 예: '我们明天见面吧'(우리 내일 만나요).",
+    "key_expressions": [
+      {
+        "en": "我们明天见面吧。",
+        "ko": "우리 내일 만나요."
+      },
+      {
+        "en": "几点方便？",
+        "ko": "몇 시가 편해요?"
+      },
+      {
+        "en": "我们在哪儿见？",
+        "ko": "우리 어디서 만나요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u29_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我们...见面吧」约朋友见面。",
+        "ko": "'我们...见面吧'를 사용해서 친구와 만날 약속을 잡아보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "making_plans",
+          "label_ko": "약속 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'见面'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "见面"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u29_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「什么时候方便？」请回答这个问题。",
+        "ko": "'什么时候方便？'(언제 편해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "time_convenient",
+          "label_ko": "시간 편의 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 4자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 4,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u29_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声跟朋友约见面。",
+        "ko": "소리 내어 친구와 만날 약속을 잡아보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "making_plans",
+          "label_ko": "약속 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'见面'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "见面"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u29_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「我们在哪儿见？」有人问你。请大声回答。",
+        "ko": "'我们在哪儿见？'(어디서 만나요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "meeting_place",
+          "label_ko": "만날 장소 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 3자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 3,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

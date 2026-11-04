@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "fr_b2_u44",
+    "domain": "language",
+    "lang": "fr",
+    "level": "b2",
+    "unit": 44,
+    "title": "Accord des adjectifs de couleur composés",
+    "title_ko": "복합색채형용사 일치",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Les adjectifs de couleur composés (bleu clair, vert foncé) restent invariables. Par exemple : « des yeux bleu clair » (pas « bleus clairs »).",
+    "explanation_ko": "복합색채형용사(bleu clair, vert foncé)는 불변입니다. 예: 'des yeux bleu clair'(연한 파란 눈, 'bleus clairs'가 아님).",
+    "key_expressions": [
+      {
+        "en": "Elle a des yeux bleu clair.",
+        "ko": "그녀는 연한 파란 눈을 가지고 있어요."
+      },
+      {
+        "en": "J'ai acheté une robe vert foncé.",
+        "ko": "짙은 초록색 원피스를 샀어요."
+      },
+      {
+        "en": "Il porte des chaussures gris clair.",
+        "ko": "그는 밝은 회색 신발을 신고 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_b2_u44_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase avec un adjectif de couleur composé (bleu clair, vert foncé, etc.), en gardant l'invariabilité.",
+        "ko": "복합색채형용사(bleu clair, vert foncé 등)를 불변형으로 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "couleur_composee",
+          "label_ko": "복합색채형용사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'clair' 또는 'foncé'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "clair",
+            "foncé"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b2_u44_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« De quelle couleur sont vos yeux ? » Répondez en utilisant un adjectif de couleur composé si possible.",
+        "ko": "'De quelle couleur sont vos yeux ?'(눈이 무슨 색이에요?)라는 질문에 가능하면 복합색채형용사를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "couleur_composee",
+          "label_ko": "복합색채형용사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b2_u44_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute une phrase avec un adjectif de couleur composé.",
+        "ko": "소리 내어 복합색채형용사를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "couleur_composee",
+          "label_ko": "복합색채형용사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'clair' 또는 'foncé'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "clair",
+            "foncé"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_b2_u44_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Il porte des chaussures gris clair ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Il porte des chaussures gris clair ?'(밝은 회색 신발을 신고 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "couleur_composee",
+          "label_ko": "복합색채형용사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

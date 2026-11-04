@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "de_b1_u44",
+    "domain": "language",
+    "lang": "de",
+    "level": "b1",
+    "unit": 44,
+    "title": "Funktionsverbgefüge",
+    "title_ko": "기능동사구",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Fixed verb-noun combinations (Funktionsverbgefüge) like « eine Entscheidung treffen » (to make a decision) are common in formal German.",
+    "explanation_ko": "'eine Entscheidung treffen'(결정을 내리다)과 같은 고정된 동사-명사 결합(기능동사구)은 격식 있는 독일어에서 흔합니다.",
+    "key_expressions": [
+      {
+        "en": "Ich treffe eine wichtige Entscheidung.",
+        "ko": "저는 중요한 결정을 내려요."
+      },
+      {
+        "en": "Er stellt eine Frage.",
+        "ko": "그는 질문을 해요."
+      },
+      {
+        "en": "Wir nehmen an dem Projekt teil.",
+        "ko": "저희는 그 프로젝트에 참여해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b1_u44_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit „eine Entscheidung treffen“.",
+        "ko": "'eine Entscheidung treffen'을 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "funktionsverbgefuege",
+          "label_ko": "기능동사구",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Entscheidung'과 'treffen/trifft'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "Entscheidung.{0,15}(treffe|trifft|treffen)",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u44_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Nehmen Sie an dem Projekt teil?“ Beantworten Sie diese Frage.",
+        "ko": "'Nehmen Sie an dem Projekt teil?'(그 프로젝트에 참여해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "funktionsverbgefuege",
+          "label_ko": "기능동사구",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u44_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit „eine Frage stellen“.",
+        "ko": "소리 내어 'eine Frage stellen'을 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "funktionsverbgefuege",
+          "label_ko": "기능동사구",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Frage'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Frage"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b1_u44_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Treffen Sie eine wichtige Entscheidung?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Treffen Sie eine wichtige Entscheidung?'(중요한 결정을 내리고 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "funktionsverbgefuege",
+          "label_ko": "기능동사구",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

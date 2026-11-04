@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "ja_a1_u47",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 47,
+    "title": "緊急事態",
+    "title_ko": "긴급상황",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "緊急のときは「たすけてください」を使います。「きゅうきゅうしゃをよんでください」のように具体的にお願いします。",
+    "explanation_ko": "긴급할 때는 'たすけてください'(도와주세요)를 씁니다. 'きゅうきゅうしゃをよんでください'(구급차를 불러주세요)처럼 구체적으로 부탁합니다.",
+    "key_expressions": [
+      {
+        "en": "たすけてください。",
+        "ko": "도와주세요."
+      },
+      {
+        "en": "きゅうきゅうしゃをよんでください。",
+        "ko": "구급차를 불러주세요."
+      },
+      {
+        "en": "けいさつをよんでください。",
+        "ko": "경찰을 불러주세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u47_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "緊急のとき、助けを求める文を「たすけてください」を使って書いてください。",
+        "ko": "긴급할 때, 도움을 요청하는 문장을 'たすけてください'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "help",
+          "label_ko": "도움 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'たすけてください'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "たすけてください"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u47_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "けがをした人がいます。「きゅうきゅうしゃをよんでください」を使って文を書いてください。",
+        "ko": "다친 사람이 있습니다. 'きゅうきゅうしゃをよんでください'를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ambulance",
+          "label_ko": "구급차 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'きゅうきゅうしゃ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "きゅうきゅうしゃ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u47_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "緊急のとき、声に出して助けを求めてください。",
+        "ko": "긴급할 때, 소리 내어 도움을 요청해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "help",
+          "label_ko": "도움 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'たすけて'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "たすけて"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u47_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「どうしましたか」と聞かれました。緊急の状況を声に出して伝えてください。",
+        "ko": "'どうしましたか'라는 질문을 받았습니다. 긴급 상황을 소리 내어 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "emergency_situation",
+          "label_ko": "긴급 상황 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'たすけて' 또는 'きゅうきゅうしゃ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "たすけて",
+            "きゅうきゅうしゃ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

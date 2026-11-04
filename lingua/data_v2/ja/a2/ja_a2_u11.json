@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "ja_a2_u11",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 11,
+    "title": "症状",
+    "title_ko": "증상",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "詳しい症状を話すときは「〜ような気がします」や「〜からいたいです」を使います。",
+    "explanation_ko": "자세한 증상을 말할 때는 '〜ような気がします'(~한 것 같아요)나 '〜からいたいです'(~부터 아파요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "きのうからのどがいたいです。",
+        "ko": "어제부터 목이 아파요."
+      },
+      {
+        "en": "かぜをひいたような気がします。",
+        "ko": "감기에 걸린 것 같아요."
+      },
+      {
+        "en": "おなかのちょうしがわるいです。",
+        "ko": "배 상태가 안 좋아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u11_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "具合が悪いとき、いつから調子が悪いか「〜からいたいです」を使って書いてください。",
+        "ko": "컨디션이 안 좋을 때, 언제부터 안 좋은지 '〜からいたいです'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom_since",
+          "label_ko": "증상 시점 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'から'와 'いたいです'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "から.{0,10}いたいです",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u11_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「かぜをひいたと思いますか」という質問に答えを書いてください。",
+        "ko": "'かぜをひいたと思いますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cold_guess",
+          "label_ko": "감기 추측 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ような気がします'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ような気がします"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u11_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "具合が悪いとき、症状について声に出して伝えてください。",
+        "ko": "컨디션이 안 좋을 때, 증상에 대해 소리 내어 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom",
+          "label_ko": "증상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'いたい' 또는 'ちょうしがわるい'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "いたい",
+            "ちょうしがわるい"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u11_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「いつからちょうしがわるいですか」と聞かれました。声に出して答えてください。",
+        "ko": "'いつからちょうしがわるいですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom_since",
+          "label_ko": "증상 시점 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'から'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "から"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

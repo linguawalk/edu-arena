@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_a1_u47",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 47,
+    "title": "紧急情况",
+    "title_ko": "긴급상황",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "紧急情况用「请帮帮我！」，叫救护车用「请叫救护车！」。",
+    "explanation_ko": "긴급상황에서는 '请帮帮我！'(도와주세요!), 구급차를 부를 때는 '请叫救护车！'(구급차 불러주세요!)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "请帮帮我！",
+        "ko": "도와주세요!"
+      },
+      {
+        "en": "请叫救护车！",
+        "ko": "구급차 불러주세요!"
+      },
+      {
+        "en": "着火了！",
+        "ko": "불이야!"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u47_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「请帮帮我！」写出紧急求助的句子。",
+        "ko": "'请帮帮我！'를 사용해서 긴급 도움을 요청하는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "emergency_help",
+          "label_ko": "긴급 도움 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'帮帮我' 또는 '救命'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "帮帮我",
+            "救命"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[！!]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u47_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「发生了什么事？」请写出紧急情况的说明。",
+        "ko": "'发生了什么事？'(무슨 일이에요?)라는 질문에 긴급상황 설명을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "emergency_desc",
+          "label_ko": "긴급상황 설명 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。！!]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 4자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 4,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u47_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声叫救护车。",
+        "ko": "소리 내어 구급차를 불러보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "calling_ambulance",
+          "label_ko": "구급차 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'救护车'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "救护车"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u47_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你没事吧？」有人担心地问你。请大声回答。",
+        "ko": "'你没事吧？'(괜찮아요?)라고 걱정하며 물었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "reassurance",
+          "label_ko": "안심 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'没事' 또는 '有事'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "没事",
+            "有事"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

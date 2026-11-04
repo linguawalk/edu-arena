@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "es_a1_u35",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 35,
+    "title": "Gustos/Disgustos",
+    "title_ko": "좋아함·싫어함",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To express strong likes/dislikes, we use « Me encanta... » and « Odio... ».",
+    "explanation_ko": "강한 호불호를 표현할 때는 'Me encanta...'(저는 ~을 정말 좋아해요)와 'Odio...'(저는 ~을 싫어해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Me encanta el chocolate.",
+        "ko": "저는 초콜릿을 정말 좋아해요."
+      },
+      {
+        "en": "Odio esperar en fila.",
+        "ko": "저는 줄 서는 걸 싫어해요."
+      },
+      {
+        "en": "Prefiero el té al café.",
+        "ko": "저는 커피보다 차를 더 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u35_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba algo que le encanta usando «Me encanta...».",
+        "ko": "'Me encanta...'를 사용해서 정말 좋아하는 것을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "love",
+          "label_ko": "매우 좋아함 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Me encanta'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Me encanta",
+            "me encanta"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u35_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Qué odias?» Responda a esta pregunta.",
+        "ko": "'¿Qué odias?'(뭘 싫어해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "hate",
+          "label_ko": "싫어함 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Odio'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Odio",
+            "odio"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u35_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una preferencia usando «Prefiero...».",
+        "ko": "'Prefiero...'를 사용해서 소리 내어 선호를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "prefer",
+          "label_ko": "선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Prefiero'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Prefiero",
+            "prefiero"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u35_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Te encanta el chocolate?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Te encanta el chocolate?'(초콜릿 정말 좋아해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "love",
+          "label_ko": "매우 좋아함 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

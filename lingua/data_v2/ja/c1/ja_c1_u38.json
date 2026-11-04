@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "id": "ja_c1_u38",
+    "domain": "language",
+    "lang": "ja",
+    "level": "c1",
+    "unit": 38,
+    "title": "レジスターシフト: 三つの格式",
+    "title_ko": "격식 3단계",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "同じ内容でも、丁寧語（です・ます）、謙譲語（申す・いただく）、カジュアル（だ・である）の三つの格式で表現が変わります。",
+    "explanation_ko": "같은 내용이라도, 정중어(です·ます), 겸양어(申す·いただく), 캐주얼(だ·である)의 세 가지 격식으로 표현이 달라집니다.",
+    "key_expressions": [
+      {
+        "en": "これはたべものです。（ていねいご）",
+        "ko": "이건 음식이에요 (정중어)."
+      },
+      {
+        "en": "これはたべものだ。（カジュアル）",
+        "ko": "이건 음식이다 (캐주얼)."
+      },
+      {
+        "en": "しょうちいたしました。（けんじょうご）",
+        "ko": "알겠습니다 (겸양어)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_c1_u38_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "同じ内容を丁寧語とカジュアルな言い方で二回書いてください。",
+        "ko": "같은 내용을 정중어와 캐주얼한 말투로 두 번 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "register",
+          "label_ko": "격식 대조",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'です' 또는 'ます'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(です|ます)",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'だ' 또는 'である'로 끝나는 문장이 있는가",
+          "type": "pattern_regex",
+          "target": "(だ。|である。)",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[。]",
+          "min_matches": 2,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_c1_u38_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「わかりましたか」という質問に、謙譲語「承知いたしました」を使って答えを書いてください。",
+        "ko": "'わかりましたか'라는 질문에, 겸양어 '承知いたしました'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "shouchi",
+          "label_ko": "承知いたしました",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'しょうちいたしました'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "しょうちいたしました"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_c1_u38_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "同じ内容を、まず丁寧に、次にカジュアルに声に出して言ってください。",
+        "ko": "같은 내용을 먼저 정중하게, 다음에 캐주얼하게 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "register",
+          "label_ko": "격식 대조",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_c1_u38_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「かいぎでけいごをつかいますか」と聞かれました。声に出して答えてください。",
+        "ko": "'かいぎでけいごをつかいますか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "register",
+          "label_ko": "격식 대조",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'はい' 또는 'いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

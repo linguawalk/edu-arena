@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_b1_u09",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b1",
+    "unit": 9,
+    "title": "不但...而且...",
+    "title_ko": "不但...而且... (~뿐만 아니라 ~도)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「不但...而且...」表示递进，后面的内容比前面更进一步。「他不但聪明，而且很努力」。",
+    "explanation_ko": "'不但...而且...'는 점층을 나타내며, 뒤 내용이 앞보다 한층 더 나아갑니다. '他不但聪明，而且很努力'(그는 똑똑할 뿐만 아니라 노력도 해요).",
+    "key_expressions": [
+      {
+        "en": "他不但聪明，而且很努力。",
+        "ko": "그는 똑똑할 뿐만 아니라 노력도 해요."
+      },
+      {
+        "en": "这家店不但便宜，而且好吃。",
+        "ko": "이 가게는 쌀 뿐만 아니라 맛있기도 해요."
+      },
+      {
+        "en": "我不但会说汉语，而且会写。",
+        "ko": "저는 중국어를 말할 수 있을 뿐만 아니라 쓸 수도 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b1_u09_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「不但...而且...」写出两个优点。",
+        "ko": "두 가지 장점을 '不但...而且...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "budan_erqie",
+          "label_ko": "不但...而且...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'不但'과 '而且'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "不但.{0,15}而且",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u09_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「这家店怎么样？」请用「不但...而且...」回答。",
+        "ko": "'这家店怎么样？'(이 가게 어때요?)라는 질문에 '不但...而且...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "budan_erqie",
+          "label_ko": "不但...而且...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'不但'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "不但"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u09_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「不但...而且...」说出两个优点。",
+        "ko": "'不但...而且...'를 사용해서 소리 내어 두 가지 장점을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "budan_erqie",
+          "label_ko": "不但...而且...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'不但' 또는 '而且'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "不但",
+            "而且"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b1_u09_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你不但会说，而且会写吗？」有人问你。请大声回答。",
+        "ko": "'你不但会说，而且会写吗？'(말할 뿐만 아니라 쓸 수도 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "budan_erqie",
+          "label_ko": "不但...而且...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

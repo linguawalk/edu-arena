@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "ja_a1_u30",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 30,
+    "title": "誘いを受ける・断る",
+    "title_ko": "초대 수락·거절",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "誘いを受けるときは「いいですね」を使います。断るときは「すみません、〜」を使って理由を言います。",
+    "explanation_ko": "초대를 받아들일 때는 'いいですね'(좋아요)를 씁니다. 거절할 때는 'すみません、〜'(죄송해요, ~)를 사용해 이유를 말합니다.",
+    "key_expressions": [
+      {
+        "en": "いいですね、いきましょう。",
+        "ko": "좋아요, 가요."
+      },
+      {
+        "en": "すみません、ちょっといそがしいです。",
+        "ko": "죄송해요, 좀 바빠요."
+      },
+      {
+        "en": "またこんどおねがいします。",
+        "ko": "다음에 부탁드려요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u30_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "友だちの誘いを、「いいですね」を使って受け入れる文を書いてください。",
+        "ko": "친구의 초대를 'いいですね'를 사용해서 받아들이는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "accept",
+          "label_ko": "수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'いいですね'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "いいですね"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u30_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「いっしょにいきませんか」という誘いを、「すみません」を使って断る文を書いてください。",
+        "ko": "'いっしょにいきませんか'라는 초대를 'すみません'을 사용해서 거절하는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "decline",
+          "label_ko": "거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'すみません'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "すみません"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u30_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "友だちの誘いを声に出して受け入れてください。",
+        "ko": "친구의 초대를 소리 내어 받아들여 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "accept",
+          "label_ko": "수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'いいですね'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "いいですね"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u30_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「こんばんパーティーにきますか」と聞かれました。声に出して(断る場合も含めて)答えてください。",
+        "ko": "'こんばんパーティーにきますか'라는 질문을 받았습니다. 소리 내어(거절해도 좋습니다) 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "response",
+          "label_ko": "응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'いいですね' 또는 'すみません'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "いいですね",
+            "すみません"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_a1_u32",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 32,
+    "title": "Demandes",
+    "title_ko": "부탁",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour faire une demande polie, on utilise « Pourriez-vous... ? ». Pour accepter une demande, on utilise « Bien sûr ».",
+    "explanation_ko": "정중하게 부탁할 때는 'Pourriez-vous...?'(~해 주실 수 있어요?), 부탁을 들어줄 때는 'Bien sûr'(물론이죠)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Pourriez-vous m'aider ?",
+        "ko": "저 좀 도와주실 수 있어요?"
+      },
+      {
+        "en": "Bien sûr, pas de problème.",
+        "ko": "물론이죠, 문제없어요."
+      },
+      {
+        "en": "Pourriez-vous fermer la fenêtre ?",
+        "ko": "창문 좀 닫아주실 수 있어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Faites une demande polie en utilisant « Pourriez-vous... ? ».",
+        "ko": "'Pourriez-vous...?'를 사용해서 정중한 부탁을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "polite_request",
+          "label_ko": "정중한 부탁 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Pourriez-vous'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Pourriez-vous",
+            "pourriez-vous"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Pourriez-vous m'aider ? » Répondez en utilisant « Bien sûr ».",
+        "ko": "'Pourriez-vous m'aider ?'(도와주실 수 있어요?)라는 질문에 'Bien sûr'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "granting_request",
+          "label_ko": "부탁 수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Bien sûr'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Bien sûr",
+            "bien sûr"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Faites une demande polie à voix haute.",
+        "ko": "소리 내어 정중한 부탁을 해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "polite_request",
+          "label_ko": "정중한 부탁 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Pourriez-vous'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Pourriez-vous",
+            "pourriez-vous"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Pourriez-vous fermer la fenêtre ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Pourriez-vous fermer la fenêtre ?'(창문 좀 닫아주실 수 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "granting_request",
+          "label_ko": "부탁 수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Bien sûr'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Bien sûr",
+            "bien sûr"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

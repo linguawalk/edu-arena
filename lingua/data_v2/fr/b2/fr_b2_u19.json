@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "fr_b2_u19",
+    "domain": "language",
+    "lang": "fr",
+    "level": "b2",
+    "unit": 19,
+    "title": "Tellement... que / si... que",
+    "title_ko": "Tellement...que / si...que",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "« Tellement... que » et « si... que » expriment une intensité menant à une conséquence. Par exemple : « Il fait tellement chaud que je ne peux pas dormir ».",
+    "explanation_ko": "'Tellement...que'와 'si...que'는 결과로 이어지는 강도를 나타냅니다. 예: 'Il fait tellement chaud que je ne peux pas dormir'(너무 더워서 잠을 잘 수 없어요).",
+    "key_expressions": [
+      {
+        "en": "Il fait tellement chaud que je ne peux pas dormir.",
+        "ko": "너무 더워서 잠을 잘 수 없어요."
+      },
+      {
+        "en": "Elle est si fatiguée qu'elle s'est endormie.",
+        "ko": "그녀는 너무 피곤해서 잠들어버렸어요."
+      },
+      {
+        "en": "C'était tellement drôle que tout le monde a ri.",
+        "ko": "너무 재미있어서 다들 웃었어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_b2_u19_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase avec « tellement... que » exprimant une intensité.",
+        "ko": "강도를 나타내는 문장을 'tellement... que'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "tellement_que",
+          "label_ko": "tellement...que",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'tellement'과 'que'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "tellement.{0,20}que",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b2_u19_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Pourquoi ne pouvez-vous pas dormir ? » Répondez en utilisant « tellement... que ».",
+        "ko": "'Pourquoi ne pouvez-vous pas dormir ?'(왜 잠을 못 자요?)라는 질문에 'tellement... que'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "tellement_que",
+          "label_ko": "tellement...que",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'tellement'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "tellement"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b2_u19_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute une phrase avec « si... que ».",
+        "ko": "소리 내어 'si... que'를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "si_que",
+          "label_ko": "si...que",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'si'와 'que'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "si \\w+ que",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_b2_u19_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« C'était tellement drôle que tout le monde a ri ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'C'était tellement drôle que tout le monde a ri ?'(너무 재미있어서 다들 웃었어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "tellement_que",
+          "label_ko": "tellement...que",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

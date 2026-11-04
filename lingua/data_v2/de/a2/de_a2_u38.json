@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "de_a2_u38",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 38,
+    "title": "Einen Freund beraten (sollte)",
+    "title_ko": "친구 조언 (~하는 게 좋겠어)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To advise a friend, we use « Du solltest... ». To express understanding, we use « Ich verstehe, wie du dich fühlst ».",
+    "explanation_ko": "친구에게 조언할 때는 'Du solltest...'(~하는 게 좋겠어), 이해를 표현할 때는 'Ich verstehe, wie du dich fühlst'(네 기분 이해해)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Du solltest mit ihm sprechen.",
+        "ko": "그와 이야기해보는 게 좋겠어."
+      },
+      {
+        "en": "Ich verstehe, wie du dich fühlst.",
+        "ko": "네 기분 이해해."
+      },
+      {
+        "en": "Du solltest dir keine Sorgen machen.",
+        "ko": "걱정하지 않는 게 좋겠어."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u38_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Geben Sie einem Freund einen Rat und benutzen Sie dabei „Du solltest...“.",
+        "ko": "'Du solltest...'를 사용해서 친구에게 조언을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Du solltest'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Du solltest",
+            "du solltest"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u38_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Ein Freund ist traurig. Zeigen Sie Verständnis und benutzen Sie dabei „Ich verstehe“.",
+        "ko": "친구가 슬퍼합니다. 'Ich verstehe'를 사용해서 이해를 표현하는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "understanding",
+          "label_ko": "이해 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich verstehe'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich verstehe",
+            "ich verstehe"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u38_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Geben Sie laut einem Freund einen Rat.",
+        "ko": "소리 내어 친구에게 조언해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'solltest'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "solltest"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u38_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Solltest du dir keine Sorgen machen?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Solltest du dir keine Sorgen machen?'(걱정 안 하는 게 좋을까?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "worry",
+          "label_ko": "걱정 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

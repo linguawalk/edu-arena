@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "es_b2_u08",
+    "domain": "language",
+    "lang": "es",
+    "level": "b2",
+    "unit": 8,
+    "title": "Partículas modales (pues, la verdad, vamos)",
+    "title_ko": "화용 불변화사 (pues, la verdad, vamos)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "« Pues », « la verdad », and « vamos » are discourse particles that add nuance or hesitation in spoken Spanish.",
+    "explanation_ko": "'pues', 'la verdad', 'vamos'는 구어체 스페인어에서 뉘앙스나 망설임을 더하는 화용 불변화사입니다.",
+    "key_expressions": [
+      {
+        "en": "Pues, no sé qué decir.",
+        "ko": "글쎄요, 뭐라고 해야 할지 모르겠어요."
+      },
+      {
+        "en": "La verdad, no me gusta mucho.",
+        "ko": "솔직히 그다지 좋아하지 않아요."
+      },
+      {
+        "en": "Vamos, que no es tan difícil.",
+        "ko": "그러니까, 그렇게 어렵지 않아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_b2_u08_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una frase con «la verdad» como partícula.",
+        "ko": "화용 불변화사 'la verdad'를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "la_verdad",
+          "label_ko": "la verdad",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'la verdad'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "la verdad",
+            "La verdad"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.,]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u08_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Te gusta esta idea?» Responda usando «Pues,».",
+        "ko": "'¿Te gusta esta idea?'(이 생각이 마음에 들어요?)라는 질문에 'Pues,'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "pues",
+          "label_ko": "pues",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Pues'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Pues",
+            "pues"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u08_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una frase con «vamos» como partícula discursiva.",
+        "ko": "화용 불변화사 'vamos'를 사용해서 소리 내어 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "vamos_particula",
+          "label_ko": "vamos (담화표지)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'vamos'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "vamos",
+            "Vamos"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_b2_u08_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿No sabes qué decir?» Le preguntan esto. Responda en voz alta usando «Pues».",
+        "ko": "'¿No sabes qué decir?'(뭐라고 해야 할지 모르겠어요?)라는 질문을 받았습니다. 'Pues'를 사용해서 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "pues",
+          "label_ko": "pues",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Pues'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Pues",
+            "pues"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "id": "fr_b2_u36",
+    "domain": "language",
+    "lang": "fr",
+    "level": "b2",
+    "unit": 36,
+    "title": "Les propositions participiales",
+    "title_ko": "분사구문",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Les propositions participiales utilisent un participe (présent ou passé) sans sujet explicite pour condenser l'information, typique du style écrit. Par exemple : « Le travail terminé, il est parti ».",
+    "explanation_ko": "분사구문은 명시적인 주어 없이 분사(현재/과거)를 사용해서 정보를 압축하며, 주로 문어체에서 씁니다. 예: 'Le travail terminé, il est parti'(일이 끝나자 그는 떠났어요).",
+    "key_expressions": [
+      {
+        "en": "Le travail terminé, il est parti.",
+        "ko": "일이 끝나자 그는 떠났어요."
+      },
+      {
+        "en": "La pluie ayant cessé, nous sommes sortis.",
+        "ko": "비가 그치자 저희는 나갔어요."
+      },
+      {
+        "en": "Le repas fini, ils ont fait la vaisselle.",
+        "ko": "식사가 끝나자 그들은 설거지를 했어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_b2_u36_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase avec une proposition participiale (par exemple, « Le travail terminé, ... »).",
+        "ko": "분사구문(예: 'Le travail terminé, ...')을 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "proposition_participiale",
+          "label_ko": "분사구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "과거분사로 시작하는 절을 사용했는가",
+          "type": "pattern_regex",
+          "target": "^\\w+(é|ée|és|ées),",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b2_u36_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Qu'avez-vous fait quand le travail a été terminé ? » Répondez à cette question.",
+        "ko": "'Qu'avez-vous fait quand le travail a été terminé ?'(일이 끝났을 때 뭐 했어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "proposition_participiale",
+          "label_ko": "분사구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b2_u36_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute une phrase avec une proposition participiale.",
+        "ko": "소리 내어 분사구문을 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "proposition_participiale",
+          "label_ko": "분사구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_b2_u36_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« La pluie ayant cessé, êtes-vous sorti ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'La pluie ayant cessé, êtes-vous sorti ?'(비가 그치자 나갔어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "proposition_participiale",
+          "label_ko": "분사구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

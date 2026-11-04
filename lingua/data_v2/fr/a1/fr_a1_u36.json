@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "fr_a1_u36",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 36,
+    "title": "Comparaisons",
+    "title_ko": "비교",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour comparer, on utilise « ... est plus... que... ». Pour dire le meilleur, on utilise « ... est le/la plus... ».",
+    "explanation_ko": "비교할 때는 '...est plus... que...'(~이 ~보다 더 ~해요), 최고를 말할 때는 '...est le/la plus...'(~이 가장 ~해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ce livre est plus intéressant que l'autre.",
+        "ko": "이 책이 다른 책보다 더 재미있어요."
+      },
+      {
+        "en": "C'est le plus grand bâtiment de la ville.",
+        "ko": "이건 도시에서 가장 큰 건물이에요."
+      },
+      {
+        "en": "Elle est plus jeune que moi.",
+        "ko": "그녀는 저보다 어려요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u36_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une comparaison en utilisant « ... est plus... que... ».",
+        "ko": "비교 문장을 '...est plus... que...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "comparison",
+          "label_ko": "비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'plus'와 'que'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "plus.{0,20}que",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u36_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Quel est le plus grand bâtiment de votre ville ? » Répondez à cette question.",
+        "ko": "'Quel est le plus grand bâtiment de votre ville ?'(당신 도시에서 가장 큰 건물이 뭐예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "superlative",
+          "label_ko": "최상급 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'le plus' 또는 'la plus'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "le plus",
+            "la plus"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u36_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Faites une comparaison à voix haute.",
+        "ko": "소리 내어 비교하는 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "comparison",
+          "label_ko": "비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'plus'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "plus"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u36_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Elle est plus jeune que vous ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Elle est plus jeune que vous ?'(그녀가 당신보다 어려요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "age_comparison",
+          "label_ko": "나이 비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

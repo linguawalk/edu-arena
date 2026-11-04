@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "fr_a1_u28",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 28,
+    "title": "Vêtements",
+    "title_ko": "옷",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour dire ce qu'on porte, on utilise « Je porte... ». Pour donner son avis sur un vêtement, on utilise « Ça te va bien ».",
+    "explanation_ko": "입고 있는 옷을 말할 때는 'Je porte...'(저는 ~을 입고 있어요), 옷에 대해 평가할 때는 'Ça te va bien'(잘 어울려요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je porte une robe bleue.",
+        "ko": "저는 파란 원피스를 입고 있어요."
+      },
+      {
+        "en": "Ça te va bien !",
+        "ko": "잘 어울려요!"
+      },
+      {
+        "en": "Cette chemise est trop petite.",
+        "ko": "이 셔츠는 너무 작아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u28_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez ce que vous portez aujourd'hui en utilisant « Je porte... ».",
+        "ko": "오늘 입고 있는 옷을 'Je porte...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "clothing",
+          "label_ko": "옷차림 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je porte'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je porte",
+            "je porte"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u28_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Ça me va bien ? » Répondez à cette question.",
+        "ko": "'Ça me va bien ?'(저한테 잘 어울려요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "clothing_opinion",
+          "label_ko": "옷 평가 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'bien' 또는 'Oui/Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "bien",
+            "Oui",
+            "Non"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u28_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de vos vêtements préférés à voix haute.",
+        "ko": "소리 내어 좋아하는 옷에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "clothing",
+          "label_ko": "옷차림 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'porte' 또는 'J'aime'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "porte",
+            "J'aime",
+            "j'aime"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u28_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Cette chemise est trop petite ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Cette chemise est trop petite ?'(이 셔츠 너무 작아요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "size_feedback",
+          "label_ko": "사이즈 피드백 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "ja_a1_u44",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 44,
+    "title": "近所の人",
+    "title_ko": "이웃",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "近所の人とのあいさつでは「おせわになっています」を使います。「となりにすんでいます」のように場所を説明します。",
+    "explanation_ko": "이웃과의 인사에서는 'おせわになっています'(신세 지고 있어요)를 씁니다. 'となりにすんでいます'(옆집에 살아요)처럼 장소를 설명합니다.",
+    "key_expressions": [
+      {
+        "en": "いつもおせわになっています。",
+        "ko": "항상 신세 지고 있습니다."
+      },
+      {
+        "en": "となりにすんでいます。",
+        "ko": "옆집에 살아요."
+      },
+      {
+        "en": "よろしくおねがいします。",
+        "ko": "잘 부탁드려요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u44_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "新しい近所の人にあいさつする文を書いてください。",
+        "ko": "새 이웃에게 인사하는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "neighbor_greeting",
+          "label_ko": "이웃 인사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'よろしくおねがいします'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "よろしくおねがいします"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u44_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「どこにすんでいますか」という質問に答えを書いてください。",
+        "ko": "'どこにすんでいますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "live_location",
+          "label_ko": "거주지 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'すんでいます'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "すんでいます"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u44_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "新しい近所の人に、声に出してあいさつしてください。",
+        "ko": "새 이웃에게 소리 내어 인사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "neighbor_greeting",
+          "label_ko": "이웃 인사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'よろしく'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "よろしく"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u44_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「ちかくにすんでいますか」と聞かれました。声に出して答えてください。",
+        "ko": "'ちかくにすんでいますか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "live_nearby",
+          "label_ko": "근처 거주 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'すんでいます' 또는 'はい/いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "すんでいます",
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

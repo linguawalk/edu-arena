@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "id": "zh_b1_u20",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b1",
+    "unit": 20,
+    "title": "过 深入",
+    "title_ko": "过 심화 (경험)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「过」表示经历，可以和「没」一起用来说明未曾经历。「我没去过日本」。",
+    "explanation_ko": "'过'는 경험을 나타내며, '没'와 함께 써서 경험하지 못했음을 나타낼 수 있습니다. '我没去过日本'(일본에 가본 적이 없어요).",
+    "key_expressions": [
+      {
+        "en": "我没去过日本。",
+        "ko": "일본에 가본 적이 없어요."
+      },
+      {
+        "en": "你吃过北京烤鸭吗？",
+        "ko": "베이징 오리구이 먹어본 적 있어요?"
+      },
+      {
+        "en": "我从来没有见过他。",
+        "ko": "저는 그를 만나본 적이 전혀 없어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b1_u20_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「没...过」写出你没有经历过的事。",
+        "ko": "해본 적 없는 것을 '没...过'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "mei_guo",
+          "label_ko": "没...过",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'没'와 '过'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "没.{0,10}过",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u20_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你吃过北京烤鸭吗？」请回答这个问题。",
+        "ko": "'你吃过北京烤鸭吗？'(베이징 오리구이 먹어본 적 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "guo_experience",
+          "label_ko": "过(경험)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'吃过' 또는 '没吃过'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "吃过",
+            "没吃过"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u20_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你从来没有经历过的事。",
+        "ko": "전혀 해본 적 없는 것에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "mei_guo",
+          "label_ko": "没...过",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'没'와 '过'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "没.{0,10}过",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b1_u20_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你从来没有见过他吗？」有人问你。请大声回答。",
+        "ko": "'你从来没有见过他吗？'(그를 만나본 적이 전혀 없어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "guo_experience",
+          "label_ko": "过(경험)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "ko_a1_u12",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 12,
+    "title": "Shopping (쇼핑, 얼마예요?)",
+    "title_ko": "쇼핑",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To ask the price, use « 얼마예요? » (How much is it?). To ask for a different size, use « 다른 사이즈 있어요? ».",
+    "explanation_ko": "가격을 물을 때는 '얼마예요?', 다른 사이즈를 요청할 때는 '다른 사이즈 있어요?'를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "How much is this?",
+        "ko": "이거 얼마예요?"
+      },
+      {
+        "en": "Do you have a different size?",
+        "ko": "다른 사이즈 있어요?"
+      },
+      {
+        "en": "I will buy this.",
+        "ko": "이거 살게요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u12_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Ask the price of something using «얼마예요?».",
+        "ko": "'얼마예요?'를 사용해서 가격을 물어보는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ask_price",
+          "label_ko": "가격 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '얼마' (how much)?",
+          "type": "keyword_match",
+          "target": [
+            "얼마"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Does the sentence end with a question mark?",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u12_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«이거 사실 거예요?» (Are you going to buy this?) Answer this question.",
+        "ko": "'이거 사실 거예요?'(구매 의사를 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "buy",
+          "label_ko": "구매 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u12_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Ask for a different size out loud using «다른 사이즈 있어요?».",
+        "ko": "'다른 사이즈 있어요?'를 사용해서 소리 내어 다른 사이즈를 요청해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ask_size",
+          "label_ko": "사이즈 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '사이즈' (size)?",
+          "type": "keyword_match",
+          "target": [
+            "사이즈"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u12_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«이거 얼마예요?» (How much is this?) You are asked this. Answer out loud.",
+        "ko": "'이거 얼마예요?'(가격을 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price",
+          "label_ko": "가격 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

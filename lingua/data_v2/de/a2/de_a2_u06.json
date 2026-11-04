@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "de_a2_u06",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 6,
+    "title": "Eine Person beschreiben",
+    "title_ko": "사람 묘사하기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe someone's personality, we use « ... ist... ». To describe appearance, we use « ... hat... ».",
+    "explanation_ko": "성격을 묘사할 때는 '...ist...'(~은 ~해요), 외모를 묘사할 때는 '...hat...'(~은 ~을 가지고 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Mein Freund ist sehr freundlich.",
+        "ko": "제 친구는 정말 친절해요."
+      },
+      {
+        "en": "Sie hat lange Haare.",
+        "ko": "그녀는 긴 머리를 가지고 있어요."
+      },
+      {
+        "en": "Er ist groß und schlank.",
+        "ko": "그는 키가 크고 날씬해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u06_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschreiben Sie die Persönlichkeit einer Person und benutzen Sie dabei „... ist...“.",
+        "ko": "'...ist...'를 사용해서 어떤 사람의 성격을 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "personality",
+          "label_ko": "성격 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ist'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ist"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u06_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Hat sie lange Haare?“ Beantworten Sie diese Frage.",
+        "ko": "'Hat sie lange Haare?'(그녀가 긴 머리예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "appearance",
+          "label_ko": "외모 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u06_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschreiben Sie laut die Persönlichkeit eines Freundes.",
+        "ko": "소리 내어 친구의 성격을 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "personality",
+          "label_ko": "성격 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ist'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ist"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u06_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist er groß und schlank?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist er groß und schlank?'(그가 키가 크고 날씬해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "appearance_answer",
+          "label_ko": "외모 답변 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

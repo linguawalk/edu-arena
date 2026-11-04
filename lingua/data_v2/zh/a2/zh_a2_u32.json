@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_a2_u32",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 32,
+    "title": "自然灾害",
+    "title_ko": "자연재해",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说自然灾害的准备用「为了...，我准备了...」，比如「为了地震，我准备了水」。",
+    "explanation_ko": "자연재해 대비를 말할 때는 '为了...，我准备了...'(~에 대비해서 ~을 준비했어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "为了地震，我准备了水。",
+        "ko": "지진에 대비해서 물을 준비했어요."
+      },
+      {
+        "en": "因为台风，学校放假了。",
+        "ko": "태풍 때문에 학교가 쉬었어요."
+      },
+      {
+        "en": "不要去危险的地方。",
+        "ko": "위험한 곳에 가지 마세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「为了...，我准备了...」写出自然灾害的准备。",
+        "ko": "자연재해 대비에 대해 '为了...，我准备了...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "disaster_prep",
+          "label_ko": "재해 대비 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'为了'와 '准备'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "为了.{0,15}准备",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你们那儿地震多吗？」请回答这个问题。",
+        "ko": "'你们那儿地震多吗？'(거기 지진이 많아요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "earthquake_frequency",
+          "label_ko": "지진 빈도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'地震'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "地震"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出自然灾害的准备。",
+        "ko": "자연재해 대비에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "disaster_prep",
+          "label_ko": "재해 대비 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'准备' 또는 '为了'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "准备",
+            "为了"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「因为台风，学校放假过吗？」有人问你。请大声回答。",
+        "ko": "'因为台风，学校放假过吗？'(태풍 때문에 학교가 쉰 적 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "typhoon_school",
+          "label_ko": "태풍 휴교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

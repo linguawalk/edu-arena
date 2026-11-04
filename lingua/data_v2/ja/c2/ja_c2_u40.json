@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "id": "ja_c2_u40",
+    "domain": "language",
+    "lang": "ja",
+    "level": "c2",
+    "unit": 40,
+    "title": "漢語 vs 和語の格式",
+    "title_ko": "한자어 vs 고유어 격식",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "漢語（開始する）はフォーマルで硬い印象、和語（はじめる）は柔らかく親しみやすい印象を与えます。同じ意味でも語源によって格式が変わります。",
+    "explanation_ko": "한자어(開始する)는 격식 있고 딱딱한 인상, 고유어(はじめる)는 부드럽고 친근한 인상을 줍니다. 같은 의미라도 어원에 따라 격식이 달라집니다.",
+    "key_expressions": [
+      {
+        "en": "かいぎをかいしします。（かんご）",
+        "ko": "회의를 개시합니다 (한자어)."
+      },
+      {
+        "en": "かいぎをはじめます。（わご）",
+        "ko": "회의를 시작해요 (고유어)."
+      },
+      {
+        "en": "しゅうりょういたします。（かんご）",
+        "ko": "종료하겠습니다 (한자어)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_c2_u40_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "会議を始めることを、漢語「開始する」と和語「はじめる」の両方で書いてください。",
+        "ko": "회의를 시작하는 것을, 한자어 '開始する'와 고유어 'はじめる' 둘 다로 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "kango_wago",
+          "label_ko": "한자어·고유어",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'かいし'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "かいし"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'はじめ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はじめ"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[。]",
+          "min_matches": 2,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ja_c2_u40_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「かいぎはいつしゅうりょうしますか」という質問に、フォーマルな漢語を使って答えを書いてください。",
+        "ko": "'かいぎはいつしゅうりょうしますか'라는 질문에, 격식 있는 한자어를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "shuuryou",
+          "label_ko": "終了する",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'しゅうりょう'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "しゅうりょう"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ja_c2_u40_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "同じ内容を、まずフォーマルな漢語で、次に親しみやすい和語で声に出して言ってください。",
+        "ko": "같은 내용을, 먼저 격식 있는 한자어로, 다음에 친근한 고유어로 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "kango_wago",
+          "label_ko": "한자어·고유어",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_c2_u40_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「フォーマルなことばとカジュアルなことば、どちらがすきですか」と聞かれました。声に出して答えてください。",
+        "ko": "'フォーマルなことばとカジュアルなことば、どちらがすきですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "kango_wago",
+          "label_ko": "한자어·고유어",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'フォーマル' 또는 'カジュアル'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "フォーマル",
+            "カジュアル"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

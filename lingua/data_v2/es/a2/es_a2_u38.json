@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "es_a2_u38",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 38,
+    "title": "Aconsejar a un amigo (debería)",
+    "title_ko": "친구 조언 (~하는 게 좋겠어)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To advise a friend, we use « Deberías... ». To express understanding, we use « Entiendo cómo te sientes ».",
+    "explanation_ko": "친구에게 조언할 때는 'Deberías...'(~하는 게 좋겠어), 이해를 표현할 때는 'Entiendo cómo te sientes'(네 기분 이해해)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Deberías hablar con él.",
+        "ko": "그와 이야기해보는 게 좋겠어."
+      },
+      {
+        "en": "Entiendo cómo te sientes.",
+        "ko": "네 기분 이해해."
+      },
+      {
+        "en": "No deberías preocuparte tanto.",
+        "ko": "너무 걱정하지 않는 게 좋겠어."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u38_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dé un consejo a un amigo usando «Deberías...».",
+        "ko": "'Deberías...'를 사용해서 친구에게 조언을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Deberías'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Deberías",
+            "deberías"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u38_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Un amigo está triste. Muestre comprensión usando «Entiendo».",
+        "ko": "친구가 슬퍼합니다. 'Entiendo'를 사용해서 이해를 표현하는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "understanding",
+          "label_ko": "이해 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Entiendo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Entiendo",
+            "entiendo"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u38_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dé en voz alta un consejo a un amigo.",
+        "ko": "소리 내어 친구에게 조언해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Deberías'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Deberías",
+            "deberías"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u38_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿No debería preocuparme tanto?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿No debería preocuparme tanto?'(너무 걱정 안 하는 게 좋을까?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "worry",
+          "label_ko": "걱정 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

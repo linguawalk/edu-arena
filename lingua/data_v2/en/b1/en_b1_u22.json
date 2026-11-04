@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "id": "en_b1_u22",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 22,
+    "title": "So / Such",
+    "title_ko": "So / Such (정도 강조)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "'So' goes directly before an adjective or adverb ('so tired', 'so quickly'). 'Such' goes before a noun (with an optional adjective): 'such a good idea', 'such nice weather'. Both are often followed by 'that' to show a result: 'It was so hot that we stayed inside.'",
+    "explanation_ko": "'so'는 형용사·부사 바로 앞에 옵니다('so tired', 'so quickly'). 'such'는 명사 앞에 옵니다(형용사와 함께 쓰일 수도 있음): 'such a good idea', 'such nice weather'. 둘 다 결과를 나타내는 'that'과 자주 함께 쓰입니다: 'It was so hot that we stayed inside.'",
+    "key_expressions": [
+      {
+        "en": "The movie was so boring that I fell asleep.",
+        "ko": "영화가 너무 지루해서 잠들어버렸어요."
+      },
+      {
+        "en": "It was such a great trip.",
+        "ko": "정말 멋진 여행이었어요."
+      },
+      {
+        "en": "She speaks so fast that I can't understand.",
+        "ko": "그녀는 말이 너무 빨라서 못 알아듣겠어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u22_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write two sentences describing recent experiences: one using 'so + adjective', one using 'such a/an + noun'.",
+        "ko": "최근 경험을 묘사하는 문장 두 개를 써 보세요: 하나는 'so + 형용사', 하나는 'such a/an + 명사'를 사용하세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "so_such",
+          "label_ko": "so/such",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'so + 형용사'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\bso\\s+\\w+",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'such a/an'을 사용했는가",
+          "type": "pattern_regex",
+          "target": "such\\s+(a|an)\\s+\\w+",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.!]",
+          "min_matches": 2,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u22_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Why were you late this morning?' Write your answer using 'so ... that'.",
+        "ko": "'Why were you late this morning?'라는 질문에 'so ... that'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "so_that",
+          "label_ko": "so...that",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'so ... that' 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "so\\s+\\w+\\s+that",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u22_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about the best meal you've ever had, using 'such a' and 'so'.",
+        "ko": "지금까지 먹은 최고의 식사에 대해 'such a'와 'so'를 사용해서 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "so_such",
+          "label_ko": "so/such",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'so' 또는 'such'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(so|such)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u22_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Have you ever been so tired that you fell asleep somewhere unusual?'",
+        "ko": "소리 내어 답해 보세요: 'Have you ever been so tired that you fell asleep somewhere unusual?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "so_that",
+          "label_ko": "so...that",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes, I have' 또는 'No, I haven't'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes, i have",
+            "no, i haven't",
+            "yes i have",
+            "no i haven't"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

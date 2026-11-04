@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "de_b2_u32",
+    "domain": "language",
+    "lang": "de",
+    "level": "b2",
+    "unit": 32,
+    "title": "Ellipsen im gesprochenen Deutsch",
+    "title_ko": "구어체 생략",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "In spoken German, parts of a sentence are often omitted for brevity, like « Kaffee? » instead of « Möchtest du einen Kaffee? ».",
+    "explanation_ko": "구어체 독일어에서는 간결함을 위해 문장의 일부를 종종 생략합니다. 예: 'Möchtest du einen Kaffee?' 대신 'Kaffee?'",
+    "key_expressions": [
+      {
+        "en": "Kaffee?",
+        "ko": "커피?"
+      },
+      {
+        "en": "Kein Problem.",
+        "ko": "문제없어요."
+      },
+      {
+        "en": "Alles klar.",
+        "ko": "알겠어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b2_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen elliptischen Satz (kurze, umgangssprachliche Form), z.B. beim Anbieten von etwas.",
+        "ko": "뭔가를 권할 때 사용하는 생략형(짧고 구어체적인 형태) 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "ellipse",
+          "label_ko": "생략형",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "5단어 이하인가",
+          "type": "pattern_regex",
+          "target": "^[^.!?]{1,25}[.!?]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 표현인가",
+          "type": "pattern_regex",
+          "target": "[.!?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist alles klar?“ Antworten Sie kurz und umgangssprachlich.",
+        "ko": "'Ist alles klar?'(다 이해했어요?)라는 질문에 짧고 구어체적으로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "ellipse",
+          "label_ko": "생략형",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 표현인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "짧은 표현인가 (최대 20자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen kurzen, umgangssprachlichen Satz mit „Kein Problem“.",
+        "ko": "'Kein Problem'을 사용해서 소리 내어 짧고 구어체적인 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "ellipse",
+          "label_ko": "생략형",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Kein Problem'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Kein Problem",
+            "kein Problem"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b2_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Kaffee?“ Das fragt man Sie kurz. Antworten Sie laut, ebenso kurz.",
+        "ko": "'Kaffee?'(커피?)라는 짧은 질문을 받았습니다. 마찬가지로 짧게 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "ellipse",
+          "label_ko": "생략형",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

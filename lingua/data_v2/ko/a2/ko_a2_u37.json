@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "id": "ko_a2_u37",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a2",
+    "unit": 37,
+    "title": "Advising a Friend (-는 게 어때요?)",
+    "title_ko": "친구에게 조언하기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To give friendly advice, use « ~는 게 어때요? » (How about ~ing?). For example, « 좀 쉬는 게 어때요? » (How about resting a bit?).",
+    "explanation_ko": "친근한 조언을 할 때는 '~는 게 어때요?'를 씁니다. 예: '좀 쉬는 게 어때요?'.",
+    "key_expressions": [
+      {
+        "en": "How about resting a bit?",
+        "ko": "좀 쉬는 게 어때요?"
+      },
+      {
+        "en": "How about talking to a doctor?",
+        "ko": "의사한테 이야기하는 게 어때요?"
+      },
+      {
+        "en": "What should I do?",
+        "ko": "저 어떻게 해야 해요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a2_u37_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Give advice to a friend using «~는 게 어때요?».",
+        "ko": "'~는 게 어때요?'를 사용해서 친구에게 조언하는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Does it end with 게 어때요?",
+          "type": "pattern_regex",
+          "target": "게 어때요[?]?$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Does the sentence end with a question mark?",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u37_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«저 어떻게 해야 해요?» (What should I do?) A friend asks you this. Give advice.",
+        "ko": "친구가 '저 어떻게 해야 해요?'(조언을 구함)라고 물었습니다. 조언으로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Does it end with 게 어때요?",
+          "type": "pattern_regex",
+          "target": "게 어때요[?]?$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Does the sentence end with a question mark?",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u37_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say out loud «좀 쉬는 게 어때요?» (How about resting a bit?).",
+        "ko": "'좀 쉬는 게 어때요?'를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice",
+          "label_ko": "조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '어때요' (how about)?",
+          "type": "keyword_match",
+          "target": [
+            "어때요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a2_u37_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«의사한테 이야기하는 게 어때요?» (How about talking to a doctor?) You are asked this. Answer out loud.",
+        "ko": "'의사한테 이야기하는 게 어때요?'(조언)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "advice_response",
+          "label_ko": "조언 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '좋아요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "좋아요",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

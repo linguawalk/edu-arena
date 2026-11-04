@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "ko_a2_u32",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a2",
+    "unit": 32,
+    "title": "Transportation Sequence (-기 전에/후에)",
+    "title_ko": "교통 순서",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe sequence in transportation, use « -기 전에 » (before ~) and « -은/ㄴ 후에 » (after ~). For example, « 버스를 타기 전에 표를 사요 » (I buy a ticket before taking the bus).",
+    "explanation_ko": "교통수단 이용 순서를 말할 때는 '-기 전에'(~하기 전에)와 '-은/ㄴ 후에'(~한 후에)를 씁니다. 예: '버스를 타기 전에 표를 사요'.",
+    "key_expressions": [
+      {
+        "en": "I buy a ticket before taking the bus.",
+        "ko": "버스를 타기 전에 표를 사요."
+      },
+      {
+        "en": "After getting off the subway, I walk.",
+        "ko": "지하철에서 내린 후에 걸어요."
+      },
+      {
+        "en": "What do you do before leaving home?",
+        "ko": "집을 나가기 전에 뭐 해요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a2_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about a transportation sequence using «-기 전에» (before).",
+        "ko": "'-기 전에'를 사용해서 교통수단 이용 순서에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sequence",
+          "label_ko": "순서 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '기 전에' (before)?",
+          "type": "keyword_match",
+          "target": [
+            "기 전에"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«집을 나가기 전에 뭐 해요?» (What do you do before leaving home?) Answer this question.",
+        "ko": "'집을 나가기 전에 뭐 해요?'(외출 전 행동을 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sequence",
+          "label_ko": "순서 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Did you write at least 5 characters?",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say out loud a sequence using «-은/ㄴ 후에» (after).",
+        "ko": "'-은/ㄴ 후에'를 사용해서 소리 내어 순서를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sequence",
+          "label_ko": "순서 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '후에' (after)?",
+          "type": "keyword_match",
+          "target": [
+            "후에"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a2_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«버스를 타기 전에 표를 사요?» (Do you buy a ticket before taking the bus?) Answer out loud.",
+        "ko": "'버스를 타기 전에 표를 사요?'(승차권 구매 시점을 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sequence",
+          "label_ko": "순서 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

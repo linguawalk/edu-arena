@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "es_a1_u13",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 13,
+    "title": "Precios",
+    "title_ko": "가격",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about prices, we use « Es caro/barato ». To ask for a discount, we use « ¿Hay descuento? ».",
+    "explanation_ko": "가격을 말할 때는 'Es caro/barato'(비싸요/싸요), 할인을 물을 때는 '¿Hay descuento?'(할인 있어요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Es muy caro.",
+        "ko": "정말 비싸요."
+      },
+      {
+        "en": "¿Hay descuento?",
+        "ko": "할인 있어요?"
+      },
+      {
+        "en": "Este es más barato.",
+        "ko": "이게 더 싸요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u13_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba sobre un precio usando «Es caro» o «Es barato».",
+        "ko": "'Es caro' 또는 'Es barato'를 사용해서 가격에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_opinion",
+          "label_ko": "가격 의견 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'caro' 또는 'barato'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "caro",
+            "barato"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u13_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Hay descuento en esto?» Responda a esta pregunta.",
+        "ko": "'¿Hay descuento en esto?'(이거 할인 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "discount",
+          "label_ko": "할인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u13_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta que algo es más barato.",
+        "ko": "소리 내어 어떤 것이 더 싸다고 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cheaper",
+          "label_ko": "더 저렴함 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'barato'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "barato"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u13_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Es muy caro?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Es muy caro?'(정말 비싸요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_opinion",
+          "label_ko": "가격 의견 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

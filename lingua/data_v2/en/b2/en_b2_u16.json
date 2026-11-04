@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "en_b2_u16",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 16,
+    "title": "Emphatic Structures with Do",
+    "title_ko": "강조의 조동사 Do",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Adding 'do/does/did' before the base verb in a positive sentence adds strong emphasis, often to contradict doubt: 'I do think it's a good idea' (contrary to what you might think). 'She did call, but you didn't answer.'",
+    "explanation_ko": "긍정문에서 동사원형 앞에 'do/does/did'를 추가하면 강한 강조가 되며, 보통 의심에 반박할 때 씁니다: 'I do think it's a good idea'(당신 생각과 달리). 'She did call, but you didn't answer.'",
+    "key_expressions": [
+      {
+        "en": "I do believe this will work.",
+        "ko": "저는 정말로 이게 될 거라고 믿어요."
+      },
+      {
+        "en": "She does care about the team.",
+        "ko": "그녀는 정말로 팀을 신경 써요."
+      },
+      {
+        "en": "We did try to warn you.",
+        "ko": "우리는 정말로 경고하려고 했어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u16_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a defense of your opinion using emphatic 'do/does/did' to contradict someone's doubt.",
+        "ko": "누군가의 의심에 반박하며, 강조의 'do/does/did'를 사용해서 당신의 의견을 옹호해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "emphatic_do",
+          "label_ko": "강조의 do",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'do/does/did + 동사원형'을 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(do|does|did)\\s+(think|believe|care|try|want|know)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u16_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone doubts that you tried your best. Write a response using emphatic 'did'.",
+        "ko": "누군가 당신이 최선을 다했는지 의심합니다. 강조의 'did'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "emphatic_do",
+          "label_ko": "강조의 do",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I did'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i did"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u16_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud, defending yourself against a doubt, using emphatic 'do/does/did'.",
+        "ko": "의심에 대해 스스로를 변호하며, 강조의 'do/does/did'를 사용해서 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "emphatic_do",
+          "label_ko": "강조의 do",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'do/does/did + 동사원형'을 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(do|does|did)\\s+(think|believe|care|try|want|know)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u16_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Do you really enjoy studying English, or is it just for work?'",
+        "ko": "소리 내어 답해 보세요: 'Do you really enjoy studying English, or is it just for work?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "emphatic_do",
+          "label_ko": "강조의 do",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I do enjoy'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i do enjoy",
+            "i do like"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

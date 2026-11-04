@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "fr_a1_u17",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 17,
+    "title": "La maison 1",
+    "title_ko": "집 1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour décrire son logement, on utilise « J'habite dans... ». Pour parler des pièces, on utilise « Il y a... ».",
+    "explanation_ko": "사는 곳을 묘사할 때는 'J'habite dans...'(저는 ~에 살아요), 방을 말할 때는 'Il y a...'(~이 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "J'habite dans un appartement.",
+        "ko": "저는 아파트에 살아요."
+      },
+      {
+        "en": "Il y a trois chambres.",
+        "ko": "방이 세 개 있어요."
+      },
+      {
+        "en": "Ma maison est grande.",
+        "ko": "저희 집은 커요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u17_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez où vous habitez en utilisant « J'habite dans... ».",
+        "ko": "사는 곳을 'J'habite dans...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing",
+          "label_ko": "주거 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'J'habite'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "J'habite",
+            "j'habite"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u17_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Combien de chambres avez-vous ? » Répondez en utilisant « Il y a... ».",
+        "ko": "'Combien de chambres avez-vous ?'(방이 몇 개예요?)라는 질문에 'Il y a...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rooms",
+          "label_ko": "방 개수 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Il y a'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Il y a",
+            "il y a"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u17_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Décrivez votre logement à voix haute.",
+        "ko": "소리 내어 자신의 집을 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing",
+          "label_ko": "주거 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'J'habite'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "J'habite",
+            "j'habite"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u17_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Votre maison est grande ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Votre maison est grande ?'(집이 커요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "house_size",
+          "label_ko": "집 크기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

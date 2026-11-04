@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_b1_u29",
+    "domain": "language",
+    "lang": "fr",
+    "level": "b1",
+    "unit": 29,
+    "title": "Verbes pronominaux (réfléchis/réciproques)",
+    "title_ko": "대명동사 (재귀·상호)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Les verbes pronominaux réfléchis expriment une action sur soi-même (se laver), les réciproques expriment une action mutuelle (se parler).",
+    "explanation_ko": "재귀 대명동사는 자기 자신에게 하는 행위(se laver, 씻다)를, 상호 대명동사는 서로 하는 행위(se parler, 서로 말하다)를 나타냅니다.",
+    "key_expressions": [
+      {
+        "en": "Je me lave tous les matins.",
+        "ko": "저는 매일 아침 씻어요."
+      },
+      {
+        "en": "Ils se parlent tous les jours.",
+        "ko": "그들은 매일 서로 이야기해요."
+      },
+      {
+        "en": "Nous nous voyons souvent.",
+        "ko": "우리는 서로 자주 만나요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_b1_u29_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase avec un verbe pronominal réfléchi (se laver, se lever, etc.).",
+        "ko": "재귀 대명동사(se laver, se lever 등)를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verbe_pronominal_reflexif",
+          "label_ko": "재귀 대명동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'me' 또는 'se' 대명동사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(me |se )\\w+",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b1_u29_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous parlez-vous souvent avec vos amis ? » Répondez à cette question.",
+        "ko": "'Vous parlez-vous souvent avec vos amis ?'(친구들과 자주 이야기해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verbe_pronominal_reciproque",
+          "label_ko": "상호 대명동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'nous' 대명동사를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "nous parlons",
+            "nous voyons"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b1_u29_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute une phrase avec un verbe pronominal.",
+        "ko": "소리 내어 대명동사를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verbe_pronominal_reflexif",
+          "label_ko": "재귀 대명동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'me' 또는 'se' 또는 'nous'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "me",
+            "se",
+            "nous"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_b1_u29_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous vous lavez tous les matins ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous vous lavez tous les matins ?'(매일 아침 씻어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verbe_pronominal_reflexif",
+          "label_ko": "재귀 대명동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "fr_a2_u02",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 2,
+    "title": "Hier",
+    "title_ko": "어제",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler d'hier, on utilise le passé composé « Hier, j'ai... / je suis allé(e)... ».",
+    "explanation_ko": "어제 일을 말할 때는 복합 과거형 'Hier, j'ai.../je suis allé(e)...'(어제 저는 ~했어요/갔어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Hier, j'ai travaillé toute la journée.",
+        "ko": "어제 저는 하루 종일 일했어요."
+      },
+      {
+        "en": "Hier soir, je suis sorti avec des amis.",
+        "ko": "어젯밤 저는 친구들과 나갔어요."
+      },
+      {
+        "en": "Qu'est-ce que vous avez fait hier ?",
+        "ko": "어제 뭐 했어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u02_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez ce que vous avez fait hier en utilisant « Hier, j'ai... ».",
+        "ko": "어제 한 일을 'Hier, j'ai...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "yesterday",
+          "label_ko": "어제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Hier'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Hier",
+            "hier"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u02_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Qu'est-ce que vous avez fait hier soir ? » Répondez à cette question.",
+        "ko": "'Qu'est-ce que vous avez fait hier soir ?'(어젯밤 뭐 했어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "last_night",
+          "label_ko": "어젯밤 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'hier soir' 또는 'J'ai'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "hier soir",
+            "J'ai",
+            "j'ai"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u02_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de votre journée d'hier à voix haute.",
+        "ko": "소리 내어 어제 하루에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "yesterday",
+          "label_ko": "어제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Hier'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Hier",
+            "hier"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u02_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous êtes sorti avec des amis hier ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous êtes sorti avec des amis hier ?'(어제 친구들이랑 나갔어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "went_out",
+          "label_ko": "외출 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

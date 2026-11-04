@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "id": "zh_c2_u03",
+    "domain": "language",
+    "lang": "zh",
+    "level": "c2",
+    "unit": 3,
+    "title": "语域: 文学性 vs 口语性",
+    "title_ko": "언어역: 문학성 vs 구어성",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "同样的内容，文学化表达（韶华易逝）与口语化表达（时间过得真快）给人的印象完全不同。",
+    "explanation_ko": "같은 내용이라도, 문학적 표현(韶华易逝)과 구어적 표현(时间过得真快)은 완전히 다른 인상을 줍니다.",
+    "key_expressions": [
+      {
+        "en": "韶华易逝。（文学）",
+        "ko": "청춘은 쉬이 지나가요 (문학적)."
+      },
+      {
+        "en": "时间过得真快。（口语）",
+        "ko": "시간 진짜 빨리 가네요 (구어적)."
+      },
+      {
+        "en": "这篇文章文笔冗长。",
+        "ko": "이 글은 문체가 장황해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_c2_u03_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请把「时间过得很快」用文学化的表达写一次，用口语化的表达写一次。",
+        "ko": "'시간이 빨리 간다'는 내용을, 문학적 표현으로 한 번, 구어적 표현으로 한 번 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "register",
+          "label_ko": "언어역 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]",
+          "min_matches": 2,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_c2_u03_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「这篇文章怎么样？」请用「冗长」回答。",
+        "ko": "'这篇文章怎么样？'(이 글 어때요?)라는 질문에 '冗长'을 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "rongchang",
+          "label_ko": "冗长",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'冗长'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "冗长"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_c2_u03_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用文学化的表达说出对时光流逝的感慨。",
+        "ko": "세월의 흐름에 대한 감회를 문학적인 표현으로 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "literary",
+          "label_ko": "문학적 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_c2_u03_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你喜欢简单的表达还是复杂的表达？」有人问你。请大声回答。",
+        "ko": "'你喜欢简单的表达还是复杂的表达？'(간단한 표현과 복잡한 표현 중 뭘 좋아해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "register",
+          "label_ko": "언어역 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'简单' 또는 '复杂'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "简单",
+            "复杂"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

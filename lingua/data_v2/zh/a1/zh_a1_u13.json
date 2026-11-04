@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "zh_a1_u13",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 13,
+    "title": "价钱",
+    "title_ko": "가격",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "问价钱用「多少钱？」，说贵或便宜用「太贵了」「很便宜」。",
+    "explanation_ko": "가격을 물을 때는 '多少钱？'(얼마예요?), 비싸다/싸다를 말할 때는 '太贵了'(너무 비싸요), '很便宜'(정말 싸요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "这个多少钱？",
+        "ko": "이거 얼마예요?"
+      },
+      {
+        "en": "太贵了。",
+        "ko": "너무 비싸요."
+      },
+      {
+        "en": "能便宜一点吗？",
+        "ko": "좀 싸게 해주실 수 있어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u13_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「多少钱？」问价钱。",
+        "ko": "'多少钱？'를 사용해서 가격을 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "asking_price",
+          "label_ko": "가격 문의 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'多少钱'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "多少钱"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[？?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u13_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「这个怎么样？贵不贵？」请回答这个问题。",
+        "ko": "'这个怎么样？贵不贵？'(이거 어때요? 비싸요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_opinion",
+          "label_ko": "가격 평가 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'贵' 또는 '便宜'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "贵",
+            "便宜"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u13_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声问能不能便宜一点。",
+        "ko": "소리 내어 좀 싸게 해줄 수 있는지 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bargaining",
+          "label_ko": "흥정 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'便宜'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "便宜"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u13_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「太贵了吗？」有人问你。请大声回答。",
+        "ko": "'太贵了吗？'(너무 비싸요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_opinion",
+          "label_ko": "가격 평가 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

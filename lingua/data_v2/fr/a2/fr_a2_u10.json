@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "fr_a2_u10",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 10,
+    "title": "Préférences alimentaires",
+    "title_ko": "음식 취향",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour dire ce qu'on préfère, on utilise « Je préfère... à... ». Pour dire ce qu'on ne peut pas manger, on utilise « Je ne peux pas manger... ».",
+    "explanation_ko": "선호하는 것을 말할 때는 'Je préfère... à...'(저는 ~보다 ~을 더 좋아해요), 못 먹는 것을 말할 때는 'Je ne peux pas manger...'(저는 ~을 못 먹어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je préfère la cuisine française à la cuisine italienne.",
+        "ko": "저는 이탈리아 요리보다 프랑스 요리를 더 좋아해요."
+      },
+      {
+        "en": "Je ne peux pas manger de fruits de mer.",
+        "ko": "저는 해산물을 못 먹어요."
+      },
+      {
+        "en": "J'adore les sucreries.",
+        "ko": "저는 단 음식을 정말 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u10_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une préférence alimentaire en utilisant « Je préfère... à... ».",
+        "ko": "음식 취향을 'Je préfère... à...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "food_preference",
+          "label_ko": "음식 취향 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'préfère'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "préfère"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u10_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Y a-t-il quelque chose que vous ne pouvez pas manger ? » Répondez à cette question.",
+        "ko": "'Y a-t-il quelque chose que vous ne pouvez pas manger ?'(못 먹는 음식 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "dislike_food",
+          "label_ko": "못 먹는 음식 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ne peux pas manger'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ne peux pas manger"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u10_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de votre préférence alimentaire à voix haute.",
+        "ko": "소리 내어 음식 취향에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "food_preference",
+          "label_ko": "음식 취향 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'préfère'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "préfère"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u10_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous aimez les fruits de mer ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous aimez les fruits de mer ?'(해산물 좋아해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "seafood",
+          "label_ko": "해산물 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

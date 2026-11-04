@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "de_a1_u19",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 19,
+    "title": "Verkehrsmittel",
+    "title_ko": "교통수단",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about how you commute, we use « Ich fahre mit... ». To ask how long it takes, we use « Wie lange dauert...? ».",
+    "explanation_ko": "이동 수단을 말할 때는 'Ich fahre mit...'(저는 ~을 타고 가요), 소요 시간을 물을 때는 'Wie lange dauert...?'(~은 얼마나 걸려요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich fahre mit dem Bus zur Arbeit.",
+        "ko": "저는 버스를 타고 출근해요."
+      },
+      {
+        "en": "Wie lange dauert die Fahrt?",
+        "ko": "가는 데 얼마나 걸려요?"
+      },
+      {
+        "en": "Ich nehme die U-Bahn.",
+        "ko": "저는 지하철을 타요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u19_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie, wie Sie zur Arbeit oder Schule fahren, und benutzen Sie dabei „Ich fahre mit...“.",
+        "ko": "'Ich fahre mit...'를 사용해서 통근/통학 수단을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "transport",
+          "label_ko": "교통수단 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'fahre mit'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "fahre mit"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u19_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Wie lange dauert die Fahrt zur Arbeit?“ Beantworten Sie diese Frage.",
+        "ko": "'Wie lange dauert die Fahrt zur Arbeit?'(출근하는 데 얼마나 걸려요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "duration",
+          "label_ko": "소요시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u19_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sprechen Sie laut über Ihr Verkehrsmittel.",
+        "ko": "소리 내어 자신의 교통수단에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "transport",
+          "label_ko": "교통수단 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'fahre mit'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "fahre mit"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u19_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Nehmen Sie die U-Bahn?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Nehmen Sie die U-Bahn?'(지하철 타요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "subway",
+          "label_ko": "지하철 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

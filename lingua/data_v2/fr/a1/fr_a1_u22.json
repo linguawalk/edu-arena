@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "fr_a1_u22",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 22,
+    "title": "Mois, saisons",
+    "title_ko": "월·계절",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour dire le mois, on utilise « Nous sommes en... ». Pour parler de sa saison préférée, on utilise « Ma saison préférée est... ».",
+    "explanation_ko": "월을 말할 때는 'Nous sommes en...'(지금은 ~월이에요), 좋아하는 계절을 말할 때는 'Ma saison préférée est...'(제가 좋아하는 계절은 ~예요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Nous sommes en septembre.",
+        "ko": "지금은 9월이에요."
+      },
+      {
+        "en": "Ma saison préférée est le printemps.",
+        "ko": "제가 좋아하는 계절은 봄이에요."
+      },
+      {
+        "en": "L'automne est ma saison préférée.",
+        "ko": "가을이 제가 좋아하는 계절이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u22_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez le mois actuel en utilisant « Nous sommes en... ».",
+        "ko": "현재 월을 'Nous sommes en...'을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "month",
+          "label_ko": "월 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Nous sommes'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Nous sommes",
+            "nous sommes"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u22_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Quelle est votre saison préférée ? » Répondez à cette question.",
+        "ko": "'Quelle est votre saison préférée ?'(좋아하는 계절이 뭐예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "favorite_season",
+          "label_ko": "선호 계절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'saison'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "saison"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u22_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites votre saison préférée à voix haute.",
+        "ko": "소리 내어 좋아하는 계절을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "favorite_season",
+          "label_ko": "선호 계절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'saison'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "saison"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u22_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Nous sommes en quel mois ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Nous sommes en quel mois ?'(지금 몇 월이에요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "month",
+          "label_ko": "월 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Nous sommes'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Nous sommes",
+            "nous sommes"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

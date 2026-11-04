@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "fr_a1_u19",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 19,
+    "title": "Transports",
+    "title_ko": "교통수단",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour dire comment on se déplace, on utilise « Je vais... en... ». Pour demander un ticket, on utilise « Un billet pour..., s'il vous plaît ».",
+    "explanation_ko": "이동 방법을 말할 때는 'Je vais... en...'(저는 ~을 타고 가요), 표를 요청할 때는 'Un billet pour..., s'il vous plaît'(~행 표 한 장 주세요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je vais au travail en métro.",
+        "ko": "저는 지하철 타고 출근해요."
+      },
+      {
+        "en": "Un billet pour Paris, s'il vous plaît.",
+        "ko": "파리행 표 한 장 주세요."
+      },
+      {
+        "en": "Le bus arrive dans dix minutes.",
+        "ko": "버스가 10분 후에 도착해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u19_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez comment vous allez au travail en utilisant « Je vais... en... ».",
+        "ko": "출근 방법을 'Je vais... en...'을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "commute",
+          "label_ko": "통근 방법 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'en'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "en métro",
+            "en bus",
+            "en voiture",
+            "en vélo"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u19_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Le bus arrive quand ? » Répondez à cette question.",
+        "ko": "'Le bus arrive quand ?'(버스가 언제 도착해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bus_arrival",
+          "label_ko": "버스 도착 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'minutes'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "minutes",
+            "minute"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u19_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Demandez un billet à voix haute.",
+        "ko": "소리 내어 표를 요청해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "buying_ticket",
+          "label_ko": "표 구매 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'billet'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "billet"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u19_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous prenez le métro tous les jours ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous prenez le métro tous les jours ?'(매일 지하철 타요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "commute",
+          "label_ko": "통근 방법 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

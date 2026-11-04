@@ -1,0 +1,259 @@
+{
+  "meta": {
+    "id": "en_a2_u33",
+    "domain": "language",
+    "lang": "en",
+    "level": "a2",
+    "unit": 33,
+    "title": "Public Transport & Directions",
+    "title_ko": "대중교통과 길찾기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: giving detailed directions using public transportation.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 대중교통을 이용한 상세한 길안내",
+    "key_expressions": [
+      {
+        "en": "Take the blue line and transfer at ~.",
+        "ko": "파란색 노선을 타고 ~에서 환승하세요."
+      },
+      {
+        "en": "Get off at the next stop.",
+        "ko": "다음 정류장에서 내리세요."
+      },
+      {
+        "en": "It's about a five-minute walk from there.",
+        "ko": "거기서 걸어서 5분 정도예요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a2_u33_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write directions using public transportation from your home to your workplace or school.",
+        "ko": "집에서 직장이나 학교까지 대중교통을 이용한 길안내를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "transit_instruction",
+          "label_ko": "교통 안내 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Take the'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "take the"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'transfer' 또는 'get off'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "transfer",
+            "get off"
+          ],
+          "min_matches": 1,
+          "points": 35,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 25,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u33_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Do I need to transfer to get to the airport?' Write your answer.",
+        "ko": "'Do I need to transfer to get to the airport?'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "transfer_info",
+          "label_ko": "환승 정보 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes' 또는 'No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'transfer'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "transfer"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u33_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Give a tourist directions out loud from the train station to a famous landmark in your city.",
+        "ko": "관광객에게 기차역에서 도시의 유명한 명소까지 가는 길을 소리 내어 안내해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "transit_instruction",
+          "label_ko": "교통 안내 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'take' 또는 방향 표현을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "take",
+            "straight",
+            "left",
+            "right"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a2_u33_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'How long does your commute usually take?'",
+        "ko": "소리 내어 답해 보세요: 'How long does your commute usually take?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "duration",
+          "label_ko": "소요시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "시간 표현(minutes/hour)을 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\d+\\s*(minutes?|hours?)",
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

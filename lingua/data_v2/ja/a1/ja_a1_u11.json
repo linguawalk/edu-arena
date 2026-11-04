@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "ja_a1_u11",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 11,
+    "title": "学校",
+    "title_ko": "학교",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "学校の科目を話すときは「〜をべんきょうします」を使います。好きな科目は「〜がすきです」で言います。",
+    "explanation_ko": "학교 과목을 말할 때는 '〜をべんきょうします'(공부해요)를 씁니다. 좋아하는 과목은 '〜がすきです'로 말합니다.",
+    "key_expressions": [
+      {
+        "en": "にほんごをべんきょうします。",
+        "ko": "일본어를 공부해요."
+      },
+      {
+        "en": "すうがくがすきです。",
+        "ko": "수학을 좋아해요."
+      },
+      {
+        "en": "がっこうはたのしいです。",
+        "ko": "학교는 즐거워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u11_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "好きな科目を「〜がすきです」を使って書いてください。",
+        "ko": "좋아하는 과목을 '〜がすきです'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "favorite_subject",
+          "label_ko": "좋아하는 과목 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'がすきです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "がすきです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u11_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「何をべんきょうしていますか」という質問に答えを書いてください。",
+        "ko": "'何をべんきょうしていますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "study",
+          "label_ko": "공부 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'べんきょう'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "べんきょう"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u11_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "今べんきょうしていることについて声に出して話してください。",
+        "ko": "지금 공부하고 있는 것에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "study",
+          "label_ko": "공부 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'べんきょう'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "べんきょう"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u11_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「がっこうはたのしいですか」と聞かれました。声に出して答えてください。",
+        "ko": "'がっこうはたのしいですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "school_feeling",
+          "label_ko": "학교 감상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'たのしい'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "たのしい"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

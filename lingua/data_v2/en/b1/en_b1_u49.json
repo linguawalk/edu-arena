@@ -1,0 +1,250 @@
+{
+  "meta": {
+    "id": "en_b1_u49",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 49,
+    "title": "Making Suggestions",
+    "title_ko": "제안하기 표현",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Common ways to suggest: 'What if we ...?' (proposing an idea), 'Why don't we ...?' (casual suggestion), 'Let's ...' (direct suggestion including yourself), 'How about + -ing?' (informal suggestion).",
+    "explanation_ko": "제안하는 흔한 방법: 'What if we ...?'(아이디어 제안), 'Why don't we ...?'(캐주얼한 제안), 'Let's ...'(자신을 포함한 직접적 제안), 'How about + -ing?'(비격식적 제안).",
+    "key_expressions": [
+      {
+        "en": "What if we tried a different approach?",
+        "ko": "다른 방식을 시도해보면 어떨까요?"
+      },
+      {
+        "en": "Why don't we take a short break?",
+        "ko": "잠깐 쉬는 게 어때요?"
+      },
+      {
+        "en": "How about meeting earlier next time?",
+        "ko": "다음엔 더 일찍 만나는 게 어때요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u49_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write two suggestions for solving a problem at work or in a group project, using different suggestion structures.",
+        "ko": "직장이나 그룹 프로젝트의 문제를 해결하기 위한 제안 두 개를, 서로 다른 제안 구조로 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "suggestion",
+          "label_ko": "제안 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'What if', 'Why don't we', 'Let's', 'How about' 중 2개 이상 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "what if",
+            "why don't we",
+            "let's",
+            "how about"
+          ],
+          "min_matches": 2,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.!?]",
+          "min_matches": 2,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u49_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Your team is stuck on a problem. Write a suggestion using 'What if we ...?'",
+        "ko": "팀이 문제에서 막혔습니다. 'What if we ...?'를 사용해서 제안을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "suggestion",
+          "label_ko": "제안 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'What if we'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "what if we"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "물음표로 끝났는가",
+          "type": "pattern_regex",
+          "target": "\\?$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u49_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Suggest out loud two ways to spend a weekend with friends, using 'Let's' and 'How about'.",
+        "ko": "'Let's'와 'How about'을 사용해서 친구들과 주말을 보낼 방법 두 가지를 소리 내어 제안해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "suggestion",
+          "label_ko": "제안 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Let's'와 'How about'을 모두 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "let's"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'how about'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "how about"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u49_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What if we changed our plan for tomorrow — what would you suggest?'",
+        "ko": "소리 내어 답해 보세요: 'What if we changed our plan for tomorrow — what would you suggest?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "suggestion",
+          "label_ko": "제안 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "제안 표현(let's/why don't we/how about)을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "let's",
+            "why don't we",
+            "how about"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

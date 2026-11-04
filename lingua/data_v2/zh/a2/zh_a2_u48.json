@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a2_u48",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 48,
+    "title": "预约",
+    "title_ko": "예약",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "预约用「我想预约...」，取消用「我想取消预约」。",
+    "explanation_ko": "예약할 때는 '我想预约...'(~예약을 하고 싶어요), 취소할 때는 '我想取消预约'(예약을 취소하고 싶어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我想预约理发。",
+        "ko": "미용실 예약을 하고 싶어요."
+      },
+      {
+        "en": "我想取消预约。",
+        "ko": "예약을 취소하고 싶어요."
+      },
+      {
+        "en": "可以改天吗？",
+        "ko": "다른 날로 변경할 수 있을까요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u48_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我想预约...」写出想预约的事情。",
+        "ko": "무언가의 예약을 하고 싶은 문장을 '我想预约...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "appointment",
+          "label_ko": "예약 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我想预约'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我想预约"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u48_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「可以改天吗？」请写出改变预约的问题。",
+        "ko": "예약을 변경하고 싶을 때의 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "change_appointment",
+          "label_ko": "예약 변경 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'改'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "改"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。？?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u48_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声预约理发。",
+        "ko": "미용실 예약을 소리 내어 부탁해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "appointment",
+          "label_ko": "예약 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'预约'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "预约"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u48_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你要取消预约吗？」有人问你。请大声回答。",
+        "ko": "'你要取消预约吗？'(예약을 취소하시겠어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cancel",
+          "label_ko": "취소 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

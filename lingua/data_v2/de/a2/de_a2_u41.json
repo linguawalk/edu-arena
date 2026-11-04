@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "de_a2_u41",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 41,
+    "title": "Kulturelle Unterschiede",
+    "title_ko": "문화 차이",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe a cultural difference, we use « In meinem Land..., aber in Deutschland... ». To ask about customs, we use « Wie ist das bei Ihnen? ».",
+    "explanation_ko": "문화 차이를 묘사할 때는 'In meinem Land..., aber in Deutschland...'(제 나라에서는 ~하지만, 독일에서는...), 관습을 물을 때는 'Wie ist das bei Ihnen?'(당신 나라는 어때요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "In meinem Land essen wir mit Stäbchen, aber in Deutschland mit Besteck.",
+        "ko": "저희 나라에서는 젓가락으로 먹지만, 독일에서는 포크와 나이프로 먹어요."
+      },
+      {
+        "en": "Wie ist das bei Ihnen?",
+        "ko": "당신 나라는 어때요?"
+      },
+      {
+        "en": "Das ist ganz anders als bei uns.",
+        "ko": "저희와는 완전히 달라요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u41_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschreiben Sie einen kulturellen Unterschied und benutzen Sie dabei „In meinem Land..., aber...“.",
+        "ko": "'In meinem Land..., aber...'를 사용해서 문화 차이를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cultural_diff",
+          "label_ko": "문화 차이 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'In meinem Land'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "In meinem Land",
+            "in meinem Land"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u41_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Wie ist das bei Ihnen?“ Beantworten Sie diese Frage.",
+        "ko": "'Wie ist das bei Ihnen?'(당신 나라는 어때요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "how_in_yours",
+          "label_ko": "자국 설명 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u41_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sprechen Sie laut über einen kulturellen Unterschied.",
+        "ko": "소리 내어 문화 차이에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cultural_diff",
+          "label_ko": "문화 차이 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'In meinem Land'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "In meinem Land",
+            "in meinem Land"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u41_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist das ganz anders als bei Ihnen?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist das ganz anders als bei Ihnen?'(당신 나라와 완전히 달라요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "different",
+          "label_ko": "다름 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "ko_a1_u48",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 48,
+    "title": "Integrated Conversation 1",
+    "title_ko": "통합 회화 1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit combines greetings, self-introduction, and daily routine expressions in one natural conversation flow.",
+    "explanation_ko": "이번 유닛은 인사, 자기소개, 하루 일과 표현을 하나의 자연스러운 대화 흐름으로 결합합니다.",
+    "key_expressions": [
+      {
+        "en": "Hello, my name is Kim. Nice to meet you.",
+        "ko": "안녕하세요, 저는 김이에요. 만나서 반가워요."
+      },
+      {
+        "en": "I usually wake up at seven and go to work.",
+        "ko": "저는 보통 일곱 시에 일어나고 회사에 가요."
+      },
+      {
+        "en": "What do you usually do on weekends?",
+        "ko": "주말에 보통 뭐 해요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u48_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a short self-introduction that includes a greeting and your daily routine (at least two sentences).",
+        "ko": "인사와 하루 일과를 포함한 짧은 자기소개를 두 문장 이상으로 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "integrated",
+          "label_ko": "통합 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '안녕하세요' or '저는'?",
+          "type": "keyword_match",
+          "target": [
+            "안녕하세요",
+            "저는"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Did you use a routine verb (아요/어요 ending)?",
+          "type": "pattern_regex",
+          "target": "(아요|어요)[.]?",
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "Are there two or more sentences?",
+          "type": "pattern_regex",
+          "target": "[.]",
+          "min_matches": 2,
+          "points": 30,
+          "required": true
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u48_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«주말에 보통 뭐 해요?» (What do you usually do on weekends?) Answer this question.",
+        "ko": "'주말에 보통 뭐 해요?'(주말 활동을 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weekend",
+          "label_ko": "주말 활동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Did you write at least 5 characters?",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u48_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Introduce yourself out loud with a greeting and your name.",
+        "ko": "인사와 이름을 포함해서 소리 내어 자기소개를 해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "self_intro",
+          "label_ko": "자기소개 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '안녕하세요' or '저는'?",
+          "type": "keyword_match",
+          "target": [
+            "안녕하세요",
+            "저는"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u48_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«몇 시에 일어나요?» (What time do you wake up?) Answer out loud.",
+        "ko": "'몇 시에 일어나요?'(기상 시간을 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "routine",
+          "label_ko": "일과 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

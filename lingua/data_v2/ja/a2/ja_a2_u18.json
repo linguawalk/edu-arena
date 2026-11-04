@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "ja_a2_u18",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 18,
+    "title": "技術的な問題",
+    "title_ko": "기술적 문제",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "機器のトラブルを話すときは「〜がうごきません」を使います。「パソコンがうごきません」のように使います。",
+    "explanation_ko": "기기 문제를 말할 때는 '〜がうごきません'(~이 안 움직여요)을 씁니다. 'パソコンがうごきません'(컴퓨터가 안 움직여요)처럼 씁니다.",
+    "key_expressions": [
+      {
+        "en": "パソコンがうごきません。",
+        "ko": "컴퓨터가 작동을 안 해요."
+      },
+      {
+        "en": "インターネットがつながりません。",
+        "ko": "인터넷이 연결이 안 돼요."
+      },
+      {
+        "en": "アプリがとまってしまいました。",
+        "ko": "앱이 멈춰버렸어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u18_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "機器のトラブルを「〜がうごきません」を使って書いてください。",
+        "ko": "기기 문제를 '〜がうごきません'을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_problem",
+          "label_ko": "기기 문제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'がうごきません'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "がうごきません"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u18_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「インターネットのちょうしはどうですか」という質問に答えを書いてください。",
+        "ko": "'インターネットのちょうしはどうですか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "internet_status",
+          "label_ko": "인터넷 상태 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'つながりません' 또는 'だいじょうぶ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "つながりません",
+            "だいじょうぶ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u18_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "パソコンのトラブルについて声に出して説明してください。",
+        "ko": "컴퓨터 문제에 대해 소리 내어 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_problem",
+          "label_ko": "기기 문제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'うごきません' 또는 'つながりません'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "うごきません",
+            "つながりません"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u18_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「どうしましたか」と聞かれました。パソコンの問題を声に出して説明してください。",
+        "ko": "'どうしましたか'라는 질문을 받았습니다. 컴퓨터 문제를 소리 내어 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_problem",
+          "label_ko": "기기 문제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'うごきません'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "うごきません"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

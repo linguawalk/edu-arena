@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "es_a1_u46",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 46,
+    "title": "Tecnología",
+    "title_ko": "기술",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about technology use, we use « Uso... ». To describe an app, we use « Esta aplicación es... ».",
+    "explanation_ko": "기술 사용에 대해 말할 때는 'Uso...'(저는 ~을 사용해요), 앱을 묘사할 때는 'Esta aplicación es...'(이 앱은 ~예요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Uso el móvil todos los días.",
+        "ko": "저는 매일 휴대폰을 사용해요."
+      },
+      {
+        "en": "Esta aplicación es muy útil.",
+        "ko": "이 앱은 정말 유용해요."
+      },
+      {
+        "en": "¿Sabes usar esta aplicación?",
+        "ko": "이 앱 사용할 줄 알아요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u46_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba sobre un dispositivo que usa usando «Uso...».",
+        "ko": "'Uso...'를 사용해서 사용하는 기기에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "use_device",
+          "label_ko": "기기 사용 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Uso'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Uso",
+            "uso"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u46_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Sabes usar esta aplicación?» Responda a esta pregunta.",
+        "ko": "'¿Sabes usar esta aplicación?'(이 앱 사용할 줄 알아요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "know_app",
+          "label_ko": "앱 사용 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u46_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describa una aplicación en voz alta usando «Esta aplicación es...».",
+        "ko": "'Esta aplicación es...'를 사용해서 소리 내어 앱을 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "app_description",
+          "label_ko": "앱 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'aplicación'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "aplicación"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u46_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Usa el móvil todos los días?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Usa el móvil todos los días?'(매일 휴대폰 사용해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "use_device",
+          "label_ko": "기기 사용 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

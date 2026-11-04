@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "zh_a1_u14",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 14,
+    "title": "天气1",
+    "title_ko": "날씨1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "描述天气用「今天...」，比如「今天很热」「今天下雨」。",
+    "explanation_ko": "날씨를 묘사할 때는 '今天...'(오늘은 ~해요)를 씁니다. 예: '今天很热'(오늘은 더워요), '今天下雨'(오늘은 비가 와요).",
+    "key_expressions": [
+      {
+        "en": "今天很热。",
+        "ko": "오늘은 더워요."
+      },
+      {
+        "en": "今天下雨。",
+        "ko": "오늘은 비가 와요."
+      },
+      {
+        "en": "外面很冷。",
+        "ko": "밖은 추워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u14_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「今天...」写出今天的天气。",
+        "ko": "'今天...'을 사용해서 오늘의 날씨를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_today",
+          "label_ko": "오늘 날씨 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'今天'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "今天"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u14_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「今天冷吗？」请回答这个问题。",
+        "ko": "'今天冷吗？'(오늘 추워요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_cold",
+          "label_ko": "추위 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'冷' 또는 '不冷'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "冷",
+            "不冷"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u14_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出今天的天气。",
+        "ko": "소리 내어 오늘의 날씨를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_today",
+          "label_ko": "오늘 날씨 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'今天'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "今天"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u14_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「今天下雨吗？」有人问你。请大声回答。",
+        "ko": "'今天下雨吗？'(오늘 비 와요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_rain",
+          "label_ko": "비 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'下雨' 또는 '没下雨'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "下雨",
+            "没下雨"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

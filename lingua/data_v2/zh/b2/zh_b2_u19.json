@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_b2_u19",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b2",
+    "unit": 19,
+    "title": "据...报道",
+    "title_ko": "据...报道 (~보도에 따르면)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「据...报道」表示信息来自具体的媒体或来源，比「据说」更正式。「据新闻报道，经济正在好转」。",
+    "explanation_ko": "'据...报道'는 정보가 구체적인 매체나 출처에서 온 것을 나타내며, '据说'보다 더 격식 있습니다. '据新闻报道，经济正在好转'(뉴스 보도에 따르면 경제가 회복되고 있어요).",
+    "key_expressions": [
+      {
+        "en": "据新闻报道，经济正在好转。",
+        "ko": "뉴스 보도에 따르면 경제가 회복되고 있어요."
+      },
+      {
+        "en": "据专家报道，这种药有副作用。",
+        "ko": "전문가 보도에 따르면 이 약에는 부작용이 있어요."
+      },
+      {
+        "en": "据当地媒体报道，事故已经处理完了。",
+        "ko": "현지 언론 보도에 따르면 사고는 이미 처리됐어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b2_u19_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「据...报道」写出一个正式的新闻信息。",
+        "ko": "격식 있는 뉴스 정보를 '据...报道'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "ju_baodao",
+          "label_ko": "据...报道",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'据'와 '报道'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "据.{0,15}报道",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u19_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「经济怎么样？」请用「据...报道」回答。",
+        "ko": "'经济怎么样？'(경제 어때요?)라는 질문에 '据...报道'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "ju_baodao",
+          "label_ko": "据...报道",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'据'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "据"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b2_u19_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「据...报道」说出一个新闻信息。",
+        "ko": "'据...报道'를 사용해서 소리 내어 뉴스 정보를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "ju_baodao",
+          "label_ko": "据...报道",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'据' 또는 '报道'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "据",
+            "报道"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b2_u19_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「据新闻报道，事故处理完了吗？」有人问你。请大声回答。",
+        "ko": "'据新闻报道，事故处理完了吗？'(뉴스 보도에 따르면 사고가 처리됐어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "ju_baodao",
+          "label_ko": "据...报道",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

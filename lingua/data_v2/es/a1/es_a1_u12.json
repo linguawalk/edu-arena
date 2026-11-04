@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "es_a1_u12",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 12,
+    "title": "Compras",
+    "title_ko": "쇼핑",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To shop, we use « ¿Cuánto cuesta...? ». To ask for a size, we use « ¿Tiene esto en talla...? ».",
+    "explanation_ko": "쇼핑할 때는 '¿Cuánto cuesta...?'(~이 얼마예요?), 사이즈를 물을 때는 '¿Tiene esto en talla...?'(이거 ~사이즈 있어요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "¿Cuánto cuesta esta camisa?",
+        "ko": "이 셔츠 얼마예요?"
+      },
+      {
+        "en": "¿Tiene esto en talla mediana?",
+        "ko": "이거 미디엄 사이즈 있어요?"
+      },
+      {
+        "en": "Solo estoy mirando, gracias.",
+        "ko": "그냥 구경 중이에요, 감사합니다."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u12_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pregunte el precio de algo usando «¿Cuánto cuesta...?».",
+        "ko": "'¿Cuánto cuesta...?'를 사용해서 가격을 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ask_price",
+          "label_ko": "가격 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Cuánto cuesta'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Cuánto cuesta",
+            "cuánto cuesta"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u12_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿En qué puedo ayudarle?» Responda con lo que busca.",
+        "ko": "'¿En qué puedo ayudarle?'(뭘 도와드릴까요?)라는 질문에 찾는 물건으로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "looking_for",
+          "label_ko": "찾는 물건 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u12_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pregunte en voz alta por una talla usando «¿Tiene esto en talla...?».",
+        "ko": "'¿Tiene esto en talla...?'를 사용해서 소리 내어 사이즈를 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ask_size",
+          "label_ko": "사이즈 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'talla'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "talla"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u12_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Solo está mirando?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Solo está mirando?'(그냥 구경하세요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "just_looking",
+          "label_ko": "구경 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "es_a1_u18",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 18,
+    "title": "En casa 2",
+    "title_ko": "집 2",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about household chores, we use « Tengo que... ». To describe furniture, we use « Está en... ».",
+    "explanation_ko": "집안일에 대해 말할 때는 'Tengo que...'(저는 ~을 해야 해요), 가구를 묘사할 때는 'Está en...'(~에 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Tengo que limpiar la casa.",
+        "ko": "저는 집을 청소해야 해요."
+      },
+      {
+        "en": "El sofá está en la sala.",
+        "ko": "소파는 거실에 있어요."
+      },
+      {
+        "en": "Tengo que lavar los platos.",
+        "ko": "저는 설거지를 해야 해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u18_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba sobre una tarea del hogar usando «Tengo que...».",
+        "ko": "'Tengo que...'를 사용해서 집안일에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "chore",
+          "label_ko": "집안일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Tengo que'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Tengo que",
+            "tengo que"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u18_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Dónde está el sofá?» Responda a esta pregunta.",
+        "ko": "'¿Dónde está el sofá?'(소파가 어디 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "furniture_location",
+          "label_ko": "가구 위치 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Está en'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Está en",
+            "está en"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u18_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una tarea del hogar usando «Tengo que...».",
+        "ko": "'Tengo que...'를 사용해서 소리 내어 집안일을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "chore",
+          "label_ko": "집안일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Tengo que'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Tengo que",
+            "tengo que"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u18_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Tienes que lavar los platos?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Tienes que lavar los platos?'(설거지해야 해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "chore",
+          "label_ko": "집안일 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

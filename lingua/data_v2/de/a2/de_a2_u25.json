@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "de_a2_u25",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 25,
+    "title": "Sport/Fitness",
+    "title_ko": "스포츠·피트니스",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about fitness goals, we use « Ich möchte... werden ». To describe a workout, we use « Ich trainiere... ».",
+    "explanation_ko": "피트니스 목표를 말할 때는 'Ich möchte... werden'(저는 ~해지고 싶어요), 운동을 묘사할 때는 'Ich trainiere...'(저는 ~을 훈련해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich möchte fitter werden.",
+        "ko": "저는 더 건강해지고 싶어요."
+      },
+      {
+        "en": "Ich trainiere dreimal pro Woche.",
+        "ko": "저는 주 3회 운동해요."
+      },
+      {
+        "en": "Ich mache jeden Morgen Yoga.",
+        "ko": "저는 매일 아침 요가를 해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u25_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie ein Fitnessziel und benutzen Sie dabei „Ich möchte... werden“.",
+        "ko": "'Ich möchte... werden'을 사용해서 피트니스 목표를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "fitness_goal",
+          "label_ko": "피트니스 목표 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'möchte'와 'werden'을 사용했는가",
+          "type": "pattern_regex",
+          "target": "möchte.{0,20}werden",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u25_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Wie oft trainieren Sie?“ Beantworten Sie diese Frage.",
+        "ko": "'Wie oft trainieren Sie?'(얼마나 자주 운동해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "training_frequency",
+          "label_ko": "운동 빈도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'trainiere'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "trainiere"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u25_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sprechen Sie laut über Ihr Fitnessziel.",
+        "ko": "소리 내어 자신의 피트니스 목표에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "fitness_goal",
+          "label_ko": "피트니스 목표 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'möchte'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "möchte"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u25_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Machen Sie jeden Morgen Yoga?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Machen Sie jeden Morgen Yoga?'(매일 아침 요가 해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "yoga",
+          "label_ko": "요가 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

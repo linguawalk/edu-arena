@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "id": "fr_c2_u16",
+    "domain": "language",
+    "lang": "fr",
+    "level": "c2",
+    "unit": 16,
+    "title": "Marqueurs d'ironie",
+    "title_ko": "반어법 표지",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "« Comme c'est original » (dit avec sarcasme) et « Bravo » (dit ironiquement pour critiquer) sont des marqueurs typiques d'ironie en français.",
+    "explanation_ko": "'Comme c'est original'(정말 독창적이네요, 냉소적으로 말함)과 'Bravo'(잘했어요, 비판하려고 반어적으로 말함)는 프랑스어의 전형적인 반어법 표지입니다.",
+    "key_expressions": [
+      {
+        "en": "Ah, comme c'est original !",
+        "ko": "아, 정말 독창적이네요! (반어)"
+      },
+      {
+        "en": "Bravo, tu as encore tout cassé.",
+        "ko": "잘했어, 또 다 망가뜨렸네 (반어)."
+      },
+      {
+        "en": "Quelle surprise... (dit sans surprise du tout)",
+        "ko": "정말 놀랍네요... (전혀 놀랍지 않다는 뜻)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_c2_u16_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase ironique en utilisant « Comme c'est... » pour critiquer subtilement.",
+        "ko": "'Comme c'est...'를 사용해서 미묘하게 비판하는 반어적 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "comme_cest",
+          "label_ko": "comme c'est...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Comme c'est'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Comme c'est",
+            "comme c'est"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_c2_u16_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Il a encore fait une erreur. » Répondez ironiquement en utilisant « Bravo ».",
+        "ko": "'Il a encore fait une erreur.'(그가 또 실수했어요)라는 말에, 'Bravo'를 사용해서 반어적으로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "bravo_ironique",
+          "label_ko": "bravo (ironique)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Bravo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Bravo",
+            "bravo"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_c2_u16_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute une phrase ironique avec un ton sarcastique.",
+        "ko": "냉소적인 어조로 소리 내어 반어적 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "ironie_marqueur",
+          "label_ko": "반어법 표지",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_c2_u16_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Quelle surprise, n'est-ce pas ? » On vous dit cela avec ironie. Répondez à voix haute.",
+        "ko": "'Quelle surprise, n'est-ce pas ?'(정말 놀랍네요, 그렇죠?)라는 반어적인 말을 들었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "ironie_marqueur",
+          "label_ko": "반어법 표지",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

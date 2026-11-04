@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "de_b1_u15",
+    "domain": "language",
+    "lang": "de",
+    "level": "b1",
+    "unit": 15,
+    "title": "Adjektivdeklination (bestimmter Artikel)",
+    "title_ko": "형용사어미변화 (정관사)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "After a definite article (der/die/das), the adjective ending is usually « -e » in the nominative singular or « -en » in other cases.",
+    "explanation_ko": "정관사(der/die/das) 뒤에서 형용사 어미는 단수 주격에서 보통 '-e', 다른 격에서는 '-en'입니다.",
+    "key_expressions": [
+      {
+        "en": "Der große Mann steht dort.",
+        "ko": "그 키 큰 남자가 저기 서 있어요."
+      },
+      {
+        "en": "Ich sehe den großen Mann.",
+        "ko": "저는 그 키 큰 남자를 봐요."
+      },
+      {
+        "en": "Die kleine Katze schläft.",
+        "ko": "그 작은 고양이가 자고 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b1_u15_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit einem Adjektiv nach einem bestimmten Artikel (z.B. „der große...“).",
+        "ko": "정관사 뒤에 형용사가 오는 문장(예: 'der große...')을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "adj_bestimmt",
+          "label_ko": "형용사어미(정관사)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "정관사와 형용사 어미(-e/-en)를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(der|die|das)\\s+\\w+(e|en)\\s",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u15_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Schläft die kleine Katze?“ Beantworten Sie diese Frage.",
+        "ko": "'Schläft die kleine Katze?'(그 작은 고양이가 자고 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "adj_bestimmt",
+          "label_ko": "형용사어미(정관사)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u15_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit „der große...“.",
+        "ko": "소리 내어 'der große...'를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "adj_bestimmt",
+          "label_ko": "형용사어미(정관사)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b1_u15_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Steht der große Mann dort?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Steht der große Mann dort?'(그 키 큰 남자가 저기 서 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "adj_bestimmt",
+          "label_ko": "형용사어미(정관사)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

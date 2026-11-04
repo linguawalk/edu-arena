@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "es_a2_u47",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 47,
+    "title": "Tareas del hogar (encargarse de)",
+    "title_ko": "집안일 (~을 맡다)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about household responsibilities, we use « Me encargo de... ». To divide chores, we use « ¿Quién hace...? ».",
+    "explanation_ko": "집안일 책임을 말할 때는 'Me encargo de...'(저는 ~을 맡아요), 일을 나눌 때는 '¿Quién hace...?'(누가 ~해요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Me encargo de la colada.",
+        "ko": "저는 빨래를 맡아요."
+      },
+      {
+        "en": "¿Quién hace los platos?",
+        "ko": "설거지는 누가 해요?"
+      },
+      {
+        "en": "Compartimos las tareas del hogar.",
+        "ko": "저희는 집안일을 나눠서 해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u47_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba de qué tarea se encarga usando «Me encargo de...».",
+        "ko": "'Me encargo de...'를 사용해서 맡은 집안일을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "chore_responsibility",
+          "label_ko": "집안일 책임 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Me encargo de'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Me encargo de",
+            "me encargo de"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u47_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Quién hace los platos en su casa?» Responda a esta pregunta.",
+        "ko": "'¿Quién hace los platos en su casa?'(집에서 설거지는 누가 해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "dishes",
+          "label_ko": "설거지 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u47_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Hable en voz alta sobre cómo comparte las tareas del hogar.",
+        "ko": "소리 내어 집안일을 어떻게 나눠서 하는지 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "share_chores",
+          "label_ko": "집안일 분담 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'comparto' 또는 'encargo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "comparto",
+            "encargo"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u47_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Comparten las tareas del hogar?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Comparten las tareas del hogar?'(집안일을 나눠서 해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "share_chores",
+          "label_ko": "집안일 분담 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

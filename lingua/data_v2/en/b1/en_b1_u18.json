@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "en_b1_u18",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 18,
+    "title": "Question Tags",
+    "title_ko": "부가의문문",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Question tags confirm information or invite agreement. A positive statement takes a negative tag, and a negative statement takes a positive tag: 'You're tired, aren't you?' 'You don't like coffee, do you?'",
+    "explanation_ko": "부가의문문은 정보를 확인하거나 동의를 구할 때 씁니다. 긍정문에는 부정 부가의문문, 부정문에는 긍정 부가의문문을 씁니다: 'You're tired, aren't you?' 'You don't like coffee, do you?'",
+    "key_expressions": [
+      {
+        "en": "This is your first time here, isn't it?",
+        "ko": "여기 처음이시죠, 그렇죠?"
+      },
+      {
+        "en": "You haven't finished yet, have you?",
+        "ko": "아직 안 끝나셨죠, 그렇죠?"
+      },
+      {
+        "en": "It's a nice day, isn't it?",
+        "ko": "날씨 좋죠, 그렇죠?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u18_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write two sentences with question tags: one from a positive statement, one from a negative statement.",
+        "ko": "부가의문문 문장 두 개를 써 보세요: 하나는 긍정문에서, 하나는 부정문에서 만드세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "question_tag",
+          "label_ko": "부가의문문",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "부가의문문 구조(isn't it/don't you 등)를 2회 이상 사용했는가",
+          "type": "pattern_regex",
+          "target": ",\\s*(isn't|aren't|don't|doesn't|didn't|haven't|hasn't|wasn't|weren't|is|are|do|does|did|have|has|was|were)\\s+\\w+\\?",
+          "min_matches": 2,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "\\?",
+          "min_matches": 2,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u18_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Write a question tag to confirm with a friend that they are coming to your party tonight.",
+        "ko": "친구가 오늘 밤 파티에 오는지 확인하는 부가의문문을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "question_tag",
+          "label_ko": "부가의문문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "부가의문문 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": ",\\s*(aren't|don't|isn't|will)\\s+\\w+\\?",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "물음표로 끝났는가",
+          "type": "pattern_regex",
+          "target": "\\?$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u18_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say two question tags out loud to confirm things about the person you're talking to (e.g., their name, where they're from).",
+        "ko": "상대방에 대해(이름, 출신지 등) 확인하는 부가의문문 두 개를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "question_tag",
+          "label_ko": "부가의문문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "부가의문문 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(isn't it|aren't you|don't you|didn't you)",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u18_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'It's been a long week, hasn't it?'",
+        "ko": "소리 내어 답해 보세요: 'It's been a long week, hasn't it?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "agreement",
+          "label_ko": "동의 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes' 또는 'No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

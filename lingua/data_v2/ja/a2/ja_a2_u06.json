@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "id": "ja_a2_u06",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 6,
+    "title": "人を説明する",
+    "title_ko": "사람 묘사",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "人の性格や見た目を話すときは「〜な人です」を使います。「しんせつな人です」「せがたかいです」のように使います。",
+    "explanation_ko": "사람의 성격이나 외모를 말할 때는 '〜な人です'(~한 사람이에요)를 씁니다. 'しんせつな人です'(친절한 사람이에요), 'せがたかいです'(키가 커요)처럼 씁니다.",
+    "key_expressions": [
+      {
+        "en": "かれはしんせつな人です。",
+        "ko": "그는 친절한 사람이에요."
+      },
+      {
+        "en": "せがたかくて、めがねをかけています。",
+        "ko": "키가 크고 안경을 쓰고 있어요."
+      },
+      {
+        "en": "いつもわらっています。",
+        "ko": "항상 웃고 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u06_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "友だちの性格を「〜な人です」を使って書いてください。",
+        "ko": "친구의 성격을 '〜な人です'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "personality",
+          "label_ko": "성격 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'な人です'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "な人です"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u06_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「どんな人がすきですか」という質問に答えを書いてください。",
+        "ko": "'どんな人がすきですか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "person_preference",
+          "label_ko": "인물 취향 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'な人'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "な人"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u06_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "友だちの外見や性格について声に出して話してください。",
+        "ko": "친구의 외모나 성격에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "personality",
+          "label_ko": "성격 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'な人' 또는 성격 형용사를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "な人",
+            "しんせつ",
+            "おもしろい"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u06_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「せんせいはどんな人ですか」と聞かれました。声に出して答えてください。",
+        "ko": "'せんせいはどんな人ですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "teacher_description",
+          "label_ko": "선생님 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'な人' 또는 형용사를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "な人",
+            "しんせつ",
+            "おもしろい",
+            "やさしい"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

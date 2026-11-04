@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "es_b1_u48",
+    "domain": "language",
+    "lang": "es",
+    "level": "b1",
+    "unit": 48,
+    "title": "Palabras compuestas",
+    "title_ko": "복합어",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Compound words combine two elements to form a new noun: « el paraguas » (umbrella, from « parar » + « aguas »), « el sacapuntas » (pencil sharpener).",
+    "explanation_ko": "복합어는 두 요소를 결합해서 새로운 명사를 만듭니다: 'el paraguas'(우산, 'parar' + 'aguas'에서 유래), 'el sacapuntas'(연필깎이).",
+    "key_expressions": [
+      {
+        "en": "Necesito un paraguas porque llueve.",
+        "ko": "비가 와서 우산이 필요해요."
+      },
+      {
+        "en": "El sacapuntas está en el cajón.",
+        "ko": "연필깎이는 서랍에 있어요."
+      },
+      {
+        "en": "El lavaplatos es muy útil.",
+        "ko": "식기세척기는 정말 유용해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_b1_u48_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una frase con «el paraguas» (palabra compuesta).",
+        "ko": "복합어 'el paraguas'를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "paraguas",
+          "label_ko": "paraguas",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'paraguas'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "paraguas"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b1_u48_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Dónde está el sacapuntas?» Responda a esta pregunta.",
+        "ko": "'¿Dónde está el sacapuntas?'(연필깎이가 어디 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "sacapuntas",
+          "label_ko": "sacapuntas",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b1_u48_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una frase con «el lavaplatos».",
+        "ko": "소리 내어 'el lavaplatos'를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "lavaplatos",
+          "label_ko": "lavaplatos",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'lavaplatos'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "lavaplatos"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_b1_u48_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Necesita un paraguas porque llueve?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Necesita un paraguas porque llueve?'(비가 와서 우산이 필요해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "paraguas",
+          "label_ko": "paraguas",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

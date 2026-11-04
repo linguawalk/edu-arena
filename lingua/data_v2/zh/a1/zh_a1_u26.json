@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "zh_a1_u26",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 26,
+    "title": "运动1",
+    "title_ko": "운동1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说运动用「我打...」或「我踢...」，比如「我打篮球」「我踢足球」。",
+    "explanation_ko": "운동을 말할 때는 '我打...' 또는 '我踢...'를 씁니다. 예: '我打篮球'(저는 농구를 해요), '我踢足球'(저는 축구를 해요).",
+    "key_expressions": [
+      {
+        "en": "我打篮球。",
+        "ko": "저는 농구를 해요."
+      },
+      {
+        "en": "我踢足球。",
+        "ko": "저는 축구를 해요."
+      },
+      {
+        "en": "我每周游泳。",
+        "ko": "저는 매주 수영해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u26_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我打...」或「我踢...」写出你做的运动。",
+        "ko": "'我打...' 또는 '我踢...'를 사용해서 하는 운동을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sport",
+          "label_ko": "운동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我打' 또는 '我踢'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我打",
+            "我踢"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u26_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你游泳吗？」请回答这个问题。",
+        "ko": "'你游泳吗？'(수영해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "swim",
+          "label_ko": "수영 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'游泳'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "游泳"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u26_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你做的运动。",
+        "ko": "소리 내어 하는 운동을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sport",
+          "label_ko": "운동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我打' 또는 '我踢'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我打",
+            "我踢"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u26_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你打篮球吗？」有人问你。请大声回答。",
+        "ko": "'你打篮球吗？'(농구해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "basketball",
+          "label_ko": "농구 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

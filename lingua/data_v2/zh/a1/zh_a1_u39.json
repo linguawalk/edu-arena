@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "id": "zh_a1_u39",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 39,
+    "title": "平常的一天",
+    "title_ko": "평소 하루",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "描述一天的活动用「我...然后...」，按顺序说明。",
+    "explanation_ko": "하루 일과를 묘사할 때는 '我...然后...'(저는 ~하고 그다음에 ~해요)를 순서대로 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我七点起床，然后吃早饭。",
+        "ko": "저는 7시에 일어나고, 그다음에 아침을 먹어요."
+      },
+      {
+        "en": "我上班，然后回家。",
+        "ko": "저는 출근하고, 그다음에 집에 와요."
+      },
+      {
+        "en": "晚上我看电视。",
+        "ko": "밤에 저는 TV를 봐요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u39_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我...然后...」写出你平常的一天。",
+        "ko": "'我...然后...'를 사용해서 평소 하루 일과를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "typical_day",
+          "label_ko": "일과 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'然后'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "然后"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u39_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你晚上做什么？」请回答这个问题。",
+        "ko": "'你晚上做什么？'(저녁에 뭐 해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "evening_activity",
+          "label_ko": "저녁 활동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 4자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 4,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u39_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你平常的一天。",
+        "ko": "소리 내어 평소 하루 일과를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "typical_day",
+          "label_ko": "일과 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'然后'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "然后"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u39_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你几点起床？」有人问你。请大声回答。",
+        "ko": "'你几点起床？'(몇 시에 일어나요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "wake_time",
+          "label_ko": "기상 시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 3자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 3,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

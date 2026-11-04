@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "es_a2_u34",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 34,
+    "title": "Ciudad vs. campo",
+    "title_ko": "도시 vs 시골",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To compare city and countryside, we use « En la ciudad..., pero en el campo... ». To express preference, we use « Prefiero... ».",
+    "explanation_ko": "도시와 시골을 비교할 때는 'En la ciudad..., pero en el campo...'(도시에서는 ~하지만, 시골에서는...), 선호를 말할 때는 'Prefiero...'(저는 ~을 더 선호해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "En la ciudad hay ruido, pero en el campo es tranquilo.",
+        "ko": "도시는 시끄럽지만 시골은 조용해요."
+      },
+      {
+        "en": "Prefiero la vida en el campo.",
+        "ko": "저는 시골 생활을 더 선호해요."
+      },
+      {
+        "en": "La ciudad tiene más oportunidades.",
+        "ko": "도시는 기회가 더 많아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u34_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Compare la ciudad y el campo usando «En la ciudad..., pero en el campo...».",
+        "ko": "'En la ciudad..., pero en el campo...'를 사용해서 도시와 시골을 비교해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "city_country",
+          "label_ko": "도시·시골 비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ciudad'와 'campo'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "ciudad.{0,30}campo",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u34_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Prefiere la vida en la ciudad?» Responda a esta pregunta.",
+        "ko": "'¿Prefiere la vida en la ciudad?'(도시 생활을 더 선호해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "prefer_city",
+          "label_ko": "도시 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u34_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Hable en voz alta sobre su preferencia: ciudad o campo.",
+        "ko": "소리 내어 도시와 시골 중 선호하는 것에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "city_country",
+          "label_ko": "도시·시골 비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ciudad' 또는 'campo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ciudad",
+            "campo"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u34_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Tiene la ciudad más oportunidades?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Tiene la ciudad más oportunidades?'(도시가 기회가 더 많아요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "opportunities",
+          "label_ko": "기회 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

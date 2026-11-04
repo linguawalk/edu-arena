@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "fr_b1_u32",
+    "domain": "language",
+    "lang": "fr",
+    "level": "b1",
+    "unit": 32,
+    "title": "Les temps du passé: imparfait vs passé composé",
+    "title_ko": "과거 시제: 반과거 vs 복합과거",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "L'imparfait décrit un état ou une habitude passée, le passé composé décrit une action ponctuelle. Par exemple : « Il pleuvait quand je suis sorti ».",
+    "explanation_ko": "반과거는 과거의 상태나 습관을 묘사하고, 복합과거는 순간적인 행동을 묘사합니다. 예: 'Il pleuvait quand je suis sorti'(제가 나갔을 때 비가 오고 있었어요).",
+    "key_expressions": [
+      {
+        "en": "Il pleuvait quand je suis sorti.",
+        "ko": "제가 나갔을 때 비가 오고 있었어요."
+      },
+      {
+        "en": "Quand j'étais petit, j'habitais à la campagne.",
+        "ko": "제가 어렸을 때 시골에 살았어요."
+      },
+      {
+        "en": "J'ai fini mon travail hier.",
+        "ko": "어제 일을 끝냈어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_b1_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase combinant l'imparfait (état) et le passé composé (action) en utilisant « quand ».",
+        "ko": "반과거(상태)와 복합과거(행동)를 'quand'로 결합한 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "imparfait_pc",
+          "label_ko": "반과거 vs 복합과거",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'quand'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "quand",
+            "Quand"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b1_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Où habitiez-vous quand vous étiez petit ? » Répondez à cette question.",
+        "ko": "'Où habitiez-vous quand vous étiez petit ?'(어렸을 때 어디 살았어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "imparfait_pc",
+          "label_ko": "반과거 vs 복합과거",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'habitais'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "habitais"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b1_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Racontez à voix haute une situation en combinant l'imparfait et le passé composé.",
+        "ko": "반과거와 복합과거를 결합해서 소리 내어 상황을 이야기해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "imparfait_pc",
+          "label_ko": "반과거 vs 복합과거",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_b1_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Il pleuvait quand vous êtes sorti ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Il pleuvait quand vous êtes sorti ?'(당신이 나갔을 때 비가 오고 있었어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "imparfait_pc",
+          "label_ko": "반과거 vs 복합과거",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

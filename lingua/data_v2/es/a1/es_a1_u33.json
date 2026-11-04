@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "es_a1_u33",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 33,
+    "title": "Viajes/Aeropuerto",
+    "title_ko": "여행·공항",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To check in at the airport, we use « Quiero facturar mi maleta ». To ask about a flight, we use « ¿A qué hora sale mi vuelo? ».",
+    "explanation_ko": "공항에서 체크인할 때는 'Quiero facturar mi maleta'(짐을 부치고 싶어요), 비행기에 대해 물을 때는 '¿A qué hora sale mi vuelo?'(제 비행기가 몇 시에 출발해요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Quiero facturar mi maleta.",
+        "ko": "짐을 부치고 싶어요."
+      },
+      {
+        "en": "¿A qué hora sale mi vuelo?",
+        "ko": "제 비행기가 몇 시에 출발해요?"
+      },
+      {
+        "en": "¿Dónde está la puerta de embarque?",
+        "ko": "탑승구가 어디예요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u33_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba en el aeropuerto usando «Quiero facturar mi maleta».",
+        "ko": "'Quiero facturar mi maleta'를 사용해서 공항에서 할 말을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "check_in",
+          "label_ko": "체크인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'maleta'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "maleta"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u33_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿A qué hora sale su vuelo?» Responda a esta pregunta.",
+        "ko": "'¿A qué hora sale su vuelo?'(비행기가 몇 시에 출발해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "flight_time",
+          "label_ko": "비행 시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u33_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pregunte en voz alta por la puerta de embarque.",
+        "ko": "소리 내어 탑승구를 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "gate",
+          "label_ko": "탑승구 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'puerta'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "puerta"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u33_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Quiere facturar su maleta?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Quiere facturar su maleta?'(짐 부치실 거예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "check_in",
+          "label_ko": "체크인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

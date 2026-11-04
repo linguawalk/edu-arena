@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "ko_c1_u38",
+    "domain": "language",
+    "lang": "ko",
+    "level": "c1",
+    "unit": 38,
+    "title": "Register Shift",
+    "title_ko": "격식 전환",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "Register shift means using different vocabulary for formal vs casual contexts, like « 죄송합니다 » (formal apology) vs « 미안해 » (casual apology).",
+    "explanation_ko": "격식 전환은 격식/비격식 맥락에 따라 다른 어휘를 사용하는 것을 의미합니다. 예: '죄송합니다'(격식) vs '미안해'(비격식).",
+    "key_expressions": [
+      {
+        "en": "I sincerely apologize (formal).",
+        "ko": "정말 죄송합니다."
+      },
+      {
+        "en": "Sorry (casual).",
+        "ko": "미안해."
+      },
+      {
+        "an": "x",
+        "en": "I would like to request your assistance (formal).",
+        "ko": "도움을 요청드립니다."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_c1_u38_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a formal apology using «죄송합니다».",
+        "ko": "'죄송합니다'를 사용해서 격식 있는 사과 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "joesonghamnida",
+          "label_ko": "죄송합니다",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '죄송' (formal apology)?",
+          "type": "keyword_match",
+          "target": [
+            "죄송"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_c1_u38_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«도움이 필요해요?» (Do you need help?) Answer formally using «요청드립니다» (I request).",
+        "ko": "'도움이 필요해요?'(도움 필요 여부를 묻는 질문)에 '요청드립니다'를 사용해서 격식 있는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "yocheongdeurimnida",
+          "label_ko": "요청드립니다",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '요청' (request)?",
+          "type": "keyword_match",
+          "target": [
+            "요청"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_c1_u38_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say out loud a casual apology using «미안해».",
+        "ko": "'미안해'를 사용해서 소리 내어 비격식 사과를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "mianhae",
+          "label_ko": "미안해",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '미안' (casual sorry)?",
+          "type": "keyword_match",
+          "target": [
+            "미안"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_c1_u38_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«정말 죄송합니다?» (I sincerely apologize, right?) You are asked if this is formal. Answer out loud.",
+        "ko": "'정말 죄송합니다'가 격식 있는 표현인지 확인하는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "joesonghamnida",
+          "label_ko": "죄송합니다",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "es_b2_u34",
+    "domain": "language",
+    "lang": "es",
+    "level": "b2",
+    "unit": 34,
+    "title": "Orden de palabras: tópico/foco",
+    "title_ko": "어순: 화제·초점",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Word order can shift to highlight the topic or focus: « A Juan, no lo he visto » (As for Juan, I haven't seen him).",
+    "explanation_ko": "어순은 화제나 초점을 강조하기 위해 바뀔 수 있습니다: 'A Juan, no lo he visto'(후안으로 말하자면, 저는 그를 못 봤어요).",
+    "key_expressions": [
+      {
+        "en": "A Juan, no lo he visto.",
+        "ko": "후안으로 말하자면, 저는 그를 못 봤어요."
+      },
+      {
+        "en": "Ese libro, ya lo leí.",
+        "ko": "그 책은, 이미 읽었어요."
+      },
+      {
+        "en": "A mí me gusta el café.",
+        "ko": "저는 커피를 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_b2_u34_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una frase con un tópico anticipado (p.ej. «Ese libro, ya lo...»).",
+        "ko": "앞에 놓인 화제(예: 'Ese libro, ya lo...')를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "topico_anticipado",
+          "label_ko": "앞선 화제",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "쉼표로 구분된 화제를 사용했는가",
+          "type": "pattern_regex",
+          "target": "^\\w+.{0,20},",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u34_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Ha visto a Juan?» Responda usando «A Juan, no lo he visto».",
+        "ko": "'¿Ha visto a Juan?'(후안 봤어요?)라는 질문에 'A Juan, no lo he visto'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "topico_anticipado",
+          "label_ko": "앞선 화제",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'A Juan'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "A Juan"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u34_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una frase con «A mí me gusta...».",
+        "ko": "'A mí me gusta...'를 사용해서 소리 내어 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "topico_anticipado",
+          "label_ko": "앞선 화제",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'A mí'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "A mí"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_b2_u34_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Ya leyó ese libro?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Ya leyó ese libro?'(그 책 이미 읽었어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "topico_anticipado",
+          "label_ko": "앞선 화제",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

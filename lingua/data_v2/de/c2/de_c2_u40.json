@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "de_c2_u40",
+    "domain": "language",
+    "lang": "de",
+    "level": "c2",
+    "unit": 40,
+    "title": "Klassisches vs. modernes Register",
+    "title_ko": "고전체 vs 현대체",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "Classic register uses forms like « man höre und staune » (behold, listen up), modern register prefers direct, casual phrases like « stell dir vor ».",
+    "explanation_ko": "고전체는 'man höre und staune'(들어보시라) 같은 형태를 사용하고, 현대체는 'stell dir vor'(상상해봐) 같은 직접적이고 캐주얼한 표현을 선호합니다.",
+    "key_expressions": [
+      {
+        "en": "Man höre und staune: er hat die Prüfung bestanden.",
+        "ko": "들어보시라: 그가 시험에 합격했어요 (고전체)."
+      },
+      {
+        "en": "Stell dir vor, er hat die Prüfung bestanden.",
+        "ko": "상상해봐, 그가 시험에 합격했어 (현대체)."
+      },
+      {
+        "en": "Der Unterschied im Register ist bemerkenswert.",
+        "ko": "언어역의 차이가 눈에 띄어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_c2_u40_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz im klassischen Register mit „man höre und staune“.",
+        "ko": "고전체로 'man höre und staune'를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "klassisches_register",
+          "label_ko": "고전체",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'staune' 또는 'höre'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "staune",
+            "höre"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_c2_u40_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Schreiben Sie den gleichen Inhalt noch einmal im modernen, lockeren Register mit „stell dir vor“.",
+        "ko": "같은 내용을 'stell dir vor'를 사용해서 현대적이고 캐주얼한 언어역으로 다시 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "modernes_register",
+          "label_ko": "현대체",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'stell dir vor'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Stell dir vor",
+            "stell dir vor"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_c2_u40_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut denselben Satz zuerst im klassischen, dann im modernen Register.",
+        "ko": "같은 문장을 먼저 고전체로, 그다음 현대체로 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "register_vergleich",
+          "label_ko": "언어역 비교",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_c2_u40_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist der Unterschied im Register bemerkenswert?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist der Unterschied im Register bemerkenswert?'(언어역의 차이가 눈에 띄어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "register_vergleich",
+          "label_ko": "언어역 비교",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

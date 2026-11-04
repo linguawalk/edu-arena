@@ -1,0 +1,317 @@
+{
+  "meta": {
+    "id": "en_a1_u50",
+    "domain": "language",
+    "lang": "en",
+    "level": "a1",
+    "unit": 50,
+    "title": "A1 Review",
+    "title_ko": "A1 종합 복습",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This review unit brings together A1's key expression areas: self-introduction, daily routines, likes/dislikes, requests, and simple past/future.",
+    "explanation_ko": "이번 복습 유닛은 A1의 핵심 표현 영역을 종합합니다: 자기소개, 일상 루틴, 호불호, 부탁, 간단한 과거·미래 표현",
+    "key_expressions": [
+      {
+        "en": "My name is ~ and I like ~.",
+        "ko": "제 이름은 ~이고 저는 ~을 좋아해요."
+      },
+      {
+        "en": "I usually ~, but yesterday I ~.",
+        "ko": "저는 보통 ~하지만, 어제는 ~했어요."
+      },
+      {
+        "en": "Can you ~? I'm going to ~.",
+        "ko": "~해주시겠어요? 저는 ~할 거예요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a1_u50_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a short self-introduction paragraph including your name, job or school, a hobby, and one thing you did recently.",
+        "ko": "이름, 직업/학교, 취미, 최근에 한 일을 포함한 짧은 자기소개 문단을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "name_intro",
+          "label_ko": "이름 소개",
+          "min_occurrences": 1
+        },
+        {
+          "type": "expression",
+          "id": "past_verb",
+          "label_ko": "과거시제 동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'My name is'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "my name is"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "취미 표현(like/enjoy + -ing)을 사용했는가",
+          "type": "pattern_regex",
+          "target": "(like|enjoy)\\s+\\w+ing",
+          "min_matches": 1,
+          "points": 25,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "과거시제 동사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(went|ate|saw|did|had|played)\\b",
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r4",
+          "criterion_ko": "분량이 충분한가 (최소 25단어)",
+          "type": "length_check",
+          "unit": "words",
+          "min": 25,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u50_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What are your plans for next month?' Write your answer using 'going to'.",
+        "ko": "'What are your plans for next month?'라는 질문에 'going to'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "going_to",
+          "label_ko": "going to 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'going to'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "going to"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'next month'를 언급했는가",
+          "type": "keyword_match",
+          "target": [
+            "next month"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u50_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud for 30 seconds: introduce yourself, describe your daily routine, and say one thing you are going to do this weekend.",
+        "ko": "30초 동안 소리 내어 말해 보세요: 자기소개, 하루 일과 설명, 이번 주말에 할 일 한 가지를 포함하세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "name_intro",
+          "label_ko": "이름 소개",
+          "min_occurrences": 1
+        },
+        {
+          "type": "expression",
+          "id": "going_to",
+          "label_ko": "going to 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'My name is' 또는 'I am'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "my name is",
+            "i am",
+            "i'm"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "일과 동사를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "wake up",
+            "go to",
+            "eat",
+            "work",
+            "study"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "'going to'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "going to"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": true
+        },
+        {
+          "id": "r4",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a1_u50_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Can you tell me about your typical day, from morning to night?'",
+        "ko": "소리 내어 답해 보세요: 'Can you tell me about your typical day, from morning to night?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "routine_verb",
+          "label_ko": "일과 동사",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "일과 동사를 2개 이상 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "wake up",
+            "eat",
+            "go",
+            "work",
+            "study",
+            "sleep"
+          ],
+          "min_matches": 2,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "시간 표현을 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\bat\\s+\\w+",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

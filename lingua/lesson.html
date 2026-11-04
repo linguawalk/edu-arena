@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>외국어 · edu-arena</title>
+<meta name="theme-color" content="#16224A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#16224A; --surface:#1E2E5C; --surface-hi:#263768; --line:#33447F;
+    --ink:#F3F1EA; --ink-dim:#93A0AA;
+    --amber:#F2A65A; --amber-dim:#7A5A34;
+    --teal:#3FBFA6; --teal-dim:#2C6E62;
+    --rose:#E8637A; --rose-dim:#7A3542;
+    --radius:14px; --wrap:800px;
+    --serif-display:'Space Grotesk',sans-serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  @media (prefers-reduced-motion: reduce){*{animation-duration:0.001ms !important;transition-duration:0.001ms !important;}}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px;}
+  body::before{content:"";position:fixed;inset:0;background:radial-gradient(1100px 600px at 15% -10%, rgba(242,166,90,0.08), transparent 60%),radial-gradient(900px 500px at 110% 10%, rgba(63,191,166,0.07), transparent 60%);pointer-events:none;z-index:0;}
+
+  header.nav{position:sticky;top:0;z-index:100;background:rgba(22,34,74,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav-row{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px;}
+  .back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-dim);white-space:nowrap;}
+  .back:hover{color:var(--ink);}
+  .nav-mid{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);text-align:center;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .lang-toggle{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:3px;font-family:var(--mono);font-size:11.5px;flex-shrink:0;}
+  .lang-toggle button{border:none;background:transparent;color:var(--ink-dim);padding:5px 10px;border-radius:100px;cursor:pointer;font-family:var(--mono);font-size:11.5px;}
+  .lang-toggle button.act{background:var(--amber);color:#1a1206;font-weight:500;}
+
+  main{position:relative;z-index:1;padding:36px 0 90px;}
+  .hero{text-align:center;margin-bottom:36px;}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);}
+  h1{font-family:var(--serif-display);font-weight:700;font-size:clamp(24px,4.5vw,36px);margin-top:8px;}
+
+  section.block{margin-bottom:40px;}
+  .block-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+  .block-head .icon{width:26px;height:26px;border-radius:7px;background:var(--surface-hi);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+  .block-head h2{font-family:var(--serif-display);font-size:18px;font-weight:600;}
+
+  .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;}
+  .vocab-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+  .vocab-term{font-weight:600;font-size:15px;}
+  .vocab-meaning{color:var(--amber);font-size:13px;margin-top:2px;}
+  .vocab-example{margin-top:8px;padding-top:8px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-dim);line-height:1.5;}
+  .vocab-example .native{color:var(--ink);}
+
+  .grammar-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;}
+  .grammar-point{font-family:var(--serif-display);font-size:17px;font-weight:600;color:var(--amber);}
+  .grammar-explain{margin-top:10px;font-size:14px;color:var(--ink-dim);line-height:1.65;}
+  .grammar-examples{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
+  .grammar-ex{background:var(--surface-hi);border-radius:8px;padding:10px 14px;font-size:13.5px;}
+  .grammar-ex .native{font-weight:500;}
+  .grammar-ex .ko{color:var(--ink-dim);margin-top:3px;}
+
+  .dialogue-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:12px;}
+  .dline{display:flex;gap:10px;max-width:88%;}
+  .dline.b{align-self:flex-end;flex-direction:row-reverse;}
+  .dline .avatar{width:26px;height:26px;border-radius:50%;background:var(--surface-hi);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;flex-shrink:0;}
+  .dline .bubble{background:var(--surface-hi);border-radius:10px;padding:9px 13px;}
+  .dline.b .bubble{background:rgba(242,166,90,0.14);}
+  .dline .native{font-size:14px;}
+  .dline .ko{font-size:12px;color:var(--ink-dim);margin-top:3px;}
+
+  .reading-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;}
+  .reading-title{font-family:var(--serif-display);font-size:17px;font-weight:600;margin-bottom:14px;}
+  .reading-text{font-size:15px;line-height:1.8;}
+  .reading-toggle{margin-top:14px;}
+  .reading-toggle button{font-family:var(--mono);font-size:11.5px;color:var(--teal);background:transparent;border:1px solid var(--teal-dim);border-radius:100px;padding:5px 12px;cursor:pointer;}
+  .reading-translation{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--ink-dim);line-height:1.7;display:none;}
+  .reading-translation.show{display:block;}
+
+  .rq-list{margin-top:22px;display:flex;flex-direction:column;gap:16px;}
+  .rq{border-top:1px solid var(--line);padding-top:16px;}
+  .rq-prompt{font-size:14.5px;margin-bottom:12px;}
+  .rq-choices{display:flex;flex-direction:column;gap:8px;}
+  .rq-choice{display:flex;align-items:flex-start;gap:10px;text-align:left;background:var(--surface-hi);border:1px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer;font-size:13.5px;color:var(--ink);}
+  .rq-choice .letter{font-family:var(--mono);font-size:11px;color:var(--ink-dim);border:1px solid var(--line);border-radius:6px;width:19px;height:19px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .rq-choice.correct{border-color:var(--teal);background:rgba(63,191,166,0.14);}
+  .rq-choice.correct .letter{border-color:var(--teal);color:var(--teal);}
+  .rq-choice.incorrect{border-color:var(--rose);background:rgba(232,99,122,0.12);}
+  .rq-choice.incorrect .letter{border-color:var(--rose);color:var(--rose);}
+  .rq-choice:disabled:not(.correct):not(.incorrect){opacity:.5;}
+  .rq-explain{margin-top:10px;font-size:12.5px;color:var(--ink-dim);display:none;}
+  .rq-explain.show{display:block;}
+  .rq-explain .verdict{font-weight:600;margin-bottom:4px;}
+  .rq-explain .verdict.ok{color:var(--teal);}
+  .rq-explain .verdict.no{color:var(--rose);}
+
+  .cta-row{margin-top:48px;text-align:center;}
+  .btn-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:14px;font-weight:500;background:var(--amber);color:#1a1206;border-radius:10px;padding:14px 28px;}
+  .btn-cta:hover{opacity:.92;}
+
+  .loading, .fallback{text-align:center;color:var(--ink-dim);padding:60px 0;font-size:14px;line-height:1.7;}
+  .fallback .btn-cta{margin-top:18px;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="back" id="backLink" href="units.html"><span aria-hidden="true">←</span><span id="backLabel">Back</span></a>
+    <div class="nav-mid" id="navMid">—</div>
+    <div class="lang-toggle" role="group" aria-label="Interface language">
+      <button type="button" id="btn-en" class="act">EN</button>
+      <button type="button" id="btn-ko">KO</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="loadingState" class="loading">Loading lesson…</div>
+  <div id="fallbackState" class="fallback" style="display:none;"></div>
+  <div id="content" style="display:none;">
+
+    <div class="hero">
+      <div class="eyebrow" id="eyebrow">LESSON</div>
+      <h1 id="heading">—</h1>
+    </div>
+
+    <section class="block">
+      <div class="block-head"><span class="icon">🔤</span><h2 id="vocabHead">Vocabulary</h2></div>
+      <div class="vocab-grid" id="vocabGrid"></div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><span class="icon">📐</span><h2 id="grammarHead">Grammar Point</h2></div>
+      <div class="grammar-card" id="grammarCard"></div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><span class="icon">💬</span><h2 id="dialogueHead">Dialogue</h2></div>
+      <div class="dialogue-box" id="dialogueBox"></div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><span class="icon">📖</span><h2 id="readingHead">Reading</h2></div>
+      <div class="reading-card" id="readingCard"></div>
+    </section>
+
+    <div class="cta-row">
+      <a class="btn-cta" id="ctaBtn" href="#">Start practice (25 questions) →</a>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  var LANG_NAMES = {
+    en:{en:"English", ko:"영어"}, ja:{en:"Japanese", ko:"일본어"}, zh:{en:"Chinese", ko:"중국어"},
+    fr:{en:"French", ko:"프랑스어"}, de:{en:"German", ko:"독일어"}, es:{en:"Spanish", ko:"스페인어"}
+  };
+
+  var params = new URLSearchParams(location.search);
+  var lang = (params.get('lang') || '').toLowerCase();
+  var level = (params.get('level') || '').toLowerCase();
+  var unitRaw = params.get('unit') || '';
+  var unitNum = parseInt(unitRaw, 10);
+  var unit = (isNaN(unitNum) ? '' : (unitNum < 10 ? '0' + unitNum : '' + unitNum));
+
+  var uiLang = 'en';
+  function t(en, ko){ return uiLang === 'ko' ? ko : en; }
+  function esc(s){ var d=document.createElement('div'); d.textContent = s; return d.innerHTML; }
+  var playUrl = 'play.html?lang=' + encodeURIComponent(lang) + '&level=' + encodeURIComponent(level) + '&unit=' + unit;
+
+  function setUiLang(l){
+    uiLang = l;
+    document.getElementById('btn-en').classList.toggle('act', l === 'en');
+    document.getElementById('btn-ko').classList.toggle('act', l === 'ko');
+    try { localStorage.setItem('la-lang', l); } catch(e){}
+    document.getElementById('backLabel').textContent = t('Back', '뒤로');
+    document.getElementById('vocabHead').textContent = t('Vocabulary', '핵심 어휘');
+    document.getElementById('grammarHead').textContent = t('Grammar Point', '문법 포인트');
+    document.getElementById('dialogueHead').textContent = t('Dialogue', '회화 예시');
+    document.getElementById('readingHead').textContent = t('Reading', '읽기');
+    document.getElementById('ctaBtn').textContent = t('Start practice (25 questions) →', '문제 풀기 (25문제) →');
+    if(window.__lessonData) render(window.__lessonData);
+  }
+  document.getElementById('btn-en').addEventListener('click', function(){ setUiLang('en'); });
+  document.getElementById('btn-ko').addEventListener('click', function(){ setUiLang('ko'); });
+
+  function updateNav(titleKo, titleEn){
+    document.getElementById('backLink').href = 'units.html?lang=' + encodeURIComponent(lang) + '&level=' + encodeURIComponent(level);
+    var langLabel = LANG_NAMES[lang] ? LANG_NAMES[lang][uiLang] : lang.toUpperCase();
+    document.getElementById('navMid').textContent = langLabel + ' · ' + level.toUpperCase() + ' · ' + t('Unit ', '유닛 ') + unit;
+  }
+
+  function render(data){
+    window.__lessonData = data;
+    document.getElementById('eyebrow').textContent = t('LESSON', '레슨 노트');
+    document.getElementById('heading').textContent = uiLang === 'ko' ? (data.meta.title_ko || data.meta.title) : data.meta.title;
+    document.getElementById('ctaBtn').href = playUrl;
+
+    // vocabulary
+    var vg = document.getElementById('vocabGrid');
+    vg.innerHTML = '';
+    data.vocabulary.forEach(function(v){
+      var card = document.createElement('div');
+      card.className = 'vocab-card';
+      card.innerHTML =
+        '<div class="vocab-term">' + esc(v.term) + '</div>' +
+        '<div class="vocab-meaning">' + esc(v.meaning_ko) + '</div>' +
+        '<div class="vocab-example"><span class="native">' + esc(v.example) + '</span><br>' + esc(v.example_ko) + '</div>';
+      vg.appendChild(card);
+    });
+
+    // grammar
+    var g = data.grammar;
+    document.getElementById('grammarCard').innerHTML =
+      '<div class="grammar-point">' + esc(uiLang === 'ko' ? g.point_ko : g.point) + '</div>' +
+      '<div class="grammar-explain">' + esc(uiLang === 'ko' ? g.explanation_ko : g.explanation_en) + '</div>' +
+      '<div class="grammar-examples">' + g.examples.map(function(ex){
+        return '<div class="grammar-ex"><div class="native">' + esc(ex.en) + '</div><div class="ko">' + esc(ex.ko) + '</div></div>';
+      }).join('') + '</div>';
+
+    // dialogue
+    var db = document.getElementById('dialogueBox');
+    db.innerHTML = '';
+    var speakers = {};
+    data.dialogue.forEach(function(d){
+      if(!(d.speaker in speakers)) speakers[d.speaker] = Object.keys(speakers).length;
+      var cls = speakers[d.speaker] % 2 === 1 ? 'b' : 'a';
+      var line = document.createElement('div');
+      line.className = 'dline ' + cls;
+      line.innerHTML =
+        '<div class="avatar">' + esc(d.speaker) + '</div>' +
+        '<div class="bubble"><div class="native">' + esc(d.line) + '</div><div class="ko">' + esc(d.line_ko) + '</div></div>';
+      db.appendChild(line);
+    });
+
+    // reading
+    var r = data.reading;
+    var rc = document.getElementById('readingCard');
+    rc.innerHTML =
+      '<div class="reading-title">' + esc(uiLang === 'ko' ? r.title_ko : r.title) + '</div>' +
+      '<div class="reading-text">' + esc(r.text) + '</div>' +
+      '<div class="reading-toggle"><button type="button" id="toggleTrans">' + t('Show translation', '번역 보기') + '</button></div>' +
+      '<div class="reading-translation" id="readingTrans">' + esc(r.text_ko) + '</div>' +
+      '<div class="rq-list" id="rqList"></div>';
+
+    document.getElementById('toggleTrans').addEventListener('click', function(){
+      var el = document.getElementById('readingTrans');
+      el.classList.toggle('show');
+      this.textContent = el.classList.contains('show') ? t('Hide translation', '번역 숨기기') : t('Show translation', '번역 보기');
+    });
+
+    var rqList = document.getElementById('rqList');
+    rqList.innerHTML = '';
+    var letters = ['A','B','C','D'];
+    r.questions.forEach(function(q, qi){
+      var block = document.createElement('div');
+      block.className = 'rq';
+      var choicesHtml = q.choices.map(function(c,i){
+        return '<button class="rq-choice" data-i="' + i + '"><span class="letter">' + letters[i] + '</span><span>' + esc(c) + '</span></button>';
+      }).join('');
+      block.innerHTML =
+        '<div class="rq-prompt">' + (qi+1) + '. ' + esc(q.prompt) + '</div>' +
+        '<div class="rq-choices">' + choicesHtml + '</div>' +
+        '<div class="rq-explain" id="rqExplain' + qi + '"></div>';
+      rqList.appendChild(block);
+
+      var buttons = block.querySelectorAll('.rq-choice');
+      var answered = false;
+      buttons.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          if(answered) return;
+          answered = true;
+          var chosen = parseInt(btn.getAttribute('data-i'), 10);
+          var isCorrect = chosen === q.answer;
+          buttons.forEach(function(b,i){
+            b.disabled = true;
+            if(i === q.answer) b.classList.add('correct');
+            else if(i === chosen) b.classList.add('incorrect');
+          });
+          var expl = document.getElementById('rqExplain' + qi);
+          expl.classList.add('show');
+          var verdict = isCorrect ? t('Correct!','정답입니다!') : t('Not quite.','아쉬워요.');
+          var vclass = isCorrect ? 'ok' : 'no';
+          expl.innerHTML = '<div class="verdict ' + vclass + '">' + verdict + '</div><div>' + esc(uiLang === 'ko' ? q.explanation.ko : q.explanation.en) + '</div>';
+        });
+      });
+    });
+  }
+
+  function fetchJson(url){
+    return fetch(url).then(function(res){
+      if(!res.ok) throw new Error('not ok');
+      return res.json();
+    });
+  }
+
+  function loadLesson(){
+    var urlFull = 'data/' + lang + '/' + level + '/' + lang + '_' + level + '_u' + unit + '_lesson.json';
+    return fetchJson(urlFull);
+  }
+
+  function showFallback(){
+    document.getElementById('loadingState').style.display = 'none';
+    var fb = document.getElementById('fallbackState');
+    fb.style.display = 'block';
+    fb.innerHTML =
+      t('The lesson notes for this unit aren\'t ready yet.', '이 유닛의 레슨 노트는 아직 준비되지 않았습니다.') +
+      '<br><a class="btn-cta" href="' + playUrl + '">' + t('Go straight to practice →', '바로 문제 풀기 →') + '</a>';
+  }
+
+  (function init(){
+    var saved; try { saved = localStorage.getItem('la-lang'); } catch(e){}
+    uiLang = saved || (navigator.language && navigator.language.startsWith('ko') ? 'ko' : 'en');
+    document.getElementById('btn-en').classList.toggle('act', uiLang === 'en');
+    document.getElementById('btn-ko').classList.toggle('act', uiLang === 'ko');
+    document.getElementById('backLabel').textContent = t('Back', '뒤로');
+    document.getElementById('vocabHead').textContent = t('Vocabulary', '핵심 어휘');
+    document.getElementById('grammarHead').textContent = t('Grammar Point', '문법 포인트');
+    document.getElementById('dialogueHead').textContent = t('Dialogue', '회화 예시');
+    document.getElementById('readingHead').textContent = t('Reading', '읽기');
+
+    if(!lang || !level || !unit || !LANG_NAMES[lang]){
+      document.getElementById('loadingState').style.display = 'none';
+      var fb = document.getElementById('fallbackState');
+      fb.style.display = 'block';
+      fb.innerHTML = t('Missing or invalid link. ', '잘못된 링크입니다. ') + '<a href="index.html">' + t('← Back to courses', '← 외국어 코스로 돌아가기') + '</a>';
+      return;
+    }
+    updateNav();
+
+    loadLesson().then(function(data){
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+      render(data);
+    }).catch(showFallback);
+  })();
+</script>
+<script src="../assets/family-bar.js" defer></script>
+</body>
+</html>

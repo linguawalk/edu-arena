@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_b1_u26",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b1",
+    "unit": 26,
+    "title": "无论...都...",
+    "title_ko": "无论...都... (~하든지 간에)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「无论...都...」表示条件如何变化，结果都不变。「无论多忙，我都会锻炼」。",
+    "explanation_ko": "'无论...都...'는 조건이 어떻게 변하든 결과가 변하지 않음을 나타냅니다. '无论多忙，我都会锻炼'(아무리 바빠도 운동해요).",
+    "key_expressions": [
+      {
+        "en": "无论多忙，我都会锻炼。",
+        "ko": "아무리 바빠도 운동해요."
+      },
+      {
+        "en": "无论天气怎么样，我们都去。",
+        "ko": "날씨가 어떻든 우리는 가요."
+      },
+      {
+        "en": "无论谁说，我都不听。",
+        "ko": "누가 말하든 저는 안 들어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b1_u26_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「无论...都...」写出无论如何都不变的事。",
+        "ko": "어떤 상황이든 변하지 않는 것을 '无论...都...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "wulun_dou",
+          "label_ko": "无论...都...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'无论'과 '都'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "无论.{0,15}都",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u26_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你每天都锻炼吗？」请用「无论...都...」回答。",
+        "ko": "'你每天都锻炼吗？'(매일 운동해요?)라는 질문에 '无论...都...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "wulun_dou",
+          "label_ko": "无论...都...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'无论'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "无论"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u26_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「无论...都...」说出无论如何都不变的事。",
+        "ko": "'无论...都...'를 사용해서 소리 내어 어떤 상황이든 변하지 않는 것을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "wulun_dou",
+          "label_ko": "无论...都...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'无论' 또는 '都'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "无论",
+            "都"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b1_u26_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「无论天气怎么样，你们都去吗？」有人问你。请大声回答。",
+        "ko": "'无论天气怎么样，你们都去吗？'(날씨가 어떻든 가요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "wulun_dou",
+          "label_ko": "无论...都...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

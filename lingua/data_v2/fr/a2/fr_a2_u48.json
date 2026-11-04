@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "fr_a2_u48",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 48,
+    "title": "Rendez-vous",
+    "title_ko": "예약",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour prendre un rendez-vous, on utilise « Je voudrais prendre rendez-vous pour... ». Pour annuler, on utilise « Je voudrais annuler mon rendez-vous ».",
+    "explanation_ko": "예약할 때는 'Je voudrais prendre rendez-vous pour...'(~예약을 하고 싶어요), 취소할 때는 'Je voudrais annuler mon rendez-vous'(예약을 취소하고 싶어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je voudrais prendre rendez-vous pour une coupe de cheveux.",
+        "ko": "미용실 예약을 하고 싶어요."
+      },
+      {
+        "en": "Je voudrais annuler mon rendez-vous.",
+        "ko": "예약을 취소하고 싶어요."
+      },
+      {
+        "en": "Est-ce que je peux changer la date ?",
+        "ko": "다른 날로 변경할 수 있을까요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u48_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une demande de rendez-vous en utilisant « Je voudrais prendre rendez-vous pour... ».",
+        "ko": "무언가의 예약을 하고 싶은 문장을 'Je voudrais prendre rendez-vous pour...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "appointment",
+          "label_ko": "예약 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'rendez-vous'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "rendez-vous"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u48_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Est-ce que je peux changer la date ? » On vous pose cette question dans le contexte d'un rendez-vous - écrivez comment vous demanderiez ceci vous-même.",
+        "ko": "예약을 변경하고 싶을 때의 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "change_appointment",
+          "label_ko": "예약 변경 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'changer'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "changer"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u48_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Prenez un rendez-vous chez le coiffeur à voix haute.",
+        "ko": "미용실 예약을 소리 내어 부탁해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "appointment",
+          "label_ko": "예약 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'rendez-vous'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "rendez-vous"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u48_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Voulez-vous annuler votre rendez-vous ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Voulez-vous annuler votre rendez-vous ?'(예약을 취소하시겠어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cancel",
+          "label_ko": "취소 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

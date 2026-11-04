@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "de_a1_u30",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 30,
+    "title": "Zusagen/Absagen",
+    "title_ko": "수락·거절",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To accept an invitation, we use « Ja, gerne ». To decline, we use « Tut mir leid, ich kann nicht ».",
+    "explanation_ko": "초대를 수락할 때는 'Ja, gerne'(네, 좋아요), 거절할 때는 'Tut mir leid, ich kann nicht'(죄송해요, 못 가요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ja, gerne! Ich komme.",
+        "ko": "네, 좋아요! 갈게요."
+      },
+      {
+        "en": "Tut mir leid, ich kann nicht kommen.",
+        "ko": "죄송해요, 못 가요."
+      },
+      {
+        "en": "Vielleicht ein anderes Mal.",
+        "ko": "다음에 갈게요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u30_w1",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Möchtest du am Samstag mit mir essen gehen?“ Sagen Sie zu und benutzen Sie dabei „Ja, gerne“.",
+        "ko": "'Möchtest du am Samstag mit mir essen gehen?'(토요일에 저랑 밥 먹으러 갈래요?)라는 질문에 'Ja, gerne'를 사용해서 수락하는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "accept",
+          "label_ko": "수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja, gerne'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja, gerne",
+            "ja, gerne"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u30_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Kommst du zur Party?“ Lehnen Sie ab und benutzen Sie dabei „Tut mir leid, ich kann nicht“.",
+        "ko": "'Kommst du zur Party?'(파티에 올래요?)라는 질문에 'Tut mir leid, ich kann nicht'를 사용해서 거절하는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "decline",
+          "label_ko": "거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Tut mir leid'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Tut mir leid",
+            "tut mir leid"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u30_s1",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Möchtest du morgen mit mir ins Kino gehen?“ Sagen Sie laut zu.",
+        "ko": "'Möchtest du morgen mit mir ins Kino gehen?'(내일 저랑 영화 보러 갈래요?)라는 질문에 소리 내어 수락해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "accept",
+          "label_ko": "수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'gerne'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "gerne"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u30_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Kannst du heute Abend kommen?“ Lehnen Sie laut ab.",
+        "ko": "'Kannst du heute Abend kommen?'(오늘 저녁에 올 수 있어요?)라는 질문에 소리 내어 거절해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "decline",
+          "label_ko": "거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Tut mir leid' 또는 'kann nicht'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Tut mir leid",
+            "tut mir leid",
+            "kann nicht"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

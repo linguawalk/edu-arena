@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "fr_a2_u28",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 28,
+    "title": "Résoudre un désaccord",
+    "title_ko": "의견 차이 해결",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "En cas de désaccord, on utilise « C'est peut-être vrai, mais je pense que... » pour exprimer poliment son désaccord.",
+    "explanation_ko": "의견이 다를 때는 'C'est peut-être vrai, mais je pense que...'(그럴 수도 있지만, 저는 ~라고 생각해요)를 사용해서 상대를 존중하면서 자신의 의견을 말합니다.",
+    "key_expressions": [
+      {
+        "en": "C'est peut-être vrai, mais je pense différemment.",
+        "ko": "그럴 수도 있지만, 저는 다르게 생각해요."
+      },
+      {
+        "en": "Je ne suis pas tout à fait d'accord.",
+        "ko": "완전히 동의하지는 않아요."
+      },
+      {
+        "en": "Parlons-en.",
+        "ko": "이야기해봐요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u28_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Exprimez poliment un désaccord en utilisant « C'est peut-être vrai, mais... ».",
+        "ko": "친구와 의견이 다를 때, 'C'est peut-être vrai, mais...'를 사용해서 정중하게 반대하는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "disagreement",
+          "label_ko": "의견 차이 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'peut-être vrai'와 'mais'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "peut-être vrai.{0,20}mais",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u28_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Que pensez-vous de mon idée ? » Répondez avec un désaccord poli.",
+        "ko": "'Que pensez-vous de mon idée ?'(제 생각 어때요?)라는 질문에, 다른 의견을 정중하게 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "opinion_response",
+          "label_ko": "의견 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je pense'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je pense",
+            "je pense"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u28_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Exprimez poliment un désaccord à voix haute avec un ami.",
+        "ko": "친구와 의견이 다를 때, 소리 내어 정중하게 자신의 의견을 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "disagreement",
+          "label_ko": "의견 차이 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je pense'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je pense",
+            "je pense"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u28_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« On en parle ? » On vous dit cela. Répondez à voix haute.",
+        "ko": "'On en parle ?'(이야기해볼까요?)라는 말을 들었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "talk_it_out",
+          "label_ko": "대화 제안 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'D'accord'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "D'accord"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "ko_a2_u36",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a2",
+    "unit": 36,
+    "title": "Mood/Stress (-어서 스트레스 받아요)",
+    "title_ko": "기분·스트레스",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe stress, use « ~아서/어서 스트레스 받아요 » (I'm stressed because ~). For example, « 일이 많아서 스트레스 받아요 » (I'm stressed because I have a lot of work).",
+    "explanation_ko": "스트레스를 표현할 때는 '~아서/어서 스트레스 받아요'를 씁니다. 예: '일이 많아서 스트레스 받아요'.",
+    "key_expressions": [
+      {
+        "en": "I'm stressed because I have a lot of work.",
+        "ko": "일이 많아서 스트레스 받아요."
+      },
+      {
+        "en": "I feel better after exercising.",
+        "ko": "운동하고 나서 기분이 나아져요."
+      },
+      {
+        "en": "What do you do when you're stressed?",
+        "ko": "스트레스 받을 때 뭐 해요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a2_u36_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about stress using «-아서/어서 스트레스 받아요».",
+        "ko": "'-아서/어서 스트레스 받아요'를 사용해서 스트레스에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "stress",
+          "label_ko": "스트레스 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '스트레스 받아요' (I'm stressed)?",
+          "type": "keyword_match",
+          "target": [
+            "스트레스 받아요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u36_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«스트레스 받을 때 뭐 해요?» (What do you do when you're stressed?) Answer this question.",
+        "ko": "'스트레스 받을 때 뭐 해요?'(스트레스 해소법을 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "stress_relief",
+          "label_ko": "스트레스 해소 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Did you write at least 5 characters?",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u36_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say out loud «운동하고 나서 기분이 나아져요» (I feel better after exercising).",
+        "ko": "'운동하고 나서 기분이 나아져요'를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "stress_relief",
+          "label_ko": "스트레스 해소 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '기분' (mood) or '나아져요' (get better)?",
+          "type": "keyword_match",
+          "target": [
+            "기분",
+            "나아져요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a2_u36_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«일이 많아서 스트레스 받아요?» (Are you stressed because you have a lot of work?) Answer out loud.",
+        "ko": "'일이 많아서 스트레스 받아요?'(업무 스트레스를 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "stress",
+          "label_ko": "스트레스 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

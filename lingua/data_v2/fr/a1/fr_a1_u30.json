@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "fr_a1_u30",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 30,
+    "title": "Accepter/refuser",
+    "title_ko": "수락·거절",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour accepter une invitation, on utilise « Avec plaisir ». Pour refuser poliment, on utilise « Désolé, je ne peux pas ».",
+    "explanation_ko": "초대를 수락할 때는 'Avec plaisir'(기꺼이요), 정중하게 거절할 때는 'Désolé, je ne peux pas'(죄송해요, 못 가요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Avec plaisir, j'adore cette idée.",
+        "ko": "기꺼이요, 이 아이디어 정말 좋아요."
+      },
+      {
+        "en": "Désolé, je ne peux pas venir.",
+        "ko": "죄송해요, 못 가요."
+      },
+      {
+        "en": "Une autre fois, peut-être.",
+        "ko": "다음에요, 아마도."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u30_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Acceptez une invitation en utilisant « Avec plaisir ».",
+        "ko": "'Avec plaisir'를 사용해서 초대를 수락해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "accepting",
+          "label_ko": "수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Avec plaisir'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Avec plaisir",
+            "avec plaisir"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u30_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous voulez venir à la fête ? » Répondez poliment en refusant.",
+        "ko": "'Vous voulez venir à la fête ?'(파티에 올래요?)라는 질문에, 정중하게 거절하는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "declining",
+          "label_ko": "거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Désolé' 또는 'ne peux pas'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Désolé",
+            "désolé",
+            "ne peux pas"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u30_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Acceptez une invitation à voix haute.",
+        "ko": "소리 내어 초대를 수락해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "accepting",
+          "label_ko": "수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Avec plaisir'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Avec plaisir",
+            "avec plaisir"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u30_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous pouvez venir demain ? » On vous pose cette question. Répondez poliment à voix haute en refusant.",
+        "ko": "'Vous pouvez venir demain ?'(내일 올 수 있어요?)라는 질문을 받았습니다. 정중하게 거절하며 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "declining",
+          "label_ko": "거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Désolé'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Désolé",
+            "désolé"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

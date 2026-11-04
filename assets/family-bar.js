@@ -2,7 +2,7 @@
 (function () {
   var SECTIONS = {
     socio: "사회와 역사", biz: "경제와 경영", lit: "언어와 문학",
-    math: "수학", sci: "과학", tech: "공학", code: "코딩", 
+    math: "수학", sci: "과학", tech: "공학", code: "코딩", arts: "예체능", lingua: "외국어"
   };
   // 레슨·진단 화면은 몰입형이라 상단 바를 넣지 않음
   if (/(player|practice-player|placement)\.html$/.test(location.pathname)) return;

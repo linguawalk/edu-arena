@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "id": "en_b1_u08",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 8,
+    "title": "Zero Conditional",
+    "title_ko": "0형 조건문",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Zero conditional (If/When + present simple, ... present simple) describes general truths and things that always happen: 'If you heat water to 100°C, it boils.' 'If' and 'when' are often interchangeable here.",
+    "explanation_ko": "0형 조건문(If/When + 현재시제, ... 현재시제)은 일반적 진리와 항상 일어나는 일을 나타냅니다: 'If you heat water to 100°C, it boils.' 여기서는 'if'와 'when'을 종종 바꿔 쓸 수 있습니다.",
+    "key_expressions": [
+      {
+        "en": "If you don't sleep enough, you feel tired.",
+        "ko": "잠을 충분히 안 자면 피곤해요."
+      },
+      {
+        "en": "Water freezes when the temperature drops.",
+        "ko": "기온이 떨어지면 물이 얼어요."
+      },
+      {
+        "en": "If people are kind, others usually respond kindly.",
+        "ko": "사람들이 친절하면 보통 다른 사람들도 친절하게 반응해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u08_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write two general truths using zero conditional (about nature, health, or human behavior).",
+        "ko": "0형 조건문을 사용해서(자연, 건강, 인간 행동에 관한) 일반적 진리 두 개를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zero_conditional",
+          "label_ko": "0형 조건문",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'If/When + 현재시제, 현재시제' 구조를 2회 이상 사용했는가",
+          "type": "pattern_regex",
+          "target": "(if|when)\\s+\\w+\\s+\\w+.{0,30}[,.]",
+          "min_matches": 2,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 15단어)",
+          "type": "length_check",
+          "unit": "words",
+          "min": 15,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u08_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What happens if you don't drink enough water?' Write your answer using zero conditional.",
+        "ko": "'What happens if you don't drink enough water?'라는 질문에 0형 조건문으로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zero_conditional",
+          "label_ko": "0형 조건문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'If'로 시작하는 조건절을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "if you"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "현재시제로 결과를 서술했는가",
+          "type": "pattern_regex",
+          "target": "you\\s+(feel|get|become)",
+          "min_matches": 1,
+          "points": 35,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u08_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Explain out loud a general rule about weather or cooking, using zero conditional.",
+        "ko": "날씨나 요리에 관한 일반 규칙을 0형 조건문으로 소리 내어 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zero_conditional",
+          "label_ko": "0형 조건문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'if' 또는 'when'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "if",
+            "when"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u08_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What happens to you when you don't get enough sleep?'",
+        "ko": "소리 내어 답해 보세요: 'What happens to you when you don't get enough sleep?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zero_conditional",
+          "label_ko": "0형 조건문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'when'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "when"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

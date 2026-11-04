@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "es_a2_u22",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 22,
+    "title": "Música/Entretenimiento",
+    "title_ko": "음악·엔터테인먼트",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about a favorite artist, we use « Mi artista favorito es... ». To describe music, we use « Esta música suena... ».",
+    "explanation_ko": "좋아하는 아티스트를 말할 때는 'Mi artista favorito es...'(제가 좋아하는 아티스트는 ~예요), 음악을 묘사할 때는 'Esta música suena...'(이 음악은 ~하게 들려요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Mi artista favorito es muy famoso.",
+        "ko": "제가 좋아하는 아티스트는 정말 유명해요."
+      },
+      {
+        "en": "Esta música suena relajante.",
+        "ko": "이 음악은 편안하게 들려요."
+      },
+      {
+        "en": "Voy a conciertos a menudo.",
+        "ko": "저는 콘서트에 자주 가요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u22_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba sobre su artista favorito usando «Mi artista favorito es...».",
+        "ko": "'Mi artista favorito es...'를 사용해서 좋아하는 아티스트를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "favorite_artist",
+          "label_ko": "좋아하는 아티스트 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'artista favorito'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "artista favorito"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u22_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Va a conciertos a menudo?» Responda a esta pregunta.",
+        "ko": "'¿Va a conciertos a menudo?'(콘서트 자주 가요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "concert",
+          "label_ko": "콘서트 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u22_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Hable en voz alta sobre música que le gusta.",
+        "ko": "소리 내어 좋아하는 음악에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "music",
+          "label_ko": "음악 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'música'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "música"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u22_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Suena relajante esta música?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Suena relajante esta música?'(이 음악 편안하게 들려요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "music_sound",
+          "label_ko": "음악 소리 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

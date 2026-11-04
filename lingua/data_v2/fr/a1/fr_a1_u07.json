@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "fr_a1_u07",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 7,
+    "title": "Lieux et directions",
+    "title_ko": "장소·길 찾기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour demander son chemin, on utilise « Où est... ? ». Pour indiquer le chemin, on utilise « Tout droit » ou « Tournez à gauche/droite ».",
+    "explanation_ko": "길을 물을 때는 'Où est... ?'(~은 어디예요?), 길을 안내할 때는 'Tout droit'(직진하세요), 'Tournez à gauche/droite'(왼쪽/오른쪽으로 도세요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Où sont les toilettes ?",
+        "ko": "화장실이 어디예요?"
+      },
+      {
+        "en": "Allez tout droit, puis tournez à droite.",
+        "ko": "직진해서 오른쪽으로 도세요."
+      },
+      {
+        "en": "La banque est à côté du supermarché.",
+        "ko": "은행은 슈퍼마켓 옆에 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u07_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Demandez votre chemin en utilisant « Où est... ? ».",
+        "ko": "'Où est... ?'를 사용해서 길을 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "asking_directions",
+          "label_ko": "길 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Où est' 또는 'Où sont'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Où est",
+            "Où sont",
+            "où est",
+            "où sont"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u07_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Comment aller à la banque ? » Répondez en utilisant « Tout droit ».",
+        "ko": "'Comment aller à la banque ?'(은행 어떻게 가요?)라는 질문에 'Tout droit'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "giving_directions",
+          "label_ko": "길 안내 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Tout droit'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Tout droit",
+            "tout droit"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u07_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Demandez votre chemin à voix haute.",
+        "ko": "소리 내어 길을 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "asking_directions",
+          "label_ko": "길 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Où est'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Où est",
+            "où est"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u07_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Tournez à gauche ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Tournez à gauche ?'(왼쪽으로 도나요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "direction_answer",
+          "label_ko": "방향 답변 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

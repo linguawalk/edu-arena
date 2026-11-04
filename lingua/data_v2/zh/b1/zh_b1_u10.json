@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "zh_b1_u10",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b1",
+    "unit": 10,
+    "title": "一边...一边...",
+    "title_ko": "一边...一边... (~하면서 ~하다)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「一边...一边...」表示同时做两件事。「我一边吃饭，一边看电视」。",
+    "explanation_ko": "'一边...一边...'는 두 가지 일을 동시에 함을 나타냅니다. '我一边吃饭，一边看电视'(밥을 먹으면서 TV를 봐요).",
+    "key_expressions": [
+      {
+        "en": "我一边吃饭，一边看电视。",
+        "ko": "밥을 먹으면서 TV를 봐요."
+      },
+      {
+        "en": "他一边走，一边打电话。",
+        "ko": "그는 걸으면서 전화를 해요."
+      },
+      {
+        "en": "我一边听音乐，一边工作。",
+        "ko": "저는 음악을 들으면서 일해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b1_u10_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「一边...一边...」写出同时做的两件事。",
+        "ko": "동시에 하는 두 가지 일을 '一边...一边...'을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yibian_yibian",
+          "label_ko": "一边...一边...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'一边'을 2번 사용했는가",
+          "type": "pattern_regex",
+          "target": "一边.{0,10}一边",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u10_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你常常一边吃饭一边做什么？」请回答这个问题。",
+        "ko": "'你常常一边吃饭一边做什么？'(밥 먹으면서 뭐 자주 해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yibian_yibian",
+          "label_ko": "一边...一边...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'一边'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "一边"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u10_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「一边...一边...」说出同时做的两件事。",
+        "ko": "'一边...一边...'을 사용해서 소리 내어 동시에 하는 일을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yibian_yibian",
+          "label_ko": "一边...一边...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'一边'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "一边"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b1_u10_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你一边听音乐一边工作吗？」有人问你。请大声回答。",
+        "ko": "'你一边听音乐一边工作吗？'(음악 들으면서 일해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yibian_yibian",
+          "label_ko": "一边...一边...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "id": "de_c2_u16",
+    "domain": "language",
+    "lang": "de",
+    "level": "c2",
+    "unit": 16,
+    "title": "Ironiemarker",
+    "title_ko": "반어법 표지",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "« Wie originell » (said sarcastically) and « Bravo » (said ironically to criticize) are typical German irony markers.",
+    "explanation_ko": "'Wie originell'(정말 독창적이네요, 냉소적으로 말함)과 'Bravo'(잘했어요, 비판하려고 반어적으로 말함)는 독일어의 전형적인 반어법 표지입니다.",
+    "key_expressions": [
+      {
+        "en": "Ach, wie originell!",
+        "ko": "아, 정말 독창적이네요! (반어)"
+      },
+      {
+        "en": "Bravo, du hast alles wieder kaputt gemacht.",
+        "ko": "잘했어, 또 다 망가뜨렸네 (반어)."
+      },
+      {
+        "en": "Was für eine Überraschung... (ohne jede Überraschung gesagt)",
+        "ko": "정말 놀랍네요... (전혀 놀랍지 않다는 뜻)."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_c2_u16_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen ironischen Satz mit „Wie originell...“, um subtil zu kritisieren.",
+        "ko": "'Wie originell...'를 사용해서 미묘하게 비판하는 반어적 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "wie_originell",
+          "label_ko": "wie originell",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'originell'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "originell"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_c2_u16_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Er hat wieder einen Fehler gemacht.“ Antworten Sie ironisch mit „Bravo“.",
+        "ko": "'Er hat wieder einen Fehler gemacht.'(그가 또 실수했어요)라는 말에, 'Bravo'를 사용해서 반어적으로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "bravo_ironisch",
+          "label_ko": "bravo (ironisch)",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Bravo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Bravo",
+            "bravo"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_c2_u16_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen ironischen Satz mit sarkastischem Ton.",
+        "ko": "냉소적인 어조로 소리 내어 반어적 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "ironie_marker",
+          "label_ko": "반어법 표지",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_c2_u16_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Was für eine Überraschung, nicht wahr?“ Das sagt man Ihnen ironisch. Antworten Sie laut.",
+        "ko": "'Was für eine Überraschung, nicht wahr?'(정말 놀랍네요, 그렇죠?)라는 반어적인 말을 들었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "ironie_marker",
+          "label_ko": "반어법 표지",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

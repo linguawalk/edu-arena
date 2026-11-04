@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "de_b2_u26",
+    "domain": "language",
+    "lang": "de",
+    "level": "b2",
+    "unit": 26,
+    "title": "Genitivattribut vs von-Konstruktion",
+    "title_ko": "2격속격 vs von구문",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "The genitive attribute (« das Auto des Lehrers ») is more formal/written; the « von » construction (« das Auto von dem Lehrer ») is more colloquial.",
+    "explanation_ko": "2격속격('das Auto des Lehrers')은 더 격식 있는 문어체이고, 'von' 구문('das Auto von dem Lehrer')은 더 구어체입니다.",
+    "key_expressions": [
+      {
+        "en": "Das ist das Buch des Autors. (Genitiv)",
+        "ko": "이건 작가의 책이에요 (2격)."
+      },
+      {
+        "en": "Das ist das Buch von dem Autor. (von-Konstruktion)",
+        "ko": "이건 그 작가의 책이에요 (von구문)."
+      },
+      {
+        "en": "Die Farbe der Blumen ist schön.",
+        "ko": "꽃의 색깔이 아름다워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b2_u26_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz im Genitiv (z.B. „das Buch des Autors“).",
+        "ko": "2격(예: 'das Buch des Autors')을 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "genitiv_vs_von",
+          "label_ko": "2격",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'des' 또는 'der'를 소유격으로 사용했는가",
+          "type": "pattern_regex",
+          "target": "(des|der)\\s+\\w+s?\\b",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u26_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Schreiben Sie den gleichen Satz noch einmal mit der „von“-Konstruktion.",
+        "ko": "같은 문장을 'von' 구문으로 다시 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "genitiv_vs_von",
+          "label_ko": "von구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'von'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "von"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u26_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz im Genitiv.",
+        "ko": "소리 내어 2격 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "genitiv_vs_von",
+          "label_ko": "2격",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'des' 또는 'der'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "des",
+            "der"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b2_u26_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist die Farbe der Blumen schön?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist die Farbe der Blumen schön?'(꽃 색깔이 아름다워요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "genitiv_vs_von",
+          "label_ko": "2격",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

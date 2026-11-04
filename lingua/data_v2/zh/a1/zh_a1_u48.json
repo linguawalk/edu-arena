@@ -1,0 +1,261 @@
+{
+  "meta": {
+    "id": "zh_a1_u48",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 48,
+    "title": "综合会话1",
+    "title_ko": "통합 회화 1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "综合练习购物和餐厅的对话，使用点餐、价钱、请求的表达。",
+    "explanation_ko": "쇼핑과 식당 대화를 조합해서 연습합니다. 주문, 가격, 부탁 표현을 사용합니다.",
+    "key_expressions": [
+      {
+        "en": "请给我菜单，我要点炒饭。多少钱？",
+        "ko": "메뉴판 주세요, 볶음밥 주문할게요. 얼마예요?"
+      },
+      {
+        "en": "在餐厅吃了炒饭。很好吃。",
+        "ko": "식당에서 볶음밥을 먹었어요. 맛있었어요."
+      },
+      {
+        "en": "请给我水。谢谢。",
+        "ko": "물 주세요. 감사합니다."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u48_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用两个以上的句子写出在餐厅点菜、问价钱的完整对话。",
+        "ko": "식당에서 주문하고 가격을 묻는 일련의 대화를 두 문장 이상으로 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "restaurant_full",
+          "label_ko": "종합 식당 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我要点'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我要点"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'多少钱'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "多少钱"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[。？?]",
+          "min_matches": 2,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u48_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「昨天做什么了？」请把购物和吃饭的经历包含在内回答。",
+        "ko": "'昨天做什么了？'(어제 뭐 했어요?)라는 질문에, 쇼핑과 식사 경험을 포함해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "past_activities",
+          "label_ko": "종합 과거 활동 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'了'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "了"
+          ],
+          "min_matches": 2,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[。]",
+          "min_matches": 2,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u48_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出在店里点菜、问价钱的完整对话。",
+        "ko": "가게에서 주문하고 가격을 묻는 일련의 대화를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "shop_conversation",
+          "label_ko": "종합 쇼핑 대화 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我要'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我要"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'多少钱'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "多少钱"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u48_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「周末做什么了？」被问到。请把去过的地方和吃过的东西包含在内，大声回答。",
+        "ko": "'周末做什么了？'(주말에 뭐 했어요?)라는 질문을 받았습니다. 갔던 장소와 먹은 음식을 포함해서 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weekend_full",
+          "label_ko": "종합 주말 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'了'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "了"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 15자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 15,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "fr_b2_u02",
+    "domain": "language",
+    "lang": "fr",
+    "level": "b2",
+    "unit": 2,
+    "title": "Subjonctif après superlatifs et négations",
+    "title_ko": "최상급·부정문 뒤의 접속법",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Le subjonctif s'utilise après un superlatif ou une expression négative exprimant un jugement subjectif. Par exemple : « C'est le meilleur livre que j'aie jamais lu ».",
+    "explanation_ko": "접속법은 최상급이나 주관적 판단을 나타내는 부정 표현 뒤에 씁니다. 예: 'C'est le meilleur livre que j'aie jamais lu'(제가 읽은 것 중 최고의 책이에요).",
+    "key_expressions": [
+      {
+        "en": "C'est le meilleur livre que j'aie jamais lu.",
+        "ko": "제가 읽은 것 중 최고의 책이에요."
+      },
+      {
+        "en": "Il n'y a personne qui puisse m'aider.",
+        "ko": "저를 도와줄 수 있는 사람이 없어요."
+      },
+      {
+        "en": "C'est la seule solution qui soit possible.",
+        "ko": "이게 가능한 유일한 해결책이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_b2_u02_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase avec un superlatif suivi du subjonctif (« le meilleur/pire que... »).",
+        "ko": "최상급 뒤에 접속법이 오는 문장('le meilleur/pire que...')을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "subj_superlatif",
+          "label_ko": "최상급+접속법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'le meilleur' 또는 'le pire'와 'que'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(le meilleur|le pire).{0,20}que",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b2_u02_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Y a-t-il quelqu'un qui puisse vous aider ? » Répondez à cette question.",
+        "ko": "'Y a-t-il quelqu'un qui puisse vous aider ?'(도와줄 수 있는 사람이 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "subj_negation",
+          "label_ko": "부정문+접속법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b2_u02_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute une phrase avec un superlatif suivi du subjonctif.",
+        "ko": "소리 내어 최상급 뒤에 접속법이 오는 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "subj_superlatif",
+          "label_ko": "최상급+접속법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'le meilleur' 또는 'le pire'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "le meilleur",
+            "le pire"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_b2_u02_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« C'est la seule solution qui soit possible ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'C'est la seule solution qui soit possible ?'(이게 가능한 유일한 해결책이에요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "subj_negation",
+          "label_ko": "부정문+접속법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

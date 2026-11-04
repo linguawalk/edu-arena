@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "id": "ko_a2_u11",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a2",
+    "unit": 11,
+    "title": "Health Advice (-어야 해요)",
+    "title_ko": "건강 조언",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To give health advice, use « -아야/어야 해요 » (should/must ~). For example, « 물을 많이 마셔야 해요 » (You should drink a lot of water).",
+    "explanation_ko": "건강 조언을 할 때는 '-아야/어야 해요'를 씁니다. 예: '물을 많이 마셔야 해요'.",
+    "key_expressions": [
+      {
+        "en": "You should drink a lot of water.",
+        "ko": "물을 많이 마셔야 해요."
+      },
+      {
+        "en": "You need to rest.",
+        "ko": "쉬어야 해요."
+      },
+      {
+        "en": "You should see a doctor.",
+        "ko": "병원에 가야 해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a2_u11_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Give health advice using «-아야/어야 해요».",
+        "ko": "'-아야/어야 해요'를 사용해서 건강 조언을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "health_advice",
+          "label_ko": "건강 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Does it end with 아야 해요 or 어야 해요?",
+          "type": "pattern_regex",
+          "target": "(아야 해요|어야 해요)[.]?$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u11_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«머리가 아파요. 어떻게 해야 해요?» (My head hurts. What should I do?) Give advice.",
+        "ko": "'머리가 아파요. 어떻게 해야 해요?'(조언을 구하는 질문)에 조언으로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "health_advice",
+          "label_ko": "건강 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Does it end with 아야 해요 or 어야 해요?",
+          "type": "pattern_regex",
+          "target": "(아야 해요|어야 해요)[.]?$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u11_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say out loud «병원에 가야 해요» (You should see a doctor).",
+        "ko": "'병원에 가야 해요'를 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "health_advice",
+          "label_ko": "건강 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '병원' (hospital) or '가야 해요' (should go)?",
+          "type": "keyword_match",
+          "target": [
+            "병원",
+            "가야 해요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a2_u11_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«쉬어야 해요?» (Do I need to rest?) Answer out loud.",
+        "ko": "'쉬어야 해요?'(휴식 필요 여부를 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "health_advice",
+          "label_ko": "건강 조언 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

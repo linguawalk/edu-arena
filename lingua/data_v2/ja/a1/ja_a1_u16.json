@@ -1,0 +1,243 @@
+{
+  "meta": {
+    "id": "ja_a1_u16",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 16,
+    "title": "気持ち",
+    "title_ko": "기분",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "気持ちを話すときは「〜です」を使います。「うれしいです」「かなしいです」「たのしいです」のように使います。",
+    "explanation_ko": "기분을 말할 때는 '〜です'를 씁니다. 'うれしいです'(기뻐요), 'かなしいです'(슬퍼요), 'たのしいです'(즐거워요)처럼 씁니다.",
+    "key_expressions": [
+      {
+        "en": "きょうはうれしいです。",
+        "ko": "오늘은 기뻐요."
+      },
+      {
+        "en": "すこしつかれました。",
+        "ko": "조금 피곤해요."
+      },
+      {
+        "en": "とてもたのしかったです。",
+        "ko": "정말 즐거웠어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u16_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "今の気持ちを「〜です」を使って書いてください。",
+        "ko": "지금 기분을 '〜です'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "feeling",
+          "label_ko": "기분 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "기분 단어(うれしい/かなしい/たのしい/つかれた)를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "うれしい",
+            "かなしい",
+            "たのしい",
+            "つかれ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u16_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「きょうはどうですか」という質問に答えを書いてください。",
+        "ko": "'きょうはどうですか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "feeling",
+          "label_ko": "기분 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "기분 단어를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "うれしい",
+            "かなしい",
+            "たのしい",
+            "つかれ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u16_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "今の気持ちについて声に出して話してください。",
+        "ko": "지금 기분에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "feeling",
+          "label_ko": "기분 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "기분 단어를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "うれしい",
+            "かなしい",
+            "たのしい",
+            "つかれ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u16_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「つかれましたか」と聞かれました。声に出して答えてください。",
+        "ko": "'つかれましたか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tired",
+          "label_ko": "피곤함 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'つかれ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "つかれ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

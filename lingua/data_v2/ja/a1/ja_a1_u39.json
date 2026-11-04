@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "id": "ja_a1_u39",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 39,
+    "title": "いつもの一日",
+    "title_ko": "평소 하루",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "いつもの生活を話すときは、時間と動詞を組み合わせて「〜じに〜します」を使います。",
+    "explanation_ko": "평소 생활을 말할 때는 시간과 동사를 결합해서 '〜じに〜します'를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "7じにおきて、8じにあさごはんをたべます。",
+        "ko": "7시에 일어나서 8시에 아침을 먹어요."
+      },
+      {
+        "en": "9じにしごとをはじめます。",
+        "ko": "9시에 일을 시작해요."
+      },
+      {
+        "en": "よる10じにおふろにはいります。",
+        "ko": "밤 10시에 목욕을 해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u39_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "いつもの一日のスケジュールを、時間を使って2つ以上書いてください。",
+        "ko": "평소 하루 일정을, 시간을 사용해서 두 가지 이상 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_schedule",
+          "label_ko": "일과 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'じに'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "じに"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "동사(ます형)를 사용했는가",
+          "type": "pattern_regex",
+          "target": "ます",
+          "min_matches": 2,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u39_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「いつもなんじにねますか」という質問に答えを書いてください。",
+        "ko": "'いつもなんじにねますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sleep_time",
+          "label_ko": "취침 시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'じ'와 'ねます'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "じ.{0,10}ねます",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u39_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "いつもの一日について声に出して話してください。",
+        "ko": "평소 하루에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_schedule",
+          "label_ko": "일과 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'じ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "じ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u39_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「まいあさなんじにおきますか」と聞かれました。声に出して答えてください。",
+        "ko": "'まいあさなんじにおきますか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "wake_time",
+          "label_ko": "기상 시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'じ'와 'おきます'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "じ.{0,10}おきます",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "meta": {
+    "id": "en_a1_u24",
+    "domain": "language",
+    "lang": "en",
+    "level": "a1",
+    "unit": 24,
+    "title": "Jobs & Occupations",
+    "title_ko": "직업",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: talking about jobs using 'a/an' + occupation.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 'a/an' + 직업명으로 직업 말하기",
+    "key_expressions": [
+      {
+        "en": "I am a teacher/doctor/engineer.",
+        "ko": "저는 교사/의사/엔지니어예요."
+      },
+      {
+        "en": "What do you do?",
+        "ko": "무슨 일을 하세요?"
+      },
+      {
+        "en": "She works at a hospital.",
+        "ko": "그녀는 병원에서 일해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a1_u24_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about a job you would like to have someday and why.",
+        "ko": "언젠가 갖고 싶은 직업과 이유를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job_article",
+          "label_ko": "a/an+직업 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "직업명을 a/an과 함께 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(a|an)\\s+\\w+(er|or|ist|ian)\\b",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'want to be'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "want to be"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "이유(because)를 포함했는가",
+          "type": "keyword_match",
+          "target": [
+            "because"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u24_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What does your father or mother do?' Write your answer.",
+        "ko": "'What does your father or mother do?'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job_article",
+          "label_ko": "a/an+직업 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "직업명을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "teacher",
+            "doctor",
+            "engineer",
+            "nurse",
+            "cook",
+            "driver",
+            "farmer"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'is a/an'을 사용했는가",
+          "type": "pattern_regex",
+          "target": "is\\s+(a|an)",
+          "min_matches": 1,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u24_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about three jobs and where people with those jobs work.",
+        "ko": "직업 세 가지와 그 직업을 가진 사람들이 어디서 일하는지 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job_word",
+          "label_ko": "직업명",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "직업명을 2개 이상 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "teacher",
+            "doctor",
+            "engineer",
+            "nurse",
+            "cook",
+            "driver",
+            "police"
+          ],
+          "min_matches": 2,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'works at'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "works at",
+            "work at"
+          ],
+          "min_matches": 1,
+          "points": 25,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a1_u24_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What do you want to be in the future?'",
+        "ko": "소리 내어 답해 보세요: 'What do you want to be in the future?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job_article",
+          "label_ko": "a/an+직업 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I want to be a/an'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i want to be"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "직업명을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "teacher",
+            "doctor",
+            "engineer",
+            "nurse",
+            "cook",
+            "pilot",
+            "artist"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

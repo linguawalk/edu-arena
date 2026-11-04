@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "ja_a2_u10",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 10,
+    "title": "食べ物の好み",
+    "title_ko": "음식 취향",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "食べ物の好みを詳しく話すときは「〜のほうがすきです」「〜はにがてです」を使います。",
+    "explanation_ko": "음식 취향을 자세히 말할 때는 '〜のほうがすきです'(~쪽을 좋아해요), '〜はにがてです'(~은 잘 못 먹어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "わしょくよりようしょくのほうがすきです。",
+        "ko": "일식보다 양식 쪽을 좋아해요."
+      },
+      {
+        "en": "なっとうはにがてです。",
+        "ko": "낫토는 잘 못 먹어요."
+      },
+      {
+        "en": "あまいものがだいすきです。",
+        "ko": "단 음식을 정말 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u10_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "食べ物の好みを「〜のほうがすきです」を使って書いてください。",
+        "ko": "음식 취향을 '〜のほうがすきです'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "food_preference",
+          "label_ko": "음식 취향 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'のほうがすきです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "のほうがすきです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u10_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「にがてなたべものがありますか」という質問に答えを書いてください。",
+        "ko": "'にがてなたべものがありますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "dislike_food",
+          "label_ko": "못 먹는 음식 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'にがて'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "にがて"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u10_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "食べ物の好みについて声に出して話してください。",
+        "ko": "음식 취향에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "food_preference",
+          "label_ko": "음식 취향 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ほうがすき' 또는 'にがて'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ほうがすき",
+            "にがて"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u10_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「なっとうがすきですか」と聞かれました。声に出して答えてください。",
+        "ko": "'なっとうがすきですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "natto",
+          "label_ko": "낫토 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'はい' 또는 'いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

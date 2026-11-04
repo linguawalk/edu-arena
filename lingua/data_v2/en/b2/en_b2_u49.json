@@ -1,0 +1,253 @@
+{
+  "meta": {
+    "id": "en_b2_u49",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 49,
+    "title": "Balancing Formal and Informal Register",
+    "title_ko": "격식·비격식 균형 맞추기",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Fluent speakers adjust register to the situation: formal for emails and presentations ('I would like to propose ...'), informal for chatting with friends ('Wanna grab lunch?'). Mixing registers inappropriately (too casual in a formal email, or overly stiff with friends) sounds unnatural.",
+    "explanation_ko": "유창한 화자는 상황에 맞게 격식을 조정합니다: 이메일·발표에는 격식체('I would like to propose ...'), 친구와의 잡담에는 비격식체('Wanna grab lunch?'). 격식을 부적절하게 섞으면(격식체 이메일에 너무 캐주얼하거나, 친구에게 너무 딱딱하게) 부자연스럽게 들립니다.",
+    "key_expressions": [
+      {
+        "en": "I would like to propose an alternative approach.",
+        "ko": "다른 접근 방식을 제안하고 싶습니다."
+      },
+      {
+        "en": "Wanna grab lunch later?",
+        "ko": "이따가 점심 먹을래?"
+      },
+      {
+        "en": "Could we possibly reschedule?",
+        "ko": "혹시 일정을 바꿀 수 있을까요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u49_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write the same request twice: once very formally (to a boss) and once very casually (to a friend).",
+        "ko": "같은 부탁을 두 번 써 보세요: 한 번은 아주 격식체로(상사에게), 한 번은 아주 캐주얼하게(친구에게)."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "register_shift",
+          "label_ko": "격식 조정",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "격식체 표현(would like to/could you possibly)을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "would like to",
+            "could you possibly",
+            "i was wondering"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "캐주얼 표현(wanna/can you)을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "wanna",
+            "can you",
+            "hey"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.!?]",
+          "min_matches": 2,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u49_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'How would you formally propose a new idea in a meeting?' Write your answer using 'I would like to propose'.",
+        "ko": "'How would you formally propose a new idea in a meeting?'라는 질문에 'I would like to propose'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "register_shift",
+          "label_ko": "격식 조정",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I would like to propose'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i would like to propose"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u49_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say the same invitation out loud twice: once formally to a business contact, once casually to a friend.",
+        "ko": "같은 초대를 두 번 소리 내어 말해 보세요: 한 번은 비즈니스 관계자에게 격식체로, 한 번은 친구에게 캐주얼하게."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "register_shift",
+          "label_ko": "격식 조정",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "격식체 표현 또는 캐주얼 표현을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "would like to",
+            "wanna",
+            "let's"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u49_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'How does the way you speak change between talking to your boss and talking to close friends?'",
+        "ko": "소리 내어 답해 보세요: 'How does the way you speak change between talking to your boss and talking to close friends?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "register_shift",
+          "label_ko": "격식 조정",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'formal' 또는 'casual'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "formal",
+            "casual",
+            "informal"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

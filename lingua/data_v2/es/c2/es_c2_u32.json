@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "es_c2_u32",
+    "domain": "language",
+    "lang": "es",
+    "level": "c2",
+    "unit": 32,
+    "title": "Criticar/regañar/refunfuñar",
+    "title_ko": "비판하다 계열",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "« Criticar » (criticize) is neutral evaluation, « regañar » (scold) is a reprimand, « refunfuñar » (grumble) is complaining under one's breath.",
+    "explanation_ko": "'criticar'(비판하다)는 중립적인 평가이고, 'regañar'(꾸짖다)는 질책이며, 'refunfuñar'(투덜대다)는 작은 목소리로 불평하는 것입니다.",
+    "key_expressions": [
+      {
+        "en": "Critica el plan sin ofrecer alternativas.",
+        "ko": "그는 대안을 제시하지 않고 계획을 비판해요."
+      },
+      {
+        "en": "Su madre lo regañó por llegar tarde.",
+        "ko": "그의 어머니는 늦게 도착해서 그를 꾸짖었어요."
+      },
+      {
+        "en": "Siempre refunfuña sobre el trabajo.",
+        "ko": "그는 항상 일에 대해 투덜대요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_c2_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una frase con «criticar» (evaluación neutra).",
+        "ko": "중립적인 평가로서 'criticar'를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "criticar",
+          "label_ko": "criticar",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'critica' 또는 'criticar'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "critica",
+            "criticar"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_c2_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Lo regañó su madre por llegar tarde?» Responda a esta pregunta.",
+        "ko": "'¿Lo regañó su madre por llegar tarde?'(늦게 도착해서 어머니가 꾸짖었어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "reganar",
+          "label_ko": "regañar",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_c2_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una frase con «refunfuñar».",
+        "ko": "소리 내어 'refunfuñar'를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "refunfunar",
+          "label_ko": "refunfuñar",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'refunfuña' 또는 'refunfuñar'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "refunfuña",
+            "refunfuñar"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_c2_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Critica el plan sin ofrecer alternativas?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Critica el plan sin ofrecer alternativas?'(대안 없이 계획을 비판해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "criticar",
+          "label_ko": "criticar",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

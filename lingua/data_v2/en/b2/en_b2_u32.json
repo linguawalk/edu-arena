@@ -1,0 +1,241 @@
+{
+  "meta": {
+    "id": "en_b2_u32",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 32,
+    "title": "Reporting Opinions and Disagreements Formally",
+    "title_ko": "격식체 의견 불일치 표현",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Formal ways to disagree soften the impact: 'I see your point, but ...', 'With respect, I have to disagree', 'I'm not entirely convinced that ...'. These maintain politeness while still expressing a different opinion clearly.",
+    "explanation_ko": "격식체로 반대할 때는 충격을 완화하는 표현을 씁니다: 'I see your point, but ...', 'With respect, I have to disagree', 'I'm not entirely convinced that ...'. 정중함을 유지하면서도 다른 의견을 명확히 표현합니다.",
+    "key_expressions": [
+      {
+        "en": "With respect, I have to disagree.",
+        "ko": "죄송하지만 저는 동의할 수 없어요."
+      },
+      {
+        "en": "I'm not entirely convinced that this will work.",
+        "ko": "이게 효과가 있을지 완전히 확신이 서지는 않아요."
+      },
+      {
+        "en": "I see your point, but I think there's another way to look at it.",
+        "ko": "이해는 하지만, 다르게 볼 수도 있다고 생각해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a formal disagreement with a colleague's proposal, using 'With respect' or 'I'm not entirely convinced that'.",
+        "ko": "동료의 제안에 대한 격식체 반대 의견을 'With respect' 또는 'I'm not entirely convinced that'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "formal_disagreement",
+          "label_ko": "격식체 불일치 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'With respect' 또는 'not entirely convinced'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "with respect",
+            "not entirely convinced",
+            "i have to disagree"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "A colleague says: 'I think we should cut the budget.' Write a polite formal disagreement.",
+        "ko": "동료가 'I think we should cut the budget.'라고 말합니다. 정중한 격식체 반대 의견을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "formal_disagreement",
+          "label_ko": "격식체 불일치 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I see your point, but' 또는 'I have to disagree'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i see your point",
+            "i have to disagree",
+            "with respect"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Practice out loud, formally disagreeing with a hypothetical proposal, using 'I see your point, but'.",
+        "ko": "가상의 제안에 격식체로 반대하는 상황을, 'I see your point, but'을 사용해서 소리 내어 연습해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "formal_disagreement",
+          "label_ko": "격식체 불일치 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I see your point' 또는 'With respect'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i see your point",
+            "with respect"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Some people say technology makes us less social. Do you agree or disagree?'",
+        "ko": "소리 내어 답해 보세요: 'Some people say technology makes us less social. Do you agree or disagree?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "formal_disagreement",
+          "label_ko": "격식체 의견 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I agree' 또는 'I disagree'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "i agree",
+            "i disagree",
+            "i see your point"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

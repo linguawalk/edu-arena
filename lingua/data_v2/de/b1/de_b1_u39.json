@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "de_b1_u39",
+    "domain": "language",
+    "lang": "de",
+    "level": "b1",
+    "unit": 39,
+    "title": "Zustandspassiv",
+    "title_ko": "상태수동태",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "The Zustandspassiv (« sein + past participle ») describes the resulting state of an action, unlike the Vorgangspassiv which describes the process.",
+    "explanation_ko": "상태수동태('sein + 과거분사')는 행동의 결과 상태를 묘사하며, 과정을 묘사하는 과정수동태와 다릅니다.",
+    "key_expressions": [
+      {
+        "en": "Die Tür ist geschlossen.",
+        "ko": "문이 닫혀 있어요."
+      },
+      {
+        "en": "Das Fenster ist geöffnet.",
+        "ko": "창문이 열려 있어요."
+      },
+      {
+        "en": "Der Laden ist schon geschlossen.",
+        "ko": "가게가 이미 문 닫혀 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b1_u39_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz im Zustandspassiv (z.B. „Die Tür ist geschlossen“).",
+        "ko": "상태수동태(예: 'Die Tür ist geschlossen')를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zustandspassiv",
+          "label_ko": "상태수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ist'와 과거분사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "ist\\s+ge\\w+",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u39_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist das Fenster geöffnet?“ Beantworten Sie diese Frage.",
+        "ko": "'Ist das Fenster geöffnet?'(창문이 열려 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zustandspassiv",
+          "label_ko": "상태수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u39_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz im Zustandspassiv.",
+        "ko": "소리 내어 상태수동태 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zustandspassiv",
+          "label_ko": "상태수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ist'와 과거분사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "ist\\s+ge\\w+",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b1_u39_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist der Laden schon geschlossen?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist der Laden schon geschlossen?'(가게가 이미 문 닫혀 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zustandspassiv",
+          "label_ko": "상태수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

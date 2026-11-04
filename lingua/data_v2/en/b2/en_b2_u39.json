@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "id": "en_b2_u39",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 39,
+    "title": "Advanced Article Usage in Abstract Contexts",
+    "title_ko": "추상적 맥락의 관사 사용",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Abstract nouns usually take no article when speaking generally ('Education is important'), but 'the' when made specific ('The education I received was excellent'). This distinction is subtle and trips up even advanced learners.",
+    "explanation_ko": "추상 명사는 일반적으로 말할 때는 관사가 없지만('Education is important'), 특정하게 한정될 때는 'the'를 씁니다('The education I received was excellent'). 이 구분은 미묘해서 고급 학습자도 자주 틀립니다.",
+    "key_expressions": [
+      {
+        "en": "Success requires patience.",
+        "ko": "성공은 인내를 필요로 해요."
+      },
+      {
+        "en": "The success of the project depended on teamwork.",
+        "ko": "그 프로젝트의 성공은 팀워크에 달려 있었어요."
+      },
+      {
+        "en": "Freedom is a basic human right.",
+        "ko": "자유는 기본적인 인권이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u39_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write two sentences: one using an abstract noun (success, freedom, education) with no article for a general statement, and one using 'the' for a specific instance.",
+        "ko": "추상 명사(success, freedom, education)를 관사 없이 일반적으로 쓴 문장 하나와, 'the'로 특정하게 쓴 문장 하나를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "abstract_noun_article",
+          "label_ko": "추상명사 관사",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "추상 명사(success/freedom/education 등)를 관사 없이 사용했는가",
+          "type": "pattern_regex",
+          "target": "^(success|freedom|education|happiness|knowledge)\\s",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'the + 추상명사'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "the\\s+(success|freedom|education|happiness|knowledge)",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.!]",
+          "min_matches": 2,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u39_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What do you think is necessary for success in general?' Write your answer without an article before 'success'.",
+        "ko": "'What do you think is necessary for success in general?'라는 질문에, 'success' 앞에 관사 없이 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "abstract_noun_article",
+          "label_ko": "추상명사 관사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'success'를 관사 없이 사용했는가",
+          "type": "pattern_regex",
+          "target": "(?<!the )\\bsuccess\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u39_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud, formally, about the importance of freedom in general, using no article before 'freedom'.",
+        "ko": "'freedom' 앞에 관사 없이, 자유의 중요성에 대해 격식체로 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "abstract_noun_article",
+          "label_ko": "추상명사 관사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'freedom'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "freedom"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u39_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'How was the education you received in school? Was it good preparation for life?'",
+        "ko": "소리 내어 답해 보세요: 'How was the education you received in school? Was it good preparation for life?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "abstract_noun_article",
+          "label_ko": "추상명사 관사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'the education'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "the education"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

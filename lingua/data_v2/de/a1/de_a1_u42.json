@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "de_a1_u42",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 42,
+    "title": "Arzt/Apotheke",
+    "title_ko": "병원·약국",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe symptoms at the doctor, we use « Ich habe... ». To ask for medicine at the pharmacy, we use « Haben Sie etwas gegen...? ».",
+    "explanation_ko": "병원에서 증상을 말할 때는 'Ich habe...'(~이 있어요), 약국에서 약을 물을 때는 'Haben Sie etwas gegen...?'(~에 좋은 약 있어요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich habe Fieber.",
+        "ko": "열이 나요."
+      },
+      {
+        "en": "Haben Sie etwas gegen Kopfschmerzen?",
+        "ko": "두통에 좋은 약 있어요?"
+      },
+      {
+        "en": "Ich habe seit gestern Husten.",
+        "ko": "어제부터 기침이 나요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u42_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschreiben Sie ein Symptom beim Arzt und benutzen Sie dabei „Ich habe...“.",
+        "ko": "'Ich habe...'를 사용해서 병원에서 증상을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "symptom",
+          "label_ko": "증상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich habe'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich habe",
+            "ich habe"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u42_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Haben Sie Kopfschmerzen?“ Beantworten Sie diese Frage.",
+        "ko": "'Haben Sie Kopfschmerzen?'(두통 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "headache",
+          "label_ko": "두통 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u42_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Fragen Sie laut in der Apotheke nach einem Medikament.",
+        "ko": "약국에서 소리 내어 약을 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "medicine_request",
+          "label_ko": "약 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'gegen'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "gegen"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u42_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Haben Sie seit gestern Husten?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Haben Sie seit gestern Husten?'(어제부터 기침 나요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cough",
+          "label_ko": "기침 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

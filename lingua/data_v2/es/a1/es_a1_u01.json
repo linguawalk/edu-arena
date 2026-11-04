@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "es_a1_u01",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 1,
+    "title": "Saludos/Presentaciones",
+    "title_ko": "인사·자기소개",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To greet someone, we use « Hola » or « Buenos días ». To introduce yourself, we use « Me llamo... ».",
+    "explanation_ko": "인사할 때는 'Hola'(안녕하세요) 또는 'Buenos días'(좋은 아침입니다)를 씁니다. 자기소개할 때는 'Me llamo...'(제 이름은 ~예요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Hola, ¿cómo estás?",
+        "ko": "안녕하세요, 어떻게 지내세요?"
+      },
+      {
+        "en": "Me llamo María.",
+        "ko": "제 이름은 마리아예요."
+      },
+      {
+        "en": "Mucho gusto.",
+        "ko": "만나서 반가워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u01_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Preséntese usando «Me llamo...».",
+        "ko": "'Me llamo...'를 사용해서 자기소개를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "introduction",
+          "label_ko": "자기소개 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Me llamo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Me llamo",
+            "me llamo"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u01_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Cómo estás?» Responda a esta pregunta.",
+        "ko": "'¿Cómo estás?'(어떻게 지내세요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "how_are_you",
+          "label_ko": "안부 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u01_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Salude en voz alta usando «Hola».",
+        "ko": "'Hola'를 사용해서 소리 내어 인사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "greeting",
+          "label_ko": "인사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Hola'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Hola",
+            "hola"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u01_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Cómo te llamas?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Cómo te llamas?'(이름이 뭐예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "introduction",
+          "label_ko": "자기소개 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Me llamo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Me llamo",
+            "me llamo"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

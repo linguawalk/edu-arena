@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "fr_b1_u48",
+    "domain": "language",
+    "lang": "fr",
+    "level": "b1",
+    "unit": 48,
+    "title": "Les emphatiques: c'est... qui/que",
+    "title_ko": "강조구문 c'est...qui/que",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "« C'est... qui/que » sert à mettre en relief un élément de la phrase. Par exemple : « C'est Marie qui a téléphoné » (met en relief Marie).",
+    "explanation_ko": "'C'est... qui/que'는 문장의 한 요소를 강조하는 데 씁니다. 예: 'C'est Marie qui a téléphoné'(전화한 사람은 마리예요, 마리를 강조).",
+    "key_expressions": [
+      {
+        "en": "C'est Marie qui a téléphoné.",
+        "ko": "전화한 사람은 마리예요."
+      },
+      {
+        "en": "C'est ce livre que je cherche.",
+        "ko": "제가 찾는 건 이 책이에요."
+      },
+      {
+        "en": "C'est demain que nous partons.",
+        "ko": "저희가 떠나는 건 내일이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_b1_u48_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase emphatique en utilisant « C'est... qui... ».",
+        "ko": "'C'est... qui...'를 사용해서 강조 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "cest_qui",
+          "label_ko": "c'est...qui",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'C'est'와 'qui'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "C'est.{0,20}qui",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b1_u48_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Que cherchez-vous ? » Répondez en utilisant « C'est... que... ».",
+        "ko": "'Que cherchez-vous ?'(뭘 찾고 있어요?)라는 질문에 'C'est... que...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "cest_que",
+          "label_ko": "c'est...que",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'C'est'와 'que'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "C'est.{0,20}que",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b1_u48_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute une phrase emphatique en utilisant « C'est... qui... ».",
+        "ko": "'C'est... qui...'를 사용해서 소리 내어 강조 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "cest_qui",
+          "label_ko": "c'est...qui",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'C'est'와 'qui'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "C'est",
+            "qui"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_b1_u48_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« C'est demain que vous partez ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'C'est demain que vous partez ?'(떠나는 게 내일이에요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "cest_que",
+          "label_ko": "c'est...que",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "fr_a1_u46",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 46,
+    "title": "Technologie",
+    "title_ko": "기술",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler de ce qu'on peut faire avec son téléphone, on utilise « Avec cette application, je peux... ». Pour signaler un problème, on utilise « ... ne marche pas ».",
+    "explanation_ko": "휴대폰으로 할 수 있는 것을 말할 때는 'Avec cette application, je peux...'(이 앱으로 ~할 수 있어요), 문제를 알릴 때는 '...ne marche pas'(~이 작동 안 해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Avec cette application, je peux apprendre le français.",
+        "ko": "이 앱으로 프랑스어를 배울 수 있어요."
+      },
+      {
+        "en": "Mon téléphone ne marche pas.",
+        "ko": "제 휴대폰이 작동 안 해요."
+      },
+      {
+        "en": "J'ai oublié mon mot de passe.",
+        "ko": "비밀번호를 잊어버렸어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u46_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez ce que vous pouvez faire avec une application en utilisant « Avec cette application, je peux... ».",
+        "ko": "앱으로 할 수 있는 것을 'Avec cette application, je peux...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "app_capability",
+          "label_ko": "앱 기능 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'je peux'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "je peux"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u46_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Votre téléphone marche bien ? » Répondez à cette question.",
+        "ko": "'Votre téléphone marche bien ?'(휴대폰 잘 작동해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_problem",
+          "label_ko": "기기 문제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'marche'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "marche"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u46_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez d'un problème technique à voix haute.",
+        "ko": "소리 내어 기기 문제에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_problem",
+          "label_ko": "기기 문제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ne marche pas'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ne marche pas"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u46_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous avez oublié votre mot de passe ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous avez oublié votre mot de passe ?'(비밀번호를 잊어버렸어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "password",
+          "label_ko": "비밀번호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

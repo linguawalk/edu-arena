@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "id": "de_b2_u04",
+    "domain": "language",
+    "lang": "de",
+    "level": "b2",
+    "unit": 4,
+    "title": "Nominalstil vs Verbalstil",
+    "title_ko": "명사문체 vs 동사문체",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Nominal style (« die Durchführung der Untersuchung ») is more formal/written, verbal style (« die Untersuchung durchführen ») is more conversational.",
+    "explanation_ko": "명사문체('die Durchführung der Untersuchung')는 더 격식 있는 문어체이고, 동사문체('die Untersuchung durchführen')는 더 구어체입니다.",
+    "key_expressions": [
+      {
+        "en": "Die Durchführung der Untersuchung dauert lange. (Nominalstil)",
+        "ko": "조사의 실시는 오래 걸려요 (명사문체)."
+      },
+      {
+        "en": "Wir führen die Untersuchung durch. (Verbalstil)",
+        "ko": "저희는 조사를 실시해요 (동사문체)."
+      },
+      {
+        "en": "Die Entscheidung des Ministers erfolgte schnell.",
+        "ko": "장관의 결정은 신속하게 이루어졌어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b2_u04_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz im Nominalstil (z.B. „die Durchführung der...“).",
+        "ko": "명사문체(예: 'die Durchführung der...')를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "nominalstil",
+          "label_ko": "명사문체",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'-ung'으로 끝나는 명사와 'der/des'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\w+ung\\s+(der|des)",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u04_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Schreiben Sie den gleichen Satz noch einmal im Verbalstil.",
+        "ko": "같은 문장을 동사문체로 다시 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verbalstil",
+          "label_ko": "동사문체",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 8자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 8,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b2_u04_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz im Nominalstil.",
+        "ko": "소리 내어 명사문체 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "nominalstil",
+          "label_ko": "명사문체",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'-ung'으로 끝나는 명사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\w+ung\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b2_u04_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Erfolgte die Entscheidung des Ministers schnell?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Erfolgte die Entscheidung des Ministers schnell?'(장관의 결정이 신속하게 이루어졌어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "nominalstil",
+          "label_ko": "명사문체",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

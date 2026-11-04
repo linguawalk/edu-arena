@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "ko_a1_u45",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 45,
+    "title": "Cooking (요리)",
+    "title_ko": "요리",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about cooking, use « ~을/를 만들어요 » (I make ~). To give a simple recipe step, use « 먼저 ~을/를 넣어요 » (First, put in ~).",
+    "explanation_ko": "요리를 말할 때는 '~을/를 만들어요', 조리 순서를 말할 때는 '먼저 ~을/를 넣어요'를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "I'm making kimchi stew.",
+        "ko": "저는 김치찌개를 만들어요."
+      },
+      {
+        "en": "First, put in the vegetables.",
+        "ko": "먼저 야채를 넣어요."
+      },
+      {
+        "en": "This recipe is easy.",
+        "ko": "이 요리는 쉬워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u45_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about a dish you are making using «~을/를 만들어요».",
+        "ko": "'~을/를 만들어요'를 사용해서 만들고 있는 요리에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cooking",
+          "label_ko": "요리 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '만들어요' (I make)?",
+          "type": "keyword_match",
+          "target": [
+            "만들어요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u45_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«이 요리가 쉬워요?» (Is this recipe easy?) Answer this question.",
+        "ko": "'이 요리가 쉬워요?'(요리 난이도를 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "recipe_difficulty",
+          "label_ko": "요리 난이도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u45_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say a cooking step out loud using «먼저 ~을/를 넣어요».",
+        "ko": "'먼저 ~을/를 넣어요'를 사용해서 소리 내어 조리 순서를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "recipe_step",
+          "label_ko": "조리 순서 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '먼저' (first)?",
+          "type": "keyword_match",
+          "target": [
+            "먼저"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u45_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«김치찌개를 만들어요?» (Are you making kimchi stew?) Answer out loud.",
+        "ko": "'김치찌개를 만들어요?'(김치찌개 조리 여부를 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cooking",
+          "label_ko": "요리 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

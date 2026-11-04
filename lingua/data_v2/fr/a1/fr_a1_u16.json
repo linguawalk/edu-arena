@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "fr_a1_u16",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 16,
+    "title": "Sentiments",
+    "title_ko": "기분",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour dire comment on se sent, on utilise « Je suis... ». Pour demander à quelqu'un comment il va, on utilise « Ça va ? ».",
+    "explanation_ko": "기분을 말할 때는 'Je suis...'(저는 ~해요), 상대방의 상태를 물을 때는 'Ça va ?'(괜찮아요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je suis content aujourd'hui.",
+        "ko": "저는 오늘 기뻐요."
+      },
+      {
+        "en": "Ça va ? Ça va bien, merci.",
+        "ko": "괜찮아요? 네, 괜찮아요, 감사해요."
+      },
+      {
+        "en": "Je suis fatigué.",
+        "ko": "저는 피곤해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u16_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez comment vous vous sentez en utilisant « Je suis... ».",
+        "ko": "자신의 기분을 'Je suis...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "feeling",
+          "label_ko": "기분 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je suis'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je suis",
+            "je suis"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u16_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Ça va ? » Répondez à cette question.",
+        "ko": "'Ça va ?'(괜찮아요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ca_va",
+          "label_ko": "안부 답변 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'va'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "va"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u16_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites comment vous vous sentez à voix haute.",
+        "ko": "소리 내어 자신의 기분을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "feeling",
+          "label_ko": "기분 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Je suis'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Je suis",
+            "je suis"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u16_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous êtes fatigué ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous êtes fatigué ?'(피곤해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tired",
+          "label_ko": "피곤함 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

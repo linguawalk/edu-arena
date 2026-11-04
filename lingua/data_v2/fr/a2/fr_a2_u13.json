@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_a2_u13",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 13,
+    "title": "Achats/prix (approfondi)",
+    "title_ko": "쇼핑·가격 (심화)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour comparer les prix, on utilise « ... est moins cher que... ». Pour parler d'une réduction, on utilise « Il y a une réduction de... ».",
+    "explanation_ko": "가격을 비교할 때는 '...est moins cher que...'(~이 ~보다 싸요), 할인을 말할 때는 'Il y a une réduction de...'(~할인이 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ce magasin est moins cher que l'autre.",
+        "ko": "이 가게가 저 가게보다 싸요."
+      },
+      {
+        "en": "Il y a une réduction de vingt pour cent.",
+        "ko": "20퍼센트 할인이 있어요."
+      },
+      {
+        "en": "Pouvez-vous baisser le prix un peu ?",
+        "ko": "조금 더 싸게 안 될까요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u13_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Comparez deux prix en utilisant « ... est moins cher que... ».",
+        "ko": "두 가격을 '...est moins cher que...'를 사용해서 비교해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_comparison",
+          "label_ko": "가격 비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'moins cher'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "moins cher"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u13_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Y a-t-il une réduction ? » Répondez à cette question.",
+        "ko": "'Y a-t-il une réduction ?'(할인해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "discount",
+          "label_ko": "할인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'réduction'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "réduction"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u13_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Demandez à voix haute une réduction dans un magasin.",
+        "ko": "가게에서 소리 내어 할인을 요청해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bargain",
+          "label_ko": "흥정 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'prix' 또는 'réduction'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "prix",
+            "réduction"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u13_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Ce magasin est moins cher ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Ce magasin est moins cher ?'(이 가게가 더 싸요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_comparison",
+          "label_ko": "가격 비교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

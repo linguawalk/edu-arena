@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "id": "en_a2_u02",
+    "domain": "language",
+    "lang": "en",
+    "level": "a2",
+    "unit": 2,
+    "title": "Talking About Yesterday",
+    "title_ko": "어제 이야기하기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: narrating a sequence of past events in order.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 지난 일들을 순서대로 이야기하기",
+    "key_expressions": [
+      {
+        "en": "First, I woke up. Then, I ~.",
+        "ko": "먼저 일어났어요. 그다음 ~했어요."
+      },
+      {
+        "en": "After that, I went to ~.",
+        "ko": "그 후에 저는 ~에 갔어요."
+      },
+      {
+        "en": "In the end, I ~.",
+        "ko": "결국 저는 ~했어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a2_u02_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about your day yesterday, from morning to night, using at least two sequence words (first, then, after that).",
+        "ko": "순서 표현(first, then, after that)을 두 개 이상 사용해서 어제 하루를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sequence_word",
+          "label_ko": "순서 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "순서 표현을 2개 이상 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "first",
+            "then",
+            "after that",
+            "later",
+            "finally"
+          ],
+          "min_matches": 2,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "과거시제 동사를 2개 이상 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(went|ate|had|did|worked|studied|watched)\\b",
+          "min_matches": 2,
+          "points": 35,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "분량이 충분한가 (최소 18단어)",
+          "type": "length_check",
+          "unit": "words",
+          "min": 18,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u02_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What was the first thing you did yesterday morning?' Write your answer.",
+        "ko": "'What was the first thing you did yesterday morning?'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "past_verb",
+          "label_ko": "과거시제 동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'The first thing I did'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "the first thing i did",
+            "first, i"
+          ],
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "과거시제 동사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(woke|got|checked|ate|had)\\b",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 15,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a2_u02_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Narrate out loud what you did yesterday evening, step by step.",
+        "ko": "어제 저녁에 한 일을 순서대로 소리 내어 이야기해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sequence_word",
+          "label_ko": "순서 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "순서 표현을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "first",
+            "then",
+            "after that",
+            "later"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "과거시제 동사를 2개 이상 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(went|ate|had|watched|cooked|cleaned)\\b",
+          "min_matches": 2,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a2_u02_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What did you do right before you went to sleep last night?'",
+        "ko": "소리 내어 답해 보세요: 'What did you do right before you went to sleep last night?'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "past_verb",
+          "label_ko": "과거시제 동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "과거시제 동사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(read|watched|checked|brushed|listened)\\b",
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'before'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "before"
+          ],
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

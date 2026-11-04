@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Placement Check · 외국어 · edu-arena</title>
+<meta name="description" content="Find your starting level in under ten minutes. A short, step-ladder placement check for edu-arena languages.">
+<meta name="theme-color" content="#16224A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#16224A; --surface:#1E2E5C; --surface-hi:#263768; --line:#33447F;
+    --ink:#F3F1EA; --ink-dim:#93A0AA;
+    --amber:#F2A65A; --amber-dim:#7A5A34;
+    --teal:#3FBFA6; --teal-dim:#2C6E62;
+    --rose:#E8637A; --rose-dim:#7A3542;
+    --radius:14px; --wrap:760px;
+    --serif-display:'Space Grotesk',sans-serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  button, textarea{font-family:inherit;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px;}
+  body::before{content:"";position:fixed;inset:0;background:radial-gradient(1100px 600px at 15% -10%, rgba(242,166,90,0.08), transparent 60%),radial-gradient(900px 500px at 110% 10%, rgba(63,191,166,0.07), transparent 60%);pointer-events:none;z-index:0;}
+
+  header.nav{position:sticky;top:0;z-index:100;background:rgba(22,34,74,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav-row{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px;}
+  .back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-dim);white-space:nowrap;}
+  .back:hover{color:var(--ink);}
+  .nav-mid{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);text-align:center;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .lang-toggle{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:3px;font-family:var(--mono);font-size:11.5px;flex-shrink:0;}
+  .lang-toggle button{border:none;background:transparent;color:var(--ink-dim);padding:5px 10px;border-radius:100px;cursor:pointer;font-family:var(--mono);font-size:11.5px;}
+  .lang-toggle button.act{background:var(--amber);color:#1a1206;font-weight:500;}
+
+  main{position:relative;z-index:1;padding:30px 0 80px;}
+
+  .intro{text-align:center;padding:20px 0 8px;}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);}
+  h1{font-family:var(--serif-display);font-weight:700;font-size:clamp(24px,4vw,32px);margin-top:8px;}
+  .intro p{color:var(--ink-dim);margin-top:10px;font-size:14px;line-height:1.6;}
+  .intro .btn-row{justify-content:center;margin-top:22px;}
+
+  /* ---------- ladder ---------- */
+  .ladder{display:flex;justify-content:center;gap:6px;margin:26px 0 8px;flex-wrap:wrap;}
+  .ladder-node{
+    font-family:var(--mono);font-size:11.5px;padding:6px 10px;border-radius:100px;
+    border:1px solid var(--line);color:var(--ink-dim);background:var(--surface);
+  }
+  .ladder-node.current{border-color:var(--amber);color:var(--amber);background:var(--surface-hi);font-weight:500;}
+  .ladder-node.cleared{border-color:var(--teal-dim);color:var(--teal);}
+  .ladder-node.failed{border-color:var(--rose-dim);color:var(--rose);}
+
+  .level-banner{text-align:center;font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);margin-bottom:18px;}
+  .level-banner b{color:var(--ink);}
+
+  .qcount{font-family:var(--mono);font-size:12px;color:var(--ink-dim);text-align:center;margin-bottom:14px;}
+
+  .qcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;}
+  .prompt{font-size:16px;line-height:1.55;margin-bottom:18px;}
+  .prompt-src{font-family:var(--mono);font-size:11px;color:var(--ink-dim);margin-bottom:14px;}
+
+  textarea.answer-input{
+    width:100%;min-height:110px;background:var(--surface-hi);border:1px solid var(--line);border-radius:10px;
+    padding:12px 14px;color:var(--ink);font-size:14.5px;resize:vertical;line-height:1.5;
+  }
+  textarea.answer-input:focus{border-color:var(--amber-dim);}
+  textarea.answer-input:disabled{opacity:.6;}
+
+  .btn-row{display:flex;gap:10px;margin-top:16px;}
+  .btn{font-family:var(--mono);font-size:13px;border-radius:8px;padding:10px 18px;cursor:pointer;border:1px solid var(--line);background:var(--surface-hi);color:var(--ink);}
+  .btn:hover{border-color:var(--amber-dim);}
+  .btn.primary{background:var(--amber);color:#1a1206;border-color:var(--amber);font-weight:500;}
+  .btn.primary:disabled{opacity:.4;cursor:default;}
+  .btn.ghost{background:transparent;}
+
+  .result-box{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);}
+  .result-score{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;}
+  .result-score .num{font-family:var(--serif-display);font-size:32px;font-weight:700;}
+  .result-score .badge{font-family:var(--mono);font-size:11px;border-radius:6px;padding:3px 9px;}
+  .badge.pass{color:var(--teal);border:1px solid var(--teal-dim);}
+  .badge.fail{color:var(--rose);border:1px solid var(--rose-dim);}
+  .rubric-list{display:flex;flex-direction:column;gap:8px;}
+  .rubric-item{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:var(--ink-dim);}
+  .rubric-item .mark{flex-shrink:0;font-family:var(--mono);width:16px;}
+  .rubric-item .mark.ok{color:var(--teal);}
+  .rubric-item .mark.no{color:var(--rose);}
+  .rubric-item .pts{margin-left:auto;font-family:var(--mono);flex-shrink:0;}
+
+  .next-row{margin-top:22px;display:flex;justify-content:flex-end;}
+
+  .loading, .error-state{text-align:center;color:var(--ink-dim);padding:60px 0;font-size:14px;}
+  .error-state a{color:var(--amber);}
+
+  .final-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:44px 30px;text-align:center;}
+  .final-card .eyebrow2{font-family:var(--mono);font-size:12px;color:var(--ink-dim);letter-spacing:.06em;text-transform:uppercase;}
+  .final-card .level{font-family:var(--serif-display);font-weight:700;font-size:56px;margin:12px 0 6px;color:var(--amber);}
+  .final-card .level-name{font-size:15px;color:var(--ink-dim);margin-bottom:22px;}
+  .final-card .sub{font-family:var(--mono);color:var(--ink-dim);font-size:12.5px;margin-bottom:26px;line-height:1.6;}
+  .final-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="back" id="backLink" href="index.html"><span aria-hidden="true">←</span><span id="backLabel">외국어 코스</span></a>
+    <div class="nav-mid" id="navMid">Placement Check</div>
+    <div class="lang-toggle" role="group" aria-label="Interface language">
+      <button type="button" id="btn-en" class="act">EN</button>
+      <button type="button" id="btn-ko">KO</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div id="introState">
+    <div class="intro">
+      <div class="eyebrow" id="eyebrow">PLACEMENT CHECK</div>
+      <h1 id="introTitle">Find your starting level</h1>
+      <p id="introSub">You'll write short answers, starting at A1. Clear a level to move up; the check stops as soon as we find where you need practice. Usually 2–5 minutes.</p>
+    </div>
+    <div class="ladder" id="ladderPreview"></div>
+    <div class="btn-row">
+      <button class="btn primary" id="startBtn">Start the check →</button>
+    </div>
+  </div>
+
+  <div id="loadingState" class="loading" style="display:none;">Loading…</div>
+  <div id="errorState" class="error-state" style="display:none;"></div>
+
+  <div id="playArea" style="display:none;">
+    <div class="ladder" id="ladder"></div>
+    <div class="level-banner" id="levelBanner"></div>
+    <div class="qcount" id="qcount"></div>
+    <div class="qcard" id="qcard"></div>
+    <div class="next-row" id="nextRow" style="display:none;">
+      <button class="btn primary" id="nextBtn"></button>
+    </div>
+  </div>
+
+  <div id="resultArea" style="display:none;"></div>
+
+</main>
+
+<script>
+  var LANG_NAMES = {
+    en:{en:"English", ko:"영어"}, ja:{en:"Japanese", ko:"일본어"}, zh:{en:"Chinese", ko:"중국어"},
+    fr:{en:"French", ko:"프랑스어"}, de:{en:"German", ko:"독일어"}, es:{en:"Spanish", ko:"스페인어"},
+    ko:{en:"Korean", ko:"한국어"}
+  };
+  var LEVEL_INFO = {
+    a1:{en:"First words", ko:"첫 단어"}, a2:{en:"Everyday chat", ko:"일상 대화"},
+    b1:{en:"Real conversation", ko:"실전 대화"}, b2:{en:"Confident fluency", ko:"자신 있는 유창함"},
+    c1:{en:"Nuanced command", ko:"섬세한 구사력"}, c2:{en:"Native instinct", ko:"원어민 감각"}
+  };
+  var LEVELS = ['a1','a2','b1','b2','c1','c2'];
+  var SAMPLE_UNITS = ['06','25','44'];   // 3 spread units per level, review unit (u50) excluded on purpose
+  var PASS_SCORE = 60;                    // per-task pass threshold (same as task.html)
+  var CLEAR_RATIO = 2;                    // need >=2 of 3 tasks passed to clear a level
+
+  var params = new URLSearchParams(location.search);
+  var lang = (params.get('lang') || 'en').toLowerCase();
+  if(!LANG_NAMES[lang]) lang = 'en';
+
+  var uiLang = 'en';
+  var levelIdx = 0;
+  var taskIdx = 0;
+  var levelTasks = [];       // tasks for the current level, loaded lazily
+  var passCountThisLevel = 0;
+  var levelStates = {};      // level -> 'cleared' | 'failed' | 'pending' | 'current'
+  LEVELS.forEach(function(l){ levelStates[l] = 'pending'; });
+
+  function t(en, ko){ return uiLang === 'ko' ? ko : en; }
+  function esc(s){ var d=document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+  function setUiLang(l){
+    uiLang = l;
+    document.getElementById('btn-en').classList.toggle('act', l === 'en');
+    document.getElementById('btn-ko').classList.toggle('act', l === 'ko');
+    try { localStorage.setItem('la-lang', l); } catch(e){}
+    document.getElementById('backLabel').textContent = t('Language courses', '외국어 코스');
+    document.getElementById('navMid').textContent = t('Placement Check', '배치 체크');
+    document.getElementById('eyebrow').textContent = t('PLACEMENT CHECK', '배치 체크');
+    document.getElementById('introTitle').textContent = t('Find your starting level', '시작 레벨 찾기');
+    document.getElementById('introSub').textContent = t(
+      'You\'ll write short answers, starting at A1. Clear a level to move up; the check stops as soon as we find where you need practice. Usually 2–5 minutes.',
+      'A1부터 짧은 답을 작성합니다. 한 레벨을 통과하면 다음 레벨로 올라가고, 연습이 필요한 지점을 찾으면 바로 멈춥니다. 보통 2~5분이면 끝나요.'
+    );
+    document.getElementById('startBtn').textContent = t('Start the check →', '체크 시작하기 →');
+    renderLadderPreview();
+    if(document.getElementById('playArea').style.display !== 'none'){
+      renderLadder(); renderLevelBanner(); renderQCount();
+    }
+  }
+  document.getElementById('btn-en').addEventListener('click', function(){ setUiLang('en'); });
+  document.getElementById('btn-ko').addEventListener('click', function(){ setUiLang('ko'); });
+
+  function renderLadderPreview(){
+    var box = document.getElementById('ladderPreview');
+    box.innerHTML = LEVELS.map(function(l){
+      return '<span class="ladder-node">' + l.toUpperCase() + '</span>';
+    }).join('');
+  }
+
+  function renderLadder(){
+    var box = document.getElementById('ladder');
+    box.innerHTML = LEVELS.map(function(l, i){
+      var cls = 'ladder-node';
+      if(levelStates[l] === 'cleared') cls += ' cleared';
+      else if(levelStates[l] === 'failed') cls += ' failed';
+      else if(i === levelIdx) cls += ' current';
+      var mark = levelStates[l] === 'cleared' ? ' ✓' : (levelStates[l] === 'failed' ? ' ✗' : '');
+      return '<span class="' + cls + '">' + l.toUpperCase() + mark + '</span>';
+    }).join('');
+  }
+
+  function renderLevelBanner(){
+    var level = LEVELS[levelIdx];
+    document.getElementById('levelBanner').innerHTML =
+      t('Testing ', '테스트 중: ') + '<b>' + level.toUpperCase() + ' · ' + esc(LEVEL_INFO[level][uiLang]) + '</b>';
+  }
+
+  function renderQCount(){
+    document.getElementById('qcount').textContent =
+      t('Question ', '문항 ') + (taskIdx + 1) + t(' of ', ' / ') + levelTasks.length + t(' at this level', '개 (이 레벨)');
+  }
+
+  // ---------------- rubric scoring engine (same logic as task.html) ----------------
+  function escapeRegex(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function countMatches(text, rubricItem){
+    if(rubricItem.type === 'keyword_match'){
+      var pattern = rubricItem.target.map(escapeRegex).join('|');
+      var re = new RegExp(pattern, 'gi');
+      var m = text.match(re);
+      return m ? m.length : 0;
+    }
+    if(rubricItem.type === 'pattern_regex'){
+      try { var re2 = new RegExp(rubricItem.target, 'gi'); var m2 = text.match(re2); return m2 ? m2.length : 0; }
+      catch(e){ return 0; }
+    }
+    return 0;
+  }
+  function scoreTask(task, text){
+    var breakdown = []; var total = 0;
+    task.rubric.forEach(function(r){
+      var met = false; var count = 0;
+      if(r.type === 'keyword_match' || r.type === 'pattern_regex'){
+        count = countMatches(text, r);
+        var minReq = r.min_matches || 1;
+        met = count >= minReq;
+        if(!met && minReq > 0 && (count / minReq) >= 0.8){ met = true; }
+      } else if(r.type === 'length_check'){
+        var words = text.trim().length ? text.trim().split(/\s+/) : [];
+        met = words.length >= r.min;
+      } else if(r.type === 'stt_confidence'){
+        met = true; // placement check never uses speaking tasks
+      }
+      if(met) total += r.points;
+      breakdown.push({criterion_ko: r.criterion_ko, points: r.points, met: met});
+    });
+    return {total: total, breakdown: breakdown};
+  }
+
+  // ---------------- data loading ----------------
+  function fetchJson(url){
+    return fetch(url).then(function(res){ if(!res.ok) throw new Error('not ok'); return res.json(); });
+  }
+
+  function loadLevelTasks(level){
+    var urls = SAMPLE_UNITS.map(function(u){ return 'data_v2/' + lang + '/' + level + '/' + lang + '_' + level + '_u' + u + '.json'; });
+    return Promise.all(urls.map(function(u){ return fetchJson(u); })).then(function(units){
+      return units.map(function(d){
+        var w = d.tasks.find(function(tk){ return tk.skill === 'writing'; });
+        return { task: w, unitTitle: d.meta.title, unitTitleKo: d.meta.title_ko };
+      });
+    });
+  }
+
+  function startLevel(){
+    passCountThisLevel = 0;
+    taskIdx = 0;
+    var level = LEVELS[levelIdx];
+    document.getElementById('loadingState').style.display = 'block';
+    document.getElementById('playArea').style.display = 'none';
+    loadLevelTasks(level).then(function(tasks){
+      levelTasks = tasks;
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('playArea').style.display = 'block';
+      renderLadder(); renderLevelBanner();
+      renderQuestion();
+    }).catch(function(){
+      showError(t('Could not load placement content for this level. ', '이 레벨의 배치 콘텐츠를 불러오지 못했습니다. ') +
+        '<a href="languages/' + lang + '/index.html">' + t('← Back', '← 뒤로') + '</a>');
+    });
+  }
+
+  function renderQuestion(){
+    renderQCount();
+    document.getElementById('nextRow').style.display = 'none';
+    var entry = levelTasks[taskIdx];
+    var task = entry.task;
+    var promptText = uiLang === 'ko' ? task.prompt.ko : task.prompt.en;
+    var srcTitle = uiLang === 'ko' ? (entry.unitTitleKo || entry.unitTitle) : entry.unitTitle;
+    var card = document.getElementById('qcard');
+    card.innerHTML =
+      '<div class="prompt-src">' + esc(srcTitle) + '</div>' +
+      '<div class="prompt">' + esc(promptText) + '</div>' +
+      '<textarea class="answer-input" id="answerInput" placeholder="' + t('Type your answer here...', '여기에 답을 입력하세요...') + '"></textarea>' +
+      '<div class="btn-row"><button class="btn primary" id="submitBtn">' + t('Submit', '제출') + '</button></div>' +
+      '<div id="resultBox"></div>';
+    document.getElementById('submitBtn').addEventListener('click', function(){
+      var text = document.getElementById('answerInput').value;
+      if(!text.trim()) return;
+      submitAnswer(task, text);
+    });
+  }
+
+  function submitAnswer(task, text){
+    var result = scoreTask(task, text);
+    var passed = result.total >= PASS_SCORE;
+    if(passed) passCountThisLevel++;
+
+    var box = document.getElementById('resultBox');
+    var rubricHtml = result.breakdown.map(function(r){
+      return '<div class="rubric-item"><span class="mark ' + (r.met ? 'ok' : 'no') + '">' + (r.met ? '✓' : '✗') + '</span><span>' + esc(r.criterion_ko) + '</span><span class="pts">' + (r.met ? '+' : '') + (r.met ? r.points : 0) + '/' + r.points + '</span></div>';
+    }).join('');
+    box.innerHTML =
+      '<div class="result-box">' +
+        '<div class="result-score"><span class="num">' + result.total + '</span><span class="badge ' + (passed ? 'pass' : 'fail') + '">' + (passed ? t('PASS','합격') : t('BELOW THRESHOLD','기준 미달')) + '</span></div>' +
+        '<div class="rubric-list">' + rubricHtml + '</div>' +
+      '</div>';
+
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('answerInput').disabled = true;
+
+    var nextRow = document.getElementById('nextRow');
+    var nextBtn = document.getElementById('nextBtn');
+    var isLastTaskInLevel = (taskIdx + 1 >= levelTasks.length);
+    nextBtn.textContent = isLastTaskInLevel ? t('See level result →', '레벨 결과 보기 →') : t('Next question →', '다음 문항 →');
+    nextRow.style.display = 'flex';
+    nextBtn.onclick = function(){
+      if(!isLastTaskInLevel){
+        taskIdx++;
+        renderQuestion();
+      } else {
+        finishLevel();
+      }
+    };
+  }
+
+  function finishLevel(){
+    var level = LEVELS[levelIdx];
+    var cleared = passCountThisLevel >= CLEAR_RATIO;
+    levelStates[level] = cleared ? 'cleared' : 'failed';
+
+    if(cleared && levelIdx === LEVELS.length - 1){
+      // cleared every level, including C2
+      showFinal(level, true);
+      return;
+    }
+    if(cleared){
+      levelIdx++;
+      startLevel();
+    } else {
+      showFinal(level, false);
+    }
+  }
+
+  function showFinal(level, clearedTop){
+    document.getElementById('playArea').style.display = 'none';
+    var area = document.getElementById('resultArea');
+    area.style.display = 'block';
+    var levelName = LEVEL_INFO[level][uiLang];
+    var subText = clearedTop
+      ? t('You cleared every level up to C2 — the top of this ladder. Start in C2 and see how far you can push it.',
+          'C2까지 모든 레벨을 통과했습니다 — 이 사다리의 최상단입니다. C2부터 시작해서 한계를 시험해 보세요.')
+      : t('This is where your answers started needing more practice. Start here — you can always jump to another level later.',
+          '이 레벨부터 연습이 더 필요한 것으로 나타났습니다. 여기서 시작하세요 — 나중에 언제든 다른 레벨로 이동할 수 있습니다.');
+    area.innerHTML =
+      '<div class="final-card">' +
+        '<div class="eyebrow2">' + t('Recommended starting level', '추천 시작 레벨') + '</div>' +
+        '<div class="level">' + level.toUpperCase() + '</div>' +
+        '<div class="level-name">' + esc(levelName) + '</div>' +
+        '<div class="sub">' + subText + '</div>' +
+        '<div class="final-actions">' +
+          '<a class="btn primary" href="units_v2.html?lang=' + encodeURIComponent(lang) + '&level=' + encodeURIComponent(level) + '">' + t('Start ' + level.toUpperCase(), level.toUpperCase() + ' 시작하기') + '</a>' +
+          '<a class="btn ghost" href="languages/' + encodeURIComponent(lang) + '/index.html">' + t('Choose a different level', '다른 레벨 선택') + '</a>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function showError(msg){
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('introState').style.display = 'none';
+    var err = document.getElementById('errorState');
+    err.style.display = 'block';
+    err.innerHTML = msg;
+  }
+
+  document.getElementById('startBtn').addEventListener('click', function(){
+    document.getElementById('introState').style.display = 'none';
+    levelIdx = 0;
+    startLevel();
+  });
+
+  (function init(){
+    var saved; try { saved = localStorage.getItem('la-lang'); } catch(e){}
+    uiLang = saved || (navigator.language && navigator.language.startsWith('ko') ? 'ko' : 'en');
+    document.getElementById('btn-en').classList.toggle('act', uiLang === 'en');
+    document.getElementById('btn-ko').classList.toggle('act', uiLang === 'ko');
+    document.getElementById('backLink').href = 'languages/' + lang + '/index.html';
+    setUiLang(uiLang);
+  })();
+</script>
+<script src="../assets/family-bar.js" defer></script>
+</body>
+</html>

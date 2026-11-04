@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "en_b2_u44",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 44,
+    "title": "Complex Noun Phrases",
+    "title_ko": "복합 명사구",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Advanced writing packs information into noun phrases rather than separate clauses: 'the recently published report on climate change' (compresses several ideas into one noun phrase), instead of 'the report that was recently published, and it is about climate change.'",
+    "explanation_ko": "고급 글쓰기는 여러 절 대신 명사구 하나에 정보를 압축합니다: 'the recently published report on climate change'(여러 생각을 명사구 하나에 압축), 'the report that was recently published, and it is about climate change' 대신.",
+    "key_expressions": [
+      {
+        "en": "The newly hired marketing manager starts Monday.",
+        "ko": "새로 채용된 마케팅 매니저가 월요일에 시작해요."
+      },
+      {
+        "en": "A widely discussed proposal was rejected.",
+        "ko": "널리 논의된 제안이 거부됐어요."
+      },
+      {
+        "en": "The long-awaited results were finally released.",
+        "ko": "오랫동안 기다려온 결과가 드디어 발표됐어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u44_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a sentence describing something at work or school using a complex noun phrase (e.g., 'the recently updated policy').",
+        "ko": "직장이나 학교의 무언가를 복합 명사구(예: 'the recently updated policy')를 사용해서 묘사하는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "complex_noun_phrase",
+          "label_ko": "복합 명사구",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "부사+분사+명사 구조(recently updated policy 등)를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(recently|newly|widely|long-awaited)\\s+\\w+ed?\\s+\\w+",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u44_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What can you tell me about your newly hired coworker?' Write your answer using a complex noun phrase.",
+        "ko": "'What can you tell me about your newly hired coworker?'라는 질문에 복합 명사구를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "complex_noun_phrase",
+          "label_ko": "복합 명사구",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'newly hired' 구조를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "newly hired"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u44_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud, formally, describing a recent development using a complex noun phrase.",
+        "ko": "복합 명사구를 사용해서 최근의 어떤 진전 사항을 격식체로 소리 내어 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "complex_noun_phrase",
+          "label_ko": "복합 명사구",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "부사+분사+명사 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(recently|newly|widely)\\s+\\w+ed?\\s+\\w+",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u44_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What's a long-awaited result or event you're excited about?'",
+        "ko": "소리 내어 답해 보세요: 'What's a long-awaited result or event you're excited about?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "complex_noun_phrase",
+          "label_ko": "복합 명사구",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'long-awaited'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "long-awaited",
+            "long awaited"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

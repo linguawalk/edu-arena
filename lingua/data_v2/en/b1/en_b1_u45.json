@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "en_b1_u45",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 45,
+    "title": "Emphasis Structures",
+    "title_ko": "강조 구문",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "'What + clause + is/was ...' puts strong emphasis on what follows: 'What I really need is more time.' This structure highlights the most important part of a sentence, useful for expressing priorities and strong opinions.",
+    "explanation_ko": "'What + 절 + is/was ...' 구조는 뒤따르는 내용을 강하게 강조합니다: 'What I really need is more time.' 이 구조는 문장에서 가장 중요한 부분을 부각시키며, 우선순위나 강한 의견을 표현할 때 유용합니다.",
+    "key_expressions": [
+      {
+        "en": "What I love most about my job is the people.",
+        "ko": "제 일에서 가장 좋아하는 건 사람들이에요."
+      },
+      {
+        "en": "What surprised me was how quickly it happened.",
+        "ko": "저를 놀라게 한 건 얼마나 빨리 일어났는지였어요."
+      },
+      {
+        "en": "What we need to do is start over.",
+        "ko": "우리가 해야 할 건 다시 시작하는 거예요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u45_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about your top priority right now, using 'What I need/want is ...' for emphasis.",
+        "ko": "지금 가장 중요한 우선순위를 'What I need/want is ...' 강조 구문을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "emphasis_what",
+          "label_ko": "What 강조구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'What I' + 동사 + is/was 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "what\\s+i\\s+\\w+\\s+is\\b|what\\s+i\\s+\\w+\\s+was\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u45_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What do you love most about your hometown?' Write your answer using the 'What I love most... is' structure.",
+        "ko": "'What do you love most about your hometown?'라는 질문에 'What I love most... is' 구조로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "emphasis_what",
+          "label_ko": "What 강조구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'What I love most' 구조를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "what i love most",
+            "what i like most"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u45_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about what really matters to you in life, using 'What matters most to me is ...'.",
+        "ko": "인생에서 정말 중요한 것을 'What matters most to me is ...'를 사용해서 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "emphasis_what",
+          "label_ko": "What 강조구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'What ... is/was' 강조구문을 사용했는가",
+          "type": "pattern_regex",
+          "target": "what\\s+\\w+.{0,20}\\s+is\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u45_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What surprised you most about learning English?'",
+        "ko": "소리 내어 답해 보세요: 'What surprised you most about learning English?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "emphasis_what",
+          "label_ko": "What 강조구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'What surprised me'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "what surprised me"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

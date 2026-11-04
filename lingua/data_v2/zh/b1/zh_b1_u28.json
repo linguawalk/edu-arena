@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "id": "zh_b1_u28",
+    "domain": "language",
+    "lang": "zh",
+    "level": "b1",
+    "unit": 28,
+    "title": "要是...的话",
+    "title_ko": "要是...的话 (~라면, 구어체)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "「要是...的话」是「如果」的口语说法，用于日常对话。「要是有时间的话，一起吃饭吧」。",
+    "explanation_ko": "'要是...的话'는 '如果'의 구어체 표현으로, 일상 대화에서 사용됩니다. '要是有时间的话，一起吃饭吧'(시간 있으면 같이 밥 먹어요).",
+    "key_expressions": [
+      {
+        "en": "要是有时间的话，一起吃饭吧。",
+        "ko": "시간 있으면 같이 밥 먹어요."
+      },
+      {
+        "en": "要是不方便的话，改天也可以。",
+        "ko": "불편하시면 다른 날도 괜찮아요."
+      },
+      {
+        "en": "要是你去的话，我也去。",
+        "ko": "당신이 가면 저도 갈게요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_b1_u28_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「要是...的话」写出口语化的假设。",
+        "ko": "구어체 가정을 '要是...的话'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yaoshi_dehua",
+          "label_ko": "要是...的话",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'要是'와 '的话'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "要是.{0,15}的话",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u28_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「不方便的话怎么办？」请用「要是...的话」回答。",
+        "ko": "'不方便的话怎么办？'(불편하면 어떡해요?)라는 질문에 '要是...的话'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yaoshi_dehua",
+          "label_ko": "要是...的话",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'要是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "要是"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_b1_u28_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声用「要是...的话」提出邀请。",
+        "ko": "'要是...的话'를 사용해서 소리 내어 초대해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yaoshi_dehua",
+          "label_ko": "要是...的话",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'要是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "要是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_b1_u28_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「要是我去的话，你也去吗？」有人问你。请大声回答。",
+        "ko": "'要是我去的话，你也去吗？'(제가 가면 당신도 가요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "yaoshi_dehua",
+          "label_ko": "要是...的话",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

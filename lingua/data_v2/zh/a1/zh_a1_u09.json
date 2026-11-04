@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a1_u09",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 9,
+    "title": "身体、健康",
+    "title_ko": "신체·건강",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说身体不舒服用「我...疼」，说生病用「我感冒了」。",
+    "explanation_ko": "몸이 아플 때는 '我...疼'(저는 ~이 아파요), 병에 걸렸을 때는 '我感冒了'(저는 감기에 걸렸어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我头疼。",
+        "ko": "저는 머리가 아파요."
+      },
+      {
+        "en": "我感冒了。",
+        "ko": "저는 감기에 걸렸어요."
+      },
+      {
+        "en": "你哪儿不舒服？",
+        "ko": "어디가 안 좋으세요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u09_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我...疼」写出身体哪里不舒服。",
+        "ko": "'我...疼'을 사용해서 몸 어디가 아픈지 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pain",
+          "label_ko": "통증 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'疼'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "疼"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u09_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你怎么了？」请用「我感冒了」回答。",
+        "ko": "'你怎么了？'(무슨 일이에요?)라는 질문에 '我感冒了'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sick",
+          "label_ko": "질병 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'感冒'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "感冒"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u09_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出身体哪里不舒服。",
+        "ko": "소리 내어 몸 어디가 아픈지 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pain",
+          "label_ko": "통증 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'疼'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "疼"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u09_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你感冒了吗？」有人问你。请大声回答。",
+        "ko": "'你感冒了吗？'(감기 걸렸어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sick",
+          "label_ko": "질병 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

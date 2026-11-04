@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "zh_a2_u22",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 22,
+    "title": "音乐、娱乐",
+    "title_ko": "음악·엔터테인먼트",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说喜欢的音乐用「我常听...」，比如「我常听爵士乐」。",
+    "explanation_ko": "좋아하는 음악에 대해 말할 때는 '我常听...'(자주 ~을 들어요)를 씁니다. 예: '我常听爵士乐'(자주 재즈를 들어요).",
+    "key_expressions": [
+      {
+        "en": "我常听爵士乐。",
+        "ko": "자주 재즈를 들어요."
+      },
+      {
+        "en": "我去过演唱会。",
+        "ko": "콘서트에 가본 적이 있어요."
+      },
+      {
+        "en": "我喜欢这个歌手。",
+        "ko": "이 가수를 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u22_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我常听...」写出喜欢的音乐类型。",
+        "ko": "좋아하는 음악 장르를 '我常听...'을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "music_pref",
+          "label_ko": "음악 취향 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我常听'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我常听"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u22_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你去过演唱会吗？」请回答这个问题。",
+        "ko": "'你去过演唱会吗？'(콘서트에 가본 적 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "concert",
+          "label_ko": "콘서트 경험 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'去过' 또는 '没去过'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "去过",
+            "没去过"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u22_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出喜欢的音乐。",
+        "ko": "좋아하는 음악에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "music_pref",
+          "label_ko": "음악 취향 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'听' 또는 '喜欢'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "听",
+            "喜欢"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u22_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你有喜欢的歌手吗？」有人问你。请大声回答。",
+        "ko": "'你有喜欢的歌手吗？'(좋아하는 가수 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "favorite_singer",
+          "label_ko": "좋아하는 가수 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'有' 또는 '没有'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "有",
+            "没有"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

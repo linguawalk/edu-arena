@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "id": "ko_a2_u14",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a2",
+    "unit": 14,
+    "title": "Job Interview (-을 수 있어요, 능력)",
+    "title_ko": "면접",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe your abilities in an interview, use « -을/ㄹ 수 있어요 » (I can ~). For example, « 한국어를 할 수 있어요 » (I can speak Korean).",
+    "explanation_ko": "면접에서 능력을 말할 때는 '-을/ㄹ 수 있어요'를 씁니다. 예: '한국어를 할 수 있어요'.",
+    "key_expressions": [
+      {
+        "en": "I can speak Korean.",
+        "ko": "저는 한국어를 할 수 있어요."
+      },
+      {
+        "en": "I can use Excel.",
+        "ko": "저는 엑셀을 사용할 수 있어요."
+      },
+      {
+        "en": "I can work under pressure.",
+        "ko": "저는 스트레스를 잘 견딜 수 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a2_u14_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describe an ability using «-을/ㄹ 수 있어요» (I can ~).",
+        "ko": "'-을/ㄹ 수 있어요'를 사용해서 능력을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ability",
+          "label_ko": "능력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Does it end with 수 있어요?",
+          "type": "pattern_regex",
+          "target": "수 있어요[.]?$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u14_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«한국어를 할 수 있어요?» (Can you speak Korean?) Answer this question.",
+        "ko": "'한국어를 할 수 있어요?'(한국어 능력을 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ability",
+          "label_ko": "능력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a2_u14_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say an ability out loud using «-을/ㄹ 수 있어요».",
+        "ko": "'-을/ㄹ 수 있어요'를 사용해서 소리 내어 능력을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ability",
+          "label_ko": "능력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Does it end with 수 있어요?",
+          "type": "pattern_regex",
+          "target": "수 있어요[.]?$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a2_u14_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«엑셀을 사용할 수 있어요?» (Can you use Excel?) Answer out loud.",
+        "ko": "'엑셀을 사용할 수 있어요?'(엑셀 능력을 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "ability",
+          "label_ko": "능력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

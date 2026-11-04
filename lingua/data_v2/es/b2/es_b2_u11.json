@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "id": "es_b2_u11",
+    "domain": "language",
+    "lang": "es",
+    "level": "b2",
+    "unit": 11,
+    "title": "Subordinadas anidadas",
+    "title_ko": "중첩 종속절",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Nested subordinate clauses combine multiple clauses in one sentence: « Creo que sabes que esto es importante ».",
+    "explanation_ko": "중첩 종속절은 한 문장에 여러 절을 결합합니다: 'Creo que sabes que esto es importante'(당신이 이게 중요하다는 걸 안다고 생각해요).",
+    "key_expressions": [
+      {
+        "en": "Creo que sabes que esto es importante.",
+        "ko": "당신이 이게 중요하다는 걸 안다고 생각해요."
+      },
+      {
+        "en": "Dijo que pensaba que era mejor esperar.",
+        "ko": "그는 기다리는 게 낫다고 생각한다고 말했어요."
+      },
+      {
+        "en": "Me dijeron que creían que iba a funcionar.",
+        "ko": "잘될 거라고 믿는다고 저에게 말했어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_b2_u11_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una frase con una subordinada anidada (p.ej. «Creo que sabes que...»).",
+        "ko": "중첩 종속절(예: 'Creo que sabes que...')을 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "subordinada_anidada",
+          "label_ko": "중첩 종속절",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'que'가 두 번 이상 사용됐는가",
+          "type": "pattern_regex",
+          "target": "que",
+          "min_matches": 2,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u11_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Cree que va a funcionar?» Responda usando una subordinada anidada.",
+        "ko": "'¿Cree que va a funcionar?'(잘될 거라고 생각해요?)라는 질문에 중첩 종속절을 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "subordinada_anidada",
+          "label_ko": "중첩 종속절",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 10자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 10,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u11_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una frase con una subordinada anidada.",
+        "ko": "소리 내어 중첩 종속절 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "subordinada_anidada",
+          "label_ko": "중첩 종속절",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "분량이 충분한가 (최소 15자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 15,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_b2_u11_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Dijo que pensaba que era mejor esperar?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Dijo que pensaba que era mejor esperar?'(기다리는 게 낫다고 생각한다고 말했어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "subordinada_anidada",
+          "label_ko": "중첩 종속절",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

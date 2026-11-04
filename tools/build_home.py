@@ -20,6 +20,8 @@ SUBJECTS = [
      [("레벨2·3 가이드", "guide.html"), ("심화 · 경제 올림피아드", "olympiad/browse.html")]),
     ("lit", "언어와 문학", "hum", "국어, 한자, 영어, 국문학, 세계문학",
      [("레벨2·3 가이드", "guide.html"), ("심화 · 언어학 올림피아드", "olympiad/browse.html")]),
+    ("lingua", "외국어", "hum", "영어, 일본어, 중국어, 프랑스어, 독일어, 스페인어, 외국인을 위한 한국어 · CEFR A1–C2",
+     [("배치고사", "placement.html")]),
     ("math", "수학", "stem", "중학 핵심부터 고등 수학까지",
      [("진입 진단", "placement.html"), ("레벨2·3 가이드", "guide.html"), ("심화 · 수학 올림피아드", "olympiad/browse.html")]),
     ("sci", "과학", "stem", "물리, 화학, 생명과학, 지구과학",
@@ -44,9 +46,15 @@ CODE_COURSES = [
     ("자격증", "Oracle·Microsoft·AWS·Google·Cisco·LPI", "courses.html#certs"),
 ]
 
+# 외국어도 courses.json 대신 언어 단위로 보여 줍니다.
+LINGUA_COURSES = [
+    ("영어", "English", "en"), ("일본어", "日本語", "ja"), ("중국어", "中文", "zh"), ("프랑스어", "Français", "fr"),
+    ("독일어", "Deutsch", "de"), ("스페인어", "Español", "es"), ("한국어 (외국인용)", "Korean for learners", "ko"),
+]
+
 # 카드에 보이는 영어 표기 (폴더 이름은 그대로)
 TAGS = {"socio": "social studies", "biz": "biz", "lit": "literature", "math": "mathematics",
-        "sci": "science", "tech": "engineering", "code": "code", "arts": "arts & PE"}
+        "sci": "science", "tech": "engineering", "code": "code", "arts": "arts & PE", "lingua": "languages"}
 
 GROUPS = [("hum", "인문사회"), ("stem", "수학·과학"), ("arts", "예체능")]
 
@@ -56,6 +64,8 @@ e = html.escape
 def load_courses(folder):
     if folder == "code":
         return [{"title": t, "description": d, "href": f"code/{h}", "available": True} for t, d, h in CODE_COURSES]
+    if folder == "lingua":
+        return [{"title": t, "description": d, "href": f"lingua/browse.html?lang={k}", "available": True} for t, d, k in LINGUA_COURSES]
     path = os.path.join(ROOT, folder, "content", "level1", "courses.json")
     with open(path, encoding="utf-8") as f:
         data = json.load(f)
@@ -101,7 +111,7 @@ TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>edu-arena · 풀면서 배우는 모든 과목</title>
-<meta name="description" content="읽기 전에 먼저 풀어 보는 15분 레슨. 사회와 역사, 경제와 경영, 언어와 문학, 수학, 과학, 공학, 코딩, 예체능까지 {{TOTAL}}개 코스를 한곳에서. 과목별 올림피아드 심화 과정 포함.">
+<meta name="description" content="읽기 전에 먼저 풀어 보는 15분 레슨. 사회와 역사, 경제와 경영, 언어와 문학, 외국어, 수학, 과학, 공학, 코딩, 예체능까지 {{TOTAL}}개 코스를 한곳에서. 과목별 올림피아드 심화 과정 포함.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -170,7 +180,6 @@ h1{font-size:clamp(36px,5.5vw,60px);line-height:1.15;letter-spacing:-.035em;marg
 
   <section class="family" aria-label="Arena 패밀리">
     <strong>Arena 패밀리</strong>
-    <a href="https://lingua-arena.org/">lingua-arena</a><span>외국어</span>
     <a href="https://mind-arena.org/">mind-arena</a><span>퍼즐과 보드게임</span>
   </section>
 </main>

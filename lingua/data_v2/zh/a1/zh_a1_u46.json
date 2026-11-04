@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_a1_u46",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 46,
+    "title": "科技",
+    "title_ko": "기술",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说用手机做的事用「我用手机...」，比如「我用手机看视频」。",
+    "explanation_ko": "휴대폰으로 하는 일을 말할 때는 '我用手机...'(저는 휴대폰으로 ~해요)를 씁니다. 예: '我用手机看视频'(저는 휴대폰으로 영상을 봐요).",
+    "key_expressions": [
+      {
+        "en": "我用手机看视频。",
+        "ko": "저는 휴대폰으로 영상을 봐요."
+      },
+      {
+        "en": "我的手机坏了。",
+        "ko": "제 휴대폰이 고장 났어요."
+      },
+      {
+        "en": "密码是多少？",
+        "ko": "비밀번호가 뭐예요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u46_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我用手机...」写出你用手机做的事。",
+        "ko": "'我用手机...'를 사용해서 휴대폰으로 하는 일을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "phone_use",
+          "label_ko": "휴대폰 사용 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我用手机'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我用手机"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u46_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你的手机坏了吗？」请回答这个问题。",
+        "ko": "'你的手机坏了吗？'(휴대폰이 고장 났어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "phone_broken",
+          "label_ko": "고장 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'坏了' 또는 '没坏'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "坏了",
+            "没坏"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u46_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你用手机做的事。",
+        "ko": "소리 내어 휴대폰으로 하는 일을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "phone_use",
+          "label_ko": "휴대폰 사용 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我用手机'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我用手机"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u46_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「密码是多少？」有人问你。请大声回答。",
+        "ko": "'密码是多少？'(비밀번호가 뭐예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "password",
+          "label_ko": "비밀번호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 2자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 2,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

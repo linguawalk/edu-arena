@@ -1,0 +1,243 @@
+{
+  "meta": {
+    "id": "en_b2_u48",
+    "domain": "language",
+    "lang": "en",
+    "level": "b2",
+    "unit": 48,
+    "title": "Persuasive Language Techniques",
+    "title_ko": "설득 기법",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Persuasive English uses rhetorical questions ('Isn't it time we changed this?'), tricolon (a list of three for rhythm: 'faster, cheaper, and more reliable'), and strong modals ('We must act now') to make an argument more compelling.",
+    "explanation_ko": "설득력 있는 영어는 수사 의문문('Isn't it time we changed this?'), 삼항 나열(리듬을 위한 세 가지 목록: 'faster, cheaper, and more reliable'), 강한 조동사('We must act now')를 사용해 주장을 더 설득력 있게 만듭니다.",
+    "key_expressions": [
+      {
+        "en": "Isn't it time we made a change?",
+        "ko": "이제 바꿀 때가 되지 않았나요?"
+      },
+      {
+        "en": "This solution is faster, cheaper, and more effective.",
+        "ko": "이 해결책은 더 빠르고, 더 저렴하고, 더 효과적이에요."
+      },
+      {
+        "en": "We must act now, before it's too late.",
+        "ko": "너무 늦기 전에 우리는 지금 행동해야 해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b2_u48_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a persuasive sentence about something you believe in, using a rhetorical question and a list of three (tricolon).",
+        "ko": "믿는 것에 대해, 수사 의문문과 세 가지 나열(삼항 나열)을 사용해서 설득력 있는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "persuasive_technique",
+          "label_ko": "설득 기법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "수사 의문문(Isn't it ~?)을 사용했는가",
+          "type": "pattern_regex",
+          "target": "isn't it\\b.{0,20}\\?",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "세 가지 나열을 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\w+,\\s*\\w+,?\\s*and\\s+\\w+",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.!?]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u48_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Why should we act on this now instead of later?' Write a persuasive answer using 'We must'.",
+        "ko": "'Why should we act on this now instead of later?'라는 질문에 'We must'를 사용해서 설득력 있는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "persuasive_technique",
+          "label_ko": "설득 기법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'We must'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "we must"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b2_u48_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Give a short persuasive speech out loud about a change you'd like to see, using a rhetorical question.",
+        "ko": "보고 싶은 변화에 대해 수사 의문문을 사용해서 짧은 설득 연설을 소리 내어 해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "persuasive_technique",
+          "label_ko": "설득 기법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "수사 의문문 또는 'We must'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "isn't it",
+            "we must"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b2_u48_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Isn't it time more people learned a second language?'",
+        "ko": "소리 내어 답해 보세요: 'Isn't it time more people learned a second language?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "persuasive_technique",
+          "label_ko": "설득 기법",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes' 또는 'No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

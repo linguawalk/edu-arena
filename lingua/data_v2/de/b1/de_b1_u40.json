@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "de_b1_u40",
+    "domain": "language",
+    "lang": "de",
+    "level": "b1",
+    "unit": 40,
+    "title": "Nominalisierung von Verben",
+    "title_ko": "동사 명사화",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Verbs can be turned into nouns, often with « -ung », such as « entscheiden → die Entscheidung ».",
+    "explanation_ko": "동사는 종종 '-ung'을 붙여서 명사로 바꿀 수 있습니다. 예: 'entscheiden'(결정하다) → 'die Entscheidung'(결정).",
+    "key_expressions": [
+      {
+        "en": "Die Entscheidung war schwer.",
+        "ko": "그 결정은 어려웠어요."
+      },
+      {
+        "en": "Die Erklärung war klar.",
+        "ko": "그 설명은 명확했어요."
+      },
+      {
+        "en": "Die Entwicklung geht schnell voran.",
+        "ko": "발전이 빠르게 진행되고 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b1_u40_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit einem Nomen, das von einem Verb abgeleitet ist (z.B. „die Entscheidung“).",
+        "ko": "동사에서 파생된 명사(예: 'die Entscheidung')를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "nominalisierung",
+          "label_ko": "동사 명사화",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'-ung'으로 끝나는 명사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\w+ung\\b",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u40_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„War die Entscheidung schwer?“ Beantworten Sie diese Frage.",
+        "ko": "'War die Entscheidung schwer?'(그 결정이 어려웠어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "nominalisierung",
+          "label_ko": "동사 명사화",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u40_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit einem Nomen auf „-ung“.",
+        "ko": "소리 내어 '-ung'으로 끝나는 명사를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "nominalisierung",
+          "label_ko": "동사 명사화",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'-ung'으로 끝나는 명사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\w+ung\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b1_u40_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Geht die Entwicklung schnell voran?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Geht die Entwicklung schnell voran?'(발전이 빠르게 진행되고 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "nominalisierung",
+          "label_ko": "동사 명사화",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "de_a1_u24",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 24,
+    "title": "Berufe 1",
+    "title_ko": "직업 1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To say your job, we use « Ich bin... von Beruf ». To ask about someone's job, we use « Was sind Sie von Beruf? ».",
+    "explanation_ko": "직업을 말할 때는 'Ich bin... von Beruf'(저는 ~예요), 직업을 물을 때는 'Was sind Sie von Beruf?'(직업이 뭐예요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich bin Lehrer von Beruf.",
+        "ko": "저는 선생님이에요."
+      },
+      {
+        "en": "Was sind Sie von Beruf?",
+        "ko": "직업이 뭐예요?"
+      },
+      {
+        "en": "Ich arbeite in einem Büro.",
+        "ko": "저는 사무실에서 일해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u24_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie Ihren Beruf und benutzen Sie dabei „Ich bin... von Beruf“.",
+        "ko": "'Ich bin... von Beruf'를 사용해서 자신의 직업을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job",
+          "label_ko": "직업 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'von Beruf'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "von Beruf"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u24_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Was sind Sie von Beruf?“ Beantworten Sie diese Frage.",
+        "ko": "'Was sind Sie von Beruf?'(직업이 뭐예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job",
+          "label_ko": "직업 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich bin'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich bin",
+            "ich bin"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u24_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie Ihren Beruf laut.",
+        "ko": "소리 내어 자신의 직업을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job",
+          "label_ko": "직업 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ich bin' 또는 'Beruf'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ich bin",
+            "ich bin",
+            "Beruf"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u24_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Arbeiten Sie in einem Büro?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Arbeiten Sie in einem Büro?'(사무실에서 일해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "office",
+          "label_ko": "사무실 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

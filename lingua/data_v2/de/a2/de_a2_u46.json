@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "de_a2_u46",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 46,
+    "title": "Haustiere",
+    "title_ko": "반려동물",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe caring for a pet, we use « Ich kümmere mich um... ». To talk about responsibility, we use « Ein Haustier ist viel Verantwortung ».",
+    "explanation_ko": "반려동물 돌봄을 묘사할 때는 'Ich kümmere mich um...'(저는 ~을 돌봐요), 책임을 말할 때는 'Ein Haustier ist viel Verantwortung'(반려동물은 큰 책임이에요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich kümmere mich jeden Tag um meinen Hund.",
+        "ko": "저는 매일 강아지를 돌봐요."
+      },
+      {
+        "en": "Ein Haustier ist viel Verantwortung.",
+        "ko": "반려동물은 큰 책임이에요."
+      },
+      {
+        "en": "Ich gehe zweimal am Tag mit ihm spazieren.",
+        "ko": "저는 하루에 두 번 산책시켜요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u46_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschreiben Sie, wie Sie sich um ein Haustier kümmern, und benutzen Sie dabei „Ich kümmere mich um...“.",
+        "ko": "'Ich kümmere mich um...'를 사용해서 반려동물을 돌보는 방법을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pet_care",
+          "label_ko": "반려동물 돌봄 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'kümmere mich um'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "kümmere mich um"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u46_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist ein Haustier viel Verantwortung?“ Beantworten Sie diese Frage.",
+        "ko": "'Ist ein Haustier viel Verantwortung?'(반려동물이 큰 책임이에요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "responsibility",
+          "label_ko": "책임 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u46_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sprechen Sie laut darüber, wie Sie sich um Ihr Haustier kümmern.",
+        "ko": "소리 내어 반려동물을 돌보는 방법에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "pet_care",
+          "label_ko": "반려동물 돌봄 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'kümmere'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "kümmere"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u46_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Gehen Sie zweimal am Tag mit ihm spazieren?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Gehen Sie zweimal am Tag mit ihm spazieren?'(하루에 두 번 산책시켜요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "walk_pet",
+          "label_ko": "산책 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

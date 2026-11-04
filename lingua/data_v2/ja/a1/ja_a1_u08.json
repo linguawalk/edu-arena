@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "ja_a1_u08",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 8,
+    "title": "一日の生活",
+    "title_ko": "하루 일과",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "毎日の習慣を話すときは「まいにち〜ます」を使います。「おきます」「ねます」「がっこうへいきます」のような動詞を使います。",
+    "explanation_ko": "매일의 습관을 말할 때는 'まいにち〜ます'를 씁니다. 'おきます'(일어나요), 'ねます'(자요), 'がっこうへいきます'(학교에 가요) 같은 동사를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "まいあさ7じにおきます。",
+        "ko": "매일 아침 7시에 일어나요."
+      },
+      {
+        "en": "よる11じにねます。",
+        "ko": "밤 11시에 자요."
+      },
+      {
+        "en": "まいにちがっこうへいきます。",
+        "ko": "매일 학교에 가요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u08_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "毎朝何時に起きるか、「〜じにおきます」を使って書いてください。",
+        "ko": "매일 아침 몇 시에 일어나는지 '〜じにおきます'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "wake_up",
+          "label_ko": "기상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'おきます'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "おきます"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u08_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「まいにち何時にねますか」という質問に答えを書いてください。",
+        "ko": "'まいにち何時にねますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sleep",
+          "label_ko": "취침 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ねます'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ねます"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u08_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "自分の一日の生活について声に出して話してください。",
+        "ko": "자신의 하루 일과에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "daily_routine",
+          "label_ko": "일과 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'おきます' 또는 'ねます'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "おきます",
+            "ねます"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u08_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「まいにち学校へいきますか」と聞かれました。声に出して答えてください。",
+        "ko": "'まいにち学校へいきますか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "go_to_school",
+          "label_ko": "등교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'いきます'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "いきます"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

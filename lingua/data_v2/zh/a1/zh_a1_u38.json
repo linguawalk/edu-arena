@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "id": "zh_a1_u38",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 38,
+    "title": "说明、指示",
+    "title_ko": "설명·지시",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "给说明用「先...，然后...」，比如「先开机，然后输入密码」。",
+    "explanation_ko": "설명할 때는 '先...，然后...'(먼저 ~하고, 그다음에 ~하세요)를 씁니다. 예: '先开机，然后输入密码'(먼저 전원을 켜고 그다음에 비밀번호를 입력하세요).",
+    "key_expressions": [
+      {
+        "en": "先开机，然后输入密码。",
+        "ko": "먼저 전원을 켜고, 그다음에 비밀번호를 입력하세요."
+      },
+      {
+        "en": "请按这个按钮。",
+        "ko": "이 버튼을 눌러주세요."
+      },
+      {
+        "en": "怎么用这个？",
+        "ko": "이거 어떻게 써요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u38_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「先...，然后...」写出简单的操作说明。",
+        "ko": "'先...，然后...'를 사용해서 간단한 사용법 설명을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "instructions",
+          "label_ko": "지시 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'先'과 '然后'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "先.{0,15}然后",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u38_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「怎么用这个机器？」请回答这个问题。",
+        "ko": "'怎么用这个机器？'(이 기계 어떻게 써요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "instructions",
+          "label_ko": "지시 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u38_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说明怎么使用一个东西。",
+        "ko": "소리 내어 어떤 물건 사용법을 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "instructions",
+          "label_ko": "지시 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'先' 또는 '然后'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "先",
+            "然后"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u38_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「请按这个按钮」有人这样告诉你。请大声回答。",
+        "ko": "'请按这个按钮'(이 버튼을 눌러주세요)라는 말을 들었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "acknowledging",
+          "label_ko": "확인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'好' 또는 '谢谢'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "好",
+            "谢谢"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

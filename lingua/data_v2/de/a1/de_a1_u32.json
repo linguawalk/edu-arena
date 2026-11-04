@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "de_a1_u32",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 32,
+    "title": "Bitten",
+    "title_ko": "부탁",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To make a polite request, we use « Könnten Sie...? ». To respond, we use « Natürlich » or « Tut mir leid, das geht nicht ».",
+    "explanation_ko": "정중하게 부탁할 때는 'Könnten Sie...?'(~해 주실 수 있어요?), 응답할 때는 'Natürlich'(물론이죠) 또는 'Tut mir leid, das geht nicht'(죄송해요, 안 될 것 같아요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Könnten Sie mir helfen?",
+        "ko": "저 좀 도와주실 수 있어요?"
+      },
+      {
+        "en": "Natürlich, kein Problem.",
+        "ko": "물론이죠, 문제없어요."
+      },
+      {
+        "en": "Tut mir leid, das geht gerade nicht.",
+        "ko": "죄송해요, 지금은 안 될 것 같아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Bitten Sie höflich um Hilfe und benutzen Sie dabei „Könnten Sie...?“.",
+        "ko": "'Könnten Sie...?'를 사용해서 정중하게 도움을 요청해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "polite_request",
+          "label_ko": "정중한 부탁 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Könnten Sie'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Könnten Sie",
+            "könnten Sie"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Könnten Sie mir helfen?“ Antworten Sie zustimmend und benutzen Sie dabei „Natürlich“.",
+        "ko": "'Könnten Sie mir helfen?'(저 좀 도와주실 수 있어요?)라는 부탁에 'Natürlich'를 사용해서 승낙하는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "agree",
+          "label_ko": "승낙 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Natürlich'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Natürlich",
+            "natürlich"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Bitten Sie laut höflich um Hilfe.",
+        "ko": "소리 내어 정중하게 도움을 요청해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "polite_request",
+          "label_ko": "정중한 부탁 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Könnten Sie'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Könnten Sie",
+            "könnten Sie"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Können Sie das gerade machen?“ Lehnen Sie höflich ab und antworten Sie laut.",
+        "ko": "'Können Sie das gerade machen?'(지금 그거 할 수 있어요?)라는 질문에 정중하게 거절하며 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "polite_decline",
+          "label_ko": "정중한 거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Tut mir leid'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Tut mir leid",
+            "tut mir leid"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

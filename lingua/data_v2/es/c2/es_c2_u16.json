@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "es_c2_u16",
+    "domain": "language",
+    "lang": "es",
+    "level": "c2",
+    "unit": 16,
+    "title": "Marcadores de ironía",
+    "title_ko": "아이러니 표지",
+    "focus_axis": "vocabulary"
+  },
+  "context": {
+    "explanation_en": "« Ya, claro » (yeah, sure - sarcastic), « qué casualidad » (what a coincidence - ironic) mark ironic or sarcastic intent in speech.",
+    "explanation_ko": "'ya, claro'(그래, 물론이지 - 비꼬는), 'qué casualidad'(무슨 우연이야 - 아이러니한)는 말에서 아이러니하거나 비꼬는 의도를 표시합니다.",
+    "key_expressions": [
+      {
+        "en": "Ya, claro, seguro que fue un accidente.",
+        "ko": "그래, 물론이지, 사고였다는 게 확실하겠지."
+      },
+      {
+        "en": "Qué casualidad que llegó justo a tiempo.",
+        "ko": "정확히 제시간에 도착했다니 참 우연이네요."
+      },
+      {
+        "en": "¡Qué bien! Otro problema más.",
+        "ko": "정말 잘됐네요! 또 다른 문제라니."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_c2_u16_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una frase irónica con «Ya, claro».",
+        "ko": "'Ya, claro'를 사용해서 아이러니한 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "ya_claro",
+          "label_ko": "ya, claro",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ya, claro' 또는 'ya, claro'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ya, claro",
+            "ya, claro"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_c2_u16_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Llegó justo a tiempo?» Responda con ironía usando «Qué casualidad».",
+        "ko": "'¿Llegó justo a tiempo?'(정확히 제시간에 도착했어요?)라는 질문에 'Qué casualidad'를 사용해서 아이러니하게 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "que_casualidad",
+          "label_ko": "qué casualidad",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'casualidad'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "casualidad"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_c2_u16_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una frase irónica con «¡Qué bien!».",
+        "ko": "'¡Qué bien!'을 사용해서 아이러니한 문장을 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "que_bien",
+          "label_ko": "qué bien",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'bien'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "bien"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_c2_u16_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Fue un accidente, según él?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Fue un accidente, según él?'(그의 말로는 사고였나요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "vocabulary",
+          "id": "ya_claro",
+          "label_ko": "ya, claro",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

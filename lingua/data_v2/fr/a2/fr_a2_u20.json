@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_a2_u20",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 20,
+    "title": "Quartier",
+    "title_ko": "동네",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler de son quartier, on utilise « Il y a... près de chez moi ». Pour décrire l'ambiance, on utilise « C'est un quartier... ».",
+    "explanation_ko": "동네에 대해 말할 때는 'Il y a... près de chez moi'(집 근처에 ~이 있어요), 분위기를 묘사할 때는 'C'est un quartier...'(이 동네는 ~해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Il y a un parc près de chez moi.",
+        "ko": "저희 집 근처에 공원이 있어요."
+      },
+      {
+        "en": "C'est un quartier calme.",
+        "ko": "이 동네는 조용해요."
+      },
+      {
+        "en": "Le supermarché est à cinq minutes à pied.",
+        "ko": "슈퍼마켓까지 걸어서 5분이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u20_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez ce qu'il y a près de chez vous en utilisant « Il y a... près de chez moi ».",
+        "ko": "집 근처에 있는 것을 'Il y a... près de chez moi'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "neighborhood",
+          "label_ko": "동네 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'près de chez moi'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "près de chez moi"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u20_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Comment est votre quartier ? » Répondez à cette question.",
+        "ko": "'Comment est votre quartier ?'(동네 어때요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "area_description",
+          "label_ko": "지역 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'quartier'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "quartier"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u20_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de votre quartier à voix haute.",
+        "ko": "소리 내어 자신의 동네에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "neighborhood",
+          "label_ko": "동네 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'quartier' 또는 'près'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "quartier",
+            "près"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u20_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Le supermarché est loin ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Le supermarché est loin ?'(슈퍼마켓이 멀어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "distance",
+          "label_ko": "거리 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

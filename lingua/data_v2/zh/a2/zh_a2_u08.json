@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "zh_a2_u08",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 8,
+    "title": "谈旅行经历",
+    "title_ko": "여행 이야기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说旅行感受用「...玩儿得很开心」。",
+    "explanation_ko": "여행 소감을 말할 때는 '...玩儿得很开心'(~해서 정말 즐거웠어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "这次旅行玩儿得很开心。",
+        "ko": "이번 여행은 정말 즐거웠어요."
+      },
+      {
+        "en": "海边很漂亮。",
+        "ko": "바다가 아름다웠어요."
+      },
+      {
+        "en": "我还想再去一次。",
+        "ko": "다시 한번 가고 싶어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u08_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「玩儿得很开心」写出最近旅行的感受。",
+        "ko": "최근에 다녀온 여행 소감을 '玩儿得很开心'을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel_impression",
+          "label_ko": "여행 소감 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'玩儿得很开心'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "玩儿得很开心"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u08_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「旅行怎么样？」请回答这个问题。",
+        "ko": "'旅行怎么样？'(여행 어땠어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel_review",
+          "label_ko": "여행 후기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'开心' 또는 '很好'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "开心",
+            "很好"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u08_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出最近旅行的感受。",
+        "ko": "최근에 다녀온 여행에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel_impression",
+          "label_ko": "여행 소감 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'开心'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "开心"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u08_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你还想再去吗？」有人问你。请大声回答。",
+        "ko": "'你还想再去吗？'(다시 가고 싶어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "want_return",
+          "label_ko": "재방문 의사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'想' 또는 '是/不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "想",
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

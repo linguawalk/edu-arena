@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "ko_a1_u21",
+    "domain": "language",
+    "lang": "ko",
+    "level": "a1",
+    "unit": 21,
+    "title": "Free Time (여가시간)",
+    "title_ko": "여가시간",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about free time, use « 여가시간에 ~해요 » (In my free time, I ~). To suggest something, use « ~을/를래요? » (Would you like to ~?).",
+    "explanation_ko": "여가시간을 말할 때는 '여가시간에 ~해요', 제안할 때는 '~을/를래요?'를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "In my free time, I watch movies.",
+        "ko": "여가시간에 저는 영화를 봐요."
+      },
+      {
+        "en": "Would you like to go out this weekend?",
+        "ko": "이번 주말에 놀러 갈래요?"
+      },
+      {
+        "en": "I relax by listening to music.",
+        "ko": "저는 음악을 들으면서 쉬어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ko_a1_u21_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about your free time using «여가시간에 ~해요».",
+        "ko": "'여가시간에 ~해요'를 사용해서 여가시간에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "free_time",
+          "label_ko": "여가시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you use '여가시간' (free time)?",
+          "type": "keyword_match",
+          "target": [
+            "여가시간"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u21_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«이번 주말에 놀러 갈래요?» (Would you like to go out this weekend?) Answer this question.",
+        "ko": "'이번 주말에 놀러 갈래요?'(주말 계획을 묻는 질문)에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weekend_plan",
+          "label_ko": "주말 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is it a complete sentence?",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "ko_a1_u21_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Suggest something out loud using «~을/를래요?».",
+        "ko": "'~을/를래요?'를 사용해서 소리 내어 제안해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "suggestion",
+          "label_ko": "제안 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Does it end in 래요?",
+          "type": "pattern_regex",
+          "target": "래요[?]?$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ko_a1_u21_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«음악을 들으면서 쉬어요?» (Do you relax by listening to music?) Answer out loud.",
+        "ko": "'음악을 들으면서 쉬어요?'(휴식 방법을 묻는 질문)를 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "relax",
+          "label_ko": "휴식 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "Did you say '네' or '아니요'?",
+          "type": "keyword_match",
+          "target": [
+            "네",
+            "아니요"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "Is the speech-to-text confidence high enough?",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

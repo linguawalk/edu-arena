@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "ja_a2_u44",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 44,
+    "title": "銀行(応用)",
+    "title_ko": "은행 (심화)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "銀行での用件を話すときは「〜たいのですが」を使います。「おかねをおろしたいのですが」のように使います。",
+    "explanation_ko": "은행에서의 용건을 말할 때는 '〜たいのですが'(~하고 싶은데요)를 씁니다. 'おかねをおろしたいのですが'(돈을 인출하고 싶은데요)처럼 씁니다.",
+    "key_expressions": [
+      {
+        "en": "おかねをおろしたいのですが。",
+        "ko": "돈을 인출하고 싶은데요."
+      },
+      {
+        "en": "そうきんしたいです。",
+        "ko": "송금하고 싶어요."
+      },
+      {
+        "en": "つうちょうをつくりたいです。",
+        "ko": "통장을 만들고 싶어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u44_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "銀行での用件を「〜たいのですが」を使って書いてください。",
+        "ko": "은행에서의 용건을 '〜たいのですが'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bank_request",
+          "label_ko": "은행 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'たいのですが'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "たいのですが"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u44_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「そうきんしたことがありますか」という質問に答えを書いてください。",
+        "ko": "'そうきんしたことがありますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "transfer_money",
+          "label_ko": "송금 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'はい' 또는 'いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u44_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "銀行の窓口で、お金をおろしたいと声に出して伝えてください。",
+        "ko": "은행 창구에서 돈을 인출하고 싶다고 소리 내어 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bank_request",
+          "label_ko": "은행 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'おろしたい'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "おろしたい"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u44_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「なにかごようですか」と聞かれました。声に出して答えてください。",
+        "ko": "'なにかごようですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "bank_purpose",
+          "label_ko": "은행 용건 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'たいのですが' 또는 'たいです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "たいのですが",
+            "たいです"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "es_a2_u20",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 20,
+    "title": "Vecindario",
+    "title_ko": "동네",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe a neighborhood, we use « Mi barrio es... ». To talk about facilities nearby, we use « Cerca hay... ».",
+    "explanation_ko": "동네를 묘사할 때는 'Mi barrio es...'(저희 동네는 ~해요), 근처 시설을 말할 때는 'Cerca hay...'(근처에 ~이 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Mi barrio es muy tranquilo.",
+        "ko": "저희 동네는 정말 조용해요."
+      },
+      {
+        "en": "Cerca hay un parque.",
+        "ko": "근처에 공원이 있어요."
+      },
+      {
+        "en": "Hay muchas tiendas en mi barrio.",
+        "ko": "저희 동네에는 가게가 많아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u20_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describa su barrio usando «Mi barrio es...».",
+        "ko": "'Mi barrio es...'를 사용해서 자신의 동네를 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "neighborhood",
+          "label_ko": "동네 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'barrio es'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "barrio es"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u20_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Hay un parque cerca?» Responda a esta pregunta.",
+        "ko": "'¿Hay un parque cerca?'(근처에 공원 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "nearby",
+          "label_ko": "근처 시설 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u20_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Describa en voz alta su barrio.",
+        "ko": "소리 내어 자신의 동네를 묘사해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "neighborhood",
+          "label_ko": "동네 묘사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'barrio'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "barrio"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u20_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Hay muchas tiendas en su barrio?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Hay muchas tiendas en su barrio?'(동네에 가게가 많아요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "shops",
+          "label_ko": "가게 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

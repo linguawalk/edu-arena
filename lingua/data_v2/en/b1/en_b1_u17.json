@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "en_b1_u17",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 17,
+    "title": "Causative Have/Get",
+    "title_ko": "사역동사 Have/Get",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Causative 'have/get something done' describes arranging for someone else to do something for you, using past participle: 'I had my hair cut' (a hairdresser cut it, not me). 'I need to get my car fixed.'",
+    "explanation_ko": "사역 구문 'have/get something done'은 다른 사람이 나를 위해 해주는 일을 나타내며 과거분사를 씁니다: 'I had my hair cut'(내가 아니라 미용사가 자름). 'I need to get my car fixed.'",
+    "key_expressions": [
+      {
+        "en": "I had my phone repaired yesterday.",
+        "ko": "저는 어제 휴대폰을 수리 맡겼어요."
+      },
+      {
+        "en": "I need to get my teeth checked.",
+        "ko": "저는 치아 검사를 받아야 해요."
+      },
+      {
+        "en": "She's having her house painted.",
+        "ko": "그녀는 집을 페인트칠하도록 맡기고 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u17_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write about something you had done recently by someone else (e.g., a repair, a haircut), using causative 'have/get'.",
+        "ko": "최근에 다른 사람에게 맡겨서 한 일(수리, 이발 등)을 사역 구문 'have/get'을 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "causative",
+          "label_ko": "사역 구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'had/got + 목적어 + 과거분사' 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(had|got)\\s+\\w+(\\s+\\w+)?\\s+(fixed|repaired|cut|cleaned|checked|painted|delivered)",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u17_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Have you ever had something delivered to the wrong address?' Write your answer.",
+        "ko": "'Have you ever had something delivered to the wrong address?'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "causative",
+          "label_ko": "사역 구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes, I have' 또는 'No, I haven't'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes, i have",
+            "no, i haven't",
+            "yes i have",
+            "no i haven't"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u17_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about something you need to get done soon (a repair, a service), using causative 'have/get'.",
+        "ko": "곧 맡겨서 처리해야 할 일(수리, 서비스 등)을 사역 구문 'have/get'을 사용해서 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "causative",
+          "label_ko": "사역 구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'get/have + 목적어 + 과거분사' 구조를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(get|have)\\s+\\w+(\\s+\\w+)?\\s+(fixed|repaired|cut|cleaned|checked|painted)",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u17_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'How often do you get your hair cut?'",
+        "ko": "소리 내어 답해 보세요: 'How often do you get your hair cut?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "causative",
+          "label_ko": "사역 구문",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'get my hair cut' 구조를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "get my hair cut",
+            "i get my hair"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

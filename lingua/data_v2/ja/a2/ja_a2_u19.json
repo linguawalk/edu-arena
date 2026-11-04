@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "ja_a2_u19",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 19,
+    "title": "住まい",
+    "title_ko": "주거",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "住まい探しでは「〜がついています」を使います。「エアコンがついています」のように設備を説明します。",
+    "explanation_ko": "집 찾기에서는 '〜がついています'(~이 붙어 있어요/딸려 있어요)를 씁니다. 'エアコンがついています'(에어컨이 있어요)처럼 시설을 설명합니다.",
+    "key_expressions": [
+      {
+        "en": "このへやはエアコンがついています。",
+        "ko": "이 방은 에어컨이 딸려 있어요."
+      },
+      {
+        "en": "やちんはつきに8まんえんです。",
+        "ko": "월세는 한 달에 8만 엔이에요."
+      },
+      {
+        "en": "えきからちかいへやをさがしています。",
+        "ko": "역에서 가까운 방을 찾고 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u19_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "住みたい部屋の条件を「〜がついています」を使って書いてください。",
+        "ko": "살고 싶은 방의 조건을 '〜がついています'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing_feature",
+          "label_ko": "주거 시설 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'がついています'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "がついています"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u19_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「やちんはいくらですか」という質問に答えを書いてください。",
+        "ko": "'やちんはいくらですか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rent",
+          "label_ko": "월세 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'えんです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "えんです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u19_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "住みたい部屋の条件について声に出して話してください。",
+        "ko": "살고 싶은 방의 조건에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "housing_feature",
+          "label_ko": "주거 시설 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ついています' 또는 'さがして'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ついています",
+            "さがして"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u19_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「えきからちかいですか」と聞かれました。声に出して答えてください。",
+        "ko": "'えきからちかいですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "station_distance",
+          "label_ko": "역 거리 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'はい' 또는 'いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

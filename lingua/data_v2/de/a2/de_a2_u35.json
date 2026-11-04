@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "de_a2_u35",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 35,
+    "title": "Beschwerde (stört mich)",
+    "title_ko": "불평 (~이 거슬려요)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To complain about something, we use « ... stört mich ». To ask someone to stop, we use « Könnten Sie bitte...? ».",
+    "explanation_ko": "불평할 때는 '...stört mich'(~이 거슬려요), 그만해달라고 부탁할 때는 'Könnten Sie bitte...?'(~해 주실 수 있어요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Der Lärm stört mich.",
+        "ko": "이 소음이 거슬려요."
+      },
+      {
+        "en": "Könnten Sie bitte leiser sein?",
+        "ko": "좀 더 조용히 해 주실 수 있어요?"
+      },
+      {
+        "en": "Das stört mich wirklich.",
+        "ko": "그거 정말 거슬려요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u35_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschweren Sie sich über etwas und benutzen Sie dabei „... stört mich“.",
+        "ko": "'...stört mich'를 사용해서 불평을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "complaint",
+          "label_ko": "불평 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'stört mich'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "stört mich"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u35_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Bitten Sie höflich um Ruhe und benutzen Sie dabei „Könnten Sie bitte...?“.",
+        "ko": "'Könnten Sie bitte...?'를 사용해서 정중하게 조용히 해달라고 부탁해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "polite_request",
+          "label_ko": "정중한 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Könnten Sie'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Könnten Sie",
+            "könnten Sie"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u35_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beschweren Sie sich laut über etwas.",
+        "ko": "소리 내어 불평해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "complaint",
+          "label_ko": "불평 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'stört'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "stört"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u35_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Stört Sie der Lärm?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Stört Sie der Lärm?'(소음이 거슬려요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "noise",
+          "label_ko": "소음 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

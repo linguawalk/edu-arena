@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "fr_a2_u39",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 39,
+    "title": "Réseaux sociaux",
+    "title_ko": "SNS",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler des réseaux sociaux, on utilise « Je poste souvent... ». Pour parler de la fréquence d'utilisation, on utilise « J'utilise souvent les réseaux sociaux ».",
+    "explanation_ko": "SNS에 대해 말할 때는 'Je poste souvent...'(자주 ~을 올려요), 사용 빈도를 말할 때는 'J'utilise souvent les réseaux sociaux'(SNS를 자주 사용해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je poste souvent des photos.",
+        "ko": "자주 사진을 올려요."
+      },
+      {
+        "en": "J'utilise souvent les réseaux sociaux.",
+        "ko": "SNS를 자주 사용해요."
+      },
+      {
+        "en": "J'essaie de moins les utiliser.",
+        "ko": "너무 많이 쓰지 않도록 하고 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u39_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez ce que vous faites souvent sur les réseaux sociaux en utilisant « Je poste souvent... ».",
+        "ko": "SNS에서 자주 하는 것을 'Je poste souvent...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sns_use",
+          "label_ko": "SNS 사용 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'poste'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "poste"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u39_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Utilisez-vous souvent les réseaux sociaux ? » Répondez à cette question.",
+        "ko": "'Utilisez-vous souvent les réseaux sociaux ?'(SNS 자주 사용해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sns_frequency",
+          "label_ko": "SNS 빈도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u39_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de ce que vous faites souvent sur les réseaux sociaux à voix haute.",
+        "ko": "SNS에서 자주 하는 것에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sns_use",
+          "label_ko": "SNS 사용 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'réseaux sociaux' 또는 'poste'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "réseaux sociaux",
+            "poste"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u39_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous essayez d'utiliser moins les réseaux sociaux ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous essayez d'utiliser moins les réseaux sociaux ?'(SNS 덜 쓰려고 하나요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "usage_control",
+          "label_ko": "사용 조절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

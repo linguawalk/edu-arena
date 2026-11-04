@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "ja_a1_u05",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 5,
+    "title": "食べ物・飲み物",
+    "title_ko": "음식·음료",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "好きな食べ物を言うときは「〜がすきです」を使います。「〜をたべます」「〜をのみます」で食べる・飲む動作を表します。",
+    "explanation_ko": "좋아하는 음식을 말할 때는 '〜がすきです'를 씁니다. '〜をたべます'(먹습니다), '〜をのみます'(마십니다)로 먹고 마시는 동작을 나타냅니다.",
+    "key_expressions": [
+      {
+        "en": "わたしはすしがすきです。",
+        "ko": "저는 초밥을 좋아해요."
+      },
+      {
+        "en": "まいあさコーヒーをのみます。",
+        "ko": "매일 아침 커피를 마셔요."
+      },
+      {
+        "en": "ひるごはんにラーメンをたべます。",
+        "ko": "점심에 라멘을 먹어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u05_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "好きな食べ物を「〜がすきです」を使って書いてください。",
+        "ko": "좋아하는 음식을 '〜がすきです'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "like_food",
+          "label_ko": "좋아하는 음식 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'がすきです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "がすきです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u05_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「あさごはんに何をたべますか」という質問に答えを書いてください。",
+        "ko": "'あさごはんに何をたべますか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "eat",
+          "label_ko": "먹다 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'をたべます'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "をたべます"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u05_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "好きな飲み物について声に出して話してください。",
+        "ko": "좋아하는 음료에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "like_drink",
+          "label_ko": "좋아하는 음료 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'すき' 또는 'のみます'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "すき",
+            "のみます"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u05_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「何がすきですか」と聞かれました。声に出して答えてください。",
+        "ko": "'何がすきですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "like_food",
+          "label_ko": "좋아하는 것 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'すき'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "すき"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

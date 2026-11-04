@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "id": "fr_a2_u31",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 31,
+    "title": "Applications météo",
+    "title_ko": "날씨 앱",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler des prévisions, on utilise « Il paraît que... ». Pour donner un conseil, on utilise « Il vaut mieux prendre un parapluie ».",
+    "explanation_ko": "일기예보에 대해 말할 때는 'Il paraît que...'(~할 것 같아요), 조언할 때는 'Il vaut mieux prendre un parapluie'(우산을 가져가는 게 좋아요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Il paraît qu'il va pleuvoir demain.",
+        "ko": "내일은 비가 올 것 같아요."
+      },
+      {
+        "en": "Un typhon arrive.",
+        "ko": "태풍이 오고 있어요."
+      },
+      {
+        "en": "Il vaut mieux prendre un parapluie.",
+        "ko": "우산을 가져가는 게 좋아요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u31_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez les prévisions météo de demain en utilisant « Il paraît que... ».",
+        "ko": "내일 일기예보를 'Il paraît que...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_forecast",
+          "label_ko": "일기예보 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Il paraît'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Il paraît",
+            "il paraît"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u31_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Faut-il prendre un parapluie ? » Répondez à cette question.",
+        "ko": "'Faut-il prendre un parapluie ?'(우산 가져가야 해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "umbrella",
+          "label_ko": "우산 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u31_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez des prévisions météo d'aujourd'hui ou de demain à voix haute.",
+        "ko": "오늘이나 내일의 일기예보에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_forecast",
+          "label_ko": "일기예보 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Il paraît' 또는 'va'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Il paraît",
+            "il paraît",
+            "va"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u31_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Un typhon arrive ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Un typhon arrive ?'(태풍 오고 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "typhoon",
+          "label_ko": "태풍 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

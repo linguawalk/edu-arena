@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "id": "fr_a1_u49",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 49,
+    "title": "Conversation intégrée 2",
+    "title_ko": "종합 회화 2",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Combinons les expressions apprises (loisirs, météo, projets) pour parler de son week-end.",
+    "explanation_ko": "지금까지 배운 표현(취미, 날씨, 계획)을 조합해서 주말에 대해 이야기합니다.",
+    "key_expressions": [
+      {
+        "en": "Le week-end dernier, il faisait beau, donc je suis allé au parc.",
+        "ko": "지난 주말에 날씨가 좋아서 공원에 갔어요."
+      },
+      {
+        "en": "Ce week-end, je vais faire du sport avec des amis.",
+        "ko": "이번 주말에는 친구들과 운동할 거예요."
+      },
+      {
+        "en": "J'aime passer du temps dehors quand il fait beau.",
+        "ko": "날씨가 좋을 때 밖에서 시간 보내는 걸 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u49_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de votre week-end dernier en incluant la météo et une activité, dans au moins trois phrases.",
+        "ko": "지난 주말에 대해, 날씨와 활동을 포함해서 최소 세 문장으로 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "integrated_weekend",
+          "label_ko": "종합 주말 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'week-end'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "week-end"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'il fait' 또는 'il faisait'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "il fait",
+            "il faisait"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 3개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.]",
+          "min_matches": 3,
+          "points": 40,
+          "required": true
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u49_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Qu'allez-vous faire ce week-end ? » Répondez en incluant vos projets.",
+        "ko": "'Qu'allez-vous faire ce week-end ?'(이번 주말에 뭐 할 거예요?)라는 질문에, 계획을 포함해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weekend_plan",
+          "label_ko": "주말 계획 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'vais'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "vais"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u49_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de votre week-end dernier à voix haute pendant une minute, en incluant la météo et une activité.",
+        "ko": "날씨와 활동을 포함해서, 지난 주말에 대해 1분 동안 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "integrated_weekend",
+          "label_ko": "종합 주말 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'week-end'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "week-end"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 20자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 20,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u49_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous aimez passer du temps dehors ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Vous aimez passer du temps dehors ?'(밖에서 시간 보내는 거 좋아해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "outdoor_pref",
+          "label_ko": "야외 활동 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

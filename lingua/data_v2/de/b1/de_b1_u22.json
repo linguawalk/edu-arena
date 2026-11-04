@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "id": "de_b1_u22",
+    "domain": "language",
+    "lang": "de",
+    "level": "b1",
+    "unit": 22,
+    "title": "Verben mit Präpositionen",
+    "title_ko": "전치사 동반 동사",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Some verbs require a fixed preposition, like « warten auf », « sich freuen über », « denken an ».",
+    "explanation_ko": "일부 동사는 고정된 전치사를 필요로 합니다. 'warten auf'(~을 기다리다), 'sich freuen über'(~에 기뻐하다), 'denken an'(~을 생각하다) 등입니다.",
+    "key_expressions": [
+      {
+        "en": "Ich warte auf den Bus.",
+        "ko": "저는 버스를 기다려요."
+      },
+      {
+        "en": "Ich freue mich über das Geschenk.",
+        "ko": "저는 선물이 기뻐요."
+      },
+      {
+        "en": "Er denkt oft an seine Familie.",
+        "ko": "그는 가족을 자주 생각해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b1_u22_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit „warten auf“.",
+        "ko": "'warten auf'를 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verb_praeposition",
+          "label_ko": "전치사 동반 동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'warte' 또는 'wartet'와 'auf'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(warte|wartet).{0,15}auf",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u22_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Denken Sie oft an Ihre Familie?“ Beantworten Sie diese Frage.",
+        "ko": "'Denken Sie oft an Ihre Familie?'(가족을 자주 생각해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verb_praeposition",
+          "label_ko": "전치사 동반 동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u22_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit „sich freuen über“.",
+        "ko": "소리 내어 'sich freuen über'를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verb_praeposition",
+          "label_ko": "전치사 동반 동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'freue' 또는 'freut'와 'über'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "(freue|freut).{0,15}über",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b1_u22_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Warten Sie auf den Bus?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Warten Sie auf den Bus?'(버스를 기다려요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "verb_praeposition",
+          "label_ko": "전치사 동반 동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

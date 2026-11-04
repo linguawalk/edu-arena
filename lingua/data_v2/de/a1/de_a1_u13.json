@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "de_a1_u13",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 13,
+    "title": "Preise",
+    "title_ko": "가격",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To ask for the price, we use « Was kostet das? ». To say something is expensive, we use « Das ist zu teuer ».",
+    "explanation_ko": "가격을 물을 때는 'Was kostet das?'(얼마예요?), 비싸다고 말할 때는 'Das ist zu teuer'(너무 비싸요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Was kostet das?",
+        "ko": "이거 얼마예요?"
+      },
+      {
+        "en": "Das ist zu teuer.",
+        "ko": "너무 비싸요."
+      },
+      {
+        "en": "Das ist günstig.",
+        "ko": "저렴해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u13_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Fragen Sie nach dem Preis eines Artikels und benutzen Sie dabei „Was kostet das?“.",
+        "ko": "물건 가격을 'Was kostet das?'를 사용해서 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "asking_price",
+          "label_ko": "가격 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'kostet'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "kostet"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u13_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist das teuer?“ Beantworten Sie diese Frage.",
+        "ko": "'Ist das teuer?'(비싸요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_opinion",
+          "label_ko": "가격 평가 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'teuer' 또는 'günstig'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "teuer",
+            "günstig"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u13_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Fragen Sie laut nach dem Preis in einem Geschäft.",
+        "ko": "가게에서 소리 내어 가격을 물어보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "asking_price",
+          "label_ko": "가격 묻기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'kostet'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "kostet"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u13_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Ist das zu teuer für Sie?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Ist das zu teuer für Sie?'(당신에게 너무 비싸요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "price_opinion",
+          "label_ko": "가격 평가 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_a1_u37",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 37,
+    "title": "请求许可",
+    "title_ko": "허락 구하기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "请求许可用「我可以...吗？」，比如「我可以坐这儿吗？」。",
+    "explanation_ko": "허락을 구할 때는 '我可以...吗？'(~해도 돼요?)를 씁니다. 예: '我可以坐这儿吗？'(여기 앉아도 돼요?).",
+    "key_expressions": [
+      {
+        "en": "我可以坐这儿吗？",
+        "ko": "여기 앉아도 돼요?"
+      },
+      {
+        "en": "可以进来吗？",
+        "ko": "들어가도 돼요?"
+      },
+      {
+        "en": "当然可以。",
+        "ko": "당연히 되죠."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u37_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我可以...吗？」请求许可。",
+        "ko": "'我可以...吗？'를 사용해서 허락을 구해보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "permission",
+          "label_ko": "허락 구하기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我可以'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我可以"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[？?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u37_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「我可以进来吗？」请用「当然可以」回答。",
+        "ko": "'我可以进来吗？'(들어가도 돼요?)라는 질문에 '当然可以'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "granting_permission",
+          "label_ko": "허락 부여 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'可以'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "可以"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u37_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声请求坐在这儿的许可。",
+        "ko": "소리 내어 여기 앉아도 되는지 허락을 구해보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "permission",
+          "label_ko": "허락 구하기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我可以'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我可以"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u37_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「可以进来吗？」有人问你。请大声回答。",
+        "ko": "'可以进来吗？'(들어가도 돼요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "granting_permission",
+          "label_ko": "허락 부여 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'可以'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "可以"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

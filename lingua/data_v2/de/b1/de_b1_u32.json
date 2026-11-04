@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "de_b1_u32",
+    "domain": "language",
+    "lang": "de",
+    "level": "b1",
+    "unit": 32,
+    "title": "Temporalsätze (während/seitdem)",
+    "title_ko": "시간문 (während·seitdem)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "« Während » (while/during) expresses simultaneity, « seitdem » (since) expresses a starting point that continues.",
+    "explanation_ko": "'während'(~하는 동안)는 동시성을, 'seitdem'(~한 이후로)은 계속되는 시작점을 나타냅니다.",
+    "key_expressions": [
+      {
+        "en": "Während ich koche, hört er Musik.",
+        "ko": "제가 요리하는 동안 그는 음악을 들어요."
+      },
+      {
+        "en": "Seitdem ich hier wohne, bin ich glücklicher.",
+        "ko": "여기 산 이후로 저는 더 행복해요."
+      },
+      {
+        "en": "Während des Urlaubs habe ich viel gelesen.",
+        "ko": "휴가 동안 저는 많이 읽었어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_b1_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Schreiben Sie einen Satz mit „während“ für Gleichzeitigkeit.",
+        "ko": "동시성을 나타내는 'während'을 사용해서 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "waehrend",
+          "label_ko": "während",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'während'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "während",
+            "Während"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Sind Sie glücklicher, seitdem Sie hier wohnen?“ Beantworten Sie diese Frage.",
+        "ko": "'Sind Sie glücklicher, seitdem Sie hier wohnen?'(여기 산 이후로 더 행복해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "seitdem",
+          "label_ko": "seitdem",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_b1_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Sagen Sie laut einen Satz mit „während“.",
+        "ko": "소리 내어 'während'을 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "waehrend",
+          "label_ko": "während",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'während'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "während",
+            "Während"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_b1_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Haben Sie während des Urlaubs viel gelesen?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Haben Sie während des Urlaubs viel gelesen?'(휴가 동안 많이 읽었어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "waehrend",
+          "label_ko": "während",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

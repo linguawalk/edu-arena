@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "fr_a1_u31",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 31,
+    "title": "Téléphone/textos",
+    "title_ko": "전화·문자",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour répondre au téléphone, on utilise « Allô ? ». Pour terminer un appel, on utilise « Au revoir, à bientôt ».",
+    "explanation_ko": "전화를 받을 때는 'Allô ?'(여보세요?), 전화를 끊을 때는 'Au revoir, à bientôt'(안녕히 계세요, 곧 봐요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Allô ? Qui est à l'appareil ?",
+        "ko": "여보세요? 누구세요?"
+      },
+      {
+        "en": "Je vous rappelle plus tard.",
+        "ko": "나중에 다시 전화할게요."
+      },
+      {
+        "en": "Au revoir, à bientôt.",
+        "ko": "안녕히 계세요, 곧 봐요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u31_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez comment vous répondez au téléphone en utilisant « Allô ? ».",
+        "ko": "전화 받을 때 하는 말을 'Allô ?'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "answering_phone",
+          "label_ko": "전화 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Allô'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Allô",
+            "allô"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[?.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u31_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Vous pouvez rappeler plus tard ? » Répondez à cette question.",
+        "ko": "'Vous pouvez rappeler plus tard ?'(나중에 다시 전화할 수 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "call_back",
+          "label_ko": "재통화 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u31_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Répondez au téléphone à voix haute.",
+        "ko": "소리 내어 전화를 받아 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "answering_phone",
+          "label_ko": "전화 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Allô'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Allô",
+            "allô"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u31_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Au revoir, à bientôt ! » On vous dit cela. Répondez à voix haute.",
+        "ko": "'Au revoir, à bientôt !'(안녕히 계세요, 곧 봐요!)라는 말을 들었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "goodbye",
+          "label_ko": "작별 인사 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Au revoir'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Au revoir",
+            "au revoir"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "meta": {
+    "id": "en_b1_u38",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 38,
+    "title": "Articles (a/an/the/zero)",
+    "title_ko": "관사 (a/an/the/무관사)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Use 'a/an' for something mentioned for the first time or non-specific. Use 'the' for something already mentioned, unique, or specific to both speakers. Use no article (zero article) for general plural nouns or uncountable nouns in a general sense: 'I like dogs' (dogs in general) vs 'The dogs next door are loud' (specific dogs).",
+    "explanation_ko": "처음 언급되거나 특정하지 않은 것에는 'a/an', 이미 언급됐거나 유일하거나 화자 모두에게 특정된 것에는 'the'를 씁니다. 일반적인 복수 명사나 셀 수 없는 명사를 일반적 의미로 말할 때는 관사를 안 씁니다: 'I like dogs'(일반적인 개들) vs 'The dogs next door are loud'(특정한 옆집 개들).",
+    "key_expressions": [
+      {
+        "en": "I saw a movie last night. The movie was great.",
+        "ko": "어젯밤 영화를 봤어요. 그 영화는 정말 좋았어요."
+      },
+      {
+        "en": "I love music.",
+        "ko": "저는 음악을 좋아해요."
+      },
+      {
+        "en": "The sun rises in the east.",
+        "ko": "태양은 동쪽에서 떠요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u38_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write two sentences about something you bought recently: introduce it with 'a/an', then refer back to it with 'the'.",
+        "ko": "최근에 산 것에 대해, 처음엔 'a/an'으로 소개하고 그다음엔 'the'로 다시 언급하는 문장 두 개를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "article_a",
+          "label_ko": "a/an",
+          "min_occurrences": 1
+        },
+        {
+          "type": "grammar",
+          "id": "article_the",
+          "label_ko": "the",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'a' 또는 'an'을 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(a|an)\\s+\\w+",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'the'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\bthe\\s+\\w+",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.!]",
+          "min_matches": 2,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u38_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Do you like coffee or tea in general?' Write your answer using zero article for the general category.",
+        "ko": "'Do you like coffee or tea in general?'라는 질문에, 일반적 범주에는 관사를 쓰지 않고 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zero_article",
+          "label_ko": "무관사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'I like coffee/tea' (관사 없이)를 사용했는가",
+          "type": "pattern_regex",
+          "target": "i like\\s+(coffee|tea)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u38_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Talk out loud about a place you visited, introducing it with 'a' and then referring back with 'the'.",
+        "ko": "방문했던 장소에 대해, 처음엔 'a'로 소개하고 그다음엔 'the'로 다시 언급하며 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "article_a",
+          "label_ko": "a/an",
+          "min_occurrences": 1
+        },
+        {
+          "type": "grammar",
+          "id": "article_the",
+          "label_ko": "the",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'a' 또는 'an'을 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(a|an)\\s+\\w+",
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'the'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\bthe\\s+\\w+",
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u38_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Do you generally prefer cats or dogs?'",
+        "ko": "소리 내어 답해 보세요: 'Do you generally prefer cats or dogs?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "zero_article",
+          "label_ko": "무관사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "cats 또는 dogs를 관사 없이 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(cats|dogs)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "es_a2_u14",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 14,
+    "title": "Devolución/Cambio",
+    "title_ko": "반품·교환",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To return an item, we use « Quiero devolver esto ». To exchange, we use « Quiero cambiar esto ».",
+    "explanation_ko": "반품할 때는 'Quiero devolver esto'(이거 반품하고 싶어요), 교환할 때는 'Quiero cambiar esto'(이거 교환하고 싶어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Quiero devolver esto.",
+        "ko": "이거 반품하고 싶어요."
+      },
+      {
+        "en": "Quiero cambiar esto por otra talla.",
+        "ko": "이거 다른 사이즈로 교환하고 싶어요."
+      },
+      {
+        "en": "¿Tiene el recibo?",
+        "ko": "영수증 있으세요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u14_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba que quiere devolver algo usando «Quiero devolver esto».",
+        "ko": "'Quiero devolver esto'를 사용해서 반품 의사를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "return",
+          "label_ko": "반품 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'devolver'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "devolver"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u14_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Tiene el recibo?» Responda a esta pregunta.",
+        "ko": "'¿Tiene el recibo?'(영수증 있으세요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "receipt",
+          "label_ko": "영수증 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u14_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta que quiere cambiar algo.",
+        "ko": "소리 내어 교환하고 싶다고 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "exchange",
+          "label_ko": "교환 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'cambiar'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "cambiar"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u14_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Quiere devolver o cambiar esto?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Quiere devolver o cambiar esto?'(반품하실 거예요, 교환하실 거예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "return_or_exchange",
+          "label_ko": "반품·교환 선택 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'devolver' 또는 'cambiar'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "devolver",
+            "cambiar"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

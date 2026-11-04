@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "es_a1_u14",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 14,
+    "title": "El clima 1",
+    "title_ko": "날씨 1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about the weather, we use « Hace... » (Hace calor/frío) and « Está lloviendo/nevando ».",
+    "explanation_ko": "날씨에 대해 말할 때는 'Hace...'(Hace calor/frío, 덥다/춥다)와 'Está lloviendo/nevando'(비가/눈이 오고 있다)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Hace mucho calor hoy.",
+        "ko": "오늘 정말 더워요."
+      },
+      {
+        "en": "Está lloviendo.",
+        "ko": "비가 와요."
+      },
+      {
+        "en": "Hace frío en invierno.",
+        "ko": "겨울에는 추워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u14_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba sobre el clima usando «Hace...».",
+        "ko": "'Hace...'를 사용해서 날씨에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather",
+          "label_ko": "날씨 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Hace'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Hace",
+            "hace"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u14_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Está lloviendo?» Responda a esta pregunta.",
+        "ko": "'¿Está lloviendo?'(비가 와요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rain",
+          "label_ko": "비 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u14_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta el clima usando «Hace calor» o «Hace frío».",
+        "ko": "'Hace calor' 또는 'Hace frío'를 사용해서 소리 내어 날씨를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather",
+          "label_ko": "날씨 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'calor' 또는 'frío'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "calor",
+            "frío"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u14_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Hace frío en invierno?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Hace frío en invierno?'(겨울에 추워요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather",
+          "label_ko": "날씨 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "fr_a2_u07",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 7,
+    "title": "Projets de voyage",
+    "title_ko": "여행 계획",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler d'un projet de voyage, on utilise « Je pense partir à... ». Pour parler de la durée, on utilise « pendant... jours ».",
+    "explanation_ko": "여행 계획을 말할 때는 'Je pense partir à...'(~로 떠날 생각이에요), 기간을 말할 때는 'pendant... jours'(~일 동안)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Je pense partir en Espagne cet été.",
+        "ko": "이번 여름에 스페인으로 떠날 생각이에요."
+      },
+      {
+        "en": "Nous allons rester pendant cinq jours.",
+        "ko": "저희는 5일 동안 머물 거예요."
+      },
+      {
+        "en": "Où voulez-vous aller pour les vacances ?",
+        "ko": "휴가 때 어디 가고 싶어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u07_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez un projet de voyage en utilisant « Je pense partir à... ».",
+        "ko": "여행 계획을 'Je pense partir à...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel_intention",
+          "label_ko": "여행 의도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'partir'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "partir"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u07_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Combien de jours allez-vous rester ? » Répondez à cette question.",
+        "ko": "'Combien de jours allez-vous rester ?'(며칠 머물 거예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "duration",
+          "label_ko": "기간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'jours'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "jours",
+            "jour"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u07_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de votre projet de voyage à voix haute.",
+        "ko": "소리 내어 여행 계획에 대해 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "travel_intention",
+          "label_ko": "여행 의도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'partir' 또는 'voyage'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "partir",
+            "voyage"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u07_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Où voulez-vous aller pour les vacances ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Où voulez-vous aller pour les vacances ?'(휴가 때 어디 가고 싶어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "vacation_destination",
+          "label_ko": "휴가지 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "zh_a2_u25",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 25,
+    "title": "运动、健身(深入)",
+    "title_ko": "스포츠·운동 (심화)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说运动的效果用「...变得...了」，比如「我跑得更快了」。",
+    "explanation_ko": "운동 효과를 말할 때는 '...变得...了'(~하게 됐어요)를 씁니다. 예: '我跑得更快了'(더 빨리 달릴 수 있게 됐어요).",
+    "key_expressions": [
+      {
+        "en": "我跑得更快了。",
+        "ko": "더 빨리 달릴 수 있게 됐어요."
+      },
+      {
+        "en": "我开始每天锻炼了。",
+        "ko": "매일 운동하게 됐어요."
+      },
+      {
+        "en": "我的体力变好了。",
+        "ko": "체력이 좋아졌어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u25_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「...变得...了」写出坚持运动后的变化。",
+        "ko": "운동을 계속해서 바뀐 것을 '...变得...了'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "improvement",
+          "label_ko": "향상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'变得'와 '了'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "变得.{0,10}了",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u25_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「运动后有什么变化？」请回答这个问题。",
+        "ko": "'运动后有什么变化？'(운동하고 나서 뭐가 바뀌었어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "change",
+          "label_ko": "변화 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'变得' 또는 '了'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "变得",
+            "了"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u25_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出坚持运动后的变化。",
+        "ko": "운동을 계속해서 바뀐 것에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "improvement",
+          "label_ko": "향상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'变得'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "变得"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u25_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你的体力变好了吗？」有人问你。请大声回答。",
+        "ko": "'你的体力变好了吗？'(체력이 좋아졌어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "stamina",
+          "label_ko": "체력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'是' 또는 '不是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "是",
+            "不是"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

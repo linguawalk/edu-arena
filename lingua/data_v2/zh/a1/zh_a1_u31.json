@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a1_u31",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 31,
+    "title": "打电话、发短信",
+    "title_ko": "전화·문자",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "打电话用「喂，请问...在吗？」，发短信用「我给你发短信」。",
+    "explanation_ko": "전화할 때는 '喂，请问...在吗？'(여보세요, ~있나요?), 문자 보낼 때는 '我给你发短信'(문자 보낼게요)을 씁니다.",
+    "key_expressions": [
+      {
+        "en": "喂，请问王先生在吗？",
+        "ko": "여보세요, 왕 선생님 계세요?"
+      },
+      {
+        "en": "我给你发短信。",
+        "ko": "문자 보낼게요."
+      },
+      {
+        "en": "请稍等。",
+        "ko": "잠시만 기다려주세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u31_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「喂，请问...在吗？」打电话找人。",
+        "ko": "'喂，请问...在吗？'를 사용해서 전화로 사람을 찾아보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "phone_call",
+          "label_ko": "전화 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'喂'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "喂"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[？?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u31_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你能给我发短信吗？」请回答这个问题。",
+        "ko": "'你能给我发短信吗？'(문자 보내줄 수 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "texting",
+          "label_ko": "문자 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'短信'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "短信"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u31_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声打电话找人。",
+        "ko": "소리 내어 전화로 사람을 찾아보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "phone_call",
+          "label_ko": "전화 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'喂'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "喂"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u31_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「请稍等」对方这样说。请大声回答。",
+        "ko": "'请稍等'(잠시만 기다려주세요)라는 말을 들었습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "waiting",
+          "label_ko": "대기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'好' 또는 '谢谢'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "好",
+            "谢谢"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

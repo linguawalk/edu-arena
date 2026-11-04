@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "ja_a1_u03",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 3,
+    "title": "家族",
+    "title_ko": "가족",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "家族について話すときは「わたしの〜」を使います。自分の家族には「はは」「ちち」、他人の家族には「お母さん」「お父さん」を使います。",
+    "explanation_ko": "가족에 대해 말할 때는 'わたしの〜'를 씁니다. 자신의 가족에게는 'はは'(어머니), 'ちち'(아버지)를, 남의 가족에게는 'お母さん', 'お父さん'을 씁니다.",
+    "key_expressions": [
+      {
+        "en": "わたしの家族は4人です。",
+        "ko": "제 가족은 4명이에요."
+      },
+      {
+        "en": "わたしにはあにがいます。",
+        "ko": "저는 형(오빠)이 있어요."
+      },
+      {
+        "en": "ちちは会社員です。",
+        "ko": "아버지는 회사원이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u03_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "自分の家族について、人数と一人を紹介する文を書いてください。",
+        "ko": "자신의 가족에 대해, 인원수와 한 명을 소개하는 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "family",
+          "label_ko": "가족 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'わたしの家族'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "わたしの家族"
+          ],
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 50,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u03_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「家族は何人ですか」という質問に答えを書いてください。",
+        "ko": "'家族は何人ですか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "family_count",
+          "label_ko": "가족 인원 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'人です'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "人です"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u03_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "自分の家族について声に出して紹介してください。",
+        "ko": "자신의 가족에 대해 소리 내어 소개해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "family",
+          "label_ko": "가족 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'家族'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "家族"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u03_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「兄弟がいますか」と聞かれました。声に出して答えてください。",
+        "ko": "'兄弟がいますか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "siblings",
+          "label_ko": "형제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'います' 또는 'いません'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "います",
+            "いません"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

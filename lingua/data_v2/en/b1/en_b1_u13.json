@@ -1,0 +1,226 @@
+{
+  "meta": {
+    "id": "en_b1_u13",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 13,
+    "title": "Modals of Deduction",
+    "title_ko": "추측을 나타내는 조동사",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Modals of deduction express how certain you are about something. 'Must' = strong certainty (positive), 'can't' = strong certainty (negative), 'might/may/could' = possibility: 'She must be tired.' 'That can't be true.' 'He might be at work.'",
+    "explanation_ko": "추측 조동사는 어떤 일에 대한 확신 정도를 나타냅니다. 'must'=강한 확신(긍정), 'can't'=강한 확신(부정), 'might/may/could'=가능성: 'She must be tired.' 'That can't be true.' 'He might be at work.'",
+    "key_expressions": [
+      {
+        "en": "He must be at home; the lights are on.",
+        "ko": "불이 켜져 있으니 그는 집에 있는 게 틀림없어요."
+      },
+      {
+        "en": "She can't be angry; she's smiling.",
+        "ko": "웃고 있으니 그녀가 화났을 리 없어요."
+      },
+      {
+        "en": "They might be stuck in traffic.",
+        "ko": "그들은 교통 체증에 걸렸을 수도 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u13_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Your friend isn't answering their phone. Write two guesses about why, using 'must', 'might', or 'can't'.",
+        "ko": "친구가 전화를 안 받습니다. 'must', 'might', 'can't'를 사용해서 이유를 추측하는 문장 두 개를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "modal_deduction",
+          "label_ko": "추측 조동사",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'must', 'might', 'may', 'could', 'can't' 중 2개 이상 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(must|might|may|could|can't|cannot)\\b",
+          "min_matches": 2,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.!]",
+          "min_matches": 2,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u13_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'Why do you think the store is closed?' Write your answer using a modal of deduction.",
+        "ko": "'Why do you think the store is closed?'라는 질문에 추측 조동사를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "modal_deduction",
+          "label_ko": "추측 조동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'must', 'might', 'may', 'could' 중 하나를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(must|might|may|could)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u13_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Look at your surroundings and make two guesses about what's happening nearby, using modals of deduction.",
+        "ko": "주변을 둘러보고, 추측 조동사를 사용해서 근처에서 무슨 일이 일어나고 있는지 소리 내어 두 가지 추측해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "modal_deduction",
+          "label_ko": "추측 조동사",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "추측 조동사를 2회 이상 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(must|might|may|could|can't)\\b",
+          "min_matches": 2,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u13_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Your neighbor's lights are off at 6pm. What might that mean?'",
+        "ko": "소리 내어 답해 보세요: 'Your neighbor's lights are off at 6pm. What might that mean?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "modal_deduction",
+          "label_ko": "추측 조동사",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "추측 조동사를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(must|might|may|could)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

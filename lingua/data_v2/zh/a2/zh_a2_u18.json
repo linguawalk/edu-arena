@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a2_u18",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 18,
+    "title": "技术问题",
+    "title_ko": "기술적 문제",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说设备故障用「...坏了」，比如「电脑坏了」。",
+    "explanation_ko": "기기 문제를 말할 때는 '...坏了'(~이 고장 났어요)를 씁니다. 예: '电脑坏了'(컴퓨터가 고장 났어요).",
+    "key_expressions": [
+      {
+        "en": "我的电脑坏了。",
+        "ko": "제 컴퓨터가 고장 났어요."
+      },
+      {
+        "en": "网络连不上。",
+        "ko": "인터넷이 연결이 안 돼요."
+      },
+      {
+        "en": "软件死机了。",
+        "ko": "프로그램이 멈췄어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u18_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「...坏了」写出设备的问题。",
+        "ko": "기기 문제를 '...坏了'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_problem",
+          "label_ko": "기기 문제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'坏了'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "坏了"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u18_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「网络怎么样？」请回答这个问题。",
+        "ko": "'网络怎么样？'(인터넷 상태 어때요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "internet_status",
+          "label_ko": "인터넷 상태 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'连不上' 또는 '很好'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "连不上",
+            "很好"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u18_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说明电脑的问题。",
+        "ko": "컴퓨터 문제에 대해 소리 내어 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_problem",
+          "label_ko": "기기 문제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'坏了'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "坏了"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u18_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「怎么了？」有人问你。请大声说明电脑的问题。",
+        "ko": "'怎么了？'(무슨 일이에요?)라는 질문을 받았습니다. 컴퓨터 문제를 소리 내어 설명해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "tech_problem",
+          "label_ko": "기기 문제 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'坏了'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "坏了"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

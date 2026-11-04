@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "es_b2_u45",
+    "domain": "language",
+    "lang": "es",
+    "level": "b2",
+    "unit": 45,
+    "title": "Transformación activa-pasiva",
+    "title_ko": "능동↔수동 전환",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Converting active to passive: the direct object becomes the subject, and the original subject becomes a « por »-phrase.",
+    "explanation_ko": "능동을 수동으로 전환할 때: 직접 목적어가 주어가 되고, 원래 주어는 'por' 구가 됩니다.",
+    "key_expressions": [
+      {
+        "en": "El profesor corrige el examen. (Activa)",
+        "ko": "선생님이 시험을 채점해요 (능동)."
+      },
+      {
+        "en": "El examen es corregido por el profesor. (Pasiva)",
+        "ko": "시험이 선생님에 의해 채점돼요 (수동)."
+      },
+      {
+        "en": "Construyeron la casa en 1990. → La casa fue construida en 1990.",
+        "ko": "1990년에 이 집을 지었다 → 이 집은 1990년에 지어졌다."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_b2_u45_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba una frase activa y transfórmela a la voz pasiva.",
+        "ko": "능동 문장을 쓰고 수동태로 전환해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "activa_pasiva",
+          "label_ko": "능동수동전환",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'es' 또는 'fue'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "es",
+            "fue"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "문장이 2개 이상인가",
+          "type": "pattern_regex",
+          "target": "[.]",
+          "min_matches": 2,
+          "points": 40,
+          "required": true
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u45_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Es corregido el examen por el profesor?» Responda a esta pregunta.",
+        "ko": "'¿Es corregido el examen por el profesor?'(시험이 선생님에 의해 채점돼요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "activa_pasiva",
+          "label_ko": "능동수동전환",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_b2_u45_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una frase en pasiva derivada de una activa.",
+        "ko": "능동 문장에서 유도된 수동태 문장을 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "activa_pasiva",
+          "label_ko": "능동수동전환",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'es' 또는 'fue'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "es",
+            "fue"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_b2_u45_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Fue construida la casa en 1990?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Fue construida la casa en 1990?'(이 집이 1990년에 지어졌어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "activa_pasiva",
+          "label_ko": "능동수동전환",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

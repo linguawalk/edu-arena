@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "zh_a1_u20",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a1",
+    "unit": 20,
+    "title": "爱好",
+    "title_ko": "취미",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "说爱好用「我的爱好是...」，或者「我喜欢...」。",
+    "explanation_ko": "취미를 말할 때는 '我的爱好是...'(제 취미는 ~예요) 또는 '我喜欢...'(저는 ~을 좋아해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我的爱好是看电影。",
+        "ko": "제 취미는 영화 보기예요."
+      },
+      {
+        "en": "我喜欢画画。",
+        "ko": "저는 그림 그리는 걸 좋아해요."
+      },
+      {
+        "en": "你有什么爱好？",
+        "ko": "취미가 뭐예요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a1_u20_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我的爱好是...」写出你的爱好。",
+        "ko": "'我的爱好是...'를 사용해서 취미를 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "hobby",
+          "label_ko": "취미 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我的爱好是'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我的爱好是"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u20_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你有什么爱好？」请回答这个问题。",
+        "ko": "'你有什么爱好？'(취미가 뭐예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "hobby",
+          "label_ko": "취미 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我喜欢' 또는 '爱好'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我喜欢",
+            "爱好"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a1_u20_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你的爱好。",
+        "ko": "소리 내어 자신의 취미를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "hobby",
+          "label_ko": "취미 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'我喜欢' 또는 '爱好'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "我喜欢",
+            "爱好"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a1_u20_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你喜欢画画吗？」有人问你。请大声回答。",
+        "ko": "'你喜欢画画吗？'(그림 그리는 거 좋아해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "hobby",
+          "label_ko": "취미 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'喜欢' 또는 '不喜欢'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "喜欢",
+            "不喜欢"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

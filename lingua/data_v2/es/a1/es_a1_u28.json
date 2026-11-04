@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "es_a1_u28",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 28,
+    "title": "Ropa",
+    "title_ko": "옷",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To talk about clothing, we use « Llevo... ». To ask about clothing choices, we use « ¿Qué te vas a poner? ».",
+    "explanation_ko": "옷에 대해 말할 때는 'Llevo...'(저는 ~을 입어요), 옷 선택을 물을 때는 '¿Qué te vas a poner?'(뭘 입을 거예요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Llevo una camisa azul.",
+        "ko": "저는 파란 셔츠를 입어요."
+      },
+      {
+        "en": "¿Qué te vas a poner hoy?",
+        "ko": "오늘 뭐 입을 거예요?"
+      },
+      {
+        "en": "Necesito comprar zapatos nuevos.",
+        "ko": "저는 새 신발을 사야 해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u28_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba sobre lo que lleva usando «Llevo...».",
+        "ko": "'Llevo...'를 사용해서 입고 있는 것에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "clothing",
+          "label_ko": "옷 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Llevo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Llevo",
+            "llevo"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u28_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Qué te vas a poner hoy?» Responda a esta pregunta.",
+        "ko": "'¿Qué te vas a poner hoy?'(오늘 뭐 입을 거예요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "clothing_choice",
+          "label_ko": "옷 선택 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u28_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta que necesita comprar ropa usando «Necesito comprar...».",
+        "ko": "'Necesito comprar...'를 사용해서 소리 내어 옷이 필요하다고 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "need_clothing",
+          "label_ko": "옷 필요 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Necesito'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Necesito",
+            "necesito"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u28_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Llevas una camisa azul?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Llevas una camisa azul?'(파란 셔츠 입었어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "clothing",
+          "label_ko": "옷 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

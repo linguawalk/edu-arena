@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "es_a1_u30",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 30,
+    "title": "Aceptar/Rechazar",
+    "title_ko": "수락·거절",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To accept an invitation, we use « Sí, me encantaría ». To decline, we use « Lo siento, no puedo ».",
+    "explanation_ko": "초대를 수락할 때는 'Sí, me encantaría'(네, 정말 좋아요), 거절할 때는 'Lo siento, no puedo'(죄송해요, 못 가요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Sí, me encantaría ir.",
+        "ko": "네, 정말 가고 싶어요."
+      },
+      {
+        "en": "Lo siento, no puedo.",
+        "ko": "죄송해요, 못 가요."
+      },
+      {
+        "en": "Tal vez otro día.",
+        "ko": "아마 다른 날에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u30_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Acepte una invitación usando «Sí, me encantaría».",
+        "ko": "'Sí, me encantaría'를 사용해서 초대를 수락해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "accept",
+          "label_ko": "수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'encantaría'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "encantaría"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u30_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Puedes venir a la fiesta?» Rechace usando «Lo siento, no puedo».",
+        "ko": "'¿Puedes venir a la fiesta?'(파티에 올 수 있어요?)라는 질문에 'Lo siento, no puedo'를 사용해서 거절하는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "decline",
+          "label_ko": "거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'no puedo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "no puedo"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u30_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Rechace una invitación en voz alta usando «Tal vez otro día».",
+        "ko": "'Tal vez otro día'를 사용해서 소리 내어 초대를 거절해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "decline_soft",
+          "label_ko": "부드러운 거절 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'otro día'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "otro día"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u30_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Te encantaría ir?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Te encantaría ir?'(가고 싶어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "accept",
+          "label_ko": "수락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

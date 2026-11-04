@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "de_a2_u09",
+    "domain": "language",
+    "lang": "de",
+    "level": "a2",
+    "unit": 9,
+    "title": "Restaurant Details (ohne/allergisch)",
+    "title_ko": "식당 세부사항 (~빼고/알레르기)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To ask for something without an ingredient, we use « ohne... ». To say you are allergic, we use « Ich bin allergisch gegen... ».",
+    "explanation_ko": "재료를 빼달라고 할 때는 'ohne...'(~빼고), 알레르기를 말할 때는 'Ich bin allergisch gegen...'(저는 ~에 알레르기가 있어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Ich möchte einen Kaffee ohne Zucker.",
+        "ko": "설탕 빼고 커피 주세요."
+      },
+      {
+        "en": "Ich bin allergisch gegen Erdnüsse.",
+        "ko": "저는 땅콩 알레르기가 있어요."
+      },
+      {
+        "en": "Können Sie das ohne Fleisch machen?",
+        "ko": "고기 빼고 만들어 주실 수 있어요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a2_u09_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Bestellen Sie etwas und benutzen Sie dabei „ohne...“.",
+        "ko": "'ohne...'를 사용해서 음식을 주문해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "without",
+          "label_ko": "제외 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ohne'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ohne"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u09_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Sind Sie gegen etwas allergisch?“ Beantworten Sie diese Frage.",
+        "ko": "'Sind Sie gegen etwas allergisch?'(뭔가에 알레르기가 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "allergy",
+          "label_ko": "알레르기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'allergisch'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "allergisch"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a2_u09_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Bestellen Sie laut etwas mit „ohne...“.",
+        "ko": "'ohne...'를 사용해서 소리 내어 음식을 주문해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "without",
+          "label_ko": "제외 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ohne'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ohne"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a2_u09_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Sind Sie allergisch gegen Erdnüsse?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Sind Sie allergisch gegen Erdnüsse?'(땅콩 알레르기 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "peanut_allergy",
+          "label_ko": "땅콩 알레르기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

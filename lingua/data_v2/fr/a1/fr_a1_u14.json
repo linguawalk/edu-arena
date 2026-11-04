@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "id": "fr_a1_u14",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 14,
+    "title": "Météo 1",
+    "title_ko": "날씨 1",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler du temps, on utilise « Il fait... ». Pour dire qu'il pleut, on utilise « Il pleut ».",
+    "explanation_ko": "날씨를 말할 때는 'Il fait...'(날씨가 ~해요), 비가 온다고 말할 때는 'Il pleut'(비가 와요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Il fait beau aujourd'hui.",
+        "ko": "오늘 날씨가 좋아요."
+      },
+      {
+        "en": "Il pleut.",
+        "ko": "비가 와요."
+      },
+      {
+        "en": "Il fait froid.",
+        "ko": "날씨가 추워요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u14_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez le temps qu'il fait aujourd'hui en utilisant « Il fait... ».",
+        "ko": "오늘 날씨를 'Il fait...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather",
+          "label_ko": "날씨 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Il fait'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Il fait",
+            "il fait"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u14_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Il pleut aujourd'hui ? » Répondez à cette question.",
+        "ko": "'Il pleut aujourd'hui ?'(오늘 비 와요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rain",
+          "label_ko": "비 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'pleut' 또는 'Oui/Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "pleut",
+            "Oui",
+            "Non"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u14_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites le temps qu'il fait à voix haute.",
+        "ko": "소리 내어 오늘 날씨를 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather",
+          "label_ko": "날씨 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Il fait'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Il fait",
+            "il fait"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u14_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Il fait froid ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Il fait froid ?'(추워요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "cold",
+          "label_ko": "추위 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

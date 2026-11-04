@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "id": "zh_a2_u14",
+    "domain": "language",
+    "lang": "zh",
+    "level": "a2",
+    "unit": 14,
+    "title": "退货、换货",
+    "title_ko": "반품·교환",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "退货用「我想退货」，换货用「我想换货」。",
+    "explanation_ko": "반품할 때는 '我想退货'(반품하고 싶어요), 교환할 때는 '我想换货'(교환하고 싶어요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "我想退货。",
+        "ko": "반품하고 싶어요."
+      },
+      {
+        "en": "我想换一个尺码。",
+        "ko": "사이즈를 교환하고 싶어요."
+      },
+      {
+        "en": "我有小票。",
+        "ko": "영수증 있어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "zh_a2_u14_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请用「我想退货」写出退货的句子。",
+        "ko": "산 물건을 반품하고 싶을 때, '我想退货'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "return",
+          "label_ko": "반품 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'退货'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "退货"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u14_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「你有小票吗？」请回答这个问题。",
+        "ko": "'你有小票吗？'(영수증 있어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "receipt",
+          "label_ko": "영수증 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'小票'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "小票"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "zh_a2_u14_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "请大声说出你想换尺码不合适的衣服。",
+        "ko": "사이즈가 안 맞는 옷을 소리 내어 교환하고 싶다고 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "exchange",
+          "label_ko": "교환 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'换货' 또는 '换'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "换货",
+            "换"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "zh_a2_u14_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「怎么了？」店员问你。请大声说出想退货。",
+        "ko": "'怎么了？'(무슨 일이세요?)라는 질문을 받았습니다. 반품하고 싶다고 소리 내어 전해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "return",
+          "label_ko": "반품 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'退货'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "退货"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

@@ -1,0 +1,286 @@
+{
+  "meta": {
+    "id": "en_a1_u02",
+    "domain": "language",
+    "lang": "en",
+    "level": "a1",
+    "unit": 2,
+    "title": "Numbers, Age & Time",
+    "title_ko": "숫자, 나이, 시간",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "This unit's key expressions: saying numbers, telling your age, and telling the time.",
+    "explanation_ko": "이번 유닛의 핵심 표현: 숫자 말하기, 나이 말하기, 시간 말하기",
+    "key_expressions": [
+      {
+        "en": "I am ~ years old.",
+        "ko": "저는 ~살입니다."
+      },
+      {
+        "en": "It is ~ o'clock.",
+        "ko": "~시 정각입니다."
+      },
+      {
+        "en": "What time is it?",
+        "ko": "몇 시예요?"
+      },
+      {
+        "en": "How old are you?",
+        "ko": "몇 살이에요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_a1_u02_w1",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "A new friend asks you: 'How old are you?' Write your answer as a full sentence.",
+        "ko": "새 친구가 'How old are you?'라고 묻습니다. 완전한 문장으로 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "age_expression",
+          "label_ko": "나이 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "나이를 말하는 표현을 사용했는가 (I am ~ years old)",
+          "type": "pattern_regex",
+          "target": "i\\s*am\\s*\\d+\\s*years?\\s*old",
+          "min_matches": 1,
+          "points": 50,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "숫자가 실제로 포함되어 있는가",
+          "type": "pattern_regex",
+          "target": "\\d+",
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장 형태인가 (대문자로 시작, 마침표로 끝남)",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u02_w2",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write three sentences describing your daily schedule using clock times. Example: 'I wake up at seven o'clock.'",
+        "ko": "시각을 사용해서 하루 일과를 설명하는 문장을 세 개 써 보세요. 예: 'I wake up at seven o'clock.'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "time_expression",
+          "label_ko": "시간 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "시간 표현(o'clock/half past 등)을 2회 이상 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "o'clock",
+            "half past",
+            "quarter past",
+            "quarter to"
+          ],
+          "min_matches": 2,
+          "points": 45,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "전치사 at을 시간과 함께 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\bat\\s+\\w+",
+          "min_matches": 2,
+          "points": 25,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "문장이 세 개 이상인가 (마침표 3회 이상)",
+          "type": "pattern_regex",
+          "target": "[.!]",
+          "min_matches": 3,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_a1_u02_s1",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'What time is it right now?' Use a full sentence.",
+        "ko": "소리 내어 답해 보세요: 'What time is it right now?' 완전한 문장으로 답하세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "time_expression",
+          "label_ko": "시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'It is ~' 구조로 시간을 말했는가",
+          "type": "keyword_match",
+          "target": [
+            "it is",
+            "it's"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "시간 표현(o'clock 등)을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "o'clock",
+            "half past",
+            "quarter"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_a1_u02_s2",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Say your age and one thing you usually do at a specific time of day. Example: 'I am ... years old. I eat breakfast at ...'",
+        "ko": "당신의 나이와, 하루 중 특정 시간에 보통 하는 일 한 가지를 말해 보세요. 예: 'I am ... years old. I eat breakfast at ...'"
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "age_expression",
+          "label_ko": "나이 표현",
+          "min_occurrences": 1
+        },
+        {
+          "type": "expression",
+          "id": "time_expression",
+          "label_ko": "시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "나이를 말했는가 (years old)",
+          "type": "keyword_match",
+          "target": [
+            "years old"
+          ],
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "시간 표현을 사용했는가 (at + 시각)",
+          "type": "pattern_regex",
+          "target": "\\bat\\s+\\w+",
+          "min_matches": 1,
+          "points": 30,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

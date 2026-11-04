@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "ja_a1_u37",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a1",
+    "unit": 37,
+    "title": "許可を求める",
+    "title_ko": "허락 구하기",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "許可を求めるときは「〜てもいいですか」を使います。「ここにすわってもいいですか」のように使います。",
+    "explanation_ko": "허락을 구할 때는 '〜てもいいですか'(~해도 될까요?)를 씁니다. 'ここにすわってもいいですか'(여기 앉아도 될까요?)처럼 씁니다.",
+    "key_expressions": [
+      {
+        "en": "まどをあけてもいいですか。",
+        "ko": "창문을 열어도 될까요?"
+      },
+      {
+        "en": "しゃしんをとってもいいですか。",
+        "ko": "사진을 찍어도 될까요?"
+      },
+      {
+        "en": "はい、どうぞ。",
+        "ko": "네, 그러세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a1_u37_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "何かの許可を求める文を「〜てもいいですか」を使って書いてください。",
+        "ko": "무언가의 허락을 구하는 문장을 '〜てもいいですか'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "permission",
+          "label_ko": "허락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'てもいいですか'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "てもいいですか"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가(물음표 포함)",
+          "type": "pattern_regex",
+          "target": "[。？]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u37_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「しゃしんをとってもいいですか」という質問に、許可する答えを書いてください。",
+        "ko": "'しゃしんをとってもいいですか'라는 질문에 허락하는 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "grant_permission",
+          "label_ko": "허락 승인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'どうぞ' 또는 'いいです'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "どうぞ",
+            "いいです"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a1_u37_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "何かの許可を、声に出して求めてください。",
+        "ko": "무언가의 허락을 소리 내어 구해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "permission",
+          "label_ko": "허락 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'てもいいですか'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "てもいいですか"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a1_u37_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「まどをあけてもいいですか」と聞かれました。声に出して答えてください。",
+        "ko": "'まどをあけてもいいですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "grant_permission",
+          "label_ko": "허락 승인 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'どうぞ' 또는 'すみません'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "どうぞ",
+            "すみません"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

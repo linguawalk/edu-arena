@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "id": "ja_a2_u02",
+    "domain": "language",
+    "lang": "ja",
+    "level": "a2",
+    "unit": 2,
+    "title": "きのう",
+    "title_ko": "어제",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "昨日の出来事を順番に話すときは「まず〜、それから〜」を使います。動詞の過去形（〜ました）を続けて使います。",
+    "explanation_ko": "어제 있었던 일을 순서대로 말할 때는 'まず〜、それから〜'를 씁니다. 동사의 과거형(〜ました)을 이어서 씁니다.",
+    "key_expressions": [
+      {
+        "en": "きのうはまずかいものにいきました。それからともだちとあいました。",
+        "ko": "어제는 먼저 쇼핑하러 갔어요. 그리고 친구를 만났어요."
+      },
+      {
+        "en": "あさごはんをたべて、しごとにいきました。",
+        "ko": "아침을 먹고 일하러 갔어요."
+      },
+      {
+        "en": "よるはえいがをみました。",
+        "ko": "밤에는 영화를 봤어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "ja_a2_u02_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "きのうしたことを、「まず」「それから」を使って順番に書いてください。",
+        "ko": "어제 했던 일을 'まず', 'それから'를 사용해서 순서대로 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "yesterday_sequence",
+          "label_ko": "어제 순서 표현",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'まず'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "まず"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'それから'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "それから"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 20,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u02_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「きのうのよる何をしましたか」という質問に答えを書いてください。",
+        "ko": "'きのうのよる何をしましたか'라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "last_night",
+          "label_ko": "어젯밤 활동 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ました'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ました"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[。]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "ja_a2_u02_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "きのうしたことを、声に出して順番に話してください。",
+        "ko": "어제 했던 일을 소리 내어 순서대로 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "yesterday_sequence",
+          "label_ko": "어제 순서 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'まず' 또는 'それから'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "まず",
+            "それから"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "ja_a2_u02_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "「きのういそがしかったですか」と聞かれました。声に出して答えてください。",
+        "ko": "'きのういそがしかったですか'라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "yesterday_busy",
+          "label_ko": "어제 상태 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'いそがしかった' 또는 'はい/いいえ'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "いそがしかった",
+            "はい",
+            "いいえ"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

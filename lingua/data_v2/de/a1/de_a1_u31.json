@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "id": "de_a1_u31",
+    "domain": "language",
+    "lang": "de",
+    "level": "a1",
+    "unit": 31,
+    "title": "Telefon/SMS",
+    "title_ko": "전화·문자",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To answer the phone, we use « Hallo, hier ist... ». To ask to speak with someone, we use « Kann ich mit... sprechen? ».",
+    "explanation_ko": "전화를 받을 때는 'Hallo, hier ist...'(여보세요, 저는 ~예요), 통화를 요청할 때는 'Kann ich mit... sprechen?'(~와 통화할 수 있을까요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Hallo, hier ist Kim.",
+        "ko": "여보세요, 저는 김이에요."
+      },
+      {
+        "en": "Kann ich mit Anna sprechen?",
+        "ko": "안나와 통화할 수 있을까요?"
+      },
+      {
+        "en": "Ich schicke Ihnen eine SMS.",
+        "ko": "문자 보낼게요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "de_a1_u31_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beantworten Sie einen Anruf und benutzen Sie dabei „Hallo, hier ist...“.",
+        "ko": "'Hallo, hier ist...'를 사용해서 전화 받는 말을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "phone_answer",
+          "label_ko": "전화 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'hier ist'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "hier ist"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u31_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Sie rufen ein Büro an und möchten mit Frau Schmidt sprechen. Schreiben Sie, was Sie sagen.",
+        "ko": "사무실에 전화해서 슈미트 씨와 통화하고 싶습니다. 뭐라고 말할지 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "phone_request",
+          "label_ko": "통화 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'sprechen'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "sprechen"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "de_a1_u31_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Beantworten Sie einen Anruf laut.",
+        "ko": "소리 내어 전화를 받아 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "phone_answer",
+          "label_ko": "전화 응답 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Hallo' 또는 'hier ist'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Hallo",
+            "hallo",
+            "hier ist"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "de_a1_u31_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "„Schicken Sie mir eine SMS?“ Das fragt man Sie. Antworten Sie laut.",
+        "ko": "'Schicken Sie mir eine SMS?'(문자 보내실 거예요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "sms",
+          "label_ko": "문자 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Ja' 또는 'Nein'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Ja",
+            "ja",
+            "Nein",
+            "nein"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

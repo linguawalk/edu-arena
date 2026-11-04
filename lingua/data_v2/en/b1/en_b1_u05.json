@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "en_b1_u05",
+    "domain": "language",
+    "lang": "en",
+    "level": "b1",
+    "unit": 5,
+    "title": "Passive Voice (Past)",
+    "title_ko": "수동태 (과거)",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "Past passive (was/were + past participle) is common in news and reports, when the doer is unknown, unimportant, or obvious from context: 'The bridge was built in 1990', 'My phone was stolen last week.'",
+    "explanation_ko": "과거 수동태(was/were + 과거분사)는 뉴스·보고서에서 자주 쓰이며, 행위자를 모르거나, 중요하지 않거나, 문맥상 뻔할 때 씁니다: 'The bridge was built in 1990', 'My phone was stolen last week.'",
+    "key_expressions": [
+      {
+        "en": "The building was completed last year.",
+        "ko": "그 건물은 작년에 완공됐어요."
+      },
+      {
+        "en": "My bike was stolen yesterday.",
+        "ko": "제 자전거를 어제 도난당했어요."
+      },
+      {
+        "en": "The meeting was canceled.",
+        "ko": "회의가 취소됐어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "en_b1_u05_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Write a short news-style report about an event, using past passive voice (e.g., 'was built', 'was announced').",
+        "ko": "과거 수동태(was built, was announced 등)를 사용해서 뉴스 스타일로 사건을 짧게 보도해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "passive_past",
+          "label_ko": "과거 수동태",
+          "min_occurrences": 2
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'was/were + 과거분사' 수동태를 2회 이상 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(was|were)\\s+\\w+ed\\b|\\b(was|were)\\s+(built|announced|held|found|canceled|created)\\b",
+          "min_matches": 2,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 18단어)",
+          "type": "length_check",
+          "unit": "words",
+          "min": 18,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u05_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Someone asks: 'What happened to your phone?' Write an answer using past passive (e.g., 'It was stolen/broken').",
+        "ko": "'What happened to your phone?'라는 질문에 과거 수동태(It was stolen/broken 등)를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "passive_past",
+          "label_ko": "과거 수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'was/were + 과거분사'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(was|were)\\s+(stolen|broken|lost|damaged)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "^[A-Z].*[.!]$",
+          "min_matches": 1,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      }
+    },
+    {
+      "id": "en_b1_u05_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Report out loud on a recent local event (e.g., a festival, a new building) using past passive voice.",
+        "ko": "최근 지역 소식(축제, 새 건물 등)을 과거 수동태로 소리 내어 보도해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "passive_past",
+          "label_ko": "과거 수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'was/were + 과거분사'를 사용했는가",
+          "type": "pattern_regex",
+          "target": "\\b(was|were)\\s+\\w+ed\\b|\\b(was|were)\\s+(built|held|opened|announced)\\b",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "en_b1_u05_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "Answer out loud: 'Was your city damaged by any natural disaster in the past?'",
+        "ko": "소리 내어 답해 보세요: 'Was your city damaged by any natural disaster in the past?'"
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "passive_past",
+          "label_ko": "과거 수동태",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Yes' 또는 'No'로 답했는가",
+          "type": "keyword_match",
+          "target": [
+            "yes",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 40,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "'was/were'로 답했는가",
+          "type": "pattern_regex",
+          "target": "\\b(was|were)\\b",
+          "min_matches": 1,
+          "points": 30,
+          "required": false
+        },
+        {
+          "id": "r3",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 30,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "condition": "total_score_within_confidence_band_of_pass_threshold",
+          "confidence_band": 3,
+          "blocking": false
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

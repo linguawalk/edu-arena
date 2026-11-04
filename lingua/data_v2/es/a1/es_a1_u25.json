@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "id": "es_a1_u25",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 25,
+    "title": "Profesiones 2",
+    "title_ko": "직업 2",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To describe your workplace, we use « Trabajo en... ». To talk about work schedule, we use « Trabajo de... a... ».",
+    "explanation_ko": "직장을 묘사할 때는 'Trabajo en...'(저는 ~에서 일해요), 근무 시간을 말할 때는 'Trabajo de...a...'(~부터 ~까지 일해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Trabajo en un hospital.",
+        "ko": "저는 병원에서 일해요."
+      },
+      {
+        "en": "Trabajo de nueve a cinco.",
+        "ko": "저는 9시부터 5시까지 일해요."
+      },
+      {
+        "en": "Me gusta mi trabajo.",
+        "ko": "저는 제 일을 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u25_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba sobre su lugar de trabajo usando «Trabajo en...».",
+        "ko": "'Trabajo en...'를 사용해서 직장에 대해 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "workplace",
+          "label_ko": "직장 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Trabajo en'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Trabajo en",
+            "trabajo en"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u25_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Te gusta tu trabajo?» Responda a esta pregunta.",
+        "ko": "'¿Te gusta tu trabajo?'(일을 좋아해요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job_satisfaction",
+          "label_ko": "직업 만족 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u25_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta su horario de trabajo usando «Trabajo de... a...».",
+        "ko": "'Trabajo de...a...'를 사용해서 소리 내어 근무 시간을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "work_hours",
+          "label_ko": "근무 시간 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Trabajo'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Trabajo",
+            "trabajo"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u25_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Trabajas en un hospital?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Trabajas en un hospital?'(병원에서 일해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "workplace",
+          "label_ko": "직장 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

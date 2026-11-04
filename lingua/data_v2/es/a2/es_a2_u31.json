@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "es_a2_u31",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 31,
+    "title": "Clima (parece que)",
+    "title_ko": "날씨 (아마도)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To make a weather guess, we use « Parece que... ». To ask about a forecast, we use « ¿Cómo va a estar el clima mañana? ».",
+    "explanation_ko": "날씨를 추측할 때는 'Parece que...'(아마 날씨가 ~할 것 같아요), 예보를 물을 때는 '¿Cómo va a estar el clima mañana?'(내일 날씨 어때요?)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Parece que va a llover mañana.",
+        "ko": "아마 내일 비가 올 것 같아요."
+      },
+      {
+        "en": "¿Cómo va a estar el clima mañana?",
+        "ko": "내일 날씨 어때요?"
+      },
+      {
+        "en": "Parece que va a hacer sol.",
+        "ko": "해가 날 것처럼 보여요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u31_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Haga una predicción del clima usando «Parece que...».",
+        "ko": "'Parece que...'를 사용해서 날씨를 추측해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_guess",
+          "label_ko": "날씨 추측 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Parece que'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Parece que",
+            "parece que"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u31_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Cómo va a estar el clima mañana?» Responda a esta pregunta.",
+        "ko": "'¿Cómo va a estar el clima mañana?'(내일 날씨 어때요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "forecast",
+          "label_ko": "예보 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u31_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Diga en voz alta una predicción del clima usando «Parece que».",
+        "ko": "'Parece que'를 사용해서 소리 내어 날씨를 추측해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "weather_guess",
+          "label_ko": "날씨 추측 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Parece que'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Parece que",
+            "parece que"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u31_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Parece que va a hacer sol?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Parece que va a hacer sol?'(해가 날 것처럼 보여요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "rain_look",
+          "label_ko": "날씨 예상 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

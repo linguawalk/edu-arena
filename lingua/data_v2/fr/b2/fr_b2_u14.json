@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "fr_b2_u14",
+    "domain": "language",
+    "lang": "fr",
+    "level": "b2",
+    "unit": 14,
+    "title": "Moins... moins...",
+    "title_ko": "Moins...moins...",
+    "focus_axis": "grammar"
+  },
+  "context": {
+    "explanation_en": "« Moins... moins... » exprime une corrélation décroissante. Par exemple : « Moins je dors, moins je suis efficace ».",
+    "explanation_ko": "'Moins...moins...'는 감소하는 상관관계를 나타냅니다. 예: 'Moins je dors, moins je suis efficace'(덜 잘수록 덜 효율적이에요).",
+    "key_expressions": [
+      {
+        "en": "Moins je dors, moins je suis efficace.",
+        "ko": "덜 잘수록 덜 효율적이에요."
+      },
+      {
+        "en": "Moins il parle, moins on le comprend.",
+        "ko": "그가 덜 말할수록 이해하기 어려워요."
+      },
+      {
+        "en": "Moins on s'inquiète, mieux on se sent.",
+        "ko": "덜 걱정할수록 기분이 나아져요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_b2_u14_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase avec « Moins... moins... » exprimant une corrélation décroissante.",
+        "ko": "감소하는 상관관계를 'Moins... moins...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "moins_moins",
+          "label_ko": "moins...moins...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Moins'가 2번 이상 사용됐는가",
+          "type": "pattern_regex",
+          "target": "[Mm]oins.{0,20}moins",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b2_u14_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Comment vous sentez-vous quand vous dormez peu ? » Répondez en utilisant « Moins... moins... ».",
+        "ko": "'Comment vous sentez-vous quand vous dormez peu ?'(잠을 적게 자면 기분이 어때요?)라는 질문에 'Moins... moins...'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "moins_moins",
+          "label_ko": "moins...moins...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Moins'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Moins",
+            "moins"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_b2_u14_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Dites à voix haute une phrase avec « Moins... moins... ».",
+        "ko": "소리 내어 'Moins... moins...'를 사용한 문장을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "moins_moins",
+          "label_ko": "moins...moins...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Moins'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Moins",
+            "moins"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_b2_u14_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Moins on s'inquiète, mieux on se sent ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Moins on s'inquiète, mieux on se sent ?'(덜 걱정할수록 기분이 나아져요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "grammar",
+          "id": "moins_moins",
+          "label_ko": "moins...moins...",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

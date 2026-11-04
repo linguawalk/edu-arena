@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_a1_u47",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a1",
+    "unit": 47,
+    "title": "Urgence",
+    "title_ko": "응급상황",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "En cas d'urgence, on utilise « Au secours ! » ou « Appelez une ambulance ! ».",
+    "explanation_ko": "응급상황에서는 'Au secours !'(도와주세요!) 또는 'Appelez une ambulance !'(구급차 불러주세요!)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Au secours !",
+        "ko": "도와주세요!"
+      },
+      {
+        "en": "Appelez une ambulance, s'il vous plaît !",
+        "ko": "구급차 좀 불러주세요!"
+      },
+      {
+        "en": "C'est une urgence.",
+        "ko": "응급상황이에요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a1_u47_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une phrase d'urgence en utilisant « Au secours ! ».",
+        "ko": "'Au secours !'를 사용해서 응급 상황 문장을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "emergency_call",
+          "label_ko": "응급 요청 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Au secours'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Au secours",
+            "au secours"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[!]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u47_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Qu'est-ce qui se passe ? » Répondez en utilisant « C'est une urgence ».",
+        "ko": "'Qu'est-ce qui se passe ?'(무슨 일이에요?)라는 질문에 'C'est une urgence'를 사용해서 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "emergency_explain",
+          "label_ko": "응급 설명 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'urgence'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "urgence"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a1_u47_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Appelez une ambulance à voix haute.",
+        "ko": "소리 내어 구급차를 불러 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "calling_ambulance",
+          "label_ko": "구급차 호출 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'ambulance'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "ambulance"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a1_u47_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« C'est une urgence ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'C'est une urgence ?'(응급상황이에요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "emergency_explain",
+          "label_ko": "응급 설명 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

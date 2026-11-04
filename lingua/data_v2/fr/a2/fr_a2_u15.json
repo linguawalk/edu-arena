@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "id": "fr_a2_u15",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 15,
+    "title": "Entretien d'embauche",
+    "title_ko": "면접",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Lors d'un entretien, on utilise « J'ai de l'expérience en... » et « Je suis doué(e) pour... » pour parler de soi.",
+    "explanation_ko": "면접에서는 'J'ai de l'expérience en...'(~경험이 있어요), 'Je suis doué(e) pour...'(~을 잘해요)를 사용해서 자신을 어필합니다.",
+    "key_expressions": [
+      {
+        "en": "J'ai de l'expérience en vente.",
+        "ko": "영업 경험이 있어요."
+      },
+      {
+        "en": "Je suis doué pour le travail en équipe.",
+        "ko": "팀 협업을 잘해요."
+      },
+      {
+        "en": "Je voudrais travailler dans cette entreprise.",
+        "ko": "이 회사에서 일하고 싶어요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u15_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez votre expérience en utilisant « J'ai de l'expérience en... ».",
+        "ko": "자신의 경험을 'J'ai de l'expérience en...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "experience",
+          "label_ko": "경력 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'expérience'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "expérience"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u15_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Pourquoi voulez-vous travailler dans cette entreprise ? » Répondez à cette question.",
+        "ko": "'Pourquoi voulez-vous travailler dans cette entreprise ?'(왜 이 회사에서 일하고 싶으세요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "motivation",
+          "label_ko": "지원 동기 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'veux' 또는 'voudrais'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "veux",
+            "voudrais"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u15_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de votre point fort à voix haute en utilisant « Je suis doué(e) pour... ».",
+        "ko": "'Je suis doué(e) pour...'를 사용해서 소리 내어 자신의 강점을 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "strength",
+          "label_ko": "강점 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'doué'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "doué",
+            "douée"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u15_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Pourquoi avez-vous choisi ce métier ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'Pourquoi avez-vous choisi ce métier ?'(왜 이 직업을 선택했어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "job_reason",
+          "label_ko": "직업 선택 이유 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'aime' 또는 'veux'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "aime",
+            "veux"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

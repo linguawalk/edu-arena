@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "id": "fr_a2_u32",
+    "domain": "language",
+    "lang": "fr",
+    "level": "a2",
+    "unit": 32,
+    "title": "Catastrophes naturelles",
+    "title_ko": "자연재해",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "Pour parler d'une préparation aux catastrophes, on utilise « Pour... , j'ai préparé... ». Pour parler d'une conséquence, on utilise « À cause de..., ... ».",
+    "explanation_ko": "자연재해 대비를 말할 때는 'Pour..., j'ai préparé...'(~에 대비해서 ~을 준비했어요), 결과를 말할 때는 'À cause de..., ...'(~때문에 ~)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Pour les tremblements de terre, j'ai préparé de l'eau.",
+        "ko": "지진에 대비해서 물을 준비했어요."
+      },
+      {
+        "en": "À cause du typhon, l'école a été fermée.",
+        "ko": "태풍 때문에 학교가 쉬었어요."
+      },
+      {
+        "en": "Ne vous approchez pas des zones dangereuses.",
+        "ko": "위험한 곳에 가지 마세요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "fr_a2_u32_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Écrivez une préparation aux catastrophes en utilisant « Pour..., j'ai préparé... ».",
+        "ko": "자연재해 대비에 대해 'Pour..., j'ai préparé...'를 사용해서 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "disaster_prep",
+          "label_ko": "재해 대비 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'préparé'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "préparé"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u32_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« Y a-t-il souvent des tremblements de terre chez vous ? » Répondez à cette question.",
+        "ko": "'Y a-t-il souvent des tremblements de terre chez vous ?'(거기 지진이 많아요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "earthquake_frequency",
+          "label_ko": "지진 빈도 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'tremblement'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "tremblement"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "fr_a2_u32_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Parlez de votre préparation aux catastrophes à voix haute.",
+        "ko": "자연재해 대비에 대해 소리 내어 말해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "disaster_prep",
+          "label_ko": "재해 대비 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'préparé' 또는 'pour'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "préparé",
+            "pour"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "fr_a2_u32_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "« L'école a déjà été fermée à cause d'un typhon ? » On vous pose cette question. Répondez à voix haute.",
+        "ko": "'L'école a déjà été fermée à cause d'un typhon ?'(태풍 때문에 학교가 쉰 적 있어요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "typhoon_school",
+          "label_ko": "태풍 휴교 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Oui' 또는 'Non'을 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Oui",
+            "oui",
+            "Non",
+            "non"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

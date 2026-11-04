@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "id": "es_a2_u49",
+    "domain": "language",
+    "lang": "es",
+    "level": "a2",
+    "unit": 49,
+    "title": "Charla informal (por cierto/además)",
+    "title_ko": "스몰토크 (그건 그렇고/게다가)",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To change topics casually, we use « Por cierto... ». To add information, we use « Además... ».",
+    "explanation_ko": "자연스럽게 화제를 바꿀 때는 'Por cierto...'(그건 그렇고), 정보를 추가할 때는 'Además...'(게다가)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Por cierto, ¿viste el nuevo café?",
+        "ko": "그건 그렇고, 새로 생긴 카페 봤어요?"
+      },
+      {
+        "en": "Además, hace muy buen tiempo.",
+        "ko": "게다가 날씨도 정말 좋아요."
+      },
+      {
+        "en": "¿Qué tal todo lo demás?",
+        "ko": "그 외에는 다 어때요?"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a2_u49_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Cambie de tema usando «Por cierto...».",
+        "ko": "'Por cierto...'를 사용해서 자연스럽게 화제를 바꿔 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "by_the_way",
+          "label_ko": "화제 전환 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Por cierto'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Por cierto",
+            "por cierto"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.?]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u49_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Qué tal todo lo demás?» Responda a esta pregunta.",
+        "ko": "'¿Qué tal todo lo demás?'(그 외에는 다 어때요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "anything_else",
+          "label_ko": "기타 사항 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "분량이 충분한가 (최소 5자)",
+          "type": "length_check",
+          "unit": "chars",
+          "min": 5,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a2_u49_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Cambie de tema en voz alta usando «Por cierto...».",
+        "ko": "'Por cierto...'를 사용해서 소리 내어 화제를 바꿔 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "by_the_way",
+          "label_ko": "화제 전환 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Por cierto'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Por cierto",
+            "por cierto"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a2_u49_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Qué tal todo lo demás?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Qué tal todo lo demás?'(그 외에는 다 어때요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "how_is_everything",
+          "label_ko": "근황 답변 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}

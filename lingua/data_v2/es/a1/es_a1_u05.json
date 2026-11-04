@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "id": "es_a1_u05",
+    "domain": "language",
+    "lang": "es",
+    "level": "a1",
+    "unit": 5,
+    "title": "Comida/Bebida",
+    "title_ko": "음식·음료",
+    "focus_axis": "expression"
+  },
+  "context": {
+    "explanation_en": "To say what you like to eat/drink, we use « Me gusta... ». To order, we use « Quiero... ».",
+    "explanation_ko": "먹고 마시는 것을 좋아한다고 말할 때는 'Me gusta...'(저는 ~을 좋아해요), 주문할 때는 'Quiero...'(저는 ~을 원해요)를 씁니다.",
+    "key_expressions": [
+      {
+        "en": "Me gusta la pizza.",
+        "ko": "저는 피자를 좋아해요."
+      },
+      {
+        "en": "Quiero un café, por favor.",
+        "ko": "커피 한 잔 주세요."
+      },
+      {
+        "en": "No me gusta el pescado.",
+        "ko": "저는 생선을 안 좋아해요."
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "es_a1_u05_w1",
+      "skill": "writing",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Escriba sobre su comida favorita usando «Me gusta...».",
+        "ko": "'Me gusta...'를 사용해서 좋아하는 음식을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "food_preference",
+          "label_ko": "음식 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Me gusta'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Me gusta",
+            "me gusta"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u05_w2",
+      "skill": "writing",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Qué quieres beber?» Responda a esta pregunta.",
+        "ko": "'¿Qué quieres beber?'(뭐 마시고 싶어요?)라는 질문에 답을 써 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "drink_order",
+          "label_ko": "음료 주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Quiero'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Quiero",
+            "quiero"
+          ],
+          "min_matches": 1,
+          "points": 60,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "완전한 문장인가",
+          "type": "pattern_regex",
+          "target": "[.]$",
+          "min_matches": 1,
+          "points": 40,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      }
+    },
+    {
+      "id": "es_a1_u05_s1",
+      "skill": "speaking",
+      "task_type": "situation_response",
+      "prompt": {
+        "en": "Pida algo en voz alta usando «Quiero...».",
+        "ko": "'Quiero...'를 사용해서 소리 내어 주문해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "order",
+          "label_ko": "주문 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Quiero'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Quiero",
+            "quiero"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    },
+    {
+      "id": "es_a1_u05_s2",
+      "skill": "speaking",
+      "task_type": "qa_response",
+      "prompt": {
+        "en": "«¿Te gusta el pescado?» Le preguntan esto. Responda en voz alta.",
+        "ko": "'¿Te gusta el pescado?'(생선 좋아해요?)라는 질문을 받았습니다. 소리 내어 답해 보세요."
+      },
+      "target_elements": [
+        {
+          "type": "expression",
+          "id": "food_preference",
+          "label_ko": "음식 선호 표현",
+          "min_occurrences": 1
+        }
+      ],
+      "rubric": [
+        {
+          "id": "r1",
+          "criterion_ko": "'Sí' 또는 'No'를 사용했는가",
+          "type": "keyword_match",
+          "target": [
+            "Sí",
+            "sí",
+            "No",
+            "no"
+          ],
+          "min_matches": 1,
+          "points": 55,
+          "required": true
+        },
+        {
+          "id": "r2",
+          "criterion_ko": "STT 인식 신뢰도가 충분히 높은가",
+          "type": "stt_confidence",
+          "min": 0.75,
+          "points": 45,
+          "required": false
+        }
+      ],
+      "scoring": {
+        "max_score": 100,
+        "pass_threshold": 60,
+        "tie_break_rule": "partial_match_ratio_geq_0.8_counts_as_met",
+        "flag_for_spot_check": {
+          "blocking": false,
+          "confidence_band": 3
+        }
+      },
+      "speech": {
+        "applies": true,
+        "stt_confidence_threshold": 0.75
+      }
+    }
+  ]
+}
