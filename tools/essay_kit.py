@@ -34,10 +34,17 @@ STEM_FORMS = {"크": ["큽", "큰", "커"], "늘": ["늡", "는다"], "바뀌": 
               "내보내": ["내보냅", "내보낸"], "변하": ["변합", "변한", "변해"], "하": ["합", "한", "해"]}
 
 
+ENDING_FORMS = {"크": ["커", "큽", "큰"], "되": ["돼", "됩", "된"], "바뀌": ["바뀝", "바뀐"]}
+
+
 def _widen(g):
     out = list(g)
     for w in g:
-        for f in STEM_FORMS.get(w, []):
+        forms = list(STEM_FORMS.get(w, []))
+        for end, alts in ENDING_FORMS.items():
+            if len(w) > len(end) and w.endswith(end):
+                forms += [w[: -len(end)] + a for a in alts]
+        for f in forms:
             if f not in out: out.append(f)
     return out
 
