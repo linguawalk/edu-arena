@@ -16,6 +16,7 @@ SUBJECTS = {
     "lit": ("언어와 문학", "lit-arena"),
     "sci": ("과학", "sci-arena"),
     "arts": ("예체능", "arts"),
+    "tech": ("공학", "tech-arena"),
 }
 
 MARK = "/*essay-row*/"
