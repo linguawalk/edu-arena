@@ -18,9 +18,18 @@ SELF_TOOL = [
 ]
 
 
-def E(prompt, conds, checks, outline, answer, sources=(), length=LEN):
+# 국문학·세계문학 에세이용 자기평가: 작품 지식을 근거로 실제 과제(해설·안내·비교·진단)를 해내는가
+SELF_LIT = [
+    ("과제", "제시된 상황에서 요구한 글(해설·안내·비교·진단)을 끝까지 써냈는가"),
+    ("근거", "갈래·형식·표현·시대 배경 같은 문학 지식을 작품의 구체적인 부분과 연결했는가"),
+    ("정확성", "작품·작가·시대에 관한 사실이 정확하고, 해석과 사실을 구분했는가"),
+    ("전달", "글을 읽을 사람(관람객·후배·청중)이 바로 이해할 수 있게 썼는가"),
+]
+
+
+def E(prompt, conds, checks, outline, answer, sources=(), length=LEN, self_=None):
     conds = list(conds) + [f"{length[0]}~{length[1]}자, 3문단 이상"]
-    return essay(prompt, conds, checks, outline, answer, sources=sources, length=length, paragraphs=3, self_=SELF_TOOL)
+    return essay(prompt, conds, checks, outline, answer, sources=sources, length=length, paragraphs=3, self_=self_ or SELF_TOOL)
 
 
 def S(*lines, label="제시문", title=None):
