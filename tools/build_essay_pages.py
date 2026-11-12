@@ -17,6 +17,7 @@ SUBJECTS = {
     "sci": ("과학", "sci-arena"),
     "arts": ("예체능", "arts"),
     "tech": ("공학", "tech-arena"),
+    "math": ("수학", "math-arena"),
 }
 
 MARK = "/*essay-row*/"
@@ -25,6 +26,7 @@ ESSAY_ROW = (MARK + " const essayRow = (l, n) => { if (!l.essay) return \"\"; co
              "        return `<li><a class=\"essay ${p && p.first >= p.total ? \"done\" : \"\"}\" href=\"essay.html?c=${COURSE}&ch=${n}&l=${pad(l.no)}\">\n"
              "          <span class=\"state\" aria-hidden=\"true\"></span><span class=\"t\">에세이 · ${esc(l.title)}</span>\n"
              "          <span class=\"meta\">${p ? `${p.first}/${p.total}편` : `${l.essay.count}편`}</span></a></li>`; };\n")
+PRAC_ROW_END = "<span class=\"meta\">${p ? `${p.first}/${p.total}` : `${l.questions}문항`}</span></a>${prac}</li>`; });"
 ESSAY_CSS = ".items .essay{padding-left:36px;font-size:16px;color:var(--ink-soft)}.items .essay .state{width:14px;height:14px;border-radius:3px}"
 
 
@@ -42,8 +44,15 @@ def patch_browse(folder):
         s = f.read()
     if MARK in s:
         return False
-    assert LESSON_ROW_END in s, f"{folder}/browse.html: 레슨 줄 코드를 찾지 못함"
     s = s.replace("const rows = ch.lessons.map(l => {", ESSAY_ROW + "      const rows = ch.lessons.flatMap(l => {", 1)
+    if PRAC_ROW_END in s:  # 수학: 레슨 줄 끝에 '연습' 링크가 붙는 모양
+        s = s.replace(PRAC_ROW_END, PRAC_ROW_END[:-len("`; });")] + "`, essayRow(l, n)].filter(Boolean); });", 1)
+        s = s.replace("return `<li${prac ?", "return [`<li${prac ?", 1)
+        s = s.replace("</style>", ESSAY_CSS + "\n</style>", 1)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(s)
+        return True
+    assert LESSON_ROW_END in s, f"{folder}/browse.html: 레슨 줄 코드를 찾지 못함"
     s = s.replace(LESSON_ROW_END,
                   "<span class=\"meta\">${p ? `${p.first}/${p.total}` : `${l.questions}문항`}</span></a></li>`, essayRow(l, n)].filter(Boolean); });", 1)
     s = s.replace("return `<li><a class=\"${p ? \"done\" : \"\"}\" href=\"player.html?c=${COURSE}&ch=${n}&l=${pad(l.no)}\">",

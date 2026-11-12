@@ -61,6 +61,7 @@ nav .soon em{font-style:normal;font-size:13px;margin-left:auto;color:#7C889E}
 .pl.weak{background:#FBE7E7;color:#B83434}
 .pl.ok{background:#E3F3EA;color:var(--ok)}
 .pl.miss{background:var(--grid);color:var(--ink-soft)}
+.items .essay{padding-left:36px;font-size:16px;color:var(--ink-soft)}.items .essay .state{width:14px;height:14px;border-radius:3px}
 </style>
 <link rel="stylesheet" href="../assets/ea-header.css">
 </head>
@@ -95,12 +96,16 @@ async function j(u){ const r = await fetch(u); if (!r.ok) throw new Error(u); re
     let total = 0, done = 0;
     const html = chapters.map(ch => {
       const n = pad(ch.chapter.no);
-      const rows = ch.lessons.map(l => { total++; const p = progress[l.id]; if (p) done++;
+      /*essay-row*/ const essayRow = (l, n) => { if (!l.essay) return ""; const id = `${l.id}-essay`, p = progress[id];
+        return `<li><a class="essay ${p && p.first >= p.total ? "done" : ""}" href="essay.html?c=${COURSE}&ch=${n}&l=${pad(l.no)}">
+          <span class="state" aria-hidden="true"></span><span class="t">에세이 · ${esc(l.title)}</span>
+          <span class="meta">${p ? `${p.first}/${p.total}편` : `${l.essay.count}편`}</span></a></li>`; };
+      const rows = ch.lessons.flatMap(l => { total++; const p = progress[l.id]; if (p) done++;
         const pp = l.practice ? progress[l.id + "-p"] : null;
         const prac = l.practice ? `<a class="prac" href="player.html?c=${COURSE}&ch=${n}&l=${pad(l.no)}&practice=1" title="문제 은행 ${l.practice.questions}문항에서 새 문제 10개" aria-label="${esc(l.title)} 더 연습하기">연습${pp ? ` <small>${pp.sets}회</small>` : ""}</a>` : "";
-        return `<li${prac ? ' class="has-p"' : ""}><a class="${p ? "done" : ""}" href="player.html?c=${COURSE}&ch=${n}&l=${pad(l.no)}">
+        return [`<li${prac ? ' class="has-p"' : ""}><a class="${p ? "done" : ""}" href="player.html?c=${COURSE}&ch=${n}&l=${pad(l.no)}">
           <span class="state" aria-hidden="true"></span><span class="t">${esc(l.title)}</span>
-          <span class="meta">${p ? `${p.first}/${p.total}` : `${l.questions}문항`}</span></a>${prac}</li>`; });
+          <span class="meta">${p ? `${p.first}/${p.total}` : `${l.questions}문항`}</span></a>${prac}</li>`, essayRow(l, n)].filter(Boolean); });
       if (ch.review){ total++; const p = progress[ch.review.id]; if (p) done++;
         rows.push(`<li><a class="review ${p ? "done" : ""}" href="player.html?c=${COURSE}&ch=${n}&review=1">
           <span class="state" aria-hidden="true"></span><span class="t">챕터 복습</span>
