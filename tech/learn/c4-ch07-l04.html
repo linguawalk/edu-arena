@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>전송 시간 계산 - 컴퓨터 | 공학 | edu-arena</title>
+<meta name="description" content="파일 하나를 보내는 데 걸리는 시간은 크게 두 부분입니다. 데이터를 선에 모두 올려놓는 전송 지연(= 데이터 크기 ÷ 대역폭)과, 신호가 선을 따라 목적지까지 가는 전파 지연(= 거리 ÷ 신호 속도)입니다. 광섬유 안에서 빛은 초속 약 20만 km(2 × 10⁸ m/s…">
+<link rel="canonical" href="https://edu-arena.org/tech/learn/c4-ch07-l04.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="전송 시간 계산 - 컴퓨터 | 공학 | edu-arena">
+<meta property="og:description" content="파일 하나를 보내는 데 걸리는 시간은 크게 두 부분입니다. 데이터를 선에 모두 올려놓는 전송 지연(= 데이터 크기 ÷ 대역폭)과, 신호가 선을 따라 목적지까지 가는 전파 지연(= 거리 ÷ 신호 속도)입니다. 광섬유 안에서 빛은 초속 약 20만 km(2 × 10⁸ m/s…">
+<meta property="og:url" content="https://edu-arena.org/tech/learn/c4-ch07-l04.html">
+<meta property="og:site_name" content="edu-arena">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAFBFD;--ink:#172033;--ink-soft:#4A5670;--grid:#DCE4F0;--blue:#1D3FA8;--blue-soft:#E7ECFA;--marker:#FFD84D;
+  --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;word-break:keep-all;overflow-wrap:anywhere;background:var(--paper);color:var(--ink);font-family:var(--font)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--grid);background:#fff}
+header .hin{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
+header nav a{color:var(--ink-soft);text-decoration:none;margin-left:16px;font-size:15px}
+main{padding:24px 0 8px;line-height:1.8;font-size:16px}
+.crumb{font-size:14px;color:var(--ink-soft);margin:0 0 10px}
+.crumb a{color:var(--ink-soft)}
+h1{font-size:30px;line-height:1.3;margin:0 0 6px}
+h2{font-size:20px;margin:32px 0 6px}
+.meta{color:var(--ink-soft);font-size:14px;margin:0 0 16px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.btn{display:inline-flex;align-items:center;font-weight:700;padding:11px 18px;border-radius:8px;border:1px solid var(--blue);background:var(--blue);color:#fff;text-decoration:none;min-height:44px}
+.btn.ghost{background:#fff;color:var(--blue)}
+.ex{background:#fff;border:1px solid var(--grid);border-radius:10px;padding:14px 18px;margin:14px 0}
+.ex h3{font-size:16px;margin:0 0 6px}
+.q{border-left:4px solid var(--marker);background:#fff;padding:10px 14px;margin:12px 0;border-radius:0 8px 8px 0}
+.q b{display:block;font-size:13px;color:var(--ink-soft);margin-bottom:2px}
+.nav{display:flex;justify-content:space-between;gap:12px;margin:28px 0;font-size:15px}
+.nav a{color:var(--blue)}
+ul.list{padding-left:20px}ul.list li{margin:4px 0}
+.hub h2{border-top:1px solid var(--grid);padding-top:20px}
+.hub h3{font-size:16px;margin:16px 0 4px}
+.cnt{color:var(--ink-soft);font-size:14px}
+.ea-foot{border-top:1px solid #DCE4F0;margin-top:48px;background:#FAFBFD;color:#4A5670;font:400 14px/1.6 'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}.ea-foot .ea-fin{max-width:1040px;margin:0 auto;padding:24px 20px 32px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}.ea-foot a{color:#172033;text-decoration:none}.ea-foot a:hover{text-decoration:underline}.ea-foot .ea-copy{margin-left:auto;color:#4A5670}.ea-auth{margin-left:12px}</style>
+</head>
+<body>
+<header><div class="hin"><a class="logo" href="/">edu-arena</a><nav data-auth><a href="/#subjects">과목</a><a href="/lessons.html">레슨 목록</a></nav></div></header>
+<main class="wrap">
+<p class="crumb"><a href="/">edu-arena</a> › <a href="/tech/browse.html">공학</a> › <a href="/tech/browse.html?c=c4">컴퓨터</a></p><h1>전송 시간 계산</h1><p class="meta">컴퓨터 · 7. 네트워크 기초 · 레벨1 · 약 15분 · 문제 16개</p><div class="cta"><a class="btn" href="/tech/player.html?c=c4&ch=07&l=04">이 레슨 풀어 보기</a><a class="btn ghost" href="/tech/player.html?c=c4&ch=07&l=04&practice=1">연습 문제</a><a class="btn ghost" href="/tech/essay.html?c=c4&ch=07&l=04">에세이 과제</a></div><h2>데이터가 도착하기까지</h2><p>파일 하나를 보내는 데 걸리는 시간은 크게 두 부분입니다. 데이터를 선에 모두 올려놓는 전송 지연(= 데이터 크기 ÷ 대역폭)과, 신호가 선을 따라 목적지까지 가는 전파 지연(= 거리 ÷ 신호 속도)입니다.</p><p>광섬유 안에서 빛은 초속 약 20만 km(2 × 10⁸ m/s)로 갑니다. 1000 km를 가는 데 약 5 ms가 걸립니다.</p>
+<div class="q"><b>문제 1</b><p>빛이 광섬유에서 초속 20만 km로 간다면 2000 km를 가는 데 몇 ms 걸릴까요?</p></div>
+<h2>전송 지연</h2><p>100 Mbps 선으로 10 MB 파일을 보내면 10 MB = 80 Mb(메가비트)이므로 전송 지연은 80 ÷ 100 = 0.8초입니다. 바이트를 비트로 바꾸는 것을 잊지 말아야 합니다.</p><p>대역폭을 두 배로 늘리면 전송 지연은 절반이 되지만 전파 지연은 그대로입니다. 전파 지연은 빛의 속도로 정해지므로 기술로 줄일 수 없고, 서버를 가까이 두어야 줄어듭니다.</p>
+<div class="ex"><h3>예제</h3><p>1 Gbps 선으로 500 MB 파일을 보내면 전송 지연은?</p><ol><li>500 MB = 4000 Mb입니다.</li><li>1 Gbps = 1000 Mbps입니다.</li><li>4000 ÷ 1000 = 4초입니다.</li></ol><p><strong>답:</strong> 4초</p></div>
+<div class="q"><b>문제 2</b><p>데이터 크기를 대역폭으로 나눈 시간을 ＿＿＿ 지연이라고 합니다.</p></div>
+<div class="q"><b>문제 3</b><p>100 Mbps 선으로 25 MB 파일을 보내면 전송 지연은 몇 초일까요?</p></div>
+<div class="q"><b>문제 4</b><p>50 Mbps 선으로 25 MB 파일을 보내면 전송 지연은 몇 초일까요?</p></div>
+<div class="q"><b>문제 5</b><p>거리를 신호 속도로 나눈 시간을 ＿＿＿ 지연이라고 합니다.</p></div>
+<h2>둘을 합치기</h2><p>파일 하나가 도착하는 데 걸리는 시간은 대략 전송 지연 + 전파 지연입니다(라우터에서 기다리는 시간은 빼고). 큰 파일은 전송 지연이, 작은 데이터와 먼 거리는 전파 지연이 대부분을 차지합니다.</p><p>서울과 뉴욕은 광섬유 길이로 대략 1만 km 이상이라 전파 지연만 편도 50 ms, 왕복 100 ms가 넘습니다. 아무리 빠른 선을 깔아도 이보다 줄일 수 없습니다.</p>
+<div class="ex"><h3>예제</h3><p>1000 km 떨어진 서버로 100 Mbps 선을 통해 1 MB를 보내면 도착까지 걸리는 시간은? (빛 2 × 10⁸ m/s)</p><ol><li>전송 지연 = 8 Mb ÷ 100 Mbps = 0.08초 = 80 ms입니다.</li><li>전파 지연 = 10⁶ m ÷ (2 × 10⁸ m/s) = 5 ms입니다.</li><li>합계 약 85 ms입니다.</li></ol><p><strong>답:</strong> 약 85 ms</p></div>
+<div class="q"><b>문제 6</b><p>대역폭을 아무리 늘려도 줄지 않는 것은 ＿＿＿ 지연입니다.</p></div>
+<div class="q"><b>문제 7</b><p>3000 km 떨어진 곳까지 광섬유 전파 지연은 몇 ms일까요? (빛 초속 20만 km)</p></div>
+<div class="q"><b>문제 8</b><p>앞 거리에서 왕복 전파 지연은 몇 ms일까요?</p></div>
+<div class="q"><b>문제 9</b><p>100 Mbps 선으로 1 kB(1000바이트) 요청을 보내는 전송 지연은 몇 ms일까요? (소수 둘째 자리까지)</p></div>
+<h2>가까이 두기</h2><p>그래서 유튜브나 넷플릭스 같은 서비스는 영상 사본을 전 세계 여러 곳의 서버에 나누어 둡니다. 이를 콘텐츠 전송 네트워크(CDN)라고 합니다. 사용자는 가장 가까운 서버에서 받으므로 전파 지연과 먼 길의 혼잡을 함께 줄입니다.</p><p>정리: 전송 지연 = 크기 ÷ 대역폭(바이트를 비트로), 전파 지연 = 거리 ÷ 신호 속도(광섬유 약 2 × 10⁸ m/s, 1000 km에 5 ms), 전체 ≈ 둘의 합, 전파 지연은 거리로만 줄어듦, CDN</p>
+<div class="q"><b>문제 10</b><p>콘텐츠 사본을 사용자 가까운 여러 서버에 두는 체계를 ＿＿＿이라고 합니다.</p></div>
+<div class="ex"><h3>예제</h3><p>서울에서 1만 km 떨어진 서버와 요청·응답을 한 번 주고받는 데 걸리는 최소 시간은? (빛 초속 20만 km, 전송 지연 무시)</p><ol><li>편도 전파 지연 = 10 000 ÷ 200 000 = 0.05초 = 50 ms입니다.</li><li>왕복이므로 100 ms입니다.</li><li>실제로는 선이 곧지 않고 장비를 거쳐 더 걸립니다.</li></ol><p><strong>답:</strong> 100 ms</p></div>
+<div class="q"><b>문제 11</b><p>500 Mbps 선으로 1 GB(1000 MB) 파일을 보내면 전송 지연은 몇 초일까요?</p></div>
+<div class="q"><b>문제 12</b><p>2000 km 떨어진 서버로 200 Mbps 선을 통해 5 MB를 보내면 도착까지 몇 ms 걸릴까요? (빛 초속 20만 km)</p></div>
+<div class="q"><b>문제 13</b><p>앞 문제에서 대역폭을 2000 Mbps로 10배 늘리면 도착까지 몇 ms 걸릴까요?</p></div>
+<div class="q"><b>문제 14</b><p>CDN으로 서버가 6000 km에서 300 km로 가까워지면 왕복 전파 지연은 몇 ms 줄어들까요? (빛 초속 20만 km)</p></div>
+<div class="q"><b>문제 15</b><p>작은 메시지를 먼 곳과 자주 주고받는 서비스에서는 대역폭보다 ＿＿＿ 지연을 줄이는 것이 중요합니다.</p></div>
+<div class="q"><b>문제 16</b><p>대역폭을 10배로 늘려도 먼 서버와의 응답 시간이 10배 빨라지지 않는 이유를 설명해 보세요.</p></div><p class="meta">문제의 정답과 해설, 힌트는 레슨을 풀면서 확인할 수 있습니다.</p><div class="cta"><a class="btn" href="/tech/player.html?c=c4&ch=07&l=04">이 레슨 풀어 보기</a><a class="btn ghost" href="/tech/player.html?c=c4&ch=07&l=04&practice=1">연습 문제</a><a class="btn ghost" href="/tech/essay.html?c=c4&ch=07&l=04">에세이 과제</a></div><div class="nav"><span><a href="/tech/learn/c4-ch07-l03.html">← 이더넷과 MAC 주소</a></span><span><a href="/tech/learn/c4-ch08-l01.html">IP 주소 →</a></span></div>
+</main>
+<footer class="ea-foot"><div class="ea-fin"><a href="/about.html">소개</a><a href="/lessons.html">전체 레슨 목록</a><a href="/contact.html">문의</a><a href="/terms.html">이용약관</a><a href="/privacy.html"><strong>개인정보처리방침</strong></a><span class="ea-copy">© 2026 edu-arena</span></div></footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

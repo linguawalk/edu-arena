@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>측정값 계산과 보정 - 전기전자 | 공학 | edu-arena</title>
+<meta name="description" content="센서가 보내는 것은 전압, 시간, 펄스 수 같은 신호입니다. 이를 cm, °C, rpm 같은 실제 물리량으로 바꾸는 계산이 프로그램 안에 들어갑니다. 초음파 거리 센서는 소리를 쏘고 반사되어 돌아오기까지의 시간을 알려 줍니다.">
+<link rel="canonical" href="https://edu-arena.org/tech/learn/c1-ch08-l03.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="측정값 계산과 보정 - 전기전자 | 공학 | edu-arena">
+<meta property="og:description" content="센서가 보내는 것은 전압, 시간, 펄스 수 같은 신호입니다. 이를 cm, °C, rpm 같은 실제 물리량으로 바꾸는 계산이 프로그램 안에 들어갑니다. 초음파 거리 센서는 소리를 쏘고 반사되어 돌아오기까지의 시간을 알려 줍니다.">
+<meta property="og:url" content="https://edu-arena.org/tech/learn/c1-ch08-l03.html">
+<meta property="og:site_name" content="edu-arena">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAFBFD;--ink:#172033;--ink-soft:#4A5670;--grid:#DCE4F0;--blue:#1D3FA8;--blue-soft:#E7ECFA;--marker:#FFD84D;
+  --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;word-break:keep-all;overflow-wrap:anywhere;background:var(--paper);color:var(--ink);font-family:var(--font)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--grid);background:#fff}
+header .hin{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
+header nav a{color:var(--ink-soft);text-decoration:none;margin-left:16px;font-size:15px}
+main{padding:24px 0 8px;line-height:1.8;font-size:16px}
+.crumb{font-size:14px;color:var(--ink-soft);margin:0 0 10px}
+.crumb a{color:var(--ink-soft)}
+h1{font-size:30px;line-height:1.3;margin:0 0 6px}
+h2{font-size:20px;margin:32px 0 6px}
+.meta{color:var(--ink-soft);font-size:14px;margin:0 0 16px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.btn{display:inline-flex;align-items:center;font-weight:700;padding:11px 18px;border-radius:8px;border:1px solid var(--blue);background:var(--blue);color:#fff;text-decoration:none;min-height:44px}
+.btn.ghost{background:#fff;color:var(--blue)}
+.ex{background:#fff;border:1px solid var(--grid);border-radius:10px;padding:14px 18px;margin:14px 0}
+.ex h3{font-size:16px;margin:0 0 6px}
+.q{border-left:4px solid var(--marker);background:#fff;padding:10px 14px;margin:12px 0;border-radius:0 8px 8px 0}
+.q b{display:block;font-size:13px;color:var(--ink-soft);margin-bottom:2px}
+.nav{display:flex;justify-content:space-between;gap:12px;margin:28px 0;font-size:15px}
+.nav a{color:var(--blue)}
+ul.list{padding-left:20px}ul.list li{margin:4px 0}
+.hub h2{border-top:1px solid var(--grid);padding-top:20px}
+.hub h3{font-size:16px;margin:16px 0 4px}
+.cnt{color:var(--ink-soft);font-size:14px}
+.ea-foot{border-top:1px solid #DCE4F0;margin-top:48px;background:#FAFBFD;color:#4A5670;font:400 14px/1.6 'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}.ea-foot .ea-fin{max-width:1040px;margin:0 auto;padding:24px 20px 32px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}.ea-foot a{color:#172033;text-decoration:none}.ea-foot a:hover{text-decoration:underline}.ea-foot .ea-copy{margin-left:auto;color:#4A5670}.ea-auth{margin-left:12px}</style>
+</head>
+<body>
+<header><div class="hin"><a class="logo" href="/">edu-arena</a><nav data-auth><a href="/#subjects">과목</a><a href="/lessons.html">레슨 목록</a></nav></div></header>
+<main class="wrap">
+<p class="crumb"><a href="/">edu-arena</a> › <a href="/tech/browse.html">공학</a> › <a href="/tech/browse.html?c=c1">전기전자</a></p><h1>측정값 계산과 보정</h1><p class="meta">전기전자 · 8. 센서와 액추에이터 · 레벨1 · 약 15분 · 문제 16개</p><div class="cta"><a class="btn" href="/tech/player.html?c=c1&ch=08&l=03">이 레슨 풀어 보기</a><a class="btn ghost" href="/tech/player.html?c=c1&ch=08&l=03&practice=1">연습 문제</a><a class="btn ghost" href="/tech/essay.html?c=c1&ch=08&l=03">에세이 과제</a></div><h2>신호를 물리량으로</h2><p>센서가 보내는 것은 전압, 시간, 펄스 수 같은 신호입니다. 이를 cm, °C, rpm 같은 실제 물리량으로 바꾸는 계산이 프로그램 안에 들어갑니다.</p><p>초음파 거리 센서는 소리를 쏘고 반사되어 돌아오기까지의 시간을 알려 줍니다.</p>
+<div class="q"><b>문제 1</b><p>초음파가 쏜 뒤 0.01초 만에 되돌아왔습니다. 음속이 340 m/s라면 물체까지 거리는 몇 m일까요?</p></div>
+<h2>초음파 거리 계산</h2><p>거리 = 음속 × 왕복 시간 ÷ 2입니다. 소리가 물체까지 갔다가 돌아오므로 2로 나눕니다.</p><p>음속은 온도에 따라 달라집니다. 공기 중에서 대략 331 + 0.6 × 온도(°C) m/s이므로, 정밀하게 재려면 온도 센서로 보정합니다.</p>
+<div class="ex"><h3>예제</h3><p>초음파가 2 ms 만에 되돌아왔습니다. 음속 340 m/s일 때 거리는?</p><ol><li>2 ms = 0.002 s입니다.</li><li>거리 = 340 × 0.002 ÷ 2 = 0.34 m입니다.</li><li>0.34 m = 34 cm입니다.</li></ol><p><strong>답:</strong> 34 cm</p></div>
+<div class="q"><b>문제 2</b><p>초음파 거리 계산에서 2로 나누는 이유는 소리가 ＿＿＿하기 때문입니다.</p></div>
+<div class="q"><b>문제 3</b><p>초음파가 5 ms 만에 되돌아왔습니다. 음속 340 m/s일 때 거리는 몇 cm일까요?</p></div>
+<div class="q"><b>문제 4</b><p>음속 340 m/s에서 1.02 m 떨어진 물체의 초음파 왕복 시간은 몇 ms일까요?</p></div>
+<div class="q"><b>문제 5</b><p>음속을 331 + 0.6 × 온도로 계산하면 20 °C에서 음속은 몇 m/s일까요?</p></div>
+<h2>선형 변환과 두 점 보정</h2><p>많은 센서는 출력이 물리량에 비례해 직선으로 변합니다. 이때 물리량 = 기울기 × 출력 + 절편으로 바꿀 수 있습니다.</p><p>기울기와 절편은 참값을 아는 두 기준점에서 센서 출력을 재어 구합니다. 예를 들어 0 °C 얼음물에서 0.5 V, 100 °C 끓는 물에서 1.5 V가 나오면 1 V 변화가 100 °C에 해당합니다. 이렇게 기준값으로 센서를 맞추는 일을 보정(교정)이라고 합니다.</p>
+<div class="ex"><h3>예제</h3><p>0 °C에서 0.5 V, 100 °C에서 1.5 V인 온도 센서가 1.0 V를 내면 몇 °C일까요?</p><ol><li>1 V 변화가 100 °C이므로 1 V당 100 °C입니다.</li><li>1.0 V는 0 °C 기준 0.5 V보다 0.5 V 높습니다.</li><li>0.5 × 100 = 50 °C입니다.</li></ol><p><strong>답:</strong> 50 °C</p></div>
+<div class="q"><b>문제 6</b><p>참값을 아는 기준을 이용해 센서 출력을 맞추는 일을 ＿＿＿이라고 합니다.</p></div>
+<div class="q"><b>문제 7</b><p>앞 예제의 센서가 0.8 V를 내면 몇 °C일까요?</p></div>
+<div class="q"><b>문제 8</b><p>0 °C에서 0 V이고 1 °C마다 10 mV씩 오르는 온도 센서가 0.25 V를 냅니다. 몇 °C일까요?</p></div>
+<div class="q"><b>문제 9</b><p>0 kPa에서 0.5 V, 200 kPa에서 4.5 V인 압력 센서가 2.5 V를 냅니다. 몇 kPa일까요?</p></div>
+<h2>엔코더와 잡음</h2><p>엔코더는 회전하는 축에 붙어 한 바퀴에 정해진 수의 펄스를 냅니다. 펄스 수를 세면 회전량을, 1초 동안의 펄스 수로 회전 속도를 알 수 있습니다.</p><p>센서 신호에는 잡음이 섞여 값이 조금씩 흔들립니다. 여러 번 잰 값을 평균하면 흔들림을 줄일 수 있습니다.</p><p>정리: 초음파 = 음속 × 시간 ÷ 2, 직선형 센서 = 기울기 × 출력 + 절편(두 점 보정), 엔코더 = 펄스 수 ÷ 한 바퀴 펄스 수</p>
+<div class="q"><b>문제 10</b><p>한 바퀴에 100펄스를 내는 엔코더가 1초에 500펄스를 냈습니다. 축은 몇 rpm으로 돌까요?</p></div>
+<div class="ex"><h3>예제</h3><p>둘레 0.2 m인 바퀴에 한 바퀴 20펄스 엔코더를 달았습니다. 1초에 100펄스가 나오면 속도는?</p><ol><li>1초에 100 ÷ 20 = 5바퀴입니다.</li><li>5 × 0.2 = 1 m를 가므로 속도는 1 m/s입니다.</li></ol><p><strong>답:</strong> 1 m/s</p></div>
+<div class="q"><b>문제 11</b><p>둘레 0.5 m인 바퀴에 한 바퀴 50펄스 엔코더를 달았습니다. 1초에 200펄스가 나오면 속도는 몇 m/s일까요?</p></div>
+<div class="q"><b>문제 12</b><p>한 바퀴 360펄스 엔코더에서 90펄스가 나왔습니다. 축은 몇 도 돌았을까요?</p></div>
+<div class="q"><b>문제 13</b><p>1 °C마다 10 mV씩 오르는 온도 센서(0 °C에서 0 V)가 0.37 V를 냅니다. 몇 °C일까요?</p></div>
+<div class="q"><b>문제 14</b><p>같은 온도를 10번 재었더니 21, 23, 22, 22, 21, 23, 22, 22, 21, 23 °C가 나왔습니다. 평균은 몇 °C일까요?</p></div>
+<div class="q"><b>문제 15</b><p>초음파가 3 ms 만에 되돌아왔습니다. 음속 340 m/s일 때 거리는 몇 cm일까요?</p></div>
+<div class="q"><b>문제 16</b><p>두 점 보정으로 센서를 정확하게 만드는 방법을 설명해 보세요.</p></div><p class="meta">문제의 정답과 해설, 힌트는 레슨을 풀면서 확인할 수 있습니다.</p><div class="cta"><a class="btn" href="/tech/player.html?c=c1&ch=08&l=03">이 레슨 풀어 보기</a><a class="btn ghost" href="/tech/player.html?c=c1&ch=08&l=03&practice=1">연습 문제</a><a class="btn ghost" href="/tech/essay.html?c=c1&ch=08&l=03">에세이 과제</a></div><div class="nav"><span><a href="/tech/learn/c1-ch08-l02.html">← 전압 분배로 센서 읽기</a></span><span><a href="/tech/learn/c1-ch08-l04.html">액추에이터와 제어 루프 →</a></span></div>
+</main>
+<footer class="ea-foot"><div class="ea-fin"><a href="/about.html">소개</a><a href="/lessons.html">전체 레슨 목록</a><a href="/contact.html">문의</a><a href="/terms.html">이용약관</a><a href="/privacy.html"><strong>개인정보처리방침</strong></a><span class="ea-copy">© 2026 edu-arena</span></div></footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

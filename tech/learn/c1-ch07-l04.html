@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>코일 부하와 보호 - 전기전자 | 공학 | edu-arena</title>
+<meta name="description" content="모터, 릴레이, 솔레노이드 밸브는 모두 코일을 가진 부하입니다. 코일에 흐르던 전류를 갑자기 끊으면 코일은 전류를 유지하려고 순간적으로 아주 큰 역방향 전압을 만듭니다. 이 전압을 역기전력(서지 전압)이라고 하며, 코일을 끈 트랜지스터를 망가뜨릴 만큼 클 수 있습니다.">
+<link rel="canonical" href="https://edu-arena.org/tech/learn/c1-ch07-l04.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="코일 부하와 보호 - 전기전자 | 공학 | edu-arena">
+<meta property="og:description" content="모터, 릴레이, 솔레노이드 밸브는 모두 코일을 가진 부하입니다. 코일에 흐르던 전류를 갑자기 끊으면 코일은 전류를 유지하려고 순간적으로 아주 큰 역방향 전압을 만듭니다. 이 전압을 역기전력(서지 전압)이라고 하며, 코일을 끈 트랜지스터를 망가뜨릴 만큼 클 수 있습니다.">
+<meta property="og:url" content="https://edu-arena.org/tech/learn/c1-ch07-l04.html">
+<meta property="og:site_name" content="edu-arena">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAFBFD;--ink:#172033;--ink-soft:#4A5670;--grid:#DCE4F0;--blue:#1D3FA8;--blue-soft:#E7ECFA;--marker:#FFD84D;
+  --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;word-break:keep-all;overflow-wrap:anywhere;background:var(--paper);color:var(--ink);font-family:var(--font)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--grid);background:#fff}
+header .hin{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
+header nav a{color:var(--ink-soft);text-decoration:none;margin-left:16px;font-size:15px}
+main{padding:24px 0 8px;line-height:1.8;font-size:16px}
+.crumb{font-size:14px;color:var(--ink-soft);margin:0 0 10px}
+.crumb a{color:var(--ink-soft)}
+h1{font-size:30px;line-height:1.3;margin:0 0 6px}
+h2{font-size:20px;margin:32px 0 6px}
+.meta{color:var(--ink-soft);font-size:14px;margin:0 0 16px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.btn{display:inline-flex;align-items:center;font-weight:700;padding:11px 18px;border-radius:8px;border:1px solid var(--blue);background:var(--blue);color:#fff;text-decoration:none;min-height:44px}
+.btn.ghost{background:#fff;color:var(--blue)}
+.ex{background:#fff;border:1px solid var(--grid);border-radius:10px;padding:14px 18px;margin:14px 0}
+.ex h3{font-size:16px;margin:0 0 6px}
+.q{border-left:4px solid var(--marker);background:#fff;padding:10px 14px;margin:12px 0;border-radius:0 8px 8px 0}
+.q b{display:block;font-size:13px;color:var(--ink-soft);margin-bottom:2px}
+.nav{display:flex;justify-content:space-between;gap:12px;margin:28px 0;font-size:15px}
+.nav a{color:var(--blue)}
+ul.list{padding-left:20px}ul.list li{margin:4px 0}
+.hub h2{border-top:1px solid var(--grid);padding-top:20px}
+.hub h3{font-size:16px;margin:16px 0 4px}
+.cnt{color:var(--ink-soft);font-size:14px}
+.ea-foot{border-top:1px solid #DCE4F0;margin-top:48px;background:#FAFBFD;color:#4A5670;font:400 14px/1.6 'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}.ea-foot .ea-fin{max-width:1040px;margin:0 auto;padding:24px 20px 32px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}.ea-foot a{color:#172033;text-decoration:none}.ea-foot a:hover{text-decoration:underline}.ea-foot .ea-copy{margin-left:auto;color:#4A5670}.ea-auth{margin-left:12px}</style>
+</head>
+<body>
+<header><div class="hin"><a class="logo" href="/">edu-arena</a><nav data-auth><a href="/#subjects">과목</a><a href="/lessons.html">레슨 목록</a></nav></div></header>
+<main class="wrap">
+<p class="crumb"><a href="/">edu-arena</a> › <a href="/tech/browse.html">공학</a> › <a href="/tech/browse.html?c=c1">전기전자</a></p><h1>코일 부하와 보호</h1><p class="meta">전기전자 · 7. 트랜지스터 스위치 회로 · 레벨1 · 약 15분 · 문제 16개</p><div class="cta"><a class="btn" href="/tech/player.html?c=c1&ch=07&l=04">이 레슨 풀어 보기</a><a class="btn ghost" href="/tech/player.html?c=c1&ch=07&l=04&practice=1">연습 문제</a><a class="btn ghost" href="/tech/essay.html?c=c1&ch=07&l=04">에세이 과제</a></div><h2>코일은 전류가 끊기는 것을 싫어한다</h2><p>모터, 릴레이, 솔레노이드 밸브는 모두 코일을 가진 부하입니다. 코일에 흐르던 전류를 갑자기 끊으면 코일은 전류를 유지하려고 순간적으로 아주 큰 역방향 전압을 만듭니다.</p><p>이 전압을 역기전력(서지 전압)이라고 하며, 코일을 끈 트랜지스터를 망가뜨릴 만큼 클 수 있습니다.</p>
+<div class="q"><b>문제 1</b><p>코일에 흐르던 전류를 갑자기 끊을 때 생기는 큰 역방향 전압을 ＿＿＿이라고 합니다.</p></div>
+<h2>플라이백 다이오드</h2><p>코일과 나란히 다이오드를 반대 방향으로 달면, 평소에는 다이오드가 막혀 있어 아무 일도 하지 않습니다.</p><p>트랜지스터가 꺼지는 순간 코일의 전류가 다이오드를 통해 코일로 되돌아 돌면서 천천히 사라집니다. 전압이 치솟지 않아 트랜지스터가 보호됩니다. 이 다이오드를 플라이백(환류) 다이오드라고 합니다.</p><p>방향이 중요합니다. 다이오드의 띠(캐소드)를 전원의 (+) 쪽에 연결합니다. 거꾸로 달면 켜자마자 전원이 단락됩니다.</p>
+<div class="ex"><h3>예제</h3><p>12 V 릴레이 코일에 플라이백 다이오드를 다는 방향은?</p><ol><li>코일의 한쪽은 12 V(+)에, 다른 쪽은 트랜지스터 컬렉터에 연결되어 있습니다.</li><li>다이오드의 띠(캐소드)를 12 V 쪽에 연결합니다.</li><li>그러면 평소에는 역방향이라 전류가 흐르지 않고, 끌 때만 코일 전류가 다이오드로 돕니다.</li></ol><p><strong>답:</strong> 띠(캐소드)를 (+) 전원 쪽에</p></div>
+<div class="q"><b>문제 2</b><p>코일과 나란히 달아 역기전력을 흡수하는 다이오드를 ＿＿＿ 다이오드라고 합니다.</p></div>
+<div class="q"><b>문제 3</b><p>플라이백 다이오드의 띠(캐소드)는 전원의 ＿＿＿ 쪽에 연결합니다.</p></div>
+<div class="q"><b>문제 4</b><p>코일이 정상적으로 켜져 있는 동안 플라이백 다이오드에는 전류가 ＿＿＿.</p></div>
+<div class="q"><b>문제 5</b><p>인덕턴스 0.1 H인 코일의 전류 0.1 A가 1 μs 만에 끊기면 역기전력은 몇 V일까요? (V = L × 전류 변화 ÷ 시간)</p></div>
+<h2>릴레이</h2><p>릴레이는 코일에 전류를 흘려 만든 자석으로 금속 접점을 움직이는 스위치입니다. 5 V 마이크로컨트롤러 회로로 220 V 전등이나 전열기를 켤 때 씁니다.</p><p>코일 회로와 접점 회로는 전기적으로 분리되어 있어, 낮은 전압의 제어 회로가 위험한 고전압과 직접 이어지지 않습니다. 접점에는 &#x27;250 V 10 A&#x27; 같은 정격이 있어 그 안에서 써야 합니다.</p><p>움직이는 접점 대신 반도체로 스위칭하는 반도체 릴레이(SSR)도 있습니다. 소리가 없고 수명이 깁니다.</p>
+<div class="ex"><h3>예제</h3><p>접점 정격 250 V 10 A인 릴레이로 220 V 부하를 켜면 최대 몇 W까지 가능할까요?</p><ol><li>최대 전류는 10 A입니다.</li><li>P = 220 × 10 = 2200 W입니다.</li></ol><p><strong>답:</strong> 2200 W</p></div>
+<div class="q"><b>문제 6</b><p>코일 전류로 접점을 움직여 다른 회로를 켜고 끄는 부품을 ＿＿＿라고 합니다.</p></div>
+<div class="q"><b>문제 7</b><p>접점 정격 250 V 5 A인 릴레이로 220 V 부하를 켜면 최대 몇 W까지 가능할까요?</p></div>
+<div class="q"><b>문제 8</b><p>릴레이의 코일 회로와 접점 회로는 전기적으로 ＿＿＿되어 있습니다.</p></div>
+<div class="q"><b>문제 9</b><p>마이크로컨트롤러로 릴레이를 켜 220 V 전등을 켜는 순서입니다. 차례대로 배열하세요.</p></div>
+<h2>열 관리</h2><p>트랜지스터와 MOSFET에서 생기는 손실은 열이 되어 온도를 올립니다. 부품이 1 W당 몇 °C 오르는지를 나타내는 값을 열저항(°C/W)이라고 하며, 온도 상승 = 손실 × 열저항입니다.</p><p>방열판 없는 작은 부품은 열저항이 50 °C/W를 넘기도 합니다. 손실이 크면 방열판을 달아 열저항을 낮춥니다. 반도체는 보통 내부 온도 150 °C 안팎이 한계입니다.</p>
+<div class="q"><b>문제 10</b><p>손실 2 W, 열저항 50 °C/W인 부품의 온도는 주변보다 몇 °C 오를까요?</p></div>
+<div class="ex"><h3>예제</h3><p>손실 2 W인 MOSFET에 방열판을 달아 전체 열저항을 10 °C/W로 낮췄습니다. 주변 25 °C일 때 온도는?</p><ol><li>온도 상승 = 2 × 10 = 20 °C입니다.</li><li>부품 온도 = 25 + 20 = 45 °C입니다.</li></ol><p><strong>답:</strong> 45 °C</p></div>
+<div class="q"><b>문제 11</b><p>손실 1.5 W, 열저항 40 °C/W인 트랜지스터의 온도 상승은 몇 °C일까요?</p></div>
+<div class="q"><b>문제 12</b><p>앞 문제에서 주변 온도가 30 °C라면 트랜지스터의 온도는 몇 °C일까요?</p></div>
+<div class="q"><b>문제 13</b><p>손실 3 W인 부품에 전체 열저항 8 °C/W인 방열판을 달았습니다. 주변 25 °C일 때 부품 온도는 몇 °C일까요?</p></div>
+<div class="q"><b>문제 14</b><p>코일 저항이 400 Ω인 12 V 릴레이의 코일 전류는 몇 mA일까요?</p></div>
+<div class="q"><b>문제 15</b><p>플라이백 다이오드가 없으면 코일을 끄는 순간의 역기전력 때문에 ＿＿＿가 망가질 수 있습니다.</p></div>
+<div class="q"><b>문제 16</b><p>마이크로컨트롤러로 220 V 기기를 켤 때 릴레이를 쓰는 이유를 설명해 보세요.</p></div><p class="meta">문제의 정답과 해설, 힌트는 레슨을 풀면서 확인할 수 있습니다.</p><div class="cta"><a class="btn" href="/tech/player.html?c=c1&ch=07&l=04">이 레슨 풀어 보기</a><a class="btn ghost" href="/tech/player.html?c=c1&ch=07&l=04&practice=1">연습 문제</a><a class="btn ghost" href="/tech/essay.html?c=c1&ch=07&l=04">에세이 과제</a></div><div class="nav"><span><a href="/tech/learn/c1-ch07-l03.html">← LED 구동과 MOSFET 스위치</a></span><span><a href="/tech/learn/c1-ch08-l01.html">센서의 종류 →</a></span></div>
+</main>
+<footer class="ea-foot"><div class="ea-fin"><a href="/about.html">소개</a><a href="/lessons.html">전체 레슨 목록</a><a href="/contact.html">문의</a><a href="/terms.html">이용약관</a><a href="/privacy.html"><strong>개인정보처리방침</strong></a><span class="ea-copy">© 2026 edu-arena</span></div></footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>입출력, 부팅, 동기화 - 컴퓨터 | 공학 | edu-arena</title>
+<meta name="description" content="프린터, 그래픽 카드, 무선랜 카드처럼 장치는 종류와 제조사마다 다루는 방법이 다릅니다. 운영체제는 장치마다 장치 드라이버라는 작은 프로그램을 두어, 운영체제의 공통 요청을 그 장치가 알아듣는 명령으로 바꿉니다. 새 장치를 꽂으면 드라이버를 설치해야 하는 까닭입니다. …">
+<link rel="canonical" href="https://edu-arena.org/tech/learn/c4-ch06-l04.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="입출력, 부팅, 동기화 - 컴퓨터 | 공학 | edu-arena">
+<meta property="og:description" content="프린터, 그래픽 카드, 무선랜 카드처럼 장치는 종류와 제조사마다 다루는 방법이 다릅니다. 운영체제는 장치마다 장치 드라이버라는 작은 프로그램을 두어, 운영체제의 공통 요청을 그 장치가 알아듣는 명령으로 바꿉니다. 새 장치를 꽂으면 드라이버를 설치해야 하는 까닭입니다. …">
+<meta property="og:url" content="https://edu-arena.org/tech/learn/c4-ch06-l04.html">
+<meta property="og:site_name" content="edu-arena">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAFBFD;--ink:#172033;--ink-soft:#4A5670;--grid:#DCE4F0;--blue:#1D3FA8;--blue-soft:#E7ECFA;--marker:#FFD84D;
+  --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;word-break:keep-all;overflow-wrap:anywhere;background:var(--paper);color:var(--ink);font-family:var(--font)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--grid);background:#fff}
+header .hin{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
+header nav a{color:var(--ink-soft);text-decoration:none;margin-left:16px;font-size:15px}
+main{padding:24px 0 8px;line-height:1.8;font-size:16px}
+.crumb{font-size:14px;color:var(--ink-soft);margin:0 0 10px}
+.crumb a{color:var(--ink-soft)}
+h1{font-size:30px;line-height:1.3;margin:0 0 6px}
+h2{font-size:20px;margin:32px 0 6px}
+.meta{color:var(--ink-soft);font-size:14px;margin:0 0 16px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.btn{display:inline-flex;align-items:center;font-weight:700;padding:11px 18px;border-radius:8px;border:1px solid var(--blue);background:var(--blue);color:#fff;text-decoration:none;min-height:44px}
+.btn.ghost{background:#fff;color:var(--blue)}
+.ex{background:#fff;border:1px solid var(--grid);border-radius:10px;padding:14px 18px;margin:14px 0}
+.ex h3{font-size:16px;margin:0 0 6px}
+.q{border-left:4px solid var(--marker);background:#fff;padding:10px 14px;margin:12px 0;border-radius:0 8px 8px 0}
+.q b{display:block;font-size:13px;color:var(--ink-soft);margin-bottom:2px}
+.nav{display:flex;justify-content:space-between;gap:12px;margin:28px 0;font-size:15px}
+.nav a{color:var(--blue)}
+ul.list{padding-left:20px}ul.list li{margin:4px 0}
+.hub h2{border-top:1px solid var(--grid);padding-top:20px}
+.hub h3{font-size:16px;margin:16px 0 4px}
+.cnt{color:var(--ink-soft);font-size:14px}
+.ea-foot{border-top:1px solid #DCE4F0;margin-top:48px;background:#FAFBFD;color:#4A5670;font:400 14px/1.6 'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}.ea-foot .ea-fin{max-width:1040px;margin:0 auto;padding:24px 20px 32px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}.ea-foot a{color:#172033;text-decoration:none}.ea-foot a:hover{text-decoration:underline}.ea-foot .ea-copy{margin-left:auto;color:#4A5670}.ea-auth{margin-left:12px}</style>
+</head>
+<body>
+<header><div class="hin"><a class="logo" href="/">edu-arena</a><nav data-auth><a href="/#subjects">과목</a><a href="/lessons.html">레슨 목록</a></nav></div></header>
+<main class="wrap">
+<p class="crumb"><a href="/">edu-arena</a> › <a href="/tech/browse.html">공학</a> › <a href="/tech/browse.html?c=c4">컴퓨터</a></p><h1>입출력, 부팅, 동기화</h1><p class="meta">컴퓨터 · 6. 운영체제의 역할 · 레벨1 · 약 15분 · 문제 16개</p><div class="cta"><a class="btn" href="/tech/player.html?c=c4&ch=06&l=04">이 레슨 풀어 보기</a><a class="btn ghost" href="/tech/player.html?c=c4&ch=06&l=04&practice=1">연습 문제</a><a class="btn ghost" href="/tech/essay.html?c=c4&ch=06&l=04">에세이 과제</a></div><h2>장치 드라이버</h2><p>프린터, 그래픽 카드, 무선랜 카드처럼 장치는 종류와 제조사마다 다루는 방법이 다릅니다. 운영체제는 장치마다 장치 드라이버라는 작은 프로그램을 두어, 운영체제의 공통 요청을 그 장치가 알아듣는 명령으로 바꿉니다.</p><p>새 장치를 꽂으면 드라이버를 설치해야 하는 까닭입니다. 드라이버는 커널 안에서 돌기 때문에 드라이버의 오류가 컴퓨터 전체를 멈추게 하기도 합니다.</p>
+<div class="q"><b>문제 1</b><p>운영체제의 요청을 특정 장치가 알아듣는 명령으로 바꿔 주는 프로그램을 장치 ＿＿＿라고 합니다.</p></div>
+<h2>버퍼와 입출력</h2><p>장치는 CPU보다 훨씬 느립니다. 운영체제는 데이터를 메모리의 버퍼에 모아 두었다가 한꺼번에 주고받아 속도 차이를 메웁니다. 동영상을 볼 때 앞부분을 미리 받아 두는 것도 버퍼링입니다.</p><p>파일을 저장해도 곧바로 SSD에 쓰지 않고 버퍼에 두었다가 모아서 쓰기도 합니다. 그래서 USB 메모리를 &#x27;안전하게 제거&#x27;하지 않고 뽑으면 아직 쓰지 않은 데이터가 사라질 수 있습니다.</p>
+<div class="ex"><h3>예제</h3><p>초당 5 MB로 재생되는 동영상을 10초 분량 미리 받아 두면 버퍼에 얼마가 필요할까요?</p><ol><li>5 MB × 10초 = 50 MB입니다.</li><li>네트워크가 10초 동안 끊겨도 재생이 이어집니다.</li></ol><p><strong>답:</strong> 50 MB</p></div>
+<div class="q"><b>문제 2</b><p>속도 차이를 메우려고 데이터를 잠시 모아 두는 메모리 공간을 ＿＿＿라고 합니다.</p></div>
+<div class="q"><b>문제 3</b><p>초당 2 MB로 재생되는 음악 스트림을 30초 분량 미리 받으려면 버퍼는 몇 MB일까요?</p></div>
+<div class="q"><b>문제 4</b><p>USB 메모리를 &#x27;안전하게 제거&#x27;하는 까닭은 ＿＿＿에 남은 데이터를 모두 써 넣기 위해서입니다.</p></div>
+<div class="q"><b>문제 5</b><p>드라이버는 ＿＿＿ 안에서 돌기 때문에 오류가 나면 컴퓨터 전체가 멈출 수 있습니다.</p></div>
+<h2>부팅</h2><p>전원을 켜면 먼저 메인보드의 비휘발성 메모리에 있는 펌웨어(UEFI 또는 예전의 BIOS)가 하드웨어를 점검합니다. 그다음 저장 장치에서 부트로더를 불러오고, 부트로더가 운영체제 커널을 메모리에 올립니다.</p><p>커널은 장치 드라이버를 준비하고 첫 사용자 프로세스를 실행하며, 로그인 화면이나 바탕 화면이 나타납니다. 이 과정을 부팅이라고 합니다.</p>
+<div class="ex"><h3>예제</h3><p>전원 버튼을 누른 뒤 가장 먼저 실행되는 프로그램은?</p><ol><li>메모리(DRAM)는 아직 비어 있습니다.</li><li>메인보드의 비휘발성 메모리에 든 펌웨어가 먼저 실행됩니다.</li><li>UEFI(또는 BIOS)입니다.</li></ol><p><strong>답:</strong> 펌웨어(UEFI/BIOS)</p></div>
+<div class="q"><b>문제 6</b><p>전원을 켠 뒤 운영체제가 실행되기까지의 과정을 ＿＿＿이라고 합니다.</p></div>
+<div class="q"><b>문제 7</b><p>부팅 과정을 차례대로 배열하세요.</p></div>
+<div class="q"><b>문제 8</b><p>운영체제 커널을 저장 장치에서 메모리로 올리는 작은 프로그램은 ＿＿＿입니다.</p></div>
+<div class="q"><b>문제 9</b><p>전원이 없어도 내용이 남는 메인보드의 메모리에 든 프로그램을 ＿＿＿라고 합니다.</p></div>
+<h2>동기화</h2><p>두 프로세스가 같은 데이터를 동시에 고치면 문제가 생깁니다. 은행 잔고 100원에서 두 프로세스가 동시에 읽어 각자 10원을 더해 쓰면, 둘 다 110원을 써서 결과가 120원이 아니라 110원이 됩니다. 이를 경쟁 상태라고 합니다.</p><p>운영체제는 잠금(lock) 같은 도구로 한 번에 한 프로세스만 그 데이터를 고치게 합니다. 하지만 두 프로세스가 서로 상대가 가진 잠금을 기다리며 영원히 멈추는 교착 상태가 생길 수 있어 주의해야 합니다.</p><p>정리: 장치 드라이버, 버퍼와 버퍼링, 안전하게 제거, 부팅(펌웨어 → 부트로더 → 커널 → 사용자), 경쟁 상태, 잠금, 교착 상태</p>
+<div class="q"><b>문제 10</b><p>두 프로세스가 서로 상대가 가진 자원을 기다리며 영원히 멈추는 것을 ＿＿＿ 상태라고 합니다.</p></div>
+<div class="ex"><h3>예제</h3><p>잔고 500원에서 프로세스 A는 100원 더하기, B는 50원 빼기를 동시에 합니다. 둘 다 500을 먼저 읽고 A가 먼저, B가 나중에 쓰면 결과는?</p><ol><li>A는 500 + 100 = 600을 씁니다.</li><li>B는 자기가 읽은 500에서 50을 빼 450을 씁니다.</li><li>마지막에 쓴 450이 남아 A의 더하기가 사라집니다(올바른 값은 550).</li></ol><p><strong>답:</strong> 450 (올바른 값 550)</p></div>
+<div class="q"><b>문제 11</b><p>잔고 200원에서 두 프로세스가 동시에 200을 읽고 각자 30원씩 더해 씁니다. 잠금이 없으면 결과는 몇 원일까요?</p></div>
+<div class="q"><b>문제 12</b><p>앞 문제에서 잠금을 써서 차례로 고치면 결과는 몇 원일까요?</p></div>
+<div class="q"><b>문제 13</b><p>두 프로세스가 같은 데이터를 동시에 고쳐 결과가 실행 순서에 따라 달라지는 것을 ＿＿＿ 상태라고 합니다.</p></div>
+<div class="q"><b>문제 14</b><p>새로 산 그래픽 카드를 제대로 쓰려면 그 카드에 맞는 ＿＿＿를 설치해야 합니다.</p></div>
+<div class="q"><b>문제 15</b><p>초당 8 MB로 재생되는 영상을 네트워크가 최대 5초 끊겨도 멈추지 않게 하려면 버퍼는 최소 몇 MB일까요?</p></div>
+<div class="q"><b>문제 16</b><p>여러 프로세스가 같은 데이터를 고칠 때 잠금이 필요한 이유를 예를 들어 설명해 보세요.</p></div><p class="meta">문제의 정답과 해설, 힌트는 레슨을 풀면서 확인할 수 있습니다.</p><div class="cta"><a class="btn" href="/tech/player.html?c=c4&ch=06&l=04">이 레슨 풀어 보기</a><a class="btn ghost" href="/tech/player.html?c=c4&ch=06&l=04&practice=1">연습 문제</a><a class="btn ghost" href="/tech/essay.html?c=c4&ch=06&l=04">에세이 과제</a></div><div class="nav"><span><a href="/tech/learn/c4-ch06-l03.html">← 파일 시스템</a></span><span><a href="/tech/learn/c4-ch07-l01.html">네트워크의 구성 →</a></span></div>
+</main>
+<footer class="ea-foot"><div class="ea-fin"><a href="/about.html">소개</a><a href="/lessons.html">전체 레슨 목록</a><a href="/contact.html">문의</a><a href="/terms.html">이용약관</a><a href="/privacy.html"><strong>개인정보처리방침</strong></a><span class="ea-copy">© 2026 edu-arena</span></div></footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

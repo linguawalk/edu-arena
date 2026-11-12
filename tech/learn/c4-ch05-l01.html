@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>빠른 것은 작고 비싸다 - 컴퓨터 | 공학 | edu-arena</title>
+<meta name="description" content="공부할 때 지금 보는 책은 책상 위에, 자주 보는 책은 책장에, 가끔 보는 책은 도서관에 둡니다. 가까울수록 빨리 꺼내지만 자리가 좁습니다. 컴퓨터의 기억 장치도 이렇게 층을 이룹니다. 이를 메모리 계층이라고 합니다. 위에서부터 레지스터 → 캐시(L1, L2, L3) …">
+<link rel="canonical" href="https://edu-arena.org/tech/learn/c4-ch05-l01.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="빠른 것은 작고 비싸다 - 컴퓨터 | 공학 | edu-arena">
+<meta property="og:description" content="공부할 때 지금 보는 책은 책상 위에, 자주 보는 책은 책장에, 가끔 보는 책은 도서관에 둡니다. 가까울수록 빨리 꺼내지만 자리가 좁습니다. 컴퓨터의 기억 장치도 이렇게 층을 이룹니다. 이를 메모리 계층이라고 합니다. 위에서부터 레지스터 → 캐시(L1, L2, L3) …">
+<meta property="og:url" content="https://edu-arena.org/tech/learn/c4-ch05-l01.html">
+<meta property="og:site_name" content="edu-arena">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAFBFD;--ink:#172033;--ink-soft:#4A5670;--grid:#DCE4F0;--blue:#1D3FA8;--blue-soft:#E7ECFA;--marker:#FFD84D;
+  --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;word-break:keep-all;overflow-wrap:anywhere;background:var(--paper);color:var(--ink);font-family:var(--font)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--grid);background:#fff}
+header .hin{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
+header nav a{color:var(--ink-soft);text-decoration:none;margin-left:16px;font-size:15px}
+main{padding:24px 0 8px;line-height:1.8;font-size:16px}
+.crumb{font-size:14px;color:var(--ink-soft);margin:0 0 10px}
+.crumb a{color:var(--ink-soft)}
+h1{font-size:30px;line-height:1.3;margin:0 0 6px}
+h2{font-size:20px;margin:32px 0 6px}
+.meta{color:var(--ink-soft);font-size:14px;margin:0 0 16px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.btn{display:inline-flex;align-items:center;font-weight:700;padding:11px 18px;border-radius:8px;border:1px solid var(--blue);background:var(--blue);color:#fff;text-decoration:none;min-height:44px}
+.btn.ghost{background:#fff;color:var(--blue)}
+.ex{background:#fff;border:1px solid var(--grid);border-radius:10px;padding:14px 18px;margin:14px 0}
+.ex h3{font-size:16px;margin:0 0 6px}
+.q{border-left:4px solid var(--marker);background:#fff;padding:10px 14px;margin:12px 0;border-radius:0 8px 8px 0}
+.q b{display:block;font-size:13px;color:var(--ink-soft);margin-bottom:2px}
+.nav{display:flex;justify-content:space-between;gap:12px;margin:28px 0;font-size:15px}
+.nav a{color:var(--blue)}
+ul.list{padding-left:20px}ul.list li{margin:4px 0}
+.hub h2{border-top:1px solid var(--grid);padding-top:20px}
+.hub h3{font-size:16px;margin:16px 0 4px}
+.cnt{color:var(--ink-soft);font-size:14px}
+.ea-foot{border-top:1px solid #DCE4F0;margin-top:48px;background:#FAFBFD;color:#4A5670;font:400 14px/1.6 'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}.ea-foot .ea-fin{max-width:1040px;margin:0 auto;padding:24px 20px 32px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}.ea-foot a{color:#172033;text-decoration:none}.ea-foot a:hover{text-decoration:underline}.ea-foot .ea-copy{margin-left:auto;color:#4A5670}.ea-auth{margin-left:12px}</style>
+</head>
+<body>
+<header><div class="hin"><a class="logo" href="/">edu-arena</a><nav data-auth><a href="/#subjects">과목</a><a href="/lessons.html">레슨 목록</a></nav></div></header>
+<main class="wrap">
+<p class="crumb"><a href="/">edu-arena</a> › <a href="/tech/browse.html">공학</a> › <a href="/tech/browse.html?c=c4">컴퓨터</a></p><h1>빠른 것은 작고 비싸다</h1><p class="meta">컴퓨터 · 5. 메모리 계층 · 레벨1 · 약 15분 · 문제 16개</p><div class="cta"><a class="btn" href="/tech/player.html?c=c4&ch=05&l=01">이 레슨 풀어 보기</a><a class="btn ghost" href="/tech/player.html?c=c4&ch=05&l=01&practice=1">연습 문제</a><a class="btn ghost" href="/tech/essay.html?c=c4&ch=05&l=01">에세이 과제</a></div><h2>책상, 책장, 도서관</h2><p>공부할 때 지금 보는 책은 책상 위에, 자주 보는 책은 책장에, 가끔 보는 책은 도서관에 둡니다. 가까울수록 빨리 꺼내지만 자리가 좁습니다. 컴퓨터의 기억 장치도 이렇게 층을 이룹니다. 이를 메모리 계층이라고 합니다.</p><p>위에서부터 레지스터 → 캐시(L1, L2, L3) → 주기억장치(DRAM) → 보조 기억 장치(SSD, 하드 디스크) 순입니다. 위로 갈수록 빠르고 작고 비싸며, 아래로 갈수록 느리고 크고 쌉니다.</p>
+<div class="q"><b>문제 1</b><p>메모리 계층을 빠른 것부터 배열하세요.</p></div>
+<h2>얼마나 차이 날까</h2><p>대략의 접근 시간은 레지스터가 한 클럭(1 ns 미만), L1 캐시가 1 ns 안팎, DRAM이 100 ns 안팎, SSD가 수십~100 μs(마이크로초), 하드 디스크가 수 ms(밀리초)입니다. 제품마다 다르지만 단계마다 수십~수천 배씩 차이 납니다.</p><p>DRAM 한 번 읽는 100 ns 동안 3 GHz CPU는 300클럭을 기다려야 합니다. 그래서 CPU가 DRAM까지 가는 일을 최대한 줄이는 것이 성능의 핵심입니다.</p>
+<div class="ex"><h3>예제</h3><p>3 GHz CPU가 DRAM을 한 번 읽는 데 100 ns가 걸리면 몇 클럭을 기다릴까요?</p><ol><li>클럭 주기는 1/3 ns입니다.</li><li>100 ÷ (1/3) = 300클럭입니다.</li></ol><p><strong>답:</strong> 300클럭</p></div>
+<div class="q"><b>문제 2</b><p>기억 장치를 속도와 크기에 따라 층으로 나눈 구조를 메모리 ＿＿＿이라고 합니다.</p></div>
+<div class="q"><b>문제 3</b><p>4 GHz CPU가 DRAM을 한 번 읽는 데 80 ns가 걸리면 몇 클럭을 기다릴까요?</p></div>
+<div class="q"><b>문제 4</b><p>DRAM 접근이 100 ns, SSD 접근이 100 μs이면 SSD가 몇 배 느릴까요? (1 μs = 1000 ns)</p></div>
+<div class="q"><b>문제 5</b><p>메모리 계층에서 아래로 갈수록 용량은 커지고 1바이트당 값은 ＿＿＿.</p></div>
+<h2>캐시</h2><p>캐시는 CPU 안에 있는 작고 빠른 SRAM 메모리로, DRAM에서 최근에 가져온 데이터의 사본을 둡니다. 같은 데이터가 다시 필요하면 DRAM까지 가지 않고 캐시에서 바로 꺼냅니다.</p><p>요즘 CPU는 코어마다 작은 L1(수십 KB)과 L2(수백 KB~수 MB), 여러 코어가 함께 쓰는 L3(수~수십 MB) 캐시를 둡니다. 숫자가 작을수록 CPU에 가깝고 빠릅니다.</p>
+<div class="ex"><h3>예제</h3><p>L1, L2, L3 가운데 가장 크고 여러 코어가 함께 쓰는 캐시는?</p><ol><li>L1과 L2는 보통 코어마다 따로 있습니다.</li><li>L3는 가장 크고 여러 코어가 함께 씁니다.</li><li>대신 L1, L2보다 느립니다.</li></ol><p><strong>답:</strong> L3</p></div>
+<div class="q"><b>문제 6</b><p>DRAM에서 가져온 데이터의 사본을 CPU 가까이 두는 작고 빠른 메모리를 ＿＿＿라고 합니다.</p></div>
+<div class="q"><b>문제 7</b><p>캐시 가운데 CPU에 가장 가깝고 빠른 것은 ＿＿＿ 캐시입니다.</p></div>
+<div class="q"><b>문제 8</b><p>캐시는 주로 ＿＿＿으로 만듭니다.</p></div>
+<div class="q"><b>문제 9</b><p>L1 캐시가 64 KB, L2가 1 MB이면 L2는 L1의 몇 배일까요? (1 MB = 1024 KB)</p></div>
+<h2>계층이 통하는 이유</h2><p>모든 데이터를 가장 빠른 메모리에 둘 수는 없지만, 프로그램은 한 번에 적은 양의 데이터만 집중해서 씁니다. 그래서 자주 쓰는 것만 위층에 두면 대부분의 접근이 빠른 층에서 끝납니다. 다음 레슨에서 이 성질(지역성)을 봅니다.</p><p>정리: 레지스터 → L1 → L2 → L3 → DRAM → SSD·HDD, 위로 빠르고 작고 비쌈, 단계마다 수십~수천 배 차이, 캐시는 DRAM 데이터의 사본</p>
+<div class="q"><b>문제 10</b><p>캐시가 효과를 내는 까닭은 프로그램이 적은 양의 데이터를 집중해서 쓰는 ＿＿＿ 때문입니다.</p></div>
+<div class="ex"><h3>예제</h3><p>하드 디스크 접근 10 ms 동안 3 GHz CPU는 몇 클럭을 기다릴까요?</p><ol><li>10 ms = 10 000 000 ns입니다.</li><li>1 ns에 3클럭이므로 3000만 클럭입니다.</li><li>그래서 디스크를 기다리는 동안 다른 일을 해야 합니다.</li></ol><p><strong>답:</strong> 3000만 클럭</p></div>
+<div class="q"><b>문제 11</b><p>SSD 접근 50 μs 동안 2 GHz CPU는 몇 클럭을 기다릴까요?</p></div>
+<div class="q"><b>문제 12</b><p>캐시 1 MB 값이 DRAM 1 GB 값과 같다면, 바이트당 캐시는 DRAM보다 몇 배 비쌀까요? (1 GB = 1024 MB)</p></div>
+<div class="q"><b>문제 13</b><p>컴퓨터를 켜 둔 동안 실행 중인 프로그램은 주로 ＿＿＿에 올라가 있습니다.</p></div>
+<div class="q"><b>문제 14</b><p>전원을 꺼도 사진 파일이 남아 있는 곳은 ＿＿＿입니다.</p></div>
+<div class="q"><b>문제 15</b><p>DRAM을 기다리는 시간을 줄이려고 CPU 안에 두는 것은 ＿＿＿입니다.</p></div>
+<div class="q"><b>문제 16</b><p>모든 메모리를 가장 빠른 SRAM으로 만들지 않고 계층을 두는 이유를 설명해 보세요.</p></div><p class="meta">문제의 정답과 해설, 힌트는 레슨을 풀면서 확인할 수 있습니다.</p><div class="cta"><a class="btn" href="/tech/player.html?c=c4&ch=05&l=01">이 레슨 풀어 보기</a><a class="btn ghost" href="/tech/player.html?c=c4&ch=05&l=01&practice=1">연습 문제</a><a class="btn ghost" href="/tech/essay.html?c=c4&ch=05&l=01">에세이 과제</a></div><div class="nav"><span><a href="/tech/learn/c4-ch04-l04.html">← 파이프라인과 인터럽트</a></span><span><a href="/tech/learn/c4-ch05-l02.html">지역성과 캐시 적중 →</a></span></div>
+</main>
+<footer class="ea-foot"><div class="ea-fin"><a href="/about.html">소개</a><a href="/lessons.html">전체 레슨 목록</a><a href="/contact.html">문의</a><a href="/terms.html">이용약관</a><a href="/privacy.html"><strong>개인정보처리방침</strong></a><span class="ea-copy">© 2026 edu-arena</span></div></footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

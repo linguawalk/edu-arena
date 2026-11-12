@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>물질수지 - 화학공학 | 공학 | edu-arena</title>
+<meta name="description" content="물질수지는 공정에 들어온 물질이 어디로 얼마나 나갔는지 장부처럼 맞추는 계산입니다. 기본 식은 입력 = 출력 + 축적입니다(반응이 없을 때). 공정이 일정하게 도는 정상 상태에서는 장치 안에 쌓이는 양(축적)이 0이므로 입력 = 출력입니다.">
+<link rel="canonical" href="https://edu-arena.org/tech/learn/c3-ch02-l03.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="물질수지 - 화학공학 | 공학 | edu-arena">
+<meta property="og:description" content="물질수지는 공정에 들어온 물질이 어디로 얼마나 나갔는지 장부처럼 맞추는 계산입니다. 기본 식은 입력 = 출력 + 축적입니다(반응이 없을 때). 공정이 일정하게 도는 정상 상태에서는 장치 안에 쌓이는 양(축적)이 0이므로 입력 = 출력입니다.">
+<meta property="og:url" content="https://edu-arena.org/tech/learn/c3-ch02-l03.html">
+<meta property="og:site_name" content="edu-arena">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAFBFD;--ink:#172033;--ink-soft:#4A5670;--grid:#DCE4F0;--blue:#1D3FA8;--blue-soft:#E7ECFA;--marker:#FFD84D;
+  --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;word-break:keep-all;overflow-wrap:anywhere;background:var(--paper);color:var(--ink);font-family:var(--font)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--grid);background:#fff}
+header .hin{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
+header nav a{color:var(--ink-soft);text-decoration:none;margin-left:16px;font-size:15px}
+main{padding:24px 0 8px;line-height:1.8;font-size:16px}
+.crumb{font-size:14px;color:var(--ink-soft);margin:0 0 10px}
+.crumb a{color:var(--ink-soft)}
+h1{font-size:30px;line-height:1.3;margin:0 0 6px}
+h2{font-size:20px;margin:32px 0 6px}
+.meta{color:var(--ink-soft);font-size:14px;margin:0 0 16px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.btn{display:inline-flex;align-items:center;font-weight:700;padding:11px 18px;border-radius:8px;border:1px solid var(--blue);background:var(--blue);color:#fff;text-decoration:none;min-height:44px}
+.btn.ghost{background:#fff;color:var(--blue)}
+.ex{background:#fff;border:1px solid var(--grid);border-radius:10px;padding:14px 18px;margin:14px 0}
+.ex h3{font-size:16px;margin:0 0 6px}
+.q{border-left:4px solid var(--marker);background:#fff;padding:10px 14px;margin:12px 0;border-radius:0 8px 8px 0}
+.q b{display:block;font-size:13px;color:var(--ink-soft);margin-bottom:2px}
+.nav{display:flex;justify-content:space-between;gap:12px;margin:28px 0;font-size:15px}
+.nav a{color:var(--blue)}
+ul.list{padding-left:20px}ul.list li{margin:4px 0}
+.hub h2{border-top:1px solid var(--grid);padding-top:20px}
+.hub h3{font-size:16px;margin:16px 0 4px}
+.cnt{color:var(--ink-soft);font-size:14px}
+.ea-foot{border-top:1px solid #DCE4F0;margin-top:48px;background:#FAFBFD;color:#4A5670;font:400 14px/1.6 'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}.ea-foot .ea-fin{max-width:1040px;margin:0 auto;padding:24px 20px 32px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}.ea-foot a{color:#172033;text-decoration:none}.ea-foot a:hover{text-decoration:underline}.ea-foot .ea-copy{margin-left:auto;color:#4A5670}.ea-auth{margin-left:12px}</style>
+</head>
+<body>
+<header><div class="hin"><a class="logo" href="/">edu-arena</a><nav data-auth><a href="/#subjects">과목</a><a href="/lessons.html">레슨 목록</a></nav></div></header>
+<main class="wrap">
+<p class="crumb"><a href="/">edu-arena</a> › <a href="/tech/browse.html">공학</a> › <a href="/tech/browse.html?c=c3">화학공학</a></p><h1>물질수지</h1><p class="meta">화학공학 · 2. 단위와 물질수지 기초 · 레벨1 · 약 15분 · 문제 16개</p><div class="cta"><a class="btn" href="/tech/player.html?c=c3&ch=02&l=03">이 레슨 풀어 보기</a><a class="btn ghost" href="/tech/player.html?c=c3&ch=02&l=03&practice=1">연습 문제</a><a class="btn ghost" href="/tech/essay.html?c=c3&ch=02&l=03">에세이 과제</a></div><h2>들어온 것은 어디로 갔을까</h2><p>물질수지는 공정에 들어온 물질이 어디로 얼마나 나갔는지 장부처럼 맞추는 계산입니다. 기본 식은 입력 = 출력 + 축적입니다(반응이 없을 때).</p><p>공정이 일정하게 도는 정상 상태에서는 장치 안에 쌓이는 양(축적)이 0이므로 입력 = 출력입니다.</p>
+<div class="q"><b>문제 1</b><p>정상 상태로 도는 혼합 탱크에 A 300 kg/h와 B 200 kg/h가 들어오면 나가는 흐름은 몇 kg/h일까요?</p></div>
+<h2>계산 순서</h2><p>물질수지는 다음 순서로 풉니다. 먼저 흐름도를 그리고 모든 흐름에 이름을 붙입니다. 알려진 값과 모르는 값을 적습니다. 경계(어떤 장치나 공정 전체)를 정하고, 전체 수지와 성분 수지를 세웁니다.</p><p>반응이 없으면 성분마다 따로 입력 = 출력이 성립합니다. 성분이 n개면 식을 n개 세울 수 있습니다(전체 수지는 성분 수지의 합이므로 독립된 식은 n개).</p><p>모르는 값의 수와 독립된 식의 수가 같아야 풀립니다.</p>
+<div class="ex"><h3>예제</h3><p>소금 10 wt % 소금물 1000 kg/h를 증발기에 넣어 물을 날려 소금 25 wt %로 만듭니다. 날아간 물과 농축액의 양은?</p><ol><li>소금 수지: 소금은 증발하지 않으므로 1000 × 0.10 = 100 kg/h가 모두 농축액으로 갑니다.</li><li>농축액 = 100 ÷ 0.25 = 400 kg/h입니다.</li><li>전체 수지: 증발한 물 = 1000 − 400 = 600 kg/h입니다.</li></ol><p><strong>답:</strong> 물 600 kg/h, 농축액 400 kg/h</p></div>
+<div class="q"><b>문제 2</b><p>반응이 없는 정상 상태 공정에서 성분마다 입력 = ＿＿＿이 성립합니다.</p></div>
+<div class="q"><b>문제 3</b><p>설탕 20 wt % 용액 500 kg/h를 증발시켜 50 wt %로 만들면 농축액은 몇 kg/h일까요?</p></div>
+<div class="q"><b>문제 4</b><p>앞 문제에서 증발한 물은 몇 kg/h일까요?</p></div>
+<div class="q"><b>문제 5</b><p>성분이 3개인 반응 없는 공정에서 세울 수 있는 독립된 물질수지 식은 몇 개일까요?</p></div>
+<h2>혼합과 분리</h2><p>혼합기에서는 여러 흐름이 합쳐지므로 나가는 흐름의 성분량 = 들어온 성분량의 합입니다. 조성은 합친 뒤 다시 계산합니다.</p><p>분리기에서는 한 흐름이 여러 흐름으로 나뉩니다. 이때 한 성분이 원하는 흐름으로 얼마나 가는지를 회수율이라고 합니다. 회수율 = 원하는 흐름 속 성분량 ÷ 들어온 성분량입니다.</p>
+<div class="ex"><h3>예제</h3><p>에탄올 10 wt % 흐름 400 kg/h와 에탄올 50 wt % 흐름 100 kg/h를 섞으면 혼합 흐름의 에탄올 농도는?</p><ol><li>에탄올 = 400 × 0.1 + 100 × 0.5 = 40 + 50 = 90 kg/h입니다.</li><li>총량 = 500 kg/h입니다.</li><li>농도 = 90 ÷ 500 = 0.18, 18 wt %입니다.</li></ol><p><strong>답:</strong> 18 wt %</p></div>
+<div class="q"><b>문제 6</b><p>분리기에 들어온 성분 가운데 원하는 흐름으로 간 비율을 ＿＿＿이라고 합니다.</p></div>
+<div class="q"><b>문제 7</b><p>메탄올 20 wt % 흐름 300 kg/h와 메탄올 60 wt % 흐름 200 kg/h를 섞으면 혼합 흐름의 메탄올은 몇 wt %일까요?</p></div>
+<div class="q"><b>문제 8</b><p>분리기에 벤젠 200 kg/h가 들어와 탑정 흐름으로 190 kg/h가 나갔습니다. 벤젠 회수율은 몇 %일까요?</p></div>
+<div class="q"><b>문제 9</b><p>앞 문제에서 탑저 흐름으로 나간 벤젠은 몇 kg/h일까요?</p></div>
+<h2>축적이 있을 때</h2><p>탱크를 채우거나 비우는 중에는 정상 상태가 아니므로 축적이 생깁니다. 축적 속도 = 입력 − 출력입니다. 들어오는 양이 나가는 양보다 많으면 탱크에 쌓입니다.</p><p>정리: 입력 = 출력 + 축적, 정상 상태에서 축적 = 0, 성분 수지는 성분 수만큼, 혼합은 성분량을 더하고 분리는 회수율로 나눔</p>
+<div class="q"><b>문제 10</b><p>탱크에 60 m³/h가 들어오고 45 m³/h가 나가면 1시간에 몇 m³씩 쌓일까요?</p></div>
+<div class="ex"><h3>예제</h3><p>물 속 소금 3.5 wt %인 바닷물 1000 kg/h로 담수 400 kg/h를 만드는 역삼투 장치에서 버리는 농축수의 소금 농도는? (담수 속 소금은 0으로 봄)</p><ol><li>소금 = 1000 × 0.035 = 35 kg/h가 모두 농축수로 갑니다.</li><li>농축수 = 1000 − 400 = 600 kg/h입니다.</li><li>농도 = 35 ÷ 600 ≈ 0.0583, 약 5.8 wt %입니다.</li></ol><p><strong>답:</strong> 약 5.8 wt %</p></div>
+<div class="q"><b>문제 11</b><p>소금 4 wt % 소금물 2000 kg/h에서 순수한 물 1000 kg/h를 얻으면 남은 소금물의 농도는 몇 wt %일까요?</p></div>
+<div class="q"><b>문제 12</b><p>주스 12 wt % 고형분 용액을 농축해 고형분 60 wt %, 100 kg/h를 만들려면 원료는 몇 kg/h가 필요할까요?</p></div>
+<div class="q"><b>문제 13</b><p>용량 100 m³인 빈 탱크에 25 m³/h가 들어오고 5 m³/h가 나갑니다. 가득 차는 데 몇 시간 걸릴까요?</p></div>
+<div class="q"><b>문제 14</b><p>에탄올 40 wt % 흐름 1000 kg/h를 증류해 에탄올 90 wt % 제품을 얻고, 에탄올 회수율이 90 %입니다. 제품은 몇 kg/h일까요?</p></div>
+<div class="q"><b>문제 15</b><p>혼합 탱크의 입력과 출력이 같다면 탱크 속 양은 변하지 않는 ＿＿＿ 상태입니다.</p></div>
+<div class="q"><b>문제 16</b><p>물질수지를 풀 때 흐름도를 먼저 그리고 모든 흐름에 이름을 붙이는 이유를 설명해 보세요.</p></div><p class="meta">문제의 정답과 해설, 힌트는 레슨을 풀면서 확인할 수 있습니다.</p><div class="cta"><a class="btn" href="/tech/player.html?c=c3&ch=02&l=03">이 레슨 풀어 보기</a><a class="btn ghost" href="/tech/player.html?c=c3&ch=02&l=03&practice=1">연습 문제</a><a class="btn ghost" href="/tech/essay.html?c=c3&ch=02&l=03">에세이 과제</a></div><div class="nav"><span><a href="/tech/learn/c3-ch02-l02.html">← 몰과 조성</a></span><span><a href="/tech/learn/c3-ch02-l04.html">반응이 있는 물질수지 →</a></span></div>
+</main>
+<footer class="ea-foot"><div class="ea-fin"><a href="/about.html">소개</a><a href="/lessons.html">전체 레슨 목록</a><a href="/contact.html">문의</a><a href="/terms.html">이용약관</a><a href="/privacy.html"><strong>개인정보처리방침</strong></a><span class="ea-copy">© 2026 edu-arena</span></div></footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
