@@ -11,6 +11,11 @@ create table if not exists public.profiles (
 
 alter table public.profiles enable row level security;
 
+-- 로그인한 회원만 이 테이블에 접근(어떤 행인지는 아래 RLS 정책이 본인 것으로 제한)
+-- 프로젝트 생성 때 "Automatically expose new tables"를 꺼 두었으므로 직접 권한을 준다
+revoke all on public.profiles from anon;
+grant select, insert, update on public.profiles to authenticated;
+
 -- 본인 행만 읽고 쓸 수 있음
 drop policy if exists "profiles_select_own" on public.profiles;
 create policy "profiles_select_own" on public.profiles
