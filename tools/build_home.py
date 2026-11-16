@@ -169,7 +169,7 @@ h1{font-size:clamp(36px,5.5vw,60px);line-height:1.15;letter-spacing:-.035em;marg
 </style>
 </head>
 <body>
-<header><div class="wrap"><a class="logo" href="./"><span>edu-arena</span></a><nav data-auth><a href="#subjects">과목</a><a href="#levels">레벨</a><a href="lessons.html">레슨 목록</a></nav></div></header>
+<header><div class="wrap"><a class="logo" href="./"><span>edu-arena</span></a><nav data-auth><a href="lessons.html">레슨 목록</a></nav></div></header>
 <main class="wrap">
 {{HERO}}
 
@@ -182,10 +182,6 @@ h1{font-size:clamp(36px,5.5vw,60px);line-height:1.15;letter-spacing:-.035em;marg
     <div><h2>레벨3 · 대학 수준</h2><p>전공 수준의 심화 주제를 트랙별 독학 가이드로 안내합니다. 과목마다 올림피아드·경시를 준비하는 심화 과정도 있습니다.</p></div>
   </section>
 
-  <section class="family" aria-label="Arena 패밀리">
-    <strong>Arena 패밀리</strong>
-    <a href="https://mind-arena.org/">mind-arena</a><span>퍼즐과 보드게임</span>
-  </section>
 </main>
 <style>{{FOOT_CSS}}</style>
 {{FOOT_HTML}}
