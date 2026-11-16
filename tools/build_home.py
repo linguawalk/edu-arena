@@ -135,13 +135,14 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 header nav a{font-size:16px;color:var(--ink-soft);text-decoration:none;padding:8px 10px;border-radius:8px}
 header nav a:hover{background:var(--blue-soft);color:var(--blue)}
 .hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:56px 0 64px}
-.plot{background:#fff;border:1px solid var(--grid);border-radius:14px;padding:14px;margin:0}
+.plot{margin:0;border-radius:20px;overflow:hidden;background:#0F1830;box-shadow:0 24px 60px -24px rgba(15,24,48,.55),0 2px 6px rgba(15,24,48,.12)}
 .plot svg{display:block;width:100%;height:auto}
-.plot figcaption{font-size:15px;color:var(--ink-soft);padding:10px 6px 2px;line-height:1.5}
-.step{opacity:0;animation:pop .35s ease-out forwards}.s1{animation-delay:.2s}.s2{animation-delay:.5s}.s3{animation-delay:.8s}.s4{animation-delay:1.1s}
-#route{stroke-dasharray:520;stroke-dashoffset:520;animation:draw 1.4s 1.3s ease-out forwards}#me{opacity:0;animation:pop .3s 2.6s ease-out forwards}
-@keyframes pop{to{opacity:1}}@keyframes draw{to{stroke-dashoffset:0}}
-@media (prefers-reduced-motion:reduce){.step,#me{animation:none;opacity:1}#route{animation:none;stroke-dashoffset:0}}
+.plot figcaption{font-size:14px;color:#AEBBDF;padding:0 22px 18px;line-height:1.6;margin-top:-6px}
+.hg-edge{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:hg-draw .6s ease-out forwards}
+.hg-on{opacity:0;animation:hg-fade .5s ease-out forwards}
+.tw{animation:hg-tw 4s ease-in-out infinite}
+@keyframes hg-draw{to{stroke-dashoffset:0}}@keyframes hg-fade{to{opacity:1}}@keyframes hg-tw{50%{opacity:.08}}
+@media (prefers-reduced-motion:reduce){.hg-edge{animation:none;stroke-dashoffset:0}.hg-on{animation:none;opacity:1}.tw{animation:none}}
 h1{font-size:clamp(36px,5.5vw,60px);line-height:1.15;letter-spacing:-.035em;margin:0 0 20px;font-weight:700}
 .lede{font-size:19px;line-height:1.75;color:var(--ink-soft);margin:0}
 .group{border-top:2px solid var(--ink);padding:26px 0 40px}
