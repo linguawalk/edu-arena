@@ -309,6 +309,9 @@ LOGIN = """
   var sb=window.supabase.createClient(S.SUPABASE_URL,S.SUPABASE_ANON_KEY);
   var age=document.getElementById("age"), terms=document.getElementById("terms");
   var btns=["google","kakao","mail"].map(function(id){return document.getElementById(id);});
+  var P=S.AUTH_PROVIDERS||["email"];
+  if(P.indexOf("google")<0) btns[0].hidden=true;
+  if(P.indexOf("kakao")<0) btns[1].hidden=true;
   function sync(){var ok=age.checked&&terms.checked;btns.forEach(function(b){b.disabled=!ok;});}
   age.addEventListener("change",sync);terms.addEventListener("change",sync);
   function remember(){try{localStorage.setItem("ea-consent",JSON.stringify({age14:true,at:new Date().toISOString()}));}catch(e){}}

@@ -7,7 +7,8 @@ window.EA_SITE = window.EA_SITE || {
   ADSENSE_CLIENT: "",      // 애드센스 게시자 ID, 예: "ca-pub-1234567890123456"
   SUPABASE_URL: "https://snknxkqardjrtqfprkad.supabase.co",        // 예: "https://abcdefgh.supabase.co"
   SUPABASE_ANON_KEY: "sb_publishable_K_Olqr8l9hWeZl1QAIEhlA_Z-ZhMftP",   // Supabase 프로젝트의 anon(public) 키
-  WEB3FORMS_KEY: ""        // Web3Forms 액세스 키(문의 양식 전달용)
+  WEB3FORMS_KEY: "",       // Web3Forms 액세스 키(문의 양식 전달용)
+  AUTH_PROVIDERS: ["email"] // Supabase에서 켠 로그인 방식만: "email", "google", "kakao"
 };
 
 (function () {
