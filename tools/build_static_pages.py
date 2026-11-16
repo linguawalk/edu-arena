@@ -4,7 +4,7 @@
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from site_parts import FOOT_CSS, FOOT_HTML, SITE_JS, SITE
+from site_parts import FOOT_CSS, FOOT_HTML, SITE_JS, SITE, ICON_HEAD, MARK
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EFFECTIVE = "2026년 11월 13일"
@@ -22,7 +22,7 @@ html,body{margin:0;word-break:keep-all;overflow-wrap:anywhere;background:var(--p
 .wrap{max-width:820px;margin:0 auto;padding:0 20px}
 header{border-bottom:1px solid var(--grid);background:#fff}
 header .hin{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
+.logo{font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}.logo{display:inline-flex;align-items:center;gap:9px}.logo .ea-mark{flex:none;display:block}
 header nav a{color:var(--ink-soft);text-decoration:none;margin-left:16px;font-size:15px}
 header nav a:hover{color:var(--ink);text-decoration:underline}
 main{padding:36px 0 8px;line-height:1.75;font-size:16px}
@@ -59,6 +59,7 @@ def page(slug, title, desc, body, extra_head="", noindex=False):
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+{ICON_HEAD}
 {robots}<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} · edu-arena</title>
 <meta name="description" content="{desc}">
@@ -69,7 +70,7 @@ def page(slug, title, desc, body, extra_head="", noindex=False):
 <style>{CSS}{FOOT_CSS}</style>
 {extra_head}</head>
 <body>
-<header><div class="hin"><a class="logo" href="/">edu-arena</a><nav data-auth><a href="/#subjects">과목</a><a href="/lessons.html">레슨 목록</a></nav></div></header>
+<header><div class="hin"><a class="logo" href="/">{MARK}<span>edu-arena</span></a><nav data-auth><a href="/lessons.html">레슨 목록</a></nav></div></header>
 <main class="wrap">
 {body}
 </main>

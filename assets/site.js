@@ -37,6 +37,30 @@ window.EA_SITE = window.EA_SITE || {
     document.head.appendChild(a);
   }
 
+  /* ---------- 로고 표시와 브라우저 탭 아이콘(정적으로 만든 페이지에는 이미 들어 있음) ---------- */
+  if (!document.querySelector('link[rel="icon"]')) {
+    [["icon", "/favicon.svg", "image/svg+xml"], ["icon", "/favicon.ico"], ["apple-touch-icon", "/apple-touch-icon.png"]].forEach(function (l) {
+      var k = document.createElement("link"); k.rel = l[0]; k.href = l[1]; if (l[2]) k.type = l[2]; document.head.appendChild(k);
+    });
+  }
+  var MARK = '<svg class="ea-mark" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#172033"/>' +
+    '<path d="M22 16h-7v32h7M42 16h7v32h-7" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '<path d="M24 33l6 6 11-14" fill="none" stroke="#FFD84D" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  function addMarks() {
+    var logos = document.querySelectorAll("a.ea-logo, header a.logo");
+    if (!logos.length) return;
+    if (!document.getElementById("ea-mark-css")) {
+      var st = document.createElement("style"); st.id = "ea-mark-css";
+      st.textContent = "a.ea-logo,header a.logo{display:inline-flex!important;align-items:center;gap:9px}" +
+        "a.ea-logo span,header a.logo span{background:none!important}.ea-mark{flex:none;display:block}";
+      document.head.appendChild(st);
+    }
+    for (var i = 0; i < logos.length; i++) {
+      if (!logos[i].querySelector(".ea-mark")) logos[i].insertAdjacentHTML("afterbegin", MARK);
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", addMarks); else addMarks();
+
   /* ---------- 로그인 여부(라이브러리를 불러오지 않고 저장된 세션만 확인) ---------- */
   function signedIn() {
     if (!S.SUPABASE_URL) return false;

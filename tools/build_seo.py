@@ -8,7 +8,7 @@
 """
 import datetime, glob, html, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from site_parts import FOOT_CSS, FOOT_HTML, SITE_JS, SITE
+from site_parts import FOOT_CSS, FOOT_HTML, SITE_JS, SITE, ICON_HEAD, MARK
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TODAY = datetime.date.today().isoformat()
@@ -26,7 +26,7 @@ html,body{margin:0;word-break:keep-all;overflow-wrap:anywhere;background:var(--p
 .wrap{max-width:820px;margin:0 auto;padding:0 20px}
 header{border-bottom:1px solid var(--grid);background:#fff}
 header .hin{max-width:1040px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
+.logo{font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}.logo{display:inline-flex;align-items:center;gap:9px}.logo .ea-mark{flex:none;display:block}
 header nav a{color:var(--ink-soft);text-decoration:none;margin-left:16px;font-size:15px}
 main{padding:24px 0 8px;line-height:1.8;font-size:16px}
 .crumb{font-size:14px;color:var(--ink-soft);margin:0 0 10px}
@@ -55,6 +55,7 @@ def shell(path, title, desc, body, canonical):
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+{ICON_HEAD}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
@@ -70,7 +71,7 @@ def shell(path, title, desc, body, canonical):
 <style>{CSS}{FOOT_CSS}</style>
 </head>
 <body>
-<header><div class="hin"><a class="logo" href="/">edu-arena</a><nav data-auth><a href="/#subjects">과목</a><a href="/lessons.html">레슨 목록</a></nav></div></header>
+<header><div class="hin"><a class="logo" href="/">{MARK}<span>edu-arena</span></a><nav data-auth><a href="/lessons.html">레슨 목록</a></nav></div></header>
 <main class="wrap">
 {body}
 </main>

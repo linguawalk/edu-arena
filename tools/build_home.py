@@ -11,7 +11,7 @@ import json
 import os
 import sys as _sys
 _sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from site_parts import FOOT_CSS, FOOT_HTML
+from site_parts import FOOT_CSS, FOOT_HTML, ICON_HEAD, MARK
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -102,7 +102,7 @@ def build():
         blocks.append(f'<section class="group" aria-labelledby="g-{gid}"><div class="group-head">'
                       f'<h2 id="g-{gid}">{gname}</h2></div><div class="grid">{"".join(cards)}</div></section>')
 
-    page = TEMPLATE.replace("{{HERO}}", hero).replace("{{BLOCKS}}", "\n".join(blocks)).replace("{{TOTAL}}", str(total)).replace("{{FOOT_CSS}}", FOOT_CSS).replace("{{FOOT_HTML}}", FOOT_HTML)
+    page = TEMPLATE.replace("{{HERO}}", hero).replace("{{BLOCKS}}", "\n".join(blocks)).replace("{{TOTAL}}", str(total)).replace("{{FOOT_CSS}}", FOOT_CSS).replace("{{FOOT_HTML}}", FOOT_HTML).replace("{{ICON_HEAD}}", ICON_HEAD).replace("{{MARK}}", MARK)
     with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
         f.write(page)
     print(f"index.html: {len(SUBJECTS)}과목, {total}개 코스")
@@ -112,6 +112,7 @@ TEMPLATE = """<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+{{ICON_HEAD}}
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>edu-arena · 풀면서 배우는 모든 과목</title>
 <link rel="canonical" href="https://edu-arena.org/">
@@ -130,7 +131,7 @@ body{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
 .logo{font-weight:700;font-size:18px;text-decoration:none;color:inherit}
-.logo span{background:linear-gradient(transparent 58%,var(--marker) 58%)}
+.logo{display:inline-flex;align-items:center;gap:9px}.logo .ea-mark{flex:none;display:block}
 header nav a{font-size:16px;color:var(--ink-soft);text-decoration:none;padding:8px 10px;border-radius:8px}
 header nav a:hover{background:var(--blue-soft);color:var(--blue)}
 .hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:56px 0 64px}
@@ -169,7 +170,7 @@ h1{font-size:clamp(36px,5.5vw,60px);line-height:1.15;letter-spacing:-.035em;marg
 </style>
 </head>
 <body>
-<header><div class="wrap"><a class="logo" href="./"><span>edu-arena</span></a><nav data-auth><a href="lessons.html">레슨 목록</a></nav></div></header>
+<header><div class="wrap"><a class="logo" href="./">{{MARK}}<span>edu-arena</span></a><nav data-auth><a href="lessons.html">레슨 목록</a></nav></div></header>
 <main class="wrap">
 {{HERO}}
 

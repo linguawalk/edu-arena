@@ -18,3 +18,12 @@ FOOT_HTML = (
 )
 
 SITE_JS = '<script src="/assets/site.js" defer></script>'
+
+ICON_HEAD = ('<link rel="icon" href="/favicon.svg" type="image/svg+xml">'
+             '<link rel="icon" href="/favicon.ico" sizes="48x48">'
+             '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
+             '<link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#172033">')
+MARK = ('<svg class="ea-mark" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true">'
+        '<rect width="64" height="64" rx="15" fill="#172033"/>'
+        '<path d="M22 16h-7v32h7M42 16h7v32h-7" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>'
+        '<path d="M24 33l6 6 11-14" fill="none" stroke="#FFD84D" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>')
