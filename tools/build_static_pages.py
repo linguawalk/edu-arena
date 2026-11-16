@@ -4,7 +4,7 @@
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from site_parts import FOOT_CSS, FOOT_HTML, SITE_JS, SITE, ICON_HEAD, MARK
+from site_parts import FOOT_CSS, FOOT_HTML, SITE_JS, SITE, ICON_HEAD, MARK, social
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EFFECTIVE = "2026년 11월 13일"
@@ -64,6 +64,7 @@ def page(slug, title, desc, body, extra_head="", noindex=False):
 <title>{title} · edu-arena</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{SITE}/{slug}">
+{social(title + " · edu-arena", desc, SITE + "/" + slug)}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">

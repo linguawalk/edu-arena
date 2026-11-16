@@ -8,7 +8,7 @@
 """
 import datetime, glob, html, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from site_parts import FOOT_CSS, FOOT_HTML, SITE_JS, SITE, ICON_HEAD, MARK
+from site_parts import FOOT_CSS, FOOT_HTML, SITE_JS, SITE, ICON_HEAD, MARK, social
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TODAY = datetime.date.today().isoformat()
@@ -60,11 +60,7 @@ def shell(path, title, desc, body, canonical):
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{SITE}{canonical}">
-<meta property="og:type" content="article">
-<meta property="og:title" content="{e(title)}">
-<meta property="og:description" content="{e(desc)}">
-<meta property="og:url" content="{SITE}{canonical}">
-<meta property="og:site_name" content="edu-arena">
+{social(title, desc, SITE + canonical, "article" if "/learn/" in canonical else "website")}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">

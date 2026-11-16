@@ -27,3 +27,22 @@ MARK = ('<svg class="ea-mark" viewBox="0 0 64 64" width="28" height="28" aria-hi
         '<rect width="64" height="64" rx="15" fill="#172033"/>'
         '<path d="M22 16h-7v32h7M42 16h7v32h-7" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>'
         '<path d="M24 33l6 6 11-14" fill="none" stroke="#FFD84D" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+import html as _h
+OG_IMAGE = SITE + "/assets/og-image.jpg"
+def social(title, desc, url, kind="website"):
+    """공유 미리보기(카카오톡·페이스북·X 등)용 태그"""
+    t, d = _h.escape(title, quote=True), _h.escape(desc, quote=True)
+    return (f'<meta property="og:type" content="{kind}"><meta property="og:site_name" content="edu-arena">'
+            f'<meta property="og:locale" content="ko_KR"><meta property="og:title" content="{t}">'
+            f'<meta property="og:description" content="{d}"><meta property="og:url" content="{url}">'
+            f'<meta property="og:image" content="{OG_IMAGE}"><meta property="og:image:width" content="1200">'
+            f'<meta property="og:image:height" content="630"><meta property="og:image:alt" content="edu-arena · 읽기 전에 먼저 풀어 봅니다">'
+            f'<meta name="twitter:card" content="summary_large_image">')
+SITE_LD = ('<script type="application/ld+json">{"@context":"https://schema.org","@graph":['
+  '{"@type":"WebSite","@id":"https://edu-arena.org/#website","name":"edu-arena","alternateName":["에듀아레나","edu-arena.org"],'
+  '"url":"https://edu-arena.org/","inLanguage":"ko-KR","publisher":{"@id":"https://edu-arena.org/#org"}},'
+  '{"@type":"Organization","@id":"https://edu-arena.org/#org","name":"edu-arena","legalName":"여행일기",'
+  '"url":"https://edu-arena.org/","logo":{"@type":"ImageObject","url":"https://edu-arena.org/assets/icon-512.png","width":512,"height":512},'
+  '"email":"contact@edu-arena.org","contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"contact@edu-arena.org","availableLanguage":"ko"}}'
+  ']}</script>')

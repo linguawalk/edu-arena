@@ -11,7 +11,7 @@ import json
 import os
 import sys as _sys
 _sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from site_parts import FOOT_CSS, FOOT_HTML, ICON_HEAD, MARK
+from site_parts import FOOT_CSS, FOOT_HTML, ICON_HEAD, MARK, social, SITE_LD
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -102,7 +102,7 @@ def build():
         blocks.append(f'<section class="group" aria-labelledby="g-{gid}"><div class="group-head">'
                       f'<h2 id="g-{gid}">{gname}</h2></div><div class="grid">{"".join(cards)}</div></section>')
 
-    page = TEMPLATE.replace("{{HERO}}", hero).replace("{{BLOCKS}}", "\n".join(blocks)).replace("{{TOTAL}}", str(total)).replace("{{FOOT_CSS}}", FOOT_CSS).replace("{{FOOT_HTML}}", FOOT_HTML).replace("{{ICON_HEAD}}", ICON_HEAD).replace("{{MARK}}", MARK)
+    page = TEMPLATE.replace("{{HERO}}", hero).replace("{{BLOCKS}}", "\n".join(blocks)).replace("{{TOTAL}}", str(total)).replace("{{FOOT_CSS}}", FOOT_CSS).replace("{{FOOT_HTML}}", FOOT_HTML).replace("{{ICON_HEAD}}", ICON_HEAD).replace("{{MARK}}", MARK).replace("{{SOCIAL}}", social("edu-arena · 풀면서 배우는 모든 과목", "읽기 전에 먼저 풀어 보는 15분 레슨. 고교 교과부터 대학 수준, 올림피아드 심화까지 아홉 과목을 한곳에서.", "https://edu-arena.org/")).replace("{{SITE_LD}}", SITE_LD)
     with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
         f.write(page)
     print(f"index.html: {len(SUBJECTS)}과목, {total}개 코스")
@@ -117,6 +117,8 @@ TEMPLATE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>edu-arena · 풀면서 배우는 모든 과목</title>
 <link rel="canonical" href="https://edu-arena.org/">
+{{SOCIAL}}
+{{SITE_LD}}
 <meta name="description" content="읽기 전에 먼저 풀어 보는 15분 레슨. 사회와 역사, 경제와 경영, 언어와 문학, 외국어, 수학, 과학, 공학, 코딩, 예체능까지 {{TOTAL}}개 코스를 한곳에서. 과목별 올림피아드 심화 과정 포함.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
