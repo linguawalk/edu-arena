@@ -113,6 +113,7 @@ TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 {{ICON_HEAD}}
+<meta name="google-site-verification" content="Fa4IWIobYIjWuqz14f0Z88zgVrgDCRV_z86bJECrXXc">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>edu-arena · 풀면서 배우는 모든 과목</title>
 <link rel="canonical" href="https://edu-arena.org/">
