@@ -14,7 +14,7 @@ FOOT_HTML = (
     '<footer class="ea-foot"><div class="ea-fin">'
     '<a href="/about.html">소개</a><a href="/lessons.html">전체 레슨 목록</a><a href="/contact.html">문의</a>'
     '<a href="/terms.html">이용약관</a><a href="/privacy.html"><strong>개인정보처리방침</strong></a>'
-    '<span class="ea-copy">© 2026 edu-arena</span></div></footer>'
+    '<span class="ea-copy">© 2026 edu-arena · 운영 여행일기 · 사업자등록번호 720-97-01549 · contact@edu-arena.org</span></div></footer>'
 )
 
 SITE_JS = '<script src="/assets/site.js" defer></script>'

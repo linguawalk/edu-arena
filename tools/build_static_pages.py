@@ -8,7 +8,10 @@ from site_parts import FOOT_CSS, FOOT_HTML, SITE_JS, SITE
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EFFECTIVE = "2026년 11월 13일"
-OFFICER = "edu-arena 운영자"   # 개인정보 보호책임자 표기(성명으로 바꿔 쓰는 것을 권장)
+OFFICER = "김양석"
+OPERATOR = "여행일기"
+BIZNO = "720-97-01549"
+EMAIL = "contact@edu-arena.org"
 
 CSS = """
 :root{--paper:#FAFBFD;--ink:#172033;--ink-soft:#4A5670;--grid:#DCE4F0;--blue:#1D3FA8;--blue-soft:#E7ECFA;--warn:#8A1C1C;
@@ -99,7 +102,7 @@ ABOUT = """
 <p>모든 학습 콘텐츠는 로그인 없이 무료로 이용할 수 있습니다. 사이트 운영비는 광고 수익으로 충당합니다. 회원으로 가입하면 학습 기록을 계정에 보관하는 등의 기능을 이용할 수 있습니다.</p>
 
 <h2>만든 사람</h2>
-<p>edu-arena는 개인 운영자가 기획하고 제작하는 사이트입니다. 콘텐츠의 오류를 발견하셨거나 제안이 있으시면 <a href="/contact.html">문의 페이지</a>로 알려 주세요. 확인 후 고치겠습니다.</p>
+<p>edu-arena는 출판사 여행일기(대표 김양석, 사업자등록번호 720-97-01549)가 기획하고 제작합니다. 콘텐츠의 오류를 발견하셨거나 제안이 있으시면 <a href="/contact.html">문의 페이지</a>나 <a href="mailto:contact@edu-arena.org">contact@edu-arena.org</a>로 알려 주세요. 확인 후 고치겠습니다.</p>
 
 <h2>관련 사이트</h2>
 <p><a href="https://mind-arena.org/">mind-arena</a>: 퍼즐과 보드게임으로 생각하는 힘을 기르는 자매 사이트입니다.</p>
@@ -107,7 +110,7 @@ ABOUT = """
 
 PRIVACY = f"""
 <h1>개인정보처리방침</h1>
-<p class="lede">edu-arena(이하 "사이트")는 「개인정보 보호법」에 따라 이용자의 개인정보를 보호하고 관련 고충을 원활하게 처리하기 위해 다음과 같이 개인정보처리방침을 둡니다. 시행일: {EFFECTIVE}</p>
+<p class="lede">edu-arena(이하 "사이트")는 {OPERATOR}(사업자등록번호 {BIZNO})가 운영하며, 「개인정보 보호법」에 따라 이용자의 개인정보를 보호하고 관련 고충을 원활하게 처리하기 위해 다음과 같이 개인정보처리방침을 둡니다. 시행일: {EFFECTIVE}</p>
 
 <h2>1. 처리하는 개인정보와 목적</h2>
 <table>
@@ -174,7 +177,7 @@ PRIVACY = f"""
 
 <h2>10. 개인정보 보호책임자</h2>
 <p>개인정보 처리에 관한 문의, 불만, 피해 구제는 아래로 연락해 주세요.</p>
-<ul><li>개인정보 보호책임자: {OFFICER}</li><li>연락 방법: <a href="/contact.html">문의 페이지</a>(문의 유형 "개인정보 관련" 선택)</li></ul>
+<ul><li>개인정보 보호책임자: {OFFICER}({OPERATOR} 대표)</li><li>이메일: <a href="mailto:{EMAIL}">{EMAIL}</a></li><li>또는 <a href="/contact.html">문의 페이지</a>(문의 유형 "개인정보 관련" 선택)</li></ul>
 <p>개인정보 침해에 대한 신고나 상담은 개인정보침해신고센터(국번 없이 118, privacy.kisa.or.kr), 개인정보분쟁조정위원회(1833-6972, www.kopico.go.kr)에도 할 수 있습니다.</p>
 
 <h2>11. 방침의 변경</h2>
@@ -228,7 +231,7 @@ TERMS = f"""
 
 CONTACT = """
 <h1>문의</h1>
-<p class="lede">콘텐츠 오류 신고, 학습 관련 질문, 제안, 개인정보 관련 요청을 보내 주세요. 확인 후 적어 주신 이메일로 답변드립니다.</p>
+<p class="lede">콘텐츠 오류 신고, 학습 관련 질문, 제안, 개인정보 관련 요청을 보내 주세요. 확인 후 적어 주신 이메일로 답변드립니다. 메일로 직접 보내셔도 됩니다: <a href="mailto:contact@edu-arena.org">contact@edu-arena.org</a></p>
 <div class="card">
 <form id="cf" novalidate>
   <label for="name">이름 또는 별칭</label>

@@ -5,8 +5,8 @@
 window.EA_SITE = window.EA_SITE || {
   GA_ID: "",               // 구글 애널리틱스 4 측정 ID, 예: "G-XXXXXXXXXX"
   ADSENSE_CLIENT: "",      // 애드센스 게시자 ID, 예: "ca-pub-1234567890123456"
-  SUPABASE_URL: "",        // 예: "https://abcdefgh.supabase.co"
-  SUPABASE_ANON_KEY: "",   // Supabase 프로젝트의 anon(public) 키
+  SUPABASE_URL: "https://snknxkqardjrtqfprkad.supabase.co",        // 예: "https://abcdefgh.supabase.co"
+  SUPABASE_ANON_KEY: "sb_publishable_K_Olqr8l9hWeZl1QAIEhlA_Z-ZhMftP",   // Supabase 프로젝트의 anon(public) 키
   WEB3FORMS_KEY: ""        // Web3Forms 액세스 키(문의 양식 전달용)
 };
 
@@ -73,7 +73,7 @@ window.EA_SITE = window.EA_SITE || {
     f.innerHTML = '<div class="ea-fin">' +
       '<a href="/about.html">소개</a><a href="/lessons.html">전체 레슨 목록</a><a href="/contact.html">문의</a>' +
       '<a href="/terms.html">이용약관</a><a href="/privacy.html"><strong>개인정보처리방침</strong></a>' +
-      '<span class="ea-copy">© ' + new Date().getFullYear() + ' edu-arena</span></div>';
+      '<span class="ea-copy">© ' + new Date().getFullYear() + ' edu-arena · 운영 여행일기 · 사업자등록번호 720-97-01549 · contact@edu-arena.org</span></div>';
     document.body.appendChild(f);
   }
 
