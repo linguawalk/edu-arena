@@ -65,6 +65,9 @@ svg.pad:focus-visible{outline:3px solid var(--blue);outline-offset:4px;border-ra
 .ex-steps li[hidden]{display:none}
 .ex-answer{margin-top:14px;font-weight:700;font-size:18px;color:var(--ok)}
 .hintbox{margin-top:18px;padding:12px 14px;background:var(--marker-soft);border-left:4px solid var(--marker);border-radius:0 var(--radius-s) var(--radius-s) 0;font-size:16px;line-height:1.6}
+.hintbox p{margin:0;white-space:pre-line}
+.hintbox p+p{margin-top:8px}
+.tutornote{margin:6px 0 0;font-size:15px}
 .feedback{position:fixed;left:0;right:0;bottom:0;z-index:6;border-top:1px solid var(--grid);background:var(--paper);padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px))}
 .feedback.ok{background:var(--ok-soft);border-top-color:#BFE3CF}
 .feedback.bad{background:var(--bad-soft);border-top-color:#F0C4C4}
@@ -101,8 +104,11 @@ svg.pad:focus-visible{outline:3px solid var(--blue);outline-offset:4px;border-ra
   <button class="btn" id="mainBtn">확인</button>
 </div></div>
 
+<script src="../assets/tutor.js"></script>
 <script>
 "use strict";
+/* tutor.js를 불러오지 못해도 기존 레슨은 예전처럼 동작하도록 하는 대체 객체 */
+window.Tutor = window.Tutor || {hints: q => q.hint ? [q.hint] : [], diagnoseNumeric: () => null, diagnoseBlanks: () => null, record(){}, weakest: () => []};
 const $ = s => document.querySelector(s);
 const P = new URLSearchParams(location.search);
 const LEVEL = P.get("level") || "1", COURSE = P.get("c") || "c0";
@@ -507,10 +513,61 @@ function showConcept(){
 conceptBtn.addEventListener("click", showConcept);
 let exStep = 0;
 
+/* ---------- 튜터: 단계별 힌트 · 오답 진단 · 개념별 기록 (assets/tutor.js) ---------- */
+let hintSteps = [], hintsUsed = 0, codes = [];
+function nextHint(){
+  if (hintsUsed >= hintSteps.length) return;
+  let box = main.querySelector(".hintbox");
+  if (!box){ box = document.createElement("div"); box.className = "hintbox"; main.appendChild(box); }
+  const p = document.createElement("p"); p.textContent = hintSteps[hintsUsed]; box.appendChild(p);
+  hintsUsed++;
+  if (hintsUsed >= hintSteps.length) hintBtn.hidden = true; else hintBtn.textContent = "힌트 더 보기";
+  box.scrollIntoView({block:"nearest", behavior:"smooth"});
+}
+function tutorDiagnose(s){
+  try{
+    if (s.qtype === "numeric"){ const inp = main.querySelector("input.ans"); return inp ? Tutor.diagnoseNumeric(s, inp.value) : null; }
+    if (s.qtype === "fill_blank") return Tutor.diagnoseBlanks(s, [...main.querySelectorAll("input.blank")].map(i => i.value));
+  }catch(e){}
+  return null;
+}
+function conceptOf(s){
+  const lid = s.source_lesson || (!IS_REVIEW && data.lesson && data.lesson.id);
+  const m = lid && /^(c\d+)-ch(\d+)-l(\d+)$/.exec(lid);
+  if (m){
+    const t = chapterMeta && chapterMeta.lessons.find(l => l.id === lid);
+    const title = (t && t.title) || (data.lesson && data.lesson.id === lid ? data.lesson.title : "");
+    if (title) return {id: lid, title, href: `player.html?level=${LEVEL}&c=${m[1]}&ch=${m[2]}&l=${m[3]}`};
+  }
+  if (data.chapter) return {id: data.chapter.id, title: data.chapter.title, href: `browse.html?c=${encodeURIComponent(COURSE)}#ch${CH}`};
+  return null;
+}
+function recordTutor(s, correct, revealed){
+  try{
+    if (s.qtype === "written") return;
+    const c = conceptOf(s); if (!c) return;
+    Tutor.record({concept: c.id, title: c.title, href: c.href, first: correct && tries === 1 && hintsUsed === 0, hints: hintsUsed, revealed, codes});
+  }catch(e){}
+}
+function appendWeak(){
+  try{
+    const cur = IS_REVIEW ? null : data.lesson.id;
+    const w = Tutor.weakest(3).filter(x => x.concept !== cur);
+    if (!w.length) return;
+    const box = document.createElement("div"); box.className = "morebox";
+    const h = document.createElement("b"); h.textContent = "다시 보면 좋은 개념"; box.appendChild(h);
+    const ul = document.createElement("ul"); ul.style.margin = "6px 0 0"; ul.style.paddingLeft = "1.2em";
+    w.forEach(x => { const li = document.createElement("li"), a = document.createElement(x.href ? "a" : "span");
+      if (x.href) a.href = x.href; a.textContent = x.title; li.appendChild(a);
+      li.appendChild(document.createTextNode(` — 힌트 없이 한 번에 맞힌 비율 ${Math.round(x.rate * 100)}% (${x.n}문항)`)); ul.appendChild(li); });
+    box.appendChild(ul); main.querySelector(".done").appendChild(box);
+  }catch(e){}
+}
+
 function show(){
   progress(); window.scrollTo(0, 0);
   if (idx >= screens.length) return finish();
-  const s = screens[idx]; main.innerHTML = ""; tries = 0; api = null;
+  const s = screens[idx]; main.innerHTML = ""; tries = 0; api = null; hintSteps = []; hintsUsed = 0; codes = [];
   hintBtn.hidden = true; revealBtn.hidden = true; conceptBtn.hidden = true; setFb("", "");
   const st = document.createElement("p"); st.className = "stage"; st.textContent = STAGE[s.stage] || ""; main.appendChild(st);
   if (s.type === "explain"){
@@ -535,8 +592,8 @@ function show(){
   if (lastConcept(idx)) conceptBtn.hidden = false;
   if (s.figure){ const pr = main.querySelector(".prompt"); if (pr) pr.after(figure(s.figure)); }
   api.onChange = () => { if (phase === "check") mainBtn.disabled = !api.ready; };
-  if (s.hint){ hintBtn.hidden = false; hintBtn.onclick = () => { if (main.querySelector(".hintbox")) return;
-    const h = document.createElement("div"); h.className = "hintbox"; h.textContent = s.hint; main.appendChild(h); hintBtn.hidden = true; }; }
+  hintSteps = Tutor.hints(s);
+  if (hintSteps.length){ hintBtn.hidden = false; hintBtn.textContent = "힌트"; hintBtn.onclick = nextHint; }
   (api.enter || []).forEach(inp => inp.addEventListener("keydown", e => { if (e.key === "Enter" && !mainBtn.disabled){ e.preventDefault(); mainBtn.click(); } }));
   phase = "check"; mainBtn.textContent = "확인"; mainBtn.disabled = !api.ready;
   { const a = api; if (a.focus && matchMedia("(pointer:fine)").matches) setTimeout(() => { if (api === a) a.focus(); }, 50); }
@@ -545,6 +602,7 @@ function show(){
 function resolved(correct, revealed){
   const s = screens[idx]; api.lock(); hintBtn.hidden = true; revealBtn.hidden = true; conceptBtn.hidden = true;
   if (correct && tries === 1) firstRight++;
+  recordTutor(s, correct, revealed);
   let html = correct ? "<strong>맞았어요</strong>" : "<strong>정답을 확인하세요</strong>";
   if (s.qtype === "written"){ html = correct ? "<strong>핵심을 잘 짚었어요</strong>" : "<strong>모범 답안과 비교해 보세요</strong>"; if (s.model_answer) html += esc(s.model_answer); }
   else {
@@ -577,9 +635,12 @@ mainBtn.addEventListener("click", () => {
     revealBtn.hidden = false; revealBtn.textContent = "모범 답안 보기"; return;
   }
   const s0 = screens[idx];
-  if (tries === 1 && s0.hint && !main.querySelector(".hintbox")) hintBtn.click();
-  setFb("bad", tries >= 2 ? "<strong>아직 아니에요</strong>다시 해 보거나 정답과 풀이를 확인하세요."
-                          : "<strong>아직 아니에요</strong>" + (s0.hint ? "아래 힌트를 보고 한 번 더 생각해 보세요." : "한 번 더 생각해 보거나 개념을 다시 보세요."));
+  const dx = tutorDiagnose(s0);
+  if (dx && !codes.includes(dx.code)) codes.push(dx.code);
+  if (tries === 1 && hintSteps.length && hintsUsed === 0) nextHint();
+  const note = dx ? '<p class="tutornote">' + esc(dx.message) + "</p>" : "";
+  setFb("bad", tries >= 2 ? "<strong>아직 아니에요</strong>다시 해 보거나 정답과 풀이를 확인하세요." + note
+                          : "<strong>아직 아니에요</strong>" + (hintSteps.length ? "아래 힌트를 보고 한 번 더 생각해 보세요." : "한 번 더 생각해 보거나 개념을 다시 보세요.") + note);
   if (tries >= 2){ revealBtn.hidden = false; revealBtn.textContent = "정답 보기"; }
 });
 revealBtn.addEventListener("click", () => resolved(false, true));
@@ -629,7 +690,8 @@ function finish(){
     <h1></h1><p class="score">${firstRight}<small> / ${qCount}</small></p>
     <p class="body" style="font-size:17px;color:var(--ink-soft)">한 번에 맞힌 문항 수입니다.</p></div>`;
   main.querySelector("h1").textContent = IS_REVIEW ? data.review.title : data.lesson.title;
-  const pm = !IS_REVIEW && chapterMeta && (chapterMeta.lessons.find(l => l.id === data.lesson.id) || {}).practice;
+  appendWeak();
+  const pm =!IS_REVIEW && chapterMeta && (chapterMeta.lessons.find(l => l.id === data.lesson.id) || {}).practice;
   if (pm){ const b = document.createElement("p"); b.className = "morebox";
     b.innerHTML = `더 풀어 보고 싶다면 <a href="player.html?c=${COURSE}&ch=${CH}&l=${LES}&practice=1">더 연습하기 →</a><br><small>문제 은행 ${pm.questions}문항에서 새 문제 10개를 뽑아 줍니다.</small>`;
     main.querySelector(".done").appendChild(b); }
