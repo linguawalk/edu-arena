@@ -153,9 +153,10 @@
   // 과목 구분: 같은 도메인을 쓰는 여러 플레이어(/math/, /sci/, /socio/olympiad/ …)가 기록을 섞지 않도록 경로를 접두어로 쓴다.
   const nsOf = () => root.location.pathname.replace(/^\/+/, "").replace(/\/?[^/]*$/, "") || "root";
   const baseOf = () => root.location.pathname.replace(/[^/]*$/, "");
-  const subjectOf = () => { const t = String(root.document && root.document.title || "").split(" · "); return t.length >= 3 ? t[t.length - 2] : ""; };
+  // 제목 형식: "레슨 · 과목 · edu-arena" 또는 올림피아드의 "레슨 · 과목 심화"
+  const subjectOf = () => { const t = String(root.document && root.document.title || "").split(" · "); return t.length >= 3 ? t[t.length - 2] : t.length === 2 ? t[1] : ""; };
 
-  // ctx: {data, chapterMeta, isReview, course, ch, level}
+  // ctx: {data, chapterMeta, isReview, ch} + 일반 과목은 {course, level}, 올림피아드는 {query: "subj=..&s=..&t=.."}
   function concept(q, ctx) {
     const d = ctx.data || {}, ns = nsOf(), subject = subjectOf();
     const lid = q.source_lesson || (!ctx.isReview && d.lesson && d.lesson.id);
@@ -164,14 +165,19 @@
       const t = ctx.chapterMeta && ctx.chapterMeta.lessons && ctx.chapterMeta.lessons.find(l => l.id === lid);
       const title = (t && t.title) || (d.lesson && d.lesson.id === lid ? d.lesson.title : "");
       if (title) {
-        const p = new URLSearchParams();
-        if (ctx.level && ctx.level !== "1") p.set("level", ctx.level);
-        p.set("c", ctx.course || m[1]); p.set("ch", m[2]); p.set("l", m[3]);
-        return {id: ns + ":" + lid, title, subject, href: baseOf() + "player.html?" + p.toString()};
+        let qs;
+        if (ctx.query) qs = ctx.query + "&ch=" + m[2] + "&l=" + m[3];
+        else {
+          const p = new URLSearchParams();
+          if (ctx.level && ctx.level !== "1") p.set("level", ctx.level);
+          p.set("c", ctx.course || m[1]); p.set("ch", m[2]); p.set("l", m[3]);
+          qs = p.toString();
+        }
+        return {id: ns + ":" + lid, title, subject, href: baseOf() + "player.html?" + qs};
       }
     }
     if (d.chapter) return {id: ns + ":" + d.chapter.id, title: d.chapter.title, subject,
-      href: baseOf() + "browse.html?c=" + encodeURIComponent(ctx.course || "") + "#ch" + (ctx.ch || "")};
+      href: baseOf() + "browse.html?" + (ctx.query || "c=" + encodeURIComponent(ctx.course || "")) + "#ch" + (ctx.ch || "")};
     return null;
   }
 

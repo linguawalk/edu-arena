@@ -109,8 +109,11 @@ svg.pad:focus-visible{outline:3px solid var(--blue);outline-offset:4px;border-ra
   <button class="btn" id="mainBtn">확인</button>
 </div></div>
 
+<script src="../../assets/tutor.js"></script>
 <script>
 "use strict";
+/* tutor.js를 불러오지 못해도 기존 레슨은 예전처럼 동작하도록 하는 대체 객체 */
+window.Tutor = window.Tutor || {hints: q => q.hint ? [q.hint] : [], diagnoseNumeric: () => null, diagnoseBlanks: () => null, concept: () => null, record(){}, weakest: () => [], weakBox: () => null};
 const $ = s => document.querySelector(s);
 const P = new URLSearchParams(location.search);
 const SUBJ = P.get("subj") || "sci", SG = P.get("s") || "1", TRACK = P.get("t") || "proof";
@@ -556,10 +559,42 @@ function showConcept(){
 conceptBtn.addEventListener("click", showConcept);
 let exStep = 0;
 
+/* ---------- 튜터: 단계별 힌트 · 오답 진단 · 개념별 기록 (assets/tutor.js) ---------- */
+let hintSteps = [], hintsUsed = 0, codes = [];
+function nextHint(){
+  if (hintsUsed >= hintSteps.length) return;
+  let box = main.querySelector(".hintbox");
+  if (!box){ box = document.createElement("div"); box.className = "hintbox"; main.appendChild(box); }
+  const p = document.createElement("p"); p.textContent = hintSteps[hintsUsed]; box.appendChild(p);
+  hintsUsed++;
+  if (hintsUsed >= hintSteps.length) hintBtn.hidden = true; else hintBtn.textContent = "힌트 더 보기";
+  box.scrollIntoView({block:"nearest", behavior:"smooth"});
+}
+function tutorDiagnose(s){
+  try{
+    if (s.qtype === "numeric"){ const inp = main.querySelector("input.ans"); return inp ? Tutor.diagnoseNumeric(s, inp.value) : null; }
+    if (s.qtype === "fill_blank") return Tutor.diagnoseBlanks(s, [...main.querySelectorAll("input.blank")].map(i => i.value), norm);
+  }catch(e){}
+  return null;
+}
+function recordTutor(s, correct, revealed){
+  try{
+    if (s.qtype === "written" || s.qtype === "proof") return;
+    const c = Tutor.concept(s, {data, chapterMeta, isReview: IS_REVIEW, query: Q, ch: CH}); if (!c) return;
+    Tutor.record({concept: c.id, title: c.title, href: c.href, subject: c.subject, first: correct && tries === 1 && hintsUsed === 0, hints: hintsUsed, revealed, codes});
+  }catch(e){}
+}
+function appendWeak(){
+  try{
+    const box = Tutor.weakBox(IS_REVIEW ? "" : (data.lesson && data.lesson.id));
+    const done = main.querySelector(".done"); if (box && done) done.appendChild(box);
+  }catch(e){}
+}
+
 function show(){
   progress(); window.scrollTo(0, 0);
   if (idx >= screens.length) return finish();
-  const s = screens[idx]; main.innerHTML = ""; tries = 0; api = null;
+  const s = screens[idx]; main.innerHTML = ""; tries = 0; api = null; hintSteps = []; hintsUsed = 0; codes = [];
   hintBtn.hidden = true; revealBtn.hidden = true; conceptBtn.hidden = true; setFb("", "");
   const st = document.createElement("p"); st.className = "stage"; st.textContent = STAGE[s.stage] || ""; main.appendChild(st);
   if (s.type === "explain"){
@@ -586,8 +621,8 @@ function show(){
   if (s.figure){ const pr = main.querySelector(".prompt"); if (pr) pr.after(figure(s.figure)); }
   if (s.code){ const pr = main.querySelector(".prompt"); if (pr) pr.after(codeBlock(s.code)); }
   api.onChange = () => { if (phase === "check") mainBtn.disabled = !api.ready; };
-  if (s.hint){ hintBtn.hidden = false; hintBtn.onclick = () => { if (main.querySelector(".hintbox")) return;
-    const h = document.createElement("div"); h.className = "hintbox"; h.textContent = s.hint; main.appendChild(h); hintBtn.hidden = true; }; }
+  hintSteps = Tutor.hints(s);
+  if (hintSteps.length){ hintBtn.hidden = false; hintBtn.textContent = "힌트"; hintBtn.onclick = nextHint; }
   (api.enter || []).forEach(inp => inp.addEventListener("keydown", e => { if (e.key === "Enter" && !mainBtn.disabled){ e.preventDefault(); mainBtn.click(); } }));
   phase = "check"; mainBtn.textContent = "확인"; mainBtn.disabled = !api.ready;
   { const a = api; if (a.focus && matchMedia("(pointer:fine)").matches) setTimeout(() => { if (api === a) a.focus(); }, 50); }
@@ -596,6 +631,7 @@ function show(){
 function resolved(correct, revealed){
   const s = screens[idx]; api.lock(); hintBtn.hidden = true; revealBtn.hidden = true; conceptBtn.hidden = true;
   if (correct && tries === 1) firstRight++;
+  recordTutor(s, correct, revealed);
   let html = correct ? "<strong>맞았어요</strong>" : "<strong>정답을 확인하세요</strong>";
   if (s.qtype === "proof"){ html = `<strong>자가 채점 ${api.score} / ${api.max}점</strong>` + (correct ? `모든 기준을 갖춘 ${WK()}입니다.` : `빠진 기준을 모범 ${WK()}에서 다시 확인하세요.`);
     if (s.explanation) html += solHtml(s.explanation); }
@@ -634,9 +670,12 @@ mainBtn.addEventListener("click", () => {
     revealBtn.hidden = false; revealBtn.textContent = "모범 답안 보기"; return;
   }
   const s0 = screens[idx];
-  if (tries === 1 && s0.hint && !main.querySelector(".hintbox")) hintBtn.click();
-  setFb("bad", tries >= 2 ? "<strong>아직 아니에요</strong>다시 해 보거나 정답과 풀이를 확인하세요."
-                          : "<strong>아직 아니에요</strong>" + (s0.hint ? "아래 힌트를 보고 한 번 더 생각해 보세요." : "한 번 더 생각해 보거나 개념을 다시 보세요."));
+  const dx = tutorDiagnose(s0);
+  if (dx && !codes.includes(dx.code)) codes.push(dx.code);
+  if (tries === 1 && hintSteps.length && hintsUsed === 0) nextHint();
+  const note = dx ? '<p class="tutornote">' + esc(dx.message) + "</p>" : "";
+  setFb("bad", tries >= 2 ? "<strong>아직 아니에요</strong>다시 해 보거나 정답과 풀이를 확인하세요." + note
+                          : "<strong>아직 아니에요</strong>" + (hintSteps.length ? "아래 힌트를 보고 한 번 더 생각해 보세요." : "한 번 더 생각해 보거나 개념을 다시 보세요.") + note);
   if (tries >= 2){ revealBtn.hidden = false; revealBtn.textContent = "정답 보기"; }
 });
 revealBtn.addEventListener("click", () => resolved(false, true));
@@ -662,6 +701,7 @@ function finish(){
     <h1></h1><p class="score">${firstRight}<small> / ${qCount}</small></p>
     <p class="body" style="font-size:17px;color:var(--ink-soft)">한 번에 맞힌 문항 수입니다.</p></div>`;
   main.querySelector("h1").textContent = IS_REVIEW ? data.review.title : data.lesson.title;
+  appendWeak();
   hintBtn.hidden = true; revealBtn.hidden = false; revealBtn.textContent = "목록으로";
   revealBtn.onclick = () => { location.href = `browse.html?${Q}`; };
   if (nxt){ mainBtn.textContent = nxt.label; mainBtn.disabled = false; phase = "done"; mainBtn.onclick = () => { location.href = nxt.href; }; }

@@ -51,11 +51,11 @@ eq("chem loose leak (H₂O vs H2O): stops before leaking line", T.hints({qtype:"
 eq("blanks custom norm (case-sensitive)", (T.diagnoseBlanks({blanks:[{answers:["Mg"]},{answers:["Na"]}]}, ["mg","Na"], s => String(s).trim()) || {}).message, "맞은 빈칸: 2번. 다시 확인할 빈칸: 1번.");
 
 // --- 말뭉치 점검 ---
-const roots = ["math","sci","socio","biz","tech","lit","arts"].map(x => require("path").resolve(__dirname, "..", x, "content"));
+const roots = ["math","sci","socio","biz","tech","lit","arts","math/olympiad","sci/olympiad","socio/olympiad","biz/olympiad","lit/olympiad","code/olympiad"].map(x => require("path").resolve(__dirname, "..", x, "content"));
 const qs = [];
 const walkAll = (root) => (function walk(dir){ for (const e of fs.readdirSync(dir, {withFileTypes:true})) { const p = path.join(dir, e.name);
   if (e.isDirectory()) walk(p); else if (e.name.endsWith(".json")) { let d; try { d = JSON.parse(fs.readFileSync(p, "utf8")); } catch (x) { continue; }
-    (function w(o){ if (Array.isArray(o)) o.forEach(w); else if (o && typeof o === "object") { if (o.type === "question") { o.__subj = root.split("/").slice(-2)[0]; qs.push(o); } Object.values(o).forEach(w); } })(d); } } })(root);
+    (function w(o){ if (Array.isArray(o)) o.forEach(w); else if (o && typeof o === "object") { if (o.type === "question") { o.__subj = path.relative(path.resolve(__dirname, ".."), root).replace(/\/content$/, ""); qs.push(o); } Object.values(o).forEach(w); } })(d); } } })(root);
 roots.forEach(walkAll);
 console.log("문항", qs.length);
 
@@ -80,7 +80,7 @@ for (const q of qs) {
     if (q.qtype === "fill_blank") { P.fill++; T.diagnoseBlanks(q, q.blanks.map(() => "x")); }
   } catch (e) { err++; if (err < 5) console.log("ERR", q.id, e.message); }
 }
-for (const [k, P] of Object.entries(per)) console.log(k.padEnd(6), `문항 ${P.n} · 힌트 있음 ${P.hint} (${Math.round(P.hint/P.n*100)}%) · 2단계+ ${P.multi} · 풀이에서 뽑은 힌트 ${P.derived}`);
+for (const [k, P] of Object.entries(per)) console.log(k.padEnd(15), `문항 ${P.n} · 힌트 있음 ${P.hint} (${Math.round(P.hint/P.n*100)}%) · 2단계+ ${P.multi} · 풀이에서 뽑은 힌트 ${P.derived}`);
 console.log({totalQuestions: qs.length, leakCount, errors: err, correctAnswerDiagnosed: correctDiag}); if (leakEx.length) console.log("노출 예:", JSON.stringify(leakEx, null, 1));
 if (leakCount || err || correctDiag) fail++;
 console.log(fail ? "FAILED " + fail : "ALL PASSED");
