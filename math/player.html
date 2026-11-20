@@ -65,9 +65,6 @@ svg.pad:focus-visible{outline:3px solid var(--blue);outline-offset:4px;border-ra
 .ex-steps li[hidden]{display:none}
 .ex-answer{margin-top:14px;font-weight:700;font-size:18px;color:var(--ok)}
 .hintbox{margin-top:18px;padding:12px 14px;background:var(--marker-soft);border-left:4px solid var(--marker);border-radius:0 var(--radius-s) var(--radius-s) 0;font-size:16px;line-height:1.6}
-.hintbox p{margin:0;white-space:pre-line}
-.hintbox p+p{margin-top:8px}
-.tutornote{margin:6px 0 0;font-size:15px}
 .feedback{position:fixed;left:0;right:0;bottom:0;z-index:6;border-top:1px solid var(--grid);background:var(--paper);padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px))}
 .feedback.ok{background:var(--ok-soft);border-top-color:#BFE3CF}
 .feedback.bad{background:var(--bad-soft);border-top-color:#F0C4C4}
@@ -108,7 +105,7 @@ svg.pad:focus-visible{outline:3px solid var(--blue);outline-offset:4px;border-ra
 <script>
 "use strict";
 /* tutor.js를 불러오지 못해도 기존 레슨은 예전처럼 동작하도록 하는 대체 객체 */
-window.Tutor = window.Tutor || {hints: q => q.hint ? [q.hint] : [], diagnoseNumeric: () => null, diagnoseBlanks: () => null, record(){}, weakest: () => []};
+window.Tutor = window.Tutor || {hints: q => q.hint ? [q.hint] : [], diagnoseNumeric: () => null, diagnoseBlanks: () => null, concept: () => null, record(){}, weakest: () => [], weakBox: () => null};
 const $ = s => document.querySelector(s);
 const P = new URLSearchParams(location.search);
 const LEVEL = P.get("level") || "1", COURSE = P.get("c") || "c0";
@@ -527,40 +524,21 @@ function nextHint(){
 function tutorDiagnose(s){
   try{
     if (s.qtype === "numeric"){ const inp = main.querySelector("input.ans"); return inp ? Tutor.diagnoseNumeric(s, inp.value) : null; }
-    if (s.qtype === "fill_blank") return Tutor.diagnoseBlanks(s, [...main.querySelectorAll("input.blank")].map(i => i.value));
+    if (s.qtype === "fill_blank") return Tutor.diagnoseBlanks(s, [...main.querySelectorAll("input.blank")].map(i => i.value), norm);
   }catch(e){}
-  return null;
-}
-function conceptOf(s){
-  const lid = s.source_lesson || (!IS_REVIEW && data.lesson && data.lesson.id);
-  const m = lid && /^(c\d+)-ch(\d+)-l(\d+)$/.exec(lid);
-  if (m){
-    const t = chapterMeta && chapterMeta.lessons.find(l => l.id === lid);
-    const title = (t && t.title) || (data.lesson && data.lesson.id === lid ? data.lesson.title : "");
-    if (title) return {id: lid, title, href: `player.html?level=${LEVEL}&c=${m[1]}&ch=${m[2]}&l=${m[3]}`};
-  }
-  if (data.chapter) return {id: data.chapter.id, title: data.chapter.title, href: `browse.html?c=${encodeURIComponent(COURSE)}#ch${CH}`};
   return null;
 }
 function recordTutor(s, correct, revealed){
   try{
     if (s.qtype === "written") return;
-    const c = conceptOf(s); if (!c) return;
-    Tutor.record({concept: c.id, title: c.title, href: c.href, first: correct && tries === 1 && hintsUsed === 0, hints: hintsUsed, revealed, codes});
+    const c = Tutor.concept(s, {data, chapterMeta, isReview: IS_REVIEW, course: COURSE, ch: CH, level: LEVEL}); if (!c) return;
+    Tutor.record({concept: c.id, title: c.title, href: c.href, subject: c.subject, first: correct && tries === 1 && hintsUsed === 0, hints: hintsUsed, revealed, codes});
   }catch(e){}
 }
 function appendWeak(){
   try{
-    const cur = IS_REVIEW ? null : data.lesson.id;
-    const w = Tutor.weakest(3).filter(x => x.concept !== cur);
-    if (!w.length) return;
-    const box = document.createElement("div"); box.className = "morebox";
-    const h = document.createElement("b"); h.textContent = "다시 보면 좋은 개념"; box.appendChild(h);
-    const ul = document.createElement("ul"); ul.style.margin = "6px 0 0"; ul.style.paddingLeft = "1.2em";
-    w.forEach(x => { const li = document.createElement("li"), a = document.createElement(x.href ? "a" : "span");
-      if (x.href) a.href = x.href; a.textContent = x.title; li.appendChild(a);
-      li.appendChild(document.createTextNode(` — 힌트 없이 한 번에 맞힌 비율 ${Math.round(x.rate * 100)}% (${x.n}문항)`)); ul.appendChild(li); });
-    box.appendChild(ul); main.querySelector(".done").appendChild(box);
+    const box = Tutor.weakBox(IS_REVIEW ? "" : (data.lesson && data.lesson.id));
+    const done = main.querySelector(".done"); if (box && done) done.appendChild(box);
   }catch(e){}
 }
 
@@ -691,7 +669,7 @@ function finish(){
     <p class="body" style="font-size:17px;color:var(--ink-soft)">한 번에 맞힌 문항 수입니다.</p></div>`;
   main.querySelector("h1").textContent = IS_REVIEW ? data.review.title : data.lesson.title;
   appendWeak();
-  const pm =!IS_REVIEW && chapterMeta && (chapterMeta.lessons.find(l => l.id === data.lesson.id) || {}).practice;
+  const pm = !IS_REVIEW && chapterMeta && (chapterMeta.lessons.find(l => l.id === data.lesson.id) || {}).practice;
   if (pm){ const b = document.createElement("p"); b.className = "morebox";
     b.innerHTML = `더 풀어 보고 싶다면 <a href="player.html?c=${COURSE}&ch=${CH}&l=${LES}&practice=1">더 연습하기 →</a><br><small>문제 은행 ${pm.questions}문항에서 새 문제 10개를 뽑아 줍니다.</small>`;
     main.querySelector(".done").appendChild(b); }
