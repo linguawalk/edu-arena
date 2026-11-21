@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>코스 · 코딩 · edu-arena</title>
-<meta name="description" content="코드를 읽고 결과와 빈칸을 직접 입력하는 개념 단답형 문제와 심화 문제.">
+<meta name="description" content="코드를 읽고 결과와 빈칸을 직접 입력하는 코딩 개념 문제와 심화 문제.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -65,6 +65,9 @@ const nav = document.getElementById("nav"), main = document.getElementById("main
 
 let TYPE = P.get("type");
 let SHORT = null, ESSAY = null;
+// 언어를 출시 시기별로 묶는다: [시작 연도, 끝 연도, 이름]
+const ERAS = [[1950, 1969, "1950~60년대"], [1970, 1989, "1970~80년대"], [1990, 1999, "1990년대"], [2000, 9999, "2000년 이후"]];
+const eraOf = y => (ERAS.find(e => y >= e[0] && y <= e[1]) || ["", "", ""])[2];
 const HIDDEN = CURRICULUM.HIDDEN_TYPES || [];
 if (!TYPE || HIDDEN.indexOf(TYPE) >= 0) {
   // 숨긴 유형의 주소로 들어오면 검색에 잡히지 않게 하고, 공개 중인 첫 화면으로 보냅니다.
@@ -81,8 +84,11 @@ function group(title, items, open) {
 }
 function buildNav() {
   const C = CURRICULUM, html = [];
-  html.push(group("개념 단답형", SHORT ? Object.keys(SHORT).map(k => ({ label: SHORT[k].name, q: `type=short&lang=${k}`, on: cur("short", { lang: k }) })) : [], true));
-  html.push(group("개념 에세이", [{ label: "에세이 목록", q: "type=essay", on: TYPE === "essay" }], TYPE === "essay"));
+  if (SHORT) ERAS.forEach(er => {
+    const ks = Object.keys(SHORT).filter(k => SHORT[k].year >= er[0] && SHORT[k].year <= er[1]);
+    if (ks.length) html.push(group(`코딩 개념 · ${er[2]}`, ks.map(k => ({ label: `${SHORT[k].name} (${SHORT[k].year})`, q: `type=short&lang=${k}`, on: cur("short", { lang: k }) }))));
+  });
+  html.push(group("코딩 에세이", [{ label: "에세이 목록", q: "type=essay", on: TYPE === "essay" }], TYPE === "essay"));
   const show = t => HIDDEN.indexOf(t) < 0;
   if (show("foundation")) html.push(group("기초", C.foundation.stages.map(s => ({ label: s.title, q: `type=foundation&stage=${s.key}`, on: cur("foundation", { stage: s.key }) }))));
   if (show("language")) C.tracks.forEach(t => html.push(group(t.title, t.languages.map(l => ({
@@ -134,13 +140,13 @@ function render() {
     if (!ESSAY) return fail();
     let prog = {}; try { prog = JSON.parse(localStorage.getItem("code-arena:progress")) || {}; } catch (e) {}
     const rows = ESSAY.sets.map(x => { const p = prog[x.key]; return row(`essay.html?set=${x.id}`, `${x.no}. ${x.title}`, `${p ? `${p.first}/${x.count}편 제출 · ` : ""}${x.count}편`); }).join("");
-    return head("개념 에세이", "코딩 에세이", "코딩 개념을 글로 설명해 봅니다. 제출하면 기본 요건을 자동으로 점검하고, 평가 기준으로 스스로 채점한 뒤 예시 답안과 비교합니다.") +
+    return head("코딩", "코딩 에세이", "코딩 개념을 글로 설명해 봅니다. 제출하면 기본 요건을 자동으로 점검하고, 평가 기준으로 스스로 채점한 뒤 예시 답안과 비교합니다.") +
       `<section class="chapter"><h2><span class="no">${ESSAY.sets.length}</span>주제</h2><ol class="items">${rows}</ol></section>`;
   }
   if (TYPE === "short") {
     const k = P.get("lang"), L = SHORT && SHORT[k]; if (!L) return fail();
     const by = {}; L.units.forEach(u => (by[u.level] = by[u.level] || []).push(u));
-    let out = head("개념 단답형", L.name, "코드를 읽고 결과나 빈칸의 답을 직접 입력합니다. 보기가 없고, 틀리면 해설과 힌트를 줍니다.");
+    let out = head(`코딩 개념 · ${eraOf(L.year)}`, `${L.name} (${L.year})`, "코드를 읽고 결과나 빈칸의 답을 직접 입력합니다. 보기가 없고, 틀리면 해설과 힌트를 줍니다.");
     Object.keys(by).sort((a, b) => a - b).forEach(lv => {
       let rows = "";
       by[lv].forEach((u, i, arr) => {

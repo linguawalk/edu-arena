@@ -13,6 +13,9 @@ BAD_PROMPT = re.compile(r"다음 중|아래 중|보기|옳은 것|틀린 것|알
 NAMES = {"c": "C", "cpp": "C++", "rust": "Rust", "visual_basic": "Visual Basic", "csharp": "C#", "java": "Java",
          "python": "Python", "javascript": "JavaScript", "php": "PHP", "basic_early": "BASIC", "pascal": "Pascal",
          "fortran": "FORTRAN", "cobol": "COBOL"}
+# 언어 출시 연도(시대별 분류용)
+YEAR = {"fortran": 1957, "cobol": 1959, "basic_early": 1964, "pascal": 1970, "c": 1972, "cpp": 1985, "python": 1991,
+        "visual_basic": 1991, "java": 1995, "javascript": 1995, "php": 1995, "csharp": 2000, "rust": 2010}
 DENY = {"c_l1_u02_q004", "c_l2_u01_q003", "c_l3_u04_q004", "c_l4_u02_q003", "c_l4_u03_q003", "c_l4_u03_q005",
         "c_l5_u03_q004", "cpp_l2_u03_q003", "cpp_l3_u03_q004", "cpp_l4_u02_q002", "csharp_l1_u01_q003",
         "csharp_l4_u02_q004", "csharp_l6_u02_q005", "java_l1_u01_q003", "java_l6_u02_q005", "java_l3_u03_q003",
@@ -75,7 +78,8 @@ def main(args):
             per.setdefault(lang, []).append((d["level"], d["unit"], len(qs), d.get("unit_title", "")))
     man = {}
     for lang, v in per.items():
-        man[lang] = {"name": NAMES.get(lang, lang), "units": [{"level": l, "unit": u, "n": n, "title": t} for l, u, n, t in sorted(v)]}
+        man[lang] = {"name": NAMES.get(lang, lang), "year": YEAR.get(lang), "units": [{"level": l, "unit": u, "n": n, "title": t} for l, u, n, t in sorted(v)]}
+    man = dict(sorted(man.items(), key=lambda kv: (kv[1]["year"] or 9999, kv[0])))   # 출시 연도순
     json.dump(man, open(os.path.join(ROOT, "short", "index.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     for k in sorted(stat): print(k, stat[k])
     for lang, v in per.items(): print(lang, "units", len(v), "questions", sum(x[2] for x in v))
