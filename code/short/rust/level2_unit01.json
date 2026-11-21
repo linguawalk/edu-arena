@@ -1,0 +1,88 @@
+{
+ "language": "rust",
+ "category": "system_low_level",
+ "level": 2,
+ "unit": 1,
+ "unit_title": "소유권 기초",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "rust_l2_u01_q001",
+   "type": "predict_output",
+   "code": "let s1 = String::from(\"hello\");\nlet s2 = s1;\nprintln!(\"{}\", s2);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "hello"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "s1",
+    "오류",
+    "빈 문자열"
+   ],
+   "explanation_ko": "s1을 s2에 대입하면 String 데이터의 소유권이 s2로 이동합니다. s2가 이제 그것을 소유하며 hello를 출력합니다.",
+   "explanation_en": "Assigning s1 to s2 moves ownership of the String data to s2; s2 now owns it and prints hello.",
+   "concept_tags": [
+    "ownership",
+    "move"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l2_u01_q003",
+   "type": "predict_output",
+   "code": "let x = 5;\nlet y = x;\nprintln!(\"{} {}\", x, y);",
+   "prompt_ko": "출력 결과는? (위의 String 예제와 비교해보세요.)",
+   "prompt_en": "What is printed? (Compare with the String example above.)",
+   "expected_answers": [
+    "5 5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류: x는 이동됨",
+    "5",
+    "오류: y 선언 문제"
+   ],
+   "explanation_ko": "i32 같은 단순한 타입은 Copy 트레이트를 구현하고 있어서, let y = x는 이동이 아니라 값을 복사합니다. x와 y 모두 계속 사용할 수 있습니다.",
+   "explanation_en": "Simple types like i32 implement the Copy trait, so let y = x copies the value instead of moving it; both x and y remain usable.",
+   "concept_tags": [
+    "ownership",
+    "copy_trait"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "rust_l2_u01_q004",
+   "type": "predict_output",
+   "code": "fn takes_ownership(s: String) {\n    println!(\"{}\", s);\n}\n\nfn main() {\n    let s = String::from(\"hello\");\n    takes_ownership(s);\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "hello"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "s",
+    "오류",
+    "아무것도 출력되지 않음"
+   ],
+   "explanation_ko": "s를 takes_ownership에 전달하면 함수의 매개변수로 소유권이 이동합니다. 함수는 스코프를 벗어나기 전에 hello를 출력합니다.",
+   "explanation_en": "Passing s into takes_ownership moves it into the function's parameter; the function prints it as hello before it goes out of scope.",
+   "concept_tags": [
+    "ownership",
+    "function"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

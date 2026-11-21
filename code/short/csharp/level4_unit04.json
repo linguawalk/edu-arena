@@ -1,0 +1,140 @@
+{
+ "language": "csharp",
+ "category": "oop_enterprise",
+ "level": 4,
+ "unit": 4,
+ "unit_title": "struct (값 타입)",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "csharp_l4_u04_q001",
+   "type": "predict_output",
+   "code": "struct Point\n{\n    public int X;\n    public int Y;\n}\n\nPoint p = new Point();\np.X = 3;\np.Y = 4;\nConsole.WriteLine(p.X);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "4",
+    "Point",
+    "오류"
+   ],
+   "explanation_ko": "struct는 관련된 필드를 값 타입으로 묶습니다. C의 struct와 비슷합니다. p.X는 3으로 설정된 X 필드에 접근합니다.",
+   "explanation_en": "struct groups related fields together as a value type, similar to C's struct; p.X accesses the X field, set to 3.",
+   "concept_tags": [
+    "struct"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "csharp_l4_u04_q002",
+   "type": "predict_output",
+   "code": "struct Point\n{\n    public int X;\n    public int Y;\n}\n\nPoint p1 = new Point();\np1.X = 3;\nPoint p2 = p1;\np2.X = 100;\nConsole.WriteLine(p1.X);\nConsole.WriteLine(p2.X);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3 100"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "100 100",
+    "3 3",
+    "100 3"
+   ],
+   "explanation_ko": "struct는 값 타입입니다. Point p2 = p1은 모든 필드를 복사해서 p2를 p1과 독립적으로 만듭니다. 따라서 p2.X를 바꿔도 p1.X에는 영향이 없습니다.",
+   "explanation_en": "struct is a value type; Point p2 = p1 copies all fields, making p2 independent of p1, so changing p2.X doesn't affect p1.X.",
+   "concept_tags": [
+    "struct",
+    "value_type"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "csharp_l4_u04_q003",
+   "type": "predict_output",
+   "code": "class PointClass\n{\n    public int X;\n    public int Y;\n}\n\nPointClass p1 = new PointClass();\np1.X = 3;\nPointClass p2 = p1;\np2.X = 100;\nConsole.WriteLine(p1.X);",
+   "prompt_ko": "출력 결과는? (struct가 아니라 class를 쓴 점에 주의하세요 — 위의 struct 예제와 비교해보세요.)",
+   "prompt_en": "What is printed? (Note: this uses class, not struct — compare with the struct example above.)",
+   "expected_answers": [
+    "100"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "3",
+    "오류",
+    "0"
+   ],
+   "explanation_ko": "struct와 달리 class는 참조 타입입니다. p2 = p1은 데이터가 아니라 참조를 복사하므로, p1과 p2는 같은 객체를 가리키게 되어 p1.X도 100이 됩니다.",
+   "explanation_en": "Unlike struct, class is a reference type; p2 = p1 copies the reference, not the data, so both p1 and p2 point to the same object, and p1.X becomes 100 too.",
+   "concept_tags": [
+    "struct",
+    "value_type",
+    "reference_type"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "csharp_l4_u04_q004",
+   "type": "fill_blank",
+   "code": "____ Point\n{\n    public int X;\n    public int Y;\n}",
+   "prompt_ko": "값 타입을 정의하는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that defines a value type.",
+   "expected_answers": [
+    "struct"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "class",
+    "record",
+    "value"
+   ],
+   "explanation_ko": "struct는 C#에서 값 타입을 정의합니다. 참조 타입을 정의하는 class와는 구분됩니다.",
+   "explanation_en": "struct defines a value type in C#, distinct from class which defines a reference type.",
+   "concept_tags": [
+    "struct"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "csharp_l4_u04_q005",
+   "type": "predict_output",
+   "code": "struct Point\n{\n    public int X;\n    public int Y;\n}\n\nvoid MoveOrigin(Point p)\n{\n    p.X = 0;\n    p.Y = 0;\n}\n\nPoint pt = new Point();\npt.X = 5;\nMoveOrigin(pt);\nConsole.WriteLine(pt.X);",
+   "prompt_ko": "출력 결과는? (p가 기본값인 값 전달로 전달된 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: p is passed by value, the default.)",
+   "expected_answers": [
+    "5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0",
+    "오류",
+    "10"
+   ],
+   "explanation_ko": "struct는 값 타입이고 매개변수는 기본적으로 값 전달이므로, MoveOrigin은 pt의 복사본을 받습니다. 내부에서의 변경은 원본에 영향을 주지 않아 5로 유지됩니다.",
+   "explanation_en": "Since struct is a value type and parameters default to pass-by-value, MoveOrigin receives a copy of pt; changes inside don't affect the original, which stays 5.",
+   "concept_tags": [
+    "struct",
+    "value_type",
+    "pass_by_value"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

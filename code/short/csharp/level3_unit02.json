@@ -1,0 +1,85 @@
+{
+ "language": "csharp",
+ "category": "oop_enterprise",
+ "level": 3,
+ "unit": 2,
+ "unit_title": "ref와 out 매개변수",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "csharp_l3_u02_q001",
+   "type": "predict_output",
+   "code": "void ModifyByValue(int x)\n{\n    x = 100;\n}\n\nint a = 5;\nModifyByValue(a);\nConsole.WriteLine(a);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "100",
+    "오류",
+    "0"
+   ],
+   "explanation_ko": "기본적으로 C#은 매개변수를 값으로 전달합니다. 메서드 안에서 x를 바꿔도 원본 a에는 영향이 없어 5로 유지됩니다.",
+   "explanation_en": "By default, C# passes parameters by value; changing x inside the method doesn't affect the original a, which stays 5.",
+   "concept_tags": [
+    "pass_by_value"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "csharp_l3_u02_q002",
+   "type": "predict_output",
+   "code": "void ModifyByRef(ref int x)\n{\n    x = 100;\n}\n\nint b = 5;\nModifyByRef(ref b);\nConsole.WriteLine(b);",
+   "prompt_ko": "출력 결과는? (위의 값 전달 예제와 비교해보세요.)",
+   "prompt_en": "What is printed? (Compare with the pass-by-value example above.)",
+   "expected_answers": [
+    "100"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "5",
+    "오류",
+    "0"
+   ],
+   "explanation_ko": "ref는 원본 변수에 대한 참조를 전달합니다. x를 바꾸면 b가 직접 수정되어 100이 됩니다.",
+   "explanation_en": "ref passes a reference to the original variable; changing x directly modifies b, making it 100.",
+   "concept_tags": [
+    "ref"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "csharp_l3_u02_q004",
+   "type": "predict_output",
+   "code": "void GetValues(out int a, out int b)\n{\n    a = 10;\n    b = 20;\n}\n\nGetValues(out int x, out int y);\nConsole.WriteLine($\"{x} {y}\");",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "10 20"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0 0",
+    "오류",
+    "x y"
+   ],
+   "explanation_ko": "out 매개변수는 메서드가 여러 값을 반환할 수 있게 해줍니다. GetValues는 a와 b에 10과 20을 대입하고, 이는 호출한 쪽의 x와 y로 나타납니다.",
+   "explanation_en": "out parameters let a method return multiple values; GetValues assigns 10 and 20 to a and b, which appear back at the caller as x and y.",
+   "concept_tags": [
+    "out"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

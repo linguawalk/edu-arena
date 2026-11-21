@@ -1,0 +1,110 @@
+{
+ "language": "php",
+ "category": "scripting",
+ "level": 4,
+ "unit": 4,
+ "unit_title": "Null 관련 연산자",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "php_l4_u04_q001",
+   "type": "predict_output",
+   "code": "$data = [\"name\" => \"Kim\"];\necho $data[\"age\"] ?? \"없음\";",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "없음"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류",
+    "null",
+    "0"
+   ],
+   "explanation_ko": "??(null 병합)은 왼쪽이 null이거나 정의되지 않았을 때 오른쪽을 반환합니다. \"age\"가 없으므로 경고 없이 안전하게 없음을 만들어냅니다.",
+   "explanation_en": "?? (null coalescing) returns the right side when the left side is null or undefined; since \"age\" doesn't exist, it safely produces 없음 without a warning.",
+   "concept_tags": [
+    "null_coalescing"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "php_l4_u04_q002",
+   "type": "predict_output",
+   "code": "$data = [\"name\" => \"Kim\"];\n$data[\"age\"] ??= 20;\necho $data[\"age\"];",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "20"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "null",
+    "오류",
+    "0"
+   ],
+   "explanation_ko": "??=는 왼쪽이 현재 null이거나 설정되지 않았을 때만 오른쪽 값을 대입합니다. \"age\"가 없으므로 20으로 설정됩니다.",
+   "explanation_en": "??= assigns the right-hand value only if the left side is currently null or unset; since \"age\" doesn't exist, it's set to 20.",
+   "concept_tags": [
+    "null_coalescing_assignment"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "php_l4_u04_q003",
+   "type": "predict_output",
+   "code": "class Address {\n    public string $city = \"서울\";\n}\nclass Person {\n    public ?Address $address = null;\n}\n\n$p = new Person();\necho $p->address?->city ?? \"주소 없음\";",
+   "prompt_ko": "출력 결과는? (?-> nullsafe 연산자에 주의하세요.)",
+   "prompt_en": "What is printed? (Note the ?-> nullsafe operator.)",
+   "expected_answers": [
+    "주소 없음"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "서울",
+    "오류",
+    "null"
+   ],
+   "explanation_ko": "?->는 객체가 null이 아닐 때만 안전하게 속성에 접근하고, null이면 예외 없이 그냥 null로 처리합니다. address가 null이므로 ?->city는 null이 되고, ??가 주소 없음으로 대체합니다.",
+   "explanation_en": "?-> safely accesses a property only if the object isn't null, short-circuiting to null otherwise instead of throwing; since address is null, ?->city evaluates to null, and ?? falls back to 주소 없음.",
+   "concept_tags": [
+    "nullsafe_operator"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "php_l4_u04_q005",
+   "type": "fill_blank",
+   "code": "$username = $input ____ \"익명\";\n// $input이 null이면 \"익명\"을 사용해야 함",
+   "prompt_ko": "왼쪽이 null일 때만 대체값을 제공하는 연산자를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the operator that provides a fallback value only when the left side is null.",
+   "expected_answers": [
+    "??"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "||",
+    "or",
+    "and"
+   ],
+   "explanation_ko": "??는 구체적으로 null(또는 미설정)을 확인합니다. 0, \"\", false 같은 모든 falsy 값을 대체 대상으로 취급하는 ||와는 다릅니다.",
+   "explanation_en": "?? checks specifically for null (or unset), unlike || which treats any falsy value (0, \"\", false) as needing a fallback.",
+   "concept_tags": [
+    "null_coalescing"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

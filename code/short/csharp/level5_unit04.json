@@ -1,0 +1,85 @@
+{
+ "language": "csharp",
+ "category": "oop_enterprise",
+ "level": 5,
+ "unit": 4,
+ "unit_title": "인터페이스와 추상 클래스",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "csharp_l5_u04_q001",
+   "type": "predict_output",
+   "code": "interface ISummary\n{\n    string Summarize();\n}\n\nclass Article : ISummary\n{\n    public string Title;\n    public string Summarize()\n    {\n        return \"기사: \" + Title;\n    }\n}\n\nArticle art = new Article();\nart.Title = \"C# 소개\";\nConsole.WriteLine(art.Summarize());",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "기사: C# 소개"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "ISummary",
+    "오류",
+    "C# 소개"
+   ],
+   "explanation_ko": "Article은 ISummary를 구현해서 Summarize의 실제 로직을 제공합니다. art.Summarize()를 호출하면 그 구현이 실행됩니다.",
+   "explanation_en": "Article implements ISummary, providing Summarize's actual logic; calling art.Summarize() runs that implementation.",
+   "concept_tags": [
+    "interface"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "csharp_l5_u04_q003",
+   "type": "predict_output",
+   "code": "abstract class Shape\n{\n    public abstract double Area();\n}\n\nclass Circle : Shape\n{\n    public double Radius;\n    public Circle(double r) { Radius = r; }\n    public override double Area()\n    {\n        return 3.14 * Radius * Radius;\n    }\n}\n\nShape s = new Circle(2);\nConsole.WriteLine(s.Area());",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "12.56"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0",
+    "오류",
+    "2"
+   ],
+   "explanation_ko": "abstract는 Area가 자식 클래스에서 반드시 구현되어야 함을 나타냅니다. Circle이 이를 구현했고, Shape 참조를 통해 호출해도 Circle의 버전으로 디스패치되어 3.14*2*2=12.56이 됩니다.",
+   "explanation_en": "abstract marks Area as requiring implementation in derived classes; Circle provides it, and calling through a Shape reference dispatches to Circle's version: 3.14*2*2=12.56.",
+   "concept_tags": [
+    "abstract_class"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "csharp_l5_u04_q005",
+   "type": "fill_blank",
+   "code": "____ class Shape\n{\n    public abstract double Area();\n}",
+   "prompt_ko": "클래스가 직접 인스턴스화될 수 없음을 표시하는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that marks a class as unable to be instantiated directly.",
+   "expected_answers": [
+    "abstract"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "sealed",
+    "static",
+    "virtual"
+   ],
+   "explanation_ko": "abstract는 클래스 자체를 표시해서, 자식 클래스가 반드시 구현해야 하는 추상 멤버를 선언할 수 있게 합니다.",
+   "explanation_en": "abstract marks the class itself, allowing it to declare abstract members that derived classes must implement.",
+   "concept_tags": [
+    "abstract_class"
+   ],
+   "difficulty": "intro"
+  }
+ ]
+}

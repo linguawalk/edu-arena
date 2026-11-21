@@ -1,0 +1,141 @@
+{
+ "language": "java",
+ "category": "oop_enterprise",
+ "level": 6,
+ "unit": 4,
+ "unit_title": "Stream API",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "java_l6_u04_q001",
+   "type": "predict_output",
+   "code": "import java.util.List;\nimport java.util.stream.Collectors;\n\nList<Integer> nums = List.of(1, 2, 3, 4, 5, 6);\nList<Integer> evens = nums.stream()\n    .filter(n -> n % 2 == 0)\n    .collect(Collectors.toList());\nSystem.out.println(evens);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "[2, 4, 6]"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "[1, 2, 3, 4, 5, 6]",
+    "[1, 3, 5]",
+    "오류"
+   ],
+   "explanation_ko": "stream().filter()는 조건을 만족하는 요소만 남깁니다. n % 2 == 0 검사를 통과하는 짝수 2, 4, 6이 남습니다.",
+   "explanation_en": "stream().filter() keeps only elements satisfying the condition; even numbers 2, 4, 6 pass the n % 2 == 0 check.",
+   "concept_tags": [
+    "stream",
+    "filter"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "java_l6_u04_q002",
+   "type": "predict_output",
+   "code": "import java.util.List;\nimport java.util.stream.Collectors;\n\nList<Integer> nums = List.of(1, 2, 3, 4, 5);\nList<Integer> doubled = nums.stream()\n    .filter(n -> n > 3)\n    .map(n -> n * 2)\n    .collect(Collectors.toList());\nSystem.out.println(doubled);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "[8, 10]"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "[6, 8, 10]",
+    "[2, 4, 6, 8, 10]",
+    "오류"
+   ],
+   "explanation_ko": "filter(3보다 큰 수: 4, 5)와 map(각각 두 배로)을 연결합니다: 8, 10.",
+   "explanation_en": "This chains filter (numbers greater than 3: 4, 5) and map (doubling each): 8, 10.",
+   "concept_tags": [
+    "stream",
+    "filter",
+    "map"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "java_l6_u04_q003",
+   "type": "fill_blank",
+   "code": "List<Integer> nums = List.of(5, 3, 8, 1);\nList<Integer> filtered = nums.stream()\n    .____(n -> n > 3)\n    .collect(Collectors.toList());\n// 3보다 큰 값만 걸러내야 함",
+   "prompt_ko": "조건에 따라 요소를 걸러내는 Stream 메서드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the Stream method that filters elements by a condition.",
+   "expected_answers": [
+    "filter"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "where",
+    "select",
+    "match"
+   ],
+   "explanation_ko": "filter는 주어진 람다 조건을 만족하는 요소만 남깁니다. LINQ의 Where에 대응하는 Java Stream 메서드입니다.",
+   "explanation_en": "filter keeps only elements satisfying the given lambda condition, the Java Stream equivalent of LINQ's Where.",
+   "concept_tags": [
+    "stream",
+    "filter"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "java_l6_u04_q004",
+   "type": "predict_output",
+   "code": "import java.util.List;\n\nList<String> names = List.of(\"Kim\", \"Lee\", \"Park\", \"Choi\");\nlong count = names.stream()\n    .filter(n -> n.length() <= 3)\n    .count();\nSystem.out.println(count);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "2"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "4",
+    "0",
+    "오류"
+   ],
+   "explanation_ko": "3글자 이하인 이름만 걸러내면 Kim과 Lee(둘 다 3글자)가 남아 개수는 2입니다.",
+   "explanation_en": "Filtering for names with 3 or fewer characters keeps Kim and Lee (both 3 letters), giving a count of 2.",
+   "concept_tags": [
+    "stream",
+    "count"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "java_l6_u04_q005",
+   "type": "predict_output",
+   "code": "import java.util.List;\nimport java.util.stream.Collectors;\n\nList<Integer> nums = List.of(4, 2, 9, 1, 7);\nList<Integer> sorted = nums.stream()\n    .sorted()\n    .collect(Collectors.toList());\nSystem.out.println(sorted.get(0));\nSystem.out.println(sorted.get(4));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "1 9"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "4 7",
+    "9 1",
+    "4 9"
+   ],
+   "explanation_ko": "sorted()는 요소를 오름차순으로 정렬합니다(1, 2, 4, 7, 9). get(0)은 가장 작은 값(1), get(4)는 가장 큰 값(9)입니다.",
+   "explanation_en": "sorted() arranges the elements in ascending order (1, 2, 4, 7, 9); get(0) is the smallest (1), and get(4) is the largest (9).",
+   "concept_tags": [
+    "stream",
+    "sorted"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

@@ -1,0 +1,110 @@
+{
+ "language": "visual_basic",
+ "category": "oop_enterprise",
+ "level": 3,
+ "unit": 4,
+ "unit_title": "Static 변수와 범위",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "visual_basic_l3_u04_q001",
+   "type": "predict_output",
+   "code": "Sub Counter()\n    Static count As Integer = 0\n    count += 1\n    Console.WriteLine(count)\nEnd Sub\n\nCounter()\nCounter()\nCounter()",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "1 2 3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "1 1 1",
+    "0 0 0",
+    "오류"
+   ],
+   "explanation_ko": "Static은 호출 사이에 count 값을 초기화하지 않고 유지합니다. 호출할 때마다 저장된 값이 증가해 1, 2, 3이 됩니다.",
+   "explanation_en": "Static preserves count's value between calls instead of resetting it; each call increments the same stored value: 1, 2, 3.",
+   "concept_tags": [
+    "static_variable"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "visual_basic_l3_u04_q002",
+   "type": "predict_output",
+   "code": "Sub Counter2()\n    Dim count As Integer = 0\n    count += 1\n    Console.WriteLine(count)\nEnd Sub\n\nCounter2()\nCounter2()\nCounter2()",
+   "prompt_ko": "출력 결과는? (위의 Static 버전과 비교해보세요.)",
+   "prompt_en": "What is printed? (Compare with the Static version above.)",
+   "expected_answers": [
+    "1 1 1"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "1 2 3",
+    "0 0 0",
+    "오류"
+   ],
+   "explanation_ko": "Static이 없으면 count는 호출될 때마다 새로 생성되어 0으로 초기화됩니다. 매번 1이 된 뒤 출력되므로 1, 1, 1이 됩니다.",
+   "explanation_en": "Without Static, count is a fresh local variable each call, reset to 0 every time; it becomes 1 each time before printing.",
+   "concept_tags": [
+    "static_variable"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "visual_basic_l3_u04_q003",
+   "type": "fill_blank",
+   "code": "Sub Counter()\n    ____ count As Integer = 0\n    count += 1\n    Console.WriteLine(count)\nEnd Sub\n// 호출할 때마다 값이 유지되어야 함",
+   "prompt_ko": "호출 사이에 count 값이 유지되도록 빈칸을 채우세요.",
+   "prompt_en": "Fill in the blank so count retains its value between calls.",
+   "expected_answers": [
+    "Static"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "Dim",
+    "Const",
+    "Public"
+   ],
+   "explanation_ko": "Static은 지역 변수가 매번 새로 생성되는 대신 프로시저 호출 사이에도 값을 유지하게 만듭니다. C의 static 지역 변수와 같은 개념입니다.",
+   "explanation_en": "Static makes a local variable persist across procedure calls instead of being recreated each time, just like C's static local variable.",
+   "concept_tags": [
+    "static_variable"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "visual_basic_l3_u04_q004",
+   "type": "predict_output",
+   "code": "Module Program\n    Dim total As Integer = 0\n\n    Sub AddToTotal(n As Integer)\n        total += n\n    End Sub\n\n    Sub Main()\n        AddToTotal(5)\n        AddToTotal(3)\n        Console.WriteLine(total)\n    End Sub\nEnd Module",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "8"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "5",
+    "3",
+    "0"
+   ],
+   "explanation_ko": "total은 Module 수준에서 선언되어 모듈 안의 모든 프로시저가 공유합니다. 두 호출 모두 같은 값을 수정해 0+5+3=8이 됩니다.",
+   "explanation_en": "total is declared at the Module level, making it shared across all procedures in the module; both calls modify the same value: 0+5+3=8.",
+   "concept_tags": [
+    "module_level_variable"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

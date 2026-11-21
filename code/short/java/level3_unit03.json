@@ -1,0 +1,85 @@
+{
+ "language": "java",
+ "category": "oop_enterprise",
+ "level": 3,
+ "unit": 3,
+ "unit_title": "오버로딩과 가변 인자",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "java_l3_u03_q001",
+   "type": "predict_output",
+   "code": "static int add(int a, int b) {\n    return a + b;\n}\nstatic double add(double a, double b) {\n    return a + b;\n}\n\npublic static void main(String[] args) {\n    System.out.println(add(3, 4));\n    System.out.println(add(3.5, 2.5));\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "7 6.0"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "7 6",
+    "오류: add가 중복 정의됨",
+    "34 3.52.5"
+   ],
+   "explanation_ko": "Java는 매개변수 타입에 따른 오버로딩을 허용합니다. 컴파일러는 일치하는 버전을 선택합니다. double 버전은 (C#의 6과 달리) 소수점을 포함해 6.0으로 출력되는 점에 유의하세요.",
+   "explanation_en": "Java allows overloading based on parameter types; the compiler picks the matching version. Note the double version prints 6.0 (with decimal), unlike C#'s 6.",
+   "concept_tags": [
+    "overloading"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "java_l3_u03_q004",
+   "type": "predict_output",
+   "code": "static int sum(int... nums) {\n    int total = 0;\n    for (int n : nums) {\n        total += n;\n    }\n    return total;\n}\n\npublic static void main(String[] args) {\n    System.out.println(sum(1, 2, 3));\n    System.out.println(sum(1, 2, 3, 4, 5));\n}",
+   "prompt_ko": "출력 결과는? (int...는 몇 개의 인자든 받을 수 있는 가변 인자 매개변수입니다.)",
+   "prompt_en": "What is printed? (int... is a varargs parameter, accepting any number of arguments.)",
+   "expected_answers": [
+    "6 15"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "3 5",
+    "오류",
+    "6 5"
+   ],
+   "explanation_ko": "가변 인자는 sum이 몇 개의 int 인자든 받을 수 있게 하며, 내부적으로는 배열로 취급됩니다. sum(1,2,3)=6이고 sum(1,2,3,4,5)=15입니다.",
+   "explanation_en": "varargs lets sum accept any number of int arguments, treating them internally as an array; sum(1,2,3)=6 and sum(1,2,3,4,5)=15.",
+   "concept_tags": [
+    "varargs"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "java_l3_u03_q005",
+   "type": "predict_output",
+   "code": "static int sum(int... nums) {\n    int total = 0;\n    for (int n : nums) {\n        total += n;\n    }\n    return total;\n}\n\npublic static void main(String[] args) {\n    System.out.println(sum());\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "0"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류",
+    "null",
+    "빈 배열"
+   ],
+   "explanation_ko": "가변 인자는 인자 없이도 호출할 수 있으며, 빈 배열로 취급됩니다. 반복문이 한 번도 실행되지 않아 total은 0으로 유지됩니다.",
+   "explanation_en": "varargs can be called with zero arguments, treated as an empty array; the loop never runs, so total stays 0.",
+   "concept_tags": [
+    "varargs"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

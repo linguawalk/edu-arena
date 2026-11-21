@@ -1,0 +1,86 @@
+{
+ "language": "visual_basic",
+ "category": "oop_enterprise",
+ "level": 5,
+ "unit": 2,
+ "unit_title": "Property와 캡슐화",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "visual_basic_l5_u02_q001",
+   "type": "predict_output",
+   "code": "Class Dog\n    Private _age As Integer\n\n    Public Property Age As Integer\n        Get\n            Return _age\n        End Get\n        Set(value As Integer)\n            _age = value\n        End Set\n    End Property\nEnd Class\n\nDim d As New Dog()\nd.Age = 3\nConsole.WriteLine(d.Age)",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0",
+    "오류",
+    "_age"
+   ],
+   "explanation_ko": "d.Age = 3은 Set 블록을 호출해 _age에 3을 저장합니다. 이후 d.Age는 Get을 호출해 저장된 값을 반환합니다.",
+   "explanation_en": "d.Age = 3 calls the Set block, storing 3 in _age; d.Age then calls Get, returning that stored value.",
+   "concept_tags": [
+    "property"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "visual_basic_l5_u02_q002",
+   "type": "predict_output",
+   "code": "Class Dog\n    Private _age As Integer\n\n    Public Property Age As Integer\n        Get\n            Return _age\n        End Get\n        Set(value As Integer)\n            If value >= 0 Then\n                _age = value\n            End If\n        End Set\n    End Property\nEnd Class\n\nDim d As New Dog()\nd.Age = 5\nd.Age = -3\nConsole.WriteLine(d.Age)",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "-3",
+    "0",
+    "오류"
+   ],
+   "explanation_ko": "Set 블록은 대입 전에 value가 음수가 아닌지 검증합니다. -3은 이 검사를 통과하지 못해 _age는 이전 값인 5로 유지됩니다.",
+   "explanation_en": "The Set block validates that value is non-negative before assigning; -3 fails this check, so _age stays at its previous value, 5.",
+   "concept_tags": [
+    "property",
+    "encapsulation"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "visual_basic_l5_u02_q003",
+   "type": "fill_blank",
+   "code": "Class Dog\n    Private _age As Integer\n\n    Public Property Age As Integer\n        ____\n            Return _age\n        End Get\n        Set(value As Integer)\n            _age = value\n        End Set\n    End Property\nEnd Class",
+   "prompt_ko": "프로퍼티의 읽기 접근자를 시작하는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that begins the property's read accessor.",
+   "expected_answers": [
+    "Get"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "Read",
+    "Return",
+    "Value"
+   ],
+   "explanation_ko": "Get은 프로퍼티 값을 읽을 때 실행되는 블록을 정의하며, 쓰기를 담당하는 Set과 짝을 이룹니다.",
+   "explanation_en": "Get defines the block that runs when the property's value is read, paired with Set for writes.",
+   "concept_tags": [
+    "property"
+   ],
+   "difficulty": "intro"
+  }
+ ]
+}

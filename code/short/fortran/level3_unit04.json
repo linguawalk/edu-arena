@@ -1,0 +1,113 @@
+{
+ "language": "fortran",
+ "category": "legacy_historical",
+ "level": 3,
+ "unit": 4,
+ "unit_title": "정밀도와 내장 함수",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "fortran_l3_u04_q001",
+   "type": "predict_output",
+   "code": "print *, sqrt(16.0)\nprint *, abs(-5)\nprint *, max(3, 7)\nprint *, min(3, 7)",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "4.0 5 7 3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "4 5 3 7",
+    "16 -5 7 3",
+    "오류"
+   ],
+   "explanation_ko": "sqrt(16.0)=4.0, abs(-5)=5, max(3,7)=7, min(3,7)=3입니다 — Fortran의 내장 수학 함수는 다른 모든 언어에서 볼 수 있는 것과 같은 기본 기능을 다룹니다.",
+   "explanation_en": "sqrt(16.0)=4.0, abs(-5)=5, max(3,7)=7, min(3,7)=3 — Fortran's intrinsic (built-in) math functions cover the same basics found in every other language.",
+   "concept_tags": [
+    "intrinsic_function"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "fortran_l3_u04_q003",
+   "type": "fill_blank",
+   "code": "____ precision :: preciseValue\npreciseValue = 1.0d0 / 3.0d0",
+   "prompt_ko": "더 높은 정밀도의 부동소수점 타입 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword for a higher-precision floating-point type.",
+   "expected_answers": [
+    "double"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "long",
+    "extended",
+    "big"
+   ],
+   "explanation_ko": "double precision은 real보다 대략 두 배의 유효숫자를 가진 타입을 선언하며, 과학 계산에서 더 높은 정확도가 필요할 때 사용합니다.",
+   "explanation_en": "double precision declares a type with roughly twice the significant digits of real, used when scientific calculations need more accuracy.",
+   "concept_tags": [
+    "double_precision"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "fortran_l3_u04_q004",
+   "type": "predict_output",
+   "code": "integer :: a, b\na = 17\nb = 5\nprint *, mod(a, b)\nprint *, a / b",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "2 3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "3 2",
+    "0 3",
+    "오류"
+   ],
+   "explanation_ko": "mod(17, 5)는 나머지인 2를 계산합니다. a / b는 정수 나눗셈을 수행해서 3이 됩니다.",
+   "explanation_en": "mod(17, 5) computes the remainder, 2; a / b performs integer division, giving 3.",
+   "concept_tags": [
+    "mod_function",
+    "integer_division"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "fortran_l3_u04_q005",
+   "type": "predict_output",
+   "code": "integer :: nums(5)\nnums = (/5, 2, 8, 1, 9/)\nprint *, maxval(nums)\nprint *, minval(nums)",
+   "prompt_ko": "출력 결과는? (배열 전체에 대한 내장 함수입니다.)",
+   "prompt_en": "What is printed? (Array-wide intrinsic functions.)",
+   "expected_answers": [
+    "9 1"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "1 9",
+    "5 2",
+    "오류"
+   ],
+   "explanation_ko": "maxval()과 minval()은 명시적인 반복문 없이도 배열 전체에서 가장 크고 작은 값을 한 번에 찾습니다: 9와 1.",
+   "explanation_en": "maxval() and minval() find the largest and smallest values in an entire array at once, without needing an explicit loop: 9 and 1.",
+   "concept_tags": [
+    "intrinsic_function",
+    "maxval_function",
+    "minval_function"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

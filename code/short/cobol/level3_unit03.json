@@ -1,0 +1,112 @@
+{
+ "language": "cobol",
+ "category": "legacy_historical",
+ "level": 3,
+ "unit": 3,
+ "unit_title": "CALL과 서브프로그램",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "cobol_l3_u03_q001",
+   "type": "predict_output",
+   "code": "* SQUAREIT.cob (별도 컴파일된 서브프로그램)\nPROGRAM-ID. SQUAREIT.\nLINKAGE SECTION.\n01 NUM PIC 9(4).\nPROCEDURE DIVISION USING NUM.\n    COMPUTE NUM = NUM * NUM.\n    GOBACK.\n\n* 메인 프로그램\n01 X PIC 9(4).\n...\nMOVE 5 TO X.\nCALL \"SQUAREIT\" USING X.\nDISPLAY X.",
+   "prompt_ko": "출력 결과는? (X가 별도로 컴파일된 서브프로그램에 전달됩니다.)",
+   "prompt_en": "What is printed? (X is passed to a separately compiled subprogram.)",
+   "expected_answers": [
+    "0025"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0005",
+    "오류",
+    "NUM"
+   ],
+   "explanation_ko": "CALL \"SQUAREIT\" USING X는 X를 참조(COBOL의 기본값)로 서브프로그램에 전달하고, 그 LINKAGE SECTION의 NUM 매개변수는 X의 별칭이 됩니다. 안에서 제곱하면 X가 직접 수정되어 25가 됩니다.",
+   "explanation_en": "CALL \"SQUAREIT\" USING X passes X by reference (COBOL's default) to the subprogram, whose LINKAGE SECTION NUM parameter aliases X; squaring it inside modifies X directly, giving 25.",
+   "concept_tags": [
+    "call_statement",
+    "linkage_section"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "cobol_l3_u03_q002",
+   "type": "fill_blank",
+   "code": "____ \"SQUAREIT\" USING X.",
+   "prompt_ko": "별도로 컴파일된 서브프로그램을 호출하는 문장을 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the statement that invokes a separately compiled subprogram.",
+   "expected_answers": [
+    "CALL"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "PERFORM",
+    "INVOKE",
+    "RUN"
+   ],
+   "explanation_ko": "CALL은 이름으로 다른 컴파일된 COBOL 프로그램을 호출하며, USING으로 인자를 전달합니다. 같은 프로그램의 단락 안에 머무는 PERFORM과는 다릅니다.",
+   "explanation_en": "CALL invokes another compiled COBOL program by name, passing arguments with USING — distinct from PERFORM, which stays within the same program's paragraphs.",
+   "concept_tags": [
+    "call_statement"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cobol_l3_u03_q003",
+   "type": "fill_blank",
+   "code": "PROGRAM-ID. SQUAREIT.\n____ SECTION.\n01 NUM PIC 9(4).\nPROCEDURE DIVISION USING NUM.\n    COMPUTE NUM = NUM * NUM.",
+   "prompt_ko": "호출한 쪽에서 받는 매개변수를 선언하는 구역을 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the section that declares parameters received from a caller.",
+   "expected_answers": [
+    "LINKAGE"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "PARAMETER",
+    "USING",
+    "RECEIVE"
+   ],
+   "explanation_ko": "LINKAGE SECTION은 서브프로그램이 USING을 통해 호출한 쪽에서 받는 데이터 항목을 선언합니다. 서브프로그램 자신의 내부 변수를 담는 WORKING-STORAGE와 다릅니다.",
+   "explanation_en": "LINKAGE SECTION declares the data items a subprogram receives from its caller via USING, distinct from WORKING-STORAGE which holds the subprogram's own internal variables.",
+   "concept_tags": [
+    "linkage_section"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cobol_l3_u03_q005",
+   "type": "predict_output",
+   "code": "* ADDTWO.cob\nPROGRAM-ID. ADDTWO.\nLINKAGE SECTION.\n01 A PIC 9(4).\n01 B PIC 9(4).\n01 RESULT PIC 9(4).\nPROCEDURE DIVISION USING A, B, RESULT.\n    COMPUTE RESULT = A + B.\n    GOBACK.\n\n* 메인 프로그램\n01 X PIC 9(4).\n01 Y PIC 9(4).\n01 SUM-RESULT PIC 9(4).\n...\nMOVE 3 TO X.\nMOVE 4 TO Y.\nCALL \"ADDTWO\" USING X, Y, SUM-RESULT.\nDISPLAY SUM-RESULT.",
+   "prompt_ko": "출력 결과는? (서브프로그램에 여러 매개변수를 전달합니다.)",
+   "prompt_en": "What is printed? (Multiple parameters passed to a subprogram.)",
+   "expected_answers": [
+    "0007"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0003",
+    "0004",
+    "오류"
+   ],
+   "explanation_ko": "USING X, Y, SUM-RESULT는 세 개 모두를 참조로 전달하며, 위치에 따라 A, B, RESULT와 대응됩니다. 서브프로그램은 RESULT = A + B = 3+4=7을 계산하고, 같은 메모리이므로 이는 SUM-RESULT에도 나타납니다.",
+   "explanation_en": "USING X, Y, SUM-RESULT passes all three by reference, matching A, B, RESULT positionally; the subprogram computes RESULT = A + B = 3+4=7, which appears in SUM-RESULT since it's the same memory.",
+   "concept_tags": [
+    "call_statement",
+    "linkage_section"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

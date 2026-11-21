@@ -1,0 +1,137 @@
+{
+ "language": "visual_basic",
+ "category": "oop_enterprise",
+ "level": 2,
+ "unit": 4,
+ "unit_title": "For Each와 Exit/Continue",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "visual_basic_l2_u04_q001",
+   "type": "predict_output",
+   "code": "Dim nums() As Integer = {10, 20, 30}\nDim total As Integer = 0\nFor Each n As Integer In nums\n    total += n\nNext\nConsole.WriteLine(total)",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "60"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "30",
+    "3",
+    "오류"
+   ],
+   "explanation_ko": "For Each는 인덱스 없이도 nums의 모든 요소를 순회합니다. 10+20+30=60을 합산합니다.",
+   "explanation_en": "For Each visits every element of nums without needing an index; it sums 10+20+30=60.",
+   "concept_tags": [
+    "for_each"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "visual_basic_l2_u04_q002",
+   "type": "predict_output",
+   "code": "For i As Integer = 1 To 10\n    If i = 5 Then\n        Exit For\n    End If\n    Console.Write(i)\nNext",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "1234"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "12345",
+    "12345678910",
+    "5"
+   ],
+   "explanation_ko": "Exit For는 i가 5가 되는 순간 반복문을 즉시 종료시킵니다. 따라서 1, 2, 3, 4까지만 출력되고 멈춥니다.",
+   "explanation_en": "Exit For immediately terminates the loop once i reaches 5, so only 1, 2, 3, 4 are printed before it stops.",
+   "concept_tags": [
+    "exit_for"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "visual_basic_l2_u04_q003",
+   "type": "predict_output",
+   "code": "For i As Integer = 1 To 5\n    If i = 3 Then\n        Continue For\n    End If\n    Console.Write(i)\nNext",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "1245"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "12345",
+    "12",
+    "45"
+   ],
+   "explanation_ko": "Continue For는 i가 3일 때 그 회차의 나머지 코드(출력)만 건너뛰고, 반복문은 계속 진행됩니다: 1, 2, 4, 5.",
+   "explanation_en": "Continue For skips just the rest of the current iteration (the printf) when i is 3, but the loop keeps going: 1, 2, 4, 5.",
+   "concept_tags": [
+    "continue_for"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "visual_basic_l2_u04_q004",
+   "type": "predict_output",
+   "code": "For i As Integer = 1 To 3\n    For j As Integer = 1 To 3\n        If j = 2 Then\n            Exit For\n        End If\n        Console.Write(i.ToString() & j.ToString())\n    Next\nNext",
+   "prompt_ko": "출력 결과는? (Exit For가 가장 안쪽 반복문에만 영향을 주는 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note that Exit For only affects the innermost loop.)",
+   "expected_answers": [
+    "112131"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "11",
+    "111213212223313233",
+    "오류"
+   ],
+   "explanation_ko": "Exit For는 가장 가까운 반복문(안쪽)만 종료시킵니다. 바깥 반복문 3번 각각에서 안쪽 반복문이 j=2에서 종료되기 전 한 쌍씩 출력해 11, 21, 31이 됩니다.",
+   "explanation_en": "Exit For exits only the nearest enclosing loop (the inner one); for each of the 3 outer iterations, the inner loop prints one pair before exiting at j=2, giving 11, 21, 31.",
+   "concept_tags": [
+    "exit_for",
+    "nested_loop"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "visual_basic_l2_u04_q005",
+   "type": "fill_blank",
+   "code": "For Each item As String In items\n    If item = \"\" Then\n        ____\n    End If\n    Console.WriteLine(item)\nNext\n// 빈 문자열은 건너뛰고 나머지만 출력해야 함",
+   "prompt_ko": "빈 문자열은 반복문을 멈추지 않고 건너뛰도록 빈칸을 채우세요.",
+   "prompt_en": "Fill in the blank so empty strings are skipped without stopping the loop.",
+   "expected_answers": [
+    "Continue For"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "Exit For",
+    "Return",
+    "Skip"
+   ],
+   "explanation_ko": "Continue For는 현재 회차의 나머지를 건너뛰어, 반복문을 조기 종료하지 않고 다음 항목으로 넘어가게 합니다.",
+   "explanation_en": "Continue For skips the rest of the current iteration, letting the loop move on to the next item without terminating early.",
+   "concept_tags": [
+    "continue_for",
+    "for_each"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

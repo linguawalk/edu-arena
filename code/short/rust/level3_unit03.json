@@ -1,0 +1,112 @@
+{
+ "language": "rust",
+ "category": "system_low_level",
+ "level": 3,
+ "unit": 3,
+ "unit_title": "Option과 null 없는 설계",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "rust_l3_u03_q001",
+   "type": "predict_output",
+   "code": "let some_num: Option<i32> = Some(5);\nmatch some_num {\n    Some(n) => println!(\"값: {}\", n),\n    None => println!(\"없음\"),\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "값: 5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "5",
+    "없음",
+    "오류"
+   ],
+   "explanation_ko": "Option<i32>는 Some(값) 또는 None일 수 있습니다. some_num은 Some(5)이므로 match가 n=5를 추출해 값: 5를 출력합니다.",
+   "explanation_en": "Option<i32> can be Some(value) or None; some_num is Some(5), so match extracts n=5 and prints 값: 5.",
+   "concept_tags": [
+    "option"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l3_u03_q003",
+   "type": "predict_output",
+   "code": "let x: Option<i32> = Some(10);\nprintln!(\"{}\", x.unwrap());",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "10"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "Some(10)",
+    "오류",
+    "None"
+   ],
+   "explanation_ko": "unwrap()은 Some 안의 값을 꺼내 10을 반환합니다. 값을 빠르게 접근하는 방법이지만, None에 호출하면 패닉이 발생합니다.",
+   "explanation_en": "unwrap() extracts the value inside Some, returning 10; it's a quick way to access the value but panics if called on None.",
+   "concept_tags": [
+    "option",
+    "unwrap"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "rust_l3_u03_q005",
+   "type": "predict_output",
+   "code": "let x: Option<i32> = Some(5);\nlet y: Option<i32> = None;\nprintln!(\"{}\", x.unwrap_or(0));\nprintln!(\"{}\", y.unwrap_or(0));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "5 0"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0 0",
+    "5 5",
+    "오류"
+   ],
+   "explanation_ko": "unwrap_or는 Option이 None일 때만 사용할 기본값을 제공합니다. x는 Some(5)이므로 5를 반환하고, y는 None이므로 기본값 0으로 대체됩니다.",
+   "explanation_en": "unwrap_or provides a default value used only when the Option is None; x is Some(5) so it returns 5, while y is None so it falls back to 0.",
+   "concept_tags": [
+    "option",
+    "unwrap_or"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "rust_l3_u03_q006",
+   "type": "fill_blank",
+   "code": "fn find_first_even(numbers: &Vec<i32>) -> Option<i32> {\n    for &n in numbers {\n        if n % 2 == 0 {\n            return ____(n);\n        }\n    }\n    None\n}",
+   "prompt_ko": "찾은 값을 Option의 '값이 있음' variant로 감싸려면 빈칸에 무엇이 들어가야 할까요?",
+   "prompt_en": "Fill in the blank to wrap a found value in Option's 'has a value' variant.",
+   "expected_answers": [
+    "Some"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "Option",
+    "Ok",
+    "Value"
+   ],
+   "explanation_ko": "Some은 찾은 값을 감싸서 '값이 있음'을 나타냅니다. 반복문이 끝까지 찾지 못하면 함수는 그대로 흘러가 None을 반환합니다.",
+   "explanation_en": "Some wraps a found value to signal presence; if the loop finishes without finding one, the function falls through to return None.",
+   "concept_tags": [
+    "option"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

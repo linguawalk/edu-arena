@@ -1,0 +1,85 @@
+{
+ "language": "visual_basic",
+ "category": "oop_enterprise",
+ "level": 3,
+ "unit": 3,
+ "unit_title": "Optional 매개변수와 오버로딩",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "visual_basic_l3_u03_q001",
+   "type": "predict_output",
+   "code": "Sub Greet(name As String, Optional greeting As String = \"안녕\")\n    Console.WriteLine(greeting & \", \" & name)\nEnd Sub\n\nGreet(\"Kim\")",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "안녕, Kim"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류: greeting이 없음",
+    "Kim",
+    ", Kim"
+   ],
+   "explanation_ko": "greeting은 Optional이고 기본값이 \"안녕\"이므로, 호출 시 생략해도 기본값이 그대로 사용됩니다.",
+   "explanation_en": "Since greeting is Optional with a default of \"안녕\", omitting it in the call still works, using the default value.",
+   "concept_tags": [
+    "optional_parameter"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "visual_basic_l3_u03_q003",
+   "type": "fill_blank",
+   "code": "Sub Greet(name As String, ____ greeting As String = \"안녕\")\n    Console.WriteLine(greeting & \", \" & name)\nEnd Sub",
+   "prompt_ko": "매개변수를 생략 가능하게 만드는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that marks a parameter as omittable.",
+   "expected_answers": [
+    "Optional"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "Default",
+    "ByVal",
+    "Nullable"
+   ],
+   "explanation_ko": "Optional 키워드는 매개변수를 호출 시 필수가 아니게 만듭니다. 단, 반드시 기본값을 지정해야 합니다.",
+   "explanation_en": "The Optional keyword marks a parameter as not required in a call, but it must be given a default value.",
+   "concept_tags": [
+    "optional_parameter"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "visual_basic_l3_u03_q004",
+   "type": "predict_output",
+   "code": "Function Add(a As Integer, b As Integer) As Integer\n    Return a + b\nEnd Function\nFunction Add(a As Double, b As Double) As Double\n    Return a + b\nEnd Function\n\nConsole.WriteLine(Add(3, 4))\nConsole.WriteLine(Add(3.5, 2.5))",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "7 6"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "7 6.0",
+    "오류: Add가 중복 정의됨",
+    "34 3.52.5"
+   ],
+   "explanation_ko": "VB는 오버로딩을 허용합니다 — 같은 이름이라도 매개변수 자료형이 다르면 여러 프로시저를 정의할 수 있습니다. 컴파일러는 인자 타입에 맞는 버전을 선택합니다.",
+   "explanation_en": "VB allows overloading — multiple procedures with the same name but different parameter types; the compiler picks the matching version based on argument types.",
+   "concept_tags": [
+    "overloading"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

@@ -1,0 +1,111 @@
+{
+ "language": "visual_basic",
+ "category": "oop_enterprise",
+ "level": 3,
+ "unit": 2,
+ "unit_title": "ByVal과 ByRef",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "visual_basic_l3_u02_q001",
+   "type": "predict_output",
+   "code": "Sub ModifyByVal(ByVal x As Integer)\n    x = 100\nEnd Sub\n\nDim a As Integer = 5\nModifyByVal(a)\nConsole.WriteLine(a)",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "100",
+    "오류",
+    "0"
+   ],
+   "explanation_ko": "ByVal은 값의 복사본을 전달합니다. 프로시저 안에서 x를 바꿔도 원본 a에는 영향이 없어 5로 유지됩니다.",
+   "explanation_en": "ByVal passes a copy of the value; changing x inside the procedure doesn't affect the original a, which stays 5.",
+   "concept_tags": [
+    "byval"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "visual_basic_l3_u02_q002",
+   "type": "predict_output",
+   "code": "Sub ModifyByRef(ByRef x As Integer)\n    x = 100\nEnd Sub\n\nDim b As Integer = 5\nModifyByRef(b)\nConsole.WriteLine(b)",
+   "prompt_ko": "출력 결과는? (위의 ByVal과 비교해보세요.)",
+   "prompt_en": "What is printed? (Compare with ByVal above.)",
+   "expected_answers": [
+    "100"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "5",
+    "오류",
+    "0"
+   ],
+   "explanation_ko": "ByRef는 원본 변수에 대한 참조를 전달합니다. 프로시저 안에서 x를 바꾸면 b가 직접 수정되어 100이 됩니다.",
+   "explanation_en": "ByRef passes a reference to the original variable; changing x inside the procedure directly modifies b, making it 100.",
+   "concept_tags": [
+    "byref"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "visual_basic_l3_u02_q003",
+   "type": "fill_blank",
+   "code": "Sub Swap(____ a As Integer, ____ b As Integer)\n    Dim temp As Integer = a\n    a = b\n    b = temp\nEnd Sub\n// 호출한 쪽의 변수 값이 실제로 교환되어야 함",
+   "prompt_ko": "호출한 쪽의 변수 값이 실제로 교환되도록 양쪽 빈칸을 채우세요.",
+   "prompt_en": "Fill in both blanks so the caller's variables are actually swapped.",
+   "expected_answers": [
+    "ByRef"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "ByVal",
+    "Static",
+    "Optional"
+   ],
+   "explanation_ko": "호출한 쪽의 실제 변수를 교환하려면 ByRef가 필요합니다. 그래야 Swap 안에서의 변경이 밖으로 전달됩니다. ByVal이면 지역 복사본끼리만 교환됩니다.",
+   "explanation_en": "Swapping the caller's actual variables requires ByRef, so changes inside Swap propagate back; ByVal would only swap local copies.",
+   "concept_tags": [
+    "byref",
+    "byval"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "visual_basic_l3_u02_q005",
+   "type": "predict_output",
+   "code": "Sub AddOne(ByRef n As Integer)\n    n += 1\nEnd Sub\n\nDim count As Integer = 0\nAddOne(count)\nAddOne(count)\nAddOne(count)\nConsole.WriteLine(count)",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0",
+    "1",
+    "오류"
+   ],
+   "explanation_ko": "ByRef 호출마다 원본 count가 직접 증가합니다. AddOne을 세 번 호출하면 count는 3이 됩니다.",
+   "explanation_en": "Each ByRef call directly increments the original count; calling AddOne three times results in count becoming 3.",
+   "concept_tags": [
+    "byref"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

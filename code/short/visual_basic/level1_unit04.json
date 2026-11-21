@@ -1,0 +1,115 @@
+{
+ "language": "visual_basic",
+ "category": "oop_enterprise",
+ "level": 1,
+ "unit": 4,
+ "unit_title": "형변환과 Option Strict",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "visual_basic_l1_u04_q001",
+   "type": "predict_output",
+   "code": "Dim a As Integer = \"10\"\nConsole.WriteLine(a)",
+   "prompt_ko": "출력 결과는? (Option Strict가 기본값인 Off 상태라고 가정)",
+   "prompt_en": "What is printed? (Assume Option Strict is Off, VB's default.)",
+   "expected_answers": [
+    "10"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류",
+    "\"10\"",
+    "0"
+   ],
+   "explanation_ko": "기본적으로 VB는 텍스트가 유효한 숫자를 나타낼 경우 String에서 Integer로의 암묵적 변환을 허용해서, \"10\"을 조용히 10으로 변환합니다.",
+   "explanation_en": "By default, VB allows implicit conversion from String to Integer when the text represents a valid number, silently converting \"10\" to 10.",
+   "concept_tags": [
+    "implicit_conversion",
+    "option_strict"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "visual_basic_l1_u04_q003",
+   "type": "fill_blank",
+   "code": "Option Strict On\n\nDim s As String = \"10\"\nDim a As Integer = ____(s)\nConsole.WriteLine(a)",
+   "prompt_ko": "String을 Integer로 명시적으로 변환하는 함수를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the function that explicitly converts a String to an Integer.",
+   "expected_answers": [
+    "CInt"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "CStr",
+    "ToString",
+    "Integer"
+   ],
+   "explanation_ko": "CInt는 값을 명시적으로 Integer로 변환합니다. 이를 사용하면 Option Strict가 요구하는 '변환을 명확히 밝힐 것'이라는 조건을 만족시킵니다.",
+   "explanation_en": "CInt explicitly converts a value to Integer; using it satisfies Option Strict's requirement that conversions be stated clearly.",
+   "concept_tags": [
+    "explicit_conversion",
+    "cint"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "visual_basic_l1_u04_q004",
+   "type": "predict_output",
+   "code": "Dim d As Double = 3.9\nDim i As Integer = CInt(d)\nConsole.WriteLine(i)",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "4"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "3",
+    "3.9",
+    "오류"
+   ],
+   "explanation_ko": "소수점을 버리는 C의 (int) 형변환과 달리, CInt는 가장 가까운 정수로 반올림합니다. 3.9는 반올림되어 4가 됩니다.",
+   "explanation_en": "Unlike C's (int) cast which truncates, CInt rounds to the nearest whole number; 3.9 rounds up to 4.",
+   "concept_tags": [
+    "cint",
+    "rounding"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "visual_basic_l1_u04_q005",
+   "type": "predict_output",
+   "code": "Console.WriteLine(CInt(2.5))",
+   "prompt_ko": "출력 결과는? (VB의 잘 알려진 반올림 특징입니다.)",
+   "prompt_en": "What is printed? (This is a well-known VB rounding quirk.)",
+   "expected_answers": [
+    "2"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "3",
+    "2.5",
+    "오류"
+   ],
+   "explanation_ko": "CInt는 '은행가 반올림'(가장 가까운 짝수로 반올림)을 사용합니다. 정확히 2.5는 가장 가까운 짝수인 2로 반올림되며, 단순 반올림에서 기대할 3이 아닙니다.",
+   "explanation_en": "CInt uses 'banker's rounding' (round half to even): exactly 2.5 rounds to the nearest even number, which is 2, not 3 as simple rounding might suggest.",
+   "concept_tags": [
+    "cint",
+    "rounding",
+    "banker_rounding"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

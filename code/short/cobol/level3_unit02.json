@@ -1,0 +1,61 @@
+{
+ "language": "cobol",
+ "category": "legacy_historical",
+ "level": 3,
+ "unit": 2,
+ "unit_title": "REDEFINES",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "cobol_l3_u02_q002",
+   "type": "fill_blank",
+   "code": "01 RAW-DATA PIC X(6) VALUE \"ABCDEF\".\n01 SPLIT-DATA ____ RAW-DATA.\n    05 PART1 PIC X(3).\n    05 PART2 PIC X(3).",
+   "prompt_ko": "SPLIT-DATA가 RAW-DATA의 메모리를 공유하게 만드는 절을 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the clause that makes SPLIT-DATA share RAW-DATA's memory.",
+   "expected_answers": [
+    "REDEFINES"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "SHARES",
+    "OVERLAYS",
+    "ALIAS"
+   ],
+   "explanation_ko": "REDEFINES는 새 데이터 항목이 이전에 정의된 항목과 정확히 같은 메모리를 차지한다고 선언해서, 다른 구조를 통해 볼 수 있게 합니다.",
+   "explanation_en": "REDEFINES declares that a new data item occupies the exact same memory as a previously defined one, allowing it to be viewed through a different structure.",
+   "concept_tags": [
+    "redefines"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cobol_l3_u02_q003",
+   "type": "predict_output",
+   "code": "01 RAW-DATA PIC X(6) VALUE \"ABCDEF\".\n01 SPLIT-DATA REDEFINES RAW-DATA.\n    05 PART1 PIC X(3).\n    05 PART2 PIC X(3).\n...\nMOVE \"XYZ\" TO PART1.\nDISPLAY RAW-DATA.",
+   "prompt_ko": "출력 결과는? (재정의된 뷰를 통해 수정하면 원본에도 영향을 줍니다.)",
+   "prompt_en": "What is printed? (Modifying through the redefined view affects the original.)",
+   "expected_answers": [
+    "XYZDEF"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "ABCDEF",
+    "오류",
+    "XYZ"
+   ],
+   "explanation_ko": "PART1과 RAW-DATA의 처음 3글자는 정확히 같은 메모리를 공유하므로, PART1을 수정하면 RAW-DATA가 보여주는 것도 직접 바뀝니다. ABCDEF의 처음 3글자가 XYZ가 되어 XYZDEF가 됩니다.",
+   "explanation_en": "Since PART1 and RAW-DATA's first 3 characters share the exact same memory, modifying PART1 directly changes what RAW-DATA shows; ABCDEF's first 3 letters become XYZ, giving XYZDEF.",
+   "concept_tags": [
+    "redefines",
+    "shared_memory"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

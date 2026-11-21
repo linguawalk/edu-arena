@@ -1,0 +1,111 @@
+{
+ "language": "rust",
+ "category": "system_low_level",
+ "level": 4,
+ "unit": 4,
+ "unit_title": "라이프타임 기초",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "rust_l4_u04_q001",
+   "type": "predict_output",
+   "code": "fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {\n    if x.len() > y.len() {\n        x\n    } else {\n        y\n    }\n}\n\nlet s1 = String::from(\"long string is long\");\nlet s2 = String::from(\"short\");\nlet result = longest(s1.as_str(), s2.as_str());\nprintln!(\"{}\", result);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "long string is long"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "short",
+    "오류",
+    "s1"
+   ],
+   "explanation_ko": "longest는 더 긴 문자열을 반환합니다. s1의 길이(20)가 s2의 길이(5)보다 크므로 s1의 내용을 반환해 출력합니다.",
+   "explanation_en": "longest returns whichever string is longer; s1's length (20) exceeds s2's (5), so it returns and prints s1's content.",
+   "concept_tags": [
+    "lifetime"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "rust_l4_u04_q003",
+   "type": "fill_blank",
+   "code": "fn longest<____>(x: &'a str, y: &'a str) -> &'a str {\n    if x.len() > y.len() { x } else { y }\n}",
+   "prompt_ko": "라이프타임 매개변수 선언을 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the lifetime parameter declaration.",
+   "expected_answers": [
+    "'a"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "T",
+    "&a",
+    "lifetime"
+   ],
+   "explanation_ko": "라이프타임 매개변수는 꺾쇠 괄호 안에 작은따옴표를 붙여 선언하며, 타입 매개변수 <T>와 비슷한 위치에 옵니다.",
+   "explanation_en": "Lifetime parameters are declared inside angle brackets with an apostrophe, similar in position to type parameters like <T>.",
+   "concept_tags": [
+    "lifetime"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l4_u04_q005",
+   "type": "predict_output",
+   "code": "fn first_char<'a>(s: &'a str) -> &'a str {\n    &s[0..1]\n}\n\nlet text = String::from(\"Rust\");\nlet c = first_char(&text);\nprintln!(\"{}\", c);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "R"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "Rust",
+    "오류",
+    "r"
+   ],
+   "explanation_ko": "라이프타임 'a는 반환된 슬라이스의 유효성을 입력 문자열의 유효성과 묶어줍니다. first_char는 첫 글자인 R의 슬라이스를 반환합니다.",
+   "explanation_en": "The lifetime 'a ties the returned slice's validity to the input string's; first_char returns a slice of the first character, R.",
+   "concept_tags": [
+    "lifetime",
+    "slice"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "rust_l4_u04_q006",
+   "type": "predict_output",
+   "code": "fn main() {\n    let result;\n    let s1 = String::from(\"hello\");\n    {\n        let s2 = String::from(\"world\");\n        result = longest(s1.as_str(), s2.as_str());\n        println!(\"{}\", result);\n    }\n}\n\nfn longest<'a>(x: &'a str, y: &'a str) -> &'a str {\n    if x.len() > y.len() { x } else { y }\n}",
+   "prompt_ko": "출력 결과는? (\"hello\"와 \"world\"의 길이가 같은 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: \"hello\" and \"world\" have the same length.)",
+   "expected_answers": [
+    "world"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "hello",
+    "오류",
+    "빈 문자열"
+   ],
+   "explanation_ko": "\"hello\"와 \"world\"는 둘 다 길이가 5로 같습니다. 따라서 x.len() > y.len()은 거짓이 되어 else 분기가 실행되고, y(s2의 내용인 \"world\")가 반환됩니다.",
+   "explanation_en": "\"hello\" and \"world\" both have length 5, so x.len() > y.len() is false and the else branch runs, returning y — s2's content, \"world\".",
+   "concept_tags": [
+    "lifetime"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

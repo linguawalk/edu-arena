@@ -1,0 +1,112 @@
+{
+ "language": "php",
+ "category": "scripting",
+ "level": 3,
+ "unit": 4,
+ "unit_title": "화살표 함수와 클로저",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "php_l3_u04_q001",
+   "type": "predict_output",
+   "code": "$square = fn($x) => $x * $x;\necho $square(5);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "25"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "5",
+    "오류",
+    "x * x"
+   ],
+   "explanation_ko": "fn($x) => $x * $x는 간결한 화살표 함수를 정의합니다. => 뒤의 식은 암묵적으로 반환됩니다. square(5)는 25를 계산합니다.",
+   "explanation_en": "fn($x) => $x * $x defines a concise arrow function; the expression after => is implicitly returned. square(5) computes 25.",
+   "concept_tags": [
+    "arrow_function"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "php_l3_u04_q003",
+   "type": "predict_output",
+   "code": "function makeMultiplier($factor) {\n    return function($n) use ($factor) {\n        return $n * $factor;\n    };\n}\n$double = makeMultiplier(2);\necho $double(5);",
+   "prompt_ko": "출력 결과는? (이전 예제와 비교해보세요 — 여기엔 use가 추가됐습니다.)",
+   "prompt_en": "What is printed? (Compare with the previous example — use is added here.)",
+   "expected_answers": [
+    "10"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0",
+    "오류",
+    "5"
+   ],
+   "explanation_ko": "use ($factor)는 바깥의 $factor를 클로저 안으로 명시적으로 캡처합니다. $n * $factor는 이제 5 * 2 = 10을 올바르게 계산합니다.",
+   "explanation_en": "use ($factor) explicitly captures the outer $factor into the closure; $n * $factor now correctly computes 5 * 2 = 10.",
+   "concept_tags": [
+    "closure",
+    "use_keyword"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "php_l3_u04_q004",
+   "type": "predict_output",
+   "code": "function makeMultiplier($factor) {\n    return fn($n) => $n * $factor;\n}\n$triple = makeMultiplier(3);\necho $triple(5);",
+   "prompt_ko": "출력 결과는? (function이 아니라 fn을 쓰고, use 키워드가 없는 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: fn is used instead of function, with no use keyword.)",
+   "expected_answers": [
+    "15"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류: $factor 캡처 안 됨",
+    "5",
+    "0"
+   ],
+   "explanation_ko": "일반 function() 클로저와 달리, PHP의 화살표 함수(fn)는 use 없이도 바깥 변수를 값으로 자동 캡처합니다. $n * $factor가 바로 동작해서 5 * 3 = 15가 됩니다.",
+   "explanation_en": "Unlike regular function() closures, PHP's arrow functions (fn) automatically capture outer variables by value with no use needed; $n * $factor works directly, giving 5 * 3 = 15.",
+   "concept_tags": [
+    "arrow_function"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "php_l3_u04_q005",
+   "type": "fill_blank",
+   "code": "function makeCounter() {\n    $count = 0;\n    return function() ____ (&$count) {\n        $count++;\n        return $count;\n    };\n}\n// count가 호출 사이에도 유지되고 증가해야 함",
+   "prompt_ko": "참조로 캡처하는 &와 결합된 클로저 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the closure keyword, combined with & for by-reference capture.",
+   "expected_answers": [
+    "use"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "with",
+    "capture",
+    "ref"
+   ],
+   "explanation_ko": "use (&$count)는 $count를 값이 아니라 참조로 캡처해서, 반환된 클로저가 호출 사이에도 바깥 변수를 수정하고 기억할 수 있게 합니다.",
+   "explanation_en": "use (&$count) captures $count by reference instead of by value, letting the returned closure modify and remember the outer variable across calls.",
+   "concept_tags": [
+    "closure",
+    "use_keyword"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

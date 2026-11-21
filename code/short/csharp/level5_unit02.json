@@ -1,0 +1,87 @@
+{
+ "language": "csharp",
+ "category": "oop_enterprise",
+ "level": 5,
+ "unit": 2,
+ "unit_title": "Property와 캡슐화",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "csharp_l5_u02_q001",
+   "type": "predict_output",
+   "code": "class Dog\n{\n    private int _age;\n\n    public int Age\n    {\n        get { return _age; }\n        set { _age = value; }\n    }\n}\n\nDog d = new Dog();\nd.Age = 3;\nConsole.WriteLine(d.Age);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0",
+    "오류",
+    "_age"
+   ],
+   "explanation_ko": "d.Age = 3은 set 블록을 호출해 _age에 3을 저장합니다. 이후 d.Age는 get을 호출해 저장된 값을 반환합니다.",
+   "explanation_en": "d.Age = 3 calls the set block, storing 3 in _age; d.Age then calls get, returning that stored value.",
+   "concept_tags": [
+    "property"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "csharp_l5_u02_q002",
+   "type": "predict_output",
+   "code": "class Dog\n{\n    private int _age;\n\n    public int Age\n    {\n        get { return _age; }\n        set\n        {\n            if (value >= 0)\n            {\n                _age = value;\n            }\n        }\n    }\n}\n\nDog d = new Dog();\nd.Age = 5;\nd.Age = -3;\nConsole.WriteLine(d.Age);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "-3",
+    "0",
+    "오류"
+   ],
+   "explanation_ko": "set 블록은 대입 전에 value가 음수가 아닌지 검증합니다. -3은 이 검사를 통과하지 못해 _age는 이전 값인 5로 유지됩니다.",
+   "explanation_en": "The set block validates that value is non-negative before assigning; -3 fails this check, so _age stays at its previous value, 5.",
+   "concept_tags": [
+    "property",
+    "encapsulation"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "csharp_l5_u02_q003",
+   "type": "fill_blank",
+   "code": "public string Name ____ ____;\n// Get/Set 로직을 직접 쓰지 않는 자동 구현 프로퍼티여야 함",
+   "prompt_ko": "자동 구현 프로퍼티가 되도록 빈칸을 채우세요.",
+   "prompt_en": "Fill in the blanks to create an auto-implemented property.",
+   "expected_answers": [
+    "{ get; set; }"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "{ get set }",
+    "(get; set;)",
+    "= get, set"
+   ],
+   "explanation_ko": "본문 없는 { get; set; }는 자동 구현 프로퍼티를 만들며, 컴파일러가 보이지 않는 내부 필드를 자동으로 생성합니다.",
+   "explanation_en": "{ get; set; } without bodies creates an auto-implemented property, where the compiler generates a hidden backing field automatically.",
+   "concept_tags": [
+    "property",
+    "auto_property"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

@@ -1,0 +1,110 @@
+{
+ "language": "cpp",
+ "category": "system_low_level",
+ "level": 4,
+ "unit": 3,
+ "unit_title": "템플릿 기초",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "cpp_l4_u03_q001",
+   "type": "predict_output",
+   "code": "template <typename T>\nT maxValue(T a, T b) {\n    return (a > b) ? a : b;\n}\n\ncout << maxValue(3, 7);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "7"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "3",
+    "T",
+    "오류"
+   ],
+   "explanation_ko": "컴파일러는 이 호출에 맞춰 int 버전의 maxValue를 만들어냅니다. 7이 3보다 크므로 7을 반환합니다.",
+   "explanation_en": "The compiler generates an int version of maxValue for this call; since 7 > 3, it returns 7.",
+   "concept_tags": [
+    "template"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cpp_l4_u03_q002",
+   "type": "predict_output",
+   "code": "template <typename T>\nT maxValue(T a, T b) {\n    return (a > b) ? a : b;\n}\n\ncout << maxValue(3.5, 2.1);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3.5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "2.1",
+    "오류",
+    "T"
+   ],
+   "explanation_ko": "같은 템플릿이 아무 수정 없이 double에도 동작합니다. 컴파일러는 double 버전을 생성하고, 3.5가 2.1보다 크므로 3.5를 반환합니다.",
+   "explanation_en": "The same template works for double without any changes; the compiler generates a double version, and 3.5 > 2.1, so 3.5 is returned.",
+   "concept_tags": [
+    "template"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "cpp_l4_u03_q003",
+   "type": "fill_blank",
+   "code": "____ <typename T>\nT square(T x) {\n    return x * x;\n}",
+   "prompt_ko": "함수 템플릿을 시작하는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that introduces a function template.",
+   "expected_answers": [
+    "template"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "generic",
+    "typename",
+    "auto"
+   ],
+   "explanation_ko": "template은 템플릿 선언을 시작하는 키워드로, 이어서 꺾쇠 괄호 안에 타입 매개변수 목록이 옵니다.",
+   "explanation_en": "template introduces a template declaration, followed by the type parameter list in angle brackets.",
+   "concept_tags": [
+    "template"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cpp_l4_u03_q005",
+   "type": "predict_output",
+   "code": "template <typename T>\nT maxValue(T a, T b) {\n    return (a > b) ? a : b;\n}\n\nstring s1 = \"apple\";\nstring s2 = \"banana\";\ncout << maxValue(s1, s2);",
+   "prompt_ko": "출력 결과는? (문자열은 >로 사전순 비교가 가능한 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: strings compare alphabetically with >.)",
+   "expected_answers": [
+    "banana"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "apple",
+    "오류",
+    "s1"
+   ],
+   "explanation_ko": "string은 >를 사전순 비교로 지원하므로 같은 템플릿이 여기서도 동작합니다. 사전순으로 \"banana\"가 \"apple\"보다 크므로 banana가 반환됩니다.",
+   "explanation_en": "string supports > for lexicographic comparison, so the same template works here too; \"banana\" > \"apple\" alphabetically, so banana is returned.",
+   "concept_tags": [
+    "template"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

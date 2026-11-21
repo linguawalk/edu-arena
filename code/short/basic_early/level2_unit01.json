@@ -1,0 +1,136 @@
+{
+ "language": "basic_early",
+ "category": "legacy_historical",
+ "level": 2,
+ "unit": 1,
+ "unit_title": "DIM 배열",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "basic_early_l2_u01_q001",
+   "type": "predict_output",
+   "code": "10 DIM A(5)\n20 LET A(0) = 10\n30 LET A(1) = 20\n40 PRINT A(0)\n50 PRINT A(1)\n60 END",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "10 20"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0 1",
+    "오류",
+    "20 10"
+   ],
+   "explanation_ko": "DIM A(5)는 배열을 예약합니다. A(0)과 A(1)은 대입된 값인 10과 20을 저장하고 출력합니다.",
+   "explanation_en": "DIM A(5) reserves an array; A(0) and A(1) store and print their assigned values, 10 and 20.",
+   "concept_tags": [
+    "dim_array"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "basic_early_l2_u01_q002",
+   "type": "predict_output",
+   "code": "10 DIM A(5)\n20 FOR I = 0 TO 5\n30 LET A(I) = I * 10\n40 NEXT I\n50 PRINT A(5)\n60 END",
+   "prompt_ko": "출력 결과는? (반복이 5까지 가고, A는 DIM A(5)로 선언된 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: the loop goes up to 5, and A was declared with DIM A(5).)",
+   "expected_answers": [
+    "50"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "40",
+    "오류: 범위 초과",
+    "0"
+   ],
+   "explanation_ko": "VB의 Dim처럼 초기 BASIC의 DIM A(5)도 가장 큰 유효 인덱스(0부터 5까지)를 지정해서, 5개가 아니라 6개의 사용 가능한 칸을 만듭니다. A(5)는 유효하며 5*10=50을 담습니다.",
+   "explanation_en": "Like Visual Basic's Dim, classic BASIC's DIM A(5) specifies the HIGHEST valid index (0 through 5), giving 6 usable slots, not 5; A(5) is valid and holds 5*10=50.",
+   "concept_tags": [
+    "dim_array",
+    "array_indexing"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "basic_early_l2_u01_q003",
+   "type": "predict_output",
+   "code": "10 DIM A(5)\n20 FOR I = 0 TO 5\n30 LET A(I) = I * 10\n40 NEXT I\n50 FOR I = 0 TO 5\n60 PRINT A(I)\n70 NEXT I\n80 END",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "0 10 20 30 40 50 (각 줄에)"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "10 20 30 40 50 (각 줄에)",
+    "오류",
+    "0 0 0 0 0 0"
+   ],
+   "explanation_ko": "첫 번째 반복문이 6개 칸(인덱스 0~5) 전체를 I*10으로 채웁니다. 두 번째 반복문이 이를 순서대로 출력합니다: 0, 10, 20, 30, 40, 50.",
+   "explanation_en": "The first loop fills all 6 slots (indices 0-5) with I*10; the second loop prints them in order: 0, 10, 20, 30, 40, 50.",
+   "concept_tags": [
+    "dim_array"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "basic_early_l2_u01_q004",
+   "type": "fill_blank",
+   "code": "10 ____ SCORES(10)\n20 LET SCORES(0) = 95\n30 PRINT SCORES(0)\n40 END",
+   "prompt_ko": "배열을 위한 공간을 예약하는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that reserves space for an array.",
+   "expected_answers": [
+    "DIM"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "ARRAY",
+    "DECLARE",
+    "RESERVE"
+   ],
+   "explanation_ko": "DIM('dimension'의 줄임)은 배열을 선언하고 사용 전에 저장 공간을 예약합니다.",
+   "explanation_en": "DIM (short for 'dimension') declares an array and reserves storage for it before use.",
+   "concept_tags": [
+    "dim_array"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "basic_early_l2_u01_q005",
+   "type": "predict_output",
+   "code": "10 DIM NAMES(2)\n20 LET NAMES(0) = 100\n30 LET NAMES(1) = 200\n40 LET NAMES(2) = 300\n50 LET SUM = NAMES(0) + NAMES(1) + NAMES(2)\n60 PRINT SUM\n70 END",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "600"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "300",
+    "500",
+    "오류"
+   ],
+   "explanation_ko": "DIM NAMES(2)는 인덱스 0, 1, 2(3개 칸)를 줍니다. 셋 다 유효하게 사용되어 100+200+300=600입니다.",
+   "explanation_en": "DIM NAMES(2) gives indices 0, 1, 2 (3 slots); all three are used validly, and 100+200+300=600.",
+   "concept_tags": [
+    "dim_array"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

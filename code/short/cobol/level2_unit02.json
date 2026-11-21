@@ -1,0 +1,87 @@
+{
+ "language": "cobol",
+ "category": "legacy_historical",
+ "level": 2,
+ "unit": 2,
+ "unit_title": "단락과 PERFORM",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "cobol_l2_u02_q002",
+   "type": "fill_blank",
+   "code": "PROCEDURE DIVISION.\n    ____ SHOW-MESSAGE.\n    STOP RUN.\n\nSHOW-MESSAGE.\n    DISPLAY \"HI\".",
+   "prompt_ko": "이름 붙은 단락을 호출하는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that invokes a named paragraph.",
+   "expected_answers": [
+    "PERFORM"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "CALL",
+    "GOTO",
+    "RUN"
+   ],
+   "explanation_ko": "PERFORM은 (VARYING/UNTIL/TIMES가 아니라 단락 이름과 함께 쓰이면) 그 단락을 한 번 실행하고 돌아옵니다. 서브루틴 호출에 대응하는 COBOL의 방식입니다.",
+   "explanation_en": "PERFORM (when given a paragraph name rather than VARYING/UNTIL/TIMES) invokes that paragraph once and returns, the COBOL analog of calling a subroutine.",
+   "concept_tags": [
+    "perform_paragraph"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cobol_l2_u02_q003",
+   "type": "predict_output",
+   "code": "01 X PIC 9(3).\n...\nPROCEDURE DIVISION.\n    MOVE 5 TO X.\n    PERFORM DOUBLE-X.\n    DISPLAY X.\n    STOP RUN.\n\nDOUBLE-X.\n    COMPUTE X = X * 2.",
+   "prompt_ko": "출력 결과는? (단락은 프로그램 전체와 변수를 공유합니다 — 지역 스코프 없음.)",
+   "prompt_en": "What is printed? (Note: paragraphs share variables with the whole program — no local scope.)",
+   "expected_answers": [
+    "010"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "005",
+    "오류",
+    "000"
+   ],
+   "explanation_ko": "단락에는 지역 변수 스코프가 없습니다. DOUBLE-X 안의 X는 메인 흐름의 X와 같아서, 그곳에서 두 배로 만들면 이후 출력되는 값에도 영향을 줍니다: 5*2=10.",
+   "explanation_en": "Paragraphs have no local variable scope; X inside DOUBLE-X is the same X as in the main flow, so doubling it there affects the value printed afterward: 5*2=10.",
+   "concept_tags": [
+    "paragraph",
+    "no_local_scope"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "cobol_l2_u02_q004",
+   "type": "predict_output",
+   "code": "PROCEDURE DIVISION.\n    PERFORM PARA-A.\n    PERFORM PARA-A.\n    STOP RUN.\n\nPARA-A.\n    DISPLAY \"CALLED\".",
+   "prompt_ko": "출력 결과는? (같은 단락이 두 번 호출됩니다.)",
+   "prompt_en": "What is printed? (The same paragraph is invoked twice.)",
+   "expected_answers": [
+    "CALLED, CALLED"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "CALLED (한 번만)",
+    "오류",
+    "아무것도 출력되지 않음"
+   ],
+   "explanation_ko": "각 PERFORM 호출은 단락을 실행하고 돌아와서, 재사용할 수 있게 합니다. PARA-A를 두 번 호출하면 CALLED가 두 번 출력됩니다.",
+   "explanation_en": "Each PERFORM call runs the paragraph and returns, allowing it to be reused; calling PARA-A twice prints CALLED twice.",
+   "concept_tags": [
+    "paragraph",
+    "perform_paragraph"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

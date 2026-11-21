@@ -1,0 +1,114 @@
+{
+ "language": "rust",
+ "category": "system_low_level",
+ "level": 1,
+ "unit": 1,
+ "unit_title": "변수와 불변성",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "rust_l1_u01_q001",
+   "type": "predict_output",
+   "code": "let x = 5;\nprintln!(\"{}\", x);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "x",
+    "오류",
+    "0"
+   ],
+   "explanation_ko": "let은 x를 5에 바인딩합니다. println!의 {}는 그 값인 5를 출력합니다.",
+   "explanation_en": "let binds x to 5; println! with {} prints its value, 5.",
+   "concept_tags": [
+    "variable",
+    "let"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l1_u01_q003",
+   "type": "fill_blank",
+   "code": "let ____ y = 10;\ny = 20;\nprintln!(\"{}\", y);",
+   "prompt_ko": "y에 값을 다시 대입할 수 있도록 빈칸을 채우세요.",
+   "prompt_en": "Fill in the blank so y can be reassigned.",
+   "expected_answers": [
+    "mut"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "let",
+    "var",
+    "const"
+   ],
+   "explanation_ko": "mut 키워드는 변수를 명시적으로 가변으로 표시해, 처음 바인딩된 이후에도 값을 다시 대입할 수 있게 해줍니다.",
+   "explanation_en": "The mut keyword explicitly marks a variable as mutable, allowing it to be reassigned after its initial binding.",
+   "concept_tags": [
+    "variable",
+    "mut"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l1_u01_q004",
+   "type": "predict_output",
+   "code": "let mut y = 10;\ny = 20;\nprintln!(\"{}\", y);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "20"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "10",
+    "오류",
+    "mut"
+   ],
+   "explanation_ko": "y가 mut으로 선언되었기 때문에 20으로 재대입하는 것이 허용되며, 그 새 값이 출력됩니다.",
+   "explanation_en": "Because y is declared with mut, reassigning it to 20 is allowed, and that new value is printed.",
+   "concept_tags": [
+    "variable",
+    "mut"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l1_u01_q005",
+   "type": "predict_output",
+   "code": "let x = 5;\nlet x = x + 1;\nlet x = x * 2;\nprintln!(\"{}\", x);",
+   "prompt_ko": "출력 결과는? (각 let이 같은 이름으로 새로운 바인딩을 만드는 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: each let creates a new binding with the same name.)",
+   "expected_answers": [
+    "12"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "5",
+    "6",
+    "오류"
+   ],
+   "explanation_ko": "이는 '섀도잉(shadowing)'입니다. 각 let x는 같은 이름을 재사용하는 완전히 새로운 불변 바인딩을 만듭니다. x는 5 → 6 → 12로 이어지며, mut이 전혀 필요 없습니다.",
+   "explanation_en": "This is 'shadowing': each let x creates a brand new immutable binding, reusing the name; x becomes 5, then 6, then 12 — without ever needing mut.",
+   "concept_tags": [
+    "shadowing",
+    "immutability"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

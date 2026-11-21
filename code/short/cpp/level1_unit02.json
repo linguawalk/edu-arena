@@ -1,0 +1,112 @@
+{
+ "language": "cpp",
+ "category": "system_low_level",
+ "level": 1,
+ "unit": 2,
+ "unit_title": "참조자 (reference)",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "cpp_l1_u02_q001",
+   "type": "predict_output",
+   "code": "int x = 5;\nint &ref = x;\nref = 10;\ncout << x;",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "10"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "5",
+    "&x",
+    "오류"
+   ],
+   "explanation_ko": "참조자는 같은 변수의 또 다른 이름일 뿐, 별도의 사본이 아닙니다. ref를 바꾸면 x도 그대로 바뀌어 10이 됩니다.",
+   "explanation_en": "A reference is another name for the same variable, not a separate copy; changing ref directly changes x, so x becomes 10.",
+   "concept_tags": [
+    "reference"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cpp_l1_u02_q002",
+   "type": "predict_output",
+   "code": "void swapValues(int &a, int &b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n\nint main() {\n    int a = 1, b = 2;\n    swapValues(a, b);\n    cout << a << b;\n    return 0;\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "21"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "12",
+    "11",
+    "22"
+   ],
+   "explanation_ko": "매개변수가 참조자이기 때문에 swapValues는 main의 a와 b를 직접 다룹니다. C의 값에 의한 전달과 달리 실제로 값이 교환됩니다.",
+   "explanation_en": "Because the parameters are references, swapValues operates directly on main's a and b, actually swapping them, unlike C's pass-by-value.",
+   "concept_tags": [
+    "reference",
+    "reference_parameter"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "cpp_l1_u02_q003",
+   "type": "fill_blank",
+   "code": "int total = 0;\n\nvoid add(int ____n) {\n    total += n;\n}",
+   "prompt_ko": "n을 참조자 매개변수로 선언하려면 빈칸에 무엇이 들어가야 할까요? (포인터와 비교하기 위한 예시)",
+   "prompt_en": "Fill in the blank to declare n as a reference parameter (not required here, but shown for comparison with pointers).",
+   "expected_answers": [
+    "&"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "*",
+    "**",
+    "(없음)"
+   ],
+   "explanation_ko": "참조자 매개변수는 자료형 뒤에 &를 붙여 선언하며, 포인터 문법 없이도 함수가 호출한 쪽의 원본 변수를 수정할 수 있게 해줍니다.",
+   "explanation_en": "A reference parameter is declared with & after the type, letting the function modify the caller's original variable without pointer syntax.",
+   "concept_tags": [
+    "reference",
+    "reference_parameter"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cpp_l1_u02_q006",
+   "type": "predict_output",
+   "code": "int arr[3] = {1, 2, 3};\nint &first = arr[0];\nfirst = 100;\ncout << arr[0];",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "100"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "1",
+    "arr[0]",
+    "오류"
+   ],
+   "explanation_ko": "참조자는 다른 변수와 마찬가지로 배열 요소에도 바인딩될 수 있습니다. first를 수정하면 arr[0]이 직접 바뀌어 100이 됩니다.",
+   "explanation_en": "A reference can bind to an array element just like any other variable; modifying first modifies arr[0] directly, resulting in 100.",
+   "concept_tags": [
+    "reference"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

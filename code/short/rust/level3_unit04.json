@@ -1,0 +1,112 @@
+{
+ "language": "rust",
+ "category": "system_low_level",
+ "level": 3,
+ "unit": 4,
+ "unit_title": "Result와 에러 처리",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "rust_l3_u04_q001",
+   "type": "predict_output",
+   "code": "fn divide(a: f64, b: f64) -> Result<f64, String> {\n    if b == 0.0 {\n        Err(String::from(\"0으로 나눌 수 없습니다\"))\n    } else {\n        Ok(a / b)\n    }\n}\n\nmatch divide(10.0, 2.0) {\n    Ok(result) => println!(\"결과: {}\", result),\n    Err(e) => println!(\"오류: {}\", e),\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "결과: 5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류: 0으로 나눌 수 없습니다",
+    "5",
+    "오류"
+   ],
+   "explanation_ko": "Result<T, E>는 성공(Ok) 또는 실패(Err)를 표현합니다. b가 0이 아니므로 divide는 Ok(5.0)을 반환하고, 이는 결과: 5로 출력됩니다.",
+   "explanation_en": "Result<T, E> represents success (Ok) or failure (Err); since b is not 0, divide returns Ok(5.0), matched and printed as 결과: 5.",
+   "concept_tags": [
+    "result"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l3_u04_q003",
+   "type": "fill_blank",
+   "code": "fn divide(a: f64, b: f64) -> ____<f64, String> {\n    if b == 0.0 {\n        Err(String::from(\"오류\"))\n    } else {\n        Ok(a / b)\n    }\n}",
+   "prompt_ko": "성공 또는 실패를 표현하는 타입을 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the type that represents either success or failure.",
+   "expected_answers": [
+    "Result"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "Option",
+    "Either",
+    "Try"
+   ],
+   "explanation_ko": "Result<T, E>는 실패할 수도 있는 작업을 표현하는 Rust의 표준 방법입니다. T는 성공 타입, E는 오류 타입을 나타냅니다.",
+   "explanation_en": "Result<T, E> is Rust's standard way to represent operations that might fail, with T for the success type and E for the error type.",
+   "concept_tags": [
+    "result"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l3_u04_q004",
+   "type": "predict_output",
+   "code": "fn parse_and_double(s: &str) -> Result<i32, std::num::ParseIntError> {\n    let n = s.parse::<i32>()?;\n    Ok(n * 2)\n}\n\nmatch parse_and_double(\"21\") {\n    Ok(n) => println!(\"결과: {}\", n),\n    Err(_) => println!(\"파싱 실패\"),\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "결과: 42"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "결과: 21",
+    "파싱 실패",
+    "오류"
+   ],
+   "explanation_ko": "? 연산자는 parse가 실패하면 즉시 오류를 반환하고, 성공하면 Ok 안의 값을 꺼냅니다. \"21\"은 21로 성공적으로 파싱되어, n * 2는 42가 됩니다.",
+   "explanation_en": "The ? operator returns early with the error if parse fails, or unwraps the Ok value otherwise; \"21\" parses successfully to 21, and n * 2 gives 42.",
+   "concept_tags": [
+    "result",
+    "question_mark_operator"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "rust_l3_u04_q005",
+   "type": "predict_output",
+   "code": "fn parse_and_double(s: &str) -> Result<i32, std::num::ParseIntError> {\n    let n = s.parse::<i32>()?;\n    Ok(n * 2)\n}\n\nmatch parse_and_double(\"abc\") {\n    Ok(n) => println!(\"결과: {}\", n),\n    Err(_) => println!(\"파싱 실패\"),\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "파싱 실패"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "결과: 0",
+    "프로그램이 비정상 종료됨",
+    "오류"
+   ],
+   "explanation_ko": "\"abc\"는 i32로 파싱할 수 없습니다. ? 연산자는 그 결과인 Err를 함수 밖으로 즉시 전파하고, 호출한 쪽의 match가 이를 받아 파싱 실패를 출력합니다.",
+   "explanation_en": "\"abc\" cannot be parsed as an i32; the ? operator immediately propagates the resulting Err out of the function, which the caller's match then handles by printing 파싱 실패.",
+   "concept_tags": [
+    "result",
+    "question_mark_operator"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

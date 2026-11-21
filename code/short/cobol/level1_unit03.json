@@ -1,0 +1,136 @@
+{
+ "language": "cobol",
+ "category": "legacy_historical",
+ "level": 1,
+ "unit": 3,
+ "unit_title": "IF문",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "cobol_l1_u03_q001",
+   "type": "predict_output",
+   "code": "01 SCORE PIC 9(3).\n...\nMOVE 85 TO SCORE.\nIF SCORE >= 90\n    DISPLAY \"A\"\nELSE IF SCORE >= 80\n    DISPLAY \"B\"\nELSE\n    DISPLAY \"C\"\nEND-IF.",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "B"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "A",
+    "C",
+    "아무것도 출력되지 않음"
+   ],
+   "explanation_ko": "SCORE는 85이므로 첫 번째 조건(90 이상)은 거짓이지만 ELSE IF의 조건(80 이상)은 참입니다. B가 출력됩니다.",
+   "explanation_en": "SCORE is 85, which fails the first condition (>= 90) but satisfies ELSE IF's (>= 80), printing B.",
+   "concept_tags": [
+    "if_statement"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cobol_l1_u03_q002",
+   "type": "fill_blank",
+   "code": "01 AGE PIC 9(3).\n...\nMOVE 20 TO AGE.\nIF AGE >= 18\n    DISPLAY \"ADULT\"\n____.",
+   "prompt_ko": "IF문을 닫는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that closes an IF statement.",
+   "expected_answers": [
+    "END-IF"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "ENDIF",
+    "FI",
+    "}"
+   ],
+   "explanation_ko": "END-IF는 IF문을 명시적으로 닫습니다. 중첩된 ELSE가 어느 IF에 속하는지 모호함을 피하기 위해 현대 COBOL 스타일에서 흔합니다.",
+   "explanation_en": "END-IF explicitly closes an IF statement, common in modern COBOL style to avoid ambiguity about which IF a nested ELSE belongs to.",
+   "concept_tags": [
+    "end_if"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cobol_l1_u03_q003",
+   "type": "predict_output",
+   "code": "01 X PIC 9(3).\n...\nMOVE 5 TO X.\nIF X = 5\n    DISPLAY \"FIVE\".",
+   "prompt_ko": "출력 결과는? (END-IF 대신 마침표로 끝나는 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: this ends with a period instead of END-IF.)",
+   "expected_answers": [
+    "FIVE"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류",
+    "아무것도 출력되지 않음",
+    "X"
+   ],
+   "explanation_ko": "마침표도 IF문을 끝맺을 수 있습니다(END-IF가 도입되기 전의 오래된 COBOL 스타일). 여기서는 END-IF와 똑같이 동작해서 FIVE가 출력됩니다.",
+   "explanation_en": "A period also terminates an IF statement (older COBOL style, before END-IF was introduced); it works here just as END-IF would, printing FIVE.",
+   "concept_tags": [
+    "if_statement",
+    "period_terminator"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "cobol_l1_u03_q004",
+   "type": "predict_output",
+   "code": "01 A PIC 9(3).\n01 B PIC 9(3).\n...\nMOVE 5 TO A.\nMOVE 10 TO B.\nIF A < B\n    DISPLAY \"A IS SMALLER\"\nELSE\n    DISPLAY \"A IS NOT SMALLER\"\nEND-IF.",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "A IS SMALLER"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "A IS NOT SMALLER",
+    "오류",
+    "아무것도 출력되지 않음"
+   ],
+   "explanation_ko": "A(5)는 실제로 B(10)보다 작으므로 조건이 참이 되어 A IS SMALLER가 출력됩니다.",
+   "explanation_en": "A (5) is indeed less than B (10), so the condition is true, printing A IS SMALLER.",
+   "concept_tags": [
+    "if_statement"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cobol_l1_u03_q005",
+   "type": "predict_output",
+   "code": "01 A PIC 9(3).\n...\nMOVE 5 TO A.\nIF A = 5 AND A > 0\n    DISPLAY \"BOTH TRUE\"\nEND-IF.",
+   "prompt_ko": "출력 결과는? (영어처럼 그대로 쓰는 COBOL의 AND 키워드입니다.)",
+   "prompt_en": "What is printed? (COBOL's AND keyword, spelled out like English.)",
+   "expected_answers": [
+    "BOTH TRUE"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류",
+    "아무것도 출력되지 않음",
+    "AND"
+   ],
+   "explanation_ko": "AND는 두 조건 모두 참이어야 합니다. A = 5와 A > 0 모두 참이므로 BOTH TRUE가 출력됩니다.",
+   "explanation_en": "AND requires both conditions to be true; A = 5 and A > 0 are both true, so BOTH TRUE is printed.",
+   "concept_tags": [
+    "and_operator"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

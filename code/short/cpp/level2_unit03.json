@@ -1,0 +1,87 @@
+{
+ "language": "cpp",
+ "category": "system_low_level",
+ "level": 2,
+ "unit": 3,
+ "unit_title": "캡슐화",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "cpp_l2_u03_q001",
+   "type": "predict_output",
+   "code": "class BankAccount {\nprivate:\n    double balance;\npublic:\n    BankAccount(double initial) {\n        balance = initial;\n    }\n    double getBalance() {\n        return balance;\n    }\n};\n\nBankAccount acc(1000);\ncout << acc.getBalance();",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "1000"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "balance",
+    "오류",
+    "0"
+   ],
+   "explanation_ko": "balance는 private이지만, getBalance()는 public 멤버 함수이므로 이를 읽어서 외부 코드에 값을 전달할 수 있습니다.",
+   "explanation_en": "Although balance is private, getBalance() is a public member function that can read it and expose the value to outside code.",
+   "concept_tags": [
+    "encapsulation",
+    "getter"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cpp_l2_u03_q004",
+   "type": "predict_output",
+   "code": "class BankAccount {\nprivate:\n    double balance;\npublic:\n    BankAccount(double initial) { balance = initial; }\n    void deposit(double amount) {\n        if (amount > 0) {\n            balance += amount;\n        }\n    }\n    double getBalance() { return balance; }\n};\n\nBankAccount acc(1000);\nacc.deposit(-500);\ncout << acc.getBalance();",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "1000"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "500",
+    "1500",
+    "-500"
+   ],
+   "explanation_ko": "검증 조건(amount > 0)이 음수 입금을 거부해서 balance는 1000 그대로 유지됩니다. 캡슐화가 주는 보호 효과입니다.",
+   "explanation_en": "The validation check (amount > 0) rejects the negative deposit, leaving balance unchanged at 1000 — the protective benefit of encapsulation.",
+   "concept_tags": [
+    "encapsulation",
+    "setter"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "cpp_l2_u03_q006",
+   "type": "predict_output",
+   "code": "class Temperature {\nprivate:\n    double celsius;\npublic:\n    Temperature(double c) { celsius = c; }\n    double toFahrenheit() {\n        return celsius * 9.0 / 5.0 + 32;\n    }\n};\n\nTemperature t(20);\ncout << t.toFahrenheit();",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "68"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "20",
+    "36",
+    "오류"
+   ],
+   "explanation_ko": "toFahrenheit은 표준 공식으로 변환합니다: 20 * 9/5 + 32 = 36 + 32 = 68. celsius 자체는 private 필드로 숨겨진 채 유지됩니다.",
+   "explanation_en": "toFahrenheit converts using the standard formula: 20 * 9/5 + 32 = 36 + 32 = 68, while celsius itself stays hidden as a private field.",
+   "concept_tags": [
+    "encapsulation"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

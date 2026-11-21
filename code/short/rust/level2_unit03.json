@@ -1,0 +1,61 @@
+{
+ "language": "rust",
+ "category": "system_low_level",
+ "level": 2,
+ "unit": 3,
+ "unit_title": "빌림 규칙",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "rust_l2_u03_q001",
+   "type": "predict_output",
+   "code": "let s = String::from(\"hello\");\nlet r1 = &s;\nlet r2 = &s;\nprintln!(\"{} {}\", r1, r2);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "hello hello"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류: 참조가 두 번 만들어짐",
+    "hello",
+    "오류: s가 이동됨"
+   ],
+   "explanation_ko": "같은 값에 대한 여러 개의 불변 참조는 동시에 허용됩니다. r1과 r2 모두 충돌 없이 s를 읽을 수 있습니다.",
+   "explanation_en": "Multiple immutable references to the same value are allowed at the same time; both r1 and r2 can read s without conflict.",
+   "concept_tags": [
+    "borrowing_rules"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l2_u03_q004",
+   "type": "predict_output",
+   "code": "let mut s = String::from(\"hello\");\n{\n    let r1 = &mut s;\n    r1.push_str(\" world\");\n}\nlet r2 = &mut s;\nprintln!(\"{}\", r2);",
+   "prompt_ko": "출력 결과는? (r1이 안쪽 블록 안에서만 유효한 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note that r1 is scoped inside the inner block.)",
+   "expected_answers": [
+    "hello world"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류: 가변 참조 중복",
+    "hello",
+    "오류"
+   ],
+   "explanation_ko": "r1의 스코프가 안쪽 블록에서 끝나기 때문에, 이후 만들어지는 r2와 충돌하지 않습니다. 빌림 검사기는 겹치지만 않는다면 순차적인 가변 빌림을 허용합니다.",
+   "explanation_en": "Because r1's scope ends with the inner block, it no longer conflicts with r2 created afterward; the borrow checker allows sequential mutable borrows as long as they don't overlap.",
+   "concept_tags": [
+    "borrowing_rules",
+    "scope"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

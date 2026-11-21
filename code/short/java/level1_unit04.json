@@ -1,0 +1,113 @@
+{
+ "language": "java",
+ "category": "oop_enterprise",
+ "level": 1,
+ "unit": 4,
+ "unit_title": "형변환",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "java_l1_u04_q001",
+   "type": "predict_output",
+   "code": "double d = 3.9;\nint i = (int) d;\nSystem.out.println(i);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "4",
+    "3.9",
+    "오류"
+   ],
+   "explanation_ko": "Java의 명시적 (int) 캐스팅은 소수점을 완전히 버립니다. C#의 (int) 캐스팅과 같습니다. 3.9는 3이 됩니다.",
+   "explanation_en": "Java's explicit (int) cast truncates the decimal part entirely, just like C#'s (int) cast; 3.9 becomes 3.",
+   "concept_tags": [
+    "explicit_cast",
+    "truncation"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "java_l1_u04_q002",
+   "type": "predict_output",
+   "code": "int a = 10;\ndouble b = a;\nSystem.out.println(b);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "10.0"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "10",
+    "오류",
+    "0"
+   ],
+   "explanation_ko": "int에서 double로의 변환은 안전한 암묵적 변환(확장)입니다. Java의 println은 double 값을 소수점을 포함해 10.0으로 출력합니다.",
+   "explanation_en": "Converting int to double is a safe implicit conversion (widening); Java's println prints the double as 10.0, including the decimal point.",
+   "concept_tags": [
+    "implicit_cast",
+    "widening"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "java_l1_u04_q004",
+   "type": "predict_output",
+   "code": "int x = 300;\nbyte b = (byte) x;\nSystem.out.println(b);",
+   "prompt_ko": "출력 결과는? (byte는 -128~127만 담을 수 있습니다.)",
+   "prompt_en": "What is printed? (byte can only hold -128 to 127.)",
+   "expected_answers": [
+    "44"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "300",
+    "255",
+    "오류"
+   ],
+   "explanation_ko": "300을 byte로 캐스팅하면 타입의 범위를 초과합니다. 값은 256으로 나눈 나머지를 사용해 감싸지며, 300 % 256 = 44가 됩니다. C#과 같은 오버플로우 동작입니다.",
+   "explanation_en": "Casting 300 to byte overflows the type's range; the value wraps around using modulo 256, giving 300 % 256 = 44, the same overflow behavior as C#.",
+   "concept_tags": [
+    "explicit_cast",
+    "overflow"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "java_l1_u04_q005",
+   "type": "fill_blank",
+   "code": "String s = \"42\";\nint n = ____.parseInt(s);\nSystem.out.println(n);",
+   "prompt_ko": "문자열을 숫자로 파싱하는 메서드를 제공하는 래퍼 클래스를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the wrapper class that provides string-to-number parsing methods.",
+   "expected_answers": [
+    "Integer"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "Convert",
+    "Number",
+    "String"
+   ],
+   "explanation_ko": "Integer.parseInt()는 String을 int로 변환합니다. 각 기본 타입에는 비슷한 파싱 메서드를 가진 대응 래퍼 클래스가 있습니다.",
+   "explanation_en": "Integer.parseInt() converts a String to an int; each primitive type has a corresponding wrapper class with similar parsing methods.",
+   "concept_tags": [
+    "parseint"
+   ],
+   "difficulty": "intro"
+  }
+ ]
+}

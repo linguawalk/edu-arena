@@ -1,0 +1,61 @@
+{
+ "language": "basic_early",
+ "category": "legacy_historical",
+ "level": 2,
+ "unit": 2,
+ "unit_title": "GOSUB/RETURN 서브루틴",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "basic_early_l2_u02_q003",
+   "type": "fill_blank",
+   "code": "10 GOSUB 100\n20 END\n100 PRINT \"HELLO\"\n110 ____",
+   "prompt_ko": "호출한 쪽으로 제어를 되돌리는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that returns control back to the caller.",
+   "expected_answers": [
+    "RETURN"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "GOTO 10",
+    "END",
+    "BACK"
+   ],
+   "explanation_ko": "RETURN은 짝이 되는 GOSUB 바로 다음 줄로 실행을 되돌려서 서브루틴을 끝냅니다.",
+   "explanation_en": "RETURN sends execution back to the line immediately after the matching GOSUB, ending the subroutine.",
+   "concept_tags": [
+    "gosub_return"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "basic_early_l2_u02_q005",
+   "type": "predict_output",
+   "code": "10 LET X = 5\n20 GOSUB 100\n30 PRINT X\n40 END\n100 LET X = X * 2\n110 RETURN",
+   "prompt_ko": "출력 결과는? (서브루틴은 메인 프로그램과 변수를 공유합니다 — 지역 스코프 없음.)",
+   "prompt_en": "What is printed? (Subroutines share variables with the main program — no local scope.)",
+   "expected_answers": [
+    "10"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "5",
+    "오류",
+    "0"
+   ],
+   "explanation_ko": "초기 BASIC의 서브루틴에는 지역 변수 스코프가 없습니다. 서브루틴 안의 X는 메인 프로그램의 X와 같아서, 그곳에서 두 배로 만들면 이후 출력되는 값에도 영향을 줍니다: 10.",
+   "explanation_en": "Classic BASIC subroutines have no local variable scope; X inside the subroutine is the same X as in the main program, so doubling it there affects the value printed afterward: 10.",
+   "concept_tags": [
+    "gosub_return",
+    "no_local_scope"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

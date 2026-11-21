@@ -1,0 +1,113 @@
+{
+ "language": "java",
+ "category": "oop_enterprise",
+ "level": 6,
+ "unit": 1,
+ "unit_title": "파일 입출력",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "java_l6_u01_q001",
+   "type": "predict_output",
+   "code": "import java.nio.file.Files;\nimport java.nio.file.Path;\n\nPath path = Path.of(\"test.txt\");\nFiles.writeString(path, \"42\");\nString content = Files.readString(path);\nSystem.out.println(content);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "42"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "test.txt",
+    "오류",
+    "빈 문자열"
+   ],
+   "explanation_ko": "Files.writeString은 한 번의 호출로 텍스트를 파일에 씁니다. Files.readString은 이를 다시 읽어와 42를 출력합니다.",
+   "explanation_en": "Files.writeString writes the given text to the file in one call, and Files.readString reads it back, printing 42.",
+   "concept_tags": [
+    "file_io"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "java_l6_u01_q002",
+   "type": "predict_output",
+   "code": "import java.nio.file.Files;\nimport java.nio.file.Path;\n\nSystem.out.println(Files.exists(Path.of(\"nonexistent.txt\")));",
+   "prompt_ko": "파일이 존재하지 않는다고 가정할 때 출력 결과는?",
+   "prompt_en": "What is printed, assuming the file doesn't exist?",
+   "expected_answers": [
+    "false"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "true",
+    "오류",
+    "nonexistent.txt"
+   ],
+   "explanation_ko": "Files.exists는 예외를 던지지 않고 안전하게 파일 존재 여부를 확인합니다. 여기서는 false를 반환합니다.",
+   "explanation_en": "Files.exists safely checks for a file's presence without throwing an exception, returning false here.",
+   "concept_tags": [
+    "file_io",
+    "files_exists"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "java_l6_u01_q004",
+   "type": "fill_blank",
+   "code": "import java.io.IOException;\nimport java.io.FileReader;\n\nstatic void readFile() ____ IOException {\n    FileReader reader = new FileReader(\"test.txt\");\n}\n// 예외를 처리하지 않고 호출한 쪽으로 전달해야 함",
+   "prompt_ko": "checked exception이 이 메서드 밖으로 전파될 수 있음을 선언하는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that declares a checked exception may propagate out of this method.",
+   "expected_answers": [
+    "throws"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "throw",
+    "catch",
+    "except"
+   ],
+   "explanation_ko": "메서드 시그니처의 throws는 그 메서드가 checked exception을 전파할 수 있음을 선언해서, 처리 책임을 호출하는 쪽으로 넘깁니다.",
+   "explanation_en": "throws in a method signature declares that the method may propagate a checked exception, shifting the responsibility to handle it onto the caller.",
+   "concept_tags": [
+    "checked_exception",
+    "throws"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "java_l6_u01_q005",
+   "type": "predict_output",
+   "code": "import java.io.IOException;\nimport java.io.FileReader;\n\nstatic void readFile() throws IOException {\n    FileReader reader = new FileReader(\"test.txt\");\n}\n\npublic static void main(String[] args) {\n    try {\n        readFile();\n    } catch (IOException e) {\n        System.out.println(\"파일 읽기 실패\");\n    }\n}",
+   "prompt_ko": "test.txt가 존재하지 않는다고 가정할 때 출력 결과는?",
+   "prompt_en": "What is printed, assuming test.txt doesn't exist?",
+   "expected_answers": [
+    "파일 읽기 실패"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "프로그램이 비정상 종료됨",
+    "오류",
+    "아무것도 출력되지 않음"
+   ],
+   "explanation_ko": "checked exception은 main의 try/catch로 잡혀, 죽지 않고 안전하게 처리됩니다.",
+   "explanation_en": "The checked exception is caught by main's try/catch, handling it gracefully instead of crashing.",
+   "concept_tags": [
+    "checked_exception",
+    "try_catch"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

@@ -1,0 +1,114 @@
+{
+ "language": "java",
+ "category": "oop_enterprise",
+ "level": 5,
+ "unit": 2,
+ "unit_title": "캡슐화 (getter/setter)",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "java_l5_u02_q001",
+   "type": "predict_output",
+   "code": "class Dog {\n    private int age;\n\n    public int getAge() {\n        return age;\n    }\n\n    public void setAge(int age) {\n        this.age = age;\n    }\n}\n\nDog d = new Dog();\nd.setAge(3);\nSystem.out.println(d.getAge());",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0",
+    "오류",
+    "age"
+   ],
+   "explanation_ko": "setAge(3)은 private인 age 필드에 3을 저장합니다. 이후 getAge()는 저장된 값을 반환합니다.",
+   "explanation_en": "setAge(3) stores 3 in the private age field; getAge() then returns that stored value.",
+   "concept_tags": [
+    "encapsulation",
+    "getter_setter"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "java_l5_u02_q002",
+   "type": "predict_output",
+   "code": "class Dog {\n    private int age;\n\n    public int getAge() {\n        return age;\n    }\n\n    public void setAge(int age) {\n        if (age >= 0) {\n            this.age = age;\n        }\n    }\n}\n\nDog d = new Dog();\nd.setAge(5);\nd.setAge(-3);\nSystem.out.println(d.getAge());",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "-3",
+    "0",
+    "오류"
+   ],
+   "explanation_ko": "setAge는 대입 전에 값이 음수가 아닌지 검증합니다. -3은 이 검사를 통과하지 못해 age는 이전 값인 5로 유지됩니다.",
+   "explanation_en": "setAge validates that the value is non-negative before assigning; -3 fails this check, so age stays at its previous value, 5.",
+   "concept_tags": [
+    "encapsulation",
+    "getter_setter"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "java_l5_u02_q004",
+   "type": "fill_blank",
+   "code": "class Dog {\n    ____ int age;\n\n    public int getAge() {\n        return age;\n    }\n}\n// 클래스 밖에서 직접 접근할 수 없어야 함",
+   "prompt_ko": "클래스 안에서만 접근 가능하도록 제한하는 접근 제어자를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the access modifier that restricts access to within the class only.",
+   "expected_answers": [
+    "private"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "public",
+    "protected",
+    "static"
+   ],
+   "explanation_ko": "private은 필드를 같은 클래스 안에서만 접근 가능하게 제한합니다. 캡슐화의 기본입니다.",
+   "explanation_en": "private restricts a field to be accessible only from within the same class, the foundation of encapsulation.",
+   "concept_tags": [
+    "encapsulation",
+    "access_modifier"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "java_l5_u02_q006",
+   "type": "predict_output",
+   "code": "class BankAccount {\n    private double balance;\n\n    public BankAccount(double initial) {\n        balance = initial;\n    }\n\n    public void deposit(double amount) {\n        if (amount > 0) {\n            balance += amount;\n        }\n    }\n\n    public double getBalance() {\n        return balance;\n    }\n}\n\nBankAccount acc = new BankAccount(1000);\nacc.deposit(-500);\nSystem.out.println(acc.getBalance());",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "1000"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "500",
+    "1500",
+    "-500"
+   ],
+   "explanation_ko": "검증 조건(amount > 0)이 음수 입금을 거부해서 balance는 1000 그대로 유지됩니다.",
+   "explanation_en": "The validation check (amount > 0) rejects the negative deposit, leaving balance unchanged at 1000.",
+   "concept_tags": [
+    "encapsulation",
+    "getter_setter"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

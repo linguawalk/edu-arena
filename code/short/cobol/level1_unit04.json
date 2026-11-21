@@ -1,0 +1,60 @@
+{
+ "language": "cobol",
+ "category": "legacy_historical",
+ "level": 1,
+ "unit": 4,
+ "unit_title": "PERFORM 반복문",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "cobol_l1_u04_q002",
+   "type": "predict_output",
+   "code": "01 TOTAL PIC 9(4).\n01 I PIC 9(2).\n...\nMOVE 0 TO TOTAL.\nMOVE 1 TO I.\nPERFORM UNTIL I > 5\n    ADD I TO TOTAL\n    ADD 1 TO I\nEND-PERFORM.\nDISPLAY TOTAL.",
+   "prompt_ko": "출력 결과는? (PERFORM UNTIL 안에서 수동으로 증가시킵니다.)",
+   "prompt_en": "What is printed? (Manual increment inside a PERFORM UNTIL.)",
+   "expected_answers": [
+    "0015"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0005",
+    "0010",
+    "오류"
+   ],
+   "explanation_ko": "PERFORM UNTIL은 조건이 거짓인 동안 계속 실행되며, 매번 수동으로 I를 증가시킵니다. 반복문이 1부터 5까지를 TOTAL에 더합니다: 1+2+3+4+5=15.",
+   "explanation_en": "PERFORM UNTIL keeps running while the condition is false, manually incrementing I each time; the loop adds 1 through 5 to TOTAL: 1+2+3+4+5=15.",
+   "concept_tags": [
+    "perform_until"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "cobol_l1_u04_q004",
+   "type": "fill_blank",
+   "code": "01 I PIC 9(2).\n...\nPERFORM VARYING I FROM 1 ____ 1 UNTIL I > 10\n    DISPLAY I\nEND-PERFORM.\n// 반복마다 I를 1씩 증가시켜야 함",
+   "prompt_ko": "증가량을 지정하는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that specifies the increment amount.",
+   "expected_answers": [
+    "BY"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "STEP",
+    "INCREMENT",
+    "PLUS"
+   ],
+   "explanation_ko": "BY는 PERFORM VARYING 반복문에서 매 반복마다 I가 얼마나 바뀌는지 지정합니다. Pascal의 step이나 Fortran do 반복문의 세 번째 값과 비슷한 역할입니다.",
+   "explanation_en": "BY specifies how much I changes each iteration in a PERFORM VARYING loop, similar in role to Pascal's step or Fortran's third do-loop value.",
+   "concept_tags": [
+    "perform_varying"
+   ],
+   "difficulty": "intro"
+  }
+ ]
+}

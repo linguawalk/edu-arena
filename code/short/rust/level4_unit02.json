@@ -1,0 +1,111 @@
+{
+ "language": "rust",
+ "category": "system_low_level",
+ "level": 4,
+ "unit": 2,
+ "unit_title": "트레이트 기초",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "rust_l4_u02_q001",
+   "type": "predict_output",
+   "code": "trait Summary {\n    fn summarize(&self) -> String;\n}\n\nstruct Article {\n    title: String,\n}\n\nimpl Summary for Article {\n    fn summarize(&self) -> String {\n        format!(\"기사: {}\", self.title)\n    }\n}\n\nlet article = Article { title: String::from(\"Rust 소개\") };\nprintln!(\"{}\", article.summarize());",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "기사: Rust 소개"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "Summary",
+    "Article",
+    "오류"
+   ],
+   "explanation_ko": "impl Summary for Article은 Article에 대해 트레이트의 메서드를 구현합니다. article.summarize()를 호출하면 그 구현이 실행됩니다.",
+   "explanation_en": "impl Summary for Article implements the trait's method for Article; calling article.summarize() runs that implementation.",
+   "concept_tags": [
+    "trait"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l4_u02_q002",
+   "type": "fill_blank",
+   "code": "____ Summary {\n    fn summarize(&self) -> String;\n}\n// summarize의 실제 구현 없이, '이 기능이 있어야 한다'는 계약만 정의해야 함",
+   "prompt_ko": "공유 동작 계약(트레이트)을 정의하는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that defines a trait (a shared behavior contract).",
+   "expected_answers": [
+    "trait"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "interface",
+    "class",
+    "impl"
+   ],
+   "explanation_ko": "trait은 구현하는 타입이 반드시 제공해야 하는 메서드 시그니처의 집합을 정의합니다. 다른 언어의 인터페이스와 비슷한 개념입니다.",
+   "explanation_en": "trait defines a set of method signatures that implementing types must provide, similar to an interface in other languages.",
+   "concept_tags": [
+    "trait"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l4_u02_q003",
+   "type": "fill_blank",
+   "code": "trait Summary {\n    fn summarize(&self) -> String;\n}\n\nstruct Article {\n    title: String,\n}\n\nimpl ____ for Article {\n    fn summarize(&self) -> String {\n        format!(\"기사: {}\", self.title)\n    }\n}",
+   "prompt_ko": "Article에 대해 구현하는 트레이트 이름을 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the trait being implemented for Article.",
+   "expected_answers": [
+    "Summary"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "Article",
+    "trait",
+    "impl"
+   ],
+   "explanation_ko": "impl 트레이트이름 for 타입이름 문법은 트레이트의 계약을 특정 타입의 구현과 연결합니다.",
+   "explanation_en": "The syntax impl TraitName for TypeName connects a trait's contract to a specific type's implementation.",
+   "concept_tags": [
+    "trait"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l4_u02_q005",
+   "type": "predict_output",
+   "code": "trait Summary {\n    fn summarize(&self) -> String;\n}\n\nstruct Article {\n    title: String,\n}\n\nimpl Summary for Article {\n    fn summarize(&self) -> String {\n        format!(\"기사: {}\", self.title)\n    }\n}\n\nfn notify(item: &impl Summary) {\n    println!(\"알림! {}\", item.summarize());\n}\n\nlet article = Article { title: String::from(\"Rust 소개\") };\nnotify(&article);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "알림! 기사: Rust 소개"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "Summary",
+    "기사: Rust 소개",
+    "오류"
+   ],
+   "explanation_ko": "&impl Summary는 Summary를 구현한 어떤 타입이든 받을 수 있습니다. notify는 구체적인 타입과 무관하게 트레이트를 통해 summarize()를 호출해 알림! 기사: Rust 소개를 출력합니다.",
+   "explanation_en": "&impl Summary accepts any type that implements Summary; notify calls summarize() through the trait, regardless of the concrete type, printing 알림! 기사: Rust 소개.",
+   "concept_tags": [
+    "trait",
+    "trait_bound"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

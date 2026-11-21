@@ -1,0 +1,112 @@
+{
+ "language": "java",
+ "category": "oop_enterprise",
+ "level": 4,
+ "unit": 3,
+ "unit_title": "HashMap",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "java_l4_u03_q001",
+   "type": "predict_output",
+   "code": "HashMap<String, Integer> ages = new HashMap<>();\nages.put(\"Kim\", 25);\nages.put(\"Lee\", 30);\nSystem.out.println(ages.get(\"Kim\"));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "25"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "30",
+    "Kim",
+    "오류"
+   ],
+   "explanation_ko": "HashMap은 키-값 쌍을 저장합니다. get(\"Kim\")은 그 키에 연결된 값인 25를 가져옵니다.",
+   "explanation_en": "HashMap stores key-value pairs; get(\"Kim\") retrieves the value associated with that key, 25.",
+   "concept_tags": [
+    "hashmap"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "java_l4_u03_q002",
+   "type": "predict_output",
+   "code": "HashMap<String, Integer> ages = new HashMap<>();\nages.put(\"Kim\", 25);\nInteger result = ages.get(\"Park\");\nSystem.out.println(result);",
+   "prompt_ko": "출력 결과는? (여기서 예외를 던지는 C#/VB의 Dictionary와 비교해보세요.)",
+   "prompt_en": "What is printed? (Compare with C#/VB's Dictionary, which throws an exception here.)",
+   "expected_answers": [
+    "null"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류",
+    "0",
+    "Park"
+   ],
+   "explanation_ko": "존재하지 않는 키에 KeyNotFoundException을 던지는 C#/VB의 Dictionary와 달리, Java의 HashMap.get()은 키를 찾지 못하면 그냥 null을 반환합니다 — 예외가 전혀 발생하지 않습니다.",
+   "explanation_en": "Unlike C#/VB's Dictionary, which throws KeyNotFoundException for a missing key, Java's HashMap.get() simply returns null when the key isn't found — no exception at all.",
+   "concept_tags": [
+    "hashmap",
+    "null_return"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "java_l4_u03_q003",
+   "type": "predict_output",
+   "code": "HashMap<String, Integer> ages = new HashMap<>();\nages.put(\"Kim\", 25);\nSystem.out.println(ages.containsKey(\"Park\"));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "false"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "true",
+    "null",
+    "오류"
+   ],
+   "explanation_ko": "containsKey는 키가 존재하는지 확인합니다. \"Park\"은 추가된 적이 없으므로 false를 반환합니다.",
+   "explanation_en": "containsKey checks whether a key exists; since \"Park\" was never added, it returns false.",
+   "concept_tags": [
+    "hashmap",
+    "containskey"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "java_l4_u03_q005",
+   "type": "predict_output",
+   "code": "HashMap<String, Integer> ages = new HashMap<>();\nages.put(\"Kim\", 25);\nages.put(\"Kim\", 26);\nSystem.out.println(ages.get(\"Kim\"));\nSystem.out.println(ages.size());",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "26 1"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "25 2",
+    "25 1",
+    "26 2"
+   ],
+   "explanation_ko": "이미 존재하는 키에 put()을 쓰면 중복 항목을 만드는 게 아니라 기존 값을 갱신합니다. Kim의 값은 26이 되고, size()는 그대로 1입니다.",
+   "explanation_en": "put() with an existing key updates its value rather than creating a duplicate entry; Kim's value becomes 26, and size() stays 1.",
+   "concept_tags": [
+    "hashmap"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

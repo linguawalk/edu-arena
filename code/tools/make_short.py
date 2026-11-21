@@ -10,9 +10,14 @@ import json, glob, os, re, sys, collections
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BAD_PROMPT = re.compile(r"다음 중|아래 중|보기|옳은 것|틀린 것|알맞은 것|가장 적절|어느 것|모두 고르")
 # 정답이 하나로 정해지지 않는 빈칸(변수 이름, ++/-- 위치, 임의의 값 등)은 단답형으로 쓰지 않는다 (2026-11 수작업 검토)
-NAMES = {"python": "Python", "javascript": "JavaScript", "c": "C"}
+NAMES = {"c": "C", "cpp": "C++", "rust": "Rust", "visual_basic": "Visual Basic", "csharp": "C#", "java": "Java",
+         "python": "Python", "javascript": "JavaScript", "php": "PHP", "basic_early": "BASIC", "pascal": "Pascal",
+         "fortran": "FORTRAN", "cobol": "COBOL"}
 DENY = {"c_l1_u02_q004", "c_l2_u01_q003", "c_l3_u04_q004", "c_l4_u02_q003", "c_l4_u03_q003", "c_l4_u03_q005",
-        "c_l5_u03_q004", "javascript_l2_u04_q004", "javascript_l6_u03_q002", "python_l1_u01_q003", "python_l6_u03_q004"}
+        "c_l5_u03_q004", "cpp_l2_u03_q003", "cpp_l3_u03_q004", "cpp_l4_u02_q002", "csharp_l1_u01_q003",
+        "csharp_l4_u02_q004", "csharp_l6_u02_q005", "java_l1_u01_q003", "java_l6_u02_q005", "java_l3_u03_q003",
+        "fortran_l1_u02_q003", "rust_l2_u03_q005", "visual_basic_l1_u01_q003", "visual_basic_l4_u03_q004",
+        "visual_basic_l6_u02_q005", "visual_basic_l1_u03_q003", "javascript_l2_u04_q004", "javascript_l6_u03_q002", "python_l1_u01_q003", "python_l6_u03_q004"}
 ERRWORD = re.compile(r"오류|에러|error|컴파일|예외|undefined behavior|정의되지|미정의|실행되지", re.I)
 
 def skip_reason(q, lang):
@@ -36,14 +41,16 @@ def skip_reason(q, lang):
 def variants(a):
     return [str(a).strip()]
 
-def convert(q):
+CI = {"basic_early", "cobol", "fortran", "pascal", "visual_basic"}   # 대소문자를 구분하지 않는 언어: 빈칸(키워드) 답은 대소문자 무시
+
+def convert(q, lang=""):
     opts = q["options"]; a = opts[q["answer"]]
     wrong = [str(o) for i, o in enumerate(opts) if i != q["answer"]]
     out = {
         "id": q["id"], "type": q["type"], "code": q.get("code"),
         "prompt_ko": q.get("prompt_ko"), "prompt_en": q.get("prompt_en"),
         "expected_answers": variants(a),
-        "match": {"case": True, "space": "remove" if q["type"] == "fill_blank" else "collapse"},
+        "match": {"case": not (q["type"] == "fill_blank" and lang in CI), "space": "remove" if q["type"] == "fill_blank" else "collapse"},
         "wrong_answers": wrong,
         "explanation_ko": q.get("explanation_ko"), "explanation_en": q.get("explanation_en"),
         "concept_tags": q.get("concept_tags", []), "difficulty": q.get("difficulty", "practice"),
@@ -59,7 +66,7 @@ def main(args):
             for q in d["questions"]:
                 r = skip_reason(q, lang)
                 if r: stat[(lang, r)] += 1; continue
-                qs.append(convert(q)); stat[(lang, "ok")] += 1
+                qs.append(convert(q, lang)); stat[(lang, "ok")] += 1
             if not qs: continue
             out = {k: d[k] for k in ("language", "category", "level", "unit", "unit_title") if k in d}
             out["format"] = "short_answer"; out["questions"] = qs

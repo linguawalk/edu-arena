@@ -1,0 +1,88 @@
+{
+ "language": "cpp",
+ "category": "system_low_level",
+ "level": 3,
+ "unit": 2,
+ "unit_title": "함수 오버라이딩과 virtual",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "cpp_l3_u02_q001",
+   "type": "predict_output",
+   "code": "class Animal {\npublic:\n    virtual void speak() {\n        cout << \"동물이 소리를 낸다\";\n    }\n};\n\nclass Dog : public Animal {\npublic:\n    void speak() override {\n        cout << \"멍멍!\";\n    }\n};\n\nAnimal *a = new Dog();\na->speak();",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "멍멍!"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "동물이 소리를 낸다",
+    "오류",
+    "둘 다 출력됨"
+   ],
+   "explanation_ko": "a가 Animal* 타입으로 선언되어 있어도, virtual 덕분에 실제 객체 타입(Dog)을 기준으로 실행 시점에 호출이 결정되어 멍멍!이 출력됩니다.",
+   "explanation_en": "Even though a is declared as Animal*, virtual makes the call resolve based on the actual object type (Dog) at runtime, printing 멍멍!.",
+   "concept_tags": [
+    "virtual",
+    "polymorphism",
+    "override"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "cpp_l3_u02_q003",
+   "type": "fill_blank",
+   "code": "class Animal {\npublic:\n    ____ void speak() {\n        cout << \"동물이 소리를 낸다\";\n    }\n};\n// 자식 클래스에서 재정의했을 때 실제 객체 타입에 따라 호출되도록 해야 함",
+   "prompt_ko": "자식 클래스에서 speak()를 재정의했을 때 부모 포인터를 통해서도 실제로 적용되도록 빈칸을 채우세요.",
+   "prompt_en": "Fill in the blank so overriding speak() in a derived class actually takes effect through a base pointer.",
+   "expected_answers": [
+    "virtual"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "override",
+    "static",
+    "const"
+   ],
+   "explanation_ko": "부모 클래스 메서드에 virtual을 붙이면 동적 디스패치가 가능해지며, 이것이 바로 부모 클래스 포인터를 통해 호출해도 오버라이딩이 실제로 동작을 바꾸게 만드는 원리입니다.",
+   "explanation_en": "virtual on the base class method enables dynamic dispatch, which is what allows overriding to actually change behavior when called through a base class pointer.",
+   "concept_tags": [
+    "virtual"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cpp_l3_u02_q006",
+   "type": "predict_output",
+   "code": "class Animal {\npublic:\n    virtual void speak() {\n        cout << \"...\";\n    }\n    void greet() {\n        cout << \"안녕! \";\n        speak();\n    }\n};\n\nclass Dog : public Animal {\npublic:\n    void speak() override {\n        cout << \"멍멍!\";\n    }\n};\n\nDog d;\nd.greet();",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "안녕! 멍멍!"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "안녕! ...",
+    "멍멍!안녕! ",
+    "오류"
+   ],
+   "explanation_ko": "greet()는 그대로 상속되지만, 그 안에서 호출하는 speak()도 여전히 virtual하게 결정됩니다. d는 실제로 Dog이므로 Dog의 speak()가 실행되어 멍멍!이 출력됩니다.",
+   "explanation_en": "greet() is inherited as-is, but the speak() it calls internally is still resolved virtually — since d is actually a Dog, Dog's speak() runs, printing 멍멍!.",
+   "concept_tags": [
+    "virtual",
+    "polymorphism"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

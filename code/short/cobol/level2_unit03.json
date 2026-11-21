@@ -1,0 +1,60 @@
+{
+ "language": "cobol",
+ "category": "legacy_historical",
+ "level": 2,
+ "unit": 3,
+ "unit_title": "파일 입출력",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "cobol_l2_u03_q002",
+   "type": "fill_blank",
+   "code": "FILE-CONTROL.\n    ____ MYFILE ASSIGN TO \"data.txt\"\n        ORGANIZATION IS LINE SEQUENTIAL.",
+   "prompt_ko": "COBOL 파일 이름을 실제 파일 이름과 연결하는 절을 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the clause that connects a COBOL file name to a real filename.",
+   "expected_answers": [
+    "SELECT"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "OPEN",
+    "ASSIGN",
+    "FILE"
+   ],
+   "explanation_ko": "SELECT은 프로그램에서 쓸 파일 이름을 선언하고 ASSIGN TO를 통해 실제 파일 이름과 연결합니다. 어떤 OPEN보다도 먼저 FILE-CONTROL에서 한 번 이루어집니다.",
+   "explanation_en": "SELECT declares a file name for use in the program and links it to a physical filename via ASSIGN TO, done once in FILE-CONTROL before any OPEN.",
+   "concept_tags": [
+    "select_clause"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cobol_l2_u03_q005",
+   "type": "predict_output",
+   "code": "01 END-OF-FILE PIC X VALUE \"N\".\n...\nOPEN INPUT MYFILE.\nREAD MYFILE\n    AT END MOVE \"Y\" TO END-OF-FILE\nEND-READ.\nDISPLAY END-OF-FILE.",
+   "prompt_ko": "MYFILE이 완전히 비어있다고 가정할 때 출력 결과는?",
+   "prompt_en": "What is printed, assuming MYFILE is completely empty?",
+   "expected_answers": [
+    "Y"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "N",
+    "오류",
+    "빈 값"
+   ],
+   "explanation_ko": "AT END는 READ가 파일 끝에 도달했을 때(빈 파일이라면 즉시) 무엇을 할지 지정합니다. 파일에 읽을 것이 없으므로 END-OF-FILE은 Y로 설정됩니다. COBOL이 데이터 끝을 예외 없이 안전하게 알리는 방식입니다.",
+   "explanation_en": "AT END specifies what to do when READ reaches the end of the file (or, for an empty file, immediately); since the file has nothing to read, END-OF-FILE is set to Y, exactly the safe, exception-free way COBOL signals end-of-data.",
+   "concept_tags": [
+    "at_end_clause"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

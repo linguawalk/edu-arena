@@ -1,0 +1,112 @@
+{
+ "language": "java",
+ "category": "oop_enterprise",
+ "level": 3,
+ "unit": 2,
+ "unit_title": "매개변수 전달 방식",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "java_l3_u02_q001",
+   "type": "predict_output",
+   "code": "static void modifyValue(int x) {\n    x = 100;\n}\n\npublic static void main(String[] args) {\n    int a = 5;\n    modifyValue(a);\n    System.out.println(a);\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "100",
+    "오류",
+    "0"
+   ],
+   "explanation_ko": "Java는 기본형(primitive)을 항상 값으로 전달합니다. 메서드 안에서 x를 바꿔도 원본 a에는 영향이 없어 5로 유지됩니다.",
+   "explanation_en": "Java always passes primitives by value; changing x inside the method doesn't affect the original a, which stays 5.",
+   "concept_tags": [
+    "pass_by_value"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "java_l3_u02_q003",
+   "type": "predict_output",
+   "code": "static void modifyArray(int[] arr) {\n    arr[0] = 100;\n}\n\npublic static void main(String[] args) {\n    int[] nums = {1, 2, 3};\n    modifyArray(nums);\n    System.out.println(nums[0]);\n}",
+   "prompt_ko": "출력 결과는? (위의 기본형 예제와 비교해보세요.)",
+   "prompt_en": "What is printed? (Compare with the primitive example above.)",
+   "expected_answers": [
+    "100"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "1",
+    "오류",
+    "0"
+   ],
+   "explanation_ko": "Java에서 배열은 객체입니다. 참조 자체는 값으로 전달되지만, 그 참조가 같은 배열을 가리키므로 arr를 통해 내용을 수정하면 원본에도 반영됩니다.",
+   "explanation_en": "Arrays are objects in Java; the reference itself is passed by value, but that reference points to the same array, so modifying its contents through arr affects the original.",
+   "concept_tags": [
+    "pass_by_value",
+    "reference_type"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "java_l3_u02_q004",
+   "type": "predict_output",
+   "code": "static void reassignArray(int[] arr) {\n    arr = new int[]{100, 200};\n}\n\npublic static void main(String[] args) {\n    int[] nums = {1, 2, 3};\n    reassignArray(nums);\n    System.out.println(nums[0]);\n}",
+   "prompt_ko": "출력 결과는? (요소 하나가 아니라 arr 자체를 재할당하는 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: this reassigns arr entirely, not just an element.)",
+   "expected_answers": [
+    "1"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "100",
+    "200",
+    "오류"
+   ],
+   "explanation_ko": "메서드 안에서 arr를 재할당하면 참조의 지역 복사본만 다른 곳을 가리키게 바뀝니다. main의 nums가 가리키는 대상에는 영향이 없어 {1, 2, 3} 그대로입니다.",
+   "explanation_en": "Reassigning arr inside the method only changes the local copy of the reference to point elsewhere; it doesn't affect what nums points to in main, which stays {1, 2, 3}.",
+   "concept_tags": [
+    "pass_by_value",
+    "reference_type"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "java_l3_u02_q005",
+   "type": "fill_blank",
+   "code": "static void doubleValue(int x) {\n    x = x * 2;\n}\n\npublic static void main(String[] args) {\n    int n = 5;\n    doubleValue(n);\n    System.out.println(n);  // 여전히 ____ 이어야 함\n}",
+   "prompt_ko": "Java의 기본형 값 전달 규칙을 감안할 때, n이 출력하는 값을 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with what n prints as, given Java's pass-by-value rule for primitives.",
+   "expected_answers": [
+    "5"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "10",
+    "0",
+    "오류"
+   ],
+   "explanation_ko": "int는 기본형이라 항상 값으로 전달되므로, doubleValue는 자신만의 지역 복사본인 x만 수정합니다. main의 n은 5 그대로 유지됩니다.",
+   "explanation_en": "Since int is a primitive and always passed by value, doubleValue only modifies its own local copy of x; n in main remains 5.",
+   "concept_tags": [
+    "pass_by_value"
+   ],
+   "difficulty": "intro"
+  }
+ ]
+}

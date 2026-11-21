@@ -1,0 +1,138 @@
+{
+ "language": "pascal",
+ "category": "legacy_historical",
+ "level": 3,
+ "unit": 3,
+ "unit_title": "열거형과 집합",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "pascal_l3_u03_q001",
+   "type": "predict_output",
+   "code": "type\n  TColor = (Red, Green, Blue);\nvar\n  c: TColor;\nbegin\n  c := Green;\n  writeln(Ord(c));\nend.",
+   "prompt_ko": "출력 결과는? (Ord는 열거형 값의 숫자 위치를 반환합니다.)",
+   "prompt_en": "What is printed? (Ord returns the numeric position of an enum value.)",
+   "expected_answers": [
+    "1"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "Green",
+    "0",
+    "2"
+   ],
+   "explanation_ko": "열거형 값은 선언 순서대로 0부터 번호가 매겨집니다: Red=0, Green=1, Blue=2. Ord(Green)은 1을 반환합니다.",
+   "explanation_en": "Enum values are numbered from 0 in declaration order: Red=0, Green=1, Blue=2; Ord(Green) returns 1.",
+   "concept_tags": [
+    "enum_type",
+    "ord_function"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "pascal_l3_u03_q002",
+   "type": "fill_blank",
+   "code": "type\n  TDay = ____Monday, Tuesday, Wednesday);\nvar\n  d: TDay;\nbegin\n  d := Tuesday;\nend.",
+   "prompt_ko": "열거형 타입 선언을 시작하는 기호를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the opening symbol for an enum type declaration.",
+   "expected_answers": [
+    "("
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "[",
+    "{",
+    "<"
+   ],
+   "explanation_ko": "열거형 타입은 괄호 안에 쉼표로 구분된 이름 붙은 값 목록으로 선언됩니다.",
+   "explanation_en": "Enum types are declared with a parenthesized, comma-separated list of named values.",
+   "concept_tags": [
+    "enum_type"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "pascal_l3_u03_q003",
+   "type": "predict_output",
+   "code": "type\n  TColor = (Red, Green, Blue);\nvar\n  s: set of TColor;\nbegin\n  s := [Red, Blue];\n  if Red in s then\n    writeln('RED IN SET');\nend.",
+   "prompt_ko": "출력 결과는? (내장된 set 타입에 주의하세요.)",
+   "prompt_en": "What is printed? (Note the built-in set type.)",
+   "expected_answers": [
+    "RED IN SET"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류",
+    "아무것도 출력되지 않음",
+    "Red"
+   ],
+   "explanation_ko": "set of TColor는 TColor 값의 조합을 담을 수 있는 집합을 선언합니다. in 연산자는 소속 여부를 확인하며, Red는 실제로 [Red, Blue] 안에 있습니다.",
+   "explanation_en": "set of TColor declares a set that can hold a combination of TColor values; the in operator checks membership, and Red is indeed in [Red, Blue].",
+   "concept_tags": [
+    "set_type",
+    "in_operator"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "pascal_l3_u03_q004",
+   "type": "predict_output",
+   "code": "type\n  TColor = (Red, Green, Blue);\nvar\n  s: set of TColor;\nbegin\n  s := [Red, Blue];\n  if Green in s then\n    writeln('GREEN IN SET')\n  else\n    writeln('GREEN NOT IN SET');\nend.",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "GREEN NOT IN SET"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "GREEN IN SET",
+    "오류",
+    "아무것도 출력되지 않음"
+   ],
+   "explanation_ko": "s는 Red와 Blue만 담고 있습니다. Green은 속하지 않으므로 in 검사가 거짓이 되어 GREEN NOT IN SET이 출력됩니다.",
+   "explanation_en": "s contains only Red and Blue; Green isn't a member, so the in check is false, printing GREEN NOT IN SET.",
+   "concept_tags": [
+    "set_type",
+    "in_operator"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "pascal_l3_u03_q006",
+   "type": "predict_output",
+   "code": "type\n  TColor = (Red, Green, Blue);\nvar\n  s: set of TColor;\nbegin\n  s := [Red, Green, Blue];\n  s := s - [Green];\n  if Green in s then\n    writeln('STILL THERE')\n  else\n    writeln('REMOVED');\nend.",
+   "prompt_ko": "출력 결과는? (- 로 집합 차집합을 구합니다.)",
+   "prompt_en": "What is printed? (Set difference with -.)",
+   "expected_answers": [
+    "REMOVED"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "STILL THERE",
+    "오류",
+    "아무것도 출력되지 않음"
+   ],
+   "explanation_ko": "-는 차집합을 계산합니다. s - [Green]은 s에서 Green을 제거해서, 이후 in 검사가 거짓이 되어 REMOVED가 출력됩니다.",
+   "explanation_en": "- computes set difference; s - [Green] removes Green from s, so the subsequent in check is false, printing REMOVED.",
+   "concept_tags": [
+    "set_type"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

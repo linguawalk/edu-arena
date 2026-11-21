@@ -1,0 +1,89 @@
+{
+ "language": "cpp",
+ "category": "system_low_level",
+ "level": 3,
+ "unit": 4,
+ "unit_title": "추상 클래스와 순수 가상 함수",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "cpp_l3_u04_q001",
+   "type": "fill_blank",
+   "code": "class Shape {\npublic:\n    virtual double area() ____ 0;\n};\n// area()는 몸체 없이, 자식 클래스가 반드시 구현하도록 강제해야 함",
+   "prompt_ko": "area()를 순수 가상 함수로 만들려면 빈칸에 무엇이 들어가야 할까요?",
+   "prompt_en": "Fill in the blank to make area() a pure virtual function.",
+   "expected_answers": [
+    "="
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "==",
+    "->",
+    "::"
+   ],
+   "explanation_ko": "virtual 함수 선언 뒤에 = 0을 붙이면 순수 가상 함수가 됩니다. 이 클래스는 구현을 제공하지 않으며, 자식 클래스가 반드시 구현해야 합니다.",
+   "explanation_en": "Writing = 0 after a virtual function's declaration makes it pure virtual, meaning the class provides no implementation and derived classes must supply one.",
+   "concept_tags": [
+    "abstract_class",
+    "pure_virtual"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cpp_l3_u04_q003",
+   "type": "predict_output",
+   "code": "class Shape {\npublic:\n    virtual double area() = 0;\n};\n\nclass Circle : public Shape {\npublic:\n    double radius;\n    Circle(double r) : radius(r) {}\n    double area() override {\n        return 3.14 * radius * radius;\n    }\n};\n\nShape *s = new Circle(2);\ncout << s->area();",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "12.56"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0",
+    "오류",
+    "2"
+   ],
+   "explanation_ko": "Circle이 area()를 구현해서 순수 가상 함수 요구사항을 충족합니다. Shape 포인터를 통해 호출해도 Circle의 구현으로 디스패치되어 3.14 * 2 * 2 = 12.56이 됩니다.",
+   "explanation_en": "Circle implements area(), satisfying the pure virtual requirement; calling it through a Shape pointer dispatches to Circle's implementation: 3.14 * 2 * 2 = 12.56.",
+   "concept_tags": [
+    "abstract_class",
+    "pure_virtual",
+    "polymorphism"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "cpp_l3_u04_q006",
+   "type": "predict_output",
+   "code": "class Shape {\npublic:\n    virtual double area() = 0;\n};\n\nclass Square : public Shape {\npublic:\n    double side;\n    Square(double s) : side(s) {}\n    double area() override {\n        return side * side;\n    }\n};\n\nShape *shapes[2] = { new Square(3), new Square(5) };\ndouble total = 0;\nfor (int i = 0; i < 2; i++) {\n    total += shapes[i]->area();\n}\ncout << total;",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "34"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "8",
+    "15",
+    "오류"
+   ],
+   "explanation_ko": "Square(3).area()는 9, Square(5).area()는 25입니다. 다형성을 통해 합산하면 총합은 34입니다.",
+   "explanation_en": "Square(3).area() is 9, and Square(5).area() is 25; summed through polymorphism, the total is 34.",
+   "concept_tags": [
+    "abstract_class",
+    "polymorphism"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

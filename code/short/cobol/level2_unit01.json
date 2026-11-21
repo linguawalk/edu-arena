@@ -1,0 +1,86 @@
+{
+ "language": "cobol",
+ "category": "legacy_historical",
+ "level": 2,
+ "unit": 1,
+ "unit_title": "배열(OCCURS절)",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "cobol_l2_u01_q002",
+   "type": "fill_blank",
+   "code": "01 SCORES.\n    05 SCORE-ITEM PIC 9(3) ____ 10 TIMES.",
+   "prompt_ko": "SCORE-ITEM이 배열로 10번 반복되게 만드는 절을 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the clause that makes SCORE-ITEM repeat 10 times as an array.",
+   "expected_answers": [
+    "OCCURS"
+   ],
+   "match": {
+    "case": false,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "ARRAY",
+    "REPEAT",
+    "DIM"
+   ],
+   "explanation_ko": "OCCURS N TIMES는 데이터 항목을 N개 요소를 가진 배열로 선언합니다. BASIC의 DIM이나 다른 언어의 배열 선언에 해당하는 COBOL의 방식입니다.",
+   "explanation_en": "OCCURS N TIMES declares a data item as an array with N elements, COBOL's equivalent of DIM in BASIC or array declarations elsewhere.",
+   "concept_tags": [
+    "occurs_clause"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "cobol_l2_u01_q003",
+   "type": "predict_output",
+   "code": "01 NUMS.\n    05 NUM-ITEM PIC 9(4) OCCURS 5 TIMES.\n01 I PIC 9(2).\n...\nPERFORM VARYING I FROM 1 BY 1 UNTIL I > 5\n    COMPUTE NUM-ITEM(I) = I * 10\nEND-PERFORM.\nDISPLAY NUM-ITEM(3).",
+   "prompt_ko": "출력 결과는? (반복문으로 OCCURS 배열을 채웁니다.)",
+   "prompt_en": "What is printed? (Filling an OCCURS array in a loop.)",
+   "expected_answers": [
+    "0030"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0003",
+    "0010",
+    "오류"
+   ],
+   "explanation_ko": "반복문은 1부터 5까지 각 I에 대해 NUM-ITEM(I)를 I*10으로 채웁니다. NUM-ITEM(3)은 I=3일 때 설정되어 3*10=30이 되어 0030으로 출력됩니다.",
+   "explanation_en": "The loop fills NUM-ITEM(I) with I*10 for each I from 1 to 5; NUM-ITEM(3) was set when I=3, giving 3*10=30, displayed as 0030.",
+   "concept_tags": [
+    "occurs_clause",
+    "perform_varying"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "cobol_l2_u01_q004",
+   "type": "predict_output",
+   "code": "01 LETTERS.\n    05 LETTER-ITEM PIC X(1) OCCURS 3 TIMES.\n...\nMOVE \"A\" TO LETTER-ITEM(1).\nMOVE \"B\" TO LETTER-ITEM(2).\nMOVE \"C\" TO LETTER-ITEM(3).\nDISPLAY LETTER-ITEM(2).",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "B"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "A",
+    "C",
+    "오류"
+   ],
+   "explanation_ko": "LETTER-ITEM(2)는 두 번째 요소를 가리키며, 명시적으로 B로 설정됐습니다.",
+   "explanation_en": "LETTER-ITEM(2) refers to the second element, which was explicitly set to B.",
+   "concept_tags": [
+    "occurs_clause"
+   ],
+   "difficulty": "intro"
+  }
+ ]
+}

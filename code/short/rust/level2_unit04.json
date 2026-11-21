@@ -1,0 +1,114 @@
+{
+ "language": "rust",
+ "category": "system_low_level",
+ "level": 2,
+ "unit": 4,
+ "unit_title": "슬라이스",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "rust_l2_u04_q001",
+   "type": "predict_output",
+   "code": "let s = String::from(\"hello\");\nlet slice = &s[0..3];\nprintln!(\"{}\", slice);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "hel"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "hello",
+    "llo",
+    "오류"
+   ],
+   "explanation_ko": "문자열 슬라이스 &s[0..3]은 인덱스 0, 1, 2(h, e, l)를 참조해 hel을 만듭니다.",
+   "explanation_en": "A string slice &s[0..3] references characters at indices 0, 1, 2 (h, e, l), producing hel.",
+   "concept_tags": [
+    "slice",
+    "string_slice"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l2_u04_q002",
+   "type": "predict_output",
+   "code": "let arr = [1, 2, 3, 4, 5];\nlet slice = &arr[1..3];\nprintln!(\"{} {}\", slice[0], slice.len());",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "2 2"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "1 3",
+    "2 3",
+    "오류"
+   ],
+   "explanation_ko": "arr[1..3]은 인덱스 1과 2(값 2와 3)를 잘라냅니다. slice[0]은 2이고, 슬라이스의 길이는 2입니다.",
+   "explanation_en": "arr[1..3] slices out elements at indices 1 and 2 (values 2 and 3); slice[0] is 2, and the slice has 2 elements.",
+   "concept_tags": [
+    "slice",
+    "array_slice"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "rust_l2_u04_q003",
+   "type": "fill_blank",
+   "code": "fn first_word(s: &String) -> &____ {\n    let bytes = s.as_bytes();\n    for (i, &item) in bytes.iter().enumerate() {\n        if item == b' ' {\n            return &s[0..i];\n        }\n    }\n    &s[..]\n}",
+   "prompt_ko": "빌려온 문자열 슬라이스를 반환하는 타입을 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the return type for a borrowed string slice.",
+   "expected_answers": [
+    "str"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "String",
+    "char",
+    "Vec"
+   ],
+   "explanation_ko": "String의 빌려온 조각을 반환하는 함수는 소유권을 가진 String 타입이 아니라, 문자열 슬라이스 타입인 &str을 씁니다.",
+   "explanation_en": "A function returning a borrowed slice of a String uses &str, the string slice type, rather than the owned String type.",
+   "concept_tags": [
+    "slice",
+    "string_slice"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "rust_l2_u04_q005",
+   "type": "predict_output",
+   "code": "let s = String::from(\"hello world\");\nfn first_word(s: &String) -> &str {\n    let bytes = s.as_bytes();\n    for (i, &item) in bytes.iter().enumerate() {\n        if item == b' ' {\n            return &s[0..i];\n        }\n    }\n    &s[..]\n}\nprintln!(\"{}\", first_word(&s));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "hello"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "world",
+    "hello world",
+    "오류"
+   ],
+   "explanation_ko": "first_word는 첫 번째 공백을 찾아 그 앞부분을 슬라이스로 반환합니다. \"hello world\"에서는 hello가 됩니다.",
+   "explanation_en": "first_word scans for the first space and returns everything before it as a slice; for \"hello world\", that's hello.",
+   "concept_tags": [
+    "slice",
+    "string_slice"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

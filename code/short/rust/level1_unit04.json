@@ -1,0 +1,113 @@
+{
+ "language": "rust",
+ "category": "system_low_level",
+ "level": 1,
+ "unit": 4,
+ "unit_title": "문자열과 벡터 기초",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "rust_l1_u04_q001",
+   "type": "predict_output",
+   "code": "let mut v: Vec<i32> = Vec::new();\nv.push(10);\nv.push(20);\nv.push(30);\nprintln!(\"{}\", v.len());",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "2",
+    "10",
+    "오류"
+   ],
+   "explanation_ko": "Vec::new()는 빈 벡터를 만들고, push할 때마다 요소가 하나씩 추가됩니다. 세 번 push한 뒤 len()은 3을 반환합니다.",
+   "explanation_en": "Vec::new() creates an empty vector, and each push adds one element; after three pushes, len() returns 3.",
+   "concept_tags": [
+    "vector",
+    "push"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l1_u04_q002",
+   "type": "predict_output",
+   "code": "let v = vec![1, 2, 3];\nlet sum: i32 = v.iter().sum();\nprintln!(\"{}\", sum);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "6"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "123",
+    "3",
+    "오류"
+   ],
+   "explanation_ko": "iter()는 벡터에 대한 반복자를 만들고, sum()은 모든 요소를 더합니다: 1+2+3=6.",
+   "explanation_en": "iter() creates an iterator over the vector, and sum() adds all elements together: 1+2+3=6.",
+   "concept_tags": [
+    "vector",
+    "iterator"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "rust_l1_u04_q003",
+   "type": "fill_blank",
+   "code": "let v = ____![1, 2, 3];\nprintln!(\"{}\", v[0]);",
+   "prompt_ko": "초깃값을 가진 벡터를 간편하게 만드는 매크로를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the macro used to quickly create a vector with initial values.",
+   "expected_answers": [
+    "vec"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "Vec",
+    "array",
+    "list"
+   ],
+   "explanation_ko": "vec!는 주어진 값들로 미리 채워진 Vec을 만드는 매크로로, Vec::new()를 호출한 뒤 하나씩 push하는 것보다 간편합니다.",
+   "explanation_en": "vec! is a macro that creates a Vec pre-filled with the given values, shorter than calling Vec::new() and pushing each one.",
+   "concept_tags": [
+    "vector"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "rust_l1_u04_q004",
+   "type": "predict_output",
+   "code": "let s1 = String::from(\"Hello, \");\nlet s2 = String::from(\"World!\");\nlet s3 = s1 + &s2;\nprintln!(\"{}\", s3);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "Hello, World!"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "s1s2",
+    "오류",
+    "Hello, "
+   ],
+   "explanation_ko": "String에 대한 + 연산자는 s1과 s2의 참조를 이어붙여 'Hello, World!'를 만듭니다.",
+   "explanation_en": "The + operator on String concatenates s1 with a borrowed reference to s2, producing 'Hello, World!'.",
+   "concept_tags": [
+    "string_type",
+    "concatenation"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}
