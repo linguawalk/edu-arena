@@ -30,12 +30,26 @@ PRAC_ROW_END = "<span class=\"meta\">${p ? `${p.first}/${p.total}` : `${l.questi
 ESSAY_CSS = ".items .essay{padding-left:36px;font-size:16px;color:var(--ink-soft)}.items .essay .state{width:14px;height:14px;border-radius:3px}"
 
 
+def _moved_patch(html):
+    """lit에서 외국어(한자·영어·일본어·중국어)로 옮긴 코스는 돌아가기·과목 이름을 lingua 쪽으로 보낸다."""
+    a = 'document.getElementById("backCourse").href = `browse.html?c=${COURSE}#ch${CH}`;'
+    b = ('const MOVED = /^c(3|4|5|6|11|12|13|14)$/.test(COURSE), BROWSE = MOVED ? "../lingua/browse.html" : "browse.html", SUBJ = MOVED ? "외국어" : "언어와 문학";\n'
+         'if (MOVED) { const sj = document.querySelector(".ea-subj"); sj.textContent = SUBJ; sj.href = BROWSE; }\n'
+         'document.getElementById("backCourse").href = `${BROWSE}?c=${COURSE}#ch${CH}`;')
+    assert a in html
+    html = html.replace(a, b)
+    html = html.replace("에세이 ${idx + 1} · 언어와 문학 · edu-arena", "에세이 ${idx + 1} · ${SUBJ} · edu-arena")
+    html = html.replace('<p class="crumb"><a href="browse.html?c=${COURSE}#ch${CH}">', '<p class="crumb"><a href="${BROWSE}?c=${COURSE}#ch${CH}">')
+    html = html.replace('<a class="btn" href="browse.html?c=${COURSE}#ch${CH}">코스 목록으로</a>', '<a class="btn" href="${BROWSE}?c=${COURSE}#ch${CH}">코스 목록으로</a>')
+    return html
+
+
 def build_pages():
     with open(os.path.join(ROOT, "tools", "essay_tpl.html"), encoding="utf-8") as f:
         tpl = f.read()
     for folder, (name, store) in SUBJECTS.items():
         with open(os.path.join(ROOT, folder, "essay.html"), "w", encoding="utf-8") as f:
-            f.write(tpl.replace("{{SUBJ}}", name).replace("{{STORE}}", store))
+            f.write(_moved_patch(tpl.replace("{{SUBJ}}", name).replace("{{STORE}}", store)) if folder == "lit" else tpl.replace("{{SUBJ}}", name).replace("{{STORE}}", store))
 
 
 def patch_browse(folder):
