@@ -92,7 +92,9 @@ const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;
 const load = k => { try { return JSON.parse(localStorage.getItem(k)) || {}; } catch (e) { return {}; } };
 const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
 const LEVELS = [["상", 2], ["중", 1], ["하", 0]];
-document.getElementById("backCourse").href = `browse.html?c=${COURSE}#ch${CH}`;
+const MOVED = /^c(3|4|5|6|11|12|13|14)$/.test(COURSE), BROWSE = MOVED ? "../lingua/browse.html" : "browse.html", SUBJ = MOVED ? "외국어" : "언어와 문학";
+if (MOVED) { const sj = document.querySelector(".ea-subj"); sj.textContent = SUBJ; sj.href = BROWSE; }
+document.getElementById("backCourse").href = `${BROWSE}?c=${COURSE}#ch${CH}`;
 
 let DATA, idx = 0;
 const drafts = load(STORE + ":essays");   // { "<essay id>": {text, done, auto:[p,t], self:{...}} }
@@ -115,12 +117,12 @@ function autoCheck(e, text){
 
 function render(){
   const e = DATA.essays[idx], d = drafts[e.id] || {};
-  document.title = `${DATA.title} 에세이 ${idx + 1} · 언어와 문학 · edu-arena`;
+  document.title = `${DATA.title} 에세이 ${idx + 1} · ${SUBJ} · edu-arena`;
   const steps = DATA.essays.map((x, k) => `<button type="button" data-k="${k}"${k === idx ? ' aria-current="step"' : ""} class="${(drafts[x.id] || {}).done ? "done" : ""}">에세이 ${k + 1}</button>`).join("");
   const srcs = (e.sources || []).map(s => `<div class="src"><h3><b>${esc(s.label)}</b>${s.title ? " " + esc(s.title) : ""}</h3>${
     s.table ? `<table>${s.table.map((r, i) => `<tr>${r.map(c => i ? `<td>${esc(c)}</td>` : `<th>${esc(c)}</th>`).join("")}</tr>`).join("")}</table>` : ""}${
     (s.text || []).map(p => `<p>${esc(p)}</p>`).join("")}</div>`).join("");
-  app.innerHTML = `<p class="crumb"><a href="browse.html?c=${COURSE}#ch${CH}">${esc(DATA.course_title)}</a> · ${esc(DATA.chapter_title)}</p>
+  app.innerHTML = `<p class="crumb"><a href="${BROWSE}?c=${COURSE}#ch${CH}">${esc(DATA.course_title)}</a> · ${esc(DATA.chapter_title)}</p>
     <h1>${esc(DATA.title)} · 에세이</h1>
     <p class="lede">레슨 내용을 바탕으로 짧은 논술을 씁니다. 제출하면 기본 요건을 자동으로 점검하고, 평가 기준에 따라 스스로 평가한 뒤 예시 답안과 비교합니다.</p>
     <div class="steps" role="tablist" aria-label="에세이 선택">${steps}</div>
@@ -165,7 +167,7 @@ function showResult(e, d){
   const selfMax = e.self.length * 2, selfSum = e.self.reduce((a, s, k) => a + (self[k] ?? 0), 0), selfDone = e.self.every((s, k) => self[k] !== undefined);
   const next = idx < DATA.essays.length - 1
     ? `<button class="btn" id="next" type="button">다음 에세이 →</button>`
-    : `<a class="btn" href="browse.html?c=${COURSE}#ch${CH}">코스 목록으로</a>`;
+    : `<a class="btn" href="${BROWSE}?c=${COURSE}#ch${CH}">코스 목록으로</a>`;
   document.getElementById("result").innerHTML = `
     <section class="panel"><h2>1. 자동 점검</h2><p class="sub">분량, 문단, 꼭 다뤄야 할 내용이 들어 있는지만 기계적으로 확인합니다. 글의 논리와 설득력은 아래 자기 평가로 판단하세요.</p>
       <ul class="checks">${r.map(x => `<li class="${x.ok ? "pass" : "fail"}"><span class="m">${x.ok ? "✓" : "✗"}</span><span>${esc(x.label)}${x.note ? `<small>${esc(x.note)}</small>` : ""}</span></li>`).join("")}</ul></section>

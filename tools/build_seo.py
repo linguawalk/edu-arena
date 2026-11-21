@@ -139,8 +139,10 @@ def collect():
                         continue
                     lno = f'{int(l["no"]):02d}'
                     q = f'c={c["id"]}&ch={chno}&l={lno}'
-                    it = dict(subj=subj, sname=sname, id=l["id"], title=l["title"], file=lf,
-                              crumbs=[(f"/{subj}/browse.html", sname), (f"/{subj}/browse.html?c={c['id']}", c["title"])],
+                    home = c.get("home")   # 다른 과목 화면으로 옮긴 코스(파일은 그대로)
+                    hname = {"lingua": "외국어"}.get(home, sname)
+                    it = dict(subj=subj, sname=hname, id=l["id"], title=l["title"], file=lf,
+                              crumbs=[(f"/{home or subj}/browse.html", hname), (f"/{home or subj}/browse.html?c={c['id']}", c["title"])],
                               chapter=f'{ch["chapter"]["no"]}. {ch["chapter"]["title"]}',
                               play=f"/{subj}/player.html?{q}", practice=f"/{subj}/player.html?{q}&practice=1",
                               essay=f"/{subj}/essay.html?{q}" if l.get("essay") else None, group=c["title"], level="레벨1")
@@ -249,6 +251,8 @@ def build_sitemaps(data):
     pages = ["/", "/lessons.html", "/about.html", "/contact.html", "/privacy.html", "/terms.html"]
     for subj, _ in SUBJECTS + EXTRA:
         for name in ["browse.html", "guide.html", "placement.html", "essay.html", "olympiad/browse.html"]:
+            if subj == "lingua" and name == "placement.html":
+                continue   # 예전 외국어 콘텐츠는 가려 둠
             if os.path.exists(os.path.join(ROOT, subj, name)) and not (name == "essay.html"):
                 pages.append(f"/{subj}/{name}")
         if subj in dict(SUBJECTS):

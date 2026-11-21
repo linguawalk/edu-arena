@@ -81,7 +81,11 @@ async function j(u){ const r = await fetch(u); if (!r.ok) throw new Error(u); re
 (async () => {
   const main = document.getElementById("main"), nav = document.getElementById("courses");
   try{
-    const list = await j("content/level1/courses.json");
+    const all = await j("content/level1/courses.json");
+    // 한자·영어 코스는 외국어 영역으로 옮겼습니다. 옛 주소로 오면 그쪽으로 보냅니다.
+    const moved = all.courses.find(c => c.id === COURSE && c.home);
+    if (moved){ location.replace(`../${moved.home}/browse.html?c=${COURSE}${location.hash}`); return; }
+    const list = { courses: all.courses.filter(c => !c.home) };
     nav.innerHTML = list.courses.map((c, k) => c.available
       ? `<li><a href="?c=${c.id}"${c.id === COURSE ? ' aria-current="page"' : ""}><span class="no">${k + 1}</span>${esc(c.title)}</a></li>`
       : `<li><span class="soon"><span class="no">${k + 1}</span>${esc(c.title)}<em>준비 중</em></span></li>`).join("");

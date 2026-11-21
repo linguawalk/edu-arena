@@ -107,6 +107,8 @@ window.Tutor = window.Tutor || {hints: q => q.hint ? [q.hint] : [], diagnoseNume
 const $ = s => document.querySelector(s);
 const P = new URLSearchParams(location.search);
 const LEVEL = P.get("level") || "1", COURSE = P.get("c") || "c1";
+// 한자·영어 코스는 외국어 영역으로 옮겼습니다(파일 위치는 그대로).
+const MOVED = /^c(3|4|5|6|11|12|13|14)$/.test(COURSE), BROWSE = MOVED ? "../lingua/browse.html" : "browse.html", SUBJ = MOVED ? "외국어" : "언어와 문학";
 const CH = (P.get("ch") || "01").padStart(2, "0");
 const LES = P.get("l") ? P.get("l").padStart(2, "0") : null;
 const IS_REVIEW = !LES;
@@ -621,7 +623,7 @@ mainBtn.addEventListener("click", () => {
   if (tries >= 2){ revealBtn.hidden = false; revealBtn.textContent = "정답 보기"; }
 });
 revealBtn.addEventListener("click", () => resolved(false, true));
-$("#close").addEventListener("click", () => { location.href = `browse.html?c=${COURSE}`; });
+$("#close").addEventListener("click", () => { location.href = `${BROWSE}?c=${COURSE}`; });
 
 function nextTarget(){
   if (!chapterMeta) return null;
@@ -645,9 +647,9 @@ function finish(){
   main.querySelector("h1").textContent = IS_REVIEW ? data.review.title : data.lesson.title;
   appendWeak();
   hintBtn.hidden = true; revealBtn.hidden = false; revealBtn.textContent = "목록으로";
-  revealBtn.onclick = () => { location.href = `browse.html?c=${COURSE}`; };
+  revealBtn.onclick = () => { location.href = `${BROWSE}?c=${COURSE}`; };
   if (nxt){ mainBtn.textContent = nxt.label; mainBtn.disabled = false; phase = "done"; mainBtn.onclick = () => { location.href = nxt.href; }; }
-  else { mainBtn.textContent = "목록으로"; mainBtn.onclick = () => { location.href = `browse.html?c=${COURSE}`; }; revealBtn.hidden = true; }
+  else { mainBtn.textContent = "목록으로"; mainBtn.onclick = () => { location.href = `${BROWSE}?c=${COURSE}`; }; revealBtn.hidden = true; }
 }
 
 async function load(){
@@ -657,13 +659,13 @@ async function load(){
     data = await r.json();
     screens = IS_REVIEW ? data.questions : data.screens;
     const title = IS_REVIEW ? data.review.title : data.lesson.title;
-    document.title = `${title} · 언어와 문학 · edu-arena`;
+    document.title = `${title} · ${SUBJ} · edu-arena`;
     $("#where").textContent = IS_REVIEW ? `${data.chapter.title} 복습` : `${data.chapter.no}-${data.lesson.no} ${title}`;
     Promise.all([fetch(BASE + "chapter.json").then(r => r.ok ? r.json() : null), fetch(`content/level${LEVEL}/${COURSE}/course.json`).then(r => r.ok ? r.json() : null)])
       .then(([c, k]) => { chapterMeta = c; courseMeta = k; }).catch(() => {});
     show();
   }catch(e){
-    main.innerHTML = `<div class="error"><h1>레슨을 불러오지 못했습니다</h1><p class="body"></p><p><a href="browse.html">코스 목록으로 돌아가기</a></p></div>`;
+    main.innerHTML = `<div class="error"><h1>레슨을 불러오지 못했습니다</h1><p class="body"></p><p><a href="${BROWSE}">코스 목록으로 돌아가기</a></p></div>`;
     main.querySelector(".body").textContent = e.message; fb.hidden = true;
   }
 }

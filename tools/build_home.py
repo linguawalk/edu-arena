@@ -21,10 +21,10 @@ SUBJECTS = [
      [("레벨2·3 가이드", "guide.html"), ("심화 · 인문·사회 경시", "olympiad/browse.html")]),
     ("biz", "경제와 경영", "hum", "고교 경제부터 회계, 세무, 마케팅, 무역까지",
      [("레벨2·3 가이드", "guide.html"), ("심화 · 경제 올림피아드", "olympiad/browse.html")]),
-    ("lit", "언어와 문학", "hum", "국어, 한자, 영어, 국문학, 세계문학",
+    ("lit", "언어와 문학", "hum", "국어, 국문학, 세계문학",
      [("레벨2·3 가이드", "guide.html"), ("심화 · 언어학 올림피아드", "olympiad/browse.html")]),
-    ("lingua", "외국어", "hum", "영어, 일본어, 중국어, 프랑스어, 독일어, 스페인어 · CEFR A1–C2",
-     [("배치고사", "placement.html")]),
+    ("lingua", "외국어", "hum", "영어, 한자, 일본어, 중국어",
+     []),
     ("math", "수학", "stem", "중학 핵심부터 고등 수학까지",
      [("진입 진단", "placement.html"), ("레벨2·3 가이드", "guide.html"), ("심화 · 수학 올림피아드", "olympiad/browse.html")]),
     ("sci", "과학", "stem", "물리, 화학, 생명과학, 지구과학",
@@ -67,14 +67,13 @@ e = html.escape
 def load_courses(folder):
     if folder == "code":
         return [{"title": t, "description": d, "href": f"code/{h}", "available": True} for t, d, h in CODE_COURSES]
-    if folder == "lingua":
-        return [{"title": t, "description": d, "href": f"lingua/browse.html?lang={k}", "available": True} for t, d, k in LINGUA_COURSES]
-    path = os.path.join(ROOT, folder, "content", "level1", "courses.json")
+    src = "lit" if folder == "lingua" else folder   # 외국어 코스는 lit/content에 파일이 있고 home=lingua로 표시
+    path = os.path.join(ROOT, src, "content", "level1", "courses.json")
     with open(path, encoding="utf-8") as f:
         data = json.load(f)
     return [{"title": c["title"], "description": c.get("description", ""),
-             "href": f"{folder}/browse.html?c={c['id']}", "available": c.get("available", True)}
-            for c in data["courses"]]
+             "href": f"{c.get('home') or folder}/browse.html?c={c['id']}", "available": c.get("available", True)}
+            for c in data["courses"] if (c.get("home") == "lingua") == (folder == "lingua")]
 
 
 def card(c, group):
