@@ -102,6 +102,79 @@ window.EA_SITE = window.EA_SITE || {
     document.body.appendChild(f);
   }
 
+
+  /* ---------- 학습 진도 동기화: 로그인한 회원의 *:progress 기록을 계정과 맞춘다 ---------- */
+  var syncing = null;
+  function loadLib() {
+    return new Promise(function (res, rej) {
+      if (window.supabase) return res();
+      var s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+      s.onload = function () { res(); }; s.onerror = function () { rej(new Error("lib")); };
+      document.head.appendChild(s);
+    });
+  }
+  function localStores() {
+    var out = {};
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (/:progress$/.test(k)) { try { out[k] = JSON.parse(localStorage.getItem(k)) || {}; } catch (e) { out[k] = {}; } }
+      }
+    } catch (e) {}
+    return out;
+  }
+  function syncProgress() {
+    if (syncing) return syncing;
+    if (!signedIn()) return Promise.resolve(null);
+    syncing = loadLib().then(function () {
+      var sb = window.supabase.createClient(S.SUPABASE_URL, S.SUPABASE_ANON_KEY);
+      window.EA_SB = window.EA_SB || sb;
+      return sb.auth.getSession().then(function (r) {
+        var ses = r.data && r.data.session; if (!ses) return null;
+        var uid = ses.user.id;
+        // 가입 동의를 마친 회원만 저장한다
+        return sb.from("profiles").select("age14_confirmed").eq("id", uid).maybeSingle().then(function (pr) {
+          if (!pr.data || !pr.data.age14_confirmed) return null;
+          var rows = [], from = 0;
+          function page() {
+            return sb.from("user_progress").select("store,lesson_id,rec,updated_at").range(from, from + 999).then(function (q) {
+              if (q.error) throw q.error;
+              rows = rows.concat(q.data || []);
+              if ((q.data || []).length === 1000) { from += 1000; return page(); }
+            });
+          }
+          return page().then(function () {
+            var loc = localStores(), remote = {}, up = [], changed = {};
+            rows.forEach(function (x) { (remote[x.store] = remote[x.store] || {})[x.lesson_id] = x.rec; });
+            Object.keys(remote).forEach(function (st) { if (!loc[st]) loc[st] = {}; });
+            Object.keys(loc).forEach(function (st) {
+              var L = loc[st], R = remote[st] || {};
+              Object.keys(L).forEach(function (id) {
+                var a = L[id], b = R[id];
+                if (!a || typeof a !== "object") return;
+                if (!b || (a.at || 0) > (b.at || 0)) up.push({ user_id: uid, store: st, lesson_id: id, rec: a, updated_at: new Date().toISOString() });
+              });
+              Object.keys(R).forEach(function (id) {
+                var a = L[id], b = R[id];
+                if (!a || (b.at || 0) > (a.at || 0)) { L[id] = b; changed[st] = true; }
+              });
+            });
+            Object.keys(changed).forEach(function (st) { try { localStorage.setItem(st, JSON.stringify(loc[st])); } catch (e) {} });
+            var jobs = [];
+            for (var i = 0; i < up.length; i += 500) jobs.push(sb.from("user_progress").upsert(up.slice(i, i + 500)));
+            return Promise.all(jobs).then(function () { return { up: up.length, down: Object.keys(changed).length }; });
+          });
+        });
+      });
+    }).catch(function () { return null; });
+    return syncing;
+  }
+  window.EA_SYNC = syncProgress;
+  // 레슨을 푸는 중에는 방해하지 않도록 조금 뒤에 한 번만 맞춘다
+  setTimeout(function () { try { syncProgress(); } catch (e) {} }, 1500);
+  if (immersive) setInterval(function () { if (!document.hidden) { syncing = null; syncProgress(); } }, 90000);
+
   function addAuthToBars() {
     // 과목 화면의 공통 상단 바(family-bar.js)
     var bar = document.querySelector(".ea-bar .ea-in");

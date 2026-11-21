@@ -6,9 +6,9 @@
 <meta name="robots" content="noindex, follow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>로그인 · edu-arena</title>
-<meta name="description" content="edu-arena 로그인과 회원가입.">
+<meta name="description" content="edu-arena 로그인.">
 <link rel="canonical" href="https://edu-arena.org/login.html">
-<meta property="og:type" content="website"><meta property="og:site_name" content="edu-arena"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="로그인 · edu-arena"><meta property="og:description" content="edu-arena 로그인과 회원가입."><meta property="og:url" content="https://edu-arena.org/login.html"><meta property="og:image" content="https://edu-arena.org/assets/og-image.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="edu-arena · 읽기 전에 먼저 풀어 봅니다"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website"><meta property="og:site_name" content="edu-arena"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="로그인 · edu-arena"><meta property="og:description" content="edu-arena 로그인."><meta property="og:url" content="https://edu-arena.org/login.html"><meta property="og:image" content="https://edu-arena.org/assets/og-image.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="edu-arena · 읽기 전에 먼저 풀어 봅니다"><meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -57,20 +57,19 @@ textarea{min-height:160px;resize:vertical}
 <header><div class="hin"><a class="logo" href="/"><svg class="ea-mark" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#172033"/><path d="M22 16h-7v32h7M42 16h7v32h-7" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 33l6 6 11-14" fill="none" stroke="#FFD84D" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>edu-arena</span></a><nav data-auth><a href="/lessons.html">레슨 목록</a></nav></div></header>
 <main class="wrap">
 
-<h1>로그인 · 회원가입</h1>
-<p class="lede">처음이면 자동으로 가입됩니다. 학습 콘텐츠는 로그인하지 않아도 모두 이용할 수 있습니다.</p>
+<h1>로그인</h1>
+<p class="lede">가입한 방법으로 로그인하세요. 아직 회원이 아니면 <a href="/signup.html">회원가입</a>을 먼저 해 주세요. 학습 콘텐츠는 로그인하지 않아도 모두 이용할 수 있습니다.</p>
 <div class="card" id="box">
-  <label class="check"><input type="checkbox" id="age"> <span>[필수] 만 14세 이상입니다.</span></label>
-  <label class="check"><input type="checkbox" id="terms"> <span>[필수] <a href="/terms.html" target="_blank">이용약관</a>과 <a href="/privacy.html" target="_blank">개인정보처리방침</a>(수집 항목: 이메일, 회원 식별자 · 보유: 탈퇴 시까지)에 동의합니다.</span></label>
   <div class="stack">
-    <button class="btn ghost" id="google" disabled>구글 계정으로 계속하기</button>
-    <button class="btn kakao" id="kakao" disabled>카카오 계정으로 계속하기</button>
+    <button class="btn ghost" id="google">구글 계정으로 로그인</button>
+    <button class="btn kakao" id="kakao">카카오 계정으로 로그인</button>
   </div>
-  <label for="em">또는 이메일로 로그인 링크 받기</label>
+  <label for="em">이메일로 로그인 링크 받기</label>
   <input type="email" id="em" autocomplete="email" placeholder="you@example.com">
-  <div class="stack"><button class="btn" id="mail" disabled>로그인 링크 보내기</button></div>
-  <p class="note">비밀번호는 쓰지 않습니다. 메일로 받은 링크를 누르면 로그인됩니다.</p>
+  <div class="stack"><button class="btn" id="mail">로그인 링크 보내기</button></div>
+  <p class="note">비밀번호는 쓰지 않습니다. 가입한 이메일로 받은 링크를 누르면 로그인됩니다.</p>
   <div id="out" class="msg" role="status" hidden></div>
+  <p class="note">처음이신가요? <a href="/signup.html">회원가입</a></p>
 </div>
 <script>
 (function(){
@@ -78,26 +77,24 @@ textarea{min-height:160px;resize:vertical}
   function show(t,err){out.hidden=false;out.textContent=t;out.className="msg"+(err?" err":"");}
   if(!S.SUPABASE_URL||!S.SUPABASE_ANON_KEY||!window.supabase){show("로그인 기능이 아직 연결되지 않았습니다.",true);return;}
   var sb=window.supabase.createClient(S.SUPABASE_URL,S.SUPABASE_ANON_KEY);
-  var age=document.getElementById("age"), terms=document.getElementById("terms");
-  var btns=["google","kakao","mail"].map(function(id){return document.getElementById(id);});
   var P=S.AUTH_PROVIDERS||["email"];
-  if(P.indexOf("google")<0) btns[0].hidden=true;
-  if(P.indexOf("kakao")<0) btns[1].hidden=true;
-  function sync(){var ok=age.checked&&terms.checked;btns.forEach(function(b){b.disabled=!ok;});}
-  age.addEventListener("change",sync);terms.addEventListener("change",sync);
-  function remember(){try{localStorage.setItem("ea-consent",JSON.stringify({age14:true,at:new Date().toISOString()}));}catch(e){}}
-  var back=location.origin+"/account.html";
-  sb.auth.getSession().then(function(r){ if(r.data&&r.data.session) location.replace("/account.html"); });
-  function oauth(p){ remember(); sb.auth.signInWithOAuth({provider:p,options:{redirectTo:back}}).then(function(r){ if(r.error) show("로그인을 시작하지 못했습니다: "+r.error.message,true); }); }
-  btns[0].addEventListener("click",function(){oauth("google");});
-  btns[1].addEventListener("click",function(){oauth("kakao");});
-  btns[2].addEventListener("click",function(){
+  var g=document.getElementById("google"), k=document.getElementById("kakao"), m=document.getElementById("mail");
+  if(P.indexOf("google")<0) g.hidden=true;
+  if(P.indexOf("kakao")<0) k.hidden=true;
+  var back=location.origin+"/progress.html";
+  sb.auth.getSession().then(function(r){ if(r.data&&r.data.session) location.replace("/progress.html"); });
+  function oauth(p){ sb.auth.signInWithOAuth({provider:p,options:{redirectTo:back}}).then(function(r){ if(r.error) show("로그인을 시작하지 못했습니다: "+r.error.message,true); }); }
+  g.addEventListener("click",function(){oauth("google");});
+  k.addEventListener("click",function(){oauth("kakao");});
+  m.addEventListener("click",function(){
     var em=document.getElementById("em").value.trim();
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){show("이메일 주소를 확인해 주세요.",true);return;}
-    remember(); btns[2].disabled=true;
-    sb.auth.signInWithOtp({email:em,options:{emailRedirectTo:back}}).then(function(r){
-      if(r.error){show("메일을 보내지 못했습니다: "+r.error.message,true);btns[2].disabled=false;}
-      else show(em+"로 로그인 링크를 보냈습니다. 메일함을 확인해 주세요. 메일이 보이지 않으면 스팸함도 확인해 주세요.");
+    m.disabled=true;
+    sb.auth.signInWithOtp({email:em,options:{emailRedirectTo:back,shouldCreateUser:false}}).then(function(r){
+      if(r.error){
+        var nf=/signup|not allowed|not found/i.test(r.error.message||"");
+        show(nf?"가입되지 않은 이메일입니다. 먼저 회원가입을 해 주세요.":"메일을 보내지 못했습니다: "+r.error.message,true);m.disabled=false;
+      } else show(em+"로 로그인 링크를 보냈습니다. 메일함을 확인해 주세요. 메일이 보이지 않으면 스팸함도 확인해 주세요.");
     });
   });
 })();

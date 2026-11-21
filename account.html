@@ -71,9 +71,9 @@ textarea{min-height:160px;resize:vertical}
     <tr><th>로그인 방식</th><td id="prov"></td></tr>
     <tr><th>가입일</th><td id="since"></td></tr>
   </table>
-  <div class="stack"><a class="btn" href="/#subjects">공부하러 가기</a><button class="btn ghost" id="logout">로그아웃</button></div>
+  <div class="stack"><a class="btn" href="/progress.html">내 학습 진도</a><a class="btn ghost" href="/#subjects">공부하러 가기</a><a class="btn ghost" id="adminlink" href="/admin.html" hidden>관리자 페이지</a><button class="btn ghost" id="logout">로그아웃</button></div>
   <h2>회원 탈퇴</h2>
-  <p class="note">탈퇴하면 계정 정보와 동의 기록이 즉시 삭제되며 되돌릴 수 없습니다. 이 브라우저에 저장된 학습 진도는 그대로 남습니다.</p>
+  <p class="note">탈퇴하면 계정 정보와 동의 기록이 즉시 삭제되며 되돌릴 수 없습니다. 계정에 저장된 학습 진도도 함께 삭제되며, 이 브라우저에 저장된 진도는 그대로 남습니다.</p>
   <div class="stack"><button class="btn danger" id="del1">회원 탈퇴</button><button class="btn danger" id="del2" hidden>정말 탈퇴합니다</button></div>
 </div>
 <script>
@@ -95,6 +95,8 @@ textarea{min-height:160px;resize:vertical}
     var p=(user.app_metadata&&user.app_metadata.provider)||"email";
     document.getElementById("prov").textContent=PROV[p]||p;
     document.getElementById("since").textContent=new Date(user.created_at).toLocaleDateString("ko-KR");
+    sb.rpc("is_admin").then(function(a){ if(a.data===true) document.getElementById("adminlink").hidden=false; });
+    if(window.EA_SYNC) window.EA_SYNC();
   }
   function start(session){
     if(!session){location.replace("/login.html");return;}

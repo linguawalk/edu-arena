@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from site_parts import FOOT_CSS, FOOT_HTML, SITE_JS, SITE, ICON_HEAD, MARK, social
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EFFECTIVE = "2026년 11월 13일"
+EFFECTIVE = "2026년 11월 21일"
 OFFICER = "김양석"
 OPERATOR = "여행일기"
 BIZNO = "720-97-01549"
@@ -116,11 +116,12 @@ PRIVACY = f"""
 <tr><th>구분</th><th>항목</th><th>목적</th></tr>
 <tr><td>회원가입·로그인(이메일)</td><td>이메일 주소</td><td>회원 식별, 로그인 링크 발송, 계정 관리</td></tr>
 <tr><td>회원가입·로그인(구글·카카오)</td><td>이메일 주소, 서비스별 회원 식별자, 닉네임(제공되는 경우)</td><td>회원 식별, 계정 관리</td></tr>
+<tr><td>학습 진도(회원)</td><td>완료한 레슨·에세이의 식별자, 점수, 완료 일시</td><td>다른 기기에서 이어 학습, 내 학습 진도 화면 제공, 서비스 운영 통계</td></tr>
 <tr><td>회원 동의 기록</td><td>만 14세 이상 확인 여부, 약관·방침 동의 일시</td><td>가입 요건 확인과 동의 증빙</td></tr>
 <tr><td>문의</td><td>이름(또는 별칭), 회신받을 이메일 주소, 문의 내용</td><td>문의 확인과 답변</td></tr>
 <tr><td>자동 수집</td><td>접속 기록, 방문 페이지, 기기·브라우저 정보, 쿠키, 대략적인 위치(국가·도시 수준)</td><td>방문 통계 분석, 서비스 개선, 광고 게재</td></tr>
 </table>
-<p>로그인하지 않고 레슨을 풀 때 생기는 학습 진도와 점수는 이용자의 브라우저(로컬 저장소)에만 저장되며 사이트가 수집하지 않습니다.</p>
+<p>로그인하지 않고 레슨을 풀 때 생기는 학습 진도와 점수는 이용자의 브라우저(로컬 저장소)에만 저장되며 사이트가 수집하지 않습니다. 회원으로 로그인한 경우에는 위 표의 학습 진도가 계정에 저장됩니다. 운영자는 회원 관리와 서비스 운영 통계를 위해 관리자 화면에서 회원의 이메일, 가입 방식, 가입일, 학습 진도를 확인할 수 있으며, 이 권한은 지정된 관리자에게만 있습니다.</p>
 
 <h2>2. 보유 및 이용 기간</h2>
 <ul>
@@ -284,7 +285,7 @@ CONTACT = """
 
 SUPA_JS = '<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>\n<script src="/assets/site.js"></script>\n'
 
-LOGIN = """
+_SIGNUP_BASE = """
 <h1>로그인 · 회원가입</h1>
 <p class="lede">처음이면 자동으로 가입됩니다. 학습 콘텐츠는 로그인하지 않아도 모두 이용할 수 있습니다.</p>
 <div class="card" id="box">
@@ -347,9 +348,9 @@ ACCOUNT = """
     <tr><th>로그인 방식</th><td id="prov"></td></tr>
     <tr><th>가입일</th><td id="since"></td></tr>
   </table>
-  <div class="stack"><a class="btn" href="/#subjects">공부하러 가기</a><button class="btn ghost" id="logout">로그아웃</button></div>
+  <div class="stack"><a class="btn" href="/progress.html">내 학습 진도</a><a class="btn ghost" href="/#subjects">공부하러 가기</a><a class="btn ghost" id="adminlink" href="/admin.html" hidden>관리자 페이지</a><button class="btn ghost" id="logout">로그아웃</button></div>
   <h2>회원 탈퇴</h2>
-  <p class="note">탈퇴하면 계정 정보와 동의 기록이 즉시 삭제되며 되돌릴 수 없습니다. 이 브라우저에 저장된 학습 진도는 그대로 남습니다.</p>
+  <p class="note">탈퇴하면 계정 정보와 동의 기록이 즉시 삭제되며 되돌릴 수 없습니다. 계정에 저장된 학습 진도도 함께 삭제되며, 이 브라우저에 저장된 진도는 그대로 남습니다.</p>
   <div class="stack"><button class="btn danger" id="del1">회원 탈퇴</button><button class="btn danger" id="del2" hidden>정말 탈퇴합니다</button></div>
 </div>
 <script>
@@ -371,6 +372,8 @@ ACCOUNT = """
     var p=(user.app_metadata&&user.app_metadata.provider)||"email";
     document.getElementById("prov").textContent=PROV[p]||p;
     document.getElementById("since").textContent=new Date(user.created_at).toLocaleDateString("ko-KR");
+    sb.rpc("is_admin").then(function(a){ if(a.data===true) document.getElementById("adminlink").hidden=false; });
+    if(window.EA_SYNC) window.EA_SYNC();
   }
   function start(session){
     if(!session){location.replace("/login.html");return;}
@@ -404,10 +407,196 @@ ACCOUNT = """
 </script>
 """
 
+SIGNUP = (_SIGNUP_BASE
+  .replace("<h1>로그인 · 회원가입</h1>", "<h1>회원가입</h1>")
+  .replace("처음이면 자동으로 가입됩니다. 학습 콘텐츠는 로그인하지 않아도 모두 이용할 수 있습니다.",
+           "가입하면 수업 진도가 계정에 저장되어 다른 기기에서도 이어서 볼 수 있습니다. 학습 콘텐츠는 가입하지 않아도 모두 이용할 수 있습니다. 이미 회원이면 <a href=\"/login.html\">로그인</a>하세요.")
+  .replace("(수집 항목: 이메일, 회원 식별자 · 보유: 탈퇴 시까지)", "(수집 항목: 이메일, 회원 식별자, 학습 진도 · 보유: 탈퇴 시까지)")
+  .replace("구글 계정으로 계속하기", "구글 계정으로 가입하기").replace("카카오 계정으로 계속하기", "카카오 계정으로 가입하기")
+  .replace("또는 이메일로 로그인 링크 받기", "또는 이메일로 가입 링크 받기").replace("로그인 링크 보내기", "가입 링크 보내기")
+  .replace("메일로 받은 링크를 누르면 로그인됩니다.", "메일로 받은 링크를 누르면 가입이 완료되고 로그인됩니다.")
+  .replace("로 로그인 링크를 보냈습니다.", "로 가입 링크를 보냈습니다."))
+
+LOGIN = """
+<h1>로그인</h1>
+<p class="lede">가입한 방법으로 로그인하세요. 아직 회원이 아니면 <a href="/signup.html">회원가입</a>을 먼저 해 주세요. 학습 콘텐츠는 로그인하지 않아도 모두 이용할 수 있습니다.</p>
+<div class="card" id="box">
+  <div class="stack">
+    <button class="btn ghost" id="google">구글 계정으로 로그인</button>
+    <button class="btn kakao" id="kakao">카카오 계정으로 로그인</button>
+  </div>
+  <label for="em">이메일로 로그인 링크 받기</label>
+  <input type="email" id="em" autocomplete="email" placeholder="you@example.com">
+  <div class="stack"><button class="btn" id="mail">로그인 링크 보내기</button></div>
+  <p class="note">비밀번호는 쓰지 않습니다. 가입한 이메일로 받은 링크를 누르면 로그인됩니다.</p>
+  <div id="out" class="msg" role="status" hidden></div>
+  <p class="note">처음이신가요? <a href="/signup.html">회원가입</a></p>
+</div>
+<script>
+(function(){
+  var S=window.EA_SITE||{}, out=document.getElementById("out");
+  function show(t,err){out.hidden=false;out.textContent=t;out.className="msg"+(err?" err":"");}
+  if(!S.SUPABASE_URL||!S.SUPABASE_ANON_KEY||!window.supabase){show("로그인 기능이 아직 연결되지 않았습니다.",true);return;}
+  var sb=window.supabase.createClient(S.SUPABASE_URL,S.SUPABASE_ANON_KEY);
+  var P=S.AUTH_PROVIDERS||["email"];
+  var g=document.getElementById("google"), k=document.getElementById("kakao"), m=document.getElementById("mail");
+  if(P.indexOf("google")<0) g.hidden=true;
+  if(P.indexOf("kakao")<0) k.hidden=true;
+  var back=location.origin+"/progress.html";
+  sb.auth.getSession().then(function(r){ if(r.data&&r.data.session) location.replace("/progress.html"); });
+  function oauth(p){ sb.auth.signInWithOAuth({provider:p,options:{redirectTo:back}}).then(function(r){ if(r.error) show("로그인을 시작하지 못했습니다: "+r.error.message,true); }); }
+  g.addEventListener("click",function(){oauth("google");});
+  k.addEventListener("click",function(){oauth("kakao");});
+  m.addEventListener("click",function(){
+    var em=document.getElementById("em").value.trim();
+    if(!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(em)){show("이메일 주소를 확인해 주세요.",true);return;}
+    m.disabled=true;
+    sb.auth.signInWithOtp({email:em,options:{emailRedirectTo:back,shouldCreateUser:false}}).then(function(r){
+      if(r.error){
+        var nf=/signup|not allowed|not found/i.test(r.error.message||"");
+        show(nf?"가입되지 않은 이메일입니다. 먼저 회원가입을 해 주세요.":"메일을 보내지 못했습니다: "+r.error.message,true);m.disabled=false;
+      } else show(em+"로 로그인 링크를 보냈습니다. 메일함을 확인해 주세요. 메일이 보이지 않으면 스팸함도 확인해 주세요.");
+    });
+  });
+})();
+</script>
+"""
+
+PROGRESS = """
+<h1>내 학습</h1>
+<p class="lede">로그인한 기기와 상관없이 완료한 레슨과 에세이를 모아 보여 줍니다.</p>
+<div id="out" class="msg" role="status">진도를 불러오는 중입니다…</div>
+<div id="body" hidden>
+  <div class="card"><div id="total"></div></div>
+  <h2>과목별 진도</h2>
+  <table id="subj"><tr><th>과목</th><th>완료 레슨</th><th>완료 에세이</th><th>첫 시도 정답률</th><th>마지막 학습</th></tr></table>
+  <h2>최근 학습</h2>
+  <table id="recent"><tr><th>날짜</th><th>과목</th><th>내용</th><th>결과</th></tr></table>
+  <div class="stack"><a class="btn" href="/lessons.html">이어서 공부하기</a><a class="btn ghost" href="/account.html">내 계정</a><a class="btn ghost" id="adminlink" href="/admin.html" hidden>관리자</a></div>
+</div>
+<script>
+(function(){
+  var S=window.EA_SITE||{}, out=document.getElementById("out");
+  function show(t,err){out.hidden=false;out.textContent=t;out.className="msg"+(err?" err":"");}
+  if(!S.SUPABASE_URL||!S.SUPABASE_ANON_KEY||!window.supabase){show("로그인 기능이 아직 연결되지 않았습니다.",true);return;}
+  var sb=window.supabase.createClient(S.SUPABASE_URL,S.SUPABASE_ANON_KEY);
+  var MAP={"socio-arena":["사회·역사","socio"],"biz-arena":["경제·경영","biz"],"lit-arena":["언어·문학·외국어","lit"],"math-arena":["수학","math"],
+    "sci-arena":["과학","sci"],"tech-arena":["공학","tech"],"arts":["예체능","arts"],"code-arena":["코딩","code"],"test-arena":["시험 대비",""]};
+  function esc(t){var d=document.createElement("div");d.textContent=String(t==null?"":t);return d.innerHTML;}
+  function dt(ms){return ms?new Date(ms).toLocaleDateString("ko-KR"):"-";}
+  function stores(){var o={};for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(/:progress$/.test(k)){try{o[k.replace(/:progress$/,"")]=JSON.parse(localStorage.getItem(k))||{};}catch(e){}}}return o;}
+  function render(){
+    var all=stores(), rows="", recent=[], nl=0, ne=0;
+    Object.keys(MAP).forEach(function(key){
+      var st=all[key]; if(!st) return;
+      var L=0,E=0,f=0,t=0,last=0;
+      Object.keys(st).forEach(function(id){
+        var r=st[id]; if(!r||typeof r!=="object") return;
+        var ess=/-essay$/.test(id);
+        if(ess) E++; else {L++; f+=r.first||0; t+=r.total||0;}
+        last=Math.max(last,r.at||0);
+        recent.push({key:key,id:id,r:r,ess:ess});
+      });
+      nl+=L; ne+=E;
+      var lk=MAP[key][1]?'<a href="/'+MAP[key][1]+'/browse.html">'+esc(MAP[key][0])+'</a>':esc(MAP[key][0]);
+      rows+="<tr><td>"+lk+"</td><td>"+L+"</td><td>"+E+"</td><td>"+(t?Math.round(f/t*100)+"%":"-")+"</td><td>"+dt(last)+"</td></tr>";
+    });
+    document.getElementById("total").innerHTML="완료한 레슨 <strong>"+nl+"</strong>개 · 완료한 에세이 <strong>"+ne+"</strong>편";
+    var tb=document.getElementById("subj");
+    tb.insertAdjacentHTML("beforeend",rows||'<tr><td colspan="5">아직 완료한 레슨이 없습니다. 레슨 하나를 끝내면 여기에 나타납니다.</td></tr>');
+    recent.sort(function(a,b){return (b.r.at||0)-(a.r.at||0);});
+    recent=recent.slice(0,15);
+    var rt=document.getElementById("recent");
+    recent.forEach(function(x){
+      var tr=document.createElement("tr"), dir=MAP[x.key][1], base=x.id.replace(/-essay$/,"");
+      tr.innerHTML="<td>"+dt(x.r.at)+"</td><td>"+esc(MAP[x.key][0])+"</td><td data-id=\\""+esc(base)+"\\">"+(x.ess?"에세이 · ":"")+esc(x.id)+"</td><td>"+(x.ess?(x.r.first||0)+"/"+(x.r.total||0)+"편":(x.r.first||0)+" / "+(x.r.total||0))+"</td>";
+      rt.appendChild(tr);
+      if(dir&&!/review/.test(x.id)) fetch("/"+dir+"/learn/"+base+".html").then(function(r){return r.ok?r.text():null;}).then(function(h){
+        var m=h&&h.match(/<title>([^<]*)<\\/title>/); if(!m) return;
+        var name=m[1].split(" | ")[0].trim();
+        var td=tr.children[2]; td.innerHTML=(x.ess?"에세이 · ":"")+'<a href="/'+dir+'/learn/'+esc(base)+'.html">'+esc(name)+"</a>";
+      }).catch(function(){});
+    });
+    out.hidden=true; document.getElementById("body").hidden=false;
+  }
+  sb.auth.getSession().then(function(r){
+    if(!(r.data&&r.data.session)){location.replace("/login.html");return;}
+    var user=r.data.session.user;
+    sb.from("profiles").select("age14_confirmed").eq("id",user.id).maybeSingle().then(function(p){
+      if(!(p.data&&p.data.age14_confirmed)){location.replace("/account.html");return;}
+      Promise.resolve(window.EA_SYNC&&window.EA_SYNC()).then(render,render);
+      sb.rpc("is_admin").then(function(a){ if(a.data===true) document.getElementById("adminlink").hidden=false; });
+    });
+  });
+})();
+</script>
+"""
+
+ADMIN = """
+<h1>관리자</h1>
+<div id="out" class="msg" role="status">확인하는 중입니다…</div>
+<div id="body" hidden>
+  <div class="card" id="cards"></div>
+  <h2>최근 14일 가입</h2>
+  <div id="daily" class="note"></div>
+  <h2>가입 방식 · 과목별 학습 기록</h2>
+  <table id="split"><tr><th>구분</th><th>항목</th><th>수</th></tr></table>
+  <h2>회원 목록</h2>
+  <p class="note">최근 가입순 200명까지 표시합니다. 이메일 등 개인정보는 회원 관리 목적으로만 확인하세요.</p>
+  <table id="mem"><tr><th>이메일</th><th>방식</th><th>가입일</th><th>최근 로그인</th><th>동의</th><th>완료</th><th>진도</th></tr></table>
+  <div id="detail" class="msg" hidden></div>
+</div>
+<script>
+(function(){
+  var S=window.EA_SITE||{}, out=document.getElementById("out");
+  function show(t,err){out.hidden=false;out.textContent=t;out.className="msg"+(err?" err":"");}
+  if(!S.SUPABASE_URL||!S.SUPABASE_ANON_KEY||!window.supabase){show("로그인 기능이 아직 연결되지 않았습니다.",true);return;}
+  var sb=window.supabase.createClient(S.SUPABASE_URL,S.SUPABASE_ANON_KEY);
+  function esc(t){var d=document.createElement("div");d.textContent=String(t==null?"":t);return d.innerHTML;}
+  function d(x){return x?new Date(x).toLocaleDateString("ko-KR"):"-";}
+  var PROV={email:"이메일",google:"구글",kakao:"카카오"};
+  sb.auth.getSession().then(function(r){
+    if(!(r.data&&r.data.session)){location.replace("/login.html");return;}
+    sb.rpc("is_admin").then(function(a){
+      if(a.data!==true){show("관리자만 볼 수 있는 페이지입니다.",true);return;}
+      Promise.all([sb.rpc("admin_overview"),sb.rpc("admin_members",{p_limit:200,p_offset:0})]).then(function(x){
+        if(x[0].error||x[1].error){show("불러오지 못했습니다: "+(x[0].error||x[1].error).message,true);return;}
+        var o=x[0].data, m=x[1].data||[];
+        function c(n,l){return '<div style="display:inline-block;min-width:120px;margin:6px 16px 6px 0"><div style="font-size:26px;font-weight:700">'+n+'</div><div class="note">'+l+'</div></div>';}
+        document.getElementById("cards").innerHTML=c(o.members,"전체 회원")+c(o.new_7d,"최근 7일 가입")+c(o.new_30d,"최근 30일 가입")+c(o.learners,"학습 기록이 있는 회원")+c(o.active_7d,"최근 7일 학습 회원")+c(o.records,"저장된 학습 기록");
+        var max=Math.max.apply(null,o.daily.map(function(z){return z.n;}).concat([1]));
+        document.getElementById("daily").innerHTML=o.daily.map(function(z){return '<div style="display:flex;align-items:center;gap:8px"><span style="width:84px">'+esc(z.d.slice(5))+'</span><span style="display:inline-block;height:10px;background:#1D3FA8;width:'+Math.round(z.n/max*240)+'px"></span><span>'+z.n+'</span></div>';}).join("");
+        var sp=document.getElementById("split"), h="";
+        Object.keys(o.providers).forEach(function(k){h+="<tr><td>가입 방식</td><td>"+esc(PROV[k]||k)+"</td><td>"+o.providers[k]+"</td></tr>";});
+        Object.keys(o.stores).forEach(function(k){h+="<tr><td>학습 기록</td><td>"+esc(k.replace(/:progress$/,""))+"</td><td>"+o.stores[k]+"</td></tr>";});
+        sp.insertAdjacentHTML("beforeend",h);
+        var mt=document.getElementById("mem");
+        m.forEach(function(u){
+          var tr=document.createElement("tr");
+          tr.innerHTML="<td>"+esc(u.email||"(없음)")+"</td><td>"+esc(PROV[u.provider]||u.provider)+"</td><td>"+d(u.created_at)+"</td><td>"+d(u.last_sign_in_at)+"</td><td>"+(u.age14?"완료":"미동의")+"</td><td>"+u.done_count+"</td><td><button class=\\"btn ghost\\" style=\\"min-height:32px;padding:4px 10px\\">보기</button></td>";
+          tr.querySelector("button").addEventListener("click",function(){
+            sb.rpc("admin_member_progress",{p_user:u.id}).then(function(q){
+              var de=document.getElementById("detail"); de.hidden=false;
+              de.textContent=(u.email||"")+" — "+((q.data||[]).map(function(z){return z.store.replace(/:progress$/,"")+" "+z.done+"건(마지막 "+d(z.last_at)+")";}).join(", ")||"학습 기록 없음");
+            });
+          });
+          mt.appendChild(tr);
+        });
+        out.hidden=true; document.getElementById("body").hidden=false;
+      });
+    });
+  });
+})();
+</script>
+"""
+
 if __name__ == "__main__":
     page("about.html", "소개", "edu-arena는 읽기 전에 먼저 풀어 보는 15분 레슨으로 고교 교과부터 대학 수준, 올림피아드 심화까지 공부하는 무료 학습 사이트입니다.", ABOUT)
     page("privacy.html", "개인정보처리방침", "edu-arena의 개인정보 수집 항목, 이용 목적, 보유 기간, 쿠키와 광고, 이용자의 권리를 안내합니다.", PRIVACY)
     page("terms.html", "이용약관", "edu-arena 학습 서비스의 이용 조건과 회원가입, 이용자의 의무를 안내합니다.", TERMS)
     page("contact.html", "문의", "edu-arena에 콘텐츠 오류 신고, 학습 질문, 제안, 개인정보 관련 요청을 보내는 문의 양식입니다.", CONTACT)
-    page("login.html", "로그인", "edu-arena 로그인과 회원가입.", LOGIN, extra_head=SUPA_JS, noindex=True)
+    page("login.html", "로그인", "edu-arena 로그인.", LOGIN, extra_head=SUPA_JS, noindex=True)
+    page("signup.html", "회원가입", "edu-arena 회원가입.", SIGNUP, extra_head=SUPA_JS, noindex=True)
+    page("progress.html", "내 학습", "edu-arena 내 학습 진도.", PROGRESS, extra_head=SUPA_JS, noindex=True)
+    page("admin.html", "관리자", "edu-arena 관리자.", ADMIN, extra_head=SUPA_JS, noindex=True)
     page("account.html", "내 계정", "edu-arena 내 계정.", ACCOUNT, extra_head=SUPA_JS, noindex=True)
