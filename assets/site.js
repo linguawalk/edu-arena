@@ -75,11 +75,12 @@ window.EA_SITE = window.EA_SITE || {
   window.EA_SIGNED_IN = signedIn;
 
   function authLink() {
-    var a = document.createElement("a");
-    a.className = "ea-auth";
-    if (signedIn()) { a.href = "/account.html"; a.textContent = "내 계정"; }
-    else { a.href = "/login.html"; a.textContent = "로그인"; }
-    return a;
+    var w = document.createElement("span");
+    w.className = "ea-auth";
+    function mk(h, t) { var a = document.createElement("a"); a.href = h; a.textContent = t; a.style.color = "inherit"; a.style.marginLeft = "12px"; return a; }
+    if (signedIn()) { w.appendChild(mk("/progress.html", "내 학습")); w.appendChild(mk("/account.html", "내 계정")); }
+    else { w.appendChild(mk("/login.html", "로그인")); w.appendChild(mk("/signup.html", "회원가입")); }
+    return w;
   }
 
   /* ---------- 공통 하단 ---------- */
