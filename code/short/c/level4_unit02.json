@@ -1,0 +1,87 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 4,
+ "unit": 2,
+ "unit_title": "스택 구현",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l4_u02_q001",
+   "type": "predict_output",
+   "code": "int stack[5];\nint top = -1;\nstack[++top] = 10;\nstack[++top] = 20;\nstack[++top] = 30;\nprintf(\"%d\", stack[top--]);\nprintf(\"%d\", stack[top--]);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3020"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "1020",
+    "1030",
+    "3010"
+   ],
+   "explanation_ko": "스택은 LIFO(Last In, First Out) 방식입니다. 마지막에 넣은 값(30)이 가장 먼저 나오고, 그다음 20이 나옵니다. 10, 20, 30 순서로 넣었지만 30, 20 순서로 꺼내집니다.",
+   "explanation_en": "A stack follows LIFO (Last In, First Out); the last value pushed (30) is popped first, then 20 — the order 10, 20, 30 comes back as 30, 20.",
+   "concept_tags": [
+    "stack",
+    "lifo"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l4_u02_q005",
+   "type": "predict_output",
+   "code": "int stack[5];\nint top = -1;\nstack[++top] = 5;\nprintf(\"%d\", top);",
+   "prompt_ko": "빈 스택에 값을 하나 push한 뒤 출력 결과는?",
+   "prompt_en": "What is printed after pushing a single value onto an empty stack?",
+   "expected_answers": [
+    "0"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "-1",
+    "1",
+    "5"
+   ],
+   "explanation_ko": "top은 -1(빈 상태)에서 시작하고, ++top이 값을 저장하기 전에 0으로 증가시킵니다. 따라서 top은 0이 됩니다.",
+   "explanation_en": "top starts at -1 (empty), and ++top increments it to 0 before storing the value, so top is now 0.",
+   "concept_tags": [
+    "stack",
+    "push"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l4_u02_q006",
+   "type": "fill_blank",
+   "code": "int isEmpty(int top) {\n    return top == ____;\n}",
+   "prompt_ko": "스택이 비어있음을 나타내는 값을 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the value that indicates an empty stack.",
+   "expected_answers": [
+    "-1"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "0",
+    "5",
+    "NULL"
+   ],
+   "explanation_ko": "관례적으로 top은 -1로 초기화되어 빈 스택을 나타냅니다. 유효한 인덱스는 0부터 시작하기 때문입니다.",
+   "explanation_en": "By convention, top is initialized to -1 to represent an empty stack, since valid indices start at 0.",
+   "concept_tags": [
+    "stack"
+   ],
+   "difficulty": "intro"
+  }
+ ]
+}

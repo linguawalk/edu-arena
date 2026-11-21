@@ -1,0 +1,115 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 6,
+ "unit": 1,
+ "unit_title": "파일 입출력",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l6_u01_q001",
+   "type": "fill_blank",
+   "code": "FILE *fp = ____(\"test.txt\", \"w\");\nfprintf(fp, \"%d\", 42);\nfclose(fp);",
+   "prompt_ko": "파일을 쓰기 모드로 여는 함수를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the function used to open a file for writing.",
+   "expected_answers": [
+    "fopen"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "open",
+    "fread",
+    "create"
+   ],
+   "explanation_ko": "fopen은 파일을 열고 FILE 포인터를 반환합니다. 모드 \"w\"는 쓰기를 의미하며, 파일이 없으면 새로 만듭니다.",
+   "explanation_en": "fopen opens a file and returns a FILE pointer; the mode \"w\" means writing, creating the file if it doesn't exist.",
+   "concept_tags": [
+    "file_io",
+    "fopen"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l6_u01_q002",
+   "type": "predict_output",
+   "code": "FILE *fp = fopen(\"test.txt\", \"w\");\nfprintf(fp, \"%d\", 42);\nfclose(fp);\n\nFILE *fp2 = fopen(\"test.txt\", \"r\");\nint value;\nfscanf(fp2, \"%d\", &value);\nfclose(fp2);\nprintf(\"%d\", value);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "42"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0",
+    "fp2",
+    "오류"
+   ],
+   "explanation_ko": "42가 파일에 쓰인 뒤, fscanf로 다시 읽어들입니다. value에는 42가 저장되어 그대로 출력됩니다.",
+   "explanation_en": "The value 42 is written to the file, then read back with fscanf; value ends up holding 42, which is printed.",
+   "concept_tags": [
+    "file_io",
+    "fprintf",
+    "fscanf"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l6_u01_q004",
+   "type": "predict_output",
+   "code": "FILE *fp = fopen(\"nonexistent_file.txt\", \"r\");\nif (fp == NULL) {\n    printf(\"파일 없음\");\n}",
+   "prompt_ko": "파일이 존재하지 않는다고 가정할 때 출력 결과는?",
+   "prompt_en": "What is printed, assuming the file doesn't exist?",
+   "expected_answers": [
+    "파일 없음"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "아무것도 출력되지 않음",
+    "오류로 프로그램이 즉시 종료됨",
+    "NULL"
+   ],
+   "explanation_ko": "fopen은 파일을 열 수 없을 때 NULL을 반환하며, NULL 확인 코드가 이 상황을 감지해 메시지를 출력합니다.",
+   "explanation_en": "fopen returns NULL when it cannot open the file, and the NULL check catches this case, printing the message.",
+   "concept_tags": [
+    "file_io",
+    "null_check"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l6_u01_q006",
+   "type": "fill_blank",
+   "code": "FILE *fp = fopen(\"log.txt\", \"w\");\nfprintf(fp, \"기록 완료\");\n____;",
+   "prompt_ko": "사용을 마친 파일을 올바르게 닫으려면 빈칸에 무엇이 들어가야 할까요?",
+   "prompt_en": "Fill in the blank to properly close the file after use.",
+   "expected_answers": [
+    "fclose(fp)"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "close(fp)",
+    "fp = NULL",
+    "fend(fp)"
+   ],
+   "explanation_ko": "fclose는 파일 자원을 반납하고, 버퍼에 남아있던 출력이 실제로 디스크에 기록되도록 보장합니다.",
+   "explanation_en": "fclose releases the file resource and ensures any buffered output is actually written to disk.",
+   "concept_tags": [
+    "file_io",
+    "fclose"
+   ],
+   "difficulty": "intro"
+  }
+ ]
+}

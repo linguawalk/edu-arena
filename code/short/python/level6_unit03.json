@@ -1,0 +1,62 @@
+{
+ "language": "python",
+ "category": "scripting",
+ "level": 6,
+ "unit": 3,
+ "unit_title": "제너레이터와 yield",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "python_l6_u03_q001",
+   "type": "predict_output",
+   "code": "def count_up_to(n):\n    i = 1\n    while i <= n:\n        yield i\n        i += 1\n\nfor num in count_up_to(5):\n    print(num, end=\"\")",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "12345"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "5",
+    "오류",
+    "[1, 2, 3, 4, 5]"
+   ],
+   "explanation_ko": "yield는 count_up_to를 제너레이터 함수로 만듭니다. yield를 만날 때마다 일시 정지하고 값을 하나씩 만들어내며, for문이 이를 하나씩 소비합니다: 1, 2, 3, 4, 5.",
+   "explanation_en": "yield turns count_up_to into a generator function; each call to yield pauses and produces one value, which the for loop consumes one at a time: 1, 2, 3, 4, 5.",
+   "concept_tags": [
+    "generator",
+    "yield"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "python_l6_u03_q002",
+   "type": "predict_output",
+   "code": "def count_up_to(n):\n    i = 1\n    while i <= n:\n        yield i\n        i += 1\n\ngen = count_up_to(5)\nprint(type(gen))",
+   "prompt_ko": "출력 결과는? (함수가 호출됐지만 본문은 아직 실행되지 않은 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: the function was called but its body hasn't run yet.)",
+   "expected_answers": [
+    "<class 'generator'>"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "<class 'int'>",
+    "<class 'list'>",
+    "1"
+   ],
+   "explanation_ko": "yield를 담은 함수를 호출해도 본문이 즉시 실행되지 않습니다 — 제너레이터 객체를 반환하며, 순회하거나 next()를 호출할 때만 코드가 실행됩니다.",
+   "explanation_en": "Calling a function containing yield doesn't run its body immediately — it returns a generator object, which only executes code when iterated or when next() is called.",
+   "concept_tags": [
+    "generator",
+    "lazy_evaluation"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

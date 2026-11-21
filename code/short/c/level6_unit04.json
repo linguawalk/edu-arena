@@ -1,0 +1,87 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 6,
+ "unit": 4,
+ "unit_title": "유니온 (union)",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l6_u04_q001",
+   "type": "predict_output",
+   "code": "union Data {\n    int i;\n    float f;\n    char str[4];\n};\n\nprintf(\"%d\", sizeof(union Data));",
+   "prompt_ko": "출력 결과는? (int와 float는 각각 4바이트라고 가정)",
+   "prompt_en": "What is printed? (Assume int and float are each 4 bytes.)",
+   "expected_answers": [
+    "4"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "12",
+    "8",
+    "0"
+   ],
+   "explanation_ko": "유니온은 가장 큰 멤버 하나만큼의 공간만 할당하고, 모든 멤버가 그 메모리를 공유합니다. 여기서는 세 멤버 모두 4바이트이므로 유니온 전체 크기도 4바이트입니다.",
+   "explanation_en": "A union allocates only enough space for its largest member, and all members share that same memory; since all three members here are 4 bytes, the union is 4 bytes total.",
+   "concept_tags": [
+    "union"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l6_u04_q003",
+   "type": "fill_blank",
+   "code": "____ Shape {\n    int radius;   // 원용\n    int side;     // 정사각형용\n};\n// 한 번에 하나의 값만 필요하므로 메모리를 아끼고 싶음",
+   "prompt_ko": "이 멤버들이 각자 별도 공간을 갖는 대신 메모리를 공유하도록 빈칸에 들어갈 키워드는?",
+   "prompt_en": "Fill in the blank with the keyword that lets these members share memory instead of each having separate space.",
+   "expected_answers": [
+    "union"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "struct",
+    "enum",
+    "typedef"
+   ],
+   "explanation_ko": "모든 멤버에 별도 공간을 할당하는 struct와 달리, union은 멤버들을 같은 메모리에 겹쳐 배치합니다. 한 번에 하나의 값만 필요할 때 적합합니다.",
+   "explanation_en": "Unlike struct, which allocates separate space for every member, union overlaps them in shared memory — ideal when only one value is needed at a time.",
+   "concept_tags": [
+    "union",
+    "struct"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l6_u04_q006",
+   "type": "predict_output",
+   "code": "struct Point {\n    int x;\n    int y;\n};\n\nprintf(\"%d\", sizeof(struct Point));",
+   "prompt_ko": "위 유니온 예제와 비교하기 위해, 같은 int 멤버 2개를 가진 struct의 크기는 얼마일까요? (int는 4바이트라고 가정)",
+   "prompt_en": "What is printed for a struct with the same two int members, for comparison with the union example above? (Assume int is 4 bytes.)",
+   "expected_answers": [
+    "8"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "4",
+    "2",
+    "0"
+   ],
+   "explanation_ko": "union과 달리 struct는 각 멤버에 별도 공간을 할당합니다. 4바이트 int 2개면 총 8바이트로, 같은 멤버를 가진 union의 크기(4바이트)보다 두 배입니다.",
+   "explanation_en": "Unlike union, struct allocates separate space for each member, so two 4-byte ints total 8 bytes — double the union's size for the same members.",
+   "concept_tags": [
+    "union",
+    "struct"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

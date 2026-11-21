@@ -1,0 +1,111 @@
+{
+ "language": "javascript",
+ "category": "scripting",
+ "level": 6,
+ "unit": 2,
+ "unit_title": "콜백과 Promise",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "javascript_l6_u02_q002",
+   "type": "predict_output",
+   "code": "const promise = new Promise((resolve, reject) => {\n    resolve(\"성공\");\n});\n\npromise.then(value => console.log(value));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "성공"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "Promise",
+    "오류",
+    "undefined"
+   ],
+   "explanation_ko": "resolve(\"성공\")은 그 값으로 Promise를 이행시킵니다. .then()은 이를 받는 콜백을 등록해서 성공을 출력합니다.",
+   "explanation_en": "resolve(\"성공\") fulfills the Promise with that value; .then() registers a callback that receives it, printing 성공.",
+   "concept_tags": [
+    "promise"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "javascript_l6_u02_q003",
+   "type": "predict_output",
+   "code": "const promise = new Promise((resolve, reject) => {\n    reject(\"실패\");\n});\n\npromise.catch(err => console.log(err));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "실패"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "성공",
+    "오류",
+    "undefined"
+   ],
+   "explanation_ko": "reject(\"실패\")는 Promise를 거부시킵니다. .catch()는 그 경우를 처리하는 핸들러를 등록해서 실패를 출력합니다.",
+   "explanation_en": "reject(\"실패\") rejects the Promise; .catch() registers a handler for that case, printing 실패.",
+   "concept_tags": [
+    "promise"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "javascript_l6_u02_q004",
+   "type": "fill_blank",
+   "code": "function delay(ms) {\n    return new ____((resolve) => {\n        setTimeout(resolve, ms);\n    });\n}",
+   "prompt_ko": "미래의 결과를 나타내는 값을 만드는 생성자를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the constructor used to create a value representing a future result.",
+   "expected_answers": [
+    "Promise"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "Future",
+    "Task",
+    "Async"
+   ],
+   "explanation_ko": "Promise는 최종 값(또는 오류)을 감싸며, resolve와 reject 매개변수를 가진 실행자 함수를 받습니다.",
+   "explanation_en": "Promise wraps an eventual value (or error), taking an executor function with resolve and reject parameters.",
+   "concept_tags": [
+    "promise"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "javascript_l6_u02_q005",
+   "type": "predict_output",
+   "code": "Promise.resolve(1)\n    .then(n => n + 1)\n    .then(n => n * 2)\n    .then(n => console.log(n));",
+   "prompt_ko": "출력 결과는? (Promise는 .then()으로 연결할 수 있습니다.)",
+   "prompt_en": "What is printed? (Promises can be chained with .then().)",
+   "expected_answers": [
+    "4"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "1",
+    "2",
+    "오류"
+   ],
+   "explanation_ko": "각 .then()은 이전 것의 반환값을 받아, 자신의 반환값을 다음으로 전달합니다: 1 → 2(1+1) → 4(2*2).",
+   "explanation_en": "Each .then() receives the previous one's return value and passes its own return value forward: 1 → 2 (1+1) → 4 (2*2).",
+   "concept_tags": [
+    "promise",
+    "promise_chaining"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

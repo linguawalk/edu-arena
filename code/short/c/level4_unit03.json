@@ -1,0 +1,64 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 4,
+ "unit": 3,
+ "unit_title": "큐 구현",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l4_u03_q001",
+   "type": "predict_output",
+   "code": "int queue[5];\nint front = 0, rear = 0;\nqueue[rear++] = 10;\nqueue[rear++] = 20;\nqueue[rear++] = 30;\nprintf(\"%d\", queue[front++]);\nprintf(\"%d\", queue[front++]);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "1020"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "3020",
+    "1030",
+    "3010"
+   ],
+   "explanation_ko": "큐는 FIFO(First In, First Out) 방식입니다. 가장 먼저 넣은 값(10)이 가장 먼저 나오고, 그다음 20이 나옵니다. 넣은 순서(10, 20, 30) 그대로 꺼내집니다.",
+   "explanation_en": "A queue follows FIFO (First In, First Out); the first value enqueued (10) is dequeued first, then 20 — the order 10, 20, 30 comes back in the same order.",
+   "concept_tags": [
+    "queue",
+    "fifo"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l4_u03_q006",
+   "type": "predict_output",
+   "code": "int stack[3]; int top = -1;\nstack[++top] = 10; stack[++top] = 20; stack[++top] = 30;\n\nint queue[3]; int front = 0, rear = 0;\nqueue[rear++] = 10; queue[rear++] = 20; queue[rear++] = 30;\n\nprintf(\"%d\", stack[top--]);\nprintf(\"%d\", queue[front++]);",
+   "prompt_ko": "스택과 큐에 똑같이 10, 20, 30을 넣었습니다. 스택에서 한 번 pop하고 큐에서 한 번 dequeue한 결과는?",
+   "prompt_en": "The same values (10, 20, 30) are pushed into a stack and enqueued into a queue. What is printed by popping the stack once and dequeuing the queue once?",
+   "expected_answers": [
+    "3010"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "1010",
+    "3030",
+    "1030"
+   ],
+   "explanation_ko": "스택에서 pop하면 마지막에 넣은 값(30, LIFO)이 나오고, 큐에서 dequeue하면 처음 넣은 값(10, FIFO)이 나옵니다. 같은 순서로 넣었어도 꺼내는 순서는 서로 다릅니다.",
+   "explanation_en": "Popping the stack returns the last value pushed (30, LIFO), while dequeuing the queue returns the first value enqueued (10, FIFO) — the same insertion order produces different retrieval orders.",
+   "concept_tags": [
+    "stack",
+    "queue",
+    "lifo",
+    "fifo"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

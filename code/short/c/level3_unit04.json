@@ -1,0 +1,88 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 3,
+ "unit": 4,
+ "unit_title": "배열을 매개변수로 전달",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l3_u04_q001",
+   "type": "predict_output",
+   "code": "void modify(int arr[]) {\n    arr[0] = 100;\n}\n\nint main() {\n    int nums[3] = {1, 2, 3};\n    modify(nums);\n    printf(\"%d\", nums[0]);\n    return 0;\n}",
+   "prompt_ko": "출력 결과는? (스칼라 변수를 함수에 전달할 때와 비교해보세요.)",
+   "prompt_en": "What is printed? (Compare with how scalar variables behave when passed to functions.)",
+   "expected_answers": [
+    "100"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "1",
+    "0",
+    "오류"
+   ],
+   "explanation_ko": "스칼라 변수와 달리, 배열은 함수에 전달될 때 포인터로 변환(decay)됩니다. 따라서 modify는 nums의 실제 주소를 받게 되어, 함수 안에서의 변경이 원본 배열에 그대로 반영됩니다.",
+   "explanation_en": "Unlike scalar variables, arrays decay into a pointer when passed to a function, so modify receives the actual address of nums — changes inside the function affect the original array.",
+   "concept_tags": [
+    "array_parameter",
+    "pointer_decay"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "c_l3_u04_q002",
+   "type": "predict_output",
+   "code": "int nums[5];\nprintf(\"%lu\", sizeof(nums));",
+   "prompt_ko": "출력 결과는? (int는 4바이트라고 가정)",
+   "prompt_en": "What is printed? (Assume int is 4 bytes.)",
+   "expected_answers": [
+    "20"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "5",
+    "4",
+    "8"
+   ],
+   "explanation_ko": "배열이 선언된 그 스코프 안에서 sizeof를 쓰면 전체 크기를 바이트 단위로 반환합니다. 5개 * 4바이트 = 20입니다.",
+   "explanation_en": "sizeof on an array declared in its own scope returns the total size in bytes: 5 elements * 4 bytes = 20.",
+   "concept_tags": [
+    "array",
+    "sizeof"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l3_u04_q005",
+   "type": "predict_output",
+   "code": "void doubleAll(int arr[], int size) {\n    for (int i = 0; i < size; i++) {\n        arr[i] *= 2;\n    }\n}\n\nint main() {\n    int nums[3] = {1, 2, 3};\n    doubleAll(nums, 3);\n    printf(\"%d%d%d\", nums[0], nums[1], nums[2]);\n    return 0;\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "246"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "123",
+    "369",
+    "000"
+   ],
+   "explanation_ko": "배열은 포인터로 전달되므로 doubleAll이 원본 배열을 직접 수정합니다. 각 요소가 2배가 되어 1→2, 2→4, 3→6이 됩니다.",
+   "explanation_en": "Because arrays are passed as pointers, doubleAll modifies the original array directly, doubling each element: 1→2, 2→4, 3→6.",
+   "concept_tags": [
+    "array_parameter",
+    "pointer_decay"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

@@ -1,0 +1,88 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 2,
+ "unit": 3,
+ "unit_title": "switch문 심화 (fall-through)",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l2_u03_q001",
+   "type": "predict_output",
+   "code": "int x = 1;\nswitch (x) {\n    case 1:\n        printf(\"A\");\n    case 2:\n        printf(\"B\");\n        break;\n    case 3:\n        printf(\"C\");\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "AB"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "A",
+    "ABC",
+    "B"
+   ],
+   "explanation_ko": "case 1에 break가 없기 때문에 실행이 case 2로 그대로 이어져(fall-through) B까지 출력된 뒤, 거기 있는 break에서 멈춥니다.",
+   "explanation_en": "Because case 1 has no break, execution falls through into case 2 and prints B as well, then stops at the break there.",
+   "concept_tags": [
+    "switch",
+    "fall_through"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l2_u03_q002",
+   "type": "fill_blank",
+   "code": "int x = 1;\nswitch (x) {\n    case 1:\n        printf(\"A\");\n        ____;\n    case 2:\n        printf(\"B\");\n        break;\n}\n// A만 출력되고 멈춰야 함",
+   "prompt_ko": "case 2로 넘어가지 않고 A만 출력되도록 빈칸을 채우세요.",
+   "prompt_en": "Fill in the blank so only A is printed, without falling through to case 2.",
+   "expected_answers": [
+    "break"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "continue",
+    "return",
+    "stop"
+   ],
+   "explanation_ko": "case 1 끝에 break를 추가하면 그 지점에서 실행이 멈춰 case 2로 넘어가는 fall-through를 막을 수 있습니다.",
+   "explanation_en": "Adding break at the end of case 1 stops execution there, preventing fall-through into case 2.",
+   "concept_tags": [
+    "switch",
+    "fall_through"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l2_u03_q005",
+   "type": "predict_output",
+   "code": "char grade = 'B';\nswitch (grade) {\n    case 'A':\n    case 'B':\n        printf(\"우수\");\n        break;\n    case 'C':\n        printf(\"보통\");\n        break;\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "우수"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "보통",
+    "AB우수",
+    "아무것도 출력되지 않음"
+   ],
+   "explanation_ko": "case 'A'와 case 'B'를 break 없이 붙여두면 두 값이 같은 블록을 공유하게 됩니다. grade가 'B'이므로 우수가 출력됩니다. 이는 fall-through를 의도적으로 활용하는 대표적인 패턴입니다.",
+   "explanation_en": "Grouping case 'A' and case 'B' without a break between them means both values share the same block; grade is 'B', so 우수 is printed.",
+   "concept_tags": [
+    "switch",
+    "fall_through"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

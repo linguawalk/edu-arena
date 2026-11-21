@@ -1,0 +1,111 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 5,
+ "unit": 2,
+ "unit_title": "함수 포인터",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l5_u02_q001",
+   "type": "predict_output",
+   "code": "int add(int a, int b) {\n    return a + b;\n}\n\nint (*operation)(int, int);\noperation = add;\nprintf(\"%d\", operation(3, 4));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "7"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "34",
+    "add",
+    "오류"
+   ],
+   "explanation_ko": "operation은 이제 add 함수를 가리킵니다. operation(3, 4)를 호출하는 것은 add(3, 4)를 호출하는 것과 같아서 7을 반환합니다.",
+   "explanation_en": "operation now points to the add function; calling operation(3, 4) is equivalent to calling add(3, 4), which returns 7.",
+   "concept_tags": [
+    "function_pointer"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l5_u02_q002",
+   "type": "fill_blank",
+   "code": "int add(int a, int b) { return a + b; }\n\nint (____operation)(int, int);\noperation = add;",
+   "prompt_ko": "operation이 int 2개를 받아 int를 반환하는 함수를 가리키는 포인터가 되도록 빈칸을 채우세요.",
+   "prompt_en": "Fill in the blank to declare operation as a pointer to a function taking two ints and returning an int.",
+   "expected_answers": [
+    "*"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "**",
+    "&",
+    "func"
+   ],
+   "explanation_ko": "함수 포인터는 이름을 괄호로 감싸고 그 안에 별표 하나를 붙여 선언합니다: 반환형 (*이름)(매개변수형).",
+   "explanation_en": "A function pointer is declared with a single asterisk inside parentheses around the name: return_type (*name)(parameter_types).",
+   "concept_tags": [
+    "function_pointer"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l5_u02_q003",
+   "type": "predict_output",
+   "code": "int add(int a, int b) { return a + b; }\nint subtract(int a, int b) { return a - b; }\n\nint (*ops[2])(int, int) = {add, subtract};\nprintf(\"%d\", ops[0](5, 2));\nprintf(\"%d\", ops[1](5, 2));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "73"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "37",
+    "52",
+    "77"
+   ],
+   "explanation_ko": "함수 포인터 배열을 쓰면 인덱스로 동작을 선택할 수 있습니다. ops[0]은 add(5,2)=7을, ops[1]은 subtract(5,2)=3을 호출합니다.",
+   "explanation_en": "An array of function pointers lets you select behavior by index; ops[0] calls add(5,2)=7, and ops[1] calls subtract(5,2)=3.",
+   "concept_tags": [
+    "function_pointer",
+    "array"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "c_l5_u02_q006",
+   "type": "predict_output",
+   "code": "int square(int n) { return n * n; }\n\nint applyTwice(int (*f)(int), int x) {\n    return f(f(x));\n}\n\nprintf(\"%d\", applyTwice(square, 2));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "16"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "4",
+    "8",
+    "2"
+   ],
+   "explanation_ko": "applyTwice는 f(f(x))를 호출합니다. f(2)는 square(2)=4이고, 이어서 f(4)는 square(4)=16이므로 결과는 16입니다.",
+   "explanation_en": "applyTwice calls f(f(x)); f(2) is square(2)=4, then f(4) is square(4)=16, so the result is 16.",
+   "concept_tags": [
+    "function_pointer"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

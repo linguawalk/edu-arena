@@ -1,0 +1,60 @@
+{
+ "language": "python",
+ "category": "scripting",
+ "level": 6,
+ "unit": 4,
+ "unit_title": "데코레이터",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "python_l6_u04_q002",
+   "type": "fill_blank",
+   "code": "def my_decorator(func):\n    def wrapper():\n        print(\"실행 전\")\n        func()\n    return wrapper\n\n____my_decorator\ndef greet():\n    print(\"안녕\")\n\ngreet()",
+   "prompt_ko": "함수에 데코레이터를 적용하는 기호를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the symbol that applies a decorator to a function.",
+   "expected_answers": [
+    "@"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "#",
+    "&",
+    "%"
+   ],
+   "explanation_ko": "함수 정의 위에 @를 붙이면 이름 붙은 데코레이터가 적용되며, 이는 greet = my_decorator(greet)를 직접 쓰는 것과 같습니다.",
+   "explanation_en": "@ placed above a function definition applies the named decorator, equivalent to writing greet = my_decorator(greet) manually.",
+   "concept_tags": [
+    "decorator"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "python_l6_u04_q006",
+   "type": "predict_output",
+   "code": "def shout(func):\n    def wrapper(name):\n        result = func(name)\n        return result.upper()\n    return wrapper\n\n@shout\ndef greet(name):\n    return f\"hello {name}\"\n\nprint(greet(\"kim\"))",
+   "prompt_ko": "출력 결과는? (이 데코레이터는 매개변수를 감싸진 함수까지 전달합니다.)",
+   "prompt_en": "What is printed? (This decorator takes a parameter through to the wrapped function.)",
+   "expected_answers": [
+    "HELLO KIM"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "hello kim",
+    "오류",
+    "kim"
+   ],
+   "explanation_ko": "wrapper는 name을 받아 func에 전달하고, 그 결과를 .upper()로 변환합니다. greet(\"kim\")은 \"hello kim\"을 만들고, 이는 \"HELLO KIM\"이 됩니다.",
+   "explanation_en": "wrapper accepts name and passes it to func, then transforms the result with .upper(); greet(\"kim\") produces \"hello kim\", which becomes \"HELLO KIM\".",
+   "concept_tags": [
+    "decorator"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

@@ -1,0 +1,111 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 5,
+ "unit": 1,
+ "unit_title": "이중 포인터",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l5_u01_q001",
+   "type": "predict_output",
+   "code": "int x = 10;\nint *p = &x;\nint **pp = &p;\nprintf(\"%d\", **pp);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "10"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "&x의 주소",
+    "&p의 주소",
+    "오류"
+   ],
+   "explanation_ko": "pp는 p를 가리키고, p는 x를 가리킵니다. 두 번 역참조(**pp)하면 두 단계를 모두 따라가 x의 값인 10에 도달합니다.",
+   "explanation_en": "pp points to p, and p points to x; dereferencing twice (**pp) follows both links to reach x's value, 10.",
+   "concept_tags": [
+    "double_pointer"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l5_u01_q002",
+   "type": "predict_output",
+   "code": "int x = 10;\nint *p = &x;\nint **pp = &p;\n**pp = 20;\nprintf(\"%d\", x);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "20"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "10",
+    "&x",
+    "오류"
+   ],
+   "explanation_ko": "**pp에 값을 대입하면 pp가 최종적으로 가리키는 메모리(x 자신)에 값이 쓰입니다. 따라서 x는 20으로 바뀝니다.",
+   "explanation_en": "Assigning through **pp writes to the memory that pp ultimately points to (x itself), changing x to 20.",
+   "concept_tags": [
+    "double_pointer",
+    "dereference"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l5_u01_q003",
+   "type": "fill_blank",
+   "code": "int x = 5;\nint *p = &x;\nint ____pp = &p;",
+   "prompt_ko": "pp가 int 포인터를 가리키는 포인터가 되도록 빈칸을 채우세요.",
+   "prompt_en": "Fill in the blank to declare pp as a pointer to an int pointer.",
+   "expected_answers": [
+    "**"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "*",
+    "&",
+    "&&"
+   ],
+   "explanation_ko": "포인터를 가리키는 포인터는 별표(*) 두 개로 선언하며, 한 단계 더 간접적인 참조를 나타냅니다.",
+   "explanation_en": "A pointer to a pointer is declared with two asterisks, indicating one extra level of indirection.",
+   "concept_tags": [
+    "double_pointer"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l5_u01_q006",
+   "type": "fill_blank",
+   "code": "void allocate(int ____p) {\n    int x = 100;\n    *p = x;  // *p가 아니라 p가 가리키는 포인터 자체를 바꾸려면 이중 포인터로 받아야 함\n}",
+   "prompt_ko": "allocate가 호출한 쪽의 포인터 자체를 바꿀 수 있도록 빈칸을 채우세요.",
+   "prompt_en": "Fill in the blank so allocate can modify the caller's pointer itself.",
+   "expected_answers": [
+    "**"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "*",
+    "&",
+    "*&"
+   ],
+   "explanation_ko": "이중 포인터(int **p)로 받으면 함수가 한 번 역참조해서 호출한 쪽의 실제 포인터 변수에 도달해 직접 수정할 수 있습니다.",
+   "explanation_en": "Receiving a double pointer (int **p) lets the function dereference once to reach the caller's actual pointer variable and modify it directly.",
+   "concept_tags": [
+    "double_pointer"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

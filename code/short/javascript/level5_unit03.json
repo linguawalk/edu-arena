@@ -1,0 +1,60 @@
+{
+ "language": "javascript",
+ "category": "scripting",
+ "level": 5,
+ "unit": 3,
+ "unit_title": "getter/setter와 private 필드",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "javascript_l5_u03_q001",
+   "type": "predict_output",
+   "code": "class Circle {\n    constructor(radius) {\n        this._radius = radius;\n    }\n    get area() {\n        return 3.14 * this._radius * this._radius;\n    }\n}\n\nconst c = new Circle(2);\nconsole.log(c.area);",
+   "prompt_ko": "출력 결과는? (area가 괄호 없이 속성처럼 접근된 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: area is accessed without parentheses, like a property.)",
+   "expected_answers": [
+    "12.56"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "[Function: area]",
+    "오류",
+    "undefined"
+   ],
+   "explanation_ko": "get은 getter를 정의해서, c.area를 c.area()처럼 메서드로 호출하는 대신 일반 속성처럼 접근할 수 있게 합니다. 3.14*2*2=12.56을 계산합니다.",
+   "explanation_en": "get defines a getter, letting c.area be accessed like a plain property instead of calling c.area() as a method; it computes 3.14*2*2=12.56.",
+   "concept_tags": [
+    "getter"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "javascript_l5_u03_q002",
+   "type": "predict_output",
+   "code": "class Circle {\n    constructor(radius) {\n        this._radius = radius;\n    }\n    set radius(r) {\n        if (r > 0) this._radius = r;\n    }\n    get area() {\n        return 3.14 * this._radius * this._radius;\n    }\n}\n\nconst c = new Circle(2);\nc.radius = 3;\nconsole.log(c.area.toFixed(2));",
+   "prompt_ko": "출력 결과는? (c.radius = 3은 일반 대입처럼 보이지만, setter를 호출합니다.)",
+   "prompt_en": "What is printed? (Note: c.radius = 3 looks like a plain assignment, but calls the setter.)",
+   "expected_answers": [
+    "28.26"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "12.56",
+    "오류",
+    "3"
+   ],
+   "explanation_ko": "c.radius = 3은 내부적으로 set radius 메서드를 호출해서 _radius를 3으로 갱신합니다. 이후 area는 3.14*3*3=28.26을 계산합니다.",
+   "explanation_en": "c.radius = 3 invokes the set radius method behind the scenes, updating _radius to 3; area then computes 3.14*3*3=28.26.",
+   "concept_tags": [
+    "setter"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

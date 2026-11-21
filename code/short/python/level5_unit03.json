@@ -1,0 +1,60 @@
+{
+ "language": "python",
+ "category": "scripting",
+ "level": 5,
+ "unit": 3,
+ "unit_title": "상속과 다형성",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "python_l5_u03_q002",
+   "type": "fill_blank",
+   "code": "class Cat(____):\n    def speak(self):\n        print(\"야옹!\")",
+   "prompt_ko": "위의 Animal처럼 동작해야 한다면, Cat이 상속받을 부모 클래스를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the base class Cat inherits from, given it should behave like Animal above.",
+   "expected_answers": [
+    "Animal"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "Object",
+    "Base",
+    "Parent"
+   ],
+   "explanation_ko": "상속은 클래스 이름 뒤 괄호 안에 부모 클래스를 넣어 표현합니다: class Cat(Animal).",
+   "explanation_en": "Inheritance is expressed by placing the parent class in parentheses after the class name: class Cat(Animal).",
+   "concept_tags": [
+    "inheritance"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "python_l5_u03_q006",
+   "type": "predict_output",
+   "code": "class Animal:\n    def speak(self):\n        print(\"...\")\n\n    def greet(self):\n        print(\"안녕! \", end=\"\")\n        self.speak()\n\nclass Dog(Animal):\n    def speak(self):\n        print(\"멍멍!\")\n\nd = Dog()\nd.greet()",
+   "prompt_ko": "출력 결과는? (greet는 상속받은 것이지만, 내부에서 self.speak()를 호출합니다.)",
+   "prompt_en": "What is printed? (Note: greet is inherited, but calls self.speak() internally.)",
+   "expected_answers": [
+    "안녕! 멍멍!"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "안녕! ...",
+    "멍멍!안녕! ",
+    "오류"
+   ],
+   "explanation_ko": "greet()는 그대로 상속되지만, 그 안의 self.speak()는 여전히 d의 실제 타입을 기준으로 결정됩니다. d는 Dog이므로 Dog의 speak()가 실행되어 멍멍!이 출력됩니다.",
+   "explanation_en": "greet() is inherited as-is, but self.speak() inside it still resolves based on d's actual type; since d is a Dog, Dog's speak() runs, printing 멍멍!.",
+   "concept_tags": [
+    "polymorphism"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

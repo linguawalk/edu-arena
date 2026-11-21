@@ -1,0 +1,111 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 3,
+ "unit": 1,
+ "unit_title": "재귀 함수",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l3_u01_q001",
+   "type": "predict_output",
+   "code": "void countdown(int n) {\n    if (n == 0) {\n        printf(\"발사!\");\n        return;\n    }\n    printf(\"%d\", n);\n    countdown(n - 1);\n}\n\ncountdown(3);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "321발사!"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "123발사!",
+    "발사!321",
+    "무한 반복"
+   ],
+   "explanation_ko": "countdown(3)은 3을 출력한 뒤 countdown(2)를 호출하고, 이어서 2, 1을 출력하며 countdown을 계속 호출합니다. countdown(0)에 도달하면 '발사!'를 출력하고 종료됩니다.",
+   "explanation_en": "countdown(3) prints 3, then calls countdown(2) which prints 2, then countdown(1) prints 1, then countdown(0) prints '발사!' and returns.",
+   "concept_tags": [
+    "recursion"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l3_u01_q002",
+   "type": "predict_output",
+   "code": "int factorial(int n) {\n    if (n <= 1) return 1;\n    return n * factorial(n - 1);\n}\n\nprintf(\"%d\", factorial(4));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "24"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "4",
+    "10",
+    "오류"
+   ],
+   "explanation_ko": "factorial(4)는 4 * factorial(3) = 4 * 3 * factorial(2) = ... = 4 * 3 * 2 * 1로 계산되어 24가 됩니다.",
+   "explanation_en": "factorial(4) computes 4 * factorial(3) = 4 * 3 * factorial(2) = ... = 4 * 3 * 2 * 1 = 24.",
+   "concept_tags": [
+    "recursion"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l3_u01_q004",
+   "type": "fill_blank",
+   "code": "int sumTo(int n) {\n    if (n == 0) return ____;\n    return n + sumTo(n - 1);\n}",
+   "prompt_ko": "올바른 베이스 케이스 반환값을 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the correct base case return value.",
+   "expected_answers": [
+    "0"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "1",
+    "n",
+    "sumTo(0)"
+   ],
+   "explanation_ko": "n이 0이 되면 더 이상 더할 값이 없으므로, 베이스 케이스는 0을 반환해야 합니다. 이렇게 해야 sumTo(3) = 3 + 2 + 1 + 0 = 6처럼 올바르게 계산됩니다.",
+   "explanation_en": "When n reaches 0, adding 0 more contributes nothing to the sum, so the base case should return 0.",
+   "concept_tags": [
+    "recursion",
+    "base_case"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l3_u01_q005",
+   "type": "predict_output",
+   "code": "int fib(int n) {\n    if (n <= 1) return n;\n    return fib(n - 1) + fib(n - 2);\n}\n\nprintf(\"%d\", fib(5));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "8",
+    "3",
+    "13"
+   ],
+   "explanation_ko": "피보나치 수열은 0, 1, 1, 2, 3, 5, ...이며, fib(5)는 fib(0)부터 세었을 때 6번째 항인 5입니다.",
+   "explanation_en": "The Fibonacci sequence is 0, 1, 1, 2, 3, 5, ...; fib(5) is the 6th term (starting from fib(0)), which is 5.",
+   "concept_tags": [
+    "recursion"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

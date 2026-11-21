@@ -1,0 +1,115 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 4,
+ "unit": 1,
+ "unit_title": "연결 리스트 기초",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l4_u01_q001",
+   "type": "fill_blank",
+   "code": "struct Node {\n    int data;\n    struct ____ *next;\n};",
+   "prompt_ko": "자기 자신을 참조하는 연결 리스트 노드가 되도록 빈칸을 채우세요.",
+   "prompt_en": "Fill in the blank to complete a self-referencing linked list node.",
+   "expected_answers": [
+    "Node"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "int",
+    "data",
+    "next"
+   ],
+   "explanation_ko": "연결 리스트의 노드는 같은 타입의 다음 노드를 가리켜야 하므로, 포인터 필드의 자료형은 struct Node여야 합니다.",
+   "explanation_en": "A linked list node points to another node of the same type, so the pointer field's type must be struct Node.",
+   "concept_tags": [
+    "linked_list",
+    "struct"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l4_u01_q002",
+   "type": "predict_output",
+   "code": "struct Node {\n    int data;\n    struct Node *next;\n};\n\nstruct Node n3 = {3, NULL};\nstruct Node n2 = {2, &n3};\nstruct Node n1 = {1, &n2};\nstruct Node *head = &n1;\n\nstruct Node *cur = head;\nwhile (cur != NULL) {\n    printf(\"%d\", cur->data);\n    cur = cur->next;\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "123"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "321",
+    "1",
+    "무한 반복"
+   ],
+   "explanation_ko": "head(n1)부터 시작해 next 포인터를 따라가며 1, 2, 3을 차례로 출력하고, n3 다음이 NULL이 되는 순간 반복이 멈춥니다.",
+   "explanation_en": "Starting from head (n1), the loop follows each next pointer, printing 1, then 2, then 3, and stops when cur becomes NULL after n3.",
+   "concept_tags": [
+    "linked_list",
+    "traversal"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l4_u01_q004",
+   "type": "predict_output",
+   "code": "struct Node {\n    int data;\n    struct Node *next;\n};\n\nstruct Node n3 = {3, NULL};\nstruct Node n2 = {2, &n3};\nstruct Node n1 = {1, &n2};\nstruct Node *head = &n1;\n\nint sum = 0;\nstruct Node *cur = head;\nwhile (cur != NULL) {\n    sum += cur->data;\n    cur = cur->next;\n}\nprintf(\"%d\", sum);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "6"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "3",
+    "123",
+    "오류"
+   ],
+   "explanation_ko": "리스트를 순회하며 각 노드의 data(1+2+3)를 누적하면 총 6이 됩니다. 배열을 순회하던 것과 동일한 패턴이 연결 리스트에도 그대로 적용됩니다.",
+   "explanation_en": "Traversing the list and accumulating each node's data (1+2+3) gives a total of 6 — the same traversal pattern used for arrays, applied to linked lists.",
+   "concept_tags": [
+    "linked_list",
+    "traversal"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l4_u01_q006",
+   "type": "fill_blank",
+   "code": "struct Node {\n    int data;\n    struct Node *next;\n};\n\nstruct Node *cur = head;\nwhile (cur != NULL) {\n    printf(\"%d\", cur->data);\n    cur = cur____next;\n}",
+   "prompt_ko": "포인터 cur를 통해 next에 접근할 때 쓰는 연산자를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the operator used to access next through the pointer cur.",
+   "expected_answers": [
+    "->"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    ".",
+    "*",
+    "&"
+   ],
+   "explanation_ko": "cur는 구조체를 가리키는 포인터이므로, 다른 구조체 포인터와 마찬가지로 멤버에 접근할 때 화살표 연산자가 필요합니다.",
+   "explanation_en": "Since cur is a pointer to a struct, the arrow operator is required to access its members, just as with any other struct pointer.",
+   "concept_tags": [
+    "linked_list",
+    "pointer",
+    "arrow_operator"
+   ],
+   "difficulty": "intro"
+  }
+ ]
+}

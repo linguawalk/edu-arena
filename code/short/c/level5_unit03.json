@@ -1,0 +1,86 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 5,
+ "unit": 3,
+ "unit_title": "포인터 산술",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l5_u03_q001",
+   "type": "predict_output",
+   "code": "int arr[4] = {10, 20, 30, 40};\nint *ptr = arr;\nprintf(\"%d\", *(ptr + 2));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "30"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "10",
+    "20",
+    "2"
+   ],
+   "explanation_ko": "ptr + 2는 포인터를 2바이트가 아니라 2개의 요소만큼 앞으로 이동시켜 arr[2]에 도달합니다. 역참조하면 30이 됩니다.",
+   "explanation_en": "ptr + 2 moves the pointer forward by 2 elements (not 2 bytes), landing on arr[2]; dereferencing gives 30.",
+   "concept_tags": [
+    "pointer_arithmetic"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l5_u03_q002",
+   "type": "predict_output",
+   "code": "int arr[4] = {10, 20, 30, 40};\nint *ptr = arr;\nptr++;\nprintf(\"%d\", *ptr);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "20"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "10",
+    "30",
+    "오류"
+   ],
+   "explanation_ko": "ptr++는 포인터를 int 하나 크기만큼 이동시켜 arr[0]에서 arr[1]로 옮깁니다. arr[1]에는 20이 저장되어 있습니다.",
+   "explanation_en": "ptr++ advances the pointer by one int-sized step, moving from arr[0] to arr[1], which holds 20.",
+   "concept_tags": [
+    "pointer_arithmetic"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l5_u03_q003",
+   "type": "predict_output",
+   "code": "int arr[4] = {10, 20, 30, 40};\nint *p1 = &arr[3];\nint *p2 = &arr[0];\nprintf(\"%ld\", p1 - p2);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "12",
+    "30",
+    "10"
+   ],
+   "explanation_ko": "같은 배열을 가리키는 두 포인터를 빼면 바이트 차이가 아니라 그 사이에 있는 요소의 개수가 나옵니다. arr[3]과 arr[0]은 3개 요소만큼 떨어져 있습니다.",
+   "explanation_en": "Subtracting two pointers into the same array gives the number of elements between them, not the byte difference; arr[3] - arr[0] is 3 elements apart.",
+   "concept_tags": [
+    "pointer_arithmetic",
+    "pointer_subtraction"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

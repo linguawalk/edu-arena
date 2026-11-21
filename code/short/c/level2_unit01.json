@@ -1,0 +1,86 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 2,
+ "unit": 1,
+ "unit_title": "중첩 반복문",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l2_u01_q001",
+   "type": "predict_output",
+   "code": "for (int i = 1; i <= 2; i++) {\n    for (int j = 1; j <= 2; j++) {\n        printf(\"%d\", i * j);\n    }\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "1224"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "1234",
+    "1122",
+    "12"
+   ],
+   "explanation_ko": "바깥 반복문의 i값마다 안쪽 반복문이 처음부터 끝까지 실행됩니다. i=1일 때 1*1=1, 1*2=2, i=2일 때 2*1=2, 2*2=4가 출력되어 1224가 됩니다.",
+   "explanation_en": "For each value of i, the inner loop runs completely: i=1 gives 1*1=1, 1*2=2; i=2 gives 2*1=2, 2*2=4, producing 1224.",
+   "concept_tags": [
+    "nested_loop"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l2_u01_q002",
+   "type": "predict_output",
+   "code": "int count = 0;\nfor (int i = 0; i < 3; i++) {\n    for (int j = 0; j < 2; j++) {\n        count++;\n    }\n}\nprintf(\"%d\", count);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "6"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "3",
+    "2",
+    "5"
+   ],
+   "explanation_ko": "바깥 반복문이 3번 실행되고, 그때마다 안쪽 반복문이 2번씩 실행되므로 count는 총 3 * 2 = 6번 증가합니다.",
+   "explanation_en": "The outer loop runs 3 times, and for each of those, the inner loop runs 2 times, so count is incremented 3 * 2 = 6 times.",
+   "concept_tags": [
+    "nested_loop"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l2_u01_q005",
+   "type": "predict_output",
+   "code": "for (int i = 0; i < 2; i++) {\n    for (int i = 0; i < 2; i++) {\n        printf(\"%d\", i);\n    }\n}",
+   "prompt_ko": "출력 결과는? (두 반복문 모두 변수명 i를 사용한 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note both loops use the variable name i.)",
+   "expected_answers": [
+    "0101"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0011",
+    "컴파일 오류",
+    "0202"
+   ],
+   "explanation_ko": "각 i는 자신이 속한 for문 괄호 안에서 선언되어 서로 다른 스코프를 갖습니다. 안쪽 i가 바깥 i를 가리는(shadow) 형태로 충돌 없이 동작하여, 0과 1이 두 번 반복되어 출력됩니다.",
+   "explanation_en": "Because each i is declared inside its own loop's parentheses, they exist in separate scopes; the inner i shadows the outer one without conflict, printing 0,1 twice.",
+   "concept_tags": [
+    "nested_loop",
+    "variable_scope"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}

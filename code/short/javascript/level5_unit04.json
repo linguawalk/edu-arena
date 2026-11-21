@@ -1,0 +1,111 @@
+{
+ "language": "javascript",
+ "category": "scripting",
+ "level": 5,
+ "unit": 4,
+ "unit_title": "static 메서드",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "javascript_l5_u04_q001",
+   "type": "predict_output",
+   "code": "class MathHelper {\n    static square(x) {\n        return x * x;\n    }\n}\n\nconsole.log(MathHelper.square(5));",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "25"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "5",
+    "오류",
+    "x * x"
+   ],
+   "explanation_ko": "static 메서드는 클래스 자체에 속해서, 인스턴스를 만들지 않고 클래스 이름으로 바로 호출합니다. MathHelper.square(5)는 25를 반환합니다.",
+   "explanation_en": "static methods belong to the class itself, called directly on the class name without creating an instance; MathHelper.square(5) returns 25.",
+   "concept_tags": [
+    "static_method"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "javascript_l5_u04_q003",
+   "type": "fill_blank",
+   "code": "class Counter {\n    ____ count = 0;\n\n    static increment() {\n        Counter.count++;\n    }\n}\n\nCounter.increment();\nCounter.increment();\nconsole.log(Counter.count);\n// 2가 출력되어야 함",
+   "prompt_ko": "count가 인스턴스가 아니라 클래스에 속하도록 만드는 키워드를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blank with the keyword that makes count belong to the class rather than instances.",
+   "expected_answers": [
+    "static"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "const",
+    "shared",
+    "class"
+   ],
+   "explanation_ko": "static은 필드가 클래스 자체에 속하도록 표시해서, 인스턴스 없이도 Counter.count로 접근하고 수정할 수 있게 합니다.",
+   "explanation_en": "static marks a field as belonging to the class itself, so it can be accessed and modified as Counter.count without any instance.",
+   "concept_tags": [
+    "static_field"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "javascript_l5_u04_q004",
+   "type": "predict_output",
+   "code": "class BankAccount {\n    static totalAccounts = 0;\n\n    constructor() {\n        BankAccount.totalAccounts++;\n    }\n}\n\nnew BankAccount();\nnew BankAccount();\nnew BankAccount();\nconsole.log(BankAccount.totalAccounts);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0",
+    "1",
+    "오류"
+   ],
+   "explanation_ko": "totalAccounts는 생성자에서 증가하는 static 필드입니다. 객체 3개를 만들면 생성자가 3번 실행되어 totalAccounts는 3이 됩니다.",
+   "explanation_en": "totalAccounts is a static field incremented in the constructor; creating 3 objects runs the constructor 3 times, so totalAccounts becomes 3.",
+   "concept_tags": [
+    "static_field"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "javascript_l5_u04_q005",
+   "type": "predict_output",
+   "code": "class MathHelper {\n    static PI = 3.14;\n    static square(x) {\n        return x * x;\n    }\n    static circleArea(r) {\n        return MathHelper.PI * MathHelper.square(r);\n    }\n}\n\nconsole.log(MathHelper.circleArea(2));",
+   "prompt_ko": "출력 결과는? (한 static 메서드가 클래스 이름으로 다른 static 멤버를 호출하는 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: one static method calls another using the class name.)",
+   "expected_answers": [
+    "12.56"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "6.28",
+    "4",
+    "오류"
+   ],
+   "explanation_ko": "static 멤버끼리는 this가 아니라 클래스 이름(MathHelper.PI, MathHelper.square)으로 서로를 참조합니다. circleArea(2)는 3.14 * square(2) = 3.14 * 4 = 12.56을 계산합니다.",
+   "explanation_en": "static members reference each other via the class name (MathHelper.PI, MathHelper.square), not this; circleArea(2) computes 3.14 * square(2) = 3.14 * 4 = 12.56.",
+   "concept_tags": [
+    "static_method",
+    "static_field"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

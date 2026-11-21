@@ -1,0 +1,112 @@
+{
+ "language": "python",
+ "category": "scripting",
+ "level": 5,
+ "unit": 2,
+ "unit_title": "캡슐화 관례",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "python_l5_u02_q001",
+   "type": "predict_output",
+   "code": "class Dog:\n    def __init__(self):\n        self._age = 0\n\nd = Dog()\nd._age = -100\nprint(d._age)",
+   "prompt_ko": "출력 결과는? (이를 막았을 Java/C#/VB의 private과 비교해보세요.)",
+   "prompt_en": "What is printed? (Compare with Java/C#/VB's private, which would block this.)",
+   "expected_answers": [
+    "-100"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "0",
+    "오류",
+    "None"
+   ],
+   "explanation_ko": "밑줄 하나(_age)는 순전히 '내부용, 건드리지 말아주세요'라는 명명 관례일 뿐입니다. Python은 이를 전혀 강제하지 않아서, d._age = -100은 오류 없이 그대로 동작합니다.",
+   "explanation_en": "A single leading underscore (_age) is purely a naming convention meaning 'internal use, please don't touch' — Python doesn't enforce it at all, so d._age = -100 works with no error.",
+   "concept_tags": [
+    "naming_convention",
+    "no_true_privacy"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "python_l5_u02_q003",
+   "type": "predict_output",
+   "code": "class Dog:\n    def __init__(self):\n        self.__secret = \"hidden\"\n\nd = Dog()\nprint(d._Dog__secret)",
+   "prompt_ko": "출력 결과는? (이름 맹글링이 진짜 private이 아님을 증명합니다.)",
+   "prompt_en": "What is printed? (This proves name mangling isn't true privacy.)",
+   "expected_answers": [
+    "hidden"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류",
+    "__secret",
+    "None"
+   ],
+   "explanation_ko": "맹글링된 이름인 _Dog__secret은 클래스 밖에서도 여전히 직접 접근할 수 있습니다. 이름 맹글링이 진짜 접근 제어가 아니라 단순한 난독화 메커니즘일 뿐임을 보여줍니다.",
+   "explanation_en": "The mangled name _Dog__secret can still be accessed directly from outside the class, proving that name mangling is only an obfuscation mechanism, not real access control.",
+   "concept_tags": [
+    "name_mangling",
+    "no_true_privacy"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "python_l5_u02_q004",
+   "type": "predict_output",
+   "code": "class Dog:\n    def __init__(self):\n        self._age = 0\n\n    def set_age(self, age):\n        if age >= 0:\n            self._age = age\n\n    def get_age(self):\n        return self._age\n\nd = Dog()\nd.set_age(5)\nd.set_age(-3)\nprint(d.get_age())",
+   "prompt_ko": "출력 결과는? (강제되는 private이 없어도 getter/setter 메서드는 여전히 유용한 관례입니다.)",
+   "prompt_en": "What is printed? (Getter/setter methods are still a useful convention even without enforced privacy.)",
+   "expected_answers": [
+    "5"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "-3",
+    "0",
+    "오류"
+   ],
+   "explanation_ko": "set_age는 대입 전에 값을 검증하며, 다른 언어에서 봤던 것과 같은 관례를 따릅니다. -3은 검사를 통과하지 못해 _age는 5로 유지됩니다.",
+   "explanation_en": "set_age validates the value before assigning, following the same convention seen in other languages; -3 fails the check, so _age stays 5.",
+   "concept_tags": [
+    "encapsulation_convention"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "python_l5_u02_q005",
+   "type": "fill_blank",
+   "code": "class Dog:\n    def __init__(self):\n        self.____name = \"바둑이\"\n        self.____age = 3\n# 두 필드 모두 '내부용'이라는 관례를 나타내되, 강제력은 없어야 함",
+   "prompt_ko": "Python이 강제하지 않는 '내부용' 필드 명명 관례 접두사를 빈칸에 채우세요.",
+   "prompt_en": "Fill in the blanks with the naming convention prefix for 'internal use' fields that Python doesn't enforce.",
+   "expected_answers": [
+    "_"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "__",
+    "private_",
+    "m_"
+   ],
+   "explanation_ko": "밑줄 하나를 앞에 붙이는 것은 필드를 내부용으로 표시하는 관례적인 방법입니다. Python 개발자들은 이를 '밖에서 건드리지 마세요'로 이해하지만, 언어 차원에서 강제되지는 않습니다.",
+   "explanation_en": "A single leading underscore is the conventional way to mark a field as intended for internal use, understood by Python developers as 'don't touch this from outside' — but never enforced by the language.",
+   "concept_tags": [
+    "naming_convention"
+   ],
+   "difficulty": "intro"
+  }
+ ]
+}

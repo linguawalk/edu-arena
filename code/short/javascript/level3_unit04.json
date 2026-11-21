@@ -1,0 +1,60 @@
+{
+ "language": "javascript",
+ "category": "scripting",
+ "level": 3,
+ "unit": 4,
+ "unit_title": "클로저",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "javascript_l3_u04_q002",
+   "type": "predict_output",
+   "code": "function makeCounter() {\n    let count = 0;\n    return function() {\n        count++;\n        return count;\n    };\n}\n\nconst counterA = makeCounter();\nconst counterB = makeCounter();\ncounterA();\ncounterA();\nconsole.log(counterB());",
+   "prompt_ko": "출력 결과는? (counterA와 counterB는 makeCounter를 각각 따로 호출해서 만들어졌습니다.)",
+   "prompt_en": "What is printed? (counterA and counterB come from separate calls to makeCounter.)",
+   "expected_answers": [
+    "1"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "3",
+    "2",
+    "오류"
+   ],
+   "explanation_ko": "makeCounter()를 호출할 때마다 완전히 독립적인 count 변수가 만들어집니다. counterA의 두 번의 증가는 counterB에 영향을 주지 않아, counterB의 첫 호출은 여전히 1부터 시작합니다.",
+   "explanation_en": "Each call to makeCounter() creates a completely independent count variable; counterA's two increments have no effect on counterB, whose first call still starts at 1.",
+   "concept_tags": [
+    "closure"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "javascript_l3_u04_q003",
+   "type": "fill_blank",
+   "code": "function makeMultiplier(factor) {\n    return function(n) {\n        return n ____ factor;\n    };\n}\n\nconst triple = makeMultiplier(3);\nconsole.log(triple(5));\n// 15가 출력되어야 함",
+   "prompt_ko": "곱셈 클로저를 완성하려면 빈칸에 무엇이 들어가야 할까요?",
+   "prompt_en": "Fill in the blank to complete the multiplier closure.",
+   "expected_answers": [
+    "*"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "+",
+    "/",
+    "-"
+   ],
+   "explanation_ko": "내부 함수는 factor(3)를 클로저로 감쌉니다. n * factor는 입력값에 그것을 곱해, triple(5)는 15가 됩니다.",
+   "explanation_en": "The inner function closes over factor (3); n * factor multiplies the input by it, so triple(5) gives 15.",
+   "concept_tags": [
+    "closure"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

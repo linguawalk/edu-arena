@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>코스 · 코딩 · edu-arena</title>
-<meta name="description" content="직접 코드를 작성해 보는 코딩 실습과 심화 문제.">
+<meta name="description" content="코드를 읽고 결과와 빈칸을 직접 입력하는 개념 단답형 문제와 심화 문제.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -64,11 +64,12 @@ const pad = n => String(n).padStart(2, "0");
 const nav = document.getElementById("nav"), main = document.getElementById("main");
 
 let TYPE = P.get("type");
+let SHORT = null;
 const HIDDEN = CURRICULUM.HIDDEN_TYPES || [];
 if (!TYPE || HIDDEN.indexOf(TYPE) >= 0) {
   // 숨긴 유형의 주소로 들어오면 검색에 잡히지 않게 하고, 공개 중인 첫 화면으로 보냅니다.
   if (TYPE) { const m = document.createElement("meta"); m.name = "robots"; m.content = "noindex"; document.head.appendChild(m); }
-  TYPE = "practice"; P.set("type", "practice"); P.set("lang", CURRICULUM.practice[0].key);
+  TYPE = "short"; P.set("type", "short"); P.set("lang", "python");
   [...P.keys()].forEach(k => { if (k !== "type" && k !== "lang") P.delete(k); });
 }
 const cur = (type, extra) => TYPE === type && Object.entries(extra).every(([k, v]) => P.get(k) === v);
@@ -80,12 +81,13 @@ function group(title, items, open) {
 }
 function buildNav() {
   const C = CURRICULUM, html = [];
+  html.push(group("개념 단답형", SHORT ? Object.keys(SHORT).map(k => ({ label: SHORT[k].name, q: `type=short&lang=${k}`, on: cur("short", { lang: k }) })) : [], true));
   const show = t => HIDDEN.indexOf(t) < 0;
   if (show("foundation")) html.push(group("기초", C.foundation.stages.map(s => ({ label: s.title, q: `type=foundation&stage=${s.key}`, on: cur("foundation", { stage: s.key }) }))));
   if (show("language")) C.tracks.forEach(t => html.push(group(t.title, t.languages.map(l => ({
     label: l.name, q: `type=language&track=${t.key}&lang=${l.key}`, on: cur("language", { track: t.key, lang: l.key }) })))));
   if (show("module")) html.push(group("개념 모듈", C.modules.map(m => ({ label: m.title, q: `type=module&key=${m.key}`, on: cur("module", { key: m.key }) }))));
-  html.push(group("실습 · 직접 코드 작성", C.practice.map(l => ({ label: l.name, q: `type=practice&lang=${l.key}`, on: cur("practice", { lang: l.key }) }))));
+  if (show("practice")) html.push(group("실습 · 직접 코드 작성", C.practice.map(l => ({ label: l.name, q: `type=practice&lang=${l.key}`, on: cur("practice", { lang: l.key }) }))));
   if (show("certvendor")) html.push(group("자격증", C.certifications.map(v => ({ label: v.title, q: `type=certvendor&cert=${v.key}`,
     on: (TYPE === "certvendor" || TYPE === "certexam") && P.get("cert") === v.key }))));
   nav.innerHTML = html.join("");
@@ -127,6 +129,21 @@ function levels(name, base, nLevels, player, levelNames) {
 
 function render() {
   const C = CURRICULUM;
+  if (TYPE === "short") {
+    const k = P.get("lang"), L = SHORT && SHORT[k]; if (!L) return fail();
+    const by = {}; L.units.forEach(u => (by[u.level] = by[u.level] || []).push(u));
+    let out = head("개념 단답형", L.name, "코드를 읽고 결과나 빈칸의 답을 직접 입력합니다. 보기가 없고, 틀리면 해설과 힌트를 줍니다.");
+    Object.keys(by).sort((a, b) => a - b).forEach(lv => {
+      let rows = "";
+      by[lv].forEach((u, i, arr) => {
+        const nx = arr[i + 1] || (by[+lv + 1] && by[+lv + 1][0]);
+        const f = x => `short/${k}/level${x.level}_unit${pad(x.unit)}.json`;
+        rows += row(playerHref("player.html", f(u), `${L.name} · ${u.title || "유닛 " + u.unit}`, nx ? f(nx) : ""), u.title || `유닛 ${u.unit}`, `${u.n}문항`);
+      });
+      out += `<section class="chapter"><h2><span class="no">${lv}</span>레벨 ${lv}</h2><ol class="items">${rows}</ol></section>`;
+    });
+    return out;
+  }
   if (TYPE === "foundation") {
     const s = C.foundation.stages.find(x => x.key === P.get("stage")); if (!s) return fail();
     let rows = "";
@@ -161,7 +178,9 @@ function render() {
 function fail() { return `<div class="empty">코스를 찾을 수 없습니다. 왼쪽 목록에서 코스를 고르세요.</div>`; }
 
 if (typeof CURRICULUM === "undefined") main.innerHTML = `<div class="empty">코스 정보를 불러오지 못했습니다.</div>`;
-else { buildNav(); main.innerHTML = render(); }
+else {
+  fetch("short/index.json").then(r => r.ok ? r.json() : null).catch(() => null).then(m => { SHORT = m; buildNav(); main.innerHTML = render(); });
+}
 </script>
 <script src="/assets/site.js" defer></script>
 </body>

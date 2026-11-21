@@ -305,6 +305,7 @@
 </div>
 
 <script src="curriculum-data.js"></script>
+<script src="../assets/tutor.js"></script>
 <script>
 const params = new URLSearchParams(location.search);
 const FILE  = params.get('file');
@@ -380,9 +381,33 @@ function normalizeAnswer(s) {
   return String(s).trim().toLowerCase().replace(/\s+/g, ' ');
 }
 
+// q.match = {case: true면 대소문자 구분, space: "remove"(공백 모두 무시) | "collapse"(연속 공백을 하나로)}
+function matchKey(s, q) {
+  const m = q.match || {};
+  let t = String(s).trim();
+  if (!m.case) t = t.toLowerCase();
+  return m.space === "remove" ? t.replace(/\s+/g, "") : t.replace(/\s+/g, " ");
+}
 function checkShortAnswer(userInput, q) {
-  const norm = normalizeAnswer(userInput);
-  return getAcceptedAnswers(q).some(a => normalizeAnswer(a) === norm);
+  const key = matchKey(userInput, q);
+  return getAcceptedAnswers(q).some(a => matchKey(a, q) === key);
+}
+function isCommonWrong(userInput, q) {
+  const key = matchKey(userInput, q);
+  return (q.wrong_answers || []).some(a => matchKey(a, q) === key);
+}
+// 단계별 힌트: 저작 힌트 → 풀이 앞부분(정답이 드러나지 않는 줄만) → 일반 안내 → 글자 수
+function shortHints(q) {
+  const out = [];
+  try {
+    const tq = {hint: q.hint, qtype: "fill_blank", blanks: [{answers: getAcceptedAnswers(q)}], explanation: q.explanation_ko || ""};
+    if (window.Tutor && Tutor.hints) out.push(...Tutor.hints(tq));
+  } catch (e) {}
+  out.push(q.type === "fill_blank" ? "빈칸 앞뒤 코드와 문제의 설명을 다시 읽고, 그 자리에 들어갈 수 있는 것만 떠올려 보세요."
+                                   : "코드를 위에서부터 한 줄씩 따라가며, 변수 값이 어떻게 바뀌는지 적어 보세요.");
+  const a = String(getAcceptedAnswers(q)[0] || "");
+  if (a.length >= 2) out.push(`정답은 ${a.length}글자입니다.`);
+  return out;
 }
 
 let queue = [];
@@ -427,7 +452,9 @@ function renderQuestion() {
       <div class="fillblank-row">
         <input type="text" class="fillblank-input" id="fbInput" placeholder="정답을 입력하세요" autocomplete="off" autocapitalize="off" spellcheck="false">
         <button class="submit-answer" id="fbSubmit">확인</button>
+        <button class="submit-answer" id="fbHint" type="button" style="background:transparent;color:var(--accent);border:1px solid var(--accent)">힌트</button>
       </div>
+      <div id="hintArea" style="margin-top:10px;font-size:15px;color:var(--text-dim);white-space:pre-line"></div>
     `
     : `
       <div class="options">
@@ -507,6 +534,15 @@ function wireShortAnswer(q) {
   const input = document.getElementById('fbInput');
   const submitBtn = document.getElementById('fbSubmit');
   let submitted = false;
+  const hintBtn = document.getElementById('fbHint'), hintArea = document.getElementById('hintArea');
+  const hs = shortHints(q); let shown = 0;
+  hintBtn.addEventListener('click', () => {
+    if (submitted || shown >= hs.length) return;
+    const p = document.createElement('p'); p.style.margin = '0 0 6px'; p.textContent = '힌트 ' + (shown + 1) + ': ' + hs[shown++];
+    hintArea.appendChild(p);
+    if (shown >= hs.length) hintBtn.disabled = true;
+    input.focus();
+  });
 
   function submit() {
     if (submitted) return;
@@ -529,6 +565,12 @@ function wireShortAnswer(q) {
     }
 
     finishAnswer(isCorrect, q);
+    hintBtn.disabled = true;
+    if (!isCorrect && isCommonWrong(val, q)) {
+      const n = document.createElement('p'); n.style.cssText = 'margin:8px 0 0;font-size:15px;color:var(--warn)';
+      n.textContent = '입력한 답은 이 문제에서 자주 나오는 오답입니다. 아래 해설로 어느 단계에서 갈렸는지 확인해 보세요.';
+      const ex = document.getElementById('explain'); ex.insertBefore(n, document.getElementById('explainText'));
+    }
   }
 
   submitBtn.addEventListener('click', submit);

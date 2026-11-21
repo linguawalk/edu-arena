@@ -1,0 +1,110 @@
+{
+ "language": "c",
+ "category": "system_low_level",
+ "level": 6,
+ "unit": 3,
+ "unit_title": "열거형 (enum)",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "c_l6_u03_q001",
+   "type": "predict_output",
+   "code": "enum Day { MON, TUE, WED, THU, FRI, SAT, SUN };\n\nenum Day today = WED;\nprintf(\"%d\", today);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "2"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "WED",
+    "3",
+    "오류"
+   ],
+   "explanation_ko": "열거형 상수는 기본적으로 0부터 시작하는 정수 값을 갖습니다. MON=0, TUE=1, WED=2이므로 today는 2로 출력됩니다.",
+   "explanation_en": "Enum constants are assigned integer values starting from 0 by default; MON=0, TUE=1, WED=2, so today prints as 2.",
+   "concept_tags": [
+    "enum"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l6_u03_q002",
+   "type": "predict_output",
+   "code": "enum Status { OK = 200, NOT_FOUND = 404, SERVER_ERROR = 500 };\n\nenum Status s = NOT_FOUND;\nprintf(\"%d\", s);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "404"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "1",
+    "NOT_FOUND",
+    "오류"
+   ],
+   "explanation_ko": "열거형 상수에는 명시적으로 값을 지정할 수 있습니다. NOT_FOUND는 404로 지정되었으므로 그 값이 저장되고 출력됩니다.",
+   "explanation_en": "Enum constants can be given explicit values; NOT_FOUND was set to 404, so that value is what gets stored and printed.",
+   "concept_tags": [
+    "enum"
+   ],
+   "difficulty": "practice"
+  },
+  {
+   "id": "c_l6_u03_q003",
+   "type": "fill_blank",
+   "code": "enum Color { RED, GREEN, ____ };\n// BLUE는 2번째 값(인덱스 2)이 되어야 함",
+   "prompt_ko": "RED(0), GREEN(1)에 이어 BLUE가 자동으로 다음 값이 되도록 빈칸을 채우세요.",
+   "prompt_en": "Fill in the blank so BLUE follows RED (0) and GREEN (1) automatically.",
+   "expected_answers": [
+    "BLUE"
+   ],
+   "match": {
+    "case": true,
+    "space": "remove"
+   },
+   "wrong_answers": [
+    "BLUE = 2",
+    "BLUE()",
+    "3 BLUE"
+   ],
+   "explanation_ko": "명시적으로 값을 지정하지 않으면 각 열거형 상수는 자동으로 이전 값에 1을 더한 값을 갖습니다. BLUE만 써도 자동으로 2가 됩니다.",
+   "explanation_en": "Unless given an explicit value, each enum constant automatically takes the previous constant's value plus one; BLUE alone becomes 2.",
+   "concept_tags": [
+    "enum"
+   ],
+   "difficulty": "intro"
+  },
+  {
+   "id": "c_l6_u03_q005",
+   "type": "predict_output",
+   "code": "enum Level { LOW, MEDIUM, HIGH };\n\nint main() {\n    enum Level lv = MEDIUM;\n    if (lv == 1) {\n        printf(\"중간 단계\");\n    }\n    return 0;\n}",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "중간 단계"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "아무것도 출력되지 않음",
+    "MEDIUM",
+    "오류"
+   ],
+   "explanation_ko": "MEDIUM은 1입니다(LOW=0, MEDIUM=1). 따라서 lv == 1 조건이 참이 되어 '중간 단계'가 출력됩니다.",
+   "explanation_en": "MEDIUM equals 1 (LOW=0, MEDIUM=1), so the condition lv == 1 is true, and '중간 단계' is printed.",
+   "concept_tags": [
+    "enum"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

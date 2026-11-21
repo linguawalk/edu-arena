@@ -1,0 +1,61 @@
+{
+ "language": "javascript",
+ "category": "scripting",
+ "level": 6,
+ "unit": 3,
+ "unit_title": "async/await",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "javascript_l6_u03_q003",
+   "type": "predict_output",
+   "code": "async function getNumber() {\n    return 42;\n}\n\nconsole.log(getNumber());",
+   "prompt_ko": "출력 결과는? (getNumber()가 await 없이 직접 호출된 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: getNumber() is called directly, without await.)",
+   "expected_answers": [
+    "Promise { 42 }"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "42",
+    "undefined",
+    "오류"
+   ],
+   "explanation_ko": "async 함수는 본문이 그냥 return 42만 해도 항상 Promise를 반환합니다. await(또는 .then()) 없이는 값이 아니라 Promise 래퍼 자체를 얻습니다.",
+   "explanation_en": "An async function always returns a Promise, even if the body just does return 42; without await (or .then()), you get the Promise wrapper itself, not the unwrapped value.",
+   "concept_tags": [
+    "async_await"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "javascript_l6_u03_q004",
+   "type": "predict_output",
+   "code": "async function getNumber() {\n    return 42;\n}\n\ngetNumber().then(n => console.log(n));",
+   "prompt_ko": "출력 결과는? (위의 직접 호출과 비교해보세요.)",
+   "prompt_en": "What is printed? (Compare with the direct call above.)",
+   "expected_answers": [
+    "42"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "Promise { 42 }",
+    "undefined",
+    "오류"
+   ],
+   "explanation_ko": ".then()은 Promise를 풀어서, 이행된 값인 42를 직접 받습니다.",
+   "explanation_en": ".then() unwraps the Promise, receiving the resolved value 42 directly.",
+   "concept_tags": [
+    "async_await",
+    "promise"
+   ],
+   "difficulty": "practice"
+  }
+ ]
+}

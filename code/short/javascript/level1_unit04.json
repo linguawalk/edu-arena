@@ -1,0 +1,85 @@
+{
+ "language": "javascript",
+ "category": "scripting",
+ "level": 1,
+ "unit": 4,
+ "unit_title": "var vs let/const 스코프",
+ "format": "short_answer",
+ "questions": [
+  {
+   "id": "javascript_l1_u04_q001",
+   "type": "predict_output",
+   "code": "if (true) {\n    var x = 10;\n}\nconsole.log(x);",
+   "prompt_ko": "출력 결과는? (x가 if 블록 안에서 선언된 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: x was declared inside the if block.)",
+   "expected_answers": [
+    "10"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류: x가 정의되지 않음",
+    "undefined",
+    "0"
+   ],
+   "explanation_ko": "var는 블록 스코프가 아니라 함수(또는 전역) 스코프입니다. if 블록 밖으로 완전히 새어나가서, 이후에도 x는 값 10과 함께 접근 가능합니다.",
+   "explanation_en": "var is function-scoped (or global-scoped), not block-scoped; it leaks out of the if block entirely, so x is still accessible afterward with its value, 10.",
+   "concept_tags": [
+    "var_scope"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "javascript_l1_u04_q003",
+   "type": "predict_output",
+   "code": "for (var i = 0; i < 3; i++) {\n}\nconsole.log(i);",
+   "prompt_ko": "출력 결과는?",
+   "prompt_en": "What is printed?",
+   "expected_answers": [
+    "3"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "오류",
+    "2",
+    "undefined"
+   ],
+   "explanation_ko": "var는 블록 스코프가 아니므로, 반복문의 i는 for문 밖으로 완전히 새어나가 반복문이 끝난 뒤에도 마지막 값인 3을 유지합니다.",
+   "explanation_en": "Since var isn't block-scoped, the loop's i leaks out of the for loop entirely, retaining its final value of 3 after the loop ends.",
+   "concept_tags": [
+    "var_scope"
+   ],
+   "difficulty": "challenge"
+  },
+  {
+   "id": "javascript_l1_u04_q005",
+   "type": "predict_output",
+   "code": "console.log(z);\nvar z = 5;",
+   "prompt_ko": "출력 결과는? (z가 선언 줄보다 먼저 사용된 점에 주의하세요.)",
+   "prompt_en": "What is printed? (Note: z is used before its declaration line.)",
+   "expected_answers": [
+    "undefined"
+   ],
+   "match": {
+    "case": true,
+    "space": "collapse"
+   },
+   "wrong_answers": [
+    "5",
+    "ReferenceError",
+    "null"
+   ],
+   "explanation_ko": "var 선언은 스코프 맨 위로 '끌어올려'지지만(hoisting), 선언만 끌어올려지고 대입은 그대로입니다. z는 존재하지만, 출력되는 시점에는 아직 undefined입니다.",
+   "explanation_en": "var declarations are 'hoisted' to the top of their scope, but only the declaration, not the assignment; z exists but is still undefined at the point it's logged.",
+   "concept_tags": [
+    "hoisting"
+   ],
+   "difficulty": "challenge"
+  }
+ ]
+}
