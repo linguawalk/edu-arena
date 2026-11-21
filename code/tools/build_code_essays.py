@@ -5,6 +5,7 @@
 - 형식은 다른 과목 에세이와 같다(tools/essay_kit.py).
 """
 import json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(HERE)), "tools"))
@@ -328,6 +329,10 @@ add("debugging", "오류와 읽기 쉬운 코드", "오류의 종류, 읽기 쉬
        "주석은 코드가 무엇을 하는지 되풀이하기보다 왜 그렇게 했는지 이유를 적어야 쓸모가 있습니다. 또 하나의 함수가 여러 일을 하지 않고 한 가지 일만 하도록 작게 나누면, 이름만 보고도 하는 일을 짐작할 수 있습니다.",
        "읽기 쉬운 코드는 읽는 사람이 오류를 빨리 알아봅니다. 의미 있는 이름 덕분에 곱해야 할 값이 틀렸다는 것이 바로 보이고, 작게 나눈 함수는 따로 시험할 수 있습니다. 그래서 읽기 쉬운 코드는 오류를 줄이고, 몇 달 뒤의 나 자신에게도 도움이 됩니다."]),
 ])
+
+from build_code_essays_extra import EXTRA  # noqa: E402
+for _s in SETS:
+    _s[3].extend(EXTRA.get(_s[0], []))
 
 
 def main():
