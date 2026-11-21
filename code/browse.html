@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>코스 · 코딩 · edu-arena</title>
-<meta name="description" content="컴퓨터적 사고부터 16개 프로그래밍 언어, 개념 모듈, 직접 코드를 쓰는 실습과 글로벌 자격증 준비까지.">
+<meta name="description" content="직접 코드를 작성해 보는 코딩 실습과 심화 문제.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -64,7 +64,13 @@ const pad = n => String(n).padStart(2, "0");
 const nav = document.getElementById("nav"), main = document.getElementById("main");
 
 let TYPE = P.get("type");
-if (!TYPE) { TYPE = "foundation"; P.set("type", "foundation"); P.set("stage", CURRICULUM.foundation.stages[0].key); }
+const HIDDEN = CURRICULUM.HIDDEN_TYPES || [];
+if (!TYPE || HIDDEN.indexOf(TYPE) >= 0) {
+  // 숨긴 유형의 주소로 들어오면 검색에 잡히지 않게 하고, 공개 중인 첫 화면으로 보냅니다.
+  if (TYPE) { const m = document.createElement("meta"); m.name = "robots"; m.content = "noindex"; document.head.appendChild(m); }
+  TYPE = "practice"; P.set("type", "practice"); P.set("lang", CURRICULUM.practice[0].key);
+  [...P.keys()].forEach(k => { if (k !== "type" && k !== "lang") P.delete(k); });
+}
 const cur = (type, extra) => TYPE === type && Object.entries(extra).every(([k, v]) => P.get(k) === v);
 
 /* ---------- 왼쪽 목록 ---------- */
@@ -74,12 +80,13 @@ function group(title, items, open) {
 }
 function buildNav() {
   const C = CURRICULUM, html = [];
-  html.push(group("기초", C.foundation.stages.map(s => ({ label: s.title, q: `type=foundation&stage=${s.key}`, on: cur("foundation", { stage: s.key }) }))));
-  C.tracks.forEach(t => html.push(group(t.title, t.languages.map(l => ({
+  const show = t => HIDDEN.indexOf(t) < 0;
+  if (show("foundation")) html.push(group("기초", C.foundation.stages.map(s => ({ label: s.title, q: `type=foundation&stage=${s.key}`, on: cur("foundation", { stage: s.key }) }))));
+  if (show("language")) C.tracks.forEach(t => html.push(group(t.title, t.languages.map(l => ({
     label: l.name, q: `type=language&track=${t.key}&lang=${l.key}`, on: cur("language", { track: t.key, lang: l.key }) })))));
-  html.push(group("개념 모듈", C.modules.map(m => ({ label: m.title, q: `type=module&key=${m.key}`, on: cur("module", { key: m.key }) }))));
+  if (show("module")) html.push(group("개념 모듈", C.modules.map(m => ({ label: m.title, q: `type=module&key=${m.key}`, on: cur("module", { key: m.key }) }))));
   html.push(group("실습 · 직접 코드 작성", C.practice.map(l => ({ label: l.name, q: `type=practice&lang=${l.key}`, on: cur("practice", { lang: l.key }) }))));
-  html.push(group("자격증", C.certifications.map(v => ({ label: v.title, q: `type=certvendor&cert=${v.key}`,
+  if (show("certvendor")) html.push(group("자격증", C.certifications.map(v => ({ label: v.title, q: `type=certvendor&cert=${v.key}`,
     on: (TYPE === "certvendor" || TYPE === "certexam") && P.get("cert") === v.key }))));
   nav.innerHTML = html.join("");
 }

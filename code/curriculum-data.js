@@ -276,4 +276,13 @@ const CURRICULUM = {
   }
 };
 
+// ---- 숨김 설정 (2026-11): 예전 객관식 퀴즈·자격증 콘텐츠는 파일을 지우지 않고 공개만 막습니다.
+// 다시 열려면 HIDDEN_TYPES를 비우면 됩니다. 단답형으로 바꾼 유닛은 이 목록에서 빼면 됩니다.
+CURRICULUM.HIDDEN_TYPES = ["foundation", "language", "module", "certvendor", "certexam"];
+CURRICULUM.HIDDEN_PATHS = ["content/", "foundation/", "modules/", "certifications/"];
+CURRICULUM.isHiddenPath = function (p) {
+  p = String(p || "").replace(/^\.?\//, "");
+  return CURRICULUM.HIDDEN_PATHS.some(function (h) { return p.indexOf(h) === 0; });
+};
+
 if (typeof module !== "undefined") { module.exports = CURRICULUM; }

@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
 <title>문제 풀이 · 코딩 · edu-arena</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -303,6 +304,7 @@
   </div>
 </div>
 
+<script src="curriculum-data.js"></script>
 <script>
 const params = new URLSearchParams(location.search);
 const FILE  = params.get('file');
@@ -391,6 +393,10 @@ let unitTitle = '';
 async function init() {
   if (!FILE) {
     app.innerHTML = `<div class="error-state"><div class="big">⚠</div>파일 경로가 지정되지 않았습니다.<br><span style="opacity:.6">player.html?file=경로/파일.json</span></div>`;
+    return;
+  }
+  if (typeof CURRICULUM !== 'undefined' && CURRICULUM.isHiddenPath(FILE)) {
+    app.innerHTML = `<div class="error-state"><div class="big">🔒</div>이 문제 묶음은 현재 공개하지 않습니다.<br><a href="browse.html" style="color:var(--accent)">코딩 코스로 돌아가기</a></div>`;
     return;
   }
   try {
