@@ -91,7 +91,7 @@ def write_chapter(root, course, course_title, ch_no, ch_title, lessons, review, 
                "course": {"id": cdir, "title": course_title},
                "chapter": {"id": chid, "no": ch_no, "title": ch_title},
                "lesson": {"id": lid, "no": k, "title": L["title"], "minutes": L.get("minutes", 15)},
-               "tags": {"domain": L["domain"], "region": "KR", "curriculum": curriculum},
+               "tags": {"domain": L["domain"], "region": L.get("region", "KR"), "curriculum": curriculum},
                "screens": L["screens"]}
         json.dump(doc, open(os.path.join(d, f"l{k:02d}.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         meta.append({"no": k, "id": lid, "title": L["title"], "file": f"l{k:02d}.json",
