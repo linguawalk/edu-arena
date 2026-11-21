@@ -137,3 +137,19 @@ grant execute on function public.admin_member_progress(uuid) to authenticated;
 
 -- 관리자 지정(본인 이메일로 바꿔 한 번만 실행):
 -- insert into public.admins (user_id) select id from auth.users where email = '내 이메일@example.com';
+
+-- 5) 방문 기록(자체 집계) — 페이지 경로·유입 사이트·익명 값만 저장, 관리자 화면에서 집계
+create table if not exists public.page_views (
+  id bigint generated always as identity primary key,
+  at timestamptz not null default now(),
+  path text not null check (char_length(path) <= 200),
+  ref text check (char_length(ref) <= 100),
+  vid text not null check (char_length(vid) <= 40)
+);
+create index if not exists page_views_at_idx on public.page_views (at);
+alter table public.page_views enable row level security;
+revoke all on public.page_views from anon, authenticated;
+grant insert on public.page_views to anon, authenticated;
+drop policy if exists "views_insert" on public.page_views;
+create policy "views_insert" on public.page_views for insert to anon, authenticated with check (true);
+-- admin_visits() 함수는 마이그레이션 page_views 로 적용했습니다(관리자만 호출 가능).

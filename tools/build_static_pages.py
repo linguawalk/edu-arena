@@ -119,6 +119,7 @@ PRIVACY = f"""
 <tr><td>학습 진도(회원)</td><td>완료한 레슨·에세이의 식별자, 점수, 완료 일시</td><td>다른 기기에서 이어 학습, 내 학습 진도 화면 제공, 서비스 운영 통계</td></tr>
 <tr><td>회원 동의 기록</td><td>만 14세 이상 확인 여부, 약관·방침 동의 일시</td><td>가입 요건 확인과 동의 증빙</td></tr>
 <tr><td>문의</td><td>이름(또는 별칭), 회신받을 이메일 주소, 문의 내용</td><td>문의 확인과 답변</td></tr>
+<tr><td>방문 기록(자체 집계)</td><td>방문한 페이지 주소, 유입 사이트, 브라우저에 저장되는 무작위 익명 값(이름·이메일·IP 주소는 저장하지 않음)</td><td>방문자 수와 인기 페이지 파악, 서비스 개선</td></tr>
 <tr><td>자동 수집</td><td>접속 기록, 방문 페이지, 기기·브라우저 정보, 쿠키, 대략적인 위치(국가·도시 수준)</td><td>방문 통계 분석, 서비스 개선, 광고 게재</td></tr>
 </table>
 <p>로그인하지 않고 레슨을 풀 때 생기는 학습 진도와 점수는 이용자의 브라우저(로컬 저장소)에만 저장되며 사이트가 수집하지 않습니다. 회원으로 로그인한 경우에는 위 표의 학습 진도가 계정에 저장됩니다. 운영자는 회원 관리와 서비스 운영 통계를 위해 관리자 화면에서 회원의 이메일, 가입 방식, 가입일, 학습 진도를 확인할 수 있으며, 이 권한은 지정된 관리자에게만 있습니다.</p>
@@ -610,6 +611,14 @@ ADMIN = """
 <h1>관리자</h1>
 <div id="out" class="msg" role="status">확인하는 중입니다…</div>
 <div id="body" hidden>
+  <h2>사이트 방문</h2>
+  <div class="card" id="vcards"></div>
+  <h2>최근 14일 방문</h2>
+  <div id="vdaily" class="note"></div>
+  <h2>최근 7일 많이 본 페이지 · 유입 경로</h2>
+  <table id="vtop"><tr><th>구분</th><th>항목</th><th>조회</th></tr></table>
+  <p class="note">방문자 수는 브라우저마다 저장된 익명 값을 세므로 같은 사람이 기기나 브라우저를 바꾸면 따로 계산됩니다. 로봇·자동 접속은 일부만 걸러집니다.</p>
+  <h2>회원</h2>
   <div class="card" id="cards"></div>
   <h2>최근 14일 가입</h2>
   <div id="daily" class="note"></div>
@@ -633,6 +642,16 @@ ADMIN = """
     if(!(r.data&&r.data.session)){location.replace("/login.html");return;}
     sb.rpc("is_admin").then(function(a){
       if(a.data!==true){show("관리자만 볼 수 있는 페이지입니다.",true);return;}
+      sb.rpc("admin_visits").then(function(v){ if(v.error||!v.data) return; var o=v.data;
+        function c(n,l){return '<div style="display:inline-block;min-width:120px;margin:6px 16px 6px 0"><div style="font-size:26px;font-weight:700">'+n+'</div><div class="note">'+l+'</div></div>';}
+        document.getElementById("vcards").innerHTML=c(o.today_visitors,"오늘 방문자")+c(o.today_views,"오늘 페이지뷰")+c(o.visitors_7d,"7일 방문자")+c(o.views_7d,"7일 페이지뷰")+c(o.visitors_30d,"30일 방문자")+c(o.views_30d,"30일 페이지뷰");
+        var mx=Math.max.apply(null,o.daily.map(function(z){return z.views;}).concat([1]));
+        document.getElementById("vdaily").innerHTML=o.daily.map(function(z){return '<div style="display:flex;align-items:center;gap:8px"><span style="width:84px">'+esc(z.d.slice(5))+'</span><span style="display:inline-block;height:10px;background:#1D3FA8;width:'+Math.round(z.views/mx*240)+'px"></span><span>방문자 '+z.visitors+' · 조회 '+z.views+'</span></div>';}).join("");
+        var h="";
+        o.pages.forEach(function(z){h+="<tr><td>페이지</td><td>"+esc(z.path)+"</td><td>"+z.n+"</td></tr>";});
+        o.refs.forEach(function(z){h+="<tr><td>유입</td><td>"+esc(z.ref)+"</td><td>"+z.n+"</td></tr>";});
+        document.getElementById("vtop").insertAdjacentHTML("beforeend",h||"<tr><td colspan=3>아직 기록이 없습니다.</td></tr>");
+      });
       Promise.all([sb.rpc("admin_overview"),sb.rpc("admin_members",{p_limit:200,p_offset:0})]).then(function(x){
         if(x[0].error||x[1].error){show("불러오지 못했습니다: "+(x[0].error||x[1].error).message,true);return;}
         var o=x[0].data, m=x[1].data||[];

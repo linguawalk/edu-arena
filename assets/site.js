@@ -104,6 +104,26 @@ window.EA_SITE = window.EA_SITE || {
   }
 
 
+
+  /* ---------- 방문 기록(자체 집계): 페이지 경로, 유입 사이트, 익명 방문자 값만 저장. IP·이름·이메일은 저장하지 않는다 ---------- */
+  (function logView() {
+    try {
+      if (!S.SUPABASE_URL || !S.SUPABASE_ANON_KEY) return;
+      if (/^(localhost|127\.)/.test(location.hostname) || /admin\.html$/.test(path)) return;
+      if (navigator.webdriver || /bot|crawl|spider|slurp|headless/i.test(navigator.userAgent)) return;
+      var vid = null;
+      try { vid = localStorage.getItem("ea-vid"); if (!vid) { vid = Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem("ea-vid", vid); } } catch (e) {}
+      if (!vid) vid = "anon";
+      var ref = "";
+      try { if (document.referrer) { var h = new URL(document.referrer).hostname; if (h !== location.hostname) ref = h.slice(0, 100); } } catch (e) {}
+      fetch(S.SUPABASE_URL + "/rest/v1/page_views", {
+        method: "POST", keepalive: true,
+        headers: { "Content-Type": "application/json", apikey: S.SUPABASE_ANON_KEY, Authorization: "Bearer " + S.SUPABASE_ANON_KEY, Prefer: "return=minimal" },
+        body: JSON.stringify({ path: path.slice(0, 200), ref: ref, vid: vid.slice(0, 40) })
+      }).catch(function () {});
+    } catch (e) {}
+  })();
+
   /* ---------- 학습 진도 동기화: 로그인한 회원의 *:progress 기록을 계정과 맞춘다 ---------- */
   var syncing = null;
   function loadLib() {
