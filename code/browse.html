@@ -23,7 +23,10 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 .logo span{background:linear-gradient(transparent 58%,var(--marker) 58%)}
 .toplinks a{font-size:15px;color:var(--blue);margin-left:14px}
 .layout{display:grid;grid-template-columns:240px 1fr;gap:40px;padding:36px 0 80px}
+nav .navh{font-size:15px;font-weight:700;color:var(--ink);padding:12px 10px 4px;margin-top:6px;border-top:2px solid var(--ink)}
+nav .navh:first-child{border-top:0;margin-top:0}
 nav details{margin:0 0 6px}
+nav details.sub{margin-left:8px}
 nav summary{list-style:none;cursor:pointer;font-size:14px;font-weight:500;color:var(--ink-soft);padding:8px 10px;border-radius:8px;display:flex;justify-content:space-between}
 nav summary::-webkit-details-marker{display:none}
 nav summary::after{content:"+";font-weight:700}
@@ -80,15 +83,16 @@ const cur = (type, extra) => TYPE === type && Object.entries(extra).every(([k, v
 /* ---------- 왼쪽 목록 ---------- */
 function group(title, items, open) {
   const li = items.map(it => `<li><a href="?${it.q}"${it.on ? ' aria-current="page"' : ""}>${esc(it.label)}</a></li>`).join("");
-  return `<details${open || items.some(i => i.on) ? " open" : ""}><summary>${esc(title)}</summary><ol>${li}</ol></details>`;
+  return `<details class="sub"${open || items.some(i => i.on) ? " open" : ""}><summary>${esc(title)}</summary><ol>${li}</ol></details>`;
 }
 function buildNav() {
   const C = CURRICULUM, html = [];
+  if (SHORT) html.push('<div class="navh">코딩 개념</div>');
   if (SHORT) ERAS.forEach(er => {
     const ks = Object.keys(SHORT).filter(k => SHORT[k].year >= er[0] && SHORT[k].year <= er[1]);
-    if (ks.length) html.push(group(`코딩 개념 · ${er[2]}`, ks.map(k => ({ label: `${SHORT[k].name} (${SHORT[k].year})`, q: `type=short&lang=${k}`, on: cur("short", { lang: k }) }))));
+    if (ks.length) html.push(group(er[2], ks.map(k => ({ label: `${SHORT[k].name} (${SHORT[k].year})`, q: `type=short&lang=${k}`, on: cur("short", { lang: k }) }))));
   });
-  html.push(group("코딩 에세이", [{ label: "에세이 목록", q: "type=essay", on: TYPE === "essay" }], TYPE === "essay"));
+  html.push('<div class="navh">코딩 에세이</div><ol style="list-style:none;margin:2px 0 8px;padding:0"><li><a href="?type=essay"' + (TYPE === "essay" ? ' aria-current="page"' : "") + '>에세이 목록</a></li></ol>');
   const show = t => HIDDEN.indexOf(t) < 0;
   if (show("foundation")) html.push(group("기초", C.foundation.stages.map(s => ({ label: s.title, q: `type=foundation&stage=${s.key}`, on: cur("foundation", { stage: s.key }) }))));
   if (show("language")) C.tracks.forEach(t => html.push(group(t.title, t.languages.map(l => ({
