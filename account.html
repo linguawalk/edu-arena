@@ -34,7 +34,7 @@ th,td{border:1px solid var(--grid);padding:8px 10px;text-align:left;vertical-ali
 th{background:var(--blue-soft)}
 .card{background:#fff;border:1px solid var(--grid);border-radius:10px;padding:20px;margin:16px 0}
 label{display:block;font-weight:500;margin:14px 0 6px}
-input[type=text],input[type=email],select,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid #B9C7DD;border-radius:8px;background:#fff;color:var(--ink)}
+input[type=text],input[type=email],input[type=password],select,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid #B9C7DD;border-radius:8px;background:#fff;color:var(--ink)}
 textarea{min-height:160px;resize:vertical}
 .check{display:flex;gap:8px;align-items:flex-start;font-weight:400;margin:10px 0}
 .check input{margin-top:6px}
@@ -72,6 +72,10 @@ textarea{min-height:160px;resize:vertical}
     <tr><th>가입일</th><td id="since"></td></tr>
   </table>
   <div class="stack"><a class="btn" href="/progress.html">내 학습 진도</a><a class="btn ghost" href="/#subjects">공부하러 가기</a><a class="btn ghost" id="adminlink" href="/admin.html" hidden>관리자 페이지</a><button class="btn ghost" id="logout">로그아웃</button></div>
+  <h2>비밀번호</h2>
+  <p class="note">비밀번호를 정해 두면 메일 인증 없이 이메일과 비밀번호로 바로 로그인할 수 있습니다.</p>
+  <input type="password" id="newpw" autocomplete="new-password" placeholder="새 비밀번호(8자 이상)">
+  <div class="stack"><button class="btn ghost" id="setpw">비밀번호 설정·변경</button></div>
   <h2>회원 탈퇴</h2>
   <p class="note">탈퇴하면 계정 정보와 동의 기록이 즉시 삭제되며 되돌릴 수 없습니다. 계정에 저장된 학습 진도도 함께 삭제되며, 이 브라우저에 저장된 진도는 그대로 남습니다.</p>
   <div class="stack"><button class="btn danger" id="del1">회원 탈퇴</button><button class="btn danger" id="del2" hidden>정말 탈퇴합니다</button></div>
@@ -119,6 +123,11 @@ textarea{min-height:160px;resize:vertical}
   }
   document.getElementById("refuse").addEventListener("click",function(){
     removeAccount().then(function(){location.replace("/");}).catch(function(e){show("가입 취소에 실패했습니다: "+e.message,true);});
+  });
+  document.getElementById("setpw").addEventListener("click",function(){
+    var v=document.getElementById("newpw").value;
+    if(v.length<8){show("비밀번호는 8자 이상이어야 합니다.",true);return;}
+    sb.auth.updateUser({password:v}).then(function(r){ if(r.error) show("변경하지 못했습니다: "+r.error.message,true); else {show("비밀번호를 저장했습니다.");document.getElementById("newpw").value="";} });
   });
   document.getElementById("logout").addEventListener("click",function(){ sb.auth.signOut().then(function(){location.replace("/");}); });
   document.getElementById("del1").addEventListener("click",function(){ this.hidden=true; document.getElementById("del2").hidden=false; });

@@ -35,7 +35,7 @@ th,td{border:1px solid var(--grid);padding:8px 10px;text-align:left;vertical-ali
 th{background:var(--blue-soft)}
 .card{background:#fff;border:1px solid var(--grid);border-radius:10px;padding:20px;margin:16px 0}
 label{display:block;font-weight:500;margin:14px 0 6px}
-input[type=text],input[type=email],select,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid #B9C7DD;border-radius:8px;background:#fff;color:var(--ink)}
+input[type=text],input[type=email],input[type=password],select,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid #B9C7DD;border-radius:8px;background:#fff;color:var(--ink)}
 textarea{min-height:160px;resize:vertical}
 .check{display:flex;gap:8px;align-items:flex-start;font-weight:400;margin:10px 0}
 .check input{margin-top:6px}
@@ -114,7 +114,7 @@ PRIVACY = f"""
 <h2>1. 처리하는 개인정보와 목적</h2>
 <table>
 <tr><th>구분</th><th>항목</th><th>목적</th></tr>
-<tr><td>회원가입·로그인(이메일)</td><td>이메일 주소</td><td>회원 식별, 로그인 링크 발송, 계정 관리</td></tr>
+<tr><td>회원가입·로그인(이메일)</td><td>이메일 주소, 비밀번호(단방향 암호화하여 저장되며 운영자도 알 수 없음)</td><td>회원 식별, 로그인, 가입 확인·비밀번호 재설정 메일 발송, 계정 관리</td></tr>
 <tr><td>회원가입·로그인(구글·카카오)</td><td>이메일 주소, 서비스별 회원 식별자, 닉네임(제공되는 경우)</td><td>회원 식별, 계정 관리</td></tr>
 <tr><td>학습 진도(회원)</td><td>완료한 레슨·에세이의 식별자, 점수, 완료 일시</td><td>다른 기기에서 이어 학습, 내 학습 진도 화면 제공, 서비스 운영 통계</td></tr>
 <tr><td>회원 동의 기록</td><td>만 14세 이상 확인 여부, 약관·방침 동의 일시</td><td>가입 요건 확인과 동의 증빙</td></tr>
@@ -349,6 +349,10 @@ ACCOUNT = """
     <tr><th>가입일</th><td id="since"></td></tr>
   </table>
   <div class="stack"><a class="btn" href="/progress.html">내 학습 진도</a><a class="btn ghost" href="/#subjects">공부하러 가기</a><a class="btn ghost" id="adminlink" href="/admin.html" hidden>관리자 페이지</a><button class="btn ghost" id="logout">로그아웃</button></div>
+  <h2>비밀번호</h2>
+  <p class="note">비밀번호를 정해 두면 메일 인증 없이 이메일과 비밀번호로 바로 로그인할 수 있습니다.</p>
+  <input type="password" id="newpw" autocomplete="new-password" placeholder="새 비밀번호(8자 이상)">
+  <div class="stack"><button class="btn ghost" id="setpw">비밀번호 설정·변경</button></div>
   <h2>회원 탈퇴</h2>
   <p class="note">탈퇴하면 계정 정보와 동의 기록이 즉시 삭제되며 되돌릴 수 없습니다. 계정에 저장된 학습 진도도 함께 삭제되며, 이 브라우저에 저장된 진도는 그대로 남습니다.</p>
   <div class="stack"><button class="btn danger" id="del1">회원 탈퇴</button><button class="btn danger" id="del2" hidden>정말 탈퇴합니다</button></div>
@@ -397,6 +401,11 @@ ACCOUNT = """
   document.getElementById("refuse").addEventListener("click",function(){
     removeAccount().then(function(){location.replace("/");}).catch(function(e){show("가입 취소에 실패했습니다: "+e.message,true);});
   });
+  document.getElementById("setpw").addEventListener("click",function(){
+    var v=document.getElementById("newpw").value;
+    if(v.length<8){show("비밀번호는 8자 이상이어야 합니다.",true);return;}
+    sb.auth.updateUser({password:v}).then(function(r){ if(r.error) show("변경하지 못했습니다: "+r.error.message,true); else {show("비밀번호를 저장했습니다.");document.getElementById("newpw").value="";} });
+  });
   document.getElementById("logout").addEventListener("click",function(){ sb.auth.signOut().then(function(){location.replace("/");}); });
   document.getElementById("del1").addEventListener("click",function(){ this.hidden=true; document.getElementById("del2").hidden=false; });
   document.getElementById("del2").addEventListener("click",function(){
@@ -407,30 +416,80 @@ ACCOUNT = """
 </script>
 """
 
-SIGNUP = (_SIGNUP_BASE
-  .replace("<h1>로그인 · 회원가입</h1>", "<h1>회원가입</h1>")
-  .replace("처음이면 자동으로 가입됩니다. 학습 콘텐츠는 로그인하지 않아도 모두 이용할 수 있습니다.",
-           "가입하면 수업 진도가 계정에 저장되어 다른 기기에서도 이어서 볼 수 있습니다. 학습 콘텐츠는 가입하지 않아도 모두 이용할 수 있습니다. 이미 회원이면 <a href=\"/login.html\">로그인</a>하세요.")
-  .replace("(수집 항목: 이메일, 회원 식별자 · 보유: 탈퇴 시까지)", "(수집 항목: 이메일, 회원 식별자, 학습 진도 · 보유: 탈퇴 시까지)")
-  .replace("구글 계정으로 계속하기", "구글 계정으로 가입하기").replace("카카오 계정으로 계속하기", "카카오 계정으로 가입하기")
-  .replace("또는 이메일로 로그인 링크 받기", "또는 이메일로 가입 링크 받기").replace("로그인 링크 보내기", "가입 링크 보내기")
-  .replace("메일로 받은 링크를 누르면 로그인됩니다.", "메일로 받은 링크를 누르면 가입이 완료되고 로그인됩니다.")
-  .replace("로 로그인 링크를 보냈습니다.", "로 가입 링크를 보냈습니다."))
+SIGNUP = """
+<h1>회원가입</h1>
+<p class="lede">가입하면 수업 진도가 계정에 저장되어 다른 기기에서도 이어서 볼 수 있습니다. 학습 콘텐츠는 가입하지 않아도 모두 이용할 수 있습니다. 이미 회원이면 <a href="/login.html">로그인</a>하세요.</p>
+<div class="card" id="box">
+  <label class="check"><input type="checkbox" id="age"> <span>[필수] 만 14세 이상입니다.</span></label>
+  <label class="check"><input type="checkbox" id="terms"> <span>[필수] <a href="/terms.html" target="_blank">이용약관</a>과 <a href="/privacy.html" target="_blank">개인정보처리방침</a>(수집 항목: 이메일, 비밀번호(암호화 저장), 회원 식별자, 학습 진도 · 보유: 탈퇴 시까지)에 동의합니다.</span></label>
+  <label for="em">이메일</label>
+  <input type="email" id="em" autocomplete="email" placeholder="you@example.com">
+  <label for="pw">비밀번호 (8자 이상)</label>
+  <input type="password" id="pw" autocomplete="new-password">
+  <label for="pw2">비밀번호 확인</label>
+  <input type="password" id="pw2" autocomplete="new-password">
+  <div class="stack"><button class="btn" id="join" disabled>가입하기</button></div>
+  <div class="stack">
+    <button class="btn ghost" id="google" disabled>구글 계정으로 가입하기</button>
+    <button class="btn kakao" id="kakao" disabled>카카오 계정으로 가입하기</button>
+  </div>
+  <div id="out" class="msg" role="status" hidden></div>
+  <p class="note">이미 회원이신가요? <a href="/login.html">로그인</a></p>
+</div>
+<script>
+(function(){
+  var S=window.EA_SITE||{}, out=document.getElementById("out");
+  function show(t,err){out.hidden=false;out.textContent=t;out.className="msg"+(err?" err":"");}
+  if(!S.SUPABASE_URL||!S.SUPABASE_ANON_KEY||!window.supabase){show("로그인 기능이 아직 연결되지 않았습니다.",true);return;}
+  var sb=window.supabase.createClient(S.SUPABASE_URL,S.SUPABASE_ANON_KEY);
+  var age=document.getElementById("age"), terms=document.getElementById("terms");
+  var join=document.getElementById("join"), g=document.getElementById("google"), k=document.getElementById("kakao");
+  var P=S.AUTH_PROVIDERS||["email"];
+  if(P.indexOf("google")<0) g.hidden=true;
+  if(P.indexOf("kakao")<0) k.hidden=true;
+  function sync(){var ok=age.checked&&terms.checked;join.disabled=!ok;g.disabled=!ok;k.disabled=!ok;}
+  age.addEventListener("change",sync);terms.addEventListener("change",sync);
+  function remember(){try{localStorage.setItem("ea-consent",JSON.stringify({age14:true,at:new Date().toISOString()}));}catch(e){}}
+  var back=location.origin+"/account.html";
+  sb.auth.getSession().then(function(r){ if(r.data&&r.data.session) location.replace("/account.html"); });
+  function oauth(p){ remember(); sb.auth.signInWithOAuth({provider:p,options:{redirectTo:back}}).then(function(r){ if(r.error) show("가입을 시작하지 못했습니다: "+r.error.message,true); }); }
+  g.addEventListener("click",function(){oauth("google");});
+  k.addEventListener("click",function(){oauth("kakao");});
+  join.addEventListener("click",function(){
+    var em=document.getElementById("em").value.trim(), pw=document.getElementById("pw").value, pw2=document.getElementById("pw2").value;
+    if(!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(em)){show("이메일 주소를 확인해 주세요.",true);return;}
+    if(pw.length<8){show("비밀번호는 8자 이상이어야 합니다.",true);return;}
+    if(pw!==pw2){show("비밀번호 확인이 일치하지 않습니다.",true);return;}
+    remember(); join.disabled=true;
+    sb.auth.signUp({email:em,password:pw,options:{emailRedirectTo:back}}).then(function(r){
+      if(r.error){show(/registered|already/i.test(r.error.message)?"이미 가입된 이메일입니다. 로그인해 주세요.":"가입하지 못했습니다: "+r.error.message,true);join.disabled=false;return;}
+      if(r.data&&r.data.user&&r.data.user.identities&&r.data.user.identities.length===0){show("이미 가입된 이메일입니다. 로그인해 주세요.",true);join.disabled=false;return;}
+      if(r.data&&r.data.session){location.replace("/account.html");return;}
+      show(em+"로 확인 메일을 보냈습니다. 메일의 링크를 한 번 눌러 가입을 마쳐 주세요. 이후에는 인증 없이 이메일과 비밀번호로 바로 로그인합니다.");
+    });
+  });
+})();
+</script>
+"""
 
 LOGIN = """
 <h1>로그인</h1>
-<p class="lede">가입한 방법으로 로그인하세요. 아직 회원이 아니면 <a href="/signup.html">회원가입</a>을 먼저 해 주세요. 학습 콘텐츠는 로그인하지 않아도 모두 이용할 수 있습니다.</p>
+<p class="lede">학습 콘텐츠는 로그인하지 않아도 모두 이용할 수 있습니다. 로그인하면 수업 진도가 계정에 저장됩니다.</p>
 <div class="card" id="box">
+  <label for="em">이메일</label>
+  <input type="email" id="em" autocomplete="email" placeholder="you@example.com">
+  <label for="pw">비밀번호</label>
+  <input type="password" id="pw" autocomplete="current-password">
+  <div class="stack">
+    <button class="btn" id="login">로그인</button>
+    <a class="btn ghost" href="/signup.html">회원가입</a>
+  </div>
   <div class="stack">
     <button class="btn ghost" id="google">구글 계정으로 로그인</button>
     <button class="btn kakao" id="kakao">카카오 계정으로 로그인</button>
   </div>
-  <label for="em">이메일로 로그인 링크 받기</label>
-  <input type="email" id="em" autocomplete="email" placeholder="you@example.com">
-  <div class="stack"><button class="btn" id="mail">로그인 링크 보내기</button></div>
-  <p class="note">비밀번호는 쓰지 않습니다. 가입한 이메일로 받은 링크를 누르면 로그인됩니다.</p>
   <div id="out" class="msg" role="status" hidden></div>
-  <p class="note">처음이신가요? <a href="/signup.html">회원가입</a></p>
+  <p class="note"><a href="#" id="forgot">비밀번호를 잊으셨나요?</a> · <a href="#" id="link">비밀번호 없이 메일 링크로 로그인</a></p>
 </div>
 <script>
 (function(){
@@ -439,23 +498,38 @@ LOGIN = """
   if(!S.SUPABASE_URL||!S.SUPABASE_ANON_KEY||!window.supabase){show("로그인 기능이 아직 연결되지 않았습니다.",true);return;}
   var sb=window.supabase.createClient(S.SUPABASE_URL,S.SUPABASE_ANON_KEY);
   var P=S.AUTH_PROVIDERS||["email"];
-  var g=document.getElementById("google"), k=document.getElementById("kakao"), m=document.getElementById("mail");
+  var g=document.getElementById("google"), k=document.getElementById("kakao"), b=document.getElementById("login");
   if(P.indexOf("google")<0) g.hidden=true;
   if(P.indexOf("kakao")<0) k.hidden=true;
   var back=location.origin+"/progress.html";
+  function email(){var em=document.getElementById("em").value.trim();if(!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(em)){show("이메일 주소를 확인해 주세요.",true);return null;}return em;}
   sb.auth.getSession().then(function(r){ if(r.data&&r.data.session) location.replace("/progress.html"); });
   function oauth(p){ sb.auth.signInWithOAuth({provider:p,options:{redirectTo:back}}).then(function(r){ if(r.error) show("로그인을 시작하지 못했습니다: "+r.error.message,true); }); }
   g.addEventListener("click",function(){oauth("google");});
   k.addEventListener("click",function(){oauth("kakao");});
-  m.addEventListener("click",function(){
-    var em=document.getElementById("em").value.trim();
-    if(!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(em)){show("이메일 주소를 확인해 주세요.",true);return;}
-    m.disabled=true;
+  function go(){
+    var em=email(); if(!em) return;
+    var pw=document.getElementById("pw").value; if(!pw){show("비밀번호를 입력해 주세요.",true);return;}
+    b.disabled=true;
+    sb.auth.signInWithPassword({email:em,password:pw}).then(function(r){
+      b.disabled=false;
+      if(r.error){show(/not confirmed/i.test(r.error.message)?"가입 확인 메일의 링크를 아직 누르지 않았습니다. 메일함을 확인해 주세요.":"이메일 또는 비밀번호가 맞지 않습니다. 처음이면 회원가입을, 비밀번호를 모르면 '비밀번호를 잊으셨나요?'를 눌러 주세요.",true);return;}
+      location.replace("/progress.html");
+    });
+  }
+  b.addEventListener("click",go);
+  document.getElementById("pw").addEventListener("keydown",function(e){if(e.key==="Enter")go();});
+  document.getElementById("forgot").addEventListener("click",function(e){
+    e.preventDefault(); var em=email(); if(!em) return;
+    sb.auth.resetPasswordForEmail(em,{redirectTo:location.origin+"/account.html"}).then(function(r){
+      show(r.error?"메일을 보내지 못했습니다: "+r.error.message:em+"로 안내 메일을 보냈습니다. 메일의 링크를 누르면 내 계정 화면에서 새 비밀번호를 정할 수 있습니다.",!!r.error);
+    });
+  });
+  document.getElementById("link").addEventListener("click",function(e){
+    e.preventDefault(); var em=email(); if(!em) return;
     sb.auth.signInWithOtp({email:em,options:{emailRedirectTo:back,shouldCreateUser:false}}).then(function(r){
-      if(r.error){
-        var nf=/signup|not allowed|not found/i.test(r.error.message||"");
-        show(nf?"가입되지 않은 이메일입니다. 먼저 회원가입을 해 주세요.":"메일을 보내지 못했습니다: "+r.error.message,true);m.disabled=false;
-      } else show(em+"로 로그인 링크를 보냈습니다. 메일함을 확인해 주세요. 메일이 보이지 않으면 스팸함도 확인해 주세요.");
+      if(r.error){show(/signup|not allowed|not found/i.test(r.error.message||"")?"가입되지 않은 이메일입니다. 먼저 회원가입을 해 주세요.":"메일을 보내지 못했습니다: "+r.error.message,true);}
+      else show(em+"로 로그인 링크를 보냈습니다. 메일함을 확인해 주세요.");
     });
   });
 })();

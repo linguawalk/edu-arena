@@ -34,7 +34,7 @@ th,td{border:1px solid var(--grid);padding:8px 10px;text-align:left;vertical-ali
 th{background:var(--blue-soft)}
 .card{background:#fff;border:1px solid var(--grid);border-radius:10px;padding:20px;margin:16px 0}
 label{display:block;font-weight:500;margin:14px 0 6px}
-input[type=text],input[type=email],select,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid #B9C7DD;border-radius:8px;background:#fff;color:var(--ink)}
+input[type=text],input[type=email],input[type=password],select,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid #B9C7DD;border-radius:8px;background:#fff;color:var(--ink)}
 textarea{min-height:160px;resize:vertical}
 .check{display:flex;gap:8px;align-items:flex-start;font-weight:400;margin:10px 0}
 .check input{margin-top:6px}
@@ -58,18 +58,22 @@ textarea{min-height:160px;resize:vertical}
 <main class="wrap">
 
 <h1>로그인</h1>
-<p class="lede">가입한 방법으로 로그인하세요. 아직 회원이 아니면 <a href="/signup.html">회원가입</a>을 먼저 해 주세요. 학습 콘텐츠는 로그인하지 않아도 모두 이용할 수 있습니다.</p>
+<p class="lede">학습 콘텐츠는 로그인하지 않아도 모두 이용할 수 있습니다. 로그인하면 수업 진도가 계정에 저장됩니다.</p>
 <div class="card" id="box">
+  <label for="em">이메일</label>
+  <input type="email" id="em" autocomplete="email" placeholder="you@example.com">
+  <label for="pw">비밀번호</label>
+  <input type="password" id="pw" autocomplete="current-password">
+  <div class="stack">
+    <button class="btn" id="login">로그인</button>
+    <a class="btn ghost" href="/signup.html">회원가입</a>
+  </div>
   <div class="stack">
     <button class="btn ghost" id="google">구글 계정으로 로그인</button>
     <button class="btn kakao" id="kakao">카카오 계정으로 로그인</button>
   </div>
-  <label for="em">이메일로 로그인 링크 받기</label>
-  <input type="email" id="em" autocomplete="email" placeholder="you@example.com">
-  <div class="stack"><button class="btn" id="mail">로그인 링크 보내기</button></div>
-  <p class="note">비밀번호는 쓰지 않습니다. 가입한 이메일로 받은 링크를 누르면 로그인됩니다.</p>
   <div id="out" class="msg" role="status" hidden></div>
-  <p class="note">처음이신가요? <a href="/signup.html">회원가입</a></p>
+  <p class="note"><a href="#" id="forgot">비밀번호를 잊으셨나요?</a> · <a href="#" id="link">비밀번호 없이 메일 링크로 로그인</a></p>
 </div>
 <script>
 (function(){
@@ -78,23 +82,38 @@ textarea{min-height:160px;resize:vertical}
   if(!S.SUPABASE_URL||!S.SUPABASE_ANON_KEY||!window.supabase){show("로그인 기능이 아직 연결되지 않았습니다.",true);return;}
   var sb=window.supabase.createClient(S.SUPABASE_URL,S.SUPABASE_ANON_KEY);
   var P=S.AUTH_PROVIDERS||["email"];
-  var g=document.getElementById("google"), k=document.getElementById("kakao"), m=document.getElementById("mail");
+  var g=document.getElementById("google"), k=document.getElementById("kakao"), b=document.getElementById("login");
   if(P.indexOf("google")<0) g.hidden=true;
   if(P.indexOf("kakao")<0) k.hidden=true;
   var back=location.origin+"/progress.html";
+  function email(){var em=document.getElementById("em").value.trim();if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){show("이메일 주소를 확인해 주세요.",true);return null;}return em;}
   sb.auth.getSession().then(function(r){ if(r.data&&r.data.session) location.replace("/progress.html"); });
   function oauth(p){ sb.auth.signInWithOAuth({provider:p,options:{redirectTo:back}}).then(function(r){ if(r.error) show("로그인을 시작하지 못했습니다: "+r.error.message,true); }); }
   g.addEventListener("click",function(){oauth("google");});
   k.addEventListener("click",function(){oauth("kakao");});
-  m.addEventListener("click",function(){
-    var em=document.getElementById("em").value.trim();
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){show("이메일 주소를 확인해 주세요.",true);return;}
-    m.disabled=true;
+  function go(){
+    var em=email(); if(!em) return;
+    var pw=document.getElementById("pw").value; if(!pw){show("비밀번호를 입력해 주세요.",true);return;}
+    b.disabled=true;
+    sb.auth.signInWithPassword({email:em,password:pw}).then(function(r){
+      b.disabled=false;
+      if(r.error){show(/not confirmed/i.test(r.error.message)?"가입 확인 메일의 링크를 아직 누르지 않았습니다. 메일함을 확인해 주세요.":"이메일 또는 비밀번호가 맞지 않습니다. 처음이면 회원가입을, 비밀번호를 모르면 '비밀번호를 잊으셨나요?'를 눌러 주세요.",true);return;}
+      location.replace("/progress.html");
+    });
+  }
+  b.addEventListener("click",go);
+  document.getElementById("pw").addEventListener("keydown",function(e){if(e.key==="Enter")go();});
+  document.getElementById("forgot").addEventListener("click",function(e){
+    e.preventDefault(); var em=email(); if(!em) return;
+    sb.auth.resetPasswordForEmail(em,{redirectTo:location.origin+"/account.html"}).then(function(r){
+      show(r.error?"메일을 보내지 못했습니다: "+r.error.message:em+"로 안내 메일을 보냈습니다. 메일의 링크를 누르면 내 계정 화면에서 새 비밀번호를 정할 수 있습니다.",!!r.error);
+    });
+  });
+  document.getElementById("link").addEventListener("click",function(e){
+    e.preventDefault(); var em=email(); if(!em) return;
     sb.auth.signInWithOtp({email:em,options:{emailRedirectTo:back,shouldCreateUser:false}}).then(function(r){
-      if(r.error){
-        var nf=/signup|not allowed|not found/i.test(r.error.message||"");
-        show(nf?"가입되지 않은 이메일입니다. 먼저 회원가입을 해 주세요.":"메일을 보내지 못했습니다: "+r.error.message,true);m.disabled=false;
-      } else show(em+"로 로그인 링크를 보냈습니다. 메일함을 확인해 주세요. 메일이 보이지 않으면 스팸함도 확인해 주세요.");
+      if(r.error){show(/signup|not allowed|not found/i.test(r.error.message||"")?"가입되지 않은 이메일입니다. 먼저 회원가입을 해 주세요.":"메일을 보내지 못했습니다: "+r.error.message,true);}
+      else show(em+"로 로그인 링크를 보냈습니다. 메일함을 확인해 주세요.");
     });
   });
 })();

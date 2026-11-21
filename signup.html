@@ -34,7 +34,7 @@ th,td{border:1px solid var(--grid);padding:8px 10px;text-align:left;vertical-ali
 th{background:var(--blue-soft)}
 .card{background:#fff;border:1px solid var(--grid);border-radius:10px;padding:20px;margin:16px 0}
 label{display:block;font-weight:500;margin:14px 0 6px}
-input[type=text],input[type=email],select,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid #B9C7DD;border-radius:8px;background:#fff;color:var(--ink)}
+input[type=text],input[type=email],input[type=password],select,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid #B9C7DD;border-radius:8px;background:#fff;color:var(--ink)}
 textarea{min-height:160px;resize:vertical}
 .check{display:flex;gap:8px;align-items:flex-start;font-weight:400;margin:10px 0}
 .check input{margin-top:6px}
@@ -61,16 +61,20 @@ textarea{min-height:160px;resize:vertical}
 <p class="lede">가입하면 수업 진도가 계정에 저장되어 다른 기기에서도 이어서 볼 수 있습니다. 학습 콘텐츠는 가입하지 않아도 모두 이용할 수 있습니다. 이미 회원이면 <a href="/login.html">로그인</a>하세요.</p>
 <div class="card" id="box">
   <label class="check"><input type="checkbox" id="age"> <span>[필수] 만 14세 이상입니다.</span></label>
-  <label class="check"><input type="checkbox" id="terms"> <span>[필수] <a href="/terms.html" target="_blank">이용약관</a>과 <a href="/privacy.html" target="_blank">개인정보처리방침</a>(수집 항목: 이메일, 회원 식별자, 학습 진도 · 보유: 탈퇴 시까지)에 동의합니다.</span></label>
+  <label class="check"><input type="checkbox" id="terms"> <span>[필수] <a href="/terms.html" target="_blank">이용약관</a>과 <a href="/privacy.html" target="_blank">개인정보처리방침</a>(수집 항목: 이메일, 비밀번호(암호화 저장), 회원 식별자, 학습 진도 · 보유: 탈퇴 시까지)에 동의합니다.</span></label>
+  <label for="em">이메일</label>
+  <input type="email" id="em" autocomplete="email" placeholder="you@example.com">
+  <label for="pw">비밀번호 (8자 이상)</label>
+  <input type="password" id="pw" autocomplete="new-password">
+  <label for="pw2">비밀번호 확인</label>
+  <input type="password" id="pw2" autocomplete="new-password">
+  <div class="stack"><button class="btn" id="join" disabled>가입하기</button></div>
   <div class="stack">
     <button class="btn ghost" id="google" disabled>구글 계정으로 가입하기</button>
     <button class="btn kakao" id="kakao" disabled>카카오 계정으로 가입하기</button>
   </div>
-  <label for="em">또는 이메일로 가입 링크 받기</label>
-  <input type="email" id="em" autocomplete="email" placeholder="you@example.com">
-  <div class="stack"><button class="btn" id="mail" disabled>가입 링크 보내기</button></div>
-  <p class="note">비밀번호는 쓰지 않습니다. 메일로 받은 링크를 누르면 가입이 완료되고 로그인됩니다.</p>
   <div id="out" class="msg" role="status" hidden></div>
+  <p class="note">이미 회원이신가요? <a href="/login.html">로그인</a></p>
 </div>
 <script>
 (function(){
@@ -79,25 +83,29 @@ textarea{min-height:160px;resize:vertical}
   if(!S.SUPABASE_URL||!S.SUPABASE_ANON_KEY||!window.supabase){show("로그인 기능이 아직 연결되지 않았습니다.",true);return;}
   var sb=window.supabase.createClient(S.SUPABASE_URL,S.SUPABASE_ANON_KEY);
   var age=document.getElementById("age"), terms=document.getElementById("terms");
-  var btns=["google","kakao","mail"].map(function(id){return document.getElementById(id);});
+  var join=document.getElementById("join"), g=document.getElementById("google"), k=document.getElementById("kakao");
   var P=S.AUTH_PROVIDERS||["email"];
-  if(P.indexOf("google")<0) btns[0].hidden=true;
-  if(P.indexOf("kakao")<0) btns[1].hidden=true;
-  function sync(){var ok=age.checked&&terms.checked;btns.forEach(function(b){b.disabled=!ok;});}
+  if(P.indexOf("google")<0) g.hidden=true;
+  if(P.indexOf("kakao")<0) k.hidden=true;
+  function sync(){var ok=age.checked&&terms.checked;join.disabled=!ok;g.disabled=!ok;k.disabled=!ok;}
   age.addEventListener("change",sync);terms.addEventListener("change",sync);
   function remember(){try{localStorage.setItem("ea-consent",JSON.stringify({age14:true,at:new Date().toISOString()}));}catch(e){}}
   var back=location.origin+"/account.html";
   sb.auth.getSession().then(function(r){ if(r.data&&r.data.session) location.replace("/account.html"); });
-  function oauth(p){ remember(); sb.auth.signInWithOAuth({provider:p,options:{redirectTo:back}}).then(function(r){ if(r.error) show("로그인을 시작하지 못했습니다: "+r.error.message,true); }); }
-  btns[0].addEventListener("click",function(){oauth("google");});
-  btns[1].addEventListener("click",function(){oauth("kakao");});
-  btns[2].addEventListener("click",function(){
-    var em=document.getElementById("em").value.trim();
+  function oauth(p){ remember(); sb.auth.signInWithOAuth({provider:p,options:{redirectTo:back}}).then(function(r){ if(r.error) show("가입을 시작하지 못했습니다: "+r.error.message,true); }); }
+  g.addEventListener("click",function(){oauth("google");});
+  k.addEventListener("click",function(){oauth("kakao");});
+  join.addEventListener("click",function(){
+    var em=document.getElementById("em").value.trim(), pw=document.getElementById("pw").value, pw2=document.getElementById("pw2").value;
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){show("이메일 주소를 확인해 주세요.",true);return;}
-    remember(); btns[2].disabled=true;
-    sb.auth.signInWithOtp({email:em,options:{emailRedirectTo:back}}).then(function(r){
-      if(r.error){show("메일을 보내지 못했습니다: "+r.error.message,true);btns[2].disabled=false;}
-      else show(em+"로 가입 링크를 보냈습니다. 메일함을 확인해 주세요. 메일이 보이지 않으면 스팸함도 확인해 주세요.");
+    if(pw.length<8){show("비밀번호는 8자 이상이어야 합니다.",true);return;}
+    if(pw!==pw2){show("비밀번호 확인이 일치하지 않습니다.",true);return;}
+    remember(); join.disabled=true;
+    sb.auth.signUp({email:em,password:pw,options:{emailRedirectTo:back}}).then(function(r){
+      if(r.error){show(/registered|already/i.test(r.error.message)?"이미 가입된 이메일입니다. 로그인해 주세요.":"가입하지 못했습니다: "+r.error.message,true);join.disabled=false;return;}
+      if(r.data&&r.data.user&&r.data.user.identities&&r.data.user.identities.length===0){show("이미 가입된 이메일입니다. 로그인해 주세요.",true);join.disabled=false;return;}
+      if(r.data&&r.data.session){location.replace("/account.html");return;}
+      show(em+"로 확인 메일을 보냈습니다. 메일의 링크를 한 번 눌러 가입을 마쳐 주세요. 이후에는 인증 없이 이메일과 비밀번호로 바로 로그인합니다.");
     });
   });
 })();
