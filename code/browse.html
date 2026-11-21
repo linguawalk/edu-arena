@@ -64,7 +64,7 @@ const pad = n => String(n).padStart(2, "0");
 const nav = document.getElementById("nav"), main = document.getElementById("main");
 
 let TYPE = P.get("type");
-let SHORT = null;
+let SHORT = null, ESSAY = null;
 const HIDDEN = CURRICULUM.HIDDEN_TYPES || [];
 if (!TYPE || HIDDEN.indexOf(TYPE) >= 0) {
   // 숨긴 유형의 주소로 들어오면 검색에 잡히지 않게 하고, 공개 중인 첫 화면으로 보냅니다.
@@ -82,6 +82,7 @@ function group(title, items, open) {
 function buildNav() {
   const C = CURRICULUM, html = [];
   html.push(group("개념 단답형", SHORT ? Object.keys(SHORT).map(k => ({ label: SHORT[k].name, q: `type=short&lang=${k}`, on: cur("short", { lang: k }) })) : [], true));
+  html.push(group("개념 에세이", [{ label: "에세이 목록", q: "type=essay", on: TYPE === "essay" }], TYPE === "essay"));
   const show = t => HIDDEN.indexOf(t) < 0;
   if (show("foundation")) html.push(group("기초", C.foundation.stages.map(s => ({ label: s.title, q: `type=foundation&stage=${s.key}`, on: cur("foundation", { stage: s.key }) }))));
   if (show("language")) C.tracks.forEach(t => html.push(group(t.title, t.languages.map(l => ({
@@ -129,6 +130,13 @@ function levels(name, base, nLevels, player, levelNames) {
 
 function render() {
   const C = CURRICULUM;
+  if (TYPE === "essay") {
+    if (!ESSAY) return fail();
+    let prog = {}; try { prog = JSON.parse(localStorage.getItem("code-arena:progress")) || {}; } catch (e) {}
+    const rows = ESSAY.sets.map(x => { const p = prog[x.key]; return row(`essay.html?set=${x.id}`, `${x.no}. ${x.title}`, `${p ? `${p.first}/${x.count}편 제출 · ` : ""}${x.count}편`); }).join("");
+    return head("개념 에세이", "코딩 에세이", "코딩 개념을 글로 설명해 봅니다. 제출하면 기본 요건을 자동으로 점검하고, 평가 기준으로 스스로 채점한 뒤 예시 답안과 비교합니다.") +
+      `<section class="chapter"><h2><span class="no">${ESSAY.sets.length}</span>주제</h2><ol class="items">${rows}</ol></section>`;
+  }
   if (TYPE === "short") {
     const k = P.get("lang"), L = SHORT && SHORT[k]; if (!L) return fail();
     const by = {}; L.units.forEach(u => (by[u.level] = by[u.level] || []).push(u));
@@ -179,7 +187,8 @@ function fail() { return `<div class="empty">코스를 찾을 수 없습니다. 
 
 if (typeof CURRICULUM === "undefined") main.innerHTML = `<div class="empty">코스 정보를 불러오지 못했습니다.</div>`;
 else {
-  fetch("short/index.json").then(r => r.ok ? r.json() : null).catch(() => null).then(m => { SHORT = m; buildNav(); main.innerHTML = render(); });
+  const get = u => fetch(u).then(r => r.ok ? r.json() : null).catch(() => null);
+  Promise.all([get("short/index.json"), get("essay/index.json")]).then(([m, e]) => { SHORT = m; ESSAY = e; buildNav(); main.innerHTML = render(); });
 }
 </script>
 <script src="/assets/site.js" defer></script>
